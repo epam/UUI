@@ -11,28 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic NumericInput usage.\nTo use the component, you need to pass ",
+            "text": "To use NumericInput, pass ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "required",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " props such as ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "value, onValueChange, min, max",
+            "text": "value",
             "marks": [
               {
                 "object": "mark",
@@ -40,6 +24,71 @@
                 "data": {}
               }
             ]
+          },
+          {
+            "object": "text",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "onValueChange",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " props.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "By default, ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "min = 0",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "max = Number.MAX_SAFE_INTEGER",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " , and numbers are whole (i.e. can't contain fractional digits).",
+            "marks": []
           }
         ]
       }

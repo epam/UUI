@@ -49,23 +49,13 @@ export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationM
                         <ScrollBars>
                             <div className={ styles.checkboxContainer }>
                                 { /*TODO: use ArrayDataSource(or Picker) for search*/ }
-                                { sortedColumns
-                                    .filter(column => !!column.caption)
-                                    .map((item, index) => {
-                                        const prevItem = index > 0 ? sortedColumns[index - 1] : sortedColumns[0];
-                                        const nextItem = index === sortedColumns.length - 1 ? sortedColumns[0] : sortedColumns[index + 1];
-                                        return this.renderDndRow(
-                                            item,
-                                            this.state.columnsConfig[prevItem.key].order,
-                                            this.state.columnsConfig[nextItem.key].order,
-                                        );
-                                    }) }
+                                { this.renderSortedColumns(sortedColumns, this.renderDndRow) }
                             </div>
                         </ScrollBars>
                         <ModalFooter borderTop>
                             <LinkButton caption={ i18n.tables.columnsConfigurationModal.resetToDefaultButton } color="sky" onClick={ () => this.setState({ columnsConfig: this.props.defaultConfig }) } />
-                            <LinkButton caption={ i18n.tables.columnsConfigurationModal.checkAllButton } color="sky" onClick={ this.handleMarkAllAsChecked } />
                             <LinkButton caption={ i18n.tables.columnsConfigurationModal.uncheckAllButton } color="sky" onClick={ this.handleMarkAllAsUnchecked } />
+                            <LinkButton caption={ i18n.tables.columnsConfigurationModal.checkAllButton } color="sky" onClick={ this.handleMarkAllAsChecked } />
                             <FlexSpacer />
                             <Button fill="white" color="night600" caption={ i18n.tables.columnsConfigurationModal.cancelButton } onClick={ () => modalProps.abort() } />
                             <Button cx={ styles.actionButton } caption={ i18n.tables.columnsConfigurationModal.applyButton } color="grass" onClick={ () => modalProps.success(this.state.columnsConfig) } />

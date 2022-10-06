@@ -2,11 +2,10 @@ import React, { useCallback } from "react";
 import css from "./SortingPanel.scss";
 import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
 import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-sort_desc-18.svg';
-import { isMobile, SortDirection } from "@epam/uui-core";
-import { FlexCell, FlexRow } from "../../layout";
-import { IconButton } from "../../buttons";
+import { SortDirection } from "@epam/uui-core";
+import { FlexCell } from "../../layout";
 import { i18n } from "../../../i18n";
-import { Text } from "../../typography";
+import { DropdownMenuButton } from "../../overlays";
 
 export interface SortingPanelProps {
     sortDirection: SortDirection;
@@ -14,41 +13,24 @@ export interface SortingPanelProps {
 }
 
 const SortingPanelImpl: React.FC<SortingPanelProps> = ({ sortDirection, onSort }) => {
-    const sortAsc = useCallback(() => onSort('asc'), [onSort]);
-    const sortDesc = useCallback(() => onSort('desc'), [onSort]);
-    const size = isMobile() ? "48" : undefined;
+    const sortAsc = useCallback(() => onSort(sortDirection === 'asc' ? undefined : 'asc'), [onSort]);
+    const sortDesc = useCallback(() => onSort(sortDirection === 'desc' ? undefined : 'desc'), [onSort]);
 
     return (
         <FlexCell cx={ css.sortingPanelContainer }>
-            <FlexRow size={ size } cx={ css.filterSortButton } spacing="6" onClick={ sortAsc }>
-                <IconButton
-                    color={ sortDirection === 'asc' ? "blue" : "gray60" }
-                    icon={ SortIcon }
-                />
-                <Text
-                    cx={ sortDirection === 'asc' ? css.activeText : css.sortText }
-                    color="gray80"
-                    fontSize="14"
-                    size="24"
-                >
-                    { i18n.pickerFilterHeader.sortAscending }
-                </Text>
-            </FlexRow>
+            <DropdownMenuButton
+                isActive={ sortDirection === 'asc' }
+                caption={ i18n.pickerFilterHeader.sortAscending }
+                icon={ SortIcon }
+                onClick={ sortAsc }
+            />
+            <DropdownMenuButton
+                isActive={ sortDirection === 'desc' }
+                caption={ i18n.pickerFilterHeader.sortDescending }
+                icon={ SortIconDesc }
+                onClick={ sortDesc }
 
-            <FlexRow size={ size } cx={ css.filterSortButton } spacing="6" onClick={ sortDesc }>
-                <IconButton
-                    color={ sortDirection === 'desc' ? "blue" : "gray60" }
-                    icon={ SortIconDesc }
-                />
-                <Text
-                    cx={ sortDirection === 'desc' ? css.activeText : css.sortText }
-                    color="gray80"
-                    fontSize="14"
-                    size="24"
-                >
-                    { i18n.pickerFilterHeader.sortDescending }
-                </Text>
-            </FlexRow>
+            />
         </FlexCell>
     );
 };

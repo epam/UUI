@@ -15,6 +15,53 @@
             "marks": []
           }
         ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "We use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "AdaptivePanel",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " component inside, if you need more information about menu items configuration, go to the ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=adaptivePanel&mode=doc&skin=UUI4_promo&category=components"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "AdaptivePanel",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " documentation page.",
+            "marks": []
+          }
+        ]
       }
     ]
   }

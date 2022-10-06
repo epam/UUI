@@ -11,6 +11,7 @@ exports[`TextInput should be rendered correctly 1`] = `
     className="uui-input line-height-18 font-size-14 v-padding-8"
     onChange={[Function]}
     onKeyDown={[Function]}
+    tabIndex={0}
     type="text"
     value="test"
   />
@@ -28,6 +29,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
     className="uui-input line-height-30 font-size-24 v-padding-14"
     onChange={[Function]}
     onKeyDown={[Function]}
+    tabIndex={0}
     type="text"
     value="test"
   />
@@ -58,7 +60,7 @@ exports[`TextInput should be rendered correctly with extra props 1`] = `
     />
   </div>
   <div
-    className="container uui-icon uui-enabled -clickable"
+    className="container uui-icon uui-enabled pointer"
     style={Object {}}
   >
     <svg

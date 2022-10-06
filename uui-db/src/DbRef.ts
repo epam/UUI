@@ -5,7 +5,7 @@ import { TempIdMap, IClientIdsMap } from './tempIds';
 import { objectKeys, defaultCompareViewDependencies, difference } from './utils';
 import isEmpty from 'lodash.isempty';
 import { Loader, LoaderOptions } from './Loader';
-import { DataQuery, LazyDataSourceApiResponse } from '@epam/uui-core';
+import { DataQuery, LazyDataSourceApiResponse, batch } from '@epam/uui-core';
 import { SimpleLoadingTracker } from './SimpleLoadingTracker';
 import { ListLoadingTracker, ListLoadingTrackerOptions } from './ListLoadingTracker';
 
@@ -17,7 +17,6 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     private tempIdMap: TempIdMap<TTables>;
 
     public db: TDb;
-    public errors: ServerError[] = [];
     protected throttleSaveMs = 1000;
     public readonly idMap: IClientIdsMap;
 
@@ -32,8 +31,7 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
 
     /** Saves all committed patches. Useful only if autoSave is off. */
     public save() {
-        this.enqueueSave();
-        this.update();
+        return this.enqueueSave();
     }
 
     public getAutoSave() {
@@ -43,14 +41,13 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     public setAutoSave(val: boolean) {
         if (this.autoSave != val) {
             this.autoSave = val;
-            this.enqueueSave();
+            this.autoSave && this.enqueueSave();
             this.update();
         }
     }
 
     public revert() {
         this.db = this.base;
-        this.errors = [];
         this.log = this.log.slice(0, this.savedPoint);
         this.update();
     }
@@ -64,18 +61,14 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     /* Db Update logic */
 
     public commit(patch: DbPatch<TTables>): void {
-        try {
-            const dbBeforeUpdate = this.db.with(patch);
-            patch = this.beforeUpdate(patch, dbBeforeUpdate.tables, this.db.tables);
-            patch = mergeEntityPatches(this.db.tables, patch);
-            this.log.push({ patch });
-            this.db = this.db.with(patch);
+        const dbBeforeUpdate = this.db.with(patch);
+        patch = this.beforeUpdate(patch, dbBeforeUpdate.tables, this.db.tables);
+        patch = mergeEntityPatches(this.db.tables, patch);
+        this.log.push({ patch });
+        this.db = this.db.with(patch);
 
-            this.autoSave && this.enqueueSave();
-            this.update();
-        } catch (e) {
-            this.saveError(patch, e);
-        }
+        this.autoSave && this.enqueueSave(null, { throttleMs: this.throttleSaveMs });
+        this.update();
     }
 
     private beforeUpdate(patch: DbPatch<TTables>, tables: TTables, prevTables: TTables): DbPatch<TTables> {
@@ -129,25 +122,13 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     }
 
     private applyResponse(response: DbSaveResponse<TTables>, newSavedPoint: number) {
-        if (this.errors.length == 0) {
-            this.tempIdMap.appendServerMapping(response);
+        this.tempIdMap.appendServerMapping(response);
 
-            let serverPatch = flattenResponse(response.submit, this.db.tables);
-            serverPatch = mergeEntityPatches(this.db.tables, serverPatch);
-            this.savedPoint = newSavedPoint;
-            this.base = this.db;
-            this.commitFetch(serverPatch);
-
-            if (this.autoSave) {
-                this.isSaveThrottled = true;
-                setTimeout(() => {
-                    this.isSaveThrottled = false;
-                    if (this.savedPoint < this.log.length) {
-                        this.enqueueSave();
-                    }
-                }, this.throttleSaveMs);
-            }
-        }
+        let serverPatch = flattenResponse(response.submit, this.db.tables);
+        serverPatch = mergeEntityPatches(this.db.tables, serverPatch);
+        this.savedPoint = newSavedPoint;
+        this.base = this.db;
+        this.commitFetch(serverPatch);
     }
 
     /* Update subscriptions (aka live views) */
@@ -216,40 +197,25 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
 
     /* Save scheduling */
 
-    private isSaveInProgress = false;
-    private isSaveThrottled = false;
-
-    private enqueueSave() {
-        if (!this.isSaveInProgress && !this.isSaveThrottled) {
-            try {
-                this.isSaveInProgress = true;
-                const lastLogEntry = this.log.length;
-                const cumulativePatch = this.makeCumulativePatch();
-                if (isEmpty(cumulativePatch)) {
-                    this.isSaveInProgress = false;
-                    return;
-                }
-                this.savePatch(cumulativePatch)
-                .then(response => {
-                    this.applyResponse(response, lastLogEntry);
-                    this.isSaveInProgress = false;
-                    this.update();
-                })
-                .catch(reason => {
-                    this.saveError(cumulativePatch, reason);
-                    this.isSaveInProgress = false;
-                    this.update();
-                });
-            } catch (e) {
-                this.isSaveInProgress = false;
-                this.isSaveThrottled = false;
-                throw e;
-            }
+    private enqueueSave = batch(async () => {
+        const cumulativePatch = this.makeCumulativePatch();
+        const lastLogEntry = this.log.length;
+        if (isEmpty(cumulativePatch)) {
+            return;
         }
-    }
+        try {
+            const response = await this.savePatch(cumulativePatch);
+            this.applyResponse(response, lastLogEntry);
+            this.update();
+        } catch (error) {
+            this.saveError(cumulativePatch, error);
+            this.update();
+            throw error;
+        }
+    })
 
     private handleBeforeUnload = (e: BeforeUnloadEvent) => {
-        if (this.isSaveInProgress || this.isSaveThrottled) {
+        if (this.enqueueSave.isBusy) {
             e.returnValue = false;
             return false;
         }

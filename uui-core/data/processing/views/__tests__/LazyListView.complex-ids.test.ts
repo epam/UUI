@@ -3,8 +3,8 @@ import { LazyListView } from "../LazyListView";
 import { DataSourceState } from "../../types";
 import { runDataQuery } from '../../../querying/runDataQuery';
 import { DataQueryFilter, DataRowProps } from '../../../..';
+import { delay } from "@epam/test-utils";
 
-const delay = () => new Promise(resolve => setTimeout(resolve, 1));
 
 interface TestParent {
     type: 'parent';

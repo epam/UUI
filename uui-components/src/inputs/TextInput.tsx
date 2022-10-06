@@ -9,10 +9,15 @@ const ESCAPE = 'Escape';
 export type IRenderInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 export interface TextInputProps extends TextInputCoreProps {
+    /** Overrides accept (check) icon */
     acceptIcon?: Icon;
+    /** Overrides cancel (cross) icon */
     cancelIcon?: Icon;
+    /** Overrides dropdown (chevron) icon */
     dropdownIcon?: Icon;
+    /** CSS class(es) to put to the HTML Input element */
     inputCx?: CX;
+    /** overrides rendering of HTML Input element  */
     renderInput?: (props: IRenderInputProps) => JSX.Element;
 }
 
@@ -36,14 +41,16 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         else if (e.key === ESCAPE) props.onCancel?.();
     };
 
-    const handleFocus = () => {
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(true);
-        props.onFocus?.();
+        inputElement.current?.focus();
+        props.onFocus?.(event);
     };
 
-    const handleBlur = (e: React.SyntheticEvent<HTMLElement>) => {
-        !props.isReadonly && props.onBlur?.(e);
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(false);
+        inputElement.current?.blur();
+        props.onBlur?.(event);
     };
 
     const handleClick = (e: any) => {
@@ -73,7 +80,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         name: props.name,
         maxLength: props.maxLength,
         inputMode: props.inputMode,
-        tabIndex: props.tabIndex,
+        tabIndex: props.tabIndex || (inFocus || props.isReadonly || props.isDisabled) ? -1 : 0,
         id: props.id,
         required: props.isRequired,
         'aria-invalid': props.isInvalid,
@@ -97,9 +104,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 (!props.isReadonly && inFocus) && uuiMod.focus,
                 props.cx,
             ) }
+            tabIndex={ -1 }
             onFocus={ handleFocus }
             onBlur={ handleBlur }
-            tabIndex={ -1 }
             { ...props.rawProps }
         >
             { props.prefix && <span className={ cx(props.inputCx, uuiElement.prefixInput) }>{ props.prefix }</span> }
@@ -119,7 +126,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             /> }
             { props.iconPosition === 'right' && icon }
             { props.isDropdown && <IconContainer
-                cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, uuiMarkers.clickable) }
+                cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, css.pointer) }
                 icon={ props.dropdownIcon }
                 flipY={ props.isOpen }
             /> }

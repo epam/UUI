@@ -19,8 +19,10 @@ const pickerWidth = 360;
 
 export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
     toggleModalOpening(opened: boolean) {
+        const { renderFooter, rawProps, ...restProps } = this.props;
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
-            { ...this.props }
+            { ...restProps }
+            rawProps={rawProps?.body}
             { ...props }
             caption={ this.getPlaceholder() }
             initialValue={ this.props.value as any }
@@ -28,8 +30,13 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             selectionMode={ this.props.selectionMode }
             valueType={ this.props.valueType }
         />)
-            .then(newSelection => this.handleSelectionValueChange(newSelection))
-            .catch(() => null);
+            .then(newSelection => {
+                this.handleSelectionValueChange(newSelection)
+                this.returnFocusToInput()
+            })
+            .catch(() => {
+                this.returnFocusToInput()
+            });
     }
 
     getRowSize() {
@@ -53,7 +60,6 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                rawProps={ { 'aria-selected': rowProps.isSelectable && rowProps.isSelected, role: 'option' } }
                 borderBottom='none'
                 size={ this.getRowSize() }
                 padding={ this.props.editMode === 'modal' ? '24' : '12' }
@@ -103,7 +109,10 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             >
                 <MobileDropdownWrapper
                     title={ this.props.entityName }
-                    close={ () => this.toggleBodyOpening(false) }
+                    close={ () => {
+                        this.returnFocusToInput()
+                        this.toggleBodyOpening(false)
+                    } }
                 >
                     <DataPickerBody
                         { ...props }

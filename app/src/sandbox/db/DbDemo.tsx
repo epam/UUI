@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { DataSourceState, useLens, IEditable, LazyDataSource, LazyDataSourceApi, DataQueryFilter } from '@epam/uui';
+import { DataSourceState, LazyDataSource, LazyDataSourceApi, DataQueryFilter, Lens } from '@epam/uui';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
-import { FlexRow, FlexCell, SearchInput, FlexSpacer, Button } from '@epam/loveship';
+import { FlexRow, FlexCell, SearchInput, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text } from '@epam/loveship';
 import { DemoDbRef, useDemoDbRef, PersonTableRecord } from './state';
 import { svc } from '../../services';
 import { PersonsTable } from './PersonsTable';
@@ -13,6 +13,24 @@ export const DbDemoImpl = () => {
 
     (window as any).dbRef = dbRef;
     dbRef.setAutoSave(false);
+
+    const handleSave = () => {
+        dbRef.save()
+            .then((patch) => {
+                svc.uuiNotifications.show((props) =>
+                    <SuccessNotification { ...props } >
+                        <Text size="24" font='sans' fontSize='14'>Data has been saved! See console for details.</Text>
+                    </SuccessNotification>, { duration: 2 }
+                );
+            })
+            .catch((e) => {
+                svc.uuiNotifications.show((props) =>
+                    <ErrorNotification { ...props } >
+                        <Text size="24" font='sans' fontSize='14'>Error saving data</Text>
+                    </ErrorNotification>, { duration: 2 }
+                );
+            })
+    }
 
     const api: LazyDataSourceApi<PersonTableRecord, number, DataQueryFilter<Person>> = React.useMemo(() => async (rq, ctx) => {
         if (!ctx.parent) {
@@ -35,7 +53,8 @@ export const DbDemoImpl = () => {
         visibleCount: 30,
         sorting: [{ field: 'name' }],
     }));
-    const editable: IEditable<DataSourceState> = { value, onValueChange };
+
+    const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
     dbRef.jobTitlesLoader.load({});
     dbRef.departmentsLoader.load({});
@@ -49,12 +68,16 @@ export const DbDemoImpl = () => {
         getRowOptions: p => ({ checkbox: { isVisible: true } }),
         isFoldedByDefault: () => false,
     });
+
     return <div className={ css.container }>
         <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
             <FlexCell width={ 200 }>
-                <SearchInput { ...useLens(editable, b => b.prop('search')) } size='30' />
+                <SearchInput { ...lens.prop('search').toProps() } size='30' />
             </FlexCell>
             <FlexSpacer />
+            <FlexCell width='auto'>
+                <Button caption="Save" onClick={ handleSave } size='30'/>
+            </FlexCell>
             <FlexCell width='auto'>
                 <Button caption="Revert" onClick={ () => dbRef.revert() } size='30'/>
             </FlexCell>
@@ -62,7 +85,7 @@ export const DbDemoImpl = () => {
                 <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
             </FlexCell>
         </FlexRow>
-        <PersonsTable { ...useLens(editable, b => b) } view={ personsDataView }/>
+        <PersonsTable { ...lens.toProps() } view={ personsDataView }/>
     </div>;
 };
 

@@ -2,6 +2,7 @@ export const i18n = {
     dataPickerBody: {
         searchPlaceholder: 'Search',
         noRecordsMessage: 'No records found',
+        noRecordsSubTitle: 'Check your spelling, or search for a different keyword',
     },
     fileCard: {
         fileSizeProgress: ' of ',
@@ -17,6 +18,7 @@ export const i18n = {
     pickerInput: {
         showOnlySelectedLabel: 'Show only selected',
         clearSelectionButton: 'CLEAR ALL',
+        clearSelectionButtonSingle: 'CLEAR',
         selectAllButton: 'SELECT ALL',
     },
     notificationCard: {
@@ -96,6 +98,27 @@ export const i18n = {
                 title: 'Server overloaded',
                 subtitle: 'We are trying to recover. Please wait.',
             },
+        },
+    },
+    dataTable: {
+        title: 'No results found',
+        message: 'We can’t find any item matching your request',
+    },
+    filterToolbar: {
+        addCaption: 'Add filter',
+        datePicker: {
+            placeholder: 'Select date',
+            removeCaption: 'REMOVE FILTER',
+            clearCaption: 'CLEAR',
+        },
+        rangeDatePicker: {
+            emptyPickerPlaceholder: 'Select period',
+            emptyPlaceholderFrom: 'Select From',
+            emptyPlaceholderTo: 'Select To',
+        },
+        pickerInput: {
+            itemsPlaceholder: 'items',
+            emptyValueCaption: 'ALL',
         },
     },
 };

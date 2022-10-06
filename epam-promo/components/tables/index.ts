@@ -1,6 +1,5 @@
 export * from './ColumnsConfigurationModal';
 export * from './ColumnHeaderDropdown';
-export * from './ColumnPickerFilter';
 export * from './DataTableCell';
 export * from './DataTableRow';
 export * from './DataTableHeaderRow';

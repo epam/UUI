@@ -5,7 +5,7 @@ import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpace
 
 function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
     return (
-        <ModalBlocker disallowClickOutside blockerShadow='dark' { ...props }>
+        <ModalBlocker disallowClickOutside blockerShadow='dark' { ...props } disableCloseByEsc={true}>
             <ModalWindow>
                 <Panel background="white">
                     <ModalHeader title="Simple modal example " />

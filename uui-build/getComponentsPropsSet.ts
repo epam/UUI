@@ -1,12 +1,61 @@
 import { Project, Symbol } from "ts-morph";
 import * as fs from 'fs';
+import * as ts from 'typescript';
 
-const getPropType = (prop: Symbol) => {
+const project = new Project(
+    {
+        tsConfigFilePath: '../tsconfig.json',
+    },
+);
+
+let docsProps: any = {};
+
+const docsFiles = project.addSourceFilesAtPaths(["../**/*.doc{.ts,.tsx}", "!../**/node_modules/**", "!../**/app/**"]);
+
+const typeChecker = project.getTypeChecker().compilerObject;
+
+// Playground to modify and debug https://regex101.com/r/dd4hyi/1
+const linksRegex = /(?:\[(.*)\])?\{\s*@link\s*(https:\/\/\S+?)\s*}/gm;
+
+function escape(htmlStr: string) {
+    return htmlStr.replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+
+ }
+
+function formatComment(comment: string) {
+    comment = escape(comment);
+    comment = comment.replace(linksRegex, (_, a, b) => `<a href='${b}'>${a ?? b}</a>`);
+    comment = '<p>' + comment + '</p>'; // TBD split to lines?
+    return comment;
+}
+
+let propsCount = 0;
+let JsDocCommentsCount = 0;
+let missingJsDocCommentsCount = 0;
+
+const getPropType = (prop: Symbol, path: string) => {
     const name = prop.getEscapedName();
 
-    prop.getDeclarations()[0].getLeadingCommentRanges();
+    let htmlComment = null;
 
-    const type = prop.getDeclarations()[0].getType();
+    const commentSymbolDp = prop.compilerSymbol.getDocumentationComment(typeChecker);
+    const jsDocComment = ts.displayPartsToString(commentSymbolDp);
+
+    if (jsDocComment) {
+        htmlComment = formatComment(jsDocComment);
+        JsDocCommentsCount++;
+    } else {
+        console.debug(`Missing comment for ${name} in ${path}`)
+        missingJsDocCommentsCount++;
+    }
+    propsCount++;
+
+    const typeDeclarations = prop.getDeclarations();
+    const type = typeDeclarations[0].getType();
     let typeName = type.getText().replace(/import.*"\)\.*/g, '');
 
     if ((type.compilerType as any).types) {
@@ -15,12 +64,12 @@ const getPropType = (prop: Symbol) => {
         if (types.length) {
             typeName = types.join(' | ');
         }
-
     }
 
     return {
         name: name,
         value: typeName,
+        comment: htmlComment,
     };
 };
 
@@ -37,22 +86,15 @@ const getPropType = (prop: Symbol) => {
 //     }
 // };
 
-const project = new Project(
-    {
-        tsConfigFilePath: '../tsconfig.json',
-    },
-);
 
-let docsProps: any = {};
-
-const docsFiles = project.addSourceFilesAtPaths(["../**/*.doc{.ts,.tsx}", "!../**/node_modules/**", "!../**/app/**"]);
 
 docsFiles.map(i => {
     const exportExpression = i.getExportAssignment(() => true).getStructure().expression;
-    const props = i.getVariableDeclaration(exportExpression as any).getType().getTypeArguments()[0].getProperties().map(prop => getPropType(prop));
-    const docPath = i.getFilePath().replace(/.*\/ui/g, '');
+    const docPath = i.getFilePath().replace(/.*\/uui/g, '');
+    const props = i.getVariableDeclaration(exportExpression as any).getType().getTypeArguments()[0].getProperties().map(prop => getPropType(prop, docPath));
     docsProps[docPath] = props;
 });
 
 
 fs.writeFile('../public/docs/componentsPropsSet.json', JSON.stringify({ props: docsProps }, null, 2), () => null);
+console.log(`Props: ${propsCount}. JsDoc exists: ${JsDocCommentsCount}, missing: ${missingJsDocCommentsCount}`);

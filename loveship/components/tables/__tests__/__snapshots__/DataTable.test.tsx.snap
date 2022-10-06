@@ -23,7 +23,9 @@ exports[`DataTable should be rendered correctly 1`] = `
       Object {
         "WebkitOverflowScrolling": "touch",
         "bottom": 0,
+        "display": "flex",
         "flex": "1 1 auto",
+        "flexDirection": "column",
         "left": 0,
         "marginBottom": 0,
         "marginRight": 0,
@@ -40,9 +42,14 @@ exports[`DataTable should be rendered correctly 1`] = `
       <div
         className="container uui-table-row-container root uui-table-header-row container align-items-center"
         role="row"
+        style={
+          Object {
+            "minWidth": "566px",
+          }
+        }
       >
         <div
-          className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+          className="uui-table-fixed-section uui-table-fixed-section-left"
           style={
             Object {
               "flex": "0 0 96px",
@@ -52,7 +59,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             aria-sort="none"
-            className="flexCell -clickable"
+            className="-clickable"
             onClick={[Function]}
             role="columnheader"
             style={
@@ -99,7 +106,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           />
         </div>
         <div
-          className="container"
+          className="scrollingSection uui-table-scrolling-section"
           style={
             Object {
               "flex": "2 0 470px",
@@ -109,7 +116,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         >
           <div
             aria-sort="none"
-            className="flexCell -clickable"
+            className="-clickable"
             onClick={[Function]}
             role="columnheader"
             style={
@@ -153,7 +160,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
           <div
             aria-sort="none"
-            className="flexCell -clickable"
+            className="-clickable"
             onClick={[Function]}
             role="columnheader"
             style={
@@ -197,7 +204,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
           <div
             aria-sort="none"
-            className="flexCell -clickable"
+            className="-clickable"
             onClick={[Function]}
             role="columnheader"
             style={
@@ -262,12 +269,17 @@ exports[`DataTable should be rendered correctly 1`] = `
         }
       >
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -276,7 +288,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -298,7 +310,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -307,7 +319,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -325,7 +337,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -343,7 +355,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -363,12 +375,17 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -377,7 +394,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -399,7 +416,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -408,7 +425,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -426,7 +443,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -444,7 +461,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -464,12 +481,17 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -478,7 +500,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -500,7 +522,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -509,7 +531,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -527,7 +549,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -545,7 +567,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -565,12 +587,17 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -579,7 +606,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -601,7 +628,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -610,7 +637,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -628,7 +655,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -646,7 +673,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -666,12 +693,17 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -680,7 +712,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -702,7 +734,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -711,7 +743,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -729,7 +761,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -747,7 +779,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -767,12 +799,17 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -781,7 +818,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -803,7 +840,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -812,7 +849,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -830,7 +867,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -848,7 +885,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -868,12 +905,17 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -882,7 +924,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -904,7 +946,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -913,7 +955,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -931,7 +973,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -949,7 +991,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -969,12 +1011,17 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -983,7 +1030,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1005,7 +1052,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -1014,7 +1061,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1032,7 +1079,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1050,7 +1097,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1070,12 +1117,17 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -1084,7 +1136,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1106,7 +1158,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -1115,7 +1167,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1133,7 +1185,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1151,7 +1203,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1171,12 +1223,17 @@ exports[`DataTable should be rendered correctly 1`] = `
           </div>
         </div>
         <div
-          aria-expanded={true}
+          aria-expanded={false}
           className="container uui-table-row-container uui-table-row root background-white border-night300 size-30 container align-items-center"
           role="row"
+          style={
+            Object {
+              "minWidth": "566px",
+            }
+          }
         >
           <div
-            className="fixedColumnsSectionLeft uui-table-fixed-section-left"
+            className="uui-table-fixed-section uui-table-fixed-section-left"
             style={
               Object {
                 "flex": "0 0 96px",
@@ -1185,7 +1242,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 padding-left-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-left-24 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1207,7 +1264,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             />
           </div>
           <div
-            className="container"
+            className="scrollingSection uui-table-scrolling-section"
             style={
               Object {
                 "flex": "2 0 470px",
@@ -1216,7 +1273,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             }
           >
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1234,7 +1291,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 align-widgets-top"
+              className="cell size-36 padding-12 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -1252,7 +1309,7 @@ exports[`DataTable should be rendered correctly 1`] = `
               </div>
             </div>
             <div
-              className="flexCell cell size-36 padding-12 padding-right-24 align-widgets-top"
+              className="cell size-36 padding-12 padding-right-24 align-widgets-top"
               role="cell"
               style={
                 Object {

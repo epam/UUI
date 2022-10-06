@@ -6,3 +6,4 @@ export * from './DataTable';
 export * from './types';
 export * from './ColumnsConfigurationModal';
 export * from './ColumnPickerFilter';
+export * from './helpers';

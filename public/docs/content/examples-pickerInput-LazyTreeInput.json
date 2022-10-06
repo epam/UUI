@@ -22,7 +22,39 @@
           },
           {
             "object": "text",
-            "text": " allows to load hierarchical data lazily.",
+            "text": " allows to load hierarchical data lazily. it's required to pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getChildCount",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " callback to the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "LazyDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " for lazy loading in tree lists",
             "marks": []
           }
         ]

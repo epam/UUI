@@ -3,12 +3,12 @@ import { DropdownContainer, DatePickerBody, SizeMod, EditMode, TextInput } from 
 import { cx, IDropdownToggler, uuiMod, IHasRawProps, BaseDatePickerProps } from '@epam/uui-core';
 import * as css from './DatePicker.scss';
 import { Dayjs } from "dayjs";
-import { BaseDatePicker } from '@epam/uui-components';
+import { BaseDatePicker, DropdownBodyProps } from '@epam/uui-components';
 import { TextSettings } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
 
 export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSettings, EditMode {
-    format: string;
+    format?: string;
     filter?(day: Dayjs): boolean;
     renderTarget?(props: any): React.ReactNode;
     renderFooter?(): React.ReactNode;
@@ -37,10 +37,11 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 mode={ this.props.mode || 'form' }
                 value={ this.state.inputValue }
                 onValueChange={ this.handleInputChange }
-                onCancel={ this.props.disableClear ? null : this.state.inputValue && this.handleCancel }
+                onCancel={ (this.props.disableClear || !this.state.inputValue) ? undefined : this.handleCancel }
                 isInvalid={ this.props.isInvalid }
                 isDisabled={ this.props.isDisabled }
                 isReadonly={ this.props.isReadonly }
+                tabIndex={ (this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
                 onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
                 rawProps={ this.props.rawProps?.input }
@@ -48,8 +49,8 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
         );
     }
 
-    renderBody() {
-        return <DropdownContainer>
+    renderBody(props: DropdownBodyProps) {
+        return <DropdownContainer { ...props }>
             <DatePickerBody
                 filter={ this.props.filter }
                 value={ this.getValue() }

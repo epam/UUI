@@ -34,5 +34,4 @@ const RoutedApp = () => (
     </Router>
 );
 
-
 ReactDOM.render(<RoutedApp />, document.getElementById('root'));

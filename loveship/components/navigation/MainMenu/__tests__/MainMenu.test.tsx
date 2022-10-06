@@ -3,8 +3,19 @@ import renderer from "react-test-renderer";
 import {MainMenu} from "../MainMenu";
 import {MainMenuButton} from "../MainMenuButton";
 import {BurgerButton} from "../Burger";
+import ReactDOM from "react-dom";
 
 describe("MainMenu", () => {
+    const oldPortal = ReactDOM.createPortal;
+
+    beforeAll(() => {
+        ReactDOM.createPortal = node => node as any;
+    });
+
+    afterAll(() => {
+        ReactDOM.createPortal = oldPortal;
+    });
+
     it("should be rendered correctly", () => {
         const tree = renderer
             .create(<MainMenu><MainMenuButton /></MainMenu>)
@@ -13,6 +24,7 @@ describe("MainMenu", () => {
     });
 
     it('should be rendered correctly with props', () => {
+
         const tree = renderer
             .create(<MainMenu
                 renderBurger={ () => <BurgerButton /> }

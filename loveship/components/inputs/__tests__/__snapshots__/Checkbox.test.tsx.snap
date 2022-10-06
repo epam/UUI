@@ -3,6 +3,7 @@
 exports[`Checkbox should be rendered correctly 1`] = `
 <label
   className="container root size-18 theme-light color-sky -clickable"
+  tabIndex={-1}
 >
   <div
     className="uui-checkbox uui-checked"
@@ -11,6 +12,7 @@ exports[`Checkbox should be rendered correctly 1`] = `
       aria-checked={true}
       checked={true}
       onChange={[Function]}
+      tabIndex={0}
       type="checkbox"
     />
     <div
@@ -28,6 +30,7 @@ exports[`Checkbox should be rendered correctly 1`] = `
 exports[`Checkbox should be rendered correctly with new props 1`] = `
 <label
   className="container root size-12 theme-dark color-sun -clickable"
+  tabIndex={-1}
 >
   <div
     className="uui-checkbox uui-checked"
@@ -36,6 +39,7 @@ exports[`Checkbox should be rendered correctly with new props 1`] = `
       aria-checked={true}
       checked={true}
       onChange={[Function]}
+      tabIndex={0}
       type="checkbox"
     />
     <div

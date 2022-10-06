@@ -3,7 +3,7 @@ import { useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource,
 import { demoData, Country } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import {
-    FlexCell, FlexRow, FlexSpacer, LabeledInput, Panel, PickerInput, RichTextView, SuccessNotification, Text,
+    FlexCell, FlexRow, FlexSpacer, LabeledInput, Panel, PickerInput, RichTextView, SuccessNotification, ErrorNotification, Text,
     TextInput, DatePicker, Tooltip, IconContainer, Switch, Button, IconButton, NumericInput, RangeDatePicker,
     MultiSwitch, DropSpot, FileCard,
     useForm,
@@ -15,6 +15,8 @@ import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notificati
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as ClearIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import * as css from './DemoForm.scss';
+import { useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
 
 const tShirtSizes = [
     { id: 1, caption: 'XS' },
@@ -35,7 +37,6 @@ function addLensItemHandler<T>(lens: ILens<T[]>, item: T) {
 const PersonalInfo = ({ lens }: { lens: ILens<PersonDetails['personalInfo']> }) => (
     <>
         <RichTextView><h2 className={ css.sectionTitle }>Personal Info</h2></RichTextView>
-
         <FlexRow vPadding='12'>
             <FlexCell minWidth={ 324 }>
                 <LabeledInput htmlFor="fullName" label='Full Name' { ...lens.prop('fullName').toProps() }>
@@ -46,7 +47,11 @@ const PersonalInfo = ({ lens }: { lens: ILens<PersonDetails['personalInfo']> }) 
         <FlexRow vPadding='12'>
             <FlexCell width='auto'>
                 <LabeledInput htmlFor="birthDate" label='Date of Birth' { ...lens.prop('birthdayDate').toProps() }>
-                    <DatePicker rawProps={ { input: { id: "birthDate" } } } format='DD/MM/YYYY' { ...lens.prop('birthdayDate').toProps() } />
+                    <DatePicker
+                        filter={ (day: Dayjs) => day.valueOf() <= dayjs().subtract(0, 'day').valueOf() }
+                        rawProps={ { input: { id: "birthDate" } } }
+                        format='MMM D, YYYY'
+                        { ...lens.prop('birthdayDate').toProps() } />
                 </LabeledInput>
             </FlexCell>
         </FlexRow>
@@ -340,35 +345,43 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
     const scansLens = Lens.onEditable(lens.prop('scans').toProps()).default([]);
 
     const uploadFile = (files: File[], lens: ILens<Attachment[]>) => {
-        let tempIdCounter = 0;
-        const attachments = lens.default([]).get();
+        if ((files.length + lens.get().length) <= 20 && files.every(elem => elem.size <= 5000000)) {
+            let tempIdCounter = 0;
+            const attachments = lens.default([]).get();
 
-        const updateAttachment = (newFile: Attachment, id: number) => {
-            lens.set(attachments.map(i => i.id === id ? newFile : i));
-        };
-
-        const trackProgress = (progress: number, id: number) => {
-            const file = attachments.find(i => i.id === id);
-            file.progress = progress;
-            updateAttachment(file, file.id);
-        };
-
-        files.map(file => {
-            const tempId = --tempIdCounter;
-            const fileToAttach = {
-                id: tempId,
-                name: file.name,
-                size: file.size,
-                progress: 0,
+            const updateAttachment = (newFile: Attachment, id: number) => {
+                lens.set(attachments.map(i => i.id === id ? newFile : i));
             };
 
-            attachments.push(fileToAttach);
-            svc.uuiApi.uploadFile('/uploadFileMock', file, { onProgress: (progress) => trackProgress(progress, tempId) }).then(res => {
-                updateAttachment({ ...res, progress: 100 }, tempId);
-            });
-        });
+            const trackProgress = (progress: number, id: number) => {
+                const file = attachments.find(i => i.id === id);
+                file.progress = progress;
+                updateAttachment(file, file.id);
+            };
 
-        lens.set(attachments);
+            files.map(file => {
+                const tempId = --tempIdCounter;
+                const fileToAttach = {
+                    id: tempId,
+                    name: file.name,
+                    size: file.size,
+                    progress: 0,
+                };
+
+                attachments.push(fileToAttach);
+                svc.uuiApi.uploadFile('/uploadFileMock', file, { onProgress: (progress) => trackProgress(progress, tempId) }).then(res => {
+                    updateAttachment({ ...res, progress: 100 }, tempId);
+                });
+            });
+
+            lens.set(attachments);
+        } else {
+            svc.uuiNotifications.show(props => (
+                <ErrorNotification  { ...props }>
+                    <Text size='36' font='sans' fontSize='14'>File size shouldn't exceed 5 MB and cannot upload more than 20 files!</Text>
+                </ErrorNotification>
+            ), { duration: 2 });
+        }
     };
 
     return (
@@ -393,7 +406,7 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                         </FlexCell>
                         <FlexCell minWidth={ 294 }>
                             <LabeledInput label='Term' { ...visasLens.index(index).prop('term').toProps() } >
-                                <RangeDatePicker { ...visasLens.index(index).prop('term').toProps() } />
+                                <RangeDatePicker format='MMM D, YYYY' { ...visasLens.index(index).prop('term').toProps() } />
                             </LabeledInput>
                         </FlexCell>
                         <FlexRow size='48' alignItems='bottom' cx={ css.clearButtonWrapper }>
@@ -447,10 +460,11 @@ const OtherInfo = ({ lens }: { lens: ILens<PersonDetails['otherInfo']> }) => (
 
 export function DemoForm() {
     const svc = useUuiContext<TApi, UuiContexts>();
+    const [value, setValue] = useState(defaultData);
 
-    const { lens, validate, save } = useForm<PersonDetails>({
+    const { lens, revert, save, isChanged } = useForm<PersonDetails>({
         settingsKey: 'form-test',
-        value: defaultData,
+        value: value,
         getMetadata: personDetailsSchema,
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: () => svc.uuiNotifications.show(props =>
@@ -481,7 +495,6 @@ export function DemoForm() {
                     <hr className={ css.divider } />
                     <FlexRow spacing='12'>
                         <FlexSpacer />
-                        <Button caption='Validate' color='blue' onClick={ validate } />
                         <Button caption='Save' color='green' onClick={ save } />
                     </FlexRow>
                 </FlexCell>

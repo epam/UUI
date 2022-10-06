@@ -9,18 +9,11 @@ import { AmplitudeListener } from "./analyticsEvents";
 import { svc } from './services';
 import App from './App';
 import { getApi, TApi } from './data';
-import qhistory from 'qhistory';
 import '@epam/internal/styles.css';
 import './index.scss';
 import './themes/index.css';
 
-import { stringify, parse } from 'query-string';
-
-const history = qhistory(
-    createBrowserHistory(),
-    stringify,
-    parse,
-);
+const history = createBrowserHistory();
 
 export class UuiEnhancedApp extends React.Component {
 

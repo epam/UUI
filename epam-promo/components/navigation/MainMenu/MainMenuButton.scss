@@ -39,10 +39,12 @@
         @include icon-layout(36px);
     }
 
-    &:hover, &:focus {
-        background-color: var(--background-color-hover_active);
-        color: var(--color-hover);
-        fill: var(--fill-hover);
+    &:global(.-clickable) {
+        &:hover, &:focus {
+            background-color: var(--background-color-hover_active);
+            color: var(--color-hover);
+            fill: var(--fill-hover);
+        }
     }
 
     &:global(.uui-active) {

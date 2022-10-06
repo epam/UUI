@@ -1,35 +1,70 @@
 import * as React from 'react';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
-import {
-    UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier,
-    IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps,
-} from '@epam/uui-core';
+import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus } from '@epam/uui-core';
 import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
 
-export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
+export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
+    /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */
     editMode?: 'dropdown' | 'modal';
+
+    /** Maximum number of tags to display in input, before collapsing to "N items selected" mode */
     maxItems?: number;
+
+    /** Minimum width of dropdown body */
     minBodyWidth?: number;
+
+    /** Prevents selected items tags to occupy multiple lines  */
     isSingleLine?: boolean;
+
+    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
     dropdownPlacement?: Placement;
+
+    /** Replaces default 'toggler' - an input to which Picker attaches dropdown */
     renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
+
+    /** Defines where search field is:
+     * 'input' - try to place search inside the toggler (default for single-select),
+     * 'body' - put search inside the dropdown (default for multi-select)
+     * 'none' - disables search completely */
     searchPosition?: 'input' | 'body' | 'none';
+
+    /** Disallow to clear Picker value (cross icon) */
     disableClear?: boolean;
+
+    /** Minimum characters to type, before search will trigger (default is 1) */
     minCharsToSearch?: number;
+
+    /** Overrides default height of the dropdown body */
     dropdownHeight?: number;
+
+    /** Sets focus to component when it's mounted */
     autoFocus?: boolean;
-    onFocus?: (e?: React.SyntheticEvent<HTMLElement>) => void;
-    onBlur?: (e: React.SyntheticEvent<HTMLElement>) => void;
+
+    /** Prefix text to add to the input */
     prefix?: React.ReactNode;
+
+    /** Suffix text to add to the input */
     suffix?: React.ReactNode;
+
+    /** HTML attributes to put directly to the input and body elements */
     rawProps?: {
         input?: IHasRawProps<HTMLDivElement>['rawProps'];
         body?: IHasRawProps<HTMLDivElement>['rawProps'];
     }
+
+    /** Adds custom footer to the dropdown body */
+    renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;
+
+    /** Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter. */
+    fixedBodyPosition?: boolean;
 };
+
+interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
+    onClose: () => void;
+}
 
 interface PickerInputState extends DropdownState, PickerBaseState {
     showSelected: boolean;
@@ -52,7 +87,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     abstract toggleModalOpening(opened: boolean): void;
     abstract renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>): React.ReactNode;
-    abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Partial<PickerBodyBaseProps>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
+    abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
 
     static getDerivedStateFromProps<TItem, TId>(props: PickerInputBaseProps<TItem, TId>, state: PickerInputState) {
         if (props.isDisabled && state.opened) {
@@ -61,18 +96,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 opened: false,
             };
         } else return null;
-    }
-
-    componentDidUpdate = (prevProps: PickerInputBaseProps<TItem, TId>, prevState: PickerInputState) => {
-        const { search } = this.state.dataSourceState;
-        const isSearchingStarted = !prevState.dataSourceState.search && search;
-        const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
-        if (isSearchingStarted && prevState.showSelected) {
-            this.setState({ showSelected: false });
-        }
-        if (search && isSwitchIsBeingTurnedOn) {
-            this.handleTogglerSearchChange('');
-        }
     }
 
     getInitialState() {
@@ -113,14 +136,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 search: '',
             },
         });
-    }
-
-    onFocus = (e: React.FocusEvent<HTMLElement>) => {
-        this.props.onFocus?.(e);
-    }
-
-    onBlur = (e: React.FocusEvent<HTMLElement>) => {
-        this.props.onBlur?.(e);
     }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
@@ -174,10 +189,11 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 onClose: () => this.toggleBodyOpening(false),
             })),
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
+            fixedBodyPosition: this.props.fixedBodyPosition,
         };
     }
 
-    getTogglerProps(rows: DataRowProps<TItem, TId>[]): PickerTogglerProps<TItem, TId> {
+    getTogglerProps(rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> {
         const selectedRows = this.getSelectedRows();
         const {
             isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch,
@@ -201,17 +217,17 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             iconPosition,
             prefix,
             suffix,
-            onFocus: this.onFocus,
-            onBlur: this.onBlur,
+            onFocus: this.props.onFocus,
+            onBlur: this.props.onBlur,
             onClear: this.handleClearSelection,
             selection: selectedRows,
             placeholder: this.getPlaceholder(),
             getName: (i: any) => this.getName(i),
             entityName: this.getEntityName(selectedRows.length),
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
-            searchPosition: this.props.searchPosition,
+            searchPosition,
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
-            disableSearch: searchPosition !== 'input',
+            disableSearch: !minCharsToSearch && (!dropdownProps.isOpen || searchPosition !== 'input'),
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,
@@ -228,10 +244,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     handlePickerInputKeyboard = (rows: DataSourceKeyboardParams['rows'], e: React.KeyboardEvent<HTMLElement>) => {
-        if (this.props.isDisabled || this.props.isReadonly || this.props.editMode === 'modal') return;
+        if (this.props.isDisabled || this.props.isReadonly) return;
 
         if (e.key === 'Enter' && !this.state.opened) {
-            return this.toggleDropdownOpening(true);
+            return this.toggleBodyOpening(true);
         }
 
         if (e.key === 'Escape' && this.state.opened) {
@@ -271,13 +287,23 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         return getSelectedRows().slice(topIndex, topIndex + visibleCount);
     }
 
+    getFooterProps(): PickerFooterProps<TItem, TId> & { onClose: () => void } {
+        const footerProps = super.getFooterProps();
+
+        return { ...footerProps, onClose: () => this.toggleBodyOpening(false) };
+    }
+
+    returnFocusToInput(): void {
+        this.togglerRef.current.focus()
+    }
+
     render() {
         const rows = this.getRows();
 
         return (
             <Dropdown
                 renderTarget={ dropdownProps => {
-                    const targetProps = this.getTogglerProps(rows);
+                    const targetProps = this.getTogglerProps(rows, dropdownProps);
                     const targetRef = this.getTargetRef({ ...targetProps, ...dropdownProps });
                     return this.renderTarget({ ...dropdownProps, ...targetProps, ...targetRef });
                 } }

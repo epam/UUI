@@ -1,8 +1,7 @@
 import React from 'react';
 import css from './DatePicker.scss';
-import { Dayjs } from "dayjs";
 import { cx, IDropdownToggler, uuiMod, DatePickerCoreProps } from "@epam/uui-core";
-import { BaseDatePicker } from '@epam/uui-components';
+import { BaseDatePicker, DropdownBodyProps } from '@epam/uui-components';
 import { DropdownContainer, DatePickerBody, SizeMod, TextInput, IHasEditMode, EditMode } from '../';
 import { systemIcons } from '../../icons/icons';
 
@@ -26,10 +25,11 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 size={ this.props.size || '36' }
                 value={ this.state.inputValue }
                 onValueChange={ this.handleInputChange }
-                onCancel={ this.props.disableClear ? null : this.state.inputValue && this.handleCancel }
+                onCancel={ (this.props.disableClear || !this.state.inputValue) ? undefined : this.handleCancel }
                 isInvalid={ this.props.isInvalid }
                 isDisabled={ this.props.isDisabled }
                 isReadonly={ this.props.isReadonly }
+                tabIndex={ (this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
                 onFocus={ this.handleFocus }
                 onBlur={ this.handleBlur }
                 mode={ this.props.mode || defaultMode }
@@ -38,8 +38,8 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
         );
     }
 
-    renderBody() {
-        return <DropdownContainer>
+    renderBody(props: DropdownBodyProps) {
+        return <DropdownContainer { ...props }>
             <DatePickerBody
                 filter={ this.props.filter }
                 value={ this.getValue() }
@@ -49,7 +49,6 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 renderDay={ this.props.renderDay }
                 isHoliday={ this.props.isHoliday }
                 rawProps={ this.props.rawProps?.body }
-                cx={ css.body }
             />
             { this.props.renderFooter?.() }
         </DropdownContainer>;

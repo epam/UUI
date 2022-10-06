@@ -33,6 +33,7 @@ export const allThemes: Theme[] = ['light', 'dark'];
 
 // Mod interfaces
 export interface ColorMod {
+    /** Component color */
     color?: EpamColor;
 }
 

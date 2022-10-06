@@ -59,15 +59,21 @@ describe("db - DB queries and updates", () => {
     });
 
     describe("Indexes and updates", () => {
-        it("Should query correct after insert", () => {
+        it("query after insert", () => {
             let db = sampleDb.with({ tasks: [{ id: 100, name: "Test", assignedTo: "QQ", createdBy: "WW", isDone: false, isDraft: false }]});
             expect(db.tasks.find({ assignedTo: "QQ", createdBy: "WW" }).one().id).toBe(100);
         });
 
-        it("Should query correct after update", () => {
+        it("query after update", () => {
             let db = sampleDb.with({ tasks: [{ id: 1, name: "Test", createdBy: "QQ", isDone: false, isDraft: false }]});
             expect(db.tasks.find({ createdBy: "QQ" }).one().id).toBe(1);
             expect(db.tasks.find({ createdBy: "DT" }).orderBy('id').map(u => u.id)).toEqual([2, 3, 4, 5]);
+        });
+
+        it("query after delete", () => {
+            let db = sampleDb.with({ tasks: [{ id: 1, isDeleted: true }] });
+            expect(db.tasks.byId(1)).toBeFalsy();
+            expect(db.tasks.find({ createdBy: 'AS' }).map(i => i.id)).not.toContain(1);
         });
 
         it("user name update", () => {
@@ -80,7 +86,7 @@ describe("db - DB queries and updates", () => {
             expect(sampleDb.users.byId('AS').name).toEqual("Arya Stark");
         });
 
-        it("Should return updated record is index is not touched", () => {
+        it("Should return updated record if index is not touched", () => {
             let db = sampleDb.with({ tasks: [{ id: 7, name: "Test", isDone: true, isDraft: false }]});
             expect(db.tasks.find({ createdBy: "AS" }).one().id).toBe(7);
             expect(db.tasks.find({ createdBy: "AS" }).one().name).toBe("Test");

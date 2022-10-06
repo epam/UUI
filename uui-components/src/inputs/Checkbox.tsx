@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { cx, uuiMarkers } from '@epam/uui-core';
+import { cx, IHasTabIndex, uuiMarkers } from '@epam/uui-core';
 import * as css from './Checkbox.scss';
 import { Icon, uuiMod, uuiElement, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 
-export interface CheckboxProps extends CheckboxCoreProps {
+export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex {
+    /** Check icon */
     icon?: Icon;
+    /** Indeterminate state icon */
     indeterminateIcon?: Icon;
     renderLabel?(): React.ReactNode;
-    tabIndex?: number;
     id?: string;
 }
 
@@ -26,6 +27,11 @@ export class Checkbox extends React.Component<CheckboxProps> {
     }
 
     render() {
+        let label = this.props.label;
+        if (this.props.renderLabel) {
+            label = this.props.renderLabel();
+        }
+
         return (
             <label
                 className={ cx(
@@ -36,10 +42,15 @@ export class Checkbox extends React.Component<CheckboxProps> {
                     this.props.isInvalid && uuiMod.invalid,
                     (!this.props.isReadonly && !this.props.isDisabled) && uuiMarkers.clickable,
                 ) }
+                tabIndex={ -1 }
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
-                <div className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }>
+                <div
+                    className={ cx(uuiElement.checkbox, (this.props.value || this.props.indeterminate) && uuiMod.checked) }
+                    onFocus={ this.props.onFocus }
+                    onBlur={ this.props.onBlur }
+                >
                     <input
                         type="checkbox"
                         onChange={ !this.props.isReadonly ? this.handleChange : undefined }
@@ -51,17 +62,13 @@ export class Checkbox extends React.Component<CheckboxProps> {
                         aria-checked={ this.props.value == undefined ? false : this.props.value }
                         required={ this.props.isRequired }
                         aria-required={ this.props.isRequired || undefined }
-                        tabIndex={ this.props.tabIndex }
+                        tabIndex={ this.props.tabIndex || (this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
                         id={ this.props.id }
                     />
                     { this.props.value && !this.props.indeterminate && <IconContainer icon={ this.props.icon } /> }
                     { this.props.indeterminate && <IconContainer icon={ this.props.indeterminateIcon } /> }
                 </div>
-                { (this.props.renderLabel || this.props.label) && (
-                    <div className={ uuiElement.inputLabel }>
-                        { this.props.renderLabel ? this.props.renderLabel() : this.props.label }
-                    </div>
-                ) }
+                { label && <div className={ uuiElement.inputLabel }>{ label }</div> }
             </label>
         );
     }

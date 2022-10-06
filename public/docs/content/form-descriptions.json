@@ -52,7 +52,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Validation",
+                    "text": "Validation (you can choose when validation is performed: 'onchange' or 'save', by default 'save'.)",
                     "marks": []
                   }
                 ]

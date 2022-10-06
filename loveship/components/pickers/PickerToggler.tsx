@@ -42,9 +42,9 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
         } else if (!props.getName || props.selection?.length > maxItems) {
             return row.value;
         } else {
-            return props.getName(row.value as unknown as DataRowProps<TItem, TId>);
-        };
-    }
+            return props.getName(row.value);
+        }
+    };
 
     const renderItem = (row: DataRowProps<TItem, TId>) => {
         const tagSize = mapSize[props.size] as TagSize;
@@ -60,8 +60,9 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
                     row.onCheck?.(row);
                     e.stopPropagation();
                 } }
+                isDisabled={ props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled }
             />
-        )
+        );
     };
 
     return (
@@ -71,11 +72,11 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             isDropdown={ props.isDropdown && !props.minCharsToSearch }
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ !!props.renderItem ? props.renderItem : renderItem }
-            getName={ (row) => props.getName ? props.getName(row.value as unknown as DataRowProps<TItem, TId>) : row.value }
+            getName={ (item) => props.getName ? props.getName(item) : item }
             cancelIcon={ systemIcons[props.size || defaultSize].clear }
             dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
         />
     );
-};
+}
 
 export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) => JSX.Element;

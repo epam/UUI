@@ -10,20 +10,19 @@ export interface IHistory4 {
 }
 
 export class HistoryAdaptedRouter implements IRouterContext {
-
     constructor(private history: IHistory4) {
     }
 
     public getCurrentLink(): Link {
-        return this.history.location;
+        return HistoryAdaptedRouter.searchToQuery(this.history.location);
     }
 
     public redirect(link: Link): void {
-        this.history.push(link);
+        this.history.push(HistoryAdaptedRouter.queryToSearch(link));
     }
 
     public transfer(link: Link): void {
-        this.history.replace(link);
+        this.history.replace(HistoryAdaptedRouter.queryToSearch(link));
     }
 
     public isActive(link: Link): boolean {
@@ -32,7 +31,7 @@ export class HistoryAdaptedRouter implements IRouterContext {
     }
 
     public createHref(link: Link): string {
-        return this.history.createHref(link);
+        return this.history.createHref(HistoryAdaptedRouter.queryToSearch(link));
     }
 
     public listen(listener: (link: Link) => void) {
@@ -44,5 +43,46 @@ export class HistoryAdaptedRouter implements IRouterContext {
             listener(location);
             return false;
         });
+    }
+
+    private static searchToQuery(link: Link): Link {
+        if (link.query !== undefined) return link;
+
+        const query = {} as any;
+        new URLSearchParams(link.search).forEach((value, key) => {
+            if (!value) return;
+
+            try {
+                query[key] = JSON.parse(decodeURIComponent(value));
+            } catch (e) {
+                query[key] = value;
+            }
+        });
+
+        return {
+            ...link,
+            query,
+        };
+    }
+
+    private static queryToSearch(link: Link): Link {
+        if (!link.query) return link;
+
+        const params = new URLSearchParams();
+
+        Object.keys(link.query).forEach(key => {
+            if (link.query[key] === undefined) return;
+
+            if (typeof link.query[key] === "object") {
+                params.set(key, JSON.stringify(link.query[key]));
+            } else {
+                params.set(key, link.query[key]);
+            }
+        });
+
+        return {
+            ...link,
+            search: params.toString(),
+        };
     }
 }

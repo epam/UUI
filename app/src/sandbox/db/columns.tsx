@@ -24,8 +24,6 @@ export function getColumns(dbRef: DemoDbRef) {
             caption: "Name",
             render: p => <TextInput mode='cell' { ...fieldLens('name', p) } />,
             width: 250,
-            minWidth: 80,
-            shrink: 0,
             fix: 'left',
             isSortable: true,
         },
@@ -34,8 +32,6 @@ export function getColumns(dbRef: DemoDbRef) {
             caption: "Job Title",
             render: r => <Text>{ r.jobTitle }</Text>,
             width: 200,
-            minWidth: 100,
-            shrink: 0,
             isSortable: true,
             isFilterActive: f => !!f.jobTitle,
         },
@@ -44,8 +40,6 @@ export function getColumns(dbRef: DemoDbRef) {
             caption: "Department",
             render: r => <Text>{ r.departmentName }</Text>,
             width: 200,
-            minWidth: 120,
-            shrink: 0,
             isSortable: true,
             isFilterActive: f => !!f.departmentId,
         },
@@ -54,8 +48,6 @@ export function getColumns(dbRef: DemoDbRef) {
             caption: "Birth Date",
             render: r => <Text>{ r?.birthDate?.toLocaleDateString() }</Text>,
             width: 120,
-            minWidth: 100,
-            shrink: 0,
             isSortable: true,
         },
         {
@@ -63,16 +55,14 @@ export function getColumns(dbRef: DemoDbRef) {
             caption: "Hire Date",
             render: r => <Text>{ r?.hireDate?.toLocaleDateString() }</Text>,
             width: 120,
-            minWidth: 100,
-            shrink: 0,
             isSortable: true,
         },
         {
             key: 'notes',
             caption: "Notes",
             render: p => <TextArea mode='cell' rows={ 1 } autoSize { ...fieldLens('notes', p) } />,
-            minWidth: 100,
-            shrink: 0,
+        	width: 200,
+        	grow: 1,
         },
     ];
 
@@ -83,6 +73,13 @@ export function getColumns(dbRef: DemoDbRef) {
             render: p => <Text>{ p.name }</Text>,
             fix: 'left',
             width: 250,
+        },
+        {
+            key: 'spacer',
+            caption: "Name",
+            render: p => null,
+            width: 0,
+            grow: 1,
         },
     ];
 

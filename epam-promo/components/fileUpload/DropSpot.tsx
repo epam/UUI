@@ -6,19 +6,18 @@ import { Anchor, FlexRow, IconContainer, Text } from '../';
 import { ReactComponent as ShapeIcon } from '../../icons/fileUpload/shape.svg';
 import { i18n } from "../../i18n";
 
-export interface DropSpotProps {
+export interface DropSpotProps extends IHasRawProps<HTMLDivElement> {
     cx?: string;
     infoText?: string;
     onUploadFiles(files: File[]): any;
     accept?: string;
     single?: boolean;
-    rawProps?: IHasRawProps<HTMLDivElement>;
 }
 
 export class DropSpot extends React.Component<DropSpotProps> {
     renderAttachmentArea = (props: DropSpotRenderParams) => {
         return (
-            <div className={ cx(css.root, this.props.cx, props.isDragStart && css.dropStart) } { ...this.props.rawProps }>
+            <div className={ cx(css.root, this.props.cx, props.isDragStart && css.dropStart, props.isDraggingOver && css.dropOver) } { ...this.props.rawProps }>
                 <div { ...props.eventHandlers } className={ css.dropArea } >
                     <FlexRow size='24' spacing='6' >
                         <IconContainer color='blue' icon={ ShapeIcon } />

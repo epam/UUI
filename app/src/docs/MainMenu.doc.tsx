@@ -27,12 +27,6 @@ export class MainMenuDoc extends BaseDocsBlock {
                     path='./examples/mainMenu/Responsive.example.tsx'
                     width='auto'
                 />
-
-                <DocExample
-                    title='Main Menu Custom elements'
-                    path='./examples/mainMenu/CustomElements.example.tsx'
-                    width='auto'
-                />
             </>
         );
     }
