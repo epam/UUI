@@ -25,9 +25,6 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICa
     /** Replaces default 'toggler' - an input to which Picker attaches dropdown */
     renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
 
-    /** Replaces onSelect handler for dropdown rows */
-    replaceOnSelectForDropdownRow?: (rowProps:DataRowProps<TItem, TId>) => React.ReactNode[];
-
     /** Defines where search field is:
      * 'input' - try to place search inside the toggler (default for single-select),
      * 'body' - put search inside the dropdown (default for multi-select)
@@ -280,14 +277,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         });
     }
 
-    replaceOnSelectForDropdownRow(rowProps: DataRowProps<TItem, TId>) {
-        if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
-            rowProps.onSelect = this.onSelect;
-        }
-
-        return rowProps
-    }
-
     getRows() {
         if (!this.shouldShowBody()) return [];
 
@@ -302,7 +291,13 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             preparedRows = getSelectedRows().slice(topIndex, topIndex + visibleCount)
         }
 
-        return preparedRows.map((rowProps) => this.replaceOnSelectForDropdownRow(rowProps));
+        return preparedRows.map((rowProps) => {
+            if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
+                rowProps.onSelect = this.onSelect;
+            }
+
+            return rowProps
+        });
     }
 
     getFooterProps(): PickerFooterProps<TItem, TId> & { onClose: () => void } {
