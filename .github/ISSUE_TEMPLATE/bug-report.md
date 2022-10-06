@@ -18,7 +18,7 @@ Please answer the following questions for yourself before submitting an issue. *
 
 ## Description
 
-## Steps to reproduce
+## Steps to Reproduce
 
 Please provide detailed steps for reproducing the issue.
 
@@ -42,4 +42,4 @@ Please provide any relevant information about your setup. This is important in c
 
 * UUI version:
 * Browser name:
-* Operating system:
+* Operating System:
