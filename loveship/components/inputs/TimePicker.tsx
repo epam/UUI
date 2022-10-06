@@ -1,6 +1,6 @@
 import React from 'react';
 import { IDropdownToggler } from '@epam/uui-core';
-import { BaseTimePicker, BaseTimePickerProps } from '@epam/uui-components';
+import { BaseTimePicker, BaseTimePickerProps, DropdownBodyProps } from '@epam/uui-components';
 import { SizeMod, EditMode } from '../types';
 import { TextInput } from './TextInput';
 import * as css from './TimePicker.scss';
@@ -30,15 +30,17 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
             mode={ this.props.mode }
             isDropdown={ false }
             placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
+            rawProps={ this.props.rawProps?.input }
         />
     )
 
-    renderBody = () => {
+    renderBody = (props: DropdownBodyProps) => {
         return !this.props.isDisabled && !this.props.isReadonly && (
-            <DropdownContainer>
+            <DropdownContainer { ...props }>
                 <TimePickerBody
                     { ...this.props }
                     value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }
+                    rawProps={ this.props.rawProps?.body }
                 />
             </DropdownContainer>
         )

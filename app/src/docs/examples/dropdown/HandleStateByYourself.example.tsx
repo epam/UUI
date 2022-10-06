@@ -1,29 +1,39 @@
 import React, { useState } from 'react';
-import { Dropdown } from '@epam/uui-components';
-import { Button, Panel, Text, FlexRow } from "@epam/promo";
-import { IDropdownToggler } from "@epam/uui";
+import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
+import { Text, FlexRow, DropdownContainer, LinkButton, FlexCell } from "@epam/promo";
+import { Avatar, IDropdownToggler } from "@epam/uui";
+import * as css from './HandleStateExample.scss';
+
 
 export default function BasicDropdownExample() {
     const [value, onValueChange] = useState(null);
 
-    const renderDropdownBody = () => {
+    const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <Panel background='white' shadow={ true }>
-                <FlexRow padding='12' vPadding='12'>
-                    <Text>
-                        Dropdown body content.
-                        You can use any components as a dropdown body.
-                    </Text>
+            <DropdownContainer showArrow={ true } vPadding="24" padding="18" { ...props }>
+                <FlexRow alignItems="center" spacing='12'>
+                    <Avatar
+                        size="48"
+                        alt="avatar"
+                        img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
+                    />
+
+                    <FlexCell width="100%">
+                        <Text cx={ css.text } lineHeight="24" fontSize="16" color="gray80" font="sans-semibold">John Doe</Text>
+                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">Corporate Function Management | L3</Text>
+                    </FlexCell>
                 </FlexRow>
-            </Panel>
+            </DropdownContainer>
+
         );
     };
 
     return (
         <>
             <Dropdown
-                renderBody={ renderDropdownBody }
-                renderTarget={ (props: IDropdownToggler) => <Button caption='Click to open' { ...props } /> }
+                renderBody={ (props) => renderDropdownBody(props) } placement="bottom-start"
+                renderTarget={ (props: IDropdownToggler) => <LinkButton caption="Click to open"
+                                                                        size="36" { ...props } /> }
                 value={ value }
                 onValueChange={ onValueChange }
             />

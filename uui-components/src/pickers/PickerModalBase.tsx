@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { DataSourceState, IEditable, IHasCaption, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
+import { DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
 import { PickerBase, PickerBaseState } from './index';
 
-export interface PickerModalOptions<TItem, TId> {
+export interface PickerModalOptions<TItem, TId> extends IHasRawProps<HTMLDivElement> {
     renderFilter?(editableFilter: IEditable<any>): React.ReactNode;
-    renderFooter?: (props: PickerFooterProps<TItem, TId> & IModal<any>) => React.ReactNode;
+    renderFooter?: (props: PickerFooterProps<TItem, TId> & Partial<IModal<any>>) => React.ReactNode;
     disallowClickOutside?: boolean;
 }
 
@@ -49,6 +49,16 @@ export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerMo
         return this.state.showSelected
             ? view.getSelectedRows().slice(topIndex, topIndex + this.state.dataSourceState.visibleCount)
             : view.getVisibleRows();
+    }
+
+    getFooterProps(): PickerFooterProps<TItem, TId> & Partial<IModal<any>> {
+        const footerProps = super.getFooterProps();
+
+        return {
+            ...footerProps,
+            success: this.props.success,
+            abort: this.props.abort,
+        };
     }
 }
 

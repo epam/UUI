@@ -1,49 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { DataColumnProps, IEditable, ILens, FilterConfig, useUuiContext } from "@epam/uui-core";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { DataColumnProps, ILens, TableFiltersConfig, useUuiContext } from "@epam/uui-core";
+import { DropdownBodyProps } from "../overlays";
 
-export const useColumnsWithFilters = <TFilter extends Record<string, any>>(initialColumns: DataColumnProps[], filters: FilterConfig<TFilter>[] | undefined) => {
-    const [columns, setColumns] = useState(initialColumns);
+export const useColumnsWithFilters = <TFilter extends Record<string, any>>(initialColumns: DataColumnProps[], filters: TableFiltersConfig<TFilter>[] | undefined) => {
     const context = useUuiContext();
-    
-    const makeFilterRenderCallback = useCallback((key: string) => {
+
+    const makeFilterRenderCallback = useCallback<(key: string) => (lens: ILens<TFilter>, dropdownProps: DropdownBodyProps) => React.ReactNode>
+    ((key) => (filterLens, dropdownProps) => {
         const filter = filters.find(f => f.columnKey === key);
+        if (!filter) return null;
 
-        const Filter = (props: IEditable<any>) => {
-            switch (filter.type) {
-                case "singlePicker":
-                    return context.uuiSkin.skin.ColumnPickerFilter.render({
-                        dataSource: filter.dataSource,
-                        selectionMode: "single",
-                        valueType: "id",
-                        getName: i => i?.name || "Not Specified",
-                        showSearch: true,
-                        ...props,
-                    });
-                case "multiPicker":
-                    return context.uuiSkin.skin.ColumnPickerFilter.render({
-                        dataSource: filter.dataSource,
-                        selectionMode: "multi",
-                        valueType: "id",
-                        getName: i => i?.name || "Not Specified",
-                        showSearch: true,
-                        ...props,
-                    });
-                case "datePicker":
-                    return context.uuiSkin.skin.DatePicker.render({ format: "DD/MM/YYYY", ...props });
-                case "rangeDatePicker":
-                    return context.uuiSkin.skin.RangeDatePicker.render(props);
-            }
-        };
-
-        return (filterLens: ILens<any>) => {
-            if (!filter) return null;
-
-            const props = filterLens.prop(filter.field).toProps();
-            return <Filter { ...props } />;
-        };
+        const props = filterLens.prop(filter.field).toProps();
+        return context.uuiSkin.skin.FilterItemBody.render({
+            ...props,
+            ...filter,
+            ...dropdownProps,
+        });
     }, [filters]);
 
-    useEffect(() => {
+    const columns = useMemo(() => {
         if (filters) {
             const filterKeys = filters.map(f => f.columnKey);
             const newColumns = (initialColumns.map(column => {
@@ -56,9 +31,10 @@ export const useColumnsWithFilters = <TFilter extends Record<string, any>>(initi
                     return column;
                 }
             }));
-            setColumns(newColumns);
+            return newColumns;
         }
-    }, [filters, makeFilterRenderCallback]);
+        return initialColumns;
+    }, [filters, initialColumns]);
     
     return columns;
 };

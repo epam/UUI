@@ -1,4 +1,4 @@
-import { batchOnNextTick } from './batchOnNextTick';
+import { batch } from './batch';
 
 interface MapRecord<TValue> {
     status: LoadingStatus;
@@ -62,7 +62,7 @@ export class LazyLoadedMap<TKey, TValue> {
         this.map.set(key, { value, status: LOADED });
     }
 
-    private fetch = batchOnNextTick(() => {
+    private fetch = batch(() => {
         const keys: any[] = [];
         this.map.forEach((item, key) => {
             if (item.status === PENDING) {

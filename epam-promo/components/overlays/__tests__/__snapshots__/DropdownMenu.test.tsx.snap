@@ -41,10 +41,10 @@ Array [
     tabIndex={-1}
   >
     <div
-      className="container uui-dropdown-body bodyRoot -lock-focus container"
+      className="uui-dropdown-body bodyRoot -lock-focus container"
       style={
         Object {
-          "maxWidth": "250px",
+          "maxWidth": undefined,
           "minHeight": undefined,
           "minWidth": undefined,
         }
@@ -95,14 +95,22 @@ Array [
         <div
           className="flexSpacer"
         />
-        <div
-          className="container uui-icon uui-enabled icon iconAfter"
-          style={Object {}}
+        <button
+          className="container uui-button-box uui-enabled root icon-color-gray60 icon iconAfter"
+          href={null}
+          onClick={[Function]}
+          role="button"
+          tabIndex={-1}
         >
-          <svg
-            className=""
-          />
-        </div>
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
+        </button>
       </div>
     </div>
   </menu>,

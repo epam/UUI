@@ -1,5 +1,6 @@
 import { EditorState, DraftInlineStyleType, DraftBlockType, ContentState } from 'draft-js';
-import { Icon, IEditable } from '@epam/uui-core';
+import { Icon, IEditable, IHasChildren } from '@epam/uui-core';
+import React from 'react';
 
 export interface DraftButtonProps  extends IEditable<EditorState> {}
 
@@ -15,7 +16,7 @@ export interface DraftBlockStyleButton {
     caption?: string;
 }
 
-export interface DecoratorComponentProps {
+export interface DecoratorComponentProps extends IHasChildren {
     entityKey?: string;
     data?: Record<string, string>;
     offsetKey?: string;

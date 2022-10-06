@@ -29,7 +29,9 @@ Array [
           Object {
             "WebkitOverflowScrolling": "touch",
             "bottom": 0,
+            "display": "flex",
             "flex": "1 1 auto",
+            "flexDirection": "column",
             "left": 0,
             "marginBottom": 0,
             "marginRight": 0,
@@ -64,7 +66,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -98,7 +100,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -132,7 +134,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -166,7 +168,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -200,7 +202,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -234,7 +236,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -268,7 +270,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -302,7 +304,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -336,7 +338,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -370,7 +372,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -493,7 +495,9 @@ Array [
           Object {
             "WebkitOverflowScrolling": "touch",
             "bottom": 0,
+            "display": "flex",
             "flex": "1 1 auto",
+            "flexDirection": "column",
             "left": 0,
             "marginBottom": 0,
             "marginRight": 0,
@@ -528,7 +532,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -562,7 +566,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -596,7 +600,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -630,7 +634,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -664,7 +668,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -698,7 +702,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -732,7 +736,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -766,7 +770,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -800,7 +804,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -834,7 +838,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-30 padding-12 padding-left-12 align-widgets-top"
+                className="cell size-30 padding-12 padding-left-12 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,

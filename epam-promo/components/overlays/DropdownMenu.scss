@@ -32,8 +32,8 @@
     }
 }
 
-@mixin withSelected {
-    &:global(.uui-selected) {
+@mixin withActive {
+    &:global(.uui-active) {
         @include fillColor($blue);
 
         &:hover, &:focus {
@@ -47,9 +47,11 @@
 }
 
 @mixin itemRoot {
-    padding: 0.5em 1em;
-    line-height: 1.5;
     box-sizing: border-box;
+    font-family: $font-sans;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0.5em 1em;
     width: 100%;
 
     &:focus {
@@ -107,16 +109,16 @@
 
 .itemRoot {
     @include icon-layout(36px);
-    @include withSelected;
+    @include withActive;
     @include itemRoot;
+    @include fillColor($gray60, $gray80);
 
     .icon {
         justify-content: flex-start;
     }
 
     &.link {
-        @include withSelected;
-        @include fillColor($gray60, $gray80);
+        @include withActive;
         display: flex;
         align-items: center;
 
@@ -128,7 +130,6 @@
     &:global(.-clickable:not(.uui-disabled)) {
         &:hover, &:focus {
             background-color: $gray30;
-            fill: $gray80;
             cursor: pointer;
         }
     }
@@ -142,7 +143,21 @@
         }
     }
 
+    &:global(.uui-opened) {
+        background-color: $gray30;
+        fill: $gray80;
+    }
+
     & > *:not(:last-child) {
         margin: 0 0.5em 0 0;
+    }
+}
+
+.selected-checkmark {
+    margin-left: auto;
+    fill: $blue;
+
+    &:hover, &:focus {
+        fill: $blue;
     }
 }

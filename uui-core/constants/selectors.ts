@@ -5,6 +5,7 @@ export const uuiElement = {
     inputBox: 'uui-input-box',
     input: 'uui-input',
     placeholder: 'uui-placeholder',
+    valueInPlaceholder: 'uui-value-in-placeholder',
     checkbox: 'uui-checkbox',
     radioInput: 'uui-radioinput',
     icon: 'uui-icon',
@@ -58,6 +59,7 @@ export const uuiMarkers = {
     draggable: '-draggable',
     scrolledLeft: '-scrolled-left',
     scrolledRight: '-scrolled-right',
+    scrolledVertical: '-scrolled-vertical',
 } as const;
 
 export const uuiDndState = {

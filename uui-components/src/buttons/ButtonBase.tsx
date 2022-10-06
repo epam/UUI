@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers,
-    UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui-core';
+import { cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui-core';
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasRawProps<HTMLAnchorElement | HTMLButtonElement>, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
 
@@ -17,7 +16,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             }
 
             if (this.hasLink(this.props.link)) {
-                if (this.props.target || (e.button && e.button !== 0) || (e.keyCode && e.keyCode !== 32)) {
+                if (this.props.target || (e.button && e.button !== 0) || (e.keyCode && e.keyCode !== 32) || e.ctrlKey || e.metaKey) {
                     e.stopPropagation();
                     return;
                 }
@@ -43,7 +42,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
     }
 
     getTabIndex(): number {
-        if (!this.props.tabIndex && (this.props.isDisabled || !this.props.onClick)) {
+        if (!this.props.tabIndex && (this.props.isDisabled || (!this.props.onClick && !this.props.link && !this.props.href))) {
             return -1;
         }
 
@@ -54,7 +53,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
         return !!link;
     }
 
-    render() {
+    render(): any {
         let isAnchor = false;
         let isLinkActive = null;
         let href: string | null = null;
@@ -67,7 +66,6 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             isAnchor = true;
             href = this.props.href;
         }
-
         return React.createElement(isAnchor ? 'a' : 'button', {
             className: cx(
                 this.getClassName(),

@@ -5,7 +5,9 @@ export const FlexCell = React.forwardRef<HTMLDivElement, FlexCellProps>((props, 
     <div
         className={ cx(props.cx) }
         onClick={ props.onClick ? e => !isClickableChildClicked(e) && props.onClick(e) : undefined }
+        { ...props.rawProps }
         style={  {
+            ...props.rawProps?.style,
             minWidth: props.minWidth ? `${props.minWidth}px` : 0,
             flexGrow: props.grow,
             flexShrink: props.shrink,
@@ -14,7 +16,6 @@ export const FlexCell = React.forwardRef<HTMLDivElement, FlexCellProps>((props, 
             alignSelf: props.alignSelf,
         } }
         ref={ ref }
-        { ...props.rawProps }
     >
         { props.children }
     </div>

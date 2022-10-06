@@ -22,7 +22,9 @@ exports[`DataTable should be rendered correctly 1`] = `
       Object {
         "WebkitOverflowScrolling": "touch",
         "bottom": 0,
+        "display": "flex",
         "flex": "1 1 auto",
+        "flexDirection": "column",
         "left": 0,
         "marginBottom": 0,
         "marginRight": 0,
@@ -39,9 +41,14 @@ exports[`DataTable should be rendered correctly 1`] = `
       <div
         className="container uui-table-row-container root uui-table-header-row container align-items-center"
         role="row"
+        style={
+          Object {
+            "minWidth": "0px",
+          }
+        }
       >
         <div
-          className="container"
+          className="scrollingSection uui-table-scrolling-section"
           style={
             Object {
               "flex": "1 0 0px",

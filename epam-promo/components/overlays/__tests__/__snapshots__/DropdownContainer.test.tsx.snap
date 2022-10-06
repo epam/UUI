@@ -2,9 +2,10 @@
 
 exports[`DropdownContainer should be rendered correctly 1`] = `
 <div
-  className="container uui-dropdown-body root background-white -lock-focus container"
+  className="uui-dropdown-body root background-white -lock-focus container"
   style={
     Object {
+      "maxWidth": undefined,
       "minHeight": undefined,
       "minWidth": undefined,
     }
@@ -23,9 +24,10 @@ exports[`DropdownContainer should be rendered correctly 1`] = `
 
 exports[`DropdownContainer should be rendered correctly 2`] = `
 <div
-  className="container uui-dropdown-body root background-gray70 -lock-focus container"
+  className="uui-dropdown-body root background-gray70 -lock-focus container"
   style={
     Object {
+      "maxWidth": undefined,
       "minHeight": 600,
       "minWidth": 300,
     }

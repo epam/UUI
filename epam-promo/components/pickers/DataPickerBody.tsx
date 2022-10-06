@@ -3,10 +3,10 @@ import { Lens, DataSourceState, isMobile, cx } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
-import { Text } from '../typography';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
 import * as css from './DataPickerBody.scss';
+import { Text } from "../typography";
 
 export interface DataPickerBodyProps extends PickerBodyBaseProps {
     maxHeight?: number;
@@ -19,19 +19,17 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     searchLens = this.lens.prop('search');
 
     renderNoFound() {
-        if (this.props.renderNotFound) {
-            return this.props.renderNotFound();
-        }
-
         return (
             <FlexCell cx={ css[`no-found-size-${ this.props.searchSize || 36 }`] } grow={ 1 } textAlign='center'>
-                <Text size={ this.props.searchSize || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
+                { this.props.renderNotFound ?
+                    this.props.renderNotFound() :
+                    <Text size={ this.props.searchSize || '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
+                }
             </FlexCell>
         );
     }
 
     render() {
-        const value = this.props.value;
         const searchSize = isMobile() ? '48' : (this.props.searchSize || '36');
         const searchClass = cx(css.searchWrapper, css[`search-size-${ searchSize }`]);
 
@@ -52,7 +50,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
             ) }
             <FlexRow
                 key='body'
-                cx={ cx(css.body, css[this.props.editMode]) }
+                cx={ cx(css.body, css['editMode-' + this.props.editMode]) }
                 rawProps={ { style: { maxHeight: this.props.maxHeight } } }
                 background='white'
             >
@@ -63,7 +61,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                         role='listbox'
                         rawProps={ this.props.rawProps }
                         rowsCount={ this.props.rowsCount }
-                        focusedIndex={ value && value.focusedIndex || 0 }
                     />
                     : this.renderNoFound()
                 }

@@ -23,6 +23,10 @@
         padding-right: 0;
         min-width: 40px;
 
+        &:global(.uui-numeric-input-without-arrows) {
+            padding-right: 5px;
+        }
+
         :global(.uui-numeric-input-up-button) {
             transform: rotate(180deg);
         }
@@ -31,6 +35,12 @@
             & > *:hover, & > *:focus {
                 outline: none;
                 background-color: $night50;
+            }
+        }
+
+        :global(.uui-input.uui-value-in-placeholder) {
+            &::placeholder {
+                color: inherit;
             }
         }
 

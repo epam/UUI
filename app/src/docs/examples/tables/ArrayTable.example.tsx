@@ -20,18 +20,19 @@ export default function ArrayDataTableExample() {
             render: item => <Text color='gray80'>{ item.id }</Text>,
             isSortable: true,
             isAlwaysVisible: true,
-            grow: 0, shrink: 0, width: 100,
+            width: 100,
         }, {
             key: 'name',
             caption: 'Name',
             render: item => <Text color='gray80'>{ item.name }</Text>,
             isSortable: true,
-            grow: 0, minWidth: 300,
+            width: 300,
         }, {
             key: 'description',
             caption: 'Description',
             render: item => <Text color='gray80'>{ item.description }</Text>,
-            grow: 1, shrink: 0, width: 300,
+            grow: 1,
+            width: 300,
         },
     ], []);
 

@@ -1,6 +1,7 @@
 import { LazyDataSource } from "../../LazyDataSource";
 import { LazyListViewProps } from "../LazyListView";
 import { DataSourceState } from "../../types";
+import { delay } from "@epam/test-utils";
 
 interface TItem {
     id: number;
@@ -22,8 +23,6 @@ const testItems = [
     { "id": 11, "level": "C1+" },
     { "id": 12, "level": "C2" },
 ];
-
-const delay = () => new Promise(resolve => setTimeout(resolve, 1));
 
 describe('LazyListView - old tests', () => {
     let initialValue: DataSourceState = { topIndex: 0, visibleCount: 20 };

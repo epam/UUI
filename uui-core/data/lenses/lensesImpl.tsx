@@ -8,12 +8,18 @@ export interface ILensImpl<TBig, TSmall> {
     getMetadata?(big?: Metadata<TBig>): Metadata<TSmall> | undefined;
 }
 
-export const identityLens = {
+export const identityLens: ILensImpl<any, any> = {
     get(big: any) {
         return big;
     },
     set(big: any, small: any) {
         return small;
+    },
+    getValidationState(big: ICanBeInvalid) {
+        return big;
+    },
+    getMetadata(big: Metadata<any>) {
+        return big;
     },
 };
 
@@ -38,7 +44,7 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
             return newObject;
         },
         getValidationState(big: ICanBeInvalid) {
-            let validationStateProps = (big || blankValidationState).validationProps || {[name]: {isInvalid: false}};
+            let validationStateProps = (big || blankValidationState).validationProps || {[name]: { isInvalid: false }};
             return validationStateProps[name as string];
         },
         getMetadata(big: Metadata<TObject>) {

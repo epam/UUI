@@ -3,8 +3,7 @@
 	"version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@epam/uui-core": "4.1.1",
-    "react": "^17.0.2",
+    "@epam/uui-core": "4.6.2",
     "enzyme": "^3.9.0",
     "@types/react-test-renderer": "17.0.1",
     "enzyme-adapter-react-16": "^1.10.0",

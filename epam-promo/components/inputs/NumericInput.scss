@@ -8,6 +8,10 @@
         padding-right: 0;
         min-width: 40px;
 
+        &:global(.uui-numeric-input-without-arrows) {
+            padding-right: 5px;
+        }
+
         :global(.uui-numeric-input-up-button) {
             transform: rotate(180deg);
 
@@ -23,6 +27,12 @@
                 svg {
                     fill: var(--icon-color-hovered);
                 }
+            }
+        }
+
+        :global(.uui-input.uui-value-in-placeholder) {
+            &::placeholder {
+                color: inherit;
             }
         }
 
@@ -78,5 +88,9 @@
                 background-color: transparent;
             }
         }
+    }
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
     }
 }

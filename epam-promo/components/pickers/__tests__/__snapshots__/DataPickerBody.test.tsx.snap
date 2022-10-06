@@ -2,7 +2,7 @@
 
 exports[`DataPickerBody should be rendered correctly 1`] = `
 <div
-  className="root size-36 background-white body undefined container align-items-center"
+  className="root size-36 background-white body editMode-undefined container align-items-center"
   style={
     Object {
       "maxHeight": undefined,
@@ -32,21 +32,6 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
 `;
 
 exports[`DataPickerBody should be rendered correctly 2`] = `
-<div
-  className="root size-36 background-white body undefined container align-items-center"
-  style={
-    Object {
-      "maxHeight": undefined,
-    }
-  }
->
-  <div>
-    Not found
-  </div>
-</div>
-`;
-
-exports[`DataPickerBody should be rendered correctly 3`] = `
 Array [
   <div
     className="searchWrapper search-size-48"
@@ -85,6 +70,7 @@ Array [
           onChange={[Function]}
           onKeyDown={[Function]}
           placeholder="Search"
+          tabIndex={0}
           type="search"
           value=""
         />
@@ -92,7 +78,7 @@ Array [
     </div>
   </div>,
   <div
-    className="root size-36 background-white body modal container align-items-center"
+    className="root size-36 background-white body editMode-modal container align-items-center"
     style={
       Object {
         "maxHeight": 800,
@@ -118,7 +104,9 @@ Array [
           Object {
             "WebkitOverflowScrolling": "touch",
             "bottom": 0,
+            "display": "flex",
             "flex": "1 1 auto",
+            "flexDirection": "column",
             "left": 0,
             "marginBottom": 0,
             "marginRight": 0,
@@ -151,7 +139,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -179,7 +167,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -207,7 +195,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -235,7 +223,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -263,7 +251,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -291,7 +279,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -319,7 +307,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -347,7 +335,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -375,7 +363,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -403,7 +391,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -431,7 +419,7 @@ Array [
               role="option"
             >
               <div
-                className="flexCell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -487,4 +475,33 @@ Array [
     </div>
   </div>,
 ]
+`;
+
+exports[`DataPickerBody should be rendered correctly without rows 1`] = `
+<div
+  className="root size-36 background-white body editMode-undefined container align-items-center"
+  style={
+    Object {
+      "maxHeight": undefined,
+    }
+  }
+>
+  <div
+    className="no-found-size-36"
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "0",
+        "flexGrow": 1,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": "center",
+      }
+    }
+  >
+    <div>
+      Not found
+    </div>
+  </div>
+</div>
 `;

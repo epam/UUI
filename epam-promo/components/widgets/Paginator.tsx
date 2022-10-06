@@ -10,14 +10,14 @@ import { ReactComponent as ArrowRightIcon_30 } from '@epam/assets/icons/common/n
 export class Paginator extends React.Component<PaginatorProps> {
     renderPaginator(params: PaginatorParams) {
         return (
-            <nav role="navigation" className={ css.root }>
+            <nav role="navigation" className={ css.root } { ...params.rawProps }>
                 <PageButton size={ params.size } icon={ (params.size === '30') ? ArrowLeftIcon_30 : ArrowLeftIcon_24 }  onClick={ params.goToPrev } isDisabled={ params.isFirst } fill='white' color='gray50' />
                 {
                     params.pages.map((page, index) => {
                         if (page.type === 'spacer') {
-                            return <PageButton size={ params.size } key={ index } caption={ '...' } fill='light' color='blue' tabIndex={ -1 } />;
+                            return <PageButton size={ params.size } key={ `${index}_spacer` } caption={ '...' } fill='light' color='blue' tabIndex={ -1 } />;
                         } else {
-                            return <PageButton size={ params.size } key={ index } caption={ page.pageNumber } onClick={ () => page.onClick && page.onClick() } rawProps={ { 'aria-current': page.isActive } } fill={ (page.isActive && 'white') || 'light' } color={ 'blue' } />;
+                            return <PageButton size={ params.size } key={ page.pageNumber } caption={ page.pageNumber } onClick={ () => page.onClick?.() } rawProps={ { 'aria-current': page.isActive } } fill={ (page.isActive && 'white') || 'light' } color={ 'blue' } />;
                         }
                     })
                 }

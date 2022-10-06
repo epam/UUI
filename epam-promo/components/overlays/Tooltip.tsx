@@ -4,7 +4,8 @@ import * as css from './Tooltip.scss';
 import * as styles from '../../assets/styles/colorvars/overlays/tooltip-colorvars.scss';
 
 export interface TooltipMods {
-    color?: 'white' | 'gray90';
+    /** Tooltip color */
+    color?: 'white' | 'gray90' | 'red';
 }
 
 function applyTooltipMods(mods: TooltipMods) {

@@ -8,24 +8,12 @@ import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { getBlockDesirialiser } from '../../helpers';
 
 export const listPlugin = () => {
-    const lists = Lists();
-    const toggleListCommand = lists[0].commands.toggleList;
-    lists[0].commands.wrapList = (editor: Editor, ...props: any[]) => {
-        const type = props[0].type || 'unordered-list';
-        const leafBlocks = editor.value.document.getLeafBlocksAtRange(editor.value.selection as any);
-
-        editor.withoutNormalizing(() => {
-            leafBlocks.forEach(block => {
-                if (block.type == 'unordered-list' || block.type == 'ordered-list') return;
-                editor.wrapBlockByKey(block.key, type);
-                editor.wrapBlockByKey(block.key, 'list-item');
-                editor.setNodeByKey(block.key, 'list-item-child');
-            });
-        });
-    };
-    lists[0].commands.toggleList = (editor: Editor, ...props: any[]) => {
-        toggleListCommand(editor, ...props);
-    };
+    const lists = Lists({
+        blocks: {
+          ordered_list: "ordered-list",
+          unordered_list: "unordered-list",
+          list_item: "list-item",
+        }});
 
     const isList = (editor: Editor, type: 'ordered-list' | 'unordered-list') => {
         let isActive = false;

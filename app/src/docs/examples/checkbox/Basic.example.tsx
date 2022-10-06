@@ -10,6 +10,7 @@ export default function BasicExample() {
             <Checkbox label='Some label' value={ value } onValueChange={ onValueChange }/>
             <Checkbox size='18' label='Size 18px' value={ value } onValueChange={ onValueChange }/>
             <Checkbox size='12' label='Size 12px' value={ value } onValueChange={ onValueChange }/>
+            <Checkbox label='Readonly, indeterminate' indeterminate={true} isReadonly={ true } value={ value } onValueChange={ onValueChange }/>
             <Checkbox label='Disabled' value={ value } onValueChange={ onValueChange } isDisabled/>
             <Checkbox label='Invalid' value={ value } onValueChange={ onValueChange } isInvalid/>
         </FlexCell>

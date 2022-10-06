@@ -5,8 +5,8 @@ import { FlexCell, FlexRow, PickerInput } from "@epam/promo";
 
 export default function GetRowOptionsExample() {
     const svc = useUuiContext();
-    const [productID, setProductID] = useState<number>(null);
-    const [productsIDs, setProductsIDs] = useState<number[]>(null);
+    const [productID, setProductID] = useState<number>(3);
+    const [productsIDs, setProductsIDs] = useState<number[]>([3]);
 
     const productsDataSource = useAsyncDataSource<Product, Product['ProductID'], unknown>({
         api: () => svc.api.demo.products({}).then((r: any) => r.items),

@@ -1,12 +1,11 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IHasCX, IHasRawProps } from '@epam/uui-core';
+import { IHasChildren, IHasCX, IHasRawProps } from '@epam/uui-core';
 import * as types from '../types';
 import * as css from './ControlWrapper.scss';
 
-interface ControlWrapperProps extends IHasCX, IHasRawProps<HTMLDivElement> {
+interface ControlWrapperProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasChildren {
     size: types.ControlSize;
-    children: React.ReactNode;
 }
 
 export const ControlWrapper = React.forwardRef<HTMLDivElement, ControlWrapperProps>((props, ref) => (

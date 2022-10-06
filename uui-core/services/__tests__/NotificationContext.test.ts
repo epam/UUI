@@ -8,10 +8,14 @@ describe("NotificationContext", () => {
         context = new NotificationContext(new LayoutContext());
     });
 
+    afterAll(() => {
+        jest.useRealTimers();
+    })
+
     it("should create operations", () => {
         context.show(() => "", { position: "bot-left" });
         expect(context.getNotifications().length).toBe(1);
-        
+
         let notification = context.getNotifications()[0];
         expect(notification.config.position).toBe("bot-left");
         expect(notification.config.duration).toBe(7);
@@ -59,8 +63,7 @@ describe("NotificationContext", () => {
         jest.useFakeTimers();
 
         let removeSpy = jest.spyOn(context, "remove");
-        context.show(() => "", { duration: 1 }).catch(() => {
-        });
+        context.show(() => "", { duration: 1 }).catch(() => {});
 
         jest.advanceTimersByTime(1000);
         expect(removeSpy).toBeCalledTimes(1);
@@ -68,8 +71,7 @@ describe("NotificationContext", () => {
         removeSpy.mockRestore();
 
         removeSpy = jest.spyOn(context, "remove");
-        context.show(() => "", { duration: 1 }).catch(() => {
-        });
+        context.show(() => "", { duration: 1 }).catch(() => {});
         jest.advanceTimersByTime(900);
         expect(removeSpy).toBeCalledTimes(0);
         context.getNotifications()[0].props.refreshTimer();
@@ -88,23 +90,21 @@ describe("NotificationContext", () => {
         jest.useFakeTimers();
 
         let removeSpy = jest.spyOn(context, "remove");
-        context.show(() => "", { duration: "forever" }).catch(() => {
-        });
+        context.show(() => "", { duration: "forever" }).catch(() => {});
 
         jest.advanceTimersByTime(15000);
         expect(removeSpy).not.toBeCalled();
-        
+
         context.getNotifications()[0].props.onClose();
         removeSpy.mockRestore();
 
         removeSpy = jest.spyOn(context, "remove");
-        context.show(() => "", { duration: 1 }).catch(() => {
-        });
+        context.show(() => "", { duration: 1 }).catch(() => {});
         jest.advanceTimersByTime(900);
-        
+
         context.getNotifications()[0].props.clearTimer();
         jest.advanceTimersByTime(1000);
-        
+
         expect(removeSpy).not.toBeCalled();
 
         jest.useRealTimers();

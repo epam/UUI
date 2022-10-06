@@ -2,7 +2,7 @@ import { LensBuilder } from './LensBuilder';
 import { IEditable, ICanBeInvalid, Metadata } from '../../types';
 import { ILens } from './types';
 
-// Can't setup type inference here, as putting this here makes a cyclic type reference
+/** @deprecated This helper to be removed in future versions, as it's intended for Class-components, and very rarely used */
 export function onEditableComponent<T>(component: any): ILens<T> {
     return new LensBuilder<T, T>({
         get(big: any) { return component.props.value; },
@@ -26,6 +26,7 @@ export function onEditable<T>(editable: IEditable<T>): ILens<T> {
     });
 }
 
+/** @deprecated This helper to be removed in future versions, as it's intended for Class-components, and very rarely used */
 export function onState<T>(component: any): ILens<T> {
     return new LensBuilder<T, T>({
         get(big: any) { return component.state; },

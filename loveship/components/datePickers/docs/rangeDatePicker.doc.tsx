@@ -56,6 +56,13 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                 />
             ),
         }] })
+    .prop('placement', {
+        examples: [
+            'auto-start', 'auto', 'auto-end', 'top-start',
+            'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end',
+            'bottom', {value: 'bottom-start', isDefault: true }, 'left-end', 'left', 'left-start',
+        ],
+    })
     .prop('presets', {
         examples: [
             {

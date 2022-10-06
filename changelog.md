@@ -1,3 +1,210 @@
+# next version (Editable Tables Preparation)
+
+**What's New**
+
+* [Modals]: Add disallowClickOutside to ModalBlockerProps interface
+
+* Metadata<T> type - 'all' prop now infer the type of array element or object values (was typed as 'any')
+
+* [Breaking Change] DataTable columns widths props are simplified. Columns width are defined by width (in pixels), and (optionally) grow - which defines a part of empty space for column to occupy. Props affected:
+    * shrink prop - marked @deprecated. Id will be removed in future versions.
+      'shrink' prop wasn't supported even before this change, so you can safely remove it from all columns.
+      Column can't 'shrink' (become less than width), as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
+    * 'width' prop is now required (was optional).
+      If you didn't have 'width' on a column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space. You can set width: 0 explicitly in such cases.
+    * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing. Default is minWidth = width.
+
+* useForm now provides two new callbacks: setValue and replaceValue.
+    They work the same way as setState of React.useState.
+    Besides a plain new form value, both can accept a function (currentValue: T) => T. This option is useful if you want to use useCallback to memoize operations on the whole state of the form.
+    setValue acts as a usual user-made change to a form - sets isChanged, creates undo checkpoint, etc.
+    replaceValue doesn't update isChanged, and can be used for technical needs. E.g. to store values like 'currentTab' in the form state.
+
+* Lenses now memoizes all methods calls (.prop, .item, etc.).
+    This allows to not re-create onValueChange callbacks on re-renders.
+    In turn, it opens a way to use React.memo/shouldComponentUpdate optimization for IEditable components.
+
+* Numeric Input - reworked to display number is locale format (e.g. with decimal and thousands separators) while not being edited.
+  * Formatting can be disabled with the 'disableLocaleFormatting' prop
+  * min/max are no longer required. By default, NumericInput only accepts positive whole numbers.
+  * A lot of display options are now possible via NumberFormatOptions: currencies, units, flexible min/max fractional digits limits, etc.
+  * See more at the [docs page](/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
+
+* Build target for packages is changed from ES5 to ES6. This shouldn't affect existing apps, as most app builds into ES5 anyway, including the latest CRA.
+
+**What’s Fixed**
+* DnD Actor - improved 'inside' position calculation
+* useForm
+  * fixed revert/undo/redo behavior after save
+  * onValueChange now triggers internal validation logic (as with changes made with lenses)
+  * refactored to remove unnecessary re-renders in some cases
+
+# 4.8.5 - 15.09.2022
+
+**What’s Fixed**
+* [RTE]: fix readonly mode
+* [ErrorHandler]: fix 'dark' theme error container styles
+
+# 4.8.4 - 09.09.2022
+
+**What’s Fixed**
+* [RTE]: fix wrong image size on first render
+* [RTE]: fix cursor jumping on new text typing in chrome 105+ version
+* [RTE]: fix image reducing to the minimum size when trying to resize it without focus on it
+
+# 4.8.3 - 01.09.2022
+
+**What’s Fixed**
+* [PickerInput]: disabled elements in multi-picker no longer can be deleted with cross at tag in the input. Before this fix, cross icon was visible, and clicking it caused crash
+* [LazyDataSource]: Select All now selects only currently visible items. Prior the fix, all items which was loaded before (e.g. with other/no filters) was selected.
+* [useVirtual]: Improved visible range computation:
+
+  Virtual lists now adjust visible area in fixed-sized 'blocks'. E.g. topIndex, visibleCount, and from/count in LazyDataSource requests will be always divisible by Block Size. This helps to avoid cases when only several rows are requested on small scrolls. This also can help with pageNo/pageSize-oriented API. Block size defaults to 20, and configurable with `blockSize` prop.
+
+  We also render more rows above and below visible area to avoid blank areas and loading rows when scrolling at normal speed. This is also configurable with `overdrawRows` setting (defaults to 20, meaning at least 20 rows above/below the visible area are rendered)
+
+  This change also fixes the problem when lazy-loading stops, while the end of the list is not reached.
+* [FilterPanel]: fix filter toggler value if selected item id === 0
+* [FilterPanel]: fix add new filter error after all filters was cleared
+* [FilterPanel]: remove filter value when uncheck filter from 'Add filter' dropdown
+
+# 4.8.2 - 22.08.2022
+
+**What's New**
+* [FilterPanel]: add possibility to add predicates for filters. For this provide `predicates` array in `TableFiltersConfig`.
+* [DataTable]: add possibility to reset sorting to default value
+
+**What’s Fixed**
+* [PickerInput]: fix input with minCharsToSearch props. Fix toggler input size in 'multi' mode
+
+# 4.8.1 - 10.08.2022
+
+**What's New**
+* Add `rawProps` prop for the rest part of the components
+* Updated icon pack
+* [PickerItem]: add possibility to pass icon
+* [FiltersPanel]: add possibility to provide your own `renderRow` callback
+* [DatePicker]: add `placement` props
+* [DataTable]: add default 'not results found' state
+* [PickerModal]: add default 'not results found' state
+* [FilterToolbar]: small improvements and bugfixes
+
+
+**What’s Fixed**
+* [PickerInput]: rework styles for selected value in toggler
+* [DataTable]: fix table rerender when columns prop changed
+* [NumericInput]: don't allow '+' and 'e' symbols
+* [LinkButton]: fix focus state
+* [RangeDatePicker]: fix error when preset is `null`
+* [NotificationCard]: rework styles
+
+
+# 4.8.0 - 21.07.2022
+
+**What's New**
+* Added new `FiltersToolbar` component, which creates table filtration toolbar according to the `TableFiltersConfig` object. See demo here - https://uui.epam.com/demo?id=filteredTable
+* [Form]: implement possibility to run form validation on field change, for this pass `validationOn: 'change'` to form props
+* [DropdownContainer]: reworked styles, add possibility to show arrow tip
+* [Anchor]: implement open Anchor links with Ctrl or Command in new window
+* [PickerInput]: add 'fixedBodyPosition' prop, to have possibility to fixed body on initial position in case when toggler moved
+* [FileUpload]: rework error states
+
+**What’s Fixed**
+* [DropSpot]: fix drag&drop area view
+* [NumericInput]: fix arrows layout hidden when input disabled or readonly
+* [DropdownMenu]: fixed item active state
+* [Avatar]: fix ref receiving
+* [RTE]: remove unnecessary editor state update on image load
+* [PickerInput]: remove close icon from tag in disabled/readonly mode
+* [PickerInput]: change styles for search in body
+* [Badge]: fixed semitransparent hover colors
+* [Tooltip]: change tooltip logic, when the new children is passed. Fixed loop, when a lot of listeners was attached
+* [RangeDatePicker]: fix preset styles
+* [MainMenuButton]: reworked styles for dropdown items
+
+# 4.7.1 - 06.06.2022
+
+**What's New**
+* [Buttons and Anchors]: support SPA links opening in new window when Ctrl/Command key pressed
+
+**What’s Fixed**
+* [DropSpot]: fix dnd behavior when user drag&drop file out of drag area
+* [PickerInput]: fix the second line tag margin in multi mode
+* [NumericInput]: hide arrows when input disabled or readonly
+* [DataTable]: added missing sizes styles for header
+* [ErrorHandler]: return getDefaultErrorPageProps and recoveryWordings export from loveship
+* [useForm]: handle rejected promise after save
+* [Burger]: fix scroll on body when burger closes
+* [VirtualList]: fix auto scroll onHover on top or bottom item
+
+# 4.7.0 - 30.05.2022
+
+**What's New**
+* Added new hook - `useTableState`, which helps to organize table state management with filters, presets and storing it into URL. See demo here - https://github.com/epam/UUI/blob/main/app/src/demo/table/FilteredTable.tsx.
+
+  Note: this hook in WIP stage now, so there may be some changes in api and functionality
+
+* [uuiRouter][Breaking Change]: added 'query' param parse/stringify handling inside `uuiRouter`. If you use some helpers for this, like 'qhistory', please remove it, now it will work out of the box with uuiRouter
+* [ICanFocus]: implement ICanFocus interface in TextInput, NumericInput, PickerInput, Checkbox, DatePicker. Fix focus/blur behavior for PickerInput.
+* [MultiSwitch]: added 'gray' color style
+* [VirtualList]: add vertical flex context for scroll container
+* [ArrayDataSource]: check parent if all siblings is checked
+
+
+**What’s Fixed**
+* [Badge]: fix layout for 'transparent' fill
+* [Paginator]: fix layout in loveship
+* [DataTableRow]: fix 'area-expended' value
+* [DataTable]: fix no results block layout
+* [useForm]: update initialForm value in case when new prop.value received, after successful save and revert action
+* [MainMenuBurger]: set overflow: hidden on body when burger opens to prevent scroll
+* [PickerItem]: fix paddings for text
+* [DataPicker]: fix outdated picker value  after invalid date was typed in input
+* [ArrayDataSource]: fix selectAll checkbox behavior in case when all row checkboxes disabled
+* [Alert]: fix paddings
+* [Paginator]: fix focus hold after page change
+
+
+# 4.6.3 - 27.04.2022
+
+**What's New**
+* [uui-db]:
+  * dbRef.save() now returns a Promise. It also passes thru errors returned from savePatch() method. This opens ways for a custom error handling, or to execute certain actions after saving changes.
+  * auto-save scheduling is refactored. How it can batch sync commits, and throttles calls more accurately. We don't expect breaking changes, however you might want to double-check this.
+  * records deletion support. To enable deletion, set 'deleteFlag' prop in Table metadata. E.g. deleteFlag: 'isDeleted'. Deleted records will be removed from tables when committing changes setting this flag. The flag will be passed as is to dbRef.savePatch, it's up to application to decide how to handle it while saving changes to server.
+* [VirtualList]: added `scrollToIndex` property for `DataTableState`. Use it for manual scrolling to some index in the list. For example for scrolling to top of the DataTable on filter or page change.
+* [Timeline]: more customization options: renderOnTop callback, most render-methods made protected to allow overrides
+
+**What’s Fixed**
+* [LazyListView]: fix indent for flat lists
+* [MainMenu]: fix MainMenu responsive
+
+# 4.6.2 - 20.04.2022
+
+**What's New**
+* [PickerInput]: add prop onClose to renderFooter callback
+* [PickerModal]: add success & abort props to renderFooter callback
+* [RTE]: added scrollbars prop to RTE to support internal and external scrollbars
+* [MainMenu]: update styles in loveship
+* [ApiContext] allow to customize /auth/login and /auth/ping endpoint addresses
+* [ModalBlocker]: add possibility to disable focus locking inside modal
+
+**What’s Fixed**
+* [MainMenuIcon]: wrap into forwardRef
+* [Anchor]: wrap with forwardRef
+* [Tables]: set minimal flex-grow: 1 for scrolling section, to stretch it in case when all columns grow is not set or has '0' value
+* [ErrorHandler]: change errors image source from http to https
+* [Timeline] fixed issues when user zooms in/out in browser
+* [DataTable]: fix column width in case when in columnsConfig there are columns only minWidth
+* [PickerInput]: fix focus in readonly mode
+* [ErrorHandler]: fixed am issue, which causes page re-render on errors
+* [ErrorHandler]: fix error codes handling in loveship
+* [RTE]: fix the position of the placeholder to match the position of the inner text
+* [DataPickerRow]: do not call onFocus callback when it's not passed
+* [PickerModal]: fixed issue when search is not working if 'Show only selected' applied
+* [Button]: fixed text color for "fill:light" props in Promo skin
+* [LazyDataSource]: fix indent for nested children
+
 # 4.6.1 - 22.03.2022
 
 **What’s Fixed**
@@ -23,7 +230,7 @@
 **What’s Fixed**
 * [PickerToggler]: Remove redundant toggler focusing on tag clear
 * [PickerToggler]: If not enought chars clear picker input on blur
-* [PickerInput]: don't close picker in case when you remove search value 
+* [PickerInput]: don't close picker in case when you remove search value
 * [PickerInput]: don't load list on PickerInput mount
 * [NumericInput]: Fixed handling float numbers
 * [Form]: release Lock on form unmount
@@ -1493,3 +1700,4 @@ To update, please add make this changes:
 * Fixed dropdown crash and popper flickering
 * [breaking change] withMods helper API changed. Now default props in a function accepting mods. This allow to change child components according to mods (e.g. PickerInput can change color of PickerInputToggler according to it's mods)
 * [breaking change] VirtualList reworked, now it's delegates visible range state via IEditable<VirtualListStateProps>. This allows parent component to know up-front what rows are visible.
+

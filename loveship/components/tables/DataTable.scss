@@ -40,11 +40,14 @@
 }
 
 .no-results {
+    position: sticky;
+    left: 0;
+    flex: 1 0 auto;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-self: center;
-    padding: 24px;
+    justify-content: center;
 }
 
 .no-results-icon {

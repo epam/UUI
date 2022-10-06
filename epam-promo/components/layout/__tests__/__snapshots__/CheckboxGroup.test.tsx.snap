@@ -6,6 +6,7 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
 >
   <label
     className="container root size-18 checkbox-color-blue -clickable"
+    tabIndex={-1}
   >
     <div
       className="uui-checkbox"
@@ -14,6 +15,7 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
         aria-checked={false}
         checked={false}
         onChange={[Function]}
+        tabIndex={0}
         type="checkbox"
       />
     </div>
@@ -25,6 +27,7 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
   </label>
   <label
     className="container root size-18 checkbox-color-blue -clickable"
+    tabIndex={-1}
   >
     <div
       className="uui-checkbox"
@@ -33,6 +36,7 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
         aria-checked={false}
         checked={false}
         onChange={[Function]}
+        tabIndex={0}
         type="checkbox"
       />
     </div>
@@ -51,6 +55,7 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
 >
   <label
     className="container root size-18 checkbox-color-blue uui-disabled"
+    tabIndex={-1}
   >
     <div
       className="uui-checkbox"
@@ -61,6 +66,7 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
         checked={false}
         disabled={true}
         onChange={[Function]}
+        tabIndex={-1}
         type="checkbox"
       />
     </div>
@@ -72,6 +78,7 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
   </label>
   <label
     className="container root size-18 checkbox-color-blue uui-disabled"
+    tabIndex={-1}
   >
     <div
       className="uui-checkbox"
@@ -82,6 +89,7 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
         checked={false}
         disabled={true}
         onChange={[Function]}
+        tabIndex={-1}
         type="checkbox"
       />
     </div>

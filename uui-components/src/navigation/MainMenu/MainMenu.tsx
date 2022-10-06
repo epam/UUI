@@ -1,16 +1,15 @@
 import React, { MouseEvent } from 'react';
-import Measure, { MeasuredComponentProps } from 'react-measure';
-import orderBy from 'lodash.orderby';
 import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
-import { ButtonProps } from '../../buttons';
 import { BurgerProps, MainMenuLogo } from './index';
+import { AdaptivePanel, AdaptiveItemProps } from '../../layout';
 import { i18n } from '../../../i18n';
 import * as css from './MainMenu.scss';
 
 export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<HTMLElement> {}
 
 export interface MainMenuProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
-    children: any;
+    items?: AdaptiveItemProps[];
+    children?: any;
     externalGap?: number;
     appLogoUrl?: string;
     appLogoBgColor?: string;
@@ -36,19 +35,6 @@ interface MainMenuState {
     isSidebarOpened?: boolean;
 }
 
-interface ItemProps {
-    priority: number;
-    width: number;
-    reactElement?: React.ReactElement<IAdaptiveItem & ButtonProps>;
-    showInBurgerMenu?: boolean;
-    caption?: string;
-    link?: Link;
-    href?: string;
-    collapseToMore?: boolean;
-    type?: any;
-    children?: any;
-}
-
 export const uuiMainMenu = {
     container : 'uui-mainmenu-container',
     serverBadge: 'uui-mainmenu-server-badge',
@@ -56,71 +42,60 @@ export const uuiMainMenu = {
     transparent: 'uui-mainmenu-transparent',
 } as const;
 
-function adaptItems<T extends { width: number; priority: number }>(
-    items: T[],
-    width: number,
-): { visibleItems: T[]; hiddenItems: T[] } {
-    const itemsByPriority = orderBy(items, item => item.priority, 'desc');
-
-    let currentWidth = 0;
-    let notVisiblePriority = -1;
-
-    for (const child of itemsByPriority) {
-        currentWidth += child.width;
-        if (currentWidth > width) {
-            notVisiblePriority = child.priority;
-            break;
-        }
-    }
-
-    const visibleItems: T[] = items.filter(item => item.priority > notVisiblePriority);
-    const hiddenItems: T[] = items.filter(item => item.priority <= notVisiblePriority);
-
-    const result = {
-        visibleItems,
-        hiddenItems,
-    };
-
-    return result;
-}
-
-function convertReactChildrenToItems(children: any): ItemProps[] {
-    const items: ItemProps[] = React.Children.map(
-        children,
-        (child) => {
-            if (child) {
-                const item: ItemProps = {
-                    width: child.props.estimatedWidth || 0,
-                    priority: child.props.priority || 0,
-                    reactElement: child,
-                    showInBurgerMenu: child.props.showInBurgerMenu,
-                    caption: child.props.caption,
-                    link: child.props.link,
-                    href: child.props.href,
-                    collapseToMore: child.props.collapseToMore,
-                    type: child.type,
-                    children: child.props.children,
-                };
-
-                return item;
-            }
-        },
-    );
-
-    return items;
-}
-
-function isCollapsibleToMore(item: ItemProps) {
-    return item.collapseToMore && !!item.caption;
-}
-
-class MainMenuImpl extends React.Component<MainMenuProps & MeasuredComponentProps, MainMenuState> {
-    constructor(props: MainMenuProps & MeasuredComponentProps) {
+export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
+    constructor(props: MainMenuProps) {
         super(props);
 
         this.state = {
             isSidebarOpened: false,
         };
+    }
+
+    convertReactChildrenToItems(children: any): AdaptiveItemProps<{props?: any}>[] {
+        const MainMenuDropdown = this.props.MainMenuDropdown;
+        let lastItemsIndexWithCollapseToMore;
+        let maxCollapseToMorePriority = 0;
+        const items: AdaptiveItemProps<{props?: any}>[] = React.Children.map(children, (child, index) => {
+            if (child) {
+                const priority = child.props.priority || index;
+                if (child.props.collapseToMore) {
+                    lastItemsIndexWithCollapseToMore = index;
+                    if (priority > maxCollapseToMorePriority) {
+                        maxCollapseToMorePriority = priority;
+                    }
+                }
+                return {
+                    id: index,
+                    priority: priority,
+                    render: (item, hiddenItems) =>  {
+                        if (child.props.collapsedContainer) {
+                            return React.cloneElement(child, { children: hiddenItems?.map(i => i.render(item, hiddenItems))});
+                        }
+                        return child;
+                    },
+                    collapsedContainer: child.props.collapsedContainer,
+                    props: child.props,
+                };
+            }
+        });
+
+        if (lastItemsIndexWithCollapseToMore) {
+            items.splice(lastItemsIndexWithCollapseToMore, 0, {
+                id: 'moreButton',
+                priority: maxCollapseToMorePriority,
+                render: (item, hiddenItems) => (
+                    <MainMenuDropdown
+                        key={ 'moreDropdown' }
+                        caption={ i18n.mainMenu.moreButtonCaption }
+                        children={ hiddenItems?.filter(i => i.props.collapseToMore).map(i => i.render(item, hiddenItems)) }
+                    />
+                ),
+                collapsedContainer: true,
+            });
+        }
+
+
+        return items;
     }
 
     renderServerBadge() {
@@ -152,176 +127,73 @@ class MainMenuImpl extends React.Component<MainMenuProps & MeasuredComponentProp
             : null;
     }
 
-    renderMenuItems(itemsToRender: ItemProps[], hiddenItems: ItemProps[], containerWidth: number) {
-        const MainMenuDropdown = this.props.MainMenuDropdown;
+    getMenuItems(): AdaptiveItemProps[]  {
         const Burger = this.props.Burger;
 
-        return itemsToRender.map((item) => {
-            if (item.reactElement) {
-                return item.reactElement;
-            } else {
-                switch (item.type) {
-                    case 'appLogo':
-                        return (
-                            <MainMenuLogo
-                                key={ item.type }
-                                logoUrl={ this.props.appLogoUrl }
-                                link={ this.props.logoLink }
-                                href={ this.props.logoHref }
-                                onClick={ this.props.onLogoClick }
-                            />
-                        );
-                    case 'customerLogo':
-                        return (
-                            <MainMenuLogo
-                                key={ item.type }
-                                logoUrl={ this.props.customerLogoUrl }
-                                logoBgColor={ this.props.customerLogoBgColor }
-                                link={ this.props.customerLogoLink || this.props.logoLink  }
-                                href={ this.props.customerLogoHref || this.props.logoHref }
-                                showArrow
-                            />
-                        );
-                    case 'moreButton':
-                        return (
-                            MainMenuDropdown && <MainMenuDropdown
-                                key={ 'moreDropdown' }
-                                caption={ i18n.mainMenu.moreButtonCaption }
-                                children={ hiddenItems.map(item => item.reactElement) }
-                            />
-                        );
-                    case 'burger':
-                        if (this.props.renderBurger) {
-                            return (
-                                Burger && <Burger
-                                    key={ 'burger' }
-                                    width={ containerWidth }
-                                    renderBurgerContent={ this.props.renderBurger }
-                                    logoUrl={ this.props.customerLogoUrl || this.props.appLogoUrl }
-                                    bg={ this.props.customerLogoBgColor || undefined }
-                                />
-                            );
-                        }
-                }
-            }
-        });
-    }
+        const items: AdaptiveItemProps[] = this.convertReactChildrenToItems(this.props.children);
 
-    handleRef = (node: HTMLElement) => {
-        this.props.measureRef(node as HTMLElement);
-        (this.props.forwardedRef as React.RefCallback<HTMLElement>)?.(node);
+        if (this.props.appLogoUrl) {
+            items.unshift({
+                id: 'appLogo',
+                priority: 100500,
+                render: () => <MainMenuLogo
+                    key='logo'
+                    logoUrl={ this.props.appLogoUrl }
+                    link={ this.props.logoLink }
+                    href={ this.props.logoHref }
+                    onClick={ this.props.onLogoClick }
+                />,
+            });
+        }
+
+        if (this.props.customerLogoUrl) {
+            items.unshift({
+                id: 'customerLogo',
+                priority: 100499,
+                render: () => <MainMenuLogo
+                    logoUrl={ this.props.customerLogoUrl }
+                    logoBgColor={ this.props.customerLogoBgColor }
+                    link={ this.props.customerLogoLink || this.props.logoLink  }
+                    href={ this.props.customerLogoHref || this.props.logoHref }
+                    showArrow
+                />,
+            });
+        }
+
+        items.unshift({
+            id: 'Burger',
+            priority: 100501,
+            collapsedContainer: !this.props.alwaysShowBurger,
+            render: () => <Burger
+                key={ 'burger' }
+                width={ 300 }
+                renderBurgerContent={ this.props.renderBurger }
+                logoUrl={ this.props.customerLogoUrl || this.props.appLogoUrl }
+                bg={ this.props.customerLogoBgColor || undefined }
+            />,
+        });
+
+        return items;
     }
 
     render() {
         return (
-            <Measure bounds>
-                { ({ measureRef, contentRect }: { measureRef: (instance: HTMLElement) => any, contentRect: any }) => {
-                    const childrenItems = convertReactChildrenToItems(this.props.children);
-
-                    const appLogoItem: ItemProps = {
-                        width: this.props.logoWidth || 201,
-                        priority: 100500,
-                        type: 'appLogo',
-                    };
-
-                    const customerLogoItem: ItemProps = {
-                        width: this.props.customerLogoWidth,
-                        priority: 100499,
-                        type: 'customerLogo',
-                    };
-
-                    const burger: ItemProps = {
-                        width: 60,
-                        priority: 100501,
-                        type: 'burger',
-                    };
-
-                    let menuItems = [...childrenItems];
-
-                    if (this.props.appLogoUrl) {
-                        menuItems.unshift(appLogoItem);
-                    }
-
-                    if (this.props.customerLogoUrl) {
-                        menuItems.unshift(customerLogoItem);
-                    }
-
-                    if (this.props.alwaysShowBurger) {
-                        menuItems.unshift(burger);
-                    }
-
-                    const staticWidth = 0;
-                    const containerWidth = contentRect.bounds.width - staticWidth;
-                    const firstStep = adaptItems(menuItems, containerWidth);
-                    const moreWidth = 70;
-                    let hiddenItems: ItemProps[] = [];
-                    let itemsToRender: ItemProps[] = [];
-
-                    if (firstStep.hiddenItems.length === 0) {
-                        itemsToRender = firstStep.visibleItems;
-                    } else {
-                        const secondStep = adaptItems(firstStep.visibleItems, containerWidth - moreWidth);
-                        hiddenItems = [...secondStep.hiddenItems, ...firstStep.hiddenItems];
-                        if (
-                            hiddenItems.every(item => isCollapsibleToMore(item)) &&
-                            secondStep.visibleItems.some(item => isCollapsibleToMore(item))
-                        ) {
-                            itemsToRender = [];
-                            let isMoreCollapsibleFound = false;
-                            let isMoreInjected = false;
-
-                            secondStep.visibleItems.forEach(i => {
-                                const isCollapsible = isCollapsibleToMore(i);
-                                isMoreCollapsibleFound = isMoreCollapsibleFound || isCollapsible;
-                                if (isMoreCollapsibleFound && !isCollapsible && !isMoreInjected) {
-                                    isMoreInjected = true;
-                                    itemsToRender.push({
-                                        width: moreWidth,
-                                        priority: 0,
-                                        type: 'moreButton',
-                                    });
-                                }
-                                itemsToRender.push(i);
-                            });
-                        } else {
-                            const thirdStep = adaptItems(
-                                menuItems.filter(i => !isCollapsibleToMore(i)),
-                                this.props.alwaysShowBurger ? containerWidth : containerWidth - 60,
-                            );
-
-                            if (this.props.alwaysShowBurger) {
-                                itemsToRender = thirdStep.visibleItems;
-                            } else {
-                                itemsToRender = [burger, ...thirdStep.visibleItems];
-                            }
-                        }
-                    }
-
-                    return (
-                        <nav
-                            key='uuiMainMenu'
-                            ref={ this.handleRef }
-                            className={ cx(
-                                this.props.cx,
-                                uuiMainMenu.container,
-                                css.container,
-                                this.props.isTransparent && uuiMainMenu.transparent
-                            ) }
-                            { ...this.props.rawProps }
-                        >
-                            { this.renderMenuItems(itemsToRender, hiddenItems, containerWidth) }
-                            { this.renderServerBadge() }
-                        </nav>
-                    );
-                }
-                }
-            </Measure>
+            <nav
+                key='uuiMainMenu'
+                className={ cx(
+                    this.props.cx,
+                    uuiMainMenu.container,
+                    css.container,
+                    this.props.isTransparent && uuiMainMenu.transparent,
+                ) }
+                { ...this.props.rawProps }
+            >
+                <AdaptivePanel
+                    items={ this.props.items || this.getMenuItems() }
+                    cx={ css.itemsContainer }
+                />
+                { this.renderServerBadge() }
+            </nav>
         );
     }
 }
-
-export const MainMenu: React.FC<MainMenuProps> = (props) => (
-    <Measure bounds>
-        { (measureProps) => <MainMenuImpl { ...props } { ...measureProps } /> }
-    </Measure>
-)

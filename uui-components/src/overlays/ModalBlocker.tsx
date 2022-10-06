@@ -10,12 +10,12 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
 
     componentDidMount() {
         document.body.style.overflow = 'hidden';
-        window.addEventListener('keydown', this.keydownHandler);
+        !this.props.disableCloseByEsc && window.addEventListener('keydown', this.keydownHandler);
     }
 
     componentWillUnmount() {
         document.body.style.overflow = 'visible';
-        window.removeEventListener('keydown', this.keydownHandler);
+        !this.props.disableCloseByEsc && window.removeEventListener('keydown', this.keydownHandler);
     }
 
     keydownHandler = (e: KeyboardEvent) => {
@@ -39,7 +39,7 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
                 { ...this.props.rawProps }
             >
                 <div className={ uuiElement.modalBlocker } onClick={ this.handleBlockerClick } />
-                <FocusLock autoFocus={ false } returnFocus>
+                <FocusLock autoFocus={ false } returnFocus disabled={ this.props.disableFocusLock }>
                     { this.props.children }
                 </FocusLock>
             </div>

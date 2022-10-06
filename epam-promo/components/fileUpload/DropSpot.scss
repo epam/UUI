@@ -11,6 +11,9 @@
 
     &.drop-start {
         border: 2px dashed $blue;
+    }
+
+    &.drop-over {
         background-color: $blue-lightest;
     }
 

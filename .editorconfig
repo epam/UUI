@@ -4,7 +4,7 @@ root = true
 charset = utf-8
 indent_style = space
 indent_size = 4
-end_of_line = crlf
+end_of_line = lf
 
 ij_any_spaces_within_braces = true
 ij_typescript_spaces_within_object_literal_braces = true

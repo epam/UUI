@@ -33,6 +33,7 @@ export type PropExample<TProp> = {
     name?: string;
     value: TProp;
     isDefault?: boolean;
+    color?: string;
 } | TProp;
 
 export interface PropDoc<TProps, TProp extends keyof TProps> {
@@ -43,4 +44,5 @@ export interface PropDoc<TProps, TProp extends keyof TProps> {
     examples?: PropExample<TProps[TProp]>[] | ((ctx: PropSamplesCreationContext<TProps>) => PropExample<TProps[TProp]>[]);
     type?: 'string' | 'number';
     renderEditor?: (editable: IEditable<TProp>, examples?: TProps[TProp][], componentProps?: TProps) => React.ReactNode;
+    color?: string;
 }

@@ -1,5 +1,4 @@
 import { BaseContext } from './BaseContext';
-import { ErrorContext } from './ErrorContext';
 import { AnalyticsContext } from './AnalyticsContext';
 import { IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo } from '../types';
 import { getCookie, isClientSide } from '../helpers';
@@ -28,6 +27,10 @@ export interface FileUploadResponse {
     path?: string;
     type?: BlockTypes;
     extension?: string;
+    error?: {
+        isError: boolean;
+        message?: string ;
+    };
 }
 
 export type IProcessRequest = (url: string, method: string, data?: any, options?: ApiCallOptions) => Promise<any>;
@@ -39,9 +42,8 @@ export class ApiContext extends BaseContext implements IApiContext {
     private isRunScheduled = false;
     public status: ApiStatus = 'idle';
     public recoveryReason: ApiRecoveryReason | null = null;
-    public lastHttpStatus?: number;
 
-    constructor(private props: ApiContextProps, private errorCtx: ErrorContext, private analyticsCtx?: AnalyticsContext) {
+    constructor(private props: ApiContextProps, private analyticsCtx?: AnalyticsContext) {
         super();
         this.props.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';
         this.props.apiPingPath = this.props.apiPingPath ?? '/auth/ping';
@@ -59,7 +61,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                 if (this.status === 'recovery' && this.recoveryReason === 'auth-lost') {
                     this.setStatus('running');
                     this.runQueue();
-                    this.errorCtx.recover();
+                    this.update({});
                 }
                 (e.source as any).close();
             }
@@ -71,7 +73,7 @@ export class ApiContext extends BaseContext implements IApiContext {
     }
 
     public reset() {
-        if (this.status === 'error') {
+        if (this.status === 'error' || this.status === 'recovery') {
             this.queue = [];
             this.status = 'running';
         }
@@ -90,7 +92,6 @@ export class ApiContext extends BaseContext implements IApiContext {
                 return;
             }
             this.setStatus('recovery', reason);
-            this.errorCtx.reportError(new ApiCallError(call));
             reason === 'auth-lost' ? window.open(this.props.apiReloginPath) : this.recoverConnection();
         } else {
             const error = new ApiCallError(call);
@@ -99,7 +100,6 @@ export class ApiContext extends BaseContext implements IApiContext {
                 this.removeFromQueue(call);
             } else {
                 this.setStatus('error');
-                this.errorCtx.reportError(error);
             }
             call.reject(error);
         }
@@ -162,7 +162,6 @@ export class ApiContext extends BaseContext implements IApiContext {
                     /* Problem with response JSON parsing */
                     call.status = 'error';
                     this.setStatus('error');
-                    this.errorCtx.reportError(e);
                     call.reject(e);
                 });
         } else if (/* Network and server-related problems. We'll ping the server and then retry the call in this case. */
@@ -226,7 +225,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             if (response.ok) {
                 this.setStatus('running');
                 this.runQueue();
-                this.errorCtx.recover();
+                this.update({});
             } else {
                 retry();
             }
@@ -307,12 +306,11 @@ export class ApiContext extends BaseContext implements IApiContext {
             xhr.onreadystatechange = () => {
                 if (xhr.readyState !== 4) return;
                 if (!(new RegExp('^2[0-9][0-9]')).test(xhr.status.toString())) {
-                    /*handle error*/
-                    reject(xhr.response);
+                    reject({ error: { isError: true, message: xhr.response && JSON.parse(xhr.response)?.error?.message } });
                 }
 
                 removeAllListeners();
-                resolve(JSON.parse(xhr.response));
+                resolve(xhr.response && { ...JSON.parse(xhr.response) } || null);
             };
             xhr.send(formData);
         });

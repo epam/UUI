@@ -28,11 +28,24 @@ export class DropSpot extends React.Component<DropSpotProps, DropSpotState> {
     componentDidMount() {
         window.addEventListener('dragenter', this.onDragStart);
         window.addEventListener('dragleave', this.onDragEnd);
+        window.addEventListener('drop', this.onDropHandler);
+        window.addEventListener('dragover', this.onDragOverHandler);
     }
 
     componentWillUnmount() {
         window.removeEventListener('dragenter', this.onDragStart);
         window.removeEventListener('dragleave', this.onDragEnd);
+        window.removeEventListener('drop', this.onDropHandler);
+        window.removeEventListener('dragover', this.onDragOverHandler);
+    }
+
+    onDragOverHandler = (e: DragEvent) => {
+        e.preventDefault();
+    }
+
+    onDropHandler = () => {
+        this.entriesCount = 0;
+        this.setState({ isDragStart: false, isDraggingOver: false });
     }
 
     onDragStart = (e: DragEvent) => {
@@ -56,6 +69,7 @@ export class DropSpot extends React.Component<DropSpotProps, DropSpotState> {
 
     onDragOver = (e: React.DragEvent) => {
         e.preventDefault();
+        this.setState({ isDraggingOver: true });
     }
 
     onDragEnter = (e: React.DragEvent) => {
@@ -78,7 +92,7 @@ export class DropSpot extends React.Component<DropSpotProps, DropSpotState> {
 
         return this.props.render({
             ...this.state,
-            eventHandlers
+            eventHandlers,
         });
     }
 }

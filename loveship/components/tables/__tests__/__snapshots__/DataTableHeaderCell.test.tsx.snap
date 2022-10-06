@@ -3,7 +3,7 @@
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 <div
   aria-sort="none"
-  className="flexCell"
+  className=""
   onClick={[Function]}
   role="columnheader"
   style={

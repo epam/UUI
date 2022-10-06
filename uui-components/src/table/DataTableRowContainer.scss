@@ -3,19 +3,25 @@
 .container {
     position: relative;
     display: flex;
-    min-width: min-content;
     align-items: stretch;
 }
 
-.fixed-columns-section-left {
+.scrolling-section {
+	position: relative;
+    display: flex;
+    align-items: stretch;
+}
+
+:global(.uui-table-fixed-section-left), :global(.uui-table-fixed-section-right) {
     display: flex;
     position: sticky;
+}
+
+:global(.uui-table-fixed-section-left) {
     left: 0;
 }
 
-.fixed-columns-section-right {
-    display: flex;
-    position: sticky;
+:global(.uui-table-fixed-section-right) {
     right: 0;
 }
 

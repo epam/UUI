@@ -45,6 +45,7 @@
             letter-spacing: 0;
             border-top: unset;
             border-radius: 0 0 6px 6px;
+            overflow-wrap: anywhere;
         }
 
         &:global(.uui-opened) {

@@ -49,18 +49,18 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         this.props.timelineController.handleWheelEvent(e.nativeEvent as WheelEvent);
     }
 
-    private isCurrentPeriod(leftDate: Date, rightDate: Date) {
+    protected isCurrentPeriod(leftDate: Date, rightDate: Date) {
         return new Date() >= leftDate && new Date() <= rightDate;
     }
 
-    private renderToday(ctx: CanvasRenderingContext2D, leftDate: Date, rightDate: Date, x: number, width: number) {
+    protected renderToday(ctx: CanvasRenderingContext2D, leftDate: Date, rightDate: Date, x: number, width: number) {
         if (this.isCurrentPeriod(leftDate, rightDate)) {
             ctx.fillStyle = '#F37B94';
             ctx.fillRect(x, 56, width, 4);
         }
     }
 
-    private renderHeader(
+    protected renderHeader(
       ctx: CanvasRenderingContext2D,
       t: TimelineTransform,
       header: string,
@@ -109,7 +109,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         }
     }
 
-    private renderPart(
+    protected renderPart(
       ctx: CanvasRenderingContext2D,
       t: TimelineTransform,
       minPxPerDay: number,
@@ -130,7 +130,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         ctx.restore();
     }
 
-    private renderMinutes(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
+    protected renderMinutes(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleMinutes().map(w => {
             const header = w.leftDate.getHours().toString().padStart(2, "0") + ":" + w.leftDate.getMinutes().toString().padStart(2, "0");
             const isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
@@ -138,7 +138,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         });
     }
 
-    private renderRemainingHours(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
+    protected renderRemainingHours(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleHours().filter(i => i.leftDate.getHours() % 3 !== 0).map(w => {
             const hoursInFormatAMPM = getHoursInFormatAMPM(w.leftDate);
             const header = hoursInFormatAMPM.length === 4 ? hoursInFormatAMPM.slice(0, 1) : hoursInFormatAMPM.slice(0, 2);
@@ -148,7 +148,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         });
     }
 
-    private renderHours(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
+    protected renderHours(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleHours().filter(i => i.leftDate.getHours() % 3 === 0).map(w => {
             const hoursInFormatAMPM = getHoursInFormatAMPM(w.leftDate);
             const header = hoursInFormatAMPM.length === 4 ? hoursInFormatAMPM.slice(0, 1) : hoursInFormatAMPM.slice(0, 2);
@@ -158,7 +158,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         });
     }
 
-    private renderTopDays(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
+    protected renderTopDays(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleDays().map(w => {
             this.renderToday(ctx, w.leftDate, w.rightDate, w.left, w.right - w.left);
             const header = months[w.leftDate.getMonth()] + " " + w.leftDate.getDate().toString() + ", " + w.leftDate.getFullYear();
@@ -171,7 +171,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         });
     }
 
-    private renderDays(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
+    protected renderDays(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleDays().map(w => {
             this.renderToday(ctx, w.leftDate, w.rightDate, w.left, w.right - w.left);
             let header = w.leftDate.getDate().toString();
@@ -184,7 +184,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         });
     }
 
-    private renderTopMonths(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
+    protected renderTopMonths(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleMonths().map(w => {
             let header = months[w.leftDate.getMonth()] + " " + w.leftDate.getFullYear();
             let isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
@@ -192,7 +192,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         });
     }
 
-    private renderWeeks(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
+    protected renderWeeks(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleWeeks().map(w => {
             this.renderToday(ctx, w.leftDate, w.rightDate, w.left, w.right - w.left);
             let header = w.leftDate.getDate() + " – " + addDays(w.rightDate, -1).getDate();
@@ -201,7 +201,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         });
     }
 
-    private renderBottomMonths(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
+    protected renderBottomMonths(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleMonths().map(w => {
             this.renderToday(ctx, w.leftDate, w.rightDate, w.left, w.right - w.left);
             let header = months[w.leftDate.getMonth()].toString();
@@ -210,7 +210,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         });
     }
 
-    private renderYears(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
+    protected renderYears(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         const isBottom = t.getScaleVisibility(null, 1);
         t.getVisibleYears().map(w => {
             isBottom && this.renderToday(ctx, w.leftDate, w.rightDate, w.left, w.right - w.left);
@@ -220,7 +220,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         });
     }
 
-    private renderArrow(direction: 'left' | 'right') {
+    protected renderArrow(direction: 'left' | 'right') {
         let handleClick = () => {
             this.props.timelineController.moveBy(direction == 'left' ? -1 : 1);
         };

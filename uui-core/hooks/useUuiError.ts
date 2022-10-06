@@ -1,31 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useUuiContext } from '../services';
 import { ApiCallInfo, ApiRecoveryReason, UuiError, UuiErrorInfo } from '../types';
 import { useForceUpdate } from './useForceUpdate';
-
-export type UuiErrorType = 'error' | 'notification' | 'recovery';
 
 export type UuiRecoveryErrorInfo = {
     title: string,
     subtitle: string,
 };
 
+export type ApiCallErrorType = 'permissionDenied' | 'notFound' | 'serverError' | 'serviceUnavailable' | 'default';
+
 export interface UseUuiErrorOptions {
-    errorConfig: Record<string, UuiErrorInfo>;
-    recoveryConfig: Record<ApiRecoveryReason, UuiRecoveryErrorInfo>;
+    errorConfig?: Record<ApiCallErrorType, UuiErrorInfo>;
+    recoveryConfig?: Record<ApiRecoveryReason, UuiRecoveryErrorInfo>;
 }
 
 export interface UseUuiErrorProps {
-    getErrorInfo: (error: Error | UuiError | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
-    options: UseUuiErrorOptions;
+    getErrorInfo: (error: any, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;
+    options?: UseUuiErrorOptions;
 }
 
 export const useUuiError = (props: UseUuiErrorProps) => {
     const forceUpdate = useForceUpdate();
-    const { uuiApi, uuiErrors, uuiRouter } = useUuiContext();
-    const { getErrorInfo, options: { errorConfig, recoveryConfig } } = props;
+    const { uuiApi, uuiErrors, uuiRouter, uuiModals } = useUuiContext();
+    const { getErrorInfo, options: { errorConfig, recoveryConfig } = {} } = props;
     const apiErrors: ApiCallInfo[] = [];
     const apiNotifications: ApiCallInfo[] = [];
+    const initializing = useRef(true);
 
     const onRouteChange = () => {
         let hasError = false;
@@ -42,22 +43,33 @@ export const useUuiError = (props: UseUuiErrorProps) => {
         hasError && forceUpdate();
     };
 
-    useEffect(() => {
+    // we need to subscribe contexts before component mount, to be able to handle errors during the first render
+    if (initializing.current)  {
         uuiRouter.listen(onRouteChange);
-        uuiErrors.subscribe(() => forceUpdate());
+        uuiApi.subscribe(forceUpdate);
+        uuiErrors.subscribe(forceUpdate);
+        initializing.current = false;
+    }
+
+
+    useEffect(() => {
+        return () => {
+            uuiApi.unsubscribe(forceUpdate);
+            uuiErrors.unsubscribe(forceUpdate);
+        };
     }, []);
 
     const getDefaultErrorInfo = (errorCode: number): UuiErrorInfo => {
         switch (errorCode) {
-            case 403: return errorConfig.permissionDenied;
-            case 404: return errorConfig.notFound;
-            case 500: return errorConfig.serverError;
-            case 503: return errorConfig.serviceUnavailable;
-            default: return errorConfig.default;
+            case 403: return errorConfig?.permissionDenied;
+            case 404: return errorConfig?.notFound;
+            case 500: return errorConfig?.serverError;
+            case 503: return errorConfig?.serviceUnavailable;
+            default: return errorConfig?.default;
         }
     };
 
-    const getError = (error: Error | UuiError | ApiCallInfo, errorInfo: UuiErrorInfo) => {
+    const getError = (error: any, errorInfo: UuiErrorInfo) => {
         const resultError = getErrorInfo ? getErrorInfo(error, errorInfo) : errorInfo;
         return { errorType: 'error', errorInfo: resultError };
     };
@@ -71,6 +83,7 @@ export const useUuiError = (props: UseUuiErrorProps) => {
     });
 
     if (apiErrors.length) {
+        uuiModals.closeAll();
         return getError(apiErrors[0], getDefaultErrorInfo(apiErrors[0].httpStatus));
     } else if (apiNotifications.length) {
         return { errorType: 'notification', errorInfo: apiNotifications };

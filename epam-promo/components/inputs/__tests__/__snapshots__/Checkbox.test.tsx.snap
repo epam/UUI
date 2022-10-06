@@ -3,6 +3,7 @@
 exports[`Checkbox should be rendered correctly 1`] = `
 <label
   className="container root size-18 checkbox-color-blue -clickable"
+  tabIndex={-1}
 >
   <div
     className="uui-checkbox"
@@ -11,6 +12,7 @@ exports[`Checkbox should be rendered correctly 1`] = `
       aria-checked={false}
       checked={false}
       onChange={[Function]}
+      tabIndex={0}
       type="checkbox"
     />
   </div>
@@ -20,6 +22,7 @@ exports[`Checkbox should be rendered correctly 1`] = `
 exports[`Checkbox should be rendered correctly 2`] = `
 <label
   className="container root size-18 checkbox-color-blue -clickable"
+  tabIndex={-1}
 >
   <div
     className="uui-checkbox"
@@ -28,6 +31,7 @@ exports[`Checkbox should be rendered correctly 2`] = `
       aria-checked={false}
       checked={false}
       onChange={[Function]}
+      tabIndex={0}
       type="checkbox"
     />
   </div>

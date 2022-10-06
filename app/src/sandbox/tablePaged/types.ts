@@ -1,11 +1,9 @@
 import { DataTableState, ITablePreset } from "@epam/uui";
-import { Person, PersonGroup, Location } from "@epam/uui-docs";
+import { Person } from "@epam/uui-docs";
 
-type PersonTableRecord = Person | PersonGroup | Location;
+type PersonTableRecord = Person;
 
-type PersonTableRecordId = [PersonTableRecord["__typename"], string | number];
-
-type PersonTableFilter = { [key: string]: any, groupBy?: string };
+type PersonTableFilter = Record<string, any>;
 
 interface PersonsTableState extends DataTableState {
     isFolded?: boolean;
@@ -14,4 +12,4 @@ interface PersonsTableState extends DataTableState {
 
 type ILocalStoragePresets = (Omit<ITablePreset, "isActive">)[];
 
-export { PersonTableRecord, PersonTableRecordId, PersonTableFilter, PersonsTableState, ILocalStoragePresets };
+export { PersonTableRecord, PersonTableFilter, PersonsTableState, ILocalStoragePresets };

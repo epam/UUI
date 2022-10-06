@@ -80,7 +80,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
     renderHeaderCheckbox = () => this.props.selectAll && this.props.isFirstColumn && (
         <Checkbox
-            size="18"
+            size={ +this.props.size < 36 ? '12' : '18' }
             { ...this.props.selectAll }
             cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }
         />

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class TablesDoc extends BaseDocsBlock {
-    title = 'Tables';
+    title = 'Data Tables';
 
     renderContent() {
         return (

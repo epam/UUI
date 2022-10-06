@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataTable, DataTableRow } from '@epam/loveship';
 import { useDemoDbRef, PersonTableRecord, DemoDb } from './state';
-import { DataSourceState, IEditable, DataQueryFilter, IDataSourceView, useLens, DataRowProps } from '@epam/uui';
+import { DataSourceState, IEditable, DataQueryFilter, IDataSourceView, DataRowProps, Lens } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import { getColumns } from './columns';
 import { useDbView } from '@epam/uui-db';
@@ -28,7 +28,7 @@ const PersonRow = function (props: DataRowProps<Person, number>) {
 
 export const PersonsTable = (props: PersonsTableProps) => {
     const dbRef = useDemoDbRef();
-    const tableLens = useLens(props, b => b.onChange((o , n) => ({ ...n, topIndex: 0 })));
+    const tableLens = Lens.onEditable(props).onChange((o , n) => ({ ...n, topIndex: 0 }));
 
     const columnsSet = React.useMemo(() => getColumns(dbRef), []);
 
@@ -45,7 +45,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
         columns={ columnsSet.personColumns }
         renderRow={ renderRow }
         selectAll={ { value: false, isDisabled: true, onValueChange: null } }
-        { ...tableLens }
+        { ...tableLens.toProps() }
         { ... props.view.getListProps() }
     />;
 };

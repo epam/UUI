@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters } from '@epam/uui-components';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, FilterConfig } from '@epam/uui-core';
+import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters, IconContainer } from '@epam/uui-components';
+import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, TableFiltersConfig } from '@epam/uui-core';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { VirtualList } from '../';
+import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
+import { Text } from "../typography";
 import * as css from './DataTable.scss';
+import { i18n } from "../../i18n";
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
@@ -12,7 +15,7 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
-    filters?: FilterConfig<any>[];
+    filters?: TableFiltersConfig<any>[];
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
@@ -32,8 +35,17 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
 
     const renderNoResultsBlock = React.useCallback(() => {
-        // need default behavior
-        return props.renderNoResultsBlock?.() || undefined;
+        return (
+            <div className={ css.noResults }>
+                { props.renderNoResultsBlock ? props.renderNoResultsBlock?.() :
+                    <>
+                        <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon }/>
+                        <Text cx={ css.noResultsTitle } fontSize='24' lineHeight='30' color='gray80' font='sans-semibold'>{ i18n.dataTable.title }</Text>
+                        <Text fontSize='16' lineHeight='24' font='sans' color='gray80'>{ i18n.dataTable.message }</Text>
+                    </>
+                }
+            </div>
+        );
     }, [props.renderNoResultsBlock]);
 
     const onConfigurationButtonClick = React.useCallback(() => {
@@ -87,7 +99,6 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             onScroll={ props.onScroll }
             rows={ rows }
             rowsCount={ props.rowsCount }
-            focusedIndex={ props.value?.focusedIndex }
             renderRows={ renderRowsContainer }
             cx={ cx(css.table) }
             rawProps={ {
