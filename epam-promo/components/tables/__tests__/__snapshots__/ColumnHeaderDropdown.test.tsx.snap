@@ -8,6 +8,7 @@ Array [
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption"
