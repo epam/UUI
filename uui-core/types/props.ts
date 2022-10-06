@@ -1,4 +1,4 @@
-import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode } from "react";
+import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode, AllHTMLAttributes } from "react";
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
 import {DataRowProps} from "./tables";
@@ -200,6 +200,11 @@ export interface INotification {
 export interface IHasRawProps<T> {
     /** Any HTML attributes (native or 'data-') to put on the underlying component */
     rawProps?: HTMLAttributes<T> & Record<`data-${string}`, string>;
+}
+
+export interface IHasRawPropsButton<T> {
+    /** Any HTML attributes (native or 'data-') to put on the underlying component */
+    rawProps?: AllHTMLAttributes<T> & Record<`data-${string}`, string>;
 }
 
 export interface IHasForwardedRef<T extends HTMLOrSVGElement> {
