@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Anchor, FlexRow, FlexSpacer, LinkButton, ScrollBars, TabButton, Text } from '@epam/promo';
-import { AppHeader, Page } from '../common';
+import { AppFooterDemo, AppHeader, Page } from '../common';
 import { svc } from '../services';
 import { demoItems } from './structure';
 import { analyticsEvents } from '../analyticsEvents';
@@ -25,6 +25,11 @@ export class DemoPage extends React.Component {
         svc.uuiAnalytics.sendEvent(analyticsEvents.demo.scenarioSelect(name));
     }
 
+    getSelectedDemoItem = () => {
+        const selectedDemoId = getQuery('id');
+        return demoItems.find(i => i.id === selectedDemoId);
+    }
+
     renderDemoNavigationPage() {
         return (
             <div className={ css.navPage } >
@@ -44,7 +49,7 @@ export class DemoPage extends React.Component {
         );
     }
 
-    renderSecondaryMenu(source: string) {
+    renderAppFooterMenu(source: string) {
         return (
             <FlexRow rawProps={ { role: 'tablist' } } background='white' padding='12' cx={ css.secondaryNavigation } borderBottom >
                 { demoItems.map(item => {
@@ -68,22 +73,31 @@ export class DemoPage extends React.Component {
     }
 
     renderDemoComponent() {
-        const selectedDemoId = getQuery('id');
-        const demo = demoItems.find(i => i.id === selectedDemoId);
-
+        const demoItem = this.getSelectedDemoItem();
         return (
             <>
-                { this.renderSecondaryMenu(demo.source) }
-                <ScrollBars> { React.createElement(demo.component) } </ScrollBars>
+                <ScrollBars> { React.createElement(demoItem.component) } </ScrollBars>
             </>
         );
+    }
+
+    renderFooter = () => {
+        const demoItem = this.getSelectedDemoItem();
+        if (demoItem) {
+            return <AppFooterDemo demoItem={ demoItem } />;
+        }
+        return null;
+    }
+
+    renderHeader = () => {
+        return <AppHeader />;
     }
 
     render() {
         const selectedDemoId = getQuery('id');
 
         return (
-            <Page contentCx={ css.root } renderHeader={ () => <AppHeader /> }>
+            <Page contentCx={ css.root } renderHeader={ this.renderHeader } renderFooter={ this.renderFooter }>
                 { selectedDemoId ? this.renderDemoComponent() : this.renderDemoNavigationPage() }
             </Page>
         );

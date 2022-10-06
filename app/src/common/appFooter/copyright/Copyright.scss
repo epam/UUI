@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+
+    :global(.uui-icon) {
+        padding-top: 3px;
+    }
+
+    .copyright {
+        padding-left: 21px;
+    }
+}

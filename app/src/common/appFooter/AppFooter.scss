@@ -6,17 +6,16 @@
     height: 60px;
     flex-shrink: 0;
 
+    &.smaller-height {
+        height: 42px;
+    }
+
     .footer {
         max-width: 1200px;
         width: 100%;
-        margin: 0 auto;
-
-        :global(.uui-icon) {
-            padding-top: 3px;
-        }
-
-        .copyright {
-            padding-left: 21px;
+        margin: 0;
+        &.centered {
+            margin: 0 auto;
         }
     }
 
@@ -25,7 +24,7 @@
             max-width: 732px;
         }
     }
-    
+
     @media (max-width: 768px) {
         .footer {
             margin: 0 12px;

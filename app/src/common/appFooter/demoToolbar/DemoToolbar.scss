@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    padding-left: 20px;
+
+    .item {
+        &,
+        &:hover {
+            color: var(--white) !important;
+        }
+
+        :global(.uui-icon) {
+            fill: var(--white);
+        }
+        :global(.uui-caption) {
+            font-weight: lighter;
+        }
+    }
+}
