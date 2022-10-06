@@ -161,7 +161,7 @@ export class AppHeader extends React.Component {
                 ),
             },
             { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu /> },
-        ];
+        ].filter(i => !!i);
     }
 
     render() {
