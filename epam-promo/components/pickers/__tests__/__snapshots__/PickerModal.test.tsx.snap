@@ -205,6 +205,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -238,6 +239,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -271,6 +273,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -304,6 +307,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -337,6 +341,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -370,6 +375,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -403,6 +409,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -436,6 +443,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -469,6 +477,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -502,6 +511,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -535,6 +545,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -875,6 +886,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -888,7 +900,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -926,6 +938,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -939,7 +952,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -977,6 +990,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -990,7 +1004,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1028,6 +1042,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1041,7 +1056,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1079,6 +1094,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1092,7 +1108,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1130,6 +1146,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1143,7 +1160,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1181,6 +1198,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1194,7 +1212,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1232,6 +1250,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1245,7 +1264,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1283,6 +1302,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1296,7 +1316,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1334,6 +1354,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1347,7 +1368,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1385,6 +1406,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -1398,7 +1420,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container root size-18 checkbox-color-blue checkbox -clickable"
+                      className="container root size-18 mode-form checkbox-color-blue checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
