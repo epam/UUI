@@ -31,7 +31,7 @@ export interface TreeNodeInfo {
 // }
 
 function newMap<TKey, TValue>(params: TreeParams<any, any>) {
-    if (true) { //params.complexIds) {
+    if (params.complexIds) {
         return new CompositeKeysMap<TKey, TValue>();
     } else {
         return new Map<TKey, TValue>();
