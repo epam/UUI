@@ -12,7 +12,6 @@ export const renderCell = (props: DataTableCellProps) => {
     const mods = props.rowProps as DataTableRowMods & DataTableRowProps;
     return <DataTableCell
         size={ mods.size }
-        role="cell"
         padding={ mods.padding }
         { ...props }
     />;

@@ -45,7 +45,6 @@ export const DataTableRow = React.memo(function DataTableRow<TItem, TId>(props: 
             column,
             rowProps: props,
             index: idx,
-            role: 'cell',
             isFirstColumn,
             isLastColumn,
             rowLens,
