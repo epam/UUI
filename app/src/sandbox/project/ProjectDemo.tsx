@@ -1,5 +1,5 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { AcceptDropParams, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -7,7 +7,7 @@ import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-r
 import { ReactComponent as insertBefore } from '@epam/assets/icons/common/table-row_plus_before-24.svg';
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
-import { columns } from './columns';
+import { getColumns } from './columns';
 import { getInsertionOrder } from './helpers';
 
 interface FormState {
@@ -88,6 +88,8 @@ export const ProjectDemo = () => {
             },
         }),
     });
+
+    const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
 
     return <Panel style={ { width: '100%' } }>
         <FlexRow spacing='12' margin='12'>
