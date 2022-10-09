@@ -88,10 +88,9 @@ export const getDemoTasks = () => {
 };
 
 export const resources: Resource[] = [
-    { id: 1, name: "Front-end Developer" },
-    { id: 2, name: "Back-end Developer" },
-    { id: 3, name: "QA" },
-    { id: 4, name: "Designer" },
-    { id: 5, name: "BA" },
-    { id: 6, name: "Tester" },
+    { id: 1, name: "FED", fullName: "Front-end developer" },
+    { id: 2, name: "BED", fullName: "Back-end developer" },
+    { id: 3, name: "QA", fullName: "Quality assurance engineer" },
+    { id: 4, name: "UXD", fullName: "UX designer" },
+    { id: 5, name: "BA", fullName: "Business analyst" },
 ];
