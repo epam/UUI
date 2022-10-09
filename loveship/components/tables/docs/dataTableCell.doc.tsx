@@ -32,7 +32,7 @@ const DataTableCellDoc = new DocBuilder<DataTableCellProps & DataTableCellMods>(
                 value: {
                     id: '1',
                     rowKey: '1',
-                    index: 1,
+                    index: 0,
                 },
                 isDefault: true,
             },
