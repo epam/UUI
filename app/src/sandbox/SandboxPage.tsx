@@ -15,6 +15,7 @@ import { ProductsTableDemo } from './productsTable/ProductsTableDemo';
 import { ProjectDemo } from './project/ProjectDemo';
 import { TreeListItem } from 'uui-components';
 import { DataRowProps } from 'uui-core';
+import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -28,6 +29,7 @@ export const SandboxPage = () => {
         { id: 'responsive', name: 'Responsive', component: Responsive },
         { id: 'uui-v_theming', name: 'UUI-V Theming', component: ThemeDemo },
         { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
+        { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {
