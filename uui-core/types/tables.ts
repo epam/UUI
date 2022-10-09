@@ -78,7 +78,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
     render?(item: TItem, props: DataRowProps<TItem, TId>): any;
 
     /** Overrides rendering of the whole cell */
-    renderCell?(cellProps: RenderCellProps<TItem, TId, any>): any;
+    renderCell?(cellProps: RenderCellProps<TItem, TId>): any;
 
     /**
      * Renders column header dropdown.
@@ -132,7 +132,7 @@ export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCe
     mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
 }
 
-export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends IHasCX, Partial<IEditable<TCellValue>> {
+export interface DataTableCellOptions<TItem = any, TId = any> {
     /** Key to use as component's key */
     key: string;
 
@@ -153,7 +153,9 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
 
     /** HTML tabIndex attribute to set on the cell */
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+}
 
+export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>> {
     /** Add-on controls to put before the cell content (folding arrow, checkbox, etc.) */
     addons?: React.ReactNode;
 
@@ -174,7 +176,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
-export interface RenderCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellProps<TItem, TId, TCellValue> {
+export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOptions<TItem, TId> {
     /**
      * Lens instance, wrapping IEditable on the row, to help binding to row's value.
      * E.g. <TextInput { ...rowLens.prop('name').toProps() } />
