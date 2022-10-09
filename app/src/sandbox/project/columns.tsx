@@ -1,7 +1,7 @@
 import { Task, InsertTaskCallback, ColumnsProps } from "./types";
 import { resources } from './demoData';
 import React from "react";
-import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, TextArea } from '@epam/promo';
+import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, TextArea, DataPickerRow, PickerItem } from '@epam/promo';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
 import { RowKebabButton } from "./RowKebabButton";
 
@@ -50,6 +50,10 @@ export function getColumns(columnsProps: ColumnsProps) {
                         valueType="id"
                         selectionMode="multi"
                         dataSource={resourceDataSource}
+                        renderRow={ props => <DataPickerRow
+                            { ...props }
+                            renderItem={(item) => <PickerItem title={item.name} subtitle={item.fullName} {...props } /> }
+                        />}
                         placeholder=""
                         {...props}
                     />

@@ -14,6 +14,7 @@ export interface Task {
 export interface Resource {
     id: number;
     name: string;
+    fullName: string;
 }
 
 export interface InsertTaskCallback {
