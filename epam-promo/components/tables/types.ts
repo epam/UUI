@@ -18,7 +18,7 @@ interface TableSizesAndPositionMods {
 
 export interface DataTableRowMods extends TableSizesAndPositionMods {
     borderBottom?: 'none' | 'gray30';
-    background?: 'white' | 'gray5' | 'red';
+    background?: 'white' | 'gray5';
 }
 
 export interface DataTableCellMods extends TableSizesAndPositionMods {

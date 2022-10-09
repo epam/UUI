@@ -51,16 +51,12 @@
         --uui-dt-row-background: #{$white};
     }
 
-    &.background-red {
-        --uui-dt-row-background: #FEF7F6; // TODO: fix to color from new loveship palette when it is added
-    }
-
     // Borders
     --uui-dt-row-border-color: transparent;
     --uui-dt-row-border-width: 0;
-    
+
     &.border-night300 {
     	--uui-dt-row-border-color: #{$night300};
-	    --uui-dt-row-border-width: 1px;    	
+	    --uui-dt-row-border-width: 1px;
     }
 }
