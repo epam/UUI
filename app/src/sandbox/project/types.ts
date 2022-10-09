@@ -3,7 +3,7 @@ export interface Task {
     parentId?: number;
     name: string;
     estimate?: number;
-    resource?: string;
+    resources?: number[];
     startDate?: string;
     isDone?: boolean;
     complete?: number;

@@ -43,7 +43,7 @@ export const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         width: 300,
         isSortable: true,
         renderCell: (props) => <DataTableCell
-            { ...props.rowLens.prop('resource').toProps() }
+            { ...props.rowLens.prop('resources').toProps() }
             renderEditor={ props => (
                 <PickerInput valueType="id" selectionMode="multi" dataSource={ resourceDataSource } { ...props } />
             ) }
