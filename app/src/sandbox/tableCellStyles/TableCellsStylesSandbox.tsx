@@ -39,6 +39,9 @@ const items: Item[] = [
     { id: id++, ...defaultItem, altBackground: true },
     { id: id++, ...defaultItem, textArea: 'Supports\nmulti-line\ntext' }, // stretched vertically
     { id: id++ }, // invalid row
+    { id: id++, altBackground: true },
+    { id: id++, cellBackground: true },
+    { id: id++, altBackground: true, cellBackground: true },
     { id: id++, ...defaultItem },
     { id: id++, ...defaultItem, cellBackground: true },
     { id: id++, ...defaultItem, cellBackground: true },
