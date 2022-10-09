@@ -28,7 +28,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 onClick={ null }
                 isDropdown={ false }
                 cx={ cx(this.props.cx, css.dateInput, this.state.isOpen && uuiMod.focus) }
-                icon={ this.props.mode !== 'cell' ? systemIcons[this.props.size || '36'].calendar : null }
+                icon={ this.props.mode !== 'cell' && systemIcons[this.props.size || '36'].calendar }
                 iconPosition={ this.props.iconPosition || 'left' }
                 placeholder={ this.props.placeholder ?? this.getFormat() }
                 size={ this.props.size || '36' }
