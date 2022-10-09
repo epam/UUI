@@ -154,7 +154,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getPlaceholder() {
-        return this.props.placeholder || i18n.pickerInput.defaultPlaceholder(this.getEntityName());
+        return this.props.placeholder ?? i18n.pickerInput.defaultPlaceholder(this.getEntityName());
     }
 
     handleClearSelection = () => {
