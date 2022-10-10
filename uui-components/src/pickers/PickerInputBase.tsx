@@ -280,11 +280,24 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     getRows() {
         if (!this.shouldShowBody()) return [];
 
+        let preparedRows: DataRowProps<TItem, TId>[];
+
         const { showSelected, dataSourceState: { topIndex, visibleCount } } = this.state;
         const { getVisibleRows, getSelectedRows } = this.getView();
 
-        if (!showSelected) return getVisibleRows();
-        return getSelectedRows().slice(topIndex, topIndex + visibleCount);
+        if (!showSelected) {
+            preparedRows = getVisibleRows()
+        } else {
+            preparedRows = getSelectedRows().slice(topIndex, topIndex + visibleCount)
+        }
+
+        return preparedRows.map((rowProps) => {
+            if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
+                rowProps.onSelect = this.onSelect;
+            }
+
+            return rowProps
+        });
     }
 
     getFooterProps(): PickerFooterProps<TItem, TId> & { onClose: () => void } {
