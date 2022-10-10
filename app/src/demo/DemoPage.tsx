@@ -21,13 +21,19 @@ function sendEvent(name: string) {
 export const DemoPage = () => {
     const demoItem = getSelectedDemoItem();
     const selectedDemoId = demoItem?.id;
+    const isDemoSelected = Boolean(selectedDemoId);
+    const pageRootRef = React.useRef(undefined);
+    const fullScreenApi = useFullScreenApi(pageRootRef);
 
     useEffect(() => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.demo.pv(selectedDemoId));
     }, [selectedDemoId]);
 
-    const pageRootRef = React.useRef(undefined);
-    const fullScreenApi = useFullScreenApi(pageRootRef);
+    useEffect(() => {
+        if (!isDemoSelected) {
+            fullScreenApi.closeFullScreen();
+        }
+    }, [isDemoSelected]);
 
     const renderFooter = React.useCallback(() => {
         if (demoItem) {
