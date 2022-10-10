@@ -61,7 +61,7 @@ export const TableContext = (contextProps: DemoComponentProps) => {
 
     const dataView = dataSource.useView(tableState, setTableState, {
         getRowOptions: person => ({
-            ...lens.prop('items').prop(person.id).default(person).toProps(),
+            ...lens.prop('items').prop(person.id).toProps(),
             checkbox: { isVisible: true },
         }),
     });
@@ -70,7 +70,11 @@ export const TableContext = (contextProps: DemoComponentProps) => {
         {
             key: 'name',
             caption: 'Name',
-            render: props => <Text>{ props.name }</Text>,
+            renderCell: (props) => <DataTableCell
+                { ...props.rowLens.prop('name').toProps() }
+                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props }/> }
+                { ...props }
+            />,
             isSortable: true,
             isAlwaysVisible: true,
             width: 200,
@@ -91,11 +95,7 @@ export const TableContext = (contextProps: DemoComponentProps) => {
         {
             key: 'departmentName',
             caption: 'Department Name',
-            renderCell: (props) => <DataTableCell
-                { ...props.rowLens.prop('departmentName').toProps() }
-                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props }/> }
-                { ...props }
-            />,
+            render: props => <Text>{ props.departmentName }</Text>,
             isSortable: true,
             isAlwaysVisible: true,
             width: 200,
