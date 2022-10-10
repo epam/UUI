@@ -36,7 +36,7 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
                 uuiMarkers.clickable,
                 this.props.cx,
             ),
-            tabIndex: 0,
+            tabIndex: this.props.isDisabled ? -1 : 0,
             href,
             role: 'link',
             target: this.props.target,
