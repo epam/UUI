@@ -1,5 +1,5 @@
 export * from './AppHeader';
-export * from './appFooter/AppFooter';
+export * from './AppFooter';
 export * from './Page';
 export * from './slider';
 export * from './sidebar';
