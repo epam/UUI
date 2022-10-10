@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
-import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui-core';
-import { Panel, Text, DataTable, DataTableCell } from '../../components';
+import { ArrayDataSource, DataColumnProps, Metadata } from '@epam/uui-core';
+import { Panel, DataTable, DataTableCell, useForm, FlexRow, Button, FlexSpacer, FlexCell, Text } from '../../components';
+
 
 interface Person {
     id: number;
     name: string;
+    yearsInCompany: number;
     personType: string;
     avatarUrl: string;
     phoneNumber: string;
@@ -17,90 +19,124 @@ interface Person {
     departmentName: string;
 }
 
-interface DemoComponentState {
-    demoState: DataSourceState;
+interface FormState {
+    items: Record<number, Person>;
 }
 
-export class TableContext extends React.Component<DemoComponentProps, DemoComponentState> {
-    public static displayName = 'Table';
+const metadata: Metadata<FormState> = {
+    props: {
+        items: {
+            all: {
+                props: {
+                    name: { isRequired: true },
+                    yearsInCompany: { isRequired: true },
+                    departmentName: { isRequired: true },
+                    birthDate: { isRequired: true },
+                },
+            },
+        },
+    },
+};
 
-    state: DemoComponentState = {
-        demoState: {},
-    };
+let savedValue: FormState = { items: {} };
 
-    dataSource = new ArrayDataSource<Person, number, unknown>({
+export const TableContext = (contextProps: DemoComponentProps) => {
+    const { DemoComponent } = contextProps;
+
+    const { lens, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
+        value: savedValue,
+        onSave: async (value) => {
+            savedValue = value;
+        },
+        getMetadata: () => metadata,
+    });
+
+    const [tableState, setTableState] = React.useState({});
+
+    const dataSource = new ArrayDataSource<Person, number, unknown>({
         items: demoData.personDemoData,
         getId: p => p.id,
     });
 
-    handleDemoStateChange = (newState: DataSourceState) => this.setState({ demoState: newState });
+    const dataView = dataSource.useView(tableState, setTableState, {
+        getRowOptions: person => ({
+            ...lens.prop('items').prop(person.id).default(person).toProps(),
+            checkbox: { isVisible: true },
+        }),
+    });
 
-    render() {
-        const { DemoComponent, props } = this.props;
-        const view = this.dataSource.getView(this.state.demoState, this.handleDemoStateChange, {
-            getRowOptions: () => ({
-                checkbox: { isVisible: true },
-            }),
-        });
+    const personColumns: DataColumnProps<Person>[] = [
+        {
+            key: 'name',
+            caption: 'Name',
+            render: props => <Text>{ props.name }</Text>,
+            isSortable: true,
+            isAlwaysVisible: true,
+            width: 200,
+            fix: 'left',
+        },
+        {
+            key: 'yearsInCompany',
+            caption: 'Years In Company',
+            renderCell: (props) => <DataTableCell
+                { ...props.rowLens.prop('yearsInCompany').toProps() }
+                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props }/> }
+                { ...props }
+            />,
+            isSortable: true,
+            isAlwaysVisible: true,
+            width: 170,
+        },
+        {
+            key: 'departmentName',
+            caption: 'Department Name',
+            renderCell: (props) => <DataTableCell
+                { ...props.rowLens.prop('departmentName').toProps() }
+                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props }/> }
+                { ...props }
+            />,
+            isSortable: true,
+            isAlwaysVisible: true,
+            width: 200,
+        },
+        {
+            key: 'birthDate',
+            caption: 'Birth Date',
+            renderCell: (props) => <DataTableCell
+                { ...props.rowLens.prop('birthDate').toProps() }
+                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props }/> }
+                { ...props }
+            />,
+            isSortable: true,
+            isAlwaysVisible: true,
+            width: 200,
+        },
+    ];
 
-        const personColumns: DataColumnProps<Person>[] = [
-            {
-                key: 'demo_first',
-                caption: 'Demo',
-                render: item => <DemoComponent { ...props }>{ item.id }</DemoComponent>,
-                renderCell: propsCell => <DataTableCell padding='24' isFirstColumn={ true } { ...propsCell } />,
-                isSortable: true,
-                isAlwaysVisible: true,
-                width: 200,
-            },
-            {
-                key: 'name',
-                caption: 'Name',
-                render: item => <Text size={ props.size }>{ item.name }</Text>,
-                isSortable: true,
-                width: 170,
-            },
-            {
-                key: 'demo_second',
-                caption: 'Demo',
-                render: item => <DemoComponent  { ...props }>{ item.id }</DemoComponent>,
-                renderCell: propsCell => <DataTableCell padding='0' { ...propsCell } />,
-                isSortable: true,
-                isAlwaysVisible: true,
-                width: 170,
-            },
-            {
-                key: 'phoneNumber',
-                caption: 'Phone Number',
-                render: item => <Text size={ props.size }>{ item.phoneNumber }</Text>,
-                grow: 1,
-                width: 150,
-            },
-            {
-                key: 'demo_third',
-                caption: 'Demo',
-                render: item => <DemoComponent { ...props }>{ item.id }</DemoComponent>,
-                renderCell: propsCell => <DataTableCell padding='0' { ...propsCell } />,
-                isSortable: true,
-                isAlwaysVisible: true,
-                width: 170,
-            },
-        ];
+    return (
+        <>
+            <Panel style={ { width: '100%', paddingLeft: '3px' } }>
+                <DataTable
+                    headerTextCase="upper"
+                    getRows={ dataView.getVisibleRows }
+                    columns={ personColumns }
+                    value={ tableState }
+                    onValueChange={ setTableState }
+                    showColumnsConfig
+                    allowColumnsResizing
+                    allowColumnsReordering
+                    { ...dataView.getListProps() }
+                />
+            </Panel>
+            <FlexRow spacing='12' margin='12'>
+                <FlexSpacer />
+                <FlexCell width='auto'>
+                    <Button color='green' caption="Save" onClick={ save } />
+                </FlexCell>
+            </FlexRow>
+        </>
 
-        return (
-            <>
-                <Panel margin='24' >
-                    <DataTable
-                        { ...view.getListProps() }
-                        getRows={ view.getVisibleRows }
-                        value={ this.state.demoState }
-                        onValueChange={ this.handleDemoStateChange }
-                        columns={ personColumns }
-                        headerTextCase='upper'
-                        size={ props.size }
-                    />
-                </Panel>
-            </>
-        );
-    }
-}
+    );
+};
+
+TableContext.displayName = 'Table';

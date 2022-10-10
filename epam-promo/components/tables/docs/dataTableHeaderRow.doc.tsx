@@ -1,6 +1,6 @@
 import { DataTableHeaderRowProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
-import { DefaultContext, ResizableContext, FormContext, GridContext, iEditable } from '../../../docs';
+import { DefaultContext, ResizableContext, FormContext, iEditable } from '../../../docs';
 import { ColumnsHeaderRowDoc } from './common';
 import { DataTableHeaderRowMods, DataTableHeaderRow } from '../';
 import { TableContext } from './TableContext';
@@ -33,6 +33,6 @@ const DataTableHeaderRowDoc = new DocBuilder<DataTableHeaderRowProps & DataTable
             },
         ],
     })
-    .withContexts(TableContext, ResizableContext, DefaultContext, FormContext, GridContext);
+    .withContexts(TableContext, ResizableContext, DefaultContext, FormContext);
 
 export = DataTableHeaderRowDoc;
