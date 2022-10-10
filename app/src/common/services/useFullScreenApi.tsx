@@ -18,7 +18,7 @@ async function openElementFullScreen(element: HTMLElement) {
 
 async function closeFullScreen() {
     const canClose = isFullScreenAllowed();
-    if (canClose) {
+    if (canClose && isSomeElementOpenedFullScreen()) {
         await document.exitFullscreen();
     }
 }
