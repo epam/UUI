@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { INotification, Icon, IHasChildren, IHasCX, IHasRawProps, useUuiContext, ButtonRawPropsType } from '@epam/uui-core';
+import { INotification, Icon, IHasChildren, IHasCX, IHasRawProps, useUuiContext } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
 import { EpamColor, LinkButton } from '..';
@@ -13,7 +13,7 @@ import { ReactComponent as CrossIcon } from '../icons/snackbar/cross.svg';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import * as css from './NotificationCard.scss';
 
-interface NotificationAction extends IHasRawProps<ButtonRawPropsType> {
+interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     name: string;
     action: () => void;
 }
