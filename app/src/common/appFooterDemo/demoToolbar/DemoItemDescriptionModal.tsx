@@ -42,13 +42,11 @@ export function DemoItemDescriptionModal(props: IDemoItemDescriptionModal) {
                 <ModalHeader borderBottom title={ title } onClose={ () => modalProps.abort() } />
                 <ScrollBars hasTopShadow hasBottomShadow >
                     <Panel>
-                        <FlexRow padding='24'>
-                            <EditableDocContent
-                                fileName={ docFileName }
-                                isWidthByContainer={ true }
-                                minHeight={ 400 }
-                            />
-                        </FlexRow>
+                        <EditableDocContent
+                            fileName={ docFileName }
+                            isWidthByContainer={ true }
+                            minHeight={ 400 }
+                        />
                     </Panel>
                 </ScrollBars>
                 <ModalFooter borderTop>
