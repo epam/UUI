@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Value } from 'slate';
-import { IEditableDebouncer } from '@epam/uui';
+import { cx, IEditableDebouncer } from '@epam/uui';
 import { Blocker } from '@epam/loveship';
 import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin, notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin, codeBlockPlugin,
 } from "@epam/uui-editor";
@@ -9,6 +9,8 @@ import * as css from './EditableDocContent.scss';
 
 export interface EditableDocContentProps {
     fileName: string;
+    isWidthByContainer?: boolean;
+    minHeight?: number | 'none';
 }
 
 interface EditableDocContentState {
@@ -55,10 +57,11 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
     }
 
     render() {
+        const { isWidthByContainer, minHeight = 36 } = this.props;
         const { isLoading } = this.state;
-
+        const widthByContainerModifier = isWidthByContainer ? css.widthByContainer : undefined;
         return (
-            <div className={ css.wrapper } >
+            <div className={ cx(css.wrapper, widthByContainerModifier) } >
                 <IEditableDebouncer
                     value={ this.state.content }
                     onValueChange={ this.saveDocContent }
@@ -68,7 +71,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
                         cx={ css.container }
                         mode='inline'
                         isReadonly={ !window.location.host.includes('localhost') }
-                        minHeight={ 36 }
+                        minHeight={ minHeight }
                         fontSize="16"
                         { ...props }
                     /> }
