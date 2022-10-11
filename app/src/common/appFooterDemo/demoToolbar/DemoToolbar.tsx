@@ -6,7 +6,10 @@ import { DemoItem } from "../../../demo/structure";
 import { ReactComponent as BackIcon } from '@epam/assets/icons/common/navigation-back-18.svg';
 import { ReactComponent as ExternalLinkIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
 import { ReactComponent as FullScreenIcon } from '@epam/assets/icons/common/media-fullscreen-18.svg';
+import { ReactComponent as DescriptionIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import { analyticsEvents } from "../../../analyticsEvents";
+import { useUuiContext } from "@epam/uui-core";
+import { DemoItemDescriptionModal } from "./DemoItemDescriptionModal";
 
 interface AppFooterContentDemoProps {
     demoItem: DemoItem;
@@ -19,7 +22,7 @@ export function DemoToolbar(props: AppFooterContentDemoProps) {
         onOpenFullScreen,
         isFullScreenSupported,
     } = props;
-
+    const svc = useUuiContext();
     const routerHistory = useHistory();
     const handleBack = React.useCallback(() => {
         routerHistory.push('/demo');
@@ -31,9 +34,16 @@ export function DemoToolbar(props: AppFooterContentDemoProps) {
         </FlexCell>
     );
 
+    const handleOpenDescription = React.useCallback(async () => {
+        await svc.uuiModals
+            .show((props) => <DemoItemDescriptionModal modalProps={ props } demoItem={ demoItem } />);
+    }, []);
+
     return (
         <FlexRow cx={ css.container }>
             <LinkButton cx={ css.item } icon={ BackIcon } caption='Back to demos' onClick={ handleBack }/>
+            { renderDivider() }
+            <LinkButton cx={ css.item } icon={ DescriptionIcon } caption='Description' onClick={ handleOpenDescription }/>
             { renderDivider() }
             <LinkButton cx={ css.item }
                         icon={ ExternalLinkIcon }
