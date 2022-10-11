@@ -38,6 +38,8 @@
   * fixed revert/undo/redo behavior after save
   * onValueChange now triggers internal validation logic (as with changes made with lenses)
   * refactored to remove unnecessary re-renders in some cases
+* Accordion API improvements, added opportunity to overwrite title.
+* Added default type button for all buttons. Fixed rawProps typings according to React types.
 
 # 4.8.5 - 15.09.2022
 

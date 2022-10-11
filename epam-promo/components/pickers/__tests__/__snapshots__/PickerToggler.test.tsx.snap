@@ -45,6 +45,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
       onClick={[Function]}
       role="button"
       tabIndex={-1}
+      type="button"
     >
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
