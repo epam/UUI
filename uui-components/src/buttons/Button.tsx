@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { ButtonCoreProps, Icon, uuiElement, uuiMarkers, CX, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
+import { ButtonCoreProps, Icon, uuiElement, uuiMarkers, CX, IHasRawProps, cx, IHasForwardedRef, ButtonRawPropsType } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import { ButtonBase } from './ButtonBase';
 import * as css from './Button.scss';
 
-export interface ButtonProps extends ButtonCoreProps, IHasRawProps<HTMLButtonElement>, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {
+export interface ButtonProps extends ButtonCoreProps, IHasRawProps<ButtonRawPropsType>, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {
     /** Icon for clear value button (usually cross) */
     clearIcon?: Icon;
 

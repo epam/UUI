@@ -4,7 +4,7 @@ import { FlexRow, FlexSpacer } from '../layout';
 import { Anchor } from '../navigation/Anchor';
 import * as css from './DataTableRowContainer.scss';
 
-export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
+export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLAnchorElement | HTMLDivElement | HTMLButtonElement>> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];
     renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
@@ -110,7 +110,7 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
     const rawProps = {
         ...props.rawProps,
         style: { ...props?.rawProps?.style, minWidth },
-    }
+    };
 
     return (
         props.link ? (
