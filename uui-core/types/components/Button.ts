@@ -1,7 +1,8 @@
-import { IBasicPickerToggler, ICanRedirect, IClickable, IDisableable, IDropdownToggler, IHasCaption, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableClick, IHasTabIndex } from "../props";
+import * as React from 'react';
+import { IBasicPickerToggler, ICanRedirect, IClickable, IDisableable, IDropdownToggler, IHasCaption, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableClick, IHasTabIndex, IHasRawProps } from "../props";
 import { Icon } from "../objects";
 
-export interface ButtonBaseCoreProps extends IHasCX, IClickable, ICanRedirect, IDisableable, IHasIcon, IAnalyticableClick, IHasTabIndex {
+export interface ButtonBaseCoreProps extends IHasCX, IClickable, ICanRedirect, IDisableable, IHasIcon, IAnalyticableClick, IHasTabIndex, IHasRawProps<ButtonRawPropsType> {
 }
 
 export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasicPickerToggler, IDropdownToggler, IHasPlaceholder {
@@ -18,3 +19,6 @@ export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasi
 export interface ButtonSemanticProps {
     type?: 'success' | 'cancel' | 'action';
 }
+
+export type ButtonRawPropsType = React.ButtonHTMLAttributes<HTMLButtonElement>;
+export type AnchorRawPropsType = ICanRedirect & React.ButtonHTMLAttributes<HTMLButtonElement>;
