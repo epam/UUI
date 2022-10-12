@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps, useUuiContext } from '@epam/uui-core';
+import { INotification, Icon, IHasChildren, IHasCX, IHasRawProps, useUuiContext } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
 import { EpamColor, LinkButton } from '..';
@@ -13,12 +13,12 @@ import { ReactComponent as CrossIcon } from '../icons/snackbar/cross.svg';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import * as css from './NotificationCard.scss';
 
-interface NotificationAction extends IHasRawProps<HTMLButtonElement> {
+interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     name: string;
     action: () => void;
-};
+}
 
-export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
+export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
     actions?: NotificationAction[];
 }
 
@@ -78,7 +78,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
                             cx={ css.closeIcon }
                         />
                     </div>
-                )}
+                ) }
             </div>
         </div>
     );

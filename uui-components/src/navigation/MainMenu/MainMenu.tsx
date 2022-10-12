@@ -5,9 +5,9 @@ import { AdaptivePanel, AdaptiveItemProps } from '../../layout';
 import { i18n } from '../../../i18n';
 import * as css from './MainMenu.scss';
 
-export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<HTMLElement> {}
+export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {}
 
-export interface MainMenuProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface MainMenuProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     items?: AdaptiveItemProps[];
     children?: any;
     externalGap?: number;
