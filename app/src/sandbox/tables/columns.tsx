@@ -101,6 +101,7 @@ export function getColumns() {
             key: 'name',
             caption: "Name",
             render: p => <Text>{ p.name }</Text>,
+            grow: 1,
             width: 500,
             fix:'left',
         }

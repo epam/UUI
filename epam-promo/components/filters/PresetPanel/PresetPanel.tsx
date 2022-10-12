@@ -88,6 +88,7 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
                                 caption={ item.preset.name }
                                 icon={ DeleteIcon }
                                 iconPosition='right'
+                                cx={ css.dropdownDeleteIcon }
                                 onIconClick={ () => props.deletePreset(item.preset) }
                             />)
                     }
