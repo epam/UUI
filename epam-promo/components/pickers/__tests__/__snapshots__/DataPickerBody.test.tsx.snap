@@ -140,6 +140,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -169,6 +170,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -198,6 +200,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -227,6 +230,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -256,6 +260,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -285,6 +290,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -314,6 +320,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -343,6 +350,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -372,6 +380,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -401,6 +410,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
@@ -430,6 +440,7 @@ Array [
             >
               <div
                 className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,

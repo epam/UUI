@@ -92,7 +92,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             items = sort(items);
 
             for (let n = 0; n < items.length; n++) {
-                currentIndex = currentIndex + 1;
                 const item = items[n];
                 const childrenItems = this.tree.getChildren(item);
                 const rowProps = this.getRowProps(item, currentIndex, parents);
@@ -152,6 +151,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                 if (!isFolded && children) {
                     rows = rows.concat(children.rows);
                 }
+
+                currentIndex = currentIndex + 1;
             }
 
             return { rows, checkableCount, checkedCount, selectedCount };

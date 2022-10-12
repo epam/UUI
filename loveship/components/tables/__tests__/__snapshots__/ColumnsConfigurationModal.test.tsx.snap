@@ -162,7 +162,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="dragHandle container uui-drag-handle"
                     />
                     <label
-                      className="container root size-18 theme-light color-sky uui-disabled"
+                      className="container root size-18 theme-light mode-form color-sky uui-disabled"
                       tabIndex={-1}
                     >
                       <div
@@ -214,7 +214,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="dragHandle container uui-drag-handle"
                     />
                     <label
-                      className="container root size-18 theme-light color-sky uui-disabled"
+                      className="container root size-18 theme-light mode-form color-sky uui-disabled"
                       tabIndex={-1}
                     >
                       <div
@@ -266,7 +266,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="dragHandle container uui-drag-handle"
                     />
                     <label
-                      className="container root size-18 theme-light color-sky -clickable"
+                      className="container root size-18 theme-light mode-form color-sky -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -317,7 +317,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="dragHandle container uui-drag-handle"
                     />
                     <label
-                      className="container root size-18 theme-light color-sky -clickable"
+                      className="container root size-18 theme-light mode-form color-sky -clickable"
                       tabIndex={-1}
                     >
                       <div

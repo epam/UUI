@@ -13,7 +13,6 @@ export const renderCell = (props: DataTableCellProps) => {
     return <DataTableCell
         size={ mods.size }
         { ...props }
-        role="cell"
     />;
 };
 

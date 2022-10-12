@@ -205,6 +205,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -240,6 +241,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -275,6 +277,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -310,6 +313,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -345,6 +349,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -380,6 +385,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -415,6 +421,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -450,6 +457,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -485,6 +493,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
@@ -520,6 +529,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
