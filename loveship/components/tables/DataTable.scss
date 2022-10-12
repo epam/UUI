@@ -1,13 +1,13 @@
 .sticky-header {
     position: sticky;
     top: 0;
-    min-width: min-content;
-    z-index: 3;
+    isolation: isolate;
+    z-index: 5;
 }
 
 .listContainer {
-    display: grid;
-    grid-template-rows: 1fr;
+    margin-top: 1px;
+    isolation: isolate;
 }
 
 .table {
@@ -32,9 +32,9 @@
     }
 
     :global(.uui-scroll-shadow-top-visible) {
+        display: block;
         height: 5px;
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-        display: block;
         transition: display 200ms;
     }
 }
@@ -42,23 +42,18 @@
 .no-results {
     position: sticky;
     left: 0;
-    flex: 1 0 auto;
-    width: 100%;
     display: flex;
+    flex: 1 0 auto;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    &-icon {
+        align-items: center;
 }
 
-.no-results-icon {
-    margin-bottom: 20px;
-
-    :global(.uui-icon) {
-        cursor: default;
-
-        svg {
-            width: 50px;
-            height: 50px;
-        }
+    &-title {
+        padding: 0;
+        margin-top: 30px;
     }
 }

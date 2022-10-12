@@ -1,5 +1,4 @@
-import { DataSourceState, IDataSource } from "./types";
-import { BaseListViewProps, IDataSourceView } from './views';
+import { BaseListViewProps, DataSourceState, IDataSource, IDataSourceView } from "../../types";
 
 export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
 
@@ -15,6 +14,8 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     protected updateViews = () => {
         this.views.forEach(view => view._forceUpdate());
     }
+
+    public abstract setProps(newProps: BaseListViewProps<TItem, TId, TFilter>): void;
 
     public unsubscribeView(onValueChange: (val: any) => void) {
         this.views.delete(onValueChange);

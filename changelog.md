@@ -1,3 +1,40 @@
+# editable tables branch
+
+**What's New**
+
+This release prepares UUI for full-featured editable tables support. Editable tables were possible before this - via hooking into renderRow, building a separate component for row, and certain tricks to re-render it w/o re-rendering whole table. However, this was a complex and feature-limited approach.
+
+In this release, we add first-class support for editable cells, and adjust our infrastructure to support various other features to make DataTables editable.
+
+With this release you already can build editable tables. However we are planning to improve certain parts in the future releases, e.g. simplify adding/removing/moving rows in tables.
+
+* [Breaking Change] DataSources and DataTables-related interfaces refactored:
+  * DataTableRowProps type is moved from @epam/uui-components to @epam/uui-core
+  * columns prop is moved from DataRowProps to DataTableRowProps interface
+    * if you have your own DataTable implementation, you'd need to replace renderRow callback type to use the DataTableRowProps interface instead of DataRowProps
+  * DataTableCell interface extended to support editable cells (backward compatible)
+
+* ArrayDataSource - ```items``` prop value can now be updated dynamically.
+
+  Prior this fix, the only way to update ```items```, is to add them as useArrayDataSource dependencies. This forces DataSource to re-create everything, forcing re-render of all tables' rows. This was slow, especially if you need to make cells editable - i.e. re-render on each keystroke. Now, you can safely remove your items from deps: useArrayDataSource(..., ~~~[items]~~~), which will improve performance.
+
+* DataSources: ```getRowOptions``` is called on each update, allowing to dynamically change rows behavior. For example, you can dynamically enable/disable checkboxes in Tables or PickerInputs.
+
+* DataSources: getRowOptions - DataRowOptions now implements IEditable<TItem> interface. This allows to make rows editable, by passing value/onValueChange directly, or by using lens.toProps(): getRowOptions(item) => lens.prop(item.id).toProps()
+
+* [Breaking Change] DataTableCell layout reworked.
+  * Cells and tables tweaked to support vertical borders, hover/focus border effects for editable cells
+  * Now, cell content is rendered in flexbox context (was block). Please review cells layout (alignment and width of the cells content)
+  * DataTableColumn - new prop: justifyContent, which sets appropriate flexbox property. Can be used to align items horizontally. If omitted, we use existing textAlign property to set it. I.e. you can still use textAlign: left/center/right to align textual cell content.
+  * DataTableCell renders focus/hover effects (borders) on their own. We removed these effects from all inputs with mode='cell'.
+
+* [Breaking Change] DataSources doesn't work with array/object ids by-default. In certain cases, we used IDs like [123, 'group-row'] to handle scenarios when there are different types of entities, with overlapping ids. E.g. item groups, and actual records in grouping table case. They are no-longer supported by default.
+  * If you use such ids, set `complexIds = true` prop when creating DataSource. In this case, DataSource will use JSON.stringify to use IDs as Map keys internally. This was default behavior prior this change, which has impact on performance, so it's made optional
+  * number and string ids are supported correctly by default
+
+* FlexCell: added `style` attribute.
+
+
 # next version (Editable Tables Preparation)
 
 **What's New**
@@ -38,6 +75,7 @@
   * fixed revert/undo/redo behavior after save
   * onValueChange now triggers internal validation logic (as with changes made with lenses)
   * refactored to remove unnecessary re-renders in some cases
+* ArrayDataSource/ArrayListView now generates row indexes starting from 0 (was from 1)
 
 # 4.8.5 - 15.09.2022
 
