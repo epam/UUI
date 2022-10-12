@@ -3,7 +3,7 @@ import * as css from './IconContainer.scss';
 import { uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps, IHasTabIndex } from '@epam/uui-core';
 import { Svg } from '../widgets';
 
-export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<HTMLDivElement>, IHasTabIndex {
+export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasTabIndex {
     /** Icon to display */
     icon?: Icon;
     /** Flips the icon vertically */

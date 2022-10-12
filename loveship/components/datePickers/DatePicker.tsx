@@ -15,8 +15,8 @@ export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSetti
     iconPosition?: 'left' | 'right';
     disableClear?: boolean;
     rawProps?: {
-        input?: IHasRawProps<HTMLDivElement>['rawProps'];
-        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 }
 

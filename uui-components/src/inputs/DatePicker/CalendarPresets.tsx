@@ -8,7 +8,7 @@ export const uuiPresets = {
     item: "uui-presets-item",
 } as const;
 
-export interface CalendarPresetsProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface CalendarPresetsProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     presets: RangeDatePickerPresets;
     onPresetSet: (nV: RangeDatePickerPresetValue) => void;
 }

@@ -5,7 +5,7 @@ import * as types from '../types';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import * as css from './TextPlaceholder.scss';
 
-export interface TextPlaceholderProps extends IHasCX, IHasRawProps<HTMLDivElement> {
+export interface TextPlaceholderProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
     wordsCount?: number;
     color?: types.EpamColor;
     isNotAnimated?: boolean;
@@ -24,7 +24,7 @@ export const TextPlaceholder = React.forwardRef<HTMLDivElement, TextPlaceholderP
 
     return (
         <div ref={ ref } aria-busy={ true } className={ css.container } { ...props.rawProps }>
-            { text.map((it, index)=> (
+            { text.map((it, index) => (
                 <span
                     key={ index }
                     dangerouslySetInnerHTML={ { __html: it } }

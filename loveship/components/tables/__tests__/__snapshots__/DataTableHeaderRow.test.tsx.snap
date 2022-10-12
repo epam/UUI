@@ -71,6 +71,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -138,6 +139,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -192,6 +194,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -246,6 +249,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -317,6 +321,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -374,6 +379,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -418,6 +424,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -462,6 +469,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"

@@ -88,6 +88,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   onClick={[Function]}
                   role="button"
                   tabIndex={-1}
+                  type="button"
                 >
                   <div
                     className="container uui-icon uui-enabled"
@@ -145,6 +146,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   onClick={[Function]}
                   role="button"
                   tabIndex={-1}
+                  type="button"
                 >
                   <div
                     className="container uui-icon uui-enabled"
@@ -189,6 +191,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   onClick={[Function]}
                   role="button"
                   tabIndex={-1}
+                  type="button"
                 >
                   <div
                     className="container uui-icon uui-enabled"
@@ -233,6 +236,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   onClick={[Function]}
                   role="button"
                   tabIndex={-1}
+                  type="button"
                 >
                   <div
                     className="container uui-icon uui-enabled"

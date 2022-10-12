@@ -237,6 +237,7 @@ exports[`FileCard should be rendered correctly 3`] = `
         onClick={[Function]}
         role="button"
         tabIndex={0}
+        type="button"
       >
         <div
           className="container uui-icon uui-enabled"
