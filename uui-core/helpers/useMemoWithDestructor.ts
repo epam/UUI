@@ -1,11 +1,28 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useRef } from 'react';
+import { LazyDataSource } from 'uui-core/data';
 
-export function useMemoWithDestructor<T>(factory: () => T, destructor: (value: T) => any, deps: any[]) {
-    const value = useMemo(factory, deps);
+
+export function useMemoWithDestructor<T>(create: () => T, update: (instance: T) => void, destroy: (value: T) => any, deps: any[]) {
+    const ref = useRef<T>();
+    const prevDeps = useRef(deps);
+
+    const isDepsChanged = (prevDeps.current.length != deps.length)
+        || prevDeps.current.some((devVal, index) => devVal != deps[index]);
+
+    if (ref.current == null || isDepsChanged) {
+        prevDeps.current = deps;
+        ref.current = create();
+    }
+
+    update(ref.current)
+
+    const current = ref.current;
 
     useEffect(() => {
-        return () => destructor(value);
+        // Value here is memoized in closure at the time of its creation.
+        // So we are not destroying the value we just created above.
+        return () => current && destroy(current);
     }, deps);
 
-    return value;
+    return ref.current;
 }

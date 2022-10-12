@@ -1,42 +1,49 @@
-import { DataRowProps, SortingOption, IEditable } from "../../../types";
+import { DataRowProps, SortingOption, IEditable, DataSourceState,
+    DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
 import { getSearchFilter } from '../../querying';
-import { DataSourceState, IArrayDataSource, TreeNode } from "../types";
-import { DataSourceListProps, IDataSourceView } from './types';
-import { BaseListView, BaseListViewProps } from './BaseListView';
+import { BaseListView } from './BaseListView';
 import isEqual from 'lodash.isequal';
+import { Tree } from "./Tree";
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
-    getParentId?(item: TItem): TId;
+    items?: TItem[] | Tree<TItem, TId>;
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
 }
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
-    visibleRows: DataRowProps<TItem, TId>[] = [];
     props: ArrayListViewProps<TItem, TId, TFilter>;
+    tree: Tree<TItem, TId>;
 
     constructor(
-        private dataSource: IArrayDataSource<TItem, TId, TFilter>,
         editable: IEditable<DataSourceState<TFilter, TId>>,
         props: ArrayListViewProps<TItem, TId, TFilter>,
     ) {
         super(editable, props);
         this.props = props;
-        this.updateNodes();
+        this.update(editable.value, props);
     }
 
     public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
         const currentValue = { ...this.value };
         this.value = newValue;
         this.props = newProps;
-        if (this.isCacheIsOutdated(newValue, currentValue)) {
+
+        const prevTree = this.tree;
+
+        if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
+            this.tree = Tree.create(this.props, this.props.items);
+        }
+
+        if (prevTree != this.tree || this.isCacheIsOutdated(newValue, currentValue)) {
             this.updateNodes();
         } else {
             if (newValue.focusedIndex !== currentValue.focusedIndex) {
                 this.updateFocusedItem();
             }
         }
+        this.updateRowOptions();
     }
 
     private isCacheIsOutdated(newValue: DataSourceState, prevValue: DataSourceState) {
@@ -52,62 +59,60 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         return false;
     }
 
-
     public getById = (id: TId, index: number) => {
-        const item = this.dataSource.getById(id);
+        const item = this.tree.getById(id);
         return this.getRowProps(item, index, []);
     }
 
     private updateFocusedItem = () => {
-        this.visibleRows.forEach(row => {
+        this.rows.forEach(row => {
             row.isFocused = this.value.focusedIndex === row.index;
             return row;
         });
     }
 
     private updateNodes() {
-        const folded = this.value.folded || {};
-        const isFoldedByDefault = this.props.isFoldedByDefault || (() => true);
         const applySearch = this.buildSearchFilter(this.value);
         const applyFilter = this.props.getFilter && this.props.getFilter(this.value.filter);
+        const sort = this.buildSorter(this.props.sortBy);
         let fullSelection: TId[] = [];
         let emptySelection: TId[] = [];
         let currentIndex = 0;
-        let isFlatList = this.dataSource.maxDepth == 1;
+        let isFlatList = this.tree.isFlatList();
 
         this.updateCheckedLookup(this.value.checked);
 
         const empty = { rows: [] as DataRowProps<TItem, TId>[], checkedCount: 0, checkableCount: 0, selectedCount: 0 };
 
-        const getNodesRec = (nodes: TreeNode<TItem, TId>[], parents: DataRowProps<TItem, TId>[], depth: number) => {
+        const getNodesRec = (items: TItem[], parents: DataRowProps<TItem, TId>[], depth: number) => {
             let checkedCount = 0;
             let selectedCount = 0;
             let checkableCount = 0;
             let rows: DataRowProps<TItem, TId>[] = [];
+            items = sort(items);
 
-            for (let n = 0; n < nodes.length; n++) {
-                currentIndex = currentIndex + 1;
-                const node = nodes[n];
-                const rowProps = this.getRowProps(node.item, currentIndex, parents);
-                rowProps.isLastChild = n === (nodes.length - 1);
+            for (let n = 0; n < items.length; n++) {
+                const item = items[n];
+                const childrenItems = this.tree.getChildren(item);
+                const rowProps = this.getRowProps(item, currentIndex, parents);
+                rowProps.isLastChild = n === (items.length - 1);
                 let children = empty;
-                const isPassedSearch = applySearch ? applySearch(node.item) : true;
-                const isPassedFilter = applyFilter ? applyFilter(node.item) : true;
+                const isPassedSearch = applySearch ? applySearch(item) : true;
+                const isPassedFilter = applyFilter ? applyFilter(item) : true;
 
-                if (node.children.length > 0) {
-                    children = getNodesRec(node.children, [...parents, rowProps], depth + 1);
+                if (childrenItems.length > 0) {
+                    children = getNodesRec(childrenItems, [...parents, rowProps], depth + 1);
                     checkedCount += children.checkedCount;
                     selectedCount += children.selectedCount;
                     checkableCount += children.checkableCount;
                 }
 
-                let isFolded = folded[node.key];
-                if (isFolded == null) {
-                    isFolded = isFoldedByDefault(node.item);
-                }
+                let isFolded = this.isFolded(item);
+
                 if (applySearch && children.rows.length > 0) {
                     isFolded = false;
                 }
+
                 const isFoldable = children && children.rows.length > 0;
 
                 if ((isPassedSearch && isPassedFilter) || children.rows.length > 0) {
@@ -146,27 +151,23 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                 if (!isFolded && children) {
                     rows = rows.concat(children.rows);
                 }
+
+                currentIndex = currentIndex + 1;
             }
 
             return { rows, checkableCount, checkedCount, selectedCount };
         };
 
-        const sortComparer = this.buildSortingComparer(this.props.sortBy);
-        const sortedNodes = this.dataSource.rootNodes.sort(sortComparer);
-        this.dataSource.nodes.forEach(node => {
-            node.children.sort(sortComparer);
-        });
-
         const all = getNodesRec(
-            sortedNodes,
+            this.tree.getRootItems(),
             [],
-            this.dataSource.maxDepth == 1 ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
+            this.tree.isFlatList() ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
         );
 
-        this.visibleRows = all.rows;
+        this.rows = all.rows;
 
         // A hack to make focus and keyboard navigation work
-        this.visibleRows.forEach((row, index) => {
+        this.rows.forEach((row, index) => {
             row.index = index;
             row.isFocused = this.value.focusedIndex === index;
         });
@@ -195,46 +196,54 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         }
     }
 
-    private buildSortingComparer(sortBy?: (item: TItem, sorting: SortingOption) => any) {
+    private buildSorter(sortBy?: (item: TItem, sorting: SortingOption) => any) {
         const compareScalars = (new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'})).compare;
 
-        const comparers: ((a: TreeNode<TItem, TId>, b: TreeNode<TItem, TId>) => number)[] = [];
+        const comparers: ((a: TItem, b: TItem) => number)[] = [];
 
         this.value.sorting && this.value.sorting.forEach(sorting => {
             const sortByFn = sortBy || ((i: TItem) => i[sorting.field as keyof TItem] || '');
-            const sign = sorting.direction == 'asc' ? 1 : -1;
-            comparers.push((a, b) => sign * compareScalars(sortByFn(a.item, sorting) + '', sortByFn(b.item, sorting) + ''));
+            const sign = sorting.direction === 'desc' ? -1 : 1;
+            comparers.push((a, b) => sign * compareScalars(sortByFn(a, sorting) + '', sortByFn(b, sorting) + ''));
         });
 
-        // to make sort stable, always compare by default sorting, or by IDs at the last step
-        const baseSortBy = (i: TreeNode<TItem, TId>) => i.index.toString();
-        comparers.push((a, b) => compareScalars(baseSortBy(a), baseSortBy(b)));
-
-        let fn = (a: TreeNode<TItem, TId>, b: TreeNode<TItem, TId>) => {
-            for (let n = 0; n < comparers.length; n++) {
-                const comparer = comparers[n];
-                const result = comparer(a, b);
-                if (result != 0) {
-                    return result;
-                }
+        return (items: TItem[]) => {
+            if (comparers.length == 0) {
+                return items;
             }
 
-            return 0;
-        };
+            const indexes = new Map<TItem, number>();
+            items.forEach((item, index) => indexes.set(item, index));
 
-        return fn;
+            let comparer = (a: TItem, b: TItem) => {
+                for (let n = 0; n < comparers.length; n++) {
+                    const comparer = comparers[n];
+                    const result = comparer(a, b);
+                    if (result != 0) {
+                        return result;
+                    }
+                }
+
+                // to make sort stable, compare items indices if other comparers return 0 (equal)
+                return indexes.get(a) - indexes.get(b);
+            };
+
+            items = [...items];
+            items.sort(comparer);
+            return items;
+        }
     }
 
     public getVisibleRows = () => {
-        return this.visibleRows.slice(this.value.topIndex, this.value.topIndex + this.value.visibleCount);
+        return this.rows.slice(this.value.topIndex, this.value.topIndex + this.value.visibleCount);
     }
 
     public getListProps = (): DataSourceListProps => {
         return {
-            rowsCount: this.visibleRows.length,
-            knownRowsCount: this.visibleRows.length,
-            exactRowsCount: this.visibleRows.length,
-            totalCount: this.dataSource.nodes.length,
+            rowsCount: this.rows.length,
+            knownRowsCount: this.rows.length,
+            exactRowsCount: this.rows.length,
+            totalCount: this.tree.getTotalRecursiveCount(),
             selectAll: this.selectAll,
         };
     }
@@ -242,61 +251,20 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
         let checked = this.value && this.value.checked || [];
         let isChecked = !rowProps.isChecked;
-        let checkedKeysSet = new Set(checked.map(id => this.idToKey(id)));
 
-        const checkedNode = this.dataSource.byKey[rowProps.rowKey];
-
-        const forEachChildren = (action: (key: string) => void) => {
-
-            const walkChildrenRec = (node: TreeNode<TItem, TId>) => {
-                const { isCheckable } = this.getRowProps(node.item, null, []);
-                if (isCheckable) { /* filter && isSelectable */
-                    action(node.key);
+        checked = this.tree.cascadeSelection(
+            checked,
+            rowProps.id,
+            isChecked,
+            {
+                cascade: this.props.cascadeSelection,
+                isSelectable: (item: TItem) => {
+                    const { isCheckable } = this.getRowProps(item, null, []);
+                    return isCheckable;
                 }
-                node.children && node.children.forEach(walkChildrenRec);
-            };
-
-            walkChildrenRec(checkedNode);
-        };
-
-        const checkParentsRecursively = (node: TreeNode<TItem, TId>) => {
-            const children = this.dataSource.byParentKey[node.parentKey];
-
-            if (children && children.every(i => checkedKeysSet.has(i.key))) {
-                const parentNode = this.dataSource.byKey[node.parentKey];
-                checkedKeysSet.add(parentNode.key);
-                checkParentsRecursively(parentNode);
             }
-        };
+        );
 
-        if (isChecked) {
-            checkedKeysSet.add(checkedNode.key);
-
-            if (this.props.cascadeSelection) {
-                // check all children recursively
-                forEachChildren(key => checkedKeysSet.add(key));
-
-                // check parents if all children is checked
-                [...checkedNode.path].reverse().forEach(nodeKey => {
-                    const children = this.dataSource.byParentKey[nodeKey];
-
-                    if (children && children.every(i => checkedKeysSet.has(i.key))) {
-                        checkedKeysSet.add(nodeKey);
-                    }
-                });
-
-            }
-        } else {
-            checkedKeysSet.delete(checkedNode.key);
-
-            if (this.props.cascadeSelection) {
-                // uncheck all parents recursively
-                checkedNode.path.forEach(key => checkedKeysSet.delete(key));
-                // uncheck all children recursively
-                forEachChildren(key => checkedKeysSet.delete(key));
-            }
-        }
-
-        this.handleCheckedChange(Array.from(checkedKeysSet).map(key => this.keyToId(key)));
+        this.handleCheckedChange(checked);
     }
 }

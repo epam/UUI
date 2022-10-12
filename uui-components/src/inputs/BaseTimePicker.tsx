@@ -11,8 +11,8 @@ export interface BaseTimePickerProps extends IEditable<TimePickerValue>, IDisabl
     id?: string;
     renderTarget?(props: IDropdownToggler): React.ReactNode;
     rawProps?: {
-        input?: IHasRawProps<HTMLDivElement>['rawProps'];
-        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+        input?: IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>['rawProps'];
     };
 }
 

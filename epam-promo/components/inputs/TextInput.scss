@@ -78,9 +78,6 @@
         }
 
         &:hover {
-            background-color: white;
-            border-color: var(--border-color);
-
             :global(.-clickable) {
                 fill: var(--icon-color-clickable);
 
@@ -89,15 +86,10 @@
                 }
             }
         }
-
-        &:global(.uui-focus) {
-            background-color: white;
-            border-color: var(--border-color-active);
-        }
     }
 
     &:global(.uui-invalid) {
-        &.mode-form, &.mode-cell {
+        &.mode-form {
             background-color: white;
             border-color: var(--border-color-errored);
         }
@@ -111,11 +103,6 @@
         &.mode-form {
             background-color: var(--background-color-readonly);
             border-color: var(--border-color-readonly);
-        }
-
-        &.mode-cell {
-            background-color: transparent;
-            border-color: transparent;
         }
     }
 
@@ -135,11 +122,6 @@
         &.mode-form {
             background-color: var(--background-color-disabled);
             border-color: var(--border-color-disabled);
-        }
-
-        &.mode-cell {
-            background-color: transparent;
-            border-color: transparent;
         }
     }
 
