@@ -3,6 +3,13 @@
 .open {
     background-color: $night900;
 
+
+    :global(.-clickable) {
+        &:global(.uui-button-box) {
+            background-color: $sky;
+        }
+    }
+
     :global(.uui-caption), :global(.uui-icon) {
         color: $white;
         fill: $white;
