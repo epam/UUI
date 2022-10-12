@@ -63,7 +63,7 @@ export default function MainMenuResponsiveExample() {
             { id: 'Processes', priority: 5, render: () => <MainMenuButton href='/' caption="Processes" />, caption: "Processes" },
             { id: 'Tasks', priority: 4, render: () => <MainMenuButton href='/' caption="Tasks" />, caption: "Tasks" },
             { id: 'Talks', priority: 4, render: () => <MainMenuButton href='/' caption="Talks" />, caption: "Talks" },
-            { id: 'Action Items', priority: 3, render: () => <MainMenuButton href='/' caption="Action Items" />, caption: "Action Items" },
+            { id: 'Action Items', priority: 3, render: () => <MainMenuButton  caption="Action Items" />, caption: "Action Items" },
             { id: 'Subscriptions', priority: 3, render: () => <MainMenuButton href='/' caption="Subscriptions" />, caption: "Subscriptions" },
             { id: 'moreContainer', priority: 8, collapsedContainer: true, render: (item, hiddenItems) => <MainMenuDropdown
                     caption='More'
