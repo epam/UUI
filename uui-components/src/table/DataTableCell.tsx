@@ -74,7 +74,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             { ...props.column }
             minWidth={ props.column.width }
             rawProps={ {
-                role: props.role,
+                role: 'cell',
             } }
             cx={ [
                 css.cell,

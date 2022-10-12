@@ -19,7 +19,7 @@ interface DataTableSizesAndPositionMods {
 
 export interface DataTableRowMods extends DataTableSizesAndPositionMods {
     borderBottom?: 'none' | 'night300';
-    background?: 'night50' | 'white' | 'none' | 'red';
+    background?: 'night50' | 'white' | 'none';
 }
 
 export interface DataTableCellMods extends DataTableSizesAndPositionMods {

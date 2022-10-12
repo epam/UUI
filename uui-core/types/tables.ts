@@ -78,7 +78,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
     render?(item: TItem, props: DataRowProps<TItem, TId>): any;
 
     /** Overrides rendering of the whole cell */
-    renderCell?(cellProps: RenderCellProps<TItem, TId, any>): any;
+    renderCell?(cellProps: RenderCellProps<TItem, TId>): any;
 
     /**
      * Renders column header dropdown.
@@ -132,22 +132,55 @@ export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCe
     mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
 }
 
-export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends IHasCX, Partial<IEditable<TCellValue>> {
+export interface DataTableCellOptions<TItem = any, TId = any> {
+    /** Key to use as component's key */
     key: string;
+
+    /** DataTableRowsProps object for the table row the cell is at */
     rowProps: DataTableRowProps<TItem, TId>;
+
+    /** DataColumnProps object for the column the cell is at */
     column: DataColumnProps<TItem, TId>;
+
+    /** Column index in table  */
     index?: number;
+
+    /** True if the cell is in the first column */
     isFirstColumn: boolean;
+
+    /** True if the cell is in the last column */
     isLastColumn: boolean;
-    role?: React.HTMLAttributes<HTMLElement>['role'];
+
+    /** HTML tabIndex attribute to set on the cell */
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
+}
+
+export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>> {
+    /** Add-on controls to put before the cell content (folding arrow, checkbox, etc.) */
     addons?: React.ReactNode;
+
+    /** Overrides default loading placeholder ('skeleton') rendering  */
     renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+
+    /**
+     * If passed, the cell is rendered as editable - receives focus, show validation errors.
+     * All necessary props for the editor are passed as argument:
+     * - props implements IEditable and can be passed directly to suitable component (like TextInput)
+     * - ICanFocus props are passed as well. Component should implement it so cell focus highlight works properly
+     * - mode='cell' prop is passed to render UUI components in 'cell' mode
+     * - rowProps is passed so you depend on additional info about the row itself
+      */
     renderEditor?(props: RenderEditorProps<TItem, TId, TCellValue>): React.ReactNode;
+
+    /** Overrides default tooltip, used to show validation message if the cell is invalid */
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
-export interface RenderCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellProps<TItem, TId, TCellValue> {
+export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOptions<TItem, TId> {
+    /**
+     * Lens instance, wrapping IEditable on the row, to help binding to row's value.
+     * E.g. <TextInput { ...rowLens.prop('name').toProps() } />
+     */
     rowLens: ILens<TItem>;
 }
 

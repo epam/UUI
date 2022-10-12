@@ -15,7 +15,7 @@
     position: relative;
     width: 0;
 
-    // to align with cell's borders
+    // to align with cell's borders. TBD: move this to uui-components.
     border-right: 1px solid transparent;
     margin-left: -1px;
     background-clip: padding-box;
