@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataTableCellProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
 import { DataTableCell } from '../DataTableCell';
-import { DefaultContext, ResizableContext, FormContext, GridContext } from '../../../docs';
+import { DefaultContext, ResizableContext, FormContext, TableContext } from '../../../docs';
 import { Text, DataTableCellMods } from '../../../components';
 
 const DataTableCellDoc = new DocBuilder<DataTableCellProps & DataTableCellMods>({ name: 'DataTableCell', component: DataTableCell as any })
@@ -39,6 +39,6 @@ const DataTableCellDoc = new DocBuilder<DataTableCellProps & DataTableCellMods>(
         ],
         isRequired: true,
     })
-    .withContexts(ResizableContext, DefaultContext, FormContext, GridContext);
+    .withContexts(ResizableContext, DefaultContext, FormContext, TableContext);
 
 export = DataTableCellDoc;

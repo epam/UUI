@@ -90,7 +90,7 @@ export const TableContext = (contextProps: DemoComponentProps) => {
             />,
             isSortable: true,
             isAlwaysVisible: true,
-            width: 170,
+            width: 120,
         },
         {
             key: 'departmentName',
@@ -110,7 +110,7 @@ export const TableContext = (contextProps: DemoComponentProps) => {
             />,
             isSortable: true,
             isAlwaysVisible: true,
-            width: 200,
+            width: 180,
         },
     ];
 

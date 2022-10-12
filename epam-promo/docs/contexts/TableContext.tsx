@@ -75,7 +75,6 @@ export const TableContext = (contextProps: DemoComponentProps) => {
                 { ...props }
             />,
             isSortable: true,
-            isAlwaysVisible: true,
             width: 200,
             fix: 'left',
         },
@@ -88,15 +87,13 @@ export const TableContext = (contextProps: DemoComponentProps) => {
                 { ...props }
             />,
             isSortable: true,
-            isAlwaysVisible: true,
-            width: 170,
+            width: 120,
         },
         {
             key: 'departmentName',
             caption: 'Department Name',
             render: props => <Text>{ props.departmentName }</Text>,
             isSortable: true,
-            isAlwaysVisible: true,
             width: 200,
         },
         {
@@ -108,8 +105,7 @@ export const TableContext = (contextProps: DemoComponentProps) => {
                 { ...props }
             />,
             isSortable: true,
-            isAlwaysVisible: true,
-            width: 200,
+            width: 180,
         },
     ];
 
