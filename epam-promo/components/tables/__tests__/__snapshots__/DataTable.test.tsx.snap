@@ -39,7 +39,7 @@ exports[`DataTable should be rendered correctly 1`] = `
       className="stickyHeader"
     >
       <div
-        className="container uui-table-row-container root uui-table-header-row container align-items-center"
+        className="container uui-table-row-container root root uui-table-header-row container align-items-center"
         role="row"
         style={
           Object {
@@ -48,7 +48,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         }
       >
         <div
-          className="scrollingSection uui-table-scrolling-section"
+          className="section scrollingSection uui-table-scrolling-section"
           style={
             Object {
               "flex": "1 0 0px",

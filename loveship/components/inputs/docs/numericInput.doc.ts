@@ -1,8 +1,8 @@
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { NumericInputProps } from '@epam/uui-components';
 import { NumericInput, NumericInputMods } from '../NumericInput';
-import { iEditable, sizeDoc, textSettingsDoc, isDisabledDoc, iHasPlaceholder, modeDoc } from '../../../docs';
-import { FormContext, GridContext, ResizableContext, DefaultContext, TableContext } from '../../../docs';
+import { iEditable, sizeDoc, textSettingsDoc, isDisabledDoc, iHasPlaceholder, modeDoc, TableContext } from '../../../docs';
+import { FormContext, ResizableContext, DefaultContext } from '../../../docs';
 
 const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ name: 'NumericInput', component: NumericInput })
     .implements([iEditable, iHasPlaceholder, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, modeDoc])
@@ -14,6 +14,6 @@ const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ n
     .prop('align', { examples: ["left", "right"] })
     .prop('disableArrows', { examples: [true, false] })
     .prop('disableLocaleFormatting', { defaultValue: false, examples: [true, false] })
-    .withContexts(DefaultContext, FormContext, TableContext, ResizableContext, GridContext);
+    .withContexts(DefaultContext, FormContext, TableContext, ResizableContext);
 
 export = NumericInputDoc;

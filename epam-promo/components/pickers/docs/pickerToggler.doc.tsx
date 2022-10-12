@@ -1,7 +1,7 @@
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerTogglerProps } from '@epam/uui-components';
 import { iEditable, isDisabledDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, GridContext, FormContext, IHasEditModeDoc } from '../../../docs';
+import { DefaultContext, ResizableContext, FormContext, IHasEditModeDoc } from '../../../docs';
 import { PickerToggler, PickerTogglerMods } from '../PickerToggler';
 
 const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any> & PickerTogglerMods>({ name: 'PickerToggler', component: PickerToggler })
@@ -17,6 +17,6 @@ const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any> & PickerTog
     .prop('isInvalid', { examples: [true] })
     .prop('isSingleLine', { examples: [true] })
     .prop('placeholder', { examples: ['Select Country', 'Select Person'], type: 'string', defaultValue: 'Please select' })
-    .withContexts(DefaultContext, ResizableContext, GridContext, FormContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext);
 
 export = PickerTogglerDoc;

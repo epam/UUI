@@ -162,7 +162,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="dragHandle container uui-drag-handle"
                     />
                     <label
-                      className="container root size-18 checkbox-color-blue uui-disabled"
+                      className="container root size-18 mode-form checkbox-color-blue uui-disabled"
                       tabIndex={-1}
                     >
                       <div
@@ -214,7 +214,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="dragHandle container uui-drag-handle"
                     />
                     <label
-                      className="container root size-18 checkbox-color-blue uui-disabled"
+                      className="container root size-18 mode-form checkbox-color-blue uui-disabled"
                       tabIndex={-1}
                     >
                       <div

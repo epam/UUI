@@ -3,7 +3,7 @@ import { DocBuilder } from '@epam/uui-docs';
 import { CalendarProps } from '@epam/uui-components';
 import { Calendar } from '../Calendar';
 import { iEditable } from '../../../docs';
-import { FormContext, DefaultContext, GridContext, ResizableContext } from '../../../docs';
+import { FormContext, DefaultContext, ResizableContext } from '../../../docs';
 
 const DatepickerDoc = new DocBuilder<CalendarProps<Dayjs>>({ name: 'Calendar', component: Calendar })
     .implements([iEditable])
@@ -16,6 +16,6 @@ const DatepickerDoc = new DocBuilder<CalendarProps<Dayjs>>({ name: 'Calendar', c
             },
         ] })
     .prop('hideAnotherMonths', {examples: [true, false]})
-    .withContexts(DefaultContext, FormContext, ResizableContext, GridContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export = DatepickerDoc;
