@@ -1,6 +1,5 @@
 import {
     Button,
-    FlexRow,
     ModalBlocker,
     ModalFooter,
     ModalHeader,
@@ -12,7 +11,6 @@ import { FlexSpacer } from "@epam/uui-components";
 import React from "react";
 import { DemoItem } from "../../../demo/structure";
 import { IModal } from "@epam/uui-core";
-import { Value } from "slate";
 import { EditableDocContent } from "../../docs";
 
 
@@ -21,20 +19,19 @@ interface IDemoItemDescriptionModal {
     demoItem: DemoItem;
 }
 
+export function getDemoDescriptionFileName(demoItemName: string) {
+    const itemNameNormalized = demoItemName.replace(/\s/g, '');
+    return `demo-${itemNameNormalized}-description`;
+}
+
 export function DemoItemDescriptionModal(props: IDemoItemDescriptionModal) {
     const {
         modalProps,
         demoItem,
     } = props;
-    const [value, setValue] = React.useState();
-
-    const handleValueChange = React.useCallback((calue: Value) => {
-        setValue(value);
-    }, []);
 
     const title = demoItem.name;
-    const itemNameNormalized = demoItem.name.replace(/\s/g, '');
-    const docFileName = `demo-${itemNameNormalized}-description`;
+    const docFileName = getDemoDescriptionFileName(demoItem.name);
 
     return (
         <ModalBlocker blockerShadow="dark" { ...modalProps }>
