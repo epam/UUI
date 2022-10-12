@@ -1,7 +1,7 @@
 import { DataTableRow } from '../DataTableRow';
 import { DocBuilder, demoData } from '@epam/uui-docs';
 import { DefaultContext, ResizableContext } from '../../../docs';
-import { DataTableRowProps } from '@epam/uui-components';
+import { DataTableRowProps } from '@epam/uui-core';
 import { ColumnsHeaderRowDoc } from './common';
 import { TableContext } from './TableContext';
 import { DataTableRowMods } from '../..';

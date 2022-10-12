@@ -2,7 +2,7 @@
 
 exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  className="container uui-table-row-container root root uui-table-header-row container align-items-center"
   role="row"
   style={
     Object {
@@ -11,7 +11,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   }
 >
   <div
-    className="uui-table-fixed-section uui-table-fixed-section-left"
+    className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
     style={
       Object {
         "flex": "0 0 96px",
@@ -41,7 +41,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
       }
     >
       <label
-        className="container root size-12 theme-light color-sky -clickable"
+        className="container root size-12 theme-light mode-form color-sky -clickable"
         tabIndex={-1}
       >
         <div
@@ -71,6 +71,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -93,7 +94,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     />
   </div>
   <div
-    className="scrollingSection uui-table-scrolling-section"
+    className="section scrollingSection uui-table-scrolling-section"
     style={
       Object {
         "flex": "2 0 470px",
@@ -138,6 +139,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -192,6 +194,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -246,6 +249,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -269,7 +273,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
 
 exports[`DataTableHeaderRow should render with default props 1`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  className="container uui-table-row-container root root uui-table-header-row container align-items-center"
   role="row"
   style={
     Object {
@@ -278,7 +282,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   }
 >
   <div
-    className="uui-table-fixed-section uui-table-fixed-section-left"
+    className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
     style={
       Object {
         "flex": "0 0 96px",
@@ -317,6 +321,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -335,7 +340,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     />
   </div>
   <div
-    className="scrollingSection uui-table-scrolling-section"
+    className="section scrollingSection uui-table-scrolling-section"
     style={
       Object {
         "flex": "2 0 470px",
@@ -374,6 +379,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -418,6 +424,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -462,6 +469,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={-1}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"

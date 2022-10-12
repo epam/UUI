@@ -1,7 +1,7 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { SliderBaseProps, RangeSliderValue } from '@epam/uui-components';
 import { RangeSlider, RangeSliderMods } from '../RangeSlider';
-import { DefaultContext, GridContext, FormContext, colorDoc, iEditable, isDisabledDoc } from '../../../../docs';
+import { DefaultContext, FormContext, colorDoc, iEditable, isDisabledDoc } from '../../../../docs';
 
 const rangeSliderDoc = new DocBuilder<SliderBaseProps<RangeSliderValue> & RangeSliderMods>({ name: 'RangeSlider', component: RangeSlider })
     .implements([colorDoc, iEditable, isDisabledDoc])
@@ -10,6 +10,6 @@ const rangeSliderDoc = new DocBuilder<SliderBaseProps<RangeSliderValue> & RangeS
     .prop('max', { examples: [200, 300], isRequired: true })
     .prop('step', { examples: [1, 5, 10], isRequired: true })
     .prop('splitAt', { examples: [2, 10, 20, { value: 50, isDefault: true }], defaultValue: 50 })
-    .withContexts(DefaultContext, FormContext, GridContext);
+    .withContexts(DefaultContext, FormContext);
 
 export = rangeSliderDoc;

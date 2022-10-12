@@ -3,19 +3,9 @@
 
 .root {
     &:global(.uui-focus) {
+        &:not(.mode-cell) {
         @include control-focus-effect();
         border-color: $sky;
-
-        &.mode-cell {
-            :global(.uui-numeric-input-button-group) {
-                & > :first-child:hover, & > :first-child:focus {
-                    box-shadow: inset 1px -1px 0 1px rgba(48, 182, 221, 0.4);
-                }
-
-                & > :last-child:hover, & > :last-child:focus {
-                    box-shadow: inset -1px -1px 0 1px rgba(48, 182, 221, 0.4);
-                }
-            }
         }
     }
 

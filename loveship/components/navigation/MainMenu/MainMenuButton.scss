@@ -5,7 +5,6 @@
     flex-shrink: 0;
     color: $white;
     fill: $white;
-    cursor: pointer;
 
     :global(.uui-caption), :global(.uui-input) {
         padding: 22px 6px;
@@ -40,8 +39,8 @@
     }
 
     &:global(.-clickable) {
+        cursor: pointer;
         &:hover, &:focus {
-            background-color: $night900;
             color: $white;
             fill: $white;
         }

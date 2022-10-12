@@ -1,13 +1,21 @@
-@use '../../assets/styles/colors' as *;
+@use  '../../assets/styles/index.scss' as *;
+@use './table-colors.scss' as *;
 
 .cell {
-    position: relative;
-    box-sizing: border-box;
-    width: 0;
+    --uui-dt-cell-background: transparent;
+    --uui-dt-cell-border-width: 1px;
+    --uui-dt-cell-border-color: transparent;
+    --uui-dt-cell-editor-border-width: 1px;
+    --uui-dt-cell-editor-hover-border-color: #{$blue};
+    --uui-dt-cell-editor-focus-border-color: #{$blue};
+    --uui-dt-cell-editor-invalid-border-color: #{$red};
 
-    &.wrapper {
-        display: flex;
-        align-items: flex-start;
+    &.border-gray30 {
+        --uui-dt-cell-border-color: #{$gray30};
+    }
+
+    &:global(.uui-focus) {
+        --uui-dt-cell-editor-border-width: 2px;
     }
 
     &.align-widgets-top {
@@ -51,6 +59,25 @@
     &.padding-left-24 { padding-left: 24px; }
 
     &.padding-right-24 { padding-right: 24px; }
+
+    &.background-blue {
+        --uui-dt-cell-background: #{$blue-transparent};
+    }
+    &.background-green {
+        --uui-dt-cell-background: #{$green-transparent};
+    }
+    &.background-amber {
+        --uui-dt-cell-background: #{$amber-transparent};
+    }
+    &.background-red {
+        --uui-dt-cell-background: #{$red-transparent};
+    }
+    &.background-gray5 {
+        --uui-dt-cell-background: #{$gray5};
+    }
+    &:global(.uui-invalid) {
+        --uui-dt-cell-editor-background: #{$red-transparent};
+    }
 }
 
 .drag-handle {
