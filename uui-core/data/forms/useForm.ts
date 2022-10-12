@@ -299,6 +299,8 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         value: formState.current.form,
         onValueChange: handleValueChange,
         isInvalid: formState.current.validationState.isInvalid,
+        validationMessage: formState.current.validationState.validationMessage,
+        validationProps: formState.current.validationState.validationProps,
         isInProgress: formState.current.isInProgress,
     };
 }

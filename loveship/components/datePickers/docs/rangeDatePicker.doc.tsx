@@ -5,7 +5,7 @@ import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from
 import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import * as css from '../RangeDatePicker.scss';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc } from '../../../docs';
-import { FormContext, DefaultContext, GridContext, ResizableContext } from '../../../docs';
+import { FormContext, DefaultContext, ResizableContext } from '../../../docs';
 import { Button } from '../..';
 import { ReactComponent as Point } from "../../icons/radio-point.svg";
 
@@ -101,6 +101,6 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
     })
     .prop('disableClear', { examples: [true], defaultValue: false})
     .prop('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] })
-    .withContexts(DefaultContext, FormContext, ResizableContext, GridContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export = RangeDatePickerDoc;

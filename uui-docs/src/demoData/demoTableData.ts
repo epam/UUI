@@ -2,6 +2,7 @@ export const personDemoData = [
     {
         id: 1,
         name: "Ken Sánchez",
+        yearsInCompany: 10,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-2.jpg",
         phoneNumber: "697-555-0142",
@@ -15,6 +16,7 @@ export const personDemoData = [
     {
         id: 2,
         name: "Terri Duffy",
+        yearsInCompany: 2,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-3.jpg",
         phoneNumber: "819-555-0175",
@@ -28,6 +30,7 @@ export const personDemoData = [
     {
         id: 3,
         name: "Roberto Tamburello",
+        yearsInCompany: 5,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-4.jpg",
         phoneNumber: "212-555-0187",
@@ -41,6 +44,7 @@ export const personDemoData = [
     {
         id: 4,
         name: "Rob Walters",
+        yearsInCompany: 15,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-5.jpg",
         phoneNumber: "612-555-0100",
@@ -54,6 +58,7 @@ export const personDemoData = [
     {
         id: 5,
         name: "Gail Erickson",
+        yearsInCompany: 6654,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-6.jpg",
         phoneNumber: "849-555-0139",
@@ -67,6 +72,7 @@ export const personDemoData = [
     {
         id: 6,
         name: "Jossef Goldberg",
+        yearsInCompany: 3,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-7.jpg",
         phoneNumber: "122-555-0189",
@@ -80,6 +86,7 @@ export const personDemoData = [
     {
         id: 7,
         name: "Dylan Miller",
+        yearsInCompany: 8,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-8.jpg",
         phoneNumber: "181-555-0156",
@@ -93,6 +100,7 @@ export const personDemoData = [
     {
         id: 8,
         name: "Diane Margheim",
+        yearsInCompany: 22,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-9.jpg",
         phoneNumber: "815-555-0138",
@@ -106,6 +114,7 @@ export const personDemoData = [
     {
         id: 9,
         name: "Gigi Matthew",
+        yearsInCompany: 10,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-10.jpg",
         phoneNumber: "185-555-0186",
@@ -119,6 +128,7 @@ export const personDemoData = [
     {
         id: 10,
         name: "Michael Raheem",
+        yearsInCompany: 15,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-11.jpg",
         phoneNumber: "330-555-2568",

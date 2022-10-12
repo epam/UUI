@@ -1,13 +1,13 @@
 .sticky-header {
     position: sticky;
     top: 0;
-    min-width: min-content;
-    z-index: 3;
+    isolation: isolate;
+    z-index: 5;
 }
 
 .listContainer {
-    display: grid;
-    grid-template-rows: 1fr;
+    margin-top: 1px;
+    isolation: isolate;
 }
 
 .table {
