@@ -23,8 +23,7 @@ export const DemoPage = () => {
     const demoItem = getSelectedDemoItem();
     const selectedDemoId = demoItem?.id;
     const isDemoSelected = Boolean(selectedDemoId);
-    const pageRootRef = React.useRef(undefined);
-    const fullScreenApi = useFullScreenApi(pageRootRef);
+    const fullScreenApi = useFullScreenApi();
 
     useEffect(() => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.demo.pv(selectedDemoId));
@@ -76,7 +75,6 @@ export const DemoPage = () => {
 
     return (
         <Page
-            rootRef={ pageRootRef }
             contentCx={ css.root }
             renderHeader={ renderHeader }
             renderFooter={ renderFooter }
