@@ -9,6 +9,7 @@ import * as css from './DemoPage.scss';
 import { useEffect } from "react";
 import { useFullScreenApi } from "../common/services/useFullScreenApi";
 import { AppFooterDemo } from "../common/appFooterDemo/AppFooterDemo";
+import { DemoItemCard } from "./demoItemCard/DemoItemCard";
 
 function getSelectedDemoItem() {
     const selectedDemoId = getQuery('id');
@@ -62,13 +63,9 @@ export const DemoPage = () => {
                 <div className={ css.navTitle }>Demo</div>
                 <div className={ css.navCards }>
                     {
-                        demoItems.map(({ id, name, previewImage }) => {
+                        demoItems.map((item) => {
                             return (
-                                <Anchor key={ id } link={ { pathname: '/demo', query: { id } } } onClick={ () => sendEvent(name) } >
-                                    <div className={ css.navCard } style={ { backgroundImage: `url(${previewImage})` } } >
-                                        <Text font='sans-semibold' lineHeight='30' fontSize='24' cx={ css.navCaption } >{ name }</Text>
-                                    </div>
-                                </Anchor>
+                                <DemoItemCard demoItem={ item } key={ item.id } onOpenItem={ sendEvent } />
                             );
                         })
                     }
