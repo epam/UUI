@@ -38,7 +38,7 @@ export interface IFullScreenApi {
     closeFullScreen: () => void;
 }
 
-export function useFullScreenApi(ref: React.RefObject<HTMLElement>): IFullScreenApi {
+export function useFullScreenApi(): IFullScreenApi {
     const [isFullScreen, setIsFullScreen] = React.useState<boolean>(() => isSomeElementOpenedFullScreen());
 
     useEffect(() => {
@@ -54,8 +54,8 @@ export function useFullScreenApi(ref: React.RefObject<HTMLElement>): IFullScreen
     }, []);
 
     const openFullScreen = React.useCallback(async () => {
-        await openElementFullScreen(ref.current);
-    }, [ref.current]);
+        await openElementFullScreen(document.body);
+    }, []);
 
     return React.useMemo(() => ({
         isSupported: isFullScreenAllowed(),
