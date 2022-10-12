@@ -7,7 +7,6 @@ export interface PageProps extends IHasChildren {
     renderHeader?: () => React.ReactNode;
     renderFooter?: () => React.ReactNode;
     contentCx?: string;
-    rootRef?: React.MutableRefObject<any>;
     isFullScreen?: boolean;
 }
 
@@ -17,12 +16,11 @@ export function Page(props: PageProps) {
         renderFooter,
         contentCx,
         children,
-        rootRef,
         isFullScreen,
     } = props;
 
     return (
-        <div ref={ rootRef } className={ css.root }>
+        <div className={ css.root }>
             <header>
                 { !isFullScreen && renderHeader?.() }
             </header>
