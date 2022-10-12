@@ -5,7 +5,6 @@ import { getColumnsConfig, getOrderBetween } from "../../helpers";
 import { useUuiContext } from "../../services";
 import { isDefaultColumnsConfig } from "./helpers";
 import { constants } from "./constants";
-import { normalizeFilter } from "./normalizeFilter";
 import sortBy from "lodash.sortby";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
@@ -25,12 +24,9 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     const [presets, setPresets] = useState(params.initialPresets ?? []);
 
     const setTableState = useCallback((newValue: DataTableState) => {
-        const newFilter = normalizeFilter(newValue.filter);
-
         setTableStateValue(prevValue => ({
             ...prevValue,
             ...newValue,
-            filter: newFilter,
         }));
         const oldQuery = context.uuiRouter.getCurrentLink().query;
         const newQuery = {
@@ -108,8 +104,10 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
     const choosePreset = useCallback((preset: ITablePreset<TFilter>) => {
         setTableState({
+            ...tableStateValue,
             filter: preset.filter,
             columnsConfig: preset.columnsConfig,
+            filtersConfig: preset.filtersConfig,
             presetId: preset.id,
         });
     }, []);
@@ -125,7 +123,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         setPresets(prevValue => [...prevValue, preset]);
         choosePreset(preset);
         return preset.id;
-    }, [tableStateValue.filter, tableStateValue.columnsConfig, choosePreset]);
+    }, [tableStateValue.filter, tableStateValue.columnsConfig, tableStateValue.filtersConfig, choosePreset]);
 
 
     const createNewPreset = useCallback((name: string) => {
@@ -134,6 +132,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             name: name,
             filter: tableStateValue.filter,
             columnsConfig: tableStateValue.columnsConfig,
+            filtersConfig: tableStateValue.filtersConfig,
             isReadonly: false,
             order: getNewPresetOrder(),
         };
@@ -145,6 +144,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         choosePreset({
             ...constants.defaultPreset,
             columnsConfig: getColumnsConfig(params.columns, {}),
+            filtersConfig: null,
         });
     }, [choosePreset]);
 
