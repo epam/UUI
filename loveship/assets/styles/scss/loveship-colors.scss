@@ -3,6 +3,11 @@ $sky: #009ECC;
 $grass: #67A300;
 $sun: #FCAA00;
 $fire: #FA4B4B;
+$fire-lightest: #FDE1E1;
+$fire-transparent: transparentize($fire, 0.9);
+$sky-transparent: transparentize($sky, 0.9);
+$grass-transparent: transparentize($grass, 0.9);
+$sun-transparent: transparentize($sun, 0.9);
 
 // Secondary Colors
 $cobalt: #0E74E2;
@@ -44,6 +49,11 @@ $loveship-epam-colors: (
     lavanda: $lavanda,
     fuchsia: $fuchsia,
     white: $white,
+    fire-lightest: $fire-lightest,
+    fire-transparent: $fire-transparent,
+    sky-transparent: $sky-transparent,
+    grass-transparent: $grass-transparent,
+    sun-transparent: $sun-transparent,
     night50: $night50,
     night100: $night100,
     night200: $night200,

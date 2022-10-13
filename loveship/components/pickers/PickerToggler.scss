@@ -176,7 +176,9 @@
     }
 
     &:global(.uui-invalid) {
+        &.mode-form {
         border-color: $fire;
+        }
     }
 
     :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {

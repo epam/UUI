@@ -78,25 +78,7 @@
 .presets-panel {
     padding: 0 24px;
     display: flex;
-    overflow-x: auto;
     flex-shrink: 0;
     background-color: $white;
     border-bottom: 1px solid $gray40;
-
-
-    & > *:not(:first-child) {
-        margin-left: 0;
-    }
-
-    & > * {
-        flex-shrink: 0;
-    }
-
-    & > *:not(:last-child) {
-        margin-right: 0;
-    }
-
-    button {
-        align-self: center;
-    }
 }

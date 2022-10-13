@@ -3,7 +3,7 @@ import { IHasRawProps, IModal } from '@epam/uui-core';
 import { ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, Button, ModalFooter, Panel, ScrollBars } from '../';
 import { i18n } from '../../i18n';
 
-export interface ConfirmationModalWindowProps extends IModal<any>, IHasRawProps<HTMLDivElement> {
+export interface ConfirmationModalWindowProps extends IModal<any>, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
     caption: string;
     bodyContent?: any;
     hideCancelButton?: boolean;

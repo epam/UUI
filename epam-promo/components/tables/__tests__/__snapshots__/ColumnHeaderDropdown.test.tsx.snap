@@ -8,6 +8,7 @@ Array [
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption"
@@ -74,6 +75,7 @@ Array [
               onClick={[Function]}
               role="button"
               tabIndex={-1}
+              type="button"
             >
               <div
                 className="container uui-icon uui-enabled"
@@ -103,6 +105,7 @@ Array [
               onClick={[Function]}
               role="button"
               tabIndex={-1}
+              type="button"
             >
               <div
                 className="container uui-icon uui-enabled"

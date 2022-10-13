@@ -3,7 +3,7 @@ import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, 
 import * as css from './Switch.scss';
 
 export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>,
-    IHasRawProps<HTMLLabelElement>, IHasForwardedRef<HTMLLabelElement>, IHasTabIndex {
+    IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement>, IHasTabIndex {
     id?: string;
 }
 

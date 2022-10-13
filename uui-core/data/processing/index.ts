@@ -1,5 +1,4 @@
 export * from './views';
-export * from './types';
 export * from './hooks';
 export * from './ArrayDataSource';
 export * from './LazyDataSource';

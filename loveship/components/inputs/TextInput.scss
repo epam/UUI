@@ -126,7 +126,9 @@
     }
 
     &:global(.uui-invalid) {
+        &.mode-form {
         border-color: $fire;
+        }
     }
 
     // Sizes

@@ -9,7 +9,7 @@ interface MultiSwitchItem<TValue> extends ButtonProps, ButtonMods {
     id: TValue;
 }
 
-export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<HTMLDivElement> {
+export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
     items: MultiSwitchItem<TValue>[];
     color?: 'blue' | 'gray50';
 }
