@@ -5,6 +5,11 @@ $shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
     display: flex;
     flex-direction: row;
     box-shadow: $shadow;
+    &:hover {
+        .nav-card {
+            background-size: 350%;
+        }
+    }
 
     .nav-card {
         position: relative;
@@ -14,10 +19,6 @@ $shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
         transition: 1s;
         background-size: 250%;
         background-position: 0 0;
-
-        &:hover {
-            background-size: 350%;
-        }
 
         .nav-caption {
             position: absolute;
@@ -30,7 +31,7 @@ $shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
     .nav-description {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: start;
         align-items: flex-start;
 
         width: 365px;
@@ -47,5 +48,3 @@ $shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
         }
     }
 }
-
-

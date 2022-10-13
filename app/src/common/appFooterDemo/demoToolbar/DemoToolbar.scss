@@ -1,11 +1,14 @@
+@use '~@epam/promo/assets/styles/colors.scss' as *;
+
 .container {
     display: flex;
-    padding-left: 18px;
 
     .item {
-        &,
+        padding-left: 18px;
+        padding-right: 18px;
+        color: var(--white) !important;
         &:hover {
-            color: var(--white) !important;
+            background-color: $gray90;
         }
 
         :global(.uui-icon) {
@@ -17,7 +20,7 @@
     }
     .divider {
         position: relative;
-        margin: 0 18px 0 18px;
+        margin: 0;
         box-sizing: content-box;
         width: 1px;
         height: 24px;
