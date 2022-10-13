@@ -89,6 +89,7 @@ export function EditableDocContent(props: EditableDocContentProps) {
     return (
         <div className={ cx(css.wrapper, wrapperCx) } >
             <IEditableDebouncer
+                disableDebounce={ !isPersistOnChange }
                 value={ content }
                 onValueChange={ handleValueChange }
                 render={ (props) => <SlateEditor

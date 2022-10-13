@@ -8,7 +8,7 @@ import { ReactComponent as ExternalLinkIcon } from '@epam/assets/icons/common/ac
 import { ReactComponent as FullScreenIcon } from '@epam/assets/icons/common/media-fullscreen-18.svg';
 import { ReactComponent as DescriptionIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import { analyticsEvents } from "../../../analyticsEvents";
-import { useUuiContext } from "@epam/uui-core";
+import { ModalOperationCancelled, useUuiContext } from "@epam/uui-core";
 import { DescriptionModal } from "./DescriptionModal";
 
 interface AppFooterContentDemoProps {
@@ -31,8 +31,14 @@ export function DemoToolbar(props: AppFooterContentDemoProps) {
     );
 
     const handleOpenDescription = React.useCallback(async () => {
-        await svc.uuiModals
-            .show((props) => <DescriptionModal modalProps={ props } demoItem={ demoItem } />);
+        try {
+            await svc.uuiModals
+                .show((props) => <DescriptionModal modalProps={ props } demoItem={ demoItem } />);
+        } catch (err) {
+            if (!(err instanceof ModalOperationCancelled)) {
+                throw err;
+            }
+        }
     }, []);
 
     return (
