@@ -11,13 +11,7 @@ export interface PageProps extends IHasChildren {
 }
 
 export function Page(props: PageProps) {
-    const {
-        renderHeader,
-        renderFooter,
-        contentCx,
-        children,
-        isFullScreen,
-    } = props;
+    const { renderHeader, renderFooter, contentCx, children, isFullScreen } = props;
 
     return (
         <div className={ css.root }>

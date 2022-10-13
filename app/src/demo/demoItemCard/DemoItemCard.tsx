@@ -7,7 +7,7 @@ import { EditableDocContent } from "../../common";
 import { useEffect } from "react";
 import { svc } from "../../services";
 import { Value } from "slate";
-import { getDemoDescriptionFileName } from "../../common/appFooterDemo/demoToolbar/DemoItemDescriptionModal";
+import { getDemoDescriptionFileName } from "../../common/appFooterDemo/demoToolbar/DescriptionModal";
 import { Blocker } from "@epam/loveship";
 
 
