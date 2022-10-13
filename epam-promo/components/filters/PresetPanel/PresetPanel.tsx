@@ -61,14 +61,9 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
             />;
     }, [isAddingPreset]);
 
-    const onPresetDropdownSelect = (preset: PresetAdaptiveItem, hiddenItems: PresetAdaptiveItem[]) => {
-        const displayedPresets = presets.filter(i => !hiddenItems.find((hiddenItem) => (hiddenItem.preset.id === i.id && !hiddenItem.collapsedContainer)));
-        const sortedDisplayedPresets = sortBy(displayedPresets, (i) => i.order).reverse();
+    const onPresetDropdownSelect = (preset: PresetAdaptiveItem) => {
         props.choosePreset(preset.preset);
-        props.updatePreset({
-            ...preset.preset,
-            order: getOrderBetween(sortedDisplayedPresets[1].order, sortedDisplayedPresets[0].order),
-        });
+        props.updatePreset(preset.preset);
     };
 
     const renderMoreButtonDropdown = (item: PresetAdaptiveItem, hiddenItems: PresetAdaptiveItem[]) => {
@@ -84,7 +79,7 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
                     {
                         hiddenItems.map(item =>
                             <DropdownMenuButton
-                                onClick={ () => onPresetDropdownSelect(item, hiddenItems) }
+                                onClick={ () => onPresetDropdownSelect(item) }
                                 caption={ item.preset.name }
                                 icon={ DeleteIcon }
                                 iconPosition='right'
@@ -97,10 +92,14 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
         );
     };
 
+    const getPresetPriority = (preset: ITablePreset, index: number) => {
+        return preset.id === props.activePresetId ? 100500 : 1000 - index;
+    };
+
     const getPanelItems = (): PresetAdaptiveItem[] => {
         return [
             {id: 'default', render: () => renderDefaultPreset(), priority: 100500 },
-            ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({id: preset.id.toString(), render: () => renderPreset(preset), priority: 1000 - index, preset: preset })),
+            ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({id: preset.id.toString(), render: () => renderPreset(preset), priority: getPresetPriority(preset, index), preset: preset })),
             { id: 'collapsedContainer', render: renderMoreButtonDropdown,
                 priority: 100500, collapsedContainer: true,
             },
