@@ -1,24 +1,19 @@
 import * as React from 'react';
 import { Value } from 'slate';
-import { CX, cx, IEditableDebouncer } from '@epam/uui';
+import { IEditableDebouncer } from '@epam/uui';
 import { Blocker } from '@epam/loveship';
 import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin, notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin, codeBlockPlugin,
 } from "@epam/uui-editor";
 import { svc } from '../../services';
 import * as css from './EditableDocContent.scss';
-import { useCallback, useEffect, useImperativeHandle, useState } from "react";
-
-export interface EditableDocContentApi {
-    persistCurrentValue: () => Promise<void>;
-}
 
 export interface EditableDocContentProps {
     fileName: string;
-    minHeight?: number | 'none';
-    wrapperCx?: CX;
-    editorCx?: CX;
-    isPersistOnChange?: boolean;
-    apiRef?: React.MutableRefObject<EditableDocContentApi>;
+}
+
+interface EditableDocContentState {
+    content: Value;
+    isLoading: boolean;
 }
 
 const plugins = [
@@ -40,71 +35,49 @@ const plugins = [
     codeBlockPlugin(),
 ];
 
-EditableDocContent.plugins = plugins;
-export function EditableDocContent(props: EditableDocContentProps) {
-    const { minHeight = 36, wrapperCx, editorCx, fileName, isPersistOnChange = true, apiRef } = props;
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [content, setContent] = useState<Value>(null);
+export class EditableDocContent extends React.Component<EditableDocContentProps, EditableDocContentState> {
+    static plugins = plugins;
 
-    useEffect(() => {
-        let isOutdated = false;
+    state: EditableDocContentState = {
+        content: null,
+        isLoading: true,
+    };
 
-        svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: fileName })
-            .then(res => {
-                if (isOutdated) {
-                    return;
-                }
-                setContent(res.content && Value.fromJSON(res.content));
-                setIsLoading(false);
-            });
-        return () => {
-            isOutdated = true;
-        };
-    }, [fileName]);
+    componentDidMount() {
+        svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: this.props.fileName })
+            .then(res => this.setState({ content: res.content && Value.fromJSON(res.content), isLoading: !this.state.isLoading }));
+    }
 
-    const persistValue = useCallback(async (content: Value) => {
-        await svc.uuiApi.processRequest('/api/save-doc-content', 'POST', {
-            name: fileName,
-            content: content.toJSON() || null,
+    saveDocContent = (content: Value) => {
+        this.setState({ content: content });
+        svc.uuiApi.processRequest('/api/save-doc-content', 'POST', {
+            name: this.props.fileName,
+            content: content.toJSON(),
         });
-    }, [fileName]);
+    }
 
-    const persistCurrentValue = useCallback(async () => {
-        await persistValue(content);
-    }, [fileName, content, persistValue]);
+    render() {
+        const { isLoading } = this.state;
 
-    const handleValueChange = useCallback(async (content: Value) => {
-        setContent(content);
-        if (isPersistOnChange) {
-            await persistValue(content);
-        }
-    }, [isPersistOnChange, persistValue]);
+        return (
+            <div className={ css.wrapper } >
+                <IEditableDebouncer
+                    value={ this.state.content }
+                    onValueChange={ this.saveDocContent }
+                    render={ (props) => <SlateEditor
+                        placeholder='Please type'
+                        plugins={ plugins }
+                        cx={ css.container }
+                        mode='inline'
+                        isReadonly={ !window.location.host.includes('localhost') }
+                        minHeight={ 36 }
+                        fontSize="16"
+                        { ...props }
+                    /> }
+                />
+                <Blocker isEnabled={ isLoading } />
+            </div>
 
-    useImperativeHandle(apiRef, () => {
-        return {
-            persistCurrentValue,
-        };
-    }, [persistCurrentValue]);
-
-    return (
-        <div className={ cx(css.wrapper, wrapperCx) } >
-            <IEditableDebouncer
-                disableDebounce={ !isPersistOnChange }
-                value={ content }
-                onValueChange={ handleValueChange }
-                render={ (props) => <SlateEditor
-                    placeholder='Please type'
-                    plugins={ plugins }
-                    cx={ cx(css.container, editorCx) }
-                    mode='inline'
-                    isReadonly={ !window.location.host.includes('localhost') }
-                    minHeight={ minHeight }
-                    fontSize="16"
-                    { ...props }
-                /> }
-            />
-            <Blocker isEnabled={ isLoading } />
-        </div>
-
-    ) ;
+        ) ;
+    }
 }
