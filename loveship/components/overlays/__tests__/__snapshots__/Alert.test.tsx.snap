@@ -47,6 +47,7 @@ exports[`Alert should be rendered correctly with props 1`] = `
           onClick={[Function]}
           role="button"
           tabIndex={0}
+          type="button"
         >
           <div
             className="uui-caption line-height-18 font-size-14 v-padding-3"
@@ -63,6 +64,7 @@ exports[`Alert should be rendered correctly with props 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="container uui-icon uui-enabled"

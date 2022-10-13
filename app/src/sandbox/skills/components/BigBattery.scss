@@ -1,0 +1,91 @@
+@use '../../../../../node_modules/@epam/promo/assets/styles/colors' as *;
+@use '../../../../../node_modules/@epam/promo/assets/styles/fonts' as *;
+
+.battery-main-container {
+    box-sizing: border-box;
+    align-items: flex-start;
+    width: 100%;
+    padding: 12px 12px 18px;
+
+    .rating-wrapper {
+        box-sizing: border-box;
+        cursor: pointer;
+        flex-grow: 1;
+
+        & *:not(:last-of-type) {
+            margin-right: 3px;
+        }
+
+        .itemContainer {
+            box-sizing: border-box;
+            flex-grow: 1;
+            flex-basis: 25%;
+
+            &:first-of-type {
+                .rating-block {
+                    border-radius: 3px 0 0 3px;
+                }
+            }
+
+            &:last-of-type {
+                .rating-block {
+                    border-radius: 0 3px 3px 0;
+                }
+            }
+
+            .rating-block {
+                box-sizing: border-box;
+                height: 24px;
+                width: 100%;
+                border: 1px solid $gray40;
+
+                &:hover {
+                    background-color: $gray20;
+                }
+
+                &.active {
+                    background-color: $green;
+                    border: 1px solid $green;
+
+                    &:hover {
+                        background-color: #77B300;
+                        border: 1px solid #77B300;
+                    }
+                }
+            }
+
+            .itemText {
+                padding: 6px 0 0;
+                text-align: center;
+                font-size: 10px;
+                line-height: 9px;
+                color: $gray50;
+            }
+        }
+    }
+
+    .battery-divider {
+        display: block;
+        box-sizing: border-box;
+        width: 1px;
+        height: 24px;
+        background-color: $gray40;
+        margin: 0 12px;
+    }
+
+    .main-close-btn {
+        min-height: 24px;
+        min-width: 36px;
+        border-radius: 3px;
+        border-color: $gray40;
+        background-color: $gray5;
+
+        svg {
+            fill: $gray40;
+        }
+
+        &:hover {
+            border-color: $gray40;
+        }
+    }
+}

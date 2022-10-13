@@ -24,7 +24,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const { renderFooter, rawProps, ...restProps } = this.props;
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
             { ...restProps }
-            rawProps={rawProps?.body}
+            rawProps={ rawProps?.body }
             { ...props }
             caption={ this.getPlaceholder() }
             initialValue={ this.props.value as any }
@@ -33,11 +33,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             valueType={ this.props.valueType }
         />)
             .then(newSelection => {
-                this.handleSelectionValueChange(newSelection)
-                this.returnFocusToInput()
+                this.handleSelectionValueChange(newSelection);
+                this.returnFocusToInput();
             })
             .catch(() => {
-                this.returnFocusToInput()
+                this.returnFocusToInput();
             });
     }
 
@@ -114,8 +114,8 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 <MobileDropdownWrapper
                     title={ this.props.entityName }
                     close={ () => {
-                        this.returnFocusToInput()
-                        this.toggleBodyOpening(false)
+                        this.returnFocusToInput();
+                        this.toggleBodyOpening(false);
                     } }
                 >
                     <DataPickerBody

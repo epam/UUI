@@ -4,7 +4,7 @@ import { IconContainer } from '../layout';
 import { ButtonBase } from './ButtonBase';
 import * as css from './Button.scss';
 
-export interface ButtonProps extends ButtonCoreProps, IHasRawProps<HTMLButtonElement>, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {
+export interface ButtonProps extends ButtonCoreProps, IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {
     /** Icon for clear value button (usually cross) */
     clearIcon?: Icon;
 

@@ -1,26 +1,20 @@
-MUST
+## MUST
 
-Fix bug:
-  - check a row
-  - change sorting
-  - select all checkbox is clear
-  TBD: Extract missing checked items, along with their subtree, if they aren't loaded already or loaded with visible rows
+Restore support for complex IDs
+
+## CAN
 
 Implement batch API
 
 Flat sorting view option
-- How to adjust row to render this?
-- How to return list of parents?
-
-Separate cascading checked loading from the visible tree
+- Pass all parents to renderRow
+- Demo showing parents in PickerItem's subtitle
 
 Editable table demo
 
 .reload() method
 
 call clearCache() on picker close
-
-OPTIONAL
 
 Better loading UX
 - loading checkboxes state?
@@ -35,16 +29,16 @@ Docs page
 
 GQL Cursor support
 
-Selection cascading
-- check/uncheck on all sibling checked/unchecked?
+
+
 
 
 *** Batch API ***
 
 Cases:
-1. Load whole tree in a single request. For example - on search (when we sure that there's not many results)
-2. Load sub-tree for a particular node (for selection cascading)
-3. Load groups with items (when each group doesn't have many items)
+1. Load whole tree in a single request
+2. Load recursive sub-tree for particular node
+3. Load all parents recursively for flatten-search and "indeterminate checkbox if children checked" scenarios
 4. Load all children in particular layer with a query like:
     {
         filter: { parentId: { in: [1,2,3] }} // ids of unfolded children
@@ -52,55 +46,48 @@ Cases:
         range: { count: X } // where X is a sum of all childCounts
     }
 
-Implementation option #1 - prefetch.
-    /**
-     * One can use prefetchApi if it's possible to resolve multiple queries at once.
-     * To do this, store some intermediate data in closure, and return this data on subsequent calls.
-     */
-    prefetchApi?: (state: DataSourceState<TItem, TId>) => LazyDataSourceApi<TItem, TId, TFilter>;
-
-Works for:
-1 - yes
-2 - no (we don't know which sub-tree to load)
-3 - yes
-4 - only for top-level
-
-Implementation option #2 - allow api to return children:
-{
-    items,
-    count,
-    ...
-    [parentId]: LazyDataSourceApiResponse }
-}
+Implementation option #1 - allow api to return children (complete internal Tree.loadMissing override)
+We need to pass all necessary info (like isFolded(item)) to the callback
+Api should return something like:
+{ [parentId]: LazyDataSourceApiResponse } }
 
 1 - yes
-2 - yes (if we pass isForSelectionCascading: true, checkedItemId: 123)
+2 - yes
 3 - yes
 4 - yes
 
-- we need to split resulting list, which would be like [
-    { id: 1, name: 'child1', parentId: 10 },
-    { id: 2, name: 'child2', parentId: 10 }
-    { id: 3, name: 'child3', parentId: 11 }
-]
- into list of children for each parent.
-   two options:
-   a) introduce 'getParentId' prop
-   b) let batch API to split the list, and return a hash of arrays like { 10: [list of children], 11: [list of children]}
+Cons: too complex to implement on client;
 
-- API options:
-a) another property like batchApi(rq, { childIds }) => []
-b) an 'batchChildrenLoads' flag, and pass parentIds in requestOptions (2nd argument of )
+Implementation option #2 - allow api to return additional items:
+
+- add  { prefetch: TItem[] } } to existing LazyDataSourceApiResponse
+Loaded items are added to byId list.
+However, they doesn't affect the tree (as we don't know whether or not all items or particular parent are pre-fetched)
+
+1 - no
+2 - no
+3 - yes
+4 - no
+
+Implementation option #3 - a mix of 1 and 2:
+LazyDataSourceApiResponse:
+{
+    prefetchChildren: { [parentId]: LazyDataSourceApiResponse }
+    prefetchParents: TItem[]
+}
+
+1 - yes
+2 - yes
+3 - yes
+4 - yes (prefetch items for unfolded groups when fetching a group, split them into responses by groupId)
 
 
 
-
-
+## Other Ideas
 
 Reset selection on changing filter
 - investigate problems on demo
 - we don't change the filter, user code does it. Should be implemented at user-side?
-
 
 Smart Selection Cascading
 - use hash instead of array for selection. Distinguish empty/undefined, true, and false values. Empty - means 'inherit from parent'
@@ -144,74 +131,3 @@ Rework ArrayDataSource to re-use LazyListView.
 
 
 
-
-DONE:
-
-Don't load items until getVisibleRows is called
-
-
-Fix bug:
-  - select all doesn't load all rows
-
-Fix and write test for focused items
-
-
-Fix bug:
-  - check children
-  - fold parent
-  - parent is unchecked (expected intermediate)
-
-Rework loading state machine
-- handle concurrent checking-induced and value-change loads
-
-
-Select all
-
-Test complex IDs, like [entityType, number]
-- use in demo
-
-Selection cascading
-
-Change log
-
-Refactoring - LazyListView - remove datasource dependency
-
-Cover cases when children are loaded along with parents
-
-Test options.filters
-
-Item by ID store - fix
-fix:
- - Pickers / Getting selected entity
-
-Refactoring - extract lazy tree
-
-Fix clearCache
-Fix counts calculation
-Correct Indenting
-
-Fold/Unfold all button on demo
-
-API - allow estimated rows count (HasChidren instead of ChildCount)?
- - tests!
- - fix problems with locations demo
-   - folding icon doesn't get hidden if there's no items inside
-
-Test when no count is returned
-
-Docs
-
-    More details:
-
-    Every view tracks a single loaded list/tree of items, according to the current filter/search/folding/other options
-    The view can be incomplete (not fully loaded). In case more items needed, LazyTreeView calls API to retrieve and append them.
-    If certain options changes, LazyTreeView reloads whole list/tree.
-    There options includes: filter, search, sorting, and certain callbacks (which are expected to not change)
-
-    Entities themselves (item by id) are still kept in the LazyDataSource.
-    This allows to use the same entities in different views. E.g. show selected items in the PickerInput - both in input area and in dropdown.
-    It also opens opportunity to make items editable, while keeping their order in the list driven by server.
-    This way we can make a lazy-loaded list/tree editable, while not reading all items from the server.
-    Keep in mind, that changing an entity attribute, which can affect it's order in the list, wouldn't move it accordingly.
-    You need to call .reload() after saving an item to server, to re-order the list.
-    However, this behavior can be even better than shuffling an item around the list while user edits it.

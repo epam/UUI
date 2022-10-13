@@ -1,7 +1,7 @@
 import { LazyDataSource } from "../../LazyDataSource";
 import { LazyListViewProps } from "../LazyListView";
-import { DataSourceState } from "../../types";
 import { delay } from "@epam/test-utils";
+import { DataSourceState } from "../../../../types";
 
 interface TItem {
     id: number;
@@ -58,7 +58,7 @@ describe('LazyListView - old tests', () => {
         });
 
 
-        it('should return loading row if item dont exist in dataSource', () => {
+        it('should return loading row if item don\'t exist in dataSource', () => {
             const view = dataSource.getView(initialValue, () => { }, {});
             const row = view.getById(111, 111);
 

@@ -1,15 +1,9 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    position: relative;
-    background: $gray5;
-    border-bottom: 1px solid $gray30;
-
-    &:global(.uui-table-header-row .uui-table-fixed-section-left),
-    &:global(.uui-table-header-row .uui-table-fixed-section-right) {
-        z-index: 2;
-        background: $gray5;
-    }
+    --uui-dt-row-background: #{$gray5};
+    --uui-dt-row-border-color: #{$gray30};
+    --uui-dt-row-border-width: 1px;
 }
 
 .header-cell {

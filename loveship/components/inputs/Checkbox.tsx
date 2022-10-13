@@ -9,6 +9,7 @@ import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 export interface CheckboxMods extends types.ColorMod {
     size?: '12' | '18';
     theme?: 'light' | 'dark';
+    mode?: 'form' | 'cell';
 }
 
 export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
@@ -16,6 +17,7 @@ export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
         css.root,
         css['size-' + (mods.size || '18')],
         css['theme-' + (mods.theme || 'light')],
+        css['mode-' + (mods.mode || 'form')],
         styles['color-' + (mods.color || 'sky')],
     ];
 }
@@ -23,5 +25,5 @@ export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
 export const Checkbox = withMods<CheckboxProps, CheckboxMods>(
     uuiCheckbox,
     applyCheckboxMods,
-    () => ({ icon: TickIcon, indeterminateIcon: IndeterminateIcon })
+    () => ({ icon: TickIcon, indeterminateIcon: IndeterminateIcon }),
 );

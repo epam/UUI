@@ -110,9 +110,6 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         }
 
         &:hover {
-            background-color: white;
-            border-color: $gray40;
-
             :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
                 &:global(.uui-enabled) {
                     fill: $gray60;
@@ -129,14 +126,12 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         }
 
         &:global(.uui-focus) {
-            background-color: white;
-            border-color: $blue;
             outline: none;
         }
     }
 
     &:global(.uui-invalid) {
-        &.mode-form, &.mode-cell {
+        &.mode-form {
             border-color: $red;
         }
     }

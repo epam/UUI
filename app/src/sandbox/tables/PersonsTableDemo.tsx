@@ -131,6 +131,7 @@ export const PersonsTableDemo = () => {
             }
         },
         getId: i => [i.__typename, i.id],
+        complexIds: true,
         getParentId: i => {
             const groupBy = value.filter?.groupBy;
             if (i.__typename == 'PersonGroup') {
