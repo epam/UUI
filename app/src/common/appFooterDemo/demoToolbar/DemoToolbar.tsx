@@ -9,7 +9,7 @@ import { ReactComponent as FullScreenIcon } from '@epam/assets/icons/common/medi
 import { ReactComponent as DescriptionIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import { analyticsEvents } from "../../../analyticsEvents";
 import { useUuiContext } from "@epam/uui-core";
-import { DemoItemDescriptionModal } from "./DemoItemDescriptionModal";
+import { DescriptionModal } from "./DescriptionModal";
 
 interface AppFooterContentDemoProps {
     demoItem: DemoItem;
@@ -17,11 +17,7 @@ interface AppFooterContentDemoProps {
     onOpenFullScreen: () => void;
 }
 export function DemoToolbar(props: AppFooterContentDemoProps) {
-    const {
-        demoItem,
-        onOpenFullScreen,
-        isFullScreenSupported,
-    } = props;
+    const { demoItem, onOpenFullScreen, isFullScreenSupported } = props;
     const svc = useUuiContext();
     const routerHistory = useHistory();
     const handleBack = React.useCallback(() => {
@@ -36,7 +32,7 @@ export function DemoToolbar(props: AppFooterContentDemoProps) {
 
     const handleOpenDescription = React.useCallback(async () => {
         await svc.uuiModals
-            .show((props) => <DemoItemDescriptionModal modalProps={ props } demoItem={ demoItem } />);
+            .show((props) => <DescriptionModal modalProps={ props } demoItem={ demoItem } />);
     }, []);
 
     return (
