@@ -34,7 +34,6 @@ export function DescriptionModal(props: IDemoItemDescriptionModal) {
     const handleSaveAndClose = useCallback(async () => {
         setIsLoading(true);
         try {
-            await new Promise(resolve => setTimeout(resolve, 500));
             await editableDocContentApi.current?.persistCurrentValue();
             setIsLoading(false);
             modalProps.success('');
