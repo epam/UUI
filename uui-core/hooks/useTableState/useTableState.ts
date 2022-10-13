@@ -6,6 +6,7 @@ import { useUuiContext } from "../../services";
 import { isDefaultColumnsConfig } from "./helpers";
 import { constants } from "./constants";
 import sortBy from "lodash.sortby";
+import { normalizeFilter } from "./normalizeFilter";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
     const context = useUuiContext();
@@ -24,9 +25,12 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     const [presets, setPresets] = useState(params.initialPresets ?? []);
 
     const setTableState = useCallback((newValue: DataTableState) => {
+        const newFilter = normalizeFilter(newValue.filter);
+
         setTableStateValue(prevValue => ({
             ...prevValue,
             ...newValue,
+            filter: newFilter,
         }));
         const oldQuery = context.uuiRouter.getCurrentLink().query;
         const newQuery = {
@@ -149,11 +153,9 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, [choosePreset]);
 
     const hasPresetChanged = useCallback((preset: ITablePreset<TFilter> | undefined) => {
-        const { filter } = context.uuiRouter.getCurrentLink().query;
-
-        return !isEqual(preset?.filter, filter)
+        return !isEqual(preset?.filter, tableStateValue.filter)
             || !isEqual(preset?.columnsConfig, tableStateValue.columnsConfig);
-    }, [tableStateValue.columnsConfig]);
+    }, [tableStateValue.columnsConfig,  tableStateValue.filter]);
 
     const duplicatePreset = useCallback(async (preset: ITablePreset<TFilter>) => {
         const newPreset: ITablePreset<TFilter> = {

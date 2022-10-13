@@ -38,7 +38,7 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
         };
         await props.updatePreset(newPreset);
         successNotificationHandler('Changes saved!');
-    }, [props.tableState.filter, props.tableState.columnsConfig]);
+    }, [props.tableState.filter, props.tableState.columnsConfig, props.tableState.filtersConfig]);
 
     const successNotificationHandler = useCallback((text: string) => {
         uuiNotifications.show((props) => (
