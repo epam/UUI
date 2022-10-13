@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-# Prerequisites
+## Prerequisites
 
 Please answer the following questions for yourself before submitting an issue. **YOU MAY DELETE THE PREREQUISITES SECTION.**
 
@@ -16,7 +16,7 @@ Please answer the following questions for yourself before submitting an issue. *
 - [ ] I checked to make sure that this issue has not already been filed
 
 
-# Description
+## Description
 
 ## Steps to Reproduce
 
@@ -36,7 +36,7 @@ To provide more details include screenshots, video, [UUI Codesandbox](https://co
 
 Please describe the behavior you are expecting
 
-# Environment
+## Environment
 
 Please provide any relevant information about your setup. This is important in case the issue is not reproducible except for under certain conditions.
 
