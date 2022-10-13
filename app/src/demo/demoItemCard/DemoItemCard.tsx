@@ -5,11 +5,8 @@ import { DemoItem } from "../structure";
 import { SlateEditor } from "@epam/uui-editor";
 import { EditableDocContent } from "../../common";
 import { useEffect } from "react";
-import { svc } from "../../services";
-import { Value } from "slate";
-import { getDemoDescriptionFileName } from "../../common/appFooterDemo/demoToolbar/DescriptionModal";
 import { Blocker } from "@epam/loveship";
-
+import { loadDocContentByDemoName } from "../../common/appFooterDemo/demoToolbar/useDemoDescriptionEditor";
 
 export interface IDemoItemCard {
     demoItem: DemoItem;
@@ -27,25 +24,24 @@ export function DemoItemCard(props: IDemoItemCard) {
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [description, setDescription] = React.useState(null);
-    const fileName = getDemoDescriptionFileName(name);
 
     useEffect(() => {
         let isOutdated = false;
         setIsLoading(true);
-        svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: fileName })
-            .then(res => {
+        loadDocContentByDemoName(name)
+            .then(content => {
                 if (isOutdated) {
                     return;
                 }
-                const newDescr = res.content ? Value.fromJSON(res.content) : null;
-                setDescription(newDescr);
-                setIsLoading(false);
-            });
+                setDescription(content);
+            })
+            .finally(() => setIsLoading(false));
 
         return () => {
             isOutdated = true;
+            setIsLoading(false);
         };
-    }, [fileName]);
+    }, [name]);
 
     return (
         <Anchor cx={ css.container } key={ id } link={ { pathname: '/demo', query: { id } } } onClick={ () => onOpenItem(name) } >
