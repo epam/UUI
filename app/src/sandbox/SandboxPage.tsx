@@ -16,7 +16,7 @@ import { ProjectDemo } from './project/ProjectDemo';
 import { AdaptivePanelDemo } from "./adaptivePanel/AdaptivePanelDemo";
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
-
+import { Skills } from './skills';
 import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 
 export const SandboxPage = () => {
@@ -31,6 +31,7 @@ export const SandboxPage = () => {
         { id: 'responsive', name: 'Responsive', component: Responsive },
         { id: 'uui-v_theming', name: 'UUI-V Theming', component: ThemeDemo },
         { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
+        { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
         { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
         { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
     ], []);

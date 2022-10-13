@@ -62,12 +62,12 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
     }, [isAddingPreset]);
 
     const onPresetDropdownSelect = (preset: PresetAdaptiveItem, hiddenItems: PresetAdaptiveItem[]) => {
-        const displayedPresets = presets.filter(i => !hiddenItems.find((hiddenItem) => (hiddenItem.preset.id === i.id && !hiddenItem.collapsedContainer)));
-        const sortedDisplayedPresets = sortBy(displayedPresets, (i) => i.order).reverse();
+        // const displayedPresets = presets.filter(i => !hiddenItems.find((hiddenItem) => (hiddenItem.preset.id === i.id && !hiddenItem.collapsedContainer)));
+        // const sortedDisplayedPresets = sortBy(displayedPresets, (i) => i.order).reverse();
         props.choosePreset(preset.preset);
         props.updatePreset({
             ...preset.preset,
-            order: getOrderBetween(sortedDisplayedPresets[1].order, sortedDisplayedPresets[0].order),
+            //order: getOrderBetween(sortedDisplayedPresets[1].order, sortedDisplayedPresets[0].order),
         });
     };
 
@@ -97,10 +97,14 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
         );
     };
 
+    const getPresetPriority = (preset: ITablePreset, index: number) => {
+        return preset.id === props.activePresetId ? 100500 : 1000 - index
+    };
+
     const getPanelItems = (): PresetAdaptiveItem[] => {
         return [
             {id: 'default', render: () => renderDefaultPreset(), priority: 100500 },
-            ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({id: preset.id.toString(), render: () => renderPreset(preset), priority: 1000 - index, preset: preset })),
+            ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({id: preset.id.toString(), render: () => renderPreset(preset), priority: preset.id === props.activePresetId ? 100500 : 1000 - index, preset: preset })),
             { id: 'collapsedContainer', render: renderMoreButtonDropdown,
                 priority: 100500, collapsedContainer: true,
             },
