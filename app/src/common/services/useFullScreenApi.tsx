@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 function isFullScreenAllowed() {
     return Boolean(document.fullscreenEnabled);
@@ -38,14 +38,10 @@ export interface IFullScreenApi {
     closeFullScreen: () => void;
 }
 
+const FULL_SCREEN_MODIFIER = 'full-screen';
+
 export function useFullScreenApi(): IFullScreenApi {
     const [isFullScreen, setIsFullScreen] = React.useState<boolean>(() => isSomeElementOpenedFullScreen());
-
-    useEffect(() => {
-        return onFullScreenChange(() => {
-            setIsFullScreen(isSomeElementOpenedFullScreen());
-        });
-    }, []);
 
     useEffect(() => {
         return () => {
@@ -53,14 +49,26 @@ export function useFullScreenApi(): IFullScreenApi {
         };
     }, []);
 
-    const openFullScreen = React.useCallback(async () => {
+    useEffect(() => {
+        return onFullScreenChange(() => {
+            const isFullScreen = isSomeElementOpenedFullScreen();
+            setIsFullScreen(isFullScreen);
+            if (isFullScreen) {
+                document.body.classList.add(FULL_SCREEN_MODIFIER);
+            } else {
+                document.body.classList.remove(FULL_SCREEN_MODIFIER);
+            }
+        });
+    }, []);
+
+    const handleOpenFullScreen = React.useCallback(async () => {
         await openElementFullScreen(document.body);
     }, []);
 
     return React.useMemo(() => ({
         isSupported: isFullScreenAllowed(),
         isFullScreen,
-        openFullScreen,
+        openFullScreen: handleOpenFullScreen,
         closeFullScreen,
-    }), [isFullScreen, openFullScreen]);
+    }), [isFullScreen, handleOpenFullScreen]);
 }
