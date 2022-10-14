@@ -43,7 +43,7 @@ export function DescriptionModal(props: IDemoItemDescriptionModal) {
                         mode='inline'
                         isReadonly={ isReadOnly() }
                         minHeight={ 400 }
-                        fontSize="16"
+                        fontSize="14"
                         value={ valueLocal }
                         onValueChange={ setValueLocal }
                     />
