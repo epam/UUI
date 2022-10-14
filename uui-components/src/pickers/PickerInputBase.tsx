@@ -294,11 +294,12 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }
 
         return preparedRows.map((rowProps) => {
+            const newRowProps = {...rowProps}
             if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
-                rowProps.onSelect = this.onSelect;
+                newRowProps.onSelect = this.onSelect;
             }
 
-            return rowProps
+            return newRowProps
         });
     }
 
