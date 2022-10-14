@@ -39,8 +39,8 @@
     }
 
     &:global(.-clickable) {
-        cursor: pointer;
         &:hover, &:focus {
+            background-color: $sky;
             color: $white;
             fill: $white;
         }
