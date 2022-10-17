@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import dayjs from "dayjs";
 import css from './SkillsBatteryPopover.scss';
 import { SmallBattery } from "./components/SmallBattery";
 import { BigBattery } from "./components/BigBattery";
 import { IInnerSkill, ISkill, ISkillLevel } from "./index";
-import { Button, Dropdown, FlexRow, Tooltip, Text, DropdownContainer, IconContainer, IconButton, TextInput } from "@epam/promo";
+import { Button, Dropdown, FlexRow, Text, DropdownContainer, IconContainer, IconButton, TextInput } from "@epam/promo";
 import { cx, IDropdownToggler } from "@epam/uui-core";
 import { DropdownBodyProps } from "@epam/uui-components";
+import { getDateInFormat, getLevel, getLevelDescription} from './utils';
 import { ReactComponent as heartIconOutline } from '@epam/assets/icons/common/fav-rates-favorite-outline-18.svg';
 import { ReactComponent as heartIconFilled } from '@epam/assets/icons/common/fav-rates-favorite-18.svg';
 import { ReactComponent as arrowExpandIcon } from './icons/navigation-arrows_expand-18.svg';
@@ -15,51 +15,6 @@ import { ReactComponent as noSkillIcon } from './icons/no-skill-18.svg';
 import { ReactComponent as noActiveIcon } from './icons/no-active-18.svg';
 import { ReactComponent as recommendedIcon } from './icons/recommended-18.svg';
 import { ReactComponent as infoLogo } from './icons/notification-info-outline-10.svg';
-
-const getDateInFormat = (date: Date) => dayjs(date).format('MMM DD, YYYY');
-
-const getLevel = (level: ISkillLevel): string => {
-    switch (level) {
-        case 1:
-            return 'Novice';
-        case 2:
-            return 'Intermediate';
-        case 3:
-            return 'Advanced';
-        case 4:
-            return 'Expert';
-        case 'NA':
-            return 'Not check';
-        case "NoSkill":
-            return 'No skill';
-        case 'Rank':
-            return 'Rank';
-        default:
-            return null;
-    }
-};
-
-const getLevelDescription = (level: ISkillLevel): string => {
-    switch (level) {
-        case 1:
-            return 'Novice description Lorem ipsum dolor sit amet.';
-        case 2:
-            return 'Intermediate description Lorem ipsum dolor sit amet.';
-        case 3:
-            return 'Advanced description Lorem ipsum dolor sit amet.';
-        case 4:
-            return 'Expert  description Lorem ipsum dolor sit amet.';
-        case 'NA':
-            return 'Not check';
-        case "NoSkill":
-            return 'No skill';
-        case 'Rank':
-            return 'Rank description';
-        default:
-            return null;
-    }
-};
-
 interface ISkillsBatteryProps {
     data: ISkill;
 }
@@ -120,24 +75,6 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
             )) }
         </FlexRow>
     ));
-
-    const getTooltipContent = () => {
-        return (
-            <div className={ css.tooltipContainer }>
-                <FlexRow spacing="6" cx={ css.tooltipHeader }>
-                    <Text cx={ css.tooltipHeaderItem } color="gray60">Current level:</Text>
-                    <Text cx={ css.tooltipHeaderItem } color="gray5">{ getLevel(level) }</Text>
-                </FlexRow>
-                { Object.entries(props?.data.options).map((val, index) => (
-                    <FlexRow key={ `${ index }-tooltip` } spacing="6" cx={ css.tooltipBlockRow }>
-                        <IconContainer cx={ css.tooltipItem } icon={ val[1].icon } color={ val[1].activeColor }/>
-                        <Text cx={ css.tooltipItem } color="gray60">{ val[1].prefix }</Text>
-                        <Text cx={ css.tooltipItem } color="gray5">{ getDateInFormat(val[1].date) }</Text>
-                    </FlexRow>
-                )) }
-            </div>
-        );
-    };
 
     const renderTarget = (targetProps: IDropdownToggler) => {
         return (
