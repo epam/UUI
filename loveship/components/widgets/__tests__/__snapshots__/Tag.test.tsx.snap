@@ -7,6 +7,7 @@ exports[`Tag should render with all new props 1`] = `
   onClick={[Function]}
   role="button"
   tabIndex={0}
+  type="button"
 >
   <div
     className="container uui-icon uui-enabled -clickable"
@@ -46,5 +47,6 @@ exports[`Tag should render with default props 1`] = `
   onClick={[Function]}
   role="button"
   tabIndex={-1}
+  type="button"
 />
 `;

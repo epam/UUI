@@ -1,5 +1,4 @@
 export * from './flexItems';
-
 export * from './Accordion';
 export * from './VirtualList';
 export * from './LabeledInput';
@@ -10,3 +9,4 @@ export * from './ControlGroup';
 export * from './Tree';
 export * from './Blocker';
 export * from './ScrollBars';
+export * from './AdaptivePanel';

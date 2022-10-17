@@ -8,7 +8,8 @@ import {
     ReleaseNotesDoc, FlexItemsDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, AvatarDoc,
     InternationalizationDoc, FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarStackDoc, PickerListDoc, TeamDoc,
     AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc, EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc,
-    VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc, DropdownContainerDoc
+    VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc, DropdownContainerDoc,
+    AdaptivePanelDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
@@ -24,6 +25,7 @@ export interface DocItem {
 
 const componentsStructure = sortBy([
     { id: 'accordion', name: 'Accordion', component: AccordionDoc, parentId: 'components' },
+    { id: 'adaptivePanel', name: 'Adaptive Panel', component: AdaptivePanelDoc, parentId: 'components' },
     { id: 'alert', name: 'Alert', component: AlertDoc, parentId: 'components' },
     { id: 'anchor', name: 'Anchor', component: AnchorDoc, parentId: 'components' },
     { id: 'avatar', name: 'Avatar', component: AvatarDoc, parentId: 'components' },

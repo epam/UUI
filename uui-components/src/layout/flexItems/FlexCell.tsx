@@ -14,6 +14,7 @@ export const FlexCell = React.forwardRef<HTMLDivElement, FlexCellProps>((props, 
             flexBasis: props.width ? ((props.width === 'auto' || props.width === '100%') ? props.width : `${props.width}px`) : "0",
             textAlign: props.textAlign,
             alignSelf: props.alignSelf,
+            ...props.style,
         } }
         ref={ ref }
     >

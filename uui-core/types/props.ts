@@ -1,7 +1,7 @@
 import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode } from "react";
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
-import {DataRowProps} from "./tables";
+import { DataRowProps } from "./dataSources";
 import {AnalyticsEvent} from "./contexts";
 import { PopperArrowProps } from "react-popper";
 import { Placement} from '@popperjs/core';
@@ -178,6 +178,7 @@ export interface IAdaptiveItem {
     priority?: number;
     showInBurgerMenu?: boolean;
     collapseToMore?: boolean;
+    collapsedContainer?: boolean;
 }
 
 export interface IModal<TResult> {
@@ -197,10 +198,10 @@ export interface INotification {
     key: string;
 }
 
-export interface IHasRawProps<T> {
+export type IHasRawProps<T> =  {
     /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: HTMLAttributes<T> & Record<`data-${string}`, string>;
-}
+    rawProps?: T & Record<`data-${string}`, string>;
+};
 
 export interface IHasForwardedRef<T extends HTMLOrSVGElement> {
     /** this ref is passed to the underlying component */
@@ -211,7 +212,7 @@ export type FlexRowProps = IHasCX
     & IClickable
     & Attributes
     & IHasChildren
-    & IHasRawProps<HTMLDivElement>
+    & IHasRawProps<HTMLAttributes<HTMLDivElement>>
     & {
         /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
         alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
@@ -219,7 +220,7 @@ export type FlexRowProps = IHasCX
 
 export type FlexCellProps = IHasCX
     & IClickable
-    & IHasRawProps<HTMLDivElement>
+    & IHasRawProps<HTMLAttributes<HTMLDivElement>>
     & Attributes
     & IHasChildren
     & {
@@ -235,9 +236,11 @@ export type FlexCellProps = IHasCX
         textAlign?: 'left' | 'center' | 'right';
         /** Flexbox align-self property. Aligns items vertically for horizontal flexbox. [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-align-self) */
         alignSelf?: CSS.AlignSelfProperty;
+        /** Standard style attribute. Styles are added to element style, overriding supplied flex styles */
+        style?: React.CSSProperties;
     };
 
-export type VPanelProps = IHasCX & IHasChildren & IClickable & IHasRawProps<HTMLDivElement> & IHasForwardedRef<HTMLDivElement> & IAnalyticableClick & {
+export type VPanelProps = IHasCX & IHasChildren & IClickable & IHasRawProps<HTMLAttributes<HTMLDivElement>> & IHasForwardedRef<HTMLDivElement> & IAnalyticableClick & {
     style?: CSSProperties;
 };
 
