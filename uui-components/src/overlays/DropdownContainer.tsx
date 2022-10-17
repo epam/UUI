@@ -3,7 +3,7 @@ import { uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers, IHasFor
 import { VPanel } from '../layout/flexItems/VPanel';
 import PopoverArrow from "./PopoverArrow";
 
-export interface DropdownContainerProps extends IHasCX, IHasChildren, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps {
+export interface DropdownContainerProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps {
     width?: number | 'auto';
     maxWidth?: number;
     height?: number;

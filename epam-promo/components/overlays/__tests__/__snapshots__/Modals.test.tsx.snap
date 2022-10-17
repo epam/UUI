@@ -162,6 +162,7 @@ exports[`Modals should be rendered correctly 2`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"

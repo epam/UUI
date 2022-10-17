@@ -11,12 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To make main menu responsible, provide ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "priority",
+            "text": "MainMenu",
             "marks": [
               {
                 "object": "mark",
@@ -27,12 +22,12 @@
           },
           {
             "object": "text",
-            "text": "  and ",
+            "text": " based on ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "estimatedWidth",
+            "text": "AdaptivePanel",
             "marks": [
               {
                 "object": "mark",
@@ -43,19 +38,12 @@
           },
           {
             "object": "text",
-            "text": " props for main menu items.",
+            "text": " component, so it's support adaptive main menu items layout, if some items can't fit in menu container, they will be hidden and can be rendered inside ",
             "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+          },
           {
             "object": "text",
-            "text": "priority",
+            "text": "collapsedContainer",
             "marks": [
               {
                 "object": "mark",
@@ -66,42 +54,26 @@
           },
           {
             "object": "text",
-            "text": " — define in what order items will be collapsed to 'More' button. ",
+            "text": ". For more information go to the ",
             "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+          },
           {
-            "object": "text",
-            "text": "estimatedWidth",
-            "marks": [
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=adaptivePanel&mode=doc&skin=UUI4_promo&category=components"
+            },
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "object": "text",
+                "text": "AdaptivePanel",
+                "marks": []
               }
             ]
           },
           {
             "object": "text",
-            "text": " — approximate width of item, which will be used to define fit this item in menu width or not. ",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
+            "text": " documentation page.",
             "marks": []
           }
         ]

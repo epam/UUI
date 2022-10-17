@@ -49,17 +49,7 @@ export class ColumnsConfigurationModal<TItem, TId> extends ColumnsConfigurationM
                         <ScrollBars>
                             <div className={ styles.checkboxContainer }>
                                 { /*TODO: use ArrayDataSource(or Picker) for search*/ }
-                                { sortedColumns
-                                    .filter(column => !!column.caption)
-                                    .map((item, index) => {
-                                        const prevItem = index > 0 ? sortedColumns[index - 1] : sortedColumns[0];
-                                        const nextItem = index === sortedColumns.length - 1 ? sortedColumns[0] : sortedColumns[index + 1];
-                                        return this.renderDndRow(
-                                            item,
-                                            this.state.columnsConfig[prevItem.key].order,
-                                            this.state.columnsConfig[nextItem.key].order,
-                                        );
-                                    }) }
+                                { this.renderSortedColumns(sortedColumns, this.renderDndRow) }
                             </div>
                         </ScrollBars>
                         <ModalFooter borderTop>

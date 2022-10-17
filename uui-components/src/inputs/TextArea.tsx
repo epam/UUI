@@ -3,7 +3,7 @@ import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, u
 import * as css from './TextArea.scss';
 
 export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly,
-    IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement>, ICanFocus<HTMLTextAreaElement> {
+    IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, ICanFocus<HTMLTextAreaElement> {
     /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;
     /** Enables auto-resizing height to fit text. Rows prop is ignored in this mode */

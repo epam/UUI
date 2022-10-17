@@ -1,14 +1,19 @@
 import React, { useCallback, useState } from "react";
-import css from "./PresetPanel.scss";
-import { FlexRow, TabButton } from "../../index";
-import { DataTableState, IPresetsApi } from "@epam/uui-core";
+import sortBy from "lodash.sortby";
+import { DataTableState, IPresetsApi, ITablePreset, getOrderBetween } from "@epam/uui-core";
+import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
+import css from './PresetPanel.scss';
+import { Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow, TabButton } from "../../index";
 import { Preset } from "./Preset";
 import { PresetInput } from "./PresetInput";
 import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/action-add-12.svg";
+import { ReactComponent as DeleteIcon } from "@epam/assets/icons/common/action-deleteforever-18.svg";
 
 export interface IPresetsBlockProps extends IPresetsApi {
     tableState: DataTableState;
 }
+
+type PresetAdaptiveItem = AdaptiveItemProps<{preset?: ITablePreset }>;
 
 export const PresetPanel = (props: IPresetsBlockProps) => {
     const [isAddingPreset, setIsAddingPreset] = useState(false);
@@ -23,30 +28,91 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
 
     const {presets, ...presetApi} = props;
 
-    return (
-        <FlexRow spacing='12'>
+    const renderDefaultPreset = () => {
+        return (
             <TabButton
                 caption='Default Preset'
                 onClick={ props.resetToDefault }
                 size="60"
                 isLinkActive={ !props.activePresetId }
             />
-            { props.presets.map(preset => <Preset key={ preset.id } preset={ preset } addPreset={ setAddingPreset } { ...presetApi }/>) }
-            <FlexRow>
-                { !isAddingPreset
-                    ?
-                    <TabButton
-                        caption={ 'Add Preset' }
-                        onClick={ setAddingPreset }
-                        size="36"
-                        icon={ PlusIcon }
-                        iconPosition="left"
-                    />
-                    : <PresetInput
-                        onCancel={ cancelAddingPreset }
-                        onSuccess={ props.createNewPreset }
-                    /> }
+        );
+    };
+
+    const renderPreset = (preset: ITablePreset) => {
+        return (
+            <Preset key={ preset.id } preset={ preset } addPreset={ setAddingPreset } { ...presetApi }/>
+        );
+    };
+
+    const renderAddPresetButton = useCallback(() => {
+        return !isAddingPreset ?
+            <TabButton
+                caption={ 'Add Preset' }
+                onClick={ setAddingPreset }
+                size="36"
+                icon={ PlusIcon }
+                iconPosition="left"
+            />
+            : <PresetInput
+                onCancel={ cancelAddingPreset }
+                key={ 'createPresetInput' }
+                onSuccess={ props.createNewPreset }
+            />;
+    }, [isAddingPreset]);
+
+    const onPresetDropdownSelect = (preset: PresetAdaptiveItem) => {
+        props.choosePreset(preset.preset);
+        props.updatePreset(preset.preset);
+    };
+
+    const renderMoreButtonDropdown = (item: PresetAdaptiveItem, hiddenItems: PresetAdaptiveItem[]) => {
+        return (
+            <Dropdown
+                renderTarget={ (props) =>
+                    <FlexRow>
+                        <div className={ css.divider } />
+                        <Button fill='light' color='gray50' caption={ `${hiddenItems?.length || ''} more` } { ...props } />
+                    </FlexRow>
+            }
+                renderBody={ () => <DropdownContainer width={ 230 }>
+                    {
+                        hiddenItems.map(item =>
+                            <DropdownMenuButton
+                                onClick={ () => onPresetDropdownSelect(item) }
+                                caption={ item.preset.name }
+                                icon={ DeleteIcon }
+                                iconPosition='right'
+                                cx={ css.dropdownDeleteIcon }
+                                onIconClick={ () => props.deletePreset(item.preset) }
+                            />)
+                    }
+                </DropdownContainer> }
+            />
+        );
+    };
+
+    const getPresetPriority = (preset: ITablePreset, index: number) => {
+        return preset.id === props.activePresetId ? 100500 : 1000 - index;
+    };
+
+    const getPanelItems = (): PresetAdaptiveItem[] => {
+        return [
+            {id: 'default', render: () => renderDefaultPreset(), priority: 100500 },
+            ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({id: preset.id.toString(), render: () => renderPreset(preset), priority: getPresetPriority(preset, index), preset: preset })),
+            { id: 'collapsedContainer', render: renderMoreButtonDropdown,
+                priority: 100500, collapsedContainer: true,
+            },
+            {id: 'addPreset', render: () => renderAddPresetButton(), priority: 100500 },
+        ];
+    };
+
+    return (
+        <FlexCell grow={ 1 }>
+            <FlexRow spacing='12'>
+                <AdaptivePanel items={ getPanelItems() } />
             </FlexRow>
-        </FlexRow>
+        </FlexCell>
+
     );
 };

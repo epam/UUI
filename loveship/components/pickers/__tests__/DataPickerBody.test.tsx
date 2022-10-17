@@ -14,7 +14,7 @@ describe("DataPickerBody", () => {
     };
 
     it("should be rendered correctly", () => {
-        const view = dataSource.getView({ topIndex: 0, visibleCount: 10, focusedIndex: 1 }, () => {});
+        const view = dataSource.getView({ topIndex: 0, visibleCount: 10, focusedIndex: 0 }, () => {});
 
         const tree = renderer
             .create(<DataPickerBody

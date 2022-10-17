@@ -69,7 +69,7 @@ export const basePlugins = [
     ...defaultPlugins,
 ];
 
-interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps<HTMLDivElement> {
+interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
     isReadonly?: boolean;
     plugins?: Plugin[];
     autoFocus?: boolean;
@@ -141,7 +141,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
         this.props.onBlur?.(e, editor.value);
         return next();
     }
-    
+
     onFocus = (e: any, editor: Editor, next: () => any) => {
         if (editor.value.selection.isFocused) return;
         return next();

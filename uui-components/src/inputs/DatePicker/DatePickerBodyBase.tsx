@@ -11,7 +11,7 @@ export const uuiDatePickerBodyBase = {
     container: 'uui-datepicker-container',
 } as const;
 
-export interface DatePickerBodyBaseOptions extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface DatePickerBodyBaseOptions extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     filter?(day: Dayjs): boolean;
     changeIsOpen?(newValue: boolean): void;
     presets?: RangeDatePickerPresets;

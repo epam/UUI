@@ -5,7 +5,7 @@ import { Day, IconContainer } from '@epam/uui-components';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 import { LinkButton, FlexRow } from '../../../';
 import { iEditable, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc } from '../../../docs';
-import { FormContext, DefaultContext, GridContext, ResizableContext } from '../../../docs';
+import { FormContext, DefaultContext, TableContext, ResizableContext } from '../../../docs';
 import { ReactComponent as Point } from '../../icons/radio-point.svg';
 
 const getCustomDay = (day: Dayjs) => {
@@ -49,6 +49,6 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
             },
         ],
     })
-    .withContexts(DefaultContext, FormContext, ResizableContext, GridContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext, TableContext);
 
 export = DatePickerDoc;

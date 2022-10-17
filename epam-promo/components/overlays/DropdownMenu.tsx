@@ -4,8 +4,9 @@ import {
     cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption,
     IDisableable, IAnalyticableClick, IHasCX, IClickable,
 } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer, DropdownBodyProps } from '@epam/uui-components';
+import { Text, FlexRow, Anchor, Dropdown, FlexSpacer, DropdownContainer, DropdownBodyProps, IconContainer } from '@epam/uui-components';
 import { Switch } from '../inputs';
+import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
 import * as css from './DropdownMenu.scss';
 import { ReactComponent as CheckIcon } from "../../icons/accept-18.svg";
@@ -84,6 +85,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
     const {
         icon,
         iconPosition,
+        onIconClick,
         caption,
         isDisabled,
         isSelected,
@@ -113,7 +115,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
     const getMenuButtonContent = () => {
         const isIconBefore = Boolean(icon && iconPosition !== "right");
         const isIconAfter = Boolean(icon && iconPosition === "right");
-        const iconElement = <IconContainer icon={ icon } cx={ cx(css.icon, iconPosition === "right" ? css.iconAfter : css.iconBefore) } />;
+        const iconElement = <IconButton icon={ icon } onClick={ onIconClick } cx={ cx(css.icon, iconPosition === "right" ? css.iconAfter : css.iconBefore) } />;
 
         return <>
             { isIconBefore && iconElement }
