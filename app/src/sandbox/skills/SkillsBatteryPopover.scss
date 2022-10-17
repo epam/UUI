@@ -4,9 +4,14 @@
 .target-body-container {
     padding: 0 12px;
     border: 1px solid #CED0DB;
+    cursor: pointer;
 
     & *:not(:last-of-type) {
         margin-right: 6px;
+    }
+
+    &.target-body-container--hover {
+        background-color: $gray20;
     }
 }
 
