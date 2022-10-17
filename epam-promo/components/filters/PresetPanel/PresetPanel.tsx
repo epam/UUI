@@ -93,7 +93,7 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
     };
 
     const getPresetPriority = (preset: ITablePreset, index: number) => {
-        return preset.id === props.activePresetId ? 100500 : 1000 - index;
+        return preset.id === props.activePresetId ? 100499 : 1000 - index;
     };
 
     const getPanelItems = (): PresetAdaptiveItem[] => {
@@ -101,14 +101,14 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
             {id: 'default', render: () => renderDefaultPreset(), priority: 100500 },
             ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({id: preset.id.toString(), render: () => renderPreset(preset), priority: getPresetPriority(preset, index), preset: preset })),
             { id: 'collapsedContainer', render: renderMoreButtonDropdown,
-                priority: 100500, collapsedContainer: true,
+                priority: 100501, collapsedContainer: true,
             },
-            {id: 'addPreset', render: () => renderAddPresetButton(), priority: 100500 },
+            {id: 'addPreset', render: () => renderAddPresetButton(), priority: 100501 },
         ];
     };
 
     return (
-        <FlexCell grow={ 1 }>
+        <FlexCell grow={ 1 } minWidth={ 310 }>
             <FlexRow spacing='12'>
                 <AdaptivePanel items={ getPanelItems() } />
             </FlexRow>

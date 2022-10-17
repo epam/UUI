@@ -7,24 +7,25 @@ export interface PageProps extends IHasChildren {
     renderHeader?: () => React.ReactNode;
     renderFooter?: () => React.ReactNode;
     contentCx?: string;
+    isFullScreen?: boolean;
 }
 
-export class Page extends React.Component<PageProps, any> {
-    render() {
-        return (
-            <div className={ css.root }>
-                <header>
-                    { this.props.renderHeader && this.props.renderHeader() }
-                </header>
-                <ErrorHandler cx={ css.errorBlock }>
-                    <main className={ cx(css.content, this.props.contentCx) } >
-                        { this.props.children }
-                    </main>
-                    <footer>
-                        { this.props.renderFooter && this.props.renderFooter() }
-                    </footer>
-                </ErrorHandler>
-            </div>
-        );
-    }
+export function Page(props: PageProps) {
+    const { renderHeader, renderFooter, contentCx, children, isFullScreen } = props;
+
+    return (
+        <div className={ css.root }>
+            <header>
+                { !isFullScreen && renderHeader?.() }
+            </header>
+            <ErrorHandler cx={ css.errorBlock }>
+                <main className={ cx(css.content, contentCx) } >
+                    { children }
+                </main>
+                <footer>
+                    { !isFullScreen && renderFooter?.() }
+                </footer>
+            </ErrorHandler>
+        </div>
+    );
 }
