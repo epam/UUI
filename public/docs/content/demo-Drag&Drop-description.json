@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In UUI, every component can be made draggable, and/or accept dragged items, by wrapping it with DragActor component. ",
+            "text": "In UUI, every component can be made draggable, and/or accept dragged items, by wrapping it with DndActor component. ",
             "marks": []
           }
         ]

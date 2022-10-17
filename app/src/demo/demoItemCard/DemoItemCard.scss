@@ -33,16 +33,15 @@ $shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
         flex-direction: column;
         justify-content: start;
         align-items: flex-start;
-
         width: 365px;
         background-color: #FFFFFF;
+
         .title {
             margin: 18px 24px 0 24px;
         }
         .description {
             position: relative;
-            margin-top: -8px;
-            margin-bottom: 24px;
+            margin: -8px 24px 24px 24px;
             max-height: 155px;
             overflow-y: hidden;
         }
