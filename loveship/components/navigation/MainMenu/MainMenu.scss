@@ -37,13 +37,4 @@
             }
         }
     }
-
-    :global(.uui-button-box) {
-        &:global(.-clickable) {
-            &:hover,
-            &:focus {
-                background-color: $night900;
-            }
-        }
-    }
 }

@@ -40,7 +40,7 @@
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            background-color: $sky;
+            background-color: $night900;
             color: $white;
             fill: $white;
         }
