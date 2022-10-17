@@ -9,6 +9,7 @@
 .presets-title {
     padding-top: 20px;
     padding-bottom: 20px;
+    flex-shrink: 0;
 }
 
 .container {
@@ -81,4 +82,7 @@
     flex-shrink: 0;
     background-color: $white;
     border-bottom: 1px solid $gray40;
+    overflow-x: auto;
+    overflow-y: hidden;
+    align-items: center;
 }

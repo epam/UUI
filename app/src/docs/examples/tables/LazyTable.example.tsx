@@ -29,7 +29,6 @@ export default function CitiesTable(props: unknown) {
             render: city => <Text color='gray80' fontSize='14'>{ city.id }</Text>,
             isSortable: true,
             width: 120,
-            fix: 'left',
         },
         {
             key: 'name',
