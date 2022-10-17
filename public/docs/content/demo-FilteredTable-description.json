@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Shows support for advanced filter toolbar – including predicates (in/not in/less/greater than), and user-defined filter presets (tabs). This demo also uses paging instead of infinite-scrolling.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
