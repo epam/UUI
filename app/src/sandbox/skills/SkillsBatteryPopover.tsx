@@ -66,7 +66,7 @@ interface ISkillsBatteryProps {
 
 export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
     const targetBodyRef = React.createRef();
-    const [isFavorite, setIsFavorite] = useState<IInnerSkill>(props.data?.options.isFavourite);
+    const [isFavorite, setIsFavorite] = useState<IInnerSkill>(props.data?.options.isProfile);
     const [isRecommended, setIsRecommended] = useState<IInnerSkill>(props.data?.options.isRecommended);
     const [level, setLevel] = useState<ISkillLevel>(props.data?.level);
     const [comment, setComment] = useState(props.data?.comment);
@@ -110,18 +110,16 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
         );
     };
 
-    const TargetBody = React.forwardRef((bodyProps, ref) => {
-        return (
-            <FlexRow ref={ ref } cx={ cx(css.targetBodyContainer) } size="30">
-                <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } color={ isFavorite?.status ? 'red' : 'gray50' }/>
-                <SmallBattery rating={ level }/>
-                <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">{ props.data?.caption }</Text>
-                { Object.entries(props?.data.options).map((val) => (
-                    <IconContainer cx={ css.infoItem } icon={ val[1].icon } color={ val[1].activeColor }/>
-                )) }
-            </FlexRow>
-        );
-    });
+    const TargetBody = React.forwardRef<unknown, { isOpen: boolean }>((bodyProps, ref) => (
+        <FlexRow ref={ ref } cx={ cx([css.targetBodyContainer, {[css.targetBodyContainerHover]: bodyProps.isOpen}]) } size="30">
+            <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } color={ isFavorite?.status ? 'red' : 'gray50' }/>
+            <SmallBattery rating={ level }/>
+            <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">{ props.data?.caption }</Text>
+            { Object.entries(props?.data.options).map((val) => (
+                <IconContainer cx={ css.infoItem } icon={ val[1].icon } color={ val[1].activeColor }/>
+            )) }
+        </FlexRow>
+    ));
 
     const getTooltipContent = () => {
         return (
@@ -144,13 +142,7 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
     const renderTarget = (targetProps: IDropdownToggler) => {
         return (
             <div { ...targetProps }>
-                {
-                    targetProps.isOpen
-                        ? <TargetBody/>
-                        : <Tooltip trigger="hover" content={ getTooltipContent() } placement="top">
-                            <TargetBody ref={ targetBodyRef }/>
-                        </Tooltip>
-                }
+                <TargetBody ref={ targetBodyRef } isOpen={targetProps.isOpen} />
             </div>
         );
     };
@@ -160,7 +152,8 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
             <Dropdown
                 renderBody={ (bodyProps) => renderDropdownBody(bodyProps) }
                 renderTarget={ (targetProps: IDropdownToggler) => renderTarget(targetProps) }
-                closeOnTargetClick={ true }
+                closeOnMouseLeave={ 'boundary' }
+                openOnHover={ true }
                 placement="bottom-start"
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
             />
