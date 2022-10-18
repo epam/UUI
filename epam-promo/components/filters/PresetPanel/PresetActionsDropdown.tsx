@@ -86,9 +86,9 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
                 <FlexRow key={ `${ props.preset.id }-duplicate` }>
                     <DropdownMenuButton icon={ CopyIcon } caption="Duplicate" onClick={ duplicateHandler }/>
                 </FlexRow>
-                <FlexRow key={ `${ props.preset.id }-rename` }>
+                { props.preset.id === props.activePresetId && <FlexRow key={ `${ props.preset.id }-rename` }>
                     <DropdownMenuButton icon={ RenameIcon } caption="Rename" onClick={ props.renamePreset }/>
-                </FlexRow>
+                </FlexRow> }
                 <FlexRow borderBottom="gray40" key={ `${ props.preset.id }-copyLink` }>
                     <DropdownMenuButton icon={ CopyLinkIcon } caption="Copy Link" onClick={ copyUrlToClipboard }/>
                 </FlexRow>
