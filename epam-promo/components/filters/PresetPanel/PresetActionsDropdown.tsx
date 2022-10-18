@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import { IconContainer } from '@epam/uui-components';
 import css from "./PresetActionsDropdown.scss";
 import { IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState } from "@epam/uui-core";
 import { Dropdown, DropdownMenuButton, SuccessNotification } from "../../overlays";
+import { IconButton } from '../../buttons';
 import { Text } from "../../typography";
 import { ReactComponent as menuIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 import { FlexRow, Panel } from "../../layout";
@@ -99,9 +99,9 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
         );
     };
 
-    const renderTarget = useCallback((props: IDropdownToggler) => {
+    const renderTarget = useCallback((dropdownProps: IDropdownToggler) => {
         return (
-            <IconContainer { ...props } icon={ menuIcon } />
+            <IconButton cx={ dropdownProps.isOpen && css.targetOpen } color={ props.preset.id === props.activePresetId ? 'blue' : 'gray60' } { ...dropdownProps } icon={ menuIcon } />
         );
     }, []);
 
@@ -110,7 +110,8 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
             <Dropdown
                 renderBody={ renderBody }
                 renderTarget={ renderTarget }
-                placement="bottom"
+                placement="bottom-end"
+                modifiers={ [{ name: 'offset', options: {offset: [0, 22]}}] }
             />
         </>
     );
