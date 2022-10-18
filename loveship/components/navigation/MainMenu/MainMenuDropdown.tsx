@@ -19,7 +19,7 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                     />
                     ) }
                 renderBody={ (props) => (
-                    <DropdownMenuBody color='night' inMainMenu>
+                    <DropdownMenuBody color='night' inMainMenu cx={ css.dropdownContainer }>
                         { React.Children.map(this.props.children, (item: any) => {
                             if (!item) {
                                 return item;

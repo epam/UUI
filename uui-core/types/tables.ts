@@ -253,6 +253,7 @@ export interface ITablePreset<TFilter = Record<string, any>> {
     filter: TFilter;
     isReadonly?: boolean;
     columnsConfig: ColumnsConfig;
+    filtersConfig: FiltersConfig;
     order: string;
 }
 

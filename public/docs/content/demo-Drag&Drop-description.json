@@ -1,0 +1,33 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "In UUI, every component can be made draggable, and/or accept dragged items, by wrapping it with DndActor component. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "This demo showcases UUI drag-n-drop facilities, in a relatively complex scenario: on top of variety of custom components, which are themselves interactive. It also includes scenario when draggable itself contains other draggable items.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
