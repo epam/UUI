@@ -39,8 +39,8 @@
     }
 
     &:global(.-clickable) {
-        cursor: pointer;
         &:hover, &:focus {
+            background-color: $night900;
             color: $white;
             fill: $white;
         }

@@ -201,33 +201,6 @@
     margin-left: 36px;
 }
 
-.in-main-menu {
-    min-width: 200px;
-    padding-bottom: 0;
-
-    :global(.uui-button-box) {
-        @include control-vertical-layout(48px, 0);
-        background-color: $night900;
-
-        :global(.uui-caption), :global(.uui-input) {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            line-height: 24px;
-            font-size: 16px;
-            font-family: $font-sans-semibold;
-        }
-
-        &:last-child {
-            border-bottom-right-radius: 6px;
-            border-bottom-left-radius: 6px;
-        }
-
-        &:hover {
-            background-color: $sky;
-        }
-    }
-}
-
 .checkboxRoot {
     @include icon-sizes(12px, 14px, 14px);
 
