@@ -30,7 +30,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const [predicate, setPredicate] = useState(getDefaultPredicate());
-    const predicateName: string | null = predicate && props.value ? props.predicates.find(p => p.predicate === predicate).name : null;
+    const predicateName: string = props.predicates.find(p => p.predicate === predicate).name;
     const forceUpdate = useForceUpdate();
 
     const onValueChange = useCallback((value: any) => {
@@ -75,7 +75,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         <DropdownContainer>
             <Panel background="white">
                 { renderHeader() }
-                { <FilterItemBody { ...props } { ...dropdownProps } value={ getValue() } onValueChange={ onValueChange }/> }
+                { <FilterItemBody { ...props } { ...dropdownProps } currentPredicate={ { predicate, name: predicateName } } value={ getValue() } onValueChange={ onValueChange }/> }
             </Panel>
         </DropdownContainer>
     );
@@ -104,10 +104,14 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 return { selection: selectionText, postfix };
             }
             case "numeric": {
-                if (!currentValue || (!currentValue.from && !currentValue.to)) {
+                const isRangePredicate = predicate === 'inRange' || predicate === 'notInRange';
+                const decimalFormat = (val: number) => new Intl.NumberFormat(navigator.language ?? 'en-US', { style: 'decimal' }).format(val);
+                if ((isRangePredicate && !currentValue) || (!isRangePredicate && !currentValue && currentValue !== 0)) {
                     return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
                 }
-                const selection = `${ currentValue?.from ?? 'all' } - ${ currentValue?.to ?? 'all' }`;
+                const selection = isRangePredicate
+                    ? `${ (!currentValue?.from && currentValue.from !== 0) ? 'Min' : decimalFormat(currentValue.from) } - ${ (!currentValue?.to && currentValue.to !== 0) ? 'Max' : decimalFormat(currentValue.to)}`
+                    : `${ (!currentValue && currentValue !== 0) ? 'ALL' : decimalFormat(currentValue) }`;
                 return { selection };
             }
             case "singlePicker": {
@@ -139,7 +143,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             { ...dropdownProps }
             { ...getTogglerValue() }
             title={ props.title }
-            predicateName={ predicateName }
+            predicateName={ props.value ? predicateName : null }
             maxWidth={ (props.type === 'datePicker' || props.type === 'rangeDatePicker') ? null : '300' }
         />
     );

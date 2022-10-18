@@ -101,8 +101,12 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             title: "Salary",
             type: "numeric",
             predicates: [
-                { predicate: 'inRange', name: 'In Range', isDefault: true },
-                { predicate: 'notInRange', name: 'Not in Range' },
+                { predicate: 'eq', name: '=', isDefault: true },
+                { predicate: 'neq', name: '≠'},
+                { predicate: 'lte', name: '≤'},
+                { predicate: 'gte', name: '≥'},
+                { predicate: 'inRange', name: 'In Range' },
+                // { predicate: 'notInRange', name: 'Not in Range' },
             ],
         },
         {

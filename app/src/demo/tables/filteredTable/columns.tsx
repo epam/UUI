@@ -31,7 +31,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'salary',
         caption: 'salary',
-        render: p => <Text>{ new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(+p.salary) }</Text>,
+        render: p => <Text>{ new Intl.NumberFormat(navigator.language ?? 'en-US', { style: 'currency', currency: 'USD' }).format(+p.salary) }</Text>,
         width: 150,
         textAlign: 'right',
         isSortable: true,
