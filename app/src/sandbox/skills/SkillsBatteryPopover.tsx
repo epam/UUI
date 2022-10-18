@@ -46,7 +46,13 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
                 </FlexRow>
                 <BigBattery rating={ level } setRating={ setLevel } isExtended={ true }/>
                 <FlexRow cx={ css.iconButtonsRow }>
-                    <Button cx={ css.iconBtn } icon={ heartIconFilled } fill="light" color={ isFavorite?.status ? 'red' : 'gray50' } onClick={ () => setIsFavorite((prev) => ({ ...prev, status: !prev.status })) }/>
+                    <Button
+                        cx={ css.iconBtn }
+                        icon={ isFavorite?.status ? heartIconFilled : heartIconOutline }
+                        fill="light"
+                        color={ isFavorite?.status ? 'red' : 'gray50' }
+                        onClick={ () => setIsFavorite((prev) => ({ ...prev, status: !prev.status })) }
+                    />
                     <Button cx={ css.iconBtn } icon={ recommendedIcon } fill="light" color={ isRecommended?.status ? 'green' : 'gray50' } onClick={ () => setIsRecommended((prev) => ({ ...prev, status: !prev.status })) }/>
                     <Button cx={ css.iconBtn } icon={ noSkillIcon } fill="light" color="gray50" onClick={ () => setLevel('NoSkill') }/>
                     <Button cx={ css.iconBtn } icon={ noActiveIcon } fill="light" color="gray50" onClick={ () => setLevel('NA') }/>
@@ -79,7 +85,7 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
     const renderTarget = (targetProps: IDropdownToggler) => {
         return (
             <div { ...targetProps }>
-                <TargetBody ref={ targetBodyRef } isOpen={targetProps.isOpen} />
+                <TargetBody ref={ targetBodyRef } isOpen={ targetProps.isOpen } />
             </div>
         );
     };
