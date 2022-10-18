@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import sortBy from "lodash.sortby";
 import { i18n } from "../../i18n";
 import { Button, PickerInput, PickerItem, DataPickerRow } from "../../index";
@@ -143,6 +143,11 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
             isDisabled: item.isAlwaysVisible,
         },
     }), []);
+
+    useEffect(() => {
+        // Reset new filter id, after first render with autofocus
+        setNewFilterId(null);
+    }, [newFilterId]);
 
     return (
         <>
