@@ -27,6 +27,8 @@ const uuiBlocker = {
 };
 
 export class Blocker extends React.Component<BlockerProps> {
+    private transitionRef = React.createRef<HTMLDivElement>();
+
     render() {
         return (
             <div
@@ -36,8 +38,8 @@ export class Blocker extends React.Component<BlockerProps> {
                 { ...this.props.rawProps }
             >
                 <TransitionGroup>
-                    { this.props.isEnabled && <CSSTransition classNames={ uuiBlocker } timeout={ { enter: 2000, exit: 1000 } }>
-                        <div className={ uuiBlocker.blocker }>
+                    { this.props.isEnabled && <CSSTransition nodeRef={ this.transitionRef } classNames={ uuiBlocker } timeout={ { enter: 2000, exit: 1000 } }>
+                        <div ref={ this.transitionRef } className={ uuiBlocker.blocker }>
                             { !this.props.hideSpinner && this.props.renderSpinner && this.props.renderSpinner(this.props) }
                         </div>
                     </CSSTransition>
