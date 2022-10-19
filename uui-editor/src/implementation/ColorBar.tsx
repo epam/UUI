@@ -14,7 +14,7 @@ interface ColorBarProps {
 const { FlexRow } = uuiSkin;
 
 export function ColorBar() {
-    const editor = useSlate();
+    //const editor = useSlate();
 
     //const [isActive, setIsActive] = useState(false);
 
@@ -26,33 +26,28 @@ export function ColorBar() {
         // });
     };
 
-    const isMarkActive = (editor: any, format: string) => {
-        const marks: any = Editor.marks(editor);
-
-        return marks ? marks[format] === true : false;
-    };
+    // const isMarkActive = (editor: any, format: string) => {
+    //     const marks: any = Editor.marks(editor);
+    //
+    //     return marks ? marks[format] === true : false;
+    // };
 
     const toggleMark = (color: string) => {
         //this.removeMarks();
 
-        const isActive = isMarkActive(editor, 'bold');
-
-        if (isActive) {
-            Editor.removeMark(editor, 'bold');
-        } else {
-            Editor.addMark(editor, 'bold', true);
-        }
+        // const isActive = isMarkActive(editor, 'bold');
+        //
+        // if (isActive) {
+        //     Editor.removeMark(editor, 'bold');
+        // } else {
+        //     Editor.addMark(editor, 'bold', true);
+        // }
     };
 
-    const renderColorMenu = () => {
-
-        return <FlexRow rawProps={ { style: { background: '#303240' } } }>
-            <ToolbarButton isActive={ false } icon={ ClearIcon } onClick={ () => removeMarks() } />
-            <ToolbarButton iconColor='red' isActive={ false } icon={ ColorIcon } onClick={ () => { toggleMark('#A72014'); } } />
-            <ToolbarButton iconColor='amber' isActive={ false } icon={ ColorIcon } onClick={ () => { toggleMark('#995A00'); } } />
-            <ToolbarButton iconColor='green' isActive={ false } icon={ ColorIcon } onClick={ () => { toggleMark('#669900'); } } />
-        </FlexRow>;
-    };
-
-    return renderColorMenu();
+    return <FlexRow rawProps={ { style: { background: '#303240' } } }>
+        <ToolbarButton isActive={ false } icon={ ClearIcon } onClick={ () => removeMarks() } />
+        <ToolbarButton iconColor='red' isActive={ false } icon={ ColorIcon } onClick={ () => { toggleMark('#A72014'); } } />
+        <ToolbarButton iconColor='amber' isActive={ false } icon={ ColorIcon } onClick={ () => { toggleMark('#995A00'); } } />
+        <ToolbarButton iconColor='green' isActive={ false } icon={ ColorIcon } onClick={ () => { toggleMark('#669900'); } } />
+    </FlexRow>;
 }
