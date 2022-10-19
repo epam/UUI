@@ -25,6 +25,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
             value.from && props.onValueChange(value);
         }
         if (props?.value && !isInRangePredicate && typeof props.value !== 'number') {
+            setValue(prev => ({...prev, to: null}));
             value.from && props.onValueChange(value?.from);
         }
     }, [props.currentPredicate]);
@@ -68,7 +69,11 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
         const size = isMobile() ? '48' : '36';
         const clearSelection = () => {
             setValue({ from: null, to: null });
-            props.onValueChange(null);
+            if (isInRangePredicate) {
+                props.onValueChange({ from: null, to: null });
+            } else {
+                props.onValueChange(null);
+            }
         };
 
         return (
@@ -90,6 +95,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
         <div>
             <div className={ cx(css.container) }>
                 <NumericInput
+                    cx={ cx([isInRangePredicate && css.inRange]) }
                     value={ value.from }
                     onValueChange={ changeValueHandler('from') }
                     size="30"
@@ -99,6 +105,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
                     isInRangePredicate
                     &&
                     <NumericInput
+                        cx={ cx([isInRangePredicate && css.inRange]) }
                         value={ value.to }
                         onValueChange={ changeValueHandler('to') }
                         size="30"

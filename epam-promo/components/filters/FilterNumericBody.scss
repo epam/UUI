@@ -12,7 +12,15 @@
     }
 
     :global(.uui-input-box) {
+        width: 130px;
+    }
+
+    .in-range {
         width: 100%;
+
+        &:last-of-type {
+            margin-left: 3px;
+        }
     }
 }
 
