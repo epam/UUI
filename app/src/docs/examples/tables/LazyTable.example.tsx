@@ -102,8 +102,6 @@ export default function CitiesTable(props: unknown) {
                 // getRows function will be called every time when table will need more rows.
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
-                allowColumnsResizing={ true }
-                showColumnsConfig={ true }
                 headerTextCase='upper'
                 columns={ citiesColumns }
                 { ...props }
