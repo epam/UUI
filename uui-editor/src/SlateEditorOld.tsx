@@ -9,7 +9,7 @@
 // // import {Sidebar} from './implementation/Sidebar';
 // //import { baseMarksPlugin, utilsPlugin, paragraphPlugin } from "./plugins";
 // //import { getSerializer, isEditorEmpty } from './helpers';
-// import * as style from '@epam/assets/scss/promo/typography.scss';
+//import * as style from '@epam/assets/scss/promo/typography.scss';
 // import * as css from './SlateEditor.scss';
 //
 // export const slateEditorEmptyValue: Descendant = {
