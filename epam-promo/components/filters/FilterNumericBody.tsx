@@ -26,7 +26,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
         }
         if (props?.value && !isInRangePredicate && typeof props.value !== 'number') {
             setValue(prev => ({...prev, to: null}));
-            value.from && props.onValueChange(value?.from);
+            props.onValueChange(value?.from ?? null);
         }
     }, [props.currentPredicate]);
 
