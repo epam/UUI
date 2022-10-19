@@ -4,9 +4,14 @@
 .target-body-container {
     padding: 0 12px;
     border: 1px solid #CED0DB;
+    cursor: pointer;
 
     & *:not(:last-of-type) {
         margin-right: 6px;
+    }
+
+    &.target-body-container--hover {
+        background-color: $gray20;
     }
 }
 
@@ -20,7 +25,7 @@
 
     .header-row {
         box-sizing: border-box;
-        padding: 12px 12px 6px 12px;
+        padding: 12px 12px 0 12px;
         min-width: 100%;
         justify-content: space-between;
 
@@ -55,10 +60,15 @@
         justify-content: space-around;
         border-top: 1px solid $gray30;
         border-bottom: 1px solid $gray30;
-        padding: 0 12px;
 
         .icon-btn {
             flex-grow: 1;
+            height: 100%;
+
+            &:hover, &:active, &:focus {
+                background-color: $gray20;
+                border-color: $gray20;
+            }
         }
     }
 
