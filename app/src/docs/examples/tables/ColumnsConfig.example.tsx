@@ -20,7 +20,6 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
             caption: 'ID',
             render: city => <Text color='gray80' fontSize='14'>{ city.id }</Text>,
             isSortable: true,
-            fix: 'left',
             width: 120,
         },
         {
