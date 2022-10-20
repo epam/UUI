@@ -78,8 +78,9 @@ With this release you already can build editable tables. However we are planning
   * ArrayDataSource/ArrayListView now generates row indexes starting from 0 (was from 1)
   * Accordion API improvements, added opportunity to overwrite title.
   * Added default type button for all buttons. Fixed rawProps typings according to React types.
-* [Blocker] fixed "findDOMNode" warnings for strict mode 
-* [Snackbar] fixed "findDOMNode" warnings for strict mode 
+  * Added added onFocus and onBlur props to RangeDatePicker.
+* [Blocker] fixed "findDOMNode" warnings for strict mode
+* [Snackbar] fixed "findDOMNode" warnings for strict mode
 
 
 # 4.8.5 - 15.09.2022

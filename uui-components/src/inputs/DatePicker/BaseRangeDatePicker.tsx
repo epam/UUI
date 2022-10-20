@@ -86,15 +86,21 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         return false;
     }
 
-    handleFocus = (inputType: RangeDatePickerInputType) => {
+    handleFocus = (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => {
         this.toggleOpening(true, inputType);
+        if (this.props.onFocus) {
+            this.props.onFocus(event, inputType);
+        }
     }
 
-    handleBlur = (inputType: RangeDatePickerInputType) => {
+    handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => {
         if (!this.valueIsValid(this.state.inputValue[inputType], inputType) || (this.props.filter && !this.props.filter(dayjs(this.props.value[inputType])))) {
             switch (inputType) {
                 case 'from': this.handleValueChange({ ...this.props.value, from: null }); this.getChangeHandler('from')(null); break;
                 case 'to': this.handleValueChange({ ...this.props.value, to: null }); this.getChangeHandler('to')(null); break;
+            }
+            if (this.props.onBlur) {
+                this.props.onBlur(event, inputType);
             }
         }
     }
