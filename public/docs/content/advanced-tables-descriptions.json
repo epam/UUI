@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Here we describe advanced tables functionality and examples how to create different types of tables",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

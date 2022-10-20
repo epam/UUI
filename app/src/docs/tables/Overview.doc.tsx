@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 
-export class TablesDoc extends BaseDocsBlock {
-    title = 'Data Tables';
+export class TablesOverviewDoc extends BaseDocsBlock {
+    title = 'Tables overview';
 
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='tables-descriptions' />
+                <EditableDocContent fileName='tables-overview-descriptions' />
                 { this.renderSectionTitle('Examples') }
 
                 <DocExample
@@ -28,11 +28,6 @@ export class TablesDoc extends BaseDocsBlock {
                 <DocExample
                     title='Tree Table'
                     path='./examples/tables/TreeTable.example.tsx'
-                />
-
-                <DocExample
-                    title='Columns Configuration'
-                    path='./examples/tables/ColumnsConfig.example.tsx'
                 />
             </>
         );
