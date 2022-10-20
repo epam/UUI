@@ -62,22 +62,20 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
 
     const deleteHandler = useCallback(async () => {
         await props.deletePreset(props.preset);
-        if (props.activePresetId && props.activePresetId === props.preset.id) {
-            props.resetToDefault();
-        }
-    }, [props.activePresetId, props.deletePreset, props.resetToDefault, props.preset]);
+    }, [props.activePresetId, props.deletePreset, props.preset]);
 
     const renderBody = () => {
+        const isReadonlyPreset = props.preset.isReadonly;
         return (
             <Panel background="white" shadow={ true } cx={ css.presetDropdownPanel }>
                 { (props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset)) &&
                     <>
-                        <FlexRow key={ `${ props.preset.id }-save-in-current` }>
+                        { !isReadonlyPreset && <FlexRow key={ `${ props.preset.id }-save-in-current` }>
                             <DropdownMenuButton icon={ SaveInCurrentIcon } caption="Save in current" onClick={ saveInCurrentHandler }/>
-                        </FlexRow>
-                        <FlexRow key={ `${ props.preset.id }-save-as-new` }>
+                        </FlexRow> }
+                        { !isReadonlyPreset && <FlexRow key={ `${ props.preset.id }-save-as-new` }>
                             <DropdownMenuButton icon={ SaveAsNewIcon } caption="Save as new" onClick={ props.addPreset }/>
-                        </FlexRow>
+                        </FlexRow> }
                         <FlexRow key={ `${ props.preset.id }-discard` } borderBottom="gray40">
                             <DropdownMenuButton icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ discardAllChangesHandler  }/>
                         </FlexRow>
@@ -86,15 +84,15 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
                 <FlexRow key={ `${ props.preset.id }-duplicate` }>
                     <DropdownMenuButton icon={ CopyIcon } caption="Duplicate" onClick={ duplicateHandler }/>
                 </FlexRow>
-                { props.preset.id === props.activePresetId && <FlexRow key={ `${ props.preset.id }-rename` }>
+                { props.preset.id === props.activePresetId && !isReadonlyPreset && <FlexRow key={ `${ props.preset.id }-rename` }>
                     <DropdownMenuButton icon={ RenameIcon } caption="Rename" onClick={ props.renamePreset }/>
                 </FlexRow> }
                 <FlexRow borderBottom="gray40" key={ `${ props.preset.id }-copyLink` }>
                     <DropdownMenuButton icon={ CopyLinkIcon } caption="Copy Link" onClick={ copyUrlToClipboard }/>
                 </FlexRow>
-                <FlexRow key={ `${ props.preset.id }-delete` } cx={ css.deleteRow }>
+                { !isReadonlyPreset && <FlexRow key={ `${ props.preset.id }-delete` } cx={ css.deleteRow }>
                     <DropdownMenuButton icon={ DeleteIcon } caption="Delete" cx={ css.deleteButton } onClick={ deleteHandler }/>
-                </FlexRow>
+                </FlexRow> }
             </Panel>
         );
     };
