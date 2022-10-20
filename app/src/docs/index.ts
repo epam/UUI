@@ -3,6 +3,7 @@ export * from './assets';
 export * from './other';
 export * from './design';
 export * from './advanced';
+export * from './tables';
 export * from './Accordion.doc';
 export * from './Button.doc';
 export * from './Checkbox.doc';

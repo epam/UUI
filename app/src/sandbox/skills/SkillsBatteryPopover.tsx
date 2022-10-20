@@ -147,7 +147,7 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
                 {
                     targetProps.isOpen
                         ? <TargetBody/>
-                        : <Tooltip trigger="hover" content={ getTooltipContent() } placement="top">
+                        : <Tooltip cx={ css.tooltipWrapper }  trigger="hover" content={ getTooltipContent() } placement="top">
                             <TargetBody ref={ targetBodyRef }/>
                         </Tooltip>
                 }
