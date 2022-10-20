@@ -28,17 +28,6 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
 
     const {presets, ...presetApi} = props;
 
-    const renderDefaultPreset = () => {
-        return (
-            <TabButton
-                caption='Default Preset'
-                onClick={ props.resetToDefault }
-                size="60"
-                isLinkActive={ !props.activePresetId }
-            />
-        );
-    };
-
     const renderPreset = (preset: ITablePreset) => {
         return (
             <Preset key={ preset.id } preset={ preset } addPreset={ setAddingPreset } { ...presetApi }/>
@@ -98,7 +87,7 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
 
     const getPanelItems = (): PresetAdaptiveItem[] => {
         return [
-            {id: 'default', render: () => renderDefaultPreset(), priority: 100500 },
+            //{id: 'default', render: () => renderDefaultPreset(), priority: 100500 },
             ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({id: preset.id.toString(), render: () => renderPreset(preset), priority: getPresetPriority(preset, index), preset: preset })),
             { id: 'collapsedContainer', render: renderMoreButtonDropdown,
                 priority: 100501, collapsedContainer: true,
