@@ -87,8 +87,8 @@ describe('RangeDataPicker', () => {
             value={ baseValue }
             onValueChange={ onValueChangeSpy }
         />, {});
-
-        (wrapper.instance() as any).handleBlur('from');
+        const event = { target: { value: baseValue} };
+        (wrapper.instance() as any).handleBlur(event, 'from');
         expect(onValueChangeSpy).toHaveBeenLastCalledWith({
             from: null,
             to: baseValue.to,

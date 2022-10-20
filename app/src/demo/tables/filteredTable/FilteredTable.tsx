@@ -9,11 +9,35 @@ import { personColumns } from './columns';
 import { SearchInput } from "@epam/uui";
 import { TApi } from "../../../data";
 
+const defaultPresets: ITablePreset[] = [
+    {
+        name: 'All',
+        id: -1,
+        filter: undefined,
+        order: 'a',
+        isReadonly: true,
+    },
+    {
+        name: 'My Team',
+        id: -2,
+        filter: {
+            managerId: [13],
+        },
+        order: 'b',
+        isReadonly: true,
+        filtersConfig: {
+            managerName: {
+                isVisible: true,
+            },
+        },
+    },
+];
+
 export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
-    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>(JSON.parse(localStorage.getItem('presets')));
+    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
 
 
     useEffect(() => {

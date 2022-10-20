@@ -84,11 +84,13 @@
     }
 }
 
-:global(.uui-tooltip-container) {
-    :global(.uui-tooltip-body) {
-        margin: 0;
-        padding: 0;
-        background-color: $gray80;
+.tooltip-wrapper {
+    &:global(.uui-tooltip-container) {
+        :global(.uui-tooltip-body) {
+            margin: 0;
+            padding: 0;
+            background-color: $gray80;
+        }
     }
 }
 
