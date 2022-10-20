@@ -102,8 +102,9 @@ describe('DataPicker', () => {
             format="MMM D, YYYY"
         />, {});
         const instance = (wrapper.instance() as any);
+        const event = { target: { value: baseValue} };
         instance.handleInputChange(baseValue);
-        instance.handleBlur('from');
+        instance.handleBlur(event, 'from');
         expect(newState.value).toEqual(null);
 
     });

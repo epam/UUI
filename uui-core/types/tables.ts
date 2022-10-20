@@ -200,7 +200,7 @@ export type FiltersConfig = {
 
 export type IFilterConfig = {
     isVisible: boolean;
-    order: string;
+    order?: string;
 };
 
 export type DataTableProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
@@ -248,17 +248,15 @@ export interface ITablePreset<TFilter = Record<string, any>> {
     id: number | null;
     filter: TFilter;
     isReadonly?: boolean;
-    columnsConfig: ColumnsConfig;
-    filtersConfig: FiltersConfig;
+    columnsConfig?: ColumnsConfig;
+    filtersConfig?: FiltersConfig;
     order: string;
 }
 
 export interface IPresetsApi {
     activePresetId: number | null;
-    isDefaultPresetActive: boolean;
     choosePreset(preset: ITablePreset): void;
     createNewPreset(name: string): Promise<number>;
-    resetToDefault(): void;
     hasPresetChanged(preset: ITablePreset): boolean;
     duplicatePreset(preset: ITablePreset): void;
     deletePreset(preset: ITablePreset): Promise<void>;
