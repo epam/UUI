@@ -87,7 +87,6 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
 
     const getPanelItems = (): PresetAdaptiveItem[] => {
         return [
-            //{id: 'default', render: () => renderDefaultPreset(), priority: 100500 },
             ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({id: preset.id.toString(), render: () => renderPreset(preset), priority: getPresetPriority(preset, index), preset: preset })),
             { id: 'collapsedContainer', render: renderMoreButtonDropdown,
                 priority: 100501, collapsedContainer: true,
