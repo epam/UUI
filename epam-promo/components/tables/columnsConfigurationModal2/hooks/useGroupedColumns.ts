@@ -90,6 +90,7 @@ export function useGroupedColumns(props: IUseGroupedColumns): IUseGroupedColumns
     }, [filter]);
 
     const { byGroup } = useGroupedItems({
+        groups: Object.keys(ColGroup),
         items: columnsSorted,
         onFilter: handleFilter,
         onGetGroup: handleGetGroup,
@@ -119,7 +120,7 @@ export function useGroupedColumns(props: IUseGroupedColumns): IUseGroupedColumns
             return prevConfig;
         }
         const { items } = byGroup[to];
-        const targetColumnKey = toPosition === 'end' ? items[items.length - 1]?.key : items[0]?.key;
+        const targetColumnKey = toPosition === 'end' && items?.length ? items[items.length - 1].key : items?.[0]?.key;
         if (targetColumnKey) {
             return moveColumn(prevConfig, columnKey, targetColumnKey, toPosition === 'end');
         } else {

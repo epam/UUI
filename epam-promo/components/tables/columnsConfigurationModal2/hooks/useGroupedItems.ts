@@ -6,6 +6,7 @@ export type TItemsByGroup<I> = {
 };
 
 interface IUseGroupedItems<I> {
+    groups: string[];
     items?: I[];
     onGetGroup: (item: I) => string;
     onFilter: (item: I) => boolean;
@@ -16,13 +17,21 @@ interface IUseGroupedItemsResult<I> {
 }
 
 export function useGroupedItems<I>(props: IUseGroupedItems<I>): IUseGroupedItemsResult<I> {
-    const { items, onFilter, onGetGroup } = props;
+    const { items, onFilter, onGetGroup, groups } = props;
 
     const byGroup = useMemo(() => {
-        const accUnsorted = {} as TItemsByGroup<I>;
+        const accUnsorted = groups
+            .reduce<TItemsByGroup<I>>((acc, id) => {
+                acc[id] = {};
+                return acc;
+            }, {}) as TItemsByGroup<I>;
         return items.reduce((acc, i) => {
             const isVisible = onFilter(i);
             const groupKey = onGetGroup(i);
+            if (!groups.includes(groupKey)) {
+                console.error(`Unknown group: ${groupKey}`);
+                return acc;
+            }
 
             if (!acc[groupKey]) {
                 acc[groupKey] = {};
@@ -39,7 +48,7 @@ export function useGroupedItems<I>(props: IUseGroupedItems<I>): IUseGroupedItems
             }
             return acc;
         }, accUnsorted);
-    }, [items, onFilter, onGetGroup]);
+    }, [items, onFilter, onGetGroup, groups]);
 
     return {
         byGroup,

@@ -100,7 +100,7 @@ $midAreaHeight2: calc(80vh - #{$footerHeight + $headerHeight + $searchHeight}px)
         border-radius: 3px;
         background-color: white;
         cursor: auto;
-        user-select: text;
+        user-select: none;
         display: flex;
         > .title {
             flex-grow: 1;

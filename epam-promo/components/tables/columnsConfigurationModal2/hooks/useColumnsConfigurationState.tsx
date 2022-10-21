@@ -175,7 +175,7 @@ export function useColumnsConfigurationState<TItem, TId, TFilter>(props: IColumn
     };
 
     const renderRows = (colGroup: ColGroup) => {
-        const items = byGroup[colGroup].itemsFiltered || [];
+        const items = byGroup[colGroup]?.itemsFiltered || [];
         return items.map(item => renderDndRow(item));
     };
 

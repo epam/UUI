@@ -85,8 +85,8 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
     </div>;
 
     const renderVisible = () => {
-        const amountPinned = byGroup.DISPLAYED_PINNED?.itemsFiltered?.length;
-        const amountUnPinned = byGroup.DISPLAYED_UNPINNED?.itemsFiltered?.length;
+        const amountPinned = byGroup.DISPLAYED_PINNED?.itemsFiltered?.length || 0;
+        const amountUnPinned = byGroup.DISPLAYED_UNPINNED?.itemsFiltered?.length || 0;
         if (!amountPinned && !amountUnPinned) {
             return null;
         }
@@ -105,7 +105,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
     };
 
     const renderHidden = () => {
-        const amountHidden = byGroup.HIDDEN?.itemsFiltered?.length;
+        const amountHidden = byGroup.HIDDEN?.itemsFiltered?.length || 0;
         if (!amountHidden) {
             return null;
         }
