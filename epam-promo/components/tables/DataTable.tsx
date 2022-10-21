@@ -4,7 +4,8 @@ import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
 import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
         DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
         cx, TableFiltersConfig, DataTableRowProps } from '@epam/uui-core';
-import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
+import { DataTableHeaderRow, DataTableRow, DataTableMods } from './';
+import { ColumnsConfigurationModal } from './columnsConfigurationModal2/ColumnsConfigurationModal';
 import { VirtualList } from '../';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from "../typography";
@@ -54,7 +55,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const onConfigurationButtonClick = React.useCallback(() => {
         uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
-                { ...modalProps }
+                modalProps={ modalProps }
                 columns={ props.columns }
                 columnsConfig={ config }
                 defaultConfig={ defaultConfig }

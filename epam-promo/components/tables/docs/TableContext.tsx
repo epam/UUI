@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataSourceState, Lens, DataColumnProps, UuiContext, UuiContexts, ColumnsConfig } from '@epam/uui-core';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
 import { Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton } from '../..';
-import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
+import { ColumnsConfigurationModal } from '../columnsConfigurationModal2/ColumnsConfigurationModal';
 import { ReactComponent as GearIcon } from '../../../icons/action-settings-18.svg';
 
 export type Person = {
@@ -77,7 +77,7 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
     showConfigurationModal = () => {
         this.context.uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
-                { ...modalProps }
+                modalProps={ modalProps }
                 columns={ this.props.props.columns }
                 columnsConfig={ this.state.columnsConfig }
                 defaultConfig={ { gender: { isVisible: false, order: 'f' }} }
