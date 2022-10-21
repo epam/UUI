@@ -126,7 +126,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         }
         formHistory = formHistory.slice(0, historyIndex).concat(newForm);
 
-        if(options.addCheckpoint || context.uuiUserSettings.get(props.settingsKey)) {
+        if (options.addCheckpoint || context.uuiUserSettings.get(props.settingsKey)) {
             context.uuiUserSettings.set(props.settingsKey, newForm);
         }
 
