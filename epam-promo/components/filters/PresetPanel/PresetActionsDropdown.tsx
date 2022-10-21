@@ -73,9 +73,9 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
                         { !isReadonlyPreset && <FlexRow key={ `${ props.preset.id }-save-in-current` }>
                             <DropdownMenuButton icon={ SaveInCurrentIcon } caption="Save in current" onClick={ saveInCurrentHandler }/>
                         </FlexRow> }
-                        { !isReadonlyPreset && <FlexRow key={ `${ props.preset.id }-save-as-new` }>
+                        <FlexRow key={ `${ props.preset.id }-save-as-new` }>
                             <DropdownMenuButton icon={ SaveAsNewIcon } caption="Save as new" onClick={ props.addPreset }/>
-                        </FlexRow> }
+                        </FlexRow>
                         <FlexRow key={ `${ props.preset.id }-discard` } borderBottom="gray40">
                             <DropdownMenuButton icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ discardAllChangesHandler  }/>
                         </FlexRow>
