@@ -13,7 +13,6 @@ interface IPresetProps {
     duplicatePreset: (preset: ITablePreset) => void;
     deletePreset: (preset: ITablePreset) => void;
     updatePreset: (preset: ITablePreset) => void;
-    resetToDefault: () => void;
 }
 
 export const Preset: React.FC<IPresetProps> = (
@@ -25,7 +24,6 @@ export const Preset: React.FC<IPresetProps> = (
         duplicatePreset,
         deletePreset,
         updatePreset,
-        resetToDefault,
     },
 ) => {
     const [isRenaming, setIsRenaming] = useState(false);
@@ -57,9 +55,6 @@ export const Preset: React.FC<IPresetProps> = (
         };
         const handleDelete = () => {
             deletePreset(preset);
-            if (isActive) {
-                resetToDefault();
-            }
             props.onClose();
         };
         const update = () => {
