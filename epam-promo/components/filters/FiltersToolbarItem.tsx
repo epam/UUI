@@ -75,7 +75,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         <DropdownContainer>
             <Panel background="white">
                 { renderHeader() }
-                { <FilterItemBody { ...props } { ...dropdownProps } currentPredicate={ { predicate, name: predicateName } } value={ getValue() } onValueChange={ onValueChange }/> }
+                { <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange }/> }
             </Panel>
         </DropdownContainer>
     );
@@ -110,7 +110,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                     return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
                 }
                 const selection = isRangePredicate
-                    ? `${ (!currentValue?.from && currentValue.from !== 0) ? 'Min' : decimalFormat(currentValue.from) } - ${ (!currentValue?.to && currentValue.to !== 0) ? 'Max' : decimalFormat(currentValue.to)}`
+                    ? `${ (!currentValue?.from && currentValue?.from !== 0) ? 'Min' : decimalFormat(currentValue?.from) } - ${ (!currentValue?.to && currentValue?.to !== 0) ? 'Max' : decimalFormat(currentValue?.to) }`
                     : `${ (!currentValue && currentValue !== 0) ? 'ALL' : decimalFormat(currentValue) }`;
                 return { selection };
             }

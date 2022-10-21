@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import cx from "classnames";
 import css from './FilterNumericBody.scss';
 import { DropdownBodyProps, FlexSpacer } from "@epam/uui-components";
@@ -8,67 +8,75 @@ import { FlexCell, FlexRow } from "../layout";
 import { LinkButton } from "../buttons";
 import { i18n } from "../../i18n";
 
-type NumericRangeValueType = { from: number | null, to: number | null };
+interface NumericRangeValueType {
+    from: number | null;
+    to: number | null;
+}
+
+type Value = undefined | number | NumericRangeValueType;
 
 interface IFilterNumericBodyProps extends DropdownBodyProps {
     onValueChange: (value: number | NumericRangeValueType) => void;
-    value: number | NumericRangeValueType;
-    currentPredicate?: { predicate: string, name: string };
+    value: Value;
+    selectedPredicate?: string;
 }
 
 export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
-    const [value, setValue] = useState<NumericRangeValueType>({ from: null, to: null });
-    const isInRangePredicate = props?.currentPredicate.predicate === 'inRange' || props?.currentPredicate.predicate === 'notInRange';
-
-    useEffect(() => {
-        if ((!props?.value) && isInRangePredicate) {
-            value.from && props.onValueChange(value);
-        }
-        if (props?.value && !isInRangePredicate && typeof props.value !== 'number') {
-            setValue(prev => ({...prev, to: null}));
-            props.onValueChange(value?.from ?? null);
-        }
-    }, [props.currentPredicate]);
-
+    const isInRangePredicate = props?.selectedPredicate === 'inRange' || props?.selectedPredicate === 'notInRange';
 
     useEffect(() => {
         if (isInRangePredicate) {
-            if ((props?.value || props?.value === 0) && typeof props?.value === 'number') {
-                setValue({ from: props.value, to: null });
-            } else if (props?.value && typeof props?.value !== 'number') {
-                setValue({ ...props.value });
+            if (typeof props.value !== 'object') {
+                props.onValueChange({from: null, to: null});
             }
         } else {
-            if ((props?.value || props?.value === 0) && typeof props?.value === 'number') {
-                setValue({ from: props.value, to: null });
-            } else if (props?.value && typeof props?.value !== 'number') {
-                setValue({ from: props.value.from, to: null });
-            }
+            props.onValueChange(null);
         }
-    }, []);
+    }, [isInRangePredicate]);
 
-    const changeValueHandler = (type: 'from' | 'to') => (val: number) => {
-        if (isInRangePredicate) {
-            switch (type) {
-                case "from":
-                    setValue({ from: val, to: value.to });
-                    props.onValueChange({ from: val, to: value.to });
-                    break;
-                case "to":
-                    setValue({ from: value.from, to: val });
-                    props.onValueChange({ from: value.from, to: val });
-                    break;
+    const getNumberValue = () => {
+        if (typeof props.value === 'number') {
+            return props.value;
+        } else if (typeof props.value === 'object') {
+            return (props.value && "from" in props.value) ? props.value?.from : null;
+        }
+        return null;
+    };
+
+    const getRangeValue = (type: 'from' | 'to') => {
+        switch (type) {
+            case "from":
+                if (typeof props.value === "number") {
+                    return props.value;
+                }
+                return ((props.value && typeof props.value === 'object') && ("from" in props.value)) ? props.value?.from : null;
+            case "to":
+                return ((props.value && typeof props.value === 'object') && ("to" in props.value)) ? props.value?.to : null;
+        }
+    };
+
+    const rangeValueHandler = (type: 'from' | 'to') => (val: number) => {
+        switch (type) {
+            case "from": {
+                props.onValueChange({
+                    from: val,
+                    to: ((props.value && typeof props.value === "object") && ("to" in props.value)) ? props.value?.to : null,
+                });
+                break;
             }
-        } else {
-            setValue({ from: val, to: null });
-            props.onValueChange(val);
+            case "to": {
+                props.onValueChange({
+                    from: ((props.value && typeof props.value === "object") && ("from" in props.value)) ? props.value?.from : null,
+                    to: val,
+                });
+                break;
+            }
         }
     };
 
     const renderFooter = () => {
         const size = isMobile() ? '48' : '36';
         const clearSelection = () => {
-            setValue({ from: null, to: null });
             if (isInRangePredicate) {
                 props.onValueChange({ from: null, to: null });
             } else {
@@ -76,12 +84,14 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
             }
         };
 
+        const isClearDisabled = (!props.value && props.value !== 0) && (typeof props.value === "object" && !props.value?.from && !props.value?.to);
+
         return (
             <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper) }>
                 <FlexSpacer/>
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
-                        isDisabled={ value.from === null && value.to === null }
+                        isDisabled={ isClearDisabled }
                         size={ size }
                         caption={ i18n.pickerInput.clearSelectionButtonSingle }
                         onClick={ clearSelection }
@@ -91,27 +101,39 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
         );
     };
 
+    if (isInRangePredicate) {
+        return (
+            <div>
+                <div className={ cx(css.container) }>
+                    <NumericInput
+                        cx={ cx(css.inRange) }
+                        value={ getRangeValue('from') }
+                        onValueChange={ rangeValueHandler('from') }
+                        size="30"
+                        placeholder="Min"
+                    />
+                    <NumericInput
+                        cx={ cx(css.inRange) }
+                        value={ getRangeValue('to') }
+                        onValueChange={ rangeValueHandler('to') }
+                        size="30"
+                        placeholder="Max"
+                    />
+                </div>
+                { renderFooter() }
+            </div>
+        );
+    }
+
     return (
         <div>
             <div className={ cx(css.container) }>
                 <NumericInput
-                    cx={ cx([isInRangePredicate && css.inRange]) }
-                    value={ value.from }
-                    onValueChange={ changeValueHandler('from') }
+                    value={ getNumberValue() }
+                    onValueChange={ props.onValueChange }
                     size="30"
-                    placeholder={ isInRangePredicate ? "Min" : "Enter a number" }
+                    placeholder={ "Enter a number" }
                 />
-                {
-                    isInRangePredicate
-                    &&
-                    <NumericInput
-                        cx={ cx([isInRangePredicate && css.inRange]) }
-                        value={ value.to }
-                        onValueChange={ changeValueHandler('to') }
-                        size="30"
-                        placeholder="Max"
-                    />
-                }
             </div>
             { renderFooter() }
         </div>
