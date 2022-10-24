@@ -56,7 +56,7 @@ export class ReleaseNotesDoc extends React.Component {
     }
 
     renderReleaseRow(release: string, index: number) {
-        const [header, date] = release.split('*')[0].split('-').map(i => i.trim());
+        const [header, date] = release.split('*')[0].split(' - ').map(i => i.trim());
         const content = release.substring(release.search(/\*/), release.length);
 
         return (
