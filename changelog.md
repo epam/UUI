@@ -1,12 +1,12 @@
-# editable tables branch
+# 4.9.0-rc.1 - 24.10.2022
 
 **What's New**
 
 This release prepares UUI for full-featured editable tables support. Editable tables were possible before this - via hooking into renderRow, building a separate component for row, and certain tricks to re-render it w/o re-rendering whole table. However, this was a complex and feature-limited approach.
 
-In this release, we add first-class support for editable cells, and adjust our infrastructure to support various other features to make DataTables editable.
+In this release, we add first-class support for editable cells, and adjust our infrastructure to support various other features to make DataTables editable. You can find example and documentation how to create editable table [here](https://uui.epam.com/documents?id=editableTables&mode=doc&skin=UUI4_promo&category=tables).
 
-With this release you already can build editable tables. However we are planning to improve certain parts in the future releases, e.g. simplify adding/removing/moving rows in tables.
+With this release you already can build editable tables. However, we are planning to improve certain parts in the future releases, e.g. simplify adding/removing/moving rows in tables.
 
 * [Breaking Change] DataSources and DataTables-related interfaces refactored:
   * DataTableRowProps type is moved from @epam/uui-components to @epam/uui-core
@@ -15,11 +15,8 @@ With this release you already can build editable tables. However we are planning
   * DataTableCell interface extended to support editable cells (backward compatible)
 
 * ArrayDataSource - ```items``` prop value can now be updated dynamically.
-
   Prior this fix, the only way to update ```items```, is to add them as useArrayDataSource dependencies. This forces DataSource to re-create everything, forcing re-render of all tables' rows. This was slow, especially if you need to make cells editable - i.e. re-render on each keystroke. Now, you can safely remove your items from deps: useArrayDataSource(..., ~~~[items]~~~), which will improve performance.
-
 * DataSources: ```getRowOptions``` is called on each update, allowing to dynamically change rows behavior. For example, you can dynamically enable/disable checkboxes in Tables or PickerInputs.
-
 * DataSources: getRowOptions - DataRowOptions now implements IEditable<TItem> interface. This allows to make rows editable, by passing value/onValueChange directly, or by using lens.toProps(): getRowOptions(item) => lens.prop(item.id).toProps()
 
 * [Breaking Change] DataTableCell layout reworked.
@@ -28,28 +25,17 @@ With this release you already can build editable tables. However we are planning
   * DataTableColumn - new prop: justifyContent, which sets appropriate flexbox property. Can be used to align items horizontally. If omitted, we use existing textAlign property to set it. I.e. you can still use textAlign: left/center/right to align textual cell content.
   * DataTableCell renders focus/hover effects (borders) on their own. We removed these effects from all inputs with mode='cell'.
 
+* [Breaking Change] DataTable columns widths props are simplified. Columns width are defined by width (in pixels), and (optionally) grow - which defines a part of empty space for column to occupy. Props affected:
+  * shrink prop - marked @deprecated. Id will be removed in future versions.
+    'shrink' prop wasn't supported even before this change, so you can safely remove it from all columns.
+    Column can't 'shrink' (become less than width), as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
+  * 'width' prop is now required (was optional).
+    If you didn't have 'width' on a column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space. You can set width: 0 explicitly in such cases.
+  * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing. Default is minWidth = width.
+
 * [Breaking Change] DataSources doesn't work with array/object ids by-default. In certain cases, we used IDs like [123, 'group-row'] to handle scenarios when there are different types of entities, with overlapping ids. E.g. item groups, and actual records in grouping table case. They are no-longer supported by default.
   * If you use such ids, set `complexIds = true` prop when creating DataSource. In this case, DataSource will use JSON.stringify to use IDs as Map keys internally. This was default behavior prior this change, which has impact on performance, so it's made optional
   * number and string ids are supported correctly by default
-
-* FlexCell: added `style` attribute.
-
-
-# next version (Editable Tables Preparation)
-
-**What's New**
-
-* [Modals]: Add disallowClickOutside to ModalBlockerProps interface
-
-* Metadata<T> type - 'all' prop now infer the type of array element or object values (was typed as 'any')
-
-* [Breaking Change] DataTable columns widths props are simplified. Columns width are defined by width (in pixels), and (optionally) grow - which defines a part of empty space for column to occupy. Props affected:
-    * shrink prop - marked @deprecated. Id will be removed in future versions.
-      'shrink' prop wasn't supported even before this change, so you can safely remove it from all columns.
-      Column can't 'shrink' (become less than width), as we add horizontal scrolling instead of shrinking in case all columns doesn't fit.
-    * 'width' prop is now required (was optional).
-      If you didn't have 'width' on a column, most probably you mean width=0 and have grow=1 - to make the column to occupy all empty space. You can set width: 0 explicitly in such cases.
-    * 'minWidth' prop now doesn't work as flex-item prop, it only serves as minimum width for manual column resizing. Default is minWidth = width.
 
 * useForm now provides two new callbacks: setValue and replaceValue.
     They work the same way as setState of React.useState.
@@ -57,31 +43,53 @@ With this release you already can build editable tables. However we are planning
     setValue acts as a usual user-made change to a form - sets isChanged, creates undo checkpoint, etc.
     replaceValue doesn't update isChanged, and can be used for technical needs. E.g. to store values like 'currentTab' in the form state.
 
+* Metadata<T> type - 'all' prop now infer the type of array element or object values (was typed as 'any')
+
 * Lenses now memoizes all methods calls (.prop, .item, etc.).
     This allows to not re-create onValueChange callbacks on re-renders.
     In turn, it opens a way to use React.memo/shouldComponentUpdate optimization for IEditable components.
 
-* Numeric Input - reworked to display number is locale format (e.g. with decimal and thousands separators) while not being edited.
+* [PresetPanel]: Added new `PresetPanel` component, which allows you to save your current filtration into presets and manage them. See demo [here](https://uui.epam.com/demo?id=filteredTable).
+
+* [AdaptivePanel]: Added new `AdaptivePanel` component. This component helps you to layout elements inside container and hide items by their priorities if they didn't fit.
+* [MainMenu]: reworked based on `AdaptivePanel`, now you can provide menu elements in new format via `items` prop. But we also left working old approach with children, so no action is required from your side.
+
+* [Numeric Input] - reworked to display number is locale format (e.g. with decimal and thousands separators) while not being edited.
   * Formatting can be disabled with the 'disableLocaleFormatting' prop
   * min/max are no longer required. By default, NumericInput only accepts positive whole numbers.
   * A lot of display options are now possible via NumberFormatOptions: currencies, units, flexible min/max fractional digits limits, etc.
-  * See more at the [docs page](/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
-
+  * See more at the [docs page](https://uui.epam.com/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
+  
+* [RangeDatePicker]: Added onFocus and onBlur props
+* [PickerInput]: added ability to pass rawProps to modal window
+* [Modals]: added disableCloseByEsc prop to ModalBlocker
+* [Accordion]: API improvements, added opportunity to overwrite title.
+* [DropdownMenuButton]: add possibility to provide onClick for icon
+* [FilterToolbar]: renamed `FilterToolbar` component to `FilterPanel`
+* [FilterPanel]: added numeric filter type
+* [FilterPanel]: improvements and bugfixes
 * Build target for packages is changed from ES5 to ES6. This shouldn't affect existing apps, as most app builds into ES5 anyway, including the latest CRA.
 
+
 **What’s Fixed**
-* DnD Actor - improved 'inside' position calculation
-* useForm
+* Fixed `rawProps` prop typings
+* [DndActor]: improved 'inside' position calculation
+* [useForm]:
   * fixed revert/undo/redo behavior after save
   * onValueChange now triggers internal validation logic (as with changes made with lenses)
   * refactored to remove unnecessary re-renders in some cases
   * ArrayDataSource/ArrayListView now generates row indexes starting from 0 (was from 1)
-  * Accordion API improvements, added opportunity to overwrite title.
-  * Added default type button for all buttons. Fixed rawProps typings according to React types.
-  * Added added onFocus and onBlur props to RangeDatePicker.
-* [Blocker] fixed "findDOMNode" warnings for strict mode
-* [Snackbar] fixed "findDOMNode" warnings for strict mode
-
+* [Button]: Added default type 'button' for all buttons.
+* [RangeDatePicker]: fix styles for presets block
+* [Datepicker]: fix unnecessary onValueChange calls
+* [LabeledInput]: change paddings for validationMessage
+* [PickerInput]: fixed issues with focusing at PickerToggler
+* [NumericInput]: added behavior for input without value and with min prop on focus lost
+* [MainMenu]: fix styles for non-clickable elements
+* [ErrorHandler]: fix context listeners unsubscribing on second render
+* [ColumnConfigurationModal]: fix column dnd on first position 
+* [TabButton]: reworked notify dot styles, placed after caption element, change paddings
+* [PickerInput]: fixed row selecting by 'enter' pressing
 
 # 4.8.5 - 15.09.2022
 
