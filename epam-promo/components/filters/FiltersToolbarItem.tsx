@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import dayjs from "dayjs";
 import cx from "classnames";
-import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName } from "@epam/uui-core";
+import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { i18n } from "../../i18n";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
@@ -46,6 +46,17 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     };
 
     const changePredicate = (val: FilterPredicateName) => {
+        const isInRange = (p: FilterPredicateName) => p === 'inRange' || p === 'notInRange';
+
+        if (isInRange(val) && !isInRange(predicate as FilterPredicateName)) {// from simple predicate -> to Range
+            setPredicate(val);
+            props.onValueChange({ [props.field]: { [val]: { from: null, to: null } } });
+            return;
+        } else if (!isInRange(val) && isInRange(predicate as FilterPredicateName)) {// from Range -> to simple predicate
+            setPredicate(val);
+            props.onValueChange({ [props.field]: { [val]: null } });
+            return;
+        }
         setPredicate(val);
         props.onValueChange({ [props.field]: { [val]: getValue() } });
     };
@@ -105,7 +116,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             }
             case "numeric": {
                 const isRangePredicate = predicate === 'inRange' || predicate === 'notInRange';
-                const decimalFormat = (val: number) => new Intl.NumberFormat(navigator.language ?? 'en-US', { style: 'decimal' }).format(val);
+                const decimalFormat = (val: number) => getSeparatedValue(val, {maximumFractionDigits: 2});
                 if ((isRangePredicate && !currentValue) || (!isRangePredicate && !currentValue && currentValue !== 0)) {
                     return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
                 }

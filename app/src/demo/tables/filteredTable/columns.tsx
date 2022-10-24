@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, Badge, EpamAdditionalColor, FlexRow, LinkButton } from '@epam/promo';
-import { DataColumnProps } from "@epam/uui";
+import { DataColumnProps, getSeparatedValue } from "@epam/uui";
 import { Person } from "@epam/uui-docs";
 import * as css from './FilteredTable.scss';
 
@@ -31,7 +31,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'salary',
         caption: 'salary',
-        render: p => <Text>{ new Intl.NumberFormat(navigator.language ?? 'en-US', { style: 'currency', currency: 'USD' }).format(+p.salary) }</Text>,
+        render: p => <Text>{ getSeparatedValue(+p.salary, {style: "currency", currency: "USD", maximumFractionDigits: 2, minimumFractionDigits: 2}) }</Text>,
         width: 150,
         textAlign: 'right',
         isSortable: true,
