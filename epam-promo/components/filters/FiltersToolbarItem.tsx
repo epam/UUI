@@ -16,7 +16,7 @@ import css from "./FiltersToolbarItem.scss";
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
-    removeFilter?: (columnKey: string, field: any) => void;
+    removeFilter?: (field: any) => void;
 };
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
@@ -42,7 +42,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     }, [props.field, props.onValueChange]);
 
     const removeOnclickHandler = () => {
-        props.removeFilter(props.columnKey, props.field);
+        props.removeFilter(props.field);
     };
 
     const changePredicate = (val: FilterPredicateName) => {

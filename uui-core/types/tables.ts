@@ -194,8 +194,8 @@ export type IColumnConfig =  {
     width?: number;
 };
 
-export type FiltersConfig = {
-    [key: string]: IFilterConfig;
+export type FiltersConfig<TFilter = any> = {
+    [key in keyof TFilter]: IFilterConfig;
 };
 
 export type IFilterConfig = {
@@ -243,10 +243,10 @@ type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
 export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter>
     | DatePickerFilterConfig<TFilter>;
 
-export interface ITablePreset<TFilter = Record<string, any>> {
+export interface ITablePreset<TFilter = any> {
     name: string;
     id: number | null;
-    filter: TFilter;
+    filter?: TFilter;
     isReadonly?: boolean;
     columnsConfig?: ColumnsConfig;
     filtersConfig?: FiltersConfig;

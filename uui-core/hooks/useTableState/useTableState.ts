@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import isEqual from "lodash.isequal";
-import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, ITablePreset, ITableState } from "../../types";
-import { getColumnsConfig, getOrderBetween } from "../../helpers";
+import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, ITablePreset, ITableState, TableFiltersConfig } from "../../types";
+import { getOrderBetween } from "../../helpers";
 import { useUuiContext } from "../../services";
-import { isDefaultColumnsConfig } from "./helpers";
-import { constants } from "./constants";
 import sortBy from "lodash.sortby";
 import { normalizeFilter } from "./normalizeFilter";
+import { normalizeFilterConfig } from "./normalizeFilterConfig";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
     const context = useUuiContext();
@@ -15,13 +14,14 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     const [tableStateValue, setTableStateValue] = useState<DataTableState>(() => {
         const urlParams = context.uuiRouter.getCurrentLink().query;
         const activePreset = presets.find((p: ITablePreset) => p.id === urlParams.presetId);
+        const filter = params.initialFilter ?? urlParams.filter;
 
         return {
             topIndex: 0,
             visibleCount: 40,
             filter: params.initialFilter ?? urlParams.filter,
             columnsConfig: activePreset ? activePreset.columnsConfig : {},
-            filtersConfig: urlParams.filtersConfig,
+            filtersConfig: params.filters ? normalizeFilterConfig(urlParams.filtersConfig, filter, params.filters) : undefined,
             presetId: urlParams.presetId,
         };
     });
@@ -35,11 +35,12 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filter: newFilter,
         }));
         const oldQuery = context.uuiRouter.getCurrentLink().query;
+        const newFiltersConfig = params.filters ? normalizeFilterConfig(newValue.filtersConfig, newFilter, params.filters) : undefined;
         const newQuery = {
             ...context.uuiRouter.getCurrentLink().query,
             filter: newValue.filter,
             presetId: newValue.presetId,
-            filtersConfig: newValue.filtersConfig,
+            filtersConfig: newFiltersConfig,
         };
 
         // we need it here, because the DataSources call state updates with the same value on items load, and it causes redirect
@@ -194,6 +195,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
 interface IParams<TFilter = Record<string, any>> {
     columns: DataColumnProps[];
+    filters?: TableFiltersConfig<TFilter>[];
     initialFilter?: TFilter;
     initialPresets?: ITablePreset<TFilter>[];
     onPresetCreate?(preset: ITablePreset): Promise<number>;

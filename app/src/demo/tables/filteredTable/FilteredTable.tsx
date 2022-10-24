@@ -13,7 +13,6 @@ const defaultPresets: ITablePreset[] = [
     {
         name: 'All',
         id: -1,
-        filter: undefined,
         order: 'a',
         isReadonly: true,
     },
@@ -25,11 +24,6 @@ const defaultPresets: ITablePreset[] = [
         },
         order: 'b',
         isReadonly: true,
-        filtersConfig: {
-            managerName: {
-                isVisible: true,
-            },
-        },
     },
 ];
 
@@ -37,7 +31,7 @@ export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
-    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
+    const [initialPresets, setInitialPresets] = useState<ITablePreset<Person>[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
 
 
     useEffect(() => {
@@ -46,8 +40,9 @@ export const FilteredTable: React.FC = () => {
             .catch(console.error);
     }, []);
 
-    const tableStateApi = useTableState({
+    const tableStateApi = useTableState<Person>({
         columns: personColumns,
+        filters: filters,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
         onPresetUpdate: svc.api.presets.updatePreset,

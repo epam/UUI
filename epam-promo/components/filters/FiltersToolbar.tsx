@@ -59,7 +59,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
 
     const dataSource = useArrayDataSource({
         items: filters,
-        getId: item => item.columnKey,
+        getId: item => item.field,
     }, []);
 
     const onFiltersChange = (filters: TableFiltersConfig<TFilter>[]) => {
@@ -69,9 +69,9 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
         const sortedOrders = tableState.filtersConfig && sortBy(tableState.filtersConfig, f => f?.order);
         let order: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1]?.order : null;
         filters.forEach(filter => {
-            const newOrder = tableState?.filtersConfig?.[filter?.columnKey]?.order || getOrderBetween(order, null);
+            const newOrder = tableState?.filtersConfig?.[filter?.field]?.order || getOrderBetween(order, null);
             order = newOrder;
-            newConfig[filter.columnKey] = { isVisible: true, order: newOrder };
+            newConfig[filter.field] = { isVisible: true, order: newOrder };
 
             // Remove unselected filters from filter object
             if (tableState.filter) {
@@ -94,9 +94,9 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
         });
     };
 
-    const removeFilter = (filterColumnKey: string, field: any) => {
+    const removeFilter = (field: any) => {
         const filterConfig = { ...tableState.filtersConfig };
-        delete filterConfig[filterColumnKey];
+        delete filterConfig[field];
         const filter = { ...tableState.filter };
         delete filter[field];
 
@@ -111,12 +111,12 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
     const selectedFilters = useMemo(() => {
         const filtersConfig = tableState.filtersConfig || {};
         return filters.filter(filter => {
-            return filter.isAlwaysVisible || (filtersConfig[filter?.columnKey] ? filtersConfig[filter?.columnKey].isVisible : false);
+            return filter.isAlwaysVisible || (filtersConfig[filter?.field] ? filtersConfig[filter?.field].isVisible : false);
         });
     }, [tableState.filtersConfig, filters]);
 
     const sortedActiveFilters = useMemo(() => {
-        return sortBy(selectedFilters, f => tableState.filtersConfig?.[f.columnKey]?.order);
+        return sortBy(selectedFilters, f => tableState.filtersConfig?.[f.field]?.order);
     }, [filters, tableState.filtersConfig]);
 
     const renderAddFilterToggler = useCallback((props: PickerTogglerProps) => {
@@ -154,7 +154,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
                         value={ tableState.filter?.[f.field] }
                         onValueChange={ handleFilterChange }
                         key={ f.field as string }
-                        autoFocus={ newFilterId === f.columnKey }
+                        autoFocus={ newFilterId === f.field }
                         removeFilter={ removeFilter }
                     />
                 </FlexCell>
@@ -171,7 +171,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
                         { ...props }
                         padding="12"
                         key={ props.key }
-                        onCheck={ (row) => { props.onCheck(row); !row.isChecked && setNewFilterId(row.value.columnKey); } }
+                        onCheck={ (row) => { props.onCheck(row); !row.isChecked && setNewFilterId(row.value.field); } }
                         renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }
                     /> }
                 getName={ i => i.title }
