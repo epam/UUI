@@ -45,7 +45,7 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
             <SuccessNotification { ...props } >
                 <Text size="36" font="sans" fontSize="14">{ text }</Text>
             </SuccessNotification>
-        ), { position: 'top-right', duration: 3 }).catch(() => null);
+        ), { duration: 3 }).catch(() => null);
     }, []);
 
     const saveInCurrentHandler = useCallback(() => {
