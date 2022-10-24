@@ -1,277 +1,208 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useForm } from '@epam/promo';
-import * as promo from "@epam/promo";
-import * as loveship from "@epam/loveship";
+import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, MultiSwitch, NumericInput, Panel, PickerInput, TextArea, TextInput, useForm } from '@epam/promo';
 import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource } from '@epam/uui';
-import { PickerInputBaseProps } from '@epam/uui-components';
-import { BaseDatePickerProps, DataTableCellProps, RenderCellProps } from '@epam/uui-core';
+import { FlexSpacer } from 'uui-components';
 
-// Defined interface describe data for each row
-interface Item  {
+// Define interface describe data for each row
+interface ToDoItem  {
     id: number;
-    text?: string;
-    number?: number;
-    selectedId?: number;
-    selectedIds?: number[];
-    date?: string;
-    textArea?: string;
-    bool?: boolean;
-    meta?: IDisableable | ICanBeReadonly,
-    altBackground?: boolean;
-    cellBackground?: boolean;
+    isDone?: boolean;
+    name?: string;
+    priority?: number;
+    dueDate?: string;
+    comments?: string;
 }
 
-const defaultItem: Partial<Item> = {
-    text: 'Text Input',
-    number: 1234567.89,
-    selectedId: 1,
-    selectedIds: [1,2],
-    textArea: 'Text Area',
-    date: '2020-09-03',
-    bool: true,
+// Define a blank item - for use as a new item, and to simplify mock data definition below
+const blankItem: Partial<ToDoItem> = {
+    isDone: false,
+    name: '',
+    priority: null,
+    comments: '',
+    dueDate: '',
 }
 
+// To store the last item id used
 let id = 1;
 
-// Prepare demo data for table rows
-const items: Item[] = [
-    { id: id++, ...defaultItem },
-    { id: id++, ...defaultItem, altBackground: true },
-    { id: id++, ...defaultItem, textArea: 'Supports\nmulti-line\ntext' }, // stretched vertically
-    { id: id++ }, // invalid row
-    { id: id++, altBackground: true },
-    { id: id++, cellBackground: true },
-    { id: id++, altBackground: true, cellBackground: true },
-    { id: id++, ...defaultItem },
-    { id: id++, ...defaultItem, cellBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
-    { id: id++, ...defaultItem, meta: { isReadonly: true } },
-    { id: id++, ...defaultItem, meta: { isDisabled: true } },
+// Prepare mock data for the demo. Usually, you'll get initial data from server API call
+const demoItems: ToDoItem[] = [
+    { ...blankItem, id: id++, name: 'Complete data sources re-work', comments: 'The plan is to unite all dataSources into a single "useList" hook' },
+    { ...blankItem, id: id++, name: 'Implement editable cells', isDone: true },
+    { ...blankItem, id: id++, name: 'Find better ways to add/remove rows', dueDate: '01-09-2022', priority: 2 },
+    { ...blankItem, id: id++, name: 'Finalize the "Project" table demo', comments: 'We first need to build the add/remove rows helpers, and rows drag-n-drop' },
+    { ...blankItem, id: id++, name: 'Complete cells replication' },
+    { ...blankItem, id: id++, name: 'Better rows drag-n-drop support', comments: 'With state-management helpers, and tree/hierarchy support' },
 ]
 
+// Interface to hold form data. Here we'll only store items, so we might use ToDoItem[] as a state.
+// However, we'll have an object here to extend the form state if needed later.
 interface FormState {
-    items: Item[];
+    items: ToDoItem[];
 }
 
-const pickerItems = [
-    { id: 1, name: 'Red' },
-    { id: 2, name: 'Green' },
-    { id: 3, name: 'Blue' },
-    { id: 4, name: 'Cyan' },
-    { id: 5, name: 'Magenta' },
-    { id: 6, name: 'Yellow' },
-    { id: 7, name: 'White' },
-    { id: 8, name: 'Black' },
+// Define priorities to use in PickerInput
+const tags = [
+    { id: 0, name: 'Low' },
+    { id: 1, name: 'Normal' },
+    { id: 2, name: 'High' },
+    { id: 3, name: 'Critical' },
 ]
 
+// Define form metadata to validate form data
 const metadata: Metadata<FormState> = {
     props: {
         items: {
-            all: {
+            all: { // 'all' allows to use the same metadata for each item in items array
                 props: {
-                    text: { isRequired: true },
-                    number: { isRequired: true },
-                    selectedId: { isRequired: true },
-                    selectedIds: { isRequired: true },
-                    date: { isRequired: true },
-                    textArea: { isRequired: true },
-                    bool: { isRequired: true, validators: [val => [!val && 'Needs to be checked']] },
+                    name: { isRequired: true },
                 },
-                isDisabled: true,
             },
         }
     }
 }
 
-const skinMods = {
-    'promo': { altBackground: 'gray5', cellColors: ['gray5', 'red', 'blue', 'green', 'amber'] },
-    'loveship': { altBackground: 'night50', cellColors: ['night50', 'fire', 'sky', 'grass', 'sun'] },
-}
-
-type SkinName = keyof typeof skinMods;
-
-export default function TableCellsStylesSandbox() {
-    const [skinName, setSkinName] = useState<SkinName>('promo');
-    const skin: (typeof promo | typeof loveship) = (skinName === 'promo') ? promo : loveship;
-
-    // These component types doesn't merge correctly/acceptably between skins
-    const SkinDatePicker = skin.DatePicker as React.ComponentClass<BaseDatePickerProps>;
-    const SkinPickerInput = skin.PickerInput as React.ComponentClass<PickerInputBaseProps<any, any>>;
-    const SkinDataTableCell = skin.DataTableCell as React.FC<DataTableCellProps & { background: any }>;
-
+export default function EditableTableExample() {
     // Use form to manage state of the editable table
-    const { lens, validate, save, validationProps } = useForm<FormState>({
-        value: { items },
+    const { lens, save, revert, value, setValue } = useForm<FormState>({
+        value: { items: demoItems },
         onSave: () => Promise.resolve(),
         getMetadata: () => metadata,
     });
 
-    // Trigger save, to force validation to show invalid cell states.
-    useEffect(() => save(), []);
+    // Prepare callback to add a new item to the list.
+    const handleNewItem = useCallback(() => {
+        // We can manipulate form state directly with the setValue
+        // - pretty much like we do with the setState of React.useState.
+        setValue((current) => ({ ...current, items: [ ...current.items, { ...blankItem, id: id++ }] }))
+    }, []);
 
     // Use state to hold DataTable state - current sorting, filtering, etc.
     const [tableState, setTableState] = useState({});
 
-    const pickerDataSource = useArrayDataSource({ items: pickerItems }, []);
+    // Define DataSource to use in PickerInput in the 'tags' column
+    const pickerDataSource = useArrayDataSource({ items: tags }, []);
 
-    function getCellBackground(props: RenderCellProps) {
-        if (props.rowProps.value.cellBackground != null) {
-            const colors = [null, ...skinMods[skinName].cellColors];
-            return colors[((props.index) + (props.rowProps.index)) % colors.length];
-        }
-    }
-
+    // Define table columns. Using useMemo is required, otherwise the table will re-render on each change.
     const columns = useMemo(() => [
         {
-            key: 'meta',
-            caption: 'Row Type',
-            render: (item, row) => <skin.Text>{
-                Object.entries({ ...item.meta, rowBG: item.altBackground, cellBG: item.cellBackground, isInvalid: row.isInvalid })
-                    .filter(([key, value]) => !!value)
-                    .map(e => e[0])
-                    .join(', ')
-            }</skin.Text>,
-            isSortable: true,
-            isAlwaysVisible: true,
-            width: 140,
+            key: 'name',
+            caption: 'Name',
+            // To make column editable, we override the default renderCell behavior.
+            renderCell: (props) => <DataTableCell
+                // We use the passed rowLens, to extract IEditable instance to the cell value.
+                // This is used by the cell itself to highlight invalid cells.
+                { ...props.rowLens.prop('name').toProps() }
+                // The same IEditable is then passed to the renderEditor callback,
+                // which should render an compatible IEditable component
+                // The cell passes the mode='cell' prop, so all compatible UUI components
+                // are rendered in a 'cell mode' - adopted to use in cells (e.g. with borders removed)
+                renderEditor={ props => <TextInput { ...props } /> }
+                { ...props }
+            />,
             fix: 'left',
+            width: 300,
         },
         {
-            key: 'text',
-            caption: 'Text',
-            renderCell: (props) => <SkinDataTableCell
-                { ...props.rowLens.prop('text').toProps() }
-                renderEditor={ props => <skin.TextInput { ...props } /> }
+            key: 'isDone',
+            caption: 'Done',
+            renderCell: (props) => <DataTableCell
+                { ...props.rowLens.prop('isDone').toProps() }
+                renderEditor={ props => <Checkbox { ...props } /> }
                 { ...props }
-                background={ getCellBackground(props) }
             />,
-            isSortable: true,
+            textAlign: 'center',
+            fix: 'left',
+            width: 80,
+        },
+        {
+            key: 'dueDate',
+            caption: 'Due Date',
+            renderCell: (props) => <DataTableCell
+                { ...props.rowLens.prop('dueDate').toProps() }
+                renderEditor={ props => <DatePicker { ...props } /> }
+                { ...props }
+                // Cells can be colored. Here we'll highlight the cell if due date is passed.
+                background={
+                    props.rowProps.value.dueDate && (new Date(props.rowProps.value.dueDate).getTime() < Date.now()) ? 'amber' : null
+                }
+            />,
+            width: 150,
+        },
+        {
+            key: 'priority',
+            caption: 'Priority',
+            renderCell: (props) => <DataTableCell
+                { ...props.rowLens.prop('priority').toProps() }
+                renderEditor={ props => <PickerInput { ...props } selectionMode='single' dataSource={ pickerDataSource } /> }
+                { ...props }
+            />,
+            width: 130,
+        },
+        {
+            key: 'comments',
+            caption: 'Comments',
+            renderCell: (props) => <DataTableCell
+                { ...props.rowLens.prop('comments').toProps() }
+                renderEditor={ props => <TextArea { ...props } autoSize /> }
+                { ...props }
+            />,
             width: 120,
+            grow: 1,
         },
-        {
-            key: 'number',
-            caption: 'Number',
-            renderCell: (props) => <SkinDataTableCell
-                { ...props.rowLens.prop('number').toProps() }
-                renderEditor={ props => <skin.NumericInput { ...props } formatOptions={{ minimumFractionDigits: 2 }} /> }
-                { ...props }
-                background={ getCellBackground(props) }
-            />,
-            isSortable: true,
-            textAlign: 'right',
-            width: 120,
-        },
-        {
-            key: 'checkbox',
-            caption: 'Checkbox',
-            renderCell: (props) => <SkinDataTableCell
-                { ...props.rowLens.prop('bool').toProps() }
-                renderEditor={ props => <skin.Checkbox { ...props } /> }
-                { ...props }
-                background={ getCellBackground(props) }
-            />,
-            isSortable: true,
-            width: 120,
-        },
-        {
-            key: 'textarea',
-            caption: 'TextArea',
-            renderCell: (props) => <SkinDataTableCell
-                { ...props.rowLens.prop('textArea').toProps() }
-                renderEditor={ props => <skin.TextArea { ...props } autoSize /> }
-                { ...props }
-                background={ getCellBackground(props) }
-            />,
-            isSortable: true,
-            width: 120,
-        },
-        {
-            key: 'date',
-            caption: 'Date',
-            renderCell: (props) => <SkinDataTableCell
-                { ...props.rowLens.prop('date').toProps() }
-                renderEditor={ props => <SkinDatePicker { ...props } /> }
-                { ...props }
-                background={ getCellBackground(props) }
-            />,
-            isSortable: true,
-            width: 200,
-        },
-        {
-            key: 'singlePicker',
-            caption: 'Single Picker',
-            renderCell: (props) => <SkinDataTableCell
-                { ...props.rowLens.prop('selectedId').toProps() }
-                renderEditor={ props => <SkinPickerInput { ...props } selectionMode='single' dataSource={ pickerDataSource } /> }
-                { ...props }
-                background={ getCellBackground(props) }
-            />,
-            isSortable: true,
-            width: 200,
-        },
-        {
-            key: 'multiPicker',
-            caption: 'Multi Picker',
-            renderCell: (props) => <SkinDataTableCell
-                { ...props.rowLens.prop('selectedIds').toProps() }
-                renderEditor={ props => <SkinPickerInput { ...props } selectionMode='multi' dataSource={ pickerDataSource } /> }
-                { ...props }
-                background={ getCellBackground(props) }
-            />,
-            isSortable: true,
-            width: 250,
-        },
-    ] as DataColumnProps<Item>[], [skinName]);
+
+    ] as DataColumnProps<ToDoItem>[], []);
 
     // Create data-source and view to supply filtered/sorted data to the table in form of DataTableRows.
-
-    const dataSource = useArrayDataSource<Item, number, unknown>({
-        items,
+    // DataSources describe the way to extract some list/tree-structured data.
+    // Here we'll use ArrayDataSource - which gets data from an array, which we obtain from our Form
+    const dataSource = useArrayDataSource<ToDoItem, number, unknown>({
+        items: value.items,
     }, []);
 
+    // Make an IDataSourceView instance, which takes data from the DataSource, and transforms it into DataTableRows.
+    // It considers current sorting, filtering, scroll position, etc. to get a flat list of currently visible rows.
     const view = dataSource.useView(tableState, setTableState, {
-        getRowOptions: (item: Item, index: number) => ({
+        getRowOptions: (item: ToDoItem, index: number) => ({
             ...lens.prop('items').index(index).toProps(),
         })
     });
 
-    const renderRow = useCallback((props: DataTableRowProps<Item, number>) => {
-        return <skin.DataTableRow
+    // Render row callback. In simple cases, you don't need, as default implementation would work ok.
+    // Here we override it to change row background for 'isDone' items.
+    const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => {
+        return <DataTableRow
             { ...props}
-            background={ (props.value.altBackground && skinMods[skinName].altBackground) as any }
+            background={ props.value.isDone ? 'gray5' : 'white'}
         />;
     }, []);
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
-    return <skin.Panel key={ skinName }>
-        <skin.FlexRow>
-            <skin.FlexCell width='auto'>
-                <skin.MultiSwitch
-                    value={ skinName }
-                    onValueChange={ setSkinName }
-                    items={[
-                        { id: 'loveship' as SkinName, caption: 'Loveship' },
-                        { id: 'promo' as SkinName, caption: 'Promo' }
-                    ]}
-                />
-            </skin.FlexCell>
-        </skin.FlexRow>
-        <skin.DataTable
-            { ...view.getListProps() }
-            getRows={ view.getVisibleRows }
-            value={ tableState }
-            onValueChange={ setTableState }
-            columns={ columns }
-            headerTextCase='upper'
-            renderRow={ renderRow }
-        />
-    </skin.Panel>;
+    return <Panel shadow={ true }>
+        <FlexRow>
+            {/* Render the data table */}
+            <DataTable
+                { ...view.getListProps() }
+                getRows={ view.getVisibleRows }
+                value={ tableState }
+                onValueChange={ setTableState }
+                columns={ columns }
+                headerTextCase='upper'
+                renderRow={ renderRow }
+            />
+        </FlexRow>
+        {/* Render a panel with Save/Revert buttons to control the form */}
+        <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom='gray40'>
+            <FlexCell width='auto'>
+                <Button caption='Add new' onClick={handleNewItem} />
+            </FlexCell>
+            <FlexSpacer />
+            <FlexCell width='auto'>
+                <Button caption='Save' onClick={save} />
+            </FlexCell>
+            <FlexCell width='auto'>
+                <Button caption='Revert' onClick={revert} />
+            </FlexCell>
+        </FlexRow>
+    </Panel>;
 }
