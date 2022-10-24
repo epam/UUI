@@ -49,7 +49,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
             }
         };
 
-        const isClearDisabled = (!props.value && props.value !== 0) && (typeof props.value === "object" && !props.value?.from && !props.value?.to);
+        const isClearDisabled = typeof props.value !== 'number' && typeof props.value !== 'object';
 
         return (
             <FlexRow padding="12" background="white">
