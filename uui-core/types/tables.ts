@@ -240,8 +240,12 @@ type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     format?: string;
 };
 
+type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    type: "numeric";
+};
+
 export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter>
-    | DatePickerFilterConfig<TFilter>;
+    | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = any> {
     name: string;

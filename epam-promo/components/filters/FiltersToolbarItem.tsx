@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import dayjs from "dayjs";
 import cx from "classnames";
-import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName } from "@epam/uui-core";
+import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { i18n } from "../../i18n";
 import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
@@ -30,7 +30,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const [predicate, setPredicate] = useState(getDefaultPredicate());
-    const predicateName: string | null = predicate && props.value ? props.predicates.find(p => p.predicate === predicate).name : null;
+    const predicateName: string = props.predicates.find(p => p.predicate === predicate).name;
     const forceUpdate = useForceUpdate();
 
     const onValueChange = useCallback((value: any) => {
@@ -46,6 +46,17 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     };
 
     const changePredicate = (val: FilterPredicateName) => {
+        const isInRange = (p: FilterPredicateName) => p === 'inRange' || p === 'notInRange';
+
+        if (isInRange(val) && !isInRange(predicate as FilterPredicateName)) {// from simple predicate -> to Range
+            setPredicate(val);
+            props.onValueChange({ [props.field]: { [val]: { from: null, to: null } } });
+            return;
+        } else if (!isInRange(val) && isInRange(predicate as FilterPredicateName)) {// from Range -> to simple predicate
+            setPredicate(val);
+            props.onValueChange({ [props.field]: { [val]: null } });
+            return;
+        }
         setPredicate(val);
         props.onValueChange({ [props.field]: { [val]: getValue() } });
     };
@@ -54,10 +65,10 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         <div className={ cx(css.header) }>
             {
                 props.predicates ? <MultiSwitch
-                    items={ props.predicates.map(i => ({id: i.predicate, caption: i.name})) }
+                    items={ props.predicates.map(i => ({ id: i.predicate, caption: i.name })) }
                     value={ predicate }
                     onValueChange={ changePredicate }
-                    size='24'
+                    size="24"
                 /> : <Text color="gray60" fontSize="12">{ props.title }</Text>
             }
             { !props?.isAlwaysVisible && (
@@ -75,7 +86,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         <DropdownContainer>
             <Panel background="white">
                 { renderHeader() }
-                { <FilterItemBody { ...props } { ...dropdownProps } value={ getValue() } onValueChange={ onValueChange }/> }
+                { <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange }/> }
             </Panel>
         </DropdownContainer>
     );
@@ -91,7 +102,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         switch (props.type) {
             case "multiPicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
-                let postfix = currentValue?.length > 2 ? ` +${ (currentValue.length - 2).toString() } ${i18n.filterToolbar.pickerInput.itemsPlaceholder}` : null;
+                let postfix = currentValue?.length > 2 ? ` +${ (currentValue.length - 2).toString() } ${ i18n.filterToolbar.pickerInput.itemsPlaceholder }` : null;
                 let isLoading = false;
 
                 const selection = currentValue ? currentValue?.slice(0, 2).map((i: any) => {
@@ -102,6 +113,17 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
                 const selectionText = isLoading ? selection : selection.join(', ');
                 return { selection: selectionText, postfix };
+            }
+            case "numeric": {
+                const isRangePredicate = predicate === 'inRange' || predicate === 'notInRange';
+                const decimalFormat = (val: number) => getSeparatedValue(val, {maximumFractionDigits: 2});
+                if ((isRangePredicate && !currentValue) || (!isRangePredicate && !currentValue && currentValue !== 0)) {
+                    return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
+                }
+                const selection = isRangePredicate
+                    ? `${ (!currentValue?.from && currentValue?.from !== 0) ? 'Min' : decimalFormat(currentValue?.from) } - ${ (!currentValue?.to && currentValue?.to !== 0) ? 'Max' : decimalFormat(currentValue?.to) }`
+                    : `${ (!currentValue && currentValue !== 0) ? 'ALL' : decimalFormat(currentValue) }`;
+                return { selection };
             }
             case "singlePicker": {
                 const view = props.dataSource.getView({}, forceUpdate);
@@ -132,7 +154,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             { ...dropdownProps }
             { ...getTogglerValue() }
             title={ props.title }
-            predicateName={ predicateName }
+            predicateName={ props.value ? predicateName : null }
             maxWidth={ (props.type === 'datePicker' || props.type === 'rangeDatePicker') ? null : '300' }
         />
     );
