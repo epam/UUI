@@ -68,7 +68,7 @@ export class ReleaseNotesDoc extends React.Component {
                     </Text>
                 </FlexCell>
                 <div className={ css.releaseContent }>
-                    <RichTextView>
+                    <RichTextView size='16'>
                         <ReactMarkdown
                             source={ content }
                             renderers={ {
