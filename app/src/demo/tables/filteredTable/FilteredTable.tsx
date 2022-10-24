@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import css from './FilteredTable.scss';
-import { DataTable, FiltersToolbar, FlexCell, FlexRow, PresetPanel, Text } from '@epam/promo';
+import { DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text } from '@epam/promo';
 import { getFilters } from './filters';
 import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset } from "@epam/uui-core";
 import { FilteredTableFooter } from "./FilteredTableFooter";
@@ -82,11 +82,11 @@ export const FilteredTable: React.FC = () => {
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
                 <Text fontSize="24" cx={ css.presetsTitle }>Users Dashboard</Text>
-                <PresetPanel { ...presetsApi } />
+                <PresetsPanel { ...presetsApi } />
             </div>
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>
                 <FlexRow cx={ css.filterPanel }>
-                    <FiltersToolbar
+                    <FiltersPanel
                         filters={ filters }
                         tableState={ tableStateApi.tableState }
                         setTableState={ tableStateApi.setTableState }

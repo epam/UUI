@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './FilterToolbarItemToggler.scss';
+import css from './FilterPaneltemToggler.scss';
 import cx from "classnames";
 import { IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod } from "@epam/uui-core";
 import { systemIcons } from "../../icons/icons";
@@ -19,7 +19,7 @@ export interface FilterToolbarItemTogglerProps extends IDropdownToggler {
     predicateName: string | null;
 }
 
-export const FilterToolbarItemToggler = React.forwardRef<HTMLDivElement, FilterToolbarItemTogglerProps>((props, ref) => {
+export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToolbarItemTogglerProps>((props, ref) => {
 
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
         if (props.isDisabled) return;
