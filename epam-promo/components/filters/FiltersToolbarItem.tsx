@@ -30,7 +30,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const [predicate, setPredicate] = useState(getDefaultPredicate());
-    const predicateName: string = props.predicates.find(p => p.predicate === predicate).name;
+    const predicateName: string = React.useMemo(() => predicate && props.predicates.find(p => p.predicate === predicate).name, [predicate]);
     const forceUpdate = useForceUpdate();
 
     const onValueChange = useCallback((value: any) => {
