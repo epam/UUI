@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import sortBy from "lodash.sortby";
 import { DataTableState, IPresetsApi, ITablePreset, getOrderBetween } from "@epam/uui-core";
 import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
-import css from './PresetPanel.scss';
+import css from './PresetsPanel.scss';
 import { Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow, TabButton } from "../../index";
 import { Preset } from "./Preset";
 import { PresetInput } from "./PresetInput";
@@ -15,7 +15,7 @@ export interface IPresetsBlockProps extends IPresetsApi {
 
 type PresetAdaptiveItem = AdaptiveItemProps<{preset?: ITablePreset }>;
 
-export const PresetPanel = (props: IPresetsBlockProps) => {
+export const PresetsPanel = (props: IPresetsBlockProps) => {
     const [isAddingPreset, setIsAddingPreset] = useState(false);
 
     const setAddingPreset = useCallback(() => {

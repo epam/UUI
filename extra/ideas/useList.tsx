@@ -1,17 +1,16 @@
-import FormWIthClassesExample from "app/src/docs/examples/form/FormWIthClasses.example";
-import { Button, DataTable } from "epam-promo";
+import { Button, DataTable } from "@epam/promo";
 import React, { useState } from "react";
-import { ArrayListViewProps, DataColumnProps, DataQueryFilter, DataRowProps, DataTableState, IDataSourceView, IEditable, LazyDataSourceApi, LazyListViewProps, Metadata, Tree, useForm, useTableState } from "uui-core";
+import { ArrayListViewProps, DataColumnProps, DataQueryFilter, DataRowProps, DataTableState, IDataSourceView, IEditable, LazyDataSourceApi, LazyListViewProps, Metadata, Tree, useForm, useTableState } from "@epam/uui-core";
 
 type UseListProps<TItem, TId, TFilter> =
         // these two will be merged into BaseListViewProps, or even to the UseListProps directly
-        (LazyListViewProps<TItem, TId, TFilter> | Partial<ArrayListViewProps<TItem, TId, TFilter>)
-    & {
+    (LazyListViewProps<TItem, TId, TFilter> | Partial<ArrayListViewProps<TItem, TId, TFilter>>)
+& {
     /**
      * Set to false to disable fetching of visible rows. This doesn't disable fetching selected/checked items.
      * Useful for scenarios when list is not visible until user action (e.g. in PickerInput - until user opens dropdown)
      * Default is true.
-     * */
+     */
     fetchRows?: boolean;
 
     fetchById?: boolean;

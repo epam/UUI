@@ -5,7 +5,7 @@ import { Button, PickerInput, PickerItem, DataPickerRow } from "../../index";
 import { DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter,
     getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
 import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
-import { FiltersToolbarItem } from "./FiltersToolbarItem";
+import { FiltersPanelItem } from "./FiltersPanelItem";
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
 
 interface FiltersToolbarProps<TFilter> {
@@ -149,7 +149,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
         <>
             { sortedActiveFilters.map(f => (
                 <FlexCell width="auto" key={ f.field as string }>
-                    <FiltersToolbarItem
+                    <FiltersPanelItem
                         { ...f }
                         value={ tableState.filter?.[f.field] }
                         onValueChange={ handleFilterChange }
@@ -184,4 +184,4 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
     );
 };
 
-export const FiltersToolbar = React.memo(FiltersToolbarImpl) as typeof FiltersToolbarImpl;
+export const FiltersPanel = React.memo(FiltersToolbarImpl) as typeof FiltersToolbarImpl;
