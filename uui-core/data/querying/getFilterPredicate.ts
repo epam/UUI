@@ -126,12 +126,12 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 });
             }
 
-            if (condition.eq) {
+            if (condition.eq !== undefined && condition.eq !== null) {
                 const conditionValue = condition.eq;
                 predicates.push((item: T) => item[key] === conditionValue);
             }
 
-            if (condition.neq) {
+            if (condition.neq !== undefined && condition.neq !== null) {
                 const conditionValue = condition.neq;
                 predicates.push((item: T) => item[key] !== conditionValue);
             }

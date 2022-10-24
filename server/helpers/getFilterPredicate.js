@@ -117,11 +117,11 @@ function getFilterPredicate(filter) {
                     return !(value !== null && value !== undefined) || value < conditionValue_4;
                 });
             }
-            if (condition.eq) {
+            if (condition.eq !== undefined && condition.eq !== null) {
                 var conditionValue_5 = condition.eq;
                 predicates.push(function (item) { return item[key] === conditionValue_5; });
             }
-            if (condition.neq) {
+            if (condition.neq !== undefined && condition.neq !== null) {
                 var conditionValue_6 = condition.neq;
                 predicates.push(function (item) { return item[key] !== conditionValue_6; });
             }
