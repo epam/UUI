@@ -19,7 +19,7 @@ With this release you already can build editable tables. However, we are plannin
 * DataSources: ```getRowOptions``` is called on each update, allowing to dynamically change rows behavior. For example, you can dynamically enable/disable checkboxes in Tables or PickerInputs.
 * DataSources: getRowOptions - DataRowOptions now implements `IEditable<TItem>` interface. This allows to make rows editable, by passing value/onValueChange directly, or by using lens.toProps(): `getRowOptions(item) => lens.prop(item.id).toProps()`
 
-* [Breaking Change]: DataTableCell layout reworked.`
+* [Breaking Change]: DataTableCell layout reworked.
   * Cells and tables tweaked to support vertical borders, hover/focus border effects for editable cells
   * Now, cell content is rendered in flexbox context (was block). Please review cells layout (alignment and width of the cells content)
   * DataTableColumn - new prop: justifyContent, which sets appropriate flexbox property. Can be used to align items horizontally. If omitted, we use existing textAlign property to set it. I.e. you can still use textAlign: left/center/right to align textual cell content.
