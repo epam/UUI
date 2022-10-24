@@ -31,19 +31,13 @@ export function toggleColumnsVisibility(props: { prevConfig: ColumnsConfig, colu
 export function moveColumnRelativeToAnotherColumn(
     props: { prevConfig: ColumnsConfig, columnsSorted: DataColumnProps[], columnKey: string, targetColumnKey: string, isAfterTarget: boolean },
 ) {
-    const {
-        prevConfig,
-        columnsSorted,
-        columnKey,
-        targetColumnKey,
-        isAfterTarget,
-    } = props;
+    const { prevConfig, columnsSorted, columnKey, targetColumnKey, isAfterTarget } = props;
 
     const from = getColGroupByColumnKey(columnKey, prevConfig);
     const to = getColGroupByColumnKey(targetColumnKey, prevConfig);
     const isVisible = isVisibleColGroup(to);
     const order = getColumnOrderAfterDrop({ targetColumnKey, isAfterTarget, columnsSorted, prevConfig });
-    const fix = getColumnFixAfterDrop(from, to, prevConfig);
+    const fix = getColumnFixAfterDrop(from, to, prevConfig[columnKey]);
 
     return {
         ...prevConfig,
@@ -105,7 +99,8 @@ function moveColumnToAGroup(
     if (from === to || to === ColGroup.HIDDEN && isAlwaysVisible) {
         return prevConfig;
     }
-    const { items } = byGroup[to];
+    const items = byGroup[to]?.items;
+
     const targetColumnKey = toPosition === 'end' && items?.length ? items[items.length - 1].key : items?.[0]?.key;
     if (targetColumnKey) {
         return moveColumnRelativeToAnotherColumn({
@@ -117,7 +112,7 @@ function moveColumnToAGroup(
         });
     } else {
         const isVisible = isVisibleColGroup(to);
-        const fix = getColumnFixAfterDrop(from, to, prevConfig);
+        const fix = getColumnFixAfterDrop(from, to, prevConfig[columnKey]);
         return {
             ...prevConfig,
             [columnKey]: {

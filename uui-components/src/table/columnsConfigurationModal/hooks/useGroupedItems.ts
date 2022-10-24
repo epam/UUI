@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-export type TItemsByGroup<I> = Record<string, { items?: I[], itemsFiltered?: I[] } | undefined>;
+export type TItemsByGroup<I> = Record<string, undefined | { items?: I[], itemsFiltered?: I[] }>;
 
 interface IUseGroupedItems<I> {
     items?: I[];

@@ -13,8 +13,9 @@ import { Checkbox, SearchInput } from "../../inputs";
 import { DropMarker } from "../../dnd";
 import { i18n } from '../../../i18n';
 //
-import { ColGroup, useColumnsConfigurationState } from "./hooks/useColumnsConfigurationState";
+import { useColumnsConfigurationState } from "@epam/uui-components";
 import { PinIconButton } from "./PinIconButton";
+import { useCallback } from "react";
 
 const i18nLocal = i18n.tables.columnsConfigurationModal;
 const returnByCondition = <T, F>(condition: boolean, ifTrue: T, ifFalse: F) => {
@@ -89,7 +90,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
         // props
         byGroup, isNoData, filterValue, columnsConfigLocal,
         // methods
-        reset, close, apply, checkAll, togglePin, renderRows, uncheckAll, setFilterValue, toggleVisibility,
+        reset, apply, checkAll, togglePin, renderRows, uncheckAll, setFilterValue, toggleVisibility,
     } = useColumnsConfigurationState({ columnsConfig, columns, modalProps, defaultConfig, renderRowContent });
 
     const renderSectionTitle = (title: string, amount: number) => <div className={ styles.sectionTitle }>
@@ -103,8 +104,8 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
         if (!amountPinned && !amountUnPinned) {
             return null;
         }
-        const rowsPinned = renderRows(ColGroup.DISPLAYED_PINNED);
-        const rowsUnpinned = renderRows(ColGroup.DISPLAYED_UNPINNED);
+        const rowsPinned = renderRows(useColumnsConfigurationState.ColGroup.DISPLAYED_PINNED);
+        const rowsUnpinned = renderRows(useColumnsConfigurationState.ColGroup.DISPLAYED_UNPINNED);
         return (
             <>
                 { renderSectionTitle(i18nLocal.displayedInTable, amountPinned + amountUnPinned) }
@@ -126,12 +127,12 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
             <>
                 { renderSectionTitle(i18nLocal.hiddenInTable, amountHidden) }
                 <div className={ styles.checkboxContainer }>
-                    { renderRows(ColGroup.HIDDEN) }
+                    { renderRows(useColumnsConfigurationState.ColGroup.HIDDEN) }
                 </div>
             </>
         );
     };
-
+    const close = useCallback(() =>  modalProps.abort(), [modalProps]);
     return (
         <ModalBlocker blockerShadow="dark" { ...modalProps }>
             <ModalWindow cx={ styles.modal }>
@@ -158,7 +159,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
                                 fill="white"
                                 icon={ MenuIcon }
                                 size="30"
-                                color="gray50"
+                                color="night600"
                                 isDropdown={ false }
                             />
                         }
@@ -179,10 +180,10 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
                     </ScrollBars>
                 </Panel>
                 <ModalFooter borderTop >
-                    <LinkButton icon={ ResetIcon } caption={ i18nLocal.resetToDefaultButton } color="blue" onClick={ reset } />
+                    <LinkButton icon={ ResetIcon } caption={ i18nLocal.resetToDefaultButton } color="sky" onClick={ reset } />
                     <FlexSpacer />
-                    <Button fill="white" color="gray50" caption={ i18nLocal.cancelButton } onClick={ close } />
-                    <Button cx={ styles.actionButton } caption={ i18nLocal.applyButton } color="green" onClick={ apply } />
+                    <Button fill="white" color="night600" caption={ i18nLocal.cancelButton } onClick={ close } />
+                    <Button cx={ styles.actionButton } caption={ i18nLocal.applyButton } color="grass" onClick={ apply } />
                 </ModalFooter>
             </ModalWindow>
         </ModalBlocker>

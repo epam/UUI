@@ -16,8 +16,6 @@ import {
 } from "../services/types";
 import { useGroupedItems } from "./useGroupedItems";
 
-export  { ColGroup } from "../services/types";
-
 interface IColumnConfigMgmt<TItem, TId, TFilter> {
     columnsConfig: ColumnsConfig;
     defaultConfig: ColumnsConfig;
@@ -25,6 +23,8 @@ interface IColumnConfigMgmt<TItem, TId, TFilter> {
     modalProps: IModal<ColumnsConfig>;
     renderRowContent: (props: { dndActorParams: DndActorRenderParams, column: DataColumnProps, isDndAllowed: boolean, isPinnedAlways: boolean }) => React.ReactNode;
 }
+
+useColumnsConfigurationState.ColGroup = ColGroup;
 
 export function useColumnsConfigurationState<TItem, TId, TFilter>(props: IColumnConfigMgmt<TItem, TId, TFilter>) {
     const { modalProps, columnsConfig, defaultConfig, renderRowContent } = props;
@@ -55,8 +55,6 @@ export function useColumnsConfigurationState<TItem, TId, TFilter>(props: IColumn
         setColumnsConfig(defaultConfig);
         setFilterValue('');
     }, [defaultConfig]);
-
-    const close = useCallback(() =>  modalProps.abort(), [modalProps]);
 
     const checkAll = useCallback(
         () => setColumnsConfig(prevConfig => toggleColumnsVisibility({ prevConfig, columns: columnsSorted, isToggleOn: true })),
@@ -107,6 +105,6 @@ export function useColumnsConfigurationState<TItem, TId, TFilter>(props: IColumn
         // props
         byGroup, isNoData, filterValue, columnsConfigLocal,
         // methods
-        reset, close, apply, checkAll, togglePin, renderRows, uncheckAll, setFilterValue, toggleVisibility,
+        reset, apply, checkAll, togglePin, renderRows, uncheckAll, setFilterValue, toggleVisibility,
     };
 }

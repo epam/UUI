@@ -54,7 +54,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const onConfigurationButtonClick = React.useCallback(() => {
         uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
-                { ...modalProps }
+                modalProps={ modalProps }
                 columns={ props.columns }
                 columnsConfig={ config }
                 defaultConfig={ defaultConfig }

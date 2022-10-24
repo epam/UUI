@@ -1,4 +1,4 @@
-import { AcceptDropParams, ColumnsConfig, DataColumnProps, getOrderBetween } from "@epam/uui-core";
+import { AcceptDropParams, ColumnsConfig, DataColumnProps, getOrderBetween, IColumnConfig } from "@epam/uui-core";
 import { ColGroup, IDndActorData, TFix } from "./types";
 
 export function isColumnAlwaysPinned<TItem, TId>(props: IDndActorData<TItem, TId>) {
@@ -55,7 +55,7 @@ export function getColumnOrderAfterDrop(
         : getOrderBetween(prevKey ? prevConfig[prevKey].order : null, targetColumnOrder);
 }
 
-export function getColumnFixAfterDrop(from: ColGroup, to: ColGroup, config: ColumnsConfig): TFix {
+export function getColumnFixAfterDrop(from: ColGroup, to: ColGroup, config: IColumnConfig): TFix {
     let fix: TFix;
     if (to === ColGroup.DISPLAYED_PINNED) {
         if (from === ColGroup.DISPLAYED_PINNED) {

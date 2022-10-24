@@ -1,5 +1,5 @@
 import React from 'react';
-import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
+import { ColumnsConfigurationModal } from '../columnsConfigurationModal/ColumnsConfigurationModal';
 import renderer from 'react-test-renderer';
 import { getDefaultColumnsConfig } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
@@ -25,15 +25,20 @@ const mockColumns = [
 
 describe('ColumnsConfigurationModal', () => {
     it('should be rendered correctly', () => {
+        const modalProps = {
+            isActive: true,
+            key: 'test',
+            zIndex: 1,
+            abort: jest.fn,
+            success: jest.fn,
+        };
+        const defaultConfig = getDefaultColumnsConfig(mockColumns);
         const tree = renderer
             .create(<ColumnsConfigurationModal
-                key='test'
-                zIndex={ 1 }
-                abort={ jest.fn }
-                success={ jest.fn }
+                modalProps={ modalProps }
                 columns={ mockColumns }
-                columnsConfig={ getDefaultColumnsConfig(mockColumns) }
-                isActive
+                columnsConfig={ defaultConfig }
+                defaultConfig={ defaultConfig }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();

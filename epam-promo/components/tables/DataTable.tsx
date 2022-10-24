@@ -4,8 +4,7 @@ import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
 import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
         DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
         cx, TableFiltersConfig, DataTableRowProps } from '@epam/uui-core';
-import { DataTableHeaderRow, DataTableRow, DataTableMods } from './';
-import { ColumnsConfigurationModal } from './columnsConfigurationModal2/ColumnsConfigurationModal';
+import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal } from './';
 import { VirtualList } from '../';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from "../typography";
