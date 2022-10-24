@@ -65,7 +65,7 @@ With this release you already can build editable tables. However, we are plannin
 * [Modals]: added `disableCloseByEsc` prop to `ModalBlocker`
 * [Accordion]: API improvements, added opportunity to overwrite title.
 * [DropdownMenuButton]: added possibility to provide onClick for icon
-* [FilterToolbar]: renamed `FilterToolbar` component to `FilterPanel`
+* [FilterToolbar][Breaking change]: renamed `FilterToolbar` component to `FilterPanel`
 * [FilterPanel]: added numeric filter type
 * [FilterPanel]: improvements and bugfixes
 * Build target for packages is changed from ES5 to ES6. This shouldn't affect existing apps, as most app builds into ES5 anyway, including the latest CRA.
