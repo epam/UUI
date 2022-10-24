@@ -1,21 +1,25 @@
 import * as styles from "./ColumnsConfigurationModal.scss";
 import * as React from "react";
 //
+import { ColumnsConfig, cx, DataColumnProps, DndActorRenderParams, IModal } from "@epam/uui-core";
+import { DragHandle } from "@epam/uui-components";
+import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
+import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
+//
 import { Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow } from "../../overlays";
 import { FlexRow, FlexSpacer, Panel, ScrollBars } from "../../layout";
 import { Button, LinkButton } from "../../buttons";
-import { i18n } from '../../../i18n';
-import { ColumnsConfig, cx, DataColumnProps, DndActorRenderParams, IModal } from "@epam/uui-core";
-import { DragHandle } from "@epam/uui-components";
 import { Checkbox, SearchInput } from "../../inputs";
 import { DropMarker } from "../../dnd";
-import { ColGroup, isColumnAlwaysPinned, useColumnsConfigurationState } from "./hooks/useColumnsConfigurationState";
-import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
-import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
+import { i18n } from '../../../i18n';
+//
+import { ColGroup, useColumnsConfigurationState } from "./hooks/useColumnsConfigurationState";
 import { PinIconButton } from "./PinIconButton";
-import { returnByCondition } from "./utils/conditionUtils";
 
 const i18nLocal = i18n.tables.columnsConfigurationModal;
+const returnByCondition = <T, F>(condition: boolean, ifTrue: T, ifFalse: F) => {
+    return condition ? ifTrue : ifFalse;
+};
 
 interface IColumnsConfigView<TItem, TId, TFilter> {
     modalProps: IModal<ColumnsConfig>;
@@ -27,10 +31,17 @@ interface IColumnsConfigView<TItem, TId, TFilter> {
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsConfigView<TItem, TId, TFilter>) {
     const { modalProps, columns, columnsConfig, defaultConfig } = props;
 
-    const renderDndRowMarkup = (dndActorParams: DndActorRenderParams, column: DataColumnProps<TItem, TId>, isDndAllowed: boolean) => {
+    const renderRowContent = (
+        props: { dndActorParams: DndActorRenderParams, column: DataColumnProps<TItem, TId>, isDndAllowed: boolean, isPinnedAlways: boolean },
+    ) => {
+        const {
+            column,
+            isDndAllowed,
+            dndActorParams,
+            isPinnedAlways,
+        } = props;
         const cfg = columnsConfigLocal[column.key];
         const isSelected = cfg.isVisible;
-        const isPinnedAlways = isColumnAlwaysPinned({ cfg, column });
         const isPinned = cfg.fix || isPinnedAlways;
         const wrapperClasses = cx(
             styles.rowWrapper,
@@ -75,9 +86,11 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
     };
 
     const {
-        renderRows, byGroup, columnsConfigLocal, toggleVisibility, togglePin, reset, close, apply,
-        filterValue, setFilterValue, uncheckAll, checkAll, isNoData,
-    } = useColumnsConfigurationState({ columnsConfig, columns, modalProps, defaultConfig, renderDndRowMarkup });
+        // props
+        byGroup, isNoData, filterValue, columnsConfigLocal,
+        // methods
+        reset, close, apply, checkAll, togglePin, renderRows, uncheckAll, setFilterValue, toggleVisibility,
+    } = useColumnsConfigurationState({ columnsConfig, columns, modalProps, defaultConfig, renderRowContent });
 
     const renderSectionTitle = (title: string, amount: number) => <div className={ styles.sectionTitle }>
         <span className={ styles.title }>{ title }</span>
