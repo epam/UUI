@@ -12,6 +12,7 @@
   "dependencies": {
     "@epam/assets": "4.5.3",
     "@epam/loveship": "4.8.5",
+    "@epam/promo": "4.8.5",
     "@epam/uui-components": "4.8.5",
     "@epam/uui-core": "4.8.5",
     "@types/shallowequal": "^1.1.1",
