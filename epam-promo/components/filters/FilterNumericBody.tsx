@@ -21,17 +21,18 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
     const isInRangePredicate = props?.selectedPredicate === 'inRange' || props?.selectedPredicate === 'notInRange';
 
     const rangeValueHandler = (type: 'from' | 'to') => (val: number) => {
+        const value = props.value as INumericRangeValue;
         switch (type) {
             case "from": {
                 props.onValueChange({
                     from: val,
-                    to: ((props.value && typeof props.value === "object") && ("to" in props.value)) ? props.value?.to : null,
+                    to: value?.to ?? null,
                 });
                 break;
             }
             case "to": {
                 props.onValueChange({
-                    from: ((props.value && typeof props.value === "object") && ("from" in props.value)) ? props.value?.from : null,
+                    from: value?.from ?? null,
                     to: val,
                 });
                 break;
@@ -67,12 +68,13 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
     };
 
     if (isInRangePredicate) {
+        const value = props.value as INumericRangeValue;
         return (
             <div>
                 <FlexRow padding="12" vPadding="24" alignItems="center" spacing="12" borderBottom="gray40">
                     <FlexCell width={ '100%' }>
                         <NumericInput
-                            value={ (typeof props.value === 'object' && typeof props.value?.from === 'number') ? props.value?.from : null }
+                            value={ value?.from ?? null }
                             onValueChange={ rangeValueHandler('from') }
                             size="30"
                             placeholder="Min"
@@ -81,7 +83,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
                     </FlexCell>
                     <FlexCell width={ '100%' }>
                         <NumericInput
-                            value={ (typeof props.value === 'object' && typeof props.value?.to === 'number') ? props.value?.to : null }
+                            value={ value?.to ?? null }
                             onValueChange={ rangeValueHandler('to') }
                             size="30"
                             placeholder="Max"
