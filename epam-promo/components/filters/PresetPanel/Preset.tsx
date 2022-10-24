@@ -32,7 +32,7 @@ export const Preset = (props: IPresetProps) => {
             name: name,
         };
         return props.updatePreset(newPreset);
-    }, []);
+    }, [props.preset]);
 
     const isPresetActive = props.activePresetId === props.preset.id;
 

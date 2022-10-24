@@ -4,7 +4,7 @@ import cx from "classnames";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue } from "@epam/uui-core";
 import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
 import { i18n } from "../../i18n";
-import { FilterToolbarItemToggler } from "./FilterToolbarItemToggler";
+import { FilterPanelItemToggler } from "./FilterPanelItemToggler";
 import { Panel } from "../layout";
 import { LinkButton } from "../buttons";
 import { MultiSwitch } from "../inputs";
@@ -12,7 +12,7 @@ import { Text, TextPlaceholder } from "../typography";
 import { FilterItemBody } from "./FilterItemBody";
 import { DropdownContainer } from "../overlays";
 import { ReactComponent as RemoveIcon } from "@epam/assets/icons/common/action-deleteforever-12.svg";
-import css from "./FiltersToolbarItem.scss";
+import css from "./FiltersPanelItem.scss";
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -30,7 +30,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const [predicate, setPredicate] = useState(getDefaultPredicate());
-    const predicateName: string = props.predicates.find(p => p.predicate === predicate).name;
+    const predicateName: string = React.useMemo(() => predicate && props.predicates.find(p => p.predicate === predicate).name, [predicate]);
     const forceUpdate = useForceUpdate();
 
     const onValueChange = useCallback((value: any) => {
@@ -150,7 +150,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     };
 
     const renderTarget = (dropdownProps: IDropdownToggler) => (
-        <FilterToolbarItemToggler
+        <FilterPanelItemToggler
             { ...dropdownProps }
             { ...getTogglerValue() }
             title={ props.title }
@@ -171,4 +171,4 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     );
 };
 
-export const FiltersToolbarItem = React.memo(FiltersToolbarItemImpl);
+export const FiltersPanelItem = React.memo(FiltersToolbarItemImpl);
