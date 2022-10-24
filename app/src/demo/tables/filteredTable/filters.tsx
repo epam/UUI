@@ -1,7 +1,7 @@
 import React from 'react';
 import { TableFiltersConfig, LazyDataSource, ArrayDataSource } from "@epam/uui-core";
 import { Country } from "@epam/uui-docs";
-import { Badge, DataPickerRow, PickerItem } from "@epam/promo";
+import { Badge, DataPickerRow, PickerItem, defaultPredicates } from "@epam/promo";
 import { demoData } from "@epam/uui-docs";
 import { svc } from "../../../services";
 import { Person } from "@epam/uui-docs";
@@ -23,10 +23,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
                     key={ props.rowKey }
                     renderItem={ (item: any) => <Badge fill='transparent' color={ item.name.toLowerCase() } caption={ item.name } /> }
                 />,
-            predicates: [
-                { predicate: 'in', name: 'is' },
-                { predicate: 'nin', name: 'is not', isDefault: true},
-            ],
+            predicates: defaultPredicates.multiPicker,
         },
         {
             field: "countryId",
@@ -100,14 +97,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             columnKey: "salary",
             title: "Salary",
             type: "numeric",
-            predicates: [
-                { predicate: 'eq', name: '=', isDefault: true },
-                { predicate: 'neq', name: '≠'},
-                { predicate: 'lte', name: '≤'},
-                { predicate: 'gte', name: '≥'},
-                { predicate: 'inRange', name: 'In Range' },
-                // { predicate: 'notInRange', name: 'Not in Range' },
-            ],
+            predicates: defaultPredicates.numeric,
         },
         {
             field: "hireDate",
@@ -121,10 +111,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             title: "Birth Date",
             type: "rangeDatePicker",
             format: "YYYY-MM-DD",
-            predicates: [
-                { predicate: 'inRange', name: 'In Range', isDefault: true },
-                { predicate: 'notInRange', name: 'Not in Range' },
-            ],
+            predicates: defaultPredicates.rangeDatePicker,
         },
     ];
 };
