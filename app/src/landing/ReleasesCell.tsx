@@ -37,7 +37,7 @@ export class ReleasesCell extends React.Component<ReleasesCellProps, ReleasesCel
 
     render() {
         const { content, layout } = this.props;
-        const [header, date] = content.split('*')[0].split('-').map((i: any) => i.trim());
+        const [header, date] = content.split('*')[0].split(' - ').map((i: any) => i.trim());
         const releaseNotes = content.substr(content.search(/\*/), content.length);
 
         return (
