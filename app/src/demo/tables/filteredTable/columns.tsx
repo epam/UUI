@@ -12,6 +12,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 200,
         fix: 'left',
         isSortable: true,
+        isAlwaysVisible: true,
     },
     {
         key: 'profileStatus',
