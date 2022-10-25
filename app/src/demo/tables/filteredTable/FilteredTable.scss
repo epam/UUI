@@ -6,11 +6,24 @@
     display: flex;
     position: relative;
 }
-.presets-title {
-    padding-top: 20px;
-    padding-bottom: 20px;
+
+.presets-panel {
+    padding: 0 24px;
+    display: flex;
     flex-shrink: 0;
-    margin-right: 12px;
+    background-color: $white;
+    border-bottom: 1px solid $gray40;
+    overflow-x: auto;
+    overflow-y: hidden;
+    align-items: center;
+
+    .presets-title {
+        font-weight: 600;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        flex-shrink: 0;
+        margin-right: 24px;
+    }
 }
 
 .container {
@@ -75,15 +88,4 @@
     .search {
         align-self: flex-start;
     }
-}
-
-.presets-panel {
-    padding: 0 24px;
-    display: flex;
-    flex-shrink: 0;
-    background-color: $white;
-    border-bottom: 1px solid $gray40;
-    overflow-x: auto;
-    overflow-y: hidden;
-    align-items: center;
 }
