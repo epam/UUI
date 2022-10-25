@@ -16,11 +16,11 @@
 $footerHeight: 61;
 $headerHeight: 60;
 $searchHeight: 43;
-$midAreaHeight1: calc(100vh - #{$footerHeight + $headerHeight + $searchHeight}px);
+$midAreaHeight1: calc(90vh - #{$footerHeight + $headerHeight + $searchHeight}px);
 $midAreaHeight2: calc(80vh - #{$footerHeight + $headerHeight + $searchHeight}px);
 .modal {
     @media (max-width: 640px) {
-        height: 100vh;
+        height: 90vh;
         .container {
             height: $midAreaHeight1;
         }
@@ -92,6 +92,7 @@ $midAreaHeight2: calc(80vh - #{$footerHeight + $headerHeight + $searchHeight}px)
     position: relative;
     padding: 1px 0;
     max-width: 100%;
+    touch-action: auto;
 
     .row-wrapper-content {
         position: relative;
@@ -122,6 +123,7 @@ $midAreaHeight2: calc(80vh - #{$footerHeight + $headerHeight + $searchHeight}px)
 
     .drag-handle-wrapper {
         padding-left: 24px;
+        touch-action: none;
     }
     .drag-handle {
         opacity: 0.3;
