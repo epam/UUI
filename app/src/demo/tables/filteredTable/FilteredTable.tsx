@@ -65,6 +65,7 @@ export const FilteredTable: React.FC = () => {
 
     const dataSource = useLazyDataSource<Person, number, Person>({
         api: api,
+        selectAll: false,
     }, []);
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
