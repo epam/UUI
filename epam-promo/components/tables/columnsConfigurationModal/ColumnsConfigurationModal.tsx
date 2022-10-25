@@ -7,11 +7,10 @@ import { useColumnsConfigurationState, DragHandle } from "@epam/uui-components";
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 //
-import { Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow } from "../../overlays";
-import { FlexRow, FlexSpacer, Panel, ScrollBars } from "../../layout";
-import { Button, LinkButton } from "../../buttons";
-import { Checkbox, SearchInput } from "../../inputs";
-import { DropMarker } from "../../dnd";
+import {
+    FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, Checkbox, SearchInput, DropMarker,
+    Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow,
+} from "../../../.";
 import { i18n } from '../../../i18n';
 //
 import { PinIconButton } from "./PinIconButton";
@@ -137,12 +136,12 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
             <ModalWindow cx={ styles.modal }>
                 <ModalHeader title={ i18nLocal.configureColumnsTitle } onClose={ close } />
                 <div className={ styles.search }>
-{/*                    <SearchInput
+                    <SearchInput
                         size="30"
                         value={ filterValue }
                         onValueChange={ setFilterValue }
                         placeholder={ i18nLocal.searchByColumnName }
-                    />*/}
+                    />
                     <Dropdown
                         closeOnTargetClick={ true }
                         renderBody={ () =>

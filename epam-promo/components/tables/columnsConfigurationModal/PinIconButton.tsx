@@ -1,4 +1,4 @@
-import { IconButton } from "../../buttons";
+import { IconButton } from "../../../.";
 import * as css from "./PinIconButton.scss";
 import * as React from "react";
 import { ReactComponent as LockIcon } from "@epam/assets/icons/common/action-lock-fill-18.svg";
