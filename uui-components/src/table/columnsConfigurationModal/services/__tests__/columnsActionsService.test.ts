@@ -54,7 +54,7 @@ describe('columnsActionsService', () => {
             const result = togglePinOfAColumn({ columnKey: B.key, prevConfig, columnsSorted, byGroup });
             const expected = {
                 1: { fix: 'left', isVisible: true, order: 'a', width: 10 },
-                2: { fix: 'left', isVisible: true, order: 'b', width: 10 },
+                2: { fix: 'left', isVisible: true, order: 'ah', width: 10 },
                 3: { isVisible: false, order: 'c', width: 10 },
             };
             expect(result).toEqual(expected);
