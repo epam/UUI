@@ -121,4 +121,7 @@ export const i18n = {
             emptyValueCaption: 'ALL',
         },
     },
+    presetPanel: {
+        addCaption: 'Add Preset',
+    },
 };
