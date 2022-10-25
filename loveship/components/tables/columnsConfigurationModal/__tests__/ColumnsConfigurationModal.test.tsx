@@ -1,11 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { getDefaultColumnsConfig } from "@epam/uui-core";
-import { demoColumns } from "./dataMocks";
-import {ColumnsConfigurationModal} from "../columnsConfigurationModal/ColumnsConfigurationModal";
+import { demoColumns } from "../../__tests__/dataMocks";
+import {ColumnsConfigurationModal} from "../ColumnsConfigurationModal";
+import { renderWithContextAsync } from '@epam/test-utils';
 
 describe("ColumnsConfigurationModal", () => {
-    it("should be rendered correctly", () => {
+    it("should be rendered correctly", async () => {
         const modalProps = {
             zIndex: 1,
             key: 'test',
@@ -14,14 +14,12 @@ describe("ColumnsConfigurationModal", () => {
             isActive: true,
         };
         const columnsConfig = getDefaultColumnsConfig(demoColumns);
-        const tree = renderer
-            .create(<ColumnsConfigurationModal
+        const tree = await renderWithContextAsync(<ColumnsConfigurationModal
                 modalProps={ modalProps }
                 columns={ demoColumns }
                 columnsConfig={ columnsConfig }
                 defaultConfig={ columnsConfig }
-            />)
-            .toJSON();
+            />);
         expect(tree).toMatchSnapshot();
     });
 });

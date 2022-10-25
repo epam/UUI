@@ -99,6 +99,31 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       <div
         className="search"
       >
+        <div
+          className="container uui-input-box -clickable root size-30 mode-form"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          tabIndex={-1}
+        >
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
+          <input
+            className="uui-input"
+            inputMode="search"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Search by column name"
+            tabIndex={0}
+            type="search"
+            value=""
+          />
+        </div>
         <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-30 fill-white actionsMenu"
           href={null}
