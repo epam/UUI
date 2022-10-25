@@ -1,8 +1,9 @@
 import * as styles from "./ColumnsConfigurationModal.scss";
 import * as React from "react";
+import { useCallback } from "react";
 //
 import { ColumnsConfig, cx, DataColumnProps, DndActorRenderParams, IModal } from "@epam/uui-core";
-import { DragHandle } from "@epam/uui-components";
+import { useColumnsConfigurationState, DragHandle } from "@epam/uui-components";
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 //
@@ -13,9 +14,7 @@ import { Checkbox, SearchInput } from "../../inputs";
 import { DropMarker } from "../../dnd";
 import { i18n } from '../../../i18n';
 //
-import { useColumnsConfigurationState } from "@epam/uui-components";
 import { PinIconButton } from "./PinIconButton";
-import { useCallback } from "react";
 
 const i18nLocal = i18n.tables.columnsConfigurationModal;
 const returnByCondition = <T, F>(condition: boolean, ifTrue: T, ifFalse: F) => {
@@ -138,12 +137,12 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
             <ModalWindow cx={ styles.modal }>
                 <ModalHeader title={ i18nLocal.configureColumnsTitle } onClose={ close } />
                 <div className={ styles.search }>
-                    <SearchInput
+{/*                    <SearchInput
                         size="30"
                         value={ filterValue }
                         onValueChange={ setFilterValue }
                         placeholder={ i18nLocal.searchByColumnName }
-                    />
+                    />*/}
                     <Dropdown
                         closeOnTargetClick={ true }
                         renderBody={ () =>
