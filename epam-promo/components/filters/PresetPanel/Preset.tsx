@@ -48,7 +48,7 @@ export const Preset = (props: IPresetProps) => {
                     :
                     <TabButton
                         caption={ props.preset.name }
-                        onClick={ !(props.hasPresetChanged(props.preset) && isPresetActive) && choosePresetHandler }
+                        onClick={ !isPresetActive && choosePresetHandler }
                         cx={ [css.preset, isPresetActive && css.activePreset] }
                         size="60"
                         withNotify={ isPresetActive && props.hasPresetChanged(props.preset) }
