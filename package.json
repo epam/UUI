@@ -10,7 +10,7 @@
     "test": "node uui-build/scripts/runTests.js",
     "coverage": "yarn test --coverage",
     "process-icons": "node uui-build/scripts/processIcons.js",
-    "start": "cd ./app && yarn start",
+    "start": "cd ./app && cross-env DEV=TRUE yarn start",
     "next:dev": "cd ./next-app && yarn && node ../uui-build/scripts/runNextApp.js && yarn dev",
     "build": "cd ./app && yarn build --stats",
     "build-dev": "cd ./app && yarn build-dev",
@@ -60,8 +60,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "tslib": "^2.3.1",
     "lerna": "3.22.1",
+    "tslib": "^2.3.1",
+    "cross-env": "^7.0.3",
     "typedoc": "0.17.4"
   }
 }
