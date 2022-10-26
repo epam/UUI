@@ -77,7 +77,7 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
     showConfigurationModal = () => {
         this.context.uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
-                modalProps={ modalProps }
+                { ...modalProps }
                 columns={ this.props.props.columns }
                 columnsConfig={ this.state.columnsConfig }
                 defaultConfig={ { gender: { isVisible: false, order: 'f' }} }

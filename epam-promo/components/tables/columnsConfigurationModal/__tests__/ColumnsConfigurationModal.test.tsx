@@ -35,7 +35,7 @@ describe('ColumnsConfigurationModal', () => {
         const defaultConfig = getDefaultColumnsConfig(mockColumns);
         const tree = await renderWithContextAsync(
             <ColumnsConfigurationModal
-                modalProps={ modalProps }
+                { ...modalProps }
                 columns={ mockColumns }
                 columnsConfig={ defaultConfig }
                 defaultConfig={ defaultConfig }

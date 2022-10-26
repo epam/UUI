@@ -1,0 +1,34 @@
+@use '../../../assets/styles/index' as *;
+
+.row-wrapper {
+    position: relative;
+    padding: 1px 0;
+    width: 100%;
+    box-sizing: border-box;
+    touch-action: auto;
+
+    &.not-pinned:not(:hover) {
+        :global(.pin-icon-button) {
+            visibility: hidden;
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 0 1px $gray50;
+        &, .title, :global(.pin-icon-button) {
+            background-color: $gray10;
+        }
+    }
+
+    .drag-handle {
+        opacity: 1;
+        height: 24px;
+        &.dnd-disabled {
+            opacity: 0.3;
+        }
+    }
+
+    &:global(.uui-drag-ghost) {
+        @include dnd-ghost-shadow();
+    }
+}

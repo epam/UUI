@@ -1,19 +1,24 @@
-import { AcceptDropParams, ColumnsConfig, DataColumnProps, getOrderBetween, IColumnConfig } from "@epam/uui-core";
-import { ColGroup, IDndActorData, TFix } from "./types";
+import {
+    AcceptDropParams,
+    ColumnsConfig,
+    DataColumnProps,
+    getOrderBetween,
+} from "@epam/uui-core";
+import { DndDataType } from "../types";
 
-export function isColumnAlwaysPinned<TItem, TId>(props: IDndActorData<TItem, TId>) {
-    const isPinned = Boolean(props.cfg.fix);
+export function isColumnAlwaysPinned(props: DndDataType) {
+    const isPinned = Boolean(props.columnConfig.fix);
     return props.column.isAlwaysVisible && isPinned;
 }
 
-export function canAcceptDrop<TItem, TId>(props: AcceptDropParams<IDndActorData<TItem, TId>, IDndActorData<TItem, TId>>) {
+export function canAcceptDrop(props: AcceptDropParams<DndDataType, DndDataType>) {
     const {
         srcData,
         dstData,
     } = props;
 
-    const isMovingToUnpinnedArea = !dstData.cfg.fix;
-    const isMovingToHiddenArea = !dstData.cfg.isVisible;
+    const isMovingToUnpinnedArea = !dstData.columnConfig.fix;
+    const isMovingToHiddenArea = !dstData.columnConfig.isVisible;
 
     const disallowDnd = isColumnAlwaysPinned(srcData) && isMovingToUnpinnedArea ||
         srcData.column.isAlwaysVisible && isMovingToHiddenArea;
@@ -23,17 +28,6 @@ export function canAcceptDrop<TItem, TId>(props: AcceptDropParams<IDndActorData<
     }
 
     return { top: true, bottom: true };
-}
-
-export function getColGroupByColumnKey(key: string, config: ColumnsConfig) {
-    const { isVisible, fix } = config[key];
-    if (isVisible) {
-        if (fix) {
-            return ColGroup.DISPLAYED_PINNED;
-        }
-        return ColGroup.DISPLAYED_UNPINNED;
-    }
-    return ColGroup.HIDDEN;
 }
 
 export function getColumnOrderAfterDrop(
@@ -55,34 +49,18 @@ export function getColumnOrderAfterDrop(
         : getOrderBetween(prevKey ? prevConfig[prevKey].order : null, targetColumnOrder);
 }
 
-export function getColumnFixAfterDrop(from: ColGroup, to: ColGroup, config: IColumnConfig): TFix {
-    let fix: TFix;
-    if (to === ColGroup.DISPLAYED_PINNED) {
-        if (from === ColGroup.DISPLAYED_PINNED) {
-            fix = config.fix as TFix;
-        } else {
-            fix = 'left';
-        }
-    }
-    return fix;
-}
-
 function isNonEmptyString(s: string) {
     return typeof s === 'string' && s.trim() !== '';
 }
 function isSubstring(s: string, sub: string) {
     return s.trim().toLowerCase().includes(sub.trim().toLowerCase());
 }
-export function isColumnVisible(c: DataColumnProps, filter?: string) {
+export function isColumnFilteredOut(c: DataColumnProps, filter?: string) {
     const caption = c.caption as string;
     const hasCaption = isNonEmptyString(caption);
     const hasFilter = isNonEmptyString(filter);
 
     return hasCaption ?
-        !hasFilter || hasFilter && isSubstring(caption, filter) :
-        false;
-}
-
-export function isVisibleColGroup(g: ColGroup) {
-    return g === ColGroup.DISPLAYED_UNPINNED || g === ColGroup.DISPLAYED_PINNED;
+        hasFilter && !isSubstring(caption, filter) :
+        true;
 }

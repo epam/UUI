@@ -200,7 +200,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               className="checkboxContainer"
             >
               <div
-                className="rowWrapper notPinned dndAllowed -draggable"
+                className="rowWrapper notPinned dndDisabled -draggable"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -253,34 +253,37 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       </div>
                     </label>
                   </div>
-                  <span
-                    className="pin pin-icon-button"
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
+                  <div
+                    className="root size-36 background-none pinIconButton container align-items-center"
                   >
-                    <button
-                      aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-                      href={null}
-                      onClick={[Function]}
-                      role="button"
-                      tabIndex={0}
-                      type="button"
+                    <span
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
                     >
-                      <div
-                        className="container uui-icon uui-enabled"
-                        style={Object {}}
+                      <button
+                        aria-disabled={false}
+                        className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+                        href={null}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={0}
+                        type="button"
                       >
-                        <svg
-                          className=""
-                        />
-                      </div>
-                    </button>
-                  </span>
+                        <div
+                          className="container uui-icon uui-enabled"
+                          style={Object {}}
+                        >
+                          <svg
+                            className=""
+                          />
+                        </div>
+                      </button>
+                    </span>
+                  </div>
                 </div>
               </div>
               <div
-                className="rowWrapper notPinned dndAllowed -draggable"
+                className="rowWrapper notPinned dndDisabled -draggable"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -333,30 +336,33 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       </div>
                     </label>
                   </div>
-                  <span
-                    className="pin pin-icon-button"
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
+                  <div
+                    className="root size-36 background-none pinIconButton container align-items-center"
                   >
-                    <button
-                      aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-                      href={null}
-                      onClick={[Function]}
-                      role="button"
-                      tabIndex={0}
-                      type="button"
+                    <span
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
                     >
-                      <div
-                        className="container uui-icon uui-enabled"
-                        style={Object {}}
+                      <button
+                        aria-disabled={false}
+                        className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+                        href={null}
+                        onClick={[Function]}
+                        role="button"
+                        tabIndex={0}
+                        type="button"
                       >
-                        <svg
-                          className=""
-                        />
-                      </div>
-                    </button>
-                  </span>
+                        <div
+                          className="container uui-icon uui-enabled"
+                          style={Object {}}
+                        >
+                          <svg
+                            className=""
+                          />
+                        </div>
+                      </button>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

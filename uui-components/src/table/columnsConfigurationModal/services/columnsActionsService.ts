@@ -1,14 +1,11 @@
 import { ColumnsConfig, DataColumnProps } from "@epam/uui-core";
-import { TItemsByGroup } from "../hooks/useGroupedItems";
 import {
-    getColGroupByColumnKey,
-    getColumnFixAfterDrop,
     getColumnOrderAfterDrop,
-    isVisibleColGroup,
 } from "./columnsPropertiesService";
-import { ColGroup, TPos } from "./types";
+import { findFirstInGroup, findLastInGroup } from "./columnsGroupService";
+import { TFix } from "../types";
 
-export function toggleColumnsVisibility(props: { prevConfig: ColumnsConfig, columns: DataColumnProps[], isToggleOn: boolean }) {
+export function toggleAllColumnsVisibility(props: { prevConfig: ColumnsConfig, columns: DataColumnProps[], isToggleOn: boolean }) {
     const { prevConfig, columns, isToggleOn } = props;
     return Object.keys(prevConfig).reduce<ColumnsConfig>((acc, key) => {
         const prevCfg = prevConfig[key];
@@ -32,12 +29,9 @@ export function moveColumnRelativeToAnotherColumn(
     props: { prevConfig: ColumnsConfig, columnsSorted: DataColumnProps[], columnKey: string, targetColumnKey: string, isAfterTarget: boolean },
 ) {
     const { prevConfig, columnsSorted, columnKey, targetColumnKey, isAfterTarget } = props;
-
-    const from = getColGroupByColumnKey(columnKey, prevConfig);
-    const to = getColGroupByColumnKey(targetColumnKey, prevConfig);
-    const isVisible = isVisibleColGroup(to);
+    const isVisible = prevConfig[targetColumnKey].isVisible;
     const order = getColumnOrderAfterDrop({ targetColumnKey, isAfterTarget, columnsSorted, prevConfig });
-    const fix = getColumnFixAfterDrop(from, to, prevConfig[columnKey]);
+    const fix = prevConfig[targetColumnKey].fix;
 
     return {
         ...prevConfig,
@@ -50,76 +44,64 @@ export function moveColumnRelativeToAnotherColumn(
     };
 }
 
-export function togglePinOfAColumn(
-    props: { prevConfig: ColumnsConfig, byGroup: TItemsByGroup<DataColumnProps>, columnsSorted: DataColumnProps[], columnKey: string },
+export function toggleSingleColumnPin(
+    props: { prevConfig: ColumnsConfig, columnsSorted: DataColumnProps[], columnKey: string },
 ) {
-    const { prevConfig, columnKey, columnsSorted, byGroup } = props;
+    const { prevConfig, columnKey, columnsSorted } = props;
     const cfg = prevConfig[columnKey];
     const prevFix = cfg.fix;
-
-    let to;
-    let toPosition: TPos;
+    let order = prevConfig[columnKey].order;
     if (prevFix) {
-        to = ColGroup.DISPLAYED_UNPINNED;
-        toPosition = 'start';
+        // move to "displayedUnpinned" and put it before first item
+        const firstItemInDisplayedUnpinned = findFirstInGroup(columnsSorted, prevConfig, 'displayedUnpinned');
+        if (firstItemInDisplayedUnpinned) {
+            order = getColumnOrderAfterDrop({ targetColumnKey: firstItemInDisplayedUnpinned.key, columnsSorted, isAfterTarget: false, prevConfig });
+        }
     } else {
-        to = ColGroup.DISPLAYED_PINNED;
-        toPosition = 'end';
+        // move to "displayedPinned" and put it after last item
+        const lastItemInDisplayedPinned = findLastInGroup(columnsSorted, prevConfig, 'displayedPinned');
+        if (lastItemInDisplayedPinned) {
+            order = getColumnOrderAfterDrop({ targetColumnKey: lastItemInDisplayedPinned.key, columnsSorted, isAfterTarget: true, prevConfig });
+        }
     }
-    return moveColumnToAGroup({
-        prevConfig, columnKey, to, toPosition, columnsSorted,
-        byGroup,
-    });
+    const { fix, ...restProps } = prevConfig[columnKey];
+    const fixLeft: TFix = 'left';
+    return {
+        ...prevConfig,
+        [columnKey]: {
+            ...restProps,
+            order,
+            ...(prevFix ? {} : { fix: fixLeft }),
+        },
+    };
 }
 
-export function toggleVisibilityOfAColumn(
-    props: { prevConfig: ColumnsConfig, byGroup: TItemsByGroup<DataColumnProps>, columnsSorted: DataColumnProps[], columnKey: string },
+export function toggleSingleColumnVisibility(
+    props: { prevConfig: ColumnsConfig, columnsSorted: DataColumnProps[], columnKey: string },
 ) {
-    const { byGroup, columnsSorted, columnKey, prevConfig } = props;
-    const from = getColGroupByColumnKey(columnKey, prevConfig);
-    let to;
-    let toPosition: TPos;
-    if (isVisibleColGroup(from)) {
-        to = ColGroup.HIDDEN;
-        toPosition = 'start';
+    const { columnsSorted, columnKey, prevConfig } = props;
+    const prevIsVisible = prevConfig[columnKey].isVisible;
+    let order = prevConfig[columnKey].order;
+    if (prevIsVisible) {
+        // move to "hidden" group and put it before first item
+        const firstItemInHidden = findFirstInGroup(columnsSorted, prevConfig, 'hidden');
+        if (firstItemInHidden) {
+            order = getColumnOrderAfterDrop({ targetColumnKey: firstItemInHidden.key, columnsSorted, isAfterTarget: false, prevConfig });
+        }
     } else {
-        to = ColGroup.DISPLAYED_UNPINNED;
-        toPosition = 'end';
+        // going to move to "displayedUnpinned" group and put it after last item
+        const lastItemInDisplayedUnpinned = findLastInGroup(columnsSorted, prevConfig, 'displayedUnpinned');
+        if (lastItemInDisplayedUnpinned) {
+            order = getColumnOrderAfterDrop({ targetColumnKey: lastItemInDisplayedUnpinned.key, columnsSorted, isAfterTarget: true, prevConfig });
+        }
     }
-    return moveColumnToAGroup({ prevConfig, columnKey, to, toPosition, columnsSorted, byGroup });
-}
-
-
-function moveColumnToAGroup(
-    props: { prevConfig: ColumnsConfig, columnsSorted: DataColumnProps[], byGroup: TItemsByGroup<DataColumnProps>, columnKey: string, to: ColGroup, toPosition: TPos },
-) {
-    const { to, columnKey, toPosition, columnsSorted, prevConfig, byGroup } = props;
-    const from = getColGroupByColumnKey(columnKey, prevConfig);
-    const isAlwaysVisible = columnsSorted.find(c => c.key === columnKey).isAlwaysVisible;
-    if (from === to || to === ColGroup.HIDDEN && isAlwaysVisible) {
-        return prevConfig;
-    }
-    const items = byGroup[to]?.items;
-
-    const targetColumnKey = toPosition === 'end' && items?.length ? items[items.length - 1].key : items?.[0]?.key;
-    if (targetColumnKey) {
-        return moveColumnRelativeToAnotherColumn({
-            prevConfig,
-            columnsSorted,
-            columnKey,
-            targetColumnKey,
-            isAfterTarget: toPosition === 'end',
-        });
-    } else {
-        const isVisible = isVisibleColGroup(to);
-        const fix = getColumnFixAfterDrop(from, to, prevConfig[columnKey]);
-        return {
-            ...prevConfig,
-            [columnKey]: {
-                ...prevConfig[columnKey],
-                isVisible,
-                fix,
-            },
-        };
-    }
+    const { fix, isVisible, ...restProps } = prevConfig[columnKey];
+    return {
+        ...prevConfig,
+        [columnKey]: {
+            ...restProps,
+            isVisible: !prevIsVisible,
+            order,
+        },
+    };
 }
