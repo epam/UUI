@@ -37,16 +37,17 @@ export const PresetsPanel = (props: IPresetsBlockProps) => {
 
     const renderAddPresetButton = useCallback(() => {
         return !isAddingPreset ?
-            <Button
-                cx={ css.addButton }
-                size="36"
-                onClick={ setAddingPreset }
-                caption={ i18n.presetPanel.addCaption }
-                icon={ addIcon }
-                iconPosition="left"
-                fill="light"
-                color="blue"
-            />
+            <div className={ css.addButton }>
+                <Button
+                    size="36"
+                    onClick={ setAddingPreset }
+                    caption={ i18n.presetPanel.addCaption }
+                    icon={ addIcon }
+                    iconPosition="left"
+                    fill="light"
+                    color="blue"
+                />
+            </div>
             : <PresetInput
                 onCancel={ cancelAddingPreset }
                 key={ 'createPresetInput' }
