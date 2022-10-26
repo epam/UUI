@@ -31,7 +31,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'salary',
         caption: 'salary',
-        render: p => <Text>{ getSeparatedValue(+p.salary, {style: "currency", currency: "USD", maximumFractionDigits: 2, minimumFractionDigits: 2}) }</Text>,
+        render: p => <Text>{ getSeparatedValue(+p.salary, {style: "currency", currency: "USD", maximumFractionDigits: 2, minimumFractionDigits: 2}, 'en-US') }</Text>,
         width: 150,
         textAlign: 'right',
         isSortable: true,
