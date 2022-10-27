@@ -54,6 +54,17 @@ describe('columnsActionsService', () => {
             expect(result).toEqual(expected);
         });
 
+        it('should unpin a visible column', () => {
+            const { prevConfig, columnsSorted, A } = getTestDataSet1();
+            const result = toggleSingleColumnPin({ columnKey: A.key, prevConfig, columnsSorted });
+            const expected = {
+                1: { isVisible: true, order: 'ah', width: 10 },
+                2: { isVisible: true, order: 'b', width: 10 },
+                3: { isVisible: false, order: 'c', width: 10 },
+            };
+            expect(result).toEqual(expected);
+        });
+
         it('should pin a hidden column and automatically make it visible', () => {
             const { prevConfig, columnsSorted, C } = getTestDataSet1();
             const result = toggleSingleColumnPin({ columnKey: C.key, prevConfig, columnsSorted });
