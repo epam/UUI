@@ -6,7 +6,7 @@ import * as css from './Snackbar.scss';
 const itemsOffset = 12;
 const offset = 30;
 
-export interface SnackbarProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface SnackbarProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     closeIcon?: Icon;
     notifications?: NotificationOperation[];
 }

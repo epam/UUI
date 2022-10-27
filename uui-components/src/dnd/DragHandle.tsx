@@ -3,7 +3,7 @@ import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import cx from 'classnames';
 import * as css from './DragHandle.scss';
 
-export interface DragHandleProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {}
+export interface DragHandleProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {}
 
 export class DragHandle extends React.Component<DragHandleProps> {
     render() {
