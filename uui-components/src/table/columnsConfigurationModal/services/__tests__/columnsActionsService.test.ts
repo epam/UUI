@@ -88,6 +88,16 @@ describe('columnsActionsService', () => {
             };
             expect(result).toEqual(expected);
         });
+        it('should be able to move a column right before another column', () => {
+            const { prevConfig, columnsSorted, A, C } = getTestDataSet1();
+            const result = moveColumnRelativeToAnotherColumn({ prevConfig, columnsSorted, columnKey: C.key, targetColumnKey: A.key, isAfterTarget: false });
+            const expected = {
+                1: { fix: 'left', width: 10, isVisible: true, order: 'a' },
+                2: { width: 10, isVisible: true, order: 'b' },
+                3: { fix: 'left', width: 10, isVisible: true, order: '5' },
+            };
+            expect(result).toEqual(expected);
+        });
     });
 
     describe('toggleAllColumnsVisibility', () => {

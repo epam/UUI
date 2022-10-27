@@ -51,7 +51,6 @@ export function toggleSingleColumnPin(
     const cfg = prevConfig[columnKey];
     const prevFix = cfg.fix;
     let order = prevConfig[columnKey].order;
-    let isVisible;
     if (prevFix) {
         // move to "displayedUnpinned" and put it before first item
         const firstItemInDisplayedUnpinned = findFirstInGroup(columnsSorted, prevConfig, 'displayedUnpinned');
