@@ -170,7 +170,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                         className="uui-checkbox uui-checked"
                       >
                         <input
-                          aria-checked={true}
                           aria-disabled={true}
                           checked={true}
                           disabled={true}
@@ -222,7 +221,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                         className="uui-checkbox uui-checked"
                       >
                         <input
-                          aria-checked={true}
                           aria-disabled={true}
                           checked={true}
                           disabled={true}
