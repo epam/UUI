@@ -70,7 +70,7 @@ export function useColumnsConfigurationState<TItem, TId, TFilter>(props: IColumn
                 return moveColumn(prevConfig, srcData.column.key, column.key, position === 'bottom');
             });
         };
-        const isPinnedAlways = isColumnAlwaysPinned({ columnConfig, column });
+        const isPinnedAlways = isColumnAlwaysPinned(column);
         return {
             ...column,
             columnConfig, isDndAllowed, isPinnedAlways,

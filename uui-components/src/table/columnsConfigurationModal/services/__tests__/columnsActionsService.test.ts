@@ -19,8 +19,8 @@ function getTestDataSet1() {
 }
 
 describe('columnsActionsService', () => {
-    describe('toggleVisibilityOfAColumn', () => {
-        it('should hide column', () => {
+    describe('toggleSingleColumnVisibility', () => {
+        it('should hide visible column', () => {
             const { prevConfig, columnsSorted, A } = getTestDataSet1();
             const result = toggleSingleColumnVisibility({ columnKey: A.key, prevConfig, columnsSorted });
             const expected = {
@@ -30,16 +30,37 @@ describe('columnsActionsService', () => {
             };
             expect(result).toEqual(expected);
         });
+        it('should show hidden column', () => {
+            const { prevConfig, columnsSorted, C } = getTestDataSet1();
+            const result = toggleSingleColumnVisibility({ columnKey: C.key, prevConfig, columnsSorted });
+            const expected = {
+                1: { fix: 'left', isVisible: true, order: 'a', width: 10 },
+                2: { isVisible: true, order: 'b', width: 10 },
+                3: { isVisible: true, order: 'bh', width: 10 },
+            };
+            expect(result).toEqual(expected);
+        });
     });
 
-    describe('togglePinOfAColumn', () => {
-        it('should pin a column', () => {
+    describe('toggleSingleColumnPin', () => {
+        it('should pin a visible column', () => {
             const { prevConfig, columnsSorted, B } = getTestDataSet1();
             const result = toggleSingleColumnPin({ columnKey: B.key, prevConfig, columnsSorted });
             const expected = {
                 1: { fix: 'left', isVisible: true, order: 'a', width: 10 },
                 2: { fix: 'left', isVisible: true, order: 'ah', width: 10 },
                 3: { isVisible: false, order: 'c', width: 10 },
+            };
+            expect(result).toEqual(expected);
+        });
+
+        it('should pin a hidden column and automatically make it visible', () => {
+            const { prevConfig, columnsSorted, C } = getTestDataSet1();
+            const result = toggleSingleColumnPin({ columnKey: C.key, prevConfig, columnsSorted });
+            const expected = {
+                1: { fix: 'left', isVisible: true, order: 'a', width: 10 },
+                2: { isVisible: true, order: 'b', width: 10 },
+                3: { fix: 'left', isVisible: true, order: 'ah', width: 10 },
             };
             expect(result).toEqual(expected);
         });
@@ -58,7 +79,7 @@ describe('columnsActionsService', () => {
         });
     });
 
-    describe('toggleColumnsVisibility', () => {
+    describe('toggleAllColumnsVisibility', () => {
         it('should hide all columns except always visible ones', () => {
             const { prevConfig, columnsSorted } = getTestDataSet1();
             const result = toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, isToggleOn: false });

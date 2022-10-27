@@ -6,9 +6,8 @@ import {
 } from "@epam/uui-core";
 import { DndDataType } from "../types";
 
-export function isColumnAlwaysPinned(props: DndDataType) {
-    const isPinned = Boolean(props.columnConfig.fix);
-    return props.column.isAlwaysVisible && isPinned;
+export function isColumnAlwaysPinned(column: DataColumnProps) {
+    return Boolean(column.isAlwaysVisible && column.fix);
 }
 
 export function canAcceptDrop(props: AcceptDropParams<DndDataType, DndDataType>) {
@@ -20,7 +19,7 @@ export function canAcceptDrop(props: AcceptDropParams<DndDataType, DndDataType>)
     const isMovingToUnpinnedArea = !dstData.columnConfig.fix;
     const isMovingToHiddenArea = !dstData.columnConfig.isVisible;
 
-    const disallowDnd = isColumnAlwaysPinned(srcData) && isMovingToUnpinnedArea ||
+    const disallowDnd = isColumnAlwaysPinned(srcData.column) && isMovingToUnpinnedArea ||
         srcData.column.isAlwaysVisible && isMovingToHiddenArea;
 
     if (disallowDnd) {

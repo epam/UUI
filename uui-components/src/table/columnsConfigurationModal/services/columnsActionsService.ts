@@ -72,6 +72,7 @@ export function toggleSingleColumnPin(
             ...restProps,
             order,
             ...(prevFix ? {} : { fix: fixLeft }),
+            isVisible: !prevFix,
         },
     };
 }
