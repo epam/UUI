@@ -50,7 +50,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal width-420 height-auto modal container"
+      className="uui-modal-window modal width-420 height-700 container"
       role="modal"
     >
       <div
@@ -97,7 +97,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="search"
+        className="root size-36 background-none padding-24 border-bottom-gray40 spacing-12 searchArea container align-items-center"
       >
         <div
           className="container uui-input-box -clickable root size-30 mode-form"
@@ -143,7 +143,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </button>
       </div>
       <div
-        className="root background-white container container"
+        className="root background-white mainPanel container"
       >
         <div
           className="root root theme-light"
@@ -183,186 +183,185 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             }
           >
             <div
-              className="sectionTitle"
-            >
-              <span
-                className="title"
-              >
-                Displayed in table
-              </span>
-              <span
-                className="amount"
-              >
-                2
-              </span>
-            </div>
-            <div
-              className="checkboxContainer"
+              className="root size-36 background-none padding-24 spacing-6 groupTitle container align-items-center"
             >
               <div
-                className="rowWrapper notPinned dndDisabled -draggable"
+                className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-6 container"
+              >
+                Displayed in table
+              </div>
+              <button
+                className="container uui-button-box uui-enabled root size-18 fill-solid badge-color-gray30 root"
+                href={null}
+                onClick={[Function]}
+                role="button"
+                tabIndex={-1}
+                type="button"
+              >
+                <div
+                  className="uui-caption"
+                >
+                  2
+                </div>
+              </button>
+            </div>
+            <div
+              className="root size-36 background-none groupItems container align-items-center"
+            >
+              <div
+                className="root size-30 background-none rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
                 onPointerUp={[Function]}
               >
                 <div
-                  className="rowWrapperContent"
+                  className="root size-30 background-white spacing-6 title container align-items-center"
                 >
                   <div
-                    className="root size-36 background-white spacing-6 title container align-items-center"
+                    className="dragHandle container uui-drag-handle"
+                    onPointerDown={[Function]}
+                    onTouchStart={[Function]}
+                  />
+                  <label
+                    className="container root size-18 mode-form checkbox-color-blue uui-disabled"
+                    tabIndex={-1}
                   >
-                    <span
-                      className="dragHandleWrapper"
-                      onPointerDown={[Function]}
-                      onTouchStart={[Function]}
+                    <div
+                      className="uui-checkbox uui-checked"
                     >
-                      <div
-                        className="dragHandle container uui-drag-handle"
+                      <input
+                        aria-checked={true}
+                        aria-disabled={true}
+                        checked={true}
+                        disabled={true}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
                       />
-                    </span>
-                    <label
-                      className="container root size-18 mode-form checkbox-color-blue uui-disabled"
-                      tabIndex={-1}
-                    >
                       <div
-                        className="uui-checkbox uui-checked"
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
                       >
-                        <input
-                          aria-checked={true}
-                          aria-disabled={true}
-                          checked={true}
-                          disabled={true}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
+                        <svg
+                          className=""
                         />
-                        <div
-                          className="container uui-icon uui-enabled"
-                          style={Object {}}
-                        >
-                          <svg
-                            className=""
-                          />
-                        </div>
                       </div>
-                      <div
-                        className="uui-input-label"
-                      >
-                        ID
-                      </div>
-                    </label>
-                  </div>
-                  <div
-                    className="root size-36 background-none pinIconButton container align-items-center"
-                  >
-                    <span
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
+                    </div>
+                    <div
+                      className="uui-input-label"
                     >
-                      <button
-                        aria-disabled={false}
-                        className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-                        href={null}
-                        onClick={[Function]}
-                        role="button"
-                        tabIndex={0}
-                        type="button"
+                      ID
+                    </div>
+                  </label>
+                </div>
+                <div
+                  className="flexSpacer"
+                />
+                <div
+                  className="root size-30 background-none pinIconButton container align-items-center"
+                >
+                  <span
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    <button
+                      aria-disabled={false}
+                      className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+                      href={null}
+                      onClick={[Function]}
+                      role="button"
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <div
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
                       >
-                        <div
-                          className="container uui-icon uui-enabled"
-                          style={Object {}}
-                        >
-                          <svg
-                            className=""
-                          />
-                        </div>
-                      </button>
-                    </span>
-                  </div>
+                        <svg
+                          className=""
+                        />
+                      </div>
+                    </button>
+                  </span>
                 </div>
               </div>
               <div
-                className="rowWrapper notPinned dndDisabled -draggable"
+                className="root size-30 background-none rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
                 onPointerUp={[Function]}
               >
                 <div
-                  className="rowWrapperContent"
+                  className="root size-30 background-white spacing-6 title container align-items-center"
                 >
                   <div
-                    className="root size-36 background-white spacing-6 title container align-items-center"
+                    className="dragHandle container uui-drag-handle"
+                    onPointerDown={[Function]}
+                    onTouchStart={[Function]}
+                  />
+                  <label
+                    className="container root size-18 mode-form checkbox-color-blue uui-disabled"
+                    tabIndex={-1}
                   >
-                    <span
-                      className="dragHandleWrapper"
-                      onPointerDown={[Function]}
-                      onTouchStart={[Function]}
+                    <div
+                      className="uui-checkbox uui-checked"
                     >
-                      <div
-                        className="dragHandle container uui-drag-handle"
+                      <input
+                        aria-checked={true}
+                        aria-disabled={true}
+                        checked={true}
+                        disabled={true}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
                       />
-                    </span>
-                    <label
-                      className="container root size-18 mode-form checkbox-color-blue uui-disabled"
-                      tabIndex={-1}
-                    >
                       <div
-                        className="uui-checkbox uui-checked"
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
                       >
-                        <input
-                          aria-checked={true}
-                          aria-disabled={true}
-                          checked={true}
-                          disabled={true}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
+                        <svg
+                          className=""
                         />
-                        <div
-                          className="container uui-icon uui-enabled"
-                          style={Object {}}
-                        >
-                          <svg
-                            className=""
-                          />
-                        </div>
                       </div>
-                      <div
-                        className="uui-input-label"
-                      >
-                        Level
-                      </div>
-                    </label>
-                  </div>
-                  <div
-                    className="root size-36 background-none pinIconButton container align-items-center"
-                  >
-                    <span
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
+                    </div>
+                    <div
+                      className="uui-input-label"
                     >
-                      <button
-                        aria-disabled={false}
-                        className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-                        href={null}
-                        onClick={[Function]}
-                        role="button"
-                        tabIndex={0}
-                        type="button"
+                      Level
+                    </div>
+                  </label>
+                </div>
+                <div
+                  className="flexSpacer"
+                />
+                <div
+                  className="root size-30 background-none pinIconButton container align-items-center"
+                >
+                  <span
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    <button
+                      aria-disabled={false}
+                      className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+                      href={null}
+                      onClick={[Function]}
+                      role="button"
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <div
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
                       >
-                        <div
-                          className="container uui-icon uui-enabled"
-                          style={Object {}}
-                        >
-                          <svg
-                            className=""
-                          />
-                        </div>
-                      </button>
-                    </span>
-                  </div>
+                        <svg
+                          className=""
+                        />
+                      </div>
+                    </button>
+                  </span>
                 </div>
               </div>
             </div>
@@ -440,7 +439,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid actionButton"
+          className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
           role="button"

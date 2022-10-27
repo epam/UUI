@@ -5,10 +5,8 @@
         flex: 0 0 8px;
     }
     cursor: grab;
-    touch-action: none;
     &.disabled {
         cursor: auto;
-        touch-action: auto;
     }
 }
 

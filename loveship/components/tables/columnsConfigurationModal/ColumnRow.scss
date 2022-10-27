@@ -1,4 +1,4 @@
-@use '../../../assets/styles/index' as *;
+@use '../../../assets/styles/scss/index' as *;
 
 .row-wrapper {
     position: relative;
@@ -14,9 +14,9 @@
     }
 
     &:hover {
-        box-shadow: 0 0 1px $gray50;
+        box-shadow: 0 0 1px $night500;
         &, .title, :global(.pin-icon-button) {
-            background-color: $gray10;
+            background-color: $night100;
         }
     }
 

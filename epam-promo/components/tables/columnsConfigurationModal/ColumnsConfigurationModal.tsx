@@ -22,8 +22,8 @@ interface IColumnsConfigView<TItem, TId, TFilter> extends IModal<ColumnsConfig> 
     columns: DataColumnProps<TItem, TId, TFilter>[];
 }
 
-const renderSectionTitle = (title: string, amount: number) => <FlexRow padding="24">
-    <Text font="sans-semibold">{ title }</Text>
+const renderGroupTitle = (title: string, amount: number) => <FlexRow padding="24" spacing="6" cx={ styles.groupTitle }>
+    <Text font="sans-semibold" lineHeight="24" fontSize="14">{ title }</Text>
     <Badge caption={ amount } color="gray30" size="18" />
 </FlexRow>;
 
@@ -47,12 +47,15 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
         const hasDivider = Boolean(amountPinned && amountUnPinned);
         return (
             <>
-                { renderSectionTitle(i18nLocal.displayedInTable, amountPinned + amountUnPinned) }
-                { !!amountPinned && <FlexRow cx={ styles.groupItems } borderBottom={ hasDivider } vPadding="24">
+                { renderGroupTitle(i18nLocal.displayedInTable, amountPinned + amountUnPinned) }
+                { !!amountPinned && <FlexRow cx={ styles.groupItems }>
                         { byGroup.displayedPinned.map(renderRow) }
                     </FlexRow>
                 }
-                { !!amountUnPinned && <FlexRow cx={ styles.groupItems } vPadding="24">
+                {
+                    hasDivider && <div className={ styles.hDivider } />
+                }
+                { !!amountUnPinned && <FlexRow cx={ styles.groupItems }>
                         { byGroup.displayedUnpinned.map(renderRow) }
                     </FlexRow>
                 }
@@ -67,7 +70,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
         }
         return (
             <>
-                { renderSectionTitle(i18nLocal.hiddenInTable, amountHidden) }
+                { renderGroupTitle(i18nLocal.hiddenInTable, amountHidden) }
                 <FlexRow cx={ styles.groupItems }>
                     { byGroup.hidden.map(renderRow) }
                 </FlexRow>
@@ -79,7 +82,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
         <ModalBlocker blockerShadow="dark" { ...modalProps }>
             <ModalWindow height="700">
                 <ModalHeader title={ i18nLocal.configureColumnsTitle } onClose={ close } />
-                <FlexRow padding="24" borderBottom={ true } spacing="12">
+                <FlexRow padding="24" borderBottom={ true } spacing="12" cx={ styles.searchArea }>
                     <SearchInput
                         size="30"
                         value={ filterValue }
@@ -105,7 +108,6 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
                                 isDropdown={ false }
                             />
                         }
-                        placement="bottom-end"
                     />
                 </FlexRow>
                 <Panel background="white" cx={ styles.mainPanel }>

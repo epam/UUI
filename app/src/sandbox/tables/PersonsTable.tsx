@@ -38,7 +38,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
     const onConfigurationButtonClick = () => {
         uuiModals.show<ColumnsConfig>(modalProps => (
             <ColumnsConfigurationModal
-                modalProps={ modalProps }
+                { ...modalProps }
                 columns={ personColumns }
                 columnsConfig={ config }
                 defaultConfig={ defaultConfig }

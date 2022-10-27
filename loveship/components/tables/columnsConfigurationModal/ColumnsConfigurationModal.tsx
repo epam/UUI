@@ -2,140 +2,87 @@ import * as styles from "./ColumnsConfigurationModal.scss";
 import * as React from "react";
 import { useCallback } from "react";
 //
-import { ColumnsConfig, cx, DataColumnProps, DndActorRenderParams, IModal } from "@epam/uui-core";
-import { useColumnsConfigurationState, DragHandle } from "@epam/uui-components";
+import { ColumnsConfig, DataColumnProps, IModal } from "@epam/uui-core";
+import { IManageableColumn, useColumnsConfigurationState } from "@epam/uui-components";
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 //
 import {
-    FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, Checkbox, SearchInput, DropMarker,
-    Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow,
+    FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, SearchInput,
+    Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Badge, Text,
 } from "../../../.";
 import { i18n } from '../../../i18n';
-//
-import { PinIconButton } from "./PinIconButton";
+import { ColumnRow } from "./ColumnRow";
 
 const i18nLocal = i18n.tables.columnsConfigurationModal;
-const returnByCondition = <T, F>(condition: boolean, ifTrue: T, ifFalse: F) => {
-    return condition ? ifTrue : ifFalse;
-};
 
-interface IColumnsConfigView<TItem, TId, TFilter> {
-    modalProps: IModal<ColumnsConfig>;
+interface IColumnsConfigView<TItem, TId, TFilter> extends IModal<ColumnsConfig> {
     columnsConfig: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
 }
 
+const renderGroupTitle = (title: string, amount: number) => <FlexRow padding="24" spacing="6" cx={ styles.groupTitle }>
+    <Text font="sans-semibold" lineHeight="24" fontSize="14">{ title }</Text>
+    <Badge caption={ amount } color="night300" size="18" />
+</FlexRow>;
+
+
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsConfigView<TItem, TId, TFilter>) {
-    const { modalProps, columns, columnsConfig, defaultConfig } = props;
-
-    const renderRowContent = (
-        props: { dndActorParams: DndActorRenderParams, column: DataColumnProps<TItem, TId>, isDndAllowed: boolean, isPinnedAlways: boolean },
-    ) => {
-        const {
-            column,
-            isDndAllowed,
-            dndActorParams,
-            isPinnedAlways,
-        } = props;
-        const cfg = columnsConfigLocal[column.key];
-        const isSelected = cfg.isVisible;
-        const isPinned = cfg.fix || isPinnedAlways;
-        const wrapperClasses = cx(
-            styles.rowWrapper,
-            !isPinned && styles.notPinned,
-            isDndAllowed && styles.dndAllowed,
-            ...returnByCondition(isDndAllowed, dndActorParams.classNames, []),
-        );
-        const { onTouchStart, onPointerDown, ...restEventHandlers } = dndActorParams.eventHandlers;
-        const wrapperAttrs = {
-            className: wrapperClasses,
-            ...returnByCondition(isDndAllowed, { ref: dndActorParams.ref }, {}),
-            ...returnByCondition(isDndAllowed, restEventHandlers, {}),
-        };
-        const dragHandleAttrs = {
-            className: styles.dragHandleWrapper,
-            ...returnByCondition(isDndAllowed, { onTouchStart, onPointerDown }, {}),
-        };
-
-        return (
-            <div { ...wrapperAttrs }>
-                <div className={ styles.rowWrapperContent }>
-                    <FlexRow background="white" spacing='6' cx={ styles.title }>
-                        <span { ...dragHandleAttrs }><DragHandle cx={ styles.dragHandle } /></span>
-                        <Checkbox
-                            key={ column.key }
-                            label={ column.caption }
-                            value={ isSelected }
-                            onValueChange={ () => toggleVisibility(column.key) }
-                            isDisabled={ column.isAlwaysVisible || !!column.fix }
-                        />
-                    </FlexRow>
-                    <PinIconButton
-                        id={ column.key }
-                        isPinned={ !!isPinned }
-                        canUnpin={ !isPinnedAlways }
-                        onTogglePin={ togglePin }
-                    />
-                </div>
-                <DropMarker { ...dndActorParams } />
-            </div>
-        );
-    };
-
+    const { columns, columnsConfig, defaultConfig, ...modalProps } = props;
+    const renderRow = (c: IManageableColumn) => <ColumnRow column={ c } key={ c.key } />;
     const {
         // props
-        byGroup, isNoData, filterValue, columnsConfigLocal,
+        byGroup, isNoData, filterValue,
         // methods
-        reset, apply, checkAll, togglePin, renderRows, uncheckAll, setFilterValue, toggleVisibility,
-    } = useColumnsConfigurationState({ columnsConfig, columns, modalProps, defaultConfig, renderRowContent });
-
-    const renderSectionTitle = (title: string, amount: number) => <div className={ styles.sectionTitle }>
-        <span className={ styles.title }>{ title }</span>
-        <span className={ styles.amount }>{ amount }</span>
-    </div>;
+        reset, apply, checkAll, uncheckAll, setFilterValue,
+    } = useColumnsConfigurationState({ columnsConfig, columns, modalProps, defaultConfig });
 
     const renderVisible = () => {
-        const amountPinned = byGroup.DISPLAYED_PINNED?.itemsFiltered?.length || 0;
-        const amountUnPinned = byGroup.DISPLAYED_UNPINNED?.itemsFiltered?.length || 0;
+        const amountPinned = byGroup.displayedPinned.length;
+        const amountUnPinned = byGroup.displayedUnpinned.length;
         if (!amountPinned && !amountUnPinned) {
             return null;
         }
-        const rowsPinned = renderRows(useColumnsConfigurationState.ColGroup.DISPLAYED_PINNED);
-        const rowsUnpinned = renderRows(useColumnsConfigurationState.ColGroup.DISPLAYED_UNPINNED);
+        const hasDivider = Boolean(amountPinned && amountUnPinned);
         return (
             <>
-                { renderSectionTitle(i18nLocal.displayedInTable, amountPinned + amountUnPinned) }
-                <div className={ styles.checkboxContainer }>
-                    { rowsPinned }
-                    { Boolean(amountPinned && amountUnPinned) && <div className={ styles.hDivider } /> }
-                    { rowsUnpinned }
-                </div>
+                { renderGroupTitle(i18nLocal.displayedInTable, amountPinned + amountUnPinned) }
+                { !!amountPinned && <FlexRow cx={ styles.groupItems }>
+                        { byGroup.displayedPinned.map(renderRow) }
+                    </FlexRow>
+                }
+                {
+                    hasDivider && <div className={ styles.hDivider } />
+                }
+                { !!amountUnPinned && <FlexRow cx={ styles.groupItems }>
+                        { byGroup.displayedUnpinned.map(renderRow) }
+                    </FlexRow>
+                }
             </>
         );
     };
 
     const renderHidden = () => {
-        const amountHidden = byGroup.HIDDEN?.itemsFiltered?.length || 0;
+        const amountHidden = byGroup.hidden.length;
         if (!amountHidden) {
             return null;
         }
         return (
             <>
-                { renderSectionTitle(i18nLocal.hiddenInTable, amountHidden) }
-                <div className={ styles.checkboxContainer }>
-                    { renderRows(useColumnsConfigurationState.ColGroup.HIDDEN) }
-                </div>
+                { renderGroupTitle(i18nLocal.hiddenInTable, amountHidden) }
+                <FlexRow cx={ styles.groupItems }>
+                    { byGroup.hidden.map(renderRow) }
+                </FlexRow>
             </>
         );
     };
     const close = useCallback(() =>  modalProps.abort(), [modalProps]);
     return (
         <ModalBlocker blockerShadow="dark" { ...modalProps }>
-            <ModalWindow cx={ styles.modal }>
+            <ModalWindow height="700">
                 <ModalHeader title={ i18nLocal.configureColumnsTitle } onClose={ close } />
-                <div className={ styles.search }>
+                <FlexRow padding="24" borderBottom={ true } spacing="12" cx={ styles.searchArea }>
                     <SearchInput
                         size="30"
                         value={ filterValue }
@@ -157,31 +104,31 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
                                 fill="white"
                                 icon={ MenuIcon }
                                 size="30"
-                                color="night600"
+                                color="night500"
                                 isDropdown={ false }
                             />
                         }
-                        placement="bottom-end"
                     />
-                </div>
-                <Panel background="white" cx={ styles.container }>
+                </FlexRow>
+                <Panel background="white" cx={ styles.mainPanel }>
                     <ScrollBars>
                         { renderVisible() }
                         { renderHidden() }
                         {
-                            isNoData &&
-                            <div className={ styles.noData }>
-                                <div className={ styles.text }>{ i18nLocal.noResultsFound }</div>
-                                <div className={ styles.subText }>{ i18nLocal.weCantFindAnyItemMatchingYourRequest }</div>
-                            </div>
+                            isNoData && (
+                                <FlexRow cx={ styles.noData }>
+                                    <Text fontSize='18' lineHeight='30' color='night800' font='sans-semibold'>{ i18nLocal.noResultsFound }</Text>
+                                    <Text fontSize='16' lineHeight='24' font='sans' color='night800'>{ i18nLocal.weCantFindAnyItemMatchingYourRequest }</Text>
+                                </FlexRow>
+                            )
                         }
                     </ScrollBars>
                 </Panel>
                 <ModalFooter borderTop >
                     <LinkButton icon={ ResetIcon } caption={ i18nLocal.resetToDefaultButton } color="sky" onClick={ reset } />
                     <FlexSpacer />
-                    <Button fill="white" color="night600" caption={ i18nLocal.cancelButton } onClick={ close } />
-                    <Button cx={ styles.actionButton } caption={ i18nLocal.applyButton } color="grass" onClick={ apply } />
+                    <Button fill="white" color="night500" caption={ i18nLocal.cancelButton } onClick={ close } />
+                    <Button caption={ i18nLocal.applyButton } color="sky" onClick={ apply } />
                 </ModalFooter>
             </ModalWindow>
         </ModalBlocker>

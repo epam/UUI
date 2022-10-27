@@ -50,7 +50,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal width-420 height-auto modal container"
+      className="uui-modal-window modal width-420 height-700 container"
       role="modal"
     >
       <div
@@ -97,7 +97,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="search"
+        className="root size-36 background-none padding-24 border-bottom-night400 spacing-12 searchArea container align-items-center"
       >
         <div
           className="container uui-input-box -clickable colorSky root size-30 mode-form"
@@ -125,7 +125,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           />
         </div>
         <button
-          className="container uui-button-box uui-enabled -clickable root size-30 color-night600 fill-white style-square actionsMenu"
+          className="container uui-button-box uui-enabled -clickable root size-30 color-night500 fill-white style-square actionsMenu"
           href={null}
           onClick={[Function]}
           role="button"
@@ -143,7 +143,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </button>
       </div>
       <div
-        className="root background-white container container"
+        className="root background-white mainPanel container"
       >
         <div
           className="root root theme-light"
@@ -183,78 +183,85 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             }
           >
             <div
-              className="sectionTitle"
+              className="root size-36 background-none padding-24 spacing-6 groupTitle container align-items-center"
             >
-              <span
-                className="title"
+              <div
+                className="text font-sans-semibold color-night700 line-height-24 font-size-14 v-padding-6 container"
               >
                 Displayed in table
-              </span>
-              <span
-                className="amount"
+              </div>
+              <button
+                className="container uui-button-box uui-enabled root style-square size-18 fill-solid color-night300 root"
+                href={null}
+                onClick={[Function]}
+                role="button"
+                tabIndex={-1}
+                type="button"
               >
-                4
-              </span>
+                <div
+                  className="uui-caption"
+                >
+                  2
+                </div>
+              </button>
             </div>
             <div
-              className="checkboxContainer"
+              className="root size-36 background-none spacing-6 groupItems container align-items-center"
             >
               <div
-                className="rowWrapper notPinned dndAllowed -draggable"
+                className="root size-30 background-none spacing-6 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
                 onPointerUp={[Function]}
               >
                 <div
-                  className="rowWrapperContent"
+                  className="root size-30 background-white spacing-6 title container align-items-center"
                 >
                   <div
-                    className="root size-36 background-white spacing-6 title container align-items-center"
+                    className="dragHandle container uui-drag-handle"
+                    onPointerDown={[Function]}
+                    onTouchStart={[Function]}
+                  />
+                  <label
+                    className="container root size-18 theme-light mode-form color-sky uui-disabled"
+                    tabIndex={-1}
                   >
-                    <span
-                      className="dragHandleWrapper"
-                      onPointerDown={[Function]}
-                      onTouchStart={[Function]}
+                    <div
+                      className="uui-checkbox uui-checked"
                     >
-                      <div
-                        className="dragHandle container uui-drag-handle"
+                      <input
+                        aria-checked={true}
+                        aria-disabled={true}
+                        checked={true}
+                        disabled={true}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
                       />
-                    </span>
-                    <label
-                      className="container root size-18 theme-light mode-form color-sky uui-disabled"
-                      tabIndex={-1}
-                    >
                       <div
-                        className="uui-checkbox uui-checked"
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
                       >
-                        <input
-                          aria-checked={true}
-                          aria-disabled={true}
-                          checked={true}
-                          disabled={true}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
+                        <svg
+                          className=""
                         />
-                        <div
-                          className="container uui-icon uui-enabled"
-                          style={Object {}}
-                        >
-                          <svg
-                            className=""
-                          />
-                        </div>
                       </div>
-                      <div
-                        className="uui-input-label"
-                      >
-                        ID
-                      </div>
-                    </label>
-                  </div>
+                    </div>
+                    <div
+                      className="uui-input-label"
+                    >
+                      ID
+                    </div>
+                  </label>
+                </div>
+                <div
+                  className="flexSpacer"
+                />
+                <div
+                  className="root size-30 background-none spacing-6 pinIconButton container align-items-center"
+                >
                   <span
-                    className="pin pin-icon-button"
                     onMouseOut={[Function]}
                     onMouseOver={[Function]}
                   >
@@ -280,73 +287,36 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 </div>
               </div>
               <div
-                className="rowWrapper notPinned dndAllowed -draggable"
+                className="root size-30 background-none spacing-6 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
                 onPointerUp={[Function]}
               >
                 <div
-                  className="rowWrapperContent"
+                  className="root size-30 background-white spacing-6 title container align-items-center"
                 >
                   <div
-                    className="root size-36 background-white spacing-6 title container align-items-center"
+                    className="dragHandle container uui-drag-handle"
+                    onPointerDown={[Function]}
+                    onTouchStart={[Function]}
+                  />
+                  <label
+                    className="container root size-18 theme-light mode-form color-sky uui-disabled"
+                    tabIndex={-1}
                   >
-                    <span
-                      className="dragHandleWrapper"
-                      onPointerDown={[Function]}
-                      onTouchStart={[Function]}
+                    <div
+                      className="uui-checkbox uui-checked"
                     >
-                      <div
-                        className="dragHandle container uui-drag-handle"
+                      <input
+                        aria-checked={true}
+                        aria-disabled={true}
+                        checked={true}
+                        disabled={true}
+                        onChange={[Function]}
+                        tabIndex={-1}
+                        type="checkbox"
                       />
-                    </span>
-                    <label
-                      className="container root size-18 theme-light mode-form color-sky uui-disabled"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox uui-checked"
-                      >
-                        <input
-                          aria-checked={true}
-                          aria-disabled={true}
-                          checked={true}
-                          disabled={true}
-                          onChange={[Function]}
-                          tabIndex={-1}
-                          type="checkbox"
-                        />
-                        <div
-                          className="container uui-icon uui-enabled"
-                          style={Object {}}
-                        >
-                          <svg
-                            className=""
-                          />
-                        </div>
-                      </div>
-                      <div
-                        className="uui-input-label"
-                      >
-                        name
-                      </div>
-                    </label>
-                  </div>
-                  <span
-                    className="pin pin-icon-button"
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
-                  >
-                    <button
-                      aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable root color-night600"
-                      href={null}
-                      onClick={[Function]}
-                      role="button"
-                      tabIndex={0}
-                      type="button"
-                    >
                       <div
                         className="container uui-icon uui-enabled"
                         style={Object {}}
@@ -355,144 +325,21 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                           className=""
                         />
                       </div>
-                    </button>
-                  </span>
+                    </div>
+                    <div
+                      className="uui-input-label"
+                    >
+                      Level
+                    </div>
+                  </label>
                 </div>
-              </div>
-              <div
-                className="rowWrapper notPinned dndAllowed -draggable"
-                onPointerEnter={[Function]}
-                onPointerLeave={[Function]}
-                onPointerMove={[Function]}
-                onPointerUp={[Function]}
-              >
                 <div
-                  className="rowWrapperContent"
-                >
-                  <div
-                    className="root size-36 background-white spacing-6 title container align-items-center"
-                  >
-                    <span
-                      className="dragHandleWrapper"
-                      onPointerDown={[Function]}
-                      onTouchStart={[Function]}
-                    >
-                      <div
-                        className="dragHandle container uui-drag-handle"
-                      />
-                    </span>
-                    <label
-                      className="container root size-18 theme-light mode-form color-sky -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox uui-checked"
-                      >
-                        <input
-                          aria-checked={true}
-                          checked={true}
-                          disabled={false}
-                          onChange={[Function]}
-                          tabIndex={0}
-                          type="checkbox"
-                        />
-                        <div
-                          className="container uui-icon uui-enabled"
-                          style={Object {}}
-                        >
-                          <svg
-                            className=""
-                          />
-                        </div>
-                      </div>
-                      <div
-                        className="uui-input-label"
-                      >
-                        Level
-                      </div>
-                    </label>
-                  </div>
-                  <span
-                    className="pin pin-icon-button"
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
-                  >
-                    <button
-                      aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable root color-night600"
-                      href={null}
-                      onClick={[Function]}
-                      role="button"
-                      tabIndex={0}
-                      type="button"
-                    >
-                      <div
-                        className="container uui-icon uui-enabled"
-                        style={Object {}}
-                      >
-                        <svg
-                          className=""
-                        />
-                      </div>
-                    </button>
-                  </span>
-                </div>
-              </div>
-              <div
-                className="rowWrapper notPinned dndAllowed -draggable"
-                onPointerEnter={[Function]}
-                onPointerLeave={[Function]}
-                onPointerMove={[Function]}
-                onPointerUp={[Function]}
-              >
+                  className="flexSpacer"
+                />
                 <div
-                  className="rowWrapperContent"
+                  className="root size-30 background-none spacing-6 pinIconButton container align-items-center"
                 >
-                  <div
-                    className="root size-36 background-white spacing-6 title container align-items-center"
-                  >
-                    <span
-                      className="dragHandleWrapper"
-                      onPointerDown={[Function]}
-                      onTouchStart={[Function]}
-                    >
-                      <div
-                        className="dragHandle container uui-drag-handle"
-                      />
-                    </span>
-                    <label
-                      className="container root size-18 theme-light mode-form color-sky -clickable"
-                      tabIndex={-1}
-                    >
-                      <div
-                        className="uui-checkbox uui-checked"
-                      >
-                        <input
-                          aria-checked={true}
-                          checked={true}
-                          disabled={false}
-                          onChange={[Function]}
-                          tabIndex={0}
-                          type="checkbox"
-                        />
-                        <div
-                          className="container uui-icon uui-enabled"
-                          style={Object {}}
-                        >
-                          <svg
-                            className=""
-                          />
-                        </div>
-                      </div>
-                      <div
-                        className="uui-input-label"
-                      >
-                        DATE
-                      </div>
-                    </label>
-                  </div>
                   <span
-                    className="pin pin-icon-button"
                     onMouseOut={[Function]}
                     onMouseOver={[Function]}
                   >
@@ -578,7 +425,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-night600 fill-white style-square"
+          className="container uui-button-box uui-enabled -clickable root size-36 color-night500 fill-white style-square"
           href={null}
           onClick={[Function]}
           role="button"
@@ -592,7 +439,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square actionButton"
+          className="container uui-button-box uui-enabled -clickable root size-36 color-sky fill-solid style-square"
           href={null}
           onClick={[Function]}
           role="button"
