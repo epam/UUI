@@ -9,11 +9,11 @@ export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IH
     disallowClickOutside?: boolean;
 }
 
-export interface ModalHeaderCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+export interface ModalHeaderCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     onClose?: () => any;
     title?: React.ReactNode;
 }
 
-export interface ModalFooterCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+export interface ModalFooterCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     borderTop?: boolean;
 }
