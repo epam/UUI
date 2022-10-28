@@ -3,7 +3,7 @@ import {
     toggleSingleColumnPin,
     toggleSingleColumnVisibility,
 } from '../columnsActions';
-import { ColumnsConfig, DataColumnProps, IColumnConfig } from '@epam/uui-core';
+import { ColumnsConfig, IColumnConfig } from '@epam/uui-core';
 import { GroupedDataColumnProps } from "../types";
 
 function getTestDataSet1() {
@@ -90,7 +90,7 @@ describe('columnsActionsService', () => {
             expect(result).toEqual(expected);
         });
         it('should be able to move a column right before another column', () => {
-            const { prevConfig, columnsSorted, A, B, C } = getTestDataSet1();
+            const { prevConfig, A, B, C } = getTestDataSet1();
             const columnConfig = prevConfig[C.key];
             const targetColumn = prevConfig[A.key];
             const targetPrevColumn: IColumnConfig = null;

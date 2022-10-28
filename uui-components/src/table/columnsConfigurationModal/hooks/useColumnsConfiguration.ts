@@ -52,12 +52,12 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
 
     const sortedColumnsExtended = useMemo(() => columnsSorted.map(
         (column: DataColumnProps, index): ColumnsConfigurationRowProps => {
-            const columnKey = column.key;
-            const columnConfig = columnsConfigUnsaved[columnKey];
-            const prevColumn = columnsSorted[index - 1];
-            const nextColumn = columnsSorted[index + 1];
+            const columnConfig = columnsConfigUnsaved[column.key];
+            const prevColumn = columnsConfigUnsaved[columnsSorted[index - 1]?.key];
+            const nextColumn = columnsConfigUnsaved[columnsSorted[index + 1]?.key];
             const handleDrop = (params: DropParams<DndDataType, DndDataType>) => {
                 const { srcData, position } = params;
+                // NOTE: srcData - is the column which we are dropping.
                 setColumnsConfigUnsaved(prevConfig => {
                     const columnNew = moveColumnRelativeToAnotherColumn({
                         columnConfig: srcData.columnConfig,
@@ -68,14 +68,13 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
                     });
                     return {
                         ...prevConfig,
-                        [columnKey]: columnNew,
+                        [srcData.column.key]: columnNew,
                     };
                 });
             };
             const isPinnedAlways = isColumnAlwaysPinned(column);
             return {
-                ...column,
-                columnConfig, isDndAllowed, isPinnedAlways,
+                ...column, columnConfig, isDndAllowed, isPinnedAlways,
                 togglePin: () => togglePin(column.key),
                 toggleVisibility: () => toggleVisibility(column.key),
                 onCanAcceptDrop: canAcceptDrop,
