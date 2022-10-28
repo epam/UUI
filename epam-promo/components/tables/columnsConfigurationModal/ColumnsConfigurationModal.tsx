@@ -3,7 +3,7 @@ import * as React from "react";
 import { useCallback, useMemo } from "react";
 //
 import { ColumnsConfig, DataColumnProps, IModal } from "@epam/uui-core";
-import { IManageableColumn, useColumnsConfiguration } from "@epam/uui-components";
+import { useColumnsConfiguration } from "@epam/uui-components";
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 //
@@ -17,7 +17,7 @@ import { ColumnRow } from "./ColumnRow";
 const i18nLocal = i18n.tables.columnsConfigurationModal;
 
 interface IColumnsConfigView<TItem, TId, TFilter> extends IModal<ColumnsConfig> {
-    columnsConfig: ColumnsConfig;
+    columnsConfig?: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
 }
@@ -29,16 +29,15 @@ const renderGroupTitle = (title: string, amount: number) => <FlexRow padding="24
 
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsConfigView<TItem, TId, TFilter>) {
     const { columns, columnsConfig, defaultConfig, ...modalProps } = props;
-    const renderRow = (c: IManageableColumn) => <ColumnRow column={ c } key={ c.key } />;
     const {
         // props
-        groupedColumns, searchValue,
+        groupedColumns, searchValue, columnsConfigUnsaved,
         // methods
-        reset, apply, checkAll, uncheckAll, setSearchValue,
-    } = useColumnsConfiguration({ columnsConfig, columns, modalProps, defaultConfig });
-
+        reset, checkAll, uncheckAll, setSearchValue,
+    } = useColumnsConfiguration({ columnsConfig, columns, defaultConfig });
+    const apply = useCallback(() => modalProps.success(columnsConfigUnsaved), [columnsConfigUnsaved, modalProps]);
+    const close = useCallback(() =>  modalProps.abort(), [modalProps]);
     const isNoData = useMemo(() => Object.values(groupedColumns).every(v => !v.length), [groupedColumns]);
-
     const renderVisible = () => {
         const amountPinned = groupedColumns.displayedPinned.length;
         const amountUnPinned = groupedColumns.displayedUnpinned.length;
@@ -50,20 +49,19 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
             <>
                 { renderGroupTitle(i18nLocal.displayedInTable, amountPinned + amountUnPinned) }
                 { !!amountPinned && <FlexRow cx={ styles.groupItems }>
-                        { groupedColumns.displayedPinned.map(renderRow) }
+                        { groupedColumns.displayedPinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
                     </FlexRow>
                 }
                 {
                     hasDivider && <div className={ styles.hDivider } />
                 }
                 { !!amountUnPinned && <FlexRow cx={ styles.groupItems }>
-                        { groupedColumns.displayedUnpinned.map(renderRow) }
+                        { groupedColumns.displayedUnpinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
                     </FlexRow>
                 }
             </>
         );
     };
-
     const renderHidden = () => {
         const amountHidden = groupedColumns.hidden.length;
         if (!amountHidden) {
@@ -73,12 +71,11 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
             <>
                 { renderGroupTitle(i18nLocal.hiddenInTable, amountHidden) }
                 <FlexRow cx={ styles.groupItems }>
-                    { groupedColumns.hidden.map(renderRow) }
+                    { groupedColumns.hidden.map(c => <ColumnRow column={ c } key={ c.key } />) }
                 </FlexRow>
             </>
         );
     };
-    const close = useCallback(() =>  modalProps.abort(), [modalProps]);
     return (
         <ModalBlocker blockerShadow="dark" { ...modalProps }>
             <ModalWindow height="700">

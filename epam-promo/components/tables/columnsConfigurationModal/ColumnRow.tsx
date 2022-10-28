@@ -2,13 +2,13 @@ import * as React from "react";
 import * as styles from "./ColumnRow.scss";
 import { cx, DataColumnProps, DndActor, DndActorRenderParams, IColumnConfig } from "@epam/uui-core";
 import { FlexRow, Checkbox, DropMarker } from "../../.";
-import { DragHandle, FlexSpacer, IManageableColumn } from "@epam/uui-components";
+import { DragHandle, FlexSpacer, ColumnsConfigurationRowProps } from "@epam/uui-components";
 import { PinIconButton } from "./PinIconButton";
 
 type DndDataType = { column: DataColumnProps, columnConfig: IColumnConfig };
 
 export interface ColumnRowProps {
-    column: IManageableColumn;
+    column: ColumnsConfigurationRowProps;
 }
 
 const returnByCondition = <T, F>(condition: boolean, ifTrue: T, ifFalse: F) => {

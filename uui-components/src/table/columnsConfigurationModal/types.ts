@@ -4,7 +4,7 @@ export interface ICanBeFixed {
     fix?: 'left' | 'right';
 }
 export type DndDataType = { column: DataColumnProps, columnConfig: IColumnConfig };
-export interface IManageableColumn extends DataColumnProps {
+export interface ColumnsConfigurationRowProps extends GroupedDataColumnProps {
     toggleVisibility: () => void;
     togglePin: () => void;
     onCanAcceptDrop: (props: AcceptDropParams<DndDataType, DndDataType>) => DropPositionOptions | null;
@@ -12,4 +12,13 @@ export interface IManageableColumn extends DataColumnProps {
     columnConfig: IColumnConfig;
     isDndAllowed: boolean;
     isPinnedAlways: boolean;
+}
+export type GroupedColumnsType<T extends DataColumnProps> = {
+    hidden: T[],
+    displayedUnpinned: T[],
+    displayedPinned: T[],
+};
+
+export interface GroupedDataColumnProps extends DataColumnProps {
+    groupKey?: keyof GroupedColumnsType<DataColumnProps>;
 }

@@ -2,13 +2,13 @@ import * as React from "react";
 import * as styles from "./ColumnRow.scss";
 import { cx, DataColumnProps, DndActor, DndActorRenderParams, IColumnConfig } from "@epam/uui-core";
 import { FlexRow, Checkbox, DropMarker } from "../../.";
-import { DragHandle, FlexSpacer, IManageableColumn } from "@epam/uui-components";
+import { DragHandle, FlexSpacer, ColumnsConfigurationRowProps } from "@epam/uui-components";
 import { PinIconButton } from "./PinIconButton";
 
 type DndDataType = { column: DataColumnProps, columnConfig: IColumnConfig };
 
 export interface ColumnRowProps {
-    column: IManageableColumn;
+    column: ColumnsConfigurationRowProps;
 }
 
 const returnByCondition = <T, F>(condition: boolean, ifTrue: T, ifFalse: F) => {
@@ -38,7 +38,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
         };
 
         return (
-            <FlexRow size="30" cx={ wrapperClasses } { ...wrapperAttrs } spacing={ null }>
+            <FlexRow size="30" cx={ wrapperClasses } { ...wrapperAttrs }>
                 <FlexRow size="30" background="white" spacing='6' cx={ styles.title }>
                     <DragHandle rawProps={ dragHandleRawProps } isDisabled={ !isDndAllowed } cx={ cx(styles.dragHandle, !isDndAllowed && styles.dndDisabled) } />
                     <Checkbox
@@ -50,7 +50,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
                     />
                 </FlexRow>
                 <FlexSpacer />
-                <FlexRow size="30" cx={ styles.pinIconButton } spacing={ null }>
+                <FlexRow size="30" cx={ styles.pinIconButton }>
                     <PinIconButton
                         id={ column.key }
                         isPinned={ !!isPinned }
