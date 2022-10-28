@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { ColumnsConfig, DataColumnProps, DropParams, IModal } from "@epam/uui-core";
+import { ColumnsConfig, DataColumnProps, DropParams, DropPosition, IModal } from "@epam/uui-core";
 import sortBy from "lodash.sortby";
 import {
     moveColumnRelativeToAnotherColumn, toggleSingleColumnPin, toggleAllColumnsVisibility, toggleSingleColumnVisibility,
@@ -29,8 +29,8 @@ export function useColumnsConfiguration<TItem, TId, TFilter>(props: UseColumnsCo
         [props.columns, columnsConfigLocal],
     );
 
-    const moveColumn = useCallback((prevConfig: ColumnsConfig, columnKey: string, targetColumnKey: string, isAfterTarget: boolean): ColumnsConfig =>
-        moveColumnRelativeToAnotherColumn({ prevConfig, columnsSorted, isAfterTarget, targetColumnKey, columnKey }),
+    const moveColumn = useCallback((prevConfig: ColumnsConfig, columnKey: string, targetColumnKey: string, position: DropPosition): ColumnsConfig =>
+        moveColumnRelativeToAnotherColumn({ prevConfig, columnsSorted, position, targetColumnKey, columnKey }),
         [columnsSorted]);
 
     const toggleVisibility = useCallback((columnKey: string) =>
@@ -63,7 +63,7 @@ export function useColumnsConfiguration<TItem, TId, TFilter>(props: UseColumnsCo
         const handleDrop = (params: DropParams<DndDataType, DndDataType>) => {
             const { srcData, position } = params;
             setColumnsConfig(prevConfig => {
-                return moveColumn(prevConfig, srcData.column.key, column.key, position === 'bottom');
+                return moveColumn(prevConfig, srcData.column.key, column.key, position);
             });
         };
         const isPinnedAlways = isColumnAlwaysPinned(column);
