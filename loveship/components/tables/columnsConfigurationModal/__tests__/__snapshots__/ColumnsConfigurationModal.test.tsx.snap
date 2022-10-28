@@ -206,10 +206,10 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               </button>
             </div>
             <div
-              className="root size-36 background-none spacing-null groupItems container align-items-center"
+              className="root size-36 background-none spacing-6 groupItems container align-items-center"
             >
               <div
-                className="root size-30 background-none spacing-null rowWrapper notPinned -draggable container align-items-center"
+                className="root size-30 background-none spacing-6 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -259,7 +259,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   className="flexSpacer"
                 />
                 <div
-                  className="root size-30 background-none spacing-null pinIconButton container align-items-center"
+                  className="root size-30 background-none spacing-6 pinIconButton container align-items-center"
                 >
                   <span
                     onMouseOut={[Function]}
@@ -287,7 +287,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 </div>
               </div>
               <div
-                className="root size-30 background-none spacing-null rowWrapper notPinned -draggable container align-items-center"
+                className="root size-30 background-none spacing-6 rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -337,7 +337,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   className="flexSpacer"
                 />
                 <div
-                  className="root size-30 background-none spacing-null pinIconButton container align-items-center"
+                  className="root size-30 background-none spacing-6 pinIconButton container align-items-center"
                 >
                   <span
                     onMouseOut={[Function]}

@@ -3,17 +3,18 @@ import {
     toggleSingleColumnPin,
     toggleSingleColumnVisibility,
 } from '../columnsActions';
-import { ColumnsConfig, DataColumnProps } from '@epam/uui-core';
+import { ColumnsConfig, DataColumnProps, IColumnConfig } from '@epam/uui-core';
+import { GroupedDataColumnProps } from "../types";
 
 function getTestDataSet1() {
-    const A = { key: '1', fix: 'left', caption: 'a', isAlwaysVisible: false, width: 10 };
-    const B = { key: '2', caption: 'b', isAlwaysVisible: true, width: 10 };
-    const C = { key: '3', caption: 'A', isAlwaysVisible: false, width: 10 };
-    const columnsSorted: DataColumnProps[] = [A, B, C];
+    const A: GroupedDataColumnProps = { key: '1', fix: 'left', caption: 'a', isAlwaysVisible: false, width: 10, groupKey: 'displayedPinned' };
+    const B: GroupedDataColumnProps = { key: '2', caption: 'b', isAlwaysVisible: true, width: 10, groupKey: 'displayedUnpinned' };
+    const C: GroupedDataColumnProps = { key: '3', caption: 'A', isAlwaysVisible: false, width: 10, groupKey: 'hidden' };
+    const columnsSorted: GroupedDataColumnProps[] = [A, B, C];
     const prevConfig: ColumnsConfig = {
-        [A.key]: { fix: 'left', width: 10, isVisible: true, order: 'a' },
-        [B.key]: { width: 10, isVisible: true, order: 'b' },
-        [C.key]: { width: 10, isVisible: false, order: 'c' },
+        [A.key]: { fix: 'left', width: 10, isVisible: true, order: 'a' } as IColumnConfig,
+        [B.key]: { width: 10, isVisible: true, order: 'b' } as IColumnConfig,
+        [C.key]: { width: 10, isVisible: false, order: 'c' } as IColumnConfig,
     };
     return { prevConfig, columnsSorted, A, B, C };
 }
@@ -79,23 +80,23 @@ describe('columnsActionsService', () => {
 
     describe('moveColumnRelativeToAnotherColumn', () => {
         it('should be able to move a column right under another column', () => {
-            const { prevConfig, columnsSorted, A, C } = getTestDataSet1();
-            const result = moveColumnRelativeToAnotherColumn({ prevConfig, columnsSorted, columnKey: A.key, targetColumnKey: C.key, position: 'bottom' });
-            const expected = {
-                1: { isVisible: false, order: 'n', width: 10 },
-                2: { isVisible: true, order: 'b', width: 10 },
-                3: { isVisible: false, order: 'c', width: 10 },
-            };
+            const { prevConfig, A, C, B } = getTestDataSet1();
+            const columnConfig = prevConfig[A.key];
+            const targetColumn = prevConfig[C.key];
+            const targetNextColumn: IColumnConfig = null;
+            const targetPrevColumn = prevConfig[B.key];
+            const result = moveColumnRelativeToAnotherColumn({ columnConfig, targetColumn, targetNextColumn, targetPrevColumn, position: 'bottom' });
+            const expected = { isVisible: false, order: 'n', width: 10 };
             expect(result).toEqual(expected);
         });
         it('should be able to move a column right before another column', () => {
-            const { prevConfig, columnsSorted, A, C } = getTestDataSet1();
-            const result = moveColumnRelativeToAnotherColumn({ prevConfig, columnsSorted, columnKey: C.key, targetColumnKey: A.key, position: 'top' });
-            const expected = {
-                1: { fix: 'left', width: 10, isVisible: true, order: 'a' },
-                2: { width: 10, isVisible: true, order: 'b' },
-                3: { fix: 'left', width: 10, isVisible: true, order: '5' },
-            };
+            const { prevConfig, columnsSorted, A, B, C } = getTestDataSet1();
+            const columnConfig = prevConfig[C.key];
+            const targetColumn = prevConfig[A.key];
+            const targetPrevColumn: IColumnConfig = null;
+            const targetNextColumn = prevConfig[B.key];
+            const result = moveColumnRelativeToAnotherColumn({ columnConfig, targetColumn, targetPrevColumn, targetNextColumn, position: 'top' });
+            const expected = { fix: 'left', width: 10, isVisible: true, order: '5' };
             expect(result).toEqual(expected);
         });
     });

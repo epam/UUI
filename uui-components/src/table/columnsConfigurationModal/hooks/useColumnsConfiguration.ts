@@ -5,9 +5,9 @@ import {
 } from "../columnsActions";
 import {
     canAcceptDrop, isColumnAlwaysPinned,
-} from "../columnsProperties";
+} from "../columnsUtils";
 import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps } from "../types";
-import { groupSortedColumns, sortColumnsAndAddGroupKey } from "../columnsGroupService";
+import { groupSortedColumns, sortColumnsAndAddGroupKey } from "../columnsUtils";
 
 export { ColumnsConfigurationRowProps } ;
 

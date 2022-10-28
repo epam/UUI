@@ -1,6 +1,5 @@
 import { ColumnsConfig, DataColumnProps, DropPosition, IColumnConfig } from "@epam/uui-core";
-import { getNewColumnOrder } from "./columnsProperties";
-import { findFirstByGroupKey, findLastByGroupKey } from "./columnsGroupService";
+import { getNewColumnOrder, findFirstByGroupKey, findLastByGroupKey } from "./columnsUtils";
 import { GroupedDataColumnProps, ICanBeFixed } from "./types";
 
 export function toggleAllColumnsVisibility(props: { prevConfig: ColumnsConfig, columns: DataColumnProps[], value: boolean }) {
@@ -63,8 +62,8 @@ export function toggleSingleColumnPin(
         const { found, prev, next } = findLastByGroupKey(columnsSorted, 'displayedPinned');
         if (found) {
             const targetOrder = prevConfig[found.key]?.order;
-            const targetPrevOrder = prevConfig[prev.key]?.order;
-            const targetNextOrder = prevConfig[next.key]?.order;
+            const targetPrevOrder = prevConfig[prev?.key]?.order;
+            const targetNextOrder = prevConfig[next?.key]?.order;
             order = getNewColumnOrder({ targetOrder, targetPrevOrder, targetNextOrder, position: 'bottom' });
         }
     }
@@ -92,8 +91,8 @@ export function toggleSingleColumnVisibility(
         const { found, prev, next } = findFirstByGroupKey(columnsSorted, 'hidden');
         if (found) {
             const targetOrder = prevConfig[found.key]?.order;
-            const targetPrevOrder = prevConfig[prev.key]?.order;
-            const targetNextOrder = prevConfig[next.key]?.order;
+            const targetPrevOrder = prevConfig[prev?.key]?.order;
+            const targetNextOrder = prevConfig[next?.key]?.order;
             order = getNewColumnOrder({ targetOrder, targetPrevOrder, targetNextOrder, position: 'top' });
         }
     } else {
@@ -101,8 +100,8 @@ export function toggleSingleColumnVisibility(
         const { found, prev, next } = findLastByGroupKey(columnsSorted, 'displayedUnpinned');
         if (found) {
             const targetOrder = prevConfig[found.key]?.order;
-            const targetPrevOrder = prevConfig[prev.key]?.order;
-            const targetNextOrder = prevConfig[next.key]?.order;
+            const targetPrevOrder = prevConfig[prev?.key]?.order;
+            const targetNextOrder = prevConfig[next?.key]?.order;
             order = getNewColumnOrder({ targetOrder, targetPrevOrder, targetNextOrder, position: 'bottom' });
         }
     }
