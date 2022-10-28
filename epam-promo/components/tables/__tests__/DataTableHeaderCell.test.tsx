@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataTableHeaderCell as DataTableHeaderCellPromo } from '../DataTableHeaderCell';
+import { DataTableHeaderCell } from '../DataTableHeaderCell';
 import { renderWithContextAsync } from '@epam/test-utils';
 import { DataColumnProps } from "@epam/uui-core";
 
@@ -13,7 +13,7 @@ describe('DataTableHeaderCell', () => {
             fix: 'left',
         };
         const tree = await renderWithContextAsync(
-            <DataTableHeaderCellPromo
+            <DataTableHeaderCell
                 key="test"
                 column={ col }
                 onSort={ jest.fn }

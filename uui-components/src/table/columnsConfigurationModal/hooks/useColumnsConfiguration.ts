@@ -3,35 +3,31 @@ import { ColumnsConfig, DataColumnProps, DropParams, IModal } from "@epam/uui-co
 import sortBy from "lodash.sortby";
 import {
     moveColumnRelativeToAnotherColumn, toggleSingleColumnPin, toggleAllColumnsVisibility, toggleSingleColumnVisibility,
-} from "../services/columnsActionsService";
+} from "../columnsActions";
 import {
-    canAcceptDrop, isColumnAlwaysPinned, isColumnFilteredOut,
-} from "../services/columnsPropertiesService";
+    canAcceptDrop, isColumnAlwaysPinned,
+} from "../columnsProperties";
 import { DndDataType, IManageableColumn } from "../types";
-import { groupSortedColumns } from "../services/columnsGroupService";
+import { groupSortedColumns } from "../columnsGroupService";
 
 export { IManageableColumn } ;
 
-interface IColumnConfigMgmt<TItem, TId, TFilter> {
+interface UseColumnsConfigurationProps<TItem, TId, TFilter> {
     columnsConfig: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
     modalProps: IModal<ColumnsConfig>;
 }
 
-export function useColumnsConfigurationState<TItem, TId, TFilter>(props: IColumnConfigMgmt<TItem, TId, TFilter>) {
+export function useColumnsConfiguration<TItem, TId, TFilter>(props: UseColumnsConfigurationProps<TItem, TId, TFilter>) {
     const { modalProps, columnsConfig, defaultConfig } = props;
-    const [filterValue, setFilterValue] = useState<string>();
-    const isDndAllowed = !filterValue;
+    const [searchValue, setSearchValue] = useState<string>();
+    const isDndAllowed = !searchValue;
     const [columnsConfigLocal, setColumnsConfig] = useState<ColumnsConfig>(() => columnsConfig);
     const columnsSorted = useMemo(
         () => sortBy(props.columns, i => columnsConfigLocal[i.key].order),
         [props.columns, columnsConfigLocal],
     );
-
-    const isNoData = useMemo(() => {
-        return columnsSorted.every(c => isColumnFilteredOut(c, filterValue));
-    }, [columnsSorted, filterValue]);
 
     const moveColumn = useCallback((prevConfig: ColumnsConfig, columnKey: string, targetColumnKey: string, isAfterTarget: boolean): ColumnsConfig =>
         moveColumnRelativeToAnotherColumn({ prevConfig, columnsSorted, isAfterTarget, targetColumnKey, columnKey }),
@@ -47,16 +43,16 @@ export function useColumnsConfigurationState<TItem, TId, TFilter>(props: IColumn
 
     const reset = useCallback(() => {
         setColumnsConfig(defaultConfig);
-        setFilterValue('');
+        setSearchValue('');
     }, [defaultConfig]);
 
     const checkAll = useCallback(
-        () => setColumnsConfig(prevConfig => toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, isToggleOn: true })),
+        () => setColumnsConfig(prevConfig => toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, value: true })),
         [columnsSorted],
     );
 
     const uncheckAll = useCallback(
-        () => setColumnsConfig(prevConfig => toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, isToggleOn: false })),
+        () => setColumnsConfig(prevConfig => toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, value: false })),
         [columnsSorted],
     );
 
@@ -81,12 +77,12 @@ export function useColumnsConfigurationState<TItem, TId, TFilter>(props: IColumn
         };
     }, [columnsConfigLocal, isDndAllowed, moveColumn, togglePin, toggleVisibility]);
     const sortedColumnsExtended = useMemo(() => columnsSorted.map(extendColumn), [columnsSorted, extendColumn]);
-    const byGroup = groupSortedColumns(sortedColumnsExtended, filterValue);
+    const groupedColumns = groupSortedColumns(sortedColumnsExtended, searchValue);
 
     return {
         // props
-        byGroup, isNoData, filterValue, columnsConfigLocal,
+        groupedColumns, searchValue, columnsConfigLocal,
         // methods
-        reset, apply, checkAll, uncheckAll, setFilterValue,
+        reset, apply, checkAll, uncheckAll, setSearchValue,
     };
 }

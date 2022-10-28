@@ -2,7 +2,7 @@ import {
     moveColumnRelativeToAnotherColumn, toggleAllColumnsVisibility,
     toggleSingleColumnPin,
     toggleSingleColumnVisibility,
-} from '../columnsActionsService';
+} from '../columnsActions';
 import { ColumnsConfig, DataColumnProps } from '@epam/uui-core';
 
 function getTestDataSet1() {
@@ -80,7 +80,7 @@ describe('columnsActionsService', () => {
     describe('moveColumnRelativeToAnotherColumn', () => {
         it('should be able to move a column right under another column', () => {
             const { prevConfig, columnsSorted, A, C } = getTestDataSet1();
-            const result = moveColumnRelativeToAnotherColumn({ prevConfig, columnsSorted, columnKey: A.key, targetColumnKey: C.key, isAfterTarget: true });
+            const result = moveColumnRelativeToAnotherColumn({ prevConfig, columnsSorted, columnKey: A.key, targetColumnKey: C.key, position: 'bottom' });
             const expected = {
                 1: { isVisible: false, order: 'n', width: 10 },
                 2: { isVisible: true, order: 'b', width: 10 },
@@ -90,7 +90,7 @@ describe('columnsActionsService', () => {
         });
         it('should be able to move a column right before another column', () => {
             const { prevConfig, columnsSorted, A, C } = getTestDataSet1();
-            const result = moveColumnRelativeToAnotherColumn({ prevConfig, columnsSorted, columnKey: C.key, targetColumnKey: A.key, isAfterTarget: false });
+            const result = moveColumnRelativeToAnotherColumn({ prevConfig, columnsSorted, columnKey: C.key, targetColumnKey: A.key, position: 'top' });
             const expected = {
                 1: { fix: 'left', width: 10, isVisible: true, order: 'a' },
                 2: { width: 10, isVisible: true, order: 'b' },
@@ -103,7 +103,7 @@ describe('columnsActionsService', () => {
     describe('toggleAllColumnsVisibility', () => {
         it('should hide all columns except always visible ones', () => {
             const { prevConfig, columnsSorted } = getTestDataSet1();
-            const result = toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, isToggleOn: false });
+            const result = toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, value: false });
             const expected = {
                 1: { isVisible: false, order: 'a', width: 10 },
                 2: { isVisible: true, order: 'b', width: 10 },

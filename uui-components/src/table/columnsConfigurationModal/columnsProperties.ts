@@ -1,10 +1,10 @@
 import {
     AcceptDropParams,
     ColumnsConfig,
-    DataColumnProps,
+    DataColumnProps, DropPosition,
     getOrderBetween,
 } from "@epam/uui-core";
-import { DndDataType } from "../types";
+import { DndDataType } from "./types";
 
 export function isColumnAlwaysPinned(column: DataColumnProps) {
     return Boolean(column.isAlwaysVisible && column.fix);
@@ -29,10 +29,10 @@ export function canAcceptDrop(props: AcceptDropParams<DndDataType, DndDataType>)
     return { top: true, bottom: true };
 }
 
-export function getColumnOrderAfterDrop(
-    props: { targetColumnKey: string, isAfterTarget: boolean, columnsSorted: DataColumnProps[], prevConfig: ColumnsConfig },
+export function getNewColumnOrder(
+    props: { targetColumnKey: string, position: DropPosition, columnsSorted: DataColumnProps[], prevConfig: ColumnsConfig },
 ) {
-    const { columnsSorted, isAfterTarget, targetColumnKey, prevConfig } = props;
+    const { columnsSorted, position, targetColumnKey, prevConfig } = props;
     const targetColumnOrder = prevConfig[targetColumnKey].order;
     let prevKey;
     let nextKey;
@@ -43,7 +43,7 @@ export function getColumnOrderAfterDrop(
             break;
         }
     }
-    return isAfterTarget
+    return position === 'bottom'
         ? getOrderBetween(targetColumnOrder, nextKey ? prevConfig[nextKey].order : null)
         : getOrderBetween(prevKey ? prevConfig[prevKey].order : null, targetColumnOrder);
 }

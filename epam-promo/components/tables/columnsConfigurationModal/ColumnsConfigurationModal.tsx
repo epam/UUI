@@ -1,9 +1,9 @@
 import * as styles from "./ColumnsConfigurationModal.scss";
 import * as React from "react";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 //
 import { ColumnsConfig, DataColumnProps, IModal } from "@epam/uui-core";
-import { IManageableColumn, useColumnsConfigurationState } from "@epam/uui-components";
+import { IManageableColumn, useColumnsConfiguration } from "@epam/uui-components";
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 //
@@ -27,20 +27,21 @@ const renderGroupTitle = (title: string, amount: number) => <FlexRow padding="24
     <Badge caption={ amount } color="gray30" size="18" />
 </FlexRow>;
 
-
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsConfigView<TItem, TId, TFilter>) {
     const { columns, columnsConfig, defaultConfig, ...modalProps } = props;
     const renderRow = (c: IManageableColumn) => <ColumnRow column={ c } key={ c.key } />;
     const {
         // props
-        byGroup, isNoData, filterValue,
+        groupedColumns, searchValue,
         // methods
-        reset, apply, checkAll, uncheckAll, setFilterValue,
-    } = useColumnsConfigurationState({ columnsConfig, columns, modalProps, defaultConfig });
+        reset, apply, checkAll, uncheckAll, setSearchValue,
+    } = useColumnsConfiguration({ columnsConfig, columns, modalProps, defaultConfig });
+
+    const isNoData = useMemo(() => Object.values(groupedColumns).every(v => !v.length), [groupedColumns]);
 
     const renderVisible = () => {
-        const amountPinned = byGroup.displayedPinned.length;
-        const amountUnPinned = byGroup.displayedUnpinned.length;
+        const amountPinned = groupedColumns.displayedPinned.length;
+        const amountUnPinned = groupedColumns.displayedUnpinned.length;
         if (!amountPinned && !amountUnPinned) {
             return null;
         }
@@ -49,14 +50,14 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
             <>
                 { renderGroupTitle(i18nLocal.displayedInTable, amountPinned + amountUnPinned) }
                 { !!amountPinned && <FlexRow cx={ styles.groupItems }>
-                        { byGroup.displayedPinned.map(renderRow) }
+                        { groupedColumns.displayedPinned.map(renderRow) }
                     </FlexRow>
                 }
                 {
                     hasDivider && <div className={ styles.hDivider } />
                 }
                 { !!amountUnPinned && <FlexRow cx={ styles.groupItems }>
-                        { byGroup.displayedUnpinned.map(renderRow) }
+                        { groupedColumns.displayedUnpinned.map(renderRow) }
                     </FlexRow>
                 }
             </>
@@ -64,7 +65,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
     };
 
     const renderHidden = () => {
-        const amountHidden = byGroup.hidden.length;
+        const amountHidden = groupedColumns.hidden.length;
         if (!amountHidden) {
             return null;
         }
@@ -72,7 +73,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
             <>
                 { renderGroupTitle(i18nLocal.hiddenInTable, amountHidden) }
                 <FlexRow cx={ styles.groupItems }>
-                    { byGroup.hidden.map(renderRow) }
+                    { groupedColumns.hidden.map(renderRow) }
                 </FlexRow>
             </>
         );
@@ -85,8 +86,8 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
                 <FlexRow padding="24" borderBottom={ true } spacing="12" cx={ styles.searchArea }>
                     <SearchInput
                         size="30"
-                        value={ filterValue }
-                        onValueChange={ setFilterValue }
+                        value={ searchValue }
+                        onValueChange={ setSearchValue }
                         placeholder={ i18nLocal.searchByColumnName }
                     />
                     <Dropdown

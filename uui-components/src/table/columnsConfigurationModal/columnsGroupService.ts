@@ -1,5 +1,5 @@
-import { IManageableColumn } from "../types";
-import { isColumnFilteredOut } from "./columnsPropertiesService";
+import { IManageableColumn } from "./types";
+import { isColumnFilteredOut } from "./columnsProperties";
 import { ColumnsConfig, DataColumnProps, IColumnConfig } from "@epam/uui-core";
 
 export type GroupedColumnsType<T extends DataColumnProps> = {
@@ -10,7 +10,7 @@ export type GroupedColumnsType<T extends DataColumnProps> = {
 
 export function groupSortedColumns(
     sortedColumns: IManageableColumn[],
-    filterValue: string,
+    searchValue: string,
 ): GroupedColumnsType<IManageableColumn> {
     const accUnsorted = {
         displayedPinned: [],
@@ -19,7 +19,7 @@ export function groupSortedColumns(
     } as GroupedColumnsType<IManageableColumn>;
 
     return sortedColumns.reduce((acc, i) => {
-        if (!isColumnFilteredOut(i, filterValue)) {
+        if (!isColumnFilteredOut(i, searchValue)) {
             const groupKey = getGroupKey(i, i.columnConfig);
             acc[groupKey].push(i);
         }

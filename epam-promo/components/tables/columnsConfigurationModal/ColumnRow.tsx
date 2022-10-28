@@ -7,7 +7,7 @@ import { PinIconButton } from "./PinIconButton";
 
 type DndDataType = { column: DataColumnProps, columnConfig: IColumnConfig };
 
-export interface IColumnRow {
+export interface ColumnRowProps {
     column: IManageableColumn;
 }
 
@@ -15,7 +15,7 @@ const returnByCondition = <T, F>(condition: boolean, ifTrue: T, ifFalse: F) => {
     return condition ? ifTrue : ifFalse;
 };
 
-export const ColumnRow = React.memo(function ColumnRow(props: IColumnRow) {
+export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
     const { column } = props;
     const { toggleVisibility, togglePin, onCanAcceptDrop, onDrop, columnConfig, isDndAllowed, isPinnedAlways } = column;
     const { isVisible, fix } = columnConfig;
