@@ -38,7 +38,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
         };
 
         return (
-            <FlexRow size="30" cx={ wrapperClasses } { ...wrapperAttrs }>
+            <FlexRow size="30" cx={ wrapperClasses } { ...wrapperAttrs } spacing={ null }>
                 <FlexRow size="30" background="white" spacing='6' cx={ styles.title }>
                     <DragHandle rawProps={ dragHandleRawProps } isDisabled={ !isDndAllowed } cx={ cx(styles.dragHandle, !isDndAllowed && styles.dndDisabled) } />
                     <Checkbox
@@ -50,7 +50,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
                     />
                 </FlexRow>
                 <FlexSpacer />
-                <FlexRow size="30" cx={ styles.pinIconButton }>
+                <FlexRow size="30" cx={ styles.pinIconButton } spacing={ null }>
                     <PinIconButton
                         id={ column.key }
                         isPinned={ !!isPinned }

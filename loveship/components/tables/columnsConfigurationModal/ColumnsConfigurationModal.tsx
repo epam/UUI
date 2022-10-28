@@ -48,14 +48,14 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
         return (
             <>
                 { renderGroupTitle(i18nLocal.displayedInTable, amountPinned + amountUnPinned) }
-                { !!amountPinned && <FlexRow cx={ styles.groupItems }>
+                { !!amountPinned && <FlexRow cx={ styles.groupItems } spacing={ null }>
                     { groupedColumns.displayedPinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
                 </FlexRow>
                 }
                 {
                     hasDivider && <div className={ styles.hDivider } />
                 }
-                { !!amountUnPinned && <FlexRow cx={ styles.groupItems }>
+                { !!amountUnPinned && <FlexRow cx={ styles.groupItems } spacing={ null }>
                     { groupedColumns.displayedUnpinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
                 </FlexRow>
                 }
@@ -70,7 +70,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
         return (
             <>
                 { renderGroupTitle(i18nLocal.hiddenInTable, amountHidden) }
-                <FlexRow cx={ styles.groupItems }>
+                <FlexRow cx={ styles.groupItems } spacing={ null }>
                     { groupedColumns.hidden.map(c => <ColumnRow column={ c } key={ c.key } />) }
                 </FlexRow>
             </>
@@ -114,7 +114,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
                         { renderHidden() }
                         {
                             isNoData && (
-                                <FlexRow cx={ styles.noData }>
+                                <FlexRow cx={ styles.noData } spacing={ null }>
                                     <Text fontSize='18' lineHeight='30' color='night800' font='sans-semibold'>{ i18nLocal.noResultsFound }</Text>
                                     <Text fontSize='16' lineHeight='24' font='sans' color='night800'>{ i18nLocal.weCantFindAnyItemMatchingYourRequest }</Text>
                                 </FlexRow>
