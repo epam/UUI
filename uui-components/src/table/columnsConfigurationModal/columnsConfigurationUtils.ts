@@ -60,7 +60,7 @@ export function isColumnFilteredOut(c: DataColumnProps, filter?: string) {
         true;
 }
 
-export function groupSortedColumns(
+export function groupAndFilterSortedColumns(
     sortedColumns: ColumnsConfigurationRowProps[],
     searchValue: string,
 ): GroupedColumnsType<ColumnsConfigurationRowProps> {

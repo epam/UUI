@@ -2,12 +2,12 @@ import { useCallback, useMemo, useState } from "react";
 import { ColumnsConfig, DataColumnProps, DropParams } from "@epam/uui-core";
 import {
     moveColumnRelativeToAnotherColumn, toggleSingleColumnPin, toggleAllColumnsVisibility, toggleSingleColumnVisibility,
-} from "../columnsActions";
+} from "../columnsConfigurationActions";
 import {
     canAcceptDrop, isColumnAlwaysPinned,
-} from "../columnsUtils";
+} from "../columnsConfigurationUtils";
 import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps } from "../types";
-import { groupSortedColumns, sortColumnsAndAddGroupKey } from "../columnsUtils";
+import { groupAndFilterSortedColumns, sortColumnsAndAddGroupKey } from "../columnsConfigurationUtils";
 
 export { ColumnsConfigurationRowProps } ;
 
@@ -84,7 +84,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
     ), [columnsSorted, columnsConfigUnsaved, isDndAllowed, togglePin, toggleVisibility]);
 
     const groupedColumns = useMemo(
-        () => groupSortedColumns(sortedColumnsExtended, searchValue),
+        () => groupAndFilterSortedColumns(sortedColumnsExtended, searchValue),
         [sortedColumnsExtended, searchValue]);
 
     return {
