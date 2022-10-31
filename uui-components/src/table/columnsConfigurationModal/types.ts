@@ -8,14 +8,15 @@ export interface ColumnsConfigurationRowProps extends GroupedDataColumnProps {
     onDrop: (params: DropParams<DndDataType, DndDataType>) => void;
     columnConfig: IColumnConfig;
     isDndAllowed: boolean;
+    isPinned: boolean;
     isPinnedAlways: boolean;
 }
-export type GroupedColumnsType<T extends DataColumnProps> = {
-    hidden: T[],
-    displayedUnpinned: T[],
-    displayedPinned: T[],
+export type GroupedColumnsType = {
+    hidden: ColumnsConfigurationRowProps[],
+    displayedUnpinned: ColumnsConfigurationRowProps[],
+    displayedPinned: ColumnsConfigurationRowProps[],
 };
 
 export interface GroupedDataColumnProps extends DataColumnProps {
-    groupKey?: keyof GroupedColumnsType<DataColumnProps>;
+    groupKey?: keyof GroupedColumnsType;
 }

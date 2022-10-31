@@ -11,10 +11,6 @@ export interface ColumnRowProps {
     column: ColumnsConfigurationRowProps;
 }
 
-const returnByCondition = <T, F>(condition: boolean, ifTrue: T, ifFalse: F) => {
-    return condition ? ifTrue : ifFalse;
-};
-
 export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
     const { column } = props;
     const { toggleVisibility, togglePin, onCanAcceptDrop, onDrop, columnConfig, isDndAllowed, isPinnedAlways } = column;
@@ -26,15 +22,15 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
         const wrapperClasses = cx(
             styles.rowWrapper,
             !isPinned && styles.notPinned,
-            ...returnByCondition(isDndAllowed, dndActorParams.classNames, []),
+            ...(isDndAllowed ? dndActorParams.classNames : []),
         );
         const { onTouchStart, onPointerDown, ...restEventHandlers } = dndActorParams.eventHandlers;
         const wrapperAttrs = {
-            ...returnByCondition(isDndAllowed, { ref: dndActorParams.ref }, {}),
-            ...returnByCondition(isDndAllowed, { rawProps: {...restEventHandlers} }, {}),
+            ...(isDndAllowed ? { ref: dndActorParams.ref } : {}),
+            ...(isDndAllowed ? { rawProps: {...restEventHandlers} } : {}),
         };
         const dragHandleRawProps: any = {
-            ...returnByCondition(isDndAllowed, { onTouchStart, onPointerDown }, {}),
+            ...(isDndAllowed ? { onTouchStart, onPointerDown } : {}),
         };
 
         return (

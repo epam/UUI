@@ -50,18 +50,18 @@ export function toggleSingleColumnPin(
     let order = prevConfig[columnKey].order;
     if (prevFix) {
         // move to "displayedUnpinned" and put it before first item
-        const { found, prev, next } = findFirstByGroupKey(columnsSorted, 'displayedUnpinned');
-        if (found) {
-            const targetOrder = prevConfig[found.key]?.order;
+        const { column, prev, next } = findFirstByGroupKey(columnsSorted, 'displayedUnpinned');
+        if (column) {
+            const targetOrder = prevConfig[column.key]?.order;
             const targetPrevOrder = prevConfig[prev.key]?.order;
             const targetNextOrder = prevConfig[next.key]?.order;
             order = getNewColumnOrder({ targetOrder, targetPrevOrder, targetNextOrder, position: 'top' });
         }
     } else {
         // move to "displayedPinned" and put it after last item
-        const { found, prev, next } = findLastByGroupKey(columnsSorted, 'displayedPinned');
-        if (found) {
-            const targetOrder = prevConfig[found.key]?.order;
+        const { column, prev, next } = findLastByGroupKey(columnsSorted, 'displayedPinned');
+        if (column) {
+            const targetOrder = prevConfig[column.key]?.order;
             const targetPrevOrder = prevConfig[prev?.key]?.order;
             const targetNextOrder = prevConfig[next?.key]?.order;
             order = getNewColumnOrder({ targetOrder, targetPrevOrder, targetNextOrder, position: 'bottom' });
@@ -88,18 +88,18 @@ export function toggleSingleColumnVisibility(
     let order = prevConfig[columnKey].order;
     if (prevIsVisible) {
         // move to "hidden" group and put it before first item
-        const { found, prev, next } = findFirstByGroupKey(columnsSorted, 'hidden');
-        if (found) {
-            const targetOrder = prevConfig[found.key]?.order;
+        const { column, prev, next } = findFirstByGroupKey(columnsSorted, 'hidden');
+        if (column) {
+            const targetOrder = prevConfig[column.key]?.order;
             const targetPrevOrder = prevConfig[prev?.key]?.order;
             const targetNextOrder = prevConfig[next?.key]?.order;
             order = getNewColumnOrder({ targetOrder, targetPrevOrder, targetNextOrder, position: 'top' });
         }
     } else {
         // going to move to "displayedUnpinned" group and put it after last item
-        const { found, prev, next } = findLastByGroupKey(columnsSorted, 'displayedUnpinned');
-        if (found) {
-            const targetOrder = prevConfig[found.key]?.order;
+        const { column, prev, next } = findLastByGroupKey(columnsSorted, 'displayedUnpinned');
+        if (column) {
+            const targetOrder = prevConfig[column.key]?.order;
             const targetPrevOrder = prevConfig[prev?.key]?.order;
             const targetNextOrder = prevConfig[next?.key]?.order;
             order = getNewColumnOrder({ targetOrder, targetPrevOrder, targetNextOrder, position: 'bottom' });

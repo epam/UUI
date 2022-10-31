@@ -16,7 +16,7 @@ import { ColumnRow } from "./ColumnRow";
 
 const i18nLocal = i18n.tables.columnsConfigurationModal;
 
-interface IColumnsConfigView<TItem, TId, TFilter> extends IModal<ColumnsConfig> {
+interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<ColumnsConfig> {
     columnsConfig?: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps<TItem, TId, TFilter>[];
@@ -27,14 +27,12 @@ const renderGroupTitle = (title: string, amount: number) => <FlexRow padding="24
     <Badge caption={ amount } color="gray30" size="18" />
 </FlexRow>;
 
-export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsConfigView<TItem, TId, TFilter>) {
-    const { columns, columnsConfig, defaultConfig, ...modalProps } = props;
+export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) {
+    const { columns, columnsConfig: initialColumnsConfig, defaultConfig, ...modalProps } = props;
     const {
-        // props
         groupedColumns, searchValue, columnsConfigUnsaved,
-        // methods
         reset, checkAll, uncheckAll, setSearchValue,
-    } = useColumnsConfiguration({ columnsConfig, columns, defaultConfig });
+    } = useColumnsConfiguration({ initialColumnsConfig, columns, defaultConfig });
     const apply = useCallback(() => modalProps.success(columnsConfigUnsaved), [columnsConfigUnsaved, modalProps]);
     const close = useCallback(() =>  modalProps.abort(), [modalProps]);
     const isNoData = useMemo(() => Object.values(groupedColumns).every(v => !v.length), [groupedColumns]);
@@ -44,10 +42,10 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
         if (!amountPinned && !amountUnPinned) {
             return null;
         }
-        const hasDivider = Boolean(amountPinned && amountUnPinned);
+        const hasDivider = !!(amountPinned && amountUnPinned);
         return (
             <>
-                { renderGroupTitle(i18nLocal.displayedInTable, amountPinned + amountUnPinned) }
+                { renderGroupTitle(i18nLocal.displayedSectionTitle, amountPinned + amountUnPinned) }
                 { !!amountPinned && <FlexRow cx={ styles.groupItems }>
                         { groupedColumns.displayedPinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
                     </FlexRow>
@@ -69,7 +67,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
         }
         return (
             <>
-                { renderGroupTitle(i18nLocal.hiddenInTable, amountHidden) }
+                { renderGroupTitle(i18nLocal.hiddenSectionTitle, amountHidden) }
                 <FlexRow cx={ styles.groupItems }>
                     { groupedColumns.hidden.map(c => <ColumnRow column={ c } key={ c.key } />) }
                 </FlexRow>
@@ -85,7 +83,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
                         size="30"
                         value={ searchValue }
                         onValueChange={ setSearchValue }
-                        placeholder={ i18nLocal.searchByColumnName }
+                        placeholder={ i18nLocal.searchPlaceholder }
                     />
                     <Dropdown
                         closeOnTargetClick={ true }
@@ -115,8 +113,8 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: IColumnsCo
                         {
                             isNoData && (
                                 <FlexRow cx={ styles.noData }>
-                                    <Text fontSize='24' lineHeight='30' color='gray80' font='sans-semibold'>{ i18nLocal.noResultsFound }</Text>
-                                    <Text fontSize='16' lineHeight='24' font='sans' color='gray80'>{ i18nLocal.weCantFindAnyItemMatchingYourRequest }</Text>
+                                    <Text fontSize='24' lineHeight='30' color='gray80' font='sans-semibold'>{ i18nLocal.noResultsFound.text }</Text>
+                                    <Text fontSize='16' lineHeight='24' font='sans' color='gray80'>{ i18nLocal.noResultsFound.subText }</Text>
                                 </FlexRow>
                             )
                         }
