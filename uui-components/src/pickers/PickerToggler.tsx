@@ -22,6 +22,7 @@ export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggl
     minCharsToSearch?: number;
     prefix?: React.ReactNode;
     suffix?: React.ReactNode;
+    isSearchChanged?: boolean;
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -106,7 +107,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const renderInput = () => {
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
         const placeholder = isSinglePickerSelected ? props.getName(props.selection[0]?.value) : props.placeholder;
-        const value = props.disableSearch ? null : props.value;
+        const pickerValue = (props.pickerMode === 'single' && props.isSearchChanged) ? props.value : props.getName(props.selection[0]?.value);
+        const value = props.disableSearch ? null : pickerValue;
         if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selection.length > 0) {
             return null;
         }
@@ -125,7 +127,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 props.pickerMode === 'single' && css.singleInput,
                 props.searchPosition === 'input' && css.cursorText,
                 isActivePlaceholder() && uuiElement.placeholder,
-            )}
+            ) }
             disabled={ props.isDisabled }
             placeholder={ placeholder }
             value={ value || '' }
