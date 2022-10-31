@@ -1,5 +1,5 @@
 import { ColumnsConfig, DataColumnProps, DropPosition, ICanBeFixed, IColumnConfig } from "@epam/uui-core";
-import { getNewColumnOrder, findFirstByGroupKey, findLastByGroupKey } from "./columnsUtils";
+import { getNewColumnOrder, findFirstByGroupKey, findLastByGroupKey } from "./columnsConfigurationUtils";
 import { GroupedDataColumnProps } from "./types";
 
 export function toggleAllColumnsVisibility(props: { prevConfig: ColumnsConfig, columns: DataColumnProps[], value: boolean }) {

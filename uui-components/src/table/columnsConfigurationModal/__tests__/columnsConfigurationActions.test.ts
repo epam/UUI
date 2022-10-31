@@ -2,14 +2,14 @@ import {
     moveColumnRelativeToAnotherColumn, toggleAllColumnsVisibility,
     toggleSingleColumnPin,
     toggleSingleColumnVisibility,
-} from '../columnsActions';
+} from '../columnsConfigurationActions';
 import { ColumnsConfig, IColumnConfig } from '@epam/uui-core';
 import { GroupedDataColumnProps } from "../types";
 
 function getTestDataSet1() {
     const A: GroupedDataColumnProps = { key: '1', fix: 'left', caption: 'a', isAlwaysVisible: false, width: 10, groupKey: 'displayedPinned' };
     const B: GroupedDataColumnProps = { key: '2', caption: 'b', isAlwaysVisible: true, width: 10, groupKey: 'displayedUnpinned' };
-    const C: GroupedDataColumnProps = { key: '3', caption: 'A', isAlwaysVisible: false, width: 10, groupKey: 'hidden' };
+    const C: GroupedDataColumnProps = { key: '3', caption: 'c', isAlwaysVisible: false, width: 10, groupKey: 'hidden' };
     const columnsSorted: GroupedDataColumnProps[] = [A, B, C];
     const prevConfig: ColumnsConfig = {
         [A.key]: { fix: 'left', width: 10, isVisible: true, order: 'a' } as IColumnConfig,
@@ -19,7 +19,7 @@ function getTestDataSet1() {
     return { prevConfig, columnsSorted, A, B, C };
 }
 
-describe('columnsActionsService', () => {
+describe('columnsConfigurationActions', () => {
     describe('toggleSingleColumnVisibility', () => {
         it('should hide visible column', () => {
             const { prevConfig, columnsSorted, A } = getTestDataSet1();
