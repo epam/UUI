@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useMemo, useEffect } from "react";
 import dayjs from "dayjs";
 import cx from "classnames";
 import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue } from "@epam/uui-core";
@@ -33,6 +33,13 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const predicateName: string = React.useMemo(() => predicate && props.predicates.find(p => p.predicate === predicate).name, [predicate]);
     const forceUpdate = useForceUpdate();
 
+    useEffect(() => {
+        if (props.predicates && Object.keys(props.value || {})[0] && Object.keys(props.value || {})[0] !== predicate) {
+            setPredicate(Object.keys(props.value || {})[0]);
+        }
+    }, [props.value]);
+
+
     const onValueChange = useCallback((value: any) => {
         if (props.predicates) {
             props.onValueChange({ [props.field]: { [predicate]: value } });
@@ -47,18 +54,16 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const changePredicate = (val: FilterPredicateName) => {
         const isInRange = (p: FilterPredicateName) => p === 'inRange' || p === 'notInRange';
-
-        if (isInRange(val) && !isInRange(predicate as FilterPredicateName)) {// from simple predicate -> to Range
-            setPredicate(val);
-            props.onValueChange({ [props.field]: { [val]: { from: null, to: null } } });
-            return;
-        } else if (!isInRange(val) && isInRange(predicate as FilterPredicateName)) {// from Range -> to simple predicate
-            setPredicate(val);
-            props.onValueChange({ [props.field]: { [val]: null } });
-            return;
+        if (props.type === 'numeric') {
+            if (isInRange(val) && !isInRange(predicate as FilterPredicateName)) {// from simple predicate -> to Range
+                props.onValueChange({ [props.field]: { [val]: { from: null, to: null } } });
+            } else if (!isInRange(val) && isInRange(predicate as FilterPredicateName)) {// from Range -> to simple predicate
+                props.onValueChange({ [props.field]: { [val]: null } });
+            }
+        } else {
+            props.onValueChange({ [props.field]: { [val]: getValue() } });
         }
         setPredicate(val);
-        props.onValueChange({ [props.field]: { [val]: getValue() } });
     };
 
     const renderHeader = () => (
