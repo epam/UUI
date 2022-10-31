@@ -70,6 +70,7 @@ interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TI
 
 interface PickerInputState extends DropdownState, PickerBaseState {
     showSelected: boolean;
+    isSearchChanged: boolean;
 }
 
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
@@ -110,6 +111,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 visibleCount: initialRowsVisible,
             },
             showSelected: false,
+            isSearchChanged: false,
         };
     }
 
@@ -137,6 +139,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 focusedIndex: 0,
                 search: '',
             },
+            isSearchChanged: !opened,
         });
     }
 
@@ -233,6 +236,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,
+            isSearchChanged: this.state.isSearchChanged,
         };
     }
 
@@ -276,6 +280,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 search: value,
             },
             opened: !this.state.opened && value.length > 0 ? true : this.state.opened,
+            isSearchChanged: true,
         });
     }
 
@@ -288,18 +293,18 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         const { getVisibleRows, getSelectedRows } = this.getView();
 
         if (!showSelected) {
-            preparedRows = getVisibleRows()
+            preparedRows = getVisibleRows();
         } else {
-            preparedRows = getSelectedRows().slice(topIndex, topIndex + visibleCount)
+            preparedRows = getSelectedRows().slice(topIndex, topIndex + visibleCount);
         }
 
         return preparedRows.map((rowProps) => {
-            const newRowProps = {...rowProps}
+            const newRowProps = {...rowProps};
             if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
                 newRowProps.onSelect = this.onSelect;
             }
 
-            return newRowProps
+            return newRowProps;
         });
     }
 
