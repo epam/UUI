@@ -88,7 +88,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
 
     return {
         // props
-        groupedColumns, searchValue, columnsConfigUnsaved: columnsConfig,
+        groupedColumns, searchValue, columnsConfig,
         // methods
         reset, checkAll, uncheckAll, setSearchValue,
     };

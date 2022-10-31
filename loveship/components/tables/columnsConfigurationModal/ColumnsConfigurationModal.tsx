@@ -30,10 +30,10 @@ const renderGroupTitle = (title: string, amount: number) => <FlexRow padding="24
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) {
     const { columns, columnsConfig: initialColumnsConfig, defaultConfig, ...modalProps } = props;
     const {
-        groupedColumns, searchValue, columnsConfigUnsaved,
+        groupedColumns, searchValue, columnsConfig,
         reset, checkAll, uncheckAll, setSearchValue,
     } = useColumnsConfiguration({ initialColumnsConfig, columns, defaultConfig });
-    const apply = useCallback(() => modalProps.success(columnsConfigUnsaved), [columnsConfigUnsaved, modalProps]);
+    const apply = useCallback(() => modalProps.success(columnsConfig), [columnsConfig, modalProps]);
     const close = useCallback(() =>  modalProps.abort(), [modalProps]);
     const isNoData = useMemo(() => Object.values(groupedColumns).every(v => !v.length), [groupedColumns]);
     const renderVisible = () => {
