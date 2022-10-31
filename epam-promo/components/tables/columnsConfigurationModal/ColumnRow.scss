@@ -27,11 +27,9 @@
         padding: 6px 0 6px 24px;
 
         opacity: 1;
-        cursor: grab;
         touch-action: none;
         &.dnd-disabled {
             opacity: 0.3;
-            cursor: auto;
             touch-action: auto;
         }
 

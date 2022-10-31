@@ -14,8 +14,13 @@ export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> 
     presetId?: number | null;
 }
 
+export interface ICanBeFixed {
+    /** If specified, will make column fixed - it would not scroll horizontally */
+    fix?: 'left' | 'right';
+}
+
 export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
-    extends IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes {
+    extends ICanBeFixed, IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes {
     /**
      * Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
      * Also, used as React key for cells, header cells, and other components inside tables.
@@ -24,9 +29,6 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
 
     /** Column caption. Can be a plain text, or any React Component */
     caption?: React.ReactNode;
-
-    /** If specified, will make column fixed - it would not scroll horizontally */
-    fix?: 'left' | 'right';
 
     /**
      * The width of the column. Usually, columns has exact this width.
@@ -169,7 +171,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
      * - ICanFocus props are passed as well. Component should implement it so cell focus highlight works properly
      * - mode='cell' prop is passed to render UUI components in 'cell' mode
      * - rowProps is passed so you depend on additional info about the row itself
-      */
+     */
     renderEditor?(props: RenderEditorProps<TItem, TId, TCellValue>): React.ReactNode;
 
     /** Overrides default tooltip, used to show validation message if the cell is invalid */

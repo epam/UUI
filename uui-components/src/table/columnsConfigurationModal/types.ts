@@ -1,8 +1,5 @@
 import { AcceptDropParams, DataColumnProps, DropParams, DropPositionOptions, IColumnConfig } from "@epam/uui-core";
 
-export interface ICanBeFixed {
-    fix?: 'left' | 'right';
-}
 export type DndDataType = { column: DataColumnProps, columnConfig: IColumnConfig };
 export interface ColumnsConfigurationRowProps extends GroupedDataColumnProps {
     toggleVisibility: () => void;
