@@ -63,12 +63,12 @@ export function isColumnFilteredOut(c: DataColumnProps, filter?: string) {
 export function groupAndFilterSortedColumns(
     sortedColumns: ColumnsConfigurationRowProps[],
     searchValue: string,
-): GroupedColumnsType<ColumnsConfigurationRowProps> {
+): GroupedColumnsType {
     const accUnsorted = {
         displayedPinned: [],
         displayedUnpinned: [],
         hidden: [],
-    } as GroupedColumnsType<ColumnsConfigurationRowProps>;
+    } as GroupedColumnsType;
 
     return sortedColumns.reduce((acc, i) => {
         if (!isColumnFilteredOut(i, searchValue)) {
@@ -77,11 +77,13 @@ export function groupAndFilterSortedColumns(
         return acc;
     }, accUnsorted);
 }
-export function findFirstByGroupKey<T extends GroupedDataColumnProps>(arr: T[], groupKey: keyof GroupedColumnsType<T>): { found?: T, prev?: T, next?: T } {
-    return findFirstOrLastByCriteria(arr, i => i.groupKey === groupKey, true);
+export function findFirstByGroupKey<T extends GroupedDataColumnProps>(arr: T[], groupKey: keyof GroupedColumnsType): { column?: T, prev?: T, next?: T } {
+    const { found: column, prev, next } =  findFirstOrLastByCriteria(arr, i => i.groupKey === groupKey, true);
+    return { column, prev, next };
 }
-export function findLastByGroupKey<T extends GroupedDataColumnProps>(arr: T[], groupKey: keyof GroupedColumnsType<T>): { found?: T, prev?: T, next?: T } {
-    return findFirstOrLastByCriteria(arr, i => i.groupKey === groupKey, false);
+export function findLastByGroupKey<T extends GroupedDataColumnProps>(arr: T[], groupKey: keyof GroupedColumnsType): { column?: T, prev?: T, next?: T } {
+    const { found: column, prev, next } = findFirstOrLastByCriteria(arr, i => i.groupKey === groupKey, false);
+    return { column, prev, next };
 }
 export function sortColumnsAndAddGroupKey(props: { columns: DataColumnProps[], prevConfig: ColumnsConfig }): GroupedDataColumnProps[] {
     const { prevConfig, columns } = props;
@@ -92,7 +94,7 @@ export function sortColumnsAndAddGroupKey(props: { columns: DataColumnProps[], p
     });
 }
 
-function getGroupKey(column: DataColumnProps, columnConfig: IColumnConfig): keyof GroupedColumnsType<ColumnsConfigurationRowProps> {
+function getGroupKey(column: DataColumnProps, columnConfig: IColumnConfig): keyof GroupedColumnsType {
     const { isVisible, fix } = columnConfig;
     if (isVisible) {
         if (fix) {

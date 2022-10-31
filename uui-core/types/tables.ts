@@ -14,10 +14,10 @@ export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> 
     presetId?: number | null;
 }
 
-export interface ICanBeFixed {
+export type ICanBeFixed = {
     /** If specified, will make column fixed - it would not scroll horizontally */
     fix?: 'left' | 'right';
-}
+};
 
 export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
     extends ICanBeFixed, IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes {
@@ -192,10 +192,9 @@ export type ColumnsConfig = {
 
 export type IColumnConfig =  {
     isVisible?: boolean;
-    fix?: 'left' | 'right';
     order?: string;
     width?: number;
-};
+} & ICanBeFixed;
 
 export type FiltersConfig<TFilter = any> = {
     [key in keyof TFilter]: IFilterConfig;

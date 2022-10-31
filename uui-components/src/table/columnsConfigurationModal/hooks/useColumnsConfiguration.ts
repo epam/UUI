@@ -9,56 +9,54 @@ import {
 import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps } from "../types";
 import { groupAndFilterSortedColumns, sortColumnsAndAddGroupKey } from "../columnsConfigurationUtils";
 
-export { ColumnsConfigurationRowProps } ;
-
 interface UseColumnsConfigurationProps {
-    columnsConfig?: ColumnsConfig;
+    initialColumnsConfig: ColumnsConfig;
     defaultConfig: ColumnsConfig;
     columns: DataColumnProps[];
 }
 
 export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
-    const { columnsConfig, defaultConfig, columns } = props;
+    const { initialColumnsConfig, defaultConfig, columns } = props;
     const [searchValue, setSearchValue] = useState<string>();
     const isDndAllowed = !searchValue;
-    const [columnsConfigUnsaved, setColumnsConfigUnsaved] = useState<ColumnsConfig>(() => columnsConfig || defaultConfig);
+    const [columnsConfig, setColumnsConfig] = useState<ColumnsConfig>(() => initialColumnsConfig || defaultConfig);
     const columnsSorted: GroupedDataColumnProps[] = useMemo(
-        () => sortColumnsAndAddGroupKey({ columns, prevConfig: columnsConfigUnsaved }),
-        [columns, columnsConfigUnsaved],
+        () => sortColumnsAndAddGroupKey({ columns, prevConfig: columnsConfig }),
+        [columns, columnsConfig],
     );
 
     const toggleVisibility = useCallback((columnKey: string) =>
-        setColumnsConfigUnsaved(prevConfig => toggleSingleColumnVisibility({ prevConfig, columnsSorted, columnKey })),
+        setColumnsConfig(prevConfig => toggleSingleColumnVisibility({ prevConfig, columnsSorted, columnKey })),
         [columnsSorted]);
 
     const togglePin = useCallback((columnKey: string) =>
-        setColumnsConfigUnsaved(prevConfig => toggleSingleColumnPin({ prevConfig, columnsSorted, columnKey })),
+        setColumnsConfig(prevConfig => toggleSingleColumnPin({ prevConfig, columnsSorted, columnKey })),
         [columnsSorted]);
 
     const reset = useCallback(() => {
-        setColumnsConfigUnsaved(defaultConfig);
+        setColumnsConfig(defaultConfig);
         setSearchValue('');
     }, [defaultConfig]);
 
     const checkAll = useCallback(
-        () => setColumnsConfigUnsaved(prevConfig => toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, value: true })),
+        () => setColumnsConfig(prevConfig => toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, value: true })),
         [columnsSorted],
     );
 
     const uncheckAll = useCallback(
-        () => setColumnsConfigUnsaved(prevConfig => toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, value: false })),
+        () => setColumnsConfig(prevConfig => toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, value: false })),
         [columnsSorted],
     );
 
     const sortedColumnsExtended = useMemo(() => columnsSorted.map(
         (column: DataColumnProps, index): ColumnsConfigurationRowProps => {
-            const columnConfig = columnsConfigUnsaved[column.key];
-            const prevColumn = columnsConfigUnsaved[columnsSorted[index - 1]?.key];
-            const nextColumn = columnsConfigUnsaved[columnsSorted[index + 1]?.key];
+            const columnConfig = columnsConfig[column.key];
+            const prevColumn = columnsConfig[columnsSorted[index - 1]?.key];
+            const nextColumn = columnsConfig[columnsSorted[index + 1]?.key];
             const handleDrop = (params: DropParams<DndDataType, DndDataType>) => {
                 const { srcData, position } = params;
                 // NOTE: srcData - is the column which we are dropping.
-                setColumnsConfigUnsaved(prevConfig => {
+                setColumnsConfig(prevConfig => {
                     const columnNew = moveColumnRelativeToAnotherColumn({
                         columnConfig: srcData.columnConfig,
                         targetColumn: columnConfig,
@@ -73,15 +71,16 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
                 });
             };
             const isPinnedAlways = isColumnAlwaysPinned(column);
+            const isPinned = !!(columnConfig.fix || isPinnedAlways);
             return {
-                ...column, columnConfig, isDndAllowed, isPinnedAlways,
+                ...column, columnConfig, isDndAllowed, isPinnedAlways, isPinned,
                 togglePin: () => togglePin(column.key),
                 toggleVisibility: () => toggleVisibility(column.key),
                 onCanAcceptDrop: canAcceptDrop,
                 onDrop: handleDrop,
             };
         },
-    ), [columnsSorted, columnsConfigUnsaved, isDndAllowed, togglePin, toggleVisibility]);
+    ), [columnsSorted, columnsConfig, isDndAllowed, togglePin, toggleVisibility]);
 
     const groupedColumns = useMemo(
         () => groupAndFilterSortedColumns(sortedColumnsExtended, searchValue),
@@ -89,7 +88,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
 
     return {
         // props
-        groupedColumns, searchValue, columnsConfigUnsaved,
+        groupedColumns, searchValue, columnsConfigUnsaved: columnsConfig,
         // methods
         reset, checkAll, uncheckAll, setSearchValue,
     };
