@@ -54,7 +54,6 @@ export const i18n = {
             searchByColumnName: 'Search by column name',
             noResultsFound: 'No results found',
             weCantFindAnyItemMatchingYourRequest: 'We can’t find any item matching your request',
-
         },
     },
     sliderRating: {
