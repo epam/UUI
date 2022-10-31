@@ -1,0 +1,44 @@
+@use '../../../assets/styles/index' as *;
+
+.row-wrapper {
+    position: relative;
+    padding: 1px 24px 1px 0;
+    width: 100%;
+    box-sizing: border-box;
+    touch-action: auto;
+
+    &.not-pinned:not(:hover) {
+        :global(.pin-icon-button) {
+            visibility: hidden;
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 0 1px $gray50;
+        &, .title, :global(.pin-icon-button) {
+            background-color: $gray10;
+        }
+    }
+
+    .drag-handle {
+        height: 12px;
+        background-position: right;
+        background-repeat: repeat-y;
+        padding: 6px 0 6px 24px;
+
+        opacity: 1;
+        cursor: grab;
+        touch-action: none;
+        &.dnd-disabled {
+            opacity: 0.3;
+            cursor: auto;
+            touch-action: auto;
+        }
+
+    }
+
+    &:global(.uui-drag-ghost) {
+        background-color: $white;
+        @include dnd-ghost-shadow();
+    }
+}

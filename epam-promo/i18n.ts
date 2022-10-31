@@ -43,10 +43,17 @@ export const i18n = {
         columnsConfigurationModal: {
             applyButton: 'Apply',
             cancelButton: 'Cancel',
+            selectAllButton: 'Select all',
+            clearAllButton: 'Clear all',
             checkAllButton: 'Check All',
             uncheckAllButton: 'Uncheck All',
             configureColumnsTitle: 'Configure columns',
             resetToDefaultButton: 'Reset to Default',
+            displayedInTable: 'Displayed in table',
+            hiddenInTable: 'Hidden in table',
+            searchByColumnName: 'Search by column name',
+            noResultsFound: 'No results found',
+            weCantFindAnyItemMatchingYourRequest: 'We can’t find any item matching your request',
         },
     },
     pickerFilterHeader: {

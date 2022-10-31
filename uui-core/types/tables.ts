@@ -190,6 +190,7 @@ export type ColumnsConfig = {
 
 export type IColumnConfig =  {
     isVisible?: boolean;
+    fix?: 'left' | 'right';
     order?: string;
     width?: number;
 };
