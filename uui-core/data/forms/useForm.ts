@@ -40,6 +40,8 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         isInSaveMode: false,
     });
 
+    const prevFormValue = useRef<T>(props.value);
+
     const formState = useRef(initialForm.current);
 
     const forceUpdate = useForceUpdate();
@@ -78,12 +80,13 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     }, []);
 
     useEffect(() => {
-        if (!isEqual(props.value, initialForm.current.form)) {
+        if (!isEqual(props.value, prevFormValue.current)) {
             resetForm({
                 ...formState.current,
                 form: props.value,
                 formHistory: formState.current.isChanged ? formState.current.formHistory : [props.value],
             });
+            prevFormValue.current = props.value;
         }
     }, [props.value]);
 
