@@ -5,7 +5,7 @@ import { Avatar } from './Avatar';
 import { FlexRow } from '../';
 import * as css from './AvatarStack.scss';
 
-export interface AvatarStackProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+export interface AvatarStackProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     avatarSize: '24' | '36' | '48' | '144';
     urlArray: string[];
     direction: 'right' | 'left';
