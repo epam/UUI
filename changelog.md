@@ -1,3 +1,8 @@
+# 4.9.0 
+
+**What’s Fixed**
+* [TableColumnFilters]: fixed scroll position in 'Show only selected' mode in Loveship
+
 # 4.9.0-rc.1 - 24.10.2022
 
 **What's New**
