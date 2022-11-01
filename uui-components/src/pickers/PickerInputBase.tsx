@@ -198,6 +198,15 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         };
     }
 
+    getPrevSearchValue = (): string | null => {
+        const prevSearch = this.props?.value ? this.props?.dataSource.getById(this.props?.value as TId) : null;
+        const prevSearchWithName = prevSearch as TItem & { name: string };
+        if (prevSearchWithName && typeof prevSearchWithName === 'object' && 'name' in prevSearchWithName) {
+            return prevSearchWithName?.name ?? null;
+        }
+        return null;
+    }
+
     getTogglerProps(rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> {
         const selectedRows = this.getSelectedRows();
         const {
@@ -236,7 +245,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,
-            isSearchChanged: this.state.isSearchChanged,
+            prevSearch: this.state.isSearchChanged ? null : this.getPrevSearchValue(),
         };
     }
 
