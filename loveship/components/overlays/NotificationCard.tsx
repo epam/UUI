@@ -18,7 +18,7 @@ interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTM
     action: () => void;
 }
 
-export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     actions?: NotificationAction[];
 }
 

@@ -14,7 +14,7 @@ export const uuiYearSelection = {
     currentYear: 'uui-yearselection-current-year',
 } as const;
 
-export interface YearSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface YearSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     selectedDate: Dayjs;
 }
 

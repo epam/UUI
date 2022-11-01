@@ -5,7 +5,7 @@ import * as types from '../types';
 import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import * as css from './TextPlaceholder.scss';
 
-export interface TextPlaceholderProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+export interface TextPlaceholderProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     wordsCount?: number;
     color?: types.EpamColor;
     isNotAnimated?: boolean;
