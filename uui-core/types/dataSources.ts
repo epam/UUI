@@ -319,8 +319,8 @@ export interface LazyDataSourceApiResponse<TItem> {
 
 /** Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree */
 export interface LazyDataSourceApiRequestContext<TItem, TId> {
-    parentId?: TId;
-    parent?: TItem;
+    parentId?: TId | null;
+    parent?: TItem | null;
 }
 
 /** Defines API to retrieve data for DataSources */
