@@ -22,7 +22,6 @@ export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggl
     minCharsToSearch?: number;
     prefix?: React.ReactNode;
     suffix?: React.ReactNode;
-    prevSearch?: string | null;
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -107,7 +106,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const renderInput = () => {
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
         const placeholder = isSinglePickerSelected ? props.getName(props.selection[0]?.value) : props.placeholder;
-        const value = props.disableSearch ? null : (props.prevSearch ?? props.value);
+        const value = props.disableSearch ? null : props.value;
         if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selection.length > 0) {
             return null;
         }
