@@ -198,13 +198,17 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         };
     }
 
-    getPrevSearchValue = (): string | null => {
-        const prevSearch = this.props?.value ? this.props?.dataSource.getById(this.props?.value as TId) : null;
-        const prevSearchWithName = prevSearch as TItem & { name: string };
-        if (prevSearchWithName && typeof prevSearchWithName === 'object' && 'name' in prevSearchWithName) {
-            return prevSearchWithName?.name ?? null;
+    getSearchValue = (): string | null => {
+        //only for selectionMode = 'single': we're getting current value and put it into search, and when search changed we turn value to dataSourceState.search
+        if (this.props.selectionMode === 'single' && !this.state.isSearchChanged) {
+            if (this.props.valueType === 'id') {
+                return this.getName(this.props?.dataSource.getById(this.props.value as TId));
+            }
+            if (this.props.valueType === 'entity') {
+                return this.getName(this.props.value as TItem);
+            }
         }
-        return null;
+        return this.state.dataSourceState.search;
     }
 
     getTogglerProps(rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> {
@@ -245,7 +249,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,
-            prevSearch: this.state.isSearchChanged ? null : this.getPrevSearchValue(),
+            value: this.getSearchValue(),
         };
     }
 
