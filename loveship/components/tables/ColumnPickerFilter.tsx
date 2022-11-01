@@ -45,14 +45,13 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
     }
 
     render() {
-        const view = this.getView();
         const renderedDataRows = this.getRows().map(this.renderRow);
         const maxHeight = isMobile() ? document.documentElement.clientHeight : pickerHeight;
 
         return (
             <>
                 <DataPickerBody
-                    { ...view.getListProps() }
+                    { ...this.getListProps() }
                     value={ this.getDataSourceState() }
                     onValueChange={ this.handleDataSourceValueChange }
                     maxHeight={ maxHeight }
