@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ControlIconProps } from '@epam/uui-components';
-import { DefaultContext, FormContext, onClickDoc, iconDoc } from '../../../docs';
+import { DefaultContext, FormContext, GridContext, onClickDoc, iconDoc } from '../../../docs';
 import { IconContainer, IconContainerMods } from "../IconContainer";
 import { allEpamAdditionalColors, allEpamGrayscaleColors } from "../../types";
 import { colors } from "../../../helpers/colorMap";
@@ -12,14 +12,14 @@ const iconContainerDoc = new DocBuilder<ControlIconProps & IconContainerMods>({ 
         examples: [...allEpamAdditionalColors, ...allEpamGrayscaleColors],
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
     })
+    .prop('size', { examples: [12, 18, 24, 30, 36, 42, 48, 60] })
     .prop('style', { examples: [
             { name: 'fill: blue', value: { fill: '#008ACE' } },
             { name: 'fill: green', value: { fill: '#88CC00' } },
             { name: 'transform: skew(30deg, 20deg)', value: { transform: 'skew(30deg, 20deg)' } },
         ] })
-    .prop('size', { examples: [12, 18, 24, 30, 36, 42, 48, 60] })
     .prop('flipY', { examples: [true, false], defaultValue: null })
     .prop('rotate', { examples: ['0', '90cw', '180', '90ccw'], defaultValue: null })
-    .withContexts(DefaultContext, FormContext);
+    .withContexts(DefaultContext, FormContext, GridContext);
 
 export = iconContainerDoc;

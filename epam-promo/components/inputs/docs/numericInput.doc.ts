@@ -2,7 +2,7 @@ import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { NumericInputProps } from '@epam/uui-components';
 import { NumericInput, NumericInputMods } from '../NumericInput';
 import { iEditable, sizeDoc, isDisabledDoc, iHasPlaceholder, iFormatter } from '../../../docs';
-import { DefaultContext, FormContext, TableContext } from '../../../docs';
+import { DefaultContext, GridContext, ResizableContext, FormContext, TableContext } from '../../../docs';
 
 const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ name: 'NumericInput', component: NumericInput })
     .implements([iEditable, iHasPlaceholder, sizeDoc, isDisabledDoc, isReadonlyDoc, iFormatter])
@@ -13,6 +13,6 @@ const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ n
     .prop('mode', { examples: ["form", "cell"] })
     .prop('align', { examples: ["left", "right"] })
     .prop('disableArrows', { examples: [true, false] })
-    .withContexts(DefaultContext, FormContext, TableContext);
+    .withContexts(DefaultContext, FormContext, TableContext, ResizableContext, GridContext);
 
 export = NumericInputDoc;

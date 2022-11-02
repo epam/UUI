@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { TextPlaceholder, TextPlaceholderProps } from '../TextPlaceholder';
-import { DefaultContext, FormContext, ColorPicker } from '../../../docs';
+import { DefaultContext, FormContext, GridContext, ColorPicker } from '../../../docs';
 import { colors } from "../../../helpers/colorMap";
 
 const textPlaceholderDoc = new DocBuilder<TextPlaceholderProps>({ name: 'TextPlaceholder', component: TextPlaceholder })
@@ -12,6 +12,6 @@ const textPlaceholderDoc = new DocBuilder<TextPlaceholderProps>({ name: 'TextPla
         defaultValue: 'gray40',
     })
     .prop('isNotAnimated', { examples: [true, false] })
-    .withContexts(DefaultContext, FormContext);
+    .withContexts(DefaultContext, FormContext, GridContext);
 
 export = textPlaceholderDoc;
