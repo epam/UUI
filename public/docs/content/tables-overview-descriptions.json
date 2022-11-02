@@ -232,7 +232,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Row selection and 'Select All' functionality (only for Array- and Async- DataSources)",
+                    "text": "Row selection and 'Select All' functionality",
                     "marks": []
                   }
                 ]
