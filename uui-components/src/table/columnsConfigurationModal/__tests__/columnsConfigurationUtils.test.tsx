@@ -1,3 +1,4 @@
+import React from "react";
 import { GroupedDataColumnProps } from "../types";
 import { ColumnsConfig, DataColumnProps } from "@epam/uui-core";
 import { isColumnFilteredOut, sortColumnsAndAddGroupKey } from "../columnsConfigurationUtils";
@@ -46,6 +47,11 @@ describe('columnsConfigurationUtils', () => {
         });
         it('should not filter out columns which match filter criteria (ignore case)', () => {
             const A: DataColumnProps = { key: '1', fix: 'left', caption: 'name', isAlwaysVisible: false, width: 10 };
+            const result = isColumnFilteredOut(A, 'NAME');
+            expect(result).toBe(false);
+        });
+        it('should not filter out columns with React node as caption', () => {
+            const A: DataColumnProps = { key: '1', fix: 'left', caption: <div />, isAlwaysVisible: false, width: 10 };
             const result = isColumnFilteredOut(A, 'NAME');
             expect(result).toBe(false);
         });
