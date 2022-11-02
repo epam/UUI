@@ -21,7 +21,7 @@ function applyTextMods(mods: TextMods) {
     return [
         css.text,
         css['font-' + (mods.font || 'sans')],
-        styles['color-' + (mods.color || 'night700')],
+        styles['color-' + (mods.color || 'night900')],
     ].concat(textClasses);
 }
 

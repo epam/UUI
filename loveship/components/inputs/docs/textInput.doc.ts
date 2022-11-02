@@ -1,8 +1,24 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { TextInputProps } from '@epam/uui-components';
 import { TextInput, TextInputMods } from '../TextInput';
-import { iEditable, textSettingsDoc, iHasPlaceholder, onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, modeDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, GridContext, FormContext } from '../../../docs';
+import {
+    DefaultContext,
+    dropdownTogglerDoc,
+    FormContext,
+    GridContext,
+    iconDoc,
+    iconOptionsDoc,
+    iEditable,
+    iHasPlaceholder,
+    isDisabledDoc,
+    isInvalidDoc,
+    isReadonlyDoc,
+    modeDoc,
+    onClickDoc,
+    ResizableContext,
+    TableContext,
+    textSettingsDoc,
+} from '../../../docs';
 
 const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'TextInput', component: TextInput })
     .prop('size', { examples: ['60', '48', '42', '36', '30', '24'], defaultValue: '36' })
@@ -18,6 +34,6 @@ const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'Tex
     .prop('onAccept', { examples: ctx => [ctx.getCallback('onAccept')] })
     .prop('onCancel', { examples: ctx => [ctx.getCallback('onCancel')] })
     .prop('type', { examples: ['text', 'password'], type: 'string', defaultValue: 'text' })
-    .withContexts(DefaultContext, ResizableContext, GridContext, FormContext);
+    .withContexts(DefaultContext, ResizableContext, GridContext, FormContext, TableContext);
 
 export = TextInputDoc;
