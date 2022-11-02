@@ -8,7 +8,7 @@ interface BurgerState {
     isOpen: boolean;
 }
 
-export interface BurgerProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface BurgerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     burgerIcon?: Icon;
     crossIcon?: Icon;
     width?: number;

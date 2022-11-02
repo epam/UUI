@@ -3,7 +3,7 @@ import { IDisableable, IHasCX, IHasRawProps, uuiMod } from '@epam/uui-core';
 import cx from 'classnames';
 import * as css from './DragHandle.scss';
 
-export interface DragHandleProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IDisableable {}
+export interface DragHandleProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDisableable {}
 
 export class DragHandle extends React.Component<DragHandleProps> {
     render() {
