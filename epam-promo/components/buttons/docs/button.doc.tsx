@@ -4,7 +4,7 @@ import { allButtonColors, Button, ButtonMods } from '../Button';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import { onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iHasPlaceholder, iconWithInfoDoc, iconOptionsDoc } from '../../../docs';
-import { DefaultContext, FormContext } from '../../../docs';
+import { DefaultContext, FormContext, GridContext } from '../../../docs';
 import { colors } from '../../../helpers/colorMap';
 
 const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', component: Button })
@@ -18,6 +18,6 @@ const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', com
     ], type: 'string' })
     .implements([iconWithInfoDoc, iconOptionsDoc])
     .prop('fill', { examples: allFillStyles, defaultValue: 'solid' })
-    .withContexts(DefaultContext, FormContext);
+    .withContexts(DefaultContext, FormContext, GridContext);
 
 export = ButtonDoc;

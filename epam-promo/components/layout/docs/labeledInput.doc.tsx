@@ -2,11 +2,11 @@ import * as React from 'react';
 import { LabeledInput, LabeledInputMods, TextInput, Checkbox } from '../../../components';
 import { DocBuilder } from '@epam/uui-docs';
 import { LabeledInputProps } from '@epam/uui-components';
-import { DefaultContext, FormContext } from '../../../docs';
-import { sizeDoc, isInvalidDoc, iHasLabelDoc } from '../../../docs';
+import { ResizableContext, DefaultContext, GridContext, FormContext } from '../../../docs';
+import { sizeDoc, colorDoc, isInvalidDoc, iHasLabelDoc } from '../../../docs';
 
 const labeledInputDoc = new DocBuilder<LabeledInputProps & LabeledInputMods>({ name: 'LabeledInput', component: LabeledInput })
-    .implements([isInvalidDoc, iHasLabelDoc, sizeDoc])
+    .implements([colorDoc, isInvalidDoc, iHasLabelDoc, sizeDoc])
     .prop('labelPosition', { examples: [{ value: 'top', isDefault: true }, 'left'] })
     .prop('children', { examples: [
             { name: "TextInput 48", value: <TextInput value='text' size='48' onValueChange={ null } />, isDefault: true },
@@ -19,6 +19,6 @@ const labeledInputDoc = new DocBuilder<LabeledInputProps & LabeledInputMods>({ n
     .prop('isRequired', { examples: [true] })
     .prop('isOptional', { examples: [true] })
     .prop('validationMessage', { examples: [{ value: 'This field is mandatory', isDefault: true}]})
-    .withContexts(DefaultContext, FormContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext, GridContext);
 
 export = labeledInputDoc;
