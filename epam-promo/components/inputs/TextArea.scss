@@ -77,21 +77,6 @@
             background-color: transparent;
             border-color: transparent;
 
-            &:hover {
-                background-color: white;
-                border-color: var(--border-color);
-            }
-
-            &:global(.uui-focus) {
-                background-color: white;
-                border-color: var(--border-color-active);
-            }
-
-            &:global(.uui-invalid) {
-                background-color: white;
-                border-color: var(--border-color-errored);;
-            }
-
             &:global(.uui-readonly) {
                 background-color: transparent;
                 border-color: transparent;

@@ -1,14 +1,17 @@
-import { IBasicPickerToggler, ICanRedirect, IClickable, IDisableable, IDropdownToggler, IHasCaption, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableClick } from "../props";
+import * as React from 'react';
+import { IBasicPickerToggler, ICanRedirect, IClickable, IDisableable, IDropdownToggler, IHasCaption, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableClick, IHasTabIndex, IHasRawProps } from "../props";
 import { Icon } from "../objects";
 
-export interface ButtonBaseCoreProps extends IHasCX, IClickable, ICanRedirect, IDisableable, IHasIcon, IAnalyticableClick {
-    isLinkActive?: boolean;
-    tabIndex?: number;
+export interface ButtonBaseCoreProps extends IHasCX, IClickable, ICanRedirect, IDisableable, IHasIcon, IAnalyticableClick, IHasTabIndex, IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
 }
 
 export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasicPickerToggler, IDropdownToggler, IHasPlaceholder {
+    /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
+
+    /** Position of the dropdown icon ('left' of 'right') */
     dropdownIconPosition?: 'left' | 'right';
+
     countPosition?: 'left' | 'right';
     count?: number | null;
 }

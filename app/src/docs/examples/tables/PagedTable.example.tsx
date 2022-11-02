@@ -20,12 +20,13 @@ export default function PagedTable() {
         caption: 'NAME',
         render: person => <Text color='gray80' font='sans-semibold'>{ person.name }</Text>,
         isSortable: true,
-        grow: 1, minWidth: 224,
+        grow: 1,
+        width: 224,
     }, {
         key: 'location',
         caption: 'LOCATION',
         render: person => <Text>{ person.locationName }</Text>,
-        grow: 0, shrink: 0, width: 144,
+        width: 144,
     }], []);
 
     const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {

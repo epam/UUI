@@ -5,7 +5,9 @@ import * as styles from '../../assets/styles/colorvars/layout/accordion-colorvar
 import * as css from './Accordion.scss';
 
 export interface AccordionMods {
+    /** 'block' mode: render as separate panel (with padding, borders, shadows). 'inline' mode - renders no outside panel, suitable for placing in a panel with other components  */
     mode?: 'block' | 'inline';
+    /** Padding inside the panel */
     padding?: '0' | '6' | '12' | '18';
 }
 
@@ -19,5 +21,5 @@ function applyAccordionMods(mods: AccordionMods & AccordionProps) {
 }
 
 export const Accordion = withMods<AccordionProps, AccordionMods>(uuiAccordion, applyAccordionMods, (mods: AccordionMods & AccordionProps) => ({
-    dropdownIcon: systemIcons[mods.mode === 'block' ? '60' : '30'].foldingArrow,
+    dropdownIcon: mods.dropdownIcon !== null && systemIcons[mods.mode === 'block' ? '60' : '30'].foldingArrow,
 }));

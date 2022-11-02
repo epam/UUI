@@ -26,11 +26,12 @@ const FilterPanel = <TFilter extends Record<string, any>>(props: IFilterPanelPro
                 <PresetsBlock
                     presets={ props.presets }
                     createNewPreset={ props.createNewPreset }
-                    isDefaultPresetActive={ props.isDefaultPresetActive }
-                    resetToDefault={ props.resetToDefault }
                     activePresetId={ props.activePresetId }
                     hasPresetChanged={ props.hasPresetChanged }
                     choosePreset={ props.choosePreset }
+                    deletePreset={ props.deletePreset }
+                    duplicatePreset={ props.duplicatePreset }
+                    updatePreset={ props.updatePreset }
                 />
                 <FiltersBlock
                     value={ props.tableState.filter }

@@ -10,6 +10,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption line-height-18 font-size-14 v-padding-9"
@@ -52,6 +53,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
         onClick={[Function]}
         role="button"
         tabIndex={0}
+        type="button"
       >
         <div
           className="container uui-icon uui-enabled"
@@ -99,6 +101,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
         onClick={[Function]}
         role="button"
         tabIndex={0}
+        type="button"
       >
         <div
           className="container uui-icon uui-enabled"
@@ -146,6 +149,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
         onClick={[Function]}
         role="button"
         tabIndex={0}
+        type="button"
       >
         <div
           className="container uui-icon uui-enabled"
@@ -193,6 +197,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
         onClick={[Function]}
         role="button"
         tabIndex={0}
+        type="button"
       >
         <div
           className="container uui-icon uui-enabled"
@@ -240,6 +245,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
         onClick={[Function]}
         role="button"
         tabIndex={0}
+        type="button"
       >
         <div
           className="container uui-icon uui-enabled"
@@ -287,6 +293,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
         onClick={[Function]}
         role="button"
         tabIndex={0}
+        type="button"
       >
         <div
           className="container uui-icon uui-enabled"

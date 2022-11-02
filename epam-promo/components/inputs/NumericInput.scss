@@ -30,6 +30,12 @@
             }
         }
 
+        :global(.uui-input.uui-value-in-placeholder) {
+            &::placeholder {
+                color: inherit;
+            }
+        }
+
         :global(.uui-icon) svg {
             margin-top: -2px;
         }
@@ -82,5 +88,9 @@
                 background-color: transparent;
             }
         }
+    }
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
     }
 }

@@ -77,7 +77,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (isChildFocusable(e)) return;
         this.onToggle(false);
-        if (!this.getIsValidDate(this.state.inputValue)) {
+        if (this.state.inputValue && !this.getIsValidDate(this.state.inputValue)) {
             this.handleValueChange(null);
             this.setState({ inputValue: null, selectedDate: null });
         }

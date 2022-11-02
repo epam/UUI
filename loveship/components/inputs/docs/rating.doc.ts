@@ -1,7 +1,7 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { RatingProps } from '@epam/uui-components';
 import { Rating, RatingMods } from '../Rating';
-import { isDisabledDoc, isInvalidDoc, iEditable, DefaultContext, FormContext, GridContext } from '../../../docs';
+import { isDisabledDoc, isInvalidDoc, iEditable, DefaultContext, FormContext } from '../../../docs';
 
 const RatingDoc = new DocBuilder<RatingProps & RatingMods>({ name: 'Rating', component: Rating })
     .implements([isDisabledDoc, isInvalidDoc, iEditable])
@@ -11,6 +11,6 @@ const RatingDoc = new DocBuilder<RatingProps & RatingMods>({ name: 'Rating', com
     .prop('isReadonly', { examples: [true] })
     .prop('hideTooltip', { examples: [true] })
     .prop('hint', { examples: [{ name: 'hint', value: val => `now is ${val} stars` }] })
-    .withContexts(DefaultContext, FormContext, GridContext);
+    .withContexts(DefaultContext, FormContext);
 
 export = RatingDoc;

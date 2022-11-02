@@ -6,7 +6,9 @@ import { Svg } from '../widgets/Svg';
 import { i18n } from '../../i18n';
 
 export interface LabeledInputProps extends LabeledInputCoreProps {
+    /** Overrides the default Tooltip component to use for info tooltip */
     Tooltip?: React.ComponentType<TooltipProps>;
+    /** Overrides the default info icon */
     infoIcon?: Icon;
 }
 

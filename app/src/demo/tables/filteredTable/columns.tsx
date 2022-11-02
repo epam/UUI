@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Text, Badge, EpamAdditionalColor, FlexRow, LinkButton } from '@epam/promo';
-import { DataColumnProps } from "@epam/uui";
+import { DataColumnProps, getSeparatedValue } from "@epam/uui";
 import { Person } from "@epam/uui-docs";
 import * as css from './FilteredTable.scss';
 
-export const personColumns = [
+export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'name',
         caption: "Name",
@@ -29,10 +29,18 @@ export const personColumns = [
         isFilterActive: f => !!f.profileStatusId,
     },
     {
+        key: 'salary',
+        caption: 'salary',
+        render: p => <Text>{ getSeparatedValue(+p.salary, {style: "currency", currency: "USD", maximumFractionDigits: 2, minimumFractionDigits: 2}) }</Text>,
+        width: 150,
+        textAlign: 'right',
+        isSortable: true,
+    },
+    {
         key: 'jobTitle',
         caption: "Title",
         render: r => <Text>{ r.jobTitle }</Text>,
-        minWidth: 200,
+        width: 200,
         isSortable: true,
         isFilterActive: f => !!f.jobTitleId,
     },
@@ -139,4 +147,4 @@ export const personColumns = [
         alignSelf: 'center',
         fix: 'right',
     },
-] as DataColumnProps<Person, number>[];
+];

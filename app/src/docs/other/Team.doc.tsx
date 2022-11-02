@@ -65,7 +65,7 @@ export class TeamDoc extends React.Component {
                     }) }
                     <div className={ css.contributeCard } >
                         <IconContainer cx={ css.iconContainer } icon={ AddIcon } size={ 48 } color='blue' />
-                        <Button cx={ css.link } size='48' fill='light' caption='Contribute' target='_blank' href='https://git.epam.com/epm-tmc/ui/-/issues'  />
+                        <Button cx={ css.link } size='48' fill='light' caption='Contribute' target='_blank' href='https://github.com/epam/UUI/blob/main/CONTRIBUTING.md'  />
                     </div>
                 </FlexRow>
             </ContentSection>

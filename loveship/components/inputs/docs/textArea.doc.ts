@@ -4,7 +4,6 @@ import { TextArea, TextAreaMods } from '../TextArea';
 import {
     DefaultContext,
     FormContext,
-    GridContext,
     iEditable,
     iHasPlaceholder,
     isDisabledDoc,
@@ -27,6 +26,6 @@ const TextareaDoc = new DocBuilder<TextAreaProps & TextAreaMods>({ name: 'TextAr
     .prop('rows', { examples: [1, 10, 20, 30] })
     .prop('maxLength', { examples: [30, 50, 120] })
     .prop('autoSize', { examples: [true, false], defaultValue: false })
-    .withContexts(DefaultContext, FormContext, TableContext, ResizableContext, GridContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
 export = TextareaDoc;

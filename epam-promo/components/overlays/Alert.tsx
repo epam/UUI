@@ -17,10 +17,14 @@ type notificationAction = {
     action: () => void;
 };
 
-export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
+export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+    /** List of actions to display in the alert. Each action has name and 'action' callback */
     actions?: notificationAction[];
+    /** Alert color */
     color?: EpamPrimaryColor;
+    /** When specified, a close icon is rendered. onClose callback will be called on clicking the close icon */
     onClose?(): void;
+    /** An optional icon to show on the left of the alert */
     icon?: Icon;
 }
 
@@ -63,7 +67,7 @@ export const SuccessAlert = React.forwardRef<HTMLDivElement, AlertProps>((props,
 ));
 
 export const HintAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <Alert icon={ HintIcon } color='blue' ref={ ref} { ...props } />
+    <Alert icon={ HintIcon } color='blue' ref={ ref } { ...props } />
 ));
 
 export const ErrorAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (

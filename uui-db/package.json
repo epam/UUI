@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-db",
-  "version": "4.8.5",
+  "version": "4.9.0-rc.1",
   "description": "UUI - client-side relational state cache",
   "author": "EPAM",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "4.8.5",
+    "@epam/uui-core": "4.9.0-rc.1",
     "@types/lodash.countby": "4.6.6",
     "@types/lodash.filter": "4.6.6",
     "@types/lodash.foreach": "4.5.6",
@@ -59,7 +59,7 @@
     "react-dom": ">=16.0.0"
   },
   "optionalDependencies": {
-    "@epam/uui-docs": "4.8.5"
+    "@epam/uui-docs": "4.9.0-rc.1"
   },
   "repository": {
     "type": "git",

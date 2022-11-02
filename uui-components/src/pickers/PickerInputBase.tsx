@@ -7,24 +7,60 @@ import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../../i18n';
 
 export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
+    /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */
     editMode?: 'dropdown' | 'modal';
+
+    /** Maximum number of tags to display in input, before collapsing to "N items selected" mode */
     maxItems?: number;
+
+    /** Minimum width of dropdown body */
     minBodyWidth?: number;
+
+    /** Prevents selected items tags to occupy multiple lines  */
     isSingleLine?: boolean;
+
+    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
     dropdownPlacement?: Placement;
+
+    /** Replaces default 'toggler' - an input to which Picker attaches dropdown */
     renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
+
+    /**
+     *  Defines where search field is:
+     * 'input' - try to place search inside the toggler (default for single-select),
+     * 'body' - put search inside the dropdown (default for multi-select)
+     * 'none' - disables search completely
+     */
     searchPosition?: 'input' | 'body' | 'none';
+
+    /** Disallow to clear Picker value (cross icon) */
     disableClear?: boolean;
+
+    /** Minimum characters to type, before search will trigger (default is 1) */
     minCharsToSearch?: number;
+
+    /** Overrides default height of the dropdown body */
     dropdownHeight?: number;
+
+    /** Sets focus to component when it's mounted */
     autoFocus?: boolean;
+
+    /** Prefix text to add to the input */
     prefix?: React.ReactNode;
+
+    /** Suffix text to add to the input */
     suffix?: React.ReactNode;
+
+    /** HTML attributes to put directly to the input and body elements */
     rawProps?: {
-        input?: IHasRawProps<HTMLDivElement>['rawProps'];
-        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     }
+
+    /** Adds custom footer to the dropdown body */
     renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;
+
+    /** Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter. */
     fixedBodyPosition?: boolean;
 };
 
@@ -120,7 +156,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getPlaceholder() {
-        return this.props.placeholder || i18n.pickerInput.defaultPlaceholder(this.getEntityName());
+        return this.props.placeholder ?? i18n.pickerInput.defaultPlaceholder(this.getEntityName());
     }
 
     handleClearSelection = () => {
@@ -210,10 +246,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     handlePickerInputKeyboard = (rows: DataSourceKeyboardParams['rows'], e: React.KeyboardEvent<HTMLElement>) => {
-        if (this.props.isDisabled || this.props.isReadonly || this.props.editMode === 'modal') return;
+        if (this.props.isDisabled || this.props.isReadonly) return;
 
         if (e.key === 'Enter' && !this.state.opened) {
-            return this.toggleDropdownOpening(true);
+            return this.toggleBodyOpening(true);
         }
 
         if (e.key === 'Escape' && this.state.opened) {
@@ -246,17 +282,35 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     getRows() {
         if (!this.shouldShowBody()) return [];
 
+        let preparedRows: DataRowProps<TItem, TId>[];
+
         const { showSelected, dataSourceState: { topIndex, visibleCount } } = this.state;
         const { getVisibleRows, getSelectedRows } = this.getView();
 
-        if (!showSelected) return getVisibleRows();
-        return getSelectedRows().slice(topIndex, topIndex + visibleCount);
+        if (!showSelected) {
+            preparedRows = getVisibleRows()
+        } else {
+            preparedRows = getSelectedRows().slice(topIndex, topIndex + visibleCount)
+        }
+
+        return preparedRows.map((rowProps) => {
+            const newRowProps = {...rowProps}
+            if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
+                newRowProps.onSelect = this.onSelect;
+            }
+
+            return newRowProps
+        });
     }
 
     getFooterProps(): PickerFooterProps<TItem, TId> & { onClose: () => void } {
         const footerProps = super.getFooterProps();
 
         return { ...footerProps, onClose: () => this.toggleBodyOpening(false) };
+    }
+
+    returnFocusToInput(): void {
+        this.togglerRef.current.focus();
     }
 
     render() {
