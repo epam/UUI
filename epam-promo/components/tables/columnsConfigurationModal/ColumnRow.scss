@@ -8,14 +8,14 @@
     touch-action: auto;
 
     &.not-pinned:not(:hover) {
-        :global(.pin-icon-button) {
+        .pin-icon-button {
             visibility: hidden;
         }
     }
 
     &:hover {
         box-shadow: 0 0 1px $gray50;
-        &, .title, :global(.pin-icon-button) {
+        &, .title, .pin-icon-button {
             background-color: $gray10;
         }
     }
