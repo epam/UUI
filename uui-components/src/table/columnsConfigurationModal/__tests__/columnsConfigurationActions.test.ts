@@ -3,22 +3,35 @@ import {
     toggleSingleColumnPin,
     toggleSingleColumnVisibility,
 } from '../columnsConfigurationActions';
-import { ColumnsConfig, IColumnConfig } from '@epam/uui-core';
+import { ColumnsConfig, DataColumnProps, IColumnConfig } from '@epam/uui-core';
 import { GroupedDataColumnProps } from "../types";
 
 function getTestDataSet1() {
     const A: GroupedDataColumnProps = { key: '1', fix: 'left', caption: 'a', isAlwaysVisible: false, width: 10, groupKey: 'displayedPinned' };
     const B: GroupedDataColumnProps = { key: '2', caption: 'b', isAlwaysVisible: true, width: 10, groupKey: 'displayedUnpinned' };
     const C: GroupedDataColumnProps = { key: '3', caption: 'c', isAlwaysVisible: false, width: 10, groupKey: 'hidden' };
-    const D: GroupedDataColumnProps = { key: '4', fix: 'right', caption: '', width: 10, groupKey: 'displayedPinned' };
     const columnsSorted: GroupedDataColumnProps[] = [A, B, C];
+    const prevConfig: ColumnsConfig = {
+        [A.key]: { fix: 'left', width: 10, isVisible: true, order: 'a' } as IColumnConfig,
+        [B.key]: { width: 10, isVisible: true, order: 'b' } as IColumnConfig,
+        [C.key]: { width: 10, isVisible: false, order: 'c' } as IColumnConfig,
+    };
+    return { prevConfig, columnsSorted, A, B, C };
+}
+
+function getTestDataSet2() {
+    const A: DataColumnProps = { key: '1', fix: 'left', caption: 'a', isAlwaysVisible: false, width: 10 };
+    const B: DataColumnProps = { key: '2', caption: 'b', isAlwaysVisible: true, width: 10 };
+    const C: DataColumnProps = { key: '3', caption: 'c', isAlwaysVisible: false, width: 10 };
+    const D: DataColumnProps = { key: '4', fix: 'right', caption: '', width: 10 };
+    const columnsSorted: GroupedDataColumnProps[] = [A, B, C, D];
     const prevConfig: ColumnsConfig = {
         [A.key]: { fix: 'left', width: 10, isVisible: true, order: 'a' } as IColumnConfig,
         [B.key]: { width: 10, isVisible: true, order: 'b' } as IColumnConfig,
         [C.key]: { width: 10, isVisible: false, order: 'c' } as IColumnConfig,
         [D.key]: { width: 10, isVisible: true, order: 'd' } as IColumnConfig,
     };
-    return { prevConfig, columnsSorted, A, B, C };
+    return { prevConfig, columnsSorted };
 }
 
 describe('columnsConfigurationActions', () => {
@@ -30,7 +43,6 @@ describe('columnsConfigurationActions', () => {
                 1: { isVisible: false, order: 'bh', width: 10 },
                 2: { isVisible: true, order: 'b', width: 10 },
                 3: { isVisible: false, order: 'c', width: 10 },
-                4: { isVisible: true, order: 'd', width: 10 },
             };
             expect(result).toEqual(expected);
         });
@@ -41,7 +53,6 @@ describe('columnsConfigurationActions', () => {
                 1: { fix: 'left', isVisible: true, order: 'a', width: 10 },
                 2: { isVisible: true, order: 'b', width: 10 },
                 3: { isVisible: true, order: 'bh', width: 10 },
-                4: { isVisible: true, order: 'd', width: 10 },
             };
             expect(result).toEqual(expected);
         });
@@ -55,7 +66,6 @@ describe('columnsConfigurationActions', () => {
                 1: { fix: 'left', isVisible: true, order: 'a', width: 10 },
                 2: { fix: 'left', isVisible: true, order: 'ah', width: 10 },
                 3: { isVisible: false, order: 'c', width: 10 },
-                4: { isVisible: true, order: 'd', width: 10 },
             };
             expect(result).toEqual(expected);
         });
@@ -67,7 +77,6 @@ describe('columnsConfigurationActions', () => {
                 1: { isVisible: true, order: 'ah', width: 10 },
                 2: { isVisible: true, order: 'b', width: 10 },
                 3: { isVisible: false, order: 'c', width: 10 },
-                4: { isVisible: true, order: 'd', width: 10 },
             };
             expect(result).toEqual(expected);
         });
@@ -79,7 +88,6 @@ describe('columnsConfigurationActions', () => {
                 1: { fix: 'left', isVisible: true, order: 'a', width: 10 },
                 2: { isVisible: true, order: 'b', width: 10 },
                 3: { fix: 'left', isVisible: true, order: 'ah', width: 10 },
-                4: { isVisible: true, order: 'd', width: 10 },
             };
             expect(result).toEqual(expected);
         });
@@ -110,7 +118,7 @@ describe('columnsConfigurationActions', () => {
 
     describe('toggleAllColumnsVisibility', () => {
         it('should hide all columns except always visible ones', () => {
-            const { prevConfig, columnsSorted } = getTestDataSet1();
+            const { prevConfig, columnsSorted } = getTestDataSet2();
             const result = toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, value: false });
             const expected = {
                 1: { isVisible: false, order: 'a', width: 10 },
