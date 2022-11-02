@@ -44,7 +44,7 @@ export function getNewColumnOrder(
         : getOrderBetween(targetPrevOrder || null, targetOrder);
 }
 
-function isNonEmptyString(s: string) {
+export function isNonEmptyString(s: string) {
     return typeof s === 'string' && s.trim() !== '';
 }
 function isSubstring(s: string, sub: string) {
