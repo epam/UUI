@@ -24,7 +24,7 @@ function getTestDataSet2() {
     const B: DataColumnProps = { key: '2', caption: 'b', isAlwaysVisible: true, width: 10 };
     const C: DataColumnProps = { key: '3', caption: 'c', isAlwaysVisible: false, width: 10 };
     const D: DataColumnProps = { key: '4', fix: 'right', caption: '', width: 10 };
-    const columnsSorted: GroupedDataColumnProps[] = [A, B, C, D];
+    const columnsSorted: DataColumnProps[] = [A, B, C, D];
     const prevConfig: ColumnsConfig = {
         [A.key]: { fix: 'left', width: 10, isVisible: true, order: 'a' } as IColumnConfig,
         [B.key]: { width: 10, isVisible: true, order: 'b' } as IColumnConfig,
