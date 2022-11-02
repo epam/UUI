@@ -4,7 +4,7 @@ import { onClickDoc, isDisabledDoc, iCanRedirectDoc, colorDoc, iconDoc, isInvali
 import { DefaultContext, FormContext, GridContext } from '../../../docs';
 
 const IconButtonDoc = new DocBuilder<IconButtonProps>({ name: 'IconButton', component: IconButton })
-    .implements([onClickDoc, isDisabledDoc, isInvalidDoc, iCanRedirectDoc, colorDoc, iconDoc])
+    .implements([onClickDoc, isDisabledDoc, isInvalidDoc, iCanRedirectDoc, iconDoc, colorDoc])
     .withContexts(DefaultContext, FormContext, GridContext);
 
 export = IconButtonDoc;
