@@ -6,7 +6,7 @@ interface UploadFileTogglerRenderParams {
     onClick(): any;
 }
 
-interface UploadFileTogglerProps extends IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLInputElement> {
+interface UploadFileTogglerProps extends IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLInputElement> {
     render(props: UploadFileTogglerRenderParams): React.ReactNode;
     onFilesAdded(files: File[]): any;
     accept?: string;

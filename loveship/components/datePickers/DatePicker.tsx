@@ -15,8 +15,8 @@ export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSetti
     iconPosition?: 'left' | 'right';
     disableClear?: boolean;
     rawProps?: {
-        input?: IHasRawProps<HTMLDivElement>['rawProps'];
-        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 }
 
@@ -28,9 +28,9 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 onClick={ null }
                 isDropdown={ false }
                 cx={ cx(this.props.cx, css.dateInput, this.state.isOpen && uuiMod.focus) }
-                icon={ systemIcons[this.props.size || '36'].calendar }
+                icon={ this.props.mode !== 'cell' && systemIcons[this.props.size || '36'].calendar }
                 iconPosition={ this.props.iconPosition || 'left' }
-                placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
+                placeholder={ this.props.placeholder ?? this.getFormat() }
                 size={ this.props.size || '36' }
                 lineHeight={ this.props.lineHeight }
                 fontSize={ this.props.fontSize }

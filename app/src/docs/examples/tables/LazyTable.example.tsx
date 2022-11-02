@@ -28,28 +28,30 @@ export default function CitiesTable(props: unknown) {
             caption: 'ID',
             render: city => <Text color='gray80' fontSize='14'>{ city.id }</Text>,
             isSortable: true,
-            width: 120, minWidth: 120, fix: 'left',
+            width: 120,
         },
         {
             key: 'name',
             caption: 'NAME',
             render: city => <Text color='gray80' fontSize='14'>{ city.name }</Text>,
             isSortable: true,
-            minWidth: 100, width: 162, grow: 1,
+            width: 162,
+            grow: 1,
+            fix: 'left',
         },
         {
             key: 'countryName',
             caption: 'COUNTRY',
             render: city => <Text color='gray80' fontSize='14'>{ city.countryName }</Text>,
             isSortable: true,
-            width: 128, minWidth: 80,
+            width: 128,
             isFilterActive: filter => filter.country && filter.country.$in && !!filter.country.$in.length,
         },
         {
             key: 'population',
             caption: 'POPULATION',
             render: city => <Text color='gray80' fontSize='14'>{ city.population }</Text>,
-            width: 136, minWidth: 80,
+            width: 136,
             isSortable: true,
             textAlign: 'right',
         },
@@ -100,8 +102,6 @@ export default function CitiesTable(props: unknown) {
                 // getRows function will be called every time when table will need more rows.
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
-                allowColumnsResizing={ true }
-                showColumnsConfig={ true }
                 headerTextCase='upper'
                 columns={ citiesColumns }
                 { ...props }

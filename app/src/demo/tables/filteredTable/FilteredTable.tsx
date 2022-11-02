@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import css from './FilteredTable.scss';
-import { DataTable, FiltersToolbar, FlexCell, FlexRow, PresetPanel, Text } from '@epam/promo';
+import { DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text } from '@epam/promo';
 import { getFilters } from './filters';
 import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset } from "@epam/uui-core";
 import { FilteredTableFooter } from "./FilteredTableFooter";
@@ -9,11 +9,30 @@ import { personColumns } from './columns';
 import { SearchInput } from "@epam/uui";
 import { TApi } from "../../../data";
 
+const defaultPresets: ITablePreset[] = [
+    {
+        name: 'All',
+        id: -1,
+        order: 'a',
+        isReadonly: true,
+    },
+    {
+        name: 'My Team',
+        id: -2,
+        filter: {
+            managerId: [13],
+        },
+        order: 'b',
+        isReadonly: true,
+    },
+];
+
 export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
-    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([]);
+    const [initialPresets, setInitialPresets] = useState<ITablePreset<Person>[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
+
 
     useEffect(() => {
         svc.api.presets.getPresets()
@@ -21,8 +40,9 @@ export const FilteredTable: React.FC = () => {
             .catch(console.error);
     }, []);
 
-    const tableStateApi = useTableState({
+    const tableStateApi = useTableState<Person>({
         columns: personColumns,
+        filters: filters,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
         onPresetUpdate: svc.api.presets.updatePreset,
@@ -62,11 +82,11 @@ export const FilteredTable: React.FC = () => {
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
                 <Text fontSize="24" cx={ css.presetsTitle }>Users Dashboard</Text>
-                <PresetPanel { ...presetsApi } />
+                <PresetsPanel { ...presetsApi } />
             </div>
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>
                 <FlexRow cx={ css.filterPanel }>
-                    <FiltersToolbar
+                    <FiltersPanel
                         filters={ filters }
                         tableState={ tableStateApi.tableState }
                         setTableState={ tableStateApi.setTableState }

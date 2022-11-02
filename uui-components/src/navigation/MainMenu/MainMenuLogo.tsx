@@ -3,7 +3,7 @@ import { IAdaptiveItem, Link, ICanRedirect, cx, IHasRawProps, IHasForwardedRef }
 import { Anchor } from '../Anchor';
 import * as css from './MainMenuLogo.scss';
 
-export interface MainMenuLogoProps extends IAdaptiveItem, ICanRedirect, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface MainMenuLogoProps extends IAdaptiveItem, ICanRedirect, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     logoUrl?: string;
     logoBgColor?: string;
     showArrow?: boolean;

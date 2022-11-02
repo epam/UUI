@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
     handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps, UuiContext, IHasForwardedRef,
-    IHasCX, ICanRedirect, IHasChildren, UuiContexts, IDisableable, IClickable, cx,
+    IHasCX, ICanRedirect, IHasChildren, UuiContexts, IDisableable, IClickable, cx, IAnalyticableClick,
 } from '@epam/uui-core';
 import { ButtonBase } from '../buttons';
 import * as css from './Anchor.scss';
 
-export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IHasRawProps<HTMLAnchorElement>, IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> {}
+export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IAnalyticableClick, IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>, IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> {}
 
 export class AnchorImpl extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
@@ -36,7 +36,7 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
                 uuiMarkers.clickable,
                 this.props.cx,
             ),
-            tabIndex: 0,
+            tabIndex: this.props.isDisabled ? -1 : 0,
             href,
             role: 'link',
             target: this.props.target,

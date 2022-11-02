@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerTogglerProps } from '@epam/uui-components';
 import { iEditable, sizeDoc, isDisabledDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, modeDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, GridContext, FormContext } from '../../../docs';
+import { DefaultContext, ResizableContext, FormContext } from '../../../docs';
 import { PickerToggler } from '../PickerToggler';
 import { Button } from '../../buttons';
 
@@ -27,6 +27,6 @@ const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any>>({ name: 'P
             onClear={ () => {} }
         />,
     }] })
-    .withContexts(DefaultContext, ResizableContext, GridContext, FormContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext);
 
 export = PickerTogglerDoc;

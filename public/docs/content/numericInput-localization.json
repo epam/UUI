@@ -1,0 +1,56 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "NumericInput uses locale of your system by default, to change the locale you need to set new locale name to i18n object. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "\n",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Ru example:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "note-quote",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "import { i18n } from '@epam/uui-core';\n\ni18n.locale = 'ru-RU';",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -19,9 +19,10 @@ const pickerWidth = 360;
 
 export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
     toggleModalOpening(opened: boolean) {
-        const { renderFooter, ...restProps } = this.props;
+        const { renderFooter, rawProps, ...restProps } = this.props;
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
             { ...restProps }
+            rawProps={rawProps?.body}
             { ...props }
             caption={ this.getPlaceholder() }
             initialValue={ this.props.value as any }
@@ -29,8 +30,13 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             selectionMode={ this.props.selectionMode }
             valueType={ this.props.valueType }
         />)
-            .then(newSelection => this.handleSelectionValueChange(newSelection))
-            .catch(() => null);
+            .then(newSelection => {
+                this.handleSelectionValueChange(newSelection)
+                this.returnFocusToInput()
+            })
+            .catch(() => {
+                this.returnFocusToInput()
+            });
     }
 
     getRowSize() {
@@ -46,10 +52,6 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
-        if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
-            rowProps.onSelect = this.onSelect;
-        }
-
         return this.props.renderRow ? this.props.renderRow(rowProps) : (
             <DataPickerRow
                 { ...rowProps }
@@ -90,7 +92,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) {
-        const renderedDataRows = rows.map(props => this.renderRow({ ...props }));
+        const renderedDataRows = rows.map(props => this.renderRow(props))
         const maxHeight = isMobile() ? document.documentElement.clientHeight : (this.props.dropdownHeight || pickerHeight);
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : (this.props.minBodyWidth || pickerWidth);
 
@@ -103,7 +105,10 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             >
                 <MobileDropdownWrapper
                     title={ this.props.entityName }
-                    close={ () => this.toggleBodyOpening(false) }
+                    close={ () => {
+                        this.returnFocusToInput()
+                        this.toggleBodyOpening(false)
+                    } }
                 >
                     <DataPickerBody
                         { ...props }

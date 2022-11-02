@@ -1,7 +1,7 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { SliderBaseProps } from '@epam/uui-components';
 import { Slider, SliderMods } from '../Slider';
-import { DefaultContext, FormContext, GridContext, ResizableContext, colorDoc, iEditable, isDisabledDoc } from '../../../../docs';
+import { DefaultContext, FormContext, ResizableContext, colorDoc, iEditable, isDisabledDoc } from '../../../../docs';
 
 const sliderDoc = new DocBuilder<SliderBaseProps<number> & SliderMods>({ name: 'Slider', component: Slider })
     .implements([colorDoc, iEditable, isDisabledDoc])
@@ -19,6 +19,6 @@ const sliderDoc = new DocBuilder<SliderBaseProps<number> & SliderMods>({ name: '
         ],
         isRequired: false,
     })
-    .withContexts(DefaultContext, ResizableContext, FormContext, GridContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext);
 
 export = sliderDoc;

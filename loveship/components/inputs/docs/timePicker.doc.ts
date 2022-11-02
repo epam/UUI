@@ -3,7 +3,6 @@ import { TimePicker, TimePickerProps } from '../TimePicker';
 import {
     DefaultContext,
     FormContext,
-    GridContext,
     iEditable,
     isDisabledDoc,
     isInvalidDoc,
@@ -18,6 +17,6 @@ const TimePickerDoc = new DocBuilder<TimePickerProps>({ name: 'TimePicker', comp
     .prop('value', { examples: [{ name: '6:20', value: { hours: 6, minutes: 20 }, isDefault: true }] })
     .prop('minutesStep', { examples: [5, 10, 15], defaultValue: 5 })
     .prop('format', { examples: [12, 24], defaultValue: 12 })
-    .withContexts(DefaultContext, ResizableContext, FormContext, TableContext, GridContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
 export = TimePickerDoc;

@@ -6,10 +6,14 @@ import * as css from './Blocker.scss';
 // TBD: move to loveship-specific mods
 //import { EpamColor, SpinnerMods } from '@epam/oswald';
 
-export interface BlockerProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface BlockerProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+    /** Turns the blocker on or off */
     isEnabled: boolean;
+    /** Disables spinner animation display */
     hideSpinner?: boolean;
+    /** Sets the minimal height in px, for cases when blocked content is empty */
     spacerHeight?: number;
+    /** Replaces default spinner */
     renderSpinner?(props: any): React.ReactNode; //React.ComponentClass<SpinnerMods>;
 }
 
@@ -23,6 +27,8 @@ const uuiBlocker = {
 };
 
 export class Blocker extends React.Component<BlockerProps> {
+    private transitionRef = React.createRef<HTMLDivElement>();
+
     render() {
         return (
             <div
@@ -32,8 +38,8 @@ export class Blocker extends React.Component<BlockerProps> {
                 { ...this.props.rawProps }
             >
                 <TransitionGroup>
-                    { this.props.isEnabled && <CSSTransition classNames={ uuiBlocker } timeout={ { enter: 2000, exit: 1000 } }>
-                        <div className={ uuiBlocker.blocker }>
+                    { this.props.isEnabled && <CSSTransition nodeRef={ this.transitionRef } classNames={ uuiBlocker } timeout={ { enter: 2000, exit: 1000 } }>
+                        <div ref={ this.transitionRef } className={ uuiBlocker.blocker }>
                             { !this.props.hideSpinner && this.props.renderSpinner && this.props.renderSpinner(this.props) }
                         </div>
                     </CSSTransition>

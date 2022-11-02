@@ -1,12 +1,21 @@
 import * as React from 'react';
 import { IHasCX, IEditable, IDisableable, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 
-export interface SliderBaseProps<TSelection> extends IHasCX, IEditable<TSelection>, IDisableable, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface SliderBaseProps<TSelection> extends IHasCX, IEditable<TSelection>, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+    /** Min value (when slider is at leftmost position) */
     min: number;
+    /** Max value (when slider is at rightmost position) */
     max: number;
+    /** Value change step */
     step: number;
+
+    /** Slider renders a label at each splitAt position */
     splitAt?: number;
+
+    /** Overrides rendering of values labels */
     renderLabel?: (value: number) => string;
+
+    /** Toggles rendering of tooltip with current value */
     showTooltip?: boolean;
 }
 

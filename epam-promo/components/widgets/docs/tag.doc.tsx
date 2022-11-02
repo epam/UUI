@@ -1,7 +1,7 @@
 import { Tag, TagMods } from '../Tag';
 import { basicPickerTogglerDoc, DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import { FormContext, GridContext, ResizableContext, DefaultContext } from '../../../docs/index';
+import { FormContext, ResizableContext, DefaultContext } from '../../../docs/index';
 import { iconDoc, iconOptionsDoc } from '../../../docs';
 
 const tagDoc = new DocBuilder<ButtonProps & TagMods>({ name: 'Tag', component: Tag })
@@ -13,6 +13,6 @@ const tagDoc = new DocBuilder<ButtonProps & TagMods>({ name: 'Tag', component: T
         ], type: 'string' })
     .prop('count', { examples: [0, 1, 5, 88, 123], defaultValue: 123 })
     .prop('size', { examples : ['18', '24', '30', '36', '42', '48'], defaultValue: '36' })
-    .withContexts(DefaultContext, FormContext, ResizableContext,  GridContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export = tagDoc;

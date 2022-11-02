@@ -3,7 +3,7 @@ import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button }
 import { PersonsTable } from './PersonsTable';
 import { Person, PersonGroup } from '@epam/uui-docs';
 import { DataSourceState, IEditable, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
+import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
 import * as css from './PersonsTableDemo.scss';
 
@@ -19,7 +19,6 @@ interface PersonsApiResponse extends LazyDataSourceApiResponse<Person | PersonGr
 export interface PersonsSummary extends Pick<PersonsApiResponse, 'totalCount'> {
     totalSalary: string;
 }
-
 
 const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -55,9 +54,34 @@ export const PersonsTableDemo = () => {
     const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
     const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
-        api(request, ctx) {
-            const { ids: clientIds, filter: { groupBy, ...filter }, ...rq } = request;
-            const ids = clientIds?.map(clientId => typeof clientId === 'number' && clientId[1]);
+        async api(request, ctx) {
+            const { ids, filter: requestFilter, ...rq } = request;
+
+            if (ids != null) {
+                const idsByType: Record<PersonTableRecordType, (string | number)[]> = {} as any;
+                ids.forEach(([type, id]) => {
+                    idsByType[type] = idsByType[type] || [];
+                    idsByType[type].push(id);
+                })
+
+                const typesToLoad = Object.keys(idsByType) as PersonTableRecordType[];
+                const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
+
+                const promises = typesToLoad.map(async type => {
+                    const idsRequest: LazyDataSourceApiRequest<any, any, any> = { ids: idsByType[type] };
+                    const api = (type === 'Person') ? svc.api.demo.persons
+                        : (type == 'PersonGroup') ? svc.api.demo.personGroups
+                        : (type == 'Location') ? svc.api.demo.locations : null;
+
+                    const apiResponse = await api(idsRequest);
+                    response.items = [ ...response.items, ...apiResponse.items ];
+                });
+
+                await Promise.all(promises);
+                return response;
+            }
+
+            const { groupBy, ...filter } = requestFilter || {};
 
             const updateSummary = (response: PersonsApiResponse) => {
                 const { summary, totalCount } = response;
@@ -65,35 +89,33 @@ export const PersonsTableDemo = () => {
                 setSummary({ totalCount, totalSalary });
             };
 
-            const getPersons = (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
+            const getPersons = async (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
                 if (groupBy && !ctx.parent) {
-                    return svc.api.demo.personGroups({
+                    const res = await svc.api.demo.personGroups({
                         ...rq,
                         filter: { groupBy },
                         search: null,
                         itemsRequest: { filter, search: rq.search },
                         ids,
-                    } as any).then(res => {
-                        updateSummary(res as PersonsApiResponse);
-                        return res;
-                    });
+                    } as any);
+                    updateSummary(res as PersonsApiResponse);
+                    return res;
                 } else {
-                    return svc.api.demo.persons(rq).then(res => {
-                        updateSummary(res as PersonsApiResponse);
-                        return res;
-                    });
+                    const res_1 = await svc.api.demo.persons(rq);
+                    updateSummary(res_1 as PersonsApiResponse);
+                    return res_1;
                 }
             };
 
             if (request.search) {
-                return getPersons({ ...rq, filter, ids });
+                return getPersons({ ...rq, filter });
             } else if (groupBy == 'location') {
                 if (!ctx.parent) {
-                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true }}, ids });
+                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true }} });
                 } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
-                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id }, ids  });
+                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id }  });
                 } else {
-                    return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id }, ids  });
+                    return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id }  });
                 }
             } else if (groupBy && !ctx.parent) {
                 return getPersons({
@@ -105,10 +127,31 @@ export const PersonsTableDemo = () => {
                 } as any);
             } else {
                 const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-                return getPersons({ ...rq, ids, filter: { ...filter, ...parentFilter } });
+                return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
             }
         },
         getId: i => [i.__typename, i.id],
+        complexIds: true,
+        getParentId: i => {
+            const groupBy = value.filter?.groupBy;
+            if (i.__typename == 'PersonGroup') {
+                return null;
+            } else if (i.__typename == 'Location') {
+                return i.parentId ? ['Location', i.parentId] : undefined;
+            } else if (i.__typename == 'Person') {
+                if (groupBy == 'location') {
+                    return ['Location', i.locationId];
+                } else if (groupBy == 'jobTitle') {
+                    return ['PersonGroup', i.jobTitleId];
+                } else if (groupBy == 'department') {
+                    return ['PersonGroup', i.departmentId];
+                } else {
+                    return undefined;
+                }
+            }
+
+            throw new Error('PersonTableDemo: unknown typename/groupBy combination');
+        },
         getChildCount: item =>
             item.__typename === 'PersonGroup'
             ? item.count

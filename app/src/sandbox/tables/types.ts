@@ -3,7 +3,9 @@ import { Person, PersonGroup, Location } from '@epam/uui-docs';
 
 export type PersonTableRecord = Person | PersonGroup | Location;
 
-export type PersonTableRecordId = [PersonTableRecord['__typename'], string | number];
+export type PersonTableRecordType = PersonTableRecord['__typename'];
+
+export type PersonTableRecordId = [PersonTableRecordType, string | number];
 
 export type PersonTableId = [];
 

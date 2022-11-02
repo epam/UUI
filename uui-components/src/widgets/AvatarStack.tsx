@@ -5,7 +5,7 @@ import { Avatar } from './Avatar';
 import { FlexRow } from '../';
 import * as css from './AvatarStack.scss';
 
-export interface AvatarStackProps extends IHasCX, IHasRawProps<HTMLDivElement> {
+export interface AvatarStackProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
     avatarSize: '24' | '36' | '48' | '144';
     urlArray: string[];
     direction: 'right' | 'left';
@@ -27,7 +27,7 @@ export const AvatarStack = React.forwardRef<HTMLDivElement, AvatarStackProps>((p
                 { firstElements.map((avatar, index) => {
                     return renderItem ?
                         <React.Fragment key={ index }>{ renderItem(avatar) }</React.Fragment> :
-                        <Avatar key={ index } size={ avatarSize } img={ avatar } alt='avatar' />
+                        <Avatar key={ index } size={ avatarSize } img={ avatar } alt='avatar' />;
                 }) }
             </FlexRow>
             <div className='avatarsCount'>{ avatarsCount && urlArray.length > avatarsCount ? '+' + (urlArray.length - avatarsCount) : null }</div>

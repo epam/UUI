@@ -1,11 +1,12 @@
 import * as React from 'react';
+import * as css from './TimelineDemo.scss';
 
 import { Timeline } from './Timeline';
 
 export class TimelineDemo extends React.Component<void> {
     public render() {
         return (
-            <div id="root" style={ { height: 'calc(100vh - 120px)', background: 'white' } }>
+            <div id="root" className={ css.root }>
                 <Timeline />
             </div>
         );

@@ -9,8 +9,11 @@ interface CheckboxGroupItem<TValue> {
     renderName?: () => React.ReactNode;
 }
 
-export interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLFieldSetElement>, IHasForwardedRef<HTMLFieldSetElement> {
+export interface CheckboxGroupProps<TValue> extends ICanBeInvalid, IHasCX, IEditable<TValue[]>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement> {
+    /** Overrides the component to render a single checkbox  */
     CheckboxInput?: React.ComponentType<CheckboxProps>;
+
+    /** Each item defines: name: string, id: TValue (which item to put into array when item is checked), renderName() - an alternative to passing name  */
     items: CheckboxGroupItem<TValue>[];
 }
 

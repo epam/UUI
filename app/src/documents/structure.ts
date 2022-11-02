@@ -8,7 +8,8 @@ import {
     ReleaseNotesDoc, FlexItemsDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, AvatarDoc,
     InternationalizationDoc, FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarStackDoc, PickerListDoc, TeamDoc,
     AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc, EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc,
-    VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc, DropdownContainerDoc
+    VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc, DropdownContainerDoc,
+    AdaptivePanelDoc, EditableTablesDoc, TablesOverviewDoc, AdvancedTablesDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
@@ -20,10 +21,12 @@ export interface DocItem {
     name: string;
     component?: any;
     parentId?: string;
+    order?: number;
 }
 
 const componentsStructure = sortBy([
     { id: 'accordion', name: 'Accordion', component: AccordionDoc, parentId: 'components' },
+    { id: 'adaptivePanel', name: 'Adaptive Panel', component: AdaptivePanelDoc, parentId: 'components' },
     { id: 'alert', name: 'Alert', component: AlertDoc, parentId: 'components' },
     { id: 'anchor', name: 'Anchor', component: AnchorDoc, parentId: 'components' },
     { id: 'avatar', name: 'Avatar', component: AvatarDoc, parentId: 'components' },
@@ -41,7 +44,7 @@ const componentsStructure = sortBy([
     { id: 'iconButton', name: 'Icon Button', component: IconButtonDoc, parentId: 'components' },
     { id: 'iconContainer', name: 'Icon Container', component: IconContainerDoc, parentId: 'components' },
     { id: 'labeledInput', name: 'Labeled Input', component: LabeledInputDoc, parentId: 'components' },
-    { id: 'linkButton', name: 'Link button', component: LinkButtonDoc, parentId: 'components' },
+    { id: 'linkButton', name: 'Link Button', component: LinkButtonDoc, parentId: 'components' },
     { id: 'mainMenu', name: 'Main Menu', component: MainMenuDoc, parentId: 'components' },
     { id: 'modals', name: 'Modals', component: ModalsDoc, parentId: 'components' },
     { id: 'multiSwitch', name: 'MultiSwitch', component: MultiSwitchDoc, parentId: 'components' },
@@ -54,14 +57,17 @@ const componentsStructure = sortBy([
     { id: 'radioInput', name: 'Radio Input', component: RadioInputDoc, parentId: 'components' },
     { id: 'rangeDatePicker', name: 'Range Date Picker', component: RangeDatePickerDoc, parentId: 'components' },
     { id: 'rating', name: 'Rating', component: RatingDoc, parentId: 'components' },
-    { id: 'richTextView', name: 'RichTextView', component: RichTextViewDoc, parentId: 'components' },
+    { id: 'richTextView', name: 'Rich Text View', component: RichTextViewDoc, parentId: 'components' },
     { id: 'searchInput', name: 'Search Input', component: SearchInputDoc, parentId: 'components' },
     { id: 'slider', name: 'Slider', component: SliderDoc, parentId: 'components' },
     { id: 'sliderRating', name: 'Slider Rating', component: SliderRatingDoc, parentId: 'components' },
     { id: 'spinner', name: 'Spinner', component: SpinnerDoc, parentId: 'components' },
     { id: 'switch', name: 'Switch', component: SwitchDoc, parentId: 'components' },
     { id: 'tabButton', name: 'Tab Button', component: TabButtonDoc, parentId: 'components' },
-    { id: 'tables', name: 'Data Tables', component: TablesDoc, parentId: 'components' },
+    { id: 'tables', name: 'Data Tables', parentId: 'components' },
+    { id: 'tablesOverview', name: 'Overview', component: TablesOverviewDoc, parentId: 'tables', order: 1 },
+    { id: 'editableTables', name: 'Editable Tables', component: EditableTablesDoc, parentId: 'tables', order: 2 },
+    { id: 'advancedTables', name: 'Advanced', component: AdvancedTablesDoc, parentId: 'tables', order: 3 },
     { id: 'tag', name: 'Tag', component: TagDoc, parentId: 'components' },
     { id: 'text', name: 'Text', component: TextDoc, parentId: 'components' },
     { id: 'textArea', name: 'Text Area', component: TextAreaDoc, parentId: 'components' },
@@ -77,7 +83,7 @@ const componentsStructure = sortBy([
     { id: 'progressBar', name: 'Progress Bar', component: ProgressBarDoc, parentId: 'components' },
     { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDoc, parentId: 'components' },
     { id: 'dropdownContainer', name: 'Dropdown Container', component: DropdownContainerDoc, parentId: 'components' },
-], ['name']);
+], (item) => item.order || item.name);
 
 export const items: DocItem[] = [
     { id: 'overview', name: 'Overview', component: OverviewDoc },

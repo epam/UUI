@@ -4,9 +4,12 @@ import cx from 'classnames';
 import { PropsWithChildren } from 'react';
 import { IHasRawProps } from "@epam/uui-core";
 
-export interface TextPlaceholderProps extends IHasRawProps<HTMLDivElement> {
+export interface TextPlaceholderProps extends IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+    /** Number of fake 'words to show */
     wordsCount?: number;
+    /** Placeholder's color */
     color?: 'gray10' | 'gray40';
+    /** Disables animation */
     isNotAnimated?: boolean;
 }
 

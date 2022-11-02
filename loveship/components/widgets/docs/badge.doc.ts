@@ -1,8 +1,14 @@
 import { Badge, BadgeMods } from '../../../components/index';
 import { basicPickerTogglerDoc, DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import { FormContext, GridContext, DefaultContext } from '../../../docs/index';
-import { iconDoc, iconOptionsDoc, colorDoc } from '../../../docs/index';
+import {
+    colorDoc,
+    DefaultContext,
+    FormContext,
+    iconDoc,
+    iconOptionsDoc,
+    ResizableContext,
+ } from '../../../docs/index';
 import { allBorderStyles } from '../../../components/types';
 
 const badgeDoc = new DocBuilder<ButtonProps & BadgeMods>({ name: 'Badge', component: Badge })
@@ -16,6 +22,6 @@ const badgeDoc = new DocBuilder<ButtonProps & BadgeMods>({ name: 'Badge', compon
     .prop('fill', { examples: ['solid', 'white', 'semitransparent', 'transparent', 'none'], defaultValue: 'solid' })
     .prop('shape', { examples: allBorderStyles, defaultValue: 'square' })
     .prop('size', { examples : ['12', '18', '24', '30', '36', '42', '48'], defaultValue: '18' })
-    .withContexts(DefaultContext, FormContext,  GridContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export = badgeDoc;

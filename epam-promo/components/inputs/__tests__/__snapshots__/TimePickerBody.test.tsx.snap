@@ -17,24 +17,22 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       />
     </div>
     <div
-      className="container uui-input-box uui-timepicker-input"
+      className="container uui-input-box -clickable uui-timepicker-input"
       onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       tabIndex={-1}
     >
       <input
-        className="uui-input"
+        className="uui-input uui-value-in-placeholder"
         inputMode="numeric"
         max={12}
         min={0}
         onChange={[Function]}
-        onKeyPress={[Function]}
-        placeholder="0"
-        step={1}
+        placeholder="12"
         tabIndex={0}
         type="number"
-        value="12"
+        value=""
       />
       <div
         className="uui-numeric-input-button-group"
@@ -74,24 +72,22 @@ exports[`TimePickerBody should be rendered correctly 1`] = `
       />
     </div>
     <div
-      className="container uui-input-box uui-timepicker-input"
+      className="container uui-input-box -clickable uui-timepicker-input"
       onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       tabIndex={-1}
     >
       <input
-        className="uui-input"
+        className="uui-input uui-value-in-placeholder"
         inputMode="numeric"
         max={59}
         min={0}
         onChange={[Function]}
-        onKeyPress={[Function]}
-        placeholder="0"
-        step={1}
+        placeholder="30"
         tabIndex={0}
         type="number"
-        value="30"
+        value=""
       />
       <div
         className="uui-numeric-input-button-group"
@@ -177,24 +173,22 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
       />
     </div>
     <div
-      className="container uui-input-box uui-timepicker-input"
+      className="container uui-input-box -clickable uui-timepicker-input"
       onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       tabIndex={-1}
     >
       <input
-        className="uui-input"
+        className="uui-input uui-value-in-placeholder"
         inputMode="numeric"
         max={12}
         min={1}
         onChange={[Function]}
-        onKeyPress={[Function]}
-        placeholder="0"
-        step={1}
+        placeholder="12"
         tabIndex={0}
         type="number"
-        value="12"
+        value=""
       />
       <div
         className="uui-numeric-input-button-group"
@@ -234,24 +228,22 @@ exports[`TimePickerBody should be rendered correctly 2`] = `
       />
     </div>
     <div
-      className="container uui-input-box uui-timepicker-input"
+      className="container uui-input-box -clickable uui-timepicker-input"
       onBlur={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       tabIndex={-1}
     >
       <input
-        className="uui-input"
+        className="uui-input uui-value-in-placeholder"
         inputMode="numeric"
         max={59}
         min={0}
         onChange={[Function]}
-        onKeyPress={[Function]}
-        placeholder="0"
-        step={1}
+        placeholder="30"
         tabIndex={0}
         type="number"
-        value="30"
+        value=""
       />
       <div
         className="uui-numeric-input-button-group"

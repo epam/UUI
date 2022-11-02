@@ -1,10 +1,22 @@
 import * as React from 'react';
-import { allBorderStyles, allFillStyles, allEpamPrimaryColors, allEpamAdditionalColors } from '../../types';
+import { allBorderStyles, allFillStyles, allEpamPrimaryColors } from '../../types';
 import { Button, ButtonMods } from '../Button';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import { onClickDoc, textSettingsDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iHasPlaceholder, iconWithInfoDoc, iconOptionsDoc } from '../../../docs';
-import { DefaultContext, FormContext, GridContext } from '../../../docs';
+import {
+    basicPickerTogglerDoc,
+    DefaultContext,
+    dropdownTogglerDoc,
+    FormContext,
+    iCanRedirectDoc,
+    iconOptionsDoc,
+    iconWithInfoDoc,
+    iHasPlaceholder,
+    isDisabledDoc,
+    onClickDoc,
+    ResizableContext,
+    textSettingsDoc,
+} from '../../../docs';
 import { colors } from '../../../helpers/colorMap';
 
 const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', component: Button })
@@ -22,6 +34,6 @@ const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', com
     .implements([iconWithInfoDoc, iconOptionsDoc])
     .prop('shape', { examples: allBorderStyles, defaultValue: 'square' })
     .prop('fill', { examples: allFillStyles, defaultValue: 'solid' })
-    .withContexts(DefaultContext, FormContext, GridContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext);
 
 export = ButtonDoc;
