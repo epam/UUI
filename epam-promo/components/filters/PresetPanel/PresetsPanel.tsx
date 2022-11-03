@@ -75,10 +75,10 @@ export const PresetsPanel = (props: IPresetsBlockProps) => {
                             <DropdownMenuButton
                                 onClick={ () => onPresetDropdownSelect(item) }
                                 caption={ item.preset.name }
-                                icon={ DeleteIcon }
+                                icon={ !item.preset.isReadonly && DeleteIcon }
                                 iconPosition='right'
                                 cx={ css.dropdownDeleteIcon }
-                                onIconClick={ () => props.deletePreset(item.preset) }
+                                onIconClick={ !item.preset.isReadonly && (() => props.deletePreset(item.preset)) }
                             />)
                     }
                 </DropdownContainer> }
