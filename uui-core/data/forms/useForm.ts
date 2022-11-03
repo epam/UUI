@@ -188,7 +188,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             return newState;
         });
         return savePromise;
-    }, []);
+    }, [props.onSave]);
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void, isSavedBeforeLeave?: boolean) => {
         const newFormValue = response && response.form || formState.current.form;
