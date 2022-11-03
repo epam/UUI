@@ -1,4 +1,4 @@
-# 4.9.0 
+# 4.9.0
 
 **What’s Fixed**
 * [TableColumnFilters]: fixed scroll position in 'Show only selected' mode in Loveship
@@ -64,7 +64,7 @@ With this release you already can build editable tables. However, we are plannin
   * min/max are no longer required. By default, NumericInput only accepts positive whole numbers.
   * A lot of display options are now possible via NumberFormatOptions: currencies, units, flexible min/max fractional digits limits, etc.
   * See more at the [docs page](https://uui.epam.com/documents?id=numericInput&mode=doc&skin=UUI4_promo&category=components)
-  
+
 * [RangeDatePicker]: Added onFocus and onBlur props
 * [PickerInput]: added ability to pass rawProps to modal window
 * [Modals]: added `disableCloseByEsc` prop to `ModalBlocker`
@@ -74,6 +74,7 @@ With this release you already can build editable tables. However, we are plannin
 * [FilterPanel]: added numeric filter type
 * [FilterPanel]: improvements and bugfixes
 * Build target for packages is changed from ES5 to ES6. This shouldn't affect existing apps, as most app builds into ES5 anyway, including the latest CRA.
+* [ModalContext]: added argument to abort method
 
 
 **What’s Fixed**
@@ -92,7 +93,7 @@ With this release you already can build editable tables. However, we are plannin
 * [NumericInput]: added behavior for input without value and with min prop on focus lost
 * [MainMenu]: fixed styles for non-clickable elements
 * [ErrorHandler]: fixed context listeners unsubscribing on second render
-* [ColumnConfigurationModal]: fix column dnd on first position 
+* [ColumnConfigurationModal]: fix column dnd on first position
 * [TabButton]: reworked notify dot styles, placed after caption element, change paddings
 * [PickerInput]: fixed row selecting by 'enter' pressing
 
