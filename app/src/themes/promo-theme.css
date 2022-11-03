@@ -30,13 +30,55 @@
 	--red-dark: #D53919;
 	--red-darkest: #BE3316;
 	--white: #FFFFFF;
-	--font-regular: 'Sans Regular', Arial, sans-serif;
-	--font-semibold: 'Sans Semibold', Arial, sans-serif;
-	--font-italic: 'Sans Italic', Arial, sans-serif;
-	--font-primary: 'Museo Sans', 'Sans Semibold', Arial, sans-serif;
-	--font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
-	--font-mono: 'Roboto Mono', Arial, sans-serif;
-	--font-redacted: 'Redacted';
+
+    --red-10: #FADED9;
+    --red-20: #F5B7AB;
+    --red-30: #E54322;
+    --red-40: #A72014;
+    --red-50: #901111;
+
+    --orange-10: #FAE4CF;
+    --orange-20: #F6CBA0;
+    --orange-30: #E67E17;
+    --orange-40: #89370E;
+    --orange-50: #72250B;
+
+    --amber-10: #FFF2CC;
+    --amber-20: #FFE699;
+    --amber-30: #FFC000;
+    --amber-40: #995A00;
+    --amber-50: #804000;
+
+    --green-10: #EEFFCC;
+    --green-20: #DDFF99;
+    --green-30: #88CC00;
+    --green-40: #669900;
+    --green-50: #446600;
+
+    --cyan-10: #E3FCFC;
+    --cyan-20: #B4F8F8;
+    --cyan-30: #14CCCC;
+    --cyan-40: #0F9E9E;
+    --cyan-50: #0B6F6F;
+
+    --blue-10: #CEEFFF;
+    --blue-20: #9BDEFF;
+    --blue-30: #008ACE;
+    --blue-40: #00689B;
+    --blue-50: #004668;
+
+    --violet-10: #DBCCFA;
+    --violet-20: #BB9DF5;
+    --violet-30: #5214CC;
+    --violet-40: #3F0F9E;
+    --violet-50: #2D0B6F;
+
+    --purple-10: #F2CCFA;
+    --purple-20: #E79DF5;
+    --purple-30: #AD14CC;
+    --purple-40: #860F9E;
+    --purple-50: #5E0B6F;
+
 	--accent-color: var(--green);
 	--accent-light-color: var(--green-light);
 	--accent-lightest-color: var(--green-lightest);
@@ -57,35 +99,47 @@
 	--negative-lightest-color: var(--red-lightest);
 	--negative-dark-color: var(--red-dark);
 	--negative-darkest-color: var(--red-darkest);
-	--button-bg-halftone-color: var(--white);
-	--button-caption-disabled-color: var(--gray50);
+	--btn-bg-halftone-color: var(--white);
+	--btn-caption-disabled-color: var(--gray50);
 	--contrast-color: var(--white);
+	--link-color: var(--blue);
+	--link-color-hover: var(--blue-dark);
+	--link-color-visited: #5214CC;
+	--link-color-disabled: var(--gray50);
 	--visited-color: #5214CC;
 	--info-color: var(--blue);
-	--info-hover-color: var(--blue-dark);
-	--info-active-color: var(--blue-darkest);
+	--info-lightest-color: var(--blue-lightest);
+	--info-light-color: var(--blue-light);
+	--info-dark-color: var(--blue-dark);
+	--info-darkest-color: var(--blue-darkest);
 	--success-color: var(--green);
-	--success-hover-color: var(--green-dark);
-	--success-active-color: var(--green-darkest);
+	--success-lightest-color: var(--green-lightest);
+	--success-light-color: var(--green-light);
+	--success-dark-color: var(--green-dark);
+	--success-darkest-color: var(--green-darkest);
 	--warning-color: var(--amber);
-	--warning-hover-color: var(--amber-dark);
-	--warning-active-color: var(--amber-darkest);
+	--warning-lightest-color: var(--amber-lightest);
+	--warning-light-color: var(--amber-light);
+	--warning-dark-color: var(--amber-dark);
+	--warning-darkest-color: var(--amber-darkest);
 	--error-color: var(--red);
-	--error-hover-color: var(--red-dark);
-	--error-active-color: var(--red-darkest);
+	--error-lightest-color: var(--red-lightest);
+	--error-light-color: var(--red-light);
+	--error-dark-color: var(--red-dark);
+	--error-darkest-color: var(--red-darkest);
 	--icon-color: var(--gray60);
 	--icon-hover-color: var(--gray70);
 	--icon-active-color: var(--gray80);
-	--secondary-hover-color: var(--gray60);
-	--secondary-active-color: var(--gray70);
 	--secondary-disabled-color: var(--gray40);
-	--button-disabled-color: var(--gray50);
+	--btn-disabled-color: var(--gray50);
 	--disabled-color: var(--gray30);
 	--icon-disabled-color: var(--gray50);
 	--surface-color: var(--white);
 	--surface-hover-color: var(--gray30);
-	--surface-dark-color: var(--gray90);
 	--surface-light-color: var(--white);
+	--surface-inverted-color: var(--gray90);
+	--surface-inverted-light-color: var(--gray80);
+	--app-background-color: var(--gray10);
 	--divider-color: var(--gray40);
 	--text-brand-color: var(--gray90);
 	--text-primary-color: var(--gray80);
@@ -128,22 +182,145 @@
 	--skeleton-gradient: linear-gradient(90deg, var(--gray40) 0%, var(--gray10) 50%, var(--gray40) 100%);
 	--overlay-color: rgba(29, 30, 38, 0.8);
 	--shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
-	--border-radius: 0px;
+	--scroll-color: var(--gray60);
+	--info-hover-color: var(--blue-dark);
+	--info-active-color: var(--blue-darkest);
+	--success-hover-color: var(--green-dark);
+	--success-active-color: var(--green-darkest);
+	--warning-hover-color: var(--amber-dark);
+	--warning-active-color: var(--amber-darkest);
+	--error-hover-color: var(--red-dark);
+	--error-active-color: var(--red-darkest);
+	--secondary-hover-color: var(--gray60);
+	--secondary-active-color: var(--gray70);
+	--surface-dark-color: var(--gray90);
+    --prefix-suffix-bg-color: var(--gray10);
+    --prefix-suffix-caption-color: var(--input-placeholder-color);
+    --prefix-suffix-icon-color: var(--icon-disabled-color);
+    --prefix-suffix-border-color: var(--input-border-color);
 }
 .tooltip-light {
 	--tooltip-bg-color: var(--surface-color);
 	--tooltip-text-color: var(--text-primary-color);
 }
-.tooltip-dark {
-	--tooltip-bg-color: var(--surface-dark-color);
-	--tooltip-text-color: var(--contrast-color);
-}
 .tooltip-vars {
 	--tooltip-shadow: var(--shadow);
 	--tooltip-arrow-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.20);
-	--tooltip-bg-color: var(--surface-dark-color);
+	--tooltip-bg-color: var(--surface-inverted-color);
 	--tooltip-text-color: var(--contrast-color);
 	--tooltip-border-radius: var(--border-radius);
+}
+
+.badge-color-cyan {
+	--badge-bg-color: var(--cyan-30);
+	--badge-bg-color-hover: var(--cyan-40);
+	--badge-caption-color-solid: var(--white);
+	--badge-count-bg-color: var(--white);
+	--badge-count-color: var(--text-secondary-color);
+	--badge-bg-color-halftone: var(--cyan-10);
+	--badge-bg-color-halftone-hover: var(--cyan-20);
+	--badge-border-color-halftone: var(--cyan-20);
+	--badge-border-color-halftone-hover: var(--cyan-30);
+	--badge-caption-color-halftone: var(--cyan-50);
+}
+.badge-color-violet {
+	--badge-bg-color: var(--violet-30);
+	--badge-bg-color-hover: var(--violet-40);
+	--badge-caption-color-solid: var(--white);
+	--badge-count-bg-color: var(--white);
+	--badge-count-color: var(--text-secondary-color);
+	--badge-bg-color-halftone: var(--violet-10);
+	--badge-bg-color-halftone-hover: var(--violet-20);
+	--badge-border-color-halftone: var(--violet-20);
+	--badge-border-color-halftone-hover: var(--violet-30);
+	--badge-caption-color-halftone: var(--violet-50);
+}
+.badge-color-orange {
+	--badge-bg-color: var(--orange-30);
+	--badge-bg-color-hover: var(--orange-40);
+	--badge-caption-color-solid: var(--white);
+	--badge-count-bg-color: var(--white);
+	--badge-count-color: var(--text-secondary-color);
+	--badge-bg-color-halftone: var(--orange-10);
+	--badge-bg-color-halftone-hover: var(--orange-20);
+	--badge-border-color-halftone: var(--orange-20);
+	--badge-border-color-halftone-hover: var(--orange-30);
+	--badge-caption-color-halftone: var(--orange-50);
+}
+.badge-color-purple {
+	--badge-bg-color: var(--purple-30);
+	--badge-bg-color-hover: var(--purple-40);
+	--badge-caption-color-solid: var(--white);
+	--badge-count-bg-color: var(--white);
+	--badge-count-color: var(--text-secondary-color);
+	--badge-bg-color-halftone: var(--purple-10);
+	--badge-bg-color-halftone-hover: var(--purple-20);
+	--badge-border-color-halftone: var(--purple-20);
+	--badge-border-color-halftone-hover: var(--purple-30);
+	--badge-caption-color-halftone: var(--purple-50);
+}
+.badge-color-default {
+	--badge-bg-color: var(--tag-color);
+	--badge-bg-color-hover: var(--tag-hover-color);
+	--badge-caption-color-solid: var(--text-primary-color);
+	--badge-count-bg-color: var(--white);
+	--badge-count-color: var(--text-secondary-color);
+	--badge-bg-color-halftone: var(--gray20);
+	--badge-bg-color-halftone-hover: var(--gray30);
+	--badge-border-color-halftone: var(--gray40);
+	--badge-border-color-halftone-hover: var(--gray50);
+	--badge-caption-color-halftone: var(--text-primary-color);
+}
+.badge-color-info {
+	--badge-bg-color: var(--info-color);
+	--badge-bg-color-hover: var(--info-dark-color);
+	--badge-caption-color-solid: var(--contrast-color);
+	--badge-count-bg-color: var(--white);
+	--badge-count-color: var(--text-secondary-color);
+	--badge-bg-color-halftone: var(--info-lightest-color);
+	--badge-bg-color-halftone-hover: var(--info-light-color);
+	--badge-border-color-halftone: var(--info-light-color);
+	--badge-border-color-halftone-hover: var(--info-color);
+	--badge-caption-color-halftone: var(--info-darkest-color);
+}
+.badge-color-success {
+	--badge-bg-color: var(--success-color);
+	--badge-bg-color-hover: var(--success-dark-color);
+	--badge-caption-color-solid: var(--contrast-color);
+	--badge-count-bg-color: var(--white);
+	--badge-count-color: var(--text-secondary-color);
+	--badge-bg-color-halftone: var(--success-lightest-color);
+	--badge-bg-color-halftone-hover: var(--success-light-color);
+	--badge-border-color-halftone: var(--success-light-color);
+	--badge-border-color-halftone-hover: var(--success-color);
+	--badge-caption-color-halftone: var(--success-darkest-color);
+}
+.badge-color-warning {
+	--badge-bg-color: var(--warning-color);
+	--badge-bg-color-hover: var(--warning-dark-color);
+	--badge-caption-color-solid: var(--text-primary-color);
+	--badge-count-bg-color: var(--white);
+	--badge-count-color: var(--text-secondary-color);
+	--badge-bg-color-halftone: var(--warning-lightest-color);
+	--badge-bg-color-halftone-hover: var(--warning-light-color);
+	--badge-border-color-halftone: var(--warning-light-color);
+	--badge-border-color-halftone-hover: var(--warning-color);
+	--badge-caption-color-halftone: var(--warning-darkest-color);
+}
+.badge-color-error {
+	--badge-bg-color: var(--error-color);
+	--badge-bg-color-hover: var(--error-dark-color);
+	--badge-caption-color-solid: var(--contrast-color);
+	--badge-count-bg-color: var(--white);
+	--badge-count-color: var(--text-secondary-color);
+	--badge-bg-color-halftone: var(--error-lightest-color);
+	--badge-bg-color-halftone-hover: var(--error-light-color);
+	--badge-border-color-halftone: var(--error-light-color);
+	--badge-border-color-halftone-hover: var(--error-color);
+	--badge-caption-color-halftone: var(--error-darkest-color);
+}
+.badge-vars {
+	--badge-border-radius: 100px;
 }
 .accordion-vars {
 	--accordion-bg-color: var(--surface-color);
@@ -225,26 +402,26 @@
 }
 .icon-button-color-info {
 	--icon-button-icon-color: var(--info-color);
-	--icon-button-icon-color-hover: var(--info-hover-color);
-	--icon-button-icon-color-active: var(--info-active-color);
+	--icon-button-icon-color-hover: var(--info-dark-color);
+	--icon-button-icon-color-active: var(--info-darkest-color);
 	--icon-button-icon-color-disabled: var(--icon-disabled-color);
 }
 .icon-button-color-success {
 	--icon-button-icon-color: var(--success-color);
-	--icon-button-icon-color-hover: var(--success-hover-color);
-	--icon-button-icon-color-active: var(--success-active-color);
+	--icon-button-icon-color-hover: var(--success-dark-color);
+	--icon-button-icon-color-active: var(--success-darkest-color);
 	--icon-button-icon-color-disabled: var(--icon-disabled-color);
 }
 .icon-button-color-warning {
 	--icon-button-icon-color: var(--warning-color);
-	--icon-button-icon-color-hover: var(--warning-hover-color);
-	--icon-button-icon-color-active: var(--warning-active-color);
+	--icon-button-icon-color-hover: var(--warning-dark-color);
+	--icon-button-icon-color-active: var(--warning-darkest-color);
 	--icon-button-icon-color-disabled: var(--icon-disabled-color);
 }
 .icon-button-color-error {
 	--icon-button-icon-color: var(--error-color);
-	--icon-button-icon-color-hover: var(--error-hover-color);
-	--icon-button-icon-color-active: var(--error-active-color);
+	--icon-button-icon-color-hover: var(--error-dark-color);
+	--icon-button-icon-color-active: var(--error-darkest-color);
 	--icon-button-icon-color-disabled: var(--icon-disabled-color);
 }
 .icon-button-color-default {
@@ -255,14 +432,14 @@
 }
 .icon-button-color-secondary {
 	--icon-button-icon-color: var(--secondary-color);
-	--icon-button-icon-color-hover: var(--icon-hover-color);
-	--icon-button-icon-color-active: var(--icon-active-color);
-	--icon-button-icon-color-disabled: var(--secondary-disabled-color);
+	--icon-button-icon-color-hover: var(--secondary-dark-color);
+	--icon-button-icon-color-active: var(--secondary-darkest-color);
+	--icon-button-icon-color-disabled: var(--icon-disabled-color);
 }
 .link-button-vars {
-	--link-button-text-color: var(--info-color);
-	--link-button-text-color-hover: var(--info-hover-color);
-	--link-button-text-color-active: var(--info-active-color);
+	--link-button-text-color: var(--primary-color);
+	--link-button-text-color-hover: var(--primary-dark-color);
+	--link-button-text-color-active: var(--primary-darkest-color);
 	--link-button-text-color-disabled: var(--button-caption-disabled-color);
 }
 .checkbox-vars {
@@ -359,47 +536,52 @@
 .notification-card-warning {
 	--notification-card-fill-color: var(--warning-color);
 	--notification-card-border-color: var(--warning-color);
-	--notification-card-bg-color: #FFFFFF;
+	--notification-card-bg-color: var(--surface-color);
+	--notification-card-text-color: var(--text-primary-color);
 }
 .notification-card-success {
 	--notification-card-fill-color: var(--success-color);
 	--notification-card-border-color: var(--success-color);
-	--notification-card-bg-color: #FFFFFF;
+	--notification-card-bg-color: var(--surface-color);
+	--notification-card-text-color: var(--text-primary-color);
 }
 .notification-card-info {
 	--notification-card-fill-color: var(--info-color);
 	--notification-card-border-color: var(--info-color);
-	--notification-card-bg-color: #FFFFFF;
+	--notification-card-bg-color: var(--surface-color);
+	--notification-card-text-color: var(--text-primary-color);
 }
 .notification-card-error {
 	--notification-card-fill-color: var(--error-color);
 	--notification-card-border-color: var(--error-color);
-	--notification-card-bg-color: #FFFFFF;
+	--notification-card-bg-color: var(--surface-color);
+	--notification-card-text-color: var(--text-primary-color);
 }
 .notification-card-vars {
 	--notification-card-border-radius: var(--border-radius);
+	--notification-card-shadow: var(--shadow);
 }
 .alert-error {
 	--alert-text-color: var(--text-primary-color);
-	--alert-bg-color: var(--negative-lightest-color);
+	--alert-bg-color: var(--error-lightest-color);
 	--alert-border-color: var(--negative-color);
 	--alert-icon-color: var(--negative-color);
 }
 .alert-warning {
 	--alert-text-color: var(--text-primary-color);
-	--alert-bg-color: var(--amber-lightest);
+	--alert-bg-color: var(--warning-lightest-color);
 	--alert-border-color: var(--amber);
 	--alert-icon-color: var(--amber);
 }
 .alert-success {
 	--alert-text-color: var(--text-primary-color);
-	--alert-bg-color: var(--accent-lightest-color);
+	--alert-bg-color: var(--success-lightest-color);
 	--alert-border-color: var(--accent-color);
 	--alert-icon-color: var(--accent-color);
 }
 .alert-info {
 	--alert-text-color: var(--text-primary-color);
-	--alert-bg-color: var(--primary-lightest-color);
+	--alert-bg-color: var(--info-lightest-color);
 	--alert-border-color: var(--primary-color);
 	--alert-icon-color: var(--primary-color);
 }
@@ -416,6 +598,172 @@
 	--tab-button-icon-color-disabled: var(--icon-disabled-color);
 	--tab-button-bg-color: var(--surface-color);
 	--tab-button-border-color-active: var(--primary-color);
+}
+.dropdown-container-vars {
+	--dropdown-container-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
+	--dropdown-container-scrollbar-thumb-color: var(--scroll-color);
+}
+.tag-vars {
+	--tag-bg-color: var(--tag-color);
+	--tag-bg-color-hover: var(--tag-hover-color);
+	--tag-caption-color: var(--text-primary-color);
+	--tag-fill-color: var(--icon-color);
+	--tag-fill-color-hover: var(--icon-hover-color);
+	--tag-count-bg-color: var(--white);
+	--tag-count-color: var(--text-secondary-color);
+	--tag-label-color: var(--text-secondary-color);
+	--tag-border-radius: var(--border-radius);
+}
+.picker-toggler-vars {
+	--picker-toggler-bg-color: var(--input-bg-color);
+	--picker-toggler-bg-color-disabled: var(--input-bg-disabled-color);
+	--picker-toggler-border-color: var(--input-border-color);
+	--picker-toggler-border-color-disabled: var(--input-border-disabled-color);
+	--picker-toggler-border-color-hover: var(--input-textinput-border-hover-color);
+	--picker-toggler-border-color-active: var(--input-border-checked-color);
+	--picker-toggler-border-color-error: var(--negative-color);
+	--picker-toggler-placeholder-color: var(--input-placeholder-color);
+	--picker-toggler-text-color: var(--input-text-color);
+	--picker-toggler-text-color-disabled: var(--input-text-disabled-color);
+	--picker-toggler-icon-color: var(--input-icon-color);
+	--picker-toggler-icon-color-disabled: var(--input-icon-disabled-color);
+	--picker-toggler-icon-color-clickable: var(--icon-color);
+	--picker-toggler-icon-color-clickable-hover: var(--icon-hover-color);
+	--picker-toggler-border-radius: var(--border-radius);
+}
+.main-menu-vars {
+	--main-menu-bg-color: var(--gray80);
+	--main-menu-active-color: var(--gray90);
+	--main-menu-hover-color: var(--gray90);
+	--main-menu-active-border-color: var(--primary-color);
+	--caption-color: var(--white);
+	--main-menu-dropdown-bg-color: var(--main-menu-active-color);
+	--main-menu-dropdown-hover-color: var(--primary-color);
+	--main-menu-search-bg-color: var(--gray70);
+	--main-menu-search-border-color: var(--gray70);
+	--main-menu-search-placeholder-color: var(--text-disabled-color);
+	--main-menu-search-text-color: var(--contrast-color);
+	--main-menu-search-icon-color: var(--icon-disabled-color);
+	--main-menu-icon-color: var(--white);
+}
+.burger-menu {
+	--burger-menu-bg-color: var(--gray90);
+	--burger-menu-caption-coor: var(--contrast-color);
+	--burger-menu-caption-hover-color: var(--primary-color);
+	--burger-menu-overlay-color: var(--overlay-color);
+}
+.numeric-input-vars {
+	--numeric-input-bg-color: var(--input-bg-color);
+	--numeric-input-bg-color-disabled: var(--input-bg-disabled-color);
+	--numeric-input-border-color: var(--input-border-color);
+	--numeric-input-border-color-disabled: var(--input-border-disabled-color);
+	--numeric-input-border-color-hover: var(--input-textinput-border-hover-color);
+	--numeric-input-border-color-active: var(--input-border-checked-color);
+	--numeric-input-border-color-error: var(--negative-color);
+	--numeric-input-placeholder-color: var(--input-placeholder-color);
+	--numeric-input-text-color: var(--input-text-color);
+	--numeric-input-text-color-disabled: var(--input-text-disabled-color);
+	--numeric-input-icon-color-clickable: var(--icon-color);
+	--numeric-input-icon-color-clickable-hover: var(--icon-hover-color);
+	--numeric-input-border-radius: var(--border-radius);
+}
+.time-picker-vars {
+	--time-picker-bg-color: var(--input-bg-color);
+	--time-picker-bg-color-disabled: var(--input-bg-disabled-color);
+	--time-picker-border-color: var(--input-border-color);
+	--time-picker-border-color-disabled: var(--input-border-disabled-color);
+	--time-picker-border-color-hover: var(--input-textinput-border-hover-color);
+	--time-picker-border-color-active: var(--input-border-checked-color);
+	--time-picker-border-color-error: var(--negative-color);
+	--time-picker-placeholder-color: var(--input-placeholder-color);
+	--time-picker-text-color: var(--input-text-color);
+	--time-picker-text-color-disabled: var(--input-text-disabled-color);
+	--time-picker-icon-color-clickable: var(--icon-color);
+	--time-picker-icon-color-clickable-hover: var(--icon-hover-color);
+	--time-picker-border-radius: var(--border-radius);
+}
+.date-picker-vars {
+	--date-picker-bg-color: var(--input-bg-color);
+	--date-picker-bg-color-disabled: var(--input-bg-disabled-color);
+	--date-picker-border-color: var(--input-border-color);
+	--date-picker-border-color-disabled: var(--input-border-disabled-color);
+	--date-picker-border-color-hover: var(--input-textinput-border-hover-color);
+	--date-picker-border-color-active: var(--input-border-checked-color);
+	--date-picker-border-color-error: var(--negative-color);
+	--date-picker-placeholder-color: var(--input-placeholder-color);
+	--date-picker-text-color: var(--input-text-color);
+	--date-picker-text-color-disabled: var(--input-text-disabled-color);
+	--date-picker-icon-color-clickable: var(--icon-color);
+	--date-picker-icon-color-clickable-hover: var(--icon-hover-color);
+	--date-picker-icon-color-disabled: var(--icon-disabled-color);
+	--date-picker-border-radius: var(--border-radius);
+}
+.date-range-picker-vars {
+	--date-range-picker-bg-color: var(--input-bg-color);
+	--date-range-picker-bg-color-disabled: var(--input-bg-disabled-color);
+	--date-range-picker-border-color: var(--input-border-color);
+	--date-range-picker-border-color-disabled: var(--input-border-disabled-color);
+	--date-range-picker-border-color-hover: var(--input-textinput-border-hover-color);
+	--date-range-picker-border-color-active: var(--input-border-checked-color);
+	--date-range-picker-border-color-error: var(--negative-color);
+	--date-range-picker-placeholder-color: var(--input-placeholder-color);
+	--date-range-picker-text-color: var(--input-text-color);
+	--date-range-picker-text-color-disabled: var(--input-text-disabled-color);
+	--date-range-picker-icon-color-clickable: var(--icon-color);
+	--date-range-picker-icon-color-clickable-hover: var(--icon-hover-color);
+	--date-range-picker-icon-color-disabled: var(--icon-disabled-color);
+	--date-range-picker-border-radius: var(--border-radius);
+}
+.search-input-vars {
+	--search-input-bg-color: var(--input-bg-color);
+	--search-input-bg-color-disabled: var(--input-bg-disabled-color);
+	--search-input-border-color: var(--input-border-color);
+	--search-input-border-color-disabled: var(--input-border-disabled-color);
+	--search-input-border-color-hover: var(--input-textinput-border-hover-color);
+	--search-input-border-color-active: var(--input-border-checked-color);
+	--search-input-border-color-error: var(--negative-color);
+	--search-input-placeholder-color: var(--input-placeholder-color);
+	--search-input-text-color: var(--input-text-color);
+	--search-input-text-color-disabled: var(--input-text-disabled-color);
+	--search-input-icon-color-clickable: var(--icon-color);
+	--search-input-icon-color-clickable-hover: var(--icon-hover-color);
+	--search-input-icon-color-disabled: var(--icon-disabled-color);
+	--search-input-border-radius: var(--border-radius);
+}
+.text-area-vars {
+	--text-area-bg-color: var(--input-bg-color);
+	--text-area-bg-color-disabled: var(--input-bg-disabled-color);
+	--text-area-border-color: var(--input-border-color);
+	--text-area-border-color-disabled: var(--input-border-disabled-color);
+	--text-area-border-color-hover: var(--input-textinput-border-hover-color);
+	--text-area-border-color-active: var(--input-border-checked-color);
+	--text-area-border-color-error: var(--negative-color);
+	--text-area-placeholder-color: var(--input-placeholder-color);
+	--text-area-text-color: var(--input-text-color);
+	--text-area-text-color-disabled: var(--input-text-disabled-color);
+	--text-area-icon-color: var(--icon-color);
+	--text-area-border-radius: var(--border-radius);
+}
+.popover-vars {
+	--popover-shadow: 0 5px 18px 0 rgba(29,30,38,0.1), 0 3px 12px 0 rgba(29,30,38,0.1);
+}
+.footer-vars {
+	--footer-bg-color: var(--gray80);
+}
+.informer-color-default {
+	--informer-bg-color: var(--gray30);
+	--informer-caption-color: var(--gray60);
+}
+.informer-color-focus {
+	--informer-bg-color: var(--red);
+	--informer-caption-color: var(--contrast-color);
+}
+.informer-color-white {
+	--informer-bg-color: var(--surface-color);
+	--informer-caption-color: var(--text-secondary-color);
+}
+.informer-vars {
+	--informer-border-radius: 50px;
 }
 .tab-button-vars {
 	--tab-button-text-color: var(--text-primary-color);
@@ -462,21 +810,6 @@
 	--modals-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
 	--modals-bg-color: var(--surface-color);
 }
-.picker-toggler-vars {
-	--picker-toggler-bg-color: var(--input-bg-color);
-	--picker-toggler-border-color: var(--input-border-color);
-	--picker-toggler-border-color-hover: var(--input-textinput-border-hover-color);
-	--picker-toggler-border-color-active: var(--input-border-checked-color);
-	--picker-toggler-border-color-error: var(--negative-color);
-	--picker-toggler-placeholder-color: var(--input-placeholder-color);
-	--picker-toggler-text-color: var(--input-text-color);
-	--picker-toggler-text-color-disabled: var(--input-text-disabled-color);
-	--picker-toggler-icon-color: var(--input-icon-color);
-	--picker-toggler-icon-color-disabled: var(--input-icon-disabled-color);
-	--picker-toggler-icon-color-clickable: var(--icon-color);
-	--picker-toggler-icon-color-clickable-hover: var(--icon-hover-color);
-	--picker-toggler-border-radius: var(--border-radius);
-}
 .text-color-brand {
 	--text-color: var(--text-brand-color);
 }
@@ -495,41 +828,4 @@
 .text-placeholder-vars {
 	--text-placeholder-gradient: var(--skeleton-gradient);
 	--text-placeholder-color: var(--skeleton-color);
-}
-.badge-color-info {
-	--badge-bg-color: var(--info-color);
-	--badge-bg-color-hover: var(--info-active-color);
-	--badge-caption-color-solid: #FFFFFF;
-	--badge-count-bg-color: #FFFFFF;
-	--badge-count-color: var(--text-secondary-color);
-}
-.badge-color-success {
-	--badge-bg-color: var(--success-color);
-	--badge-bg-color-hover: var(--success-active-color);
-	--badge-caption-color-solid: #FFFFFF;
-	--badge-count-bg-color: #FFFFFF;
-	--badge-count-color: var(--text-secondary-color);
-}
-.badge-color-warning {
-	--badge-bg-color: var(--warning-color);
-	--badge-bg-color-hover: var(--warning-active-color);
-	--badge-caption-color-solid: #FFFFFF;
-	--badge-count-bg-color: #FFFFFF;
-	--badge-count-color: var(--text-secondary-color);
-}
-.badge-color-error {
-	--badge-bg-color: var(--error-color);
-	--badge-bg-color-hover: var(--error-active-color);
-	--badge-caption-color-solid: #FFFFFF;
-	--badge-count-bg-color: #FFFFFF;
-	--badge-count-color: var(--text-secondary-color);
-}
-.tag-vars {
-	--tag-bg-color: var(--tag-color);
-	--tag-bg-color-hover: var(--tag-hover-color);
-	--tag-caption-color: var(--text-primary-color);
-	--tag-fill-color: var(--icon-color);
-	--tag-fill-color-hover: var(--icon-hover-color);
-	--tag-count-bg-color: #FFFFFF;
-	--tag-count-color: var(--text-secondary-color);
 }

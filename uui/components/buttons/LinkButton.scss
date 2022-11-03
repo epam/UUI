@@ -40,27 +40,27 @@
 
     // Sizes
     &.size-18 {
-        @include link-button-layout(18px);
+        //@include link-button-layout(18px);
         min-width: auto;
     }
 
     &.size-24 {
-        @include link-button-layout(24px);
+        //@include link-button-layout(24px);
         min-width: auto;
     }
 
     &.size-30 {
-        @include link-button-layout(30px);
+        //@include link-button-layout(30px);
         min-width: auto;
     }
 
     &.size-36 {
-        @include link-button-layout(36px);
+        //@include link-button-layout(36px);
         min-width: auto;
     }
 
     &.size-42 {
-        @include link-button-layout(42px);
+        //@include link-button-layout(42px);
         min-width: auto;
 
         :global(.uui-caption) {
@@ -70,7 +70,7 @@
     }
 
     &.size-48 {
-        @include link-button-layout(48px);
+        //@include link-button-layout(48px);
         min-width: auto;
 
         :global(.uui-caption) {

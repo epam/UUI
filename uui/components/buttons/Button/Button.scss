@@ -1,0 +1,166 @@
+@use '../../../assets/styles/index' as *;
+
+.root {
+    &:global(.uui-button-box) {
+        border-style: solid;
+        border-width: var(--btn-border-width);
+        border-radius: var(--btn-border-radius);
+        justify-content: center;
+        min-height: var(--btn-min-height);
+        min-width: var(--btn-min-width);
+        padding: 0 calc(var(--btn-padding) - var(--btn-border-width));
+    }
+
+    :global(.uui-caption) {
+        @include overflow-ellipsis();
+        flex: 1 1 auto;
+        font-family: var(--btn-font);
+        font-weight: normal;
+        font-size: var(--btn-font-size);
+        line-height: var(--btn-line-height);
+        min-width: 0;
+        padding: calc((var(--btn-min-height) - var(--btn-border-width) * 2 - var(--btn-line-height)) / 2) var(--btn-caption-padding);
+        text-align: center;
+        user-select: none;
+    }
+}
+
+@mixin button-disables-styles($bg-color, $border-color) {
+    background-color: $bg-color;
+    color: var(--btn-caption-color-disabled);
+    fill: var(--btn-caption-color-disabled);
+    border-color: $border-color;
+}
+
+.mode-solid {
+    background-color: var(--btn-bg-color);
+    color: var(--btn-caption-color);
+    fill: var(--btn-caption-color);
+    border-color: var(--btn-bg-color);
+
+    &:global(.-clickable) {
+        &:hover {
+            background-color: var(--btn-bg-color-hover);
+            border-color: var(--btn-bg-color-hover);
+        }
+
+        &:focus {
+            background-color: var(--btn-bg-color-hover);
+            border-color: var(--btn-bg-color-hover);
+            box-shadow: var(--btn-focus-shadow);
+            outline: var(--btn-focus-outline);
+        }
+
+        &:active {
+            background-color: var(--btn-bg-color-active);
+            border-color: var(--btn-bg-color-active);
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include button-disables-styles(var(--btn-bg-color-disabled), var(--btn-border-color-disabled));
+    }
+
+    &:global(.-clickable), &:hover, &:active, &:focus {
+        &:global(.uui-disabled) {
+            @include button-disables-styles(var(--btn-bg-color-disabled), var(--btn-border-color-disabled));
+        }
+    }
+}
+
+.mode-outline {
+    background-color: var(--btn-bg-color-halftone);
+    color: var(--btn-caption-halftone-color);
+    fill: var(--btn-caption-halftone-color);
+    border-color: var(--btn-border-color);
+
+    &:global(.-clickable) {
+        &:hover, &:focus {
+            background-color: var(--btn-bg-color-halftone-hover);
+            color: var(--btn-caption-halftone-color);
+            fill: var(--btn-caption-halftone-color);
+            border-color: var(--btn-border-color);
+        }
+
+        &:active {
+            background-color: var(--btn-bg-color-halftone-active);
+            color: var(--btn-caption-halftone-color);
+            fill: var(--btn-caption-halftone-color);
+            border-color: var(--btn-border-color);
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include button-disables-styles(var(--btn-bg-color-halftone), var(--btn-border-color-disabled));
+    }
+
+    &:global(.-clickable), &:hover, &:active, &:focus {
+        &:global(.uui-disabled) {
+            @include button-disables-styles(var(--btn-bg-color-halftone), var(--btn-border-color-disabled));
+        }
+    }
+}
+
+.mode-none {
+    background-color: transparent;
+    color: var(--btn-caption-halftone-color);
+    fill: var(--btn-caption-halftone-color);
+    border-color: var(--btn-border-color);
+
+    &:global(.-clickable) {
+        &:hover, &:focus {
+            background-color: var(--btn-bg-color-halftone-hover);
+            color: var(--btn-caption-halftone-color);
+            fill: var(--btn-caption-halftone-color);
+            border-color: var(--btn-border-color);
+        }
+
+        &:active {
+            background-color: var(--btn-bg-color-halftone-active);
+            color: var(--btn-caption-halftone-color);
+            fill: var(--btn-caption-halftone-color);
+            border-color: var(--btn-border-color);
+        }
+    }
+
+    &:global(.uui-disabled) {
+        @include button-disables-styles(transparent, var(--btn-border-color-disabled));
+    }
+
+    &:global(.-clickable), &:hover, &:active, &:focus {
+        &:global(.uui-disabled) {
+            @include button-disables-styles(transparent, var(--btn-border-color-disabled));
+        }
+    }
+}
+
+.mode-ghost {
+    background-color: transparent;
+    color: var(--btn-caption-halftone-color);
+    fill: var(--btn-caption-halftone-color);
+    border-color: transparent;
+
+    &:global(.-clickable) {
+        &:hover, &:focus {
+            background-color: var(--btn-bg-color-halftone-hover);
+            border-color: var(--btn-bg-color-halftone-hover);
+        }
+
+        &:active {
+            background-color: var(--btn-bg-color-halftone-active);
+            border-color: var(--btn-bg-color-halftone-active);
+        }
+    }
+
+
+    &:global(.uui-disabled) {
+        @include button-disables-styles(transparent, transparent);
+    }
+
+
+    &:global(.-clickable), &:hover, &:active, &:focus {
+        &:global(.uui-disabled) {
+            @include button-disables-styles(transparent, transparent);
+        }
+    }
+}

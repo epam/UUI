@@ -1,0 +1,63 @@
+:global(.size-grid-6px) {
+    --font-regular: 'Sans Regular', Arial, sans-serif;
+    --font-semibold: 'Sans Semibold', Arial, sans-serif;
+    --font-italic: 'Sans Italic', Arial, sans-serif;
+    --font-primary: 'Museo Sans', 'Sans Semibold', Arial, sans-serif;
+    --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
+    --font-mono: 'Roboto Mono', Arial, sans-serif;
+    --font-redacted: 'Redacted';
+
+    --border-radius: 0px;
+    --btns-border-width: 1px;
+    --inputs-border-width: 1px;
+    --unit: 6px;
+    --font-size: 14px;
+    --size: 36px;
+
+    --btn-font: var(--font-semibold);
+    --btn-line-height: calc(var(--unit) * 3);
+    --btn-font-size: var(--font-size);
+    --btn-padding: var(--unit);
+    --btn-caption-padding: var(--unit);
+    --btn-border-radius: var(--border-radius);
+    --btn-min-height: var(--size);
+    --btn-min-width: var(--size);
+    --btn-border-width: var(--btns-border-width);
+    --prefix-suffix-padding: var(--unit);
+
+    --input-font: var(--font-regular);
+    --input-min-height: var(--size);
+    --input-min-width: var(--size);
+    --input-border-width: var(--inputs-border-width);
+    --input-border-radius: var(--border-radius);
+    --input-padding: var(--unit);
+    --input-text-padding: var(--unit);
+    --input-inner-space: var(--unit);
+    --input-line-height: calc(var(--unit) * 3);
+    --input-font-size: var(--font-size);
+    --input-icon-size: var(--unit);
+    --input-gap: 2px 3px;
+
+    --input-tag-font: var(--font-semibold);
+    --input-tag-line-height: var(--line-height);
+    --input-tag-font-size: var(--font-size);
+    --input-tag-padding: var(--unit);
+    --input-tag-caption-padding: var(--unit);
+    --input-tag-border-radius: var(--border-radius);
+    --input-tag-min-height: calc(var(--size) - var(--unit));
+    --input-tag-min-width: var(--size);
+    --input-tag-border-width: var(--btns-border-width);
+
+    --selection-control-font: var(--font-regular);
+    --selection-control-font-size: var(--font-size);
+    --selection-control-line-height: calc(var(--unit) * 3);
+    --selection-control-height: calc(var(--unit) * 3);
+    --selection-control-width: calc(var(--unit) * 3);
+    --selection-control-spacer: calc(var(--unit) * 2);
+    --selection-control-border-width: var(--inputs-border-width);
+    --checkbox-border-radius: var(--border-radius);
+    --radio-input-bullet-size: calc(var(--unit) * 3);
+    --switch-offset-size: var(--selection-control-height);
+    --switch-width: calc(var(--selection-control-height) * 2);
+    --switch-border-width: var(--inputs-border-width);
+}

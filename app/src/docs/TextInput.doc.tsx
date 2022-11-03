@@ -8,7 +8,7 @@ export class TextInputDoc extends BaseDocsBlock {
         return {
             [UUI3]: './loveship/components/inputs/docs/textInput.doc.ts',
             [UUI4]: './epam-promo/components/inputs/docs/textInput.doc.ts',
-            [UUI]: './uui/components/inputs/docs/textInput.doc.ts',
+            [UUI]: './uui/components/inputs/TextInput/TextInput.doc.ts',
         };
     }
 

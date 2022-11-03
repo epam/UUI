@@ -29,7 +29,7 @@ export const SandboxPage = () => {
         { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
         { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
         { id: 'responsive', name: 'Responsive', component: Responsive },
-        { id: 'uui-v_theming', name: 'UUI-V Theming', component: ThemeDemo },
+        { id: 'uui_theming', name: 'UUI Theming', component: ThemeDemo },
         { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
         { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
         { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },

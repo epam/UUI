@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui';
 import {
-    Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput,
-    FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge,
+    Button, Checkbox, Switch, TextInput, Text, LabeledInput, Panel, PickerInput,
+    FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader,
 } from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
@@ -62,16 +62,7 @@ export const ThemeDemo = () => {
             <FlexRow vPadding='24' padding='24'>
                 <FlexCell width={ 600 } minWidth={ 600 }>
                     <Text color='primary' lineHeight='30' fontSize='24' font='semibold'>Personal Info</Text>
-                    <FlexRow vPadding='36' >
-                        <SuccessNotification id={ 1 } key='1' onSuccess={ () => {} } onClose={ () => {} }>
-                            <Text size='36' font='regular' fontSize='14'>Data has been saved!</Text>
-                        </SuccessNotification>
-                    </FlexRow>
-                    <FlexRow vPadding='36' >
-                        <ErrorNotification id={ 1 } key='1' onSuccess={ () => {} } onClose={ () => {} } actions={ [{ name: 'Restore', action: () => {} }, { name: 'Cancel', action: () => {} }] }>
-                            <Text size='36' font='regular' fontSize='14'>Data hasn't been saved! Please choose something!</Text>
-                        </ErrorNotification>
-                    </FlexRow>
+
                     <FlexRow vPadding='12'>
                         <FlexCell grow={ 1 }>
                             <LabeledInput label='First Name'>
@@ -89,14 +80,6 @@ export const ThemeDemo = () => {
                     <FlexRow vPadding='12'>
                         <LabeledInput label='Gender'>
                             <RadioGroup direction='horizontal' { ...lens.prop('gender').toProps() } items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] } />
-                        </LabeledInput>
-                    </FlexRow>
-                    <FlexRow vPadding='12'>
-                        <LabeledInput label='Status'>
-                            <FlexRow spacing='12'>
-                                <Badge color='success' caption='Approved' size='24' />
-                                <Badge color='info' caption='Active' size='24' />
-                            </FlexRow>
                         </LabeledInput>
                     </FlexRow>
                     <FlexRow vPadding='24' >
@@ -118,7 +101,7 @@ export const ThemeDemo = () => {
                                             />
                                         </LabeledInput>
                                     </FlexCell>
-                                    <FlexCell rawProps={ { style: { width: '300px' } } }>
+                                    <FlexCell width={ 300 } rawProps={ { style: { width: '300px' } } }>
                                         <LabeledInput label='Term'>
                                             <FlexRow spacing='6'>
                                                 <FlexCell width={ 140 } >

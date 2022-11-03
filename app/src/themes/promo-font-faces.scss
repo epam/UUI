@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Sans Regular';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-Regular.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-Regular.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-Regular.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sans Semibold';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-Semibold.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-SemiBold.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-Semibold.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-Semibold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sans Italic';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff2/ttf/SourceSansPro-It.ttf.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/woff/otf/SourceSansPro-It.otf.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/otf/SourceSansPro-It.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/source-sans-pro/ttf/SourceSansPro-It.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Redacted';
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/redacted/redacted-regular.eot');
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/redacted/redacted-regular.woff2') format('woff2'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/redacted/redacted-regular.woff') format('woff'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/redacted/redacted-regular.otf') format('opentype'),
+        url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/redacted/redacted-regular.svg#filename') format('svg');
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: normal;
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/RobotoMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: normal;
+    src: url('https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/fonts/RobotoSlab-Regular.ttf') format('truetype');
+}

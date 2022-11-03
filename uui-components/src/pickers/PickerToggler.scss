@@ -1,4 +1,5 @@
 .container {
+    width: 100%;
     cursor: pointer;
 
     &:global(.uui-input-box) {
@@ -48,6 +49,7 @@
 
 .actions {
     display: flex;
+    align-self: start;
     flex-shrink: 0;
 }
 

@@ -1,23 +1,22 @@
 import React from 'react';
 import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui-core';
 import { TextInput as uuiTextInput, TextInputProps } from '@epam/uui-components';
-import { IHasEditMode, EditMode, ControlSize } from '../types';
-import { systemIcons } from '../../icons/icons';
+import { IHasEditMode, EditMode } from '../../types';
+import { getIcon } from '../../../icons';
 import * as css from './TextInput.scss';
-import '../../assets/styles/variables/inputs/textInput.scss';
+import './TextInput.colorvars.scss';
 
-const defaultSize = '36';
 const defaultMode = EditMode.FORM;
 
 export interface TextInputMods extends IHasEditMode {
-    size?: ControlSize;
+    size?: string;
 }
 
 export function applyTextInputMods(mods: TextInputMods) {
     return [
-        'text-input-vars',
+        'text-input-colorvars',
+        mods.size && `text-input-size-${mods.size}`,
         css.root,
-        css['size-' + (mods.size || defaultSize)],
         css['mode-' + (mods.mode || defaultMode)],
     ];
 }
@@ -25,9 +24,9 @@ export function applyTextInputMods(mods: TextInputMods) {
 export const TextInput = withMods<TextInputProps, TextInputMods>(
     uuiTextInput, applyTextInputMods,
     (props) => ({
-        acceptIcon: systemIcons[props.size || defaultSize].accept,
-        cancelIcon: systemIcons[props.size || defaultSize].clear,
-        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+        acceptIcon: getIcon('accept'),
+        cancelIcon: getIcon('clear'),
+        dropdownIcon: getIcon('foldingArrow'),
     }),
 );
 
@@ -41,7 +40,7 @@ export class SearchInput extends React.Component<TextInputProps & TextInputMods 
             { ...this.props }
             render={ (iEditable =>
                     <TextInput
-                        icon={ systemIcons[this.props.size || defaultSize].search }
+                        icon={ getIcon('search') }
                         onCancel={ !!this.props.value ? (() => iEditable.onValueChange('')) : undefined }
                         type="search"
                         inputMode="search"

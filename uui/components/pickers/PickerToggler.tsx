@@ -2,43 +2,28 @@ import * as React from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { TextPlaceholder } from '../typography';
-import { systemIcons } from '../../icons/icons';
+import { getIcon } from '../../icons';
 import { Tag } from '../widgets';
 import * as types from '../types';
 import '../../assets/styles/variables/pickers/pickerToggler.scss';
 import * as css from './PickerToggler.scss';
 
-const defaultSize = '36';
 const defaultMode = types.EditMode.FORM;
 
 export interface PickerTogglerMods extends types.IHasEditMode {
-    size?: '24' | '30' | '36' | '42' | '48';
+    size?: string;
 }
 
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
         'picker-toggler-vars',
         css.root,
-        css['size-' + (mods.size || defaultSize)],
+        css['size-' + (mods.size)],
         css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 
 function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>) {
-    const getPickerTogglerButtonSize = (propSize: types.ControlSize) => {
-        switch (propSize) {
-            case '48':
-                return '42';
-            case '42':
-                return '36';
-            case '36':
-                return '30';
-            case '30':
-                return '24';
-            case '24':
-                return '18';
-        }
-    };
 
     const getCaption = (row: DataRowProps<TItem, TId>) => {
         const maxItems = (props.maxItems || props.maxItems === 0) ? props.maxItems : 100;
@@ -57,7 +42,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             key={ row.id }
             caption={ getCaption(row) }
             tabIndex={ -1 }
-            size={ props.size ? getPickerTogglerButtonSize(props.size) : '30' }
+            size={ props.size }
             onClear={ e => {
                 row.onCheck && row.onCheck(row);
                 e.stopPropagation();
@@ -73,8 +58,8 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ !!props.renderItem ? props.renderItem : renderItem }
             getName={ (item) => props.getName ? props.getName(item) : item }
-            cancelIcon={ systemIcons[props.size || defaultSize].clear }
-            dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
+            cancelIcon={ getIcon('clear') }
+            dropdownIcon={ getIcon('foldingArrow') }
         />
     );
 }

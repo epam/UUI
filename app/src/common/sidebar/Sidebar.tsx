@@ -50,7 +50,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
                         onValueChange={ setValue }
                         renderRow={ row => (
                             <SidebarButton
-                                key={ row.key }
+                                key={ row.id }
                                 link={ props.getItemLink(row) }
                                 indent={ (row.depth - 1) * 12 }
                                 isOpen={ !row.isFolded }
