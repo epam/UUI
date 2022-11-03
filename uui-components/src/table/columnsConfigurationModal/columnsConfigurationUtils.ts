@@ -45,22 +45,26 @@ export function getNewColumnOrder(
         : getOrderBetween(targetPrevOrder || null, targetOrder);
 }
 
-export function isNonEmpty(s: React.ReactNode) {
+export function isEmptyCaption(s: React.ReactNode) {
     if (typeof s === 'string') {
-        return s.trim() !== '';
+        return isEmptyString(s);
     }
-    return !!s;
+    return !s;
+}
+
+function isEmptyString(s: string) {
+    return !s || s.trim() === '';
 }
 function isSubstring(s: React.ReactNode, sub: string) {
     if (typeof s === 'string') {
         return s.trim().toLowerCase().includes(sub.trim().toLowerCase());
     }
-    return true;
+    return false;
 }
 export function isColumnFilteredOut(c: DataColumnProps, filter?: string) {
     const caption = c.caption;
-    const hasCaption = isNonEmpty(caption);
-    const hasFilter = isNonEmpty(filter);
+    const hasCaption = !isEmptyCaption(caption);
+    const hasFilter = !isEmptyString(filter);
 
     return hasCaption ?
         hasFilter && !isSubstring(caption, filter) :

@@ -1,5 +1,5 @@
 import { ColumnsConfig, DataColumnProps, DropPosition, ICanBeFixed, IColumnConfig } from "@epam/uui-core";
-import { getNewColumnOrder, findFirstByGroupKey, findLastByGroupKey, isNonEmpty } from "./columnsConfigurationUtils";
+import { getNewColumnOrder, findFirstByGroupKey, findLastByGroupKey, isEmptyCaption } from "./columnsConfigurationUtils";
 import { GroupedDataColumnProps } from "./types";
 
 export function toggleAllColumnsVisibility(props: { prevConfig: ColumnsConfig, columns: DataColumnProps[], value: boolean }) {
@@ -9,7 +9,7 @@ export function toggleAllColumnsVisibility(props: { prevConfig: ColumnsConfig, c
         const c = columns.find(c => c.key === key);
         const isAlreadyToggled = value ? prevCfg.isVisible : !prevCfg.isVisible;
         const tryingToHideAlwaysVisible = !value && c.isAlwaysVisible;
-        const noChangeRequired = isAlreadyToggled || tryingToHideAlwaysVisible || !isNonEmpty(c.caption);
+        const noChangeRequired = isAlreadyToggled || tryingToHideAlwaysVisible || isEmptyCaption(c.caption);
         if (noChangeRequired) {
             acc[key] = prevCfg;
         } else {
