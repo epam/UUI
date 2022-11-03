@@ -6,6 +6,7 @@ import {
 } from "@epam/uui-core";
 import { ColumnsConfigurationRowProps, DndDataType, GroupedColumnsType, GroupedDataColumnProps } from "./types";
 import sortBy from "lodash.sortby";
+import React from "react";
 
 export function isColumnAlwaysPinned(column: DataColumnProps) {
     return Boolean(column.isAlwaysVisible && column.fix);
@@ -44,16 +45,26 @@ export function getNewColumnOrder(
         : getOrderBetween(targetPrevOrder || null, targetOrder);
 }
 
-function isNonEmptyString(s: string) {
-    return typeof s === 'string' && s.trim() !== '';
+export function isEmptyCaption(s: React.ReactNode) {
+    if (typeof s === 'string') {
+        return isEmptyString(s);
+    }
+    return !s;
 }
-function isSubstring(s: string, sub: string) {
-    return s.trim().toLowerCase().includes(sub.trim().toLowerCase());
+
+function isEmptyString(s: string) {
+    return !s || s.trim() === '';
+}
+function isSubstring(s: React.ReactNode, sub: string) {
+    if (typeof s === 'string') {
+        return s.trim().toLowerCase().includes(sub.trim().toLowerCase());
+    }
+    return false;
 }
 export function isColumnFilteredOut(c: DataColumnProps, filter?: string) {
-    const caption = c.caption as string;
-    const hasCaption = isNonEmptyString(caption);
-    const hasFilter = isNonEmptyString(filter);
+    const caption = c.caption;
+    const hasCaption = !isEmptyCaption(caption);
+    const hasFilter = !isEmptyString(filter);
 
     return hasCaption ?
         hasFilter && !isSubstring(caption, filter) :
