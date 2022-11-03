@@ -53,7 +53,7 @@ describe('columnsConfigurationUtils', () => {
         it('should not filter out columns with React node as caption', () => {
             const A: DataColumnProps = { key: '1', fix: 'left', caption: <div />, isAlwaysVisible: false, width: 10 };
             const result = isColumnFilteredOut(A, 'NAME');
-            expect(result).toBe(false);
+            expect(result).toBe(true);
         });
     });
 });
