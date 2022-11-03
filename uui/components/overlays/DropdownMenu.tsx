@@ -4,10 +4,9 @@ import { cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPane
     IDisableable, IAnalyticableClick, IHasCX, IClickable } from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer, DropdownBodyProps } from '@epam/uui-components';
 import { Switch } from '../inputs';
-import { systemIcons } from '../../icons/icons';
+import { getIcon } from '../../icons';
 import * as css from './DropdownMenu.scss';
 
-const icons = systemIcons['36'];
 export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {
     isSelected?: boolean;
 }
@@ -189,7 +188,7 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
             renderTarget={ ({ toggleDropdownOpening }) => (
                 <DropdownMenuButton
                     cx={ cx(css.submenuRootItem) }
-                    icon={ icons.foldingArrow }
+                    icon={ getIcon('foldingArrow') }
                     iconPosition="right"
                     isDropdown={ true }
                     toggleDropdownOpening={ toggleDropdownOpening }

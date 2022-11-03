@@ -1,18 +1,34 @@
-@use  '../../assets/styles/index.scss' as *;
+@use  '../../../assets/styles/index.scss' as *;
 
 .root {
-    fill: var(--text-input-icon-color);
-    border-style: solid;
-    box-sizing: border-box;
-    padding-left: 5px;
-    padding-right: 5px;
-    border-radius: var(--text-input-border-radius);
+    --horizontal-padding: calc(var(--input-padding) - var(--input-border-width));
+    --vertical-inner-padding: calc((var(--input-min-height) - var(--input-border-width) * 2 - var(--input-line-height)) / 2);
+
+    &:global(.uui-input-box) {
+        min-height: var(--input-min-height);
+        min-width: var(--input-min-width);
+        border-width: var(--input-border-width);
+        border-radius: var(--input-border-radius);
+        padding: 0 var(--horizontal-padding);
+        fill: var(--text-input-icon-color);
+        border-style: solid;
+        box-sizing: border-box;
+    }
 
     :global(.uui-input) {
         color: var(--text-input-text-color);
-        font-family: var(--font-regular);
-        padding-left: 6px;
-        padding-right: 6px;
+        font-family: var(--input-font);
+        line-height: var(--input-line-height);
+        font-size: var(--input-font-size);
+        padding: var(--vertical-inner-padding) var(--input-text-padding);
+
+        &:not(:first-child) {
+            padding-left: var(--input-inner-space);
+        }
+
+        &:not(:last-child) {
+            padding-right: var(--input-inner-space);
+        }
 
         &::placeholder {
             color: var(--text-input-placeholder-color);
@@ -53,7 +69,7 @@
         border-color: transparent;
 
         :global(.uui-icon):first-child {
-            padding-left: 6px;
+            padding-left: var(--text-input-padding);
         }
 
         :global(.-clickable) {
@@ -124,31 +140,5 @@
             background-color: transparent;
             border-color: transparent;
         }
-    }
-
-    //Sizes
-    &.size-24 {
-        @include control-vertical-layout(24px, 1px);
-        min-width: 24px;
-    }
-
-    &.size-30 {
-        @include control-vertical-layout(30px, 1px);
-        min-width: 30px;
-    }
-
-    &.size-36 {
-        @include control-vertical-layout(36px, 1px);
-        min-width: 36px;
-    }
-
-    &.size-42 {
-        @include control-vertical-layout(42px, 1px);
-        min-width: 42px;
-    }
-
-    &.size-48 {
-        @include control-vertical-layout(48px, 1px);
-        min-width: 48px;
     }
 }

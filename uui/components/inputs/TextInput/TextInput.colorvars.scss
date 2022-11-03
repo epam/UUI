@@ -1,4 +1,4 @@
-:global(.text-input-vars) {
+:global(.text-input-colorvars) {
     --text-input-bg-color: var(--input-bg-color);
     --text-input-bg-color-disabled: var(--input-bg-disabled-color);
     --text-input-bg-color-readonly: var(--input-bg-readonly-color);
@@ -16,6 +16,12 @@
     --text-input-icon-color-disabled: var(--input-icon-disabled-color);
     --text-input-icon-color-clickable: var(--icon-color);
     --text-input-icon-color-clickable-hover: var(--icon-hover-color);
-
-    --text-input-border-radius: var(--border-radius);
+    --text-input-prefix-bg-color: var(--prefix-suffix-bg-color);
+    --text-input-suffix-bg-color: var(--prefix-suffix-bg-color);
+    --text-input-prefix-caption-color: var(--prefix-suffix-caption-color);
+    --text-input-suffix-caption-color: var(--prefix-suffix-caption-color);
+    --text-input-prefix-icon-color: var(--prefix-suffix-icon-color);
+    --text-input-suffix-icon-color: var(--prefix-suffix-icon-color);
+    --text-input-prefix-border-color: var(--prefix-suffix-border-color);
+    --text-input-suffix-border-color: var(--prefix-suffix-border-color);
 }

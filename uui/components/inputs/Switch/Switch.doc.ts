@@ -1,6 +1,6 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { SwitchProps } from '@epam/uui-components';
-import { Switch, SwitchMods } from '../Switch';
+import { Switch, SwitchMods } from './Switch';
 import { isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable } from '../../../docs';
 import { DefaultContext } from '../../../docs';
 

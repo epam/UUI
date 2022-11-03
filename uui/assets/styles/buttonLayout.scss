@@ -11,12 +11,13 @@
 }
 
 @mixin button-vertical-layout($size, $borderWidth) {
-    &:global(.uui-button-box) {
-        min-height: $size;
-        border-width: $borderWidth;
-    }
+    //&:global(.uui-button-box) {
+    //    min-height: $size;
+    //    border-width: $borderWidth;
+    //}
 
     :global(.uui-caption) {
+        //line-height: calc($size - ($borderWidth * 2));
         @include text-size($size, $borderWidth);
 
         @if ($size == 42px or $size == 48px) {

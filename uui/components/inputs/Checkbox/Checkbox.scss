@@ -1,25 +1,31 @@
-@use  '../../assets/styles/index.scss' as *;
+@use  '../../../assets/styles/index.scss' as *;
 
-@mixin icon-sizes($size, $font-size, $line-height) {
+.root {
     :global(.uui-checkbox) {
-        width: $size;
-        height: $size;
+        align-self: baseline;
+        width: var(--selection-control-width);
+        height: var(--selection-control-height);
+        background-color: var(--checkbox-bg-color);
+        border: var(--selection-control-border-width) solid var(--checkbox-border-color);
+        border-radius: var(--checkbox-border-radius);
 
         :global(.uui-icon) {
             svg {
-                width: $size;
+                width: var(--selection-control-width);
             }
         }
     }
 
     :global(.uui-input-label) {
-        font-size: $font-size;
-        line-height: $line-height;
+        font-size: var(--selection-control-font-size);
+        line-height: var(--selection-control-line-height);
+        // @include typography-inline(); TODO: ???
+        font-family: var(--selection-control-font);
+        color: var(--checkbox-label-color);
+        margin-left: var(--selection-control-spacer);
+        flex-grow: 1;
     }
-}
 
-.root {
-    //Colors
     &:hover, &:active, &:focus-within {
         :global(.uui-checkbox) {
             border-color: var(--checkbox-border-color-hover);
@@ -28,20 +34,6 @@
         :global(.uui-checked) {
             background-color: var(--checkbox-bg-color-checked-hover);
         }
-    }
-
-    :global(.uui-checkbox) {
-        background-color: var(--checkbox-bg-color);
-        border: 1px solid var(--checkbox-border-color);
-        border-radius: var(--checkbox-border-radius);
-    }
-
-    :global(.uui-input-label) {
-        // @include typography-inline(); TODO: ???
-        font-family: var(--font-regular);
-        color: var(--checkbox-label-color);
-        margin-left: 12px;
-        flex-grow: 1;
     }
 
     :global(.uui-checked) {
@@ -105,19 +97,6 @@
 
         :global(.uui-input-label) {
             color: var(--checkbox-error-color);
-        }
-    }
-
-    //Sizes
-    &.size-18 {
-        @include icon-sizes(18px, 14px, 18px);
-    }
-
-    &.size-12 {
-        @include icon-sizes(12px, 12px, 12px);
-
-        :global(.uui-input-label) {
-            margin-left: 6px;
         }
     }
 }

@@ -1,17 +1,17 @@
 import { withMods } from '@epam/uui-core';
 import { Switch as uuiSwitch, SwitchProps } from '@epam/uui-components';
 import * as css from './Switch.scss';
-import '../../assets/styles/variables/inputs/switch.scss';
+import './Switch.colorvars.scss';
 
 export interface SwitchMods {
-    size?: '12' | '18' | '24';
+    size?: string;
 }
 
 export function applySwitchMods(mods: SwitchMods & SwitchProps) {
     return [
         'switch-vars',
         css.root,
-        css['size-' + (mods.size || '18')],
+        mods.size && `size-${ mods.size }`,
     ];
 }
 

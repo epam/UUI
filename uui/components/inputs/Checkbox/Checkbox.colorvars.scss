@@ -1,4 +1,4 @@
-:global(.checkbox-vars) {
+:global(.checkbox-colorvars) {
     --checkbox-border-color: var(--input-border-color);
     --checkbox-border-color-hover: var(--input-border-hover-color);
     --checkbox-border-color-disabled: var(--input-border-disabled-color);
@@ -13,6 +13,4 @@
     --checkbox-fill-color: var(--input-checkbox-icon-color);
     --checkbox-label-color: var(--input-label-color);
     --checkbox-label-color-disabled: var(--input-label-disabled-color);
-
-    --checkbox-border-radius: var(--border-radius);
 }

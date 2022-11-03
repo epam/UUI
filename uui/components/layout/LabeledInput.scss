@@ -26,6 +26,13 @@
         }
     }
 
+    :global(.uui-label-top) {
+        > :global(.uui-label) {
+            margin-bottom: var(--unit);
+        }
+    }
+
+
     :global(.uui-label-left) {
         > :global(.uui-label) {
             margin-right: 5px;
@@ -42,25 +49,13 @@
 
     // Sizes
     &.size-24 {
-        :global(.uui-label-top) {
-            > :global(.uui-label) {
-                margin-bottom: 6px;
-            }
-        }
-
-        :global(.uui-label) {
+      :global(.uui-label) {
             font-size: 12px;
             line-height: 18px;
         }
     }
 
     &.size-30 {
-        :global(.uui-label-top) {
-            > :global(.uui-label) {
-                margin-bottom: 6px;
-            }
-        }
-
         :global(.uui-label) {
             font-size: 12px;
             line-height: 18px;
@@ -68,12 +63,6 @@
     }
 
     &.size-36 {
-        :global(.uui-label-top) {
-            > :global(.uui-label) {
-                margin-bottom: 6px;
-            }
-        }
-
         :global(.uui-label) {
             font-size: 14px;
             line-height: 18px;
@@ -81,12 +70,6 @@
     }
 
     &.size-42 {
-        :global(.uui-label-top) {
-            > :global(.uui-label) {
-                margin-bottom: 6px;
-            }
-        }
-
         :global(.uui-label) {
             font-size: 14px;
             line-height: 18px;
@@ -94,12 +77,6 @@
     }
 
     &.size-48 {
-        :global(.uui-label-top) {
-            > :global(.uui-label) {
-                margin-bottom: 6px;
-            }
-        }
-
         :global(.uui-label) {
             font-size: 14px;
             line-height: 18px;

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
-import { systemIcons } from '../../icons/icons';
-import * as buttonCss from '../buttons/Button.scss';
+import { getIcon } from '../../icons';
+import * as buttonCss from '../buttons/Button/Button.scss';
 import * as css from './Badge.scss';
 import '../../assets/styles/variables/widgets/badge.scss';
 
@@ -44,8 +44,8 @@ export const Badge = withMods<ButtonProps, BadgeMods>(
     Button,
     applyBadgeMods,
     (props) => ({
-        dropdownIcon: systemIcons[props.size && mapSize[props.size] || defaultSize].foldingArrow,
-        clearIcon: systemIcons[props.size && mapSize[props.size] || defaultSize].clear,
+        dropdownIcon: getIcon('foldingArrow'),
+        clearIcon: getIcon('clear'),
         countPosition: 'left',
     }),
 );

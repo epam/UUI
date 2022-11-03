@@ -163,7 +163,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             { ...props.rawProps }
         >
             { props.prefix && <span className={ uuiElement.prefixInput }>{ props.prefix }</span> }
-            <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }>
+            <div className={ cx(css.body, uuiElement.pickerTogglerBody, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }>
                 { props.iconPosition !== 'right' && icon }
                 { props.pickerMode !== 'single' && renderItems() }
                 { renderInput() }

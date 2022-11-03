@@ -1,6 +1,6 @@
 {
   "props": {
-    "D:/dev/UUI-develop/epam-promo/components/buttons/docs/button.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>",
@@ -157,7 +157,7 @@
         "comment": "<p>Button color</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/buttons/docs/iconButton.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/buttons/docs/iconButton.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -234,7 +234,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/buttons/docs/linkButton.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/buttons/docs/linkButton.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>",
@@ -386,7 +386,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/buttons/docs/tabButton.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/buttons/docs/tabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60",
@@ -538,7 +538,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60",
@@ -690,7 +690,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
       {
         "name": "renderFooter",
         "value": "() => React.ReactNode",
@@ -817,7 +817,7 @@
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/datePickers/docs/rangeDatePicker.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/datePickers/docs/rangeDatePicker.doc.tsx": [
       {
         "name": "getPlaceholder",
         "value": "(type: InputType) => string",
@@ -929,7 +929,7 @@
         "comment": "<p>Component&#39;s size in px. This is &#39;logical&#39; size, defined in how many pixels components occupies vertically.</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/inputs/docs/checkbox.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/inputs/docs/checkbox.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>",
@@ -1046,7 +1046,7 @@
         "comment": "<p>Set to &#39;dark&#39; to make component work on a dark background</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/inputs/docs/multiSwitch.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/inputs/docs/multiSwitch.doc.tsx": [
       {
         "name": "items",
         "value": "MultiSwitchItem<TValue>[]",
@@ -1108,7 +1108,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/inputs/docs/numericInput.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/inputs/docs/numericInput.doc.ts": [
       {
         "name": "max",
         "value": "number",
@@ -1260,7 +1260,7 @@
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/inputs/docs/radioInput.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/inputs/docs/radioInput.doc.ts": [
       {
         "name": "icon",
         "value": "React.FC<any>",
@@ -1352,7 +1352,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/inputs/docs/rating.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/inputs/docs/rating.doc.ts": [
       {
         "name": "filledStarIcon",
         "value": "any",
@@ -1459,7 +1459,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/inputs/docs/searchInput.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/inputs/docs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>",
@@ -1691,7 +1691,7 @@
         "comment": "<p>Debounce delay in ms</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/inputs/docs/switch.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/inputs/docs/switch.doc.ts": [
       {
         "name": "id",
         "value": "string",
@@ -1773,7 +1773,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/inputs/docs/textArea.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/inputs/docs/textArea.doc.ts": [
       {
         "name": "rows",
         "value": "number",
@@ -1890,7 +1890,7 @@
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/inputs/docs/textInput.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>",
@@ -2112,7 +2112,7 @@
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/inputs/docs/timePicker.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/inputs/docs/timePicker.doc.ts": [
       {
         "name": "minutesStep",
         "value": "number",
@@ -2194,16 +2194,21 @@
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/layout/docs/accordion.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/layout/docs/accordion.doc.tsx": [
       {
         "name": "title",
-        "value": "string",
+        "value": "string | React.ReactElement<any, string | ((props: any) => React.ReactElement<any, any>) | (new (props: any) => React.Component<any, any, any>)>",
         "comment": "<p>Accordion title</p>"
+      },
+      {
+        "name": "renderTitle",
+        "value": "(isOpen: boolean) => React.ReactElement<any, string | ((props: any) => React.ReactElement<any, any>) | (new (props: any) => React.Component<any, any, any>)>",
+        "comment": "<p>Overrides default title rendering.</p>"
       },
       {
         "name": "dropdownIcon",
         "value": "React.FC<any>",
-        "comment": "<p>Overrides the default dropdown (folding) icon</p>"
+        "comment": "<p>Overrides the default dropdown (folding) icon.Pass null to disable the folding icon completely</p>"
       },
       {
         "name": "renderAdditionalItems",
@@ -2281,7 +2286,7 @@
         "comment": "<p>Padding inside the panel</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/layout/docs/blocker.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/layout/docs/blocker.doc.ts": [
       {
         "name": "isEnabled",
         "value": "boolean",
@@ -2318,7 +2323,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>",
@@ -2390,7 +2395,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/layout/docs/controlGroup.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/layout/docs/controlGroup.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -2412,7 +2417,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>",
@@ -2469,7 +2474,7 @@
         "comment": "<p>Component&#39;s base color</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/layout/docs/labeledInput.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/layout/docs/labeledInput.doc.tsx": [
       {
         "name": "Tooltip",
         "value": "React.ComponentType<TooltipProps>",
@@ -2551,7 +2556,7 @@
         "comment": "<p>Component&#39;s size in px. This is &#39;logical&#39; size, defined in how many pixels components occupies vertically.</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/layout/docs/radioGroup.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/layout/docs/radioGroup.doc.ts": [
       {
         "name": "RadioInput",
         "value": "React.ComponentType<RadioInputProps>",
@@ -2628,7 +2633,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/navigation/docs/anchor.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/navigation/docs/anchor.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -2670,6 +2675,11 @@
         "comment": "<p>Called when component is clicked</p>"
       },
       {
+        "name": "clickAnalyticsEvent",
+        "value": "{ [key: string]: any; name: string; }",
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
         "name": "rawProps",
         "value": "any",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
@@ -2680,7 +2690,12 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/navigation/docs/mainMenu.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/navigation/docs/mainMenu.doc.tsx": [
+      {
+        "name": "items",
+        "value": "{ render: (item: any, hiddenItems?: any[], displayedItems?: any[]) => any; priority: number; collapsedContainer?: boolean; id: string; }[]",
+        "comment": null
+      },
       {
         "name": "children",
         "value": "any",
@@ -2797,7 +2812,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/overlays/docs/alert.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/overlays/docs/alert.doc.tsx": [
       {
         "name": "actions",
         "value": "notificationAction[]",
@@ -2834,7 +2849,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode",
@@ -2951,7 +2966,7 @@
         "comment": "<p>Marks that component&#39;s value is required</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/overlays/docs/dropdownContainer.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/overlays/docs/dropdownContainer.doc.tsx": [
       {
         "name": "width",
         "value": "auto",
@@ -3058,7 +3073,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/overlays/docs/modalFooter.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/overlays/docs/modalFooter.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | gray5",
@@ -3120,7 +3135,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | gray5",
@@ -3187,7 +3202,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>",
@@ -3249,7 +3264,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
       {
         "name": "content",
         "value": "any",
@@ -3306,7 +3321,7 @@
         "comment": "<p>Tooltip color</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
       {
         "name": "entityName",
         "value": "string",
@@ -3553,7 +3568,7 @@
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/pickers/docs/pickerModal.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/pickers/docs/pickerModal.doc.tsx": [
       {
         "name": "entityName",
         "value": "string",
@@ -3670,11 +3685,6 @@
         "comment": null
       },
       {
-        "name": "disallowClickOutside",
-        "value": "boolean",
-        "comment": null
-      },
-      {
         "name": "renderFilter",
         "value": "(editableFilter: IEditable<any>) => React.ReactNode",
         "comment": null
@@ -3683,9 +3693,19 @@
         "name": "renderFooter",
         "value": "(props: IModal<any>>) => React.ReactNode",
         "comment": null
+      },
+      {
+        "name": "disallowClickOutside",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "rawProps",
+        "value": "any",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/pickers/docs/pickerToggler.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
         "value": "React.FC<any>",
@@ -3902,7 +3922,7 @@
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
       {
         "name": "rowProps",
         "value": "DataRowProps<TItem, TId>",
@@ -3959,7 +3979,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/tables/docs/dataTableHeaderCell.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/tables/docs/dataTableHeaderCell.doc.tsx": [
       {
         "name": "column",
         "value": "DataColumnProps<TItem, TId, any>",
@@ -4106,7 +4126,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/tables/docs/dataTableHeaderRow.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/tables/docs/dataTableHeaderRow.doc.tsx": [
       {
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]",
@@ -4198,7 +4218,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/tables/docs/dataTableRow.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/tables/docs/dataTableRow.doc.tsx": [
       {
         "name": "renderCell",
         "value": "(props: DataTableCellProps<TItem, TId>) => React.ReactNode",
@@ -4410,7 +4430,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/typography/docs/richTextView.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/typography/docs/richTextView.doc.tsx": [
       {
         "name": "htmlContent",
         "value": "any",
@@ -4437,7 +4457,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/typography/docs/text.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/typography/docs/text.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -4494,7 +4514,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/typography/docs/textPlaceholder.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number",
@@ -4516,7 +4536,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/widgets/docs/avatar.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/widgets/docs/avatar.doc.tsx": [
       {
         "name": "alt",
         "value": "string",
@@ -4558,7 +4578,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/widgets/docs/avatarStack.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/widgets/docs/avatarStack.doc.tsx": [
       {
         "name": "avatarSize",
         "value": "24 | 36 | 48 | 144",
@@ -4595,7 +4615,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/widgets/docs/badge.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/widgets/docs/badge.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>",
@@ -4752,7 +4772,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/widgets/docs/paginator.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/widgets/docs/paginator.doc.tsx": [
       {
         "name": "size",
         "value": "24 | 30",
@@ -4819,7 +4839,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/widgets/docs/spinner.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/widgets/docs/spinner.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -4841,7 +4861,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/widgets/docs/tag.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/widgets/docs/tag.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>",
@@ -4988,7 +5008,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/buttons/docs/button.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/buttons/docs/button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>",
@@ -5160,7 +5180,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/buttons/docs/iconButton.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/buttons/docs/iconButton.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -5237,7 +5257,7 @@
         "comment": "<p>Component color</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/buttons/docs/linkButton.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/buttons/docs/linkButton.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>",
@@ -5404,7 +5424,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/buttons/docs/tabButton.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/buttons/docs/tabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60",
@@ -5561,7 +5581,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
       {
         "name": "size",
         "value": "36 | 48 | 60",
@@ -5718,7 +5738,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/datePickers/docs/calendar.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/datePickers/docs/calendar.doc.ts": [
       {
         "name": "value",
         "value": "TSelection",
@@ -5775,7 +5795,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/datePickers/docs/datePicker.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/datePickers/docs/datePicker.doc.tsx": [
       {
         "name": "format",
         "value": "string",
@@ -5912,7 +5932,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/datePickers/docs/rangeDatePicker.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/datePickers/docs/rangeDatePicker.doc.tsx": [
       {
         "name": "getPlaceholder",
         "value": "(type: InputType) => string",
@@ -6039,7 +6059,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/checkbox.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/checkbox.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>",
@@ -6161,7 +6181,7 @@
         "comment": "<p>Component color</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/multiSwitch.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/multiSwitch.doc.tsx": [
       {
         "name": "items",
         "value": "MultiSwitchItem<TValue>[]",
@@ -6223,7 +6243,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/numericInput.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/numericInput.doc.ts": [
       {
         "name": "max",
         "value": "number",
@@ -6385,7 +6405,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/radioInput.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/radioInput.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>",
@@ -6487,7 +6507,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/rating.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/rating.doc.ts": [
       {
         "name": "filledStarIcon",
         "value": "any",
@@ -6599,7 +6619,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/searchInput.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>",
@@ -6841,7 +6861,7 @@
         "comment": "<p>Debounce delay in ms</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/sliderRating.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/sliderRating.doc.tsx": [
       {
         "name": "renderTooltip",
         "value": "(value: TValue) => React.ReactNode",
@@ -6918,7 +6938,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/switch.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/switch.doc.ts": [
       {
         "name": "id",
         "value": "string",
@@ -7010,7 +7030,7 @@
         "comment": "<p>Component color</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/textArea.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/textArea.doc.ts": [
       {
         "name": "rows",
         "value": "number",
@@ -7137,7 +7157,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/textInput.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>",
@@ -7369,7 +7389,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/docs/timePicker.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/docs/timePicker.doc.ts": [
       {
         "name": "minutesStep",
         "value": "number",
@@ -7451,16 +7471,21 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/layout/docs/accordion.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/layout/docs/accordion.doc.tsx": [
       {
         "name": "title",
-        "value": "string",
+        "value": "string | React.ReactElement<any, string | ((props: any) => React.ReactElement<any, any>) | (new (props: any) => React.Component<any, any, any>)>",
         "comment": "<p>Accordion title</p>"
+      },
+      {
+        "name": "renderTitle",
+        "value": "(isOpen: boolean) => React.ReactElement<any, string | ((props: any) => React.ReactElement<any, any>) | (new (props: any) => React.Component<any, any, any>)>",
+        "comment": "<p>Overrides default title rendering.</p>"
       },
       {
         "name": "dropdownIcon",
         "value": "React.FC<any>",
-        "comment": "<p>Overrides the default dropdown (folding) icon</p>"
+        "comment": "<p>Overrides the default dropdown (folding) icon.Pass null to disable the folding icon completely</p>"
       },
       {
         "name": "renderAdditionalItems",
@@ -7538,7 +7563,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/layout/docs/blocker.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/layout/docs/blocker.doc.ts": [
       {
         "name": "isEnabled",
         "value": "boolean",
@@ -7575,7 +7600,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/layout/docs/checkboxGroup.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/layout/docs/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>",
@@ -7647,7 +7672,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/layout/docs/controlGroup.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/layout/docs/controlGroup.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -7669,7 +7694,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/layout/docs/iconContainer.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/layout/docs/iconContainer.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>",
@@ -7726,7 +7751,7 @@
         "comment": "<p>Component color</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/layout/docs/labeledInput.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/layout/docs/labeledInput.doc.tsx": [
       {
         "name": "Tooltip",
         "value": "React.ComponentType<TooltipProps>",
@@ -7813,7 +7838,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/layout/docs/radioGroup.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/layout/docs/radioGroup.doc.ts": [
       {
         "name": "RadioInput",
         "value": "React.ComponentType<RadioInputProps>",
@@ -7890,7 +7915,12 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/navigation/docs/mainMenu.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/navigation/docs/mainMenu.doc.tsx": [
+      {
+        "name": "items",
+        "value": "{ render: (item: any, hiddenItems?: any[], displayedItems?: any[]) => any; priority: number; collapsedContainer?: boolean; id: string; }[]",
+        "comment": null
+      },
       {
         "name": "children",
         "value": "any",
@@ -8007,7 +8037,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/overlays/docs/alert.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/overlays/docs/alert.doc.tsx": [
       {
         "name": "actions",
         "value": "notificationAction[]",
@@ -8044,7 +8074,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/overlays/docs/dropdown.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/overlays/docs/dropdown.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode",
@@ -8226,7 +8256,7 @@
         "comment": "<p>Called when component is clicked</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/overlays/docs/dropdownContainer.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/overlays/docs/dropdownContainer.doc.tsx": [
       {
         "name": "width",
         "value": "auto",
@@ -8333,7 +8363,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/overlays/docs/dropdownMenu.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/overlays/docs/dropdownMenu.doc.tsx": [
       {
         "name": "renderTarget",
         "value": "(props: IDropdownToggler) => React.ReactNode",
@@ -8515,7 +8545,7 @@
         "comment": "<p>Called when component is clicked</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/overlays/docs/dropdownMenuButton.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/overlays/docs/dropdownMenuButton.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>",
@@ -8672,7 +8702,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/overlays/docs/modalFooter.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/overlays/docs/modalFooter.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | night50 | night100",
@@ -8739,7 +8769,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/overlays/docs/modalHeader.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/overlays/docs/modalHeader.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | night50 | night100",
@@ -8811,7 +8841,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/overlays/docs/notificationCard.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/overlays/docs/notificationCard.doc.tsx": [
       {
         "name": "icon",
         "value": "React.FC<any>",
@@ -8873,7 +8903,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
       {
         "name": "snackType",
         "value": "info | success | warning | danger",
@@ -8920,7 +8950,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/overlays/docs/tooltip.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/overlays/docs/tooltip.doc.tsx": [
       {
         "name": "content",
         "value": "any",
@@ -8977,7 +9007,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/pickers/docs/pickerInput.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/pickers/docs/pickerInput.doc.tsx": [
       {
         "name": "entityName",
         "value": "string",
@@ -9224,7 +9254,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/pickers/docs/pickerList.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/pickers/docs/pickerList.doc.tsx": [
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
@@ -9416,7 +9446,7 @@
         "comment": "<p>If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/pickers/docs/pickerModal.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/pickers/docs/pickerModal.doc.tsx": [
       {
         "name": "entityName",
         "value": "string",
@@ -9533,11 +9563,6 @@
         "comment": null
       },
       {
-        "name": "disallowClickOutside",
-        "value": "boolean",
-        "comment": null
-      },
-      {
         "name": "renderFilter",
         "value": "(editableFilter: IEditable<any>) => React.ReactNode",
         "comment": null
@@ -9546,9 +9571,19 @@
         "name": "renderFooter",
         "value": "(props: IModal<any>>) => React.ReactNode",
         "comment": null
+      },
+      {
+        "name": "disallowClickOutside",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "rawProps",
+        "value": "any",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/pickers/docs/pickerToggler.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/pickers/docs/pickerToggler.doc.tsx": [
       {
         "name": "cancelIcon",
         "value": "React.FC<any>",
@@ -9755,7 +9790,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/tables/docs/dataTableCell.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/tables/docs/dataTableCell.doc.tsx": [
       {
         "name": "rowProps",
         "value": "DataRowProps<TItem, TId>",
@@ -9812,7 +9847,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/tables/docs/dataTableHeaderCell.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/tables/docs/dataTableHeaderCell.doc.tsx": [
       {
         "name": "column",
         "value": "DataColumnProps<TItem, TId, any>",
@@ -9959,7 +9994,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/tables/docs/dataTableHeaderRow.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/tables/docs/dataTableHeaderRow.doc.tsx": [
       {
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]",
@@ -10051,7 +10086,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/tables/docs/dataTableRow.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/tables/docs/dataTableRow.doc.tsx": [
       {
         "name": "renderCell",
         "value": "(props: DataTableCellProps<TItem, TId>) => React.ReactNode",
@@ -10268,7 +10303,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/typography/docs/richTextView.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/typography/docs/richTextView.doc.tsx": [
       {
         "name": "htmlContent",
         "value": "any",
@@ -10300,7 +10335,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/typography/docs/text.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/typography/docs/text.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -10357,7 +10392,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/typography/docs/textPlaceholder.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/typography/docs/textPlaceholder.doc.tsx": [
       {
         "name": "wordsCount",
         "value": "number",
@@ -10384,7 +10419,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/widgets/docs/avatar.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/widgets/docs/avatar.doc.tsx": [
       {
         "name": "alt",
         "value": "string",
@@ -10426,7 +10461,7 @@
         "comment": "<p>this ref is passed to the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/widgets/docs/avatarStack.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/widgets/docs/avatarStack.doc.tsx": [
       {
         "name": "avatarSize",
         "value": "24 | 36 | 48 | 144",
@@ -10463,7 +10498,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/widgets/docs/badge.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/widgets/docs/badge.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>",
@@ -10625,7 +10660,7 @@
         "comment": "<p>Component color</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/widgets/docs/carousel.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/widgets/docs/carousel.doc.tsx": [
       {
         "name": "items",
         "value": "Record<string, any>[]",
@@ -10667,7 +10702,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/widgets/docs/paginator.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/widgets/docs/paginator.doc.tsx": [
       {
         "name": "size",
         "value": "24 | 30",
@@ -10734,7 +10769,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/widgets/docs/spinner.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/widgets/docs/spinner.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -10756,7 +10791,7 @@
         "comment": "<p>Component color</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/widgets/docs/tag.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/widgets/docs/tag.doc.ts": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>",
@@ -10913,7 +10948,7 @@
         "comment": "<p>Component color</p>"
       }
     ],
-    "/components/buttons/docs/button.doc.tsx": [
+    "/components/buttons/Button/Button.doc.tsx": [
       {
         "name": "clearIcon",
         "value": "React.FC<any>",
@@ -11056,7 +11091,7 @@
       },
       {
         "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 18",
+        "value": "string",
         "comment": null
       },
       {
@@ -11214,6 +11249,83 @@
       {
         "name": "size",
         "value": "none | 24 | 30 | 36 | 42 | 48",
+        "comment": null
+      }
+    ],
+    "/components/buttons/IconButton/IconButton.doc.tsx": [
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
+      },
+      {
+        "name": "link",
+        "value": "Link",
+        "comment": "<p>Link object to redirect to for SPA-redirects</p>"
+      },
+      {
+        "name": "href",
+        "value": "string",
+        "comment": "<p>Href (URL) to redirect to, for non-SPA redirects</p>"
+      },
+      {
+        "name": "isLinkActive",
+        "value": "boolean",
+        "comment": "<p>Highlights component to show that link is active (browser is displaying the page to which link is pointing)</p>"
+      },
+      {
+        "name": "target",
+        "value": "\"_blank\"",
+        "comment": "<p>Controls where the link should be opened</p>"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean",
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "icon",
+        "value": "React.FC<any>",
+        "comment": "<p>Icon can be an React element (usually an SVG element)</p>"
+      },
+      {
+        "name": "iconPosition",
+        "value": "left | right",
+        "comment": "<p>Position of the icon (left of right)</p>"
+      },
+      {
+        "name": "onIconClick",
+        "value": "() => void",
+        "comment": "<p>Click handler for the icon</p>"
+      },
+      {
+        "name": "clickAnalyticsEvent",
+        "value": "{ [key: string]: any; name: string; }",
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "tabIndex",
+        "value": "number",
+        "comment": "<p>Controls the order of keyboard navigation between components</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "any",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>",
+        "comment": "<p>this ref is passed to the underlying component</p>"
+      },
+      {
+        "name": "color",
+        "value": "default | info | success | warning | secondary | error",
         "comment": null
       }
     ],
@@ -11508,7 +11620,7 @@
         "comment": null
       }
     ],
-    "/components/inputs/docs/textInput.doc.ts": [
+    "/components/inputs/TextInput/TextInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "React.FC<any>",
@@ -11721,7 +11833,7 @@
       },
       {
         "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48",
+        "value": "string",
         "comment": null
       },
       {
@@ -12206,7 +12318,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -12278,7 +12390,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/epam-promo/components/layout/FlexItems/docs/panel.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/epam-promo/components/layout/FlexItems/docs/panel.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -12330,7 +12442,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/Slider/docs/rangeSlider.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/Slider/docs/rangeSlider.doc.ts": [
       {
         "name": "min",
         "value": "number",
@@ -12422,7 +12534,7 @@
         "comment": "<p>Component color</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/inputs/Slider/docs/slider.doc.ts": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/inputs/Slider/docs/slider.doc.ts": [
       {
         "name": "min",
         "value": "number",
@@ -12514,7 +12626,7 @@
         "comment": "<p>Component color</p>"
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/layout/FlexItems/docs/flexRow.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/layout/FlexItems/docs/flexRow.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -12591,7 +12703,7 @@
         "comment": null
       }
     ],
-    "D:/dev/UUI-develop/loveship/components/layout/FlexItems/docs/panel.doc.tsx": [
+    "C:/Users/Siarhei_Dzeraviannik.EPAM/WebstormProjects/UUI/loveship/components/layout/FlexItems/docs/panel.doc.tsx": [
       {
         "name": "cx",
         "value": "any",

@@ -28,6 +28,7 @@ export const uuiElement = {
     textareaCounter: 'uui-textarea-counter',
     prefixInput: 'uui-input-prefix',
     suffixInput: 'uui-input-suffix',
+    pickerTogglerBody: 'uui-picker-toggler-body',
 } as const;
 
 export const uuiMod = {

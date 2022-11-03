@@ -1,18 +1,18 @@
 import { withMods } from '@epam/uui-core';
 import { RadioInput as uuiRadioInput, RadioInputProps } from '@epam/uui-components';
-import '../../assets/styles/variables/inputs/radioInput.scss';
+import { ReactComponent as RadioPoint } from '../../../icons/radio-point.svg';
 import * as css from './RadioInput.scss';
-import { ReactComponent as RadioPoint } from '../../icons/radio-point.svg';
+import './RadioInput.colorvars.scss';
 
 export interface RadioInputMods {
-    size?: '12' | '18';
+    size?: string;
 }
 
 function applyRadioInputMods(mods: RadioInputMods & RadioInputProps) {
     return [
         'radio-input-vars',
         css.root,
-        css['size-' + (mods.size || '18')],
+        mods.size && `size-${ mods.size }`,
     ];
 }
 
