@@ -186,7 +186,7 @@ export interface IModal<TResult> {
     key: string;
     zIndex: number;
     success(result: TResult): void;
-    abort(): void;
+    abort(result?: any): void;
 }
 
 export interface INotification {
