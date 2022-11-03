@@ -12,7 +12,7 @@ export interface ModalComponentProps<TParameters, TResult> {
     zIndex: number;
     key: string;
     success(result: TResult): void;
-    abort(result?: TResult): void;
+    abort(result?: any): void;
 }
 
 export interface ModalOperation {
