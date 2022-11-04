@@ -131,7 +131,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }
 
         this.setState({
-            opened,
             dataSourceState: {
                 ...this.state.dataSourceState,
                 topIndex: 0,
@@ -139,7 +138,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 focusedIndex: 0,
                 search: '',
             },
-            isSearchChanged: !opened,
+            isSearchChanged: false,
+            opened,
         });
     }
 
@@ -284,6 +284,14 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }, e);
     }
 
+    checkToOpen = (value: string = ''): boolean => {
+        if (this.props.minCharsToSearch) {
+            return value.length >= this.props.minCharsToSearch;
+        } else {
+            return !this.state.opened && value.length > 0 ? true : this.state.opened;
+        }
+    }
+
     handleTogglerSearchChange = (value: string) => {
         this.setState({
             ...this.state,
@@ -292,7 +300,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 focusedIndex: -1,
                 search: value,
             },
-            opened: !this.state.opened && value.length > 0 ? true : this.state.opened,
+            opened: this.checkToOpen(value),
             isSearchChanged: true,
         });
     }

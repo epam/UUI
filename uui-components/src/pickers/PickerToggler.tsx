@@ -72,14 +72,17 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (!props.isOpen) {
             blur();
             // The dropdown body is closed => Doesn't have enough chars entered => clear input on blur
-            props.value && props.onValueChange('');
+            !props.minCharsToSearch && props.value && props.onValueChange('');
+            props.minCharsToSearch && props.toggleDropdownOpening(false);
+            return;
         }
         const blurTrigger = e.relatedTarget as HTMLElement;
         const isPickerChildTriggerBlur = isChildFocusable(e) || closest(blurTrigger, toggleContainer.current);
         const shouldCloseOnBlur = props.isOpen && props.searchPosition !== 'body' && !isPickerChildTriggerBlur;
-        if (!shouldCloseOnBlur) return;
-        blur();
-        props.toggleDropdownOpening(false);
+        if (shouldCloseOnBlur) {
+            blur();
+            props.toggleDropdownOpening(false);
+        }
     };
 
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
