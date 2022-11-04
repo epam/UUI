@@ -28,6 +28,7 @@ export default function CitiesTable(props: unknown) {
             caption: 'ID',
             render: city => <Text color='gray80' fontSize='14'>{ city.id }</Text>,
             isSortable: true,
+            fix: 'left',
             width: 120,
         },
         {
@@ -37,7 +38,6 @@ export default function CitiesTable(props: unknown) {
             isSortable: true,
             width: 162,
             grow: 1,
-            fix: 'left',
         },
         {
             key: 'countryName',
@@ -91,6 +91,7 @@ export default function CitiesTable(props: unknown) {
         getRowOptions: useCallback(item => ({
             checkbox: { isVisible: true, isDisabled: item.population && +item.population < 20000 },
         }), []),
+        cascadeSelection: true,
     });
 
     return (

@@ -6,7 +6,7 @@ import * as css from './Blocker.scss';
 // TBD: move to loveship-specific mods
 //import { EpamColor, SpinnerMods } from '@epam/oswald';
 
-export interface BlockerProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     /** Turns the blocker on or off */
     isEnabled: boolean;
     /** Disables spinner animation display */

@@ -69,7 +69,7 @@ export const basePlugins = [
     ...defaultPlugins,
 ];
 
-interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     isReadonly?: boolean;
     plugins?: Plugin[];
     autoFocus?: boolean;

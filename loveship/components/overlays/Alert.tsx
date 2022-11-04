@@ -16,7 +16,7 @@ type notificationAction = {
     action: () => void;
 };
 
-export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     actions?: notificationAction[];
     color?: EpamPrimaryColor;
     onClose?(): void;
