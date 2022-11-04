@@ -116,7 +116,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     toggleBodyOpening = (opened: boolean) => {
-        if (this.state.opened === opened) return;
+        if (this.state.opened === opened || (this.props.minCharsToSearch && this.state.dataSourceState.search.length < this.props.minCharsToSearch)) return;
 
         if (this.props.editMode == 'modal') {
             this.toggleModalOpening(opened);
