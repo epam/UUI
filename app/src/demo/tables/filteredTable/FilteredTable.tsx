@@ -58,7 +58,6 @@ export const FilteredTable: React.FC = () => {
         });
         setTotalCount(() => result.totalCount);
         result.count = result.items.length;
-        result.totalCount = result.items.length;
         result.from = 0;
         return result;
     }, [tableStateApi.tableState.page, tableStateApi.tableState.pageSize]);
@@ -70,7 +69,6 @@ export const FilteredTable: React.FC = () => {
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
-            checkbox: { isVisible: true },
             isSelectable: true,
         },
     });

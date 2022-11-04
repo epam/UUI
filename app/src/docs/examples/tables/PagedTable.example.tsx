@@ -37,6 +37,8 @@ export default function PagedTable() {
             pageSize: state.pageSize,
         });
         setState(s => ({ ...s, totalCount: result.totalCount }));
+        result.count = result.items.length;
+        result.from = 0;
         return result;
     }, [state.page, state.pageSize]);
 

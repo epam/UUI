@@ -478,7 +478,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             checkedId,
             isChecked,
             {
-                cascade: this.props.cascadeSelection,
+                cascade: isRoot || this.props.cascadeSelection,
                 isSelectable: (item: TItem) => {
                     const { isCheckable } = this.getRowProps(item, null, []);
                     return isCheckable;

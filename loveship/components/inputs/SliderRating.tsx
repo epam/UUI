@@ -20,7 +20,7 @@ import { i18n } from "../../i18n";
 
 const defaultSize = '18';
 
-export interface SliderRatingProps<TValue> extends IEditable<TValue>, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+export interface SliderRatingProps<TValue> extends IEditable<TValue>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     renderTooltip?: (value: TValue) => React.ReactNode;
     from?: 1 | 2;
     withoutNa?: boolean;
