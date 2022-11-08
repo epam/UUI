@@ -44,7 +44,7 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
                         action: () => { },
                     },
                 ],
-                name: '2 action',
+                name: '2 actions',
             },
         ],
 

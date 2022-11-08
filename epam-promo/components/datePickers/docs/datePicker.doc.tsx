@@ -4,8 +4,8 @@ import { DocBuilder } from '@epam/uui-docs';
 import { Day, IconContainer } from '@epam/uui-components';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 import { LinkButton, FlexRow } from '../../';
-import { iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc } from '../../../docs';
-import { FormContext, DefaultContext, ResizableContext, TableContext, GridContext, IHasEditModeDoc } from '../../../docs';
+import { iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc,
+    FormContext, DefaultContext, ResizableContext, TableContext, IHasEditModeDoc } from '../../../docs';
 import { ReactComponent as Point } from '../../../icons/radio-point.svg';
 
 
@@ -50,6 +50,6 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
             },
         ],
     })
-    .withContexts(DefaultContext, FormContext, TableContext, ResizableContext, GridContext);
+    .withContexts(DefaultContext, FormContext, TableContext, ResizableContext);
 
 export = DatePickerDoc;
