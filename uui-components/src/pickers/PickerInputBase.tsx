@@ -116,8 +116,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     toggleBodyOpening = (opened: boolean) => {
-        if (this.state.opened === opened || (this.props.minCharsToSearch && this.state.dataSourceState.search.length < this.props.minCharsToSearch)) return;
-
+        if (this.state.opened === opened || (this.props.minCharsToSearch && (this.state.dataSourceState.search?.length ?? 0) < this.props.minCharsToSearch)) return;
         if (this.props.editMode == 'modal') {
             this.toggleModalOpening(opened);
         } else {
@@ -151,9 +150,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     getSearchPosition() {
         if (isMobile() && this.props.searchPosition !== 'none') return "body";
-        if (this.props.minCharsToSearch || this.props.minCharsToSearch === 0) {
-            return 'input';
-        }
         if (!this.props.searchPosition) {
             return this.props.selectionMode === 'multi' ? 'body' : 'input';
         } else {
@@ -239,7 +235,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             prefix,
             suffix,
             onFocus: this.props.onFocus,
-            onBlur: this.props.onBlur,
+            onBlur: this.handleBlur,
             onClear: this.handleClearSelection,
             selection: selectedRows,
             placeholder: this.getPlaceholder(),
@@ -287,15 +283,11 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }, e);
     }
 
-    checkToOpen = (value: string = ''): boolean => {
-        if (this.props.minCharsToSearch) {
-            return value.length >= this.props.minCharsToSearch;
-        } else {
-            return !this.state.opened && value.length > 0 ? true : this.state.opened;
-        }
-    }
-
     handleTogglerSearchChange = (value: string) => {
+        let isOpen = !this.state.opened && value.length > 0 ? true : this.state.opened;
+        if (this.props.minCharsToSearch) {
+            isOpen = value.length >= this.props.minCharsToSearch;
+        }
         this.setState({
             ...this.state,
             dataSourceState: {
@@ -303,9 +295,23 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 focusedIndex: -1,
                 search: value,
             },
-            opened: this.checkToOpen(value),
+            opened: isOpen,
             isSearchChanged: true,
         });
+    }
+
+    handleBlur = (e: React.FocusEvent<HTMLElement>) => {
+        this.setState({
+            ...this.state,
+            dataSourceState: {
+                ...this.state.dataSourceState,
+                search: '',
+            },
+            isSearchChanged: false,
+            opened: false,
+        });
+
+        this.props.onBlur && this.props.onBlur(e);
     }
 
     getRows() {
@@ -323,7 +329,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         }
 
         return preparedRows.map((rowProps) => {
-            const newRowProps = {...rowProps};
+            const newRowProps = { ...rowProps };
             if (rowProps.isSelectable && this.isSingleSelect() && this.props.editMode !== 'modal') {
                 newRowProps.onSelect = this.onSelect;
             }
