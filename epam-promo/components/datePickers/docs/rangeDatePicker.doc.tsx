@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import * as css from '../RangeDatePicker.scss';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, FormContext, DefaultContext, GridContext, ResizableContext } from '../../../docs';
+import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, FormContext, DefaultContext, TableContext, ResizableContext } from '../../../docs';
 import dayjs, { Dayjs } from "dayjs";
 import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
 import { Button, Text } from '../..';
@@ -101,6 +101,6 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
     })
     .prop('disableClear', { examples: [true], defaultValue: false})
     .prop('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] })
-    .withContexts(DefaultContext, FormContext, ResizableContext, GridContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext, TableContext);
 
 export = RangeDatePickerDoc;
