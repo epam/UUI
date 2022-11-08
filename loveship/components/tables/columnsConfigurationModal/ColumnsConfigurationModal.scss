@@ -2,9 +2,19 @@
 
 .main-panel {
     height: 100%;
+    padding-top: 6px;
 
     .group-title {
+        > :first-child {
+            padding-top: 0;
+        }
         margin-bottom: -6px;
+        > button {
+            top: -3px;
+            > :global(.uui-caption) {
+                font-family: $font-sans-semibold;
+            }
+        }
     }
     .group-items {
         flex-direction: column;
