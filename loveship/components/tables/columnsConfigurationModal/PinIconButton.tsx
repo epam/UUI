@@ -24,7 +24,7 @@ export function PinIconButton(props: IPinIconButton) {
             return isPinnedAlways ? i18nLocal.lockedColumnPinButton : i18nLocal.unPinColumnButton;
         }
         return i18nLocal.pinColumnButton;
-    }, [isPinnedAlways]);
+    }, [isPinned, isPinnedAlways]);
     const pinIcon = useMemo(() => {
         if (isPinnedAlways) {
             return LockIcon;

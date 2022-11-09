@@ -23,8 +23,8 @@ interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<Col
 }
 
 const renderGroupTitle = (title: string, amount: number) => <FlexRow size="24"  padding="24" spacing="6" cx={ styles.groupTitle }>
-    <Text font="sans-semibold" lineHeight="24" fontSize="14">{ title }</Text>
-    <Badge caption={ amount } color="gray30" size="18" />
+    <Text cx={ styles.groupTitleText } font="sans-semibold" lineHeight="24" fontSize="14">{ title }</Text>
+    <Badge cx={ styles.groupTitleBadge } caption={ amount } color="gray30" size="18" />
 </FlexRow>;
 
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) {
