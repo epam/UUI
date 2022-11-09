@@ -81,7 +81,7 @@ const getPersons = cached("persons", async () => {
 
         persons.push({
             avatarUrl: `https://avatars.dicebear.com/api/human/${c.guid()}.svg?background=%23EBEDF5&radius=50`,
-            birthDate: c.birthday().toISOString(),
+            birthDate: c.birthday().toDateString(),
             cityId: city.id,
             cityName: city.name,
             countryId: city.country,
@@ -91,7 +91,7 @@ const getPersons = cached("persons", async () => {
             email,
             employmentStatus: c.bool(),
             firstName,
-            hireDate: c.date({ year: c.year({ min: 2010, max: 2020 }) }).toISOString(),
+            hireDate: c.date({ year: c.year({ min: 2010, max: 2020 }) }).toDateString(),
             id,
             jobTitle: jobTitle.name,
             jobTitleId: jobTitle.id,
@@ -100,7 +100,7 @@ const getPersons = cached("persons", async () => {
             locationName: city.countryName + ", " + city.name,
             managerId: manager.id,
             managerName: manager.name,
-            modifiedDate: c.date({ year: c.year({ min: 2018, max: 2020 }) }).toISOString(),
+            modifiedDate: c.date({ year: c.year({ min: 2018, max: 2020 }) }).toDateString(),
             name: `${firstName} ${lastName}`,
             officeAddress: office.name,
             officeId: office.id,
