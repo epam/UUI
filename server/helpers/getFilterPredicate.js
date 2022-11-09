@@ -46,7 +46,7 @@ function simplifyPredicates(filter) {
 }
 exports.simplifyPredicates = simplifyPredicates;
 function isDate(val) {
-    return (0, dayjs_1["default"])(val).isValid();
+    return dayjs_1["default"](val).isValid();
 }
 var truePredicate = function () { return true; };
 function getFilterPredicate(filter) {
@@ -82,7 +82,7 @@ function getFilterPredicate(filter) {
                 predicates.push(function (item) {
                     var value = item[key];
                     if (typeof value === "string" && isDate(conditionValue_1)) {
-                        return (0, dayjs_1["default"])(value).isSameOrAfter(conditionValue_1);
+                        return dayjs_1["default"](value).isSameOrAfter(conditionValue_1);
                     }
                     return !(value !== null && value !== undefined) || value >= conditionValue_1;
                 });
@@ -92,7 +92,7 @@ function getFilterPredicate(filter) {
                 predicates.push(function (item) {
                     var value = item[key];
                     if (typeof value === "string" && isDate(conditionValue_2)) {
-                        return (0, dayjs_1["default"])(value).isSameOrBefore(conditionValue_2);
+                        return dayjs_1["default"](value).isSameOrBefore(conditionValue_2);
                     }
                     return !(value !== null && value !== undefined) || value <= conditionValue_2;
                 });
@@ -131,7 +131,14 @@ function getFilterPredicate(filter) {
             }
         }
         else {
-            predicates.push(function (item) { return item[key] === condition; });
+            predicates.push(function (item) {
+                if (typeof condition === "string" && isDate(condition)) {
+                    return (0, dayjs_1["default"])(item[key]).isSame(condition);
+                }
+                else {
+                    return item[key] === condition;
+                }
+            });
         }
     };
     for (var n = 0; n < keys.length; n++) {
