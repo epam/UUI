@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 
 export class FiltersPanelDoc extends BaseDocsBlock {
     title = 'Filters Panel';
@@ -12,7 +12,7 @@ export class FiltersPanelDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Filters Panel'
-                    path='./examples/filtersPanel/Basic.example.tsx'
+                    path='./examples/tables/FiltersPanelBasic.example.tsx'
                 />
             </>
         );
