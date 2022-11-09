@@ -2,7 +2,7 @@
 
 .row-wrapper {
     position: relative;
-    padding: 1px 24px 1px 0;
+    padding: 0 24px 0 0;
     width: 100%;
     box-sizing: border-box;
     touch-action: auto;
@@ -25,6 +25,7 @@
         background-position: right;
         background-repeat: repeat-y;
         padding: 6px 0 6px 24px;
+        background-position-y: -2px;
 
         opacity: 1;
         touch-action: none;

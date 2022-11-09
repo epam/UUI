@@ -54,8 +54,8 @@ export function toggleSingleColumnPin(
         const { column, prev, next } = findFirstByGroupKey(columnsSorted, 'displayedUnpinned');
         if (column) {
             const targetOrder = prevConfig[column.key]?.order;
-            const targetPrevOrder = prevConfig[prev.key]?.order;
-            const targetNextOrder = prevConfig[next.key]?.order;
+            const targetPrevOrder = prevConfig[prev?.key]?.order;
+            const targetNextOrder = prevConfig[next?.key]?.order;
             order = getNewColumnOrder({ targetOrder, targetPrevOrder, targetNextOrder, position: 'top' });
         }
     } else {
