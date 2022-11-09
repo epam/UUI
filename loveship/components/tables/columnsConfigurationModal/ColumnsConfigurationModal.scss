@@ -5,11 +5,11 @@
     padding-top: 6px;
 
     .group-title {
-        > :first-child {
+        > .group-title-text {
             padding-top: 0;
         }
         margin-bottom: -6px;
-        > button {
+        > .group-title-badge {
             top: -3px;
             > :global(.uui-caption) {
                 font-family: $font-sans-semibold;
