@@ -34,8 +34,8 @@ export function canAcceptDrop(props: AcceptDropParams<DndDataType, DndDataType>)
 export function getNewColumnOrder(
     props: {
         targetOrder: string,
-        targetPrevOrder: string,
-        targetNextOrder: string,
+        targetPrevOrder?: string,
+        targetNextOrder?: string,
         position: DropPosition,
     },
 ) {
