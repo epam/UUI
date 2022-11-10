@@ -911,7 +911,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -963,7 +962,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1015,7 +1013,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1067,7 +1064,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1119,7 +1115,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1171,7 +1166,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1223,7 +1217,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1275,7 +1268,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1327,7 +1319,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1379,7 +1370,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}
@@ -1431,7 +1421,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="uui-checkbox"
                       >
                         <input
-                          aria-checked={false}
                           checked={false}
                           onChange={[Function]}
                           tabIndex={-1}

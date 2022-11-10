@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from "react";
 import sortBy from "lodash.sortby";
-import { DataTableState, IPresetsApi, ITablePreset, getOrderBetween } from "@epam/uui-core";
+import { i18n } from "../../../i18n";
+import { DataTableState, IPresetsApi, ITablePreset } from "@epam/uui-core";
 import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
-import css from './PresetPanel.scss';
-import { Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow, TabButton } from "../../index";
+import css from './PresetsPanel.scss';
+import { Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow } from "../../index";
 import { Preset } from "./Preset";
 import { PresetInput } from "./PresetInput";
-import { ReactComponent as PlusIcon } from "@epam/assets/icons/common/action-add-12.svg";
 import { ReactComponent as DeleteIcon } from "@epam/assets/icons/common/action-deleteforever-18.svg";
+import { ReactComponent as addIcon } from "@epam/assets/icons/common/content-plus_bold-18.svg";
 
 export interface IPresetsBlockProps extends IPresetsApi {
     tableState: DataTableState;
@@ -15,7 +16,7 @@ export interface IPresetsBlockProps extends IPresetsApi {
 
 type PresetAdaptiveItem = AdaptiveItemProps<{preset?: ITablePreset }>;
 
-export const PresetPanel = (props: IPresetsBlockProps) => {
+export const PresetsPanel = (props: IPresetsBlockProps) => {
     const [isAddingPreset, setIsAddingPreset] = useState(false);
 
     const setAddingPreset = useCallback(() => {
@@ -36,13 +37,17 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
 
     const renderAddPresetButton = useCallback(() => {
         return !isAddingPreset ?
-            <TabButton
-                caption={ 'Add Preset' }
-                onClick={ setAddingPreset }
-                size="36"
-                icon={ PlusIcon }
-                iconPosition="left"
-            />
+            <div className={ css.addButton }>
+                <Button
+                    size="36"
+                    onClick={ setAddingPreset }
+                    caption={ i18n.presetPanel.addCaption }
+                    icon={ addIcon }
+                    iconPosition="left"
+                    fill="light"
+                    color="blue"
+                />
+            </div>
             : <PresetInput
                 onCancel={ cancelAddingPreset }
                 key={ 'createPresetInput' }
@@ -70,10 +75,10 @@ export const PresetPanel = (props: IPresetsBlockProps) => {
                             <DropdownMenuButton
                                 onClick={ () => onPresetDropdownSelect(item) }
                                 caption={ item.preset.name }
-                                icon={ DeleteIcon }
+                                icon={ !item.preset.isReadonly && DeleteIcon }
                                 iconPosition='right'
                                 cx={ css.dropdownDeleteIcon }
-                                onIconClick={ () => props.deletePreset(item.preset) }
+                                onIconClick={ !item.preset.isReadonly && (() => props.deletePreset(item.preset)) }
                             />)
                     }
                 </DropdownContainer> }

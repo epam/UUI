@@ -13,6 +13,7 @@
     "@epam/loveship": "latest",
     "@epam/promo": "latest",
     "@epam/uui": "latest",
+    "@epam/uui-core": "latest",
     "@epam/uui-components": "latest",
     "@epam/uui-timeline": "latest",
     "@epam/uui-editor": "latest",

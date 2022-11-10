@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isChildFocusable, IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, closest, cx, IHasRawProps, ICanFocus } from "@epam/uui-core";
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus } from "@epam/uui-core";
 import { IconContainer } from '../layout';
 import * as css from './PickerToggler.scss';
 import { i18n } from "../../i18n";
@@ -68,19 +68,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         inputContainer.current?.focus();
     };
 
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (!props.isOpen) {
-            blur();
-            // The dropdown body is closed => Doesn't have enough chars entered => clear input on blur
-            props.value && props.onValueChange('');
-        }
-        const blurTrigger = e.relatedTarget as HTMLElement;
-        const isPickerChildTriggerBlur = isChildFocusable(e) || closest(blurTrigger, toggleContainer.current);
-        const shouldCloseOnBlur = props.isOpen && props.searchPosition !== 'body' && !isPickerChildTriggerBlur;
-        if (!shouldCloseOnBlur) return;
-        blur();
-        props.toggleDropdownOpening(false);
-    };
+    const handleBlur = () => !props.isOpen && blur();
 
     const handleCrossIconClick = (e: React.SyntheticEvent<HTMLElement>) => {
         if (props.onClear) {
@@ -125,7 +113,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 props.pickerMode === 'single' && css.singleInput,
                 props.searchPosition === 'input' && css.cursorText,
                 isActivePlaceholder() && uuiElement.placeholder,
-            )}
+            ) }
             disabled={ props.isDisabled }
             placeholder={ placeholder }
             value={ value || '' }

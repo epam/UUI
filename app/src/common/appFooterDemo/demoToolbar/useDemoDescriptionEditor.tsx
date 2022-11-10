@@ -40,11 +40,7 @@ export function useDemoDescriptionEditor(demoItemName: string) {
                 .show<Value>((props) => <DescriptionModal demoItemName={ demoItemName } modalProps={ props } value={ content } />);
             await saveDocContentByDemoName(demoItemName, newContent);
             await showSuccess();
-        } catch (err) {
-            if (!(err instanceof ModalOperationCancelled)) {
-                throw err;
-            }
-        }
+        } catch (err) {}
     }, []);
 
     return {

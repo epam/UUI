@@ -12,7 +12,6 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
       className="uui-checkbox"
     >
       <input
-        aria-checked={false}
         checked={false}
         onChange={[Function]}
         tabIndex={0}
@@ -33,7 +32,6 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
       className="uui-checkbox"
     >
       <input
-        aria-checked={false}
         checked={false}
         onChange={[Function]}
         tabIndex={0}
@@ -61,7 +59,6 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
       className="uui-checkbox"
     >
       <input
-        aria-checked={false}
         aria-disabled={true}
         checked={false}
         disabled={true}
@@ -84,7 +81,6 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
       className="uui-checkbox"
     >
       <input
-        aria-checked={false}
         aria-disabled={true}
         checked={false}
         disabled={true}
