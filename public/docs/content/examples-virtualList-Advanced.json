@@ -216,6 +216,66 @@
                     ]
                   }
                 ]
+              },
+              {
+                "object": "block",
+                "type": "list-item",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item-child",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "handleScroll",
+                        "marks": [
+                          {
+                            "object": "mark",
+                            "type": "uui-richTextEditor-code",
+                            "data": {}
+                          }
+                        ]
+                      },
+                      {
+                        "object": "text",
+                        "text": " - must be applied to container as scroll event handler.",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "list-item",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item-child",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "scrollToIndex",
+                        "marks": [
+                          {
+                            "object": "mark",
+                            "type": "uui-richTextEditor-code",
+                            "data": {}
+                          }
+                        ]
+                      },
+                      {
+                        "object": "text",
+                        "text": " - to scroll to particular item.",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
