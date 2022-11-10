@@ -84,11 +84,28 @@ describe('useForm', () => {
             expect(result.current.isChanged).toBe(true);
             expect(result.current.isInvalid).toBe(false);
         });
+
+        it('should update form value by external props.value change', async () => {
+            const { result, rerender } = await mountHookWithContext<UseFormProps<number>, RenderFormProps<number>>(
+                (props) => useForm(props),
+                {
+                    onSave: () => Promise.resolve(),
+                    value: 1,
+                },
+            );
+
+            act(() => result.current.setValue(2));
+            expect(result.current.value).toBe(2);
+            rerender({
+                onSave: () => Promise.resolve(),
+                value: 3,
+            });
+
+            expect(result.current.value).toBe(3);
+        });
     });
 
     describe('Client validation', () => {
-
-
         it('Should return isChanged as true whenever the lens is changed', async () => {
             const { result } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(() => useForm({
                 onSave: () => Promise.resolve(),
@@ -308,12 +325,10 @@ describe('useForm', () => {
         it('Should revert to the last saved value', async () => {
             const props: UseFormProps<IFoo> = {
                 value: testData,
-                onSave: async (value) => {
-                    props.value = value;
-                },
+                onSave: async (value) => {},
                 beforeLeave: () => Promise.resolve(false),
                 getMetadata: () => testMetadata,
-            }
+            };
 
             const { result, rerender } = await mountHookWithContext<UseFormProps<IFoo>, RenderFormProps<IFoo>>(
                 () => useForm<IFoo>(props)
@@ -323,7 +338,7 @@ describe('useForm', () => {
             expect(result.current.isChanged).toBe(true);
             expect(result.current.value.dummy).toBe('hi');
 
-            await act(() => result.current.save());
+            await act(async () => result.current.save());
             rerender(props);
 
             act(() => result.current.lens.prop('dummy').set('hi again'));
@@ -348,7 +363,7 @@ describe('useForm', () => {
             );
 
             act(() => result.current.lens.prop('dummy').set('hi'));
-            await act(() => result.current.save());
+            await act(async () => result.current.save());
             rerender(props);
             expect(result.current.isChanged).toBe(false);
             expect(result.current.canUndo).toBe(false);

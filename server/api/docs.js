@@ -21,7 +21,7 @@ router.post('/get-doc-content', (req, res) => {
 })
 
 router.post('/save-doc-content', (req, res) => {
-    if (req.hostname !== 'localhost') {
+    if (process.env.DEV !== 'TRUE') {
         return res.sendStatus(403);
     }
     const docContentPath = path.join(__dirname, '../../', 'public/docs/content/', `${req.body.name}.json`);

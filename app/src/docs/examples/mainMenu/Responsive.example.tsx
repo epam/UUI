@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 import {
     BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell,
-    MainMenuDropdown, BurgerSearch, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Slider, Burger
+    MainMenuDropdown, BurgerSearch, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Slider, Burger,
 } from "@epam/promo";
 import { Dropdown, MainMenuLogo, AdaptiveItemProps, i18n } from "@epam/uui-components";
 import { ReactComponent as HelpIcon } from "@epam/assets/icons/common/notification-help-outline-24.svg";
@@ -53,7 +53,7 @@ export default function MainMenuResponsiveExample() {
             },
             { id: 'logo', priority: 99, render: () => <MainMenuLogo
                     href='https://learn.epam.com/'
-                    logoUrl='/static/images/app-logos/learn_logo.svg'
+                    logoUrl='https://uui.epam.com/static/images/app-logos/learn_logo.svg'
                 />,
             },
             { id: 'People', priority: 9, render: () => <MainMenuButton href='/' caption="People" />, caption: "People" },

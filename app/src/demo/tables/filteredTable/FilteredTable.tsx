@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import css from './FilteredTable.scss';
-import { DataTable, FiltersToolbar, FlexCell, FlexRow, PresetPanel, Text } from '@epam/promo';
+import { DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text } from '@epam/promo';
 import { getFilters } from './filters';
 import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset } from "@epam/uui-core";
 import { FilteredTableFooter } from "./FilteredTableFooter";
@@ -13,7 +13,6 @@ const defaultPresets: ITablePreset[] = [
     {
         name: 'All',
         id: -1,
-        filter: undefined,
         order: 'a',
         isReadonly: true,
     },
@@ -25,11 +24,6 @@ const defaultPresets: ITablePreset[] = [
         },
         order: 'b',
         isReadonly: true,
-        filtersConfig: {
-            managerName: {
-                isVisible: true,
-            },
-        },
     },
 ];
 
@@ -37,7 +31,7 @@ export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
-    const [initialPresets, setInitialPresets] = useState<ITablePreset[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
+    const [initialPresets, setInitialPresets] = useState<ITablePreset<Person>[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
 
 
     useEffect(() => {
@@ -46,8 +40,9 @@ export const FilteredTable: React.FC = () => {
             .catch(console.error);
     }, []);
 
-    const tableStateApi = useTableState({
+    const tableStateApi = useTableState<Person>({
         columns: personColumns,
+        filters: filters,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
         onPresetUpdate: svc.api.presets.updatePreset,
@@ -63,18 +58,17 @@ export const FilteredTable: React.FC = () => {
         });
         setTotalCount(() => result.totalCount);
         result.count = result.items.length;
-        result.totalCount = result.items.length;
         result.from = 0;
         return result;
     }, [tableStateApi.tableState.page, tableStateApi.tableState.pageSize]);
 
     const dataSource = useLazyDataSource<Person, number, Person>({
         api: api,
+        selectAll: false,
     }, []);
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
-            checkbox: { isVisible: true },
             isSelectable: true,
         },
     });
@@ -86,12 +80,12 @@ export const FilteredTable: React.FC = () => {
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
-                <Text fontSize="24" cx={ css.presetsTitle }>Users Dashboard</Text>
-                <PresetPanel { ...presetsApi } />
+                <Text fontSize="24" lineHeight='30' font='museo-sans' cx={ css.presetsTitle }>Users Dashboard</Text>
+                <PresetsPanel { ...presetsApi } />
             </div>
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>
                 <FlexRow cx={ css.filterPanel }>
-                    <FiltersToolbar
+                    <FiltersPanel
                         filters={ filters }
                         tableState={ tableStateApi.tableState }
                         setTableState={ tableStateApi.setTableState }
