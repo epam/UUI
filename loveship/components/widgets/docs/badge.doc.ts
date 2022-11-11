@@ -1,14 +1,7 @@
 import { Badge, BadgeMods } from '../../../components/index';
 import { basicPickerTogglerDoc, DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import {
-    colorDoc,
-    DefaultContext,
-    FormContext,
-    iconDoc,
-    iconOptionsDoc,
-    ResizableContext,
- } from '../../../docs/index';
+import { colorDoc, DefaultContext, FormContext, iconDoc, iconOptionsDoc, ResizableContext } from '../../../docs/index';
 import { allBorderStyles } from '../../../components/types';
 
 const badgeDoc = new DocBuilder<ButtonProps & BadgeMods>({ name: 'Badge', component: Badge })

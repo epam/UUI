@@ -3,20 +3,8 @@ import { allBorderStyles, allFillStyles, allEpamPrimaryColors } from '../../type
 import { Button, ButtonMods } from '../Button';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import {
-    basicPickerTogglerDoc,
-    DefaultContext,
-    dropdownTogglerDoc,
-    FormContext,
-    iCanRedirectDoc,
-    iconOptionsDoc,
-    iconWithInfoDoc,
-    iHasPlaceholder,
-    isDisabledDoc,
-    onClickDoc,
-    ResizableContext,
-    textSettingsDoc,
-} from '../../../docs';
+import { basicPickerTogglerDoc, DefaultContext, dropdownTogglerDoc, FormContext, iCanRedirectDoc,
+    iconOptionsDoc, iconWithInfoDoc, iHasPlaceholder, isDisabledDoc, onClickDoc, ResizableContext, textSettingsDoc } from '../../../docs';
 import { colors } from '../../../helpers/colorMap';
 
 const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', component: Button })
