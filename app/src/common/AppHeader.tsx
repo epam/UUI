@@ -152,7 +152,7 @@ export class AppHeader extends React.Component {
                 />,
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } /> },
-            { id: 'theme', priority: 3, render: this.renderThemeSwitcher },
+            window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: this.renderThemeSwitcher },
             { id: 'git', priority: 0, render: () => (
                     <Anchor cx={ css.linkContainer } href={ GIT_LINK } target='_blank' onClick={ () => this.sendEvent(GIT_LINK) } >
                         <IconContainer icon={ GitIcon } color='white' />
