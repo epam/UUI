@@ -42,20 +42,22 @@ class CodesandboxService {
         Object.assign(this.files, {});
     }
 
-    public getCodesandboxLink(code: string, stylesheets?: FilesRecord): string | null {
+    public getCodesandboxParameters(code: string, stylesheets?: FilesRecord): string {
+        return getParameters({
+            files: getCodesandboxConfig(
+                this.processCodeContent(code),
+                this.processStylesheets(stylesheets),
+                this.files,
+            ),
+        });
+    }
+
+    public getCodesandboxLink(): string | null {
         if (Object.values(this.files).every(value => value)) {
             const url: URL = new URL('https://codesandbox.io/api/v1/sandboxes/define');
-            url.searchParams.set(
-                'parameters',
-                getParameters({
-                    files: getCodesandboxConfig(
-                        this.processCodeContent(code),
-                        this.processStylesheets(stylesheets),
-                        this.files
-                    ),
-                })
-            );
-            url.searchParams.set('query', 'file=/Example.tsx')
+
+            url.searchParams.set('query', 'file=/Example.tsx');
+
             return url.toString();
         } else return null;
     }
