@@ -77,7 +77,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
                 this.props.cx,
             ),
             role: isAnchor ? 'link' : 'button',
-            ...(!isAnchor && {type: 'button'}),
+            ...(!isAnchor && {type: "button"}),
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),
             href,
