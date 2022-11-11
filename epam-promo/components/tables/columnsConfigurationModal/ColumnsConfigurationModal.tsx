@@ -22,9 +22,9 @@ interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<Col
     columns: DataColumnProps<TItem, TId, TFilter>[];
 }
 
-const renderGroupTitle = (title: string, amount: number) => <FlexRow padding="24" spacing="6" cx={ styles.groupTitle }>
-    <Text font="sans-semibold" lineHeight="24" fontSize="14">{ title }</Text>
-    <Badge caption={ amount } color="gray30" size="18" />
+const renderGroupTitle = (title: string, amount: number) => <FlexRow size="24"  padding="24" spacing="6" cx={ styles.groupTitle }>
+    <Text cx={ styles.groupTitleText } font="sans-semibold" lineHeight="24" fontSize="14">{ title }</Text>
+    <Badge cx={ styles.groupTitleBadge } caption={ amount } color="gray30" size="18" />
 </FlexRow>;
 
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) {
@@ -46,14 +46,14 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         return (
             <>
                 { renderGroupTitle(i18nLocal.displayedSectionTitle, amountPinned + amountUnPinned) }
-                { !!amountPinned && <FlexRow cx={ styles.groupItems }>
+                { !!amountPinned && <FlexRow cx={ styles.groupItems } size="30">
                         { groupedColumns.displayedPinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
                     </FlexRow>
                 }
                 {
                     hasDivider && <div className={ styles.hDivider } />
                 }
-                { !!amountUnPinned && <FlexRow cx={ styles.groupItems }>
+                { !!amountUnPinned && <FlexRow cx={ styles.groupItems } size="30">
                         { groupedColumns.displayedUnpinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
                     </FlexRow>
                 }
@@ -68,7 +68,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         return (
             <>
                 { renderGroupTitle(i18nLocal.hiddenSectionTitle, amountHidden) }
-                <FlexRow cx={ styles.groupItems }>
+                <FlexRow cx={ styles.groupItems } size="30">
                     { groupedColumns.hidden.map(c => <ColumnRow column={ c } key={ c.key } />) }
                 </FlexRow>
             </>

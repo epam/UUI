@@ -2,9 +2,19 @@
 
 .main-panel {
     height: 100%;
+    padding-top: 6px;
 
     .group-title {
+        > .group-title-text {
+            padding-top: 0;
+        }
         margin-bottom: -6px;
+        > .group-title-badge  {
+            top: -3px;
+            > :global(.uui-caption) {
+                font-family: $font-sans-semibold;
+            }
+        }
     }
     .group-items {
         flex-direction: column;
