@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui-core';
 
-export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
+export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {
+    htmlTypeAttribute?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+}
 
 export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
 
@@ -77,7 +79,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
                 this.props.cx,
             ),
             role: isAnchor ? 'link' : 'button',
-            ...(!isAnchor && {type: "button"}),
+            ...(!isAnchor && {type: this.props.htmlTypeAttribute || 'button'}),
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),
             href,

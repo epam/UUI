@@ -10,6 +10,9 @@ export interface ButtonProps extends ButtonCoreProps, IHasRawProps<React.ButtonH
 
     /** CSS classes to put on the caption */
     captionCX?: CX;
+
+    /** HTML Button type attribute */
+    htmlTypeAttribute?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 
 export class Button extends ButtonBase<ButtonProps> {
