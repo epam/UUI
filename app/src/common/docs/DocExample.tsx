@@ -7,7 +7,6 @@ import { codesandboxService } from '../../data/codesandbox/service';
 import * as css from './DocExample.scss';
 import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
 import { ReactComponent as CodesandboxIcon } from '../../icons/social-network-codesandbox-24.svg';
-import { uuiMarkers } from "@epam/uui-core";
 
 interface DocExampleProps {
     path: string;
