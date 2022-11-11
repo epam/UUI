@@ -7,6 +7,7 @@ import { codesandboxService } from '../../data/codesandbox/service';
 import * as css from './DocExample.scss';
 import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
 import { ReactComponent as CodesandboxIcon } from '../../icons/social-network-codesandbox-24.svg';
+import { uuiMarkers } from "@epam/uui-core";
 
 interface DocExampleProps {
     path: string;
@@ -104,7 +105,8 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                         <form action={ codesandboxLink } method="POST" target="_blank">
                             <input type="hidden" name="parameters" value={ codesandboxParameters } />
                             <Button
-                                htmlTypeAttribute="submit"
+                                cx={ css.externalLink }
+                                rawProps={ { type: 'submit' } }
                                 fill='light'
                                 icon={ CodesandboxIcon }
                                 iconPosition='right'
