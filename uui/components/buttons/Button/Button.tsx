@@ -15,7 +15,9 @@ export interface ButtonMods {
     color?: ButtonColor;
 }
 
-export function applyButtonMods(mods: ButtonMods & ButtonProps) {
+export type UUIButtonProps = ButtonMods & ButtonProps;
+
+export function applyButtonMods(mods: UUIButtonProps) {
     return [
         uuiComponentClass.button,
         mods.size && `uui-size-${mods.size}`,
