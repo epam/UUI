@@ -7,6 +7,7 @@ export default function BasicExample() {
             <Button color='blue' caption='Primary Action' onClick={ () => null } />
             <Button color='green' caption='Call to action' onClick={ () => null } />
             <Button color='red' caption='Negative Action' onClick={ () => null } />
+            <Button color='gray50' caption='Secondary Action' onClick={ () => null } />
         </>
     );
 }
