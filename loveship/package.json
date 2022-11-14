@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@epam/assets": "4.9.0-rc.1",
+    "@epam/uui": "4.9.0-rc.1",
     "@epam/uui-components": "4.9.0-rc.1",
     "@epam/uui-core": "4.9.0-rc.1",
     "@types/classnames": "2.2.6",

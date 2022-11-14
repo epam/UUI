@@ -1,10 +1,9 @@
 import * as types from '../types';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import * as css from './Button.scss';
+import { Button as uuiButton, UUIButtonProps } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
-import { Button as uuiButton, ButtonProps } from '@epam/uui-components';
 import { TextSettings, getTextClasses } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
+import * as css from './Button.scss';
 
 const defaultSize = '36';
 
@@ -14,17 +13,14 @@ export interface ButtonMods extends types.ColorMod, TextSettings {
     fill?: types.FillStyle;
 }
 
-export function applyButtonMods(mods: ButtonMods & ButtonProps) {
+export function applyButtonMods(mods: Omit<UUIButtonProps, "color"> & ButtonMods) {
     return [
-        css.root,
         css['size-' + (mods.size || defaultSize)],
-        styles['color-' + (mods.color || 'sky')],
-        css['fill-' + (mods.fill || 'solid')],
-        css['style-' + (mods.shape || 'square')],
+        'color-' + (mods.color || 'sky'),
     ];
 }
 
-export const Button = withMods<ButtonProps, ButtonMods>(
+export const Button = withMods<Omit<UUIButtonProps, "color">, ButtonMods>(
     uuiButton,
     applyButtonMods,
     (props) => ({
