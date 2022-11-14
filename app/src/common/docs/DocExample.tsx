@@ -100,7 +100,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                         onValueChange={ this.onSwitchValueChange }
                         label='View code'
                     />
-                    { codesandboxParameters && (
+                    { codesandboxLink && (
                         <form action={ codesandboxLink } method="POST" target="_blank">
                             <input type="hidden" name="parameters" value={ codesandboxParameters } />
                             <Button
