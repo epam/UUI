@@ -6,7 +6,7 @@ exports[`ControlGroup should be rendered correctly 1`] = `
   role="group"
 >
   <button
-    className="container uui-button-box uui-enabled button-color-blue root size-36 fill-solid"
+    className="container uui-button-box uui-enabled uui-button button-color-primary root mode-solid button-color-blue size-36"
     href={null}
     onClick={[Function]}
     role="button"
@@ -20,7 +20,7 @@ exports[`ControlGroup should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled button-color-green root size-36 fill-solid"
+    className="container uui-button-box uui-enabled uui-button button-color-green root mode-solid button-color-green size-36"
     href={null}
     onClick={[Function]}
     role="button"
