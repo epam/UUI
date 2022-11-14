@@ -597,7 +597,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-night500 fill-white style-square"
+          className="container uui-button-box uui-enabled -clickable uui-button button-color-night500 root mode-solid size-36 color-night500"
           href={null}
           onClick={[Function]}
           role="button"
@@ -611,7 +611,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
+          className="container uui-button-box uui-enabled -clickable uui-button button-color-grass root mode-solid size-36 color-grass"
           href={null}
           onClick={[Function]}
           role="button"

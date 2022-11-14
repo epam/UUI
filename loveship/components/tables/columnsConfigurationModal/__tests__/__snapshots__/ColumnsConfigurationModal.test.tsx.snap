@@ -125,7 +125,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           />
         </div>
         <button
-          className="container uui-button-box uui-enabled -clickable root size-30 color-night500 fill-white style-square actionsMenu"
+          className="container uui-button-box uui-enabled -clickable uui-button uui-size-30 button-color-night500 root mode-solid size-30 color-night500 actionsMenu"
           href={null}
           onClick={[Function]}
           role="button"
@@ -423,7 +423,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-night500 fill-white style-square"
+          className="container uui-button-box uui-enabled -clickable uui-button button-color-night500 root mode-solid size-36 color-night500"
           href={null}
           onClick={[Function]}
           role="button"
@@ -437,7 +437,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-sky fill-solid style-square"
+          className="container uui-button-box uui-enabled -clickable uui-button button-color-sky root mode-solid size-36 color-sky"
           href={null}
           onClick={[Function]}
           role="button"
