@@ -13,7 +13,7 @@ exports[`DropdownContainer should be rendered correctly 1`] = `
   tabIndex={0}
 >
   <button
-    className="container uui-button-box uui-enabled uui-button button-color-primary root mode-solid size-36 color-sky"
+    className="container uui-button-box uui-enabled uui-button button-color-primary root mode-solid color-sky size-36 style-square"
     href={null}
     onClick={[Function]}
     role="button"
@@ -36,7 +36,7 @@ exports[`DropdownContainer should be rendered correctly with extra props 1`] = `
   tabIndex={0}
 >
   <button
-    className="container uui-button-box uui-enabled uui-button button-color-primary root mode-solid size-36 color-sky"
+    className="container uui-button-box uui-enabled uui-button button-color-primary root mode-solid color-sky size-36 style-square"
     href={null}
     onClick={[Function]}
     role="button"
