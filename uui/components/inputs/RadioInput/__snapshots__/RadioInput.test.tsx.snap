@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioInput should be rendered correctly 1`] = `
+<label
+  className="container radio-input-vars root -clickable"
+>
+  <div
+    className="uui-radioinput"
+  >
+    <input
+      aria-checked={false}
+      checked={false}
+      onChange={[Function]}
+      type="radio"
+    />
+  </div>
+</label>
+`;
+
+exports[`RadioInput should be rendered correctly 2`] = `
+<label
+  className="container radio-input-vars root size-18 -clickable"
+>
+  <div
+    className="uui-radioinput"
+  >
+    <input
+      aria-checked={false}
+      checked={false}
+      onChange={[Function]}
+      type="radio"
+    />
+  </div>
+  <div
+    className="uui-input-label"
+  >
+    Open
+  </div>
+</label>
+`;

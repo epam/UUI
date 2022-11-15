@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box -clickable text-input-colorvars root mode-form"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`TextInput should be rendered correctly 2`] = `
+<div
+  className="container uui-input-box -clickable text-input-colorvars text-input-size-m root mode-form"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    tabIndex={0}
+    type="text"
+    value=""
+  />
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
+  </div>
+  <div
+    className="container uui-icon uui-enabled pointer"
+    style={Object {}}
+  >
+    <svg
+      className="flipY"
+    />
+  </div>
+</div>
+`;
