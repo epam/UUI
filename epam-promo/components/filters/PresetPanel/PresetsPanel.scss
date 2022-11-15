@@ -17,6 +17,10 @@
     }
 }
 
-.add-button {
-    padding-left: 6px;
+.presetsWrapper {
+    :not(:first-child) {
+        &.addPresetContainer {
+            padding-left: 6px;
+        }
+    }
 }

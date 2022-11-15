@@ -13,16 +13,16 @@ const defaultPresets: ITablePreset[] = [
     {
         name: 'All',
         id: -1,
-        order: 'a',
         isReadonly: true,
+        order: 'a',
     },
     {
         name: 'My Team',
         id: -2,
+        order: 'b',
         filter: {
             managerId: [13],
         },
-        order: 'b',
         isReadonly: true,
     },
 ];

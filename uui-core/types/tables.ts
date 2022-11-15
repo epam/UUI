@@ -256,7 +256,7 @@ export interface ITablePreset<TFilter = any> {
     isReadonly?: boolean;
     columnsConfig?: ColumnsConfig;
     filtersConfig?: FiltersConfig;
-    order: string;
+    order?: string;
 }
 
 export interface IPresetsApi {

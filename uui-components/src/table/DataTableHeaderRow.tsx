@@ -57,6 +57,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
             }),
             onDrop: params => this.onCellDrop(params, idx),
             renderFilter: (dropdownProps: DropdownBodyProps) => column.renderFilter(this.filterLens, dropdownProps),
+            isDropdown: !!column.renderFilter,
         });
     }
 
