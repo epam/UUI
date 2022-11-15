@@ -4,12 +4,13 @@ import { IDemoApi } from '@epam/uui-docs';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel,
     ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';
 import { svc } from '../../services';
-import { copyTextToClipboard } from '../../helpers';
+import { copyTextToClipboard, getQuery } from '../../helpers';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 import { ReactComponent as CopyIcon } from '../../icons/icon-copy.svg';
 import { ReactComponent as ResetIcon } from '../../icons/reset-icon.svg';
 import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';
 import * as css from './ComponentEditor.scss';
+import { Skin } from "./BaseDocsBlock";
 
 declare var require: any;
 
@@ -71,7 +72,14 @@ interface ComponentEditorState<TProps> {
     selectedProps: { [name: string]: string };
 }
 
+enum SkinTheme {
+    UUI4_promo = 'uui-theme-promo',
+    UUI3_loveship = 'uui-theme-loveship',
+}
+
 export class ComponentEditor extends React.Component<ComponentEditorProps<any>, ComponentEditorState<any>> {
+    private demoContainerRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>();
+
     propSamplesCreationContext: PropSamplesCreationContext<any> = {
         getCallback: (name: string) => {
             const callback = (...args: any[]) => {
@@ -136,12 +144,42 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
 
     propExamples: { [propName: string]: PropExample<any>[] } = {};
     initialProps: any;
+    
+    setTheme = () => {
+        const skin: Skin = getQuery('skin');
+        switch (skin) {
+            case "UUI4_promo": {
+                this.demoContainerRef.current.classList.remove(SkinTheme.UUI3_loveship);
+                this.demoContainerRef.current.classList.add(SkinTheme.UUI4_promo);
+                break;
+            }
+            case "UUI3_loveship": {
+                this.demoContainerRef.current.classList.remove(SkinTheme.UUI4_promo);
+                this.demoContainerRef.current.classList.add(SkinTheme.UUI3_loveship);
+                break;
+            }
+            case "UUI": {
+                this.demoContainerRef.current.classList.remove(SkinTheme.UUI3_loveship);
+                this.demoContainerRef.current.classList.remove(SkinTheme.UUI4_promo);
+                break;
+            }
+        }
+    }
+
+    componentDidMount() {
+        if (this.demoContainerRef.current) {
+            this.setTheme();
+        }
+    }
 
     componentDidUpdate(prevProps: any, prevState: any) {
         if (this.state.selectedProps !== prevState.selectedProps) {
             this.setState({
                 code: this.renderCode(this.state.selectedProps),
             });
+        }
+        if (this.demoContainerRef.current) {
+            this.setTheme();
         }
     }
 
@@ -386,7 +424,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                             <FlexRow key='head' size='36' padding='12' spacing='6' borderBottom background='white' cx={ css.contextSettingRow } >
                                 { this.renderSettings(docs.contexts) }
                             </FlexRow>
-                            <div className={ css.demoContainer } >
+                            <div ref={ this.demoContainerRef } className={ css.demoContainer } >
                                 <ScrollBars >
                                     { this.renderDemo() }
                                 </ScrollBars>
