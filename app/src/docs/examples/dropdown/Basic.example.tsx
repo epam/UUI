@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
+import { Dropdown, DropdownBodyProps, FlexSpacer } from '@epam/uui-components';
 import { Panel, Text, FlexRow, LinkButton, DropdownContainer, Badge, IconButton, FlexCell, IconContainer } from '@epam/promo';
 import { Avatar, IDropdownToggler } from '@epam/uui';
 import * as css from './BasicExample.scss';
@@ -31,15 +31,17 @@ export default function BasicDropdownExample() {
                                 img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
                             />
 
-                            <div>
-                                <Text cx={ css.textTitle } lineHeight="24" fontSize="16" color="gray80"
-                                      font="sans-semibold">John
-                                    Doe</Text>
-                                <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">Corporate Function
-                                    Management
-                                    | L3</Text>
-                            </div>
-
+                            <FlexRow padding='12'>
+                                <FlexCell width='auto'>
+                                    <Text cx={ css.textTitle } lineHeight="24" fontSize="16" color="gray80" font="sans-semibold">
+                                        John Doe
+                                    </Text>
+                                    <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">
+                                        Corporate Function Management | L3
+                                    </Text>
+                                </FlexCell>
+                            </FlexRow>
+                            <FlexSpacer />
                             <FlexRow spacing="6">
                                 <IconButton
                                     icon={ pinIcon }
