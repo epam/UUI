@@ -1,7 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, MultiSwitch, NumericInput, Panel, PickerInput, TextArea, TextInput, useForm } from '@epam/promo';
-import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource } from '@epam/uui';
-import { FlexSpacer } from 'uui-components';
+import React, { useCallback, useMemo, useState } from 'react';
+import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
+    Panel, PickerInput, TextArea, TextInput, useForm,
+} from '@epam/promo';
+import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui';
+import { FlexSpacer } from '@epam/uui-components';
 
 // Define interface describe data for each row
 interface ToDoItem  {

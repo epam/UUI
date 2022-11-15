@@ -1,16 +1,6 @@
 import React from 'react';
 import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
-import {
-    Panel,
-    Text,
-    FlexRow,
-    LinkButton,
-    DropdownContainer,
-    Badge,
-    IconButton,
-    FlexCell,
-    IconContainer,
-} from '@epam/promo';
+import { Panel, Text, FlexRow, LinkButton, DropdownContainer, Badge, IconButton, FlexCell, IconContainer } from '@epam/promo';
 import { Avatar, IDropdownToggler } from '@epam/uui';
 import * as css from './BasicExample.scss';
 import { ReactComponent as pinIcon } from '@epam/assets/icons/common/action-pin_on-18.svg';
@@ -32,7 +22,7 @@ export default function BasicDropdownExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
             <DropdownContainer showArrow={ true } cx={ css.container } { ...props }>
-                <FlexRow alignItems="top" cx={ [css.containerItem, css.verticalPaddings, css.horizontalPaddings] }>
+                <FlexRow alignItems="top" padding='18' vPadding='24'>
                     <Panel style={ { width: '100%' } }>
                         <FlexRow cx={ css.containerItem }>
                             <Avatar
@@ -81,7 +71,7 @@ export default function BasicDropdownExample() {
 
                 <div className={ css.divider }></div>
 
-                <FlexRow cx={ [css.containerItem, css.verticalPaddings, css.horizontalPaddings] }>
+                <FlexRow padding='18' vPadding='24'>
                     <Panel>
                         <FlexRow alignItems="center" spacing="12">
                             <IconButton
@@ -170,7 +160,7 @@ export default function BasicDropdownExample() {
 
                 <div className={ css.divider }></div>
 
-                <FlexRow cx={ [css.containerItem, css.verticalPaddings, css.horizontalPaddings] }>
+                <FlexRow padding='18' vPadding='24'>
                     <Panel>
                         <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">Reporting to</Text>
                         <FlexRow spacing="12" vPadding="12">
@@ -183,8 +173,7 @@ export default function BasicDropdownExample() {
                             <div>
                                 <Text cx={ css.textTitle } lineHeight="24" fontSize="14" color="gray80"
                                       font="sans-semibold">John Wick</Text>
-                                <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">Sinior Management |
-                                    L4</Text>
+                                <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">Senior Management | L4</Text>
                             </div>
                         </FlexRow>
                     </Panel>
@@ -192,9 +181,14 @@ export default function BasicDropdownExample() {
 
                 <div className={ css.divider }></div>
 
-                <FlexRow cx={ [css.containerItem, css.verticalPaddings, css.horizontalPaddings] }>
-                    <LinkButton onClick={ () => {/*redirect implementation*/
-                    } } caption="Show Reporting Line" size="36" icon={ rightArrIcon } iconPosition="right"/>
+                <FlexRow padding='18' vPadding='24'>
+                    <LinkButton
+                        onClick={ () => {} }
+                        caption="Show Reporting Line"
+                        size="36"
+                        icon={ rightArrIcon }
+                        iconPosition="right"
+                    />
                 </FlexRow>
             </DropdownContainer>
         );
