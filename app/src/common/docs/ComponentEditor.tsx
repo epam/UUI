@@ -10,7 +10,7 @@ import { ReactComponent as CopyIcon } from '../../icons/icon-copy.svg';
 import { ReactComponent as ResetIcon } from '../../icons/reset-icon.svg';
 import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';
 import * as css from './ComponentEditor.scss';
-import { Skin, UUI3, UUI4 } from "./BaseDocsBlock";
+import { Skin } from "./BaseDocsBlock";
 
 declare var require: any;
 
@@ -73,8 +73,9 @@ interface ComponentEditorState<TProps> {
 }
 
 enum SkinTheme {
-    UUI4_promo = 'uui-theme-promo',
+    UUI = '',
     UUI3_loveship = 'uui-theme-loveship',
+    UUI4_promo = 'uui-theme-promo',
 }
 
 export class ComponentEditor extends React.Component<ComponentEditorProps<any>, ComponentEditorState<any>> {
@@ -393,7 +394,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                             <FlexRow key='head' size='36' padding='12' spacing='6' borderBottom background='white' cx={ css.contextSettingRow } >
                                 { this.renderSettings(docs.contexts) }
                             </FlexRow>
-                            <div className={ cx(css.demoContainer, skin === UUI4 && SkinTheme.UUI4_promo, skin === UUI3 && SkinTheme.UUI3_loveship) }>
+                            <div className={ cx(css.demoContainer, SkinTheme[skin]) }>
                                 <ScrollBars >
                                     { this.renderDemo() }
                                 </ScrollBars>
