@@ -10,7 +10,7 @@ import { ReactComponent as CopyIcon } from '../../icons/icon-copy.svg';
 import { ReactComponent as ResetIcon } from '../../icons/reset-icon.svg';
 import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';
 import * as css from './ComponentEditor.scss';
-import { Skin } from "./BaseDocsBlock";
+import { Skin, UUI3, UUI4 } from "./BaseDocsBlock";
 
 declare var require: any;
 
@@ -78,8 +78,6 @@ enum SkinTheme {
 }
 
 export class ComponentEditor extends React.Component<ComponentEditorProps<any>, ComponentEditorState<any>> {
-    private demoContainerRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>();
-
     propSamplesCreationContext: PropSamplesCreationContext<any> = {
         getCallback: (name: string) => {
             const callback = (...args: any[]) => {
@@ -144,42 +142,12 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
 
     propExamples: { [propName: string]: PropExample<any>[] } = {};
     initialProps: any;
-    
-    setTheme = () => {
-        const skin: Skin = getQuery('skin');
-        switch (skin) {
-            case "UUI4_promo": {
-                this.demoContainerRef.current.classList.remove(SkinTheme.UUI3_loveship);
-                this.demoContainerRef.current.classList.add(SkinTheme.UUI4_promo);
-                break;
-            }
-            case "UUI3_loveship": {
-                this.demoContainerRef.current.classList.remove(SkinTheme.UUI4_promo);
-                this.demoContainerRef.current.classList.add(SkinTheme.UUI3_loveship);
-                break;
-            }
-            case "UUI": {
-                this.demoContainerRef.current.classList.remove(SkinTheme.UUI3_loveship);
-                this.demoContainerRef.current.classList.remove(SkinTheme.UUI4_promo);
-                break;
-            }
-        }
-    }
-
-    componentDidMount() {
-        if (this.demoContainerRef.current) {
-            this.setTheme();
-        }
-    }
 
     componentDidUpdate(prevProps: any, prevState: any) {
         if (this.state.selectedProps !== prevState.selectedProps) {
             this.setState({
                 code: this.renderCode(this.state.selectedProps),
             });
-        }
-        if (this.demoContainerRef.current) {
-            this.setTheme();
         }
     }
 
@@ -377,6 +345,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
     render() {
         const { title } = this.props;
         const { isLoading, docs } = this.state;
+        const skin: Skin = getQuery('skin');
 
         return (
             <>
@@ -424,7 +393,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                             <FlexRow key='head' size='36' padding='12' spacing='6' borderBottom background='white' cx={ css.contextSettingRow } >
                                 { this.renderSettings(docs.contexts) }
                             </FlexRow>
-                            <div ref={ this.demoContainerRef } className={ css.demoContainer } >
+                            <div className={ cx(css.demoContainer, skin === UUI4 && SkinTheme.UUI4_promo, skin === UUI3 && SkinTheme.UUI3_loveship) }>
                                 <ScrollBars >
                                     { this.renderDemo() }
                                 </ScrollBars>
