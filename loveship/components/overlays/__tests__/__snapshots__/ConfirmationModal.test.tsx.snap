@@ -169,7 +169,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable uui-button button-color-night400 root mode-solid size-36 color-night400"
+          className="container uui-button-box uui-enabled -clickable uui-button button-color-night400 root mode-solid color-night400 size-36 style-square"
           href={null}
           onClick={[Function]}
           role="button"
@@ -183,7 +183,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable uui-button button-color-grass root mode-solid size-36 color-grass"
+          className="container uui-button-box uui-enabled -clickable uui-button button-color-grass root mode-solid color-grass size-36 style-square"
           href={null}
           onClick={[Function]}
           role="button"
@@ -394,7 +394,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable uui-button button-color-grass root mode-solid size-36 color-grass"
+          className="container uui-button-box uui-enabled -clickable uui-button button-color-grass root mode-solid color-grass size-36 style-square"
           href={null}
           onClick={[Function]}
           role="button"

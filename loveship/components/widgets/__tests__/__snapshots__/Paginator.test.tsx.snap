@@ -7,7 +7,7 @@ exports[`Paginator should be rendered correctly 1`] = `
 >
   <button
     aria-disabled={true}
-    className="container uui-button-box uui-disabled -clickable uui-button uui-size-24 button-color-night400 root mode-solid size-24 color-night400 fill-solid size-24"
+    className="container uui-button-box uui-disabled -clickable uui-button uui-size-24 button-color-night400 root mode-solid color-night400 size-24 style-square fill-solid size-24"
     href={null}
     onClick={[Function]}
     role="button"
@@ -25,7 +25,7 @@ exports[`Paginator should be rendered correctly 1`] = `
   </button>
   <button
     aria-current={true}
-    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-solid size-24 color-sky fill-white size-24"
+    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-outline color-sky size-24 style-square fill-white size-24"
     href={null}
     onClick={[Function]}
     role="button"
@@ -39,7 +39,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-solid size-24 color-sky fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-ghost color-sky size-24 style-square fill-light size-24"
     href={null}
     onClick={[Function]}
     role="button"
@@ -53,7 +53,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-solid size-24 color-sky fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-ghost color-sky size-24 style-square fill-light size-24"
     href={null}
     onClick={[Function]}
     role="button"
@@ -67,7 +67,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-solid size-24 color-sky fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-ghost color-sky size-24 style-square fill-light size-24"
     href={null}
     onClick={[Function]}
     role="button"
@@ -81,7 +81,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-solid size-24 color-sky fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-ghost color-sky size-24 style-square fill-light size-24"
     href={null}
     onClick={[Function]}
     role="button"
@@ -95,7 +95,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled uui-button uui-size-24 button-color-sky root mode-solid size-24 color-sky fill-light size-24"
+    className="container uui-button-box uui-enabled uui-button uui-size-24 button-color-sky root mode-ghost color-sky size-24 style-square fill-light size-24"
     href={null}
     onClick={[Function]}
     role="button"
@@ -109,7 +109,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-solid size-24 color-sky fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-sky root mode-ghost color-sky size-24 style-square fill-light size-24"
     href={null}
     onClick={[Function]}
     role="button"
@@ -124,7 +124,7 @@ exports[`Paginator should be rendered correctly 1`] = `
   </button>
   <button
     aria-disabled={false}
-    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-night400 root mode-solid size-24 color-night400 fill-white size-24"
+    className="container uui-button-box uui-enabled -clickable uui-button uui-size-24 button-color-night400 root mode-outline color-night400 size-24 style-square fill-white size-24"
     href={null}
     onClick={[Function]}
     role="button"
