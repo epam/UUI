@@ -1,13 +1,15 @@
 import React, {useMemo} from 'react';
 import {
-    FiltersPanel, DataTable, Panel, FlexRow, defaultPredicates, Text, Badge, EpamAdditionalColor,
+    DataTable, Panel, FlexRow, defaultPredicates, Text, Badge, EpamAdditionalColor, PresetsPanel
 } from "@epam/promo";
 import {
-    DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState,
+    DataColumnProps, getSeparatedValue, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource,
+    useTableState,
     useUuiContext,
 } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import dayjs from "dayjs";
+import { svc } from "../../../services";
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {
@@ -27,42 +29,61 @@ const personColumns: DataColumnProps<Person, number>[] = [
                 color={ p.profileStatus.toLowerCase() as EpamAdditionalColor }
                 caption={ p.profileStatus }/>
         </FlexRow>,
-        width: 140,
+        width: 160,
         isSortable: true,
         isFilterActive: f => !!f.profileStatusId,
     },
     {
-        key: 'salary',
-        caption: 'Salary',
-        render: p => <Text>{ getSeparatedValue(+p.salary, {style: "currency", currency: "USD", maximumFractionDigits: 2, minimumFractionDigits: 2}, 'en-US') }</Text>,
-        width: 150,
-        textAlign: 'right',
+        key: 'departmentName',
+        caption: "Department",
+        render: p => <Text>{ p.departmentName }</Text>,
+        width: 200,
         isSortable: true,
+        isFilterActive: f => !!f.departmentId,
     },
     {
         key: 'jobTitle',
         caption: "Title",
         render: r => <Text>{ r.jobTitle }</Text>,
-        width: 200,
+        width: 220,
+        isSortable: true,
         isFilterActive: f => !!f.jobTitleId,
     },
     {
         key: 'birthDate',
         caption: "Birth Date",
         render: p => p?.birthDate && <Text>{ dayjs(p.birthDate).format('MMM D, YYYY') }</Text>,
-        width: 120,
-        isSortable: true,
-    },
-    {
-        key: 'hireDate',
-        caption: "Hire Date",
-        render: p => p?.hireDate && <Text>{ dayjs(p.hireDate).format('MMM D, YYYY') }</Text>,
-        width: 120,
+        width: 140,
         isSortable: true,
     },
 ];
 
-export default function FiltersPanelExample() {
+const initialPresets: ITablePreset[] = [
+    {
+        id: -1,
+        name: 'All',
+        order: 'a',
+        isReadonly: true,
+    },
+    {
+        id: -2,
+        name: 'Green status',
+        order: 'b',
+        filter: {
+            profileStatusId: [3],
+        },
+    },
+    {
+        id: -3,
+        name: 'Red status',
+        order: 'c',
+        filter: {
+            profileStatusId: [1],
+        },
+    },
+];
+
+export default function PresetsPanelExample() {
     const svc = useUuiContext();
 
     const filtersConfig: TableFiltersConfig<Person>[] =  useMemo(() => [
@@ -71,9 +92,7 @@ export default function FiltersPanelExample() {
             columnKey: "profileStatus",
             title: "Profile Status",
             type: "multiPicker",
-            isAlwaysVisible: true,
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
-            predicates: defaultPredicates.multiPicker,
         },
         {
             field: "jobTitleId",
@@ -83,11 +102,11 @@ export default function FiltersPanelExample() {
             dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
         },
         {
-            field: "salary",
-            columnKey: "salary",
-            title: "Salary",
-            type: "numeric",
-            predicates: defaultPredicates.numeric,
+            field: "departmentId",
+            columnKey: 'departmentName',
+            title: "Department",
+            type: "multiPicker",
+            dataSource: new LazyDataSource({ api: svc.api.demo.departments }),
         },
         {
             field: "birthDate",
@@ -95,18 +114,15 @@ export default function FiltersPanelExample() {
             title: "Birth Date",
             type: "datePicker",
         },
-        {
-            field: "hireDate",
-            columnKey: "hireDate",
-            title: "Hire Date",
-            type: "rangeDatePicker",
-            predicates: defaultPredicates.rangeDatePicker,
-        },
     ], []);
 
-    const { tableState, setTableState } = useTableState({
+    const tableStateApi = useTableState({
         columns: personColumns,
         filters: filtersConfig,
+        initialPresets: initialPresets,
+        onPresetCreate: svc.api.presets.createPreset,
+        onPresetUpdate: svc.api.presets.updatePreset,
+        onPresetDelete: svc.api.presets.deletePreset,
     });
 
 
@@ -114,22 +130,19 @@ export default function FiltersPanelExample() {
         api: svc.api.demo.persons,
     }, []);
 
-    const view = dataSource.useView(tableState, setTableState);
+    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState);
 
     return (
         <Panel style={ { height: '400px' } }>
-            <FlexRow spacing='6' vPadding='12'>
-                <FiltersPanel
-                    filters={ filtersConfig }
-                    tableState={ tableState }
-                    setTableState={ setTableState }
-                />
+            <FlexRow>
+                <PresetsPanel { ...tableStateApi } />
             </FlexRow>
             <DataTable
                 getRows={ view.getVisibleRows }
                 columns={ personColumns }
-                value={ tableState }
-                onValueChange={ setTableState }
+                filters={ filtersConfig }
+                value={ tableStateApi.tableState }
+                onValueChange={ tableStateApi.setTableState }
                 { ...view.getListProps() }
             />
         </Panel>

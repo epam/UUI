@@ -36,9 +36,9 @@ export const PresetsPanel = (props: IPresetsBlockProps) => {
     };
 
     const renderAddPresetButton = useCallback(() => {
-        return !isAddingPreset ?
-            <div className={ css.addButton }>
-                <Button
+        return (
+            <div key='addingPresetBlock' className={ css.addPresetContainer }>
+                { !isAddingPreset ? <Button
                     size="36"
                     onClick={ setAddingPreset }
                     caption={ i18n.presetPanel.addCaption }
@@ -46,13 +46,13 @@ export const PresetsPanel = (props: IPresetsBlockProps) => {
                     iconPosition="left"
                     fill="light"
                     color="blue"
-                />
+                /> :
+                <PresetInput
+                    onCancel={ cancelAddingPreset }
+                    onSuccess={ props.createNewPreset }
+                /> }
             </div>
-            : <PresetInput
-                onCancel={ cancelAddingPreset }
-                key={ 'createPresetInput' }
-                onSuccess={ props.createNewPreset }
-            />;
+        );
     }, [isAddingPreset]);
 
     const onPresetDropdownSelect = (preset: PresetAdaptiveItem) => {
@@ -96,13 +96,13 @@ export const PresetsPanel = (props: IPresetsBlockProps) => {
             { id: 'collapsedContainer', render: renderMoreButtonDropdown,
                 priority: 100501, collapsedContainer: true,
             },
-            {id: 'addPreset', render: () => renderAddPresetButton(), priority: 100501 },
+            {id: 'addPreset', render: renderAddPresetButton, priority: 100501 },
         ];
     };
 
     return (
         <FlexCell grow={ 1 } minWidth={ 310 }>
-            <FlexRow spacing='12'>
+            <FlexRow spacing='12' cx={ css.presetsWrapper }>
                 <AdaptivePanel items={ getPanelItems() } />
             </FlexRow>
         </FlexCell>
