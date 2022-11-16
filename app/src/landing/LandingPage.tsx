@@ -11,9 +11,18 @@ export class LandingPage extends React.Component {
         super(props);
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.pv());
     }
+
+    renderHeader = () => {
+        return <AppHeader />;
+    }
+
+    renderFooter = () => {
+        return <AppFooter />;
+    }
+
     render() {
         return (
-            <Page renderHeader={ () => <AppHeader /> } renderFooter={ () => <AppFooter /> } >
+            <Page renderHeader={ this.renderHeader } renderFooter={ this.renderFooter } >
                 <FlexCell cx='app' width='100%'>
                     <HeroBlock />
                     <StartedBlock />

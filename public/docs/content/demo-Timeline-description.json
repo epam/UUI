@@ -1,0 +1,177 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "@epam/uui-timeline module provides components to build Gantt-chart-like experiences. It’s intended to be used as a basis to build your own experiences. You can render Gantt diagrams, time-based charts, etc. Components can be placed in various context – for example as table columns/cells.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Timeline facilities in the @epam/uui-timeline module provides:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "TimelineController to handle navigation state, animations (scroll, zoom). It also provides helpers to convert DateTime to current coordinates, which can be used to render arbitrary elements on canvas, or to position react-rendered HTML or SVG elements",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Several React components:",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "unordered-list",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "TimelineScale (navigation bar allowing to navigate timeline with mouse drag / zoom)",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "TimelineNav – floating overlay with buttons to zoom in/out, zoom to fit",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "TimelineGrid – scale grid to put under timeline components",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "We also provide an example TimelineEventsBar component – for very basic timeline content (just a box showing a time period) – to show how custom timeline elements can be built.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Timeline is expected to be used as a navigable Canvas, on top of which user can render/position his own custom components. We don’t provide pre-defined set of components to place on timeline – just helpers to position and render them.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

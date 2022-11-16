@@ -7,8 +7,10 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    flex: 1 1 0px;
+    min-width: 0px;
     height: calc(100vh - 60px);
+    overflow: hidden;
 }
 
 .content-container {

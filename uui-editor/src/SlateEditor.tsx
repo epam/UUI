@@ -9,29 +9,13 @@ import {
     createPlateUI,
     PlateEventProvider,
     HeadingToolbar,
-    createListPlugin,
-    createSoftBreakPlugin,
-    createExitBreakPlugin,
-    createLinkPlugin,
-    createHeadingPlugin,
-    createSubscriptPlugin,
-    createSuperscriptPlugin,
-    ELEMENT_H1,
-    ELEMENT_H2,
-    ELEMENT_H3,
 } from '@udecode/plate';
 
-import { ToolbarButtons, MarkBalloonToolbar } from "./components/Toolbars";
-
-import { createUUIBoldPlugin } from "./components/customBold";
-import { createUUIItalicPlugin } from "./components/customItalic";
-import { createUUIUnderlinePlugin } from "./components/customUnderline";
-import { createUUICodePlugin } from "./components/customCode";
-import { listPluginOptions } from "./components/createListPlugin";
-
-import { AddLinkModal } from './plugins/linkPlugin/AddLinkModal';
+import { ToolbarButtons, MarkBalloonToolbar, ImageBalloonToolbar } from "./plate/plugins/Toolbars";
 
 import { migrateSchema } from './migration';
+
+import { customPlugins } from './plate/plugins/plugins';
 
 import * as style from '@epam/assets/scss/promo/typography.scss';
 import * as css from './SlateEditor.scss';
@@ -41,41 +25,15 @@ let components = createPlateUI();
 export const defaultPlugins: any = [];
 export const basePlugins: any = [];
 
-const plugins = createPlugins([
-    createSoftBreakPlugin(),
-    createExitBreakPlugin(),
-    createListPlugin(listPluginOptions),
-    createUUIBoldPlugin(),
-    createUUIItalicPlugin(),
-    createUUIUnderlinePlugin(),
-    createUUICodePlugin(),
-    createSuperscriptPlugin({
-        type: 'uui-richTextEditor-superscript',
-    }),
-    createLinkPlugin({
-        type: 'link',
-    }),
-    createHeadingPlugin({
-        overrideByKey: {
-            [ELEMENT_H1]: {
-                type: 'uui-richTextEditor-header-1',
-            },
-            [ELEMENT_H2]: {
-                type: 'uui-richTextEditor-header-2',
-            },
-            [ELEMENT_H3]: {
-                type: 'uui-richTextEditor-header-3',
-            }
-        },
-    }),
-], {
+const plugins = createPlugins(customPlugins, {
     components,
 });
 
 let id = Date.now();
 
 export function SlateEditor(props: any) {
-    console.log(props?.value && migrateSchema(props.value));
+    const currentId = String(id++);
+
     return (
         <div
             className={ cx(
@@ -86,16 +44,18 @@ export function SlateEditor(props: any) {
             ) }
         >
             <DndProvider backend={ HTML5Backend }>
-                <PlateEventProvider>
+                <PlateEventProvider id={ currentId }>
                     <HeadingToolbar>
                         <ToolbarButtons />
                     </HeadingToolbar>
                 </PlateEventProvider>
                 <Plate
-                    id={ String(id++) }
+                    placeholder='asdsadad'
+                    id={ currentId }
                     plugins={ plugins }
                     { ...(props?.value ? { initialValue: migrateSchema(props.value) } : {}) }
                 >
+                    <ImageBalloonToolbar />
                     <MarkBalloonToolbar />
                 </Plate>
             </DndProvider>

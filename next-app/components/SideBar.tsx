@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { structure } from "../helpers/structure";
 import { Tree, TreeListItem } from '@epam/uui-components';
 import { useRouter } from "next/router";
-import { Link } from '@epam/uui-core';
+import { DataSourceState, Link } from '@epam/uui-core';
 
 interface TreeItem extends Omit<TreeListItem, 'data'> {
     link: Link;
@@ -14,20 +14,20 @@ interface TreeItem extends Omit<TreeListItem, 'data'> {
 }
 
 export const SideBar = () => {
-    const [unfoldedIds, setUnfoldedIds] = useState<string[]>([]);
+    const [value, setValue] = React.useState<DataSourceState>({ folded: {} });
     const router = useRouter();
 
     return (
         <ScrollBars>
             <Tree<TreeItem>
                 items={ structure }
-                value={ unfoldedIds }
-                onValueChange={ setUnfoldedIds }
+                value={ value }
+                onValueChange={ setValue }
                 renderRow={ item => (
                     <VerticalTabButton
-                        caption={ item.data.name }
-                        isLinkActive={ router.pathname === item.data.link.pathname }
-                        link={ item.data.link }
+                        caption={ item.value.name }
+                        isLinkActive={ router.pathname === item.value.link.pathname }
+                        link={ item.value.link }
                         size="36"
                         key={ item.id }
                     />

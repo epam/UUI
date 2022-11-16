@@ -11,17 +11,20 @@ export interface DataTableMods {
     headerTextCase?: 'upper' | 'normal';
 }
 
-export interface DataTableRowMods extends DataTableCellMods {
+interface DataTableSizesAndPositionMods {
+    size?: ControlSize | '60';
+    padding?: '0' | '12' | '24';
+    alignActions?: 'top' | 'center';
+}
+
+export interface DataTableRowMods extends DataTableSizesAndPositionMods {
     borderBottom?: 'none' | 'night300';
     background?: 'night50' | 'white' | 'none';
 }
 
-export interface DataTableCellMods {
-    size?: ControlSize | '60';
-    padding?: '0' | '12' | '24';
-    isFirstColumn?: boolean;
-    isLastColumn?: boolean;
-    alignActions?: 'top' | 'center';
+export interface DataTableCellMods extends DataTableSizesAndPositionMods {
+    background?: 'night50' | 'fire' | 'sky' | 'grass' | 'sun';
+    border?: 'night300';
 }
 
 export interface DataTableHeaderCellMods extends BaseRowMods {

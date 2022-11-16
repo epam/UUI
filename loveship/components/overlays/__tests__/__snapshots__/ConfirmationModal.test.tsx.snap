@@ -83,6 +83,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -173,6 +174,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           onClick={[Function]}
           role="button"
           tabIndex={0}
+          type="button"
         >
           <div
             className="uui-caption line-height-18 font-size-14 v-padding-8"
@@ -186,6 +188,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           onClick={[Function]}
           role="button"
           tabIndex={0}
+          type="button"
         >
           <div
             className="uui-caption line-height-18 font-size-14 v-padding-8"
@@ -297,6 +300,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -395,6 +399,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
           onClick={[Function]}
           role="button"
           tabIndex={0}
+          type="button"
         >
           <div
             className="uui-caption line-height-18 font-size-14 v-padding-8"

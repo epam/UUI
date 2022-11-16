@@ -84,7 +84,7 @@ export default function SlateEditorBasicExample() {
                 />
             </FlexRow>
 
-            <SlateEditor />
+            <SlateEditor value={value}/>
         </Panel>
     );
 }

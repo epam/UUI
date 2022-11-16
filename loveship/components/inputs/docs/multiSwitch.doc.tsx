@@ -1,7 +1,7 @@
 import React from 'react';
 import { MultiSwitch, MultiSwitchProps } from '../MultiSwitch';
 import { ColorPicker, DocBuilder, isDisabledDoc } from '@epam/uui-docs';
-import { FormContext, GridContext, DefaultContext } from '../../../docs';
+import { FormContext, DefaultContext } from '../../../docs';
 import { sizeDoc, iEditable } from '../../../docs';
 import { colors } from "../../../helpers/colorMap";
 
@@ -28,6 +28,6 @@ const multiSwitchDoc = new DocBuilder<MultiSwitchProps<{}>>({ name: 'MultiSwitch
         },
     ], isRequired: true })
     .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: ['sky', 'night600'] })
-    .withContexts(DefaultContext, FormContext, GridContext);
+    .withContexts(DefaultContext, FormContext);
 
 export = multiSwitchDoc;
