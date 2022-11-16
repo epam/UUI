@@ -39,6 +39,6 @@ export const Button = withMods<Omit<UUIButtonProps, "color">, ButtonMods>(
             lineHeight: props.lineHeight,
             fontSize: props.fontSize,
         }, true),
-        mode: mapFillToMod[props.fill] || 'solid',
+        mode: mapFillToMod[props.fill] || mapFillToMod.solid,
     }),
 );

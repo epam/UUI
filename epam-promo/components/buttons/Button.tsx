@@ -38,6 +38,6 @@ export const Button = withMods<Omit<UUIButtonProps, "color">, ButtonMods>(
     (props) => ({
         dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
         clearIcon: systemIcons[props.size || defaultSize].clear,
-        mode: mapFillToMod[props.fill] || 'solid',
+        mode: mapFillToMod[props.fill] || mapFillToMod.solid,
     }),
 );
