@@ -2,7 +2,7 @@ import React from "react";
 import { ColorPicker, DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { CheckboxProps } from '@epam/uui-components';
 import { Checkbox, CheckboxMods } from '../Checkbox';
-import { isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable, DefaultContext, FormContext, GridContext } from '../../../docs';
+import { isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable, DefaultContext, FormContext, TableContext } from '../../../docs';
 import { allEpamAdditionalColors, allEpamPrimaryColors } from "../../types";
 import { colors } from "../../../helpers/colorMap";
 
@@ -13,6 +13,6 @@ const CheckboxDoc = new DocBuilder<CheckboxProps & CheckboxMods>({ name: 'Checkb
     .prop('size', { examples: ['12', '18'], defaultValue: '18' })
     .prop('theme', { examples: (['light', 'dark']), defaultValue: 'light' })
     .prop('indeterminate', { examples: [true, false], defaultValue: false })
-    .withContexts(DefaultContext, FormContext, GridContext);
+    .withContexts(DefaultContext, FormContext, TableContext);
 
 export = CheckboxDoc;

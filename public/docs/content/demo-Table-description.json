@@ -1,0 +1,133 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Shows how UUI Data Tables allow to display and navigate data sets. We also show how to add sidebars to configure filters, and to review each item’s detailed info. The demo shows common built-in table features:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "custom components in cells",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "columns configuration - via modal dialog, and in-place reordering and resizing columns",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "filter/configuration presets management – user can store, and later access saved table state",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "filtering – both in sidebar, and in columns headers",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {
+                  "checked": false
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "infinite scroll – with lazy data loading, and virtualized rows rendering (only visible rows are rendered)",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

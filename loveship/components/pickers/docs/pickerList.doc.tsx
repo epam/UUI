@@ -3,7 +3,7 @@ import { PickerListBaseProps } from '@epam/uui-components';
 import { DocBuilder } from '@epam/uui-docs';
 import { PickerList, PickerListProps } from '../PickerList';
 import { iEditable, isDisabledDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, GridContext, FormContext } from '../../../docs';
+import { DefaultContext, ResizableContext, FormContext } from '../../../docs';
 import { allThemes } from '../../types';
 import { pickerBaseOptionsDoc } from './common';
 import { LinkButton, Button } from '../../buttons';
@@ -39,6 +39,6 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
     .prop('theme', { examples : allThemes })
     .prop('disallowClickOutside', { examples: [true], defaultValue: false})
     .prop('noOptionsMessage', { examples: [{ value: <FlexRow spacing="12"><Text>No results found</Text><Button onClick={ () => {} } size="24" caption='Search'/></FlexRow>, name: '<Text/><Button/>'}]})
-    .withContexts(DefaultContext, ResizableContext, GridContext, FormContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext);
 
 export = PickerListDoc;

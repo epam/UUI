@@ -7,7 +7,7 @@ import {
 import { IconContainer } from '../layout';
 import * as css from './NumericInput.scss';
 
-export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     /** Maximum value (default is Number.MAX_SAFE_INTEGER) */
     max?: number;
 
@@ -99,6 +99,7 @@ export const NumericInput = (props: NumericInputProps) => {
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(false);
         const validatedValue = getMinMaxValidatedValue({ value, min, max });
+        if (!props.value && min) props.onValueChange(min);
         if (validatedValue !== props.value) props.onValueChange(validatedValue);
         props.onBlur?.(event);
     };

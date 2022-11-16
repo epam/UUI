@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import { IconContainer } from '@epam/uui-components';
 import css from "./PresetActionsDropdown.scss";
 import { IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState } from "@epam/uui-core";
 import { Dropdown, DropdownMenuButton, SuccessNotification } from "../../overlays";
+import { IconButton } from '../../buttons';
 import { Text } from "../../typography";
 import { ReactComponent as menuIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 import { FlexRow, Panel } from "../../layout";
@@ -34,10 +34,11 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
             ...preset,
             filter: props.tableState.filter,
             columnsConfig: props.tableState.columnsConfig,
+            filtersConfig: props.tableState.filtersConfig,
         };
         await props.updatePreset(newPreset);
         successNotificationHandler('Changes saved!');
-    }, [props.tableState.filter, props.tableState.columnsConfig]);
+    }, [props.tableState.filter, props.tableState.columnsConfig, props.tableState.filtersConfig]);
 
     const successNotificationHandler = useCallback((text: string) => {
         uuiNotifications.show((props) => (
@@ -85,9 +86,9 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
                 <FlexRow key={ `${ props.preset.id }-duplicate` }>
                     <DropdownMenuButton icon={ CopyIcon } caption="Duplicate" onClick={ duplicateHandler }/>
                 </FlexRow>
-                <FlexRow key={ `${ props.preset.id }-rename` }>
+                { props.preset.id === props.activePresetId && <FlexRow key={ `${ props.preset.id }-rename` }>
                     <DropdownMenuButton icon={ RenameIcon } caption="Rename" onClick={ props.renamePreset }/>
-                </FlexRow>
+                </FlexRow> }
                 <FlexRow borderBottom="gray40" key={ `${ props.preset.id }-copyLink` }>
                     <DropdownMenuButton icon={ CopyLinkIcon } caption="Copy Link" onClick={ copyUrlToClipboard }/>
                 </FlexRow>
@@ -98,9 +99,9 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
         );
     };
 
-    const renderTarget = useCallback((props: IDropdownToggler) => {
+    const renderTarget = useCallback((dropdownProps: IDropdownToggler) => {
         return (
-            <IconContainer { ...props } icon={ menuIcon } />
+            <IconButton cx={ dropdownProps.isOpen && css.targetOpen } color={ props.preset.id === props.activePresetId ? 'blue' : 'gray60' } { ...dropdownProps } icon={ menuIcon } />
         );
     }, []);
 
@@ -109,7 +110,8 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
             <Dropdown
                 renderBody={ renderBody }
                 renderTarget={ renderTarget }
-                placement="bottom"
+                placement="bottom-end"
+                modifiers={ [{ name: 'offset', options: {offset: [0, 22]}}] }
             />
         </>
     );

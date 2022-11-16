@@ -14,6 +14,7 @@ const migrateTextNode = (oldNode: any) => {
         ...oldNode.marks?.reduce(
             (acc: any, mark: any) => ({
                 ...acc,
+                ...(mark?.data?.style ? mark.data.style : {}),
                 [mark.type || mark]: true,
             }),
             {},
@@ -25,6 +26,8 @@ const migrateElementNode = (node: any) => {
     return {
         data: node.data ?? {},
         type: node.type,
+        ...(node.type === 'image' ? { url: node.data.src } : {}),
+        ...(node.type === 'image' ? node.data.imageSize || {} : {}),
         ...(node?.data?.url ? { url: node.data.url } : {}),
         children: node.nodes?.map(migrateNode).flat() ?? [],
     };

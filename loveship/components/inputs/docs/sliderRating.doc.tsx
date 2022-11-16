@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { SliderRating, SliderRatingProps } from '../SliderRating';
-import { iEditable, DefaultContext, FormContext, GridContext } from '../../../docs';
+import { iEditable, DefaultContext, FormContext } from '../../../docs';
 import { RichTextView } from '../../typography';
 
 const SliderRatingDoc = new DocBuilder<SliderRatingProps<number>>({ name: 'SliderRating', component: SliderRating })
@@ -20,6 +20,6 @@ const SliderRatingDoc = new DocBuilder<SliderRatingProps<number>>({ name: 'Slide
             </RichTextView>,
         },
     ]})
-    .withContexts(DefaultContext, FormContext, GridContext);
+    .withContexts(DefaultContext, FormContext);
 
 export = SliderRatingDoc;

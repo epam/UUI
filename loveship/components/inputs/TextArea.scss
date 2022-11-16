@@ -26,6 +26,10 @@
             padding-left: 11px;
             padding-right: 11px;
 
+            &:global(.uui-invalid) {
+                border-color: $fire;
+            }
+
             &:global(.uui-readonly) {
                 background: $night50;
                 border-color: $night300;
@@ -42,6 +46,10 @@
             @include control-inline-mode();
             padding-left: 5px;
             padding-right: 5px;
+
+            &:global(.uui-invalid) {
+                border-color: $fire;
+            }
 
             &:global(.uui-readonly) {
                 &:hover {
@@ -106,13 +114,6 @@
             opacity: 1;
         }
 
-        &:global(.uui-invalid) {
-            border-color: $fire;
-
-            &:hover {
-                border-color: $fire;
-            }
-        }
     }
 
     :global(.uui-textarea-counter) {

@@ -1,0 +1,15 @@
+@use '~@epam/promo/assets/styles/colors.scss' as *;
+
+.layout {
+    display: flex;
+    background-color: #303240;
+    height: 42px;
+    flex-shrink: 0;
+
+    .footer {
+        max-width: 100%;
+        overflow-x: auto;
+        width: 100%;
+        margin: 0 auto;
+    }
+}

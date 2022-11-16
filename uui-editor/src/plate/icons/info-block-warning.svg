@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>icon_richEditor_infoBlock_warning_normal</title>
+    <desc>Created with Sketch.</desc>
+    <g id="icon_richEditor_infoBlock_warning_normal" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="infoblock" transform="translate(9.000000, 11.000000)">
+            <path d="M2.18181818,0 L21.8181818,0 C23.0231667,0 24,0.994922778 24,2.22222222 L24,17.7777778 C24,19.0050772 23.0231667,20 21.8181818,20 L2.18181818,20 C0.976833273,20 0,19.0050772 0,17.7777778 L0,2.22222222 C0,0.994922778 0.976833273,0 2.18181818,0 Z" id="Rectangle" fill="#FB6357"></path>
+            <path d="M12.625,5 L16.7425,15 L15.055,15 L14.215,12.9977443 L9.5275,12.9977443 L8.6875,15 L7,15 L11.125,5 L12.625,5 Z M11.875,6.90714286 L10.09,11.5691728 L13.66,11.5691728 L11.875,6.90714286 Z" id="Combined-Shape" fill="#E1E3EB"></path>
+        </g>
+    </g>
+</svg>

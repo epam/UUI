@@ -4,7 +4,7 @@ import { IHasChildren, IHasCX, IHasRawProps } from '@epam/uui-core';
 import * as types from '../types';
 import * as css from './ControlWrapper.scss';
 
-interface ControlWrapperProps extends IHasCX, IHasRawProps<HTMLDivElement>, IHasChildren {
+interface ControlWrapperProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasChildren {
     size: types.ControlSize;
 }
 

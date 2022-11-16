@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import isEqual from "lodash.isequal";
 import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, ITablePreset, ITableState } from "../../types";
-import { getColumnsConfig } from "../../helpers";
+import { getColumnsConfig, getOrderBetween } from "../../helpers";
 import { useUuiContext } from "../../services";
 import { isDefaultColumnsConfig } from "./helpers";
 import { constants } from "./constants";
+import sortBy from "lodash.sortby";
 import { normalizeFilter } from "./normalizeFilter";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
@@ -107,49 +108,65 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
     const choosePreset = useCallback((preset: ITablePreset<TFilter>) => {
         setTableState({
+            ...tableStateValue,
             filter: preset.filter,
             columnsConfig: preset.columnsConfig,
+            filtersConfig: preset.filtersConfig,
             presetId: preset.id,
         });
     }, []);
 
-    const createNewPreset = useCallback(async (preset: string | ITablePreset) => {
-        const newPreset = typeof preset === "string"
-            ? {
-                name: preset,
-                filter: tableStateValue.filter,
-                columnsConfig: tableStateValue.columnsConfig,
-                isReadonly: false,
-            } as ITablePreset<TFilter>
-            : {
-                ...preset,
-                name: preset.name + "_copy", // TODO: temporary naming logic, need to be reworked
-            } as ITablePreset<TFilter>;
+    const getNewPresetOrder = () => {
+        const maxOrder = sortBy(presets, (i) => i.order).reverse()[0]?.order;
+        return getOrderBetween(maxOrder, null);
+    };
 
-        newPreset.id = await params?.onPresetCreate?.(newPreset);
+    const createPreset = useCallback(async (preset: ITablePreset<TFilter>) => {
+        preset.id = await params?.onPresetCreate?.(preset);
 
-        setPresets(prevValue => [...prevValue, newPreset]);
-        choosePreset(newPreset);
-        return newPreset.id;
-    }, [tableStateValue.filter, tableStateValue.columnsConfig, choosePreset]);
+        setPresets(prevValue => [...prevValue, preset]);
+        choosePreset(preset);
+        return preset.id;
+    }, [tableStateValue.filter, tableStateValue.columnsConfig, tableStateValue.filtersConfig, choosePreset]);
+
+
+    const createNewPreset = useCallback((name: string) => {
+        const newPreset: ITablePreset<TFilter> = {
+            id: null,
+            name: name,
+            filter: tableStateValue.filter,
+            columnsConfig: tableStateValue.columnsConfig,
+            filtersConfig: tableStateValue.filtersConfig,
+            isReadonly: false,
+            order: getNewPresetOrder(),
+        };
+
+        return createPreset(newPreset);
+    }, [getNewPresetOrder]);
 
     const resetToDefault = useCallback(() => {
         choosePreset({
             ...constants.defaultPreset,
             columnsConfig: getColumnsConfig(params.columns, {}),
+            filtersConfig: null,
         });
     }, [choosePreset]);
 
     const hasPresetChanged = useCallback((preset: ITablePreset<TFilter> | undefined) => {
-        const { filter } = context.uuiRouter.getCurrentLink().query;
-
-        return !isEqual(preset?.filter, filter)
+        return !isEqual(preset?.filter, tableStateValue.filter)
             || !isEqual(preset?.columnsConfig, tableStateValue.columnsConfig);
-    }, [tableStateValue.columnsConfig]);
+    }, [tableStateValue.columnsConfig,  tableStateValue.filter]);
 
     const duplicatePreset = useCallback(async (preset: ITablePreset<TFilter>) => {
-        await createNewPreset(preset);
-    }, [createNewPreset]);
+        const newPreset: ITablePreset<TFilter> = {
+            ...preset,
+            id: null,
+            name: preset.name + '_copy', // TODO: temporary naming logic, need to be reworked
+            order: getNewPresetOrder(),
+        };
+
+        return createPreset(newPreset);
+    }, [getNewPresetOrder]);
 
     const deletePreset = useCallback(async (preset: ITablePreset<TFilter>) => {
         await params?.onPresetDelete(preset);
@@ -157,13 +174,13 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, []);
 
     const updatePreset = useCallback(async (preset: ITablePreset<TFilter>) => {
-        await params?.onPresetUpdate(preset);
-
         setPresets(prevValue => {
             const newPresets = [...prevValue];
             newPresets.splice(prevValue.findIndex(p => p.id === preset.id), 1, preset);
             return newPresets;
         });
+
+        params?.onPresetUpdate(preset);
     }, []);
 
     return {

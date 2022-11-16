@@ -91,6 +91,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               onClick={[Function]}
               role="button"
               tabIndex={0}
+              type="button"
             >
               <div
                 className="container uui-icon uui-enabled"
@@ -162,7 +163,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="dragHandle container uui-drag-handle"
                     />
                     <label
-                      className="container root size-18 theme-light color-sky uui-disabled"
+                      className="container root size-18 theme-light mode-form color-sky uui-disabled"
                       tabIndex={-1}
                     >
                       <div
@@ -214,7 +215,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="dragHandle container uui-drag-handle"
                     />
                     <label
-                      className="container root size-18 theme-light color-sky uui-disabled"
+                      className="container root size-18 theme-light mode-form color-sky uui-disabled"
                       tabIndex={-1}
                     >
                       <div
@@ -266,7 +267,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="dragHandle container uui-drag-handle"
                     />
                     <label
-                      className="container root size-18 theme-light color-sky -clickable"
+                      className="container root size-18 theme-light mode-form color-sky -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -317,7 +318,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       className="dragHandle container uui-drag-handle"
                     />
                     <label
-                      className="container root size-18 theme-light color-sky -clickable"
+                      className="container root size-18 theme-light mode-form color-sky -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -389,6 +390,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="uui-caption line-height-18 font-size-14 v-padding-9"
@@ -402,6 +404,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="uui-caption line-height-18 font-size-14 v-padding-9"
@@ -415,6 +418,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="uui-caption line-height-18 font-size-14 v-padding-9"
@@ -431,6 +435,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="uui-caption line-height-18 font-size-14 v-padding-8"
@@ -444,6 +449,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="uui-caption line-height-18 font-size-14 v-padding-8"

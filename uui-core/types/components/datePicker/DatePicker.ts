@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, HTMLAttributes  } from "react";
 import { IHasRawProps } from "../../props";
 import { BaseDatePickerProps } from "./BaseDatePicker";
 
@@ -7,7 +7,7 @@ export interface DatePickerCoreProps extends BaseDatePickerProps {
     renderFooter?(): ReactNode;
     /** HTML attributes to put on various elements of the component (input, body) */
     rawProps?: {
-        input?: IHasRawProps<HTMLDivElement>['rawProps'];
-        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+        input?: IHasRawProps<HTMLAttributes<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 }
