@@ -192,7 +192,7 @@
     --accordion-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
     --accordion-shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
 }
-.button-color-blue {
+.button-color-sky {
     --btn-bg-color: var(--primary-color);
     --btn-bg-color-hover: var(--primary-dark-color);
     --btn-bg-color-active: var(--primary-darkest-color);
@@ -208,7 +208,7 @@
     --btn-caption-halftone-color: var(--primary-color);
     --btn-caption-color-disabled: var(--btn-caption-disabled-color);
 }
-.button-color-green {
+.button-color-grass {
     --btn-bg-color: var(--accent-color);
     --btn-bg-color-hover: var(--accent-dark-color);
     --btn-bg-color-active: var(--accent-darkest-color);
@@ -224,7 +224,7 @@
     --btn-caption-halftone-color: var(--accent-color);
     --btn-caption-color-disabled: var(--btn-caption-disabled-color);
 }
-.button-color-red {
+.button-color-fire {
     --btn-bg-color: var(--negative-color);
     --btn-bg-color-hover: var(--negative-dark-color);
     --btn-bg-color-active: var(--negative-darkest-color);
@@ -240,7 +240,7 @@
     --btn-caption-halftone-color: var(--negative-color);
     --btn-caption-color-disabled: var(--btn-caption-disabled-color);
 }
-.button-color-gray50 {
+.button-color-night500 {
     --btn-bg-color: var(--secondary-color);
     --btn-bg-color-hover: var(--secondary-dark-color);
     --btn-bg-color-active: var(--secondary-darkest-color);
@@ -253,6 +253,23 @@
     --btn-bg-color-disabled: var(--disabled-color);
     --btn-border-color-disabled: var(--disabled-color);
     --btn-caption-color: var(--contrast-color);
+    --btn-caption-halftone-color: var(--secondary-dark-color);
+    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+}
+/*TODO: needs to match colors to white*/
+.button-color-white {
+    --btn-bg-color: var(--contrast-color);
+    --btn-bg-color-hover: #E6E6E6;
+    --btn-bg-color-active: #CCC;
+    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
+    --btn-bg-color-halftone-hover: var(--secondary-lightest-color);
+    --btn-bg-color-halftone-active: var(--secondary-light-color);
+    --btn-border-color: var(--contrast-color);
+    --btn-border-color-hover: #E6E6E6;
+    --btn-border-color-active: #CCC;
+    --btn-bg-color-disabled: var(--disabled-color);
+    --btn-border-color-disabled: var(--disabled-color);
+    --btn-caption-color: var(--night800);
     --btn-caption-halftone-color: var(--secondary-dark-color);
     --btn-caption-color-disabled: var(--btn-caption-disabled-color);
 }
