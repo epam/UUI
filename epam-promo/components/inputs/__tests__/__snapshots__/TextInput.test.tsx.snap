@@ -2,7 +2,7 @@
 
 exports[`TextInput should be rendered correctly 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable text-input-vars root size-36 mode-form root size-36 mode-form"
   onBlur={[Function]}
   onFocus={[Function]}
   tabIndex={-1}
@@ -20,7 +20,7 @@ exports[`TextInput should be rendered correctly 1`] = `
 
 exports[`TextInput should be rendered correctly 2`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable text-input-vars root size-36 mode-form root size-36 mode-form"
   onBlur={[Function]}
   onFocus={[Function]}
   tabIndex={-1}

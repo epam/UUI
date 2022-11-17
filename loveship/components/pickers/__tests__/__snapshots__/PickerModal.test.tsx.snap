@@ -112,7 +112,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="root size-36 background-none vPadding-24 spacing-6 container align-items-center"
         >
           <div
-            className="container uui-input-box -clickable colorSky root size-36 mode-form"
+            className="container uui-input-box -clickable text-input-vars root size-36 mode-form colorSky root size-36 mode-form"
             onBlur={[Function]}
             onFocus={[Function]}
             tabIndex={-1}
@@ -576,7 +576,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-night500 fill-white style-square"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-night500 root size-36 mode-outline color-night500 size-36 style-square"
           href={null}
           onClick={[Function]}
           role="button"
@@ -589,7 +589,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-grass root size-36 mode-solid color-grass size-36 style-square"
           href={null}
           onClick={[Function]}
           role="button"
