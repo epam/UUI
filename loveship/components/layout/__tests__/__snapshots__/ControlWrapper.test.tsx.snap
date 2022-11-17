@@ -5,7 +5,7 @@ exports[`ControlWrapper should rendered correctly 1`] = `
   className="root size-36"
 >
   <button
-    className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
+    className="container uui-button-box uui-enabled button-vars button-color-primary root size-36 mode-solid color-sky size-36 style-square"
     href={null}
     onClick={[Function]}
     role="button"
@@ -18,7 +18,7 @@ exports[`ControlWrapper should rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled root size-36 color-sun fill-solid style-square"
+    className="container uui-button-box uui-enabled button-vars button-color-sun root size-36 mode-solid color-sun size-36 style-square"
     href={null}
     onClick={[Function]}
     role="button"

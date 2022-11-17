@@ -426,7 +426,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             className="flexSpacer"
           />
           <button
-            className="container uui-button-box uui-enabled -clickable root size-36 color-night600 fill-white style-square"
+            className="container uui-button-box uui-enabled -clickable button-vars button-color-night600 root size-36 mode-outline color-night600 size-36 style-square"
             href={null}
             onClick={[Function]}
             role="button"
@@ -439,7 +439,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             </div>
           </button>
           <button
-            className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square actionButton"
+            className="container uui-button-box uui-enabled -clickable button-vars button-color-grass root size-36 mode-solid color-grass size-36 style-square actionButton"
             href={null}
             onClick={[Function]}
             role="button"
