@@ -1,9 +1,8 @@
-import { Button as uuiButton, ButtonProps } from '@epam/uui-components';
+import { Button as uuiButton, UUIButtonProps, ButtonMode } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 import { ControlSize, FillStyle } from '../types';
 import { systemIcons } from '../../icons/icons';
 import * as css from './Button.scss';
-import * as styles from '../../assets/styles/colorvars/buttons/button-colorvars.scss';
 
 export type ButtonColor = 'blue' | 'green' | 'red' | 'gray50';
 export const allButtonColors: ButtonColor[] = ['blue', 'green', 'red', 'gray50'];
@@ -19,20 +18,26 @@ export interface ButtonMods {
     color?: ButtonColor;
 }
 
-export function applyButtonMods(mods: ButtonMods & ButtonProps) {
+const mapFillToMod: Record<FillStyle, ButtonMode> = {
+    solid: 'solid',
+    white: 'outline',
+    light: 'ghost',
+    none: 'none',
+};
+
+export function applyButtonMods(mods: Omit<UUIButtonProps, "color"> & ButtonMods) {
     return [
-        styles['button-color-' + (mods.color || 'blue')],
-        css.root,
+        'button-color-' + (mods.color || 'blue'),
         css['size-' + (mods.size || defaultSize)],
-        css['fill-' + (mods.fill || 'solid')],
     ];
 }
 
-export const Button = withMods<ButtonProps, ButtonMods>(
+export const Button = withMods<Omit<UUIButtonProps, "color">, ButtonMods>(
     uuiButton,
     applyButtonMods,
     (props) => ({
         dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
         clearIcon: systemIcons[props.size || defaultSize].clear,
+        mode: mapFillToMod[props.fill] || mapFillToMod.solid,
     }),
 );

@@ -10,8 +10,8 @@ import { svc } from './services';
 import App from './App';
 import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
-import './index.scss';
 import './themes/index.css';
+import './index.scss';
 
 const history = createBrowserHistory();
 

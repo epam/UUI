@@ -18,7 +18,8 @@
     "react-focus-lock": "2.7.1"
   },
   "devDependencies": {
-    "@epam/uui-docs": "4.8.5"
+    "@epam/uui-docs": "4.8.5",
+    "react-test-renderer": "16.13.1"
   },
   "peerDependencies": {
     "prop-types": "*",
