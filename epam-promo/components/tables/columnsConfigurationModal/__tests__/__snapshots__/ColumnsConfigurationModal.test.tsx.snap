@@ -224,7 +224,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     onTouchStart={[Function]}
                   />
                   <label
-                    className="container root size-18 mode-form checkbox-color-blue uui-disabled"
+                    className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue uui-disabled"
                     tabIndex={-1}
                   >
                     <div
@@ -301,7 +301,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     onTouchStart={[Function]}
                   />
                   <label
-                    className="container root size-18 mode-form checkbox-color-blue uui-disabled"
+                    className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue uui-disabled"
                     tabIndex={-1}
                   >
                     <div
