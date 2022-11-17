@@ -1,4 +1,4 @@
-export * from './ColumnsConfigurationModal';
+export * from './columnsConfigurationModal/ColumnsConfigurationModal';
 export * from './ColumnHeaderDropdown';
 export * from './DataTableCell';
 export * from './DataTableRow';

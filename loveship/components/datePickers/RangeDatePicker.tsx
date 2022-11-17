@@ -11,9 +11,9 @@ import * as css from './RangeDatePicker.scss';
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod, TextSettings, EditMode {
     getPlaceholder?(type: InputType): string;
     rawProps?: {
-        from?: IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>['rawProps'];
-        to?: IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>['rawProps'];
-        body?: IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>['rawProps'];
+        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 }
 

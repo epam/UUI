@@ -26,7 +26,7 @@ export const uuiDaySelection = {
     holiday: 'uui-calendar-day-holiday',
 } as const;
 
-export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     value: TSelection;
     onValueChange: (day: Dayjs) => void;
     displayedDate: Dayjs;

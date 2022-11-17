@@ -13,16 +13,16 @@ const defaultPresets: ITablePreset[] = [
     {
         name: 'All',
         id: -1,
-        order: 'a',
         isReadonly: true,
+        order: 'a',
     },
     {
         name: 'My Team',
         id: -2,
+        order: 'b',
         filter: {
             managerId: [13],
         },
-        order: 'b',
         isReadonly: true,
     },
 ];
@@ -58,18 +58,17 @@ export const FilteredTable: React.FC = () => {
         });
         setTotalCount(() => result.totalCount);
         result.count = result.items.length;
-        result.totalCount = result.items.length;
         result.from = 0;
         return result;
     }, [tableStateApi.tableState.page, tableStateApi.tableState.pageSize]);
 
     const dataSource = useLazyDataSource<Person, number, Person>({
         api: api,
+        selectAll: false,
     }, []);
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
-            checkbox: { isVisible: true },
             isSelectable: true,
         },
     });
@@ -81,7 +80,7 @@ export const FilteredTable: React.FC = () => {
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
-                <Text fontSize="24" cx={ css.presetsTitle }>Users Dashboard</Text>
+                <Text fontSize="24" lineHeight='30' font='museo-sans' cx={ css.presetsTitle }>Users Dashboard</Text>
                 <PresetsPanel { ...presetsApi } />
             </div>
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>

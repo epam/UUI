@@ -2,14 +2,14 @@ import {
     ButtonDoc, LinkButtonDoc, PickerInputDoc, IconButtonDoc, TabButtonDoc, TextInputDoc, CheckboxDoc, RadioInputDoc,
     SwitchDoc, CheckboxGroupDoc, RadioGroupDoc, MultiSwitchDoc, NumericInputDoc, RatingDoc, SearchInputDoc, TextAreaDoc,
     AccordionDoc, ContextProviderDoc, ApiContextDoc, ModalContextDoc, NotificationContextDoc, DropdownDoc, MainMenuDoc,
-    ModalsDoc, BadgeDoc, TablesDoc, TagDoc, PaginatorDoc, SpinnerDoc, RichTextViewDoc, TextDoc, TextPlaceholderDoc,
+    ModalsDoc, BadgeDoc, FiltersPanelDoc, TagDoc, PaginatorDoc, SpinnerDoc, RichTextViewDoc, TextDoc, TextPlaceholderDoc,
     DatePickerDoc, RangeDatePickerDoc, TimePickerDoc, ControlGroupDoc, GettingStartedDoc, NotificationCardDoc, TooltipDoc,
     LabeledInputDoc, AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc,
     ReleaseNotesDoc, FlexItemsDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, AvatarDoc,
     InternationalizationDoc, FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarStackDoc, PickerListDoc, TeamDoc,
     AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc, EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc,
     VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc, DropdownContainerDoc,
-    AdaptivePanelDoc, EditableTablesDoc, TablesOverviewDoc, AdvancedTablesDoc,
+    AdaptivePanelDoc, EditableTablesDoc, TablesOverviewDoc, AdvancedTablesDoc, PresetsPanelDoc
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { OverviewDoc } from '../docs/Overview';
@@ -68,6 +68,8 @@ const componentsStructure = sortBy([
     { id: 'tablesOverview', name: 'Overview', component: TablesOverviewDoc, parentId: 'tables', order: 1 },
     { id: 'editableTables', name: 'Editable Tables', component: EditableTablesDoc, parentId: 'tables', order: 2 },
     { id: 'advancedTables', name: 'Advanced', component: AdvancedTablesDoc, parentId: 'tables', order: 3 },
+    { id: 'filtersPanel', name: 'Filters Panel', component: FiltersPanelDoc, parentId: 'tables', order: 4 },
+    { id: 'presetsPanel', name: 'Presets Panel', component: PresetsPanelDoc, parentId: 'tables', order: 5 },
     { id: 'tag', name: 'Tag', component: TagDoc, parentId: 'components' },
     { id: 'text', name: 'Text', component: TextDoc, parentId: 'components' },
     { id: 'textArea', name: 'Text Area', component: TextAreaDoc, parentId: 'components' },

@@ -1,4 +1,4 @@
-import { DataQueryFilter, DataQueryFilterCondition } from "../../types";
+import { DataQueryFilter, DataQueryFilterCondition } from "../../types/dataQuery";
 import dayjs from "dayjs";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
@@ -126,12 +126,12 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 });
             }
 
-            if (condition.eq) {
+            if (condition.eq !== undefined && condition.eq !== null) {
                 const conditionValue = condition.eq;
                 predicates.push((item: T) => item[key] === conditionValue);
             }
 
-            if (condition.neq) {
+            if (condition.neq !== undefined && condition.neq !== null) {
                 const conditionValue = condition.neq;
                 predicates.push((item: T) => item[key] !== conditionValue);
             }
@@ -141,7 +141,13 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 predicates.push(i => !predicate(i));
             }
         } else {
-            predicates.push((item: T) => item[key] === condition);
+            predicates.push((item: T) => {
+                if (typeof condition === "string" && isDate(condition)) {
+                    return dayjs(item[key] as any).isSame(condition);
+                } else {
+                    return item[key] === condition;
+                }
+            });
         }
     }
 

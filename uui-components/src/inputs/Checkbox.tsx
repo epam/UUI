@@ -26,16 +26,30 @@ export class Checkbox extends React.Component<CheckboxProps> {
         }
     }
 
+    handleAriaCheckedValue = (indeterminate: boolean, value: boolean): boolean | "mixed"  => {
+        if (indeterminate) {
+            return 'mixed';
+        }
+
+        if (value == undefined) {
+            return false;
+        } else {
+            value;
+        }
+    }
+
     render() {
         let label = this.props.label;
         if (this.props.renderLabel) {
             label = this.props.renderLabel();
         }
+        const ariaCheckedValue = this.handleAriaCheckedValue(this.props.indeterminate, this.props.value);
 
         return (
             <label
                 className={ cx(
                     css.container,
+                    uuiElement.checkboxContainer,
                     this.props.cx,
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isReadonly && uuiMod.readonly,
@@ -59,7 +73,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
                         readOnly={ this.props.isReadonly }
                         aria-readonly={ this.props.isReadonly || undefined }
                         checked={ this.props.value || false }
-                        aria-checked={ this.props.value == undefined ? false : this.props.value }
+                        aria-checked={ ariaCheckedValue }
                         required={ this.props.isRequired }
                         aria-required={ this.props.isRequired || undefined }
                         tabIndex={ this.props.tabIndex || (this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }

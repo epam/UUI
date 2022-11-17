@@ -4,5 +4,9 @@
         width: 8px;
         flex: 0 0 8px;
     }
+    cursor: grab;
+    &:global(.uui-disabled) {
+        cursor: auto;
+    }
 }
 
