@@ -1,5 +1,6 @@
 # 4.9.0 - 17.11.2022
-This release includes all changes from '4.9.0-rc.1' version
+
+**This release includes all changes from '4.9.0-rc.1' version**
 
 **What's New**
 * [ColumnsConfigurationModal]: redesign and rework logic, added possibility to pin columns from modal
