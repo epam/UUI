@@ -4,12 +4,13 @@ import { IDemoApi } from '@epam/uui-docs';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel,
     ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';
 import { svc } from '../../services';
-import { copyTextToClipboard } from '../../helpers';
+import { copyTextToClipboard, getQuery } from '../../helpers';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 import { ReactComponent as CopyIcon } from '../../icons/icon-copy.svg';
 import { ReactComponent as ResetIcon } from '../../icons/reset-icon.svg';
 import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';
 import * as css from './ComponentEditor.scss';
+import { Skin } from "./BaseDocsBlock";
 
 declare var require: any;
 
@@ -69,6 +70,12 @@ interface ComponentEditorState<TProps> {
     showCode: boolean;
     selectedContext?: string;
     selectedProps: { [name: string]: string };
+}
+
+enum SkinTheme {
+    UUI = '',
+    UUI3_loveship = 'uui-theme-loveship',
+    UUI4_promo = 'uui-theme-promo',
 }
 
 export class ComponentEditor extends React.Component<ComponentEditorProps<any>, ComponentEditorState<any>> {
@@ -339,6 +346,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
     render() {
         const { title } = this.props;
         const { isLoading, docs } = this.state;
+        const skin: Skin = getQuery('skin');
 
         return (
             <>
@@ -386,7 +394,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                             <FlexRow key='head' size='36' padding='12' spacing='6' borderBottom background='white' cx={ css.contextSettingRow } >
                                 { this.renderSettings(docs.contexts) }
                             </FlexRow>
-                            <div className={ css.demoContainer } >
+                            <div className={ cx(css.demoContainer, SkinTheme[skin]) } >
                                 <ScrollBars >
                                     { this.renderDemo() }
                                 </ScrollBars>

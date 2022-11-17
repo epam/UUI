@@ -1,30 +1,34 @@
-import * as types from '../types';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import * as css from './Button.scss';
+import { FillStyle, ControlSize, ControlShape, ColorMod } from "../types";
+import { Button as uuiButton, ButtonMode, UUIButtonProps } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
-import { Button as uuiButton, ButtonProps } from '@epam/uui-components';
 import { TextSettings, getTextClasses } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
+import * as css from './Button.scss';
 
 const defaultSize = '36';
 
-export interface ButtonMods extends types.ColorMod, TextSettings {
-    size?: types.ControlSize | '42' | '18';
-    shape?: types.ControlShape;
-    fill?: types.FillStyle;
+export interface ButtonMods extends ColorMod, TextSettings {
+    size?: ControlSize | '42' | '18';
+    shape?: ControlShape;
+    fill?: FillStyle;
 }
 
-export function applyButtonMods(mods: ButtonMods & ButtonProps) {
+const mapFillToMod: Record<FillStyle, ButtonMode> = {
+    solid: 'solid',
+    white: 'outline',
+    light: 'ghost',
+    none: 'none',
+};
+
+export function applyButtonMods(mods: Omit<UUIButtonProps, "color"> & ButtonMods) {
     return [
-        css.root,
+        'color-' + (mods.color || 'sky'),
         css['size-' + (mods.size || defaultSize)],
-        styles['color-' + (mods.color || 'sky')],
-        css['fill-' + (mods.fill || 'solid')],
         css['style-' + (mods.shape || 'square')],
     ];
 }
 
-export const Button = withMods<ButtonProps, ButtonMods>(
+export const Button = withMods<Omit<UUIButtonProps, "color">, ButtonMods>(
     uuiButton,
     applyButtonMods,
     (props) => ({
@@ -35,5 +39,6 @@ export const Button = withMods<ButtonProps, ButtonMods>(
             lineHeight: props.lineHeight,
             fontSize: props.fontSize,
         }, true),
+        mode: mapFillToMod[props.fill] || mapFillToMod.solid,
     }),
 );
