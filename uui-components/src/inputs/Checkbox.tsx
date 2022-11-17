@@ -49,6 +49,7 @@ export class Checkbox extends React.Component<CheckboxProps> {
             <label
                 className={ cx(
                     css.container,
+                    uuiElement.checkboxContainer,
                     this.props.cx,
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isReadonly && uuiMod.readonly,
