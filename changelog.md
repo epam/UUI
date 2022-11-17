@@ -1,7 +1,25 @@
-# 4.9.0
+# 4.9.0 - 17.11.2022
+This release includes all changes from '4.9.0-rc.1' version
+
+**What's New**
+* [ColumnsConfigurationModal]: redesign and rework logic, added possibility to pin columns from modal
+* [PickerInput]: now we predefine search with selected value on picker open, but apply it to search on first change
+* [ModalContext]: added argument to abort method
+
 
 **What’s Fixed**
+* [RawProps]: fixed wrong type for HtmlDivElement
 * [TableColumnFilters]: fixed scroll position in 'Show only selected' mode in Loveship
+* [Checkbox]: added indeterminate state to the aria-checked attribute
+* [Alert]: added min-width to prevent breaking it on extra small devices
+* [useForm]: fixed form reset to initialValue after save. Fix value replacing if new 'props.value' was passed
+* [LazyDataSource]: added 'null' type for 'parentId' and 'parent' properties in LazyDataSourceApiRequestContext
+* [LazyDataSource]: fixed selectAll action for lazyDS with cascadeSelection = false
+* [useForm]: re-create handleSave callback if 'props.save' functions is changed
+* [DataTableRow]: added possibility to forward ref
+* [PresetPanel]: bug and style fixes
+* [FiltersPanel]: bug and style fixes
+
 
 # 4.9.0-rc.1 - 24.10.2022
 
