@@ -1,7 +1,7 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { CheckboxGroupProps } from '@epam/uui-components';
 import { CheckboxGroup } from '../CheckboxGroup';
-import { isDisabledDoc, isInvalidDoc, iEditable, FormContext, DefaultContext,  ResizableContext, TableContext } from '../../../docs';
+import { isDisabledDoc, isInvalidDoc, iEditable, FormContext, DefaultContext,  ResizableContext } from '../../../docs';
 
 const checkboxGroupDoc = new DocBuilder<CheckboxGroupProps<any>>({ name: 'CheckboxGroup', component: CheckboxGroup })
     .implements([isDisabledDoc, isInvalidDoc, iEditable])
@@ -17,6 +17,6 @@ const checkboxGroupDoc = new DocBuilder<CheckboxGroupProps<any>>({ name: 'Checkb
         },
     ], isRequired: true })
     .prop('direction', { examples:['vertical', 'horizontal'], defaultValue: 'vertical' })
-    .withContexts(DefaultContext, FormContext,  ResizableContext, TableContext);
+    .withContexts(DefaultContext, FormContext,  ResizableContext);
 
 export = checkboxGroupDoc;
