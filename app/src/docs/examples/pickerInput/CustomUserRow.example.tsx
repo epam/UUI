@@ -21,7 +21,7 @@ export default function LazyPersonsMultiPickerWithCustomUserRow() {
         <DataPickerRow
             { ...props }
             key={ props.rowKey }
-            size='48'
+            alignActions='center'
             padding='12'
             renderItem={ item => <PickerItem { ...props } title={ item.name } subtitle={ item.jobTitle } avatarUrl={ item.avatarUrl } /> }
         />
