@@ -1,7 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, MultiSwitch, NumericInput, Panel, PickerInput, TextArea, TextInput, useForm } from '@epam/promo';
-import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource } from '@epam/uui';
-import { FlexSpacer } from 'uui-components';
+import React, { useCallback, useMemo, useState } from 'react';
+import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
+    Panel, PickerInput, TextArea, TextInput, useForm,
+} from '@epam/promo';
+import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui';
+import { FlexSpacer } from '@epam/uui-components';
 
 // Define interface describe data for each row
 interface ToDoItem  {
@@ -98,6 +100,8 @@ export default function EditableTableExample() {
                 // The cell passes the mode='cell' prop, so all compatible UUI components
                 // are rendered in a 'cell mode' - adopted to use in cells (e.g. with borders removed)
                 renderEditor={ props => <TextInput { ...props } /> }
+                // Need to set smaller cell padding, that cell editor content will be aligned with header caption
+                padding='12'
                 { ...props }
             />,
             fix: 'left',

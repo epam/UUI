@@ -16,3 +16,11 @@
         }
     }
 }
+
+.presetsWrapper {
+    :not(:first-child) {
+        &.addPresetContainer {
+            padding-left: 6px;
+        }
+    }
+}

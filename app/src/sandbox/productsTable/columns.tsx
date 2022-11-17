@@ -20,6 +20,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         fix: 'left',
         isSortable: true,
         renderCell: (props) => <DataTableCell
+            padding='12'
             { ...props.rowLens.prop('Name').toProps() }
             renderEditor={ props => <TextInput { ...props } /> }
             { ...props }

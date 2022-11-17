@@ -1,6 +1,5 @@
 @use '~@epam/promo/assets/styles/index' as *;
 
-
 .container {
     margin: 24px 0;
 }
@@ -35,6 +34,10 @@
     background: $white;
     border: 1px solid $gray40;
     width: 960px;
+
+    .external-link {
+        cursor: pointer;
+    }
 }
 
 .code {

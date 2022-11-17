@@ -15,13 +15,12 @@ export function getColumns() {
                 dataSource={ dataSource }
                 selectionMode='multi'
                 valueType='id'
-                emptyValue={ null }
                 getName={ i => i.name || "Not Specified" }
                 { ...props }
             />
         );
 
-        return (filterLens: ILens<any>) => <Filter { ...filterLens.toProps() } />;
+        return (filterLens: ILens<any>) => <Filter { ...filterLens.prop(fieldName).toProps() } />;
     }
 
     const renderDepartmentFilter = makeFilterRenderCallback('departmentId', svc.api.demo.departments);

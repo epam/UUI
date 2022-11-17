@@ -230,7 +230,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "render the required input component\\",
+                            "text": "render the required input component",
                             "marks": []
                           }
                         ]
