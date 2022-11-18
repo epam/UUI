@@ -20,7 +20,7 @@ export const  LoaderExample = () => {
                         <NumericInput max={ 100 } min={ 0 } value={ 20 } onValueChange={ () => null }/>
                     </LabeledInput>
                     <LabeledInput label='Country' >
-                        <DatePicker format={ 'DD/MM/YYYY' } value={ '20/11/2042' }  onValueChange={ () => null }/>
+                        <DatePicker format={ 'DD/MM/YYYY' } value={ '2042-11-20' }  onValueChange={ () => null }/>
                     </LabeledInput>
                 </FlexRow>
                 <FlexRow spacing='12' padding='24' vPadding='24'>

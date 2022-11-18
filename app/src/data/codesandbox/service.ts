@@ -45,7 +45,6 @@ class CodesandboxService {
     }
 
     public getCodesandboxParameters(code: string, stylesheets?: FilesRecord): string {
-        console.log(this.files);
         return getParameters({
             files: getCodesandboxConfig(
                 this.processCodeContent(code),
