@@ -28,14 +28,24 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
     const setTableState = useCallback((newValue: DataTableState) => {
         const newFilter = normalizeFilter(newValue.filter);
-
-        setTableStateValue(prevValue => ({
-            ...prevValue,
-            ...newValue,
-            filter: newFilter,
-        }));
-        const oldQuery = context.uuiRouter.getCurrentLink().query;
         const newFiltersConfig = params.filters ? normalizeFilterConfig(newValue.filtersConfig, newFilter, params.filters) : undefined;
+
+        setTableStateValue(prevValue => {
+            const result = {
+                ...prevValue,
+                ...newValue,
+                filter: newFilter,
+                filtersConfig: newFiltersConfig,
+            };
+            // reset paging on filter change
+            if (prevValue.page !== undefined && !isEqual(prevValue.filter, newFilter)) {
+                result.page = 1;
+            }
+
+            return result;
+        });
+
+        const oldQuery = context.uuiRouter.getCurrentLink().query;
         const newQuery = {
             ...context.uuiRouter.getCurrentLink().query,
             filter: newValue.filter,
