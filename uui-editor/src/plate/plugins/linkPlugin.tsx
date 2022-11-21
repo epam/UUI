@@ -19,6 +19,7 @@ import { ToolbarButton as UUIToolbarButton } from '../../implementation/ToolbarB
 import { ReactComponent as LinkIcon } from "../icons/link.svg";
 import { AddLinkModal } from "../implementation/AddLinkModal";
 import { useUuiContext } from "@epam/uui-core";
+import { isPluginActive } from "../../helpers";
 
 export const createUUILinkPlugin = createLinkPlugin({
     type: 'link',
@@ -32,6 +33,8 @@ export const ToolbarButton = withPlateEventProvider(
 
         const type = getPluginType(editor, ELEMENT_LINK);
         const isLink = !!editor?.selection && someNode(editor, { match: { type } });
+
+        if (!isPluginActive(ELEMENT_LINK)) return null;
 
         return (
             <PlateToolbarButton

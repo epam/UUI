@@ -19,8 +19,7 @@ import {
     TText,
     EText,
     withImageUpload,
-    StyledLeafProps, usePlateEditorState,
-    StyledElementProps,
+    ELEMENT_IMAGE,
 } from '@udecode/plate';
 import { useUuiContext } from "@epam/uui-core";
 import { AddImageModal } from "../implementation/AddImageModal";
@@ -32,6 +31,7 @@ import { ReactComponent as FullWidth } from '../icons/align-full-width.svg';
 
 import * as css from '../../plugins/imagePlugin/ImageBlock.scss';
 import { ToolbarButton as UUIToolbarButton } from "../../implementation/ToolbarButton";
+import { isPluginActive } from "../../helpers";
 
 export const ImageUI = <V extends Value = Value, N extends TText = EText<V>>(
     props: any,
@@ -51,12 +51,12 @@ export const ImageUI = <V extends Value = Value, N extends TText = EText<V>>(
     }
 
     if (editor?.marks?.FULL_WITH_IMAGE && ref?.current?.clientWidth) {
-       if (!element?.originalWidth) element.originalWidth = element.width;
-       element.width =  ref?.current?.clientWidth;
+        if (!element?.originalWidth) element.originalWidth = element.width;
+        element.width =  ref?.current?.clientWidth;
     } else if (!editor?.marks?.FULL_WITH_IMAGE && element.originalWidth) {
         element.width = element.originalWidth;
     }
-    console.log(element);
+
     return (
         <div style={ style } ref={ ref }>
             <ImageElement editor={ editor } attributes={ attributes } element={ element } children={ children }/>
@@ -127,6 +127,9 @@ export interface ImageToolbarButtonProps extends ToolbarButtonProps {
 }
 
 export const InlineToolbarButton = ({ editor }: {editor: PlateEditor}) => {
+
+    if (!isPluginActive(ELEMENT_IMAGE)) return null;
+
     return (
         <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
             <MarkToolbarButton
@@ -211,7 +214,7 @@ export const InlineToolbarButton = ({ editor }: {editor: PlateEditor}) => {
             />
         </div>
     );
-}
+};
 
 export const ImageToolbarButton = ({
    id,
@@ -253,7 +256,7 @@ export const ImageToolbarButton = ({
                                 key='image'
                                 zIndex={ 100 }
                             />
-                        ))
+                        ));
                         setOpen(true);
                     }
                 } }

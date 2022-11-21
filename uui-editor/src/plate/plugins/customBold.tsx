@@ -8,7 +8,10 @@ import {
     MarkToolbarButton,
     isMarkActive,
     createBoldPlugin,
+    usePlatePlugins,
 } from "@udecode/plate";
+
+import { isPluginActive } from '../../helpers';
 
 import { ToolbarButton as UUIToolbarButton } from '../../implementation/ToolbarButton';
 
@@ -30,6 +33,9 @@ export const createUUIBoldPlugin = createBoldPlugin({
 });
 
 export const ToolbarButton = (editor: any) => {
+
+    if (!isPluginActive('bold')) return null;
+
     return (
         <MarkToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer' }} }

@@ -8,10 +8,12 @@ import {
     MarkToolbarButton,
     getPluginType,
     isMarkActive,
+    MARK_UNDERLINE,
 } from "@udecode/plate";
 import { ToolbarButton as UUIToolbarButton } from "../implementation/ToolbarButton";
 
 import { ReactComponent as UnderlineIcon } from "../icons/underline.svg";
+import { isPluginActive } from "../../helpers";
 
 export const CustomUnderline = <V extends Value = Value, N extends TText = EText<V>>(
     props: StyledLeafProps<V, N>,
@@ -29,6 +31,9 @@ export const createUUIUnderlinePlugin = createUnderlinePlugin({
 });
 
 export const ToolbarButton = (editor: any) => {
+
+    if (!isPluginActive(MARK_UNDERLINE)) return null;
+
     return (
         <MarkToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer' }} }

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
-import { usePlateEditorState, isEditorFocused, isSelectionExpanded } from '@udecode/plate';
+import { usePlateEditorState, isEditorFocused, usePlatePlugins } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
 import { isTextSelected } from '../helpers';
 import * as css from './Toolbar.scss';
@@ -15,7 +15,6 @@ export function Toolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
     const editor = usePlateEditorState();
     const inFocus = isEditorFocused(editor);
-    const isSelection = isSelectionExpanded(editor);
 
     const virtualReferenceElement = () => {
         return {
