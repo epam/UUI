@@ -1,6 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat } from '../../';
+import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat, possibleDateFormats } from '../../';
 import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType } from '@epam/uui-core';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -31,7 +31,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
     return {
         inputValue,
         selectedDate: value,
-        displayedDate: dayjs(value.from, valueFormat).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
+        displayedDate: dayjs(value.from, possibleDateFormats, true).isValid() ? dayjs(value.from, inputFormat, true) : dayjs().startOf('day'),
     };
 };
 
@@ -76,11 +76,11 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     valueIsValid(value: string, inputType: RangeDatePickerInputType) {
-        if (dayjs(value, this.getFormat(), true).isValid()) {
+        if (dayjs(value, possibleDateFormats, true).isValid()) {
             if (inputType === 'from') {
-                return this.state.inputValue.to ? dayjs(value, this.getFormat(), true).valueOf() <= dayjs(this.state.inputValue.to, this.getFormat(), true).valueOf() : true;
+                return this.state.inputValue.to ? dayjs(value, possibleDateFormats, true).valueOf() <= dayjs(this.state.inputValue.to, possibleDateFormats, true).valueOf() : true;
             } else {
-                return this.state.inputValue.from ? dayjs(this.state.inputValue.from, this.getFormat(), true).valueOf() <= dayjs(value, this.getFormat(), true).valueOf() : true;
+                return this.state.inputValue.from ? dayjs(this.state.inputValue.from, possibleDateFormats, true).valueOf() <= dayjs(value, possibleDateFormats, true).valueOf() : true;
             }
         }
         return false;
@@ -94,14 +94,20 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => {
+        if (this.props.onBlur) {
+            this.props.onBlur(event, inputType);
+        }
         if (!this.valueIsValid(this.state.inputValue[inputType], inputType) || (this.props.filter && !this.props.filter(dayjs(this.props.value[inputType])))) {
             switch (inputType) {
                 case 'from': this.handleValueChange({ ...this.props.value, from: null }); this.getChangeHandler('from')(null); break;
                 case 'to': this.handleValueChange({ ...this.props.value, to: null }); this.getChangeHandler('to')(null); break;
             }
-            if (this.props.onBlur) {
-                this.props.onBlur(event, inputType);
-            }
+        } else {
+            this.setValue({
+                selectedDate: toCustomDateRangeFormat(this.state.inputValue, this.getFormat()),
+                displayedDate: inputType === "from" ? dayjs(this.props.value[inputType], possibleDateFormats, true) : this.state.displayedDate,
+                view: this.state.view,
+            });
         }
     }
 
@@ -110,8 +116,8 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     setValue = (value: PickerBodyValue<RangeDatePickerValue>) => {
-        this.props.value && (this.props.value.from !== value.selectedDate.from || this.props.value.to !== value.selectedDate.to) && this.handleValueChange(value.selectedDate);
-        this.setState({ ...this.state, inputValue: toCustomDateRangeFormat(value.selectedDate, this.getFormat()), ...value });
+        this.handleValueChange(value.selectedDate);
+        this.setState({ ...this.state, inputValue: value.selectedDate, ...value });
     }
 
     getDisplayedDateOnOpening(focus: RangeDatePickerInputType) {
@@ -142,19 +148,24 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
 
     onRangeChange = (value: PickerBodyValue<RangeDatePickerValue>) => {
         const isFromValueChanged = this.props.value.from != value.selectedDate.from;
+        const newValue = {
+            selectedDate: toCustomDateRangeFormat(value.selectedDate, this.getFormat()),
+            displayedDate: value.displayedDate,
+            view: this.state.view,
+        };
         if (this.state.inFocus === 'from' && isFromValueChanged) {
-            this.setState({ inFocus: 'to' }, () => this.setValue(value));
+            this.setState({ inFocus: 'to' }, () => this.setValue(newValue));
         } else {
-            this.setValue(value);
+            this.setValue(newValue);
         }
     }
 
     getChangeHandler = (inputType: 'from' | 'to') => (value: string) => {
         const inputValue = { ...this.state.inputValue, [inputType]: value };
-        if (this.valueIsValid(value, inputType) && (!this.props.filter || this.props.filter(dayjs(value)))) {
+        if (this.valueIsValid(value, inputType) && (!this.props.filter || this.props.filter(dayjs(value, possibleDateFormats, true)))) {
             this.setValue({
-                selectedDate: toValueDateRangeFormat(inputValue, this.getFormat()),
-                displayedDate: inputType === "from" ? dayjs(value, this.getFormat()) : this.state.displayedDate,
+                selectedDate: inputValue,
+                displayedDate: inputType === "from" ? dayjs(value, possibleDateFormats, true) : this.state.displayedDate,
                 view: this.state.view,
             });
         } else {

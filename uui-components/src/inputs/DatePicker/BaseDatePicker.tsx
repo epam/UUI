@@ -3,7 +3,7 @@ import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, DatePicker
 import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
-import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '../';
+import { PickerBodyValue, defaultFormat, valueFormat, ViewType, possibleDateFormats } from '../';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
 import { Dropdown, DropdownBodyProps } from '../../';
 
@@ -30,7 +30,7 @@ const getStateFromValue = (value: string | null, format: string) => {
     return {
         inputValue,
         selectedDate: value,
-        displayedDate: dayjs(value, valueFormat).isValid() ? dayjs(value, valueFormat) : dayjs().startOf('day'),
+        displayedDate: dayjs(value, possibleDateFormats, true).isValid() ? dayjs(value, valueFormat) : dayjs().startOf('day'),
     };
 };
 
@@ -48,7 +48,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     abstract renderBody(props: DropdownBodyProps): React.ReactNode;
 
     static getDerivedStateFromProps(props: any, state: DatePickerState): DatePickerState | null {
-        if (props.value !== state.selectedDate) {
+        if (props.value && state.selectedDate && props.value !== state.selectedDate) {
             return {
                 ...state,
                 ...getStateFromValue(props.value, props.format),
@@ -63,7 +63,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     }
 
     getIsValidDate = (value: string) => {
-        const parsedDate = dayjs.utc(value, this.getFormat(), true);
+        const parsedDate = dayjs(value, possibleDateFormats, true);
         const isValidDate = parsedDate.isValid();
         if (!isValidDate) return false;
         return this.props.filter ? this.props.filter(parsedDate) : true;
@@ -77,16 +77,20 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (isChildFocusable(e)) return;
         this.onToggle(false);
-        if (this.state.inputValue && !this.getIsValidDate(this.state.inputValue)) {
+        if (this.state.inputValue && this.getIsValidDate(this.state.inputValue)) {
+            let inputValue = toCustomDateFormat(this.state.inputValue, this.getFormat());
+            this.setState({ inputValue });
+        }
+
+        if (!this.state.inputValue || !this.getIsValidDate(this.state.inputValue)) {
             this.handleValueChange(null);
-            this.setState({ inputValue: null, selectedDate: null });
+            this.setState({ inputValue: null, selectedDate: null, displayedDate: null });
         }
     }
 
     handleInputChange = (value: string) => {
-        const resultValue = toValueDateFormat(value, this.getFormat());
         if (this.getIsValidDate(value)) {
-            this.handleValueChange(resultValue);
+            this.handleValueChange(value);
             this.setState({ inputValue: value });
         } else {
             this.setState({ inputValue: value });
@@ -124,10 +128,16 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     }
 
     handleValueChange = (newValue: string | null) => {
-        this.props.onValueChange(newValue);
+        const resultValue = toValueDateFormat(newValue, this.getFormat());
+        const isValidResultDate = dayjs(resultValue, possibleDateFormats, true).isValid();
+        this.props.onValueChange(resultValue);
+        this.setState({
+            selectedDate: resultValue,
+            displayedDate: isValidResultDate ? dayjs(resultValue, valueFormat, true) : dayjs().startOf('day'),
+        });
 
         if (this.props.getValueChangeAnalyticsEvent) {
-            const event = this.props.getValueChangeAnalyticsEvent(newValue, this.props.value);
+            const event = this.props.getValueChangeAnalyticsEvent(resultValue, this.props.value);
             this.context.uuiAnalytics.sendEvent(event);
         }
     }
