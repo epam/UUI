@@ -17,6 +17,7 @@ import {
     usePlateEditorRef,
     LinkToolbarButton,
     PlateEditor,
+    HeadingToolbar,
     setSelection,
 } from '@udecode/plate';
 
@@ -42,17 +43,14 @@ import { ImageToolbarButton, InlineToolbarButton } from "./imagePlugin";
 import { ToolbarButton } from "./linkPlugin";
 import { ToDoListToolbarButton } from "./toDoListPlugin";
 
-const isSelectedImage = (editor: PlateEditor): boolean => {
-    const fragment = editor?.getFragment() || [];
-
-    return fragment.some(fr => fr.type === 'image');
-};
+import { Toolbar } from "../../implementation/Toolbar";
+import { Sidebar } from "../../implementation/Sidebar";
 
 export const MarkBalloonToolbar = () => {
     const editorRef = usePlateEditorRef();
 
     return (
-        <BalloonToolbar>
+        <Toolbar editor={ editorRef } plugins={ [] }>
             <BoldButton editor={ editorRef } />
             <ItalicButton editor={ editorRef }/>
             <UnderlineButton editor={ editorRef }/>
@@ -85,7 +83,7 @@ export const MarkBalloonToolbar = () => {
                 /> }
             />
             <ToolbarButton/>
-        </BalloonToolbar>
+        </Toolbar>
     );
 };
 
@@ -96,7 +94,7 @@ export const ImageBalloonToolbar = () => {
         <CustomBalloonToolbar popperOptions={ { placement: 'auto' } }>
             <InlineToolbarButton editor={ editor } />
         </CustomBalloonToolbar>
-    )
+    );
 };
 
 export const ListToolbarButtons = () => {
@@ -194,9 +192,9 @@ export const ToolbarButtons = () => {
     }
 
     return (
-        <>
+        <Sidebar isReadonly={ false } >
             <ListToolbarButtons />
             <BlockToolbarButtons />
-        </>
+        </Sidebar>
     );
 };

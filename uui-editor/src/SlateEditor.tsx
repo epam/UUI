@@ -41,16 +41,12 @@ export function SlateEditor(props: any) {
                 style['typography-inline'],
                 style['typography-promo'],
                 css['mode-form' + (props.mode || 'form')],
+                style.typographyPromo,
+                props.fontSize == '16' ? style.typography16 : style.typography14,
             ) }
         >
             <DndProvider backend={ HTML5Backend }>
-                <PlateEventProvider id={ currentId }>
-                    <HeadingToolbar>
-                        <ToolbarButtons />
-                    </HeadingToolbar>
-                </PlateEventProvider>
                 <Plate
-                    placeholder='asdsadad'
                     id={ currentId }
                     plugins={ plugins }
                     { ...(props?.value ? { initialValue: migrateSchema(props.value) } : {}) }
@@ -58,6 +54,11 @@ export function SlateEditor(props: any) {
                     <ImageBalloonToolbar />
                     <MarkBalloonToolbar />
                 </Plate>
+                <PlateEventProvider id={ currentId }>
+
+                    <ToolbarButtons />
+
+                </PlateEventProvider>
             </DndProvider>
     </div>
     );
