@@ -128,8 +128,6 @@ export interface ImageToolbarButtonProps extends ToolbarButtonProps {
 
 export const InlineToolbarButton = ({ editor }: {editor: PlateEditor}) => {
 
-    if (!isPluginActive(ELEMENT_IMAGE)) return null;
-
     return (
         <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
             <MarkToolbarButton
@@ -230,6 +228,8 @@ export const ImageToolbarButton = ({
         insertImage(editor, url);
         context.uuiModals.closeAll();
     };
+
+    if (!isPluginActive('image')) return null;
 
     return (
         <>
