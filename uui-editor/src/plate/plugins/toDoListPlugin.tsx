@@ -105,6 +105,7 @@ import { uuiSkin } from '@epam/uui-core';
 import * as css from '../../plugins/toDoListPlugin/ToDoItem.scss';
 import { ToolbarButton as UUIToolbarButton } from "../../implementation/ToolbarButton";
 import { ReactComponent as ToDoIcon } from "../icons/to-do.svg";
+import { isPluginActive } from "../../helpers";
 //
 const { Checkbox, FlexRow } = uuiSkin;
 //
@@ -118,8 +119,6 @@ export function ToDoItem(props: any): any {
         });
     }
 
-    const data = props?.node?.data;
-    // data.get('checked')
     return (
         <FlexRow rawProps={ props.attributes }>
             <div contentEditable={ false } className={ css.checkboxContainer }>
@@ -150,6 +149,9 @@ export const createToDoListPlugin = createPluginFactory({
 //
 export const ToDoListToolbarButton = ({ id }: any) => {
     const editor = usePlateEditorRef(useEventPlateId(id));
+
+    if (!isPluginActive('toDoItem')) return null;
+
     return (
         <BlockToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer' }} }

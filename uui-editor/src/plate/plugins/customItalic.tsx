@@ -4,10 +4,12 @@ import {
     EText,
     TText,
     Value,
+    MARK_ITALIC,
     createItalicPlugin, MarkToolbarButton, getPluginType, isMarkActive,
 } from "@udecode/plate";
 import { ToolbarButton as UUIToolbarButton } from "../../implementation/ToolbarButton";
 import { ReactComponent as ItalicIcon } from "../icons/italic.svg";
+import { isPluginActive } from "../../helpers";
 
 export const CustomItalic = <V extends Value = Value, N extends TText = EText<V>>(
     props: StyledLeafProps<V, N>,
@@ -25,6 +27,7 @@ export const createUUIItalicPlugin = createItalicPlugin({
 });
 
 export const ToolbarButton = (editor: any) => {
+    if (!isPluginActive(MARK_ITALIC)) return null;
     return (
         <MarkToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer' }} }

@@ -18,6 +18,7 @@ import {
 } from '@udecode/plate';
 
 import { ColorBar } from '../implementation/ColorBar';
+import { isPluginActive } from "../../helpers";
 
 export const ColorPickerToolbarDropdown = ({
    id,
@@ -85,6 +86,8 @@ export const ColorPickerToolbarDropdown = ({
             setSelectedColor(color);
         }
     }, [color, editor?.selection]);
+
+    if (!isPluginActive(type)) return null;
 
     return (
         <ToolbarDropdown

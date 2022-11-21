@@ -6,9 +6,13 @@ import {
     ToolbarButtonProps,
     getPreventDefaultHandler,
     ToolbarDropdown,
+    ELEMENT_H1,
+    ELEMENT_H2,
+    ELEMENT_H3,
 } from '@udecode/plate';
 
 import { HeaderBar } from '../implementation/HeaderBar';
+import { isPluginActive } from "../../helpers";
 
 export const HeaderBarToolbar = ({
    id,
@@ -27,6 +31,8 @@ export const HeaderBarToolbar = ({
     const onToggle = useCallback(() => {
         setOpen(!open);
     }, [open, setOpen]);
+
+    if (!isPluginActive(ELEMENT_H1) && !isPluginActive(ELEMENT_H2) && !isPluginActive(ELEMENT_H3)) return null;
 
     return (
         <ToolbarDropdown
