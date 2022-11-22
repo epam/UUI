@@ -2,7 +2,7 @@
 // import Html from 'slate-html-serializer';
 import { useSlate, useFocused } from "slate-react";
 import { Range, Editor } from 'slate';
-import { usePlatePlugins } from "@udecode/plate";
+import { usePlatePlugins, getSelectionRects } from "@udecode/plate";
 //
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -48,6 +48,12 @@ export function isTextSelected(editor: any, inFocus: boolean) {
     const { selection } = editor;
 
     return !(!selection || !inFocus || Range.isCollapsed(selection) || Editor.string(editor, selection) === '');
+}
+
+export function isImageSelected(editor: any) {
+    const { selection, getFragment } = editor;
+    const node = getFragment()[0]?.type;
+    return selection && node === 'image';
 }
 
 export function isPluginActive(key: string): boolean {

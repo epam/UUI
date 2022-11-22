@@ -1,57 +1,56 @@
 import React, { useRef } from 'react';
-import {
-    withPlateEventProvider,
-    PortalBody,
-    UsePopperPositionOptions,
-    ToolbarBase,
-    getBalloonToolbarStyles,
-    BalloonToolbarProps,
-} from '@udecode/plate';
+import { Popper } from 'react-popper';
+import { usePlateEditorState, isEditorFocused, usePlatePlugins } from '@udecode/plate';
+import { Portal } from '@epam/uui-components';
+import { isImageSelected } from '../../../helpers';
+import * as css from '../../../implementation/Toolbar.scss';
 
-import { useBalloonToolbarPopper } from './useBalloonToolbarPopper';
+interface ToolbarProps {
+    editor: any;
+    plugins: any;
+    children: any;
+}
 
-export const CustomBalloonToolbar = withPlateEventProvider(
-    (props: BalloonToolbarProps) => {
-        const {
-            children,
-            theme = 'dark',
-            arrow = false,
-            portalElement,
-            popperOptions: popperOptionsProps = {},
-        } = props;
+export function CustomBalloonToolbar(props: ToolbarProps): any {
+    const ref = useRef<HTMLElement | null>();
+    const editor = usePlateEditorState();
+    const inFocus = isEditorFocused(editor);
 
-        const popperRef = useRef<HTMLDivElement>(null);
-
-        const popperOptions: UsePopperPositionOptions = {
-            popperElement: popperRef.current,
-            placement: 'top' as any,
-            offset: [0, 8],
-            ...popperOptionsProps,
+    const virtualReferenceElement = () => {
+        return {
+            clientWidth: ref?.current?.getBoundingClientRect().width,
+            clientHeight: ref?.current?.getBoundingClientRect().height,
+            getBoundingClientRect() {
+                const native = window.getSelection();
+                const range = native?.getRangeAt(0);
+                return range?.getBoundingClientRect();
+            },
         };
+    };
 
-        const { styles: popperStyles, attributes } = useBalloonToolbarPopper(
-            popperOptions,
-        );
-
-        const styles = getBalloonToolbarStyles({
-            popperOptions,
-            theme,
-            arrow,
-            ...props,
-        });
-
-        return (
-            <PortalBody element={ portalElement }>
-                <ToolbarBase
-                    ref={ popperRef }
-                    //css={ {root: styles.root.css } }
-                    className={ styles.root.className }
-                    style={ popperStyles.popper }
-                    { ...attributes.popper }
+    return (
+        <Portal>
+            { isImageSelected(editor) && (
+                <Popper
+                    referenceElement={ virtualReferenceElement() }
+                    placement='top-start'
+                    modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
                 >
-                    { children }
-                </ToolbarBase>
-            </PortalBody>
-        );
-    },
-);
+                    { popperProps => (
+                        <div
+                            onMouseDown={ e => e.preventDefault() }
+                            className={ css.container }
+                            style={ { ...popperProps.style } }
+                            ref={ node => {
+                                ref.current = node;
+                                (popperProps.ref as React.RefCallback<HTMLDivElement>)(node);
+                            } }
+                        >
+                            { props.children }
+                        </div>
+                    ) }
+                </Popper>
+            ) }
+        </Portal>
+    );
+}
