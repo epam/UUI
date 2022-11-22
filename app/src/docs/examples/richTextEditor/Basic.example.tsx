@@ -84,7 +84,17 @@ export default function SlateEditorBasicExample() {
                 />
             </FlexRow>
 
-            <SlateEditor value={value}/>
+            <SlateEditor
+                value={ value }
+                onValueChange={ setValue }
+                isReadonly={ isReadonly }
+                autoFocus={ true }
+                plugins={ plugins }
+                mode={ mode }
+                placeholder='Add description'
+                minHeight={ 'none' }
+                fontSize={ fontSize }
+            />
         </Panel>
     );
 }

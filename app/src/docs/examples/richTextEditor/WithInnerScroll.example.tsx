@@ -58,7 +58,18 @@ export default function WithInnerScrollExample() {
 
     return (
         <Panel rawProps={ { style: { height: '350px' } } }>
-            <SlateEditor />
+            <SlateEditor
+                value={ value }
+                onValueChange={ setValue }
+                isReadonly={ false }
+                autoFocus={ true }
+                plugins={ plugins }
+                mode='form'
+                placeholder='Add description'
+                minHeight={ 'none' }
+                fontSize='16'
+                scrollbars
+            />
         </Panel>
     );
 }

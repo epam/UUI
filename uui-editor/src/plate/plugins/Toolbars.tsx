@@ -91,7 +91,7 @@ export const ImageBalloonToolbar = () => {
     const editor = usePlateEditorState(useEventPlateId());
 
     return (
-        <CustomBalloonToolbar popperOptions={ { placement: 'auto' } }>
+        <CustomBalloonToolbar editor={ editor } plugins={ [] }>
             <InlineToolbarButton editor={ editor } />
         </CustomBalloonToolbar>
     );
