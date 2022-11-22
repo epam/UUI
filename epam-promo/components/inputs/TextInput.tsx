@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui-core';
-import { TextInput as uuiTextInput } from '@epam/uui';
+import { withMods } from '@epam/uui-core';
+import { TextInput as UuiTextInput, SearchInput as UuiSearchInput } from '@epam/uui';
 import { TextInputProps } from '@epam/uui-components';
 import * as types from '../types';
-import { IHasEditMode, EditMode } from '../types';
+import { IHasEditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import * as css from './TextInput.scss';
 
 const defaultSize = '36';
-const defaultMode = EditMode.FORM;
 
 export interface TextInputMods extends IHasEditMode {
     size?: types.ControlSize;
@@ -16,14 +15,12 @@ export interface TextInputMods extends IHasEditMode {
 
 export function applyTextInputMods(mods: TextInputMods) {
     return [
-        css.root,
         css['size-' + (mods.size || defaultSize)],
-        css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 
 export const TextInput = withMods<TextInputProps, TextInputMods>(
-    uuiTextInput, applyTextInputMods,
+    UuiTextInput, applyTextInputMods,
     (props) => ({
         acceptIcon: systemIcons[props.size || defaultSize].accept,
         cancelIcon: systemIcons[props.size || defaultSize].clear,
@@ -31,25 +28,4 @@ export const TextInput = withMods<TextInputProps, TextInputMods>(
     }),
 );
 
-export const SearchInput = React.forwardRef<HTMLInputElement, TextInputProps & TextInputMods & IEditableDebouncerOptions>(
-    (props, ref) => {
-        // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
-        const { getValueChangeAnalyticsEvent, ...textInputProps } = props;
-
-        return (
-            <IEditableDebouncer
-                { ...props }
-                render={ iEditable => (
-                    <TextInput
-                        icon={ systemIcons[props.size || defaultSize].search }
-                        onCancel={ !!props.value ? (() => iEditable.onValueChange('')) : undefined }
-                        type="search"
-                        inputMode="search"
-                        ref={ ref }
-                        { ...textInputProps }
-                        { ...iEditable }
-                    />
-                ) }
-            />
-        );
-    });
+export const SearchInput = UuiSearchInput;

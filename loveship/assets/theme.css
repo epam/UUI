@@ -1,4 +1,12 @@
 .uui-theme-loveship {
+    --font-regular: 'Sans Regular', Arial, sans-serif;
+    --font-semibold: 'Sans Semibold', Arial, sans-serif;
+    --font-italic: 'Sans Italic', Arial, sans-serif;
+    --font-primary: 'Museo Sans', 'Sans Semibold', Arial, sans-serif;
+    --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
+    --font-mono: 'Roboto Mono', Arial, sans-serif;
+    --font-redacted: 'Redacted';
+
     --white: #FFFFFF;
     --night50: #FAFAFC;
     --night100: #F5F6FA;
@@ -160,13 +168,6 @@
     --scroll-color: var(--night600);
     --surface-inverted-light-color: var(--night800);
     --secondary-disabled-color: var(--night400);
-    --font-regular: 'Sans Regular', Arial, sans-serif;
-    --font-semibold: 'Sans Semibold', Arial, sans-serif;
-    --font-italic: 'Sans Italic', Arial, sans-serif;
-    --font-primary: 'Museo Sans', 'Sans Semibold', Arial, sans-serif;
-    --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
-    --font-mono: 'Roboto Mono', Arial, sans-serif;
-    --font-redacted: 'Redacted';
     --button-disabled-color: var(--gray50);
     --shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
     --info-hover-color: var(--blue-dark);

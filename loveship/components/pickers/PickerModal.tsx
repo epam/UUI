@@ -4,12 +4,13 @@ import { PickerModalBase, PickerModalProps,  handleDataSourceKeyboard } from '@e
 import { DataPickerBody } from './DataPickerBody';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
 import { ModalBlocker, ModalWindow, ModalHeader } from '../overlays';
-import { SearchInput, Switch } from '../inputs';
+import { Switch } from '../inputs';
 import { LinkButton, Button } from '../buttons';
 import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
 import { i18n } from "../../i18n";
 import * as css from './PickerModal.scss';
+import { SearchInput } from "@epam/uui";
 
 export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     renderRow(rowProps: DataRowProps<TItem, TId>) {

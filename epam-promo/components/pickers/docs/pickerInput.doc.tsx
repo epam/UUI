@@ -3,12 +3,12 @@ import { PickerInputBaseProps } from '@epam/uui-components';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Button, LinkButton } from '../../buttons';
-import { SearchInput } from '../../inputs';
 import { iconDoc, iconOptionsDoc, iEditable, isDisabledDoc } from '../../../docs';
 import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
 import { FlexCell } from '../../layout/FlexItems';
 import { Text } from '../../typography';
+import { SearchInput } from "@epam/uui";
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc])
