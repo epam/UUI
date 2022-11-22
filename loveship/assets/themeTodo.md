@@ -8,3 +8,6 @@
 - [ ] check border in focus (new design in loveship-figma)
 - [ ] fontSize
 - [ ] lineHeight
+- [ ] In loveship/types Interface EditMode: mode?: 'form' | 'inline' - ? | 'cell' | 'none' - ?;
+- [ ] Remade SearchInput in PickerInput to fit Figma UUI3 styles.
+- [ ] 

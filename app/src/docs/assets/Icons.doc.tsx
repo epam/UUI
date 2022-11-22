@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as css from './IconsPage.scss';
-import { FlexCell, SearchInput, ControlSize, Panel, FlexRow, Text, IconContainer, Button, IconButton, LinkButton, TextInput,
+import { FlexCell, ControlSize, Panel, FlexRow, Text, IconContainer, Button, IconButton, LinkButton, TextInput,
     Tooltip, FlexSpacer, NotificationCard, MultiSwitch, ScrollBars } from '@epam/promo';
-import { ArrayDataSource, cx, DataRowProps, DataSourceState, Icon } from '@epam/uui';
+import { ArrayDataSource, cx, DataRowProps, DataSourceState, Icon, SearchInput } from '@epam/uui';
 import { getGroupedIcons, getIconList, IconList } from '@epam/assets/icons/helpers';
 import { ReactComponent as LockedIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
 import { ReactComponent as UnlockedIcon } from '@epam/assets/icons/common/action-lock_open-fill-18.svg';

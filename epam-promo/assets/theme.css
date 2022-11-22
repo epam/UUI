@@ -1,4 +1,12 @@
 .uui-theme-promo {
+    --font-regular: 'Sans Regular', Arial, sans-serif;
+    --font-semibold: 'Sans Semibold', Arial, sans-serif;
+    --font-italic: 'Sans Italic', Arial, sans-serif;
+    --font-primary: 'Museo Sans', 'Sans Semibold', Arial, sans-serif;
+    --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
+    --font-mono: 'Roboto Mono', Arial, sans-serif;
+    --font-redacted: 'Redacted';
+
     --gray5: #FAFAFC;
     --gray10: #F5F6FA;
     --gray20: #EBEDF5;

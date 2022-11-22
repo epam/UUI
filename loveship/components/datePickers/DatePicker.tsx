@@ -1,11 +1,12 @@
 import React from 'react';
-import { DropdownContainer, DatePickerBody, SizeMod, EditMode, TextInput } from '../index';
+import { DropdownContainer, DatePickerBody, SizeMod, EditMode } from '../index';
 import { cx, IDropdownToggler, uuiMod, IHasRawProps, BaseDatePickerProps } from '@epam/uui-core';
 import * as css from './DatePicker.scss';
 import { Dayjs } from "dayjs";
 import { BaseDatePicker, DropdownBodyProps } from '@epam/uui-components';
 import { TextSettings } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
+import { TextInput } from "@epam/uui";
 
 export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSettings, EditMode {
     format?: string;
@@ -32,8 +33,8 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
                 iconPosition={ this.props.iconPosition || 'left' }
                 placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
                 size={ this.props.size || '36' }
-                lineHeight={ this.props.lineHeight }
-                fontSize={ this.props.fontSize }
+                // lineHeight={ this.props.lineHeight }
+                // fontSize={ this.props.fontSize }
                 mode={ this.props.mode || 'form' }
                 value={ this.state.inputValue }
                 onValueChange={ this.handleInputChange }

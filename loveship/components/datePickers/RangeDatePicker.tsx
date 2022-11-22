@@ -61,8 +61,8 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     cx={ cx(css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'from' && uuiMod.focus) }
                     mode={ this.props.mode || 'form' }
                     size={ this.props.size || '36' }
-                    lineHeight={ this.props.lineHeight }
-                    fontSize={ this.props.fontSize }
+                    // lineHeight={ this.props.lineHeight }
+                    // fontSize={ this.props.fontSize }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                     value={ this.state.inputValue.from }
                     onValueChange={ this.getChangeHandler('from') }
@@ -80,8 +80,8 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                     mode={ this.props.mode || 'form' }
                     size={ this.props.size || '36' }
-                    lineHeight={ this.props.lineHeight }
-                    fontSize={ this.props.fontSize }
+                    // lineHeight={ this.props.lineHeight }
+                    // fontSize={ this.props.fontSize }
                     value={ this.state.inputValue.to }
                     onCancel={ this.props.disableClear ? null : this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
                     onValueChange={ this.getChangeHandler('to') }
