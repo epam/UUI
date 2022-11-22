@@ -16,7 +16,8 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     private renderGhostCallback: () => React.ReactNode = null;
     private lastScrollTime = new Date().getTime();
 
-    componentDidMount () {
+    constructor() {
+        super();
         window.addEventListener('pointermove', this.windowPointerMoveHandler);
         window.addEventListener('pointerup', this.windowPointerUpHandler);
     }
