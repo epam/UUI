@@ -100,6 +100,14 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
                 placement="bottom-start"
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
             />
+            <Dropdown
+                renderBody={ (bodyProps) => renderDropdownBody(bodyProps) }
+                renderTarget={ (targetProps: IDropdownToggler) => renderTarget(targetProps) }
+                closeOnMouseLeave={ 'boundary' }
+                openOnHover={ true }
+                placement="bottom-start"
+                modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
+            />
         </div>
     );
 };

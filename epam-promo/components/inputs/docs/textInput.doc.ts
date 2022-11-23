@@ -10,8 +10,8 @@ const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'Tex
     .prop('maxLength', { examples: [10, 20, 30], type: 'number' })
     .prop('suffix', { examples: [{ value: 'Suffix' }], type: 'string'  })
     .prop('prefix', { examples: [{ value: 'Prefix: ' }], type: 'string' })
-    .prop('value', { examples: [
-        { value: 'Hello, World!', isDefault: true },
+    .prop('value', { examples: (ctx) => [
+        { value: ctx.getSelectedProps().isReadonly ? 'Hello, World!' : 'other value', isDefault: true },
         { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
         { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
     ], type: 'string' })

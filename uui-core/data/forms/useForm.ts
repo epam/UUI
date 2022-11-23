@@ -4,7 +4,7 @@ import { mergeValidation, useForceUpdate, UuiContexts, validate as uuiValidate,
 import { useUuiContext } from '../../';
 import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
-import { FormProps, FormSaveResponse, RenderFormProps } from './Form';
+import { FormProps, FormSaveResponse, IFormApi } from './Form';
 import { useLock } from './useLock';
 
 export interface FormState<T> {
@@ -26,7 +26,7 @@ interface ICanBeChanged {
 
 export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm'>;
 
-export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
+export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     const context: UuiContexts = useUuiContext();
 
     const initialForm = useRef<FormState<T>>({
@@ -57,7 +57,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         removeUnsavedChanges();
     }) : null;
 
-    useLock({ isEnabled: formState.current.isChanged, handleLeave });
+    const lock = useLock({ isEnabled: formState.current.isChanged, handleLeave });
 
     const lens = useMemo(() => new LensBuilder<T, T>({
         get: () => formState.current.form,
@@ -279,17 +279,22 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
                 ? value(currentValue)
                 : value;
             return newValue;
-        }, { addCheckpoint: false })
+        }, { addCheckpoint: false });
     }, []);
 
     const saveCallback = useCallback(() => {
         handleSave().catch(() => {});
     }, [handleSave]);
 
+    const handleClose = useCallback(() => {
+        return lock.tryRelease();
+    }, [lock]);
+
     return {
         setValue: handleSetValue,
         replaceValue: handleReplaceValue,
         isChanged: formState.current.isChanged,
+        close: handleClose,
         lens,
         save: saveCallback,
         undo: handleUndo,
