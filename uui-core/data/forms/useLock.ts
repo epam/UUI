@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
-import { useUuiContext } from "../../";
+import { Lock, useUuiContext } from "../../services";
 
 export interface UseLockProps {
     handleLeave: () => Promise<boolean>;
     isEnabled?: boolean;
 }
 
-export function useLock({ handleLeave, isEnabled }: UseLockProps) {
+export function useLock({ handleLeave, isEnabled }: UseLockProps): Lock {
     if (!handleLeave) return;
 
     const context = useUuiContext();
@@ -31,4 +31,6 @@ export function useLock({ handleLeave, isEnabled }: UseLockProps) {
     }
 
     handleLeaveRef.current.isEnabled = isEnabled;
+
+    return context.uuiLocks.getCurrentLock();
 }
