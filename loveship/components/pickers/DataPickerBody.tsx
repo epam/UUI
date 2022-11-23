@@ -6,7 +6,7 @@ import { Text } from '../typography';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
 import css from './DataPickerBody.scss';
-import { SearchInput } from "@epam/uui";
+import { SearchInput } from '../inputs';
 
 export type DataPickerBodyProps = PickerBodyBaseProps & {
     maxHeight?: number;
