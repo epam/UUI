@@ -6,7 +6,7 @@ export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 
 export const defaultFormat = 'MMM D, YYYY';
 export const valueFormat = 'YYYY-MM-DD';
-export const possibleDateFormats = [
+export const supportedDateFormats = [
     "DD/MM/YYYY",
     "DD-MM-YYYY",
     "DD.MM.YYYY",
