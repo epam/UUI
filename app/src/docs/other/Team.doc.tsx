@@ -14,7 +14,7 @@ export const team = [
     { name: 'Hayk Simonyan', position: 'Developer', src: 'https://static.cdn.epam.com/avatar/83db38aa0f48d5c5019985534dc73822.jpg', link: 'https://telescope.epam.com/who/Hayk_Simonyan' },
     { name: 'Siarhei Yelin', position: 'Developer', src: 'https://static.cdn.epam.com/avatar/84c839a10f7f76025028844b30512707.jpg', link: 'https://telescope.epam.com/who/Siarhei_Yelin' },
     { name: 'Artyom Lezhnyuk', position: 'Design Librarian', isDefault: true, src: 'https://static.cdn.epam.com/avatar/0efe4c3b2e9ee2e393641b9e8c3903e0.jpg', link: 'https://telescope.epam.com/who/Artyom_Lezhnyuk' },
-    { name: 'Dzmitry Trubchyk', position: 'Design Librarian', isDefault: true, src: 'https://static.cdn.epam.com/avatar/6303e0c4ab6b4ef6ced1f62e5656807a.jpg', link: 'https://telescope.epam.com/who/Dzmitry_Trubchyk' },
+    { name: 'Dzmitry Trubchyk', position: 'Design Librarian', src: 'https://static.cdn.epam.com/avatar/6303e0c4ab6b4ef6ced1f62e5656807a.jpg', link: 'https://telescope.epam.com/who/Dzmitry_Trubchyk' },
     { name: 'Yaroslav Zinkov', position: 'Design Librarian', src: 'http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/team-avatars/Yaroslav_Zinkov.jfif', link: 'https://telescope.epam.com/who/Yaroslav_Zinkov' },
     { name: 'Natallia Alieva', position: 'Tester', src: 'http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/team-avatars/Natallia_Alieva.jfif', link: 'https://telescope.epam.com/who/Natallia_Alieva' },
 ];
