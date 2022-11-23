@@ -3,7 +3,7 @@ import { ApiCallError, ApiContext } from "../ApiContext";
 const delay = (time?: number) => new Promise(resolve => setTimeout(resolve, time || 0));
 
 describe("ApiContext", () => {
-    const context = new ApiContext({});
+    let context = new ApiContext({});
 
     const testData = { testData: 'test test' };
 
@@ -22,7 +22,7 @@ describe("ApiContext", () => {
 
     afterEach(() => {
         (global.fetch as any).mockClear();
-        context.reset();
+        context = new ApiContext({});
     });
 
 
