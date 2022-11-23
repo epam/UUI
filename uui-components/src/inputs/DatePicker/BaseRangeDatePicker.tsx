@@ -31,7 +31,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
     return {
         inputValue,
         selectedDate: value,
-        displayedDate: dayjs(value.from, valueFormat, true).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
+        displayedDate: dayjs(value.from, valueFormat).isValid() ? dayjs(value.from, valueFormat) : dayjs().startOf('day'),
     };
 };
 
