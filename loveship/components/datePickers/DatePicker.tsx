@@ -1,12 +1,11 @@
 import React from 'react';
-import { DropdownContainer, DatePickerBody, SizeMod, EditMode } from '../index';
+import { DropdownContainer, DatePickerBody, SizeMod, EditMode, TextInput } from '../index';
 import { cx, IDropdownToggler, uuiMod, IHasRawProps, BaseDatePickerProps } from '@epam/uui-core';
 import * as css from './DatePicker.scss';
 import { Dayjs } from "dayjs";
 import { BaseDatePicker, DropdownBodyProps } from '@epam/uui-components';
 import { TextSettings } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
-import { TextInput } from "@epam/uui";
 
 export interface DatePickerProps extends BaseDatePickerProps, SizeMod, TextSettings, EditMode {
     format?: string;

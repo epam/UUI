@@ -8,7 +8,7 @@ import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext } from '
 import { pickerBaseOptionsDoc } from './common';
 import { FlexCell } from '../../layout/FlexItems';
 import { Text } from '../../typography';
-import { SearchInput } from "@epam/uui";
+import { SearchInput } from '../../inputs';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc])
