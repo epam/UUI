@@ -75,12 +75,21 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         }
     }
 
+    getValueOfDate(value: string) {
+        return dayjs(value, supportedDateFormats, true).valueOf();
+    }
+
     valueIsValid(value: string, inputType: RangeDatePickerInputType) {
-        if (dayjs(value, supportedDateFormats, true).isValid()) {
+        const isValidDate = dayjs(value, supportedDateFormats, true).isValid();
+        const valueOfDate = this.getValueOfDate(value);
+        const valueOfDateTo = this.getValueOfDate(this.state.inputValue.to);
+        const valueOfDateFrom = this.getValueOfDate(this.state.inputValue.from);
+
+        if (isValidDate) {
             if (inputType === 'from') {
-                return this.state.inputValue.to ? dayjs(value, supportedDateFormats, true).valueOf() <= dayjs(this.state.inputValue.to, supportedDateFormats, true).valueOf() : true;
+                return this.state.inputValue.to ? valueOfDate <= valueOfDateTo : true;
             } else {
-                return this.state.inputValue.from ? dayjs(this.state.inputValue.from, supportedDateFormats, true).valueOf() <= dayjs(value, supportedDateFormats, true).valueOf() : true;
+                return this.state.inputValue.from ? valueOfDateFrom <= valueOfDate : true;
             }
         }
         return false;
@@ -103,11 +112,8 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
                 case 'to': this.handleValueChange({ ...this.props.value, to: null }); this.getChangeHandler('to')(null); break;
             }
         } else {
-            this.setValue({
-                selectedDate: toValueDateRangeFormat(this.state.inputValue, this.getFormat()),
-                displayedDate: dayjs(this.props.value[inputType], valueFormat),
-                view: this.state.view,
-            });
+            const formatInputValue = toCustomDateRangeFormat(this.state.inputValue, this.getFormat());
+            this.setState({ inputValue: formatInputValue });
         }
     }
 
