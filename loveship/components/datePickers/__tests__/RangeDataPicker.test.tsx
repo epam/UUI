@@ -322,12 +322,7 @@ describe('RangeDataPicker', () => {
         (wrapper.instance() as any).handleBlur(event, 'from');
 
         expect(setStateSpy).toHaveBeenLastCalledWith({
-            isOpen: false,
-            view: 'DAY_SELECTION',
-            inFocus: null,
             inputValue: toCustomDateRangeFormat(baseValue, instance.getFormat()),
-            selectedDate: baseValue,
-            displayedDate: dayjs(baseValue.from, valueFormat),
         });
 
         RangeDatePicker.prototype.setState = pickerSetState;
