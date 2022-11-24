@@ -304,6 +304,30 @@ describe('RangeDataPicker', () => {
         instance.setValue = pickerSetValue;
     });
 
+    it('should format value onBlur', () => {
+        let baseValue = { from: '2019-09-10', to: '2019-10-10' };
+
+        const setStateSpy = jest.fn((nextState) => null);
+
+        const pickerSetState = RangeDatePicker.prototype.setState;
+        RangeDatePicker.prototype.setState = setStateSpy;
+
+        wrapper = shallow(<RangeDatePicker
+            value={ baseValue }
+            onValueChange={ () => { } }
+        />, {});
+        const instance: any = wrapper.instance();
+        const event = { target: { value: baseValue} };
+
+        (wrapper.instance() as any).handleBlur(event, 'from');
+
+        expect(setStateSpy).toHaveBeenLastCalledWith({
+            inputValue: toCustomDateRangeFormat(baseValue, instance.getFormat()),
+        });
+
+        RangeDatePicker.prototype.setState = pickerSetState;
+    });
+
     it('should return format', () => {
         wrapper = shallow(<RangeDatePicker
             value={ { from: null, to: null } }
