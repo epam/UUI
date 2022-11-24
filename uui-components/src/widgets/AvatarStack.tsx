@@ -30,7 +30,7 @@ export const AvatarStack = React.forwardRef<HTMLDivElement, AvatarStackProps>((p
                         <Avatar key={ index } size={ avatarSize } img={ avatar } alt='avatar' />;
                 }) }
             </FlexRow>
-            <div className='avatarsCount'>{ urlArray.length > avatarsCount ? '+' + (urlArray.length - avatarsCount) : null }</div>
+            <div className='avatarsCount'>{ avatarsCount && urlArray.length > avatarsCount ? '+' + (urlArray.length - avatarsCount) : null }</div>
         </FlexRow>
     );
 });
