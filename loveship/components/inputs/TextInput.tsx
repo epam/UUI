@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as types from '../types';
-import { withMods } from '@epam/uui-core';
+import { IEditableDebouncerOptions, withMods } from '@epam/uui-core';
 import { TextInput as uuiTextInput, SearchInput as UuiSearchInput } from '@epam/uui';
 import { TextInputProps } from '@epam/uui-components';
 import { TextSettings } from '../../helpers/textLayout';
@@ -30,4 +30,12 @@ export const TextInput = withMods<TextInputProps, TextInputMods>(
     }),
 );
 
-export const SearchInput = UuiSearchInput;
+export const SearchInput = withMods<TextInputProps, TextInputMods & IEditableDebouncerOptions>(
+    UuiSearchInput, applyTextInputMods,
+    (props) => ({
+        acceptIcon: systemIcons[props.size || defaultSize].accept,
+        cancelIcon: systemIcons[props.size || defaultSize].clear,
+        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+        icon: systemIcons[props.size || defaultSize].search,
+    }),
+);
