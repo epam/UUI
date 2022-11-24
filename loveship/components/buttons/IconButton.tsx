@@ -12,7 +12,7 @@ function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
     return [
         css.root,
         styles['color-' + (mods.color || 'night600')],
-    ]
+    ];
 }
 
 export const IconButton = withMods<IconButtonProps, IconButtonMods>(uuiIconButton, applyIconButtonMods);

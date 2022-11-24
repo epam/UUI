@@ -88,7 +88,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                         shape="square"
                         fill="none"
                         size='24'
-                        onClear={ this.handleClear }
+                        onClear={ this.props.value && this.handleClear }
                     /> }
                     renderRow={ props => <DataPickerRow key={ props.id } size='48' renderItem={ this.renderItem }  { ...props } /> }
                     getRowOptions={ item => ({ isSelectable: item.parentId }) }
