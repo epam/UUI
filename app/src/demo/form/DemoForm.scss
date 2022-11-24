@@ -3,7 +3,6 @@
 .root {
     margin: 0 auto 102px;
     max-width: 714px;
-    min-width: 370px;
 
     .form-panel {
         max-width: 714px;
@@ -13,20 +12,10 @@
             margin-top: 0;
         }
 
-        .sectionRow,
-        .sectionLongRow,
-        .sectionLanguageRow,
-        .sectionVisasRow {
+        .sectionRow {
+            flex-wrap: wrap;
             column-gap: 18px;
             row-gap: 12px;
-        }
-
-        .sectionLanguageRow{
-            max-width: 462px;
-        }
-
-        .sectionVisasRow{
-            max-width: 593px;
         }
 
         .info-icon {
@@ -56,32 +45,6 @@
             margin-top: 18px;
             margin-bottom: 24px;
             border: none;
-        }
-
-        @media (max-width: 500px) {
-            .sectionRow {
-                flex-wrap: wrap;
-            }
-        }
-
-        @media (max-width: 714px) {
-            .sectionLongRow {
-                flex-wrap: wrap;
-            }
-
-            .sectionVisasRow,
-            .sectionLanguageRow {
-                flex-wrap: wrap;
-                max-width: 324px;
-                padding: 8px;
-                border: 1px solid $gray40;
-                border-radius: 5px;
-            }
-
-            .clearButton {
-                align-items: center;
-                align-self: center;
-            }
         }
     }
 }
