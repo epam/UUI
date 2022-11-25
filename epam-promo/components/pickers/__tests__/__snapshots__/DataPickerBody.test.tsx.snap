@@ -50,7 +50,7 @@ Array [
       }
     >
       <div
-        className="container uui-input-box -clickable text-input-vars root size-48 mode-form search"
+        className="container uui-input-box -clickable text-input-vars root size-48 mode-form uui-theme-promo search"
         onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
