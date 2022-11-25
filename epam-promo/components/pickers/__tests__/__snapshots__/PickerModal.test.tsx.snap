@@ -112,7 +112,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="root size-36 background-none vPadding-24 container align-items-center"
         >
           <div
-            className="container uui-input-box -clickable text-input-vars root size-36 mode-form"
+            className="container uui-input-box -clickable text-input-vars root size-36 mode-form uui-theme-promo"
             onBlur={[Function]}
             onFocus={[Function]}
             tabIndex={-1}
@@ -746,7 +746,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           className="root size-36 background-none vPadding-24 container align-items-center"
         >
           <div
-            className="container uui-input-box -clickable text-input-vars root size-36 mode-form"
+            className="container uui-input-box -clickable text-input-vars root size-36 mode-form uui-theme-promo"
             onBlur={[Function]}
             onFocus={[Function]}
             tabIndex={-1}

@@ -81,7 +81,7 @@ Array [
       }
     >
       <div
-        className="container uui-input-box -clickable text-input-vars root size-24 mode-form"
+        className="container uui-input-box -clickable text-input-vars root size-24 mode-form uui-theme-loveship colorSky size-24"
         onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
