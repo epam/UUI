@@ -1,2 +1,3 @@
-@import "~@epam/promo/assets/theme.css";
-@import "~@epam/loveship/assets/theme.css";
+/*WE decided to connect theme styles into all components in skins and add theme.css into skin index.tsx*/
+/*@import "~@epam/promo/assets/theme.css";*/
+/*@import "~@epam/loveship/as sets/theme.css";*/

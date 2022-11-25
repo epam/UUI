@@ -1,6 +1,6 @@
 import React from 'react';
 import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui-core';
-import { TextInput as uuiTextInput, TextInputProps } from '@epam/uui-components';
+import { TextInput as uuiTextInput, TextInputProps as CoreTextInputProps } from '@epam/uui-components';
 import { IHasEditMode, EditMode, ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
 import * as css from './TextInput.scss';
@@ -22,7 +22,9 @@ export function applyTextInputMods(mods: TextInputMods) {
     ];
 }
 
-export const TextInput = withMods<TextInputProps, TextInputMods>(
+export interface TextInputProps extends CoreTextInputProps, TextInputMods {}
+
+export const TextInput = withMods<CoreTextInputProps, TextInputMods>(
     uuiTextInput, applyTextInputMods,
     (props) => ({
         acceptIcon: systemIcons[props.size || defaultSize].accept,
