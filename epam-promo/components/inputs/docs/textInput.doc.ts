@@ -1,8 +1,9 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { TextInputProps } from '@epam/uui-components';
-import { TextInput, TextInputMods } from '../TextInput';
+import { TextInput } from '../TextInput';
 import { iEditable, iHasPlaceholder, onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc } from '../../../docs';
 import { DefaultContext, FormContext, TableContext, IHasEditModeDoc } from '../../../docs';
+import { TextInputMods } from "@epam/uui";
 
 const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'TextInput', component: TextInput })
     .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })

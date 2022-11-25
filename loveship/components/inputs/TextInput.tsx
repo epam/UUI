@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as types from '../types';
+import * as types from '@epam/uui';
 import { IEditableDebouncerOptions, withMods } from '@epam/uui-core';
 import { TextInput as uuiTextInput, SearchInput as UuiSearchInput } from '@epam/uui';
 import { TextInputProps } from '@epam/uui-components';
@@ -10,12 +10,13 @@ import * as colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
 
 const defaultSize = '36';
 
-export interface TextInputMods extends types.EditMode, TextSettings {
+export interface TextInputMods extends types.IHasEditMode, TextSettings {
     size?: types.ControlSize | '60';
 }
 
 export function applyTextInputMods(mods: TextInputMods) {
     return [
+        'uui-theme-loveship',
         colorStyle.colorSky,
         css['size-' + (mods.size || defaultSize)],
     ];
