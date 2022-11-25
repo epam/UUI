@@ -2,12 +2,7 @@ import { BaseContext } from './BaseContext';
 import { IRouterContext, Link } from '../types';
 
 export class Lock {
-    constructor(public tryRelease: () => Promise<void>) {
-
-    }
-}
-
-export interface LockRequest {
+    constructor(public tryRelease?: () => Promise<void>) {}
 }
 
 export class LockContext extends BaseContext {
@@ -18,9 +13,9 @@ export class LockContext extends BaseContext {
         super();
     }
 
-    public acquire(tryRelease: () => Promise<any>): Promise<Lock | null> {
+    public acquire(tryRelease?: () => Promise<any>): Promise<Lock | null> {
         if (this.currentLock) {
-            return this.tryRelease().then(() => this.acquire(tryRelease)).catch(() => this.currentLock);
+            return this.tryRelease().then(() => this.acquire(tryRelease));
         } else {
             const lock = new Lock(tryRelease);
 
@@ -37,23 +32,24 @@ export class LockContext extends BaseContext {
         return this.currentLock;
     }
 
-    private tryRelease() {
+    public tryRelease(): Promise<any> {
         if (this.currentLock) {
-            return this.currentLock.tryRelease().then(() => {
-                this.currentLock = null;
-                this.unblock();
-            });
+            if (this.currentLock.tryRelease) {
+                return this.currentLock.tryRelease().then(() => {
+                    this.clearLock();
+                });
+            } else {
+                this.clearLock();
+                return Promise.resolve();
+            }
         } else {
             return Promise.reject('Current lock is null');
         }
     }
 
-    public withLock(action: () => Promise<any>): Promise<Lock | null> {
-        if (this.currentLock) {
-            return this.tryRelease().then(() => this.acquire(action));
-        } else {
-            return this.acquire(action);
-        }
+    public async withLock<T = any>(action: () => Promise<T>): Promise<T> {
+        await this.acquire(() => Promise.reject());
+        return action().finally(() => this.clearLock());
     }
 
     public routerWillLeave(nextLocation: Link) {
@@ -64,10 +60,14 @@ export class LockContext extends BaseContext {
         }
     }
 
+    private clearLock() {
+        this.currentLock = null;
+        this.unblock();
+    }
+
     public release(lock: Lock) {
         if (lock && this.currentLock == lock) {
-            this.currentLock = null;
-            this.unblock();
+            this.clearLock();
         } else {
             throw new Error("Attempting to release a lock, which wasn't acquired");
         }

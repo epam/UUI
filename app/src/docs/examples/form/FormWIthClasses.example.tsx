@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexCell, FlexRow, LabeledInput, TextInput, Form, Text, SuccessNotification, ErrorNotification, FlexSpacer, Button } from '@epam/promo';
-import { RenderFormProps } from '@epam/uui';
+import { IFormApi } from '@epam/uui';
 import { svc } from '../../../services';
 
 interface Person {
@@ -16,7 +16,7 @@ export default function FormWIthClassesExample() {
         }
     });
 
-    const renderForm = ({ lens, save, validate }: RenderFormProps<Person>) => (
+    const renderForm = ({ lens, save, validate }: IFormApi<Person>) => (
         <FlexCell width='100%'>
             <FlexRow vPadding='12'>
                 <FlexCell grow={ 1 }>

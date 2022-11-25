@@ -21,7 +21,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
         api: () => svc.api.demo.countries({ sorting: [{ field: 'name' }] }).then((r: LazyDataSourceApiResponse<Country>) => r.items),
     }, []);
 
-    const { lens, save } = useForm<Person>({
+    const { lens, save, close } = useForm<Person>({
         value: {},
         onSave: person => Promise.resolve({ form: person }),
         onSuccess: person => modalProps.success(person),
@@ -35,12 +35,10 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
         }),
     });
 
-    const handleLeave = () => svc.uuiLocks.acquire(() => Promise.resolve());
-
     return (
-        <ModalBlocker { ...modalProps } abort={ () => handleLeave().then(modalProps.abort) }>
+        <ModalBlocker { ...modalProps } abort={ () => close().then(modalProps.abort) }>
             <ModalWindow >
-                <ModalHeader borderBottom title="New committee" onClose={ () => handleLeave().then(modalProps.abort) } />
+                <ModalHeader borderBottom title="New committee" onClose={ () => close().then(modalProps.abort) } />
                 <ScrollBars>
                     <Panel>
                         <FlexRow padding='24' vPadding='12'>
@@ -85,7 +83,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
                     </Panel>
                     <ModalFooter borderTop>
                         <FlexSpacer />
-                        <Button color='gray50' fill='white' onClick={ () => handleLeave().then(modalProps.abort) } caption='Cancel' />
+                        <Button color='gray50' fill='white' onClick={ () => close().then(modalProps.abort) } caption='Cancel' />
                         <Button color='green' caption='Confirm' onClick={ save } />
                     </ModalFooter>
                     <FlexSpacer />
