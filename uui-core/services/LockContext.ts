@@ -36,10 +36,10 @@ export class LockContext extends BaseContext {
         if (this.currentLock) {
             if (this.currentLock.tryRelease) {
                 return this.currentLock.tryRelease().then(() => {
-                    this.release(this.currentLock);
+                    this.clearLock();
                 });
             } else {
-                this.release(this.currentLock);
+                this.clearLock();
                 return Promise.resolve();
             }
         } else {
@@ -47,9 +47,9 @@ export class LockContext extends BaseContext {
         }
     }
 
-    public async withLock(action: () => Promise<any>): Promise<Lock | null> {
-        const lock = await this.acquire(() => Promise.reject());
-        return action().finally(() => this.release(lock));
+    public async withLock<T = any>(action: () => Promise<T>): Promise<T> {
+        await this.acquire(() => Promise.reject());
+        return action().finally(() => this.clearLock());
     }
 
     public routerWillLeave(nextLocation: Link) {
@@ -60,10 +60,14 @@ export class LockContext extends BaseContext {
         }
     }
 
+    private clearLock() {
+        this.currentLock = null;
+        this.unblock();
+    }
+
     public release(lock: Lock) {
         if (lock && this.currentLock == lock) {
-            this.currentLock = null;
-            this.unblock();
+            this.clearLock();
         } else {
             throw new Error("Attempting to release a lock, which wasn't acquired");
         }
