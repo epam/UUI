@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { VirtualList, DataTableHeaderRow, DataTableRow, ColumnsConfigurationModal } from '@epam/loveship';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { IEditable, DataQueryFilter, IDataSourceView, DataRowProps, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState } from '@epam/uui';
+import { IEditable, DataQueryFilter, IDataSourceView, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState, DataTableRowProps } from '@epam/uui';
 import { getColumns } from './columns';
 import type { VirtualListRenderRowsParams } from '@epam/uui-components';
 import type { PersonsSummary } from './PersonsTableDemo';
@@ -20,9 +20,15 @@ export const PersonsTable = (props: PersonsTableProps) => {
     const { columns: summaryColumnsSync } = useColumnsConfig(summaryColumns, props.value?.columnsConfig);
     const { exactRowsCount, totalCount } = props.view.getListProps();
 
-    const renderRow = (props: DataRowProps<PersonTableRecord, PersonTableRecordId>) => {
-        const cols = (props.isLoading || props.value?.__typename === 'Person') ? personColumnsSync : groupColumns;
-        return <DataTableRow key={ String(props.id) } { ...props } columns={ cols } />;
+    const renderRow = (props: DataTableRowProps<PersonTableRecord, PersonTableRecordId>) => {
+        const isGroup = !props.isLoading && props.value?.__typename !== 'Person';
+        const cols = (isGroup) ? groupColumns : personColumnsSync;
+        return <DataTableRow
+            key={ String(props.id) }
+            { ...props }
+            columns={ cols }
+            background={ isGroup ? 'night50' : 'white' }
+        />;
     };
 
     const getRows = () => {

@@ -9,7 +9,7 @@ import { ReactComponent as WarningIcon } from './../icons/snackbar/warning.svg';
 import { ReactComponent as SuccessIcon } from './../icons/snackbar/success.svg';
 import * as css from './SnackbarCard.scss';
 
-export interface SnackbarCardProps extends INotification, IHasChildren, IHasRawProps<HTMLDivElement> {
+export interface SnackbarCardProps extends INotification, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     snackType: 'success' | 'warning' | 'info' | 'danger';
 }
 

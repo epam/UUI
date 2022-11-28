@@ -5,7 +5,7 @@ import { Manager, Reference, Popper } from 'react-popper';
 import { Portal } from '../../overlays/Portal';
 import { uuiSlider } from './SliderBase';
 
-interface SliderHandleProps extends IHasCX, IHasRawProps<HTMLDivElement> {
+interface SliderHandleProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     onUpdate(mouseX: number): void;
     onKeyDownUpdate?(type: 'right' | 'left'): void;
     handleActiveState?(isActive: boolean): void;

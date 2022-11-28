@@ -11,7 +11,35 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To handle captured errors you need to wrap your application into UUI ",
+            "text": "For automatically api calls error handling you need to use — ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "processRequest",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " API context method, which will report errors in the context.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Also you need to wrap your application into UUI ",
             "marks": []
           },
           {
@@ -30,7 +58,39 @@
           },
           {
             "object": "text",
-            "text": " and ErrorHandler component, which will look on the apiContext and errorContext reported errors and replaces ErrorHandler children with appropriate error screen.",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ErrorHandler",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " components, which will subscribe to the api and error contexts reported errors and replaces ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ErrorHandler",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " children with appropriate error screen or starts recovery process depends on error type.",
             "marks": []
           }
         ]
@@ -42,12 +102,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For automatically api calls error handling you need to use — ",
+            "text": "By default ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "processRequest",
+            "text": "ErrorHandler",
             "marks": [
               {
                 "object": "mark",
@@ -58,12 +118,12 @@
           },
           {
             "object": "text",
-            "text": " API context method.\nError handling behavior is customizable with either svc.uuiApi.processRequest(url, method, options) ",
+            "text": " will handle errors by itself, but you can customize it via options for ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "options",
+            "text": "processRequese",
             "marks": [
               {
                 "object": "mark",
@@ -74,39 +134,115 @@
           },
           {
             "object": "text",
-            "text": " argument — you can provide ",
+            "text": " method , there are 3 error handling types:",
             "marks": []
-          },
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
           {
-            "object": "text",
-            "text": "fetchOptions",
-            "marks": [
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "manual - you need to handle error by yourself, UUI will do nothing and just reject promise with error;",
+                    "marks": []
+                  }
+                ]
               }
             ]
           },
           {
-            "object": "text",
-            "text": " and set ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "errorHandling",
-            "marks": [
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "page - default behavior, ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "ErrorHandler",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " will replace children with error screen;",
+                    "marks": []
+                  }
+                ]
               }
             ]
           },
           {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "notification - shows content from api response ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "errorMessage",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " field into notification card. It's often used to handle some not critical, expected by business logic errors",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
             "object": "text",
-            "text": " type: 'manual', 'page' or 'notification'.",
+            "text": "In this example we demonstrate handling of some errors with different error hanging types",
             "marks": []
           }
         ]

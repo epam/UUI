@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ControlIconProps } from '@epam/uui-components';
-import { DefaultContext, FormContext, GridContext, onClickDoc, iconDoc } from '../../../docs';
+import { DefaultContext, FormContext, onClickDoc, iconDoc } from '../../../docs';
 import { IconContainer, IconContainerMods } from "../IconContainer";
 import { allEpamAdditionalColors, allEpamGrayscaleColors, allEpamPrimaryColors } from "../../types";
 import { colors } from "../../../helpers/colorMap";
@@ -21,6 +21,6 @@ const iconContainerDoc = new DocBuilder<ControlIconProps & IconContainerMods>({ 
         ] })
     .prop('flipY', { examples: [true, false], defaultValue: null })
     .prop('rotate', { examples: ['0', '90cw', '180', '90ccw'], defaultValue: null })
-    .withContexts(DefaultContext, FormContext, GridContext);
+    .withContexts(DefaultContext, FormContext);
 
 export = iconContainerDoc;

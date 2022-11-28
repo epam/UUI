@@ -5,7 +5,7 @@ import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Button, LinkButton } from '../../buttons';
 import { Switch, SearchInput } from '../../inputs';
 import { iEditable, sizeDoc, isDisabledDoc, modeDoc, iconDoc, iconOptionsDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, GridContext, FormContext } from '../../../docs';
+import { DefaultContext, ResizableContext, TableContext, FormContext } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
 import { FlexCell, FlexRow } from "../../layout/FlexItems";
 import { Text } from "../../typography";
@@ -69,6 +69,6 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
         },
     ] })
     .prop('autoFocus', { examples: [true, { value: false, isDefault: true}] })
-    .withContexts(DefaultContext, ResizableContext, GridContext, FormContext);
+    .withContexts(DefaultContext, ResizableContext, TableContext, FormContext);
 
 export = PickerInputDoc;

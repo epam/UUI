@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters, IconContainer } from '@epam/uui-components';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps, cx, TableFiltersConfig } from '@epam/uui-core';
-import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
+import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
+        IconContainer } from '@epam/uui-components';
+import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
+        DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
+        cx, TableFiltersConfig, DataTableRowProps } from '@epam/uui-core';
+import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal } from './';
 import { VirtualList } from '../';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from "../typography";
@@ -11,7 +14,7 @@ import { i18n } from "../../i18n";
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
-    renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
+    renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;

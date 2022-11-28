@@ -1,0 +1,33 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI contains a full-featured set of Form components – TextInputs, Date Pickers, etc. We also provide useForm hook – to manage form state, including validation.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "In this demo, we show how to build a complex Form out of these facilities – layout components, bind form data, split and structure your components, configure validation.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

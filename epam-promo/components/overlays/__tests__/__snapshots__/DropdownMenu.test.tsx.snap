@@ -101,6 +101,7 @@ Array [
           onClick={[Function]}
           role="button"
           tabIndex={-1}
+          type="button"
         >
           <div
             className="container uui-icon uui-enabled"

@@ -17,7 +17,7 @@ export const uuiMonthSelection = {
     currentMonth: 'uui-monthselection-current-month',
 } as const;
 
-export interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     selectedDate: Dayjs;
 }
 

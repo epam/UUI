@@ -5,7 +5,7 @@ import { uuiDaySelection } from './Calendar';
 import isToday from "dayjs/plugin/isToday";
 dayjs.extend(isToday);
 
-export interface DayProps extends IEditable<Dayjs>, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     filter?(day: Dayjs): boolean;
     getDayCX?: (day: Dayjs) => CX;
     renderDayNumber?: (param: Dayjs) => any;

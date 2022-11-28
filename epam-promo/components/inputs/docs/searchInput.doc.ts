@@ -3,7 +3,7 @@ import { TextInputProps } from '@epam/uui-components';
 import { SearchInput } from '../TextInput';
 import {
     iEditable, sizeDoc, iHasPlaceholder, onClickDoc, isDisabledDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc,
-    DefaultContext, FormContext,
+    DefaultContext, FormContext, ResizableContext, TableContext,
 } from '../../../docs';
 import { IEditableDebouncerOptions } from '@epam/uui-core';
 import { TextInputMods } from "@epam/uui";
@@ -18,5 +18,5 @@ const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditable
     .prop('onAccept', { examples: ctx => [ctx.getCallback('onAccept')] })
     .prop('onCancel', { examples: ctx => [ctx.getCallback('onCancel')] })
     .prop('mode', { examples: ['cell'] })
-    .withContexts(DefaultContext, FormContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext, TableContext);
 export = SearchInputDoc;

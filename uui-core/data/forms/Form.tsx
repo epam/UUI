@@ -14,7 +14,7 @@ export interface FormProps<T> {
     /**
      * Render the form body, provided by form state
      * */
-    renderForm: (props: RenderFormProps<T>) => ReactNode;
+    renderForm: (props: IFormApi<T>) => ReactNode;
 
     /**
      * Returns form metadata - information used to validate the form.
@@ -69,7 +69,7 @@ export interface FormProps<T> {
     validationOn?: ValidationMode;
 }
 
-export interface RenderFormProps<T> extends IEditable<T>, ICanBeInvalid {
+export interface IFormApi<T> extends IEditable<T>, ICanBeInvalid {
     /**
      * Lens - a helper to split parts of the form state, validation, and setState callbacks, and pass this to components
      */
@@ -107,6 +107,11 @@ export interface RenderFormProps<T> extends IEditable<T>, ICanBeInvalid {
      * Reverts all changes up to the initial or last saved state
      */
     revert(): void;
+
+    /**
+     * Try to leave form and ask to save unsaved changes
+     */
+    close(): Promise<any>;
 
     /**
      * Forces form to validate value.

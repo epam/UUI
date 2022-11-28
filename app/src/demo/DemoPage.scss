@@ -3,11 +3,11 @@
 .root {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 108px);
+    height: calc(100vh - 102px);
     overflow: auto;
 
     .nav-page {
-        margin: 30px auto;
+        margin: 0 auto 30px auto;
         max-width: 1200px;
 
         .nav-title {
@@ -22,28 +22,6 @@
             justify-content: space-between;
             width: 100%;
             flex-wrap: wrap;
-
-            .nav-card {
-                position: relative;
-                margin-top: 20px;
-                width: 590px;
-                height: 242px;
-                flex-wrap: wrap;
-                transition: 1s;
-                background-size: 100%;
-                background-position: 50% 50%;
-
-                &:hover {
-                    background-size: 150%;
-                }
-
-                .nav-caption {
-                    position: absolute;
-                    left: 18px;
-                    bottom: 24px;
-                    color: #FFFFFF;
-                }
-            }
         }
 
         @media (max-width: 1280px) {

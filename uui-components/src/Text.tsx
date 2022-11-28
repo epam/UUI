@@ -2,7 +2,7 @@ import * as React from 'react';
 import { UuiContexts, IHasCX, IHasChildren, IClickable, IAnalyticableClick, UuiContext, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
 import * as css from './Text.scss';
 
-export type TextProps = IHasCX & IHasChildren & IClickable & IAnalyticableClick & IHasRawProps<HTMLDivElement> & IHasForwardedRef<HTMLDivElement>;
+export type TextProps = IHasCX & IHasChildren & IClickable & IAnalyticableClick & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & IHasForwardedRef<HTMLDivElement>;
 
 export class Text extends React.Component<TextProps> {
     static contextType = UuiContext;

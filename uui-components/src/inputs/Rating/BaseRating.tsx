@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cx, IDisableable, IEditable, ICanBeInvalid, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import * as css from './BaseRating.scss';
 
-export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeInvalid, ICanBeReadonly, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeInvalid, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     from?: number;
     to?: number;
     step?: 0.5 | 1;

@@ -3,13 +3,26 @@ import sortBy from 'lodash.sortby';
 import { getOrderBetween } from "./getOrderBetween";
 
 export const applyColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId>[], config: ColumnsConfig) => {
-    const newColumns: DataColumnProps<TItem, TId>[] = columns.map(i => ({...i, width: config[i.key].width})).filter(i => config[i.key].isVisible);
+    const newColumns = columns.reduce<DataColumnProps<TItem, TId>[]>(
+        (acc, c) => {
+            const { fix, width, ...restColumnProps } = c;
+            const cfg = config[c.key];
 
-    return sortBy(newColumns, (i: DataColumnProps<TItem, TId>) => config[i.key].order);
+            cfg.isVisible && acc.push({
+                ...restColumnProps,
+                width: cfg.width,
+                ...(cfg.fix ? {fix: cfg.fix} : {}),
+            });
+            return acc;
+        },
+        [],
+    );
+
+    return sortBy(newColumns, i => config[i.key].order);
 };
 
-export const getColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId>[], config: ColumnsConfig) => {
-    config = { ...config };
+export const getColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId>[], prevConfig: ColumnsConfig) => {
+    const config = { ...prevConfig };
 
     let prevOrder = 'a';
 
@@ -19,6 +32,7 @@ export const getColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId
 
         config[column.key] = {
             width: columnConfig.width || column.width,
+            fix: columnConfig.fix || column.fix,
             isVisible: columnConfig.isVisible !== undefined ? columnConfig.isVisible : !column.isHiddenByDefault ,
             order: columnConfig.order || getOrderBetween(order, null),
         };
