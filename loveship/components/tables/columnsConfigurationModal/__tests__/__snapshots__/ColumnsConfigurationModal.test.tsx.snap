@@ -100,7 +100,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         className="root size-36 background-none padding-24 border-bottom-night400 spacing-12 searchArea container align-items-center"
       >
         <div
-          className="container uui-input-box -clickable text-input-vars root size-30 mode-form uui-theme-loveship colorSky size-30"
+          className="container uui-input-box -clickable text-input-vars root size-30 mode-form uui-theme-loveship size-30"
           onBlur={[Function]}
           onFocus={[Function]}
           tabIndex={-1}
