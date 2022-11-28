@@ -3,21 +3,18 @@ import * as types from '@epam/uui';
 import { IEditableDebouncerOptions, withMods } from '@epam/uui-core';
 import { TextInput as uuiTextInput, SearchInput as UuiSearchInput } from '@epam/uui';
 import { TextInputProps } from '@epam/uui-components';
-import { TextSettings } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
 import * as css from './TextInput.scss';
-import * as colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
 
 const defaultSize = '36';
 
-export interface TextInputMods extends types.IHasEditMode, TextSettings {
+export interface TextInputMods extends types.IHasEditMode {
     size?: types.ControlSize | '60';
 }
 
 export function applyTextInputMods(mods: TextInputMods) {
     return [
         'uui-theme-loveship',
-        colorStyle.colorSky,
         css['size-' + (mods.size || defaultSize)],
     ];
 }
