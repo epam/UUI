@@ -100,7 +100,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         className="root size-36 background-none padding-24 border-bottom-gray40 spacing-12 searchArea container align-items-center"
       >
         <div
-          className="container uui-input-box -clickable root size-30 mode-form"
+          className="container uui-input-box -clickable text-input-vars root size-30 mode-form uui-theme-promo"
           onBlur={[Function]}
           onFocus={[Function]}
           tabIndex={-1}
@@ -125,7 +125,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           />
         </div>
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-30 fill-white actionsMenu"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-30 mode-outline button-color-gray50 size-30 actionsMenu"
           href={null}
           onClick={[Function]}
           role="button"
@@ -423,7 +423,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline button-color-gray50 size-36"
           href={null}
           onClick={[Function]}
           role="button"
@@ -437,7 +437,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid button-color-green size-36"
           href={null}
           onClick={[Function]}
           role="button"
