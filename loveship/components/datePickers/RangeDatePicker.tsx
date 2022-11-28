@@ -11,9 +11,9 @@ import * as css from './RangeDatePicker.scss';
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod, TextSettings, EditMode {
     getPlaceholder?(type: InputType): string;
     rawProps?: {
-        from?: IHasRawProps<HTMLDivElement>['rawProps'];
-        to?: IHasRawProps<HTMLDivElement>['rawProps'];
-        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 }
 
@@ -69,8 +69,8 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
-                    onFocus={ () => this.handleFocus('from') }
-                    onBlur={ () => this.handleBlur('from') }
+                    onFocus={ (e) => this.handleFocus(e, 'from') }
+                    onBlur={ (e) => this.handleBlur(e, 'from') }
                     isDropdown={ false }
                     rawProps={ this.props.rawProps?.from }
                 />
@@ -88,8 +88,8 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
-                    onFocus={ () => this.handleFocus('to') }
-                    onBlur={ () => this.handleBlur('to') }
+                    onFocus={ (event) => this.handleFocus(event, 'to') }
+                    onBlur={ (event) => this.handleBlur(event, 'to') }
                     isDropdown={ false }
                     rawProps={ this.props.rawProps?.to }
                 />

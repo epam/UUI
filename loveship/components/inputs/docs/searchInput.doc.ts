@@ -4,7 +4,7 @@ import { TextInputMods, SearchInput } from '../TextInput';
 import { IEditableDebouncerOptions } from '@epam/uui-core';
 import {
     iEditable, sizeDoc, textSettingsDoc, iHasPlaceholder, onClickDoc, isDisabledDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc,
-    FormContext, GridContext, ResizableContext, DefaultContext,
+    FormContext, ResizableContext, DefaultContext,
 } from '../../../docs';
 
 const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditableDebouncerOptions>({ name: 'SearchInput', component: SearchInput as any })
@@ -16,5 +16,5 @@ const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditable
     ], type: 'string' })
     .prop('onAccept', { examples: ctx => [ctx.getCallback('onAccept')] })
     .prop('onCancel', { examples: ctx => [ctx.getCallback('onCancel')] })
-    .withContexts(DefaultContext, FormContext, ResizableContext, GridContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext);
 export = SearchInputDoc;

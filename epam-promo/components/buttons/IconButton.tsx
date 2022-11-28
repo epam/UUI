@@ -17,7 +17,7 @@ function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
     return [
         css.root,
         styles['icon-color-' + (mods.color || 'gray60')],
-    ]
+    ];
 }
 
 export const IconButton = withMods<IconButtonProps, IconButtonMods>(uuiIconButton, applyIconButtonMods);

@@ -51,4 +51,10 @@ export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue
 
     /** If this function returns true, the day will be highlighted as holiday */
     isHoliday?: (day: Dayjs) => boolean;
+
+    /** Called when component gets input focus */
+    onFocus?: (e: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => void;
+
+    /** Called when component looses input focus */
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => void;
 }

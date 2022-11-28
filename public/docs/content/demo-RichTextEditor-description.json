@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "UUI contains full-featured Rich Text Editor, which is based on popular slate.js library. On top of Slate.js, we add a set of our and 3rd party plugins, UUI-styled toolbars, align edited text style to our guidelines. As slate.js in highly extensible, end-users can further customize it – toggle and configure existing plugins or add own or existing 3rd party plugins.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

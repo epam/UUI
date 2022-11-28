@@ -12,6 +12,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={-1}
+    type="button"
   >
     <div
       className="container uui-icon uui-enabled"
@@ -29,6 +30,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption line-height-18 font-size-12 v-padding-2"
@@ -42,6 +44,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption line-height-18 font-size-12 v-padding-2"
@@ -55,6 +58,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption line-height-18 font-size-12 v-padding-2"
@@ -68,6 +72,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption line-height-18 font-size-12 v-padding-2"
@@ -81,6 +86,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption line-height-18 font-size-12 v-padding-2"
@@ -94,6 +100,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={-1}
+    type="button"
   >
     <div
       className="uui-caption line-height-18 font-size-12 v-padding-2"
@@ -107,6 +114,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption line-height-18 font-size-12 v-padding-2"
@@ -121,6 +129,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     onClick={[Function]}
     role="button"
     tabIndex={0}
+    type="button"
   >
     <div
       className="container uui-icon uui-enabled"

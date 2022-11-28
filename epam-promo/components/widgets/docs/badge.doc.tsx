@@ -2,7 +2,7 @@ import * as React from 'react';
 import { basicPickerTogglerDoc, ColorPicker, DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
 import { Badge, BadgeMods } from '../Badge';
 import { ButtonProps } from '@epam/uui-components';
-import { FormContext, GridContext, ResizableContext, DefaultContext } from '../../../docs/index';
+import { FormContext, ResizableContext, DefaultContext } from '../../../docs/index';
 import { iconDoc, iconOptionsDoc } from '../../../docs';
 import { colors } from '../../../helpers/colorMap';
 import { allEpamAdditionalColors } from '../../types';
@@ -19,6 +19,6 @@ const badgeDoc = new DocBuilder<ButtonProps & BadgeMods>({ name: 'Badge', compon
     .prop('count', { examples: [0, 1, 5, 88, 123], defaultValue: 123 })
     .prop('fill', { examples: ['solid', 'semitransparent', 'transparent'], defaultValue: 'solid' })
     .prop('size', { examples: ['18', '24', '30', '36', '42', '48'], defaultValue: '36' })
-    .withContexts(DefaultContext, FormContext, ResizableContext,  GridContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export = badgeDoc;

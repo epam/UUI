@@ -4,7 +4,7 @@ import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uui
 import { IconContainer } from '../layout';
 import * as css from './RadioInput.scss';
 
-export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<HTMLLabelElement>, IHasForwardedRef<HTMLLabelElement> {
+export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement> {
     icon?: Icon;
     renderLabel?(): React.ReactNode;
     tabIndex?: number;

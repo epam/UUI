@@ -5,7 +5,7 @@ import { Person } from "@epam/uui-docs";
 import * as css from './DemoTable.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 
-export const personColumns = [
+export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'name',
         caption: "Name",
@@ -13,6 +13,7 @@ export const personColumns = [
         width: 200,
         fix: 'left',
         isSortable: true,
+        isAlwaysVisible: true,
     },
     {
         key: 'profileStatus',
@@ -32,7 +33,6 @@ export const personColumns = [
         caption: "Title",
         render: r => <Text>{ r.jobTitle }</Text>,
         width: 200,
-        minWidth: 200,
         isSortable: true,
         isFilterActive: f => !!f.jobTitleId,
     },
@@ -117,4 +117,4 @@ export const personColumns = [
         alignSelf: 'center',
         fix: 'right',
     },
-] as DataColumnProps<Person, number>[];
+];

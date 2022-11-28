@@ -3,7 +3,7 @@ import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, DatePicker
 import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
-import { PickerBodyValue, defaultFormat, valueFormat, ViewType } from '../';
+import { PickerBodyValue, defaultFormat, valueFormat, ViewType, supportedDateFormats } from '../';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
 import { Dropdown, DropdownBodyProps } from '../../';
 
@@ -63,7 +63,8 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     }
 
     getIsValidDate = (value: string) => {
-        const parsedDate = dayjs.utc(value, this.getFormat(), true);
+        if (!value) return false;
+        const parsedDate = dayjs(value, supportedDateFormats, true);
         const isValidDate = parsedDate.isValid();
         if (!isValidDate) return false;
         return this.props.filter ? this.props.filter(parsedDate) : true;
@@ -77,7 +78,10 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (isChildFocusable(e)) return;
         this.onToggle(false);
-        if (this.state.inputValue && !this.getIsValidDate(this.state.inputValue)) {
+        if (this.getIsValidDate(this.state.inputValue)) {
+            let inputValue = toCustomDateFormat(this.state.inputValue, this.getFormat());
+            this.setState({ inputValue });
+        } else {
             this.handleValueChange(null);
             this.setState({ inputValue: null, selectedDate: null });
         }
@@ -125,6 +129,10 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
 
     handleValueChange = (newValue: string | null) => {
         this.props.onValueChange(newValue);
+        this.setState({
+            selectedDate: newValue,
+            displayedDate: dayjs(newValue, valueFormat).isValid() ? dayjs(newValue, valueFormat) : dayjs().startOf('day'),
+        });
 
         if (this.props.getValueChangeAnalyticsEvent) {
             const event = this.props.getValueChangeAnalyticsEvent(newValue, this.props.value);

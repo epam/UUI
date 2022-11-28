@@ -7,6 +7,7 @@ exports[`Dropdown should be rendered correctly 1`] = `
   onClick={[Function]}
   role="button"
   tabIndex={0}
+  type="button"
 >
   <div
     className="uui-caption"
@@ -31,6 +32,7 @@ exports[`Dropdown should be rendered correctly 2`] = `
   onClick={[Function]}
   role="button"
   tabIndex={0}
+  type="button"
 >
   <div
     className="uui-caption"

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataTableHeaderCell } from '../DataTableHeaderCell';
 import { DataTableHeaderCellProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
-import { DefaultContext, ResizableContext, FormContext, GridContext } from '../../../docs';
+import { DefaultContext, ResizableContext, FormContext } from '../../../docs';
 import { Text, DataTableHeaderCellMods } from '../../../components';
 
 const DataTableHeaderCellDoc = new DocBuilder<DataTableHeaderCellProps & DataTableHeaderCellMods>({ name: 'DataTableHeaderCell', component: DataTableHeaderCell })
@@ -48,6 +48,6 @@ const DataTableHeaderCellDoc = new DocBuilder<DataTableHeaderCellProps & DataTab
     .prop('size', {
         examples: ['24', '30', '36', '48', '60'],
     })
-    .withContexts(ResizableContext, DefaultContext, FormContext, GridContext);
+    .withContexts(ResizableContext, DefaultContext, FormContext);
 
 export = DataTableHeaderCellDoc;

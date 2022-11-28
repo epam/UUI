@@ -4,17 +4,10 @@ import { ReactComponent as PlusIcon } from '@epam/assets/icons/common/content-ad
 import css from './PresetsBlock.scss';
 
 
-interface IPresetsBlockProps {
-    presets: ITablePreset[];
-    createNewPreset: IPresetsApi["createNewPreset"];
-    isDefaultPresetActive: IPresetsApi["isDefaultPresetActive"];
-    resetToDefault: IPresetsApi["resetToDefault"];
-    activePresetId: IPresetsApi["activePresetId"];
-    hasPresetChanged: IPresetsApi["hasPresetChanged"];
-    choosePreset: IPresetsApi["choosePreset"];
+interface IPresetsBlockProps extends IPresetsApi {
 }
 
-const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, isDefaultPresetActive, resetToDefault, activePresetId, hasPresetChanged, choosePreset }) => {
+const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, activePresetId, hasPresetChanged, choosePreset }) => {
     const [isOpened, setIsOpened] = useState(true);
     const [isAddingPreset, setIsAddingPreset] = useState(false);
     const [inputValue, setInputValue] = useState("");
@@ -57,14 +50,6 @@ const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, 
             cx={ css.accordion }
         >
             <>
-                <VerticalTabButton
-                    key="default"
-                    caption="Default"
-                    onClick={ isDefaultPresetActive ? null : resetToDefault }
-                    isLinkActive={ isDefaultPresetActive }
-                    size="36"
-                    cx={ css.button }
-                />
                 { presets.map(preset => {
                     const isActive = preset.id === activePresetId;
                     const hasChanged = isActive && hasPresetChanged(preset);

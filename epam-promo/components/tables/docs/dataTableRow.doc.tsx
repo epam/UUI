@@ -1,5 +1,5 @@
 import { DocBuilder, demoData } from '@epam/uui-docs';
-import { DataTableRowProps } from '@epam/uui-components';
+import { DataTableRowProps } from '@epam/uui-core';
 import { DefaultContext, ResizableContext } from '../../../docs';
 import { DataTableRow, DataTableRowMods } from '../';
 import { ColumnsHeaderRowDoc } from './common';

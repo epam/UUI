@@ -23,9 +23,9 @@ export default function ApiContextBaseExample() {
 
             <LinkButton onClick={ () => svc.api.errors.status(500) } caption='500' />
 
-            <LinkButton onClick={ () => svc.api.withOptions({errorHandling: "manual"}).errors.status(501).catch(() => alert('Error occurred')) } caption='501 (manual)' />
-
             <LinkButton onClick={ () => svc.api.errors.status(503) } caption='503' />
+
+            <LinkButton onClick={ () => svc.api.withOptions({errorHandling: "manual"}).errors.status(503).catch(() => alert('Error occurred')) } caption='503 (manual)' />
 
             <FlexRow>
                 <LinkButton onClick={ () => svc.api.errors.authLost() } caption='Auth lost' />

@@ -139,13 +139,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
@@ -167,13 +169,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
@@ -195,13 +199,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
@@ -223,13 +229,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
@@ -251,13 +259,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
@@ -279,13 +289,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
@@ -307,13 +319,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
@@ -335,13 +349,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
@@ -363,13 +379,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
@@ -391,13 +409,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
@@ -419,13 +439,15 @@ Array [
               role="option"
             >
               <div
-                className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                role="cell"
                 style={
                   Object {
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
+                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }

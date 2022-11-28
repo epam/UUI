@@ -16,7 +16,7 @@ type notificationAction = {
     action: () => void;
 };
 
-export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
+export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     actions?: notificationAction[];
     color?: EpamPrimaryColor;
     onClose?(): void;
@@ -55,17 +55,17 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
 ));
 
 export const WarningAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =>
-    <Alert icon={ WarningIcon } color='sun' ref={ ref } { ...props } />
+    <Alert icon={ WarningIcon } color='sun' ref={ ref } { ...props } />,
 );
 
 export const SuccessAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =>
-    <Alert icon={ SuccessIcon } color='grass' ref={ ref } { ...props } />
+    <Alert icon={ SuccessIcon } color='grass' ref={ ref } { ...props } />,
 );
 
 export const HintAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =>
-    <Alert icon={ HintIcon } color='sky' ref={ ref } { ...props } />
+    <Alert icon={ HintIcon } color='sky' ref={ ref } { ...props } />,
 );
 
 export const ErrorAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =>
-    <Alert icon={ ErrorIcon } color='fire' ref={ ref } { ...props } />
+    <Alert icon={ ErrorIcon } color='fire' ref={ ref } { ...props } />,
 );

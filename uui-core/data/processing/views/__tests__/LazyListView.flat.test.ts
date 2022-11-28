@@ -1,9 +1,8 @@
 import { LazyDataSource } from "../../LazyDataSource";
 import { LazyListView } from "../LazyListView";
-import { DataSourceState, LazyDataSourceApiRequest } from "../../types";
+import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IEditable } from "../../../../types";
 import { runDataQuery } from '../../../querying/runDataQuery';
 import { delay } from "@epam/test-utils";
-import { DataQueryFilter, DataRowProps, IEditable } from '../../../..';
 
 
 interface TestItem {

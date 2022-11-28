@@ -9,7 +9,7 @@ export interface RadioGroupItem<TValue> extends IDisableable {
     id: TValue;
 }
 
-export interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<HTMLFieldSetElement>, IHasForwardedRef<HTMLFieldSetElement> {
+export interface RadioGroupProps<TValue> extends IHasCX, IEditable<TValue>, IDisableable, IHasDirection, ICanBeReadonly, IHasRawProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>, IHasForwardedRef<HTMLFieldSetElement> {
     RadioInput?: React.ComponentType<RadioInputProps>;
     items: RadioGroupItem<TValue>[];
     radioInputProps?: RadioInputProps & { key: React.Key };
