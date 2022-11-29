@@ -130,9 +130,11 @@ export const NumericInput = (props: NumericInputProps) => {
     const inputRef = React.useRef<HTMLInputElement>()
 
     React.useEffect(() => {
-        inputRef?.current?.addEventListener('wheel', (e) => {(document.activeElement === e.target) && e.preventDefault()}, {passive: false})
+        const preventValueChange = (e: WheelEvent) => (document.activeElement === e.target) && e.preventDefault()
 
-        return inputRef?.current?.removeEventListener('wheel', (e) => {(document.activeElement === e.target) && e.preventDefault()})
+        inputRef?.current?.addEventListener('wheel', preventValueChange, {passive: false})
+
+        return () => {inputRef?.current?.removeEventListener('wheel', preventValueChange)}
     }, [])
 
     const isPlaceholderColored = React.useMemo(() => Boolean(props.value || props.value === 0), [props.value]);
