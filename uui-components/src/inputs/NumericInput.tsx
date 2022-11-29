@@ -127,6 +127,16 @@ export const NumericInput = (props: NumericInputProps) => {
         }
     };
 
+    const inputRef = React.useRef<HTMLInputElement>()
+
+    React.useEffect(() => {
+        const preventValueChange = (e: WheelEvent) => (document.activeElement === e.target) && e.preventDefault()
+
+        inputRef?.current?.addEventListener('wheel', preventValueChange, {passive: false})
+
+        return () => {inputRef?.current?.removeEventListener('wheel', preventValueChange)}
+    }, [])
+
     const isPlaceholderColored = React.useMemo(() => Boolean(props.value || props.value === 0), [props.value]);
     const inputValue = React.useMemo(() => (inFocus && (props.value || props.value === 0)) ? props.value : "", [props.value, inFocus]);
 
@@ -173,6 +183,7 @@ export const NumericInput = (props: NumericInputProps) => {
                 max={ max }
                 step={ step }
                 id={ props.id }
+                ref={ inputRef }
             />
 
         { showArrows && (
