@@ -1,43 +1,56 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import isEqual from "lodash.isequal";
-import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, ITablePreset, ITableState } from "../../types";
-import { getColumnsConfig, getOrderBetween } from "../../helpers";
+import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, ITablePreset, ITableState, TableFiltersConfig } from "../../types";
+import { getOrderBetween } from "../../helpers";
 import { useUuiContext } from "../../services";
-import { isDefaultColumnsConfig } from "./helpers";
-import { constants } from "./constants";
-import { normalizeFilter } from "./normalizeFilter";
 import sortBy from "lodash.sortby";
+import { normalizeFilter } from "./normalizeFilter";
+import { normalizeFilterConfig } from "./normalizeFilterConfig";
 
 export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFilter>): ITableState<TFilter> => {
     const context = useUuiContext();
+    const [presets, setPresets] = useState(params.initialPresets ?? []);
 
     const [tableStateValue, setTableStateValue] = useState<DataTableState>(() => {
         const urlParams = context.uuiRouter.getCurrentLink().query;
+        const activePreset = presets.find((p: ITablePreset) => p.id === urlParams.presetId);
+        const filter = params.initialFilter ?? urlParams.filter;
 
         return {
             topIndex: 0,
             visibleCount: 40,
             filter: params.initialFilter ?? urlParams.filter,
-            columnsConfig: getColumnsConfig(params.columns, {}),
-            filtersConfig: urlParams.filtersConfig,
+            columnsConfig: activePreset ? activePreset.columnsConfig : {},
+            filtersConfig: params.filters ? normalizeFilterConfig(urlParams.filtersConfig, filter, params.filters) : undefined,
+            presetId: urlParams.presetId,
         };
     });
-    const [presets, setPresets] = useState(params.initialPresets ?? []);
 
     const setTableState = useCallback((newValue: DataTableState) => {
         const newFilter = normalizeFilter(newValue.filter);
+        const newFiltersConfig = params.filters ? normalizeFilterConfig(newValue.filtersConfig, newFilter, params.filters) : undefined;
 
-        setTableStateValue(prevValue => ({
-            ...prevValue,
-            ...newValue,
-            filter: newFilter,
-        }));
+        setTableStateValue(prevValue => {
+            const result = {
+                ...prevValue,
+                ...newValue,
+                filter: newFilter,
+                filtersConfig: newFiltersConfig,
+            };
+            // reset paging on filter change
+            if (prevValue.page !== undefined && !isEqual(prevValue.filter, newFilter)) {
+                result.page = 1;
+            }
+
+            return result;
+        });
+
         const oldQuery = context.uuiRouter.getCurrentLink().query;
         const newQuery = {
             ...context.uuiRouter.getCurrentLink().query,
             filter: newValue.filter,
             presetId: newValue.presetId,
-            filtersConfig: newValue.filtersConfig,
+            filtersConfig: newFiltersConfig,
         };
 
         // we need it here, because the DataSources call state updates with the same value on items load, and it causes redirect
@@ -99,17 +112,12 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         return presetId ? +presetId : undefined;
     }, [location.search]);
 
-    const isDefaultPresetActive = useMemo(() => {
-        const searchParams = new URLSearchParams(location.search);
-        return !searchParams.get("presetId")
-            && !tableStateValue.filter
-            && isDefaultColumnsConfig(tableStateValue.columnsConfig, params.columns);
-    }, [params.columns, tableStateValue.filter, tableStateValue.columnsConfig]);
-
     const choosePreset = useCallback((preset: ITablePreset<TFilter>) => {
         setTableState({
+            ...tableStateValue,
             filter: preset.filter,
             columnsConfig: preset.columnsConfig,
+            filtersConfig: preset.filtersConfig,
             presetId: preset.id,
         });
     }, []);
@@ -125,7 +133,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         setPresets(prevValue => [...prevValue, preset]);
         choosePreset(preset);
         return preset.id;
-    }, [tableStateValue.filter, tableStateValue.columnsConfig, choosePreset]);
+    }, [tableStateValue.filter, tableStateValue.columnsConfig, tableStateValue.filtersConfig, choosePreset]);
 
 
     const createNewPreset = useCallback((name: string) => {
@@ -134,6 +142,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             name: name,
             filter: tableStateValue.filter,
             columnsConfig: tableStateValue.columnsConfig,
+            filtersConfig: tableStateValue.filtersConfig,
             isReadonly: false,
             order: getNewPresetOrder(),
         };
@@ -141,23 +150,15 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         return createPreset(newPreset);
     }, [getNewPresetOrder]);
 
-    const resetToDefault = useCallback(() => {
-        choosePreset({
-            ...constants.defaultPreset,
-            columnsConfig: getColumnsConfig(params.columns, {}),
-        });
-    }, [choosePreset]);
-
     const hasPresetChanged = useCallback((preset: ITablePreset<TFilter> | undefined) => {
-        const { filter } = context.uuiRouter.getCurrentLink().query;
-
-        return !isEqual(preset?.filter, filter)
+        return !isEqual(preset?.filter, tableStateValue.filter)
             || !isEqual(preset?.columnsConfig, tableStateValue.columnsConfig);
-    }, [tableStateValue.columnsConfig]);
+    }, [tableStateValue.columnsConfig,  tableStateValue.filter]);
 
     const duplicatePreset = useCallback(async (preset: ITablePreset<TFilter>) => {
         const newPreset: ITablePreset<TFilter> = {
             ...preset,
+            isReadonly: false,
             id: null,
             name: preset.name + '_copy', // TODO: temporary naming logic, need to be reworked
             order: getNewPresetOrder(),
@@ -168,6 +169,10 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
     const deletePreset = useCallback(async (preset: ITablePreset<TFilter>) => {
         await params?.onPresetDelete(preset);
+        setTableState({
+            ...tableStateValue,
+            presetId: undefined,
+        });
         setPresets(prevValue => prevValue.filter(p => p.id !== preset.id));
     }, []);
 
@@ -187,13 +192,10 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         setColumnsConfig,
         setFiltersConfig,
         setFilter,
-
         presets,
         activePresetId,
-        isDefaultPresetActive,
         choosePreset,
         createNewPreset,
-        resetToDefault,
         hasPresetChanged,
         duplicatePreset,
         deletePreset,
@@ -203,6 +205,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
 interface IParams<TFilter = Record<string, any>> {
     columns: DataColumnProps[];
+    filters?: TableFiltersConfig<TFilter>[];
     initialFilter?: TFilter;
     initialPresets?: ITablePreset<TFilter>[];
     onPresetCreate?(preset: ITablePreset): Promise<number>;

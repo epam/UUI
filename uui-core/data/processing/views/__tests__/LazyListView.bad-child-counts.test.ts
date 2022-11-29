@@ -1,8 +1,7 @@
 import { LazyDataSource } from "../../LazyDataSource";
 import { LazyListView } from "../LazyListView";
-import { DataSourceState, LazyDataSourceApiRequest } from "../../types";
+import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps } from "../../../../types";
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { DataQueryFilter, DataRowProps } from '../../../..';
 import { delay } from "@epam/test-utils";
 
 
@@ -14,13 +13,13 @@ interface TestItem {
 
 describe('LazyListView', () => {
     const testData: TestItem[] = [
-        { id: 100, childrenCount: 2 },                //  0   100 // less children than specified
+        { id: 100, childrenCount: 3 },                //  0   100 // less children than specified
         { id: 110, parentId: 100 },                   //  1     110
-        { id: 120, parentId: 100, childrenCount: 1 }, //  2       120    // more children than specified
-        { id: 121, parentId: 120 },                   //  3         121
-        { id: 122, parentId: 120 },                   //  4         122
+        { id: 120, parentId: 100, childrenCount: 1 }, //  2     120    // more actual children than specified
+        { id: 121, parentId: 120 },                   //  3       121
+        { id: 122, parentId: 120 },                   //  4       122
         { id: 200, childrenCount: 1 },                //  5   200 // declared 1 child, but there's none
-        { id: 300 },                                  //  6   300
+        { id: 300, childrenCount: 1 },                //  6   300 //
         { id: 310, parentId: 300 },                   //  7     310
         { id: 320, parentId: 300 },                   //  8     320
         { id: 330, parentId: 300 },                   //  9     330
@@ -53,7 +52,7 @@ describe('LazyListView', () => {
         rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
-    it.skip('can load tree, which has incorrect (probably estimated) childrenCounts', async () => {
+    it('can load tree, which has incorrect (probably estimated) childrenCounts', async () => {
         let ds = treeDataSource;
         let view = ds.getView(value, onValueChanged, { isFoldedByDefault: () => false });
         expectViewToLookLike(view, [
@@ -73,13 +72,13 @@ describe('LazyListView', () => {
         await delay();
 
         expectViewToLookLike(view, [
-            { id: 100, depth: 1, isFoldable: true, isFolded: false },       //  0   100 // less children than specified
-            { id: 110, depth: 2, isFoldable: true, isFolded: false },       //  1     110
-            { id: 120, depth: 3, isFoldable: true, isFolded: false },       //  2       120   // more children than specified
-            { id: 121, depth: 3 },                                          //  3         121
-            { id: 122, depth: 3 },                                          //  4         122
-            { id: 200, depth: 1, isFoldable: false },                       //  5   200 // declared 1 child, but there's none
-            { id: 300, depth: 1 },                                          //  6   300
+            { id: 100, depth: 0, isFoldable: true, isFolded: false },       //  0   100 // less children than specified
+            { id: 110, depth: 1, isFoldable: false },       //  1     110
+            { id: 120, depth: 1, isFoldable: true, isFolded: false },       //  2       120   // more children than specified
+            { id: 121, depth: 2 },                                          //  3         121
+            { id: 122, depth: 2 },                                          //  4         122
+            { id: 200, depth: 0, isFoldable: false },                       //  5   200 // declared 1 child, but there's none
+            { id: 300, depth: 0 },                                          //  6   300
             { id: 310, depth: 1 },                                          //  7     310
             { id: 320, depth: 1 },                                          //  8     320
             { id: 330, depth: 1 },                                          //  9     330

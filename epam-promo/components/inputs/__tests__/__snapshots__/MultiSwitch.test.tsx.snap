@@ -7,11 +7,12 @@ exports[`should be rendered correctly 1`] = `
 >
   <button
     aria-current={true}
-    className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-blue root size-36 mode-solid button-color-blue size-36"
     href={null}
     onClick={[Function]}
     role="tab"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption"
@@ -21,11 +22,12 @@ exports[`should be rendered correctly 1`] = `
   </button>
   <button
     aria-current={false}
-    className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-white"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-blue root size-36 mode-outline button-color-blue size-36"
     href={null}
     onClick={[Function]}
     role="tab"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption"

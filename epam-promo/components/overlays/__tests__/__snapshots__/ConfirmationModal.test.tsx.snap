@@ -83,6 +83,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -168,11 +169,12 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline button-color-gray50 size-36"
           href={null}
           onClick={[Function]}
           role="button"
           tabIndex={0}
+          type="button"
         >
           <div
             className="uui-caption"
@@ -181,11 +183,12 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid button-color-green size-36"
           href={null}
           onClick={[Function]}
           role="button"
           tabIndex={0}
+          type="button"
         >
           <div
             className="uui-caption"
@@ -297,6 +300,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -390,11 +394,12 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline button-color-gray50 size-36"
           href={null}
           onClick={[Function]}
           role="button"
           tabIndex={0}
+          type="button"
         >
           <div
             className="uui-caption"
@@ -403,11 +408,12 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid button-color-green size-36"
           href={null}
           onClick={[Function]}
           role="button"
           tabIndex={0}
+          type="button"
         >
           <div
             className="uui-caption"

@@ -12,7 +12,7 @@ export interface ModalComponentProps<TParameters, TResult> {
     zIndex: number;
     key: string;
     success(result: TResult): void;
-    abort(): void;
+    abort(result?: any): void;
 }
 
 export interface ModalOperation {
@@ -60,10 +60,10 @@ export class ModalContext extends BaseContext implements IModalContext {
                     resolve(r);
                     this.update({});
                 },
-                abort: () => {
+                abort: r => {
                     this.operations.pop();
                     this.layoutCtx.releaseLayer(layer);
-                    reject(new ModalOperationCancelled());
+                    reject(r ? r : new ModalOperationCancelled());
                     this.update({});
                 },
                 zIndex: layer.zIndex,

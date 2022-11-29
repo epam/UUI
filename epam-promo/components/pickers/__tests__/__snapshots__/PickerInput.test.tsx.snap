@@ -57,6 +57,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       onClick={[Function]}
       role="button"
       tabIndex={-1}
+      type="button"
     >
       
       <div
@@ -75,6 +76,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       onClick={[Function]}
       role="button"
       tabIndex={-1}
+      type="button"
     >
       <div
         className="uui-caption"

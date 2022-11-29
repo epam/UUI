@@ -1,13 +1,13 @@
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { TextInputProps } from '@epam/uui-components';
-import { SearchInput, TextInputMods } from '../TextInput';
+import { SearchInput } from '../TextInput';
 import {
     iEditable, sizeDoc, iHasPlaceholder, onClickDoc, isDisabledDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc,
-    DefaultContext, FormContext,
+    DefaultContext, FormContext, ResizableContext, TableContext,
 } from '../../../docs';
 import { IEditableDebouncerOptions } from '@epam/uui-core';
+import { TextInputProps } from "@epam/uui";
 
-const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditableDebouncerOptions>({ name: 'SearchInput', component: SearchInput })
+const SearchInputDoc = new DocBuilder<TextInputProps & IEditableDebouncerOptions>({ name: 'SearchInput', component: SearchInput })
     .implements([onClickDoc, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc])
     .prop('value', { examples: [
             { value: 'Hello, World!', isDefault: true },
@@ -17,5 +17,5 @@ const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditable
     .prop('onAccept', { examples: ctx => [ctx.getCallback('onAccept')] })
     .prop('onCancel', { examples: ctx => [ctx.getCallback('onCancel')] })
     .prop('mode', { examples: ['cell'] })
-    .withContexts(DefaultContext, FormContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext, TableContext);
 export = SearchInputDoc;

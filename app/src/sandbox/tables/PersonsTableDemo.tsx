@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button } from '@epam/loveship';
+import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput } from '@epam/loveship';
 import { PersonsTable } from './PersonsTable';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, IEditable, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
+import { DataSourceState, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
 import * as css from './PersonsTableDemo.scss';
@@ -131,6 +131,7 @@ export const PersonsTableDemo = () => {
             }
         },
         getId: i => [i.__typename, i.id],
+        complexIds: true,
         getParentId: i => {
             const groupBy = value.filter?.groupBy;
             if (i.__typename == 'PersonGroup') {

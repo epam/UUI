@@ -3,12 +3,12 @@ import { PickerInputBaseProps } from '@epam/uui-components';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Button, LinkButton } from '../../buttons';
-import { SearchInput } from '../../inputs';
 import { iconDoc, iconOptionsDoc, iEditable, isDisabledDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext } from '../../../docs';
+import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
 import { FlexCell } from '../../layout/FlexItems';
 import { Text } from '../../typography';
+import { SearchInput } from '../../inputs';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc])
@@ -53,6 +53,6 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
                 value: () => <FlexCell grow={ 1 } textAlign='center'><Text>Custom Text or Component</Text></FlexCell>,
             },
         ] })
-    .withContexts(DefaultContext, ResizableContext, FormContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
 export = PickerInputDoc;

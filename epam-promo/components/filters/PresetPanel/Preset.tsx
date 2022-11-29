@@ -4,6 +4,7 @@ import { TabButton } from "../../buttons";
 import { PresetActionsDropdown } from "./PresetActionsDropdown";
 import { PresetInput } from "./PresetInput";
 import { FlexCell } from "../../layout";
+import css from './Preset.scss';
 
 interface IPresetProps extends Omit<IPresetsApi, 'presets'> {
     preset: ITablePreset;
@@ -31,8 +32,9 @@ export const Preset = (props: IPresetProps) => {
             name: name,
         };
         return props.updatePreset(newPreset);
-    }, []);
+    }, [props.preset]);
 
+    const isPresetActive = props.activePresetId === props.preset.id;
 
     return (
         <FlexCell key={ props.preset.id } alignSelf='center' width='auto'>
@@ -46,14 +48,13 @@ export const Preset = (props: IPresetProps) => {
                     :
                     <TabButton
                         caption={ props.preset.name }
-                        onClick={ choosePresetHandler }
+                        onClick={ !isPresetActive && choosePresetHandler }
+                        cx={ [css.preset, isPresetActive && css.activePreset] }
                         size="60"
-                        withNotify={ props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset) }
-                        icon={ props.activePresetId === props.preset.id &&
-                            (() => <PresetActionsDropdown renamePreset={ setPresetForRename } { ...props } />)
-                    }
+                        withNotify={ isPresetActive && props.hasPresetChanged(props.preset) }
+                        icon={ () => <PresetActionsDropdown renamePreset={ setPresetForRename } { ...props } /> }
                         iconPosition="right"
-                        isLinkActive={ props.activePresetId === props.preset.id }
+                        isLinkActive={ isPresetActive }
                     />
             }
         </FlexCell>

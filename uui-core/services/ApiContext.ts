@@ -86,6 +86,14 @@ export class ApiContext extends BaseContext implements IApiContext {
     }
 
     private handleApiError(call: ApiCall, reason?: ApiRecoveryReason) {
+        const error = new ApiCallError(call);
+
+        if (call.options?.errorHandling === 'manual') {
+            this.removeFromQueue(call);
+            call.reject(error);
+            return;
+        }
+
         if (reason) {
             call.status = 'scheduled';
             if (this.status === 'recovery') {
@@ -94,13 +102,8 @@ export class ApiContext extends BaseContext implements IApiContext {
             this.setStatus('recovery', reason);
             reason === 'auth-lost' ? window.open(this.props.apiReloginPath) : this.recoverConnection();
         } else {
-            const error = new ApiCallError(call);
             call.status = 'error';
-            if (call.options?.errorHandling === 'manual') {
-                this.removeFromQueue(call);
-            } else {
-                this.setStatus('error');
-            }
+            this.setStatus('error');
             call.reject(error);
         }
     }

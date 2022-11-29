@@ -3,9 +3,9 @@ import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInputBaseProps } from '@epam/uui-components';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { Button, LinkButton } from '../../buttons';
-import { SearchInput, Switch } from '../../inputs';
+import { Switch, SearchInput } from '../../inputs';
 import { iEditable, sizeDoc, isDisabledDoc, modeDoc, iconDoc, iconOptionsDoc } from '../../../docs';
-import { DefaultContext, ResizableContext, GridContext, FormContext } from '../../../docs';
+import { DefaultContext, ResizableContext, TableContext, FormContext } from '../../../docs';
 import { pickerBaseOptionsDoc } from './common';
 import { FlexCell, FlexRow } from "../../layout/FlexItems";
 import { Text } from "../../typography";
@@ -69,6 +69,6 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
         },
     ] })
     .prop('autoFocus', { examples: [true, { value: false, isDefault: true}] })
-    .withContexts(DefaultContext, ResizableContext, GridContext, FormContext);
+    .withContexts(DefaultContext, ResizableContext, TableContext, FormContext);
 
 export = PickerInputDoc;

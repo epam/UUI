@@ -1,0 +1,113 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "This example shows a common case of using ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "FiltersPanel",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataTable",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "However, you can use the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "FiltersPanel",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " component not only with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataTables",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", it will work with any UX component which is built based on the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataTableState",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " approach.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

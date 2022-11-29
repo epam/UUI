@@ -1,9 +1,9 @@
-import { ApiContext } from "../ApiContext";
+import { ApiCallError, ApiContext } from "../ApiContext";
 
 const delay = (time?: number) => new Promise(resolve => setTimeout(resolve, time || 0));
 
 describe("ApiContext", () => {
-    const context = new ApiContext({});
+    let context = new ApiContext({});
 
     const testData = { testData: 'test test' };
 
@@ -22,7 +22,7 @@ describe("ApiContext", () => {
 
     afterEach(() => {
         (global.fetch as any).mockClear();
-        context.reset();
+        context = new ApiContext({});
     });
 
 
@@ -85,5 +85,21 @@ describe("ApiContext", () => {
         expect(windowOpenMock).toBeCalledWith('/auth/login');
 
         (global.open as any).mockClear();
+    });
+
+    it("should reject promise on api error with type manual", async () => {
+        const fetchMock500 = getFetchMock(500);
+        const fetchMock503 = getFetchMock(503);
+
+        global.fetch = fetchMock500;
+        await expect(context.processRequest('path', 'POST', testData, { errorHandling: 'manual' })).rejects.toEqual(new ApiCallError(null));
+
+        global.fetch = fetchMock503;
+        await expect(context.processRequest('path', 'POST', testData, { errorHandling: 'manual' })).rejects.toEqual(new ApiCallError(null));
+
+        const call = context.getActiveCalls();
+
+        expect(context.status).toEqual('idle');
+        expect(call.length).toEqual(0);
     });
 });

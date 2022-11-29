@@ -50,5 +50,6 @@ export interface RowSizeMod {
 }
 
 export interface EditMode {
-    mode?: 'form' | 'inline' | 'cell' | 'none';
+    // mode?: 'form' | 'inline' | 'cell' | 'none';
+    mode?: 'form' | 'cell';
 }

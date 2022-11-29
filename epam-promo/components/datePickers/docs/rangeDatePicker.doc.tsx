@@ -2,8 +2,7 @@ import * as React from 'react';
 import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import * as css from '../RangeDatePicker.scss';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc } from '../../../docs';
-import { FormContext, DefaultContext, ResizableContext } from '../../../docs';
+import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, FormContext, DefaultContext, ResizableContext } from '../../../docs';
 import dayjs, { Dayjs } from "dayjs";
 import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
 import { Button, Text } from '../..';
@@ -94,7 +93,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                         <Text color='gray60' size='24' >Days: { getRangeLength(value) }</Text>
                     </div>
                     <div className={ css.buttonGroup }>
-                        <Button cx={ css.buttonContainer } caption='Done' color='green' fill='solid' size='24' onClick={ () => null } />
+                        <Button cx={ css.buttonContainer } caption='Done' color='green' fill='solid' size='24' onClick={ () => {} } />
                     </div>
                 </div>,
             },

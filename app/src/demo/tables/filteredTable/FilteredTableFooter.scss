@@ -8,12 +8,20 @@
     .items-per-page {
         margin-right: 36px;
 
+        :global(.uui-label) {
+            font-family: $font-sans;
+        }
+
         :global(.uui-input){
-            max-width: 20px;
+            max-width: 24px;
         }
     }
 
     .go-to-page {
+        :global(.uui-label) {
+            font-family: $font-sans;
+        }
+
         :global(.uui-input){
             max-width: 18px;
         }

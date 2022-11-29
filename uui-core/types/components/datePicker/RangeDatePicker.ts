@@ -6,8 +6,8 @@ export type RangeDatePickerInputType = 'from' | 'to';
 export interface RangeDatePickerCoreProps extends BaseRangeDatePickerProps {
     getPlaceholder?(type: RangeDatePickerInputType): string;
     rawProps?: {
-        from?: IHasRawProps<HTMLDivElement>['rawProps'];
-        to?: IHasRawProps<HTMLDivElement>['rawProps'];
-        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 }

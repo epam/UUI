@@ -10,7 +10,7 @@ interface IPresetsProps extends IPresetsApi {
     tableState: DataTableState;
 }
 
-const PresetsImpl: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset, activePresetId, isDefaultPresetActive, hasPresetChanged, resetToDefault, choosePreset, duplicatePreset, deletePreset, updatePreset }) => {
+const PresetsImpl: React.FC<IPresetsProps> = ({ tableState, presets, createNewPreset, activePresetId, hasPresetChanged, choosePreset, duplicatePreset, deletePreset, updatePreset }) => {
     const newPresetTitle = "New preset";
 
     const saveNewPreset = useCallback(() => {
@@ -19,17 +19,11 @@ const PresetsImpl: React.FC<IPresetsProps> = ({ tableState, presets, createNewPr
 
     const activePreset = presets.find(p => p.id === activePresetId);
     const hasActivePresetChanged = useMemo(() => {
-        return !isDefaultPresetActive && hasPresetChanged(activePreset);
-    }, [isDefaultPresetActive, activePreset, tableState.filter]);
+        return hasPresetChanged(activePreset);
+    }, [activePreset, tableState.filter]);
     
     return (
         <FlexRow spacing="6" size="48" padding="18" cx={ css.row }>
-            <Button
-                size="24"
-                caption="Default"
-                mode={ isDefaultPresetActive ? 'solid' : 'outline' }
-                onClick={ isDefaultPresetActive ? null : resetToDefault }
-            />
             { presets.map(preset => (
                 <Preset
                     preset={ preset }
@@ -39,7 +33,6 @@ const PresetsImpl: React.FC<IPresetsProps> = ({ tableState, presets, createNewPr
                     duplicatePreset={ duplicatePreset }
                     deletePreset={ deletePreset }
                     updatePreset={ updatePreset }
-                    resetToDefault={ resetToDefault }
                     key={ preset.id }
                 />
             )) }

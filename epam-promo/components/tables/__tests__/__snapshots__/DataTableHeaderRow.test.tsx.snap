@@ -2,7 +2,7 @@
 
 exports[`DataTableHeaderRow should be rendered correctly 1`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  className="container uui-table-row-container root root uui-table-header-row container align-items-center"
   role="row"
   style={
     Object {
@@ -11,7 +11,7 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
   }
 >
   <div
-    className="scrollingSection uui-table-scrolling-section"
+    className="section scrollingSection uui-table-scrolling-section"
     style={
       Object {
         "flex": "1 0 0px",
@@ -24,7 +24,7 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
 
 exports[`DataTableHeaderRow should be rendered correctly 2`] = `
 <div
-  className="container uui-table-row-container root uui-table-header-row container align-items-center"
+  className="container uui-table-row-container root root uui-table-header-row container align-items-center"
   role="row"
   style={
     Object {
@@ -33,7 +33,7 @@ exports[`DataTableHeaderRow should be rendered correctly 2`] = `
   }
 >
   <div
-    className="scrollingSection uui-table-scrolling-section"
+    className="section scrollingSection uui-table-scrolling-section"
     style={
       Object {
         "flex": "1 0 0px",

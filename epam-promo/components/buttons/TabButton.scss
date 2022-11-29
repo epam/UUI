@@ -25,8 +25,8 @@ $text-size-count: 24px;
     @include link-button-horizontal-layout(36px);
     @include tab-button-color(var(--text-color), var(--text-color-active), transparent);
     cursor: pointer;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 9px;
+    padding-right: 9px;
     position: relative;
     bottom: -1px;
     display: flex;
@@ -48,14 +48,18 @@ $text-size-count: 24px;
     // }
 
     &.uui-notification {
-        &::after {
-            content: '';
-            margin-bottom: math.div($text-size-caption, 2);
-            height: 6px;
-            width: 6px;
-            background: $red;
-            box-shadow: 0 1px 8px 0 $red;
-            border-radius: 50%;
+        :global(.uui-caption) {
+            position: relative;
+            &::after {
+                position: absolute;
+                content: '';
+                margin-bottom: math.div($text-size-caption, 2);
+                height: 6px;
+                width: 6px;
+                background: $red;
+                box-shadow: 0 1px 8px 0 $red;
+                border-radius: 50%;
+            }
         }
     }
 
