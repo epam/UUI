@@ -169,7 +169,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline button-color-gray50 size-36"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline uui-theme-promo"
           href={null}
           onClick={[Function]}
           role="button"
@@ -183,7 +183,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid button-color-green size-36"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid uui-theme-promo"
           href={null}
           onClick={[Function]}
           role="button"
@@ -394,7 +394,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline button-color-gray50 size-36"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline uui-theme-promo"
           href={null}
           onClick={[Function]}
           role="button"
@@ -408,7 +408,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid button-color-green size-36"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid uui-theme-promo"
           href={null}
           onClick={[Function]}
           role="button"

@@ -3,7 +3,7 @@
 exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
 Array [
   <button
-    className="container uui-button-box uui-enabled -clickable button-vars button-color-primary root size-36 mode-solid button-color-blue size-36"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-primary root size-36 mode-solid uui-theme-promo"
     href={null}
     onClick={[Function]}
     role="button"
