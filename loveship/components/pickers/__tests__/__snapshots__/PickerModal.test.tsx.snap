@@ -83,6 +83,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
             onClick={[Function]}
             role="button"
             tabIndex={0}
+            type="button"
           >
             <div
               className="container uui-icon uui-enabled"
@@ -112,7 +113,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="root size-36 background-none vPadding-24 spacing-6 container align-items-center"
         >
           <div
-            className="container uui-input-box -clickable colorSky root size-36 mode-form"
+            className="container uui-input-box -clickable text-input-vars root size-36 mode-form uui-theme-loveship size-36"
             onBlur={[Function]}
             onFocus={[Function]}
             tabIndex={-1}
@@ -128,7 +129,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
             <input
               aria-invalid={false}
               autoFocus={true}
-              className="uui-input line-height-18 font-size-14 v-padding-8"
+              className="uui-input"
               inputMode="search"
               onChange={[Function]}
               onKeyDown={[Function]}
@@ -204,13 +205,15 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   role="option"
                 >
                   <div
-                    className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
+                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -238,13 +241,15 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   role="option"
                 >
                   <div
-                    className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
+                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -272,13 +277,15 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   role="option"
                 >
                   <div
-                    className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
+                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -306,13 +313,15 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   role="option"
                 >
                   <div
-                    className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
+                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -340,13 +349,15 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   role="option"
                 >
                   <div
-                    className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
+                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -374,13 +385,15 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   role="option"
                 >
                   <div
-                    className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
+                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -408,13 +421,15 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   role="option"
                 >
                   <div
-                    className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
+                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -442,13 +457,15 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   role="option"
                 >
                   <div
-                    className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
+                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -476,13 +493,15 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   role="option"
                 >
                   <div
-                    className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
+                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -510,13 +529,15 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   role="option"
                 >
                   <div
-                    className="cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    role="cell"
                     style={
                       Object {
                         "alignSelf": undefined,
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
+                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -576,11 +597,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-night500 fill-white style-square"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-night500 root size-36 mode-outline color-night500 size-36 style-square"
           href={null}
           onClick={[Function]}
           role="button"
           tabIndex={0}
+          type="button"
         >
           <div
             className="uui-caption line-height-18 font-size-14 v-padding-8"
@@ -589,11 +611,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-grass root size-36 mode-solid color-grass size-36 style-square"
           href={null}
           onClick={[Function]}
           role="button"
           tabIndex={0}
+          type="button"
         >
           <div
             className="uui-caption line-height-18 font-size-14 v-padding-8"

@@ -1,10 +1,10 @@
 import { useRef, useEffect, useMemo, useCallback } from 'react';
 import { mergeValidation, useForceUpdate, UuiContexts, validate as uuiValidate,
-    validateServerErrorState, ValidationMode, ICanBeInvalid } from '../../index';
+    validateServerErrorState, ICanBeInvalid } from '../../index';
 import { useUuiContext } from '../../';
 import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
-import { FormProps, FormSaveResponse, RenderFormProps } from './Form';
+import { FormProps, FormSaveResponse, IFormApi } from './Form';
 import { useLock } from './useLock';
 
 export interface FormState<T> {
@@ -26,7 +26,7 @@ interface ICanBeChanged {
 
 export type UseFormProps<T> = Omit<FormProps<T>, 'renderForm'>;
 
-export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
+export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     const context: UuiContexts = useUuiContext();
 
     const initialForm = useRef<FormState<T>>({
@@ -39,6 +39,8 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         historyIndex: 0,
         isInSaveMode: false,
     });
+
+    const prevFormValue = useRef<T>(props.value);
 
     const formState = useRef(initialForm.current);
 
@@ -55,7 +57,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         removeUnsavedChanges();
     }) : null;
 
-    useLock({ isEnabled: formState.current.isChanged, handleLeave });
+    const lock = useLock({ isEnabled: formState.current.isChanged, handleLeave });
 
     const lens = useMemo(() => new LensBuilder<T, T>({
         get: () => formState.current.form,
@@ -78,12 +80,13 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
     }, []);
 
     useEffect(() => {
-        if (!isEqual(props.value, initialForm.current.form)) {
+        if (!isEqual(props.value, prevFormValue.current)) {
             resetForm({
                 ...formState.current,
                 form: props.value,
                 formHistory: formState.current.isChanged ? formState.current.formHistory : [props.value],
             });
+            prevFormValue.current = props.value;
         }
     }, [props.value]);
 
@@ -126,7 +129,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         }
         formHistory = formHistory.slice(0, historyIndex).concat(newForm);
 
-        if(options.addCheckpoint || context.uuiUserSettings.get(props.settingsKey)) {
+        if (options.addCheckpoint || context.uuiUserSettings.get(props.settingsKey)) {
             context.uuiUserSettings.set(props.settingsKey, newForm);
         }
 
@@ -185,7 +188,7 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
             return newState;
         });
         return savePromise;
-    }, []);
+    }, [props.onSave]);
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void, isSavedBeforeLeave?: boolean) => {
         const newFormValue = response && response.form || formState.current.form;
@@ -276,17 +279,22 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
                 ? value(currentValue)
                 : value;
             return newValue;
-        }, { addCheckpoint: false })
+        }, { addCheckpoint: false });
     }, []);
 
     const saveCallback = useCallback(() => {
         handleSave().catch(() => {});
     }, [handleSave]);
 
+    const handleClose = useCallback(() => {
+        return lock.tryRelease();
+    }, [lock]);
+
     return {
         setValue: handleSetValue,
         replaceValue: handleReplaceValue,
         isChanged: formState.current.isChanged,
+        close: handleClose,
         lens,
         save: saveCallback,
         undo: handleUndo,
@@ -299,6 +307,8 @@ export function useForm<T>(props: UseFormProps<T>): RenderFormProps<T> {
         value: formState.current.form,
         onValueChange: handleValueChange,
         isInvalid: formState.current.validationState.isInvalid,
+        validationMessage: formState.current.validationState.validationMessage,
+        validationProps: formState.current.validationState.validationProps,
         isInProgress: formState.current.isInProgress,
     };
 }

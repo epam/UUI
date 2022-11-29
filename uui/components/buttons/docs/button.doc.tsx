@@ -1,5 +1,5 @@
 import { allButtonModes } from '../../types';
-import { allButtonColors, Button, ButtonMods } from '../Button';
+import { allButtonColors, Button, ButtonMods } from '../Button/Button';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import { onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iHasPlaceholder, iconOptionsDoc } from '../../../docs';

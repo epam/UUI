@@ -6,12 +6,23 @@ export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 
 export const defaultFormat = 'MMM D, YYYY';
 export const valueFormat = 'YYYY-MM-DD';
+export const supportedDateFormats = [
+    "MM/DD/YYYY",
+    "DD-MM-YYYY",
+    "DD.MM.YYYY",
+    "YYYY/MM/DD",
+    "YYYY-MM-DD",
+    "YYYY.MM.DD",
+    "MMM D, YYYY",
+    "D/M/YYYY",
+    "YYYY/M/D",
+];
 
 export const uuiDatePickerBodyBase = {
     container: 'uui-datepicker-container',
 } as const;
 
-export interface DatePickerBodyBaseOptions extends IHasCX, IHasRawProps<HTMLDivElement>, IHasForwardedRef<HTMLDivElement> {
+export interface DatePickerBodyBaseOptions extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     filter?(day: Dayjs): boolean;
     changeIsOpen?(newValue: boolean): void;
     presets?: RangeDatePickerPresets;

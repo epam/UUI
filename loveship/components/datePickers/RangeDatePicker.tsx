@@ -11,9 +11,9 @@ import * as css from './RangeDatePicker.scss';
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod, TextSettings, EditMode {
     getPlaceholder?(type: InputType): string;
     rawProps?: {
-        from?: IHasRawProps<HTMLDivElement>['rawProps'];
-        to?: IHasRawProps<HTMLDivElement>['rawProps'];
-        body?: IHasRawProps<HTMLDivElement>['rawProps'];
+        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
 }
 
@@ -61,16 +61,16 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     cx={ cx(css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'from' && uuiMod.focus) }
                     mode={ this.props.mode || 'form' }
                     size={ this.props.size || '36' }
-                    lineHeight={ this.props.lineHeight }
-                    fontSize={ this.props.fontSize }
+                    // lineHeight={ this.props.lineHeight }
+                    // fontSize={ this.props.fontSize }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                     value={ this.state.inputValue.from }
                     onValueChange={ this.getChangeHandler('from') }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
-                    onFocus={ () => this.handleFocus('from') }
-                    onBlur={ () => this.handleBlur('from') }
+                    onFocus={ (e) => this.handleFocus(e, 'from') }
+                    onBlur={ (e) => this.handleBlur(e, 'from') }
                     isDropdown={ false }
                     rawProps={ this.props.rawProps?.from }
                 />
@@ -80,16 +80,16 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                     mode={ this.props.mode || 'form' }
                     size={ this.props.size || '36' }
-                    lineHeight={ this.props.lineHeight }
-                    fontSize={ this.props.fontSize }
+                    // lineHeight={ this.props.lineHeight }
+                    // fontSize={ this.props.fontSize }
                     value={ this.state.inputValue.to }
                     onCancel={ this.props.disableClear ? null : this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
                     onValueChange={ this.getChangeHandler('to') }
                     isInvalid={ this.props.isInvalid }
                     isDisabled={ this.props.isDisabled }
                     isReadonly={ this.props.isReadonly }
-                    onFocus={ () => this.handleFocus('to') }
-                    onBlur={ () => this.handleBlur('to') }
+                    onFocus={ (event) => this.handleFocus(event, 'to') }
+                    onBlur={ (event) => this.handleBlur(event, 'to') }
                     isDropdown={ false }
                     rawProps={ this.props.rawProps?.to }
                 />

@@ -37,6 +37,6 @@ export const iconOptionsDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
     .prop('onIconClick', { examples: ctx => [ctx.getCallback('onIconClick')] });
 
 export const modeDoc = new DocBuilder<EditMode>({ name: 'Mode' })
-    .prop('mode', { examples: ['form', 'inline', 'cell'], defaultValue: 'form' });
+    .prop('mode', { examples: ['form', 'cell'], defaultValue: 'form' });
 
 export * from '@epam/uui-docs';

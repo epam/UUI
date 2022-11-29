@@ -13,9 +13,9 @@ export interface PersonsTableProps extends IEditable<DataSourceState> {
 const personDetailsView = (db: DemoDb, rq: { id: number }) => db.persons.byId(rq.id);
 
 const PersonRow = function (props: DataRowProps<Person, number>) {
-    const columnsSet = React.useMemo(() => getColumns(dbRef), []);
-
     const dbRef = useDemoDbRef();
+
+    const columnsSet = React.useMemo(() => getColumns(dbRef), []);
     const details = useDbView(personDetailsView, { id: props.id });
 
     return <DataTableRow

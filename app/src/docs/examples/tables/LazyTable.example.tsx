@@ -28,8 +28,8 @@ export default function CitiesTable(props: unknown) {
             caption: 'ID',
             render: city => <Text color='gray80' fontSize='14'>{ city.id }</Text>,
             isSortable: true,
-            width: 120,
             fix: 'left',
+            width: 120,
         },
         {
             key: 'name',
@@ -38,7 +38,6 @@ export default function CitiesTable(props: unknown) {
             isSortable: true,
             width: 162,
             grow: 1,
-            fix: 'left',
         },
         {
             key: 'countryName',
@@ -92,6 +91,7 @@ export default function CitiesTable(props: unknown) {
         getRowOptions: useCallback(item => ({
             checkbox: { isVisible: true, isDisabled: item.population && +item.population < 20000 },
         }), []),
+        cascadeSelection: true,
     });
 
     return (
@@ -103,8 +103,6 @@ export default function CitiesTable(props: unknown) {
                 // getRows function will be called every time when table will need more rows.
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
-                allowColumnsResizing={ true }
-                showColumnsConfig={ true }
                 headerTextCase='upper'
                 columns={ citiesColumns }
                 { ...props }

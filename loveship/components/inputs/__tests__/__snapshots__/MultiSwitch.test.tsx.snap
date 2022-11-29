@@ -7,11 +7,12 @@ exports[`MultiSwitch should be rendered correctly 1`] = `
 >
   <button
     aria-current={true}
-    className="container uui-button-box uui-enabled -clickable root size-36 color-sky fill-solid style-square selectedItem"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-sky root size-36 mode-solid color-sky size-36 style-square selectedItem"
     href={null}
     onClick={[Function]}
     role="tab"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption line-height-18 font-size-14 v-padding-8"
@@ -21,11 +22,12 @@ exports[`MultiSwitch should be rendered correctly 1`] = `
   </button>
   <button
     aria-current={false}
-    className="container uui-button-box uui-enabled -clickable root size-36 color-sky fill-white style-square"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-sky root size-36 mode-outline color-sky size-36 style-square"
     href={null}
     onClick={[Function]}
     role="tab"
     tabIndex={0}
+    type="button"
   >
     <div
       className="uui-caption line-height-18 font-size-14 v-padding-8"

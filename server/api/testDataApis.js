@@ -4,7 +4,8 @@ const helpers = require("../helpers");
 const _ = require("lodash");
 
 function calculateTotal(totalData, result) {
-    const totalSalary = totalData.reduce((acc, person) => acc + Number(person.salary.split("$")[1]), 0).toFixed(1);
+    const totalSalary = totalData.reduce((acc, person) => acc + person.salary, 0).toFixed(1);
+    // const totalSalary = totalData.reduce((acc, person) => acc + Number(person.salary.split("$")[1]), 0).toFixed(1);
     result.summary = { totalSalary };
     result.totalCount = totalData.length;
     return result;
@@ -123,11 +124,13 @@ router.post("/persons-paged", async (req, res) => {
     const filteredAndSorted = filterAndSort({ ...req.body, range: null }, data.persons, "Person");
     const pageSize = req.body.pageSize || 10;
     const pageNo = req.body.page || 0;
-    const page = filteredAndSorted.items.slice(pageNo * pageSize, (pageNo + 1) * pageSize);
-    const result = filterAndSort({ range: req.body.range }, page, "Person"); // apply range
+    const items = filteredAndSorted.items.slice(pageNo * pageSize, (pageNo + 1) * pageSize);
 
-    result.totalCount = filteredAndSorted.items.length;
-    result.pageCount = Math.ceil(result.totalCount / pageSize);
+    const result = {
+        items,
+        totalCount: filteredAndSorted.items.length,
+        pageCount: Math.ceil(filteredAndSorted.items.length / pageSize),
+    }
     res.json(result);
 });
 

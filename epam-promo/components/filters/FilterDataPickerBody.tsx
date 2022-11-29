@@ -23,6 +23,12 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
         this.props.onClose();
     }
 
+
+    handleCancel = () => {
+        this.handleValueChange(undefined);
+        this.setState({ inputValue: null, selectedDate: null });
+    }
+
     renderBody() {
         return (
             <>

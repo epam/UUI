@@ -81,7 +81,7 @@ Array [
       }
     >
       <div
-        className="container uui-input-box -clickable colorSky root size-24 mode-form"
+        className="container uui-input-box -clickable text-input-vars root size-24 mode-form uui-theme-loveship size-24"
         onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
@@ -96,7 +96,7 @@ Array [
         </div>
         <input
           aria-invalid={false}
-          className="uui-input line-height-18 font-size-12 v-padding-2"
+          className="uui-input"
           inputMode="search"
           onChange={[Function]}
           onKeyDown={[Function]}

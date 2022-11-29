@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { IAnalyticableOnChange, IEditable } from "../props";
-import { IDataSource, IDataSourceView } from "../../data";
-import { DataRowOptions, DataRowProps } from "../tables";
+import { IDataSource, IDataSourceView, DataRowOptions, DataRowProps } from "../dataSources";
 import { SortingOption } from "../dataQuery";
 
 export type SinglePickerProps<TId, TItem> =
@@ -9,17 +8,17 @@ export type SinglePickerProps<TId, TItem> =
         /** 'single' - only one item is selected. 'multi' - multiple items are selected */
         selectionMode: 'single',
         /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
-        valueType: 'id'
+        valueType?: 'id'
     } & IEditable<TId>)
     | ({
         selectionMode: 'single',
-        valueType?: 'entity'
+        valueType: 'entity'
     } & IEditable<TItem>);
 
 export type ArrayPickerProps<TId, TItem> =
     ({
         selectionMode: 'multi',
-        valueType: 'id',
+        valueType?: 'id',
         emptyValue?: [] | null
     } & IEditable<TId[]>)
     | ({

@@ -4,7 +4,7 @@ import { FlexRow, FlexSpacer } from '../layout';
 import { Anchor } from '../navigation/Anchor';
 import * as css from './DataTableRowContainer.scss';
 
-export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<HTMLAnchorElement | HTMLDivElement> {
+export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLAnchorElement | HTMLDivElement | HTMLButtonElement>> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];
     renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
@@ -58,8 +58,11 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
             <div
                 style={ getSectionStyle(columns) }
                 className={ cx({
+                    [css.section]: true,
                     [uuiDataTableRowCssMarkers.uuiTableFixedSection]: true,
+                    [css.fixedColumnsSectionLeft]: direction === 'left',
                     [uuiDataTableRowCssMarkers.uuiTableFixedSectionLeft]: direction === 'left',
+                    [css.fixedColumnsSectionRight]: direction === 'right',
                     [uuiDataTableRowCssMarkers.uuiTableFixedSectionRight]: direction === 'right',
                 }) }>
                 { renderCells(columns) }
@@ -74,6 +77,7 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
         return (
             <div
                 className={ cx(
+                    css.section,
                     css.scrollingSection,
                     uuiDataTableRowCssMarkers.uuiTableScrollingSection,
                 ) }
@@ -110,7 +114,7 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
     const rawProps = {
         ...props.rawProps,
         style: { ...props?.rawProps?.style, minWidth },
-    }
+    };
 
     return (
         props.link ? (

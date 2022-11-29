@@ -1,9 +1,8 @@
 import { LazyDataSource } from "../../LazyDataSource";
 import { LazyListView } from "../LazyListView";
 import { delay } from "@epam/test-utils";
-import { DataSourceState, LazyDataSourceApiRequest } from "../../types";
+import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps } from "../../../../types";
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { DataQueryFilter, DataRowProps } from '../../../..';
 
 interface TestItem {
     id: number;
@@ -41,6 +40,7 @@ describe('LazyListView', () => {
             ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
             : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
+        getParentId: i => i.parentId,
     });
 
     beforeEach(() => {
@@ -671,6 +671,7 @@ describe('LazyListView', () => {
                 cascadeSelection: true,
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
+                getParentId: i => i.parentId,
             });
 
         let view = getView();

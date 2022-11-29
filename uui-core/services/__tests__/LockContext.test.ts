@@ -14,26 +14,45 @@ describe("LockContext", () => {
         } as any;
         context = new LockContext(router);
     });
-    
+
     it("should create lock", async () => {
-        await context.acquire(tryRelease);
+        const lock = await context.acquire(tryRelease);
         expect(router.block).toBeCalledTimes(1);
-        
-        const lock = context.getCurrentLock();
-        expect(lock.tryRelease).toBe(tryRelease);
+
+        expect(context.getCurrentLock()).toBe(lock);
     });
 
-    it("should call try release when lock already exists", () => {
-        context.withLock(tryRelease);
+    it("should call try release when lock already exists", async () => {
+        await context.acquire(tryRelease);
         expect(tryRelease).not.toBeCalled();
-        
-        context.withLock(tryRelease);
+
+        await context.acquire();
         expect(tryRelease).toBeCalledTimes(1);
     });
 
+
+    it("should leave lock if try release reject promise", async () => {
+        const tryReleaseWithReject = jest.fn().mockImplementation(() => Promise.reject());
+        const lock = await context.acquire(tryReleaseWithReject);
+
+        await expect(context.acquire()).rejects.toEqual(undefined);
+
+        expect(tryReleaseWithReject).toBeCalledTimes(1);
+        expect(context.getCurrentLock()).toBe(lock);
+    });
+
+    it("should acquire lock without tryRelease call back and release it immediately", async () => {
+        const lock = await context.acquire();
+        expect(context.getCurrentLock()).toBe(lock);
+
+        const newLock = await context.acquire(tryRelease);
+
+        expect(context.getCurrentLock()).toBe(newLock);
+    });
+
     it("should release lock", () => {
-        expect(() => context.release({})).toThrow();
-        
+        expect(() => context.release({ tryRelease: () => Promise.resolve() })).toThrow();
+
         context.acquire(tryRelease);
         const lock = context.getCurrentLock();
         context.release(lock);
@@ -42,8 +61,22 @@ describe("LockContext", () => {
 
     it("should try release when leaving location", async () => {
         await context.acquire(tryRelease);
-        
+
         context.routerWillLeave({} as any);
         expect(tryRelease).toBeCalledTimes(1);
+    });
+
+    it("withLock should get lock until action running and then release it", async () => {
+        const lock = await context.acquire(tryRelease);
+        const action = jest.fn().mockImplementation(() => {
+            expect(context.tryRelease()).rejects.toEqual(undefined);
+            return Promise.resolve();
+        });
+
+        await context.withLock(action);
+
+        expect(lock.tryRelease).toBeCalledTimes(1);
+        expect(action).toBeCalledTimes(1);
+        expect(context.getCurrentLock()).toEqual(null);
     });
 });

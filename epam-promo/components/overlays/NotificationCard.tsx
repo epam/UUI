@@ -13,12 +13,12 @@ import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
 import * as styles from '../../assets/styles/colorvars/overlays/notificationCard-colorvars.scss';
 import * as css from './NotificationCard.scss';
 
-interface NotificationAction extends IHasRawProps<HTMLButtonElement> {
+interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     name: string;
     action: () => void;
-};
+}
 
-export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<HTMLDivElement> {
+export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     actions?: NotificationAction[];
 }
 

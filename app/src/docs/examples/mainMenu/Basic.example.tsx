@@ -1,4 +1,4 @@
- import React from 'react';
+import React from 'react';
 import {
     BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell,
     DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody, Burger,
@@ -49,7 +49,7 @@ export default function MainMenuBasicExample() {
             },
             { id: 'logo', priority: 99, render: () => <MainMenuLogo
                     href='https://learn.epam.com/'
-                    logoUrl='/static/images/app-logos/learn_logo.svg'
+                    logoUrl='https://uui.epam.com/static/images/app-logos/learn_logo.svg'
                 />,
             },
             { id: 'trainingCatalog', priority: 3, render: () => <MainMenuButton  href='/' caption="Training Catalog" /> },

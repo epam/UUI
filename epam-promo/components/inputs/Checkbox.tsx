@@ -12,12 +12,14 @@ export interface CheckboxMods {
     size?: '12' | '18';
     /** Set to 'dark' to make component work on a dark background */
     theme?: 'light' | 'dark';
+    mode?: 'form' | 'cell';
 }
 
 export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
     return [
         css.root,
         css['size-' + (mods.size || '18')],
+        css['mode-' + (mods.mode || 'form')],
         styles['checkbox-color-blue'],
     ];
 }

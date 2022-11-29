@@ -15,4 +15,12 @@
     }
 }
 
+.targetOpen {
+    &:global(.uui-button-box) {
+        :global(.uui-icon) {
+            visibility: visible;
+        }
+    }
+}
+
 

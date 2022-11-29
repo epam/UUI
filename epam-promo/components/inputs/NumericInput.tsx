@@ -1,6 +1,6 @@
 import * as types from "../types";
 import * as css from "./NumericInput.scss";
-import * as textInputCss from "./TextInput.scss";
+// import * as textInputCss from "./TextInput.scss";
 import { withMods } from "@epam/uui-core";
 import { NumericInput as uuiNumericInput, NumericInputProps } from "@epam/uui-components";
 import { systemIcons } from "../../icons/icons";
@@ -11,14 +11,14 @@ const defaultMode = EditMode.FORM;
 
 export interface NumericInputMods extends types.SizeMod, IHasEditMode {
 }
-
+//TODO: it needs to be remade consider a new UuiTextInput
 export function applyNumericInputMods(mods: NumericInputMods) {
     return [
-        textInputCss.root,
+        // textInputCss.root,
         css.root,
         css["size-" + (mods.size || defaultSize)],
-        textInputCss["size-" + (mods.size || defaultSize)],
-        textInputCss["mode-" + (mods.mode || defaultMode)],
+        // textInputCss["size-" + (mods.size || defaultSize)],
+        // textInputCss["mode-" + (mods.mode || defaultMode)],
     ];
 }
 

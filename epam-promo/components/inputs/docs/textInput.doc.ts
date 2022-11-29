@@ -1,10 +1,10 @@
 import { DocBuilder } from '@epam/uui-docs';
-import { TextInputProps } from '@epam/uui-components';
-import { TextInput, TextInputMods } from '../TextInput';
-import { iEditable, iHasPlaceholder, onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc } from '../../../docs';
-import { DefaultContext, FormContext, TableContext, IHasEditModeDoc } from '../../../docs';
+import { TextInput } from '../TextInput';
+import { DefaultContext, dropdownTogglerDoc, FormContext, iconDoc, iconOptionsDoc, iEditable, IHasEditModeDoc,
+    iHasPlaceholder, isDisabledDoc, isInvalidDoc, isReadonlyDoc, onClickDoc, ResizableContext, TableContext } from '../../../docs';
+import { TextInputProps } from "@epam/uui";
 
-const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'TextInput', component: TextInput })
+const TextInputDoc = new DocBuilder<TextInputProps>({ name: 'TextInput', component: TextInput })
     .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
     .implements([onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, IHasEditModeDoc])
     .prop('maxLength', { examples: [10, 20, 30], type: 'number' })
@@ -18,6 +18,6 @@ const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'Tex
     .prop('onAccept', { examples: ctx => [ctx.getCallback('onAccept')] })
     .prop('onCancel', { examples: ctx => [ctx.getCallback('onCancel')] })
     .prop('type', { examples: ['text', 'password'], type: 'string', defaultValue: 'text' })
-    .withContexts(DefaultContext, FormContext, TableContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
 export = TextInputDoc;
