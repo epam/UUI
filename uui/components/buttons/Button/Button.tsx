@@ -8,7 +8,7 @@ import './Button.colorvars.scss';
 export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'negative';
 export const allButtonColors: ButtonColor[] = ['accent', 'primary', 'secondary', 'negative'];
 
-const defaultSize = '36';
+export const defaultSize = '36';
 
 export interface ButtonMods {
     size?: ControlSize | '18';
