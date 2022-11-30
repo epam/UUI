@@ -98,9 +98,14 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(false);
-        const validatedValue = getMinMaxValidatedValue({ value, min, max });
-        if (!props.value && min) props.onValueChange(min);
-        if (validatedValue !== props.value) props.onValueChange(validatedValue);
+
+        if(event.target.validity?.badInput) {
+            inputRef.current.value = ""
+        } else {
+            const validatedValue = getMinMaxValidatedValue({ value, min, max });
+            if (validatedValue !== props.value) props.onValueChange(validatedValue);
+        }
+
         props.onBlur?.(event);
     };
 
