@@ -98,9 +98,15 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(false);
-        const validatedValue = getMinMaxValidatedValue({ value, min, max });
-        if (!props.value && min) props.onValueChange(min);
-        if (validatedValue !== props.value) props.onValueChange(validatedValue);
+
+        // clearing the input when entering invalid data using special characters
+        if(event.target.validity?.badInput) {
+            inputRef.current.value = ""
+        } else {
+            const validatedValue = getMinMaxValidatedValue({ value, min, max });
+            if (validatedValue !== props.value) props.onValueChange(validatedValue);
+        }
+
         props.onBlur?.(event);
     };
 
@@ -129,6 +135,7 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const inputRef = React.useRef<HTMLInputElement>()
 
+    // disable changing the value by scrolling the wheel when the input is in focus and hover
     React.useEffect(() => {
         const preventValueChange = (e: WheelEvent) => (document.activeElement === e.target) && e.preventDefault()
 
