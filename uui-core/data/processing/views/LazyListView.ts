@@ -68,7 +68,7 @@ interface LoadResult<TItem, TId, TFilter> {
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
-    private tree: Tree<TItem, TId>;
+    private tree: Tree<TItem, TId> = Tree.blank<TItem, TId>(this.props);
     private hasMoreRows: boolean = true;
     private cache: ListApiCache<TItem, TId, TFilter>;
     private isUpdatePending = false;
@@ -185,7 +185,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     public reload() {
-        this.tree = null;
+        this.tree = Tree.blank<TItem, TId>(this.props);
         this.update(this.value, this.props);
     }
 
