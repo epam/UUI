@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { IHasCX, CX } from '../types';
+import { CX } from '../types';
 
-export function withMods<TProps extends IHasCX, TMods = {}>(
+export function withMods<TProps, TMods = {}>(
     Component: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>,
     getCx?: (props: Readonly<TProps & TMods>) => CX,
     getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>,
@@ -17,7 +17,12 @@ export function withMods<TProps extends IHasCX, TMods = {}>(
             Object.assign(allProps, getProps?.(props));
         }
 
-        allProps.cx = [getCx?.(props), props.cx];
+        const getCxResult = getCx?.(props);
+
+        if (getCxResult) {
+            allProps.cx = [getCxResult, (props as any).cx];
+        }
+
 
         if (Component.prototype instanceof React.Component) {
             allProps.forwardedRef = ref;

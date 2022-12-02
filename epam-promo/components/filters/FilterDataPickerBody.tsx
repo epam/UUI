@@ -3,7 +3,8 @@ import dayjs from "dayjs";
 import { i18n } from "../../i18n";
 import { DatePickerCoreProps, IDropdownBodyProps } from "@epam/uui-core";
 import { BaseDatePicker, DatePickerState } from '@epam/uui-components';
-import { DatePickerBody, FlexSpacer, LinkButton, FlexRow, FlexCell, Text } from '../../index';
+import { FlexSpacer, LinkButton, FlexRow, FlexCell, Text } from '../../index';
+import { DatePickerBody } from "@epam/uui";
 
 export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
 

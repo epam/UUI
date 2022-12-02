@@ -1,24 +1,26 @@
 import React from 'react';
 import { cx, DatePickerCoreProps, IDropdownToggler, uuiMod } from "@epam/uui-core";
-import { BaseDatePicker, DropdownBodyProps, DatePickerBody, DropdownContainer } from "@epam/uui-components";
+import { BaseDatePicker, DropdownBodyProps } from "@epam/uui-components";
 import { EditMode, SizeMod, IHasEditMode } from "../types";
 import { TextInput } from "../inputs";
+import { DatePickerBody } from "./DatePickerBody";
 import { systemIcons } from "../../icons/icons";
+import { DropdownContainer } from "../overlays";
 import css from "./DatePicker.scss";
 import './DatePicker.colorvars.scss';
 
 const defaultMode = EditMode.FORM;
 
-export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {}
+export interface UuiDatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {}
 
-export class DatePicker extends BaseDatePicker<DatePickerProps> {
-    renderInput = (props: IDropdownToggler) => {
+export class DatePicker extends BaseDatePicker<UuiDatePickerProps> {
+    renderInput = (props: IDropdownToggler & {cx: any}) => {
         return (
             <TextInput
                 { ...props }
                 onClick={ null }
                 isDropdown={ false }
-                cx={ cx(this.props.cx, css.dateInput, this.state.isOpen && uuiMod.focus) }
+                cx={ cx(this.props.inputCx, 'date-picker-vars', css.dateInput, this.state.isOpen && uuiMod.focus) }
                 icon={ systemIcons[this.props.size || '36'].calendar }
                 iconPosition={ this.props.iconPosition || 'left' }
                 placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
@@ -41,6 +43,7 @@ export class DatePicker extends BaseDatePicker<DatePickerProps> {
     renderBody(props: DropdownBodyProps) {
         return <DropdownContainer { ...props }>
             <DatePickerBody
+                cx={ cx(this.props.bodyCx, 'date-picker-vars') }
                 filter={ this.props.filter }
                 value={ this.getValue() }
                 setSelectedDate={ this.setSelectedDate }
