@@ -59,6 +59,31 @@ export default function CloseOpenModifiersExample() {
                     closeOnTargetClick={ false }
                 />
             </FlexRow>
+
+            <FlexRow spacing='12' >
+                <Dropdown
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
+                    openOnHover={ true }
+                    openDelay={ 500 }
+                    closeOnMouseLeave='toggler'
+                />
+                <Dropdown
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (close delay)" { ...props } /> }
+                    openOnHover={ true }
+                    closeDelay={ 500 }
+                    closeOnMouseLeave='boundary'
+                />
+                <Dropdown
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open and close delay)" { ...props } /> }
+                    openOnHover={ true }
+                    openDelay={ 500 }
+                    closeDelay={ 500 }
+                    closeOnMouseLeave='toggler'
+                />
+            </FlexRow>
         </div>
     );
 }
