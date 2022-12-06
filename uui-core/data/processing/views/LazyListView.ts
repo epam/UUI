@@ -78,6 +78,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     constructor(editable: IEditable<DataSourceState<TFilter, TId>>, props: LazyListViewProps<TItem, TId, TFilter>, cache?: ListApiCache<TItem, TId, TFilter>) {
         super(editable, props);
         this.props = this.applyDefaultsToProps(props);
+        this.tree = Tree.blank<TItem, TId>(props);
         this.cache = cache;
         if (!this.cache) {
             this.cache = new ListApiCache({
