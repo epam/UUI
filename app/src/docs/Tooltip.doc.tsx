@@ -15,6 +15,17 @@ export class TooltipDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName='tooltip-descriptions' />
+                { this.renderSectionTitle('Overview') }
+                <DocExample
+                    title='Types'
+                    path='./examples/tooltip/Types.example.tsx'
+                />
+
+                <DocExample
+                    title='Variants (Styles)'
+                    path='./examples/tooltip/Variants.example.tsx'
+                />
+
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'

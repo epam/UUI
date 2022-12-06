@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Basically, 3 tooltip variants distinguish: Contrast, Default, Critical. Each variant can be applied to any type of a tooltip",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
