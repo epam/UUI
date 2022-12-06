@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Tooltip is text description related to particular UI element. Tooltip appears near \"hovered\" or \"focused\" element depending on configuration. Open by clicking is allowed only for mobile interface. Tooltip doesn’t support complex texts, tables and interactions (link is exceptional case).",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
