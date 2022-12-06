@@ -95,6 +95,7 @@
     --primary-color: var(--blue);
     --primary-light-color: var(--blue-light);
     --primary-lightest-color: var(--blue-lightest);
+    --primary-halftone-color: var(--blue-lightest);
     --primary-dark-color: var(--blue-dark);
     --primary-darkest-color: var(--blue-darkest);
     --secondary-color: var(--gray50);
@@ -160,7 +161,7 @@
     --input-bg-checked-hover-color: var(--primary-dark-color);
     --input-border-checked-disabled-color: var(--primary-light-color);
     --input-border-color: var(--gray40);
-    --input-bg-disabled-color: var(--gray5);
+    --input-bg-disabled-color: var(--input-bg-disabled-color);
     --input-bg-readonly-color: var(--gray5);
     --input-border-checked-color: var(--primary-color);
     --input-border-checked-hover-color: var(--primary-dark-color);
@@ -691,20 +692,23 @@
     --time-picker-border-radius: var(--border-radius);
 }
 .date-picker-vars {
-    --date-picker-bg-color: var(--input-bg-color);
-    --date-picker-bg-color-disabled: var(--input-bg-disabled-color);
-    --date-picker-border-color: var(--input-border-color);
-    --date-picker-border-color-disabled: var(--input-border-disabled-color);
-    --date-picker-border-color-hover: var(--input-textinput-border-hover-color);
-    --date-picker-border-color-active: var(--input-border-checked-color);
-    --date-picker-border-color-error: var(--negative-color);
-    --date-picker-placeholder-color: var(--input-placeholder-color);
-    --date-picker-text-color: var(--input-text-color);
-    --date-picker-text-color-disabled: var(--input-text-disabled-color);
-    --date-picker-icon-color-clickable: var(--icon-color);
-    --date-picker-icon-color-clickable-hover: var(--icon-hover-color);
-    --date-picker-icon-color-disabled: var(--icon-disabled-color);
-    --date-picker-border-radius: var(--border-radius);
+    --uui-dtp-bg-color: var(--input-bg-color);
+    --uui-dtp-bg-color-hover: var(--primary-halftone-color);
+    --uui-dtp-bg-selected-color-hover: var(--primary-dark-color);
+    --uui-dtp-bg-color-disabled: var(--input-bg-disabled-color);
+    --uui-dtp-border-color: var(--input-border-color);
+    --uui-dtp-border-color-disabled: var(--input-border-disabled-color);
+    --uui-dtp-border-color-hover: var(--input-textinput-border-hover-color);
+    --uui-dtp-border-color-active: var(--input-border-checked-color);
+    --uui-dtp-border-color-error: var(--negative-color);
+    --uui-dtp-placeholder-color: var(--input-placeholder-color);
+    --uui-dtp-text-color: var(--input-text-color);
+    --uui-dtp-text-color-disabled: var(--input-text-disabled-color);
+    --uui-dtp-icon-color-clickable: var(--icon-color);
+    --uui-dtp-icon-color-clickable-hover: var(--secondary-lightest-color);
+    --uui-dtp-icon-color-disabled: var(--icon-disabled-color);
+    --uui-dtp-border-radius: var(--border-radius);
+    --uui-dtp-bg-feltered-selected: var(--secondary-color);
 }
 .date-range-picker-vars {
     --date-range-picker-bg-color: var(--input-bg-color);

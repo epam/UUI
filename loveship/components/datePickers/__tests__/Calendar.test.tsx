@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import dayjs from 'dayjs';
-import {Calendar} from "../Calendar";
+import {Calendar} from "@epam/uui";
 
 describe('Calendar', () => {
     it('should be rendered correctly', () => {
