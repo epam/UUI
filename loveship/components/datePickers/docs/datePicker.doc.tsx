@@ -2,7 +2,8 @@ import * as React from 'react';
 import dayjs, { Dayjs } from "dayjs";
 import { DocBuilder } from '@epam/uui-docs';
 import { Day, IconContainer } from '@epam/uui-components';
-import { DatePicker, DatePickerProps } from '../DatePicker';
+import { UuiDatePickerProps } from '@epam/uui';
+import { DatePicker } from '../DatePicker';
 import { LinkButton, FlexRow } from '../../../';
 import { DefaultContext, FormContext, iEditable, isDisabledDoc, isInvalidDoc,
     isReadonlyDoc, modeDoc, ResizableContext, sizeDoc, TableContext, textSettingsDoc } from '../../../docs';
@@ -15,7 +16,7 @@ const getCustomDay = (day: Dayjs) => {
     </>;
 };
 
-const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', component: DatePicker })
+const DatePickerDoc = new DocBuilder<UuiDatePickerProps>({ name: 'DatePicker', component: DatePicker })
     .implements([iEditable, sizeDoc, textSettingsDoc, modeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc])
     .prop('value', { examples: ['2020-09-03'] })
     .prop('placeholder', { examples: ['Enter start date'] })
