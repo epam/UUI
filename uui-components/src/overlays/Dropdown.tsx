@@ -8,7 +8,8 @@ import { Portal } from './Portal';
 export interface DropdownState {
     opened: boolean;
     bodyBoundingRect: { y: number | null; x: number | null, width: number | null, height: number | null };
-    closeDropdownTimerId: any;
+    closeDropdownTimerId: NodeJS.Timeout;
+    openDropdownTimerId: NodeJS.Timeout;
 }
 
 export interface DropdownBodyProps extends IDropdownBodyProps {}
@@ -25,6 +26,8 @@ export interface DropdownProps extends Partial<IEditable<boolean>> {
     modifiers?: Modifier<any>[];
     /** Should we close dropdown on click on the Toggler, if it's already open? Default is true. */
 
+    openDelay?: number; // default: 0
+    closeDelay?: number; // default: 0
     openOnClick?: boolean; // default: true
     openOnHover?: boolean; // default: false
     closeOnTargetClick?: boolean; // default: true
@@ -63,6 +66,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         opened: this.props.value || false,
         bodyBoundingRect: { y: null, x: null, height: null, width: null },
         closeDropdownTimerId: null,
+        openDropdownTimerId: null,
     };
 
     constructor(props: DropdownProps) {
@@ -78,7 +82,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             this.targetNode?.addEventListener?.('mouseenter', this.handleMouseEnter);
         }
 
-        if (this.props.closeOnMouseLeave === 'toggler') {
+        if (this.props.closeOnMouseLeave) {
             this.targetNode?.addEventListener?.('mouseleave', this.handleMouseLeave);
         }
 
@@ -127,11 +131,16 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private handleMouseEnter = (e: Event) => {
-        this.handleOpenedChange(true);
+        this.setOpenDropdownTimer();
     }
 
     private handleMouseLeave = (e: MouseEvent) => {
-        this.handleOpenedChange(false);
+        if (this.props.openDelay && !this.props.closeDelay) {
+            this.handleOpenedChange(false);
+            this.clearOpenDropdownTimer();
+            return;
+        }
+        this.setCloseDropdownTimer();
     }
 
     isClientInArea(e: MouseEvent) {
@@ -143,13 +152,30 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }
     }
 
+    setOpenDropdownTimer() {
+        this.setState({
+            openDropdownTimerId: setTimeout(() => {
+                this.handleOpenedChange(true);
+                this.clearOpenDropdownTimer();
+                debugger;
+            }, this.props.openDelay || 0),
+        });
+    }
+
     setCloseDropdownTimer() {
         this.setState({
             closeDropdownTimerId: setTimeout(() => {
                 this.handleOpenedChange(false);
                 this.clearCloseDropdownTimer();
-            }, 1500),
+            }, this.props.closeDelay || 0),
         });
+    }
+
+    clearOpenDropdownTimer() {
+        if (this.state.openDropdownTimerId) {
+            clearTimeout(this.state.openDropdownTimerId);
+            this.setState({ openDropdownTimerId: null });
+        }
     }
 
     clearCloseDropdownTimer() {
