@@ -1,6 +1,6 @@
 import * as React from "react";
-import type { IEditable } from '../';
-import { VirtualListState } from "../";
+import type { IEditable } from '../../index';
+import { VirtualListState } from "../../index";
 
 interface UuiScrollPositionValues {
     scrollTop: number;

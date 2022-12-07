@@ -1,4 +1,4 @@
-import { BaseTimelineCanvasComponentProps } from '@epam/uui-timeline/BaseTimelineCanvasComponent';
+import { BaseTimelineCanvasComponentProps } from '@epam/uui-timeline';
 import * as React from 'react';
 import styles from './ModuleItems.scss';
 

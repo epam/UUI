@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { useForm } from './useForm';
-import { IEditable, ILens, Metadata, ICanBeInvalid, ValidationMode } from '../../';
+import { IEditable, ILens, Metadata, ICanBeInvalid, ValidationMode } from '../../../index';
 
 export interface FormSaveResponse<T> {
     form?: T;
