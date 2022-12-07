@@ -10,4 +10,4 @@ const CheckboxDoc = new DocBuilder<CheckboxProps & CheckboxMods>({ name: 'Checkb
     .prop('indeterminate', { examples: [true, false], defaultValue: false })
     .withContexts(DefaultContext, FormContext, TableContext);
 
-export = CheckboxDoc;
+export default CheckboxDoc;

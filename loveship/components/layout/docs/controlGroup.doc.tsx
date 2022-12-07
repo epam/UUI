@@ -31,4 +31,4 @@ const controlGroupDoc = new DocBuilder<ControlGroupProps>({ name: 'ControlGroup'
     ] })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
-export = controlGroupDoc;
+export default controlGroupDoc;

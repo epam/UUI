@@ -104,7 +104,8 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
         super(props);
 
         if (this.props.propsDocPath !== undefined) {
-            requireContext(`${ this.props.propsDocPath }`).then(((module: any) => {
+            requireContext(`${ this.props.propsDocPath }`).then(((m: any) => {
+                const module = m.default;
                 module.props.forEach((prop: any) => {
                     if (typeof prop.examples === 'function') {
                         this.propExamples[prop.name] = prop.examples(this.propSamplesCreationContext);

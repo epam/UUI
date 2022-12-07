@@ -65,4 +65,4 @@ const PickerInputDoc = new DocBuilder<PickerModalProps<any, any>>({ name: 'Picke
     ] })
     .withContexts(ModalContext);
 
-export = PickerInputDoc;
+export default PickerInputDoc;

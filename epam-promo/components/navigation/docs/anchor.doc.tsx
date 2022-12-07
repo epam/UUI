@@ -34,4 +34,4 @@ const AnchorDoc = new DocBuilder<AnchorProps>({ name: 'Anchor', component: Ancho
     })
     .withContexts(DefaultContext);
 
-export = AnchorDoc;
+export default AnchorDoc;

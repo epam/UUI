@@ -132,4 +132,4 @@ export const MyComponent = <div className={ css.myHeader }>` }</pre>
     })
     .withContexts(DefaultContext);
 
-export = textDoc;
+export default textDoc;
