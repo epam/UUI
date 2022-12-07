@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basically, 3 tooltip variants distinguish: Contrast, Default, Critical. Each variant can be applied to any type of a tooltip.",
+            "text": "12 placement options available.",
             "marks": []
           }
         ]
