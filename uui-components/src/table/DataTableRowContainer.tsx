@@ -2,7 +2,7 @@ import * as React from "react";
 import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx } from "@epam/uui-core";
 import { FlexRow, FlexSpacer } from '../layout';
 import { Anchor } from '../navigation/Anchor';
-import * as css from './DataTableRowContainer.scss';
+import css from './DataTableRowContainer.scss';
 
 export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLAnchorElement | HTMLDivElement | HTMLButtonElement>> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];

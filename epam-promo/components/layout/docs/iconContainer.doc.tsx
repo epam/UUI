@@ -22,4 +22,4 @@ const iconContainerDoc = new DocBuilder<ControlIconProps & IconContainerMods>({ 
     .prop('rotate', { examples: ['0', '90cw', '180', '90ccw'], defaultValue: null })
     .withContexts(DefaultContext, FormContext);
 
-export = iconContainerDoc;
+export default iconContainerDoc;

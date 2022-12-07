@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import * as css from './TextInput.scss';
+import css from './TextInput.scss';
 
 const ENTER = 'Enter';
 const ESCAPE = 'Escape';

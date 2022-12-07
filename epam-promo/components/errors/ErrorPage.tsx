@@ -1,6 +1,6 @@
 import React from 'react';
 import { UuiErrorInfo, IHasCX, isMobile, cx } from '@epam/uui-core';
-import * as css from './ErrorPage.scss';
+import css from './ErrorPage.scss';
 
 interface ErrorPageProps extends UuiErrorInfo, IHasCX {}
 

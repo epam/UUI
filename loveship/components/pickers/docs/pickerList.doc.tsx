@@ -41,4 +41,4 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
     .prop('noOptionsMessage', { examples: [{ value: <FlexRow spacing="12"><Text>No results found</Text><Button onClick={ () => {} } size="24" caption='Search'/></FlexRow>, name: '<Text/><Button/>'}]})
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = PickerListDoc;
+export default PickerListDoc;

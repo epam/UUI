@@ -15,4 +15,4 @@ const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ n
     .prop('disableLocaleFormatting', { defaultValue: false, examples: [true, false] })
     .withContexts(DefaultContext, FormContext, TableContext);
 
-export = NumericInputDoc;
+export default NumericInputDoc;

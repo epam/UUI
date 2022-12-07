@@ -13,4 +13,4 @@ const RatingDoc = new DocBuilder<RatingProps & RatingMods>({ name: 'Rating', com
     .prop('hint', { examples: [{ name: 'hint', value: val => `now is ${val} stars` }] })
     .withContexts(DefaultContext, FormContext);
 
-export = RatingDoc;
+export default RatingDoc;

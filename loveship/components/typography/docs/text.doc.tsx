@@ -19,4 +19,4 @@ const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: 
     .prop('color', { examples: [...allEpamPrimaryColors, ...allEpamAdditionalColors, ...allEpamGrayscaleColors], renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } /> })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = textDoc;
+export default textDoc;

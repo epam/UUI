@@ -2,7 +2,7 @@ import * as React from 'react';
 import Measure from 'react-measure';
 import { cx } from '@epam/uui';
 import { FlexRow, Text } from '@epam/promo';
-import * as css from './HeroBlock.scss';
+import css from './HeroBlock.scss';
 
 export interface HeroBlockProps {
 }

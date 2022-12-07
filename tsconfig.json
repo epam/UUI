@@ -23,7 +23,9 @@
               "test-utils"
             ]
         },
-      "baseUrl": "."
+      "baseUrl": ".",
+      "isolatedModules": true,
+      "moduleResolution": "Node"
     },
     "exclude": [
         "node_modules",

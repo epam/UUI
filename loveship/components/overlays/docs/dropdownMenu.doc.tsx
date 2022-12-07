@@ -28,4 +28,4 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ n
     }], isRequired: true })
     .withContexts(MainMenuContext, DefaultContext);
 
-export = dropdownMenuDoc;
+export default dropdownMenuDoc;

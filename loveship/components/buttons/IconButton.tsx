@@ -1,8 +1,8 @@
 import { IconButton as uuiIconButton, IconButtonBaseProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import * as types from '../types';
-import * as css from './IconButton.scss';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import css from './IconButton.scss';
+import styles from '../../assets/styles/scss/loveship-color-vars.scss';
 
 interface IconButtonMods extends types.ColorMod {};
 

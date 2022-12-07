@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RenderInlineProps } from "slate-react";
-import * as css from './PlaceholderPlugin.scss';
+import css from './PlaceholderPlugin.scss';
 import cx from 'classnames';
 import { uuiMod } from "@epam/uui-core";
 

@@ -6,4 +6,4 @@ const IconButtonDoc = new DocBuilder<IconButtonProps>({ name: 'IconButton', comp
     .implements([onClickDoc, isDisabledDoc, isInvalidDoc, iCanRedirectDoc, colorDoc, iconDoc])
     .withContexts(DefaultContext, FormContext);
 
-export = IconButtonDoc;
+export default IconButtonDoc;

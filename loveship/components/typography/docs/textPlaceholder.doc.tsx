@@ -15,4 +15,4 @@ const textPlaceholderDoc = new DocBuilder<TextPlaceholderProps>({ name: 'TextPla
     .prop('isNotAnimated', { examples: [true, false] })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = textPlaceholderDoc;
+export default textPlaceholderDoc;

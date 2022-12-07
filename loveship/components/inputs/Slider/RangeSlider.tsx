@@ -1,6 +1,6 @@
 import { RangeSlider as uuiRangeSlider, SliderBaseProps, RangeSliderValue } from '@epam/uui-components';
-import * as css from './Slider.scss';
-import * as styles from '../../../assets/styles/scss/loveship-color-vars.scss';
+import css from './Slider.scss';
+import styles from '../../../assets/styles/scss/loveship-color-vars.scss';
 import { withMods } from '@epam/uui-core';
 import * as types from '../../types';
 

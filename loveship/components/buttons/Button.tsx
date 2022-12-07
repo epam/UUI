@@ -2,7 +2,7 @@ import { FillStyle, ControlShape, ColorMod } from "../types";
 import { Button as uuiButton, ButtonMode, UUIButtonProps, ControlSize } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
-import * as css from './Button.scss';
+import css from './Button.scss';
 
 const defaultSize = '36';
 

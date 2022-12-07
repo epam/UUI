@@ -12,4 +12,4 @@ const rangeSliderDoc = new DocBuilder<SliderBaseProps<RangeSliderValue> & RangeS
     .prop('splitAt', { examples: [2, 10, 20, { value: 50, isDefault: true }], defaultValue: 50 })
     .withContexts(DefaultContext, FormContext);
 
-export = rangeSliderDoc;
+export default rangeSliderDoc;

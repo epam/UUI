@@ -8,7 +8,7 @@ import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationMo
 import { VirtualList } from '../';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from "../typography";
-import * as css from './DataTable.scss';
+import css from './DataTable.scss';
 import { i18n } from "../../i18n";
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {

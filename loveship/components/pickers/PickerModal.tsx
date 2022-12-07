@@ -9,7 +9,7 @@ import { LinkButton, Button } from '../buttons';
 import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
 import { i18n } from "../../i18n";
-import * as css from './PickerModal.scss';
+import css from './PickerModal.scss';
 
 export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     renderRow(rowProps: DataRowProps<TItem, TId>) {

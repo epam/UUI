@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, LabeledInput, TextInput, Switch, FlexRow, RadioGroup, ControlSize, Button, Checkbox, FlexCell, ControlWrapper, CheckboxGroup, FlexSpacer } from '../../components';
-import * as css from './FormContext.scss';
+import css from './FormContext.scss';
 
 interface FormContextState {
     textValue: string;

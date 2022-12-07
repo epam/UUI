@@ -1,6 +1,6 @@
 import React from 'react';
 import { IndeterminateBar, Panel } from '@epam/promo';
-import * as css from './BasicExample.scss';
+import css from './BasicExample.scss';
 
 export default function CustomLabelProgressBarExample() {
 
