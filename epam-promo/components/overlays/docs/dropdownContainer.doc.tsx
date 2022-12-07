@@ -21,4 +21,4 @@ const dropdownContainerDoc = new DocBuilder({
         isRequired: true,
     }).withContexts(DefaultContext);
 
-export = dropdownContainerDoc;
+export default dropdownContainerDoc;

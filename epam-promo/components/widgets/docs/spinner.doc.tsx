@@ -9,4 +9,4 @@ const spinnerDoc = new DocBuilder<SpinnerProps & SpinnerMods>({ name: 'Spinner',
     .prop('color', { renderEditor:  (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: allSpinnerColors })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
-export = spinnerDoc;
+export default spinnerDoc;

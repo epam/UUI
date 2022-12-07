@@ -19,4 +19,4 @@ const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any> & PickerTog
     .prop('placeholder', { examples: ['Select Country', 'Select Person'], type: 'string', defaultValue: 'Please select' })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = PickerTogglerDoc;
+export default PickerTogglerDoc;

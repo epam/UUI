@@ -16,4 +16,4 @@ const TextareaDoc = new DocBuilder<TextAreaProps & TextAreaMods>({ name: 'TextAr
     .prop('autoSize', { examples: [true, false], defaultValue: false })
     .withContexts(DefaultContext, FormContext, TableContext, ResizableContext);
 
-export = TextareaDoc;
+export default TextareaDoc;

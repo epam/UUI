@@ -18,4 +18,4 @@ const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditable
     .prop('onCancel', { examples: ctx => [ctx.getCallback('onCancel')] })
     .prop('mode', { examples: ['cell'] })
     .withContexts(DefaultContext, FormContext, ResizableContext, TableContext);
-export = SearchInputDoc;
+export default SearchInputDoc;
