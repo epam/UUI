@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalendarPresets should be rendered correctly 1`] = `
+<div
+  className="container uui-presets-container root"
+>
+  <div
+    className="uui-presets-header"
+  >
+    Presets
+  </div>
+  <div
+    className="uui-presets-item"
+    onClick={[Function]}
+  >
+    Today
+  </div>
+  <div
+    className="uui-presets-item"
+    onClick={[Function]}
+  >
+    This Week
+  </div>
+  <div
+    className="uui-presets-item"
+    onClick={[Function]}
+  >
+    Last Week
+  </div>
+  <div
+    className="uui-presets-item"
+    onClick={[Function]}
+  >
+    This Month
+  </div>
+  <div
+    className="uui-presets-item"
+    onClick={[Function]}
+  >
+    Last Month
+  </div>
+  <div
+    className="uui-presets-item"
+    onClick={[Function]}
+  >
+    Last 3 Months
+  </div>
+  <div
+    className="uui-presets-item"
+    onClick={[Function]}
+  >
+    This Year
+  </div>
+  <div
+    className="uui-presets-item"
+    onClick={[Function]}
+  >
+    Last Year
+  </div>
+</div>
+`;
