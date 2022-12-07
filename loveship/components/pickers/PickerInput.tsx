@@ -10,7 +10,7 @@ import { PickerItem } from './PickerItem';
 import { DataPickerFooter } from './DataPickerFooter';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import { SizeMod, EditMode } from '../types';
-import * as css from './PickerInput.scss';
+import css from './PickerInput.scss';
 
 export type PickerInputProps = SizeMod & EditMode & {};
 
@@ -84,7 +84,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
         return (
             <IEditableDebouncer
-                value={ this.state.dataSourceState.search }
+                value={ targetProps.value }
                 onValueChange={ this.handleTogglerSearchChange }
                 render={ editableProps => renderTarget({ ...this.getTogglerMods(), ...targetProps, ...editableProps }) }
             />

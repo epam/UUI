@@ -44,7 +44,7 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
                         action: () => { },
                     },
                 ],
-                name: '2 action',
+                name: '2 actions',
             },
         ],
 
@@ -59,4 +59,4 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
     })
     .withContexts(ResizableContext);
 
-export = SnackbarCardDoc;
+export default SnackbarCardDoc;

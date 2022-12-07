@@ -2,9 +2,9 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ButtonColor } from '../buttons';
 import * as types from '../types';
-import * as buttonCss from '../buttons/Button.scss';
-import * as css from './PageButton.scss';
-import * as styles from '../../assets/styles/colorvars/buttons/button-colorvars.scss';
+import buttonCss from '../buttons/Button.scss';
+import css from './PageButton.scss';
+import styles from '../../assets/styles/colorvars/buttons/button-colorvars.scss';
 
 const defaultSize = '30';
 

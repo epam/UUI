@@ -60,7 +60,7 @@ If you have the following MyComponent.module.scss file:
 You can import and use selectors from it from your tsx file:
 ```
 import * as React from 'react';
-import * as css from './MainPage.module.scss';
+import css from './MainPage.module.scss';
 
 export const MyComponent = <div className={ css.mainPanel }>
 ```

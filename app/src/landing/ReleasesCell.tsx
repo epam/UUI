@@ -5,7 +5,7 @@ import { cx } from '@epam/uui';
 import { FlexRow, LinkButton, RichTextView } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
 import { getCoreProps } from '../helpers/getCoreProps';
-import * as css from './ReleasesCell.scss';
+import css from './ReleasesCell.scss';
 
 export interface ReleasesCellProps {
     content: string;
@@ -37,7 +37,7 @@ export class ReleasesCell extends React.Component<ReleasesCellProps, ReleasesCel
 
     render() {
         const { content, layout } = this.props;
-        const [header, date] = content.split('*')[0].split('-').map((i: any) => i.trim());
+        const [header, date] = content.split('*')[0].split(' - ').map((i: any) => i.trim());
         const releaseNotes = content.substr(content.search(/\*/), content.length);
 
         return (

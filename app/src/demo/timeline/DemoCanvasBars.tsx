@@ -1,6 +1,6 @@
-import { TimelineTransform } from '@epam/uui-timeline/TimelineTransform';
-import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from '@epam/uui-timeline/BaseTimelineCanvasComponent';
-import { renderBars, Item } from '@epam/uui-timeline/renderBars';
+import { TimelineTransform } from '@epam/uui-timeline';
+import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from '@epam/uui-timeline';
+import { renderBars, Item } from '@epam/uui-timeline';
 
 export interface DemoCanvasBarsProps extends BaseTimelineCanvasComponentProps {
     items: Item[];

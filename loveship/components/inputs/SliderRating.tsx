@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { BaseRating, IconContainer } from '@epam/uui-components';
 import { Icon, IEditable, IHasRawProps } from '@epam/uui-core';
-import * as css from './SliderRating.scss';
+import css from './SliderRating.scss';
 import { ReactComponent as LineGrayIcon } from '../icons/slider-rating/line_gray_icon.svg';
 import { ReactComponent as LineRedIcon } from '../icons/slider-rating/line_red_icon.svg';
 import { ReactComponent as LineYellowIcon } from '../icons/slider-rating/line_yellow_icon.svg';
@@ -20,7 +20,7 @@ import { i18n } from "../../i18n";
 
 const defaultSize = '18';
 
-export interface SliderRatingProps<TValue> extends IEditable<TValue>, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+export interface SliderRatingProps<TValue> extends IEditable<TValue>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     renderTooltip?: (value: TValue) => React.ReactNode;
     from?: 1 | 2;
     withoutNa?: boolean;

@@ -1,7 +1,7 @@
 import { withMods, VPanelProps } from '@epam/uui-core';
 import { VPanel } from '@epam/uui-components';
 import '../../../assets/styles/variables/layout/panel.scss';
-import * as css from './Panel.scss';
+import css from './Panel.scss';
 
 export interface PanelMods {
     shadow?: boolean;

@@ -17,8 +17,16 @@ const dropdownContainerDoc = new DocBuilder({
         examples: ['white', { name: 'night700', value: 'night700' }],
     })
     .prop('children', {
-        examples: [{ value: <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, pariatur!</Text>, name: 'Basic' }],
+        examples: ctx => {
+            const color = ctx.getSelectedProps().color;
+            const textContent = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, pariatur!';
+
+            return [{
+                value: (color === 'white' || !color) ? <Text color="night700">{ textContent }</Text> : <Text color="night50">{ textContent }</Text>,
+                name: 'Basic',
+            }];
+        },
         isRequired: true,
     }).withContexts(DefaultContext);
 
-export = dropdownContainerDoc;
+export default dropdownContainerDoc;

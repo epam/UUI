@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import dayjs from "dayjs";
 import css from './SkillsBatteryPopover.scss';
 import { SmallBattery } from "./components/SmallBattery";
 import { BigBattery } from "./components/BigBattery";
 import { IInnerSkill, ISkill, ISkillLevel } from "./index";
-import { Button, Dropdown, FlexRow, Tooltip, Text, DropdownContainer, IconContainer, IconButton, TextInput } from "@epam/promo";
+import { Button, Dropdown, FlexRow, Text, DropdownContainer, IconContainer, IconButton, TextInput } from "@epam/promo";
 import { cx, IDropdownToggler } from "@epam/uui-core";
 import { DropdownBodyProps } from "@epam/uui-components";
+import { getDateInFormat, getLevel, getLevelDescription} from './utils';
 import { ReactComponent as heartIconOutline } from '@epam/assets/icons/common/fav-rates-favorite-outline-18.svg';
 import { ReactComponent as heartIconFilled } from '@epam/assets/icons/common/fav-rates-favorite-18.svg';
 import { ReactComponent as arrowExpandIcon } from './icons/navigation-arrows_expand-18.svg';
@@ -15,58 +15,13 @@ import { ReactComponent as noSkillIcon } from './icons/no-skill-18.svg';
 import { ReactComponent as noActiveIcon } from './icons/no-active-18.svg';
 import { ReactComponent as recommendedIcon } from './icons/recommended-18.svg';
 import { ReactComponent as infoLogo } from './icons/notification-info-outline-10.svg';
-
-const getDateInFormat = (date: Date) => dayjs(date).format('MMM DD, YYYY');
-
-const getLevel = (level: ISkillLevel): string => {
-    switch (level) {
-        case 1:
-            return 'Novice';
-        case 2:
-            return 'Intermediate';
-        case 3:
-            return 'Advanced';
-        case 4:
-            return 'Expert';
-        case 'NA':
-            return 'Not check';
-        case "NoSkill":
-            return 'No skill';
-        case 'Rank':
-            return 'Rank';
-        default:
-            return null;
-    }
-};
-
-const getLevelDescription = (level: ISkillLevel): string => {
-    switch (level) {
-        case 1:
-            return 'Novice description Lorem ipsum dolor sit amet.';
-        case 2:
-            return 'Intermediate description Lorem ipsum dolor sit amet.';
-        case 3:
-            return 'Advanced description Lorem ipsum dolor sit amet.';
-        case 4:
-            return 'Expert  description Lorem ipsum dolor sit amet.';
-        case 'NA':
-            return 'Not check';
-        case "NoSkill":
-            return 'No skill';
-        case 'Rank':
-            return 'Rank description';
-        default:
-            return null;
-    }
-};
-
 interface ISkillsBatteryProps {
     data: ISkill;
 }
 
 export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
     const targetBodyRef = React.createRef();
-    const [isFavorite, setIsFavorite] = useState<IInnerSkill>(props.data?.options.isFavourite);
+    const [isFavorite, setIsFavorite] = useState<IInnerSkill>(props.data?.options.isProfile);
     const [isRecommended, setIsRecommended] = useState<IInnerSkill>(props.data?.options.isRecommended);
     const [level, setLevel] = useState<ISkillLevel>(props.data?.level);
     const [comment, setComment] = useState(props.data?.comment);
@@ -91,7 +46,13 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
                 </FlexRow>
                 <BigBattery rating={ level } setRating={ setLevel } isExtended={ true }/>
                 <FlexRow cx={ css.iconButtonsRow }>
-                    <Button cx={ css.iconBtn } icon={ heartIconFilled } fill="light" color={ isFavorite?.status ? 'red' : 'gray50' } onClick={ () => setIsFavorite((prev) => ({ ...prev, status: !prev.status })) }/>
+                    <Button
+                        cx={ css.iconBtn }
+                        icon={ isFavorite?.status ? heartIconFilled : heartIconOutline }
+                        fill="light"
+                        color={ isFavorite?.status ? 'red' : 'gray50' }
+                        onClick={ () => setIsFavorite((prev) => ({ ...prev, status: !prev.status })) }
+                    />
                     <Button cx={ css.iconBtn } icon={ recommendedIcon } fill="light" color={ isRecommended?.status ? 'green' : 'gray50' } onClick={ () => setIsRecommended((prev) => ({ ...prev, status: !prev.status })) }/>
                     <Button cx={ css.iconBtn } icon={ noSkillIcon } fill="light" color="gray50" onClick={ () => setLevel('NoSkill') }/>
                     <Button cx={ css.iconBtn } icon={ noActiveIcon } fill="light" color="gray50" onClick={ () => setLevel('NA') }/>
@@ -110,47 +71,21 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
         );
     };
 
-    const TargetBody = React.forwardRef((bodyProps, ref) => {
-        return (
-            <FlexRow ref={ ref } cx={ cx(css.targetBodyContainer) } size="30">
-                <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } color={ isFavorite?.status ? 'red' : 'gray50' }/>
-                <SmallBattery rating={ level }/>
-                <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">{ props.data?.caption }</Text>
-                { Object.entries(props?.data.options).map((val) => (
-                    <IconContainer cx={ css.infoItem } icon={ val[1].icon } color={ val[1].activeColor }/>
-                )) }
-            </FlexRow>
-        );
-    });
-
-    const getTooltipContent = () => {
-        return (
-            <div className={ css.tooltipContainer }>
-                <FlexRow spacing="6" cx={ css.tooltipHeader }>
-                    <Text cx={ css.tooltipHeaderItem } color="gray60">Current level:</Text>
-                    <Text cx={ css.tooltipHeaderItem } color="gray5">{ getLevel(level) }</Text>
-                </FlexRow>
-                { Object.entries(props?.data.options).map((val, index) => (
-                    <FlexRow key={ `${ index }-tooltip` } spacing="6" cx={ css.tooltipBlockRow }>
-                        <IconContainer cx={ css.tooltipItem } icon={ val[1].icon } color={ val[1].activeColor }/>
-                        <Text cx={ css.tooltipItem } color="gray60">{ val[1].prefix }</Text>
-                        <Text cx={ css.tooltipItem } color="gray5">{ getDateInFormat(val[1].date) }</Text>
-                    </FlexRow>
-                )) }
-            </div>
-        );
-    };
+    const TargetBody = React.forwardRef<unknown, { isOpen: boolean }>((bodyProps, ref) => (
+        <FlexRow ref={ ref } cx={ cx([css.targetBodyContainer, {[css.targetBodyContainerHover]: bodyProps.isOpen}]) } size="30">
+            <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } color={ isFavorite?.status ? 'red' : 'gray50' }/>
+            <SmallBattery rating={ level }/>
+            <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">{ props.data?.caption }</Text>
+            { Object.entries(props?.data.options).map((val) => (
+                <IconContainer cx={ css.infoItem } icon={ val[1].icon } color={ val[1].activeColor }/>
+            )) }
+        </FlexRow>
+    ));
 
     const renderTarget = (targetProps: IDropdownToggler) => {
         return (
             <div { ...targetProps }>
-                {
-                    targetProps.isOpen
-                        ? <TargetBody/>
-                        : <Tooltip trigger="hover" content={ getTooltipContent() } placement="top">
-                            <TargetBody ref={ targetBodyRef }/>
-                        </Tooltip>
-                }
+                <TargetBody ref={ targetBodyRef } isOpen={ targetProps.isOpen } />
             </div>
         );
     };
@@ -160,7 +95,8 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
             <Dropdown
                 renderBody={ (bodyProps) => renderDropdownBody(bodyProps) }
                 renderTarget={ (targetProps: IDropdownToggler) => renderTarget(targetProps) }
-                closeOnTargetClick={ true }
+                closeOnMouseLeave={ 'boundary' }
+                openOnHover={ true }
                 placement="bottom-start"
                 modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
             />

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IHasCX, cx, IHasRawProps, IHasForwardedRef, RangeDatePickerPresets, RangeDatePickerPresetValue } from "@epam/uui-core";
-import * as css from "./CalendarPresets.scss";
+import css from "./CalendarPresets.scss";
 
 export const uuiPresets = {
     container: "uui-presets-container",
@@ -8,7 +8,7 @@ export const uuiPresets = {
     item: "uui-presets-item",
 } as const;
 
-export interface CalendarPresetsProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface CalendarPresetsProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     presets: RangeDatePickerPresets;
     onPresetSet: (nV: RangeDatePickerPresetValue) => void;
 }

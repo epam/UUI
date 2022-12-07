@@ -11,4 +11,4 @@ const SwitchDoc = new DocBuilder<SwitchProps & SwitchMods>({ name: 'Switch', com
     .prop('value', { examples: [true, false], defaultValue: false })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = SwitchDoc;
+export default SwitchDoc;

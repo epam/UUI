@@ -1,24 +1,27 @@
 import React from 'react';
 import { DataTableHeaderCell } from '../DataTableHeaderCell';
 import { renderWithContextAsync } from '@epam/test-utils';
+import { DataColumnProps } from "@epam/uui-core";
 
 describe('DataTableHeaderCell', () => {
     it('should be rendered correctly', async () => {
+        const col: DataColumnProps = {
+            key: 'test',
+            caption: 'Test',
+            render: () => <div>Test</div>,
+            width: 150,
+            fix: 'left',
+        };
         const tree = await renderWithContextAsync(
             <DataTableHeaderCell
-                column={ {
-                    key: 'test',
-                    caption: 'Test',
-                    render: () => <div>Test</div>,
-                    width: 150,
-                    fix: 'left',
-                } }
+                key="test"
+                column={ col }
                 onSort={ jest.fn }
                 isFirstColumn
                 isLastColumn={ false }
                 value={ {  } }
                 onValueChange={ jest.fn }
-            />
+            />,
         );
 
         expect(tree).toMatchSnapshot();

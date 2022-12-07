@@ -3,7 +3,7 @@ import { cx } from '@epam/uui';
 import { FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, RichTextView, Text, Tooltip } from '@epam/promo';
 import { BaseDocsBlock, UUI4 } from '../../common/docs';
 import { getQuery } from '../../helpers';
-import * as css from './DownloadsDoc.scss';
+import css from './DownloadsDoc.scss';
 import { ReactComponent as Artbord } from '../../icons/artboard.svg';
 import { ReactComponent as Sketch } from '../../icons/sketch.svg';
 import { ReactComponent as FontIcon } from '../../icons/fonts_icon.svg';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import localeData from 'dayjs/plugin/localeData';
-import * as css from './MonthSelection.scss';
+import css from './MonthSelection.scss';
 
 dayjs.extend(localeData);
 
@@ -17,7 +17,7 @@ export const uuiMonthSelection = {
     currentMonth: 'uui-monthselection-current-month',
 } as const;
 
-export interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     selectedDate: Dayjs;
 }
 

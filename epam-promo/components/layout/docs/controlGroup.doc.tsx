@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { ControlGroup } from '../ControlGroup';
-import { DefaultContext, FormContext } from '../../../docs';
+import { DefaultContext, FormContext, ResizableContext } from '../../../docs';
 import { Button, TextInput } from '../../../components';
 import { ControlGroupProps } from '@epam/uui-components';
 
@@ -29,6 +29,6 @@ const controlGroupDoc = new DocBuilder<ControlGroupProps>({ name: 'ControlGroup'
             ),
         },
     ] })
-    .withContexts(DefaultContext, FormContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext);
 
-export = controlGroupDoc;
+export default controlGroupDoc;

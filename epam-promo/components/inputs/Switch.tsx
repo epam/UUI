@@ -1,5 +1,5 @@
 import React from "react";
-import * as css from './Switch.scss';
+import css from './Switch.scss';
 import { Switch as uuiSwitch, SwitchProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 

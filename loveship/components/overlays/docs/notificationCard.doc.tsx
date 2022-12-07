@@ -40,7 +40,7 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
                         action: () => { },
                     },
                 ],
-                name: '2 action',
+                name: '2 actions',
             },
         ],
     })
@@ -54,4 +54,4 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
     })
     .withContexts(DefaultContext);
 
-export = SnackbarCardDoc;
+export default SnackbarCardDoc;

@@ -5,7 +5,7 @@ import { Text, FlexCell, LinkButton, ControlSize } from '../../../components';
 import { Avatar } from '@epam/uui-components';
 import { Person } from './TableContext';
 import { DataTableHeaderRowMods } from '../types';
-import * as css from '../../pickers/docs/DataPickerRowDoc.scss';
+import css from '../../pickers/docs/DataPickerRowDoc.scss';
 import { ReactComponent as MoreIcon } from '../../../icons/navigation-more_vert-18.svg';
 import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 import { ReactComponent as TickIcon } from '../../../icons/notification-done-18.svg';

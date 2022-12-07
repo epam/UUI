@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly,
     IAnalyticableOnChange, UuiContexts, uuiMarkers, UuiContext, IHasForwardedRef } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import * as css from './RadioInput.scss';
+import css from './RadioInput.scss';
 
 export interface RadioInputProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, ICanBeReadonly, IAnalyticableOnChange<boolean>, IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement> {
     icon?: Icon;

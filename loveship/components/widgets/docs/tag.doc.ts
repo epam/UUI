@@ -16,4 +16,4 @@ const tagDoc = new DocBuilder<ButtonProps & TagMods>({ name: 'Tag', component: T
     .prop('size', { examples : ['18', '24', '30', '36', '42', '48'], defaultValue: '18' })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
-export = tagDoc;
+export default tagDoc;

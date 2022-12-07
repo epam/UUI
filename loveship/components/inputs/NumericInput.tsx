@@ -1,6 +1,6 @@
 import * as types from '../types';
-import * as css from './NumericInput.scss';
-import * as colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
+import css from './NumericInput.scss';
+import colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
 import { withMods } from '@epam/uui-core';
 import { NumericInput as uuiNumericInput, NumericInputProps } from '@epam/uui-components';
 import { TextSettings, getTextClasses } from '../../helpers/textLayout';

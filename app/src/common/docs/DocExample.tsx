@@ -1,10 +1,10 @@
 import React from 'react';
-import { Switch, FlexRow, IconButton, LinkButton } from '@epam/promo';
+import { Switch, FlexRow, IconButton, Button } from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
 import { codesandboxService } from '../../data/codesandbox/service';
-import * as css from './DocExample.scss';
+import css from './DocExample.scss';
 import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
 import { ReactComponent as CodesandboxIcon } from '../../icons/social-network-codesandbox-24.svg';
 
@@ -86,7 +86,8 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
     private renderPreview() {
         const { raw, stylesheets } = this.state;
-        const codesandboxLink = codesandboxService.getCodesandboxLink(raw, stylesheets);
+        const codesandboxLink = codesandboxService.getCodesandboxLink();
+        const codesandboxParameters = codesandboxService.getCodesandboxParameters(raw, stylesheets);
 
         return (
             <>
@@ -100,13 +101,17 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                         label='View code'
                     />
                     { codesandboxLink && (
-                        <LinkButton
-                            icon={ CodesandboxIcon }
-                            iconPosition='right'
-                            target="_blank"
-                            caption="Open in Codesandbox"
-                            href={ codesandboxLink }
-                        />
+                        <form action={ codesandboxLink } method="POST" target="_blank">
+                            <input type="hidden" name="parameters" value={ codesandboxParameters } />
+                            <Button
+                                cx={ css.externalLink }
+                                rawProps={ { type: 'submit' } }
+                                fill='light'
+                                icon={ CodesandboxIcon }
+                                iconPosition='right'
+                                caption="Open in Codesandbox"
+                            />
+                        </form>
                     ) }
                 </FlexRow>
                 { this.state.showCode && this.renderCode() }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cx } from '@epam/uui';
 import { FlexCell, FlexRow, Text } from '@epam/promo';
-import * as css from './InfoBlock.scss';
+import css from './InfoBlock.scss';
 
 const infoData = [
     { caption: 'Clients', value: '40+', pulse: false },
