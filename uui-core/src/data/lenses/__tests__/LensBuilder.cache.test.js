@@ -1,4 +1,4 @@
-const { Lens } = require("..");
+const { Lens } = require("../index");
 const { LensBuilder } = require('../LensBuilder');
 
 describe('LensBuilder - lenses are cached', () => {

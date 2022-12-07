@@ -1,7 +1,7 @@
 import { act, cleanup } from '@testing-library/react-hooks';
 import { useForm } from '../useForm';
-import type { Metadata } from '../../..';
-import type { FormSaveResponse, IFormApi, UseFormProps } from '..';
+import type { Metadata } from '../../../../index';
+import type { FormSaveResponse, IFormApi, UseFormProps } from '../index';
 import { testSvc, mountHookWithContext } from '@epam/test-utils';
 
 async function handleSave(save: () => void) {

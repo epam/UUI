@@ -1,6 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { LazyDataSource } from 'uui-core/data';
-
 
 export function useMemoWithDestructor<T>(create: () => T, update: (instance: T) => void, destroy: (value: T) => any, deps: any[]) {
     const ref = useRef<T>();
@@ -14,7 +12,7 @@ export function useMemoWithDestructor<T>(create: () => T, update: (instance: T) 
         ref.current = create();
     }
 
-    update(ref.current)
+    update(ref.current);
 
     const current = ref.current;
 

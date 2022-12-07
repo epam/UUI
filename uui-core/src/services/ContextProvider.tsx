@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { CommonContexts, IHasChildren } from "../types";
-import { LegacyContextProvider, IProcessRequest } from "./";
+import { LegacyContextProvider, IProcessRequest } from "./index";
 import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from "./routing";
 import { DragGhost } from "./dnd";
 import { ISkin } from "./SkinContext";

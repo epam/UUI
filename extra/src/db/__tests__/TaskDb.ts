@@ -1,4 +1,4 @@
-import { Db, DbSchema, DbEntitySchema } from '..';
+import { Db, DbSchema, DbEntitySchema } from '../index';
 
 export interface Task {
     id: number;
