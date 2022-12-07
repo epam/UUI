@@ -17,11 +17,11 @@ export const AvatarStack = React.forwardRef<HTMLDivElement, AvatarStackProps>((p
     const { avatarSize, urlArray, direction, avatarsCount, renderItem } = props;
 
     const firstElements = avatarsCount && (urlArray.length > avatarsCount) ? urlArray.slice(0, avatarsCount) : urlArray;
-
+    const styleObj = { ['--overlap']: `-${ +avatarSize / 4 }px` } as object;
     return (
         <FlexRow cx={ props.cx } ref={ ref } rawProps={ props.rawProps }>
             <FlexRow
-                rawProps={ { role:'group', style: { ['--overlap']: `-${ +avatarSize / 4 }px` } } }
+                rawProps={ { role:'group', style: styleObj } }
                 cx={ cx('avatars', css.container, css['avatar-' + direction]) }
             >
                 { firstElements.map((avatar, index) => {
