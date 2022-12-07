@@ -10,7 +10,7 @@ import { PickerItem } from './PickerItem';
 import { DataPickerFooter } from './DataPickerFooter';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import { SizeMod, EditMode } from '../types';
-import * as css from './PickerInput.scss';
+import css from './PickerInput.scss';
 
 export type PickerInputProps = SizeMod & EditMode & {};
 

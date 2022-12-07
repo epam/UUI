@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Panel, FlexRow } from '../../components';
-import * as css from './PanelContext.scss';
+import css from './PanelContext.scss';
 
 export class PanelContext extends React.Component<DemoComponentProps> {
     public static displayName = 'Panel';

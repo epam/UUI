@@ -1,4 +1,4 @@
-import * as css from './DemoToolbar.scss';
+import css from './DemoToolbar.scss';
 import * as React from "react";
 import { useHistory } from 'react-router';
 import { LinkButton, FlexRow, FlexCell, SuccessNotification, Text } from "@epam/promo";

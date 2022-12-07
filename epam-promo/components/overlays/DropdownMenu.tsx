@@ -8,7 +8,7 @@ import { Text, FlexRow, Anchor, Dropdown, FlexSpacer, DropdownContainer, Dropdow
 import { Switch } from '../inputs';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
-import * as css from './DropdownMenu.scss';
+import css from './DropdownMenu.scss';
 import { ReactComponent as CheckIcon } from "../../icons/accept-18.svg";
 
 const icons = systemIcons['36'];

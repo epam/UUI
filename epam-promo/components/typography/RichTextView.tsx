@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as css from './RichTextView.scss';
-import * as style from '../../assets/styles/typography.scss';
+import css from './RichTextView.scss';
+import style from '../../assets/styles/typography.scss';
 import { RichTextView as uuiRichTextView, RichTextViewProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 

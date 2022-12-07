@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Spinner as uuiSpinner, SpinnerProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
-import * as css from './Spinner.scss';
-import * as styles from '../../assets/styles/colorvars/widgets/spinner-colorvars.scss';
+import css from './Spinner.scss';
+import styles from '../../assets/styles/colorvars/widgets/spinner-colorvars.scss';
 
 export type SpinnerColor = 'blue' | 'gray50' | 'white';
 export const allSpinnerColors: SpinnerColor[] = ['blue', 'white', 'gray50'];

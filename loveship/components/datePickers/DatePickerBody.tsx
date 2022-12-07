@@ -1,5 +1,5 @@
-import * as css from './DatePicker.scss';
-import * as calendarCss from './Calendar.scss';
+import css from './DatePicker.scss';
+import calendarCss from './Calendar.scss';
 import { DatePickerBody as uuiDatePickerBody, DatePickerBodyProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ReactComponent as ArrowIcon } from './../icons/folding-arrow-24.svg';

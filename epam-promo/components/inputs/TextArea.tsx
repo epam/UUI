@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withMods } from '@epam/uui-core';
 import { TextArea as uuiTextArea, TextAreaProps } from '@epam/uui-components';
 import * as types from '../types';
-import * as css from './TextArea.scss';
+import css from './TextArea.scss';
 
 const defaultSize = '36';
 const defaultMode = types.EditMode.FORM;

@@ -1,6 +1,6 @@
 import { ScrollBars as uuiScrollBars, ScrollbarProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
-import * as css from './ScrollBars.scss';
+import css from './ScrollBars.scss';
 
 export interface ScrollBarsMods {
     theme?: 'light' | 'dark';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import sortBy from 'lodash.sortby';
-import * as css from './DemoDnd.scss';
+import css from './DemoDnd.scss';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, Panel, Text } from '@epam/promo';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/content-add-outline-18.svg';
 import { DropParams, getOrderBetween } from '@epam/uui';

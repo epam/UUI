@@ -4,7 +4,7 @@ import { TextInput as uuiTextInput, TextInputProps } from '@epam/uui-components'
 import * as types from '../types';
 import { IHasEditMode, EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
-import * as css from './TextInput.scss';
+import css from './TextInput.scss';
 
 const defaultSize = '36';
 const defaultMode = EditMode.FORM;

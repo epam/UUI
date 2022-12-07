@@ -1,5 +1,5 @@
 import React from 'react';
-import * as css from './DropMarker.scss';
+import css from './DropMarker.scss';
 import cx from 'classnames';
 import { DndActorRenderParams } from '@epam/uui-core';
 

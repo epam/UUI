@@ -5,7 +5,7 @@ import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePicker } from '@e
 import { DropdownContainer, FlexRow, TextInput, SizeMod, RangeDatePickerBody } from '../index';
 import { systemIcons } from '../../icons/icons';
 import { i18n } from '../../i18n';
-import * as css from './RangeDatePicker.scss';
+import css from './RangeDatePicker.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {
     getPlaceholder?(type: InputType): string;

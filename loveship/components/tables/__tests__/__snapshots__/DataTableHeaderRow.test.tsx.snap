@@ -21,7 +21,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   >
     <div
       aria-sort="none"
-      className="-clickable"
+      className="-clickable cell size-24 padding-left-24 resizable"
       onClick={[Function]}
       onPointerEnter={[Function]}
       onPointerLeave={[Function]}
@@ -41,7 +41,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
       }
     >
       <label
-        className="container uui-checkbox-container root size-12 theme-light mode-form color-sky -clickable"
+        className="container uui-checkbox-container root size-12 theme-light mode-form color-sky checkbox -clickable"
         tabIndex={-1}
       >
         <div
@@ -55,17 +55,19 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           />
         </div>
       </label>
-      <div>
+      <div
+        className="tooltipWrapper"
+      >
         <div
-          className="uui-table-header-caption"
+          className="iconCell uui-table-header-caption"
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
           >
             ID
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
             href={null}
             onClick={[Function]}
             role="button"
@@ -84,7 +86,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         </div>
       </div>
       <div
-        className="-draggable"
+        className="resizeMark -draggable"
         onMouseDown={[Function]}
       />
     </div>
@@ -103,7 +105,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   >
     <div
       aria-sort="ascending"
-      className="-clickable"
+      className="-clickable cell size-24 resizable draggable"
       onClick={[Function]}
       onPointerDown={[Function]}
       onPointerEnter={[Function]}
@@ -123,17 +125,19 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         }
       }
     >
-      <div>
+      <div
+        className="tooltipWrapper"
+      >
         <div
-          className="uui-table-header-caption"
+          className="iconCell uui-table-header-caption"
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
           >
             name
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
             href={null}
             onClick={[Function]}
             role="button"
@@ -152,13 +156,13 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         </div>
       </div>
       <div
-        className="-draggable"
+        className="resizeMark -draggable"
         onMouseDown={[Function]}
       />
     </div>
     <div
       aria-sort="none"
-      className="-clickable"
+      className="-clickable cell size-24 resizable draggable"
       onClick={[Function]}
       onPointerDown={[Function]}
       onPointerEnter={[Function]}
@@ -178,17 +182,19 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         }
       }
     >
-      <div>
+      <div
+        className="tooltipWrapper"
+      >
         <div
-          className="uui-table-header-caption"
+          className="iconCell uui-table-header-caption"
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
           >
             Level
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
             href={null}
             onClick={[Function]}
             role="button"
@@ -207,13 +213,13 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         </div>
       </div>
       <div
-        className="-draggable"
+        className="resizeMark -draggable"
         onMouseDown={[Function]}
       />
     </div>
     <div
       aria-sort="none"
-      className="-clickable"
+      className="-clickable cell size-24 padding-right-24 resizable draggable"
       onClick={[Function]}
       onPointerDown={[Function]}
       onPointerEnter={[Function]}
@@ -233,17 +239,19 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         }
       }
     >
-      <div>
+      <div
+        className="tooltipWrapper"
+      >
         <div
-          className="uui-table-header-caption"
+          className="iconCell uui-table-header-caption"
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption upperCase container"
           >
             DATE
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
             href={null}
             onClick={[Function]}
             role="button"
@@ -262,7 +270,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
         </div>
       </div>
       <div
-        className="-draggable"
+        className="resizeMark -draggable"
         onMouseDown={[Function]}
       />
     </div>
@@ -291,7 +299,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   >
     <div
       aria-sort="none"
-      className="-clickable"
+      className="-clickable cell size-36 padding-left-24"
       onClick={[Function]}
       role="columnheader"
       style={
@@ -305,17 +313,19 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         }
       }
     >
-      <div>
+      <div
+        className="tooltipWrapper"
+      >
         <div
-          className="uui-table-header-caption"
+          className="iconCell uui-table-header-caption"
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
           >
             ID
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
             href={null}
             onClick={[Function]}
             role="button"
@@ -349,7 +359,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   >
     <div
       aria-sort="ascending"
-      className="-clickable"
+      className="-clickable cell size-36"
       onClick={[Function]}
       role="columnheader"
       style={
@@ -363,17 +373,19 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         }
       }
     >
-      <div>
+      <div
+        className="tooltipWrapper"
+      >
         <div
-          className="uui-table-header-caption"
+          className="iconCell uui-table-header-caption"
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
           >
             name
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
             href={null}
             onClick={[Function]}
             role="button"
@@ -394,7 +406,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     </div>
     <div
       aria-sort="none"
-      className="-clickable"
+      className="-clickable cell size-36"
       onClick={[Function]}
       role="columnheader"
       style={
@@ -408,17 +420,19 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         }
       }
     >
-      <div>
+      <div
+        className="tooltipWrapper"
+      >
         <div
-          className="uui-table-header-caption"
+          className="iconCell uui-table-header-caption"
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
           >
             Level
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
             href={null}
             onClick={[Function]}
             role="button"
@@ -439,7 +453,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     </div>
     <div
       aria-sort="none"
-      className="-clickable"
+      className="-clickable cell size-36 padding-right-24"
       onClick={[Function]}
       role="columnheader"
       style={
@@ -453,17 +467,19 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
         }
       }
     >
-      <div>
+      <div
+        className="tooltipWrapper"
+      >
         <div
-          className="uui-table-header-caption"
+          className="iconCell uui-table-header-caption"
         >
           <div
-            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+            className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
           >
             DATE
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon"
+            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
             href={null}
             onClick={[Function]}
             role="button"

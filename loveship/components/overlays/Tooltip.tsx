@@ -1,6 +1,6 @@
 import * as types from '../types';
-import * as css from './Tooltip.scss';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import css from './Tooltip.scss';
+import styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import { withMods } from '@epam/uui-core';
 import { Tooltip as uuiTooltip, TooltipProps } from '@epam/uui-components';
 

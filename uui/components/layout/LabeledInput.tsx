@@ -4,7 +4,7 @@ import { LabeledInput as uuiLabeledInput, LabeledInputProps } from '@epam/uui-co
 import { Tooltip } from '../overlays';
 import { systemIcons } from '../../icons/icons';
 import '../../assets/styles/variables/layout/labeledInput.scss';
-import * as css from './LabeledInput.scss';
+import css from './LabeledInput.scss';
 
 
 const defaultSize = '36';
