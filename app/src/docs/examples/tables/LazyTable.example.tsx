@@ -105,7 +105,7 @@ export default function CitiesTable(props: unknown) {
                 getRows={ view.getVisibleRows }
                 headerTextCase='upper'
                 columns={ citiesColumns }
-                { ...props }
+                { ...(props as object) }
             />
         </Panel>
     );

@@ -130,7 +130,7 @@ export function Tooltip(props: TooltipProps) {
                     if (idx > 0 || !React.isValidElement(child)) return child;
                     return React.cloneElement(child, {
                         ref: (node: HTMLElement) => getInnerRef(node, ref),
-                    });
+                    } as object);
                 }) }
             </Reference>
             { isTooltipExist() && (isOpen || props.isVisible) && <Portal target={ props.portalTarget }>
