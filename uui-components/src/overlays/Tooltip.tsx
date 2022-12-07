@@ -11,6 +11,7 @@ export interface TooltipState {
 }
 
 export interface TooltipProps extends TooltipCoreProps {
+    maxWidth?: string;
 }
 
 export function Tooltip(props: TooltipProps) {
@@ -87,7 +88,7 @@ export function Tooltip(props: TooltipProps) {
     }, []);
 
     const renderTooltip = () => (
-        <div role="tooltip" aria-hidden={ isTooltipExist() } className={ uuiElement.tooltipBody }>
+        <div role="tooltip" aria-hidden={ isTooltipExist() } className={ uuiElement.tooltipBody } style={{maxWidth: props.maxWidth ?? "300px"}}>
             { props.content || props.renderContent?.() }
         </div>
     );

@@ -1,16 +1,25 @@
 import React from 'react';
-import { Button, FlexRow, RichTextView, Tooltip } from '@epam/promo';
+import { Button, FlexCell, FlexRow, Text, Tooltip } from '@epam/promo';
+import * as css from './CustomMarkup.example.scss'
 
 export default function CustomMarkupExample() {
-    const renderCustomMarkup = () => <RichTextView>
-        <h5>Refusal reason</h5>
-        <p>This candidate is not experienced enough for being a part of Assessment committee.</p>
-    </RichTextView>;
+    const months = ['MAY', 'JUN', 'JUL', 'AUG', 'SEP']
+    const renderCustomMarkup = () => <>
+        <Text fontSize='14' color='gray5'>Copy Workload Based Revenue to Forecast</Text>
+        <FlexRow spacing='12'>
+            {months.map((month) => (
+                <FlexCell minWidth={ 60 } cx={css.textBlock} >
+                    <Text fontSize='14' lineHeight='18' color='gray5' cx={css.text}>{month} - 22</Text>
+                    <Text fontSize='12' lineHeight='18' color='gray5' cx={css.text}>120k USD</Text>
+                </FlexCell>
+            ))}
+        </FlexRow>
+    </>
 
     return (
         <FlexRow>
-            <Tooltip trigger='hover' content={ renderCustomMarkup() } placement='top' color='white' >
-                <Button data-foo={ 123 } caption='Target' onClick={ () => null } />
+            <Tooltip maxWidth='340px' trigger='hover' renderContent={ renderCustomMarkup } placement='right' >
+                <Button data-foo={ 123 } caption='Custom tooltip' onClick={ () => null } />
             </Tooltip>
         </FlexRow>
     );

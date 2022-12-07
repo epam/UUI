@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, FlexRow, Tooltip } from '@epam/promo';
 
-export default function TypesTooltipExample() {
+export default function VariantsTooltipExample() {
     return (
         <FlexRow spacing='12' >
             <Tooltip content='Tooltip message' placement='bottom' >

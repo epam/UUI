@@ -1,0 +1,9 @@
+@use '~@epam/promo/assets/styles/index' as *;
+
+.textBlock:not(:last-child) {
+    border-right: 1px solid $gray5;
+}
+
+.text{
+    padding: 0;
+}

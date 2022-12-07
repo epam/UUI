@@ -26,6 +26,11 @@ export class TooltipDoc extends BaseDocsBlock {
                     path='./examples/tooltip/Variants.example.tsx'
                 />
 
+                <DocExample
+                    title='Tooltip placement'
+                    path='./examples/tooltip/Placement.example.tsx'
+                />
+
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
