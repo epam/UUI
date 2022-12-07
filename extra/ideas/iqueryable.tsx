@@ -11,9 +11,9 @@
 //     query: IQueryable<TItem, TId>;
 //     getChildren: (item: TItem) => IQueryable<TItem, TId>;
 // }
-//     [OK] picker 
+//     [OK] picker
 //         - getSelection: ids.map(id => q.byId(id))
-//         - ignore parent/child, or pass this to render 
+//         - ignore parent/child, or pass this to render
 //         - filter selectable only
 //         - can order on client
 
@@ -26,7 +26,7 @@
 
 //     [BAD - FETCH ALL] selection cascading:
 //         - are there selectable children?
-//         - select all/none: get list of all selectable children 
+//         - select all/none: get list of all selectable children
 //         - q.query(parent => getChildren(of parent)) // need to fetch all children here
 //             .map(node => isSelectable(node))
 
@@ -44,14 +44,14 @@
 
 //     [OK] sorting
 //         - refetch all
-//         - can be done externally 
+//         - can be done externally
 //         - should change versionHash
-//         - children can be sorted differently if needed    
+//         - children can be sorted differently if needed
 
 //     [OK] should we indent the first level - does any node has any children?
 //         - there is getChildren() defined
 
-//     filter+folding 
+//     filter+folding
 //         - given the node, does it has any children matching search/filter?
 //         - what if children passed the filter, but parent - are not?
 //         - lazy: up to IQuery impl
@@ -63,7 +63,7 @@
 //             - byId, selection
 //             - use [id, type]
 //             - add uid to the DB Entities
-//         - 
+//         -
 
 
 //     selection option:
@@ -73,3 +73,5 @@
 //             - has selected children (recusively)
 //         - doesn't solve
 //             - selection cascading
+
+export default {};
