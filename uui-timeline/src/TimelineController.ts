@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Viewport } from './types';
 import { msPerDay, scaleSteps } from './helpers';
-import { TimelineTransform } from './';
+import { TimelineTransform } from '../index';
 import sortedIndex from 'lodash.sortedindex';
 import { isClientSide } from "@epam/uui-core";
 
