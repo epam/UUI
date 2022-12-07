@@ -4,6 +4,6 @@ export * from './DataTableHeaderRow';
 export * from './DataTableHeaderCell';
 export * from './DataTable';
 export * from './types';
-export * from './ColumnsConfigurationModal';
+export * from './columnsConfigurationModal/ColumnsConfigurationModal';
 export * from './ColumnPickerFilter';
 export * from './helpers';

@@ -3,7 +3,7 @@ import { Popper } from 'react-popper';
 import { usePlateEditorState, isEditorFocused, usePlatePlugins } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
 import { isTextSelected } from '../helpers';
-import * as css from './Toolbar.scss';
+import css from './Toolbar.scss';
 
 interface ToolbarProps {
     editor: any;

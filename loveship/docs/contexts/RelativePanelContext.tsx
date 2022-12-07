@@ -5,7 +5,7 @@ import {
     Button, TextInput, LabeledInput, NumericInput,
     DatePicker,
 } from '../../components';
-import * as css from './RelativePanelContext.scss';
+import css from './RelativePanelContext.scss';
 
 interface DemoComponentState {
     activeContent: 'form' | 'text';
@@ -34,7 +34,7 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, De
                         <NumericInput max={ 100 } min={ 0 } value={ 20 } onValueChange={ null }/>
                     </LabeledInput>
                     <LabeledInput label='Country' >
-                        <DatePicker format={ 'DD/MM/YYYY' } value={ '20/11/2042' }  onValueChange={ null }/>
+                        <DatePicker format={ 'DD/MM/YYYY' } value={ '2042-11-20' }  onValueChange={ null }/>
                     </LabeledInput>
                 </FlexRow>
                 <FlexRow type='form'>

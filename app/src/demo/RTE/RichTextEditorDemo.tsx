@@ -24,7 +24,7 @@ import {
 } from "@epam/uui-editor";
 import { svc } from '../../services';
 import { demoData } from '@epam/uui-docs';
-import * as css from './RichTextEditorDemo.scss';
+import css from './RichTextEditorDemo.scss';
 
 
 interface SlateEditorBasicExampleState {

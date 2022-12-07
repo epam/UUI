@@ -4,8 +4,8 @@ import { DocBuilder } from '@epam/uui-docs';
 import { Day, IconContainer } from '@epam/uui-components';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 import { LinkButton, FlexRow } from '../../../';
-import { iEditable, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc } from '../../../docs';
-import { FormContext, DefaultContext, TableContext, ResizableContext } from '../../../docs';
+import { DefaultContext, FormContext, iEditable, isDisabledDoc, isInvalidDoc,
+    isReadonlyDoc, modeDoc, ResizableContext, sizeDoc, TableContext, textSettingsDoc } from '../../../docs';
 import { ReactComponent as Point } from '../../icons/radio-point.svg';
 
 const getCustomDay = (day: Dayjs) => {
@@ -17,7 +17,7 @@ const getCustomDay = (day: Dayjs) => {
 
 const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', component: DatePicker })
     .implements([iEditable, sizeDoc, textSettingsDoc, modeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc])
-    .prop('value', { examples: ['2017-12-30'] })
+    .prop('value', { examples: ['2020-09-03'] })
     .prop('placeholder', { examples: ['Enter start date'] })
     .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY' })
     .prop('filter', { examples: [
@@ -51,4 +51,4 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
     })
     .withContexts(DefaultContext, FormContext, ResizableContext, TableContext);
 
-export = DatePickerDoc;
+export default DatePickerDoc;

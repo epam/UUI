@@ -22,7 +22,7 @@ import {
     // codeBlockPlugin,
 } from "@epam/uui-editor";
 import { svc } from '../../services';
-import * as css from './EditableDocContent.scss';
+import css from './EditableDocContent.scss';
 
 export interface EditableDocContentProps {
     fileName: string;

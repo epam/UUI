@@ -14,11 +14,13 @@ const AvatarDoc = new DocBuilder<AvatarProps>({ name: 'Avatar', component: Avata
         isRequired: true,
     })
     .prop('size', {
-        examples: ['24', '36', { name: '48', value: '48', isDefault: true }, '144'], isRequired: true, defaultValue: '48',
+        examples: ['12', '18', '24', '36', { name: '48', value: '48', isDefault: true }, '54', '60', '72', '78', '90', '144'],
+        isRequired: true,
+        defaultValue: '48',
     })
     .prop('isLoading', {
         examples: [true],
     })
     .withContexts(DefaultContext);
 
-export = AvatarDoc;
+export default AvatarDoc;

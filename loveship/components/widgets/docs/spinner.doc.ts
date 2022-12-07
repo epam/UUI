@@ -8,4 +8,4 @@ const spinnerDoc = new DocBuilder<SpinnerProps & SpinnerMods>({ name: 'Spinner',
     .implements([colorDoc])
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
-export = spinnerDoc;
+export default spinnerDoc;

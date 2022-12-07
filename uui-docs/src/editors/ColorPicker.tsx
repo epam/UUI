@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import * as css from './ColorPicker.scss';
+import css from './ColorPicker.scss';
 import { IEditable } from '@epam/uui-core';
 import { Tooltip } from '@epam/uui-components';
 

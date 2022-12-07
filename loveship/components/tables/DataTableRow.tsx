@@ -1,5 +1,5 @@
 import React from 'react';
-import * as css from './DataTableRow.scss';
+import css from './DataTableRow.scss';
 import { DataTableRow as uuiDataTableRow } from '@epam/uui-components';
 import { withMods, DataTableCellProps, DndActorRenderParams, DataTableRowProps } from '@epam/uui-core';
 import { DataTableCell } from './DataTableCell';

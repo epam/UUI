@@ -4,7 +4,7 @@ import { AnchorProps } from "@epam/uui-components";
 import { DefaultContext } from "../../../docs";
 import { Text } from "../../typography";
 import { Anchor } from "../Anchor";
-import * as css from './anchor.scss';
+import css from './anchor.scss';
 
 const AnchorDoc = new DocBuilder<AnchorProps>({ name: 'Anchor', component: Anchor })
     .implements([onClickDoc])
@@ -34,4 +34,4 @@ const AnchorDoc = new DocBuilder<AnchorProps>({ name: 'Anchor', component: Ancho
     })
     .withContexts(DefaultContext);
 
-export = AnchorDoc;
+export default AnchorDoc;

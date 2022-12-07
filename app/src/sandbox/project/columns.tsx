@@ -16,6 +16,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             fix: 'left',
             isSortable: true,
             renderCell: (props) => <DataTableCell
+                padding='12'
                 {...props.rowLens.prop('name').toProps()}
                 renderEditor={props => <TextInput {...props} />}
                 {...props}

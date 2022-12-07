@@ -12,7 +12,7 @@
     "express": "~4.16.1",
     "express-fileupload": "^1.1.6",
     "http-proxy-middleware": "1.0.6",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "morgan": "1.10.0",
     "prismjs": "1.27.0",
     "dayjs": "1.10.7"

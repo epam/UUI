@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IEditable, IHasIcon, ArrayDataSource, Icon, cx } from '@epam/uui-core';
-import * as css from './IconPicker.scss';
+import css from './IconPicker.scss';
 import { Button, Text, PickerInput, DataPickerRow, IconButton, Tooltip } from '../../components';
 import { IconContainer } from '@epam/uui-components';
 import { SizeInfo } from './SizeInfo';
@@ -88,7 +88,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                         shape="square"
                         fill="none"
                         size='24'
-                        onClear={ this.handleClear }
+                        onClear={ this.props.value && this.handleClear }
                     /> }
                     renderRow={ props => <DataPickerRow key={ props.id } size='48' renderItem={ this.renderItem }  { ...props } /> }
                     getRowOptions={ item => ({ isSelectable: item.parentId }) }

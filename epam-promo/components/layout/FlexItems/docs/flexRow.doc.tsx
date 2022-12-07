@@ -76,4 +76,4 @@ const flexRowDoc = new DocBuilder<FlexRowProps & RowMods>({ name: 'FlexRow', com
     .prop('alignItems', { examples: ['top', 'center'] })
     .withContexts(DefaultContext);
 
-export = flexRowDoc;
+export default flexRowDoc;

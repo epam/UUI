@@ -4,7 +4,7 @@ import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } fr
 import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from "@epam/loveship";
 import { City } from '@epam/uui-docs';
 import { Dropdown } from "@epam/uui-components";
-import * as css from "./TablesExamples.scss";
+import css from "./TablesExamples.scss";
 import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 import { ReactComponent as PencilIcon } from "@epam/assets/icons/common/content-edit-18.svg";
 
@@ -28,6 +28,7 @@ export default function CitiesTable(props: unknown) {
             caption: 'ID',
             render: city => <Text color='gray80' fontSize='14'>{ city.id }</Text>,
             isSortable: true,
+            fix: 'left',
             width: 120,
         },
         {
@@ -37,7 +38,6 @@ export default function CitiesTable(props: unknown) {
             isSortable: true,
             width: 162,
             grow: 1,
-            fix: 'left',
         },
         {
             key: 'countryName',
@@ -91,6 +91,7 @@ export default function CitiesTable(props: unknown) {
         getRowOptions: useCallback(item => ({
             checkbox: { isVisible: true, isDisabled: item.population && +item.population < 20000 },
         }), []),
+        cascadeSelection: true,
     });
 
     return (
@@ -104,7 +105,7 @@ export default function CitiesTable(props: unknown) {
                 getRows={ view.getVisibleRows }
                 headerTextCase='upper'
                 columns={ citiesColumns }
-                { ...props }
+                { ...(props as object) }
             />
         </Panel>
     );

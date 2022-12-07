@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { TextProps } from '@epam/uui-components';
 import { TextMods, Text } from '../Text';
-import { sizeDoc, fontDoc, textSettingsDoc, DefaultContext, FormContext } from '../../../docs';
+import { sizeDoc, fontDoc, textSettingsDoc, DefaultContext, ResizableContext, FormContext } from '../../../docs';
 import { colors } from "../../../helpers/colorMap";
 
 const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: Text })
@@ -19,6 +19,6 @@ const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: 
         examples: ['gray5', 'gray60', 'gray80', 'gray90'],
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
     })
-    .withContexts(DefaultContext, FormContext);
+    .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = textDoc;
+export default textDoc;

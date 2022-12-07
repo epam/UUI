@@ -3,7 +3,7 @@ import { IconButton, FlexRow, Panel, Text, TextPlaceholder, VirtualList } from '
 import { VirtualListState } from '@epam/uui';
 import { ReactComponent as UnfoldedIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { ReactComponent as FoldedIcon } from '@epam/assets/icons/common/navigation-chevron-up-18.svg';
-import * as css from './BasicExample.scss';
+import css from './BasicExample.scss';
 
 const MyListItem: FC<{ index: number }> = (props) => {
     const [isFolded, setIsFolded] = useState<boolean>(true);

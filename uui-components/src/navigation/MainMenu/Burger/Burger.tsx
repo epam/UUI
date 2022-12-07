@@ -2,13 +2,13 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IHasCX, Icon, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { IconContainer, Portal } from '../../../index';
-import * as css from './Burger.scss';
+import css from './Burger.scss';
 
 interface BurgerState {
     isOpen: boolean;
 }
 
-export interface BurgerProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface BurgerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     burgerIcon?: Icon;
     crossIcon?: Icon;
     width?: number;

@@ -168,7 +168,18 @@
           },
           {
             "object": "text",
-            "text": "renderTarget  ",
+            "text": "renderTarget",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "  ",
             "marks": [
               {
                 "object": "mark",
@@ -179,7 +190,23 @@
           },
           {
             "object": "text",
-            "text": "callback returns an object, containing a ref property for your target component. If the ref is not exposed correctly (either not pointing to a DOM element or ignored), the Dropdown will not be able to work as expected.",
+            "text": "callback returns an object, containing a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ref",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " property for your target component. If the ref is not exposed correctly (either not pointing to a DOM element or ignored), the Dropdown will not be able to work as expected.",
             "marks": []
           }
         ]
