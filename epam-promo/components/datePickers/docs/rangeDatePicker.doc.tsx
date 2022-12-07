@@ -103,4 +103,4 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
     .prop('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
-export = RangeDatePickerDoc;
+export default RangeDatePickerDoc;

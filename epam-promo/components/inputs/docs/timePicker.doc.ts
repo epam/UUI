@@ -10,4 +10,4 @@ const TimePickerDoc = new DocBuilder<TimePickerProps>({ name: 'TimePicker', comp
     .prop('format', { examples: [12, 24], defaultValue: 12 })
     .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
-export = TimePickerDoc;
+export default TimePickerDoc;

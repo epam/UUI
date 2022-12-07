@@ -79,4 +79,4 @@ const DataTableRowDoc = new DocBuilder<DataTableRowProps & DataTableRowMods>({ n
     })
     .withContexts(TableContext, ResizableContext, DefaultContext);
 
-export = DataTableRowDoc;
+export default DataTableRowDoc;

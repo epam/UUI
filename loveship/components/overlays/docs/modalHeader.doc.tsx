@@ -33,4 +33,4 @@ const ModalHeaderDoc = new DocBuilder<ModalHeaderProps>({ name: 'ModalHeader', c
     })
     .withContexts(DefaultContext);
 
-export = ModalHeaderDoc;
+export default ModalHeaderDoc;

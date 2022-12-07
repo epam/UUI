@@ -36,4 +36,4 @@ const DataTableHeaderRowDoc = new DocBuilder<DataTableHeaderRowProps & DataTable
     })
     .withContexts(TableContext, ResizableContext, DefaultContext, FormContext);
 
-export = DataTableHeaderRowDoc;
+export default DataTableHeaderRowDoc;

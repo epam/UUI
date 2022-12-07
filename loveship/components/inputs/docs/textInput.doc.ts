@@ -20,4 +20,4 @@ const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'Tex
     .prop('type', { examples: ['text', 'password'], type: 'string', defaultValue: 'text' })
     .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
-export = TextInputDoc;
+export default TextInputDoc;

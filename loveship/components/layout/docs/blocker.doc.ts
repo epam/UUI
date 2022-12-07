@@ -9,4 +9,4 @@ const blockerDoc = new DocBuilder<BlockerProps>({ name: 'Blocker', component: Bl
     .prop('hideSpinner', { examples:[true] })
     .withContexts(RelativePanelContext);
 
-export = blockerDoc;
+export default blockerDoc;

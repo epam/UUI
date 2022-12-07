@@ -55,4 +55,4 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
         ] })
     .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
-export = PickerInputDoc;
+export default PickerInputDoc;
