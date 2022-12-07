@@ -32,4 +32,4 @@ const SnackbarCardDoc = new DocBuilder<SnackbarCardProps>({ name: 'SnackbarCard'
     })
     .withContexts(DefaultContext);
 
-export = SnackbarCardDoc;
+export default SnackbarCardDoc;

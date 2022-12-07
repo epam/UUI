@@ -53,4 +53,4 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
         ] })
     .withContexts(DefaultContext);
 
-export = PickerInputDoc;
+export default PickerInputDoc;

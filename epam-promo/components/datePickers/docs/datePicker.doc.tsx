@@ -52,4 +52,4 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
     })
     .withContexts(DefaultContext, FormContext, TableContext, ResizableContext);
 
-export = DatePickerDoc;
+export default DatePickerDoc;

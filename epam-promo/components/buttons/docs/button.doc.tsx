@@ -20,4 +20,4 @@ const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', com
     .prop('fill', { examples: allFillStyles, defaultValue: 'solid' })
     .withContexts(DefaultContext, FormContext);
 
-export = ButtonDoc;
+export default ButtonDoc;

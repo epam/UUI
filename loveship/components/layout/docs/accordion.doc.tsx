@@ -65,4 +65,4 @@ const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Acc
     .prop('mode', { examples: [{ value: 'block', isDefault: true }, 'inline'] })
     .withContexts(ResizableContext);
 
-export = accordionDoc;
+export default accordionDoc;

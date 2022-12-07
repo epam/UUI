@@ -21,4 +21,4 @@ const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: 
     })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = textDoc;
+export default textDoc;

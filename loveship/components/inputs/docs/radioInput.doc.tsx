@@ -11,4 +11,4 @@ const RadioInputDoc = new DocBuilder<RadioInputProps & RadioInputMods>({ name: '
     .prop('theme', { examples: (['light', 'dark']), defaultValue: 'light' })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = RadioInputDoc;
+export default RadioInputDoc;
