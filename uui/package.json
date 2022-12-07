@@ -20,7 +20,8 @@
   },
   "devDependencies": {
     "@epam/uui-docs": "4.9.1",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "enzyme": "^3.9.0"
   },
   "peerDependencies": {
     "prop-types": "*",
