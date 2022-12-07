@@ -17,4 +17,4 @@ const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'TabBut
     .prop('theme', { examples: (['light', 'dark']), defaultValue: 'light' })
     .withContexts(TabButtonContext);
 
-export = TabButtonDoc;
+export default TabButtonDoc;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps, IHasForwardedRef, CX, cx, ICanFocus } from '@epam/uui-core';
-import * as css from './TextArea.scss';
+import css from './TextArea.scss';
 
 export interface TextAreaProps extends IHasCX, IEditable<string>, IHasPlaceholder, IDisableable, ICanBeReadonly,
     IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, ICanFocus<HTMLTextAreaElement> {

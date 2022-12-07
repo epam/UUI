@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { DataTable, Panel, Text } from "@epam/promo";
 import { DataColumnProps, useAsyncDataSource, useUuiContext } from '@epam/uui';
 import { Product } from '@epam/uui-docs';
-import * as css from './TablesExamples.scss';
+import css from './TablesExamples.scss';
 
 export default function ProductTable() {
     const svc = useUuiContext();

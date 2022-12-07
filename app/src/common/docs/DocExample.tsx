@@ -4,7 +4,7 @@ import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
 import { codesandboxService } from '../../data/codesandbox/service';
-import * as css from './DocExample.scss';
+import css from './DocExample.scss';
 import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
 import { ReactComponent as CodesandboxIcon } from '../../icons/social-network-codesandbox-24.svg';
 

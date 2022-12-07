@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './FileCard.scss';
+import css from './FileCard.scss';
 import { i18n } from '../..';
 import { cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod } from '@epam/uui-core';
 import { SvgCircleProgress } from './';

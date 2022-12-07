@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { withMods } from '@epam/uui-core';
-import * as css from './Burger.scss';
+import css from './Burger.scss';
 import { Burger as uuiBurger, BurgerProps } from '@epam/uui-components';
 import { ReactComponent as BurgerIcon } from '../../../../icons/burger.svg';
 import { ReactComponent as CrossIcon } from '../../../../icons/burger-close.svg';

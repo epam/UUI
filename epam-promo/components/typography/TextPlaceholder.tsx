@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './TextPlaceholder.scss';
+import css from './TextPlaceholder.scss';
 import cx from 'classnames';
 import { PropsWithChildren } from 'react';
 import { IHasRawProps } from "@epam/uui-core";

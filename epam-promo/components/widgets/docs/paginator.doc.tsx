@@ -10,4 +10,4 @@ const paginatorDoc = new DocBuilder<PaginatorProps>({name: 'Paginator', componen
     .prop('totalPages', { examples: [5 , 8, { value: 10, isDefault: true }, 100, 1000], isRequired: true })
     .withContexts(DefaultContext);
 
-export = paginatorDoc;
+export default paginatorDoc;

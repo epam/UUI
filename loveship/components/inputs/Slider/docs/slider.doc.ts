@@ -21,4 +21,4 @@ const sliderDoc = new DocBuilder<SliderBaseProps<number> & SliderMods>({ name: '
     })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = sliderDoc;
+export default sliderDoc;

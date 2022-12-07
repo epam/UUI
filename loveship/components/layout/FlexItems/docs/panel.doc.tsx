@@ -73,4 +73,4 @@ const panelDoc = new DocBuilder<VPanelProps & PanelMods>({ name: 'Panel', compon
     .prop('background', { examples: [{ value: 'white', isDefault: true }, 'night50'] })
     .withContexts(ResizableContext, DefaultContext);
 
-export = panelDoc;
+export default panelDoc;

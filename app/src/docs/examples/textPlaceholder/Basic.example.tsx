@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexCell, TextPlaceholder } from '@epam/promo';
-import * as css from './BasicExample.scss';
+import css from './BasicExample.scss';
 
 export default function BasicExample() {
     return (

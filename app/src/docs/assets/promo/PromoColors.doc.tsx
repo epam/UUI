@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './PromoColorsDoc.scss';
+import css from './PromoColorsDoc.scss';
 import { FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip } from '@epam/promo';
 import { cx, arrayToMatrix, INotification } from '@epam/uui';
 import { copyTextToClipboard } from '../../../helpers';

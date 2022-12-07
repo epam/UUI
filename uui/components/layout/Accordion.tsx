@@ -2,7 +2,7 @@ import { withMods } from '@epam/uui-core';
 import { Accordion as uuiAccordion, AccordionProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import '../../assets/styles/variables/layout/accordion.scss';
-import * as css from './Accordion.scss';
+import css from './Accordion.scss';
 
 export interface AccordionMods {
     mode?: 'block' | 'inline';

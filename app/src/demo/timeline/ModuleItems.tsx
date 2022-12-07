@@ -1,6 +1,6 @@
-import { BaseTimelineCanvasComponentProps } from '@epam/uui-timeline/BaseTimelineCanvasComponent';
+import { BaseTimelineCanvasComponentProps } from '@epam/uui-timeline';
 import * as React from 'react';
-import * as styles from './ModuleItems.scss';
+import styles from './ModuleItems.scss';
 
 export interface Item {
     id: number;

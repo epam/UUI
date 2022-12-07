@@ -3,7 +3,7 @@
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 <div
   aria-sort="none"
-  className=""
+  className="cell size-36 padding-left-24"
   onClick={[Function]}
   role="columnheader"
   style={
@@ -17,12 +17,14 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
     }
   }
 >
-  <div>
+  <div
+    className="tooltipWrapper"
+  >
     <div
-      className="uui-table-header-caption"
+      className="iconCell uui-table-header-caption"
     >
       <div
-        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
       >
         Test
       </div>

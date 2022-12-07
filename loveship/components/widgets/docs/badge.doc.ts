@@ -17,4 +17,4 @@ const badgeDoc = new DocBuilder<ButtonProps & BadgeMods>({ name: 'Badge', compon
     .prop('size', { examples : ['12', '18', '24', '30', '36', '42', '48'], defaultValue: '18' })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
-export = badgeDoc;
+export default badgeDoc;

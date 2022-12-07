@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './Spinner.scss';
+import css from './Spinner.scss';
 import { SpinnerCoreProps, cx } from '@epam/uui-core';
 
 export interface SpinnerProps extends SpinnerCoreProps {}

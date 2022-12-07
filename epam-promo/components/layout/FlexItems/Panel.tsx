@@ -1,4 +1,4 @@
-import * as css from './Panel.scss';
+import css from './Panel.scss';
 import { VPanel } from '@epam/uui-components';
 import { withMods, VPanelProps } from '@epam/uui-core';
 
