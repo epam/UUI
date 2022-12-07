@@ -4,7 +4,7 @@ import { IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam
 import { Day } from './Day';
 import { i18n } from '../../../i18n';
 import localeData from 'dayjs/plugin/localeData';
-import * as css from './Calendar.scss';
+import css from './Calendar.scss';
 dayjs.extend(localeData);
 
 const DAYS_COUNT_IN_WEEK = 7;

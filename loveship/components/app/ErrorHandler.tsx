@@ -7,7 +7,7 @@ import { RichTextView, Text } from '../typography';
 import { Spinner } from '../widgets';
 import { ErrorCatch } from '@epam/uui-components';
 import { ErrorPage } from './ErrorPage';
-import * as css from './ErrorHandler.scss';
+import css from './ErrorHandler.scss';
 
 type Theme = 'light' | 'dark';
 

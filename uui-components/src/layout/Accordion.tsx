@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import * as css from './Accordion.scss';
+import css from './Accordion.scss';
 
 export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     /** Accordion title */

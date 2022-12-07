@@ -1,9 +1,9 @@
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
-import * as buttonCss from '../buttons/Button.scss';
-import * as styles from '../../assets/styles/colorvars/widgets/tag-colorvars.scss';
-import * as css from './Tag.scss';
+import buttonCss from '../buttons/Button.scss';
+import styles from '../../assets/styles/colorvars/widgets/tag-colorvars.scss';
+import css from './Tag.scss';
 
 const defaultSize = '36';
 

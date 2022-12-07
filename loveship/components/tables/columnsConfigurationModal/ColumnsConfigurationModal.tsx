@@ -1,4 +1,4 @@
-import * as styles from "./ColumnsConfigurationModal.scss";
+import styles from "./ColumnsConfigurationModal.scss";
 import * as React from "react";
 import { useCallback, useMemo } from "react";
 //

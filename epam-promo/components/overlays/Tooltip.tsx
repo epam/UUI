@@ -1,7 +1,7 @@
 import { withMods } from '@epam/uui-core';
 import { Tooltip as uuiTooltip, TooltipProps } from '@epam/uui-components';
-import * as css from './Tooltip.scss';
-import * as styles from '../../assets/styles/colorvars/overlays/tooltip-colorvars.scss';
+import css from './Tooltip.scss';
+import styles from '../../assets/styles/colorvars/overlays/tooltip-colorvars.scss';
 
 export interface TooltipMods {
     /** Tooltip color */

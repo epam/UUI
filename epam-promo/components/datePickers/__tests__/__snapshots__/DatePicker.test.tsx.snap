@@ -2,7 +2,7 @@
 
 exports[`DataPicker should be rendered correctly 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root size-36 mode-form dateInput"
   onBlur={[Function]}
   onClick={null}
   onFocus={[Function]}
@@ -30,7 +30,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
 
 exports[`DataPicker should be rendered correctly 2`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root size-36 mode-form dateInput"
   onBlur={[Function]}
   onClick={null}
   onFocus={[Function]}

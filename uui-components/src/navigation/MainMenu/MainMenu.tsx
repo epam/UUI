@@ -3,7 +3,7 @@ import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, I
 import { BurgerProps, MainMenuLogo } from './index';
 import { AdaptivePanel, AdaptiveItemProps } from '../../layout';
 import { i18n } from '../../../i18n';
-import * as css from './MainMenu.scss';
+import css from './MainMenu.scss';
 
 export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {}
 
