@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
 import { Text, FlexRow, DropdownContainer, LinkButton, FlexCell } from "@epam/promo";
 import { Avatar, IDropdownToggler } from "@epam/uui";
-import * as css from './HandleStateExample.scss';
+import css from './HandleStateExample.scss';
 
 
 export default function BasicDropdownExample() {

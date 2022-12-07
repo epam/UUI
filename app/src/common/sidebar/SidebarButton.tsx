@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { ReactComponent as DropdownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
-import * as css from './SidebarButton.scss';
+import css from './SidebarButton.scss';
 import { cx } from '@epam/uui';
 
 export interface SidebarButtonProps extends ButtonProps {

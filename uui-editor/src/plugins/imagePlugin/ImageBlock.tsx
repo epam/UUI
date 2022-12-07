@@ -6,7 +6,7 @@ import { Resizable } from 're-resizable';
 import { isClientSide, uuiMod, uuiSkin } from "@epam/uui-core";
 import { DropdownBodyProps, Dropdown } from '@epam/uui-components';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import * as css from './ImageBlock.scss';
+import css from './ImageBlock.scss';
 import { ReactComponent as AlignLeft } from '../../icons/align-left.svg';
 import { ReactComponent as AlignCenter } from '../../icons/align-center.svg';
 import { ReactComponent as AlignRight } from '../../icons/align-right.svg';

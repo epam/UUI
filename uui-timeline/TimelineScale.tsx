@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { TimelineTransform } from './TimelineTransform';
 import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from './BaseTimelineCanvasComponent';
 import { addDays, isWeekend, months, msPerDay, Scales, getHoursInFormatAMPM } from './helpers';
-import * as styles from './TimelineScale.scss';
+import styles from './TimelineScale.scss';
 
 import { ReactComponent as ArrowLeftSvg } from './arrowLeft.svg';
 import { ReactComponent as ArrowRightSvg } from './arrowRight.svg';

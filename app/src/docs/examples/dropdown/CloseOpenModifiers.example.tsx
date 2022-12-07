@@ -1,7 +1,7 @@
  import React from 'react';
 import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
 import { Button, Text, FlexRow, DropdownContainer, FlexCell } from '@epam/promo';
-import * as css from './HandleStateExample.scss';
+import css from './HandleStateExample.scss';
 import { Avatar, IDropdownToggler } from '@epam/uui';
 
 export default function CloseOpenModifiersExample() {

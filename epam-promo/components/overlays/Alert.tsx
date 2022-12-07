@@ -6,8 +6,8 @@ import { ReactComponent as WarningIcon } from '../../icons/notification-warning-
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
-import * as styles from '../../assets/styles/colorvars/overlays/alert-colorvars.scss';
-import * as css from './Alert.scss';
+import styles from '../../assets/styles/colorvars/overlays/alert-colorvars.scss';
+import css from './Alert.scss';
 import { IconButton } from '../buttons';
 import cx from 'classnames';
 import { EpamPrimaryColor, LinkButton } from '..';

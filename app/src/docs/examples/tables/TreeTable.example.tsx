@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Location } from '@epam/uui-docs';
 import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui';
 import { Text, LinkButton, DataTable, DataTableMods, Panel } from '@epam/promo';
-import * as css from './TablesExamples.scss';
+import css from './TablesExamples.scss';
 
 export default function TreeTableExample({ size }: DataTableMods) {
     const svc = useUuiContext();

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IHasCX, uuiElement, cx, IHasRawProps } from '@epam/uui-core';
-import * as css from '../../overlays/Tooltip.scss';
+import css from '../../overlays/Tooltip.scss';
 import { Manager, Reference, Popper } from 'react-popper';
 import { Portal } from '../../overlays/Portal';
 import { uuiSlider } from './SliderBase';

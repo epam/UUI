@@ -6,7 +6,7 @@ import { LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpace
 import { svc } from '../../services';
 import { PersonDetailEditor } from './PersonDetailEditor';
 import { PersonDetailView } from './PersonDetailView';
-import * as css from './ComplexForm.scss';
+import css from './ComplexForm.scss';
 
 interface ComplexFormState {
     person: PersonDetails;

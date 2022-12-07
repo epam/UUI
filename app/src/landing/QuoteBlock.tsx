@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text } from '@epam/promo';
-import * as css from './QuoteBlock.scss';
+import css from './QuoteBlock.scss';
 
 export class QuoteBlock extends React.Component {
     render() {

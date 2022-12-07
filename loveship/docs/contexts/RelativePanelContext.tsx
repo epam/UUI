@@ -5,7 +5,7 @@ import {
     Button, TextInput, LabeledInput, NumericInput,
     DatePicker,
 } from '../../components';
-import * as css from './RelativePanelContext.scss';
+import css from './RelativePanelContext.scss';
 
 interface DemoComponentState {
     activeContent: 'form' | 'text';

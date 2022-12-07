@@ -2,7 +2,7 @@
 
 exports[`VerticalTabButton should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled root size-48 tabButtonColor uui-no-left-icon uui-no-right-icon"
+  className="container uui-button-box uui-enabled root size-48 tabButtonColor uui-no-left-icon uui-no-right-icon root"
   href={null}
   onClick={[Function]}
   role="tab"
@@ -14,7 +14,7 @@ exports[`VerticalTabButton should be rendered correctly 1`] = `
 exports[`VerticalTabButton should be rendered correctly with props 1`] = `
 <button
   aria-disabled={false}
-  className="container uui-button-box uui-enabled -clickable root size-48 tabButtonColor uui-has-left-icon uui-no-right-icon"
+  className="container uui-button-box uui-enabled -clickable root size-48 tabButtonColor uui-has-left-icon uui-no-right-icon root"
   href={null}
   onClick={[Function]}
   role="tab"

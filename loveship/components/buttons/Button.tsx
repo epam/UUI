@@ -1,6 +1,6 @@
 import * as types from '../types';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import * as css from './Button.scss';
+import styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import css from './Button.scss';
 import { withMods } from '@epam/uui-core';
 import { Button as uuiButton, ButtonProps } from '@epam/uui-components';
 import { TextSettings, getTextClasses } from '../../helpers/textLayout';

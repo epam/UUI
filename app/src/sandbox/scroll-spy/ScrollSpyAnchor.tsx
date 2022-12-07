@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useScrollSpy } from '@epam/uui-components';
 import { FlexCell, FlexRow, LinkButton, Text } from '@epam/promo';
-import * as css from './ScrollSpyReader.scss';
+import css from './ScrollSpyReader.scss';
 
 export function ScrollSpyAnchor() {
     const links = useMemo(() => [

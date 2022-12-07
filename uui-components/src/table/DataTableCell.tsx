@@ -2,7 +2,7 @@ import * as React from 'react';
 import { MouseEvent } from 'react';
 import { DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
     TooltipCoreProps, IHasCX } from '@epam/uui-core';
-import * as css from './DataTableCell.scss';
+import css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
 
 interface DataTableCellState {
