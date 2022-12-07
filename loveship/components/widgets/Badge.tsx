@@ -2,9 +2,9 @@ import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../icons/icons';
 import * as types from '../../components/types';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import * as buttonCss from '../buttons/Button.scss';
-import * as css from './Badge.scss';
+import styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import buttonCss from '../buttons/Button.scss';
+import css from './Badge.scss';
 
 const defaultSize = '18';
 

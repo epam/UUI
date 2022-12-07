@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './TimelineDemo.scss';
+import css from './TimelineDemo.scss';
 
 import { Timeline } from './Timeline';
 

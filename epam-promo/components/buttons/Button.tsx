@@ -2,8 +2,8 @@ import { Button as uuiButton, ButtonProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ControlSize, FillStyle } from '../types';
 import { systemIcons } from '../../icons/icons';
-import * as css from './Button.scss';
-import * as styles from '../../assets/styles/colorvars/buttons/button-colorvars.scss';
+import css from './Button.scss';
+import styles from '../../assets/styles/colorvars/buttons/button-colorvars.scss';
 
 export type ButtonColor = 'blue' | 'green' | 'red' | 'gray50';
 export const allButtonColors: ButtonColor[] = ['blue', 'green', 'red', 'gray50'];

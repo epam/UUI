@@ -3,7 +3,7 @@ import Measure from 'react-measure';
 import { FlexRow, FlexSpacer, LinkButton, Text } from '@epam/promo';
 import { ReleasesCell } from './ReleasesCell';
 import { svc } from '../services';
-import * as css from './ReleasesBlock.scss';
+import css from './ReleasesBlock.scss';
 import { analyticsEvents } from "../analyticsEvents";
 
 interface LandingReleasesState {

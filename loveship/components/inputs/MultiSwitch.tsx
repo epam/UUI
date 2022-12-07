@@ -4,7 +4,7 @@ import { IEditable, IHasRawProps } from '@epam/uui-core';
 import { ButtonProps } from '@epam/uui-components';
 import { Button, ControlGroup } from '../index';
 import * as types from '../types';
-import * as css from './MultiSwitch.scss';
+import css from './MultiSwitch.scss';
 
 interface MultiSwitchItem<TValue> extends ButtonProps, types.ColorMod {
     id: TValue;

@@ -9,7 +9,7 @@ import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notificati
 import { ReactComponent as CopyIcon } from '../../icons/icon-copy.svg';
 import { ReactComponent as ResetIcon } from '../../icons/reset-icon.svg';
 import { ReactComponent as NotificationIcon } from '../../icons/notification-check-fill-24.svg';
-import * as css from './ComponentEditor.scss';
+import css from './ComponentEditor.scss';
 
 declare var require: any;
 

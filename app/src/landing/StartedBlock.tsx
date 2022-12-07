@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, FlexRow, IconContainer, RichTextView, Text } from '@epam/promo';
-import * as css from './StartedBlock.scss';
+import css from './StartedBlock.scss';
 import { ReactComponent as CrystalIcon } from '../icons/crystal.svg';
 import { ReactComponent as ReactIcon } from '../icons/react_small.svg';
 import { UUI4 } from '../common';

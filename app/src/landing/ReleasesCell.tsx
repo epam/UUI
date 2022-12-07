@@ -5,7 +5,7 @@ import { cx } from '@epam/uui';
 import { FlexRow, LinkButton, RichTextView } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
 import { getCoreProps } from '../helpers/getCoreProps';
-import * as css from './ReleasesCell.scss';
+import css from './ReleasesCell.scss';
 
 export interface ReleasesCellProps {
     content: string;

@@ -12,7 +12,7 @@ import { Svg } from "@epam/uui-components";
 import { cx } from "@epam/uui";
 import { ReactComponent as Calendar } from "@epam/assets/icons/common/action-calendar-18.svg";
 // tslint:disable-next-line:no-import
-import * as css from "@epam/promo/assets/styles/typography.scss";
+import css from "@epam/promo/assets/styles/typography.scss";
 
 export default function BasicExample() {
     return (
@@ -198,7 +198,7 @@ export default function BasicExample() {
                 </FlexRow>
                 <h4>{"<Pre>"}</h4>
                 <pre>{`import React from 'react';
-import * as css from './MyComponent.scss';
+import css from './MyComponent.scss';
 
 export const MyComponent = <div className={ css.myHeader }>`}</pre>
                 <h4>Text with size 16</h4>

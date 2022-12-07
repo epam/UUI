@@ -1,4 +1,4 @@
-import * as css from './LabeledInput.scss';
+import css from './LabeledInput.scss';
 import * as types from '../types';
 import { withMods } from '@epam/uui-core';
 import { LabeledInput as uuiLabeledInput, LabeledInputProps } from '@epam/uui-components';

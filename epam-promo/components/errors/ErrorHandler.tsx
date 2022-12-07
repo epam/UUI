@@ -4,7 +4,7 @@ import { ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView
 import { ErrorCatch } from '@epam/uui-components';
 import { getErrorPageConfig, getRecoveryMessageConfig } from './config';
 import { ErrorPage } from './ErrorPage';
-import * as css from './ErrorHandler.scss';
+import css from './ErrorHandler.scss';
 
 export interface ErrorHandlerProps extends IHasCX, IHasChildren {
     getErrorInfo?: (uuiError: UuiError | Error | ApiCallInfo, defaultErrorInfo: UuiErrorInfo) => UuiErrorInfo;

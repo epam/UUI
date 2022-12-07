@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './DefaultContext.scss';
+import css from './DefaultContext.scss';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { FlexCell } from '../../components';
 
