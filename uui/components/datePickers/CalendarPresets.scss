@@ -3,25 +3,25 @@
 .root {
     :global(.uui-presets-container) {
         padding: 24px;
-        font-family: $font-sans;
+        font-family: var(--font-regular);
     }
 
     :global(.uui-presets-header) {
-        font-family: $font-sans-semibold;
+        font-family: var(--font-semibold);
         font-size: 14px;
         line-height: 24px;
         padding-bottom: 12px;
     }
 
     :global(.uui-presets-item) {
-        font-family: $font-sans-semibold;
+        font-family: var(--font-semibold);
         font-size: 12px;
         line-height: 18px;
-        color: $blue;
+        color: var(--uui-rdtp-border-color-active);
         padding-bottom: 6px;
 
         &:hover {
-            color: $blue-darkest;
+            color: var(--uui-rdtp-bg-darkest-color);
             cursor: pointer;
         }
     }

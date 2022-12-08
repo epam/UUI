@@ -2,12 +2,13 @@ import * as React from 'react';
 import dayjs, { Dayjs } from "dayjs";
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
-import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
+import { RangeDatePicker } from '../RangeDatePicker';
 import css from '../RangeDatePicker.scss';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc } from '../../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../../docs';
 import { Button } from '../..';
 import { ReactComponent as Point } from "../../icons/radio-point.svg";
+import { RangeDatePickerProps } from "@epam/uui";
 
 const getCustomDay = (day: Dayjs) => {
     return <>
