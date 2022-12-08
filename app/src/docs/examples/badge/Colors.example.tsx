@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlexRow, Badge, Panel, Text } from '@epam/promo';
 
-export default function ColorsBadgeExample() {
+export default function ColorsExample() {
     return (
         <>
             <Panel style={ {rowGap: '18px', marginRight: '42px'} } >
