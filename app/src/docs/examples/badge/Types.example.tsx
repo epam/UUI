@@ -13,7 +13,7 @@ const dropdownMenuItems = [
     { id: 3, caption: "Done"},
 ];
 
-export default function BasicExample() {
+export default function TypesExample() {
     const [selectedItem, setSelectedItem] = useState(dropdownMenuItems[0]);
     const handleDropdown = (id: number) => {
         setSelectedItem(dropdownMenuItems.filter((item) => item.id === id)[0]);
