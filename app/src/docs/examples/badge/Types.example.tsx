@@ -49,7 +49,7 @@ export default function BasicExample() {
                     <Text fontSize="14">Filter chips</Text>
                 </FlexRow>
             </Panel>
-            <Panel style={ {rowGap: '18px', marginRight: '42px'} }>
+            <Panel style={ {rowGap: '18px'} }>
                 <FlexRow spacing='18'>
                     <Badge count={ 25 } color='red' fill='solid' caption='Rejected' />
                     <Text fontSize="14">Quick filters selection with informer</Text>

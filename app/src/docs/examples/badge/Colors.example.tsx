@@ -1,43 +1,28 @@
 import React from 'react';
-import { FlexRow, Badge, FlexCell } from '@epam/promo';
-import css from './SizeExample.scss';
+import { FlexRow, Badge, Panel, Text } from '@epam/promo';
 
 export default function ColorsBadgeExample() {
     return (
-        <FlexCell width='auto' cx={ css.container } >
-            <FlexRow spacing='12' >
-                <Badge color='blue' fill='solid' caption='Status' />
-                <Badge color='green' fill='solid' caption='Status' />
-                <Badge color='amber' fill='solid' caption='Status' />
-                <Badge color='red' fill='solid' caption='Status' />
-                <Badge color='cyan' fill='solid' caption='Status' />
-                <Badge color='orange' fill='solid' caption='Status' />
-                <Badge color='purple' fill='solid' caption='Status' />
-                <Badge color='violet' fill='solid' caption='Status' />
-                <Badge color='gray30' fill='solid' caption='Status' />
-            </FlexRow>
-            <FlexRow spacing='12' >
-                <Badge color='blue' fill='semitransparent' caption='Status' />
-                <Badge color='green' fill='semitransparent' caption='Status' />
-                <Badge color='amber' fill='semitransparent' caption='Status' />
-                <Badge color='red' fill='semitransparent' caption='Status' />
-                <Badge color='cyan' fill='semitransparent' caption='Status' />
-                <Badge color='orange' fill='semitransparent' caption='Status' />
-                <Badge color='purple' fill='semitransparent' caption='Status' />
-                <Badge color='violet' fill='semitransparent' caption='Status' />
-                <Badge color='gray30' fill='semitransparent' caption='Status' />
-            </FlexRow>
-            <FlexRow spacing='12' >
-                <Badge color='blue' fill='transparent' caption='Status' />
-                <Badge color='green' fill='transparent' caption='Status' />
-                <Badge color='amber' fill='transparent' caption='Status' />
-                <Badge color='red' fill='transparent' caption='Status' />
-                <Badge color='cyan' fill='transparent' caption='Status' />
-                <Badge color='orange' fill='transparent' caption='Status' />
-                <Badge color='purple' fill='transparent' caption='Status' />
-                <Badge color='violet' fill='transparent' caption='Status' />
-                <Badge color='gray30' fill='transparent' caption='Status' />
-            </FlexRow>
-        </FlexCell>
+        <>
+            <Panel style={ {rowGap: '18px', marginRight: '42px'} } >
+                <Text fontSize='14'>Semantic colors, use for appropriate sense</Text>
+                <FlexRow spacing='12' >
+                    <Badge color='blue' fill='solid' caption='Info' />
+                    <Badge color='green' fill='solid' caption='Success' />
+                    <Badge color='red' fill='solid' caption='Error' />
+                    <Badge color='gray30' fill='solid' caption='Default' />
+                    <Badge color='amber' fill='solid' caption='Warning' />
+                </FlexRow>
+            </Panel>
+            <Panel style={ {rowGap: '18px'} } >
+                <Text fontSize='14'>Additional colors, use for extra cases, when semantic does not enough</Text>
+                <FlexRow spacing='12' >
+                    <Badge color='orange' fill='solid' caption='Orange' />
+                    <Badge color='violet' fill='solid' caption='Violet' />
+                    <Badge color='cyan' fill='solid' caption='Cyan' />
+                    <Badge color='purple' fill='solid' caption='Purple' />
+                </FlexRow>
+            </Panel>
+        </>
     );
 }
