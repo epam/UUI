@@ -1,8 +1,8 @@
 import { IconContainer as uuiIconContainer, ControlIconProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ColorMod } from '../types';
-import * as css from './IconContainer.scss';
-import * as styles from '../../assets/styles/colorvars/layout/iconContainer-colorvars.scss';
+import css from './IconContainer.scss';
+import styles from '../../assets/styles/colorvars/layout/iconContainer-colorvars.scss';
 
 export interface IconContainerMods extends ColorMod {
 }

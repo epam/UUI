@@ -3,7 +3,7 @@ import Measure from 'react-measure';
 
 import { FlexRow, IconContainer, LinkButton, Text, Anchor } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
-import * as css from './ContactsBlock.scss';
+import css from './ContactsBlock.scss';
 import { ReactComponent as MailIcon } from '../icons/outlook-90.svg';
 import { ReactComponent as GitIcon } from '../icons/github-90.svg';
 

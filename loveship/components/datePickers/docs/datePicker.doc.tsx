@@ -52,4 +52,4 @@ const DatePickerDoc = new DocBuilder<UuiDatePickerProps>({ name: 'DatePicker', c
     })
     .withContexts(DefaultContext, FormContext, ResizableContext, TableContext);
 
-export = DatePickerDoc;
+export default DatePickerDoc;

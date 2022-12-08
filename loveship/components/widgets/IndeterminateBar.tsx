@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from "classnames";
 import { IHasCX } from "@epam/uui-core";
-import * as css from "./IndeterminateBar.scss";
+import css from "./IndeterminateBar.scss";
 
 export interface IndeterminateBarMods extends IHasCX {
     size?: '12' | '18' | '24';

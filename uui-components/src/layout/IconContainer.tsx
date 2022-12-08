@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './IconContainer.scss';
+import css from './IconContainer.scss';
 import { uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps, IHasTabIndex } from '@epam/uui-core';
 import { Svg } from '../widgets';
 

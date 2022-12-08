@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./ColumnRow.scss";
+import styles from "./ColumnRow.scss";
 import { cx, DataColumnProps, DndActor, DndActorRenderParams, IColumnConfig } from "@epam/uui-core";
 import { FlexRow, Checkbox, DropMarker } from "../../.";
 import { DragHandle, FlexSpacer, ColumnsConfigurationRowProps } from "@epam/uui-components";

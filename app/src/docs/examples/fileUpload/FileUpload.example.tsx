@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DropSpot, FileCard, FileCardItem } from '@epam/promo';
 import { useUuiContext } from '@epam/uui';
-import * as css from './FileUpload.scss';
+import css from './FileUpload.scss';
 
 const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
 

@@ -5,7 +5,7 @@ import { cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPane
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer, DropdownBodyProps } from '@epam/uui-components';
 import { Switch } from '../inputs';
 import { systemIcons } from '../../icons/icons';
-import * as css from './DropdownMenu.scss';
+import css from './DropdownMenu.scss';
 
 const icons = systemIcons['36'];
 export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {

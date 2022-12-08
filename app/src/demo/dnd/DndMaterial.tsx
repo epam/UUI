@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './DndMaterial.scss';
+import css from './DndMaterial.scss';
 import { DndActor, IEditable, IDndActor, cx, DropParams, uuiDndState, getOrderBetween } from '@epam/uui';
 import { FlexRow, DropMarker, FlexCell, Text, IconContainer, Panel } from '@epam/promo';
 import { DragHandle } from '@epam/uui-components';

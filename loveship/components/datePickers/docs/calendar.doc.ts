@@ -18,4 +18,4 @@ const DatepickerDoc = new DocBuilder<CalendarProps<Dayjs>>({ name: 'Calendar', c
     .prop('hideAnotherMonths', {examples: [true, false]})
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
-export = DatepickerDoc;
+export default DatepickerDoc;

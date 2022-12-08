@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as types from '../types';
-import * as colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
+import colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
 import { TextPlaceholder } from '../typography';
 import { systemIcons } from '../icons/icons';
 import { Tag, TagSize } from '../widgets';
-import * as css from './PickerToggler.scss';
+import css from './PickerToggler.scss';
 
 const defaultSize = '36';
 const defaultMode = 'form';

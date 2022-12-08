@@ -22,4 +22,4 @@ const labeledInputDoc = new DocBuilder<LabeledInputProps & LabeledInputMods>({ n
     .prop('validationMessage', { examples: [{ value: 'This field is mandatory', isDefault: true}]})
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = labeledInputDoc;
+export default labeledInputDoc;

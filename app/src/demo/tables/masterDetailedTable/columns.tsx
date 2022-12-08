@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
 import { DataColumnProps } from "@epam/uui";
 import { Person } from "@epam/uui-docs";
-import * as css from './DemoTable.scss';
+import css from './DemoTable.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 
 export const personColumns: DataColumnProps<Person, number>[] = [

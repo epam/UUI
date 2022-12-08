@@ -2,8 +2,8 @@ import * as React from 'react';
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
-import * as buttonCss from '../buttons/Button/Button.scss';
-import * as css from './Badge.scss';
+import buttonCss from '../buttons/Button/Button.scss';
+import css from './Badge.scss';
 import '../../assets/styles/variables/widgets/badge.scss';
 
 const defaultSize = '36';

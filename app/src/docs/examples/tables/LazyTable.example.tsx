@@ -4,7 +4,7 @@ import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } fr
 import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from "@epam/loveship";
 import { City } from '@epam/uui-docs';
 import { Dropdown } from "@epam/uui-components";
-import * as css from "./TablesExamples.scss";
+import css from "./TablesExamples.scss";
 import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 import { ReactComponent as PencilIcon } from "@epam/assets/icons/common/content-edit-18.svg";
 
@@ -105,7 +105,7 @@ export default function CitiesTable(props: unknown) {
                 getRows={ view.getVisibleRows }
                 headerTextCase='upper'
                 columns={ citiesColumns }
-                { ...props }
+                { ...(props as object) }
             />
         </Panel>
     );

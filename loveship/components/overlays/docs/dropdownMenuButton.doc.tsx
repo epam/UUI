@@ -15,4 +15,4 @@ const dropdownMenuButtonDoc = new DocBuilder<ButtonProps & DropdownMenuItemMods>
     .prop('noIcon', { examples: [true] })
     .withContexts(DropdownMenuContext);
 
-export = dropdownMenuButtonDoc;
+export default dropdownMenuButtonDoc;

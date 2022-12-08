@@ -23,4 +23,4 @@ const AvatarDoc = new DocBuilder<AvatarProps>({ name: 'Avatar', component: Avata
     })
     .withContexts(DefaultContext);
 
-export = AvatarDoc;
+export default AvatarDoc;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Icon } from '@epam/uui';
 import { FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, Text } from '@epam/promo';
 import { ContentSection } from '../../common';
-import * as css from './ProjectsDoc.scss';
+import css from './ProjectsDoc.scss';
 
 import { ReactComponent as AssessmentIcon } from '../../icons/assessment.svg';
 import { ReactComponent as AnywhereIcon } from '../../icons/anywhere.svg';
@@ -83,10 +83,10 @@ export class ProjectsDoc extends React.Component {
                                 <IconContainer icon={ project.icon } size={ 72 }/>
                                 <FlexCell width='auto' cx={ css.projectDescription }>
                                     {
-                                        project.url 
+                                        project.url
                                             ? <LinkButton size='30' caption={ project.projectName } target='_blank'
                                                         href={ project.url } icon={ LinkIcon } iconPosition='right'
-                                                        cx={ css.projectLink }/> 
+                                                        cx={ css.projectLink }/>
                                             : <Text font='museo-sans' fontSize='24' lineHeight='30'
                                                   cx={ css.projectName }>{ project.projectName }</Text>
                                     }
