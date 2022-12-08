@@ -20,6 +20,10 @@ export class BadgeDoc extends BaseDocsBlock {
                     title='Types'
                     path='./examples/badge/Types.example.tsx'
                 />
+                <DocExample
+                    title='Color variants'
+                    path='./examples/badge/Colors.example.tsx'
+                />
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
