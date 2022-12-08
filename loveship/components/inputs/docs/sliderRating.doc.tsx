@@ -22,4 +22,4 @@ const SliderRatingDoc = new DocBuilder<SliderRatingProps<number>>({ name: 'Slide
     ]})
     .withContexts(DefaultContext, FormContext);
 
-export = SliderRatingDoc;
+export default SliderRatingDoc;

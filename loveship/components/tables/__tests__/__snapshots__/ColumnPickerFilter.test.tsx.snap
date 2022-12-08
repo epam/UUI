@@ -3,7 +3,7 @@
 exports[`ColumnPickerFilter should be rendered correctly 1`] = `
 Array [
   <div
-    className="root size-36 background-white spacing-6 container align-items-center"
+    className="root size-36 background-white spacing-6 body container align-items-center"
     style={
       Object {
         "maxHeight": 300,
@@ -452,7 +452,7 @@ Array [
     </div>
   </div>,
   <div
-    className="root size-36 background-white padding-12 spacing-6 container align-items-center"
+    className="root size-36 background-white padding-12 spacing-6 footerWrapper container align-items-center"
   >
     <label
       className="container root size-18 color-sky theme-light uui-disabled"
@@ -489,7 +489,7 @@ Array [
 exports[`ColumnPickerFilter should be rendered correctly 2`] = `
 Array [
   <div
-    className="root size-36 background-white spacing-6 container align-items-center"
+    className="root size-36 background-white spacing-6 body container align-items-center"
     style={
       Object {
         "maxHeight": 300,
@@ -938,7 +938,7 @@ Array [
     </div>
   </div>,
   <div
-    className="root size-36 background-white padding-12 spacing-6 container align-items-center"
+    className="root size-36 background-white padding-12 spacing-6 footerWrapper container align-items-center"
   >
     <label
       className="container root size-18 color-sky theme-light uui-disabled"

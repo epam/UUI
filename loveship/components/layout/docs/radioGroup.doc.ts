@@ -21,4 +21,4 @@ const radioGroupDoc = new DocBuilder<RadioGroupProps<any>>({ name: 'RadioGroup',
     .prop('direction', { examples:['vertical', 'horizontal'], defaultValue: 'vertical' })
     .withContexts(DefaultContext, FormContext);
 
-export = radioGroupDoc;
+export default radioGroupDoc;

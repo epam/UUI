@@ -4,7 +4,7 @@ import { FlexRow, DropMarker, FlexCell, Text, IconContainer, Panel } from '@epam
 import sortBy from "lodash.sortby";
 import { DragHandle } from '@epam/uui-components';
 import { ReactComponent as FileIcon } from '@epam/assets/icons/common/file-file-24.svg';
-import * as css from './DndMaterial.scss';
+import css from './DndMaterial.scss';
 
 export interface MaterialItem {
     id: number;

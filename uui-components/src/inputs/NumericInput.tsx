@@ -5,7 +5,7 @@ import {
     i18n,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import * as css from './NumericInput.scss';
+import css from './NumericInput.scss';
 
 export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     /** Maximum value (default is Number.MAX_SAFE_INTEGER) */

@@ -42,7 +42,7 @@ Array [
       }
     >
       <div
-        className="root shadow background-white container"
+        className="root shadow background-white panel container"
         style={
           Object {
             "width": undefined,
@@ -50,7 +50,7 @@ Array [
         }
       >
         <div
-          className=""
+          className="sortingPanelContainer"
           style={
             Object {
               "alignSelf": undefined,

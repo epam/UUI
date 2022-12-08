@@ -65,4 +65,4 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
     })
     .withContexts(DefaultContext);
 
-export = AvatarStackDoc;
+export default AvatarStackDoc;

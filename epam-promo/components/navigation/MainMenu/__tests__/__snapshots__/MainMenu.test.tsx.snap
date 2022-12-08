@@ -5,7 +5,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
   className="root uui-mainmenu-container container"
 >
   <div
-    className="itemsContainer"
+    className="itemsContainer mainWrapper"
   >
     <div
       className="container align-items-center"
@@ -54,7 +54,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
   className="root uui-mainmenu-container container uui-mainmenu-transparent"
 >
   <div
-    className="itemsContainer"
+    className="itemsContainer mainWrapper"
   >
     <div
       className="container align-items-center"

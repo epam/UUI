@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert, FlexCell, Text, SuccessAlert, WarningAlert, ErrorAlert, HintAlert } from '@epam/promo';
-import * as css from './BasicExample.scss';
+import css from './BasicExample.scss';
 import { ReactComponent as AccountIcon } from '@epam/assets/icons/common/action-account-24.svg';
 
 export default function BasicAlertExample() {

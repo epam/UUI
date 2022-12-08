@@ -61,7 +61,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
         const renderRow = this.props.renderRow || this.renderRow;
 
         return (
-            <div { ...this.props.rawProps }>
+            <div { ...(this.props.rawProps as object) }>
                 { !rows.length && (this.props.noOptionsMessage ?
                     this.props.noOptionsMessage :
                     <Text color={ this.props.theme === 'dark' ? 'night300' : 'night500'  } size={ this.props.size as TextSize }>No options available</Text>) }

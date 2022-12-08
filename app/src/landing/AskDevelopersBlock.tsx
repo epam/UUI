@@ -3,7 +3,7 @@ import Measure from 'react-measure';
 import { FlexCell, FlexRow, Text } from '@epam/promo';
 import { SlideProps, Slider, SliderProps } from '../common/slider';
 import { analyticsEvents } from '../analyticsEvents';
-import * as css from './AskDevelopersBlock.scss';
+import css from './AskDevelopersBlock.scss';
 
 let feedbacksTexts = {
     'Nadzeya Nikalayonak': 'UUI3 helps to deploy the application and simplifies further development. On the initial stage, you do not need to spend time on developing a standard components. Thus, it allows you to start development right away with something specific. One of the benefits is that the given components are created with the designers, so they correspond to the company style. The library has Icon sets, which match the size for better components compatibility.\n' +
@@ -79,7 +79,7 @@ export class AskDevelopersBlock extends React.Component {
             </div>
         );
     }
-    
+
     render() {
         return (
             <Measure bounds>

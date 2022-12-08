@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FlexCell, Rating } from '@epam/promo';
-import * as css from './BasicExample.scss';
+import css from './BasicExample.scss';
 
 export default function BasicExample() {
     const [value, onValueChange] = useState(0);

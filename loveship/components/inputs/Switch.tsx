@@ -1,5 +1,5 @@
-import * as css from './Switch.scss';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import css from './Switch.scss';
+import styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import { Switch as uuiSwitch, SwitchProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import * as types from '../types';

@@ -77,4 +77,4 @@ const flexRowDoc = new DocBuilder<FlexRowProps & RowMods>({ name: 'FlexRow', com
     .prop('type', { examples:['form', 'panel'], defaultValue: 'panel' })
     .withContexts(DefaultContext, ResizableContext);
 
-export = flexRowDoc;
+export default flexRowDoc;

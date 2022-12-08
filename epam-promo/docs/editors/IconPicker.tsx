@@ -3,7 +3,7 @@ import { IEditable, IHasIcon, Icon, cx, ArrayDataSource } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { Button, DataPickerRow, IconButton, PickerInput, Text, Tooltip } from '../../components';
 import { SizeInfo } from '../editors';
-import * as css from './IconPicker.scss';
+import css from './IconPicker.scss';
 import { IconList } from '@epam/assets/icons/helpers';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 

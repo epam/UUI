@@ -10,7 +10,7 @@ import {
     superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
-import * as css from './SlateEditorBasicExample.scss';
+import css from './SlateEditorBasicExample.scss';
 
 type EditorFontSize = '14' | '16';
 type EditorMode = 'form' | 'inline';

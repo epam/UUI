@@ -16,4 +16,4 @@ const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'Vertic
     .prop('count', { examples: [0, 1, 5, 88, 123] })
     .withContexts(VerticalTabButtonContext);
 
-export = TabButtonDoc;
+export default TabButtonDoc;

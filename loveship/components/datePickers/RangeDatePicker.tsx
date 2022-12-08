@@ -6,7 +6,7 @@ import cx from 'classnames';
 import { TextSettings } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
 import { i18n } from '../../i18n';
-import * as css from './RangeDatePicker.scss';
+import css from './RangeDatePicker.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod, TextSettings, EditMode {
     getPlaceholder?(type: InputType): string;
