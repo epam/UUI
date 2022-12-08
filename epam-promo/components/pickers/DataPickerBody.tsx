@@ -4,7 +4,7 @@ import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-compone
 import { FlexRow, VirtualList } from '../layout';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
-import * as css from './DataPickerBody.scss';
+import css from './DataPickerBody.scss';
 import { Text } from "../typography";
 import { SearchInput } from '../inputs';
 

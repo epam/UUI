@@ -1,5 +1,5 @@
 import React from 'react';
-import * as css from './MainMenuAppMultiSwitch.scss';
+import css from './MainMenuAppMultiSwitch.scss';
 import {IAnalyticableOnChange, IEditable} from '@epam/uui';
 import { ButtonProps } from '@epam/uui-components';
 import { Button, ControlGroup, ButtonMods, ButtonColor, SizeMod } from '@epam/promo';

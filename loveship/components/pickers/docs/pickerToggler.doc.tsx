@@ -29,4 +29,4 @@ const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any>>({ name: 'P
     }] })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
-export = PickerTogglerDoc;
+export default PickerTogglerDoc;

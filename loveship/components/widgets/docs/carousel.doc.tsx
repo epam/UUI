@@ -70,4 +70,4 @@ const textDoc = new DocBuilder<CarouselProps & CarouselMods>({ name: 'Carousel',
     })
     .withContexts(ResizableContext, DefaultContext);
 
-export = textDoc;
+export default textDoc;

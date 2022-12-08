@@ -10,8 +10,8 @@ import { ReactComponent as WarningIcon } from '../icons/notification-warning-fil
 import { ReactComponent as ErrorIcon } from '../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../icons/notification-help-fill-24.svg';
 import { ReactComponent as CrossIcon } from '../icons/snackbar/cross.svg';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import * as css from './NotificationCard.scss';
+import styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import css from './NotificationCard.scss';
 
 interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     name: string;

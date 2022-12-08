@@ -19,4 +19,4 @@ const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', com
     .prop('mode', { examples: allButtonModes, defaultValue: 'solid' })
     .withContexts(DefaultContext);
 
-export = ButtonDoc;
+export default ButtonDoc;

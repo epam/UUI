@@ -50,4 +50,4 @@ const DataTableHeaderCellDoc = new DocBuilder<DataTableHeaderCellProps & DataTab
     })
     .withContexts(ResizableContext, DefaultContext, FormContext);
 
-export = DataTableHeaderCellDoc;
+export default DataTableHeaderCellDoc;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers } from '@epam/uui-core';
 import { PositionValues, ScrollBars, ScrollbarsApi } from '../layout';
-import * as css from './VirtualList.scss';
+import css from './VirtualList.scss';
 
 export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {
     listContainerRef: React.MutableRefObject<List>;

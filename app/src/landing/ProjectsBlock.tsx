@@ -4,7 +4,7 @@ import { Anchor, FlexRow, IconContainer, Text } from '@epam/promo';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import { projectsList } from '../docs/other/Projects.doc';
-import * as css from './ProjectsBlock.scss';
+import css from './ProjectsBlock.scss';
 
 export class ProjectsBlock extends React.Component {
     private sendEvent = (productName: string) => {

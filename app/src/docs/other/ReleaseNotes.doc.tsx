@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './ReleaseNotesDoc.scss';
+import css from './ReleaseNotesDoc.scss';
 import { svc } from '../../services';
 import { FlexCell, FlexRow, RichTextView, Spinner, Text } from '@epam/promo';
 import { getCoreProps } from '../../helpers/getCoreProps';

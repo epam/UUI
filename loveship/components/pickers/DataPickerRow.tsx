@@ -6,7 +6,7 @@ import { FlexSpacer, IconContainer } from '../layout';
 import { DataTableCell } from '../tables';
 import { ReactComponent as TickIcon } from '../icons/notification-done-18.svg';
 import { ReactComponent as SmallSizeIcon } from '../icons/notification-done-12.svg';
-import * as css from './DataPickerRow.scss';
+import css from './DataPickerRow.scss';
 
 export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId>, DataTableRowMods {
     renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;

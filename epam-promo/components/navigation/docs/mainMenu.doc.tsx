@@ -100,4 +100,4 @@ const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMe
     })
     .withContexts(ResizableContext);
 
-export = mainMenuDoc;
+export default mainMenuDoc;

@@ -14,7 +14,7 @@ import { defaultData, emptyInfo } from './defaultData';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-outline-24.svg';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as ClearIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
-import * as css from './DemoForm.scss';
+import css from './DemoForm.scss';
 import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 

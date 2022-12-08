@@ -24,4 +24,4 @@ const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip',
     .prop('color', { examples: ['white', 'night900'] })
     .withContexts(DefaultContext);
 
-export = tooltipDoc;
+export default tooltipDoc;

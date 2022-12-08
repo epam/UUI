@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './DndCriterion.scss';
+import css from './DndCriterion.scss';
 import { DndActor, IEditable, cx, DropParams, getOrderBetween } from '@epam/uui';
 import { FlexRow, DropMarker, Checkbox } from '@epam/promo';
 import { DragHandle } from '@epam/uui-components';

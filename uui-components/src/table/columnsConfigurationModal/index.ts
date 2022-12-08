@@ -1,2 +1,2 @@
 export * from './hooks/useColumnsConfiguration';
-export { ColumnsConfigurationRowProps } from './types';
+export type { ColumnsConfigurationRowProps } from './types';

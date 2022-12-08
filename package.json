@@ -19,11 +19,11 @@
     "style-lint": "npx stylelint \"**/*.{scss,less}\"\n",
     "format": "npx tslint -p ./tsconfig.json --fix -e node_modules",
     "copy-to-template": "node uui-build/scripts/copyToTemplate",
-    "build-server-helpers": "npx tsc ./uui-core/data/querying/getFilterPredicate.ts --outDir ./server/helpers/",
+    "build-server-helpers": "npx tsc uui-core/src/data/querying/getFilterPredicate.ts --outDir ./server/helpers/",
     "generate-components-api": "cd uui-build && yarn generate-components-api",
     "transform-tokens": "tsc --esModuleInterop uui-build/tokens-converter/index.ts && node uui-build/tokens-converter",
     "release": "lerna publish --force-publish",
-    "build-modules": "learn run build"
+    "build-modules": "lerna run build"
   },
   "repository": {
     "type": "git",
@@ -63,6 +63,7 @@
     "lerna": "3.22.1",
     "tslib": "^2.3.1",
     "cross-env": "^7.0.3",
-    "typedoc": "0.17.4"
+    "typedoc": "0.17.4",
+    "@types/node": "16.18.4"
   }
 }

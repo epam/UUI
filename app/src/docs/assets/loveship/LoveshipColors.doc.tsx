@@ -4,8 +4,8 @@ import { cx, INotification } from '@epam/uui';
 import { copyTextToClipboard } from './../../../helpers';
 import { svc } from './../../../services';
 import { ReactComponent as NotificationIcon } from './../../../icons/notification-check-fill-24.svg';
-import * as style from '@epam/loveship/assets/styles/scss/loveship-color-vars.scss';
-import * as css from './LoveshipColorsDoc.scss';
+import style from '@epam/loveship/assets/styles/scss/loveship-color-vars.scss';
+import css from './LoveshipColorsDoc.scss';
 
 type BasicColorsTypes = 'sun' | 'grass' | 'fire' | 'sky';
 type AdditionalColorsTypes = 'red' | 'pink' | 'purple' | 'indigo' | 'blue' | 'cyan' | 'teal' | 'green' | 'lime' | 'yellow' | 'amber' | 'orange';

@@ -8,7 +8,7 @@ import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 import { UUI4 } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
-import * as css from './AppHeader.scss';
+import css from './AppHeader.scss';
 
 type Theme = 'promo' | 'loveship' | 'orange' | 'cyan' | 'violet' | 'red';
 

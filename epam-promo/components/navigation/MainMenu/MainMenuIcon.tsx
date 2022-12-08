@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Icon, IAdaptiveItem, cx } from '@epam/uui-core';
 import { ButtonProps } from '@epam/uui-components';
 import { IconButton } from '../../buttons';
-import * as css from './MainMenuIcon.scss';
+import css from './MainMenuIcon.scss';
 
 export interface MainMenuIconProps extends ButtonProps, IAdaptiveItem {
     icon: Icon;
