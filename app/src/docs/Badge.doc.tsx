@@ -15,6 +15,11 @@ export class BadgeDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName='badge-descriptions' />
+                { this.renderSectionTitle('Overview') }
+                <DocExample
+                    title='Types'
+                    path='./examples/badge/Types.example.tsx'
+                />
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
