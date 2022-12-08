@@ -3,7 +3,7 @@ import { FlexRow, FlexSpacer, Panel, ScrollBars, TabButton, Text } from '@epam/p
 import { ScrollSpyForm } from './ScrollSpyForm';
 import { ScrollSpyModal } from './ScrollSpyModal';
 import { ScrollSpyAnchor } from './ScrollSpyAnchor';
-import * as css from './ScrollSpyDemo.scss';
+import css from './ScrollSpyDemo.scss';
 
 enum Pages {
     Form = 'Form',

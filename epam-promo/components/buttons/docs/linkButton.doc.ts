@@ -13,4 +13,4 @@ const LinkButtonDoc = new DocBuilder<ButtonProps & LinkButtonMods>({ name: 'Link
     ], type: 'string' })
     .withContexts(DefaultContext, FormContext);
 
-export = LinkButtonDoc;
+export default LinkButtonDoc;

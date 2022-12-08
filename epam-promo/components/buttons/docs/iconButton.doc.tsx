@@ -10,4 +10,4 @@ const IconButtonDoc = new DocBuilder<IconButtonProps>({ name: 'IconButton', comp
     .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: allIconColors })
     .withContexts(DefaultContext, FormContext);
 
-export = IconButtonDoc;
+export default IconButtonDoc;

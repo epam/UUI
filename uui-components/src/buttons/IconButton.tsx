@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ButtonBaseProps, ButtonBase } from "./ButtonBase";
 import { IconContainer } from '../layout';
-import * as css from './Button.scss';
+import css from './Button.scss';
 
 export interface IconButtonBaseProps extends ButtonBaseProps {}
 

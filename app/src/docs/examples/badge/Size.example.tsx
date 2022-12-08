@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge, FlexCell, FlexRow } from '@epam/promo';
-import * as css from './SizeExample.scss';
+import css from './SizeExample.scss';
 
 export default function SizeExample() {
     return (

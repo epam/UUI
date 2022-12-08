@@ -8,3 +8,4 @@ export const applyTextInputMods = () => ['uui-theme-promo'];
 export const TextInput = withMods<TextInputProps>(UuiTextInput, applyTextInputMods, () => ({}));
 
 export const SearchInput = withMods<TextInputProps & IEditableDebouncerOptions>(UuiSearchInput, applyTextInputMods, () => ({}));
+

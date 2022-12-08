@@ -41,4 +41,4 @@ const DataTableCellDoc = new DocBuilder<DataTableCellProps & DataTableCellMods>(
     })
     .withContexts(ResizableContext, DefaultContext, FormContext, TableContext);
 
-export = DataTableCellDoc;
+export default DataTableCellDoc;

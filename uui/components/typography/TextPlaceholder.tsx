@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import * as css from './TextPlaceholder.scss';
+import css from './TextPlaceholder.scss';
 import '../../assets/styles/variables/typography/textPlaceholder.scss';
 
 export interface TextPlaceholderProps {

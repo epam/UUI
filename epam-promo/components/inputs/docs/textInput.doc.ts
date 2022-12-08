@@ -20,4 +20,4 @@ const TextInputDoc = new DocBuilder<TextInputProps>({ name: 'TextInput', compone
     .prop('type', { examples: ['text', 'password'], type: 'string', defaultValue: 'text' })
     .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
-export = TextInputDoc;
+export default TextInputDoc;

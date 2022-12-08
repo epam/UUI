@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import * as css from './Table.scss';
+import css from './Table.scss';
 
 export class TableRow extends React.Component<any> {
 

@@ -6,7 +6,7 @@ import { TextPlaceholder, Text } from '../typography';
 import { FlexCell } from '../layout';
 import { Checkbox } from '../inputs';
 import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
-import * as css from './DataTableCell.scss';
+import css from './DataTableCell.scss';
 
 export class DataTableCell<TItem, TId, TCellValue> extends React.Component<DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods> {
     hasDepsWidgets = !!(this.props.rowProps?.checkbox?.isVisible || this.props.rowProps?.indent);

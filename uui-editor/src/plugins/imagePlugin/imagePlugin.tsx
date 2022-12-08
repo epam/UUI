@@ -1,7 +1,7 @@
 import { RenderBlockProps, Editor } from "slate-react";
 import * as React from "react";
 import { ImageBlock } from "./ImageBlock";
-import * as css from './ImageBlock.scss';
+import css from './ImageBlock.scss';
 import { useUuiContext } from "@epam/uui-core";
 import {AddImageModal} from "./AddImageModal";
 import { ReactComponent as ImageIcon } from "../../icons/image.svg";

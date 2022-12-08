@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './PickerModal.scss';
+import css from './PickerModal.scss';
 import { DataRowProps, Lens } from '@epam/uui-core';
 import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';

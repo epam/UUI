@@ -1,5 +1,5 @@
 import React from 'react';
-import * as css from './DropdownMenu.scss';
+import css from './DropdownMenu.scss';
 import {  withMods, IHasIcon,  IDropdownToggler, VPanelProps } from '@epam/uui-core';
 import { Button, ButtonProps, VPanel, IconContainer, CheckboxProps,
     Checkbox, TextInput, TextInputProps } from '@epam/uui-components';

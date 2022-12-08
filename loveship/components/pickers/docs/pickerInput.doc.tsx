@@ -71,4 +71,4 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('autoFocus', { examples: [true, { value: false, isDefault: true}] })
     .withContexts(DefaultContext, ResizableContext, TableContext, FormContext);
 
-export = PickerInputDoc;
+export default PickerInputDoc;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './TeamDoc.scss';
+import css from './TeamDoc.scss';
 import { Button, FlexRow, IconContainer, LinkButton, RichTextView, Text } from '@epam/promo';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-24.svg';
 import { ContentSection } from '../../common';
