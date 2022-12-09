@@ -2,11 +2,12 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IDropdownToggler, uuiMod, BaseRangeDatePickerProps } from "@epam/uui-core";
 import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePicker } from '@epam/uui-components';
-import { DropdownContainer, FlexRow, TextInput, SizeMod, RangeDatePickerBody } from '../index';
+import { DropdownContainer, FlexRow, SizeMod, RangeDatePickerBody } from '../index';
+import { TextInput } from "../inputs";
 import { systemIcons } from '../../icons/icons';
 import { i18n } from '../../i18n';
-import './RangeDatePicker.colorvars.scss';
 import css from './RangeDatePicker.scss';
+import './RangeDatePicker.colorvars.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {
     getPlaceholder?(type: InputType): string;
@@ -18,10 +19,10 @@ const defaultValue: RangeDatePickerValue = { from: null, to: null };
 export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
     renderBody(props: DropdownBodyProps) {
         return (
-            <DropdownContainer { ...props } cx={ cx(css.dropdownContainer, this.props.bodyCx) }>
+            <DropdownContainer { ...props } cx={ cx(css.dropdownContainer) }>
                 <FlexRow>
                     <RangeDatePickerBody
-                        cx={ this.props.bodyCx }
+                        cx={ cx(this.props.bodyCx, 'date-range-picker-vars', 'date-picker-vars') }
                         value={ this.getValue() }
                         onValueChange={ this.onRangeChange }
                         filter={ this.props.filter }
@@ -43,6 +44,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
             <div
                 className={ cx(
                     this.props.inputCx,
+                    'date-range-picker-vars',
                     css.dateInputGroup,
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isReadonly && uuiMod.readonly,
@@ -55,7 +57,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
             >
                 <TextInput
                     icon={ systemIcons[this.props.size || '36'].calendar }
-                    cx={ cx(this.props.inputCx, css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'from' && uuiMod.focus) }
+                    cx={ cx(this.props.bodyCx, 'date-range-picker-vars', css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'from' && uuiMod.focus) }
                     size={ this.props.size || '36' }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                     value={ this.state.inputValue.from }
@@ -70,7 +72,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                 />
                 <div className={ css.separator } />
                 <TextInput
-                    cx={ cx(this.props.inputCx, css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'to' && uuiMod.focus) }
+                    cx={ cx(this.props.bodyCx, 'date-range-picker-vars', css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'to' && uuiMod.focus) }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                     size={ this.props.size || '36' }
                     value={ this.state.inputValue.to }

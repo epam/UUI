@@ -3,7 +3,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
 import { RangeDatePicker } from '../RangeDatePicker';
-import css from '../RangeDatePicker.scss';
+import css from '@epam/uui/components/datePickers/RangeDatePicker.scss';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc } from '../../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../../docs';
 import { Button } from '../..';

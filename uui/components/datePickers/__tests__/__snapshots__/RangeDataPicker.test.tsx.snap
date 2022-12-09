@@ -2,12 +2,12 @@
 
 exports[`RangeDataPicker should be rendered correctly 1`] = `
 <div
-  className="dateInputGroup"
+  className="date-range-picker-vars dateInputGroup"
   onBlur={[Function]}
   onClick={[Function]}
 >
   <div
-    className="container uui-input-box -clickable text-input-vars root size-36 mode-form uui-theme-promo dateInput size-36"
+    className="container uui-input-box -clickable text-input-vars root size-36 mode-form date-range-picker-vars dateInput size-36"
     onBlur={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
@@ -34,7 +34,7 @@ exports[`RangeDataPicker should be rendered correctly 1`] = `
     className="separator"
   />
   <div
-    className="container uui-input-box -clickable text-input-vars root size-36 mode-form uui-theme-promo dateInput size-36"
+    className="container uui-input-box -clickable text-input-vars root size-36 mode-form date-range-picker-vars dateInput size-36"
     onBlur={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
@@ -54,12 +54,12 @@ exports[`RangeDataPicker should be rendered correctly 1`] = `
 
 exports[`RangeDataPicker should be rendered correctly 2`] = `
 <div
-  className="dateInputGroup uui-disabled uui-readonly uui-invalid"
+  className="date-range-picker-vars dateInputGroup uui-disabled uui-readonly uui-invalid"
   onBlur={[Function]}
   onClick={false}
 >
   <div
-    className="container uui-input-box uui-disabled uui-readonly uui-invalid text-input-vars root size-36 mode-form uui-theme-promo dateInput size-36"
+    className="container uui-input-box uui-disabled uui-readonly uui-invalid text-input-vars root size-36 mode-form date-range-picker-vars dateInput size-36"
     onBlur={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
@@ -91,7 +91,7 @@ exports[`RangeDataPicker should be rendered correctly 2`] = `
     className="separator"
   />
   <div
-    className="container uui-input-box uui-disabled uui-readonly uui-invalid text-input-vars root size-36 mode-form uui-theme-promo dateInput size-36"
+    className="container uui-input-box uui-disabled uui-readonly uui-invalid text-input-vars root size-36 mode-form date-range-picker-vars dateInput size-36"
     onBlur={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
