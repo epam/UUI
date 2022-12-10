@@ -29,6 +29,7 @@ export interface ICanRedirect {
     href?: string;
     isLinkActive?: boolean;
     target?: '_blank';
+    rel?: string;
 }
 
 /** Component can be disabled */
