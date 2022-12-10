@@ -45,6 +45,9 @@ export interface ICanRedirect {
 
     /** Controls where the link should be opened */
     target?: '_blank';
+
+    /** Defines the relationship between a linked resource and the current document */
+    rel?: string;
 }
 
 /** Component can be disabled */
