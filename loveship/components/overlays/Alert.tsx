@@ -9,14 +9,14 @@ import { ReactComponent as WarningIcon } from './../icons/notification-warning-f
 import { ReactComponent as ErrorIcon } from './../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from './../icons/notification-help-fill-24.svg';
 import { ReactComponent as CrossIcon } from '../icons/navigation-close-24.svg';
-import * as css from './Alert.scss';
+import css from './Alert.scss';
 
 type notificationAction = {
     name: string;
     action: () => void;
 };
 
-export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>> {
+export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     actions?: notificationAction[];
     color?: EpamPrimaryColor;
     onClose?(): void;

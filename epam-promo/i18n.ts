@@ -43,10 +43,22 @@ export const i18n = {
         columnsConfigurationModal: {
             applyButton: 'Apply',
             cancelButton: 'Cancel',
+            selectAllButton: 'Select all',
+            clearAllButton: 'Clear all',
             checkAllButton: 'Check All',
             uncheckAllButton: 'Uncheck All',
             configureColumnsTitle: 'Configure columns',
             resetToDefaultButton: 'Reset to Default',
+            displayedSectionTitle: 'Displayed in table',
+            hiddenSectionTitle: 'Hidden in table',
+            searchPlaceholder: 'Search by column name',
+            noResultsFound: {
+                text: 'No results found',
+                subText: 'We can’t find any item matching your request',
+            },
+            pinColumnButton: "Pin column",
+            unPinColumnButton: "Unpin column",
+            lockedColumnPinButton: "You cannot unpin this column",
         },
     },
     pickerFilterHeader: {
@@ -120,5 +132,8 @@ export const i18n = {
             itemsPlaceholder: 'items',
             emptyValueCaption: 'ALL',
         },
+    },
+    presetPanel: {
+        addCaption: 'Add Preset',
     },
 };

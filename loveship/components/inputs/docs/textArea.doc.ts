@@ -1,8 +1,8 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { TextAreaProps } from '@epam/uui-components';
 import { TextArea, TextAreaMods } from '../TextArea';
-import { iEditable, textSettingsDoc, isDisabledDoc, isReadonlyDoc, iHasPlaceholder, isInvalidDoc, modeDoc, TableContext } from '../../../docs';
-import { ResizableContext, DefaultContext, FormContext } from '../../../docs';
+import { DefaultContext, FormContext, iEditable, iHasPlaceholder, isDisabledDoc,
+    isInvalidDoc, isReadonlyDoc, modeDoc, ResizableContext, TableContext, textSettingsDoc } from '../../../docs';
 
 const TextareaDoc = new DocBuilder<TextAreaProps & TextAreaMods>({ name: 'TextArea', component: TextArea })
     .implements([iEditable, textSettingsDoc, iHasPlaceholder, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc])
@@ -17,4 +17,4 @@ const TextareaDoc = new DocBuilder<TextAreaProps & TextAreaMods>({ name: 'TextAr
     .prop('autoSize', { examples: [true, false], defaultValue: false })
     .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
-export = TextareaDoc;
+export default TextareaDoc;

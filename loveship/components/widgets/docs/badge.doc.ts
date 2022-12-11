@@ -1,12 +1,11 @@
 import { Badge, BadgeMods } from '../../../components/index';
 import { basicPickerTogglerDoc, DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import { FormContext, ResizableContext, DefaultContext } from '../../../docs/index';
-import { fontDoc, iconDoc, iconOptionsDoc, colorDoc } from '../../../docs/index';
+import { colorDoc, DefaultContext, FormContext, iconDoc, iconOptionsDoc, ResizableContext } from '../../../docs/index';
 import { allBorderStyles } from '../../../components/types';
 
 const badgeDoc = new DocBuilder<ButtonProps & BadgeMods>({ name: 'Badge', component: Badge })
-    .implements([fontDoc, colorDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc])
+    .implements([colorDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc])
     .prop('caption', { examples: [
         { value: 'Badge', isDefault: true },
         { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
@@ -18,4 +17,4 @@ const badgeDoc = new DocBuilder<ButtonProps & BadgeMods>({ name: 'Badge', compon
     .prop('size', { examples : ['12', '18', '24', '30', '36', '42', '48'], defaultValue: '18' })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
-export = badgeDoc;
+export default badgeDoc;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './ReleaseNotesDoc.scss';
+import css from './ReleaseNotesDoc.scss';
 import { svc } from '../../services';
 import { FlexCell, FlexRow, RichTextView, Spinner, Text } from '@epam/promo';
 import { getCoreProps } from '../../helpers/getCoreProps';
@@ -56,7 +56,7 @@ export class ReleaseNotesDoc extends React.Component {
     }
 
     renderReleaseRow(release: string, index: number) {
-        const [header, date] = release.split('*')[0].split('-').map(i => i.trim());
+        const [header, date] = release.split('*')[0].split(' - ').map(i => i.trim());
         const content = release.substring(release.search(/\*/), release.length);
 
         return (
@@ -68,7 +68,7 @@ export class ReleaseNotesDoc extends React.Component {
                     </Text>
                 </FlexCell>
                 <div className={ css.releaseContent }>
-                    <RichTextView>
+                    <RichTextView size='16'>
                         <ReactMarkdown
                             source={ content }
                             renderers={ {

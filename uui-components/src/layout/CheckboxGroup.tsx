@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ICanBeInvalid, IHasForwardedRef, IHasCX, IEditable, IDisableable, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps } from '@epam/uui-core';
 import { CheckboxProps } from '../inputs/Checkbox';
-import * as css from './CheckboxGroup.scss';
+import css from './CheckboxGroup.scss';
 
 interface CheckboxGroupItem<TValue> {
     name: string;

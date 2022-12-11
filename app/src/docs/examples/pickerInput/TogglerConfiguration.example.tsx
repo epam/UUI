@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { FlexCell, PickerInput, Button, FlexRow } from '@epam/promo';
 import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { City } from '@epam/uui-docs';
-import * as css from './TogglerConfiguration.scss';
+import css from './TogglerConfiguration.scss';
 
 export default function PickerTogglerConfigurationExample() {
     const svc = useUuiContext();

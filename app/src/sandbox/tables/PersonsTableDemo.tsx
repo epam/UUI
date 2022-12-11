@@ -5,7 +5,7 @@ import { Person, PersonGroup } from '@epam/uui-docs';
 import { DataSourceState, IEditable, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
-import * as css from './PersonsTableDemo.scss';
+import css from './PersonsTableDemo.scss';
 
 interface PersonsTableState extends DataSourceState {
     isFolded?: boolean;

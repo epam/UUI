@@ -1,7 +1,7 @@
 import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import Scrollbars, * as CustomScrollBars from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
-import * as css from './ScrollBars.scss';
+import css from './ScrollBars.scss';
 
 export interface ScrollbarProps extends IHasCX, Omit<CustomScrollBars.ScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
     hasTopShadow?: boolean;

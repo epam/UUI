@@ -1,5 +1,5 @@
-import * as css from './Checkbox.scss';
-import * as styles from '../../assets/styles/colorvars/inputs/checkbox-colorvars.scss';
+import css from './Checkbox.scss';
+import styles from '../../assets/styles/colorvars/inputs/checkbox-colorvars.scss';
 import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ReactComponent as Check_12 } from '../../icons/check-12.svg';

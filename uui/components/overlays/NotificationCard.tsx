@@ -10,7 +10,7 @@ import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
 import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
 import '../../assets/styles/variables/overlays/notificationCard.scss';
-import * as css from './NotificationCard.scss';
+import css from './NotificationCard.scss';
 
 type notificationAction = {
     name: string;

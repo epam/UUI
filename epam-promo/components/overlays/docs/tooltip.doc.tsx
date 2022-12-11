@@ -26,4 +26,4 @@ const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip',
     .prop('color', { examples: ['white', { name: 'gray90', value: 'gray90', isDefault: true }, 'red'] })
     .withContexts(DefaultContext);
 
-export = tooltipDoc;
+export default tooltipDoc;

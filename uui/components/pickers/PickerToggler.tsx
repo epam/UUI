@@ -6,7 +6,7 @@ import { systemIcons } from '../../icons/icons';
 import { Tag } from '../widgets';
 import * as types from '../types';
 import '../../assets/styles/variables/pickers/pickerToggler.scss';
-import * as css from './PickerToggler.scss';
+import css from './PickerToggler.scss';
 
 const defaultSize = '36';
 const defaultMode = types.EditMode.FORM;

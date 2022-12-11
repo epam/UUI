@@ -2,30 +2,10 @@
 
 .container {
     width: 360px;
-
-    &-item {
-        box-sizing: border-box;
-        width: 100%;
-        justify-content: space-between;
-    }
-}
-
-.vertical-paddings {
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
-.horizontal-paddings {
-    padding-left: 18px;
-    padding-right: 18px;
 }
 
 .text {
     padding: 0;
-    &-title {
-        font-weight: 600;
-        padding: 0;
-    }
 }
 
 .divider {

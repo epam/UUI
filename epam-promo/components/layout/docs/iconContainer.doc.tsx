@@ -12,14 +12,14 @@ const iconContainerDoc = new DocBuilder<ControlIconProps & IconContainerMods>({ 
         examples: [...allEpamAdditionalColors, ...allEpamGrayscaleColors],
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
     })
+    .prop('size', { examples: [12, 18, 24, 30, 36, 42, 48, 60] })
     .prop('style', { examples: [
             { name: 'fill: blue', value: { fill: '#008ACE' } },
             { name: 'fill: green', value: { fill: '#88CC00' } },
             { name: 'transform: skew(30deg, 20deg)', value: { transform: 'skew(30deg, 20deg)' } },
         ] })
-    .prop('size', { examples: [12, 18, 24, 30, 36, 42, 48, 60] })
     .prop('flipY', { examples: [true, false], defaultValue: null })
     .prop('rotate', { examples: ['0', '90cw', '180', '90ccw'], defaultValue: null })
     .withContexts(DefaultContext, FormContext);
 
-export = iconContainerDoc;
+export default iconContainerDoc;

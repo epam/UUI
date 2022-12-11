@@ -1,1 +1,1 @@
-export * from './PresetPanel';
+export * from './PresetsPanel';

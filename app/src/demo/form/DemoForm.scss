@@ -2,7 +2,7 @@
 
 .root {
     margin: 0 auto 102px;
-    width: 714px;
+    max-width: 714px;
 
     .form-panel {
         max-width: 714px;
@@ -10,6 +10,12 @@
 
         .sectionTitle {
             margin-top: 0;
+        }
+
+        .sectionRow {
+            flex-wrap: wrap;
+            column-gap: 18px;
+            row-gap: 12px;
         }
 
         .info-icon {

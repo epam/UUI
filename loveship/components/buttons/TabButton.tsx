@@ -1,4 +1,4 @@
-import * as css from './TabButton.scss';
+import css from './TabButton.scss';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';

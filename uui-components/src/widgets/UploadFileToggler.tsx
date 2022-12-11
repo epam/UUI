@@ -1,12 +1,12 @@
 import * as React from 'react';
-import * as css from './UploadFileToggler.scss';
+import css from './UploadFileToggler.scss';
 import { IHasForwardedRef, IHasRawProps } from '@epam/uui-core';
 
 interface UploadFileTogglerRenderParams {
     onClick(): any;
 }
 
-interface UploadFileTogglerProps extends IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLInputElement> {
+interface UploadFileTogglerProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLInputElement> {
     render(props: UploadFileTogglerRenderParams): React.ReactNode;
     onFilesAdded(files: File[]): any;
     accept?: string;

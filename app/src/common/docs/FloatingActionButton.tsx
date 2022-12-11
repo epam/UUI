@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './FloatingActionButton.scss';
+import css from './FloatingActionButton.scss';
 import { Button, Tooltip } from '@epam/promo';
 import { cx, Icon } from '@epam/uui';
 

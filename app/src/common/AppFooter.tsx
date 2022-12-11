@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './AppFooter.scss';
+import css from './AppFooter.scss';
 import { FlexRow, Text, Anchor, IconContainer } from '@epam/promo';
 import { ReactComponent as EPAMIcon } from '../icons/EPAM.svg';
 

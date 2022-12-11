@@ -5,14 +5,13 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
   className="uui-horizontal-direction root container"
 >
   <label
-    className="container root size-18 theme-light mode-form color-sky uui-disabled"
+    className="container uui-checkbox-container root size-18 theme-light mode-form color-sky uui-disabled"
     tabIndex={-1}
   >
     <div
       className="uui-checkbox"
     >
       <input
-        aria-checked={false}
         aria-disabled={true}
         checked={false}
         disabled={true}
@@ -28,14 +27,13 @@ exports[`CheckboxGroup should be rendered correctly with extra props 1`] = `
     </div>
   </label>
   <label
-    className="container root size-18 theme-light mode-form color-sky uui-disabled"
+    className="container uui-checkbox-container root size-18 theme-light mode-form color-sky uui-disabled"
     tabIndex={-1}
   >
     <div
       className="uui-checkbox uui-checked"
     >
       <input
-        aria-checked={true}
         aria-disabled={true}
         checked={true}
         disabled={true}
@@ -66,14 +64,13 @@ exports[`CheckboxGroup should render with default props 1`] = `
   className="uui-vertical-direction root container"
 >
   <label
-    className="container root size-18 theme-light mode-form color-sky -clickable"
+    className="container uui-checkbox-container root size-18 theme-light mode-form color-sky -clickable"
     tabIndex={-1}
   >
     <div
       className="uui-checkbox uui-checked"
     >
       <input
-        aria-checked={true}
         checked={true}
         onChange={[Function]}
         tabIndex={0}
@@ -95,14 +92,13 @@ exports[`CheckboxGroup should render with default props 1`] = `
     </div>
   </label>
   <label
-    className="container root size-18 theme-light mode-form color-sky -clickable"
+    className="container uui-checkbox-container root size-18 theme-light mode-form color-sky -clickable"
     tabIndex={-1}
   >
     <div
       className="uui-checkbox"
     >
       <input
-        aria-checked={false}
         checked={false}
         onChange={[Function]}
         tabIndex={0}
