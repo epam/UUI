@@ -47,6 +47,13 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
         examples: [{ name: 'left', value: 'left', isDefault: true }, 'right'],
         isRequired: true,
     })
+    .prop('avatarsCount', {
+        examples: [
+            1,
+            2,
+            3
+        ]
+    })
     .prop('renderItem', {
         examples: [
             {
@@ -58,4 +65,4 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
     })
     .withContexts(DefaultContext);
 
-export = AvatarStackDoc;
+export default AvatarStackDoc;

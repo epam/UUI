@@ -5,9 +5,9 @@ import {
     i18n,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import * as css from './NumericInput.scss';
+import css from './NumericInput.scss';
 
-export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     /** Maximum value (default is Number.MAX_SAFE_INTEGER) */
     max?: number;
 
@@ -98,9 +98,15 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         setInFocus(false);
-        const validatedValue = getMinMaxValidatedValue({ value, min, max });
-        if (!props.value && min) props.onValueChange(min);
-        if (validatedValue !== props.value) props.onValueChange(validatedValue);
+
+        // clearing the input when entering invalid data using special characters
+        if(event.target.validity?.badInput) {
+            inputRef.current.value = ""
+        } else {
+            const validatedValue = getMinMaxValidatedValue({ value, min, max });
+            if (validatedValue !== props.value) props.onValueChange(validatedValue);
+        }
+
         props.onBlur?.(event);
     };
 
@@ -126,6 +132,17 @@ export const NumericInput = (props: NumericInputProps) => {
             handleDecreaseValue();
         }
     };
+
+    const inputRef = React.useRef<HTMLInputElement>()
+
+    // disable changing the value by scrolling the wheel when the input is in focus and hover
+    React.useEffect(() => {
+        const preventValueChange = (e: WheelEvent) => (document.activeElement === e.target) && e.preventDefault()
+
+        inputRef?.current?.addEventListener('wheel', preventValueChange, {passive: false})
+
+        return () => {inputRef?.current?.removeEventListener('wheel', preventValueChange)}
+    }, [])
 
     const isPlaceholderColored = React.useMemo(() => Boolean(props.value || props.value === 0), [props.value]);
     const inputValue = React.useMemo(() => (inFocus && (props.value || props.value === 0)) ? props.value : "", [props.value, inFocus]);
@@ -173,6 +190,7 @@ export const NumericInput = (props: NumericInputProps) => {
                 max={ max }
                 step={ step }
                 id={ props.id }
+                ref={ inputRef }
             />
 
         { showArrows && (

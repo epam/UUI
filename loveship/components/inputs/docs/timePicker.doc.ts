@@ -1,7 +1,7 @@
-import { TimePicker, TimePickerProps } from '../TimePicker';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc } from '../../../docs';
-import { FormContext, DefaultContext, TableContext, ResizableContext } from '../../../docs';
+import { TimePicker, TimePickerProps } from '../TimePicker';
+import { DefaultContext, FormContext, iEditable, isDisabledDoc,
+    isInvalidDoc, modeDoc, ResizableContext, sizeDoc, TableContext } from '../../../docs';
 
 const TimePickerDoc = new DocBuilder<TimePickerProps>({ name: 'TimePicker', component: TimePicker })
     .implements([iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc])
@@ -10,4 +10,4 @@ const TimePickerDoc = new DocBuilder<TimePickerProps>({ name: 'TimePicker', comp
     .prop('format', { examples: [12, 24], defaultValue: 12 })
     .withContexts(DefaultContext, ResizableContext, FormContext, TableContext);
 
-export = TimePickerDoc;
+export default TimePickerDoc;

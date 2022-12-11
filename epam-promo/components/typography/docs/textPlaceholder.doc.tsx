@@ -14,4 +14,4 @@ const textPlaceholderDoc = new DocBuilder<TextPlaceholderProps>({ name: 'TextPla
     .prop('isNotAnimated', { examples: [true, false] })
     .withContexts(DefaultContext, FormContext);
 
-export = textPlaceholderDoc;
+export default textPlaceholderDoc;

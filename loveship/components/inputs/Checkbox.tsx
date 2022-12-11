@@ -1,10 +1,10 @@
 import * as types from '../types';
-import * as css from './Checkbox.scss';
+import css from './Checkbox.scss';
 import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ReactComponent as TickIcon } from '../icons/checkbox-checked.svg';
 import { ReactComponent as IndeterminateIcon } from '../icons/checkbox-partial.svg';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import styles from '../../assets/styles/scss/loveship-color-vars.scss';
 
 export interface CheckboxMods extends types.ColorMod {
     size?: '12' | '18';

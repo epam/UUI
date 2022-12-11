@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
-import { usePlateEditorState, isEditorFocused, usePlatePlugins } from '@udecode/plate';
+import { usePlateEditorState, isEditorFocused } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
+
 import { isImageSelected, isTextSelected } from '../helpers';
-import * as css from './Toolbar.scss';
+import css from './Toolbar.scss';
 
 interface ToolbarProps {
     editor: any;
@@ -37,7 +38,7 @@ export function Toolbar(props: ToolbarProps): any {
                     placement='top'
                     modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
                 >
-                    { popperProps => console.log(popperProps) ||  (
+                    { popperProps =>  (
                         <div
                             onMouseDown={ e => e.preventDefault() }
                             className={ css.container }

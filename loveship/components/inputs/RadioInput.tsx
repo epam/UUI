@@ -1,5 +1,5 @@
-import * as css from './RadioInput.scss';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import css from './RadioInput.scss';
+import styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import { RadioInput as uuiRadioInput, RadioInputProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ReactComponent as RadioPoint } from '../icons/radio-point.svg';

@@ -2,9 +2,9 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IHasChildren, IHasCX, IHasRawProps } from '@epam/uui-core';
 import * as types from '../types';
-import * as css from './ControlWrapper.scss';
+import css from './ControlWrapper.scss';
 
-interface ControlWrapperProps extends IHasCX, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasChildren {
+interface ControlWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasChildren {
     size: types.ControlSize;
 }
 

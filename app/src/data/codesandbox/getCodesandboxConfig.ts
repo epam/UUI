@@ -35,5 +35,9 @@ export const getCodesandboxConfig = (
     '.env': {
         isBinary: false,
         content: initialFiles.env,
+    },
+    'global.d.ts': {
+        isBinary: false,
+        content: initialFiles.globalTypings,
     }
 });

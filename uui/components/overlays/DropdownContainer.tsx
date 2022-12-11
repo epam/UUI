@@ -1,7 +1,7 @@
 import { withMods } from '@epam/uui-core';
 import { DropdownContainer as uuiDropdownListContainer, DropdownContainerProps } from '@epam/uui-components';
 import '../../assets/styles/variables/overlays/dropdownContainer.scss';
-import * as css from './DropdownContainer.scss';
+import css from './DropdownContainer.scss';
 
 export interface DropdownContainerMods {}
 

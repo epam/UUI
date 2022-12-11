@@ -20,4 +20,4 @@ const checkboxGroupDoc = new DocBuilder<CheckboxGroupProps<any>>({ name: 'Checkb
     .prop('direction', { examples:['vertical', 'horizontal'], defaultValue: 'vertical' })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
-export = checkboxGroupDoc;
+export default checkboxGroupDoc;

@@ -11,7 +11,7 @@ export const delay = (ms: number = 1): Promise<void> => new Promise(resolve => {
 
 export const testSvc = {} as UuiContexts;
 
-export async function mountHookWithContext<TProps, TResult>(hook: (props: TProps) => TResult) {
+export async function mountHookWithContext<TProps, TResult>(hook: (props: TProps) => TResult, initialProps?: TProps) {
     const wrapper = ({ children }: { children?: React.ReactNode }) => (
         <ContextProvider onInitCompleted={ svc => Object.assign(testSvc, svc) }>
             { children }
@@ -22,7 +22,7 @@ export async function mountHookWithContext<TProps, TResult>(hook: (props: TProps
         waitForNextUpdate,
         rerender,
         ...rest
-    } = renderHook<TProps, TResult>(hook, { wrapper });
+    } = renderHook<TProps, TResult>(hook, { wrapper, initialProps: initialProps });
 
     await waitForNextUpdate();
 

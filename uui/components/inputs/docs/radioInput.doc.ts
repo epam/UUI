@@ -10,4 +10,4 @@ const RadioInputDoc = new DocBuilder<RadioInputProps & RadioInputMods>({ name: '
     .prop('size', { examples: ['12', '18'] })
     .withContexts(DefaultContext);
 
-export = RadioInputDoc;
+export default RadioInputDoc;

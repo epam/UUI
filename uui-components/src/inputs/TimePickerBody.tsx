@@ -20,7 +20,7 @@ const MIN_MINUTES: number = 0;
 const MAX_MINUTES: number = 59;
 const FORMAT_12H: number = 12;
 
-export interface TimePickerBodyProps extends IHasCX, IEditable<TimePickerValue>, IHasRawProps<React.ReactHTMLElement<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface TimePickerBodyProps extends IHasCX, IEditable<TimePickerValue>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     minutesStep?: number;
     addIcon?: Icon;
     subtractIcon?: Icon;

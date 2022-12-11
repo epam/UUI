@@ -1,18 +1,8 @@
 import React from 'react';
-import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
-import {
-    Panel,
-    Text,
-    FlexRow,
-    LinkButton,
-    DropdownContainer,
-    Badge,
-    IconButton,
-    FlexCell,
-    IconContainer,
-} from '@epam/promo';
+import { Dropdown, DropdownBodyProps, FlexSpacer } from '@epam/uui-components';
+import { Panel, Text, FlexRow, LinkButton, DropdownContainer, Badge, IconButton, FlexCell, IconContainer } from '@epam/promo';
 import { Avatar, IDropdownToggler } from '@epam/uui';
-import * as css from './BasicExample.scss';
+import css from './BasicExample.scss';
 import { ReactComponent as pinIcon } from '@epam/assets/icons/common/action-pin_on-18.svg';
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
 import { ReactComponent as aimIcon } from '@epam/assets/icons/common/action-target-18.svg';
@@ -32,7 +22,7 @@ export default function BasicDropdownExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
             <DropdownContainer showArrow={ true } cx={ css.container } { ...props }>
-                <FlexRow alignItems="top" cx={ [css.containerItem, css.verticalPaddings, css.horizontalPaddings] }>
+                <FlexRow alignItems="top" padding='18' vPadding='24'>
                     <Panel style={ { width: '100%' } }>
                         <FlexRow cx={ css.containerItem }>
                             <Avatar
@@ -41,15 +31,17 @@ export default function BasicDropdownExample() {
                                 img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
                             />
 
-                            <div>
-                                <Text cx={ css.textTitle } lineHeight="24" fontSize="16" color="gray80"
-                                      font="sans-semibold">John
-                                    Doe</Text>
-                                <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">Corporate Function
-                                    Management
-                                    | L3</Text>
-                            </div>
-
+                            <FlexRow padding='12'>
+                                <FlexCell width='auto'>
+                                    <Text cx={ css.textTitle } lineHeight="24" fontSize="16" color="gray80" font="sans-semibold">
+                                        John Doe
+                                    </Text>
+                                    <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">
+                                        Corporate Function Management | L3
+                                    </Text>
+                                </FlexCell>
+                            </FlexRow>
+                            <FlexSpacer />
                             <FlexRow spacing="6">
                                 <IconButton
                                     icon={ pinIcon }
@@ -81,7 +73,7 @@ export default function BasicDropdownExample() {
 
                 <div className={ css.divider }></div>
 
-                <FlexRow cx={ [css.containerItem, css.verticalPaddings, css.horizontalPaddings] }>
+                <FlexRow padding='18' vPadding='24'>
                     <Panel>
                         <FlexRow alignItems="center" spacing="12">
                             <IconButton
@@ -170,7 +162,7 @@ export default function BasicDropdownExample() {
 
                 <div className={ css.divider }></div>
 
-                <FlexRow cx={ [css.containerItem, css.verticalPaddings, css.horizontalPaddings] }>
+                <FlexRow padding='18' vPadding='24'>
                     <Panel>
                         <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">Reporting to</Text>
                         <FlexRow spacing="12" vPadding="12">
@@ -183,8 +175,7 @@ export default function BasicDropdownExample() {
                             <div>
                                 <Text cx={ css.textTitle } lineHeight="24" fontSize="14" color="gray80"
                                       font="sans-semibold">John Wick</Text>
-                                <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">Sinior Management |
-                                    L4</Text>
+                                <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">Senior Management | L4</Text>
                             </div>
                         </FlexRow>
                     </Panel>
@@ -192,9 +183,14 @@ export default function BasicDropdownExample() {
 
                 <div className={ css.divider }></div>
 
-                <FlexRow cx={ [css.containerItem, css.verticalPaddings, css.horizontalPaddings] }>
-                    <LinkButton onClick={ () => {/*redirect implementation*/
-                    } } caption="Show Reporting Line" size="36" icon={ rightArrIcon } iconPosition="right"/>
+                <FlexRow padding='18' vPadding='24'>
+                    <LinkButton
+                        onClick={ () => {} }
+                        caption="Show Reporting Line"
+                        size="36"
+                        icon={ rightArrIcon }
+                        iconPosition="right"
+                    />
                 </FlexRow>
             </DropdownContainer>
         );

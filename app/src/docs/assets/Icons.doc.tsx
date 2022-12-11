@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './IconsPage.scss';
+import css from './IconsPage.scss';
 import { FlexCell, SearchInput, ControlSize, Panel, FlexRow, Text, IconContainer, Button, IconButton, LinkButton, TextInput,
     Tooltip, FlexSpacer, NotificationCard, MultiSwitch, ScrollBars } from '@epam/promo';
 import { ArrayDataSource, cx, DataRowProps, DataSourceState, Icon } from '@epam/uui';

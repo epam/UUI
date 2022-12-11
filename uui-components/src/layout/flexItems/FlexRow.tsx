@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './FlexRow.scss';
+import css from './FlexRow.scss';
 import { FlexRowProps, uuiMarkers, isClickableChildClicked, cx } from '@epam/uui-core';
 
 export const FlexRow = React.forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => (

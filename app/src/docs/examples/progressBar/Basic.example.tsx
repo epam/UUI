@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ProgressBar, Panel } from '@epam/promo';
-import * as css from './BasicExample.scss';
+import css from './BasicExample.scss';
 
 export default function BasicProgressBarExample() {
     const [progress, setProgress] = useState(0);

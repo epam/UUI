@@ -30,4 +30,4 @@ const ModalFooterDoc = new DocBuilder<ModalFooterProps>({ name: 'ModalFooter', c
     })
     .withContexts(DefaultContext);
 
-export = ModalFooterDoc;
+export default ModalFooterDoc;

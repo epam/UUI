@@ -23,7 +23,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Provide showColumnsConfig={ true } prop to enable columns config dialog. Config button will appear in the last column.",
+            "text": "Provide ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "showColumnsConfig={ true }",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop to enable columns config dialog. Config button will appear in the last column.",
             "marks": []
           }
         ]
@@ -35,7 +51,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For allowing columns resize and reorder use allowColumnsResizing={ true } and allowColumnsReordering={ true } props. \n",
+            "text": "For allowing columns resize and reorder use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "allowColumnsResizing={ true }",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "allowColumnsReordering={ true }",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " props. ",
             "marks": []
           }
         ]
@@ -58,7 +106,23 @@
           },
           {
             "object": "text",
-            "text": ": To display a columns config button in your table, you need to explicitly pass a column with a fix: 'right' field to provide required space for this button.",
+            "text": ": To display a columns config button in your table, you need to explicitly add last column with a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "fix:'right'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " field to provide required space for this button.",
             "marks": []
           }
         ]

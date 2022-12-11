@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useScrollSpy } from '@epam/uui-components';
-import { Metadata, RenderFormProps, useArrayDataSource, useAsyncDataSource, useLazyDataSource } from '@epam/uui';
+import { Metadata, IFormApi, useArrayDataSource, useAsyncDataSource, useLazyDataSource } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import { Button, DatePicker, ErrorNotification, FlexCell, FlexRow, FlexSpacer, Form, LabeledInput, PickerInput, RadioGroup, SuccessNotification, Text, TextInput } from '@epam/promo';
-import * as css from './ScrollSpyForm.scss';
+import css from './ScrollSpyForm.scss';
 import { svc } from '../../services';
 
 
@@ -71,7 +71,7 @@ export function ScrollSpyForm() {
         api: svc.api.demo.cities,
     }, []);
 
-    const RenderForm = ({ lens, save, isInvalid }: RenderFormProps<Person>) => {
+    const RenderForm = ({ lens, save, isInvalid }: IFormApi<Person>) => {
         const { scrollToElement, setRef } = useScrollSpy({});
 
         useEffect(() => {

@@ -1,5 +1,5 @@
 import * as types from '../../types';
-import * as css from './FlexRow.scss';
+import css from './FlexRow.scss';
 import { FlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 

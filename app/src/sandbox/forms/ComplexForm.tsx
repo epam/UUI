@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { INotification, Metadata, RenderFormProps } from '@epam/uui';
+import { INotification, Metadata, IFormApi } from '@epam/uui';
 import { Spinner } from '@epam/uui-components';
 import { PersonDetails } from '@epam/uui-docs';
 import { LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpacer, SuccessNotification, Form, MultiSwitch } from '@epam/loveship';
 import { svc } from '../../services';
 import { PersonDetailEditor } from './PersonDetailEditor';
 import { PersonDetailView } from './PersonDetailView';
-import * as css from './ComplexForm.scss';
+import css from './ComplexForm.scss';
 
 interface ComplexFormState {
     person: PersonDetails;
@@ -82,7 +82,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         };
     }
 
-    renderSettings(props: RenderFormProps<PersonDetails>) {
+    renderSettings(props: IFormApi<PersonDetails>) {
         return <>
             <FlexCell width='auto'>
                 <MultiSwitch
@@ -109,7 +109,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         </>;
     }
 
-    renderSavePanel(props: RenderFormProps<PersonDetails>) {
+    renderSavePanel(props: IFormApi<PersonDetails>) {
         return <>
             <FlexCell minWidth={ 100 }>
                 <Button
@@ -146,7 +146,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         </>;
     }
 
-    renderForm = (props: RenderFormProps<PersonDetails>) => {
+    renderForm = (props: IFormApi<PersonDetails>) => {
         const background = this.state.hasBackground ? 'white' : 'night50';
 
         return (
@@ -164,11 +164,11 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         );
     }
 
-    renderViewForm = (props: RenderFormProps<PersonDetails>) => {
+    renderViewForm = (props: IFormApi<PersonDetails>) => {
         return <PersonDetailView isBlocked={ this.state.isBlocked } lens={ props.lens } isDisabled={ this.state.isDisabled } value={ props.value } />;
     }
 
-    renderEditForm = (props: RenderFormProps<PersonDetails>) => {
+    renderEditForm = (props: IFormApi<PersonDetails>) => {
         return <PersonDetailEditor isBlocked={ this.state.isBlocked || props.isInProgress } lens={ props.lens } isDisabled={ this.state.isDisabled } isReadOnly={ this.state.isReadOnly } />;
     }
 

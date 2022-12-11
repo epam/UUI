@@ -10,8 +10,8 @@ import { Svg } from '@epam/uui-components';
 import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
 import { TextInput } from '../../inputs';
 import cx from 'classnames';
-import * as css from '../../../assets/styles/typography.scss';
-import * as style from './richTextViewDoc.scss';
+import css from '../../../assets/styles/typography.scss';
+import style from './richTextViewDoc.scss';
 
 const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
     .prop('htmlContent', {
@@ -105,7 +105,7 @@ const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'Ri
                     </FlexRow>
                     <h4>{ "<Pre>" }</h4>
                     <pre>{ `import * as React from 'react';
-import * as css from './MyComponent.scss';
+import css from './MyComponent.scss';
 
 export const MyComponent = <div className={ css.myHeader }>` }</pre>
                     <h4>Text with size 16</h4>
@@ -133,4 +133,4 @@ export const MyComponent = <div className={ css.myHeader }>` }</pre>
     })
     .withContexts(DefaultContext);
 
-export = textDoc;
+export default textDoc;

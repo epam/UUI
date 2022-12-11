@@ -6,7 +6,7 @@ import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
-import * as css from './DataPickerBody.scss';
+import css from './DataPickerBody.scss';
 
 export interface DataPickerBodyProps extends PickerBodyBaseProps {
     maxHeight?: number;

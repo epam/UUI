@@ -6,7 +6,7 @@ import { FlexRow, FlexCell, SearchInput, FlexSpacer, Button, SuccessNotification
 import { DemoDbRef, useDemoDbRef, PersonTableRecord } from './state';
 import { svc } from '../../services';
 import { PersonsTable } from './PersonsTable';
-import * as css from './DbDemo.scss';
+import css from './DbDemo.scss';
 
 export const DbDemoImpl = () => {
     const dbRef = useDemoDbRef();

@@ -1,8 +1,7 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { CheckboxProps } from '@epam/uui-components';
 import { Checkbox, CheckboxMods } from '../Checkbox';
-import { isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable, TableContext } from '../../../docs';
-import { DefaultContext, FormContext } from '../../../docs';
+import { isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable, DefaultContext, FormContext, TableContext } from '../../../docs';
 
 const CheckboxDoc = new DocBuilder<CheckboxProps & CheckboxMods>({ name: 'Checkbox', component: Checkbox })
     .implements([isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable])
@@ -11,4 +10,4 @@ const CheckboxDoc = new DocBuilder<CheckboxProps & CheckboxMods>({ name: 'Checkb
     .prop('indeterminate', { examples: [true, false], defaultValue: false })
     .withContexts(DefaultContext, FormContext, TableContext);
 
-export = CheckboxDoc;
+export default CheckboxDoc;

@@ -4,7 +4,7 @@ import {
     IHasCX, ICanRedirect, IHasChildren, UuiContexts, IDisableable, IClickable, cx, IAnalyticableClick,
 } from '@epam/uui-core';
 import { ButtonBase } from '../buttons';
-import * as css from './Anchor.scss';
+import css from './Anchor.scss';
 
 export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IAnalyticableClick, IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>, IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> {}
 

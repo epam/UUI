@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "4.8.5",
+  "version": "4.9.1",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api": "ts-node getComponentsPropsSet.ts",
@@ -14,7 +14,7 @@
     "@types/jest": "25.2.2",
     "@types/lodash.defaultsdeep": "4.6.6",
     "@types/lodash.uniqueid": "4.0.6",
-    "@types/node": "14.0.1",
+    "@types/node": "16.18.4",
     "babel-eslint": "10.1.0",
     "babel-jest": "24.9.0",
     "babel-loader": "8.1.0",
@@ -93,7 +93,7 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "devDependencies": {
-    "typescript": "4.5.4"
+    "typescript": "4.9.3"
   },
   "publishConfig": {
     "directory": "build"
