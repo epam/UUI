@@ -2,11 +2,10 @@ import {
     createListPlugin,
     createSoftBreakPlugin,
     createExitBreakPlugin,
-    createLinkPlugin,
     createHeadingPlugin,
     createSuperscriptPlugin,
     createFontColorPlugin,
-    //createImagePlugin,
+    createMediaEmbedPlugin,
     ELEMENT_H1,
     ELEMENT_H2,
     ELEMENT_H3,
@@ -20,16 +19,21 @@ import { listPluginOptions } from "./createListPlugin";
 import { createUUILinkPlugin } from "./linkPlugin";
 import { createToDoListPlugin } from "./toDoListPlugin";
 import { ImageUI, createImagePlugin } from "./imagePlugin";
+import {  createUploadPlugin } from "./uploadFilePlugin";
+import {  videoPlugin } from "./videoPlugin";
 
 export const customPlugins = [
     createFontColorPlugin(),
     createSoftBreakPlugin(),
     createExitBreakPlugin(),
+    createUploadPlugin(),
+    videoPlugin,
     createListPlugin(listPluginOptions),
     createUUIBoldPlugin,
     createUUIItalicPlugin,
     createUUIUnderlinePlugin,
     createUUICodePlugin,
+    createMediaEmbedPlugin(),
     createImagePlugin({
         component: ImageUI,
     }),

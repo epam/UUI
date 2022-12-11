@@ -19,6 +19,7 @@ import {
     PlateEditor,
     HeadingToolbar,
     setSelection,
+    getSelectionText
 } from '@udecode/plate';
 
 import { ReactComponent as UnorderedList } from "../icons/bullet-list.svg";
@@ -27,8 +28,11 @@ import { ReactComponent as LinkIcon } from "../icons/link.svg";
 
 import { ReactComponent as HeadlinePickerIcon } from "../icons/heading.svg";
 import { ReactComponent as ImageIcon } from "../icons/image.svg";
+import { ReactComponent as VideoIcon } from "../icons/video.svg";
 import { ReactComponent as SuperScriptIcon } from "../icons/super-script.svg";
 import { ReactComponent as ColorIcon } from "../icons/text-color-normal.svg";
+
+import { OndemandVideo } from '@styled-icons/material/OndemandVideo';
 
 import { ToolbarButton as BoldButton } from '../plugins/customBold';
 import { ToolbarButton as ItalicButton } from '../plugins/customItalic';
@@ -42,6 +46,7 @@ import { HeaderBarToolbar } from "./HeaderBar";
 import { ImageToolbarButton, InlineToolbarButton } from "./imagePlugin";
 import { ToolbarButton } from "./linkPlugin";
 import { ToDoListToolbarButton } from "./toDoListPlugin";
+import { MediaEmbedToolbarButton } from "./videoPlugin";
 
 import { Toolbar } from "../../implementation/Toolbar";
 import { Sidebar } from "../../implementation/Sidebar";
@@ -50,7 +55,7 @@ export const MarkBalloonToolbar = () => {
     const editorRef = usePlateEditorRef();
 
     return (
-        <Toolbar editor={ editorRef } plugins={ [] }>
+        <Toolbar isImage={ false } editor={ editorRef } plugins={ [] }>
             <BoldButton editor={ editorRef } />
             <ItalicButton editor={ editorRef }/>
             <UnderlineButton editor={ editorRef }/>
@@ -91,9 +96,9 @@ export const ImageBalloonToolbar = () => {
     const editor = usePlateEditorState(useEventPlateId());
 
     return (
-        <CustomBalloonToolbar editor={ editor } plugins={ [] }>
+        <Toolbar isImage={ true } editor={ editor } plugins={ [] }>
             <InlineToolbarButton editor={ editor } />
-        </CustomBalloonToolbar>
+        </Toolbar>
     );
 };
 
@@ -166,11 +171,13 @@ const BlockToolbarButtons = () => {
                 /> }
             />
             <ImageToolbarButton
+                isDisabled={ !!getSelectionText(editorRef) }
                 id={ editorRef?.id }
                 editorRef={ editorRef }
                 pluginKey={ getPluginType(editorRef, 'image') }
                 icon={ <Button
                     icon={ ImageIcon }
+                    isDisabled={ !!getSelectionText(editorRef) }
                     cx={ cx(
                         css.toolbarButton,
                         // Because iconColor comes undefined
@@ -178,6 +185,24 @@ const BlockToolbarButtons = () => {
                         css[!!editorRef?.selection && isMarkActive(editorRef, 'uui-richTextEditor-italic'!) ? 'gray90' : 'gray80'],
                     ) }
                 /> }
+            />
+            <MediaEmbedToolbarButton
+                isDisabled={ !!getSelectionText(editorRef) }
+                id={ editorRef?.id }
+                editorRef={ editorRef }
+                pluginKey={ getPluginType(editorRef, 'iframe') }
+                icon={
+                    <Button
+                        icon={ VideoIcon }
+                        isDisabled={ !!getSelectionText(editorRef) }
+                        cx={ cx(
+                            css.toolbarButton,
+                            // Because iconColor comes undefined
+                            css['color-' + undefined],
+                            css[!!editorRef?.selection && isMarkActive(editorRef, 'uui-richTextEditor-italic'!) ? 'gray90' : 'gray80'],
+                        ) }
+                    />
+                }
             />
         </>
     );

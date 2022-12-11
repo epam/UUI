@@ -12,7 +12,7 @@ import {
     isEditorFocused,
     PlateEventProvider,
     TRenderElementProps,
-    PlateProvider,
+    TEditableProps,
     focusEditor,
 } from '@udecode/plate';
 
@@ -41,13 +41,26 @@ const plugins = createPlugins(customPlugins, {
 let id = Date.now();
 
 export function SlateEditor(props: any) {
+    const {
+        spellCheck,
+        autoFocus,
+        isReadonly,
+        placeholder,
+    } = props;
     const currentId = String(id++);
     const editor = usePlateEditorState();
     const isFocused = isEditorFocused(editor);
 
+    const editableProps: TEditableProps = {
+        spellCheck,
+        autoFocus,
+        readOnly: isReadonly,
+        placeholder,
+    };
+
     const onChange = (value: any) => {
-        props?.onValueChange(value);
-        focusEditor(editor);
+        // props?.onValueChange(value);
+        // focusEditor(editor);
     };
 
     const renderElement = (props: TRenderElementProps): JSX.Element => {
@@ -55,11 +68,12 @@ export function SlateEditor(props: any) {
 
         return <p { ...attributes }>{ children }</p>;
     };
-
+        console.log((props?.value ? { initialValue: migrateSchema(props.value) } : {}));
     const renderEditor = () => (
         <DndProvider backend={ HTML5Backend }>
             <Plate
-                // onChange={ onChange }
+                 onChange={ onChange }
+                editableProps={ editableProps }
                 renderElement={ renderElement }
                 id={ currentId }
                 plugins={ plugins }
@@ -87,7 +101,7 @@ export function SlateEditor(props: any) {
                 style.typographyPromo,
                 props.fontSize == '16' ? style.typography16 : style.typography14,
             ) }
-            style={ { minHeight: props.minHeight || 350, padding: '0 24px', overflow: 'hidden' } }
+            style={ { minHeight: props.minHeight || 350, padding: '0 24px' } }
             { ...props.rawProps }
         >
             { props.scrollbars

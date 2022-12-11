@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import css from "./Sidebar.scss";
 import { isBlock, usePlateEditorState } from '@udecode/plate';
-import flatten from "lodash.flatten";
 import cx from "classnames";
+
+import css from "./Sidebar.scss";
 
 interface SidebarProps {
     isReadonly: boolean;

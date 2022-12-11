@@ -2,13 +2,14 @@ import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
 import { usePlateEditorState, isEditorFocused, usePlatePlugins } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
-import { isTextSelected } from '../helpers';
+import { isImageSelected, isTextSelected } from '../helpers';
 import * as css from './Toolbar.scss';
 
 interface ToolbarProps {
     editor: any;
     plugins: any;
     children: any;
+    isImage: boolean;
 }
 
 export function Toolbar(props: ToolbarProps): any {
@@ -30,13 +31,13 @@ export function Toolbar(props: ToolbarProps): any {
 
     return (
         <Portal>
-            { isTextSelected(editor, inFocus) && (
+            { (props.isImage ? isImageSelected(editor) : isTextSelected(editor, inFocus)) && (
                 <Popper
                     referenceElement={ virtualReferenceElement() }
                     placement='top'
                     modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
                 >
-                    { popperProps => (
+                    { popperProps => console.log(popperProps) ||  (
                         <div
                             onMouseDown={ e => e.preventDefault() }
                             className={ css.container }

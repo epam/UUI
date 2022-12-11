@@ -21,7 +21,7 @@ import {
     withImageUpload,
     ELEMENT_IMAGE,
 } from '@udecode/plate';
-import { useUuiContext } from "@epam/uui-core";
+import { useUuiContext, uuiSkin } from "@epam/uui-core";
 import { AddImageModal } from "../implementation/AddImageModal";
 
 import { ReactComponent as AlignLeft } from '../icons/align-left.svg';
@@ -36,6 +36,7 @@ import { isPluginActive } from "../../helpers";
 export const ImageUI = <V extends Value = Value, N extends TText = EText<V>>(
     props: any,
 ) => {
+    const { Spinner } = uuiSkin;
     const { attributes, children, element, editor } = props;
     const ref = useRef(null);
     let style: any = {};
@@ -55,6 +56,10 @@ export const ImageUI = <V extends Value = Value, N extends TText = EText<V>>(
         element.width =  ref?.current?.clientWidth;
     } else if (!editor?.marks?.FULL_WITH_IMAGE && element.originalWidth) {
         element.width = element.originalWidth;
+    }
+
+    if(element?.mark === 'loader') {
+        return <Spinner { ...props } cx={ css.spinner }/>;
     }
 
     return (
@@ -217,6 +222,7 @@ export const InlineToolbarButton = ({ editor }: {editor: PlateEditor}) => {
 export const ImageToolbarButton = ({
    id,
    getImageUrl,
+    isDisabled,
    ...props
 }: ImageToolbarButtonProps) => {
     const editor = usePlateEditorRef(useEventPlateId(id));
@@ -234,8 +240,9 @@ export const ImageToolbarButton = ({
     return (
         <>
             <ToolbarButton
+                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
                 onMouseDown={ async (event) => {
-                    if (!editor) return;
+                    if (!editor || isDisabled) return;
 
                     event.preventDefault();
 

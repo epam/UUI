@@ -23,11 +23,13 @@ const migrateTextNode = (oldNode: any) => {
 };
 
 const migrateElementNode = (node: any) => {
+    const mediaTypes = ['image', 'iframe'];
+
     return {
         data: node.data ?? {},
         type: node.type,
-        ...(node.type === 'image' ? { url: node.data.src } : {}),
-        ...(node.type === 'image' ? node.data.imageSize || {} : {}),
+        ...(mediaTypes.includes(node.type) ? { url: node.data?.src } : {}),
+        ...(mediaTypes.includes(node.type) ? node.data?.imageSize || {} : {}),
         ...(node?.data?.url ? { url: node.data.url } : {}),
         children: node.nodes?.map(migrateNode).flat() ?? [],
     };
