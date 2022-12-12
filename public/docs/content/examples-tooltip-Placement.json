@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "12 placement options available.",
+            "text": "12 placement options available. If tooltip cannot be shown based on available space on needed direction (browser window ends physically), it should be shown directed to free space.",
             "marks": []
           }
         ]

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Tooltip } from '@epam/promo';
 import { Placement } from '@popperjs/core';
-import * as css from './Placement.example.scss'
+import css from './PlacementExample.scss';
 
 interface IButton {
     name: string;
@@ -22,15 +22,15 @@ export default function PlacementTooltipExample() {
         {name: 'BL', placement: "bottom-start"},
         {name: 'Bottom', placement: "bottom"},
         {name: 'BR', placement: "bottom-end"},
-    ]
+    ];
 
     return (
-        <div className={css.placementContainer}>
-            {buttonList.map((button) => (
-                <Tooltip content='Tooltip message' placement={button.placement} >
-                    <Button caption={button.name} fill='white' color='gray50' onClick={ () => null } cx={css[button.placement]} />
+        <div className={ css.placementContainer }>
+            { buttonList.map((button) => (
+                <Tooltip content='Tooltip message' placement={ button.placement } >
+                    <Button caption={ button.name } fill='white' color='gray50' onClick={ () => null } cx={ css[button.placement] } />
                 </Tooltip>
-            ))}
+            )) }
         </div>
     );
 }
