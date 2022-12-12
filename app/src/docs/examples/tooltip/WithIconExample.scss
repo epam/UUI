@@ -1,0 +1,20 @@
+@use '~@epam/promo/assets/styles/colors.scss' as *;
+
+.container {
+  padding: 6px 0 6px 3px;
+
+    .header {
+      padding-top: 0;
+      padding-bottom: 3px;
+    }
+
+    .content {
+      padding: 0;
+    }
+}
+
+.text {
+  color: $gray60;
+  border-bottom: 1px dashed $gray60;
+  padding: 0;
+}

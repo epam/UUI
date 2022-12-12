@@ -31,12 +31,6 @@ export class TooltipDoc extends BaseDocsBlock {
                     path='./examples/tooltip/Placement.example.tsx'
                 />
 
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./examples/tooltip/Basic.example.tsx'
-                />
-
                 <DocExample
                     title='Custom markup'
                     path='./examples/tooltip/CustomMarkup.example.tsx'
@@ -46,6 +40,12 @@ export class TooltipDoc extends BaseDocsBlock {
                     title='Trigger configuration'
                     path='./examples/tooltip/TriggerConfiguration.example.tsx'
                 />
+                { this.renderSectionTitle('Examples') }
+                <DocExample
+                    title='Tooltip with icon'
+                    path='./examples/tooltip/WithIcon.example.tsx'
+                />
+
             </>
         );
     }
