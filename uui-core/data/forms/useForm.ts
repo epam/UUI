@@ -71,7 +71,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             return mergeValidation(validationState, serverValidation);
         },
         getMetadata: () => props.getMetadata ? props.getMetadata(formState.current.form) : {},
-    }), []);
+    }), [props.getMetadata]);
 
     useEffect(() => {
         const unsavedChanges = getUnsavedChanges();
