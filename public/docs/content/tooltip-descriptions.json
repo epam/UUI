@@ -15,29 +15,6 @@
             "marks": []
           }
         ]
-      },
-      {
-        "object": "block",
-        "type": "note-warning",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Note",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ": Make sure your target component (e.g. Button) works correctly with refs. This is vital, since the Tooltip component exposes its first child ref, so if you don't provide a ref to a DOM element of your target component, the Tooltip will not be able to work as expected.",
-            "marks": []
-          }
-        ]
       }
     ]
   }
