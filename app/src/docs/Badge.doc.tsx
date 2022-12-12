@@ -34,12 +34,12 @@ export class BadgeDoc extends BaseDocsBlock {
                 />
                 { this.renderSectionTitle('Examples') }
                 <DocExample
-                    title='Basic'
-                    path='./examples/badge/Basic.example.tsx'
+                    title='Attributes'
+                    path='./examples/badge/Attributes.example.tsx'
                 />
                 <DocExample
-                    title='Advanced'
-                    path='./examples/badge/Advanced.example.tsx'
+                    title='Indicator mode'
+                    path='./examples/badge/Indicator.example.tsx'
                 />
             </>
         );

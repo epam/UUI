@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Badge, Dropdown, DropdownMenuButton, FlexCell, FlexRow, Panel, Text } from '@epam/promo';
 import { ReactComponent as mediaIcon } from '@epam/assets/icons/common/media-play-fill-18.svg';
 import { ReactComponent as doneIcon } from '@epam/assets/icons/common/notification-done-24.svg';
-import { ReactComponent as closeIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { DropdownBodyProps } from '@epam/uui-components';
 import css from './TypesExample.scss';
@@ -21,7 +20,7 @@ export default function TypesExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <Panel background='white' shadow={ true }>
+            <Panel background='white' shadow>
                 { dropdownMenuItems.map((item) => (
                     <DropdownMenuButton key={ item.id } caption={ item.caption } onClick={ () => {
                         handleDropdown(item.id);
@@ -44,14 +43,13 @@ export default function TypesExample() {
                     <Text fontSize="14">View statuses</Text>
                 </FlexRow>
                 <FlexRow spacing='18'>
-                    <Badge icon={ closeIcon } iconPosition='right' color='blue' fill='semitransparent' caption='Java'
-                        onIconClick={ () => {} } />
+                    <Badge color='blue' fill='semitransparent' caption='Java' onClear={ () => {} } />
                     <Text fontSize="14">Filter chips</Text>
                 </FlexRow>
             </Panel>
             <Panel style={ {rowGap: '18px'} }>
                 <FlexRow spacing='18'>
-                    <Badge count={ 25 } color='red' fill='solid' caption='Rejected' />
+                    <Badge count={ 25 } color='red' fill='solid' caption='Rejected' onClick={ () => {} } />
                     <Text fontSize="14">Quick filters selection with informer</Text>
                 </FlexRow>
                 <FlexRow spacing='18'>
@@ -68,7 +66,7 @@ export default function TypesExample() {
                 </FlexRow>
                 <FlexRow spacing='18'>
                     <Badge color='gray30' fill='semitransparent' caption='Projects' />
-                    <Text fontSize="14">Simple attribute or label </Text>
+                    <Text fontSize="14">Simple attribute or label</Text>
                 </FlexRow>
             </Panel>
         </>
