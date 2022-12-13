@@ -40,6 +40,11 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         isInSaveMode: false,
     });
 
+    const propsRef = useRef(props);
+    propsRef.current = props;
+
+    const getMetadata = (value: T) => propsRef.current.getMetadata ? propsRef.current.getMetadata(value) : {};
+
     const prevFormValue = useRef<T>(props.value);
 
     const formState = useRef(initialForm.current);
@@ -70,7 +75,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             const serverValidation = validateServerErrorState(form, lastSentForm, serverValidationState);
             return mergeValidation(validationState, serverValidation);
         },
-        getMetadata: () => props.getMetadata ? props.getMetadata(formState.current.form) : {},
+        getMetadata: () => getMetadata(formState.current.form),
     }), []);
 
     useEffect(() => {
@@ -158,7 +163,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
 
     const updateValidationStates = (state: FormState<T>) => {
         const valueToValidate = state.form;
-        const metadata = props.getMetadata ? props.getMetadata(valueToValidate) : {};
+        const metadata = getMetadata(valueToValidate);
         const isInSaveMode = state.isInSaveMode;
         const validationMode = isInSaveMode || !props.validationOn ? "save" : props.validationOn;
         const validationState = uuiValidate(valueToValidate, metadata, initialForm.current.form, validationMode);
@@ -179,16 +184,16 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             newState = updateValidationStates(newState);
             if (!newState.validationState.isInvalid) {
                 newState.isInProgress = true;
-                savePromise = props.onSave(formState.current.form)
+                savePromise = propsRef.current.onSave(formState.current.form)
                     .then((response) => handleSaveResponse(response, isSavedBeforeLeave))
-                    .catch(err => props.onError?.(err));
+                    .catch(err => propsRef.current.onError?.(err));
             } else {
                 savePromise = Promise.reject();
             }
             return newState;
         });
         return savePromise;
-    }, [props.onSave]);
+    }, []);
 
     const handleSaveResponse = (response: FormSaveResponse<T> | void, isSavedBeforeLeave?: boolean) => {
         const newFormValue = response && response.form || formState.current.form;
@@ -211,8 +216,8 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         resetForm(newState);
         removeUnsavedChanges();
 
-        if (props.onSuccess && response) {
-            props.onSuccess(response.form, isSavedBeforeLeave);
+        if (propsRef.current.onSuccess && response) {
+            propsRef.current.onSuccess(response.form, isSavedBeforeLeave);
         }
     };
 
@@ -254,7 +259,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
 
     const validate = useCallback(() => {
         updateFormState(currentState => updateValidationStates(currentState));
-    }, [props.getMetadata]);
+    }, []);
 
     const handleRevert = useCallback(() => {
         resetForm(initialForm.current);
