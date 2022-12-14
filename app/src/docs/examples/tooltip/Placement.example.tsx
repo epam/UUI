@@ -27,7 +27,7 @@ export default function PlacementTooltipExample() {
     return (
         <div className={ css.placementContainer }>
             { buttonList.map((button) => (
-                <Tooltip content='Tooltip message' placement={ button.placement } >
+                <Tooltip key={ button.name } content='Tooltip message' placement={ button.placement } >
                     <Button caption={ button.name } fill='white' color='gray50' onClick={ () => null } cx={ css[button.placement] } />
                 </Tooltip>
             )) }

@@ -34,4 +34,7 @@ export interface TooltipCoreProps extends IHasCX, IHasChildren {
 
     /** Max width of tooltip */
     maxWidth?: string;
+
+    /** Set time delay for close tooltip */
+    delay?: number;
 }

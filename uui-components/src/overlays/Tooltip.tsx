@@ -19,9 +19,25 @@ export function Tooltip(props: TooltipProps) {
     const prevNode = React.useRef<HTMLElement>(node.current);
     const prevProps = React.useRef<TooltipProps>(props);
     const [isOpen, setOpen] = React.useState<boolean>(false);
+    const timeId = React.useRef<NodeJS.Timeout | null>(null);
 
-    const mouseEnterHandler = (e: MouseEvent) => setOpen(true);
-    const mouseLeaveHandler = (e: MouseEvent) => setOpen(false);
+    const mouseEnterHandler = (e: MouseEvent) => {
+        if (props.delay) {
+            timeId.current = setTimeout(() => {
+                setOpen(true);
+            }, props.delay * 1000);
+        } else {
+            setOpen(true);
+        }
+    };
+    const mouseLeaveHandler = (e: MouseEvent) => {
+        if (props.delay) {
+            clearTimeout(timeId.current);
+            timeId.current = null;
+        }
+
+        setOpen(false);
+    };
     const mouseUpHandler = (e: Event) => setOpen(false);
     const mouseDownHandler = (e: MouseEvent) => setOpen(!isOpen);
     const mouseClickHandler = (e: MouseEvent) => setOpen((value) => closest((e.target as HTMLElement), node.current) ? !value : false);
