@@ -12,4 +12,4 @@ interface PersonsTableState extends DataTableState {
 
 type ILocalStoragePresets = (Omit<ITablePreset, "isActive">)[];
 
-export { PersonTableRecord, PersonTableFilter, PersonsTableState, ILocalStoragePresets };
+export type { PersonTableRecord, PersonTableFilter, PersonsTableState, ILocalStoragePresets };
