@@ -6,10 +6,11 @@ const cors = require("cors");
 const fileUpload = require('express-fileupload');
 const api = require('./api');
 const fileUploadApi = require('./api/fileUpload');
+const { isDevServer } = require("./utils/envUtils");
 
 const app = express();
 
-!process.env['WEBPACK_DEV_SERVER'] && app.use(logger("dev"));
+!isDevServer() && app.use(logger("dev"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -44,7 +45,7 @@ app.use("/static/uploads", express.static(path.resolve(__dirname, "../public/upl
 app.use('/', fileUploadApi)
 app.use('/api', api);
 
-if(!process.env['WEBPACK_DEV_SERVER']) {
+if(!isDevServer()) {
     app.get("*", function response(req, res) {
         res.sendFile(path.join(__dirname, "../app/build/", "index.html"));
     });

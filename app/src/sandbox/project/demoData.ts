@@ -1,4 +1,4 @@
-import { getOrderBetween } from "uui-core";
+import { getOrderBetween } from "@epam/uui-core";
 import { Task, Resource } from "./types";
 
 const tasks: Partial<Task>[] = [

@@ -27,5 +27,5 @@ export interface DeleteTaskCallback {
 
 export interface ColumnsProps {
     insertTask: InsertTaskCallback;
-    deleteTask: DeleteTaskCallback;;
+    deleteTask: DeleteTaskCallback;
 }
