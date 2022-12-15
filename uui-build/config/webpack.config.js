@@ -429,7 +429,7 @@ function getLocalIdent(
 
                 }),
                 {
-                    loader: 'sass-loader',
+                    loader: require.resolve('sass-loader'),
                 }
             ],
         },
