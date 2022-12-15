@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
 import { Button, Text, FlexRow, DropdownContainer, FlexCell } from '@epam/promo';
-import * as css from './HandleStateExample.scss';
+import css from './HandleStateExample.scss';
 import { Avatar, IDropdownToggler } from '@epam/uui';
 
 export default function CloseOpenDelayModifiersExample() {
@@ -23,147 +23,35 @@ export default function CloseOpenDelayModifiersExample() {
             </DropdownContainer>
         );
     };
+    const DropdownTextRow = () => (
+        <FlexRow vPadding='12' spacing='12' >
+                <Dropdown
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
+                    openOnHover={ true }
+                    openDelay={ 500 }
+                    closeOnMouseLeave='toggler'
+                />
+                <Dropdown
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
+                    openOnHover={ true }
+                    openDelay={ 500 }
+                    closeOnMouseLeave='toggler'
+                />
+                <Dropdown
+                    renderBody={ (props) => renderDropdownBody(props) }
+                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
+                    openOnHover={ true }
+                    openDelay={ 500 }
+                    closeOnMouseLeave='toggler'
+                />
+            </FlexRow>
+    );
 
     return (
         <div>
-            <FlexRow vPadding='12' spacing='12' >
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-            </FlexRow>
-            <FlexRow vPadding='12' spacing='12' >
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-            </FlexRow>
-            <FlexRow vPadding='12' spacing='12' >
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-            </FlexRow>
-            <FlexRow vPadding='12' spacing='12' >
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-            </FlexRow>
-            <FlexRow vPadding='12' spacing='12' >
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-            </FlexRow>
-            <FlexRow vPadding='12' spacing='12' >
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-                <Dropdown
-                    renderBody={ (props) => renderDropdownBody(props) }
-                    renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (open delay)" { ...props } /> }
-                    openOnHover={ true }
-                    openDelay={ 500 }
-                    closeOnMouseLeave='toggler'
-                />
-            </FlexRow>
+            { Array(6).fill(null).map((e, index) => <DropdownTextRow key={ index }/>) }
         </div>
     );
 }

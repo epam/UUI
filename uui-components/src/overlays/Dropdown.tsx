@@ -9,7 +9,6 @@ export interface DropdownState {
     opened: boolean;
     bodyBoundingRect: { y: number | null; x: number | null, width: number | null, height: number | null };
     closeDropdownTimerId: NodeJS.Timeout;
-    openDropdownTimerId: NodeJS.Timeout;
 }
 
 export interface DropdownBodyProps extends IDropdownBodyProps {}
@@ -61,12 +60,12 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     static contextType = UuiContext;
     public context: UuiContexts;
     private layer: LayoutLayer;
+    private openDropdownTimerId: NodeJS.Timeout = null;
 
     state: DropdownState = {
         opened: this.props.value || false,
         bodyBoundingRect: { y: null, x: null, height: null, width: null },
         closeDropdownTimerId: null,
-        openDropdownTimerId: null,
     };
 
     constructor(props: DropdownProps) {
@@ -135,12 +134,12 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private handleMouseLeave = (e: MouseEvent) => {
-        if (this.props.openDelay && !this.props.closeDelay) {
+        this.clearOpenDropdownTimer();
+        if (!this.props.closeDelay) {
             this.handleOpenedChange(false);
-            this.clearOpenDropdownTimer();
-            return;
+        } else {
+            this.state.opened && this.setCloseDropdownTimer();
         }
-        this.setCloseDropdownTimer();
     }
 
     isClientInArea(e: MouseEvent) {
@@ -153,13 +152,10 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     setOpenDropdownTimer() {
-        this.setState({
-            openDropdownTimerId: setTimeout(() => {
-                this.handleOpenedChange(true);
-                this.clearOpenDropdownTimer();
-                debugger;
-            }, this.props.openDelay || 0),
-        });
+        this.openDropdownTimerId = setTimeout(() => {
+            this.handleOpenedChange(true);
+            this.clearOpenDropdownTimer();
+        }, this.props.openDelay || 0);
     }
 
     setCloseDropdownTimer() {
@@ -172,9 +168,9 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     clearOpenDropdownTimer() {
-        if (this.state.openDropdownTimerId) {
-            clearTimeout(this.state.openDropdownTimerId);
-            this.setState({ openDropdownTimerId: null });
+        if (this.openDropdownTimerId) {
+            clearTimeout(this.openDropdownTimerId);
+            this.openDropdownTimerId = null;
         }
     }
 
