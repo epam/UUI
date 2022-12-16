@@ -27,6 +27,11 @@ export class DropdownDoc extends BaseDocsBlock {
                 />
 
                 <DocExample
+                    title='Dropdown Open/Close modifiers with open delay'
+                    path='./examples/dropdown/CloseOpenDelayModifiers.example.tsx'
+                />
+
+                <DocExample
                     title='Handle dropdown state by yourself'
                     path='./examples/dropdown/HandleStateByYourself.example.tsx'
                 />
