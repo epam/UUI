@@ -4,17 +4,23 @@
   "description": "EPAM Unified UI landing",
   "author": "EPAM",
   "license": "MIT",
-  "main": "index.js",
-  "typings": "index.d.ts",
   "private": true,
   "scripts": {
-    "start": "node ../uui-build/scripts/start",
-    "build": "node ../uui-build/scripts/build",
-    "build-dev": "node ../uui-build/scripts/build-dev",
-    "server": "node ../server/app.js"
+    "start": "craco start",
+    "build": "craco build",
+    "server": "node ../server/app.js",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
+  },
+  "cracoConfig": "./.config/craco.config.js",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "dependencies": {
     "@epam/assets": "4.9.1",
+    "@epam/draft-rte": "4.9.1",
     "@epam/internal": "0.0.1",
     "@epam/loveship": "4.9.1",
     "@epam/promo": "4.9.1",
@@ -39,14 +45,15 @@
     "prop-types": "15.7.2",
     "qhistory": "1.0.3",
     "query-string": "6.13.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-imask": "6.0.7",
     "react-markdown": "4.3.1",
     "react-measure": "2.5.2",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
-    "slate": "0.47.9"
+    "slate": "0.47.9",
+    "path-browserify": "1.0.1"
   },
   "browserslist": {
     "production": [
@@ -68,7 +75,7 @@
   "gitHead": "a46206079e94ed85069ae90a59cc4ba48b9bc9eb",
   "devDependencies": {
     "@types/amplitude-js": "^8.0.1",
-    "@types/history": "4.7.9",
+    "@types/history": "4.7.11",
     "@types/jest": "25.2.3",
     "@types/node": "16.18.4",
     "@types/prismjs": "1.16.1",
@@ -76,8 +83,14 @@
     "@types/react-dom": "17.0.3",
     "@types/react-router": "5.1.7",
     "@types/react-router-dom": "5.1.5",
-    "@types/webpack-env": "1.16.2",
+    "@types/webpack-env": "1.18.0",
     "typescript": "4.9.3",
-    "webpack-bundle-analyzer": "^4.4.2"
+    "source-map-explorer": "2.5.3",
+    "@craco/craco": "7.0.0",
+    "@svgr/webpack": "4.3.3",
+    "file-loader": "4.3.0",
+    "imports-loader": "4.0.1",
+    "escape-string-regexp": "1.0.5",
+    "react-scripts": "5.0.1"
   }
 }
