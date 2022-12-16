@@ -6,8 +6,8 @@ import { UUI4, UUI3 } from '../common';
 import { items, DocItem } from './structure';
 import { getQuery } from '../helpers';
 import { codesandboxService } from '../data/codesandbox/service';
-import { TreeListItem } from 'uui-components';
-import { DataRowProps } from 'uui-core';
+import { TreeListItem } from '@epam/uui-components';
+import { DataRowProps } from '@epam/uui-core';
 
 type DocsQuery = {
     id: string,
