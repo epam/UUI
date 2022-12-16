@@ -1,7 +1,7 @@
 // import * as css from './DatePicker.scss';
-import * as rangeCss from './RangeDatePickerBody.scss';
+import rangeCss from './RangeDatePickerBody.scss';
 // import * as calendarCss from '@epam/uui';
-import * as calendarPresetsCss from './CalendarPresets.scss';
+import calendarPresetsCss from './CalendarPresets.scss';
 import { RangeDatePickerBody as uuiRangeDatePickerBody, RangeDatePickerValue, RangeDatePickerBodyProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ReactComponent as ArrowIcon } from './../icons/folding-arrow-24.svg';
