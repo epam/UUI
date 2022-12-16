@@ -1,6 +1,6 @@
 import { FlexRow, Panel } from '@epam/loveship';
 import React, { useState } from 'react';
-import { RichTextEditor, ToolbarButton } from '../../../../draft-rte';
+import { RichTextEditor, ToolbarButton } from '@epam/draft-rte';
 import css from './DraftRTEDemo.scss';
 
 export const DraftRTEDemo = (props: any) => {
