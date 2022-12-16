@@ -6,7 +6,7 @@ import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
 import { getFilters } from "./filters";
 import { personColumns } from "./columns";
-import { FlexCell } from "uui-components";
+import { FlexCell } from "@epam/uui-components";
 
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);

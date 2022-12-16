@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const { isDevServer } = require("../utils/envUtils");
 
 router.post('/get-doc-content', (req, res) => {
     const docContentPath = path.join(__dirname, '../../', 'public/docs/content/', `${req.body.name}.json`);
@@ -21,7 +22,7 @@ router.post('/get-doc-content', (req, res) => {
 })
 
 router.post('/save-doc-content', (req, res) => {
-    if (process.env.DEV !== 'TRUE') {
+    if (!isDevServer()) {
         return res.sendStatus(403);
     }
     const docContentPath = path.join(__dirname, '../../', 'public/docs/content/', `${req.body.name}.json`);
