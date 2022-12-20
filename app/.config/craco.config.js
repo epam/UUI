@@ -1,6 +1,6 @@
 const {removeRuleByTestAttr, replaceRuleByTestAttr, changeRuleByTestAttr, normSlashes, addRule} = require("./utils/configUtils");
 const { BABEL_INCLUDED_REGEXP, BABEL_EXCLUDED_REGEXP, CSS_URL_ROOT_PATH,
-    LIBS_WITHOUT_SOURCE_MAPS, VFILE_SPECIAL_CASE_REGEX,
+    LIBS_WITHOUT_SOURCE_MAPS, VFILE_SPECIAL_CASE_REGEX, APP_ENTRY_BUILD_FOLDER_OF_DEPS,
 } = require("./constants");
 const SVGRLoader = require.resolve("@svgr/webpack");
 const FileLoader = require.resolve("file-loader");
@@ -11,24 +11,24 @@ const FileLoader = require.resolve("file-loader");
 module.exports = function uuiConfig() {
     return {
         eslint: { enable: false }, // EsLint is disabled as of now, but it would be enabled in the future.
-        webpack: {
-            configure: configureWebpack,
+        webpack: { configure: configureWebpack },
+        devServer: config => {
+            return config;
         },
-        devServer: configureDevServer,
     };
 };
 
-function configureDevServer(config) {
-    return config;
-}
-
-function configureWebpack(config) {
+function configureWebpack(config, { paths }) {
+    if (isUseBuildFolderOfDeps()) {
+        paths.appIndexJs = APP_ENTRY_BUILD_FOLDER_OF_DEPS;
+        config.entry = paths.appIndexJs;
+    }
     // reason: no such use case in UUI.
     removeRuleByTestAttr(config, /\.module\.css$/);
     // reason: .sass files are always modules in UUI
     removeRuleByTestAttr(config, /\.(scss|sass)$/);
     // reason: all .css files are not modules in UUI
-    changeRuleByTestAttr(config, /\.css$/, r => { delete r.exclude; return r; })
+    changeRuleByTestAttr(config, /\.css$/, r => { delete r.exclude; return r; });
 
     /**
      * Reason: bug in vfile package which only reproduced in webpack 5.
@@ -39,8 +39,8 @@ function configureWebpack(config) {
      */
     addRule(config, {
         test: VFILE_SPECIAL_CASE_REGEX,
-        use: [{ loader: require.resolve('imports-loader'), options: { type: 'commonjs', imports: ['single process/browser process'] } }],
-    })
+        use: [{ loader: require.resolve("imports-loader"), options: { type: "commonjs", imports: ["single process/browser process"] } }],
+    });
     /** Use older version of @svgr/webpack as a workaround for https://github.com/facebook/create-react-app/issues/11770
      * Use older version of file-loader as a workaround for https://github.com/gregberge/svgr/issues/367
      * related bug: https://github.com/gregberge/svgr/issues/727
@@ -56,9 +56,13 @@ function configureWebpack(config) {
 
     /**
      * This is Babel for our source files. We need to include sources of all our modules, not only "app/src".
-     * TODO: should be applied only for dev, i.e. the production build should use "./build" folder of modules instead of their sources.
      */
-    changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx)$/, r => Object.assign(r, { include: BABEL_INCLUDED_REGEXP, exclude: BABEL_EXCLUDED_REGEXP }));
+    changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx)$/, r => {
+        const include = isUseBuildFolderOfDeps() ? BABEL_INCLUDED_REGEXP.BUILD_FOLDERS : BABEL_INCLUDED_REGEXP.DEFAULT;
+        const exclude = isUseBuildFolderOfDeps() ? BABEL_EXCLUDED_REGEXP.BUILD_FOLDERS : BABEL_EXCLUDED_REGEXP.DEFAULT;
+        return Object.assign(r, { include, exclude });
+    });
+
     // Fix for the issue when some modules have no source maps. see this discussion for details https://github.com/facebook/create-react-app/discussions/11767
     changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx|css)$/, r =>
         Object.assign(r, { exclude: [ r.exclude, VFILE_SPECIAL_CASE_REGEX, ...LIBS_WITHOUT_SOURCE_MAPS ] }));
@@ -86,5 +90,27 @@ function configureWebpack(config) {
      * we need to get rid of it in the future.
      * */
     config.resolve.alias.path = "path-browserify";
+    if (isUseBuildFolderOfDeps()) {
+        config.resolve.mainFields = ["epam:uui:main", "browser", "module", "main"];
+    }
     return config;
+}
+
+function isUseBuildFolderOfDeps() {
+    /**
+     * TODO: need to change the approach to process "docs". I.e. get rid of "require.context" and use explicit imports instead.
+     * Known places:
+     * app/src/common/docs/ComponentEditor.tsx
+     * app/src/common/docs/DocExample.tsx
+     * epam-assets/icons/index.ts
+     * epam-assets/icons/legacy/index.ts
+     * epam-assets/icons/loaders/index.ts
+     * epam-promo/index.docs.ts
+     * loveship/index.docs.ts
+     * uui/index.docs.ts
+     *
+     * @type {boolean}
+     */
+
+    return !!process.argv.find(a => a === '--use-build-folder-of-deps');
 }
