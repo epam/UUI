@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Any badge color allowed to use as solid and halftone (label, entity status on current page). Halftone, same usecases as forin tables, filters and more.",
+            "text": "UUI supports different badge sizes, according to Badge height. You can change size by passing size prop.",
             "marks": []
           }
         ]
