@@ -23,3 +23,4 @@ export * from './numericInputCalculations';
 export * from './mobile';
 export * from './ssr';
 export * from './batch';
+export * from './forwardRef';

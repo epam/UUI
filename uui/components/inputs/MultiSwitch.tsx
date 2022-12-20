@@ -9,11 +9,11 @@ interface MultiSwitchItem<TValue> extends ButtonProps, ButtonMods {
     id: TValue;
 }
 
-export type MultiSwitchColor = 'primary' | 'secondary';
+export type UuiMultiSwitchColor = 'primary' | 'secondary';
 
 export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     items: MultiSwitchItem<TValue>[];
-    color?: MultiSwitchColor;
+    color?: UuiMultiSwitchColor;
 }
 
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
@@ -35,4 +35,4 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
     );
 }
 
-export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) => JSX.Element;
+export const MultiSwitch = React.forwardRef(MultiSwitchComponent);
