@@ -45,12 +45,6 @@ export class TooltipDoc extends BaseDocsBlock {
                     title='Tooltip with icon'
                     path='./examples/tooltip/WithIcon.example.tsx'
                 />
-
-                <DocExample
-                    title='Tooltip with a link'
-                    path='./examples/tooltip/WithLink.example.tsx'
-                />
-
             </>
         );
     }
