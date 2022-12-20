@@ -3478,6 +3478,11 @@
         "name": "maxWidth",
         "value": "string",
         "comment": "<p>Tooltip max width</p>"
+      },
+      {
+        "name": "delay",
+        "value": "number",
+        "comment": "<p>The delay time in seconds, after which the tooltip will be displayed after hovering over the element. The delay is reset on mouseLeave. Used only for trigger='hover'.</p>"
       }
     ],
     "/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
