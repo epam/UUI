@@ -1,0 +1,43 @@
+:global(.icon-button-color-blue) {
+    --icon-button-icon-color: var(--info-color);
+    --icon-button-icon-color-hover: var(--info-dark-color);
+    --icon-button-icon-color-active: var(--info-darkest-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+:global(.icon-button-color-green) {
+    --icon-button-icon-color: var(--success-color);
+    --icon-button-icon-color-hover: var(--success-dark-color);
+    --icon-button-icon-color-active: var(--success-darkest-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+:global(.icon-button-color-amber) {
+    --icon-button-icon-color: var(--warning-color);
+    --icon-button-icon-color-hover: var(--warning-dark-color);
+    --icon-button-icon-color-active: var(--warning-darkest-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+:global(.icon-button-color-red) {
+    --icon-button-icon-color: var(--error-color);
+    --icon-button-icon-color-hover: var(--error-dark-color);
+    --icon-button-icon-color-active: var(--error-darkest-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+:global(.icon-button-color-gray60) {
+    --icon-button-icon-color: var(--icon-color);
+    --icon-button-icon-color-hover: var(--icon-hover-color);
+    --icon-button-icon-color-active: var(--icon-active-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+:global(.icon-button-color-gray50) {
+    --icon-button-icon-color: var(--secondary-color);
+    --icon-button-icon-color-hover: var(--secondary-dark-color);
+    --icon-button-icon-color-active: var(--secondary-darkest-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-gray30) {
+    --icon-button-icon-color: var(--gray30);
+    --icon-button-icon-color-hover: var(--white);
+    --icon-button-icon-color-active: var(--gray5);
+    --icon-button-icon-color-disabled: var(--gray60);
+}

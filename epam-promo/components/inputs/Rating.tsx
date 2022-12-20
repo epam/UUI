@@ -19,5 +19,9 @@ function applyRatingMods(mods: RatingMods & RatingProps) {
 export const Rating = withMods<RatingProps, RatingMods>(
     uuiRating,
     applyRatingMods,
-    (props) => ({ filledStarIcon: FilledStarIcon, emptyStarIcon:EmptyStarIcon, Tooltip, rawProps:  {...props.rawProps, tabIndex: 0} })
+    (props) => ({
+        filledStarIcon: FilledStarIcon,
+        emptyStarIcon:EmptyStarIcon,
+        Tooltip,
+        rawProps:  {...props.rawProps, tabIndex: 0} }),
 );

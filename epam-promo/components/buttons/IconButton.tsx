@@ -1,23 +1,25 @@
-import { IconButtonBaseProps, IconButton as uuiIconButton } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
-import css from './IconButton.scss';
-import styles from '../../assets/styles/colorvars/buttons/iconButton-colorvars.scss';
 import { allEpamPrimaryColors, EpamPrimaryColor } from '../types';
+import { IconButton as UuiIconButton, UuiIconButtonProps } from "@epam/uui";
+import './IconButton.colorvars.scss';
+import { IconColor } from "../../build";
+import { IconButtonBaseProps } from "@epam/uui-components";
 
-export type IconColor = EpamPrimaryColor | 'gray30' | 'gray50' | 'gray60';
+export type ThemeIconColor = EpamPrimaryColor | 'gray30' | 'gray50' | 'gray60';
 export const allIconColors: IconColor[] = [...allEpamPrimaryColors, 'gray30', 'gray50', 'gray60'];
 
 export interface IconButtonMods {
-    color?: IconColor;
+    color?: ThemeIconColor;
 }
+
+export const applyIconButtonMods = (mods: IconButtonMods) => [
+    'uui-theme-promo',
+    `button-color-${mods.color}` || "gray60",
+];
 
 export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods { }
 
-function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
-    return [
-        css.root,
-        styles['icon-color-' + (mods.color || 'gray60')],
-    ];
-}
-
-export const IconButton = withMods<IconButtonProps, IconButtonMods>(uuiIconButton, applyIconButtonMods);
+export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButtonMods>(
+    UuiIconButton,
+    applyIconButtonMods,
+);
