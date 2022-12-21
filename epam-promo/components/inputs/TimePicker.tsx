@@ -7,7 +7,7 @@ import { DropdownContainer } from '../overlays';
 import { TextInput } from './TextInput';
 import { TimePickerBody } from './TimePickerBody';
 import css from './TimePicker.scss';
-import customParseFormat from "dayjs/plugin/customParseFormat";
+import customParseFormat from "dayjs/plugin/customParseFormat.js";
 dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;

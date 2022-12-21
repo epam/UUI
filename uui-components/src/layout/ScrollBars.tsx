@@ -53,10 +53,13 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useEffect(handleUpdateScroll);
 
-    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) =>
-        props.renderView?.({ style: { ...style, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest }) || (
-        <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />
-    );
+    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) => {
+        const propsRenderView = props.renderView as (p: any) => any;
+        const rv = propsRenderView?.({ style: { ...style, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest });
+        return rv || (
+            <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />
+        );
+    };
 
     return (
         <CustomScrollBars.default
