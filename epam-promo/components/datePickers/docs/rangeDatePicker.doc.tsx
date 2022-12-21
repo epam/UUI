@@ -7,7 +7,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
 import { Button, Text } from '../..';
 import { ReactComponent as Point } from "../../../icons/radio-point.svg";
-import isBetween from 'dayjs/plugin/isBetween';
+import isBetween from 'dayjs/plugin/isBetween.js';
 dayjs.extend(isBetween);
 
 const getCustomDay = (day: Dayjs) => {
