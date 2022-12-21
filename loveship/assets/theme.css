@@ -7,6 +7,48 @@
     --font-mono: 'Roboto Mono', Arial, sans-serif;
     --font-redacted: 'Redacted';
 
+    /* orange */
+    --orange-10: #FFE1BD;
+    --orange-20: #FFD091;
+    --orange-30: #E44E00;
+    --orange-40: #C63100;
+    --orange-50: #991900;
+
+    /* fuchia */
+    --fuchia-10: #FFD7D9;
+    --fuchia-20: #FFA9B3;
+    --fuchia-30: #CD0053;
+    --fuchia-40: #B00052;
+    --fuchia-50: #94004C;
+
+    /* purple */
+    --purple-10: #FBDAF3;
+    --purple-20: #E9A4DF;
+    --purple-30: #8018A0;
+    --purple-40: #680B8F;
+    --purple-50: #550080;
+
+    /* cyan */
+    --cyan-10: #B9FBEC;
+    --cyan-20: #8CF8E0;
+    --cyan-30: #09B9A3;
+    --cyan-40: #009688;
+    --cyan-50: #11736E;
+
+    /* cobalt */
+    --cobalt-10: #DCFAFF;
+    --cobalt-20: #95EAFF;
+    --cobalt-30: #0E74E2;
+    --cobalt-40: #0453C7;
+    --cobalt-50: #003399;
+
+    /* lavanda */
+    --lavanda-10: #F1DEFF;
+    --lavanda-20: #CAB5FC;
+    --lavanda-30: #3F51B5;
+    --lavanda-40: #2E3A9D;
+    --lavanda-50: #191980;
+
     --white: #FFFFFF;
     --night50: #FAFAFC;
     --night100: #F5F6FA;
@@ -449,48 +491,6 @@
 .tooltip-light {
     --tooltip-bg-color: var(--surface-color);
     --tooltip-text-color: var(--text-primary-color);
-}
-.orange {
-    --orange-10: #FFE1BD;
-    --orange-20: #FFD091;
-    --orange-30: #E44E00;
-    --orange-40: #C63100;
-    --orange-50: #991900;
-}
-.fuchia {
-    --fuchia-10: #FFD7D9;
-    --fuchia-20: #FFA9B3;
-    --fuchia-30: #CD0053;
-    --fuchia-40: #B00052;
-    --fuchia-50: #94004C;
-}
-.purple {
-    --purple-10: #FBDAF3;
-    --purple-20: #E9A4DF;
-    --purple-30: #8018A0;
-    --purple-40: #680B8F;
-    --purple-50: #550080;
-}
-.cyan {
-    --cyan-10: #B9FBEC;
-    --cyan-20: #8CF8E0;
-    --cyan-30: #09B9A3;
-    --cyan-40: #009688;
-    --cyan-50: #11736E;
-}
-.cobalt {
-    --cobalt-10: #DCFAFF;
-    --cobalt-20: #95EAFF;
-    --cobalt-30: #0E74E2;
-    --cobalt-40: #0453C7;
-    --cobalt-50: #003399;
-}
-.lavanda {
-    --lavanda-10: #F1DEFF;
-    --lavanda-20: #CAB5FC;
-    --lavanda-30: #3F51B5;
-    --lavanda-40: #2E3A9D;
-    --lavanda-50: #191980;
 }
 .alert-error {
     --alert-text-color: var(--text-primary-color);

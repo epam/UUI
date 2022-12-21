@@ -78,7 +78,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship cobalt fuchia lavanda icon-button-color-undefined"
+            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-undefined"
             href={null}
             onClick={[Function]}
             role="button"
@@ -266,7 +266,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship cobalt fuchia lavanda icon-button-color-undefined"
+                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-undefined"
                       href={null}
                       onClick={[Function]}
                       role="button"
@@ -343,7 +343,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship cobalt fuchia lavanda icon-button-color-undefined"
+                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-undefined"
                       href={null}
                       onClick={[Function]}
                       role="button"

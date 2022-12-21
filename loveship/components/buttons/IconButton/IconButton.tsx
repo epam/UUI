@@ -14,7 +14,6 @@ export type IconButtonProps = UuiIconButtonProps & IconButtonMods;
 
 const applyIconButtonMods = (mods: IconButtonMods) => [
     'uui-theme-loveship',
-    'cobalt fuchia lavanda',
     `icon-button-color-${ mods.color }` || 'night600',
 ];
 
