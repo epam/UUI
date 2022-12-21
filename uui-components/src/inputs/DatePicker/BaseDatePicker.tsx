@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, DatePickerCoreProps } from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-import utc from 'dayjs/plugin/utc';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
+import utc from 'dayjs/plugin/utc.js';
 import { PickerBodyValue, defaultFormat, valueFormat, ViewType, supportedDateFormats } from '../';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
 import { Dropdown, DropdownBodyProps } from '../../';
