@@ -19,7 +19,7 @@ export default function CustomMarkupExample() {
     return (
         <FlexRow>
             <Tooltip maxWidth='340px' trigger='hover' renderContent={ renderCustomMarkup } placement='right' >
-                <Button data-foo={ 123 } caption='Custom tooltip' onClick={ () => null } />
+                <Button data-foo={ 123 } fill='white' caption='Custom tooltip' onClick={ () => null } />
             </Tooltip>
         </FlexRow>
     );
