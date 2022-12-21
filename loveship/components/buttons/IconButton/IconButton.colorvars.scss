@@ -1,0 +1,56 @@
+:global(.icon-button-color-sky) {
+    --icon-button-icon-color: var(--info-color);
+    --icon-button-icon-color-hover: var(--info-dark-color);
+    --icon-button-icon-color-active: var(--info-darkest-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-grass) {
+    --icon-button-icon-color: var(--success-color);
+    --icon-button-icon-color-hover: var(--success-dark-color);
+    --icon-button-icon-color-active: var(--success-darkest-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-sun) {
+    --icon-button-icon-color: var(--warning-color);
+    --icon-button-icon-color-hover: var(--warning-dark-color);
+    --icon-button-icon-color-active: var(--warning-darkest-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-fire) {
+    --icon-button-icon-color: var(--error-color);
+    --icon-button-icon-color-hover: var(--error-dark-color);
+    --icon-button-icon-color-active: var(--error-darkest-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-carbon) {
+    --icon-button-icon-color: var(--icon-color);
+    --icon-button-icon-color-hover: var(--icon-hover-color);
+    --icon-button-icon-color-active: var(--icon-active-color);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-cobalt) {
+    --icon-button-icon-color: var(--cobalt-30);
+    --icon-button-icon-color-hover: var(--cobalt-40);
+    --icon-button-icon-color-active: var(--cobalt-50);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-lavanda) {
+    --icon-button-icon-color: var(--lavanda-30);
+    --icon-button-icon-color-hover: var(--lavanda-40);
+    --icon-button-icon-color-active: var(--lavanda-50);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-fuchsia) {
+    --icon-button-icon-color: var(--fuchia-30);
+    --icon-button-icon-color-hover: var(--fuchia-40);
+    --icon-button-icon-color-active: var(--fuchia-50);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+

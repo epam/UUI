@@ -2,7 +2,7 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { ButtonColor } from '../buttons';
 import * as types from '../types';
-import buttonCss from '../buttons/Button.scss';
+import buttonCss from '../buttons/Button/Button.scss';
 import css from './PageButton.scss';
 import styles from '../../assets/styles/colorvars/buttons/button-colorvars.scss';
 

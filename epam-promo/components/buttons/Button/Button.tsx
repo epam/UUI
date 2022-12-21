@@ -1,6 +1,6 @@
 import { Button as uuiButton, UUIButtonProps, ButtonMode, ButtonMods as UuiButtonMods } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
-import { FillStyle } from '../types';
+import { FillStyle } from '../../types';
 
 
 export type ButtonColor = 'blue' | 'green' | 'red' | 'gray50';

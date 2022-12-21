@@ -3,7 +3,7 @@ import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { EpamAdditionalColor } from '../types';
 import { systemIcons } from '../../icons/icons';
-import buttonCss from '../buttons/Button.scss';
+import buttonCss from '../buttons/Button/Button.scss';
 import styles from '../../assets/styles/colorvars/widgets/badge-colorvars.scss';
 import css from './Badge.scss';
 

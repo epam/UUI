@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { allBorderStyles, allFillStyles, allEpamPrimaryColors } from '../../types';
-import { Button, ButtonMods } from '../Button';
+import { Button, ButtonMods } from '../Button/Button';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import { basicPickerTogglerDoc, DefaultContext, dropdownTogglerDoc, FormContext, iCanRedirectDoc,

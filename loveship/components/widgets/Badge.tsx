@@ -3,7 +3,7 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../icons/icons';
 import * as types from '../../components/types';
 import styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import buttonCss from '../buttons/Button.scss';
+import buttonCss from '../buttons/Button/Button.scss';
 import css from './Badge.scss';
 
 const defaultSize = '18';

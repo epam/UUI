@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton } from '../IconButton';
+import { IconButton } from '../IconButton/IconButton';
 import renderer from 'react-test-renderer';
 import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 

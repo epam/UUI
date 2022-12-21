@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from "react-test-renderer";
-import {IconButton} from '../IconButton';
+import {IconButton} from '../IconButton/IconButton';
 import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe('IconButton', () => {

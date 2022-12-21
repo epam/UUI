@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { allIconColors, IconButton, IconButtonProps } from '../IconButton';
+import { allIconColors, IconButton, IconButtonProps } from '../IconButton/IconButton';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { onClickDoc, isDisabledDoc, iCanRedirectDoc, iconDoc, isInvalidDoc } from '../../../docs';
 import { DefaultContext, FormContext } from '../../../docs';

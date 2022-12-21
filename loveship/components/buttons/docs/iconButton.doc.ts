@@ -1,4 +1,4 @@
-import { IconButton, IconButtonProps } from '../IconButton';
+import { IconButton, IconButtonProps } from '../IconButton/IconButton';
 import { DocBuilder } from '@epam/uui-docs';
 import { onClickDoc, isDisabledDoc, iCanRedirectDoc, colorDoc, iconDoc, isInvalidDoc, DefaultContext, FormContext } from '../../../docs';
 

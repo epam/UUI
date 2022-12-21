@@ -3,7 +3,7 @@ import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import * as types from '../../components/types';
 import styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import buttonCss from '../buttons/Button.scss';
+import buttonCss from '../buttons/Button/Button.scss';
 import css from './Tag.scss';
 
 export type TagSize = '18' | '24' | '30' | '36' | '42' | '48';
