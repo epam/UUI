@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "By passing trigger?: 'click' | 'press' | 'hover' prop, you can configure trigger action for tooltip opening/closing.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

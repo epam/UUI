@@ -40,6 +40,11 @@ export class TooltipDoc extends BaseDocsBlock {
                     title='Trigger configuration'
                     path='./examples/tooltip/TriggerConfiguration.example.tsx'
                 />
+
+                <DocExample
+                    title='Trigger configuration with delay'
+                    path='./examples/tooltip/TriggerConfigurationWithDelay.example.tsx'
+                />
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Tooltip with icon'
