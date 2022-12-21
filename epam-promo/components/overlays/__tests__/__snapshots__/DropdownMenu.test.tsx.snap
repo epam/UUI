@@ -96,7 +96,7 @@ Array [
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled root icon-color-gray60 icon iconAfter"
+          className="container uui-button-box uui-enabled icon-button-color-default root uui-theme-promo icon-button-color-undefined icon iconAfter"
           href={null}
           onClick={[Function]}
           role="button"

@@ -70,7 +70,7 @@ Array [
             tabIndex={0}
           >
             <button
-              className="container uui-button-box uui-enabled root icon-color-gray60 icon iconBefore"
+              className="container uui-button-box uui-enabled icon-button-color-default root uui-theme-promo icon-button-color-undefined icon iconBefore"
               href={null}
               onClick={[Function]}
               role="button"
@@ -100,7 +100,7 @@ Array [
             tabIndex={0}
           >
             <button
-              className="container uui-button-box uui-enabled root icon-color-gray60 icon iconBefore"
+              className="container uui-button-box uui-enabled icon-button-color-default root uui-theme-promo icon-button-color-undefined icon iconBefore"
               href={null}
               onClick={[Function]}
               role="button"

@@ -78,7 +78,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-undefined"
             href={null}
             onClick={[Function]}
             role="button"
@@ -295,7 +295,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-undefined"
             href={null}
             onClick={[Function]}
             role="button"

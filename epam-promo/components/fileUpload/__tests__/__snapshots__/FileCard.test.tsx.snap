@@ -232,7 +232,7 @@ exports[`FileCard should be rendered correctly 3`] = `
       onMouseLeave={[Function]}
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+        className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-undefined"
         href={null}
         onClick={[Function]}
         role="button"

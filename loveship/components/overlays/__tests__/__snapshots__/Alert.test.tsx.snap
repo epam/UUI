@@ -59,7 +59,7 @@ exports[`Alert should be rendered correctly with props 1`] = `
     </div>
   </div>
   <button
-    className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
+    className="container uui-button-box uui-enabled -clickable icon-button-color-night600 root uui-theme-loveship cobalt fuchia lavanda icon-button-color-night600 closeIcon"
     href={null}
     onClick={[Function]}
     role="button"

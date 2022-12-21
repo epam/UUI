@@ -48,7 +48,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-color-gray60 root uui-theme-promo icon-button-color-gray60 closeIcon"
         href={null}
         onClick={[Function]}
         role="button"
@@ -96,7 +96,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-color-gray60 root uui-theme-promo icon-button-color-gray60 closeIcon"
         href={null}
         onClick={[Function]}
         role="button"
@@ -132,7 +132,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-color-gray60 root uui-theme-promo icon-button-color-gray60 closeIcon"
         href={null}
         onClick={[Function]}
         role="button"
@@ -180,7 +180,7 @@ exports[`NotificationCard should be rendered correctly 2`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-color-gray60 root uui-theme-promo icon-button-color-gray60 closeIcon"
         href={null}
         onClick={[Function]}
         role="button"
@@ -228,7 +228,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-color-gray60 root uui-theme-promo icon-button-color-gray60 closeIcon"
         href={null}
         onClick={[Function]}
         role="button"
@@ -276,7 +276,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
       className="closeWrapper"
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+        className="container uui-button-box uui-enabled -clickable icon-button-color-gray60 root uui-theme-promo icon-button-color-gray60 closeIcon"
         href={null}
         onClick={[Function]}
         role="button"
