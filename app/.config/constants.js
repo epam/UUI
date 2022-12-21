@@ -7,8 +7,6 @@ const makeAbsolute = pathStr => path.resolve(UUI_ROOT, pathStr)
 /** Assumption: the cwd is ./app/ folder. */
 const UUI_ROOT = path.resolve(normSlashes('../'));
 
-const APP_ENTRY_BUILD_FOLDER_OF_DEPS = path.resolve(UUI_ROOT, 'app/src/entry.tsx');
-
 const BABEL_INCLUDED_REGEXP = getBabelProcessedFolders({ uuiRoot: UUI_ROOT, isIncluded: true });
 const BABEL_EXCLUDED_REGEXP = getBabelProcessedFolders({ uuiRoot: UUI_ROOT, isIncluded: false });
 

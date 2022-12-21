@@ -1,6 +1,6 @@
 const {removeRuleByTestAttr, replaceRuleByTestAttr, changeRuleByTestAttr, normSlashes, addRule} = require("./utils/configUtils");
 const { BABEL_INCLUDED_REGEXP, BABEL_EXCLUDED_REGEXP, CSS_URL_ROOT_PATH,
-    LIBS_WITHOUT_SOURCE_MAPS, VFILE_SPECIAL_CASE_REGEX, APP_ENTRY_BUILD_FOLDER_OF_DEPS,
+    LIBS_WITHOUT_SOURCE_MAPS, VFILE_SPECIAL_CASE_REGEX,
 } = require("./constants");
 const SVGRLoader = require.resolve("@svgr/webpack");
 const FileLoader = require.resolve("file-loader");
@@ -19,10 +19,6 @@ module.exports = function uuiConfig() {
 };
 
 function configureWebpack(config, { paths }) {
-    if (isUseBuildFolderOfDeps()) {
-        paths.appIndexJs = APP_ENTRY_BUILD_FOLDER_OF_DEPS;
-        config.entry = paths.appIndexJs;
-    }
     // reason: no such use case in UUI.
     removeRuleByTestAttr(config, /\.module\.css$/);
     // reason: .sass files are always modules in UUI
