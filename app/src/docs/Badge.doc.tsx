@@ -38,6 +38,10 @@ export class BadgeDoc extends BaseDocsBlock {
                     path='./examples/badge/Attributes.example.tsx'
                 />
                 <DocExample
+                    title='Dropdown'
+                    path='./examples/badge/Dropdown.example.tsx'
+                />
+                <DocExample
                     title='Indicator mode'
                     path='./examples/badge/Indicator.example.tsx'
                 />
