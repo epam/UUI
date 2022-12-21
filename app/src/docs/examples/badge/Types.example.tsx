@@ -1,36 +1,10 @@
-import React, { useState } from 'react';
-import { Badge, Dropdown, DropdownMenuButton, FlexCell, FlexRow, Panel, Text } from '@epam/promo';
+import React from 'react';
+import { Badge, Dropdown, FlexRow, Panel, Text } from '@epam/promo';
 import { ReactComponent as mediaIcon } from '@epam/assets/icons/common/media-play-fill-18.svg';
 import { ReactComponent as doneIcon } from '@epam/assets/icons/common/notification-done-24.svg';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
-import { DropdownBodyProps } from '@epam/uui-components';
-import css from './TypesExample.scss';
-
-const dropdownMenuItems = [
-    { id: 1, caption: "In Progress"},
-    { id: 2, caption: "To Do"},
-    { id: 3, caption: "Done"},
-];
 
 export default function TypesExample() {
-    const [selectedItem, setSelectedItem] = useState(dropdownMenuItems[0]);
-    const handleDropdown = (id: number) => {
-        setSelectedItem(dropdownMenuItems.filter((item) => item.id === id)[0]);
-    };
-
-    const renderDropdownBody = (props: DropdownBodyProps) => {
-        return (
-            <Panel background='white' shadow>
-                { dropdownMenuItems.map((item) => (
-                    <DropdownMenuButton key={ item.id } caption={ item.caption } onClick={ () => {
-                        handleDropdown(item.id);
-                        props.onClose();
-                    } }/>
-                )) }
-            </Panel>
-        );
-    };
-
     return (
         <>
             <Panel style={ {rowGap: '18px', marginRight: '42px'} }>
@@ -54,11 +28,10 @@ export default function TypesExample() {
                 </FlexRow>
                 <FlexRow spacing='18'>
                     <Dropdown
-                        renderBody={ renderDropdownBody }
+                        renderBody={ () => (<></>) }
                         renderTarget={ (props) =>
                             <Badge { ...props } dropdownIcon={ navigationDownIcon } dropdownIconPosition="right"
-                                color='gray30' fill='semitransparent' caption={ selectedItem.caption }
-                                cx={ css.badgeStyles } />
+                                color='gray30' fill='semitransparent' caption='In Progress' />
                         }
                         placement="bottom-end"
                     />
