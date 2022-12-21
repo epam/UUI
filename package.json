@@ -11,7 +11,7 @@
     "process-icons": "node uui-build/scripts/processIcons.js",
     "start": "cd ./app && yarn start",
     "next:dev": "cd ./next-app && yarn && node ../uui-build/scripts/runNextApp.js && yarn dev",
-    "build": "cd ./app && yarn build --stats",
+    "build": "cd ./app && yarn build",
     "start-server": "cd ./app && yarn server",
     "lint": "npx tslint -p ./tsconfig.json -e node_modules",
     "style-lint": "npx stylelint \"**/*.{scss,less}\"\n",
