@@ -5,6 +5,7 @@
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
+  "epam:uui:main": "build/index.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
@@ -34,7 +35,8 @@
     "lodash.orderby": "4.6.0",
     "lodash.sortby": "4.7.0",
     "lodash.trimend": "4.5.1",
-    "react-popper": "2.2.5"
+    "react-popper": "2.2.5",
+    "query-string": "6.13.1"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "7.0.2",
