@@ -107,6 +107,6 @@ function isUseBuildFolderOfDeps() {
      *
      * @type {boolean}
      */
-
-    return !!process.argv.find(a => a === '--use-build-folder-of-deps');
+    //return !!process.argv.find(a => a === '--use-build-folder-of-deps');
+    return false;
 }
