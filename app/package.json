@@ -11,7 +11,7 @@
     "server": "node ../server/app.js",
     "analyzer": "source-map-explorer 'build/static/**/*.js'"
   },
-  "cracoConfig": "./.config/craco.config.js",
+  "cracoConfig": "./build-config/craco.config.js",
   "eslintConfig": {
     "extends": [
       "react-app",
