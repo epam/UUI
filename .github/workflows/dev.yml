@@ -91,11 +91,26 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
-  deploy:
+  package:
     needs: docker
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04 # Gitversion requires .NET SDK 3.1
 
     steps:
+      - uses: actions/checkout@v2
+        name: Code checkout
+        with:
+          fetch-depth: 0
+
+      # install Gitversion to obtain semver version
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.15
+        with:
+          versionSpec: '5.5.0'
+
+      - name: Version determination
+        id:   gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.15
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v3
@@ -110,21 +125,24 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
-          version: v3.6.0
+          version: v3.8.0
 
-      - name: Preparation helm chart
+      - name: Preparation and Helm chart packaging
         run: |
           export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')
-          export HELM_EXPERIMENTAL_OCI=1
-          echo $tag
-          echo "::set-env name=tag::$tag"
           echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
-          helm version
-          helm chart pull ${{ secrets.HELM_REGISTRY }}
-          helm chart export ${{ secrets.HELM_REGISTRY }} --destination .
+          mkdir helmchart && cd ./helmchart # helm cannot untar file to the repo with the same name as a package. To avoid error we create temp folder
+          helm pull oci://${{ secrets.REGISTRY_URL }}/helm/${{ secrets.HELM_REGISTRY_URL_DEV }} --version ${{ secrets.HELM_REGISTRY_VERSION_DEV }} --untar
+          echo "[INFO] Replace Docker image tag in helm chart..."
+          sed -i -e "s/tag: latest/tag: ${tag}/g" ${{ secrets.HELM_REGISTRY_URL_DEV }}/values.dev.yaml
 
-      - name: Deploy
-        uses: WyriHaximus/github-action-helm3@v2
-        with:
-          exec: helm upgrade --install ${{ secrets.APP_NAME_DEV }} -f ${{ secrets.HELM_VALUES_DEV }} --set image.tag=$tag --atomic ui/ --namespace ${{ secrets.APP_NAME_DEV }}
-          kubeconfig: ${{ secrets.KUBECONFIG_DEV }}
+      - name: Packaging and Uploading Helm Chart
+        run: |
+          cd ./helmchart
+          export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MAJOR.$GITVERSION_PRERELEASENUMBER"
+          echo "[INFO] Replace Helm Chart package version..."
+          sed -i -e "s/version: ${{ secrets.HELM_REGISTRY_VERSION_DEV }}/version: ${helm_tag}/g" ${{ secrets.HELM_REGISTRY_URL_DEV }}/Chart.yaml
+          echo "[INFO] Changing Helm Chart package name..."
+          sed -i -e "s/name: ${{ secrets.HELM_REGISTRY_URL_DEV }}/name: ${{ secrets.APP_NAME_DEV }}/g" ${{ secrets.HELM_REGISTRY_URL_DEV }}/Chart.yaml
+          helm package ${{ secrets.HELM_REGISTRY_URL_DEV }}
+          helm push ${{ secrets.APP_NAME_DEV }}-${helm_tag}.tgz oci://${{ secrets.REGISTRY_URL }}/helm
