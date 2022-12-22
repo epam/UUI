@@ -22,7 +22,7 @@
     "jest-enzyme": "^7.1.2",
     "jest-resolve": "24.9.0",
     "react-app-polyfill": "3.0.0",
-    "babel-preset-react-app": "10.0.1",
+    "babel-preset-react-app": "9.1.2",
     "lodash.defaultsdeep": "4.6.1",
     "lodash.uniqueid": "4.0.1",
     "react-test-renderer": "16.13.1",

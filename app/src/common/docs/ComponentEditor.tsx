@@ -14,7 +14,8 @@ import { Skin } from "./BaseDocsBlock";
 
 declare var require: any;
 
-const requireContext = require.context(`../../../../`, true, /\.doc.(ts|tsx)$/, 'lazy');
+// use more accurate regexp to speed up lookup of docs. in the future we will get rid of "require.context" at all.
+const requireContext = require.context(`../../../../`, true, /[\\/](loveship|epam-promo|uui)[\\/].*\.doc.(ts|tsx)$/, 'lazy');
 
 interface DemoComponentProps<TProps = any> {
     DemoComponent: React.ComponentType<TProps>;

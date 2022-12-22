@@ -7,6 +7,7 @@ const postCssDynamicImport = import("rollup-plugin-postcss-modules");
 const path = require('path')
 //
 const { getExternalDeps, getTsConfigFile } = require("./rollupConfigUtils");
+const { getModuleNameFromModuleRootDir } = require("./../utils/moduleUtils");
 
 module.exports = { getConfig };
 
@@ -14,16 +15,12 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
     const { default: postcss } = await postCssDynamicImport;
     const tsconfig = getTsConfigFile(moduleRootDir);
     const external = getExternalDeps(moduleRootDir);
+    const moduleName = getModuleNameFromModuleRootDir(moduleRootDir)
 
     /** @type {import('rollup').RollupOptions} */
     const config = {
         input: moduleIndexFile,
-        output: [{
-                file: `${moduleRootDir}/build/index.js`,
-                format: "esm",
-                interop: "auto",
-                sourcemap: true,
-            }],
+        output: [{ file: `${moduleRootDir}/build/index.js`, format: "esm", interop: "auto", sourcemap: true }],
         external,
         plugins: [
             nodeResolve({
@@ -43,7 +40,7 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
             }),
             commonjs(),// needed to import commonjs-only modules without "default" export (known examples: draft-js)
             svgr({ ref: true, exportType: "named", jsxRuntime: "classic" }),
-            postcss({ sourceMap: true, modules: true, extract: "styles.css" }),
+            postcss({ sourceMap: true, modules: { hashPrefix: moduleName }, extract: "styles.css" }),
             visualizer({
                 // visualizer - must be the last in the list.
                 projectRoot: moduleRootDir,
@@ -58,11 +55,11 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
     return [config];
 }
 
-
 function onwarn(message) {
     switch (message?.code) {
         case 'CIRCULAR_DEPENDENCY': {
             // skip for now, uncomment to see how many we have.
+            // console.warn(message.message)
             break;
         }
         default: {
