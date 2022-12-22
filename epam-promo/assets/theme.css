@@ -161,7 +161,7 @@
     --input-bg-checked-hover-color: var(--primary-dark-color);
     --input-border-checked-disabled-color: var(--primary-light-color);
     --input-border-color: var(--gray40);
-    --input-bg-disabled-color: var(--input-bg-disabled-color);
+    --input-bg-disabled-color: var(--gray5);
     --input-bg-readonly-color: var(--gray5);
     --input-border-checked-color: var(--primary-color);
     --input-border-checked-hover-color: var(--primary-dark-color);
