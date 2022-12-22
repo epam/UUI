@@ -54,3 +54,39 @@
     --icon-button-icon-color-disabled: var(--icon-disabled-color);
 }
 
+:global(.icon-button-color-white) {
+    --icon-button-icon-color: var(--white);
+    --icon-button-icon-color-hover: var( --white-hover);
+    --icon-button-icon-color-active: var(--white-active);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-night200) {
+    --icon-button-icon-color: var(--night200);
+    --icon-button-icon-color-hover: var( --night200-hover);
+    --icon-button-icon-color-active: var(--night200-active);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-night300) {
+    --icon-button-icon-color: var(--night500);
+    --icon-button-icon-color-hover: var( --night600);
+    --icon-button-icon-color-active: var(--night700);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-night400) {
+    --icon-button-icon-color: var(--night600);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-night500) {
+    --icon-button-icon-color: var(--night700);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+
+:global(.icon-button-color-night600) {
+    --icon-button-icon-color: var(--night800);
+    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+}
+

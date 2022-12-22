@@ -49,7 +49,15 @@
     --lavanda-40: #2E3A9D;
     --lavanda-50: #191980;
 
+    /* white */
     --white: #FFFFFF;
+    --white-hover: #E6E6E6;
+    --white-active: #CCCCCC;
+
+    /* night200 */
+    --night200-hover: #C9CEE4;
+    --night200-active: #A7B0D3;
+
     --night50: #FAFAFC;
     --night100: #F5F6FA;
     --night200: #EBEDF5;
@@ -303,14 +311,14 @@
 /*TODO: needs to match colors to white*/
 .button-color-white {
     --btn-bg-color: var(--contrast-color);
-    --btn-bg-color-hover: #E6E6E6;
-    --btn-bg-color-active: #CCC;
+    --btn-bg-color-hover: var(--white-hover);
+    --btn-bg-color-active: var(--white-active);
     --btn-bg-color-halftone: var(--btn-bg-halftone-color);
     --btn-bg-color-halftone-hover: var(--secondary-lightest-color);
     --btn-bg-color-halftone-active: var(--secondary-light-color);
     --btn-border-color: var(--contrast-color);
-    --btn-border-color-hover: #E6E6E6;
-    --btn-border-color-active: #CCC;
+    --btn-border-color-hover: var(--white-hover);
+    --btn-border-color-active: var(--white-active);
     --btn-bg-color-disabled: var(--disabled-color);
     --btn-border-color-disabled: var(--disabled-color);
     --btn-caption-color: var(--night800);
