@@ -1,10 +1,13 @@
 const path = require("path");
 const { getBabelProcessedFolders } = require("./utils/packageUtils");
 const { normSlashes } = require("./utils/configUtils");
+const { assertRunFromModule } = require("../../uui-build/utils/moduleUtils");
 
 const makeAbsolute = pathStr => path.resolve(UUI_ROOT, pathStr)
 
 /** Assumption: the cwd is ./app/ folder. */
+assertRunFromModule('app');
+
 const UUI_ROOT = path.resolve(normSlashes('../'));
 
 const BABEL_INCLUDED_REGEXP = getBabelProcessedFolders({ uuiRoot: UUI_ROOT, isIncluded: true });
