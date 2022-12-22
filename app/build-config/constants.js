@@ -1,26 +1,18 @@
 const path = require("path");
-const { getPkgFoldersRegexMatcher } = require("./utils/packageUtils");
+const { getBabelProcessedFolders } = require("./utils/packageUtils");
 const { normSlashes } = require("./utils/configUtils");
-const escapeForRegex = require("escape-string-regexp");
+const { assertRunFromModule } = require("../../uui-build/utils/moduleUtils");
 
 const makeAbsolute = pathStr => path.resolve(UUI_ROOT, pathStr)
 
 /** Assumption: the cwd is ./app/ folder. */
+assertRunFromModule('app');
+
 const UUI_ROOT = path.resolve(normSlashes('../'));
 
-/**
- * Folders which babel should include from each module
- * @type {string[]}
- */
-const PKG_FOLDERS_BABEL_INCLUDED = ['']
-/**
- * Folders which babel should exclude from each module
- * @type {string[]}
- */
-const PKG_FOLDERS_BABEL_EXCLUDED = ['build', 'node_modules']
-//
-const BABEL_INCLUDED_REGEXP = getPkgFoldersRegexMatcher({ uuiRoot: UUI_ROOT,  folders: PKG_FOLDERS_BABEL_INCLUDED })
-const BABEL_EXCLUDED_REGEXP = getPkgFoldersRegexMatcher({ uuiRoot: UUI_ROOT,  folders: PKG_FOLDERS_BABEL_EXCLUDED })
+const BABEL_INCLUDED_REGEXP = getBabelProcessedFolders({ uuiRoot: UUI_ROOT, isIncluded: true });
+const BABEL_EXCLUDED_REGEXP = getBabelProcessedFolders({ uuiRoot: UUI_ROOT, isIncluded: false });
+
 const CSS_URL_ROOT_PATH = makeAbsolute(normSlashes('app/public'));
 
 // ignore all node_modules unless their names start with "@epam"

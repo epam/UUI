@@ -3,7 +3,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { Day } from './Day';
 import { i18n } from '../../i18n';
-import localeData from 'dayjs/plugin/localeData';
+import localeData from 'dayjs/plugin/localeData.js';
 import css from './Calendar.scss';
 dayjs.extend(localeData);
 

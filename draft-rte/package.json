@@ -4,6 +4,7 @@
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
+  "epam:uui:main": "build/index.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
@@ -21,7 +22,8 @@
     "draft-js-clear-formatting": "^1.0.0",
     "draft-js-plugins-utils": "^2.0.2",
     "immutable": "*",
-    "markdown-draft-js": "1.6.0"
+    "markdown-draft-js": "1.6.0",
+    "lodash": "^4.17.21"
   },
   "peerDependencies": {
     "react": ">=16.0.0",
