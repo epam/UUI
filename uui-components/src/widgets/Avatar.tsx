@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import * as css from './Avatar.scss';
 
@@ -20,6 +20,13 @@ export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttribute
 }
 
 const AvatarComponent = (props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) => {
+    const [errorMode, setErrorMode] = React.useState<boolean>(false);
+
+    function onError() {
+      if (!errorMode) {
+        setErrorMode(true);
+      }
+    }
     return (
             <img
                 onClick={ props.onClick }
@@ -27,8 +34,9 @@ const AvatarComponent = (props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
                 className={ cx(css.avatar, props.cx) }
                 width={ props.size }
                 height={ props.size }
-                src={ (props.isLoading || !props.img) ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg' : props.img }
+                src={ (props.isLoading || !props.img || errorMode) ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg' : props.img }
                 alt={ props.alt }
+                onError={ onError }
                 { ...props.rawProps }
             />
     );

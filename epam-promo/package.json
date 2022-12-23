@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@epam/uui-docs": "4.9.2",
+    "@testing-library/react": "^12.1.2",
     "@types/react-test-renderer": "17.0.1",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
     "enzyme": "^3.9.0",
