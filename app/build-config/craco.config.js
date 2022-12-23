@@ -4,6 +4,7 @@ const { BABEL_INCLUDED_REGEXP, BABEL_EXCLUDED_REGEXP, CSS_URL_ROOT_PATH,
 } = require("./constants");
 const SVGRLoader = require.resolve("@svgr/webpack");
 const FileLoader = require.resolve("file-loader");
+const { uuiCustomFormatter } = require("./utils/issueFormatter");
 
 /**
  * See https://craco.js.org/
@@ -89,6 +90,13 @@ function configureWebpack(config, { paths }) {
     if (isUseBuildFolderOfDeps()) {
         config.resolve.mainFields = ["epam:uui:main", "browser", "module", "main"];
     }
+
+    config.plugins.forEach(p => {
+        if (p.constructor.name === 'ForkTsCheckerWebpackPlugin') {
+            p.options.formatter = uuiCustomFormatter;
+        }
+    })
+
     return config;
 }
 
