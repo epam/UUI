@@ -8,6 +8,11 @@
  * https://github.com/react-page/react-page/blob/b6c83a8650cfe9089e0c3eaf471ab58a0f7db761/packages/plugins/content/slate/src/migrations/v004.ts
  */
 
+const imageAlignValues: any = {
+    'align-left': 'left',
+    'align-right': 'right',
+    'align-center': 'center',
+};
 const migrateTextNode = (oldNode: any) => {
     return {
         text: oldNode.text,
@@ -30,6 +35,7 @@ const migrateElementNode = (node: any) => {
         type: node.type,
         ...(mediaTypes.includes(node.type) ? { url: node.data?.src } : {}),
         ...(mediaTypes.includes(node.type) ? node.data?.imageSize || {} : {}),
+        ...(node?.data?.align ? { align: imageAlignValues[node?.data?.align || 'align-left']} : {}),
         ...(node?.data?.url ? { url: node.data.url } : {}),
         children: node.nodes?.map(migrateNode).flat() ?? [],
     };

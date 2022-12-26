@@ -1,0 +1,19 @@
+<svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0,-290.65)" display="none">
+  <path d="m11.892 294.65a8 8 89.237 0 0-7.8926 8.1074 8 8 89.237 0 0 8.1074 7.8926 8 8 89.237 0 0 7.8926-8.1074 8 8 89.237 0 0-8.1074-7.8926zm0.10742 1a7 7 0 0 1 7 7 7 7 0 0 1-7 7 7 7 0 0 1-7-7 7 7 0 0 1 7-7z"/>
+  <path transform="translate(0,290.65)" d="m7 4.0195v0.98047h-2v2h-0.95703v10h0.95703v2h2v1h10v-1h2v-2h1v-10h-1v-2h-2v-0.98047z" fill-opacity=".27451" opacity=".544"/>
+  <rect x="-6" y="284.65" width="36" height="36" fill="none" stroke="#000" stroke-width=".05"/>
+  <circle cx="12" cy="302.65" r="18" fill="none" stroke="#000" stroke-width=".05"/>
+ </g>
+ <g>
+  <g id="Notifications" transform="matrix(.91667 0 0 .88889 6.443 4)" fill-rule="evenodd">
+   <g id="RTE_parts_temp" transform="translate(-656,-5540)" fill-rule="nonzero">
+    <g id="RTE/icons" transform="translate(0,5161)" style="">
+     <g transform="translate(641,367)" style="">
+      <path id="color" d="m21 12s6 6.2858 6 12c0 3.9448-3 6-6 6s-6-2.0551-6-6c0-5.7143 6-12 6-12zm0 5c-0.7628 0.91598-3 4.4565-3 7 0 2.4272 2.0041 3 3 3 0.27307 0 0.62194-0.04307 0.9845-0.15562l-0.9845-9.8434z" style=""/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

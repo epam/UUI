@@ -1,58 +1,84 @@
 import {
-    createListPlugin,
     createSoftBreakPlugin,
     createExitBreakPlugin,
-    createHeadingPlugin,
-    createSuperscriptPlugin,
-    createFontColorPlugin,
     createMediaEmbedPlugin,
-    ELEMENT_H1,
-    ELEMENT_H2,
-    ELEMENT_H3,
+    createTablePlugin,
+    ELEMENT_TR, ELEMENT_TD, ELEMENT_TH
 } from '@udecode/plate';
 
-import { createUUIBoldPlugin } from "./customBold";
-import { createUUIItalicPlugin } from "./customItalic";
-import { createUUIUnderlinePlugin } from "./customUnderline";
-import { createUUICodePlugin } from "./customCode";
-import { listPluginOptions } from "./createListPlugin";
-import { createUUILinkPlugin } from "./linkPlugin";
-import { createToDoListPlugin } from "./toDoListPlugin";
-import { ImageUI, createImagePlugin } from "./imagePlugin";
-import {  createUploadPlugin } from "./uploadFilePlugin";
-import {  videoPlugin } from "./videoPlugin";
+import { svc } from "@epam/app/src/services";
+
+
+const uploadFile = async (file: File, onProgress: (progress: number) => any): Promise<any> => {
+    return svc.uuiApi.uploadFile('/uploadFileMock', file, {
+        onProgress,
+    });
+};
+
+import { baseMarksPlugin } from "./baseMarksPlugin/baseMarksPlugin";
+import { codeBlockPlugin } from "./codeBlockPlugin/codeBlockPlugin";
+import { superscriptPlugin } from "./superscriptPlugin/superscriptPlugin";
+
+import { listPlugin } from "./listPlugin/listPlugin";
+import { linkPlugin } from "./linkPlugin/linkPlugin";
+import { toDoListPlugin } from "./toDoListPlugin/toDoListPlugin";
+import { headerPlugin } from "./headerPlugin/headerPlugin";
+import { colorPlugin } from "./colorPlugin/colorPlugin";
+import { imagePlugin } from "./imagePlugin/imagePlugin";
+import { videoPlugin } from "./videoPlugin/videoPlugin";
+import { notePlugin } from "./notePlugin/notePlugin";
+import { quotePlugin } from "./quotePlugin/quotePlugin";
+import { separatorPlugin } from "./separatorPlugin/separatorPlugin";
+import { placeholderPlugin } from "./placeholderPlugin/placeholderPlugin";
+import { attachmentPlugin } from "./attachmentPlugin/attachmentPlugin";
+import { uploadFilePlugin } from "./uploadFilePlugin/uploadFilePlugin";
+import { iframePlugin } from "./iframePlugin/iframePlugin";
 
 export const customPlugins = [
-    createFontColorPlugin(),
     createSoftBreakPlugin(),
     createExitBreakPlugin(),
-    createUploadPlugin(),
-    videoPlugin,
-    createListPlugin(listPluginOptions),
-    createUUIBoldPlugin,
-    createUUIItalicPlugin,
-    createUUIUnderlinePlugin,
-    createUUICodePlugin,
-    createMediaEmbedPlugin(),
-    createImagePlugin({
-        component: ImageUI,
+    baseMarksPlugin(),
+    codeBlockPlugin(),
+    superscriptPlugin(),
+    linkPlugin(),
+    listPlugin(),
+    toDoListPlugin(),
+    headerPlugin(),
+    colorPlugin(),
+    imagePlugin(),
+    notePlugin(),
+    quotePlugin(),
+    separatorPlugin(),
+    placeholderPlugin({
+        items: [
+            {
+                name: 'Name',
+                field: 'name',
+            },
+            {
+                name: 'Email',
+                field: 'email',
+            },
+        ],
     }),
-    createSuperscriptPlugin({
-        type: 'uui-richTextEditor-superscript',
-    }),
-    createToDoListPlugin(),
-    createUUILinkPlugin,
-    createHeadingPlugin({
+    attachmentPlugin(),
+    iframePlugin(),
+    uploadFilePlugin({ uploadFile }),
+    videoPlugin(),
+
+    createTablePlugin({
         overrideByKey: {
-            [ELEMENT_H1]: {
-                type: 'uui-richTextEditor-header-1',
+            [ELEMENT_TR]: {
+                type: 'table_row',
             },
-            [ELEMENT_H2]: {
-                type: 'uui-richTextEditor-header-2',
+            [ELEMENT_TD]: {
+                type: 'table_cell',
             },
-            [ELEMENT_H3]: {
-                type: 'uui-richTextEditor-header-3',
+            [ELEMENT_TH]: {
+                type: 'table_head_cell',
             },
         },
     }),
+
+    //createMediaEmbedPlugin(),
 ];

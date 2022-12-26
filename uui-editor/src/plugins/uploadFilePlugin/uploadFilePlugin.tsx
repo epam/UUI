@@ -1,3 +1,4 @@
+export {};
 // import { getEventTransfer, getEventRange, Editor } from "slate-react";
 // import { ReactComponent as AttachIcon } from "../../icons/attach-file.svg";
 // import { Editor as CoreEditor, Range} from "slate";

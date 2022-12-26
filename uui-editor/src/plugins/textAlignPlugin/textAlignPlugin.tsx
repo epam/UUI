@@ -1,3 +1,4 @@
+export {};
 // import { RenderBlockProps, Editor } from "slate-react";
 // import { Editor as CoreEditor } from "slate";
 // import css from './textAlign.scss';

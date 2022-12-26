@@ -1,3 +1,4 @@
+export {};
 // import * as React from 'react';
 // import { UploadFileToggler, FlexSpacer } from '@epam/uui-components';
 // import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';

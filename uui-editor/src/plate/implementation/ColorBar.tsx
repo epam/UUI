@@ -1,41 +1,71 @@
 import * as React from 'react';
-import { uuiSkin } from "@epam/uui-core";
-import { ToolbarButton } from "@udecode/plate";
-
-import { ToolbarButton as UUIToolbarButton } from './ToolbarButton';
+import { uuiSkin } from '@epam/uui-core';
+import {
+    ToolbarButton as PlateToolbarButton,
+} from '@udecode/plate';
 
 import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
 import { ReactComponent as ColorIcon } from '../icons/text-color-select.svg';
 
+import { ToolbarButton } from './ToolbarButton';
+
 const { FlexRow } = uuiSkin;
 
-export function ColorBar({ updateColor, clearColor }: any) {
+const noop = () => {};
+
+type IColorBar = {
+    updateColor: (color: string) => void;
+    clearColor: () => void;
+    value?: string,
+};
+
+export function ColorBar({ updateColor, clearColor, value }: IColorBar) {
+
     return <FlexRow rawProps={ { style: { background: '#303240' } } }>
-        <ToolbarButton
+        <PlateToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer' }} }
             isActive={ false }
-            icon={ <UUIToolbarButton onClick={ () => {} } isActive={ false } icon={ ClearIcon } /> }
+            icon={ <ToolbarButton
+                onClick={ noop }
+                isActive={ false }
+                icon={ ClearIcon }
+            /> }
             onMouseDown={ clearColor }
         />
-        <ToolbarButton
+        <PlateToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer' }} }
             iconColor='red'
             isActive={ false }
-            icon={ <UUIToolbarButton onClick={ () => {} } iconColor='red' isActive={ false } icon={ ColorIcon } /> }
+            icon={ <ToolbarButton
+                onClick={ noop }
+                iconColor='red'
+                isActive={ value === '#A72014' }
+                icon={ ColorIcon }
+            /> }
             onMouseDown={ () => updateColor('#A72014') }
         />
-        <ToolbarButton
+        <PlateToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer' }} }
             iconColor='amber'
             isActive={ false }
-            icon={ <UUIToolbarButton onClick={ () => {} } iconColor='amber' isActive={ false } icon={ ColorIcon } /> }
+            icon={ <ToolbarButton
+                onClick={ noop }
+                iconColor='amber'
+                isActive={ value === '#995A00' }
+                icon={ ColorIcon }
+            /> }
             onMouseDown={ () => updateColor('#995A00') }
         />
-        <ToolbarButton
+        <PlateToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer' }} }
             iconColor='green'
             isActive={ false }
-            icon={ <UUIToolbarButton onClick={ () => {} } iconColor='green' isActive={ false } icon={ ColorIcon } /> }
+            icon={ <ToolbarButton
+                onClick={ noop }
+                iconColor='green'
+                isActive={ value === '#669900' }
+                icon={ ColorIcon }
+            /> }
             onMouseDown={ () => updateColor('#669900') }
         />
     </FlexRow>;
