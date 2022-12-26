@@ -1,3 +1,4 @@
+export {};
 // import * as React from 'react';
 // import { uuiSkin } from '@epam/uui-core';
 // import { RenderBlockProps } from "slate-react";

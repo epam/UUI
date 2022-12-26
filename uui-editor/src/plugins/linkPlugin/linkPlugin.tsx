@@ -1,3 +1,4 @@
+export {};
 // import { linkifyPlugin } from '@mercuriya/slate-linkify';
 // import * as React from 'react';
 // import css from './link.scss';

@@ -10,16 +10,14 @@ import {
     createPlateUI,
     usePlateEditorState,
     isEditorFocused,
-    PlateEventProvider,
     TRenderElementProps,
     TEditableProps,
-    focusEditor,
+    Toolbar,
 } from '@udecode/plate';
 
 import {
     ToolbarButtons,
     MarkBalloonToolbar,
-    ImageBalloonToolbar,
 } from './plate/plugins/Toolbars';
 
 import { migrateSchema } from './migration';
@@ -34,7 +32,7 @@ let components = createPlateUI();
 export const defaultPlugins: any = [];
 export const basePlugins: any = [];
 
-const plugins = createPlugins(customPlugins, {
+const plugins = createPlugins(customPlugins.flat(), {
     components,
 });
 
@@ -68,23 +66,26 @@ export function SlateEditor(props: any) {
 
         return <p { ...attributes }>{ children }</p>;
     };
-        console.log((props?.value ? { initialValue: migrateSchema(props.value) } : {}));
+console.log((props?.value ? { initialValue: migrateSchema(props.value) } : {}), props?.value);
     const renderEditor = () => (
         <DndProvider backend={ HTML5Backend }>
-            <Plate
-                 onChange={ onChange }
-                editableProps={ editableProps }
-                renderElement={ renderElement }
-                id={ currentId }
-                plugins={ plugins }
-                { ...(props?.value ? { initialValue: migrateSchema(props.value) } : {}) }
-            >
-                <ImageBalloonToolbar />
-                <MarkBalloonToolbar />
-            </Plate>
-            <PlateEventProvider id={ currentId }>
-                <ToolbarButtons />
-            </PlateEventProvider>
+                <Plate
+                    onChange={ onChange }
+                    editableProps={ editableProps }
+                    renderElement={ renderElement }
+                    id={ currentId }
+                    plugins={ plugins }
+                    { ...(props?.value ? { initialValue: migrateSchema(props.value) } : {}) }
+                >
+                    <MarkBalloonToolbar />
+                    <Toolbar id={ currentId } style={ {
+                        position: 'sticky',
+                        bottom: 12,
+                        display: 'flex',
+                    } }>
+                        <ToolbarButtons />
+                    </Toolbar>
+                </Plate>
         </DndProvider>
     );
 

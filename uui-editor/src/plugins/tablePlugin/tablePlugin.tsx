@@ -1,3 +1,4 @@
+export {};
 // import { Editor as CoreEditor } from "slate";
 // import EditTable from 'slate-uui-table-plugin';
 // import * as React from "react";

@@ -1,3 +1,4 @@
+export {};
 // import { Editor, Block, KeyUtils } from 'slate';
 //
 // export const mergeCellsPlugin = () => {

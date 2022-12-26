@@ -1,3 +1,4 @@
+export {};
 // import Lists from "@convertkit/slate-lists";
 // import { Editor as CoreEditor, Editor } from "slate";
 // import { RenderBlockProps } from "slate-react";

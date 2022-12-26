@@ -8,7 +8,7 @@ import {
 } from '@udecode/plate';
 import { useUuiContext } from "@epam/uui-core";
 import { isPluginActive } from "../../helpers";
-import { AddImageModal } from "../implementation/AddImageModal";
+import { AddImageModal } from "./imagePlugin/AddImageModal";
 
 export const EmbedUI = <V extends Value = Value, N extends TText = EText<V>>(
     props: any,

@@ -1,3 +1,4 @@
+export {};
 // import { Editor } from 'slate-react';
 // import * as React from 'react';
 // import { useUuiContext } from '@epam/uui-core';

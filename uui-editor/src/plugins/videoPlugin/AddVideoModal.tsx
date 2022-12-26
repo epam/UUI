@@ -1,3 +1,4 @@
+export {};
 // import * as React from 'react';
 // import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 // import { FlexSpacer } from '@epam/uui-components';

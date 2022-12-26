@@ -1,3 +1,4 @@
+export {};
 // import * as React from 'react';
 // import css from './Table.scss';
 // import * as ReactDOM from "react-dom";

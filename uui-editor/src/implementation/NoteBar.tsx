@@ -1,50 +1,97 @@
-// import * as React from 'react';
-// import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
-// import { ReactComponent as NoteIconError } from "../icons/info-block-warning.svg";
-// import { ReactComponent as NoteIconWarning } from "../icons/info-block.svg";
-// import { ReactComponent as NoteIconLink } from "../icons/info-block-link.svg";
-// import { ReactComponent as NoteIconQuote } from "../icons/info-block-quote.svg";
-// import { ToolbarButton } from './ToolbarButton';
-// import { Editor } from 'slate-react';
-// import {DropdownBodyProps } from '@epam/uui-components';
-// import { uuiSkin } from "@epam/uui-core";
-//
-// const { FlexRow } = uuiSkin;
-//
-// interface NoteBarProps extends DropdownBodyProps {
-//     editor: Editor;
-// }
-//
-// export const noteBlocks = ['note-error', 'note-warning', 'note-link', 'note-quote'];
-//
-// export class NoteBar extends React.Component<NoteBarProps> {
-//     state: any = {
-//         isActive: false,
-//     };
-//
-//     toggleBlock(blockType: string) {
-//         this.props.scheduleUpdate();
-//
-//         if ((this.props.editor as any).hasBlock([blockType])) {
-//             this.props.editor.setBlocks('paragraph');
-//         } else {
-//             this.props.editor.setBlocks(blockType);
-//         }
-//
-//     }
-//
-//     renderHeaderMenu() {
-//         return <FlexRow rawProps={ { style: { background: '#303240' } } }>
-//             <ToolbarButton isActive={ false } icon={ ClearIcon } onClick={ () => { this.props.editor.setBlocks('paragraph'); this.props.scheduleUpdate(); } } />
-//             <ToolbarButton isActive={ (this.props.editor as any).hasBlock(['note-quote']) } icon={ NoteIconQuote } onClick={ () => this.toggleBlock('note-quote') } iconColor='gray60'/>
-//             <ToolbarButton isActive={ (this.props.editor as any).hasBlock(['note-error']) } icon={ NoteIconError } onClick={ () => this.toggleBlock('note-error') } iconColor='red'/>
-//             <ToolbarButton isActive={ (this.props.editor as any).hasBlock(['note-warning']) } icon={ NoteIconWarning } onClick={ () => this.toggleBlock('note-warning') } iconColor='amber'/>
-//             <ToolbarButton isActive={ (this.props.editor as any).hasBlock(['note-link']) } icon={ NoteIconLink } onClick={ () => this.toggleBlock('note-link') } iconColor='blue'/>
-//         </FlexRow>;
-//     }
-//
-//     render() {
-//
-//         return this.renderHeaderMenu();
-//     }
-// }
+import * as React from 'react';
+import { DropdownBodyProps } from '@epam/uui-components';
+import { uuiSkin } from '@epam/uui-core';
+
+import {
+    PlateEditor,
+    setElements,
+    ToolbarButton as PlateToolbarButton,
+} from '@udecode/plate';
+
+import { ReactComponent as ClearIcon } from '../icons/text-color-default.svg';
+import { ReactComponent as NoteIconError } from '../icons/info-block-warning.svg';
+import { ReactComponent as NoteIconWarning } from '../icons/info-block.svg';
+import { ReactComponent as NoteIconLink } from '../icons/info-block-link.svg';
+import { ReactComponent as NoteIconQuote } from '../icons/info-block-quote.svg';
+
+import { ToolbarButton } from './ToolbarButton';
+
+const { FlexRow } = uuiSkin;
+
+const noop = () => {};
+
+interface NoteBarProps extends DropdownBodyProps {
+    editor: PlateEditor;
+    type?: string;
+}
+
+export function NoteBar({ editor, type }: NoteBarProps) {
+
+    const toggleBlock = (type: string) => {
+        setElements(editor, { type, children: [{ text: '' }] });
+    };
+
+    const clearBlock = () => {
+        setElements(editor, { type: 'paragraph' });
+    };
+
+    return (
+        <FlexRow rawProps={ { style: { background: '#303240' } } }>
+            <PlateToolbarButton
+                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                iconColor='red'
+                isActive={ false }
+                icon={ <ToolbarButton
+                    onClick={ noop }
+                    icon={ ClearIcon }
+                    iconColor='gray60'
+                /> }
+                onMouseDown={ clearBlock }
+            />
+            <PlateToolbarButton
+                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                isActive={ false }
+                icon={ <ToolbarButton
+                    isActive={ type === 'note-quote' }
+                    onClick={ noop }
+                    icon={ NoteIconQuote }
+                    iconColor='gray60'
+                /> }
+                onMouseDown={ () => toggleBlock('note-quote') }
+            />
+            <PlateToolbarButton
+                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                isActive={ false }
+                icon={ <ToolbarButton
+                    isActive={ type === 'note-error' }
+                    onClick={ noop }
+                    icon={ NoteIconError }
+                    iconColor='red'
+                /> }
+                onMouseDown={ () => toggleBlock('note-error') }
+            />
+            <PlateToolbarButton
+                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                isActive={ false }
+                icon={ <ToolbarButton
+                    isActive={ type === 'note-warning' }
+                    onClick={ noop }
+                    icon={ NoteIconWarning }
+                    iconColor='amber'
+                /> }
+                onMouseDown={ () => toggleBlock('note-warning') }
+            />
+            <PlateToolbarButton
+                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                isActive={ false }
+                icon={ <ToolbarButton
+                    isActive={ type === 'note-link' }
+                    onClick={ noop }
+                    icon={ NoteIconLink }
+                    iconColor='blue'
+                /> }
+                onMouseDown={ () => toggleBlock('note-link') }
+            />
+        </FlexRow>
+    );
+}

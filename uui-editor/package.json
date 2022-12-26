@@ -21,7 +21,7 @@
     "@types/lodash.flatten": "4.4.6",
     "@types/slate": "^0.47.11",
     "@types/slate-react": "^0.50.1",
-    "@udecode/plate": "13.2.1",
+    "@udecode/plate": "^18.13.1",
     "@udecode/plate-juice": "11.2.1",
     "@udecode/plate-link": "^18.2.0",
     "@udecode/plate-test-utils": "3.2.0",

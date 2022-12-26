@@ -1,3 +1,4 @@
+export {};
 // import * as React from 'react';
 // import { RenderInlineProps } from "slate-react";
 // import css from './PlaceholderPlugin.scss';

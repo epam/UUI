@@ -12,6 +12,7 @@
         "removeComments": false,
         "preserveConstEnums": true,
         "sourceMap": true,
+        "skipLibCheck": true,
         "noEmitOnError": true,
         "jsx": "react",
         "outDir": "./build",

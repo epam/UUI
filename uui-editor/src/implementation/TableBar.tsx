@@ -1,3 +1,4 @@
+export {};
 // import * as React from 'react';
 // import { Portal } from "@epam/uui-components";
 // import css from './TableBar.scss';

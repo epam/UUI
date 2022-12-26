@@ -2,7 +2,7 @@
 // import Html from 'slate-html-serializer';
 import { useSlate, useFocused } from "slate-react";
 import { Range, Editor } from 'slate';
-import { usePlatePlugins, getSelectionRects } from "@udecode/plate";
+import { getPlugins, usePlateEditorState, getSelectionRects } from "@udecode/plate";
 //
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -57,8 +57,8 @@ export function isImageSelected(editor: any) {
 }
 
 export function isPluginActive(key: string): boolean {
-    const plugins = usePlatePlugins();
-
+    const editor = usePlateEditorState();
+    const plugins = getPlugins(editor);
     return plugins.some(plugin => plugin.key === key);
 }
 
