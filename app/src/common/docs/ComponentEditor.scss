@@ -61,6 +61,8 @@
 
 .demo-container {
     overflow: auto;
-    flex: 1 0 0px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0px;
     width: 100%;
 }
