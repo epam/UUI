@@ -53,12 +53,17 @@ export const FlexRow = withMods<FlexRowProps, RowMods & FlexRowProps>(uuiFlexRow
         css['spacing-' + props.spacing],
     ];
 },
-props => (
-{ rawProps: {
-    style: {
-        columnGap: `${ props.columnGap }px`,
-        rowGap: `${ props.rowGap }px`,
-    },
-},
-}),
-);
+props => {
+    const styles: {columnGap?: string; rowGap?: string} = {};
+    if (props.columnGap) {
+        styles.columnGap = `${ props.columnGap }px`;
+    } else if (props.rowGap) {
+        styles.rowGap = `${ props.rowGap }px`;
+    }
+
+    if (props.columnGap || props.rowGap) {
+        return {rawProps: {
+            style: styles,
+        }};
+    }
+});
