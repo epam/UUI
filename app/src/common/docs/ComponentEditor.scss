@@ -29,7 +29,9 @@
     .row-props {
         overflow: auto;
         border-bottom: 1px solid $gray40;
-        flex: 1 0 0px;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 0px;
     }
 
     .code {
