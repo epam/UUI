@@ -59,7 +59,7 @@ export const DocumentsPage = () => {
                         },
                     } }
                 />
-                <img alt='car' src='/static/christmas/gift_big.svg' className={ css.christmasGifts }/>
+                <img alt='gifts' src='/static/christmas/gift_big.svg' className={ css.christmasGifts }/>
                 <PageComponent />
             </FlexRow>
         </Page>
