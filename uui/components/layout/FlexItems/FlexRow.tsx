@@ -4,12 +4,14 @@ import { RowSizeMod } from '../../types';
 import css from './FlexRow.scss';
 
 export interface RowMods extends RowSizeMod {
-    topShadow?: boolean;
     borderBottom?: boolean;
-    padding?: '6' | '12' | '18' | '24';
-    vPadding?: '12' | '18' | '24' | '36' | '48';
-    spacing?: '6' | '12' | '18';
+    columnGap?: number;
     margin?: '12' | '24';
+    padding?: '6' | '12' | '18' | '24';
+    rowGap?: number;
+    spacing?: '6' | '12' | '18';
+    topShadow?: boolean;
+    vPadding?: '12' | '18' | '24' | '36' | '48';
 }
 
 export const FlexRow = withMods<FlexRowProps, RowMods & FlexRowProps>(uuiFlexRow, props => {
@@ -23,4 +25,13 @@ export const FlexRow = withMods<FlexRowProps, RowMods & FlexRowProps>(uuiFlexRow
         props.borderBottom && css['border-bottom'],
         props.spacing && css['spacing-' + props.spacing],
     ];
-});
+},
+props => (
+{ rawProps: {
+    style: {
+        columnGap: `${ props.columnGap }px`,
+        rowGap: `${ props.rowGap }px`,
+    },
+},
+}),
+);

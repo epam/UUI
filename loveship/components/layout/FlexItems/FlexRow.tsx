@@ -5,13 +5,15 @@ import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 
 export interface RowMods extends types.RowSizeMod {
     background?: 'white' | 'night50' | 'night100' | 'none';
-    topShadow?: boolean;
     borderBottom?: boolean | 'night50' | 'night400' | 'night700' | 'night300';
-    padding?: '6' | '12' | '18' | '24';
-    vPadding?: '12' | '18' | '24' | '36' | '48';
-    spacing?: '6' | '12' | '18' | null;
-    type?: 'form' | 'panel';
+    columnGap?: number;
     margin?: '12' | '24';
+    padding?: '6' | '12' | '18' | '24';
+    rowGap?: number;
+    spacing?: '6' | '12' | '18' | null;
+    topShadow?: boolean;
+    type?: 'form' | 'panel';
+    vPadding?: '12' | '18' | '24' | '36' | '48';
 }
 
 const commonDefaults: RowMods & FlexRowProps = {
@@ -50,4 +52,13 @@ export const FlexRow = withMods<FlexRowProps, RowMods & FlexRowProps>(uuiFlexRow
         props.borderBottom && (props.borderBottom === true ? css['border-bottom-night400'] : css['border-bottom-' + props.borderBottom]),
         css['spacing-' + props.spacing],
     ];
-});
+},
+props => (
+{ rawProps: {
+    style: {
+        columnGap: `${ props.columnGap }px`,
+        rowGap: `${ props.rowGap }px`,
+    },
+},
+}),
+);
