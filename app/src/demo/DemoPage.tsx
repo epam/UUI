@@ -60,6 +60,9 @@ export const DemoPage = () => {
         pageContent = (
             <div className={ css.navPage } >
                 <div className={ css.navTitle }>Demo</div>
+                <div className={ css.christmasBox }>
+                    <img alt='car' src='/static/christmas/gift_big.svg' className={ css.christmasGifts }/>
+                </div>
                 <div className={ css.navCards }>
                     {
                         demoItems.map((item) => {
