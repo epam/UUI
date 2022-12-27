@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat, supportedDateFormats } from '../../';
 import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType } from '@epam/uui-core';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
 dayjs.extend(customParseFormat);
 
