@@ -97,6 +97,8 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
 
                         return (
                             <div className={ css.layout } ref={ measureRef } >
+                                <img alt='tree' src='/static/christmas/tree.svg' className={ css.christmasTree }/>
+                                <img alt='car' src='/static/christmas/car.svg' className={ css.christmasCar }/>
                                 <FlexRow  cx={ css.hero }>
                                     <div className={ css.heroText }>
                                         <Text rawProps={ { role: 'heading', 'aria-level': 1 } } font='museo-slab' cx={ css.heroHeader } >Unified UI</Text>
