@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, FlexRow, IconContainer, RichTextView, Text, Tooltip } from '@epam/promo';
 import { ReactComponent as copyIcon } from '@epam/assets/icons/common/content-link-18.svg';
 import { ReactComponent as plusIcon } from '@epam/assets/icons/common/content-add-fill-18.svg';
-import { ReactComponent as infoIcon } from '@epam/assets/icons/common/notification-info-fill-18.svg';
+import { ReactComponent as infoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
 import css from './TypesExample.scss';
 
 export default function TypesTooltipExample() {
@@ -20,7 +20,7 @@ export default function TypesTooltipExample() {
 
             <FlexRow alignItems="center" cx={ css.firstColumn }>
                 <RichTextView>
-                    <span style={ {marginRight: "4px", fontSize: "18px", fontWeight: 600} }>Permissions</span>
+                    <span className={ css.permissionText } >Permissions</span>
                 </RichTextView>
                 <Tooltip content='Default tooltip. Can be inside as one row as 3 rows of text' placement='bottom' >
                     <IconContainer icon={ infoIcon } color='blue' />
