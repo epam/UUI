@@ -1,0 +1,18 @@
+name: qa
+
+# Controls when the action will run.
+on:
+    push:
+        branches: [ add-new-environment ]
+
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
+jobs:
+  call-base-for-qa:
+    uses: ./.github/workflows/base.yml
+    secrets:
+      REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
+      REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+      IMAGE_NAME: uui-qa
