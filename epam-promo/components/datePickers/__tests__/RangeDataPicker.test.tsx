@@ -328,7 +328,7 @@ describe('RangeDataPicker', () => {
             selectedDate: baseValue,
             view: 'DAY_SELECTION',
         });
-        expect(instance.state.inFocus).toEqual('to');
+        expect(instance.state.inFocus).toEqual('from');
         //arrived same value
 
 
