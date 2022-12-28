@@ -1,20 +1,22 @@
 import * as types from '../../types';
 import css from './FlexRow.scss';
-import { FlexRowProps, withMods } from '@epam/uui-core';
+import { FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 
 export interface RowMods extends types.RowSizeMod {
     background?: 'white' | 'night50' | 'night100' | 'none';
     borderBottom?: boolean | 'night50' | 'night400' | 'night700' | 'night300';
-    columnGap?: number;
+    columnGap?: number | '6' | '12' | '18' | '24' | '36';
     margin?: '12' | '24';
     padding?: '6' | '12' | '18' | '24';
-    rowGap?: number;
+    rowGap?: number | '6' | '12' | '18' | '24' | '36';
     spacing?: '6' | '12' | '18' | null;
     topShadow?: boolean;
     type?: 'form' | 'panel';
     vPadding?: '12' | '18' | '24' | '36' | '48';
 }
+
+interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'> {}
 
 const commonDefaults: RowMods & FlexRowProps = {
     size: '36',
@@ -37,7 +39,7 @@ const rowTypesDefaults: Record<string, RowMods & FlexRowProps> = {
     },
 };
 
-export const FlexRow = withMods<FlexRowProps, RowMods & FlexRowProps>(uuiFlexRow, props => {
+export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, props => {
     const defaults = rowTypesDefaults[props.type || 'panel'];
     props = { ...defaults, ...props };
 
@@ -52,18 +54,4 @@ export const FlexRow = withMods<FlexRowProps, RowMods & FlexRowProps>(uuiFlexRow
         props.borderBottom && (props.borderBottom === true ? css['border-bottom-night400'] : css['border-bottom-' + props.borderBottom]),
         css['spacing-' + props.spacing],
     ];
-},
-props => {
-    const styles: {columnGap?: string; rowGap?: string} = {};
-    if (props.columnGap) {
-        styles.columnGap = `${ props.columnGap }px`;
-    } else if (props.rowGap) {
-        styles.rowGap = `${ props.rowGap }px`;
-    }
-
-    if (props.columnGap || props.rowGap) {
-        return {rawProps: {
-            style: styles,
-        }};
-    }
 });
