@@ -55,6 +55,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     >
       <div
         className="root size-36 background-none padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <div
           className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
@@ -98,6 +104,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
       <div
         className="root size-36 background-none padding-24 border-bottom-gray40 spacing-12 searchArea container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <div
           className="container uui-input-box -clickable root size-30 mode-form"
@@ -184,6 +196,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           >
             <div
               className="root size-24 background-none padding-24 spacing-6 groupTitle container align-items-center"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-6 groupTitleText container"
@@ -207,6 +225,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             </div>
             <div
               className="root size-30 background-none groupItems container align-items-center"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="root size-30 background-none rowWrapper notPinned -draggable container align-items-center"
@@ -214,9 +238,21 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
                 onPointerUp={[Function]}
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
               >
                 <div
                   className="root size-30 background-white spacing-6 title container align-items-center"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="dragHandle container uui-drag-handle"
@@ -259,6 +295,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 />
                 <div
                   className="root size-30 background-none pinIconButton container align-items-center"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <span
                     onMouseOut={[Function]}
@@ -291,9 +333,21 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
                 onPointerUp={[Function]}
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
               >
                 <div
                   className="root size-30 background-white spacing-6 title container align-items-center"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="dragHandle container uui-drag-handle"
@@ -336,6 +390,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 />
                 <div
                   className="root size-30 background-none pinIconButton container align-items-center"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <span
                     onMouseOut={[Function]}
@@ -396,6 +456,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
       <div
         className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <button
           className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-has-left-icon uui-no-right-icon"

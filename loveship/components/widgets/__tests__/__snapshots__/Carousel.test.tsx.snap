@@ -6,6 +6,12 @@ exports[`Carousel should be rendered correctly 1`] = `
 >
   <div
     className="container align-items-center"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
   >
     <div
       className="uui-carousel-bar"
@@ -22,6 +28,12 @@ exports[`Carousel should be rendered correctly 1`] = `
   </div>
   <div
     className="container align-items-center"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
   >
     <div
       className="container uui-icon uui-enabled -clickable uui-carousel-left-arrow"
@@ -76,6 +88,12 @@ exports[`Carousel should be rendered correctly with extra props 1`] = `
 >
   <div
     className="container align-items-center"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
   >
     <div
       className="uui-carousel-bar"
@@ -92,6 +110,12 @@ exports[`Carousel should be rendered correctly with extra props 1`] = `
   </div>
   <div
     className="container align-items-center"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
   >
     <div
       className="container uui-icon uui-enabled -clickable uui-carousel-left-arrow"
