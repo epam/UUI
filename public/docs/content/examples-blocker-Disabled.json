@@ -1,0 +1,53 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If there is a need to secure access to controls covered by the Blocker component, you can pass the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isLoading",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " value to the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isDisabled",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop of each control.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

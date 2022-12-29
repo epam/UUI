@@ -22,6 +22,11 @@ export class BlockerDoc extends BaseDocsBlock {
                 />
 
                 <DocExample
+                    title='Disable controls'
+                    path='./examples/blocker/Disabled.example.tsx'
+                />
+
+                <DocExample
                     title='Advanced'
                     path='./examples/blocker/Advanced.example.tsx'
                 />
