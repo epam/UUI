@@ -15,4 +15,9 @@ jobs:
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
       REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
       REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
-      IMAGE_NAME: uui-qa
+      COMMON_HELMCHART_NAME: ${{ secrets.COMMON_HELMCHART_NAME }}
+      APP_NAME_BASE: ${{ secrets.APP_NAME_QA }}
+    with:
+      values-file: values.qa.yaml
+      image-name: ui-qa
+      common-helmchart-ver: v4

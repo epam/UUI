@@ -6,6 +6,16 @@ name: base
 on:
   # Run only when called from another workflow
   workflow_call:
+    inputs:
+      values-file:
+        required: true
+        type: string
+      image-name:
+        required: true
+        type: string
+      common-helmchart-ver:
+        required: true
+        type: string
     secrets:
       REGISTRY_URL:
         required: true
@@ -13,7 +23,9 @@ on:
         required: true
       REGISTRY_PASSWORD:
         required: true
-      IMAGE_NAME:
+      COMMON_HELMCHART_NAME:
+        required: true
+      APP_NAME_BASE:
         required: true
 
 env:
@@ -55,10 +67,15 @@ jobs:
     env:
       IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
       ACTIONS_STEP_DEBUG: true
+      REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
+      VALUES_FILE: ${{ inputs.values-file }}
+      COMMON_HELMCHART_VER: ${{ inputs.common-helmchart-ver }}
+
     steps:
       - name: Check Out Repo
         uses: actions/checkout@v2
 
+      # TODO: Reuse files from build-and-test job instead of build app again
       - name: build app
         run: |
           yarn
@@ -73,13 +90,22 @@ jobs:
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ${{ secrets.REGISTRY_URL }}/${{ secrets.IMAGE_NAME }}
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=sha
+      - name: Preparation and Helm chart packaging
+        run: |
+          export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')
+          echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
+          mkdir helmchart && cd ./helmchart # helm cannot untar file to the repo with the same name as a package. To avoid error we create temp folder
+          helm pull oci://${{ secrets.REGISTRY_URL }}/helm/${{ secrets.COMMON_HELMCHART_NAME }} --version ${{ secrets.COMMON_HELMCHART_VER }} --untar
+          echo "[INFO] Replace Docker image tag in helm chart..."
+          sed -i -e "s/tag: latest/tag: ${tag}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/${VALUES_FILE}
+
+      - name: Packaging and Uploading Helm Chart
+        run: |
+          cd ./helmchart
+          export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MAJOR.$GITVERSION_PRERELEASENUMBER"
+          echo "[INFO] Replace Helm Chart package version..."
+          sed -i -e "s/version: ${{ secrets.COMMON_HELMCHART_VER }}/version: ${helm_tag}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/Chart.yaml
+          echo "[INFO] Changing Helm Chart package name..."
+          sed -i -e "s/name: ${{ secrets.COMMON_HELMCHART_NAME }}/name: ${{ secrets.APP_NAME_BASE }}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/Chart.yaml
+          helm package ${{ secrets.COMMON_HELMCHART_NAME }}
+          helm push ${{ secrets.APP_NAME_BASE }}-${helm_tag}.tgz oci://${{ secrets.REGISTRY_URL }}/helm
