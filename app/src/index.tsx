@@ -12,7 +12,7 @@ import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import './index.scss';
 import './themes/index.css';
-import * as css from './index.scss';
+import css from './index.scss';
 
 const history = createBrowserHistory();
 
