@@ -67,8 +67,6 @@ jobs:
     env:
       ACTIONS_STEP_DEBUG: true
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
-      VALUES_FILE: ${{ inputs.values-file }}
-      COMMON_HELMCHART_VER: ${{ inputs.common-helmchart-ver }}
 
     steps:
       - name: Check Out Repo
@@ -115,6 +113,11 @@ jobs:
   package:
     needs: docker
     runs-on: ubuntu-20.04 # Gitversion requires .NET SDK 3.1
+    env:
+      ACTIONS_STEP_DEBUG: true
+      REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
+      VALUES_FILE: ${{ inputs.values-file }}
+      COMMON_HELMCHART_VER: ${{ inputs.common-helmchart-ver }}
 
     steps:
       - uses: actions/checkout@v2
