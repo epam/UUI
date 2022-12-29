@@ -8,6 +8,7 @@ import { getQuery } from '../helpers';
 import { codesandboxService } from '../data/codesandbox/service';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
+import * as css from './DocumentsPage.scss';
 
 type DocsQuery = {
     id: string,
@@ -58,6 +59,7 @@ export const DocumentsPage = () => {
                         },
                     } }
                 />
+                <img alt='gifts' src='/static/christmas/gift_big.svg' className={ css.christmasGifts }/>
                 <PageComponent />
             </FlexRow>
         </Page>
