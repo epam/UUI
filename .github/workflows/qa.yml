@@ -24,3 +24,4 @@ jobs:
       values-file: values.qa.yaml
       image-name: ui-qa
       common-helmchart-ver: v4
+
