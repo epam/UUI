@@ -10,6 +10,7 @@ env:
 
 jobs:
   call-base-for-qa:
+    # Call all jobs from base.yml
     uses: ./.github/workflows/base.yml
     secrets:
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
