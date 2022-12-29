@@ -1,10 +1,16 @@
+# 4.9.2 - 14.12.2022
+
+**What’s Fixed**
+* [useForm] - allow to replace getMetadata prop after the first render
+
+
 # 4.9.1 - 01.12.2022
 
 **What's New**
-* [LockContext]: reworked lock context:  
+* [LockContext]: reworked lock context:
   - make `tryRelease` method public
   - `tryRelease` argument in `acquire` now optional, if isn't passed release lock immediately on request
-  - `withLock` now run passed action and get lock until action running  
+  - `withLock` now run passed action and get lock until action running
 * [useForm]: added close method, which try to leave form and ask to save unsaved changes
 * [DatePickers]: added support for typing value according predefined set of formats
 
