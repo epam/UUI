@@ -1,10 +1,10 @@
 # 4.9.1 - 01.12.2022
 
 **What's New**
-* [LockContext]: reworked lock context:  
+* [LockContext]: reworked lock context:
   - make `tryRelease` method public
   - `tryRelease` argument in `acquire` now optional, if isn't passed release lock immediately on request
-  - `withLock` now run passed action and get lock until action running  
+  - `withLock` now run passed action and get lock until action running
 * [useForm]: added close method, which try to leave form and ask to save unsaved changes
 * [DatePickers]: added support for typing value according predefined set of formats
 
@@ -16,7 +16,9 @@
 * [NumericInput]: set empty string value on onBlur event in case of invalid input value
 * [DND]: fixed container scrolling on element dragging
 * [ApiContext]: fixed manual error handling for recovery errors
-
+* [DatePicker]: allow different input formats
+* [RangeDatePicker]: fix focus handling for `to` value also
+* [VerticalTabButton]: fix text trimmed and text align
 
 # 4.9.0 - 17.11.2022
 
