@@ -1,3 +1,11 @@
+# 4.x.x - DRAFT
+**What's New**
+
+
+**What’s Fixed**
+* [VerticalTabButton]: fix text trimmed and text align
+
+
 # 4.9.2 - 14.12.2022
 
 **What’s Fixed**
@@ -22,9 +30,6 @@
 * [NumericInput]: set empty string value on onBlur event in case of invalid input value
 * [DND]: fixed container scrolling on element dragging
 * [ApiContext]: fixed manual error handling for recovery errors
-* [DatePicker]: allow different input formats
-* [RangeDatePicker]: fix focus handling for `to` value also
-* [VerticalTabButton]: fix text trimmed and text align
 
 # 4.9.0 - 17.11.2022
 
