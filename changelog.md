@@ -4,6 +4,7 @@
 
 **What’s Fixed**
 * [VerticalTabButton]: fix text trimmed and text align
+* [Switch]: remove margin-left when there is no label
 
 
 # 4.9.2 - 14.12.2022
