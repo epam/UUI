@@ -95,6 +95,7 @@ jobs:
           images: |
             ${{ secrets.REGISTRY_URL }}/${{ inputs.image-name }}
           # generate Docker tags based on the following events/attributes
+          # This is our main tag for image in form sha-XXXXXX which we will use in helm values file (see "Preparation and Helm chart packaging" job)
           tags: |
             type=sha
 
@@ -108,6 +109,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
+          # Image will be tagged with all tags from "Docker meta" step
           tags: ${{ steps.meta.outputs.tags }}
 
   package:
@@ -139,14 +141,14 @@ jobs:
         uses: azure/setup-helm@v1
         with:
           version: v3.8.0
+
       - name: Preparation and Helm chart packaging
         run: |
-          export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')
           echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
           mkdir helmchart && cd ./helmchart # helm cannot untar file to the repo with the same name as a package. To avoid error we create temp folder
           helm pull oci://${{ secrets.REGISTRY_URL }}/helm/${{ secrets.COMMON_HELMCHART_NAME }} --version ${COMMON_HELMCHART_VER} --untar
           echo "[INFO] Replace Docker image tag in helm chart..."
-          sed -i -e "s/tag: latest/tag: ${tag}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/${VALUES_FILE}
+          sed -i -e "s/tag: latest/tag: sha-${GITVERSION_SHORTSHA}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/${VALUES_FILE}
 
       - name: Packaging and Uploading Helm Chart
         run: |

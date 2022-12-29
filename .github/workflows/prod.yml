@@ -102,7 +102,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        # TODO: Outputs of this step is not used anywhere - should we remove?
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v3
