@@ -95,7 +95,7 @@ jobs:
           export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')
           echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
           mkdir helmchart && cd ./helmchart # helm cannot untar file to the repo with the same name as a package. To avoid error we create temp folder
-          helm pull oci://${{ secrets.REGISTRY_URL }}/helm/${{ secrets.COMMON_HELMCHART_NAME }} --version ${{ secrets.COMMON_HELMCHART_VER }} --untar
+          helm pull oci://${{ secrets.REGISTRY_URL }}/helm/${{ secrets.COMMON_HELMCHART_NAME }} --version ${COMMON_HELMCHART_VER} --untar
           echo "[INFO] Replace Docker image tag in helm chart..."
           sed -i -e "s/tag: latest/tag: ${tag}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/${VALUES_FILE}
 
@@ -104,7 +104,7 @@ jobs:
           cd ./helmchart
           export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MAJOR.$GITVERSION_PRERELEASENUMBER"
           echo "[INFO] Replace Helm Chart package version..."
-          sed -i -e "s/version: ${{ secrets.COMMON_HELMCHART_VER }}/version: ${helm_tag}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/Chart.yaml
+          sed -i -e "s/version: ${COMMON_HELMCHART_VER}/version: ${helm_tag}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/Chart.yaml
           echo "[INFO] Changing Helm Chart package name..."
           sed -i -e "s/name: ${{ secrets.COMMON_HELMCHART_NAME }}/name: ${{ secrets.APP_NAME_BASE }}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/Chart.yaml
           helm package ${{ secrets.COMMON_HELMCHART_NAME }}
