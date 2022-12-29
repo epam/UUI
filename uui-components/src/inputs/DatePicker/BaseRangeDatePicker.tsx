@@ -155,8 +155,11 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
 
     onRangeChange = (value: PickerBodyValue<RangeDatePickerValue>) => {
         const isFromValueChanged = this.props.value.from != value.selectedDate.from;
+        const isToValueChanged = this.props.value.to != value.selectedDate.to;
         if (this.state.inFocus === 'from' && isFromValueChanged) {
             this.setState({ inFocus: 'to' }, () => this.setValue(value));
+        } else if (this.state.inFocus === 'to' && isToValueChanged) {
+            this.setState({ inFocus: 'from' }, () => this.setValue(value));
         } else {
             this.setValue(value);
         }

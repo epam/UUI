@@ -128,7 +128,7 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
                 aria-valuemax={ this.props.to }
                 aria-valuemin={ this.props.from }
                 tabIndex={ 0 }
-                onKeyDown={ e => this.onKeyDown(e) }
+                onKeyDown={ (e) => !isReadonly && this.onKeyDown(e) }
                 className={ cx(css.container, this.props.isDisabled && uuiMod.disabled, this.props.isInvalid && uuiMod.invalid, isReadonly && css.containerReadonly, this.props.cx) }
                 onMouseMove={ (e) => !isReadonly && this.onMouseMove(e) }
                 onMouseLeave={ () => !isReadonly && this.onMouseLeave() }
