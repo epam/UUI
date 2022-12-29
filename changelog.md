@@ -1,5 +1,6 @@
 # 4.x.x - DRAFT
 **What's New**
+* [FlexRow]: added Flexbox properties `columnGap` and `rowGap` to setting the spacing between children and rows in case of a  FlexRow wrap
 
 
 **What’s Fixed**
