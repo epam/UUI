@@ -8,7 +8,7 @@ import { getQuery } from '../helpers';
 import { codesandboxService } from '../data/codesandbox/service';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
-import * as css from './DocumentsPage.scss';
+import css from './DocumentsPage.scss';
 
 type DocsQuery = {
     id: string,
