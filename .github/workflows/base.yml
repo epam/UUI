@@ -65,7 +65,6 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
       ACTIONS_STEP_DEBUG: true
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
       VALUES_FILE: ${{ inputs.values-file }}
@@ -90,6 +89,53 @@ jobs:
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ${{ secrets.REGISTRY_URL }}/${{ inputs.image-name }}
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=sha
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+
+  package:
+    needs: docker
+    runs-on: ubuntu-20.04 # Gitversion requires .NET SDK 3.1
+
+    steps:
+      - uses: actions/checkout@v2
+        name: Code checkout
+        with:
+          fetch-depth: 0
+
+      # install Gitversion to obtain semver version
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.15
+        with:
+          versionSpec: '5.5.0'
+
+      - name: Version determination
+        id:   gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.15
+
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.8.0
       - name: Preparation and Helm chart packaging
         run: |
           export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')
