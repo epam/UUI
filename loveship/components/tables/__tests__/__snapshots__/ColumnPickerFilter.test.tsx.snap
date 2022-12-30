@@ -6,7 +6,9 @@ Array [
     className="root size-36 background-white spacing-6 body container align-items-center"
     style={
       Object {
+        "columnGap": undefined,
         "maxHeight": 300,
+        "rowGap": undefined,
       }
     }
   >
@@ -64,6 +66,12 @@ Array [
               className="uui-focus pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -100,6 +108,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -136,6 +150,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -172,6 +192,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -208,6 +234,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -244,6 +276,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -280,6 +318,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -316,6 +360,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -352,6 +402,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -388,6 +444,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -453,6 +515,12 @@ Array [
   </div>,
   <div
     className="root size-36 background-white padding-12 spacing-6 footerWrapper container align-items-center"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
   >
     <label
       className="container root size-18 color-sky theme-light uui-disabled"
@@ -492,7 +560,9 @@ Array [
     className="root size-36 background-white spacing-6 body container align-items-center"
     style={
       Object {
+        "columnGap": undefined,
         "maxHeight": 300,
+        "rowGap": undefined,
       }
     }
   >
@@ -550,6 +620,12 @@ Array [
               className="uui-focus pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -586,6 +662,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -622,6 +704,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -658,6 +746,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -694,6 +788,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -730,6 +830,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -766,6 +872,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -802,6 +914,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -838,6 +956,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -874,6 +998,12 @@ Array [
               className="pickerRow container -clickable align-items-center"
               onClick={[Function]}
               role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
             >
               <div
                 className="cell cell size-30 padding-12 padding-left-12 align-widgets-top"
@@ -939,6 +1069,12 @@ Array [
   </div>,
   <div
     className="root size-36 background-white padding-12 spacing-6 footerWrapper container align-items-center"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
   >
     <label
       className="container root size-18 color-sky theme-light uui-disabled"
