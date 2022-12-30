@@ -216,6 +216,10 @@ export type FlexRowProps = IHasCX
     & {
         /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
         alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
+        /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
+        columnGap?: number;
+        /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
+        rowGap?: number;
     };
 
 export type FlexCellProps = IHasCX
