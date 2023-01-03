@@ -5,10 +5,10 @@ import css from './SizeExample.scss';
 export default function SizeExample() {
     return (
         <div className={ css.container } >
-            <LinkButton caption='link button' link={ { pathname: '/' } } captionCX={ css.caption } size='42' />
-            <LinkButton caption='link button' link={ { pathname: '/' } } captionCX={ css.caption } size='36' />
-            <LinkButton caption='link button' link={ { pathname: '/' } } captionCX={ css.caption } size='30' />
-            <LinkButton caption='link button' link={ { pathname: '/' } } captionCX={ css.caption } size='24' />
+            <LinkButton caption='LINK BUTTON' link={ { pathname: '/' } } size='42' />
+            <LinkButton caption='LINK BUTTON' link={ { pathname: '/' } } size='36' />
+            <LinkButton caption='LINK BUTTON' link={ { pathname: '/' } } size='30' />
+            <LinkButton caption='LINK BUTTON' link={ { pathname: '/' } } size='24' />
 
             <Text fontSize='14'>42 px</Text>
             <Text fontSize='14'>36 px</Text>
