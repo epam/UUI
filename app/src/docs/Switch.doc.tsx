@@ -6,9 +6,9 @@ export class SwitchDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/inputs/docs/switch.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/inputs/docs/switch.doc.ts',
-            [UUI]: './app/src/docProps/uui/components/inputs/docs/switch.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/inputs/switch.doc.ts',
+            [UUI4]: './app/src/docProps/epam-promo/components/inputs/switch.doc.ts',
+            [UUI]: './app/src/docProps/uui/components/inputs/switch.doc.ts',
         };
     }
 

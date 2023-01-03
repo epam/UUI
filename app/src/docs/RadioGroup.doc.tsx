@@ -6,8 +6,8 @@ export class RadioGroupDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/layout/docs/radioGroup.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/layout/docs/radioGroup.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/layout/radioGroup.doc.ts',
+            [UUI4]: './app/src/docProps/epam-promo/components/layout/radioGroup.doc.ts',
         };
     }
 

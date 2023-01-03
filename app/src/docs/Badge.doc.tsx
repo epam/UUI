@@ -6,7 +6,7 @@ export class BadgeDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/widgets/docs/badge.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/widgets/badge.doc.ts',
             [UUI4]: './app/src/docProps/epam-promo/components/widgets/badge.doc.tsx',
         };
     }

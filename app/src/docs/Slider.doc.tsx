@@ -6,7 +6,7 @@ export class SliderDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/inputs/Slider/docs/slider.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/inputs/Slider/slider.doc.ts',
         };
     }
 

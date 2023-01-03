@@ -6,8 +6,8 @@ export class TimePickerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/inputs/docs/timePicker.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/inputs/docs/timePicker.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/inputs/timePicker.doc.ts',
+            [UUI4]: './app/src/docProps/epam-promo/components/inputs/timePicker.doc.ts',
         };
     }
 
