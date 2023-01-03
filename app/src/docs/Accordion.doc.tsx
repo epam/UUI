@@ -6,7 +6,7 @@ export class AccordionDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/layout/docs/accordion.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/layout/accordion.doc.tsx',
             [UUI4]: './epam-promo/components/layout/docs/accordion.doc.tsx',
         };
     }

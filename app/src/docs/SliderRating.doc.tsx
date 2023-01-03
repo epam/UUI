@@ -6,7 +6,7 @@ export class SliderRatingDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/sliderRating.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/inputs/sliderRating.doc.tsx',
         };
     }
 

@@ -6,7 +6,7 @@ export class BlockerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/layout/docs/blocker.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/layout/docs/blocker.doc.ts',
             [UUI4]: './epam-promo/components/layout/docs/blocker.doc.ts',
         };
     }

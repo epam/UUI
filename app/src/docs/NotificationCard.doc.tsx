@@ -6,7 +6,7 @@ export class NotificationCardDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/overlays/docs/notificationCard.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/overlays/notificationCard.doc.tsx',
             [UUI4]: './epam-promo/components/overlays/docs/notificationCard.doc.tsx',
         };
     }

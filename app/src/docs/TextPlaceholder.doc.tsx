@@ -6,7 +6,7 @@ export class TextPlaceholderDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/typography/docs/textPlaceholder.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/typography/textPlaceholder.doc.tsx',
             [UUI4]: './epam-promo/components/typography/docs/textPlaceholder.doc.tsx',
             [UUI]: './uui/components/typography/docs/textPlaceholder.doc.tsx',
         };

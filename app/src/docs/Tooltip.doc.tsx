@@ -6,7 +6,7 @@ export class TooltipDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/overlays/docs/tooltip.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/overlays/tooltip.doc.tsx',
             [UUI4]: './epam-promo/components/overlays/docs/tooltip.doc.tsx',
         };
     }

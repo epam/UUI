@@ -6,7 +6,7 @@ export class LabeledInputDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/layout/docs/labeledInput.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/layout/labeledInput.doc.tsx',
             [UUI4]: './epam-promo/components/layout/docs/labeledInput.doc.tsx',
         };
     }

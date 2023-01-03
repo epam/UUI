@@ -6,7 +6,7 @@ export class SearchInputDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/searchInput.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/inputs/docs/searchInput.doc.ts',
             [UUI4]: './epam-promo/components/inputs/docs/searchInput.doc.ts',
         };
     }
