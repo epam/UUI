@@ -11,7 +11,6 @@ import App from './App';
 import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import './index.scss';
-import './themes/index.css';
 import css from './index.scss';
 
 const history = createBrowserHistory();
@@ -28,7 +27,7 @@ export class UuiEnhancedApp extends React.Component {
         const snow = [];
 
         for (let index = 0; index < 300; index++) {
-            snow.push(<div className={ css.christmasSnow}/>)
+            snow.push(<div className={ css.christmasSnow }/>);
         }
 
         return <div className={ css.christmasBox }>{ snow }</div>;
