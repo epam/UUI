@@ -9,6 +9,12 @@ exports[`MainMenu should be rendered correctly 1`] = `
   >
     <div
       className="container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
     >
       <div
         className="root uui-burger-menu container"
@@ -58,6 +64,12 @@ exports[`MainMenu should be rendered correctly 2`] = `
   >
     <div
       className="container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
     >
       <div
         className="root uui-burger-menu container"
