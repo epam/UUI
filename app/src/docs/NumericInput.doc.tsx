@@ -7,7 +7,7 @@ export class NumericInputDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/inputs/docs/numericInput.doc.ts',
-            [UUI4]: './epam-promo/components/inputs/docs/numericInput.doc.ts',
+            [UUI4]: './app/src/docProps/epam-promo/components/inputs/docs/numericInput.doc.ts',
         };
     }
 

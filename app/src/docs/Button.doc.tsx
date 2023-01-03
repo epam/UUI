@@ -7,8 +7,8 @@ export class ButtonDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/buttons/button.doc.tsx',
-            [UUI4]: './epam-promo/components/buttons/docs/button.doc.tsx',
-            [UUI]: './uui/components/buttons/docs/button.doc.tsx',
+            [UUI4]: './app/src/docProps/epam-promo/components/buttons/button.doc.tsx',
+            [UUI]: './app/src/docProps/uui/components/buttons/button.doc.tsx',
         };
     }
 

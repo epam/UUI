@@ -7,7 +7,7 @@ export class DropdownContainerDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/overlays/dropdownContainer.doc.tsx',
-            [UUI4]: './epam-promo/components/overlays/docs/dropdownContainer.doc.tsx',
+            [UUI4]: './app/src/docProps/epam-promo/components/overlays/dropdownContainer.doc.tsx',
         };
     }
 

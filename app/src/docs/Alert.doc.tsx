@@ -7,7 +7,7 @@ export class AlertDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/overlays/alert.doc.tsx',
-            [UUI4]: './epam-promo/components/overlays/docs/alert.doc.tsx',
+            [UUI4]: './app/src/docProps/epam-promo/components/overlays/alert.doc.tsx',
         };
     }
 
