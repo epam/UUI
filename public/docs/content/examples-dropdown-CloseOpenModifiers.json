@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Dropdown has may ways for customization open/close logic:",
+            "text": "Dropdown has may ways for customisation open/close logic:",
             "marks": []
           }
         ]
@@ -33,7 +33,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "closeOnMouseLeave:  'toggler' | 'boundary' | false",
+                    "text": "closeOnMouseLeave: 'toggler' | 'boundary' | false",
                     "marks": [
                       {
                         "object": "mark",
@@ -44,8 +44,19 @@
                   },
                   {
                     "object": "text",
-                    "text": " prop.  This prop will work only with openOnHover={ true } prop",
+                    "text": " prop. This prop will work only with ",
                     "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "openOnHover={ true }",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
                   }
                 ]
               },
@@ -66,18 +77,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "toggler",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-italic",
-                                "data": {}
-                              }
-                            ]
-                          },
-                          {
-                            "object": "text",
-                            "text": " - means  that dropdown will be closed when muse leave target component, in our case - Button",
+                            "text": "toggler - means  that dropdown will be closed when muse leave target component, in our case - Button",
                             "marks": []
                           }
                         ]
