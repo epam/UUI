@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ArrayDataSource, cx, IHasCX, INotification, IEditable } from "@epam/uui";
-import { IDemoApi } from '@epam/uui-docs';
+import { ArrayDataSource, cx, IHasCX, INotification } from "@epam/uui";
+import { PropDoc, PropSamplesCreationContext, IComponentDocs, PropExample, DemoContext } from '@epam/uui-docs';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel,
     ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';
 import { svc } from '../../services';
@@ -17,61 +17,20 @@ declare var require: any;
 // use more accurate regexp to speed up lookup of docs. in the future we will get rid of "require.context" at all.
 const requireContext = require.context(`../../../../`, true, /[\\/](loveship|epam-promo|uui)[\\/].*\.doc.(ts|tsx)$/, 'lazy');
 
-interface DemoComponentProps<TProps = any> {
-    DemoComponent: React.ComponentType<TProps>;
-    props: any;
-}
-
-interface DemoContext {
-    context: React.ComponentType<DemoComponentProps>;
-    name: string;
-}
-
-type PropExample<TProp> = {
-    id?: string;
-    name?: string;
-    value: TProp;
-    isDefault?: boolean;
-} | TProp;
-
-interface IComponentDocs<TProps> {
-    name: string;
-    component?: React.ComponentType<TProps>;
-    props?: PropDoc<TProps, keyof TProps>[];
-    contexts?: DemoContext[];
-}
-
 interface ComponentEditorProps<TProps> extends IHasCX {
     propsDocPath: string;
     title: string;
 }
 
-interface PropDoc<TProps, TProp extends keyof TProps> {
-    name: Extract<keyof TProps, string>;
-    description?: string;
-    isRequired: boolean;
-    defaultValue?: TProps[TProp];
-    examples?: PropExample<TProps[TProp]>[] | ((ctx: PropSamplesCreationContext<TProps>) => PropExample<TProps[TProp]>[]);
-    type?: 'string' | 'number';
-    renderEditor?: (editable: IEditable<TProp>, examples?: TProps[TProp][], componentProps?: TProps) => React.ReactNode;
-}
-
-interface PropSamplesCreationContext<TProps = {}> {
-    getCallback(name: string): () => void;
-    getChangeHandler(name: string): (newValue: any) => void;
-    getSelectedProps(): TProps;
-    demoApi: IDemoApi;
-    forceUpdate: () => void;
-}
-
-interface ComponentEditorState<TProps> {
-    docs: IComponentDocs<TProps>;
+interface ComponentEditorState {
+    docs: IComponentDocs<any>;
     isLoading: boolean;
     code?: string;
     showCode: boolean;
     selectedContext?: string;
     selectedProps: { [name: string]: string };
     inputValues: { [name: string]: string };
+    componentKey?: string;
 }
 
 enum SkinTheme {
@@ -146,6 +105,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
             showCode: false,
             selectedProps: {},
             inputValues: {},
+            componentKey: undefined,
         };
     }
 
@@ -181,10 +141,15 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
         }));
 
         const onExampleClick = (selectedProp: string, inputValue?: string) => {
-            const newStateValues = {
+            const newStateValues: ComponentEditorState = {
+                ...this.state,
                 selectedProps: { ...this.state.selectedProps, [prop.name]: selectedProp },
                 inputValues: { ...this.state.inputValues, [prop.name]: inputValue },
             };
+
+            if (prop.remountOnChange) {
+                newStateValues.componentKey = new Date().getTime().toString();
+            }
 
             this.setState(newStateValues);
         };
@@ -316,6 +281,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
             }
             props[key] = this.propExamples[key].find(({ id }) => id === this.state.selectedProps[key])?.value ?? this.state.selectedProps[key];
         }
+        props.key = this.state.componentKey;
         return props;
     }
 
