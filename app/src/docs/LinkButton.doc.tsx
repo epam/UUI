@@ -16,6 +16,12 @@ export class LinkButtonDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName='link-button-descriptions' />
+                { this.renderSectionTitle('Overview') }
+                <DocExample
+                    title='Link Button'
+                    path='./examples/linkButton/Default.example.tsx'
+                />
+
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
