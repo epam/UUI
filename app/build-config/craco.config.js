@@ -94,6 +94,8 @@ function configureWebpack(config, { paths }) {
     config.plugins.forEach(p => {
         if (p.constructor.name === 'ForkTsCheckerWebpackPlugin') {
             p.options.formatter = uuiCustomFormatter;
+            const include = isUseBuildFolderOfDeps() ? BABEL_INCLUDED_REGEXP.BUILD_FOLDERS : BABEL_INCLUDED_REGEXP.DEFAULT;
+            p.options.issue.include = p.options.issue.include.concat(include);
         }
     })
 
