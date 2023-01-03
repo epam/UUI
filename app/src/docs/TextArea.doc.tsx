@@ -6,8 +6,8 @@ export class TextAreaDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/inputs/docs/textArea.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/inputs/docs/textArea.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/inputs/textArea.doc.ts',
+            [UUI4]: './app/src/docProps/epam-promo/components/inputs/textArea.doc.ts',
         };
     }
 

@@ -7,7 +7,7 @@ export class LinkButtonDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/buttons/linkButton.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/buttons/docs/linkButton.doc.ts',
+            [UUI4]: './app/src/docProps/epam-promo/components/buttons/linkButton.doc.ts',
         };
     }
 

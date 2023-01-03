@@ -6,7 +6,7 @@ export class TagDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/widgets/docs/tag.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/widgets/tag.doc.ts',
             [UUI4]: './app/src/docProps/epam-promo/components/widgets/tag.doc.tsx',
         };
     }

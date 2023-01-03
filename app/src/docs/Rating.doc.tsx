@@ -6,8 +6,8 @@ export class RatingDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/inputs/docs/rating.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/inputs/docs/rating.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/inputs/rating.doc.ts',
+            [UUI4]: './app/src/docProps/epam-promo/components/inputs/rating.doc.ts',
         };
     }
 
