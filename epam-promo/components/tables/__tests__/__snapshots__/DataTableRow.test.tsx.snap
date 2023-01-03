@@ -6,7 +6,9 @@ exports[`DataTableRow should be rendered correctly 1`] = `
   role="row"
   style={
     Object {
+      "columnGap": undefined,
       "minWidth": "96px",
+      "rowGap": undefined,
     }
   }
 >
