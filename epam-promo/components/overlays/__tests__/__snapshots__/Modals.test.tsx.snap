@@ -55,9 +55,21 @@ exports[`Modals should be rendered correctly 1`] = `
     >
       <div
         className="root size-36 background-none padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       />
       <div
         className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       />
     </div>
   </div>
@@ -134,6 +146,12 @@ exports[`Modals should be rendered correctly 2`] = `
     >
       <div
         className="root size-36 background-gray5 padding-6 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <div
           className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
@@ -177,6 +195,12 @@ exports[`Modals should be rendered correctly 2`] = `
       </div>
       <div
         className="root size-36 background-white padding-18 vPadding-24 spacing-12 modalFooter container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       />
     </div>
   </div>

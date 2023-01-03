@@ -55,6 +55,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
     >
       <div
         className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <div
           className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
@@ -111,6 +117,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
       >
         <div
           className="root size-36 background-none vPadding-24 container align-items-center"
+          style={
+            Object {
+              "columnGap": undefined,
+              "rowGap": undefined,
+            }
+          }
         >
           <div
             className="container uui-input-box -clickable text-input-vars root size-36 mode-form uui-theme-promo"
@@ -145,7 +157,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
         className="root size-36 background-white body editMode-modal container align-items-center"
         style={
           Object {
+            "columnGap": undefined,
             "maxHeight": undefined,
+            "rowGap": undefined,
           }
         }
       >
@@ -203,6 +217,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -237,6 +257,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -271,6 +297,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -305,6 +337,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -339,6 +377,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -373,6 +417,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -407,6 +457,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -441,6 +497,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -475,6 +537,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -509,6 +577,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -543,6 +617,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -606,6 +686,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
       <div
         className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <div
           className="flexSpacer"
@@ -714,6 +800,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
     >
       <div
         className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <div
           className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
@@ -770,6 +862,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
       >
         <div
           className="root size-36 background-none vPadding-24 container align-items-center"
+          style={
+            Object {
+              "columnGap": undefined,
+              "rowGap": undefined,
+            }
+          }
         >
           <div
             className="container uui-input-box -clickable text-input-vars root size-36 mode-form uui-theme-promo"
@@ -829,7 +927,9 @@ exports[`PickerModal should be rendered correctly 2`] = `
         className="root size-36 background-white body editMode-modal container align-items-center"
         style={
           Object {
+            "columnGap": undefined,
             "maxHeight": undefined,
+            "rowGap": undefined,
           }
         }
       >
@@ -887,6 +987,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -938,6 +1044,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -989,6 +1101,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1040,6 +1158,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1091,6 +1215,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1142,6 +1272,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1193,6 +1329,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1244,6 +1386,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1295,6 +1443,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1346,6 +1500,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1397,6 +1557,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   className="pickerRow container -clickable align-items-center"
                   onClick={[Function]}
                   role="option"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="cell cell size-36 padding-24 padding-left-24 align-widgets-top"
@@ -1477,6 +1643,12 @@ exports[`PickerModal should be rendered correctly 2`] = `
       </div>
       <div
         className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <button
           className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"

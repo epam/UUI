@@ -1,4 +1,5 @@
-import { Project, Symbol } from "ts-morph";
+import { Project, SourceFile, Symbol } from "ts-morph";
+import path from 'path';
 import * as fs from 'fs';
 import * as ts from 'typescript';
 
@@ -7,10 +8,6 @@ const project = new Project(
         tsConfigFilePath: '../tsconfig.json',
     },
 );
-
-let docsProps: any = {};
-
-const docsFiles = project.addSourceFilesAtPaths(["../**/*.doc{.ts,.tsx}", "!../**/node_modules/**", "!../**/app/**"]);
 
 const typeChecker = project.getTypeChecker().compilerObject;
 
@@ -24,7 +21,7 @@ function escape(htmlStr: string) {
           .replace(/"/g, "&quot;")
           .replace(/'/g, "&#39;");
 
- }
+}
 
 function formatComment(comment: string) {
     comment = escape(comment);
@@ -49,7 +46,7 @@ const getPropType = (prop: Symbol, path: string) => {
         htmlComment = formatComment(jsDocComment);
         JsDocCommentsCount++;
     } else {
-        console.debug(`Missing comment for ${name} in ${path}`)
+        console.debug(`Missing comment for ${name} in ${path}`);
         missingJsDocCommentsCount++;
     }
     propsCount++;
@@ -73,28 +70,54 @@ const getPropType = (prop: Symbol, path: string) => {
     };
 };
 
-// const getTypeFromFile = (sourceFile: SourceFile, type: Type, name: string): string => {
-//     if (!sourceFile.getFilePath().includes('@epam')) { // if type not from our packages, return just type name
-//         return name;
-//     }
-//
-//     if (sourceFile.getInterface(name)) {
-//         return sourceFile.getInterface(name).getMembers().map(i => i.getType().getText()).join();
-//
-//     } else if (sourceFile.getTypeAlias(name)) {
-//         return sourceFile.getTypeAlias(name).getStructure().type as string;
-//     }
-// };
+function main() {
+    const docsProps: any = {};
+    /**
+     * Sorting of files and props is necessary to make the output more stable and comparable.
+     */
+    const docsFiles = project.addSourceFilesAtPaths(["../**/*.doc{.ts,.tsx}", "!../**/node_modules/**", "!../**/app/**"]);
+    const docsFilesSorted = sortDocFiles(docsFiles);
+    docsFilesSorted.map(i => {
+        const docPath = getDocPathFromFile(i);
+        const props = getPropsFromDocFile(i);
+        docsProps[docPath] = props;
+    });
+    fs.writeFile('../public/docs/componentsPropsSet.json', JSON.stringify({ props: docsProps }, null, 2), () => null);
+    console.log(`Props: ${propsCount}. JsDoc exists: ${JsDocCommentsCount}, missing: ${missingJsDocCommentsCount}`);
+
+}
+function getPropsFromDocFile(f: SourceFile) {
+    const docPath = getDocPathFromFile(f);
+    const exportExpression = f.getExportAssignment(() => true).getStructure().expression;
+    const propsArr = f.getVariableDeclaration(exportExpression as any).getType().getTypeArguments()[0].getProperties();
+    const propsArrSorted = sortProps(propsArr);
+    const props = propsArrSorted.map(prop => getPropType(prop, docPath));
+    return props;
+}
+function getDocPathFromFile(f: SourceFile) {
+    const fpFull = f.getFilePath();
+    const rootOfTheRepo = path.resolve(process.cwd(), "..").replace(/\\+/g, '/');
+    return fpFull.substring(rootOfTheRepo.length);
+}
+function sortProps(propsArr: Symbol[]) {
+    const arr = [...propsArr];
+    arr.sort((p1, p2) => {
+        const en1 = p1.getEscapedName();
+        const en2 = p2.getEscapedName();
+        return en1.localeCompare(en2);
+    });
+    return arr;
+}
+function sortDocFiles(filesArr: SourceFile[]) {
+    const arr = [...filesArr];
+    arr.sort((f1, f2) => {
+        const dp1 = getDocPathFromFile(f1);
+        const dp2 = getDocPathFromFile(f2);
+        return dp1.localeCompare(dp2);
+    });
+    return arr;
+}
 
 
+main();
 
-docsFiles.map(i => {
-    const exportExpression = i.getExportAssignment(() => true).getStructure().expression;
-    const docPath = i.getFilePath().replace(/.*\/uui/g, '');
-    const props = i.getVariableDeclaration(exportExpression as any).getType().getTypeArguments()[0].getProperties().map(prop => getPropType(prop, docPath));
-    docsProps[docPath] = props;
-});
-
-
-fs.writeFile('../public/docs/componentsPropsSet.json', JSON.stringify({ props: docsProps }, null, 2), () => null);
-console.log(`Props: ${propsCount}. JsDoc exists: ${JsDocCommentsCount}, missing: ${missingJsDocCommentsCount}`);
