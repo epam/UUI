@@ -91,7 +91,6 @@ function configureWebpack(config, { paths }) {
     });
 
     /** Reason: 'path' is used in some components: react-markdown
-     * app/src/common/docs/BaseDocsBlock.tsx
      * we need to get rid of it in the future.
      **/
     config.resolve.alias.path = "path-browserify";
