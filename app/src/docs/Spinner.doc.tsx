@@ -6,7 +6,7 @@ export class SpinnerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/widgets/docs/spinner.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/widgets/docs/spinner.doc.ts',
             [UUI4]: './epam-promo/components/widgets/docs/spinner.doc.tsx',
         };
     }

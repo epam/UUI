@@ -6,7 +6,7 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/datePickers/docs/rangeDatePicker.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/datePickers/rangeDatePicker.doc.tsx',
             [UUI4]: './epam-promo/components/datePickers/docs/rangeDatePicker.doc.tsx',
         };
     }

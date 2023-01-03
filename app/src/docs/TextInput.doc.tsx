@@ -6,7 +6,7 @@ export class TextInputDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/textInput.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/inputs/docs/textInput.doc.ts',
             [UUI4]: './epam-promo/components/inputs/docs/textInput.doc.ts',
             [UUI]: './uui/components/inputs/docs/textInput.doc.ts',
         };

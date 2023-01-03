@@ -6,7 +6,7 @@ export class IconButtonDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/buttons/docs/iconButton.doc.ts',
+            [UUI3]: './app/src/docProps/loveship/components/buttons/docs/iconButton.doc.ts',
             [UUI4]: './epam-promo/components/buttons/docs/iconButton.doc.tsx',
         };
     }

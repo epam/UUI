@@ -6,7 +6,7 @@ export class PickerListDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/pickers/docs/pickerList.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/pickers/pickerList.doc.tsx',
         };
     }
 

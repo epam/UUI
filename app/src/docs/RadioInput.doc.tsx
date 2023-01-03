@@ -6,7 +6,7 @@ export class RadioInputDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/radioInput.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/inputs/radioInput.doc.tsx',
             [UUI4]: './epam-promo/components/inputs/docs/radioInput.doc.ts',
             [UUI]: './uui/components/inputs/docs/radioInput.doc.ts',
         };

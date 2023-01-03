@@ -6,7 +6,7 @@ export class AvatarDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/widgets/docs/avatar.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/widgets/avatar.doc.tsx',
             [UUI4]: './epam-promo/components/widgets/docs/avatar.doc.tsx',
         };
     }

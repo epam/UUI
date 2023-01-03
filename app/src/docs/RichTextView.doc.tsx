@@ -6,7 +6,7 @@ export class RichTextViewDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/typography/docs/richTextView.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/typography/richTextView.doc.tsx',
             [UUI4]: './epam-promo/components/typography/docs/richTextView.doc.tsx',
         };
     }

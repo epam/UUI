@@ -6,7 +6,7 @@ export class CheckboxDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/checkbox.doc.tsx',
+            [UUI3]: './app/src/docProps/loveship/components/inputs/checkbox.doc.tsx',
             [UUI4]: './epam-promo/components/inputs/docs/checkbox.doc.ts',
             [UUI]: './uui/components/inputs/docs/checkbox.doc.ts',
         };
