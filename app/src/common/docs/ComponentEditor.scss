@@ -13,7 +13,9 @@
     min-width: 480px;
     max-width: 726px;
     border-right: 1px solid $gray40;
-    flex: 1 1 0px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0px;
 
     .box-sizing {
         box-sizing: border-box;
@@ -27,7 +29,9 @@
     .row-props {
         overflow: auto;
         border-bottom: 1px solid $gray40;
-        flex: 1 0 0;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 0px;
     }
 
     .code {
@@ -57,6 +61,8 @@
 
 .demo-container {
     overflow: auto;
-    flex: 1 0 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0px;
     width: 100%;
 }
