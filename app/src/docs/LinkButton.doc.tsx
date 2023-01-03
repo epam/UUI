@@ -22,6 +22,11 @@ export class LinkButtonDoc extends BaseDocsBlock {
                     path='./examples/linkButton/Default.example.tsx'
                 />
 
+                <DocExample
+                    title='Sizes'
+                    path='./examples/linkButton/Size.example.tsx'
+                />
+
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
