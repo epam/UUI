@@ -7,7 +7,7 @@ import css from '../pickers/DataPickerRowDoc.scss';
 import { ReactComponent as MoreIcon } from '../../docIcons/navigation-more_vert-18.svg';
 import { ReactComponent as CalendarIcon } from '../../docIcons/action-calendar-18.svg';
 import { ReactComponent as TickIcon } from '../../docIcons/notification-done-18.svg';
-import { ReactComponent as PencilIcon } from '../../docIcons/icons/content-edit-18.svg';
+import { ReactComponent as PencilIcon } from '../../docIcons/content-edit-18.svg';
 import { Person } from './TableContext';
 import { DataTableHeaderRowMods } from '@epam/loveship';
 
