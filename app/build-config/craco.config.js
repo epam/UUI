@@ -112,16 +112,13 @@ function configureWebpack(config, { paths }) {
 
 function isUseBuildFolderOfDeps() {
     /**
-     * TODO: need to change the approach to process "docs". I.e. get rid of "require.context" and use explicit imports instead.
+     * TODO: need to change the approach to process "docs".
      * Known places:
      * app/src/common/docs/ComponentEditor.tsx
      * app/src/common/docs/DocExample.tsx
      * epam-assets/icons/index.ts
      * epam-assets/icons/legacy/index.ts
      * epam-assets/icons/loaders/index.ts
-     * epam-promo/index.docs.ts
-     * loveship/index.docs.ts
-     * uui/index.docs.ts
      *
      * @type {boolean}
      */
