@@ -14,7 +14,7 @@ import css from './ComponentEditor.scss';
 declare var require: any;
 
 // use more accurate regexp to speed up lookup of docs. in the future we will get rid of "require.context" at all.
-const requireContext = require.context(`../../../../`, true, /[\\/](app[\\/]src[\\/]docProps|epam-promo|uui)[\\/].*\.doc.(ts|tsx)$/, 'lazy');
+const requireContext = require.context(`../../../../`, true, /[\\/](app[\\/]src[\\/]docProps[\\/](loveship|epam\-promo|uui))[\\/].*\.doc.(ts|tsx)$/, 'lazy');
 
 interface ComponentEditorProps<TProps> extends IHasCX {
     propsDocPath: string;

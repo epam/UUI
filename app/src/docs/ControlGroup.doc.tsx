@@ -7,7 +7,7 @@ export class ControlGroupDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/layout/controlGroup.doc.tsx',
-            [UUI4]: './epam-promo/components/layout/docs/controlGroup.doc.tsx',
+            [UUI4]: './app/src/docProps/epam-promo/components/layout/controlGroup.doc.tsx',
         };
     }
 

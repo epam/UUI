@@ -7,7 +7,7 @@ export class IconContainerDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/layout/iconContainer.doc.tsx',
-            [UUI4]: './epam-promo/components/layout/docs/iconContainer.doc.tsx',
+            [UUI4]: './app/src/docProps/epam-promo/components/layout/iconContainer.doc.tsx',
         };
     }
 

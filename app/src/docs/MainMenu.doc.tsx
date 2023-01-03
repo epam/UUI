@@ -7,7 +7,7 @@ export class MainMenuDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/navigation/mainMenu.doc.tsx',
-            [UUI4]: './epam-promo/components/navigation/docs/mainMenu.doc.tsx',
+            [UUI4]: './app/src/docProps/epam-promo/components/navigation/mainMenu.doc.tsx',
         };
     }
 

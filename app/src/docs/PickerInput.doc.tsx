@@ -7,8 +7,8 @@ export class PickerInputDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/pickers/pickerInput.doc.tsx',
-            [UUI4]: './epam-promo/components/pickers/docs/pickerInput.doc.tsx',
-            [UUI]: './uui/components/pickers/docs/pickerInput.doc.tsx',
+            [UUI4]: './app/src/docProps/epam-promo/components/pickers/pickerInput.doc.tsx',
+            [UUI]: './app/src/docProps/uui/components/pickers/pickerInput.doc.tsx',
         };
     }
 

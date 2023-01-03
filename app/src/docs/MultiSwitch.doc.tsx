@@ -7,7 +7,7 @@ export class MultiSwitchDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/inputs/multiSwitch.doc.tsx',
-            [UUI4]: './epam-promo/components/inputs/docs/multiSwitch.doc.tsx',
+            [UUI4]: './app/src/docProps/epam-promo/components/inputs/multiSwitch.doc.tsx',
         };
     }
 

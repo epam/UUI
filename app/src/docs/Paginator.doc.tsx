@@ -7,7 +7,7 @@ export class PaginatorDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/widgets/paginator.doc.tsx',
-            [UUI4]: './epam-promo/components/widgets/docs/paginator.doc.tsx',
+            [UUI4]: './app/src/docProps/epam-promo/components/widgets/paginator.doc.tsx',
         };
     }
 

@@ -7,7 +7,7 @@ export class TextDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/typography/text.doc.tsx',
-            [UUI4]: './epam-promo/components/typography/docs/text.doc.tsx',
+            [UUI4]: './app/src/docProps/epam-promo/components/typography/text.doc.tsx',
         };
     }
 

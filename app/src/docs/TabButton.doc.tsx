@@ -7,7 +7,7 @@ export class TabButtonDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docProps/loveship/components/buttons/docs/tabButton.doc.ts',
-            [UUI4]: './epam-promo/components/buttons/docs/tabButton.doc.ts',
+            [UUI4]: './app/src/docProps/epam-promo/components/buttons/docs/tabButton.doc.ts',
         };
     }
     

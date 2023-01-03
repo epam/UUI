@@ -1,6 +1,6 @@
 {
   "props": {
-    "/epam-promo/components/buttons/docs/button.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/buttons/button.doc.tsx": [
       {
         "name": "caption",
         "value": "any",
@@ -157,7 +157,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/epam-promo/components/buttons/docs/iconButton.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/buttons/iconButton.doc.tsx": [
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
@@ -234,7 +234,7 @@
         "comment": "<p>Controls where the link should be opened</p>"
       }
     ],
-    "/epam-promo/components/buttons/docs/linkButton.doc.ts": [
+    "/app/src/docProps/epam-promo/components/buttons/linkButton.doc.ts": [
       {
         "name": "caption",
         "value": "any",
@@ -386,7 +386,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/epam-promo/components/buttons/docs/tabButton.doc.ts": [
+    "/app/src/docProps/epam-promo/components/buttons/tabButton.doc.ts": [
       {
         "name": "caption",
         "value": "any",
@@ -538,7 +538,7 @@
         "comment": "<p>Show notification red dot</p>"
       }
     ],
-    "/epam-promo/components/buttons/docs/verticalTabButton.doc.ts": [
+    "/app/src/docProps/epam-promo/components/buttons/verticalTabButton.doc.ts": [
       {
         "name": "caption",
         "value": "any",
@@ -690,7 +690,7 @@
         "comment": "<p>Show notification red dot</p>"
       }
     ],
-    "/epam-promo/components/datePickers/docs/datePicker.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/datePickers/datePicker.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -817,7 +817,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/datePickers/docs/rangeDatePicker.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/datePickers/rangeDatePicker.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -939,7 +939,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/inputs/docs/checkbox.doc.ts": [
+    "/app/src/docProps/epam-promo/components/inputs/checkbox.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -1061,7 +1061,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/inputs/docs/multiSwitch.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/inputs/multiSwitch.doc.tsx": [
       {
         "name": "color",
         "value": "blue | gray50",
@@ -1123,7 +1123,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/inputs/docs/numericInput.doc.ts": [
+    "/app/src/docProps/epam-promo/components/inputs/numericInput.doc.ts": [
       {
         "name": "align",
         "value": "left | right",
@@ -1275,7 +1275,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/inputs/docs/radioInput.doc.ts": [
+    "/app/src/docProps/epam-promo/components/inputs/radioInput.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -1367,7 +1367,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/inputs/docs/rating.doc.ts": [
+    "/app/src/docProps/epam-promo/components/inputs/rating.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -1474,7 +1474,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/inputs/docs/searchInput.doc.ts": [
+    "/app/src/docProps/epam-promo/components/inputs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "Icon",
@@ -1706,7 +1706,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/inputs/docs/switch.doc.ts": [
+    "/app/src/docProps/epam-promo/components/inputs/switch.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -1788,7 +1788,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/inputs/docs/textArea.doc.ts": [
+    "/app/src/docProps/epam-promo/components/inputs/textArea.doc.ts": [
       {
         "name": "autoFocus",
         "value": "boolean",
@@ -1905,7 +1905,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/inputs/docs/textInput.doc.ts": [
+    "/app/src/docProps/epam-promo/components/inputs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "Icon",
@@ -2127,7 +2127,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/inputs/docs/timePicker.doc.ts": [
+    "/app/src/docProps/epam-promo/components/inputs/timePicker.doc.ts": [
       {
         "name": "format",
         "value": "24 | 12",
@@ -2209,7 +2209,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/layout/docs/accordion.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/layout/accordion.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -2301,7 +2301,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/layout/docs/blocker.doc.ts": [
+    "/app/src/docProps/epam-promo/components/layout/blocker.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -2338,7 +2338,7 @@
         "comment": "<p>Sets the minimal height in px, for cases when blocked content is empty</p>"
       }
     ],
-    "/epam-promo/components/layout/docs/checkboxGroup.doc.ts": [
+    "/app/src/docProps/epam-promo/components/layout/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>",
@@ -2410,7 +2410,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/layout/docs/controlGroup.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/layout/controlGroup.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -2432,7 +2432,131 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "/epam-promo/components/layout/docs/iconContainer.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/layout/FlexItems/flexRow.doc.tsx": [
+      {
+        "name": "alignItems",
+        "value": "top | bottom | center | stretch",
+        "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
+      },
+      {
+        "name": "background",
+        "value": "none | white | gray5",
+        "comment": null
+      },
+      {
+        "name": "borderBottom",
+        "value": "gray40",
+        "comment": null
+      },
+      {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "key",
+        "value": "React.Key",
+        "comment": null
+      },
+      {
+        "name": "margin",
+        "value": "24 | 12",
+        "comment": null
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
+      },
+      {
+        "name": "padding",
+        "value": "24 | 18 | 6 | 12",
+        "comment": null
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "size",
+        "value": "24 | 30 | 36 | 42 | 48",
+        "comment": null
+      },
+      {
+        "name": "spacing",
+        "value": "18 | 6 | 12",
+        "comment": null
+      },
+      {
+        "name": "topShadow",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "vPadding",
+        "value": "24 | 36 | 48 | 18 | 12",
+        "comment": null
+      }
+    ],
+    "/app/src/docProps/epam-promo/components/layout/FlexItems/panel.doc.tsx": [
+      {
+        "name": "background",
+        "value": "white | gray90",
+        "comment": null
+      },
+      {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "clickAnalyticsEvent",
+        "value": "{ [key: string]: any; name: string; }",
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>",
+        "comment": "<p>this ref is passed to the underlying component</p>"
+      },
+      {
+        "name": "margin",
+        "value": "\"24\"",
+        "comment": null
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "shadow",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "style",
+        "value": "React.CSSProperties",
+        "comment": null
+      }
+    ],
+    "/app/src/docProps/epam-promo/components/layout/iconContainer.doc.tsx": [
       {
         "name": "color",
         "value": "white | blue | green | red | gray50 | amber | gray30 | gray60 | gray5 | gray10 | gray20 | gray40 | gray70 | gray80 | gray90 | cyan | orange | purple | violet",
@@ -2489,7 +2613,7 @@
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
       }
     ],
-    "/epam-promo/components/layout/docs/labeledInput.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/layout/labeledInput.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -2571,7 +2695,7 @@
         "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
       }
     ],
-    "/epam-promo/components/layout/docs/radioGroup.doc.ts": [
+    "/app/src/docProps/epam-promo/components/layout/radioGroup.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -2648,131 +2772,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/layout/FlexItems/docs/flexRow.doc.tsx": [
-      {
-        "name": "alignItems",
-        "value": "top | bottom | stretch | center",
-        "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
-      },
-      {
-        "name": "background",
-        "value": "none | white | gray5",
-        "comment": null
-      },
-      {
-        "name": "borderBottom",
-        "value": "gray40",
-        "comment": null
-      },
-      {
-        "name": "children",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "key",
-        "value": "React.Key",
-        "comment": null
-      },
-      {
-        "name": "margin",
-        "value": "24 | 12",
-        "comment": null
-      },
-      {
-        "name": "onClick",
-        "value": "(e?: any) => void",
-        "comment": "<p>Called when component is clicked</p>"
-      },
-      {
-        "name": "padding",
-        "value": "24 | 18 | 6 | 12",
-        "comment": null
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "size",
-        "value": "24 | 30 | 36 | 42 | 48",
-        "comment": null
-      },
-      {
-        "name": "spacing",
-        "value": "18 | 6 | 12",
-        "comment": null
-      },
-      {
-        "name": "topShadow",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "vPadding",
-        "value": "24 | 36 | 48 | 18 | 12",
-        "comment": null
-      }
-    ],
-    "/epam-promo/components/layout/FlexItems/docs/panel.doc.tsx": [
-      {
-        "name": "background",
-        "value": "white | gray90",
-        "comment": null
-      },
-      {
-        "name": "children",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "clickAnalyticsEvent",
-        "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "forwardedRef",
-        "value": "React.ForwardedRef<T>",
-        "comment": "<p>this ref is passed to the underlying component</p>"
-      },
-      {
-        "name": "margin",
-        "value": "\"24\"",
-        "comment": null
-      },
-      {
-        "name": "onClick",
-        "value": "(e?: any) => void",
-        "comment": "<p>Called when component is clicked</p>"
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "shadow",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "style",
-        "value": "React.CSSProperties",
-        "comment": null
-      }
-    ],
-    "/epam-promo/components/navigation/docs/anchor.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/navigation/anchor.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -2829,7 +2829,7 @@
         "comment": "<p>Controls where the link should be opened</p>"
       }
     ],
-    "/epam-promo/components/navigation/docs/mainMenu.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/navigation/mainMenu.doc.tsx": [
       {
         "name": "alwaysShowBurger",
         "value": "boolean",
@@ -2951,7 +2951,7 @@
         "comment": null
       }
     ],
-    "/epam-promo/components/overlays/docs/alert.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/overlays/alert.doc.tsx": [
       {
         "name": "actions",
         "value": "notificationAction[]",
@@ -2988,7 +2988,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "/epam-promo/components/overlays/docs/dropdown.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/overlays/dropdown.doc.tsx": [
       {
         "name": "boundaryElement",
         "value": "clippingParents",
@@ -3115,7 +3115,7 @@
         "comment": null
       }
     ],
-    "/epam-promo/components/overlays/docs/dropdownContainer.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/overlays/dropdownContainer.doc.tsx": [
       {
         "name": "arrowProps",
         "value": "PopperArrowProps",
@@ -3222,7 +3222,7 @@
         "comment": null
       }
     ],
-    "/epam-promo/components/overlays/docs/modalFooter.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/overlays/modalFooter.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | gray5",
@@ -3284,7 +3284,7 @@
         "comment": null
       }
     ],
-    "/epam-promo/components/overlays/docs/modalHeader.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/overlays/modalHeader.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | gray5",
@@ -3351,7 +3351,7 @@
         "comment": null
       }
     ],
-    "/epam-promo/components/overlays/docs/notificationCard.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/overlays/notificationCard.doc.tsx": [
       {
         "name": "actions",
         "value": "NotificationAction[]",
@@ -3413,7 +3413,7 @@
         "comment": null
       }
     ],
-    "/epam-promo/components/overlays/docs/tooltip.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/overlays/tooltip.doc.tsx": [
       {
         "name": "boundaryElement",
         "value": "clippingParents",
@@ -3475,7 +3475,7 @@
         "comment": "<p>Tooltip max width</p>"
       }
     ],
-    "/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/pickers/pickerInput.doc.tsx": [
       {
         "name": "autoFocus",
         "value": "boolean",
@@ -3722,7 +3722,7 @@
         "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       }
     ],
-    "/epam-promo/components/pickers/docs/pickerModal.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/pickers/pickerModal.doc.tsx": [
       {
         "name": "abort",
         "value": "(result?: any) => void",
@@ -3859,7 +3859,7 @@
         "comment": null
       }
     ],
-    "/epam-promo/components/pickers/docs/pickerToggler.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/pickers/pickerToggler.doc.tsx": [
       {
         "name": "autoFocus",
         "value": "boolean",
@@ -4076,7 +4076,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/tables/docs/dataTableCell.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/tables/dataTableCell.doc.tsx": [
       {
         "name": "addons",
         "value": "React.ReactNode",
@@ -4203,7 +4203,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/tables/docs/dataTableHeaderCell.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/tables/dataTableHeaderCell.doc.tsx": [
       {
         "name": "allowColumnsReordering",
         "value": "boolean",
@@ -4355,7 +4355,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/tables/docs/dataTableHeaderRow.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/tables/dataTableHeaderRow.doc.tsx": [
       {
         "name": "allowColumnsReordering",
         "value": "boolean",
@@ -4447,7 +4447,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/tables/docs/dataTableRow.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/tables/dataTableRow.doc.tsx": [
       {
         "name": "alignActions",
         "value": "top | center",
@@ -4455,7 +4455,7 @@
       },
       {
         "name": "alignItems",
-        "value": "top | bottom | stretch | center",
+        "value": "top | bottom | center | stretch",
         "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
       },
       {
@@ -4684,7 +4684,7 @@
         "comment": "<p>The current value of component\nThe data item (TItem) row displays. Will be undefined if isLoading = true.</p>"
       }
     ],
-    "/epam-promo/components/typography/docs/richTextView.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/typography/richTextView.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -4711,7 +4711,7 @@
         "comment": null
       }
     ],
-    "/epam-promo/components/typography/docs/text.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/typography/text.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -4768,7 +4768,7 @@
         "comment": null
       }
     ],
-    "/epam-promo/components/typography/docs/textPlaceholder.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/typography/textPlaceholder.doc.tsx": [
       {
         "name": "color",
         "value": "gray10 | gray40",
@@ -4790,7 +4790,7 @@
         "comment": "<p>Number of fake &#39;words to show</p>"
       }
     ],
-    "/epam-promo/components/widgets/docs/avatar.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/widgets/avatar.doc.tsx": [
       {
         "name": "alt",
         "value": "string",
@@ -4832,7 +4832,7 @@
         "comment": "<p>Size</p>"
       }
     ],
-    "/epam-promo/components/widgets/docs/avatarStack.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/widgets/avatarStack.doc.tsx": [
       {
         "name": "avatarsCount",
         "value": "number",
@@ -4869,7 +4869,7 @@
         "comment": null
       }
     ],
-    "/epam-promo/components/widgets/docs/badge.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/widgets/badge.doc.tsx": [
       {
         "name": "caption",
         "value": "any",
@@ -5026,7 +5026,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/epam-promo/components/widgets/docs/paginator.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/widgets/paginator.doc.tsx": [
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
@@ -5093,7 +5093,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/epam-promo/components/widgets/docs/spinner.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/widgets/spinner.doc.tsx": [
       {
         "name": "color",
         "value": "white | blue | gray50",
@@ -5115,7 +5115,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "/epam-promo/components/widgets/docs/tag.doc.tsx": [
+    "/app/src/docProps/epam-promo/components/widgets/tag.doc.tsx": [
       {
         "name": "caption",
         "value": "any",
@@ -5262,7 +5262,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/loveship/components/buttons/docs/button.doc.tsx": [
+    "/app/src/docProps/loveship/components/buttons/button.doc.tsx": [
       {
         "name": "caption",
         "value": "any",
@@ -5434,7 +5434,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/loveship/components/buttons/docs/iconButton.doc.ts": [
+    "/app/src/docProps/loveship/components/buttons/iconButton.doc.ts": [
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
@@ -5511,7 +5511,7 @@
         "comment": "<p>Controls where the link should be opened</p>"
       }
     ],
-    "/loveship/components/buttons/docs/linkButton.doc.tsx": [
+    "/app/src/docProps/loveship/components/buttons/linkButton.doc.tsx": [
       {
         "name": "caption",
         "value": "any",
@@ -5678,7 +5678,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/loveship/components/buttons/docs/tabButton.doc.ts": [
+    "/app/src/docProps/loveship/components/buttons/tabButton.doc.ts": [
       {
         "name": "caption",
         "value": "any",
@@ -5835,7 +5835,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/buttons/docs/verticalTabButton.doc.ts": [
+    "/app/src/docProps/loveship/components/buttons/verticalTabButton.doc.ts": [
       {
         "name": "caption",
         "value": "any",
@@ -5992,7 +5992,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/datePickers/docs/calendar.doc.ts": [
+    "/app/src/docProps/loveship/components/datePickers/calendar.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -6049,7 +6049,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/datePickers/docs/datePicker.doc.tsx": [
+    "/app/src/docProps/loveship/components/datePickers/datePicker.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -6186,7 +6186,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/datePickers/docs/rangeDatePicker.doc.tsx": [
+    "/app/src/docProps/loveship/components/datePickers/rangeDatePicker.doc.tsx": [
       {
         "name": "cx",
         "value": "any",
@@ -6323,7 +6323,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/docs/checkbox.doc.tsx": [
+    "/app/src/docProps/loveship/components/inputs/checkbox.doc.tsx": [
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
@@ -6450,7 +6450,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/docs/multiSwitch.doc.tsx": [
+    "/app/src/docProps/loveship/components/inputs/multiSwitch.doc.tsx": [
       {
         "name": "color",
         "value": "sky | night600",
@@ -6512,7 +6512,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/docs/numericInput.doc.ts": [
+    "/app/src/docProps/loveship/components/inputs/numericInput.doc.ts": [
       {
         "name": "align",
         "value": "left | right",
@@ -6674,7 +6674,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/docs/radioInput.doc.tsx": [
+    "/app/src/docProps/loveship/components/inputs/radioInput.doc.tsx": [
       {
         "name": "color",
         "value": "ColorMod",
@@ -6776,7 +6776,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/docs/rating.doc.ts": [
+    "/app/src/docProps/loveship/components/inputs/rating.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -6883,7 +6883,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/docs/searchInput.doc.ts": [
+    "/app/src/docProps/loveship/components/inputs/searchInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "Icon",
@@ -7125,7 +7125,191 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/docs/sliderRating.doc.tsx": [
+    "/app/src/docProps/loveship/components/inputs/Slider/rangeSlider.doc.ts": [
+      {
+        "name": "color",
+        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "comment": "<p>Component color</p>"
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>",
+        "comment": "<p>this ref is passed to the underlying component</p>"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean",
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean",
+        "comment": "<p>True if component contains invalid input</p>"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean",
+        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean",
+        "comment": "<p>Marks that component&#39;s value is required</p>"
+      },
+      {
+        "name": "max",
+        "value": "number",
+        "comment": "<p>Max value (when slider is at rightmost position)</p>"
+      },
+      {
+        "name": "min",
+        "value": "number",
+        "comment": "<p>Min value (when slider is at leftmost position)</p>"
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void",
+        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "renderLabel",
+        "value": "(value: number) => string",
+        "comment": "<p>Overrides rendering of values labels</p>"
+      },
+      {
+        "name": "showTooltip",
+        "value": "boolean",
+        "comment": "<p>Toggles rendering of tooltip with current value</p>"
+      },
+      {
+        "name": "splitAt",
+        "value": "number",
+        "comment": "<p>Slider renders a label at each splitAt position</p>"
+      },
+      {
+        "name": "step",
+        "value": "number",
+        "comment": "<p>Value change step</p>"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string",
+        "comment": "<p>Message describing why the value is invalid</p>"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }",
+        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
+      },
+      {
+        "name": "value",
+        "value": "T",
+        "comment": "<p>The current value of component</p>"
+      }
+    ],
+    "/app/src/docProps/loveship/components/inputs/Slider/slider.doc.ts": [
+      {
+        "name": "color",
+        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "comment": "<p>Component color</p>"
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>",
+        "comment": "<p>this ref is passed to the underlying component</p>"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean",
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean",
+        "comment": "<p>True if component contains invalid input</p>"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean",
+        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean",
+        "comment": "<p>Marks that component&#39;s value is required</p>"
+      },
+      {
+        "name": "max",
+        "value": "number",
+        "comment": "<p>Max value (when slider is at rightmost position)</p>"
+      },
+      {
+        "name": "min",
+        "value": "number",
+        "comment": "<p>Min value (when slider is at leftmost position)</p>"
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void",
+        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "renderLabel",
+        "value": "(value: number) => string",
+        "comment": "<p>Overrides rendering of values labels</p>"
+      },
+      {
+        "name": "showTooltip",
+        "value": "boolean",
+        "comment": "<p>Toggles rendering of tooltip with current value</p>"
+      },
+      {
+        "name": "splitAt",
+        "value": "number",
+        "comment": "<p>Slider renders a label at each splitAt position</p>"
+      },
+      {
+        "name": "step",
+        "value": "number",
+        "comment": "<p>Value change step</p>"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string",
+        "comment": "<p>Message describing why the value is invalid</p>"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }",
+        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
+      },
+      {
+        "name": "value",
+        "value": "T",
+        "comment": "<p>The current value of component</p>"
+      }
+    ],
+    "/app/src/docProps/loveship/components/inputs/sliderRating.doc.tsx": [
       {
         "name": "from",
         "value": "1 | 2",
@@ -7202,7 +7386,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/inputs/docs/switch.doc.ts": [
+    "/app/src/docProps/loveship/components/inputs/switch.doc.ts": [
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
@@ -7294,7 +7478,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/docs/textArea.doc.ts": [
+    "/app/src/docProps/loveship/components/inputs/textArea.doc.ts": [
       {
         "name": "autoFocus",
         "value": "boolean",
@@ -7421,7 +7605,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/docs/textInput.doc.ts": [
+    "/app/src/docProps/loveship/components/inputs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "Icon",
@@ -7653,7 +7837,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/docs/timePicker.doc.ts": [
+    "/app/src/docProps/loveship/components/inputs/timePicker.doc.ts": [
       {
         "name": "format",
         "value": "24 | 12",
@@ -7735,191 +7919,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/inputs/Slider/docs/rangeSlider.doc.ts": [
-      {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "forwardedRef",
-        "value": "React.ForwardedRef<T>",
-        "comment": "<p>this ref is passed to the underlying component</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "max",
-        "value": "number",
-        "comment": "<p>Max value (when slider is at rightmost position)</p>"
-      },
-      {
-        "name": "min",
-        "value": "number",
-        "comment": "<p>Min value (when slider is at leftmost position)</p>"
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "renderLabel",
-        "value": "(value: number) => string",
-        "comment": "<p>Overrides rendering of values labels</p>"
-      },
-      {
-        "name": "showTooltip",
-        "value": "boolean",
-        "comment": "<p>Toggles rendering of tooltip with current value</p>"
-      },
-      {
-        "name": "splitAt",
-        "value": "number",
-        "comment": "<p>Slider renders a label at each splitAt position</p>"
-      },
-      {
-        "name": "step",
-        "value": "number",
-        "comment": "<p>Value change step</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
-      }
-    ],
-    "/loveship/components/inputs/Slider/docs/slider.doc.ts": [
-      {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "forwardedRef",
-        "value": "React.ForwardedRef<T>",
-        "comment": "<p>this ref is passed to the underlying component</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "max",
-        "value": "number",
-        "comment": "<p>Max value (when slider is at rightmost position)</p>"
-      },
-      {
-        "name": "min",
-        "value": "number",
-        "comment": "<p>Min value (when slider is at leftmost position)</p>"
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "renderLabel",
-        "value": "(value: number) => string",
-        "comment": "<p>Overrides rendering of values labels</p>"
-      },
-      {
-        "name": "showTooltip",
-        "value": "boolean",
-        "comment": "<p>Toggles rendering of tooltip with current value</p>"
-      },
-      {
-        "name": "splitAt",
-        "value": "number",
-        "comment": "<p>Slider renders a label at each splitAt position</p>"
-      },
-      {
-        "name": "step",
-        "value": "number",
-        "comment": "<p>Value change step</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
-      }
-    ],
-    "/loveship/components/layout/docs/accordion.doc.tsx": [
+    "/app/src/docProps/loveship/components/layout/accordion.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -8011,7 +8011,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/layout/docs/blocker.doc.ts": [
+    "/app/src/docProps/loveship/components/layout/blocker.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -8048,7 +8048,7 @@
         "comment": "<p>Sets the minimal height in px, for cases when blocked content is empty</p>"
       }
     ],
-    "/loveship/components/layout/docs/checkboxGroup.doc.ts": [
+    "/app/src/docProps/loveship/components/layout/checkboxGroup.doc.ts": [
       {
         "name": "CheckboxInput",
         "value": "React.ComponentType<CheckboxProps>",
@@ -8120,7 +8120,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/layout/docs/controlGroup.doc.tsx": [
+    "/app/src/docProps/loveship/components/layout/controlGroup.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -8142,7 +8142,136 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "/loveship/components/layout/docs/iconContainer.doc.tsx": [
+    "/app/src/docProps/loveship/components/layout/FlexItems/flexRow.doc.tsx": [
+      {
+        "name": "alignItems",
+        "value": "top | bottom | center | stretch",
+        "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
+      },
+      {
+        "name": "background",
+        "value": "none | white | night50 | night100",
+        "comment": null
+      },
+      {
+        "name": "borderBottom",
+        "value": "night50 | night300 | night400 | night700",
+        "comment": null
+      },
+      {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "key",
+        "value": "React.Key",
+        "comment": null
+      },
+      {
+        "name": "margin",
+        "value": "24 | 12",
+        "comment": null
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
+      },
+      {
+        "name": "padding",
+        "value": "24 | 18 | 6 | 12",
+        "comment": null
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "size",
+        "value": "24 | 30 | 36 | 42 | 48",
+        "comment": null
+      },
+      {
+        "name": "spacing",
+        "value": "18 | 6 | 12",
+        "comment": null
+      },
+      {
+        "name": "topShadow",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "type",
+        "value": "form | panel",
+        "comment": null
+      },
+      {
+        "name": "vPadding",
+        "value": "24 | 36 | 48 | 18 | 12",
+        "comment": null
+      }
+    ],
+    "/app/src/docProps/loveship/components/layout/FlexItems/panel.doc.tsx": [
+      {
+        "name": "background",
+        "value": "white | night50",
+        "comment": null
+      },
+      {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "clickAnalyticsEvent",
+        "value": "{ [key: string]: any; name: string; }",
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>",
+        "comment": "<p>this ref is passed to the underlying component</p>"
+      },
+      {
+        "name": "margin",
+        "value": "\"24\"",
+        "comment": null
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "shadow",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "style",
+        "value": "React.CSSProperties",
+        "comment": null
+      }
+    ],
+    "/app/src/docProps/loveship/components/layout/iconContainer.doc.tsx": [
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
@@ -8199,7 +8328,7 @@
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
       }
     ],
-    "/loveship/components/layout/docs/labeledInput.doc.tsx": [
+    "/app/src/docProps/loveship/components/layout/labeledInput.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -8286,7 +8415,7 @@
         "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
       }
     ],
-    "/loveship/components/layout/docs/radioGroup.doc.ts": [
+    "/app/src/docProps/loveship/components/layout/radioGroup.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -8363,136 +8492,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/layout/FlexItems/docs/flexRow.doc.tsx": [
-      {
-        "name": "alignItems",
-        "value": "top | bottom | stretch | center",
-        "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
-      },
-      {
-        "name": "background",
-        "value": "none | white | night50 | night100",
-        "comment": null
-      },
-      {
-        "name": "borderBottom",
-        "value": "night50 | night300 | night400 | night700",
-        "comment": null
-      },
-      {
-        "name": "children",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "key",
-        "value": "React.Key",
-        "comment": null
-      },
-      {
-        "name": "margin",
-        "value": "24 | 12",
-        "comment": null
-      },
-      {
-        "name": "onClick",
-        "value": "(e?: any) => void",
-        "comment": "<p>Called when component is clicked</p>"
-      },
-      {
-        "name": "padding",
-        "value": "24 | 18 | 6 | 12",
-        "comment": null
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "size",
-        "value": "24 | 30 | 36 | 42 | 48",
-        "comment": null
-      },
-      {
-        "name": "spacing",
-        "value": "18 | 6 | 12",
-        "comment": null
-      },
-      {
-        "name": "topShadow",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "type",
-        "value": "form | panel",
-        "comment": null
-      },
-      {
-        "name": "vPadding",
-        "value": "24 | 36 | 48 | 18 | 12",
-        "comment": null
-      }
-    ],
-    "/loveship/components/layout/FlexItems/docs/panel.doc.tsx": [
-      {
-        "name": "background",
-        "value": "white | night50",
-        "comment": null
-      },
-      {
-        "name": "children",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "clickAnalyticsEvent",
-        "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "forwardedRef",
-        "value": "React.ForwardedRef<T>",
-        "comment": "<p>this ref is passed to the underlying component</p>"
-      },
-      {
-        "name": "margin",
-        "value": "\"24\"",
-        "comment": null
-      },
-      {
-        "name": "onClick",
-        "value": "(e?: any) => void",
-        "comment": "<p>Called when component is clicked</p>"
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "shadow",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "style",
-        "value": "React.CSSProperties",
-        "comment": null
-      }
-    ],
-    "/loveship/components/navigation/docs/mainMenu.doc.tsx": [
+    "/app/src/docProps/loveship/components/navigation/mainMenu.doc.tsx": [
       {
         "name": "alwaysShowBurger",
         "value": "boolean",
@@ -8614,7 +8614,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/overlays/docs/alert.doc.tsx": [
+    "/app/src/docProps/loveship/components/overlays/alert.doc.tsx": [
       {
         "name": "actions",
         "value": "notificationAction[]",
@@ -8651,7 +8651,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "/loveship/components/overlays/docs/dropdown.doc.tsx": [
+    "/app/src/docProps/loveship/components/overlays/dropdown.doc.tsx": [
       {
         "name": "boundaryElement",
         "value": "clippingParents",
@@ -8843,7 +8843,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/overlays/docs/dropdownContainer.doc.tsx": [
+    "/app/src/docProps/loveship/components/overlays/dropdownContainer.doc.tsx": [
       {
         "name": "arrowProps",
         "value": "PopperArrowProps",
@@ -8950,7 +8950,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/overlays/docs/dropdownMenu.doc.tsx": [
+    "/app/src/docProps/loveship/components/overlays/dropdownMenu.doc.tsx": [
       {
         "name": "boundaryElement",
         "value": "clippingParents",
@@ -9142,7 +9142,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/overlays/docs/dropdownMenuButton.doc.tsx": [
+    "/app/src/docProps/loveship/components/overlays/dropdownMenuButton.doc.tsx": [
       {
         "name": "caption",
         "value": "any",
@@ -9299,7 +9299,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/loveship/components/overlays/docs/modalFooter.doc.tsx": [
+    "/app/src/docProps/loveship/components/overlays/modalFooter.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | night50 | night100",
@@ -9366,7 +9366,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/overlays/docs/modalHeader.doc.tsx": [
+    "/app/src/docProps/loveship/components/overlays/modalHeader.doc.tsx": [
       {
         "name": "background",
         "value": "none | white | night50 | night100",
@@ -9438,7 +9438,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/overlays/docs/notificationCard.doc.tsx": [
+    "/app/src/docProps/loveship/components/overlays/notificationCard.doc.tsx": [
       {
         "name": "actions",
         "value": "NotificationAction[]",
@@ -9500,7 +9500,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/overlays/docs/snackbarCard.doc.tsx": [
+    "/app/src/docProps/loveship/components/overlays/snackbarCard.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -9547,7 +9547,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/overlays/docs/tooltip.doc.tsx": [
+    "/app/src/docProps/loveship/components/overlays/tooltip.doc.tsx": [
       {
         "name": "boundaryElement",
         "value": "clippingParents",
@@ -9604,7 +9604,7 @@
         "comment": "<p>Defines when to show the tooltip: &#39;hover&#39; - default and usual, &#39;press&#39; - only when mouse button is down, &#39;manual&#39; - visibility is controlled with isVisible prop</p>"
       }
     ],
-    "/loveship/components/pickers/docs/pickerInput.doc.tsx": [
+    "/app/src/docProps/loveship/components/pickers/pickerInput.doc.tsx": [
       {
         "name": "autoFocus",
         "value": "boolean",
@@ -9851,7 +9851,7 @@
         "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       }
     ],
-    "/loveship/components/pickers/docs/pickerList.doc.tsx": [
+    "/app/src/docProps/loveship/components/pickers/pickerList.doc.tsx": [
       {
         "name": "cascadeSelection",
         "value": "boolean",
@@ -10043,7 +10043,7 @@
         "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       }
     ],
-    "/loveship/components/pickers/docs/pickerModal.doc.tsx": [
+    "/app/src/docProps/loveship/components/pickers/pickerModal.doc.tsx": [
       {
         "name": "abort",
         "value": "(result?: any) => void",
@@ -10180,7 +10180,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/pickers/docs/pickerToggler.doc.tsx": [
+    "/app/src/docProps/loveship/components/pickers/pickerToggler.doc.tsx": [
       {
         "name": "autoFocus",
         "value": "boolean",
@@ -10387,7 +10387,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/tables/docs/dataTableCell.doc.tsx": [
+    "/app/src/docProps/loveship/components/tables/dataTableCell.doc.tsx": [
       {
         "name": "addons",
         "value": "React.ReactNode",
@@ -10514,7 +10514,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/tables/docs/dataTableHeaderCell.doc.tsx": [
+    "/app/src/docProps/loveship/components/tables/dataTableHeaderCell.doc.tsx": [
       {
         "name": "allowColumnsReordering",
         "value": "boolean",
@@ -10666,7 +10666,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/tables/docs/dataTableHeaderRow.doc.tsx": [
+    "/app/src/docProps/loveship/components/tables/dataTableHeaderRow.doc.tsx": [
       {
         "name": "allowColumnsReordering",
         "value": "boolean",
@@ -10758,7 +10758,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/tables/docs/dataTableRow.doc.tsx": [
+    "/app/src/docProps/loveship/components/tables/dataTableRow.doc.tsx": [
       {
         "name": "alignActions",
         "value": "top | center",
@@ -10766,7 +10766,7 @@
       },
       {
         "name": "alignItems",
-        "value": "top | bottom | stretch | center",
+        "value": "top | bottom | center | stretch",
         "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
       },
       {
@@ -10995,7 +10995,7 @@
         "comment": "<p>The current value of component\nThe data item (TItem) row displays. Will be undefined if isLoading = true.</p>"
       }
     ],
-    "/loveship/components/typography/docs/richTextView.doc.tsx": [
+    "/app/src/docProps/loveship/components/typography/richTextView.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -11027,7 +11027,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/typography/docs/text.doc.tsx": [
+    "/app/src/docProps/loveship/components/typography/text.doc.tsx": [
       {
         "name": "children",
         "value": "React.ReactNode",
@@ -11084,7 +11084,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/typography/docs/textPlaceholder.doc.tsx": [
+    "/app/src/docProps/loveship/components/typography/textPlaceholder.doc.tsx": [
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
@@ -11111,7 +11111,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/widgets/docs/avatar.doc.tsx": [
+    "/app/src/docProps/loveship/components/widgets/avatar.doc.tsx": [
       {
         "name": "alt",
         "value": "string",
@@ -11153,7 +11153,7 @@
         "comment": "<p>Size</p>"
       }
     ],
-    "/loveship/components/widgets/docs/avatarStack.doc.tsx": [
+    "/app/src/docProps/loveship/components/widgets/avatarStack.doc.tsx": [
       {
         "name": "avatarsCount",
         "value": "number",
@@ -11190,7 +11190,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/widgets/docs/badge.doc.ts": [
+    "/app/src/docProps/loveship/components/widgets/badge.doc.ts": [
       {
         "name": "caption",
         "value": "any",
@@ -11352,7 +11352,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/loveship/components/widgets/docs/carousel.doc.tsx": [
+    "/app/src/docProps/loveship/components/widgets/carousel.doc.tsx": [
       {
         "name": "arrowIcon",
         "value": "Icon",
@@ -11394,7 +11394,7 @@
         "comment": null
       }
     ],
-    "/loveship/components/widgets/docs/paginator.doc.tsx": [
+    "/app/src/docProps/loveship/components/widgets/paginator.doc.tsx": [
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
@@ -11461,7 +11461,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/loveship/components/widgets/docs/spinner.doc.ts": [
+    "/app/src/docProps/loveship/components/widgets/spinner.doc.ts": [
       {
         "name": "color",
         "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
@@ -11483,7 +11483,7 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
-    "/loveship/components/widgets/docs/tag.doc.ts": [
+    "/app/src/docProps/loveship/components/widgets/tag.doc.ts": [
       {
         "name": "caption",
         "value": "any",
@@ -11640,7 +11640,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/uui/components/buttons/docs/button.doc.tsx": [
+    "/app/src/docProps/uui/components/buttons/button.doc.tsx": [
       {
         "name": "caption",
         "value": "any",
@@ -11797,7 +11797,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/uui/components/buttons/docs/linkButton.doc.ts": [
+    "/app/src/docProps/uui/components/buttons/linkButton.doc.ts": [
       {
         "name": "caption",
         "value": "any",
@@ -11944,7 +11944,7 @@
         "comment": "<p>Called when associated dropdown should open or close</p>"
       }
     ],
-    "/uui/components/inputs/docs/checkbox.doc.ts": [
+    "/app/src/docProps/uui/components/inputs/checkbox.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -12061,7 +12061,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/uui/components/inputs/docs/radioInput.doc.ts": [
+    "/app/src/docProps/uui/components/inputs/radioInput.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -12153,7 +12153,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/uui/components/inputs/docs/switch.doc.ts": [
+    "/app/src/docProps/uui/components/inputs/switch.doc.ts": [
       {
         "name": "cx",
         "value": "any",
@@ -12235,7 +12235,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/uui/components/inputs/docs/textInput.doc.ts": [
+    "/app/src/docProps/uui/components/inputs/textInput.doc.ts": [
       {
         "name": "acceptIcon",
         "value": "Icon",
@@ -12457,7 +12457,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/uui/components/pickers/docs/pickerInput.doc.tsx": [
+    "/app/src/docProps/uui/components/pickers/pickerInput.doc.tsx": [
       {
         "name": "autoFocus",
         "value": "boolean",
@@ -12704,7 +12704,7 @@
         "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       }
     ],
-    "/uui/components/pickers/docs/pickerToggler.doc.tsx": [
+    "/app/src/docProps/uui/components/pickers/pickerToggler.doc.tsx": [
       {
         "name": "autoFocus",
         "value": "boolean",
@@ -12921,7 +12921,7 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
-    "/uui/components/typography/docs/textPlaceholder.doc.tsx": [
+    "/app/src/docProps/uui/components/typography/textPlaceholder.doc.tsx": [
       {
         "name": "isNotAnimated",
         "value": "boolean",

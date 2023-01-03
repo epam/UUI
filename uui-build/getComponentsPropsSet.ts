@@ -69,13 +69,13 @@ const getPropType = (prop: Symbol, path: string) => {
         comment: htmlComment,
     };
 };
-
+const DOCS_GLOB = ["../**/app/src/docProps/**/*.doc{.ts,.tsx}", "!../**/node_modules/**"];
 function main() {
     const docsProps: any = {};
     /**
      * Sorting of files and props is necessary to make the output more stable and comparable.
      */
-    const docsFiles = project.addSourceFilesAtPaths(["../**/*.doc{.ts,.tsx}", "!../**/node_modules/**", "!../**/app/**"]);
+    const docsFiles = project.addSourceFilesAtPaths(DOCS_GLOB);
     const docsFilesSorted = sortDocFiles(docsFiles);
     docsFilesSorted.map(i => {
         const docPath = getDocPathFromFile(i);
