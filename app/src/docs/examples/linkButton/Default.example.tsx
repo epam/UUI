@@ -11,12 +11,12 @@ export default function DefaultLinkButtonExample() {
     return (
         <>
             <Panel cx={ css.components }>
-                <LinkButton caption='view details' link={ { pathname: '/' } } captionCX={ css.caption } />
-                <LinkButton caption='back to catalog' link={ { pathname: '/' } } captionCX={ css.caption }
+                <LinkButton caption='VIEW DETAILS' link={ { pathname: '/' } } />
+                <LinkButton caption='BACK TO CATALOG' link={ { pathname: '/' } }
                     icon={ navigationBack } />
                 <Dropdown
                     renderBody={ renderDropdownBody }
-                    renderTarget={ (props: IDropdownToggler) => <LinkButton caption='sort by' captionCX={ css.caption }
+                    renderTarget={ (props: IDropdownToggler) => <LinkButton caption='SORT BY'
                     { ...props } /> }
                 />
             </Panel>
