@@ -18,9 +18,6 @@ exports[`Switch should be rendered correctly 1`] = `
       className="uui-switch-toggler"
     />
   </div>
-  <div
-    className="uui-input-label"
-  />
 </label>
 `;
 

@@ -50,7 +50,7 @@ export class Switch extends React.Component<SwitchProps> {
                     />
                     <div className={ uuiElement.switchToggler } />
                 </div>
-                <div className={ uuiElement.inputLabel }>{ this.props.label }</div>
+                { this.props.label && <div className={ uuiElement.inputLabel }>{ this.props.label }</div> }
             </label>
         );
     }

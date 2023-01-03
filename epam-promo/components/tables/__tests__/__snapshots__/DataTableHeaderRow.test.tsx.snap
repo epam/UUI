@@ -6,7 +6,9 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
   role="row"
   style={
     Object {
+      "columnGap": undefined,
       "minWidth": "0px",
+      "rowGap": undefined,
     }
   }
 >
@@ -28,7 +30,9 @@ exports[`DataTableHeaderRow should be rendered correctly 2`] = `
   role="row"
   style={
     Object {
+      "columnGap": undefined,
       "minWidth": "0px",
+      "rowGap": undefined,
     }
   }
 >
