@@ -1,9 +1,11 @@
 # 4.x.x - DRAFT
 **What's New**
+* [FlexRow]: added Flexbox properties `columnGap` and `rowGap` to setting the spacing between children and rows in case of a  FlexRow wrap
 
 
 **What’s Fixed**
 * [VerticalTabButton]: fix text trimmed and text align
+* [Switch]: remove margin-left when there is no label
 
 
 # 4.9.2 - 14.12.2022
