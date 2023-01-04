@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Badges includes different color, to explain or support semantic load (meaning).",
+            "text": "Implement badges in various layout modifications. Icons integrating are welcome.",
             "marks": []
           }
         ]

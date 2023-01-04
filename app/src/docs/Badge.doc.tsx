@@ -15,22 +15,35 @@ export class BadgeDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName='badge-descriptions' />
-                { this.renderSectionTitle('Examples') }
+                { this.renderSectionTitle('Overview') }
                 <DocExample
-                    title='Basic'
-                    path='./examples/badge/Basic.example.tsx'
+                    title='Types'
+                    path='./examples/badge/Types.example.tsx'
                 />
                 <DocExample
-                    title='Size'
-                    path='./examples/badge/Size.example.tsx'
-                />
-                <DocExample
-                    title='Colors'
+                    title='Color variants'
                     path='./examples/badge/Colors.example.tsx'
                 />
                 <DocExample
-                    title='Advanced'
-                    path='./examples/badge/Advanced.example.tsx'
+                    title='Styles'
+                    path='./examples/badge/Styles.example.tsx'
+                />
+                <DocExample
+                    title='Sizes'
+                    path='./examples/badge/Size.example.tsx'
+                />
+                { this.renderSectionTitle('Examples') }
+                <DocExample
+                    title='Attributes'
+                    path='./examples/badge/Attributes.example.tsx'
+                />
+                <DocExample
+                    title='Dropdown'
+                    path='./examples/badge/Dropdown.example.tsx'
+                />
+                <DocExample
+                    title='Indicator mode'
+                    path='./examples/badge/Indicator.example.tsx'
                 />
             </>
         );
