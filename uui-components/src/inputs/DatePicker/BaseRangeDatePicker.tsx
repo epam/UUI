@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat, supportedDateFormats } from '../../';
 import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType } from '@epam/uui-core';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
 dayjs.extend(customParseFormat);
 
@@ -155,8 +155,11 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
 
     onRangeChange = (value: PickerBodyValue<RangeDatePickerValue>) => {
         const isFromValueChanged = this.props.value.from != value.selectedDate.from;
+        const isToValueChanged = this.props.value.to != value.selectedDate.to;
         if (this.state.inFocus === 'from' && isFromValueChanged) {
             this.setState({ inFocus: 'to' }, () => this.setValue(value));
+        } else if (this.state.inFocus === 'to' && isToValueChanged) {
+            this.setState({ inFocus: 'from' }, () => this.setValue(value));
         } else {
             this.setValue(value);
         }

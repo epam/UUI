@@ -1,1 +1,21 @@
-{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"Badges are used to identify and highlight your content.","marks":[]}]}]}}
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Use badges to label, categorize, make selections, filter content, or trigger actions.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

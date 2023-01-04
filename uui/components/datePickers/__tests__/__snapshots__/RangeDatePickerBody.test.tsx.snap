@@ -2,13 +2,25 @@
 
 exports[`RangeDatePickerBody should be rendered correctly 1`] = `
 <div
-  className="uui-datepicker-container root root root root"
+  className="uui-datepicker-container root root root root calendar-vars link-button-vars"
 >
   <div
     className="daySelection container container align-items-top"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
   >
     <div
       className="pickerWrapper container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
     >
       <div
         className=""
@@ -27,7 +39,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
           className="bodesWrapper container align-items-top"
           style={
             Object {
+              "columnGap": undefined,
               "height": "276px",
+              "rowGap": undefined,
             }
           }
         >

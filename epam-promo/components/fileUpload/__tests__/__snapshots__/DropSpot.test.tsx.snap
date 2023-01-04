@@ -13,6 +13,12 @@ exports[`DropSpot should be rendered correctly 1`] = `
   >
     <div
       className="root size-24 background-none spacing-6 container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
     >
       <div
         className="container uui-icon uui-enabled root icon-container-color-blue"
@@ -73,6 +79,12 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
   >
     <div
       className="root size-24 background-none spacing-6 container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
     >
       <div
         className="container uui-icon uui-enabled root icon-container-color-blue"
