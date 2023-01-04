@@ -8,6 +8,7 @@ export function applyDatePickerBodyMods() {
     return [
         css.root,
         calendarCss.root,
+        'calendar-vars',
     ];
 }
 

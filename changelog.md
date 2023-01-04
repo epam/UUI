@@ -1,10 +1,26 @@
+# 4.x.x - DRAFT
+**What's New**
+* [FlexRow]: added Flexbox properties `columnGap` and `rowGap` to setting the spacing between children and rows in case of a  FlexRow wrap
+
+
+**What’s Fixed**
+* [VerticalTabButton]: fix text trimmed and text align
+* [Switch]: remove margin-left when there is no label
+
+
+# 4.9.2 - 14.12.2022
+
+**What’s Fixed**
+* [useForm] - allow to replace getMetadata prop after the first render
+
+
 # 4.9.1 - 01.12.2022
 
 **What's New**
-* [LockContext]: reworked lock context:  
+* [LockContext]: reworked lock context:
   - make `tryRelease` method public
   - `tryRelease` argument in `acquire` now optional, if isn't passed release lock immediately on request
-  - `withLock` now run passed action and get lock until action running  
+  - `withLock` now run passed action and get lock until action running
 * [useForm]: added close method, which try to leave form and ask to save unsaved changes
 * [DatePickers]: added support for typing value according predefined set of formats
 
@@ -16,7 +32,6 @@
 * [NumericInput]: set empty string value on onBlur event in case of invalid input value
 * [DND]: fixed container scrolling on element dragging
 * [ApiContext]: fixed manual error handling for recovery errors
-
 
 # 4.9.0 - 17.11.2022
 
