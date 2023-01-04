@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Badges includes different color, to explain or support semantic load (meaning).",
+            "text": "Badges includes different color, use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "color",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop for configure it.",
             "marks": []
           }
         ]
