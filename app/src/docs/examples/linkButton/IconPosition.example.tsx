@@ -8,7 +8,7 @@ export default function IconPositionExample() {
         <FlexRow columnGap='18'>
             <LinkButton caption='PLAY' link={ { pathname: '/' } } icon={ playIcon } size='48' />
             <LinkButton caption='NEXT STEP' link={ { pathname: '/' } } icon={ navigationIcon }
-                size='48' iconPosition="right" />
+                size='48' iconPosition='right' />
         </FlexRow>
     );
 }
