@@ -11,7 +11,55 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Any badge color allowed to use as solid and halftone (label, entity status on current page). Halftone, same use cases as for in tables, filters and more.",
+            "text": "Any badge color allowed to use as ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "solid",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "semitransparent",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " mode, use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "fill",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop for it. ",
             "marks": []
           }
         ]

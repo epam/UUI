@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI supports different badge sizes, according to Badge height. You can change size by passing size prop.",
+            "text": "UUI supports different badge sizes, according to Badge height. You can change size by passing ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "size",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop.",
             "marks": []
           }
         ]

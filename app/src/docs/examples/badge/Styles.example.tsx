@@ -6,11 +6,13 @@ export default function StylesExample() {
         <FlexRow>
             <Panel style={ {rowGap: '18px', marginRight: '12px'} }>
                 <Badge color='blue' fill='solid' caption='Solid' />
-                <Badge color='blue' fill='semitransparent' caption='Halftone' />
+                <Badge color='blue' fill='semitransparent' caption='Semitransparent' />
+                <Badge color='blue' fill='transparent' caption='Transparent' />
             </Panel>
             <Panel style={ {rowGap: '18px'} }>
                 <Text fontSize='14'>Mostly used as an accent, primary information or feature </Text>
                 <Text fontSize='14'>Mostly used as secondary information or feature </Text>
+                <Text fontSize='14'>Mostly used as statuses and indicators </Text>
             </Panel>
         </FlexRow>
     );
