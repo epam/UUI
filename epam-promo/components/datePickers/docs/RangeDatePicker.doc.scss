@@ -4,9 +4,9 @@
     display: flex;
     padding: 9px 30px;
     justify-content: space-between;
-    border-top: 1px solid var(--uui-rdtp-border-color);
+    border-top: 1px solid $gray40;
     align-items: center;
-    background-color: var(--uui-rdtp-bg-color);
+    background-color: $white;
     position: relative;
 }
 

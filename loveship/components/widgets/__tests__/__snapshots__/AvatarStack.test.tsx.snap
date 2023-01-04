@@ -3,6 +3,12 @@
 exports[`AvatarStack should be rendered correctly 1`] = `
 <div
   className="root container align-items-center"
+  style={
+    Object {
+      "columnGap": undefined,
+      "rowGap": undefined,
+    }
+  }
 >
   <div
     className="avatars container avatar-right container align-items-center"
@@ -10,6 +16,8 @@ exports[`AvatarStack should be rendered correctly 1`] = `
     style={
       Object {
         "--overlap": "-12px",
+        "columnGap": undefined,
+        "rowGap": undefined,
       }
     }
   >
