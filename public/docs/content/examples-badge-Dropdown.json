@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Badges includes different color, to explain or support semantic load (meaning).",
+            "text": "Dropdown is a most common usecase to show status selection options",
             "marks": []
           }
         ]
