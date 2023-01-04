@@ -734,7 +734,7 @@
 }
 .date-range-picker-vars {
     --uui-rdtp-bg-color: var(--input-bg-color);
-    --uui-rdtp-bg-lightest-color: var(--primary-lightest-color);
+    --uui-rdtp-bg-selected-color: var(--primary-lightest-color);
     --uui-rdtp-bg-color-disabled: var(--input-bg-disabled-color);
     --uui-rdtp-border-color: var(--input-border-color);
     --uui-rdtp-border-color-disabled: var(--input-border-disabled-color);
