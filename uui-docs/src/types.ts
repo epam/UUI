@@ -23,7 +23,6 @@ export interface PropSamplesCreationContext<TProps = {}> {
     getCallback(name: string): () => void;
     getChangeHandler(name: string): (newValue: any) => void;
     getSelectedProps(): TProps;
-    apollo: any;
     demoApi: IDemoApi;
     forceUpdate: () => void;
 }
@@ -45,4 +44,5 @@ export interface PropDoc<TProps, TProp extends keyof TProps> {
     type?: 'string' | 'number';
     renderEditor?: (editable: IEditable<TProp>, examples?: TProps[TProp][], componentProps?: TProps) => React.ReactNode;
     color?: string;
+    remountOnChange?: boolean;
 }

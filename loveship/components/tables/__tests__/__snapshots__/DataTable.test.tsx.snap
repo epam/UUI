@@ -44,7 +44,9 @@ exports[`DataTable should be rendered correctly 1`] = `
         role="row"
         style={
           Object {
+            "columnGap": undefined,
             "minWidth": "566px",
+            "rowGap": undefined,
           }
         }
       >
@@ -286,7 +288,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
+              "columnGap": undefined,
               "minWidth": "566px",
+              "rowGap": undefined,
             }
           }
         >
@@ -396,7 +400,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
+              "columnGap": undefined,
               "minWidth": "566px",
+              "rowGap": undefined,
             }
           }
         >
@@ -506,7 +512,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
+              "columnGap": undefined,
               "minWidth": "566px",
+              "rowGap": undefined,
             }
           }
         >
@@ -616,7 +624,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
+              "columnGap": undefined,
               "minWidth": "566px",
+              "rowGap": undefined,
             }
           }
         >
@@ -726,7 +736,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
+              "columnGap": undefined,
               "minWidth": "566px",
+              "rowGap": undefined,
             }
           }
         >
@@ -836,7 +848,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
+              "columnGap": undefined,
               "minWidth": "566px",
+              "rowGap": undefined,
             }
           }
         >
@@ -946,7 +960,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
+              "columnGap": undefined,
               "minWidth": "566px",
+              "rowGap": undefined,
             }
           }
         >
@@ -1056,7 +1072,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
+              "columnGap": undefined,
               "minWidth": "566px",
+              "rowGap": undefined,
             }
           }
         >
@@ -1166,7 +1184,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
+              "columnGap": undefined,
               "minWidth": "566px",
+              "rowGap": undefined,
             }
           }
         >
@@ -1276,7 +1296,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           role="row"
           style={
             Object {
+              "columnGap": undefined,
               "minWidth": "566px",
+              "rowGap": undefined,
             }
           }
         >

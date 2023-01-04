@@ -76,18 +76,19 @@ $text-size-count: 24px;
 
     :global(.uui-caption) {
         @include text-size($text-size-caption, 0);
+        text-align: left;
     }
 
     // Sizes
     &.size-36 {
-        height: 36px;
+        min-height: 36px;
     }
 
     &.size-48 {
-        height: 48px;
+        min-height: 48px;
     }
 
     &.size-60 {
-        height: 60px;
+        min-height: 60px;
     }
 }

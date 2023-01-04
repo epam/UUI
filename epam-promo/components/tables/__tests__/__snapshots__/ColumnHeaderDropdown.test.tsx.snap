@@ -67,6 +67,12 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             role="menuitem"
+            style={
+              Object {
+                "columnGap": undefined,
+                "rowGap": undefined,
+              }
+            }
             tabIndex={0}
           >
             <button
@@ -97,6 +103,12 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             role="menuitem"
+            style={
+              Object {
+                "columnGap": undefined,
+                "rowGap": undefined,
+              }
+            }
             tabIndex={0}
           >
             <button

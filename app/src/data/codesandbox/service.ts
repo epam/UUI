@@ -1,16 +1,15 @@
-import { join } from "path";
 import { getParameters } from 'codesandbox/lib/api/define';
 import { FilesRecord, getCodesandboxConfig } from "./getCodesandboxConfig";
 import { svc } from "../../services";
 
 const CodesandboxFiles: Record<string, string> = {
-    'index.html': join('..', 'data', 'codesandbox', 'index.html'),
-    'index.tsx': join('..', 'data', 'codesandbox', 'index.tsx'),
-    'package.json': join('..', 'data', 'codesandbox', 'package.json'),
-    'tsconfig.json': join('..', 'data', 'codesandbox', 'tsconfig.json'),
-    'apiDefinitions.ts': join('..', 'data', 'apiDefinition.ts'),
-    'globals.d.ts': join('..', 'data', 'codesandbox', 'globals.d.ts'),
-    '.env': join('..', 'data', 'codesandbox', '.env'),
+    'index.html':           '../data/codesandbox/index.html',
+    'index.tsx':            '../data/codesandbox/index.tsx',
+    'package.json':         '../data/codesandbox/package.json',
+    'tsconfig.json':        '../data/codesandbox/tsconfig.json',
+    'apiDefinitions.ts':    '../data/apiDefinition.ts',
+    'globals.d.ts':         '../data/codesandbox/globals.d.ts',
+    '.env':                 '../data/codesandbox/.env',
 };
 
 export type CodesandboxFilesRecord = Record<string, string>;
@@ -24,9 +23,9 @@ class CodesandboxService {
 
     public getFiles(): Promise<void> {
         return Promise.all(Object.keys(CodesandboxFiles).map(name => {
-            return svc.api.getCode({ path: CodesandboxFiles[name] })
+            return svc.api.getCode({ path: CodesandboxFiles[name] });
         })).then(data => data.map(file => file.raw)).then(
-            ([ indexHTML, indexTSX, packageJSON, tsConfigJSON, api, globalTypings, env ]) => {
+            ([indexHTML, indexTSX, packageJSON, tsConfigJSON, api, globalTypings, env]) => {
                 Object.assign(this.files, {
                     indexHTML,
                     indexTSX,
@@ -36,7 +35,7 @@ class CodesandboxService {
                     globalTypings,
                     env,
                 });
-            }
+            },
         );
     }
 
