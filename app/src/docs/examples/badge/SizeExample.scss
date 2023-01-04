@@ -1,10 +1,8 @@
 .container {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    > :not(:last-child) {
-        margin-bottom: 12px;
-    }
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 12px 12px;
+    justify-items: center;
+    align-items: start;
 }

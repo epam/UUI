@@ -1,20 +1,26 @@
+/**
+ * The only purpose of this file is to do some local testing of packaged modules.
+ * The output will be located next to the UUI repo root inside "packModulesForTest-output" folder.
+ */
 const {runCliCommand} = require("../utils/cmdUtils");
 const {getWorkspaceFoldersNames} = require("../utils/moduleUtils");
+const {logger} = require("../utils/loggerUtils");
 const path = require('path');
 const fs = require('fs');
 
-const uuiRoot = path.resolve('../../.');
+const destRootArg = './../packModulesForTest-output';
+const uuiRoot = path.resolve('./../..');
 
 const EXCLUDE_DIRS = ['app', 'uui-build'];
-const PACK_DESTINATION = path.resolve(uuiRoot, '../uui_packaged_modules/modules');
 
 function getPackDestinationDir() {
-    const destRoot = path.resolve(uuiRoot, '../uui_packaged_modules');
+    // must be relative to root.
+    const destRoot = path.resolve(uuiRoot, destRootArg);
     if (fs.existsSync(destRoot)) {
         fs.rmdirSync(destRoot, { recursive: true })
     }
     fs.mkdirSync(destRoot);
-    const ts = new Date().getTime()
+    const ts = new Date().getTime(); // use timestamp for folder name to avoid issues with npm caching.
     const dest = path.resolve(destRoot, `./${ts}`);
     fs.mkdirSync(dest);
     return dest;
@@ -36,15 +42,17 @@ async function main() {
         const pj = JSON.parse(fs.readFileSync(path.resolve(cwd, 'package.json')));
         const { name } = pj;
         return runCliCommand(cwd, `npm pack --pack-destination=${dest}`).then(() => {
-            console.info(`npm pack success. "${cwd}".`);
+            logger.success(`npm pack success. "${cwd}".`);
             packageJsonDeps[name] = path.resolve(dest, getPkgArchiveFileName(pj))
         }).catch((err) => {
-            console.error(`npm pack error. "${cwd}".`)
-            console.error(err)
+            packageJsonDeps[name] = 'err!'
+            logger.error(`npm pack error. "${cwd}".`)
+            logger.error(err)
         });
     });
     await Promise.all(promises);
-    console.log(JSON.stringify(packageJsonDeps, undefined, 2));
+    const deps = JSON.stringify(packageJsonDeps, undefined, 2)
+    console.info(['You can copy the dependencies to your app\'s package.json for testing.', deps].join('\n'));
 }
 
 main();
