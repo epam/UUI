@@ -15,10 +15,20 @@ export class TooltipDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName='tooltip-descriptions' />
-                { this.renderSectionTitle('Examples') }
+                { this.renderSectionTitle('Overview') }
                 <DocExample
-                    title='Basic'
-                    path='./examples/tooltip/Basic.example.tsx'
+                    title='Types'
+                    path='./examples/tooltip/Types.example.tsx'
+                />
+
+                <DocExample
+                    title='Variants (Styles)'
+                    path='./examples/tooltip/Variants.example.tsx'
+                />
+
+                <DocExample
+                    title='Tooltip placement'
+                    path='./examples/tooltip/Placement.example.tsx'
                 />
 
                 <DocExample
@@ -26,9 +36,14 @@ export class TooltipDoc extends BaseDocsBlock {
                     path='./examples/tooltip/CustomMarkup.example.tsx'
                 />
 
+                { this.renderSectionTitle('Examples') }
                 <DocExample
-                    title='Trigger configuration'
-                    path='./examples/tooltip/TriggerConfiguration.example.tsx'
+                    title='Tooltip with icon'
+                    path='./examples/tooltip/WithIcon.example.tsx'
+                />
+                <DocExample
+                    title='Tooltip with a link'
+                    path='./examples/tooltip/WithLink.example.tsx'
                 />
             </>
         );
