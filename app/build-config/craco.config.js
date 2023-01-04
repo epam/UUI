@@ -1,5 +1,5 @@
 const {removeRuleByTestAttr, replaceRuleByTestAttr, changeRuleByTestAttr, normSlashes, addRule} = require("./utils/configUtils");
-const { BABEL_INCLUDED_REGEXP, BABEL_EXCLUDED_REGEXP, CSS_URL_ROOT_PATH,
+const { DIRS_FOR_BABEL, CSS_URL_ROOT_PATH,
     LIBS_WITHOUT_SOURCE_MAPS, VFILE_SPECIAL_CASE_REGEX,
 } = require("./constants");
 const SVGRLoader = require.resolve("@svgr/webpack");
@@ -55,8 +55,17 @@ function configureWebpack(config, { paths }) {
      * This is Babel for our source files. We need to include sources of all our modules, not only "app/src".
      */
     changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx)$/, r => {
-        const include = isUseBuildFolderOfDeps() ? BABEL_INCLUDED_REGEXP.BUILD_FOLDERS : BABEL_INCLUDED_REGEXP.DEFAULT;
-        const exclude = isUseBuildFolderOfDeps() ? BABEL_EXCLUDED_REGEXP.BUILD_FOLDERS : BABEL_EXCLUDED_REGEXP.DEFAULT;
+        if (isUseBuildFolderOfDeps()) {
+            // no need to process dependencies if they are already built.
+            // the only exception is @epam/assets which contains "*.ts" files.
+            const include = DIRS_FOR_BABEL.ASSETS.BUILD_INCLUDE;
+            include.push(r.include);
+            Object.assign(r, { include });
+            return r;
+        }
+        const include = DIRS_FOR_BABEL.DEV.INCLUDE;
+        include.push(r.include);
+        const exclude = DIRS_FOR_BABEL.DEV.EXCLUDE;
         return Object.assign(r, { include, exclude });
     });
 
@@ -81,11 +90,10 @@ function configureWebpack(config, { paths }) {
         return prev;
     });
 
-    /** Reason: 'path' is used in a couple of our components:
-     * app/src/data/codesandbox/service.ts
+    /** Reason: 'path' is used in some components: react-markdown
      * app/src/common/docs/BaseDocsBlock.tsx
      * we need to get rid of it in the future.
-     * */
+     **/
     config.resolve.alias.path = "path-browserify";
     if (isUseBuildFolderOfDeps()) {
         config.resolve.mainFields = ["epam:uui:main", "browser", "module", "main"];
@@ -94,7 +102,7 @@ function configureWebpack(config, { paths }) {
     config.plugins.forEach(p => {
         if (p.constructor.name === 'ForkTsCheckerWebpackPlugin') {
             p.options.formatter = uuiCustomFormatter;
-            const include = isUseBuildFolderOfDeps() ? BABEL_INCLUDED_REGEXP.BUILD_FOLDERS : BABEL_INCLUDED_REGEXP.DEFAULT;
+            const include = isUseBuildFolderOfDeps() ? DIRS_FOR_BABEL.BUILD.INCLUDE : DIRS_FOR_BABEL.DEV.INCLUDE;
             p.options.issue.include = p.options.issue.include.concat(include);
         }
     })
