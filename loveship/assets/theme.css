@@ -727,21 +727,10 @@
 .date-picker-vars {
     --uui-dtp-bg-color: var(--input-bg-color);
     --uui-dtp-bg-color-hover: var(--primary-halftone-color);
-    --uui-dtp-bg-selected-color-hover: var(--primary-dark-color);
-    --uui-dtp-bg-color-disabled: var(--input-bg-disabled-color);
-    --uui-dtp-border-color: var(--input-border-color);
-    --uui-dtp-border-color-disabled: var(--input-border-disabled-color);
-    --uui-dtp-border-color-hover: var(--input-textinput-border-hover-color);
     --uui-dtp-border-color-active: var(--input-border-checked-color);
-    --uui-dtp-border-color-error: var(--negative-color);
-    --uui-dtp-placeholder-color: var(--input-placeholder-color);
     --uui-dtp-text-color: var(--input-text-color);
-    --uui-dtp-text-color-disabled: var(--input-text-disabled-color);
     --uui-dtp-icon-color-clickable: var(--icon-color);
     --uui-dtp-icon-color-clickable-hover: var(--secondary-lightest-color);
-    --uui-dtp-icon-color-disabled: var(--icon-disabled-color);
-    --uui-dtp-border-radius: var(--border-radius);
-    --uui-dtp-bg-feltered-selected: var(--secondary-color);
 }
 .date-range-picker-vars {
     --uui-rdtp-bg-color: var(--input-bg-color);
@@ -759,6 +748,15 @@
     --uui-rdtp-icon-color-clickable-hover: var(--icon-hover-color);
     --uui-rdtp-icon-color-disabled: var(--icon-disabled-color);
     --uui-rdtp-border-radius: var(--border-radius);
+}
+.calendar-vars {
+    --uui-calendar-bg-color: var(--input-bg-color);
+    --uui-calendar-bg-selected-color-hover: var(--primary-dark-color);
+    --uui-calendar-border-color-active: var(--input-border-checked-color);
+    --uui-calendar-placeholder-color: var(--input-placeholder-color);
+    --uui-calendar-text-color: var(--input-text-color);
+    --uui-calendar-text-color-disabled: var(--input-text-disabled-color);
+    --uui-calendar-bg-selected: var(--secondary-color);
 }
 .search-input-vars {
     --search-input-bg-color: var(--input-bg-color);

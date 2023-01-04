@@ -1,55 +1,72 @@
-// Do this as the first thing so that any code reading it knows the right env.
-process.env.BABEL_ENV = 'development';
-process.env.NODE_ENV = 'development';
-process.env.IS_MODULE = 'true';
-
 const fs = require('fs-extra');
 const path = require('path');
-const paths = require('../config/paths.js');
-const getWebpackConfig = require('../config/webpack.config.js');
-const runWebpack = require('./runWebpack');
-const chalk = require('chalk');
+const { getIndexFilePath } = require('./../utils/indexFileUtils');
+const { logger } = require('./../utils/loggerUtils');
+const { buildUsingRollup } = require('./../rollup/rollupBuildUtils');
 
-const webpackConfig = getWebpackConfig({ env: 'module' });
+const BUILD_FOLDER = 'build'
+const COPY_AS_IS = ['readme.md', 'assets']
 
 async function main() {
-    console.log(chalk.green(`Building package: ` + paths.appPath));
-    fs.emptyDirSync('./build');
+    const moduleRootDir = process.cwd();
+    logger.success(`Building package: ${moduleRootDir}`);
+    fs.emptyDirSync(BUILD_FOLDER);
 
-    const indexExists = !!paths.appIndexTs && await fs.exists(paths.appIndexTs);
-    const assetsExists = await fs.exists('./assets/');
-
-
-    if (indexExists) {
-        await fs.copy('./package.json', './build/package.json');
-        await fs.copy('./readme.md', './build/readme.md');
-
-        // If package contains 'assets' folder, we move it to build as is
-        if(assetsExists) {
-            await fs.copy('./assets/', './build/assets/');
-        }
-
+    const moduleIndexFile = await getModuleIndexFile(moduleRootDir);
+    if (moduleIndexFile) {
+        await copyStaticFilesAsync();
+        await copyPackageJson({ moduleRootDir, isModule: true })
         try {
-            await runWebpack(webpackConfig);
+            await buildUsingRollup({ moduleRootDir, moduleIndexFile });
         } catch(err) {
-            if (err && err.message) {
-                console.log(chalk.red(`Failed building package: ` + paths.appPath));
-                console.log(err.message);
-                process.exit(1);
-            }
+            logger.error(`Failed building package: ${moduleRootDir}`);
+            err && err.message && logger.error(err.message);
+            process.exit(1);
         }
     } else {
-        console.log("No index.tsx exists. Will publish package as is, w/o pre-build");
+        logger.info("No index.tsx exists. Will publish package as is, w/o pre-build");
+        copyAllFilesSync(moduleRootDir);
+    }
+    logger.success(`Done building package: ${moduleRootDir}`);
+}
 
-        for(let file of fs.readdirSync(paths.appPath)) {
-            if (file != 'build') {
-                //console.log([path.resolve(paths.appPath, file), path.resolve(paths.appPath,'build')]);
-                fs.copySync(path.resolve(paths.appPath, file), path.resolve(paths.appPath, 'build', file))
-            };
+async function copyStaticFilesAsync() {
+    const p = COPY_AS_IS.map(async (c) => {
+        if (await fs.exists(c)) {
+            await fs.copy(c, `${BUILD_FOLDER}/${c}`);
+        }
+    })
+    await Promise.all(p)
+}
+
+async function copyPackageJson({ moduleRootDir, isModule }) {
+    const from = path.resolve(moduleRootDir, './package.json');
+    const to = path.resolve(moduleRootDir, `./${BUILD_FOLDER}/package.json`);
+    const content = await fs.readJSON(from);
+    delete content['epam:uui:main'];
+    if (isModule) {
+        // content.sideEffects = false; // TODO: set only if module doesn't have side effects.
+        content.type = 'module'
+    }
+    await fs.writeFile(to, JSON.stringify(content, undefined, 2))
+}
+
+/**
+ * Copy everything to the output folder "as-is".
+ * @param moduleRootDir
+ */
+function copyAllFilesSync(moduleRootDir) {
+    for(let file of fs.readdirSync(moduleRootDir)) {
+        if (file !== BUILD_FOLDER) {
+            const from = path.resolve(moduleRootDir, file);
+            const to = path.resolve(moduleRootDir, BUILD_FOLDER, file)
+            fs.copySync(from, to)
         }
     }
-    // await fs.copy('./build', `../next-app/node-modules/@epam/${name}/build/package.json`);
-    console.log(chalk.green(`Done building package: ` + paths.appPath));
+}
+
+async function getModuleIndexFile(moduleRootDir) {
+    return await getIndexFilePath(moduleRootDir);
 }
 
 main();

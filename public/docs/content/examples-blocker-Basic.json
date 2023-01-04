@@ -11,7 +11,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic Blocker usage",
+            "text": "Basic placement of a Blocker, for example, above a form, waiting for some data. Also if there is a need to secure access to controls covered by the Blocker component, you can pass the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isLoading",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " value to the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isDisabled",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop of each control.",
             "marks": []
           }
         ]

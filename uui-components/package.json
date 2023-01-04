@@ -1,17 +1,18 @@
 {
   "name": "@epam/uui-components",
-  "version": "4.9.1",
+  "version": "4.9.2",
   "description": "EPAM UUI Components",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
+  "epam:uui:main": "build/index.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "4.9.1",
+    "@epam/uui-core": "4.9.2",
     "@popperjs/core": "2.9.0",
     "@types/classnames": "2.2.6",
     "@types/lodash.clone": "4.5.6",
