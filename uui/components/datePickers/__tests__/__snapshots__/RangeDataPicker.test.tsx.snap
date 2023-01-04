@@ -2,7 +2,7 @@
 
 exports[`RangeDataPicker should be rendered correctly 1`] = `
 <div
-  className="date-range-picker-vars dateInputGroup"
+  className="range-date-picker-vars dateInputGroup"
   onBlur={[Function]}
   onClick={[Function]}
 >
@@ -54,7 +54,7 @@ exports[`RangeDataPicker should be rendered correctly 1`] = `
 
 exports[`RangeDataPicker should be rendered correctly 2`] = `
 <div
-  className="date-range-picker-vars dateInputGroup uui-disabled uui-readonly uui-invalid"
+  className="range-date-picker-vars dateInputGroup uui-disabled uui-readonly uui-invalid"
   onBlur={[Function]}
   onClick={false}
 >
