@@ -8,7 +8,6 @@ import { Portal } from './Portal';
 export interface DropdownState {
     opened: boolean;
     bodyBoundingRect: { y: number | null; x: number | null, width: number | null, height: number | null };
-    closeDropdownTimerId: NodeJS.Timeout;
 }
 
 export interface DropdownBodyProps extends IDropdownBodyProps {}
@@ -61,11 +60,11 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     public context: UuiContexts;
     private layer: LayoutLayer;
     private openDropdownTimerId: NodeJS.Timeout = null;
+    private closeDropdownTimerId: NodeJS.Timeout = null;
 
     state: DropdownState = {
         opened: this.props.value || false,
         bodyBoundingRect: { y: null, x: null, height: null, width: null },
-        closeDropdownTimerId: null,
     };
 
     constructor(props: DropdownProps) {
@@ -130,15 +129,23 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private handleMouseEnter = (e: Event) => {
-        this.setOpenDropdownTimer();
+        this.clearCloseDropdownTimer();
+        if (this.props.openDelay) {
+            this.setOpenDropdownTimer();
+        } else {
+            this.handleOpenedChange(true);
+        }
     }
 
     private handleMouseLeave = (e: MouseEvent) => {
         this.clearOpenDropdownTimer();
-        if (!this.props.closeDelay) {
-            this.handleOpenedChange(false);
-        } else {
-            this.state.opened && this.setCloseDropdownTimer();
+
+        if (this.props.closeOnMouseLeave !== 'boundary') { // For boundary mode we have separate logic on onMouseMove handler
+            if (this.props.closeDelay) {
+                this.state.opened && this.setCloseDropdownTimer(this.props.closeDelay);
+            } else {
+                this.handleOpenedChange(false);
+            }
         }
     }
 
@@ -158,13 +165,11 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }, this.props.openDelay || 0);
     }
 
-    setCloseDropdownTimer() {
-        this.setState({
-            closeDropdownTimerId: setTimeout(() => {
-                this.handleOpenedChange(false);
-                this.clearCloseDropdownTimer();
-            }, this.props.closeDelay || 0),
-        });
+    setCloseDropdownTimer(delay: number) {
+        this.closeDropdownTimerId = setTimeout(() => {
+            this.handleOpenedChange(false);
+            this.clearCloseDropdownTimer();
+        }, delay);
     }
 
     clearOpenDropdownTimer() {
@@ -175,19 +180,25 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     clearCloseDropdownTimer() {
-        if (this.state.closeDropdownTimerId) {
-            clearTimeout(this.state.closeDropdownTimerId);
-            this.setState({ closeDropdownTimerId: null });
+        if (this.closeDropdownTimerId) {
+            clearTimeout(this.closeDropdownTimerId);
+            this.closeDropdownTimerId = null;
         }
     }
 
     private handleMouseMove = (e: MouseEvent) => {
-        if (this.isInteractedOutside(e) && !this.isClientInArea(e)) {
-            this.handleOpenedChange(false);
+        if (this.isInteractedOutside(e) && !this.isClientInArea(e)) { // User leave boundary area, close dropdown immediately or with this.props.closeDelay
             this.clearCloseDropdownTimer();
-        } else if (this.isInteractedOutside(e) && !this.state.closeDropdownTimerId) {
-            this.setCloseDropdownTimer();
-        } else if (!this.isInteractedOutside(e) && this.state.closeDropdownTimerId) {
+            this.clearOpenDropdownTimer();
+
+            if (this.props.closeDelay) {
+                this.state.opened && this.setCloseDropdownTimer(this.props.closeDelay);
+            } else {
+                this.handleOpenedChange(false);
+            }
+        } else if (this.isInteractedOutside(e) && !this.closeDropdownTimerId) { // User cursor in boundary area, but not inside toggler or body
+            this.setCloseDropdownTimer(this.props.closeDelay || 1500);
+        } else if (!this.isInteractedOutside(e) && this.closeDropdownTimerId) { // User returned to the toggler or body area, we need to clear close timer
             this.clearCloseDropdownTimer();
         }
     }
