@@ -27,19 +27,37 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', compon
         isDefault: true,
     }] })
     .prop('openOnClick', {
-        examples: [true],
+        examples: [true, false],
+        defaultValue: true,
+        remountOnChange: true,
     })
     .prop('openOnHover', {
-        examples: [{ value: true }],
+        examples: [true, false],
+        defaultValue: false,
+        remountOnChange: true,
     })
     .prop('closeOnClickOutside', {
-        examples: [true],
+        examples: [true, false],
+        defaultValue: true,
+        remountOnChange: true,
     })
     .prop('closeOnTargetClick', {
-        examples: [true],
+        examples: [true, false],
+        defaultValue: true,
+        remountOnChange: true,
     })
     .prop('closeOnMouseLeave', {
         examples: ['toggler', 'boundary', false],
+        defaultValue: false,
+        remountOnChange: true,
+    })
+    .prop('openDelay', {
+        examples: [500, 1000, 1500, 2000],
+        defaultValue: 0,
+    })
+    .prop('closeDelay', {
+        examples: [500, 1000, 1500, 2000],
+        defaultValue: 0,
     })
     .withContexts(DefaultContext);
 
