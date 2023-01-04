@@ -21,6 +21,7 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
         <ControlGroup ref={ ref } rawProps={ { ...props.rawProps, role: 'tablist' } }>
             { props.items.map((item, index) => (
                 <Button
+                    { ...props }
                     {  ...item }
                     isDisabled={ props.isDisabled }
                     key={ index + '-' + item.id }
