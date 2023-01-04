@@ -13,6 +13,11 @@ export const FlexRow = React.forwardRef<HTMLDivElement, FlexRowProps>((props, re
             css['align-items-' + (props.alignItems === undefined ? 'center' : props.alignItems)],
         ) }
         { ...props.rawProps }
+        style={ {
+            ...props.rawProps?.style,
+            columnGap: props.columnGap ? `${props.columnGap}px` : undefined,
+            rowGap: props.rowGap ? `${props.rowGap}px` : undefined,
+        } }
     >
         { props.children }
     </div>

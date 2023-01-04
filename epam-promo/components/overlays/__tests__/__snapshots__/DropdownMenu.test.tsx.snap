@@ -56,6 +56,12 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
         tabIndex={0}
       >
         <div
@@ -85,6 +91,12 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
         tabIndex={0}
       >
         <div
