@@ -8,7 +8,7 @@ import { ForwardedRef, forwardRef } from "react";
 const Sfc = forwardRef((props: any, ref: ForwardedRef<HTMLDivElement>) => <div ref={ ref }>123</div>);
 
 const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip', component: Tooltip })
-    .prop('trigger', { examples: [{ value: 'hover', isDefault: true }, 'click', 'press', 'manual' ] })
+    .prop('trigger',{ examples: [{ value: 'hover', isDefault: true }, 'click', 'press', 'manual'], remountOnChange: true })
     .prop('isVisible', { examples: [ null, true, false ], description: "controls visibility in 'manual' trigger mode" })
     .prop('content', { examples: [{ value: 'Some text', isDefault: true },
             {value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa', name: 'long text' }], type: 'string' })

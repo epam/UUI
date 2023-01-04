@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In addition to simple text, you can pass react component directly to content prop or can provide renderContent callback.",
+            "text": "In addition to simple text, you can pass react component directly to content prop or can provide ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "renderContent",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " callback.",
             "marks": []
           }
         ]
