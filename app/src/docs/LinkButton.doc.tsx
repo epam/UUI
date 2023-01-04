@@ -34,8 +34,13 @@ export class LinkButtonDoc extends BaseDocsBlock {
 
                 { this.renderSectionTitle('Examples') }
                 <DocExample
-                    title='Secondary action in small footer '
+                    title='Secondary action in small footer'
                     path='./examples/common/Card.example.tsx'
+                />
+
+                <DocExample
+                    title='Sorting'
+                    path='./examples/linkButton/Sorting.example.tsx'
                 />
             </>
         );
