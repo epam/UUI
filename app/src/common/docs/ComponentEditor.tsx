@@ -13,8 +13,9 @@ import css from './ComponentEditor.scss';
 
 declare var require: any;
 
-// use more accurate regexp to speed up lookup of docs. in the future we will get rid of "require.context" at all.
-const requireContext = require.context(`../../../../`, true, /[\\/](app[\\/]src[\\/]docProps[\\/](loveship|epam\-promo|uui))[\\/].*\.doc.(ts|tsx)$/, 'lazy');
+const PATH_PREFIX = './app/src/docProps/';
+// narrow down the context base path to speed up lookup.
+const requireContext = require.context(`../../../../app/src/docProps`, true, /\/(loveship|epam-promo|uui)\/.*\.doc.(ts|tsx)$/, 'lazy');
 
 interface ComponentEditorProps<TProps> extends IHasCX {
     propsDocPath: string;
@@ -62,9 +63,11 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
 
     constructor(props: ComponentEditorProps<any>) {
         super(props);
+        const { propsDocPath } = props;
 
-        if (this.props.propsDocPath !== undefined) {
-            requireContext(`${ this.props.propsDocPath }`).then(((m: any) => {
+        if (propsDocPath) {
+            const propsDocPathRelative = `./${propsDocPath.substring(PATH_PREFIX.length)}`;
+            requireContext(propsDocPathRelative).then(((m: any) => {
                 const module = m.default;
                 module.props.forEach((prop: any) => {
                     if (typeof prop.examples === 'function') {
