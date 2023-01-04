@@ -1,0 +1,37 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Using badge with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "fill: transparent",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " most common case for statuses",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
