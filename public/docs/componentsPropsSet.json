@@ -3468,6 +3468,11 @@
         "name": "trigger",
         "value": "manual | click | press | hover",
         "comment": "<p>Defines when to show the tooltip: &#39;hover&#39; - default and usual, &#39;press&#39; - only when mouse button is down, &#39;manual&#39; - visibility is controlled with isVisible prop</p>"
+      },
+      {
+        "name": "maxWidth",
+        "value": "string",
+        "comment": "<p>Tooltip max width</p>"
       }
     ],
     "/epam-promo/components/pickers/docs/pickerInput.doc.tsx": [
