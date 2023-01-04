@@ -732,7 +732,7 @@
     --uui-dtp-icon-color-clickable: var(--icon-color);
     --uui-dtp-icon-color-clickable-hover: var(--secondary-lightest-color);
 }
-.date-range-picker-vars {
+.range-date-picker-vars {
     --uui-rdtp-bg-color: var(--input-bg-color);
     --uui-rdtp-bg-selected-color: var(--primary-lightest-color);
     --uui-rdtp-bg-color-disabled: var(--input-bg-disabled-color);

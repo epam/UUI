@@ -21,7 +21,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
             <DropdownContainer { ...props } cx={ cx(css.dropdownContainer) }>
                 <FlexRow>
                     <RangeDatePickerBody
-                        cx={ cx(this.props.bodyCx, 'date-range-picker-vars', 'date-picker-vars') }
+                        cx={ cx(this.props.bodyCx, 'range-date-picker-vars', 'date-picker-vars') }
                         value={ this.getValue() }
                         onValueChange={ this.onRangeChange }
                         filter={ this.props.filter }
@@ -43,7 +43,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
             <div
                 className={ cx(
                     this.props.inputCx,
-                    'date-range-picker-vars',
+                    'range-date-picker-vars',
                     css.dateInputGroup,
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.isReadonly && uuiMod.readonly,
