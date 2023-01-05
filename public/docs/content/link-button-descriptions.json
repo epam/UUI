@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Link Button can be used as secondary action on interface, as primary action (in limited and compact interfaces) or in cases when button is not suitable.",
+            "text": "Link Button component used to make a redirect or call some action on click.",
             "marks": []
           }
         ]
