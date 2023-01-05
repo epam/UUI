@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
+import { DocBuilder, isReadonlyDoc, isDisabledDoc } from '@epam/uui-docs';
 import { SliderRating, SliderRatingProps } from '../SliderRating';
 import { iEditable, DefaultContext, FormContext } from '../../../docs';
 import { RichTextView } from '../../typography';
 
 const SliderRatingDoc = new DocBuilder<SliderRatingProps<number>>({ name: 'SliderRating', component: SliderRating })
-    .implements([iEditable, isReadonlyDoc])
+    .implements([iEditable, isReadonlyDoc, isDisabledDoc])
     .prop('value', { examples: [0, 1, 2, 3, 4, 5] })
     .prop('from', { examples: [1, 2] })
     .prop('withoutNa', { examples: [true] })
