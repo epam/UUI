@@ -8,7 +8,6 @@ exports[`should be rendered correctly 1`] = `
   <button
     aria-current={true}
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
-    href={null}
     onClick={[Function]}
     role="tab"
     tabIndex={0}
@@ -23,7 +22,6 @@ exports[`should be rendered correctly 1`] = `
   <button
     aria-current={false}
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-white"
-    href={null}
     onClick={[Function]}
     role="tab"
     tabIndex={0}

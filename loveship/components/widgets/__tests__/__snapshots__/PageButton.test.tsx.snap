@@ -3,9 +3,7 @@
 exports[`PageButton should be rendered correctly 1`] = `
 <button
   className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square fill-white size-30"
-  href={null}
   onClick={[Function]}
-  role="button"
   tabIndex={-1}
   type="button"
 />
@@ -14,9 +12,7 @@ exports[`PageButton should be rendered correctly 1`] = `
 exports[`PageButton should be rendered correctly with extra 1`] = `
 <button
   className="container uui-button-box uui-enabled -clickable root size-24 color-sun fill-light style-square fill-light size-24"
-  href={null}
   onClick={[Function]}
-  role="button"
   tabIndex={0}
   type="button"
 >

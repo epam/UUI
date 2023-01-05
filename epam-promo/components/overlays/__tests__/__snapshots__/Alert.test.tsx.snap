@@ -43,9 +43,7 @@ exports[`Alert should be rendered correctly 2`] = `
       >
         <button
           className="container uui-button-box uui-enabled -clickable root size-24 linkButton-color-blue uui-no-left-icon uui-no-right-icon actionLink"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -59,9 +57,7 @@ exports[`Alert should be rendered correctly 2`] = `
     </div>
     <button
       className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
-      href={null}
       onClick={[Function]}
-      role="button"
       tabIndex={0}
       type="button"
     >

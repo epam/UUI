@@ -85,9 +85,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         >
           <button
             className="container uui-button-box uui-enabled -clickable root color-night600"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={0}
             type="button"
           >
@@ -182,9 +180,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         />
         <button
           className="container uui-button-box uui-enabled -clickable root size-36 color-night400 fill-solid style-square"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -196,9 +192,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </button>
         <button
           className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -314,9 +308,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
         >
           <button
             className="container uui-button-box uui-enabled -clickable root color-night600"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={0}
             type="button"
           >
@@ -419,9 +411,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
         />
         <button
           className="container uui-button-box uui-enabled -clickable root size-36 color-grass fill-solid style-square"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
