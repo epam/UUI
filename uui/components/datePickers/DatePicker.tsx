@@ -41,7 +41,7 @@ export class DatePicker extends BaseDatePicker<UuiDatePickerProps> {
     renderBody(props: DropdownBodyProps) {
         return <DropdownContainer { ...props }>
             <DatePickerBody
-                cx={ cx(this.props.bodyCx, 'date-picker-vars') }
+                cx={ cx(this.props.bodyCx) }
                 filter={ this.props.filter }
                 value={ this.getValue() }
                 setSelectedDate={ this.setSelectedDate }

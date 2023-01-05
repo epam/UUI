@@ -8,7 +8,7 @@
     display: flex;
     padding: 9px 30px;
     justify-content: space-between;
-    border-top: 1px solid var(--uui-rdtp-border-color);
+    border-top: 1px solid var(--uui-rdtp-inputs-border-color);
     align-items: center;
     background-color: var(--uui-rdtp-bg-color);
     position: relative;
@@ -20,7 +20,7 @@
 }
 
 .counter {
-    color: var(--uui-rdtp-border-color);
+    color: var(--uui-rdtp-inputs-border-color);
     font-size: 15px;
     font-family: var(--font-regular);
 }
@@ -30,7 +30,7 @@
     padding: 0 5px;
 
     &:global(.uui-focus) {
-        border: 1px solid var(--uui-rdtp-border-color-active);
+        border: 1px solid var(--uui-rdtp-inputs-border-color-checked);
     }
 
     &.size-24 {
@@ -58,45 +58,45 @@
     display: flex;
     min-width: 0;
     background-color: var(--uui-rdtp-bg-color);
-    border: 1px solid var(--uui-rdtp-border-color);
+    border: 1px solid var(--uui-rdtp-inputs-border-color);
 
     .separator {
         display: flex;
         flex-shrink: 0;
-        background: var(--uui-rdtp-border-color);
+        background: var(--uui-rdtp-inputs-border-color);
         width: 1px;
     }
 
     &:hover {
-        border-color: var(--uui-rdtp-border-color-hover);
+        border-color: var(--uui-rdtp-inputs-border-color-hover);
 
         .separator {
-            background: var(--uui-rdtp-border-color-hover);
+            background: var(--uui-rdtp-inputs-border-color-hover);
         }
 
         &:global(.uui-disabled), &:global(.uui-readonly) {
-            border-color: var(--uui-rdtp-border-color);
+            border-color: var(--uui-rdtp-inputs-border-color);
 
             .separator {
-                background: var(--uui-rdtp-border-color);
+                background: var(--uui-rdtp-inputs-border-color);
             }
         }
     }
 
     &:global(.uui-focus) {
-        border-color: var(--uui-rdtp-border-color);
+        border-color: var(--uui-rdtp-inputs-border-color);
 
         .separator {
-            background: var(--uui-rdtp-border-color-active);
+            background: var(--uui-rdtp-inputs-border-color-checked);
         }
 
         .date-input {
             &:hover {
-                outline: 1px solid var(--uui-rdtp-border-color-hover);
+                outline: 1px solid var(--uui-rdtp-inputs-border-color-hover);
             }
 
             &:global(.uui-focus) {
-                outline: 1px solid var(--uui-rdtp-border-color-active);
+                outline: 1px solid var(--uui-rdtp-inputs-border-color-checked);
             }
         }
     }
@@ -112,6 +112,6 @@
     }
 
     &:global(.uui-invalid) {
-        border-color: var(--uui-rdtp-border-color-error);
+        border-color: var(--uui-rdtp-inputs-border-color-error);
     }
 }

@@ -7,7 +7,7 @@
 
     :global(.uui-calendar-weekday) {
         font-family: var(--font-regular);
-        color: var(--uui-calendar-placeholder-color);
+        color: var(--uui-calendar-weekends-weekdates-color);
         width: 34px;
         font-size: 12px;
         line-height: 24px;
@@ -55,15 +55,15 @@
                 cursor: pointer;
 
                 :global(.uui-calendar-day) {
-                    border: 1px solid var(--uui-calendar-border-color-active);
-                    background-color: var(--uui-calendar-bg-color);
+                    border: 1px solid var(--uui-calendar-start-end-selected-color);
+                    background-color: var(--uui-calendar-selected-color-hover);
                     z-index: 1;
                 }
 
                 &:global(.uui-calendar-selected-day) {
                     :global(.uui-calendar-day) {
-                        border: 1px solid var(--uui-calendar-bg-selected-color-hover);
-                        background-color: var(--uui-calendar-bg-selected-color-hover);
+                        border: 1px solid var(--uui-calendar-start-end-selected-color-hover);
+                        background-color: var(--uui-calendar-start-end-selected-color-hover);
                     }
                 }
             }
@@ -72,7 +72,7 @@
 
     :global(.uui-calendar-current-day) {
         &:global(.uui-calendar-day-wrapper) {
-            color: var(--uui-calendar-border-color-active);
+            color: var(--uui-calendar-start-end-selected-color);
             font-family: var(--font-semibold);
 
             :global(.uui-calendar-day)::after {
@@ -81,7 +81,7 @@
                 height: 4px;
                 width: 4px;
                 border-radius: 50%;
-                background-color: var(--uui-calendar-border-color-active);
+                background-color: var(--uui-calendar-start-end-selected-color);
                 bottom: 3px;
                 left: calc(50% - 2px);
             }
@@ -91,11 +91,11 @@
     :global(.uui-calendar-selected-day) {
         &:global(.uui-calendar-day-wrapper) {
             :global(.uui-calendar-day) {
-                background-color: var(--uui-calendar-border-color-active);
-                color: var(--uui-calendar-bg-color);
+                background-color: var(--uui-calendar-start-end-selected-color);
+                color: var(--uui-calendar-selected-color-hover);
 
                 &::after {
-                    background-color: var(--uui-calendar-bg-color);
+                    background-color: var(--uui-calendar-selected-color-hover);
                 }
             }
         }
@@ -108,23 +108,23 @@
     }
 
     :global(.uui-calendar-day-holiday) {
-        color: var(--uui-calendar-placeholder-color);
+        color: var(--uui-calendar-weekends-weekdates-color);
     }
 
     :global(.uui-calendar-filtered-day) {
         &:global(.uui-calendar-day-wrapper) {
-            color: var(--uui-calendar-text-color-disabled);
+            color: var(--uui-calendar-text-color-filtered);
 
             &:hover {
                 cursor: default;
                 background-color: transparent;
             }
-
-            &:global(.uui-calendar-selected-day) {
-                :global(.uui-calendar-day) {
-                    background-color: var(--uui-calendar-bg-selected);
-                }
-            }
+            //TODO: Do we need it?
+            //&:global(.uui-calendar-selected-day) {
+            //    :global(.uui-calendar-day) {
+            //        background-color: var(--uui-calendar-bg-selected);
+            //    }
+            //}
         }
     }
 }
