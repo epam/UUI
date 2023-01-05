@@ -31,4 +31,7 @@ export interface TooltipCoreProps extends IHasCX, IHasChildren {
 
     /** See  [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/prevent-overflow/} */
     boundaryElement?: Boundary;
+
+    /** Max width of tooltip */
+    maxWidth?: string;
 }
