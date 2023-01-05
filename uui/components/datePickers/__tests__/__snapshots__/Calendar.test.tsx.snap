@@ -2,7 +2,7 @@
 
 exports[`Calendar should be rendered correctly 1`] = `
 <div
-  className="container uui-calendar-container root calendar-vars"
+  className="container uui-calendar-container root"
 >
   <div
     className="uui-calendar-content"
