@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Any badge color allowed to use as solid and halftone (label, entity status on current page). Halftone, same use cases as for in tables, filters and more.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

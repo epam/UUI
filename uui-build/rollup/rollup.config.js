@@ -7,7 +7,7 @@ const postCssDynamicImport = import("rollup-plugin-postcss-modules");
 const path = require('path')
 //
 const { getExternalDeps, getTsConfigFile } = require("./rollupConfigUtils");
-const { getModuleNameFromModuleRootDir } = require("./../utils/moduleUtils");
+const { readPackageJsonContent } = require("./../utils/moduleUtils");
 
 module.exports = { getConfig };
 
@@ -15,12 +15,26 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
     const { default: postcss } = await postCssDynamicImport;
     const tsconfig = getTsConfigFile(moduleRootDir);
     const external = getExternalDeps(moduleRootDir);
-    const moduleName = getModuleNameFromModuleRootDir(moduleRootDir)
+    const { name: moduleName } = readPackageJsonContent(moduleRootDir);
+    const moduleFolderName = path.basename(moduleRootDir);
+    const outDir = `${moduleRootDir}/build`;
 
     /** @type {import('rollup').RollupOptions} */
     const config = {
         input: moduleIndexFile,
-        output: [{ file: `${moduleRootDir}/build/index.js`, format: "esm", interop: "auto", sourcemap: true }],
+        output: [{ file: `${outDir}/index.js`, format: "esm", interop: "auto", sourcemap: true,
+            sourcemapPathTransform: (relativeSourcePath, sourcemapPath) => {
+                /**
+                 * It's needed to fix sources location path in "build/index.js.map".
+                 * So that source maps are grouped correctly in browser dev tools.
+                 * Before:
+                 * "sources":["../../src/Test.tsx",...]
+                 * After:
+                 * "sources":["rollup://<moduleName>/./src/Test.tsx",...]
+                 */
+                return `rollup://${moduleName}/./`+path.join(`${moduleFolderName}/build`, relativeSourcePath);
+            }
+        }],
         external,
         plugins: [
             nodeResolve({
@@ -31,7 +45,7 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
             }),
             typescript({
                 tsconfig,
-                outDir: `${moduleRootDir}/build`,
+                outDir,
                 baseUrl: moduleRootDir,
                 rootDir: moduleRootDir,
                 declaration: true,
