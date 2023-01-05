@@ -2454,6 +2454,11 @@
         "comment": null
       },
       {
+        "name": "columnGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": "<p>Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
+      },
+      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -2482,6 +2487,11 @@
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "rowGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": "<p>Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
       },
       {
         "name": "size",
@@ -3244,6 +3254,11 @@
         "comment": null
       },
       {
+        "name": "columnGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
+      },
+      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -3262,6 +3277,11 @@
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "rowGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
       },
       {
         "name": "size",
@@ -3301,6 +3321,11 @@
         "comment": null
       },
       {
+        "name": "columnGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
+      },
+      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -3324,6 +3349,11 @@
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "rowGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
       },
       {
         "name": "size",
@@ -3445,6 +3475,11 @@
         "comment": "<p>Is tooltip visible (for trigger=&#39;manual&#39;)</p>"
       },
       {
+        "name": "maxWidth",
+        "value": "string",
+        "comment": "<p>Max width of tooltip</p>"
+      },
+      {
         "name": "offset",
         "value": "Offset",
         "comment": "<p>See <a href='https://popper.js.org/docs/v2/modifiers/offset/'>Popper docs</a></p>"
@@ -3468,11 +3503,6 @@
         "name": "trigger",
         "value": "manual | click | press | hover",
         "comment": "<p>Defines when to show the tooltip: &#39;hover&#39; - default and usual, &#39;press&#39; - only when mouse button is down, &#39;manual&#39; - visibility is controlled with isVisible prop</p>"
-      },
-      {
-        "name": "maxWidth",
-        "value": "string",
-        "comment": "<p>Tooltip max width</p>"
       }
     ],
     "/app/src/docProps/epam-promo/components/pickers/pickerInput.doc.tsx": [
@@ -4479,6 +4509,11 @@
         "comment": null
       },
       {
+        "name": "columnGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": "<p>Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
+      },
+      {
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]",
         "comment": null
@@ -4657,6 +4692,11 @@
         "name": "renderDropMarkers",
         "value": "(props: DndActorRenderParams) => React.ReactNode",
         "comment": null
+      },
+      {
+        "name": "rowGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": "<p>Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
       },
       {
         "name": "rowKey",
@@ -8164,6 +8204,11 @@
         "comment": null
       },
       {
+        "name": "columnGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": "<p>Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
+      },
+      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -8192,6 +8237,11 @@
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "rowGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": "<p>Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
       },
       {
         "name": "size",
@@ -9321,6 +9371,11 @@
         "comment": null
       },
       {
+        "name": "columnGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
+      },
+      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -9339,6 +9394,11 @@
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "rowGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
       },
       {
         "name": "size",
@@ -9383,6 +9443,11 @@
         "comment": null
       },
       {
+        "name": "columnGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
+      },
+      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -9406,6 +9471,11 @@
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "rowGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
       },
       {
         "name": "size",
@@ -9577,6 +9647,11 @@
         "name": "isVisible",
         "value": "boolean",
         "comment": "<p>Is tooltip visible (for trigger=&#39;manual&#39;)</p>"
+      },
+      {
+        "name": "maxWidth",
+        "value": "string",
+        "comment": "<p>Max width of tooltip</p>"
       },
       {
         "name": "offset",
@@ -10790,6 +10865,11 @@
         "comment": null
       },
       {
+        "name": "columnGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": "<p>Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
+      },
+      {
         "name": "columns",
         "value": "DataColumnProps<TItem, TId, any>[]",
         "comment": null
@@ -10968,6 +11048,11 @@
         "name": "renderDropMarkers",
         "value": "(props: DndActorRenderParams) => React.ReactNode",
         "comment": null
+      },
+      {
+        "name": "rowGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": "<p>Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
       },
       {
         "name": "rowKey",
