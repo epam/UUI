@@ -69,7 +69,7 @@ const getPropType = (prop: Symbol, path: string) => {
         comment: htmlComment,
     };
 };
-const DOCS_GLOB = ["../**/app/src/docProps/**/*.doc{.ts,.tsx}", "!../**/node_modules/**"];
+const DOCS_GLOB = ["../app/src/docProps/**/*.doc{.ts,.tsx}", "!../**/node_modules/**"];
 function main() {
     const docsProps: any = {};
     /**
