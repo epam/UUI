@@ -38,7 +38,10 @@ function configureWebpack(config, { paths }) {
         test: VFILE_SPECIAL_CASE_REGEX,
         use: [{ loader: require.resolve("imports-loader"), options: { type: "commonjs", imports: ["single process/browser process"] } }],
     });
-    /** Use older version of @svgr/webpack as a workaround for https://github.com/facebook/create-react-app/issues/11770
+    /**
+     * Fix: remove <metadata> tag.
+     *
+     * Use older version of @svgr/webpack as a workaround for https://github.com/facebook/create-react-app/issues/11770
      * Use older version of file-loader as a workaround for https://github.com/gregberge/svgr/issues/367
      * related bug: https://github.com/gregberge/svgr/issues/727
      * e.g.: uui-timeline/arrowRight.svg
