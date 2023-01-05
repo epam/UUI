@@ -131,7 +131,7 @@ jobs:
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.15
         with:
-          versionSpec: '5.5.0'
+          versionSpec: '5.8.3'
 
       - name: Version determination
         id:   gitversion
