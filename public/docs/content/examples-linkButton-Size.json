@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Different link button sizes, based on Button height.",
+            "text": "You can use different link button sizes, based on component height, provide ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "size",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop for it.",
             "marks": []
           }
         ]

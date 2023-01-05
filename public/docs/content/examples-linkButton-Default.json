@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Can be used with icon, to support visually what action will be triggered, as without icon. Middle contrast between Button & Link components. Link Button cannot be used within text block. Suitable component for it is Link.",
+            "text": "LinkButton usually used as a secondary action on interface, primary action (in limited and compact interfaces) or in cases when button is not suitable. Can be used with icon, to support visually what action will be triggered or without icon for simple actions. ",
             "marks": []
           }
         ]
