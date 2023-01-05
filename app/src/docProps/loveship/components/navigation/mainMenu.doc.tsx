@@ -3,7 +3,6 @@ import { MainMenuMods, MainMenu, MainMenuButton, FlexSpacer, GlobalMenu, BurgerB
 import { MainMenuLogo, MainMenuProps } from '@epam/uui-components';
 import { DocBuilder } from '@epam/uui-docs';
 import { ResizableContext } from "../../docs";
-import { ReactComponent as TriangleIcon } from '../../docIcons/triangle.svg';
 
 const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMenu', component: MainMenu })
     .prop('renderBurger', {
@@ -33,7 +32,7 @@ const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMe
                     <MainMenuButton caption='My Team' collapseToMore priority={ 2 } estimatedWidth={ 92 } showInBurgerMenu key='my team'/>,
                     <MainMenuButton caption='Skill Matrices' collapseToMore priority={ 1 } estimatedWidth={ 139 } showInBurgerMenu key='skill' href='/'/>,
                     <FlexSpacer priority={ 100500 } key='spacer'/>,
-                    <MainMenuButton caption='Tools' type='secondary' dropdownIcon={ TriangleIcon } isDropdown priority={ 4 } estimatedWidth={ 113 } key='tool'/>,
+                    <MainMenuButton caption='Tools' type='secondary' isDropdown priority={ 4 } estimatedWidth={ 113 } key='tool'/>,
                     <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key='global-menu'/>,
                 ],
                 name: 'Grow',
@@ -46,7 +45,7 @@ const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMe
                     <MainMenuButton key='explore' caption='Explore' collapseToMore priority={ 2 } estimatedWidth={ 78 } showInBurgerMenu/>,
                     <MainMenuButton key='myLearning' caption='My Learning' collapseToMore priority={ 2 } estimatedWidth={ 104 } showInBurgerMenu  href='/'/>,
                     <FlexSpacer priority={ 100500 } key='spacer'/>,
-                    <MainMenuButton key='minsk' caption='Minsk' type='secondary' dropdownIcon={ TriangleIcon } isDropdown estimatedWidth={ 70 }/>,
+                    <MainMenuButton key='minsk' caption='Minsk' type='secondary' isDropdown estimatedWidth={ 70 }/>,
                     <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key='global-menu'/>,
                 ],
                 name: 'Learn',

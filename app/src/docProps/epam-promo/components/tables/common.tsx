@@ -6,10 +6,10 @@ import { Avatar } from '@epam/uui-components';
 import { Person } from './TableContext';
 import { DataTableHeaderRowMods } from '@epam/promo';
 import css from '../pickers/DataPickerRowDoc.scss';
-import { ReactComponent as MoreIcon } from '../../docIcons/navigation-more_vert-18.svg';
-import { ReactComponent as CalendarIcon } from '../../docIcons/calendar-18.svg';
-import { ReactComponent as TickIcon } from '../../docIcons/notification-done-18.svg';
-import { ReactComponent as PencilIcon } from '../../docIcons/content-edit-18.svg';
+import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
+import { ReactComponent as CalendarIcon } from '@epam/assets/icons/common/action-calendar-18.svg';
+import { ReactComponent as TickIcon } from '@epam/assets/icons/common/notification-done-18.svg';
+import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
 
 const getRandomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 

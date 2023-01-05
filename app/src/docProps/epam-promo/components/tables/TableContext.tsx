@@ -3,7 +3,7 @@ import { DataSourceState, Lens, DataColumnProps, UuiContext, UuiContexts, Column
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
 import { Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
 import { ColumnsConfigurationModal } from '@epam/promo';
-import { ReactComponent as GearIcon } from '../../docIcons/action-settings-18.svg';
+import { ReactComponent as GearIcon } from '@epam/assets/icons/common/action-settings-18.svg';
 
 export type Person = {
     id: number,

@@ -6,7 +6,7 @@ import { DatePicker, DatePickerProps } from '@epam/loveship';
 import { LinkButton, FlexRow } from '@epam/loveship';
 import { DefaultContext, FormContext, iEditable, isDisabledDoc, isInvalidDoc,
     isReadonlyDoc, modeDoc, ResizableContext, sizeDoc, TableContext, textSettingsDoc } from '../../docs';
-import { ReactComponent as Point } from '../../docIcons/radio-point.svg';
+import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 
 const getCustomDay = (day: Dayjs) => {
     return <>
