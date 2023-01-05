@@ -1,7 +1,10 @@
-import * as React from 'react';
-import { cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers, UuiContext, isChildHasClass, IHasRawProps } from '@epam/uui-core';
+import React from 'react';
+import {
+    cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers,
+    UuiContext, isChildHasClass
+} from '@epam/uui-core';
 
-export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
+export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> { }
 
 export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
 
@@ -58,6 +61,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
         let isLinkActive = null;
         let href: string | null = null;
 
+        const { target } = this.props;
         if (this.hasLink(this.props.link)) {
             isAnchor = true;
             href = this.context.uuiRouter?.createHref(this.props.link);
@@ -66,27 +70,33 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             isAnchor = true;
             href = this.props.href;
         }
-        return React.createElement(isAnchor ? 'a' : 'button', {
-            className: cx(
-                this.getClassName(),
-                uuiElement.buttonBox,
-                this.props.isDisabled && uuiMod.disabled,
-                !this.props.isDisabled && uuiMod.enabled,
-                (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
-                (this.props.onClick || isAnchor) && uuiMarkers.clickable,
-                this.props.cx,
-            ),
-            role: isAnchor ? 'link' : 'button',
-            ...(!isAnchor && {type: "button"}),
+
+        const className = cx(
+            this.getClassName(),
+            uuiElement.buttonBox,
+            this.props.isDisabled && uuiMod.disabled,
+            !this.props.isDisabled && uuiMod.enabled,
+            (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
+            (this.props.onClick || isAnchor) && uuiMarkers.clickable,
+            this.props.cx,
+        );
+
+        const commonProps = {
+            className,
             onClick: this.clickHandler,
             tabIndex: this.getTabIndex(),
-            href,
             ref: this.props.forwardedRef,
-            target: this.props.target,
-            'aria-disabled': this.props.isDisabled as IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>['rawProps']['aria-disabled'],
+            'aria-disabled': this.props.isDisabled,
             ...this.props.rawProps,
-        },
-            this.getChildren(),
-        );
+        };
+
+        if (isAnchor) {
+            return React.createElement(
+                'a',
+                { role: 'link', href, target, ...(target ? { rel: 'noopener noreferrer' } : {}), ...commonProps },
+                this.getChildren(),
+            );
+        }
+        return React.createElement('button', { type: 'button', ...commonProps }, this.getChildren());
     }
 }

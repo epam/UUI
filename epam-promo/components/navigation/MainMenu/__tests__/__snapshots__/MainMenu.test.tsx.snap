@@ -44,9 +44,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
       </div>
       <button
         className="container uui-button-box uui-enabled root type-primary"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={-1}
         type="button"
       />
@@ -99,9 +97,7 @@ exports[`MainMenu should be rendered correctly 2`] = `
       </div>
       <button
         className="container uui-button-box uui-enabled root type-primary"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={-1}
         type="button"
       />
