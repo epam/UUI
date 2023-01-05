@@ -16,10 +16,31 @@ export class LinkButtonDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName='link-button-descriptions' />
+                { this.renderSectionTitle('Overview') }
+                <DocExample
+                    title='Link Button'
+                    path='./examples/linkButton/Default.example.tsx'
+                />
+
+                <DocExample
+                    title='Sizes'
+                    path='./examples/linkButton/Size.example.tsx'
+                />
+
+                <DocExample
+                    title='Icon Positions'
+                    path='./examples/linkButton/IconPosition.example.tsx'
+                />
+
                 { this.renderSectionTitle('Examples') }
                 <DocExample
-                    title='Basic'
-                    path='./examples/linkButton/Basic.example.tsx'
+                    title='Secondary action in small footer'
+                    path='./examples/common/Card.example.tsx'
+                />
+
+                <DocExample
+                    title='Sorting'
+                    path='./examples/linkButton/Sorting.example.tsx'
                 />
             </>
         );
