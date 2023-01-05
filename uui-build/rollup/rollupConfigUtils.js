@@ -4,6 +4,8 @@ const DEPS_ALWAYS_BUNDLED = ["@epam/assets"]
 
 module.exports = { getExternalDeps, getTsConfigFile }
 
+const MODULE_TSCONFIG_PATH = './.tsconfig.json'
+
 function getModuleDepsProd(moduleRootDir) {
     const packageJsonPath = path.resolve(moduleRootDir, "package.json");
     const pkg = fs.readFileSync(packageJsonPath).toString();
@@ -27,11 +29,11 @@ function getExternalDeps(moduleRootDir) {
 
 function getTsConfigFile(moduleRootDir) {
    ensureModuleHasTsConfig(moduleRootDir);
-   return path.resolve(moduleRootDir, './.tsconfig.json')
+   return path.resolve(moduleRootDir, MODULE_TSCONFIG_PATH)
 }
 
 function ensureModuleHasTsConfig(moduleRootDir) {
-    const tsconfig = path.resolve(moduleRootDir, "./.tsconfig.json");
+    const tsconfig = path.resolve(moduleRootDir, MODULE_TSCONFIG_PATH);
     fs.writeFileSync(
         tsconfig,
         JSON.stringify({

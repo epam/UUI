@@ -1,14 +1,15 @@
 import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import Scrollbars, * as CustomScrollBars from 'react-custom-scrollbars-2';
+import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import css from './ScrollBars.scss';
+import type { Scrollbars, ScrollbarProps as LibScrollbarProps, positionValues } from 'react-custom-scrollbars-2';
 
-export interface ScrollbarProps extends IHasCX, Omit<CustomScrollBars.ScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
+export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
     hasTopShadow?: boolean;
     hasBottomShadow?: boolean;
 }
 
-export interface PositionValues extends CustomScrollBars.positionValues {}
+export interface PositionValues extends positionValues {}
 
 export interface ScrollbarsApi extends Scrollbars {}
 
@@ -62,7 +63,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     };
 
     return (
-        <CustomScrollBars.default
+        <ReactCustomScrollBars
             className={ cx(
                 css.root,
                 props.cx,
