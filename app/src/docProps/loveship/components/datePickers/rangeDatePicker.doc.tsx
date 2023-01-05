@@ -7,7 +7,7 @@ import css from './RangeDatePicker.doc.scss';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc } from '../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../docs';
 import { Button } from '@epam/loveship';
-import { ReactComponent as Point } from "../../docIcons/radio-point.svg";
+import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 
 const getCustomDay = (day: Dayjs) => {
     return <>

@@ -6,7 +6,7 @@ import { DatePicker, DatePickerProps } from '@epam/promo';
 import { LinkButton, FlexRow } from '@epam/promo';
 import { iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc,
     FormContext, DefaultContext, ResizableContext, TableContext, IHasEditModeDoc } from '../../docs';
-import { ReactComponent as Point } from '../../docIcons/radio-point.svg';
+import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 
 
 const getCustomDay = (day: Dayjs) => {

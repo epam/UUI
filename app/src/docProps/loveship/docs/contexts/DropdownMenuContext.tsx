@@ -5,8 +5,8 @@ import {
     DropdownMenuSplitter, Tooltip, DropdownMenuCheckbox, DropdownMenuSearch,
 } from '@epam/loveship';
 import { Dropdown } from '@epam/uui-components';
-import { ReactComponent as PencilIcon } from '../../docIcons/content-edit-18.svg';
-import { ReactComponent as TrashIcon } from '../../docIcons/action-delete-18.svg';
+import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
+import { ReactComponent as TrashIcon } from '@epam/assets/icons/common/action-delete-18.svg';
 
 interface DropdownComponentState {
     checkboxValue: boolean;

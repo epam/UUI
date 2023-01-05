@@ -6,7 +6,7 @@ import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, FormContext, DefaultCo
 import dayjs, { Dayjs } from "dayjs";
 import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
 import { Button, Text } from '@epam/promo';
-import { ReactComponent as Point } from "../../docIcons/radio-point.svg";
+import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 import isBetween from 'dayjs/plugin/isBetween.js';
 dayjs.extend(isBetween);
 

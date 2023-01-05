@@ -7,7 +7,7 @@ import { DocBuilder } from '@epam/uui-docs';
 import { RichTextViewProps } from '@epam/uui-components';
 import { Anchor, TextInput } from '@epam/loveship';
 import { Svg } from '@epam/uui-components';
-import { ReactComponent as Calendar } from '../../docIcons/action-calendar-18.svg';
+import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
 import cx from 'classnames';
 import css from '@epam/loveship/assets/styles/scss/typography.scss';
 import style from './richTextViewDoc.scss';
