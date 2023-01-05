@@ -4,7 +4,7 @@ import { BaseRangeDatePickerProps, IDropdownBodyProps, RangeDatePickerInputType,
 import { BaseRangeDatePicker } from '@epam/uui-components';
 import { FlexRow, i18n, TextInput, LinkButton, FlexSpacer, FlexCell } from '../../index';
 import cx from "classnames";
-import css from "@epam/uui/components/datePickers/RangeDatePicker.scss";
+import css from "./FilterRangeDatePickerBody.scss";
 import { systemIcons } from "../../icons/icons";
 import { RangeDatePickerBody } from "@epam/uui";
 

@@ -2,7 +2,7 @@ import React, { ForwardRefExoticComponent, RefAttributes, useCallback, useEffect
 import { useForm } from '@epam/promo';
 import * as promo from "@epam/promo";
 import * as loveship from "@epam/loveship";
-import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource, UuiDatePickerProps } from '@epam/uui';
+import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource, DatePickerProps } from '@epam/uui';
 import { PickerInputBaseProps } from '@epam/uui-components';
 import { DataTableCellProps, RenderCellProps } from '@epam/uui-core';
 
@@ -103,7 +103,7 @@ export default function TableCellsStylesSandbox() {
     const skin: (typeof promo | typeof loveship) = (skinName === 'promo') ? promo : loveship;
 
     // These component types doesn't merge correctly/acceptably between skins
-    const SkinDatePicker = skin.DatePicker as ForwardRefExoticComponent<UuiDatePickerProps & RefAttributes<any>>;
+    const SkinDatePicker = skin.DatePicker as ForwardRefExoticComponent<DatePickerProps & RefAttributes<any>>;
     const SkinPickerInput = skin.PickerInput as React.ComponentClass<PickerInputBaseProps<any, any>>;
     const SkinDataTableCell = skin.DataTableCell as React.FC<DataTableCellProps & { background: any }>;
 
