@@ -84,6 +84,6 @@
     :global(.uui-range-datepicker-separator) {
         display: flex;
         flex: 0 0 auto;
-        border-left: 1px solid var(--uui-rdtp-inputs-border-color);
+        border-left: 1px solid var(--input-border-color);
     }
 }

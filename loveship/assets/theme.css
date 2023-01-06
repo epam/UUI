@@ -214,7 +214,6 @@
     --uui-dtp-next-prev-icon-color: var(--icon-color);
     --uui-dtp-next-prev-icon-bg-hover: var(--secondary-lightest-color);
     /*  RangeDatePicker vars   */
-    --uui-rdtp-inputs-border-color: var(--input-border-color);
     --uui-rdtp-bg-color: var(--input-bg-color);
     --uui-rdtp-bg-selected-date-color: var(--primary-lightest-color);
     /*  Calendar vars   */
