@@ -6,8 +6,8 @@ export class SearchInputDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/inputs/searchInput.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/inputs/searchInput.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/searchInput.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/searchInput.props.ts',
         };
     }
 
@@ -18,7 +18,7 @@ export class SearchInputDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Debounce'
-                    path='./examples/searchInput/Debounce.example.tsx'
+                    path='./_examples/searchInput/Debounce.example.tsx'
                 />
             </>
         );

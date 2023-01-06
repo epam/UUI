@@ -6,8 +6,8 @@ export class IconButtonDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/buttons/iconButton.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/buttons/iconButton.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/buttons/iconButton.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/iconButton.props.tsx',
         };
     }
 
@@ -19,7 +19,7 @@ export class IconButtonDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/iconButton/Basic.example.tsx'
+                    path='./_examples/iconButton/Basic.example.tsx'
                 />
             </>
         );

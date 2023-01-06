@@ -13,9 +13,9 @@ import css from './ComponentEditor.scss';
 
 declare var require: any;
 
-const PATH_PREFIX = './app/src/docProps/';
+const PATH_PREFIX = './app/src/docs/_props'; // Keep it in sync with "uui-build/getComponentsPropsSet.ts"
 // narrow down the context base path to speed up lookup.
-const requireContext = require.context(`../../../../app/src/docProps`, true, /\/(loveship|epam-promo|uui)\/.*\.doc.(ts|tsx)$/, 'lazy');
+const requireContext = require.context(`../../../../app/src/docs/_props`, true, /\/(loveship|epam-promo|uui)\/.*\.props.(ts|tsx)$/, 'lazy');
 
 interface ComponentEditorProps<TProps> extends IHasCX {
     propsDocPath: string;
@@ -66,7 +66,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
         const { propsDocPath } = props;
 
         if (propsDocPath) {
-            const propsDocPathRelative = `./${propsDocPath.substring(PATH_PREFIX.length)}`;
+            const propsDocPathRelative = `.${propsDocPath.substring(PATH_PREFIX.length)}`;
             requireContext(propsDocPathRelative).then(((m: any) => {
                 const module = m.default;
                 module.props.forEach((prop: any) => {

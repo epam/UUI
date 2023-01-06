@@ -6,8 +6,8 @@ export class NumericInputDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/inputs/numericInput.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/inputs/numericInput.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/numericInput.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/numericInput.props.ts',
         };
     }
 
@@ -18,15 +18,15 @@ export class NumericInputDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/numericInput/Basic.example.tsx'
+                    path='./_examples/numericInput/Basic.example.tsx'
                 />
                 <DocExample
                     title='Formatting options'
-                    path='./examples/numericInput/Formatting.example.tsx'
+                    path='./_examples/numericInput/Formatting.example.tsx'
                 />
                 <DocExample
                     title='Size'
-                    path='./examples/numericInput/Size.example.tsx'
+                    path='./_examples/numericInput/Size.example.tsx'
                 />
             </>
         );

@@ -3,6 +3,9 @@ import path from 'path';
 import * as fs from 'fs';
 import * as ts from 'typescript';
 
+const PATH_PREFIX = './app/src/docs/_props';
+const DOCS_GLOB = [`../${PATH_PREFIX}/**/*.props{.ts,.tsx}`];
+
 const project = new Project(
     {
         tsConfigFilePath: '../tsconfig.json',
@@ -69,7 +72,7 @@ const getPropType = (prop: Symbol, path: string) => {
         comment: htmlComment,
     };
 };
-const DOCS_GLOB = ["../app/src/docProps/**/*.doc{.ts,.tsx}", "!../**/node_modules/**"];
+
 function main() {
     const docsProps: any = {};
     /**

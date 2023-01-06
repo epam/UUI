@@ -6,8 +6,8 @@ export class TabButtonDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/buttons/tabButton.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/buttons/tabButton.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/buttons/tabButton.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/tabButton.props.ts',
         };
     }
     
@@ -18,7 +18,7 @@ export class TabButtonDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/tabButton/Basic.example.tsx'
+                    path='./_examples/tabButton/Basic.example.tsx'
                 />
             </>
         );

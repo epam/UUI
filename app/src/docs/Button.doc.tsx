@@ -6,9 +6,9 @@ export class ButtonDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/buttons/button.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/buttons/button.doc.tsx',
-            [UUI]: './app/src/docProps/uui/components/buttons/button.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/buttons/button.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/button.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/buttons/button.props.tsx',
         };
     }
 
@@ -19,27 +19,27 @@ export class ButtonDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/button/Basic.example.tsx'
+                    path='./_examples/button/Basic.example.tsx'
                 />
                 <DocExample
                     title='Size'
-                    path='./examples/button/Size.example.tsx'
+                    path='./_examples/button/Size.example.tsx'
                 />
                 <DocExample
                     title='Styles'
-                    path='./examples/button/Styling.example.tsx'
+                    path='./_examples/button/Styling.example.tsx'
                 />
                 <DocExample
                     title='Button with Icon'
-                    path='./examples/button/Icon.example.tsx'
+                    path='./_examples/button/Icon.example.tsx'
                 />
                 <DocExample
                     title='Button with link'
-                    path='./examples/button/Link.example.tsx'
+                    path='./_examples/button/Link.example.tsx'
                 />
                 <DocExample
                     title='Button as a Toggler'
-                    path='./examples/button/Toggler.example.tsx'
+                    path='./_examples/button/Toggler.example.tsx'
                 />
             </>
         );

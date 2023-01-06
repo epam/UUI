@@ -6,9 +6,9 @@ export class PickerInputDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/pickers/pickerInput.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/pickers/pickerInput.doc.tsx',
-            [UUI]: './app/src/docProps/uui/components/pickers/pickerInput.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/pickers/pickerInput.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/pickers/pickerInput.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/pickers/pickerInput.props.tsx',
         };
     }
 
@@ -19,51 +19,51 @@ export class PickerInputDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/pickerInput/ArrayPickerInput.example.tsx'
+                    path='./_examples/pickerInput/ArrayPickerInput.example.tsx'
                 />
                 <DocExample
                     title='Lazy list'
-                    path='./examples/pickerInput/LazyPickerInput.example.tsx'
+                    path='./_examples/pickerInput/LazyPickerInput.example.tsx'
                 />
                 <DocExample
                     title='Lazy tree'
-                    path='./examples/pickerInput/LazyTreeInput.example.tsx'
+                    path='./_examples/pickerInput/LazyTreeInput.example.tsx'
                 />
                 <DocExample
                     title='Async list'
-                    path='./examples/pickerInput/AsyncPickerInput.example.tsx'
+                    path='./_examples/pickerInput/AsyncPickerInput.example.tsx'
                 />
                 <DocExample
                     title='Search positions'
-                    path='./examples/pickerInput/SearchPositions.example.tsx'
+                    path='./_examples/pickerInput/SearchPositions.example.tsx'
                 />
                 <DocExample
                     title='Custom picker row'
-                    path='./examples/pickerInput/CustomUserRow.example.tsx'
+                    path='./_examples/pickerInput/CustomUserRow.example.tsx'
                 />
                 <DocExample
                     title='Setting row options'
-                    path='./examples/pickerInput/GetRowOptions.example.tsx'
+                    path='./_examples/pickerInput/GetRowOptions.example.tsx'
                 />
                 <DocExample
                     title='Getting selected entity'
-                    path='./examples/pickerInput/ValueType.example.tsx'
+                    path='./_examples/pickerInput/ValueType.example.tsx'
                 />
                 <DocExample
                     title='Picker toggler configuration and options'
-                    path='./examples/pickerInput/TogglerConfiguration.example.tsx'
+                    path='./_examples/pickerInput/TogglerConfiguration.example.tsx'
                 />
                 <DocExample
                     title='Open picker in modal'
-                    path='./examples/pickerInput/EditMode.example.tsx'
+                    path='./_examples/pickerInput/EditMode.example.tsx'
                 />
                 <DocExample
                     title='Picker with changed array of items'
-                    path='./examples/pickerInput/PickerWithChangingItemsArray.example.tsx'
+                    path='./_examples/pickerInput/PickerWithChangingItemsArray.example.tsx'
                 />
                 <DocExample
                     title='Linked pickers'
-                    path='./examples/pickerInput/LinkedPickers.example.tsx'
+                    path='./_examples/pickerInput/LinkedPickers.example.tsx'
                 />
             </>
         );

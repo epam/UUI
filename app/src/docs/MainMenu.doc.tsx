@@ -6,8 +6,8 @@ export class MainMenuDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/navigation/mainMenu.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/navigation/mainMenu.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/navigation/mainMenu.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/navigation/mainMenu.props.tsx',
         };
     }
 
@@ -18,13 +18,13 @@ export class MainMenuDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/mainMenu/Basic.example.tsx'
+                    path='./_examples/mainMenu/Basic.example.tsx'
                     width='auto'
                 />
 
                 <DocExample
                     title='Responsive'
-                    path='./examples/mainMenu/Responsive.example.tsx'
+                    path='./_examples/mainMenu/Responsive.example.tsx'
                     width='auto'
                 />
             </>

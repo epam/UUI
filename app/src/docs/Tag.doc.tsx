@@ -6,8 +6,8 @@ export class TagDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/widgets/tag.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/widgets/tag.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/widgets/tag.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/tag.props.tsx',
         };
     }
 
@@ -18,11 +18,11 @@ export class TagDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/tag/Basic.example.tsx'
+                    path='./_examples/tag/Basic.example.tsx'
                 />
                 <DocExample
                     title='Size'
-                    path='./examples/tag/Size.example.tsx'
+                    path='./_examples/tag/Size.example.tsx'
                 />
             </>
         );

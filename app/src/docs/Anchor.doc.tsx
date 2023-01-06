@@ -6,7 +6,7 @@ export class AnchorDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI4]: './app/src/docProps/epam-promo/components/navigation/anchor.doc.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/navigation/anchor.props.tsx',
         };
     }
 
@@ -18,7 +18,7 @@ export class AnchorDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/anchor/Basic.example.tsx'
+                    path='./_examples/anchor/Basic.example.tsx'
                 />
             </>
         );
