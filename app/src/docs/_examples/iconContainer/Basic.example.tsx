@@ -8,7 +8,7 @@ export default function BasicIconContainerExample() {
         <>
             <IconContainer icon={ AccountIcon24 } onClick={ () => null } />
             <IconContainer icon={ AccountIcon24 } color='blue' flipY={ true } isDisabled={ true } onClick={ () => null } />
-            <IconContainer icon={ EyeIcon24 } color='violet' style={ { 'transform': 'skew(-15deg, 18deg)' } } onClick={ () => null } />
+            <IconContainer icon={ EyeIcon24 } color='violet' style={ { 'transform': 'skew(-15deg, 18deg)' } } />
         </>
     );
 }
