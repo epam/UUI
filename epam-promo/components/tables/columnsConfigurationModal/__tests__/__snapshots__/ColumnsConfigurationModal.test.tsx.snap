@@ -503,6 +503,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
+          aria-disabled={false}
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
           href={null}
           onClick={[Function]}
