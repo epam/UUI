@@ -16,7 +16,13 @@ export class MainMenuLogo extends React.Component<MainMenuLogoProps> {
     render() {
         return (
             <div onContextMenu={ this.props.onContextMenu } onClick={ this.props.onClick } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
-                <Anchor cx={ css.container } link={ this.props.link } href={ this.props.href } isDisabled={ !this.props.href && !this.props.link }>
+                <Anchor
+                    cx={ css.container }
+                    link={ this.props.link }
+                    href={ this.props.href }
+                    target={ this.props.target }
+                    isDisabled={ !this.props.href && !this.props.link }
+                >
                     <img
                         className={ css.logo }
                         alt='Main Menu Logo'
