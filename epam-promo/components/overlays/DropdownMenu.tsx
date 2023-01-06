@@ -33,7 +33,7 @@ export enum IDropdownControlKeys {
 const DropdownMenuContainer = (props: IDropdownMenuContainer) => {
     const menuRef = useRef<HTMLMenuElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(-1);
-    const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
+    const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${ uuiMod.disabled })`)) : [];
 
     useEffect(() => {
         menuRef.current?.focus();
@@ -76,7 +76,7 @@ const DropdownMenuContainer = (props: IDropdownMenuContainer) => {
 export const DropdownMenuBody = withMods<IDropdownMenuContainer>(
     DropdownMenuContainer,
     () => [css.bodyRoot],
-    ({ style}) => ({ style }),
+    ({ style }) => ({ style }),
 );
 
 export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>((props, ref) => {
@@ -96,6 +96,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
         toggleDropdownOpening,
         isDropdown,
         isOpen,
+        target,
     } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -146,6 +147,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             onClick={ handleClick }
             isDisabled={ isDisabled }
             forwardedRef={ ref }
+            target={ target }
         >
             { getMenuButtonContent() }
         </Anchor>
@@ -170,11 +172,11 @@ DropdownMenuButton.displayName = 'DropdownMenuButton';
 
 export const DropdownMenuSplitter = (props: IHasCX) => (
     <div className={ cx(props.cx, css.splitterRoot) }>
-        <hr className={ css.splitter }/>
+        <hr className={ css.splitter } />
     </div>
 );
 
-interface IDropdownMenuHeader extends IHasCX, IHasCaption {}
+interface IDropdownMenuHeader extends IHasCX, IHasCaption { }
 
 export const DropdownMenuHeader = (props: IDropdownMenuHeader) => (
     <div className={ cx(props.cx, css.headerRoot) }>
