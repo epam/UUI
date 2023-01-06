@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Basic tooltip types: Default, Compact and Infotip. Each type can be shown using any trigger component. Use general rules described below",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

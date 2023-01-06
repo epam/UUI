@@ -1,0 +1,92 @@
+@use  '../../assets/styles/index' as *;
+
+.date-input {
+    min-width: 0;
+    padding: 0 5px;
+
+    &:global(.uui-focus) {
+        border: 1px solid var(--input-border-checked-color);
+    }
+
+    &.size-24 {
+        @include control-box-layout(22px, 0);
+    }
+
+    &.size-30 {
+        @include control-box-layout(28px, 0);
+    }
+
+    &.size-36 {
+        @include control-box-layout(34px, 0);
+    }
+
+    &.size-42 {
+        @include control-box-layout(40px, 0);
+    }
+
+    &.size-48 {
+        @include control-box-layout(46px, 0);
+    }
+}
+
+.date-input-group {
+    display: flex;
+    min-width: 0;
+    background-color: var(--uui-rdtp-bg-color);
+    border: 1px solid var(--input-border-color);
+
+    .separator {
+        display: flex;
+        flex-shrink: 0;
+        background: var(--input-border-color);
+        width: 1px;
+    }
+
+    &:hover {
+        border-color: var(--input-textinput-border-hover-color);
+
+        .separator {
+            background: var(--input-textinput-border-hover-color);
+        }
+
+        &:global(.uui-disabled), &:global(.uui-readonly) {
+            border-color: var(--input-border-color);
+
+            .separator {
+                background: var(--input-border-color);
+            }
+        }
+    }
+
+    &:global(.uui-focus) {
+        border-color: var(--input-border-color);
+
+        .separator {
+            background: var(--input-border-checked-color);
+        }
+
+        .date-input {
+            &:hover {
+                outline: 1px solid var(--input-textinput-border-hover-color);
+            }
+
+            &:global(.uui-focus) {
+                outline: 1px solid var(--input-border-checked-color);
+            }
+        }
+    }
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
+
+        .date-input {
+            &:global(.uui-focus) {
+                box-shadow: none;
+            }
+        }
+    }
+
+    &:global(.uui-invalid) {
+        border-color: var(--text-input-border-color-error);
+    }
+}

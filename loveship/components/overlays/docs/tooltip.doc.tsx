@@ -7,7 +7,7 @@ import { DefaultContext } from '../../../docs';
 const Sfc = (props: any) => <div ref={ props.ref }>123</div>;
 
 const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip', component: Tooltip })
-    .prop('trigger', { examples: [{ value: 'hover', isDefault: true },  'click', 'press'] })
+    .prop('trigger', { examples: [{ value: 'hover', isDefault: true },  'click', 'press'], remountOnChange: true })
     .prop('content', { examples: [{ value: 'Some text', isDefault: true },
             {value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa', name: 'long text' }], type: 'string' })
     .prop('children', {

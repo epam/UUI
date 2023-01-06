@@ -12,8 +12,6 @@ export function applyRangeDatePickerBodyMods() {
         rangeCss.root,
         calendarCss.root,
         calendarPresetsCss.root,
-        'calendar-vars',
-        'link-button-vars',
     ];
 }
 

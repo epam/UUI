@@ -3,5 +3,4 @@
 - [ ] suffix and prefix
 - [ ] in uui we need approach to change icons
 - [ ] NumericInput needs to be remade consider a new UuiTextInput
-- [ ] Into uui/components/datePickers/RangeDatePickerBody.tsx we used additional class '.link-button-vars', to use link-button colors vars into uui/components/datePickers/CalendarPresets.scss, because presets has link-button colors...
-- 
+- [ ] In epam-promo/components/filters/FilterRangeDatePickerBody.tsx we would like to use RangeDatePicker component in footer, and get rid of copy-paste.

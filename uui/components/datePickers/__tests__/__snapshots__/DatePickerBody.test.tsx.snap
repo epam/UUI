@@ -2,10 +2,10 @@
 
 exports[`DataPicker should be rendered correctly 1`] = `
 <div
-  className="uui-datepicker-container root root calendar-vars"
+  className="uui-datepicker-container root root"
 >
   <div
-    className="uui-datepickerBody-wrapper root root calendar-vars"
+    className="uui-datepickerBody-wrapper root root"
   >
     <div
       className="container uui-datepickerheader-container"
