@@ -6,8 +6,8 @@ export class TextDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/typography/docs/text.doc.tsx',
-            [UUI4]: './epam-promo/components/typography/docs/text.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/typography/text.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/typography/text.props.tsx',
         };
     }
 
@@ -18,7 +18,7 @@ export class TextDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/text/Basic.example.tsx'
+                    path='./_examples/text/Basic.example.tsx'
                 />
             </>
         );

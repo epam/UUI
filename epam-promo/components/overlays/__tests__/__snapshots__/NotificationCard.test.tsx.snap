@@ -6,9 +6,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 >
   <button
     className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-no-left-icon uui-no-right-icon"
-    href={null}
     onClick={[Function]}
-    role="button"
     tabIndex={0}
     type="button"
   >
@@ -49,9 +47,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
     >
       <button
         className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={0}
         type="button"
       >
@@ -97,9 +93,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
     >
       <button
         className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={0}
         type="button"
       >
@@ -133,9 +127,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
     >
       <button
         className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={0}
         type="button"
       >
@@ -181,9 +173,7 @@ exports[`NotificationCard should be rendered correctly 2`] = `
     >
       <button
         className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={0}
         type="button"
       >
@@ -229,9 +219,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
     >
       <button
         className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={0}
         type="button"
       >
@@ -277,9 +265,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
     >
       <button
         className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={0}
         type="button"
       >

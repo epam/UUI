@@ -6,8 +6,8 @@ export class SpinnerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/widgets/docs/spinner.doc.ts',
-            [UUI4]: './epam-promo/components/widgets/docs/spinner.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/widgets/spinner.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/spinner.props.tsx',
         };
     }
 
@@ -18,7 +18,7 @@ export class SpinnerDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/spinner/Basic.example.tsx'
+                    path='./_examples/spinner/Basic.example.tsx'
                 />
             </>
         );
