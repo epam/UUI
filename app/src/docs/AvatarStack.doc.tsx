@@ -6,8 +6,8 @@ export class AvatarStackDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/widgets/docs/avatarStack.doc.tsx',
-            [UUI4]: './epam-promo/components/widgets/docs/avatarStack.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/widgets/avatarStack.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/avatarStack.props.tsx',
         };
     }
 
@@ -18,11 +18,11 @@ export class AvatarStackDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/avatarStack/Basic.example.tsx'
+                    path='./_examples/avatarStack/Basic.example.tsx'
                 />
                 <DocExample
                     title="With custom avatar"
-                    path='./examples/avatarStack/RenderItem.example.tsx'
+                    path='./_examples/avatarStack/RenderItem.example.tsx'
                 />
             </>
         );

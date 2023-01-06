@@ -6,8 +6,8 @@ export class MultiSwitchDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/multiSwitch.doc.tsx',
-            [UUI4]: './epam-promo/components/inputs/docs/multiSwitch.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/multiSwitch.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/multiSwitch.props.tsx',
         };
     }
 
@@ -18,7 +18,7 @@ export class MultiSwitchDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/multiSwitch/Basic.example.tsx'
+                    path='./_examples/multiSwitch/Basic.example.tsx'
                 />
             </>
         );

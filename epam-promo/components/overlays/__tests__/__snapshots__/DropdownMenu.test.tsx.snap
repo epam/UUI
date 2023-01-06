@@ -109,9 +109,7 @@ Array [
         />
         <button
           className="container uui-button-box uui-enabled root icon-color-gray60 icon iconAfter"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={-1}
           type="button"
         >
