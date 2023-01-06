@@ -8,7 +8,7 @@
     display: flex;
     padding: 9px 30px;
     justify-content: space-between;
-    border-top: 1px solid var(--uui-rdtp-inputs-border-color);
+    border-top: 1px solid var(--input-border-color);
     align-items: center;
     background-color: var(--uui-rdtp-bg-color);
     position: relative;
@@ -20,7 +20,7 @@
 }
 
 .counter {
-    color: var(--uui-rdtp-inputs-border-color);
+    color: var(--input-border-color);
     font-size: 15px;
     font-family: var(--font-regular);
 }
@@ -58,12 +58,12 @@
     display: flex;
     min-width: 0;
     background-color: var(--uui-rdtp-bg-color);
-    border: 1px solid var(--uui-rdtp-inputs-border-color);
+    border: 1px solid var(--input-border-color);
 
     .separator {
         display: flex;
         flex-shrink: 0;
-        background: var(--uui-rdtp-inputs-border-color);
+        background: var(--input-border-color);
         width: 1px;
     }
 
@@ -75,16 +75,16 @@
         }
 
         &:global(.uui-disabled), &:global(.uui-readonly) {
-            border-color: var(--uui-rdtp-inputs-border-color);
+            border-color: var(--input-border-color);
 
             .separator {
-                background: var(--uui-rdtp-inputs-border-color);
+                background: var(--input-border-color);
             }
         }
     }
 
     &:global(.uui-focus) {
-        border-color: var(--uui-rdtp-inputs-border-color);
+        border-color: var(--input-border-color);
 
         .separator {
             background: var(--input-border-checked-color);
