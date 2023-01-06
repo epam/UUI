@@ -6,8 +6,8 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/datePickers/rangeDatePicker.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/datePickers/rangeDatePicker.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/datePickers/rangeDatePicker.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/datePickers/rangeDatePicker.props.tsx',
         };
     }
 
@@ -18,12 +18,12 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/rangeDatePicker/Basic.example.tsx'
+                    path='./_examples/rangeDatePicker/Basic.example.tsx'
                 />
 
                 <DocExample
                     title='Presets and Footer'
-                    path='./examples/rangeDatePicker/PresetsAndFooter.example.tsx'
+                    path='./_examples/rangeDatePicker/PresetsAndFooter.example.tsx'
                 />
 
                 { this.renderSectionTitle('Localization') }

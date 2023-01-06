@@ -6,8 +6,8 @@ export class AlertDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/overlays/alert.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/overlays/alert.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/overlays/alert.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/overlays/alert.props.tsx',
         };
     }
 
@@ -18,7 +18,7 @@ export class AlertDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/alert/Basic.example.tsx'
+                    path='./_examples/alert/Basic.example.tsx'
                 />
             </>
         );

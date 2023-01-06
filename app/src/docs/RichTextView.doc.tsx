@@ -6,8 +6,8 @@ export class RichTextViewDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/typography/richTextView.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/typography/richTextView.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/typography/richTextView.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/typography/richTextView.props.tsx',
         };
     }
 
@@ -18,7 +18,7 @@ export class RichTextViewDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/richTextView/Basic.example.tsx'
+                    path='./_examples/richTextView/Basic.example.tsx'
                 />
             </>
         );

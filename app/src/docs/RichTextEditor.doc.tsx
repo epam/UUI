@@ -9,11 +9,11 @@ export class RichTextEditorDoc extends BaseDocsBlock {
         return (
             <>
                 <DocExample
-                    path='./examples/richTextEditor/Basic.example.tsx'
+                    path='./_examples/richTextEditor/Basic.example.tsx'
                 />
                 <DocExample
                     title='Inner scroll behavior'
-                    path='./examples/richTextEditor/WithInnerScroll.example.tsx'
+                    path='./_examples/richTextEditor/WithInnerScroll.example.tsx'
                 />
             </>
         );

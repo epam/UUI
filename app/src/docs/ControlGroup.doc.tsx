@@ -6,8 +6,8 @@ export class ControlGroupDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/layout/controlGroup.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/layout/controlGroup.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/layout/controlGroup.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/controlGroup.props.tsx',
         };
     }
 
@@ -18,7 +18,7 @@ export class ControlGroupDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/controlGroup/Basic.example.tsx'
+                    path='./_examples/controlGroup/Basic.example.tsx'
                 />
             </>
         );

@@ -6,7 +6,7 @@ export class PickerListDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/pickers/pickerList.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/pickers/pickerList.props.tsx',
         };
     }
 
@@ -17,7 +17,7 @@ export class PickerListDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/pickerList/Basic.example.tsx'
+                    path='./_examples/pickerList/Basic.example.tsx'
                 />
             </>
         );

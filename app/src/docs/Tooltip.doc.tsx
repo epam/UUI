@@ -6,8 +6,8 @@ export class TooltipDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/overlays/tooltip.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/overlays/tooltip.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/overlays/tooltip.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/overlays/tooltip.props.tsx',
         };
     }
 
@@ -18,32 +18,32 @@ export class TooltipDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Overview') }
                 <DocExample
                     title='Types'
-                    path='./examples/tooltip/Types.example.tsx'
+                    path='./_examples/tooltip/Types.example.tsx'
                 />
 
                 <DocExample
                     title='Variants (Styles)'
-                    path='./examples/tooltip/Variants.example.tsx'
+                    path='./_examples/tooltip/Variants.example.tsx'
                 />
 
                 <DocExample
                     title='Tooltip placement'
-                    path='./examples/tooltip/Placement.example.tsx'
+                    path='./_examples/tooltip/Placement.example.tsx'
                 />
 
                 <DocExample
                     title='Custom markup'
-                    path='./examples/tooltip/CustomMarkup.example.tsx'
+                    path='./_examples/tooltip/CustomMarkup.example.tsx'
                 />
 
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Tooltip with icon'
-                    path='./examples/tooltip/WithIcon.example.tsx'
+                    path='./_examples/tooltip/WithIcon.example.tsx'
                 />
                 <DocExample
                     title='Tooltip with a link'
-                    path='./examples/tooltip/WithLink.example.tsx'
+                    path='./_examples/tooltip/WithLink.example.tsx'
                 />
             </>
         );

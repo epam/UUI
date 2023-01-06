@@ -6,8 +6,8 @@ export class TimePickerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/inputs/timePicker.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/inputs/timePicker.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/timePicker.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/timePicker.props.ts',
         };
     }
 
@@ -18,12 +18,12 @@ export class TimePickerDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/timePicker/Basic.example.tsx'
+                    path='./_examples/timePicker/Basic.example.tsx'
                 />
 
                 <DocExample
                     title=' 24 time format'
-                    path='./examples/timePicker/TimeFormat.example.tsx'
+                    path='./_examples/timePicker/TimeFormat.example.tsx'
                 />
             </>
         );

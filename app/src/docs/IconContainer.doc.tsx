@@ -6,8 +6,8 @@ export class IconContainerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/layout/iconContainer.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/layout/iconContainer.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/layout/iconContainer.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/iconContainer.props.tsx',
         };
     }
 
@@ -18,7 +18,7 @@ export class IconContainerDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/iconContainer/Basic.example.tsx'
+                    path='./_examples/iconContainer/Basic.example.tsx'
                 />
             </>
         );

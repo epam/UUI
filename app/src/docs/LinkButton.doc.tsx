@@ -6,8 +6,8 @@ export class LinkButtonDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/buttons/linkButton.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/buttons/linkButton.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/buttons/linkButton.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/linkButton.props.ts',
         };
     }
 
@@ -19,28 +19,28 @@ export class LinkButtonDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Overview') }
                 <DocExample
                     title='Link Button'
-                    path='./examples/linkButton/Default.example.tsx'
+                    path='./_examples/linkButton/Default.example.tsx'
                 />
 
                 <DocExample
                     title='Sizes'
-                    path='./examples/linkButton/Size.example.tsx'
+                    path='./_examples/linkButton/Size.example.tsx'
                 />
 
                 <DocExample
                     title='Icon Positions'
-                    path='./examples/linkButton/IconPosition.example.tsx'
+                    path='./_examples/linkButton/IconPosition.example.tsx'
                 />
 
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Secondary action in small footer'
-                    path='./examples/common/Card.example.tsx'
+                    path='./_examples/common/Card.example.tsx'
                 />
 
                 <DocExample
                     title='Sorting'
-                    path='./examples/linkButton/Sorting.example.tsx'
+                    path='./_examples/linkButton/Sorting.example.tsx'
                 />
             </>
         );

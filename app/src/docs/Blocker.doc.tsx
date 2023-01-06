@@ -6,8 +6,8 @@ export class BlockerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/layout/blocker.doc.ts',
-            [UUI4]: './app/src/docProps/epam-promo/components/layout/blocker.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/layout/blocker.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/blocker.props.ts',
         };
     }
 
@@ -18,12 +18,12 @@ export class BlockerDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/blocker/Basic.example.tsx'
+                    path='./_examples/blocker/Basic.example.tsx'
                 />
 
                 <DocExample
                     title='Advanced'
-                    path='./examples/blocker/Advanced.example.tsx'
+                    path='./_examples/blocker/Advanced.example.tsx'
                 />
             </>
         );

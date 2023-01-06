@@ -6,9 +6,9 @@ export class TextPlaceholderDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './app/src/docProps/loveship/components/typography/textPlaceholder.doc.tsx',
-            [UUI4]: './app/src/docProps/epam-promo/components/typography/textPlaceholder.doc.tsx',
-            [UUI]: './app/src/docProps/uui/components/typography/textPlaceholder.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/typography/textPlaceholder.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/typography/textPlaceholder.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/typography/textPlaceholder.props.tsx',
         };
     }
 
@@ -19,7 +19,7 @@ export class TextPlaceholderDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/textPlaceholder/Basic.example.tsx'
+                    path='./_examples/textPlaceholder/Basic.example.tsx'
                 />
             </>
         );
