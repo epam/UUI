@@ -2,11 +2,11 @@
 
 .container {
     display: flex;
-    padding: 10px 30px;
+    padding: 9px 30px;
     justify-content: space-between;
-    border-top: 1px solid $night400;
+    border-top: 1px solid var(--input-border-color);
     align-items: center;
-    background-color: $white;
+    background-color: var(--uui-rdtp-bg-color);
     position: relative;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .counter {
-    color: $night400;
+    color: var(--input-border-color);
     font-size: 15px;
-    font-family: $font-sans;
+    font-family: var(--font-regular);
 }
