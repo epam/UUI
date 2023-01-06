@@ -29,7 +29,6 @@
     "react-dom": ">=16.0.0"
   },
   "optionalDependencies": {
-    "@epam/uui-docs": "4.9.2"
   },
   "repository": {
     "type": "git",

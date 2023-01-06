@@ -6,8 +6,8 @@ export class VerticalTabButtonDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/buttons/docs/verticalTabButton.doc.ts',
-            [UUI4]: './epam-promo/components/buttons/docs/verticalTabButton.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/buttons/verticalTabButton.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/verticalTabButton.props.ts',
         };
     }
 
@@ -18,7 +18,7 @@ export class VerticalTabButtonDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/verticalTabButton/Basic.example.tsx'
+                    path='./_examples/verticalTabButton/Basic.example.tsx'
                 />
             </>
         );

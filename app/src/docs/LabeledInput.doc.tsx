@@ -6,8 +6,8 @@ export class LabeledInputDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/layout/docs/labeledInput.doc.tsx',
-            [UUI4]: './epam-promo/components/layout/docs/labeledInput.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/layout/labeledInput.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/labeledInput.props.tsx',
         };
     }
 
@@ -19,7 +19,7 @@ export class LabeledInputDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/labeledInput/Basic.example.tsx'
+                    path='./_examples/labeledInput/Basic.example.tsx'
                 />
             </>
         );

@@ -6,8 +6,8 @@ export class RatingDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/rating.doc.ts',
-            [UUI4]: './epam-promo/components/inputs/docs/rating.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/rating.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/rating.props.ts',
         };
     }
 
@@ -18,7 +18,7 @@ export class RatingDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/rating/Basic.example.tsx'
+                    path='./_examples/rating/Basic.example.tsx'
                 />
             </>
         );
