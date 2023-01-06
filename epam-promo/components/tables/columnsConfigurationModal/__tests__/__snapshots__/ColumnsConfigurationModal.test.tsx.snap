@@ -607,9 +607,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         >
           <button
             className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={0}
             type="button"
           >
@@ -660,9 +658,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </div>
         <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-30 fill-white actionsMenu"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -732,9 +728,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
               </div>
               <button
                 className="container uui-button-box uui-enabled root size-18 fill-solid badge-color-gray30 root groupTitleBadge"
-                href={null}
                 onClick={[Function]}
-                role="button"
                 tabIndex={-1}
                 type="button"
               >
@@ -822,9 +816,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                     <button
                       aria-disabled={false}
                       className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-                      href={null}
                       onClick={[Function]}
-                      role="button"
                       tabIndex={0}
                       type="button"
                     >
@@ -908,9 +900,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                     <button
                       aria-disabled={false}
                       className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-                      href={null}
                       onClick={[Function]}
-                      role="button"
                       tabIndex={0}
                       type="button"
                     >
@@ -969,9 +959,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
       >
         <button
           className="container uui-button-box uui-enabled -clickable root size-36 linkButton-color-blue uui-has-left-icon uui-no-right-icon"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -994,9 +982,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         />
         <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -1009,9 +995,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         <button
           aria-disabled={true}
           className="container uui-button-box uui-disabled -clickable button-color-green root size-36 fill-solid"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={-1}
           type="button"
         >
