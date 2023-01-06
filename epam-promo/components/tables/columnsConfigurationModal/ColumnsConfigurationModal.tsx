@@ -75,7 +75,10 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         );
     };
 
-    const noVisibleColumns = !groupedColumns.displayedPinned.length && !groupedColumns.displayedUnpinned.length;
+    const noVisibleColumns = useMemo(
+        () => !groupedColumns.displayedPinned.length && !groupedColumns.displayedUnpinned.length,
+        [groupedColumns.displayedPinned, groupedColumns.displayedUnpinned]
+    );
 
     const applyButton = <Button caption={ i18nLocal.applyButton } isDisabled={ noVisibleColumns } color="green" onClick={ apply } />;
 
