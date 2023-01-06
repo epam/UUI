@@ -182,6 +182,25 @@
     --secondary-hover-color: var(--gray60);
     --secondary-active-color: var(--gray70);
     --surface-dark-color: var(--gray90);
+    /*  TextInput vars  */
+    --text-input-bg-color: var(--input-bg-color);
+    --text-input-bg-color-disabled: var(--input-bg-disabled-color);
+    --text-input-bg-color-readonly: var(--input-bg-readonly-color);
+    --text-input-border-color: var(--input-border-color);
+    --text-input-border-color-hover: var(--input-textinput-border-hover-color);
+    --text-input-border-color-active: var(--input-border-checked-color);
+    --text-input-border-color-error: var(--negative-color);
+    --text-input-border-color-disabled: var(--input-border-disabled-color);
+    --text-input-border-color-readonly: var(--input-border-readonly-color);
+    --text-input-placeholder-color: var(--input-placeholder-color);
+    --text-input-placeholder-color-disabled: var(--input-placeholder-disabled-color);
+    --text-input-text-color: var(--input-text-color);
+    --text-input-text-color-disabled: var(--input-text-disabled-color);
+    --text-input-icon-color: var(--input-icon-color);
+    --text-input-icon-color-disabled: var(--input-icon-disabled-color);
+    --text-input-icon-color-clickable: var(--icon-color);
+    --text-input-icon-color-clickable-hover: var(--icon-hover-color);
+    --text-input-border-radius: var(--border-radius);
     /*  LinkButton vars   */
     --link-button-text-color: var(--primary-color);
     --link-button-text-color-hover: var(--primary-dark-color);
@@ -197,9 +216,6 @@
     /*  RangeDatePicker vars   */
     --uui-rdtp-inputs-border-color: var(--input-border-color);
     --uui-rdtp-bg-color: var(--input-bg-color);
-    --uui-rdtp-inputs-border-color-checked: var(--input-border-checked-color);
-    --uui-rdtp-inputs-border-color-hover: var(--input-textinput-border-hover-color);
-    --uui-rdtp-inputs-border-color-error: var(--negative-color);
     --uui-rdtp-bg-selected-date-color: var(--primary-lightest-color);
     /*  Calendar vars   */
     --uui-calendar-selected-color-hover: var(--input-bg-color);
@@ -413,27 +429,6 @@
     --switch-toggler-border-color-disabled: var(--input-border-disabled-color);
     --switch-toggler-border-color-checked-hover: var(--input-bg-checked-hover-color);
     --switch-toggler-border-color-checked-disabled: var(--input-bg-checked-disabled-color);
-}
-
-.text-input-vars {
-    --text-input-bg-color: var(--input-bg-color);
-    --text-input-bg-color-disabled: var(--input-bg-disabled-color);
-    --text-input-bg-color-readonly: var(--input-bg-readonly-color);
-    --text-input-border-color: var(--input-border-color);
-    --text-input-border-color-hover: var(--input-textinput-border-hover-color);
-    --text-input-border-color-active: var(--input-border-checked-color);
-    --text-input-border-color-error: var(--negative-color);
-    --text-input-border-color-disabled: var(--input-border-disabled-color);
-    --text-input-border-color-readonly: var(--input-border-readonly-color);
-    --text-input-placeholder-color: var(--input-placeholder-color);
-    --text-input-placeholder-color-disabled: var(--input-placeholder-disabled-color);
-    --text-input-text-color: var(--input-text-color);
-    --text-input-text-color-disabled: var(--input-text-disabled-color);
-    --text-input-icon-color: var(--input-icon-color);
-    --text-input-icon-color-disabled: var(--input-icon-disabled-color);
-    --text-input-icon-color-clickable: var(--icon-color);
-    --text-input-icon-color-clickable-hover: var(--icon-hover-color);
-    --text-input-border-radius: var(--border-radius);
 }
 
 .labeled-input-vars {
