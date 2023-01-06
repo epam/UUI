@@ -1,12 +1,6 @@
-import css from './Calendar.scss';
-import { Calendar as uuiCalendar, CalendarProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui-core';
-import { Dayjs } from "dayjs";
+import React from 'react';
+import { Calendar as UuiCalendar, withMods } from "@epam/uui";
 
-export function applyDateSelectionMods() {
-    return [
-        css.root,
-    ];
-}
+const applyCalendarMods = () => ['uui-theme-loveship'];
 
-export const Calendar = withMods<CalendarProps<Dayjs>>(uuiCalendar, applyDateSelectionMods, () => ({}));
+export const Calendar = withMods(UuiCalendar, applyCalendarMods);
