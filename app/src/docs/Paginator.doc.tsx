@@ -6,8 +6,8 @@ export class PaginatorDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/widgets/docs/paginator.doc.tsx',
-            [UUI4]: './epam-promo/components/widgets/docs/paginator.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/widgets/paginator.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/paginator.props.tsx',
         };
     }
 
@@ -18,7 +18,7 @@ export class PaginatorDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/paginator/Basic.example.tsx'
+                    path='./_examples/paginator/Basic.example.tsx'
                 />
             </>
         );

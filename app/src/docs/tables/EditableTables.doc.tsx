@@ -12,7 +12,7 @@ export class EditableTablesDoc extends BaseDocsBlock {
 
                 <DocExample
                     title='Editable Table'
-                    path='./examples/tables/EditableTable.example.tsx'
+                    path='./_examples/tables/EditableTable.example.tsx'
                 />
             </>
         );

@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3 } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI4 } from '../common';
 
 export class AnchorDoc extends BaseDocsBlock {
     title = 'Anchor';
 
     getPropsDocPath() {
         return {
-            [UUI3]: './epam-promo/components/navigation/docs/anchor.doc.tsx',
-            [UUI4]: './epam-promo/components/navigation/docs/anchor.doc.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/navigation/anchor.props.tsx',
         };
     }
 
@@ -19,7 +18,7 @@ export class AnchorDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/anchor/Basic.example.tsx'
+                    path='./_examples/anchor/Basic.example.tsx'
                 />
             </>
         );

@@ -6,7 +6,7 @@ export class SliderDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/Slider/docs/slider.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/Slider/slider.props.ts',
         };
     }
 
@@ -17,7 +17,7 @@ export class SliderDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/slider/Basic.example.tsx'
+                    path='./_examples/slider/Basic.example.tsx'
                 />
             </>
         );
