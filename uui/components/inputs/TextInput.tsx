@@ -4,7 +4,6 @@ import { TextInput as uuiTextInput, TextInputProps as CoreTextInputProps } from 
 import { IHasEditMode, EditMode, ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
 import css from './TextInput.scss';
-import '../../assets/styles/variables/inputs/textInput.scss';
 
 const defaultSize = '36';
 const defaultMode = EditMode.FORM;
@@ -15,7 +14,6 @@ export interface TextInputMods extends IHasEditMode {
 
 export function applyTextInputMods(mods: TextInputMods) {
     return [
-        'text-input-vars',
         css.root,
         css['size-' + (mods.size || defaultSize)],
         css['mode-' + (mods.mode || defaultMode)],

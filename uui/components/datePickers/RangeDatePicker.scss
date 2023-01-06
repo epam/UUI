@@ -30,7 +30,7 @@
     padding: 0 5px;
 
     &:global(.uui-focus) {
-        border: 1px solid var(--uui-rdtp-inputs-border-color-checked);
+        border: 1px solid var(--input-border-checked-color);
     }
 
     &.size-24 {
@@ -68,10 +68,10 @@
     }
 
     &:hover {
-        border-color: var(--uui-rdtp-inputs-border-color-hover);
+        border-color: var(--input-textinput-border-hover-color);
 
         .separator {
-            background: var(--uui-rdtp-inputs-border-color-hover);
+            background: var(--input-textinput-border-hover-color);
         }
 
         &:global(.uui-disabled), &:global(.uui-readonly) {
@@ -87,16 +87,16 @@
         border-color: var(--uui-rdtp-inputs-border-color);
 
         .separator {
-            background: var(--uui-rdtp-inputs-border-color-checked);
+            background: var(--input-border-checked-color);
         }
 
         .date-input {
             &:hover {
-                outline: 1px solid var(--uui-rdtp-inputs-border-color-hover);
+                outline: 1px solid var(--input-textinput-border-hover-color);
             }
 
             &:global(.uui-focus) {
-                outline: 1px solid var(--uui-rdtp-inputs-border-color-checked);
+                outline: 1px solid var(--input-border-checked-color);
             }
         }
     }
@@ -112,6 +112,6 @@
     }
 
     &:global(.uui-invalid) {
-        border-color: var(--uui-rdtp-inputs-border-color-error);
+        border-color: var(--text-input-border-color-error);
     }
 }
