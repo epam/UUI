@@ -2,7 +2,7 @@
 
 exports[`RangeDatePickerBody should be rendered correctly 1`] = `
 <div
-  className="uui-datepicker-container root root root root calendar-vars link-button-vars"
+  className="uui-datepicker-container root root root root"
 >
   <div
     className="daySelection container container align-items-top"

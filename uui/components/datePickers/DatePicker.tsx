@@ -9,9 +9,9 @@ import { DropdownContainer } from "../overlays";
 
 const defaultMode = EditMode.FORM;
 
-export interface UuiDatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {}
+export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {}
 
-export class DatePicker extends BaseDatePicker<UuiDatePickerProps> {
+export class DatePicker extends BaseDatePicker<DatePickerProps> {
     renderInput = (props: IDropdownToggler & {cx: any}) => {
         return (
             <TextInput
@@ -41,7 +41,7 @@ export class DatePicker extends BaseDatePicker<UuiDatePickerProps> {
     renderBody(props: DropdownBodyProps) {
         return <DropdownContainer { ...props }>
             <DatePickerBody
-                cx={ cx(this.props.bodyCx, 'date-picker-vars') }
+                cx={ cx(this.props.bodyCx) }
                 filter={ this.props.filter }
                 value={ this.getValue() }
                 setSelectedDate={ this.setSelectedDate }

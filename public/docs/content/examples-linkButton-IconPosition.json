@@ -1,0 +1,37 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Left and right icon positions depends on action and context.  Use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "iconPosition",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "  prop with an appropriate value.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

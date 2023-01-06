@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "LinkButton usually used as a secondary action on interface, primary action (in limited and compact interfaces) or in cases when button is not suitable. Can be used with icon, to support visually what action will be triggered or without icon for simple actions. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

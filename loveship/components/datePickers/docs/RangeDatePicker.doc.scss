@@ -4,7 +4,7 @@
     display: flex;
     padding: 9px 30px;
     justify-content: space-between;
-    border-top: 1px solid var(--uui-rdtp-border-color);
+    border-top: 1px solid var(--input-border-color);
     align-items: center;
     background-color: var(--uui-rdtp-bg-color);
     position: relative;
@@ -16,7 +16,7 @@
 }
 
 .counter {
-    color: var(--uui-rdtp-border-color);
+    color: var(--input-border-color);
     font-size: 15px;
     font-family: var(--font-regular);
 }

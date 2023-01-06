@@ -11,12 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By passing ",
+            "text": "You can use different link button sizes, based on component height, provide ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "trigger?: 'click' | 'press' | 'hover'",
+            "text": "size",
             "marks": [
               {
                 "object": "mark",
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop, you can configure trigger action for tooltip opening/closing.",
+            "text": " prop for it.",
             "marks": []
           }
         ]
