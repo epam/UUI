@@ -1,6 +1,6 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { DatePickerBody } from '..';
+import { DatePickerBody } from '../DatePickerBody';
 
 describe('DataPicker', () => {
     it('should be rendered correctly', () => {

@@ -1,17 +1,13 @@
-@use '../../assets/styles/scss/index'  as *;
+@use  '../../assets/styles/index' as *;
 
 .root {
     :global(.uui-calendar-content) {
-        font-family: $font-sans;
-    }
-
-    :global(.uui-calendar-weekdays-container) {
-        //margin-bottom: 5px;
+        font-family: var(--font-regular);
     }
 
     :global(.uui-calendar-weekday) {
-        font-family: $font-sans;
-        color: $night500;
+        font-family: var(--font-regular);
+        color: var(--uui-calendar-weekends-weekdates-color);
         width: 34px;
         font-size: 12px;
         line-height: 24px;
@@ -19,7 +15,7 @@
     }
 
     :global(.uui-calendar-day-cell) {
-        color: $night700;
+        color: var(--uui-calendar-text-color);
         text-align: center;
         padding: 0;
         height: 36px;
@@ -59,15 +55,15 @@
                 cursor: pointer;
 
                 :global(.uui-calendar-day) {
-                    border: 1px solid $sky;
-                    background-color: $white;
+                    border: 1px solid var(--uui-calendar-start-end-selected-color);
+                    background-color: var(--uui-calendar-selected-color-hover);
                     z-index: 1;
                 }
 
                 &:global(.uui-calendar-selected-day) {
                     :global(.uui-calendar-day) {
-                        border: 1px solid $sky;
-                        background-color: $sky;
+                        border: 1px solid var(--uui-calendar-start-end-selected-color-hover);
+                        background-color: var(--uui-calendar-start-end-selected-color-hover);
                     }
                 }
             }
@@ -76,14 +72,32 @@
 
     :global(.uui-calendar-current-day) {
         &:global(.uui-calendar-day-wrapper) {
-            color: $sky;
+            color: var(--uui-calendar-start-end-selected-color);
+            font-family: var(--font-semibold);
+
+            :global(.uui-calendar-day)::after {
+                position: absolute;
+                content: '';
+                height: 4px;
+                width: 4px;
+                border-radius: 50%;
+                background-color: var(--uui-calendar-start-end-selected-color);
+                bottom: 3px;
+                left: calc(50% - 2px);
+            }
         }
     }
 
     :global(.uui-calendar-selected-day) {
-        :global(.uui-calendar-day) {
-            background-color: $sky;
-            color: $white;
+        &:global(.uui-calendar-day-wrapper) {
+            :global(.uui-calendar-day) {
+                background-color: var(--uui-calendar-start-end-selected-color);
+                color: var(--uui-calendar-selected-color-hover);
+
+                &::after {
+                    background-color: var(--uui-calendar-selected-color-hover);
+                }
+            }
         }
 
         &:global(.uui-calendar-clickable-day) {
@@ -94,22 +108,16 @@
     }
 
     :global(.uui-calendar-day-holiday) {
-        color: $night600,
+        color: var(--uui-calendar-weekends-weekdates-color);
     }
 
     :global(.uui-calendar-filtered-day) {
         &:global(.uui-calendar-day-wrapper) {
-            color: $night500;
+            color: var(--uui-calendar-text-color-filtered);
 
             &:hover {
                 cursor: default;
                 background-color: transparent;
-            }
-
-            &:global(.uui-calendar-selected-day) {
-                :global(.uui-calendar-day) {
-                    background-color: #B3B6C3;
-                }
             }
         }
     }

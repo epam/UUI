@@ -2,7 +2,8 @@ import * as React from 'react';
 import dayjs, { Dayjs } from "dayjs";
 import { DocBuilder } from '@epam/uui-docs';
 import { Day, IconContainer } from '@epam/uui-components';
-import { DatePicker, DatePickerProps } from '../DatePicker';
+import { DatePickerProps } from '@epam/uui';
+import { DatePicker } from '../DatePicker';
 import { LinkButton, FlexRow } from '../../../';
 import { DefaultContext, FormContext, iEditable, isDisabledDoc, isInvalidDoc,
     isReadonlyDoc, modeDoc, ResizableContext, sizeDoc, TableContext, textSettingsDoc } from '../../../docs';

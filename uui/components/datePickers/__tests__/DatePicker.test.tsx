@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { renderWithContextAsync } from '@epam/test-utils';
 import { toCustomDateFormat, toValueDateFormat, valueFormat } from '@epam/uui-components';
-import { DatePicker } from '..';
+import { DatePicker } from '../DatePicker';
 
 describe('DataPicker', () => {
     let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;

@@ -4,7 +4,7 @@ import calendarCss from './Calendar.scss';
 import calendarPresetsCss from './CalendarPresets.scss';
 import { RangeDatePickerBody as uuiRangeDatePickerBody, RangeDatePickerValue, RangeDatePickerBodyProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
-import { ReactComponent as ArrowIcon } from './../icons/folding-arrow-24.svg';
+import { ReactComponent as ArrowIcon } from '../../icons/folding-arrow-18.svg';
 
 export function applyRangeDatePickerBodyMods() {
     return [

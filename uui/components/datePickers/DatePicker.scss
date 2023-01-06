@@ -5,7 +5,7 @@
 
     // DatePickerBase style
     :global(.uui-datepicker-container) {
-        background-color: var(--uui-dtp-bg-color);
+        background-color: var(--uui-dtp-title-bg-color);
     }
 
     // Header styles
@@ -19,13 +19,13 @@
     }
 
     :global(.uui-datepickerheader-nav-title) {
-        font-family: var(--uui-dtp-header-font);
-        color: var(--blue);
+        font-family: var(--font-semibold);
+        color: var(--uui-dtp-text-color-selected);
         font-size: 14px;
         padding: 3px 10px;
 
         &:hover {
-            background-color: var(--uui-dtp-header-hover-color);
+            background-color: var(--uui-dtp-title-bg-color-hover);
             cursor: pointer;
         }
 
@@ -35,14 +35,14 @@
     }
 
     :global(.uui-datepickerheader-nav-icon-right), :global(.uui-datepickerheader-nav-icon-left) {
-        fill: var(--uui-dtp-header-icon-color);
+        fill: var(--uui-dtp-next-prev-icon-color);
         width: 36px;
         height: 36px;
         align-items: center;
 
         &:hover {
             cursor: pointer;
-            background-color: var(--uui-dtp-header-icon-hover-color);
+            background-color: var(--uui-dtp-next-prev-icon-bg-hover);
         }
 
         &:focus {
@@ -60,7 +60,7 @@
 
     // Month and Year selection styles
     :global(.uui-monthselection-content), :global(.uui-yearselection-content) {
-        font-family: var(--uui-dtp-month-year-font);
+        font-family: var(--font-regular);
     }
 
     :global(.uui-monthselection-month-container) {
@@ -94,12 +94,12 @@
         height: 36px;
         border-radius: 20px;
         margin: 6px;
-        color: var(--uui-dtp-monthselection-color);
+        color: var(--uui-dtp-text-color);
 
         &:hover {
             width: 70px;
             height: 34px;
-            border: 1px solid var(--uui-dtp-monthselection-hover-color);
+            border: 1px solid var(--uui-dtp-text-color-selected);
             cursor: pointer;
         }
     }
@@ -112,31 +112,27 @@
         align-items: center;
         border-radius: 20px;
         margin: 6px 0;
-        color: var(--uui-dtp-yearselection-color);
+        color: var(--uui-dtp-text-color);
 
         &:hover {
             width: 61px;
             height: 34px;
-            border: 1px solid var(--uui-dtp-yearselection-hover-color);
+            border: 1px solid var(--uui-dtp-text-color-selected);
             cursor: pointer;
         }
     }
 
     :global(.uui-monthselection-current-month) {
         &:global(.uui-monthselection-month) {
-            background-color: var(--uui-dtp-monthselection-curr-bg);
-            color: var(--uui-dtp-monthselection-curr-color);
+            background-color: var(--uui-dtp-text-color-selected);
+            color: var(--uui-dtp-title-bg-color);
         }
     }
 
     :global(.uui-yearselection-current-year) {
         &:global(.uui-yearselection-year) {
-            background-color: var(--uui-dtp-yearselection-curr-bg);
-            color: var(--uui-dtp-yearselection-curr-color);
+            background-color: var(--uui-dtp-text-color-selected);
+            color: var(--uui-dtp-title-bg-color);
         }
     }
-}
-
-.date-input {
-    width: 100%;
 }
