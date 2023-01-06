@@ -1,5 +1,4 @@
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { TextInputProps } from "@epam/uui";
 import { SearchInput } from '@epam/promo';
 import {
     iEditable, sizeDoc, iHasPlaceholder, onClickDoc, isDisabledDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc,
