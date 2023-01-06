@@ -70,9 +70,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           </div>
           <button
             className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={-1}
             type="button"
           >
@@ -140,9 +138,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           </div>
           <button
             className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={-1}
             type="button"
           >
@@ -197,9 +193,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           </div>
           <button
             className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={-1}
             type="button"
           >
@@ -254,9 +248,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
           </div>
           <button
             className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={-1}
             type="button"
           >
@@ -330,9 +322,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           </div>
           <button
             className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={-1}
             type="button"
           >
@@ -390,9 +380,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           </div>
           <button
             className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={-1}
             type="button"
           >
@@ -437,9 +425,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           </div>
           <button
             className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={-1}
             type="button"
           >
@@ -484,9 +470,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
           </div>
           <button
             className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={-1}
             type="button"
           >
