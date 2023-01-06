@@ -20,33 +20,35 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
         let isActive = false;
         let href: string;
 
-        const { target, link, forwardedRef, isDisabled, isLinkActive } = this.props;
-        if (link) {
-            isActive = this.context.uuiRouter?.isActive(link);
-            href = this.context.uuiRouter?.createHref(link);
+        if (this.props.link) {
+            isActive = this.context.uuiRouter?.isActive(this.props.link);
+            href = this.context.uuiRouter?.createHref(this.props.link);
         } else if (this.props.href) {
             href = this.props.href;
         }
+
+        const { target } = this.props;
+        const relProp = target === '_blank' ? { rel: 'noopener noreferrer' } : {};
 
         return React.createElement('a', {
             className: cx(
                 css.container,
                 uuiElement.anchor,
-                isDisabled ? uuiMod.disabled : uuiMod.enabled,
-                (isLinkActive || isActive) && uuiMod.active,
+                this.props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
+                (this.props.isLinkActive || isActive) && uuiMod.active,
                 uuiMarkers.clickable,
                 this.props.cx,
             ),
-            tabIndex: isDisabled ? -1 : 0,
+            tabIndex: this.props.isDisabled ? -1 : 0,
             href,
             role: 'link',
             target,
-            ...(target ? { rel: 'noopener noreferrer' } : {}),
-            ref: forwardedRef,
+            ...relProp,
+            ref: this.props.forwardedRef,
             onClick: this.clickHandler,
             onKeyDown: this.handleKeyDown,
-            disabled: isDisabled,
-            "aria-disabled": isDisabled,
+            disabled: this.props.isDisabled,
+            "aria-disabled": this.props.isDisabled,
             ...this.props.rawProps,
         }, this.props.children);
     }

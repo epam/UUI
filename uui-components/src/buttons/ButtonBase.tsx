@@ -61,7 +61,6 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
         let isLinkActive = null;
         let href: string | null = null;
 
-        const { target } = this.props;
         if (this.hasLink(this.props.link)) {
             isAnchor = true;
             href = this.context.uuiRouter?.createHref(this.props.link);
@@ -91,12 +90,16 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
         };
 
         if (isAnchor) {
+            const { target } = this.props;
+            const relProp = target === '_blank' ? { rel: 'noopener noreferrer' } : {};
+
             return React.createElement(
                 'a',
-                { role: 'link', href, target, ...(target ? { rel: 'noopener noreferrer' } : {}), ...commonProps },
+                { role: 'link', href, target, ...relProp, ...commonProps },
                 this.getChildren(),
             );
         }
+
         return React.createElement('button', { type: 'button', ...commonProps }, this.getChildren());
     }
 }
