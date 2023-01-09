@@ -7,6 +7,7 @@
 * [VerticalTabButton]: fix text trimmed and text align
 * [Switch]: remove margin-left when there is no label
 * [Anchor][BaseButton]: added `rel='noopener noreferrer'` where `target='_blank'` in order to fix the security issue
+* [PickerInput]: update correctly `dataSourceState` when programmatically handling previously loaded data, if API returns empty array
 
 # 4.9.2 - 14.12.2022
 
