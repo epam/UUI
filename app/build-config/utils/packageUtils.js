@@ -58,10 +58,6 @@ function getBabelProcessedFolders({ uuiRoot }) {
             INCLUDE: getRelativeRegexesForNestedDirs(
                 { uuiRoot, dirPathArr: depsRootDirs, nestedDirsArr: ['build', 'assets'] }),
             EXCLUDE: [],
-        },
-        ASSETS: {
-            // this is a special case, because @epam/assets may contain ".ts" files.
-            BUILD_INCLUDE: [absoluteDirPathToRelativeRegex({ uuiRoot, dirPath: path.resolve(uuiRoot, 'epam-assets') })]
         }
     };
 
