@@ -35,6 +35,17 @@ function configureWebpack(config, { paths }) {
      * https://github.com/vfile/vfile/issues/38
      * vfile is a transitive dependency which is here because we use ReactMarkdown.
      * Latest version of ReactMarkdown doesn't have this issue, i.e. we need to migrate to it and remove this customization.
+     */
+    addRule(config, {
+        test: VFILE_SPECIAL_CASE_REGEX,
+        use: [{ loader: require.resolve("imports-loader"), options: { type: "commonjs", imports: ["single process/browser process"] } }],
+    });
+    /**
+     * Fix: remove <metadata> tag.
+     *
+     * Use older version of @svgr/webpack as a workaround for https://github.com/facebook/create-react-app/issues/11770
+     * Use older version of file-loader as a workaround for https://github.com/gregberge/svgr/issues/367
+     * related bug: https://github.com/gregberge/svgr/issues/727
      * Known svg with namespace tags (e.g.: sodipodi:namedview, inkscape:connector-curvature, etc.):
      * epam-assets/icons/templates/generic-24.svg
      * epam-assets/icons/templates/generic-30.svg
@@ -52,18 +63,6 @@ function configureWebpack(config, { paths }) {
      * public/static/images/v-ruler.svg
      * uui/icons/checkbox_tick.svg
      * uui/icons/menu_input_cancel.svg
-     */
-    addRule(config, {
-        test: VFILE_SPECIAL_CASE_REGEX,
-        use: [{ loader: require.resolve("imports-loader"), options: { type: "commonjs", imports: ["single process/browser process"] } }],
-    });
-    /**
-     * Fix: remove <metadata> tag.
-     *
-     * Use older version of @svgr/webpack as a workaround for https://github.com/facebook/create-react-app/issues/11770
-     * Use older version of file-loader as a workaround for https://github.com/gregberge/svgr/issues/367
-     * related bug: https://github.com/gregberge/svgr/issues/727
-     * e.g.: uui-timeline/arrowRight.svg
      * */
     replaceRuleByTestAttr(config, /\.svg$/, {
         test: /\.svg$/,
