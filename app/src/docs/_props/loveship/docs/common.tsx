@@ -4,7 +4,7 @@ import { ColorPicker, IconPicker } from './index';
 import { DocBuilder } from '@epam/uui-docs';
 import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, commonControlColors, EditMode } from '@epam/loveship';
 import { TextMods } from '@epam/loveship';
-import { getIconList } from '@epam/assets/icons/helpers';
+import { getIconList } from '../../../../documents/helpers';
 import { colors } from './helpers/colorMap';
 
 export const sizeDoc = new DocBuilder<SizeMod>({ name: 'Size' })

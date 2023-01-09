@@ -4,7 +4,7 @@ import css from './IconPicker.scss';
 import { Button, Text, PickerInput, DataPickerRow, IconButton, Tooltip } from '@epam/loveship';
 import { IconContainer } from '@epam/uui-components';
 import { SizeInfo } from './SizeInfo';
-import { IconList } from '@epam/assets/icons/helpers';
+import { IconList } from '../../../../../documents/helpers';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-12.svg';
 
 interface IconPickerProps extends IEditable<IHasIcon> {
