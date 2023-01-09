@@ -35,6 +35,23 @@ function configureWebpack(config, { paths }) {
      * https://github.com/vfile/vfile/issues/38
      * vfile is a transitive dependency which is here because we use ReactMarkdown.
      * Latest version of ReactMarkdown doesn't have this issue, i.e. we need to migrate to it and remove this customization.
+     * Known svg with namespace tags (e.g.: sodipodi:namedview, inkscape:connector-curvature, etc.):
+     * epam-assets/icons/templates/generic-24.svg
+     * epam-assets/icons/templates/generic-30.svg
+     * epam-assets/icons/templates/generic.svg
+     * epam-assets/icons/templates/tall.svg
+     * epam-promo/icons/checkbox_tick.svg
+     * epam-promo/icons/menu_input_cancel.svg
+     * loveship/components/icons/checkbox_tick.svg
+     * loveship/components/icons/menu_input_cancel.svg
+     * public/static/images/customer-short-logo.svg
+     * public/static/images/customer-wide-logo.svg
+     * public/static/images/grid-overlay.svg
+     * public/static/images/h-ruler.svg
+     * public/static/images/lens.svg
+     * public/static/images/v-ruler.svg
+     * uui/icons/checkbox_tick.svg
+     * uui/icons/menu_input_cancel.svg
      */
     addRule(config, {
         test: VFILE_SPECIAL_CASE_REGEX,
