@@ -60,6 +60,12 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
     return maximumFractionDigits;
 };
 
+const toFixedWithoutRoundingUp = (value: number, fractionDigits: number) => {
+    const valueExtractor = Math.pow(10, fractionDigits);
+    const valueWithoutUnusedDigits = Math.floor(value * valueExtractor) / valueExtractor;
+    return +valueWithoutUnusedDigits.toFixed(fractionDigits);
+}
+
 export const NumericInput = (props: NumericInputProps) => {
     let { value, min, max, step, formatter, formatOptions } = props;
 
@@ -78,12 +84,14 @@ export const NumericInput = (props: NumericInputProps) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         let newValue = event.target.value === "" ? null : +event.target.value;
         const fractionDigits = getFractionDigits(formatOptions);
+
         if (newValue !== null) {
-            newValue = +newValue.toFixed(fractionDigits);
+            newValue = toFixedWithoutRoundingUp(newValue, fractionDigits);
         }
         if (formatter) {
             newValue = formatter(newValue);
         }
+
         props.onValueChange(newValue);
         if (props.getValueChangeAnalyticsEvent) {
             const event = props.getValueChangeAnalyticsEvent(newValue, props.value);
@@ -100,7 +108,7 @@ export const NumericInput = (props: NumericInputProps) => {
         setInFocus(false);
 
         // clearing the input when entering invalid data using special characters
-        if(event.target.validity?.badInput) {
+        if (event.target.validity?.badInput) {
             inputRef.current.value = ""
         } else {
             const validatedValue = getMinMaxValidatedValue({ value, min, max });
@@ -139,9 +147,9 @@ export const NumericInput = (props: NumericInputProps) => {
     React.useEffect(() => {
         const preventValueChange = (e: WheelEvent) => (document.activeElement === e.target) && e.preventDefault()
 
-        inputRef?.current?.addEventListener('wheel', preventValueChange, {passive: false})
+        inputRef?.current?.addEventListener('wheel', preventValueChange, { passive: false })
 
-        return () => {inputRef?.current?.removeEventListener('wheel', preventValueChange)}
+        return () => { inputRef?.current?.removeEventListener('wheel', preventValueChange) }
     }, [])
 
     const isPlaceholderColored = React.useMemo(() => Boolean(props.value || props.value === 0), [props.value]);
@@ -193,7 +201,7 @@ export const NumericInput = (props: NumericInputProps) => {
                 ref={ inputRef }
             />
 
-        { showArrows && (
+            { showArrows && (
                 <div className={ uuiNumericInput.buttonGroup }>
                     <IconContainer
                         cx={ uuiNumericInput.upButton }
@@ -208,7 +216,7 @@ export const NumericInput = (props: NumericInputProps) => {
                         isDisabled={ props.isDisabled }
                     />
                 </div>
-        ) }
+            ) }
         </div>
     );
 };
