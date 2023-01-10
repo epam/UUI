@@ -3,7 +3,7 @@
  * The output will be located next to the UUI repo root inside "packModulesForTest-output" folder.
  */
 const {runCliCommand} = require("../utils/cmdUtils");
-const {getWorkspaceFoldersNames} = require("../utils/moduleUtils");
+const {getWorkspaceFoldersNames} = require("../utils/monorepoUtils");
 const {logger} = require("../utils/loggerUtils");
 const path = require('path');
 const fs = require('fs');
