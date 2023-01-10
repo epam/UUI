@@ -1,12 +1,12 @@
 const {removeRuleByTestAttr, replaceRuleByTestAttr, changeRuleByTestAttr, normSlashes, addRule} = require("./utils/configUtils");
-const { DIRS_FOR_BABEL, CSS_URL_ROOT_PATH,
+const { DIRS_FOR_BABEL, CSS_URL_ROOT_PATH, ENTRY_WITH_EXTRACTED_DEPS_CSS,
     LIBS_WITHOUT_SOURCE_MAPS, VFILE_SPECIAL_CASE_REGEX,
 } = require("./constants");
 const SVGRLoader = require.resolve("@svgr/webpack");
 const FileLoader = require.resolve("file-loader");
 const { uuiCustomFormatter } = require("./utils/issueFormatter");
 
-const isUseBuildFolderOfDeps = !!process.argv.find(a => a === '--use-build-folder-of-deps');
+const isUseBuildFolderOfDeps = !!process.argv.find(a => a === '--app-uses-build-folder-of-deps');
 
 /**
  * See https://craco.js.org/
@@ -22,6 +22,10 @@ module.exports = function uuiConfig() {
 };
 
 function configureWebpack(config, { paths }) {
+    if (isUseBuildFolderOfDeps) {
+        paths.appIndexJs = ENTRY_WITH_EXTRACTED_DEPS_CSS;
+        config.entry = ENTRY_WITH_EXTRACTED_DEPS_CSS;
+    }
     // reason: no such use case in UUI.
     removeRuleByTestAttr(config, /\.module\.css$/);
     // reason: .sass files are always modules in UUI
@@ -72,19 +76,16 @@ function configureWebpack(config, { paths }) {
         ],
     });
 
-    /**
-     * This is Babel for our source files. We need to include sources of all our modules, not only "app/src".
-     */
-    changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx)$/, r => {
-        if (isUseBuildFolderOfDeps) {
-            return r;
-        }
-        const include = DIRS_FOR_BABEL.DEV.INCLUDE;
-        include.push(r.include);
-        const exclude = DIRS_FOR_BABEL.DEV.EXCLUDE;
-        return Object.assign(r, { include, exclude });
-    });
-
+    if (!isUseBuildFolderOfDeps) {
+        /**
+         * This is Babel for our source files. We need to include sources of all our modules, not only "app/src".
+         */
+        changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx)$/, r => {
+            const include = [r.include, ...DIRS_FOR_BABEL.DEPS_SOURCES.INCLUDE];
+            const exclude = DIRS_FOR_BABEL.DEPS_SOURCES.EXCLUDE;
+            return Object.assign(r, { include, exclude });
+        });
+    }
     // Fix for the issue when some modules have no source maps. see this discussion for details https://github.com/facebook/create-react-app/discussions/11767
     changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx|css)$/, r =>
         Object.assign(r, { exclude: [ r.exclude, VFILE_SPECIAL_CASE_REGEX, ...LIBS_WITHOUT_SOURCE_MAPS ] }));
@@ -115,12 +116,20 @@ function configureWebpack(config, { paths }) {
     }
 
     config.plugins.forEach(p => {
-        if (p.constructor.name === 'ForkTsCheckerWebpackPlugin') {
-            p.options.formatter = uuiCustomFormatter;
-            const include = isUseBuildFolderOfDeps ? DIRS_FOR_BABEL.BUILD.INCLUDE : DIRS_FOR_BABEL.DEV.INCLUDE;
-            p.options.issue.include = p.options.issue.include.concat(include);
+        const name = p.constructor.name;
+        switch (name) {
+            case "ForkTsCheckerWebpackPlugin": {
+                // custom formatter can be removed when next bug is fixed:
+                // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/789
+                p.options.formatter = uuiCustomFormatter;
+                if (!isUseBuildFolderOfDeps) {
+                    p.options.issue.include = p.options.issue.include.concat(DIRS_FOR_BABEL.DEPS_SOURCES.INCLUDE);
+                }
+                break;
+            }
+            default: { break; }
         }
-    })
+    });
 
     return config;
 }
