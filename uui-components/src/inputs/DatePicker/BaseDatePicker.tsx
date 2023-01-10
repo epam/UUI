@@ -64,7 +64,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
 
     getIsValidDate = (value: string) => {
         if (!value) return false;
-        const parsedDate = dayjs(value, supportedDateFormats, true);
+        const parsedDate = dayjs(value, supportedDateFormats(this.getFormat()), true);
         const isValidDate = parsedDate.isValid();
         if (!isValidDate) return false;
         return this.props.filter ? this.props.filter(parsedDate) : true;
