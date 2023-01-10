@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus } from '@epam/uui-core';
-import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
+import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps, dataSourceStateToValue, applyValueToDataSourceState } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../i18n';
 
@@ -93,6 +93,13 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
 
     static getDerivedStateFromProps<TItem, TId>(props: PickerInputBaseProps<TItem, TId>, state: PickerInputState) {
+        const prevValue = dataSourceStateToValue(props, state.dataSourceState, props.dataSource);
+        if (prevValue !== props.value) {
+            return {
+                ...state,
+                dataSourceState: {...applyValueToDataSourceState(props, state.dataSourceState, props.value, props.dataSource)},
+            };
+        }
         if (props.isDisabled && state.opened) {
             return {
                 ...state,
