@@ -6,6 +6,11 @@ const SVGRLoader = require.resolve("@svgr/webpack");
 const FileLoader = require.resolve("file-loader");
 const { uuiCustomFormatter } = require("./utils/issueFormatter");
 
+/**
+ * Note: This is still experimental.
+ * In this mode, the "@epam/app" is built using "./build" folder of respective dependencies.
+ * I.e. all dependencies must be already built before "app" build is started.
+ */
 const isUseBuildFolderOfDeps = !!process.argv.find(a => a === '--app-uses-build-folder-of-deps');
 
 /**
