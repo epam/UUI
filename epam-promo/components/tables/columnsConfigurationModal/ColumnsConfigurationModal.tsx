@@ -8,8 +8,8 @@ import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 //
 import {
-    FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, SearchInput,
-    Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Badge, Text,
+    FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, SearchInput, Dropdown, Badge,
+    DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Text, Tooltip,
 } from "../../../.";
 import { i18n } from '../../../i18n';
 import { ColumnRow } from "./ColumnRow";
@@ -22,7 +22,7 @@ interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<Col
     columns: DataColumnProps<TItem, TId, TFilter>[];
 }
 
-const renderGroupTitle = (title: string, amount: number) => <FlexRow size="24"  padding="24" spacing="6" cx={ styles.groupTitle }>
+const renderGroupTitle = (title: string, amount: number) => <FlexRow size="24" padding="24" spacing="6" cx={ styles.groupTitle }>
     <Text cx={ styles.groupTitleText } font="sans-semibold" lineHeight="24" fontSize="14">{ title }</Text>
     <Badge cx={ styles.groupTitleBadge } caption={ amount } color="gray30" size="18" />
 </FlexRow>;
@@ -34,7 +34,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         reset, checkAll, uncheckAll, setSearchValue,
     } = useColumnsConfiguration({ initialColumnsConfig, columns, defaultConfig });
     const apply = useCallback(() => modalProps.success(columnsConfig), [columnsConfig, modalProps]);
-    const close = useCallback(() =>  modalProps.abort(), [modalProps]);
+    const close = useCallback(() => modalProps.abort(), [modalProps]);
     const isNoData = useMemo(() => Object.values(groupedColumns).every(v => !v.length), [groupedColumns]);
     const renderVisible = () => {
         const amountPinned = groupedColumns.displayedPinned.length;
@@ -47,15 +47,15 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
             <>
                 { renderGroupTitle(i18nLocal.displayedSectionTitle, amountPinned + amountUnPinned) }
                 { !!amountPinned && <FlexRow cx={ styles.groupItems } size="30">
-                        { groupedColumns.displayedPinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
-                    </FlexRow>
+                    { groupedColumns.displayedPinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
+                </FlexRow>
                 }
                 {
                     hasDivider && <div className={ styles.hDivider } />
                 }
                 { !!amountUnPinned && <FlexRow cx={ styles.groupItems } size="30">
-                        { groupedColumns.displayedUnpinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
-                    </FlexRow>
+                    { groupedColumns.displayedUnpinned.map(c => <ColumnRow column={ c } key={ c.key } />) }
+                </FlexRow>
                 }
             </>
         );
@@ -74,6 +74,14 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
             </>
         );
     };
+
+    const noVisibleColumns = useMemo(
+        () => !groupedColumns.displayedPinned.length && !groupedColumns.displayedUnpinned.length,
+        [groupedColumns.displayedPinned, groupedColumns.displayedUnpinned]
+    );
+
+    const applyButton = <Button caption={ i18nLocal.applyButton } isDisabled={ noVisibleColumns } color="green" onClick={ apply } />;
+
     return (
         <ModalBlocker blockerShadow="dark" { ...modalProps }>
             <ModalWindow height="700">
@@ -89,8 +97,8 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                         closeOnTargetClick={ true }
                         renderBody={ () =>
                             <Panel background="white" shadow={ true }>
-                                <DropdownMenuButton caption={ i18nLocal.clearAllButton } onClick={ uncheckAll }/>
-                                <DropdownMenuButton caption={ i18nLocal.selectAllButton } onClick={ checkAll }/>
+                                <DropdownMenuButton caption={ i18nLocal.clearAllButton } onClick={ uncheckAll } />
+                                <DropdownMenuButton caption={ i18nLocal.selectAllButton } onClick={ checkAll } />
                             </Panel>
                         }
                         renderTarget={ props =>
@@ -124,7 +132,14 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                     <LinkButton icon={ ResetIcon } caption={ i18nLocal.resetToDefaultButton } color="blue" onClick={ reset } />
                     <FlexSpacer />
                     <Button fill="white" color="gray50" caption={ i18nLocal.cancelButton } onClick={ close } />
-                    <Button caption={ i18nLocal.applyButton } color="green" onClick={ apply } />
+                    { noVisibleColumns
+                        ? (
+                            <Tooltip content={ i18nLocal.enableAtLeastOneColumnMessage } placement='top' color='red'>
+                                { applyButton }
+                            </Tooltip>
+                        )
+                        : applyButton
+                    }
                 </ModalFooter>
             </ModalWindow>
         </ModalBlocker>
