@@ -100,12 +100,12 @@ export function sortColumnsAndAddGroupKey(props: { columns: DataColumnProps[], p
     const { prevConfig, columns } = props;
     const sorted: DataColumnProps[] = sortBy(columns, i => prevConfig[i.key].order);
     return sorted.map((c: DataColumnProps) => {
-        const groupKey = getGroupKey(c, prevConfig[c.key]);
+        const groupKey = getGroupKey(prevConfig[c.key]);
         return { ...c, groupKey };
     });
 }
 
-function getGroupKey(column: DataColumnProps, columnConfig: IColumnConfig): keyof GroupedColumnsType {
+function getGroupKey(columnConfig: IColumnConfig): keyof GroupedColumnsType {
     const { isVisible, fix } = columnConfig;
     if (isVisible) {
         if (fix) {
