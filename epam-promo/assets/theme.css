@@ -207,6 +207,7 @@
     --prefix-suffix-caption-color: var(--input-placeholder-color);
     --prefix-suffix-icon-color: var(--icon-disabled-color);
     --prefix-suffix-border-color: var(--input-border-color);
+
     /*  TextInput vars  */
     --text-input-bg-color: var(--input-bg-color);
     --text-input-bg-color-disabled: var(--input-bg-disabled-color);
@@ -226,11 +227,13 @@
     --text-input-icon-color-clickable: var(--icon-color);
     --text-input-icon-color-clickable-hover: var(--icon-hover-color);
     --text-input-border-radius: var(--border-radius);
+
     /*  LinkButton vars   */
     --link-button-text-color: var(--primary-color);
     --link-button-text-color-hover: var(--primary-dark-color);
     --link-button-text-color-active: var(--primary-darkest-color);
     --link-button-text-color-disabled: var(--button-caption-disabled-color);
+
     /*  DatePicker vars    */
     --uui-dtp-title-bg-color: var(--input-bg-color);
     --uui-dtp-title-bg-color-hover: var(--primary-halftone-color);
@@ -238,9 +241,11 @@
     --uui-dtp-text-color: var(--input-text-color);
     --uui-dtp-next-prev-icon-color: var(--icon-color);
     --uui-dtp-next-prev-icon-bg-hover: var(--secondary-lightest-color);
+
     /*  RangeDatePicker vars    */
     --uui-rdtp-bg-color: var(--input-bg-color);
     --uui-rdtp-bg-selected-date-color: var(--primary-lightest-color);
+
     /*  Calendar vars   */
     --uui-calendar-selected-color-hover: var(--input-bg-color);
     --uui-calendar-start-end-selected-color-hover: var(--primary-dark-color);
