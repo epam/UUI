@@ -3,6 +3,9 @@ import path from 'path';
 import * as fs from 'fs';
 import * as ts from 'typescript';
 
+const PATH_PREFIX = './app/src/docs/_props';
+const DOCS_GLOB = [`../${PATH_PREFIX}/**/*.props{.ts,.tsx}`];
+
 const project = new Project(
     {
         tsConfigFilePath: '../tsconfig.json',
@@ -75,7 +78,7 @@ function main() {
     /**
      * Sorting of files and props is necessary to make the output more stable and comparable.
      */
-    const docsFiles = project.addSourceFilesAtPaths(["../**/*.doc{.ts,.tsx}", "!../**/node_modules/**", "!../**/app/**"]);
+    const docsFiles = project.addSourceFilesAtPaths(DOCS_GLOB);
     const docsFilesSorted = sortDocFiles(docsFiles);
     docsFilesSorted.map(i => {
         const docPath = getDocPathFromFile(i);

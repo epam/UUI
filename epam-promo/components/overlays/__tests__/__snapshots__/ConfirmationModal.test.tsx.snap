@@ -85,9 +85,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         >
           <button
             className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={0}
             type="button"
           >
@@ -182,9 +180,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         />
         <button
           className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline uui-theme-promo"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -196,9 +192,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </button>
         <button
           className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid uui-theme-promo"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -314,9 +308,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         >
           <button
             className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={0}
             type="button"
           >
@@ -419,9 +411,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         />
         <button
           className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline uui-theme-promo"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -433,9 +423,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         </button>
         <button
           className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid uui-theme-promo"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >

@@ -11,7 +11,7 @@ export class AdaptivePanelDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/adaptivePanel/Basic.example.tsx'
+                    path='./_examples/adaptivePanel/Basic.example.tsx'
                 />
             </>
         );

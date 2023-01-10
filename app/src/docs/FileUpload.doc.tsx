@@ -12,7 +12,7 @@ export class FileUploadDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='File Upload'
-                    path='./examples/fileUpload/FileUpload.example.tsx'
+                    path='./_examples/fileUpload/FileUpload.example.tsx'
                 />
             </>
         );

@@ -1,5 +1,5 @@
-@use '../../../node_modules/@epam/promo/assets/styles/colors' as *;
-@use '../../../node_modules/@epam/promo/assets/styles/fonts' as *;
+@use '../../assets/styles/colors' as *;
+@use '../../assets/styles/fonts' as *;
 
 .header {
     font-family: $font-sans;

@@ -20,7 +20,6 @@
     "dayjs": "1.10.7"
   },
   "devDependencies": {
-    "@epam/uui-docs": "4.9.2",
     "react-test-renderer": "16.13.1",
     "enzyme": "^3.9.0"
   },

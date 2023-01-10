@@ -6,8 +6,8 @@ export class BadgeDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/widgets/docs/badge.doc.ts',
-            [UUI4]: './epam-promo/components/widgets/docs/badge.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/widgets/badge.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/badge.props.tsx',
         };
     }
 
@@ -18,32 +18,32 @@ export class BadgeDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Overview') }
                 <DocExample
                     title='Types'
-                    path='./examples/badge/Types.example.tsx'
+                    path='./_examples/badge/Types.example.tsx'
                 />
                 <DocExample
                     title='Color variants'
-                    path='./examples/badge/Colors.example.tsx'
+                    path='./_examples/badge/Colors.example.tsx'
                 />
                 <DocExample
                     title='Styles'
-                    path='./examples/badge/Styles.example.tsx'
+                    path='./_examples/badge/Styles.example.tsx'
                 />
                 <DocExample
                     title='Sizes'
-                    path='./examples/badge/Size.example.tsx'
+                    path='./_examples/badge/Size.example.tsx'
                 />
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Attributes'
-                    path='./examples/badge/Attributes.example.tsx'
+                    path='./_examples/badge/Attributes.example.tsx'
                 />
                 <DocExample
                     title='Dropdown'
-                    path='./examples/badge/Dropdown.example.tsx'
+                    path='./_examples/badge/Dropdown.example.tsx'
                 />
                 <DocExample
                     title='Indicator mode'
-                    path='./examples/badge/Indicator.example.tsx'
+                    path='./_examples/badge/Indicator.example.tsx'
                 />
             </>
         );
