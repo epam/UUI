@@ -6,8 +6,8 @@ export class DatePickerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/datePickers/docs/datePicker.doc.tsx',
-            [UUI4]: './epam-promo/components/datePickers/docs/datePicker.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/datePickers/datePicker.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/datePickers/datePicker.props.tsx',
         };
     }
 
@@ -18,22 +18,22 @@ export class DatePickerDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/datePicker/Basic.example.tsx'
+                    path='./_examples/datePicker/Basic.example.tsx'
                 />
 
                 <DocExample
                     title='Format date & render footer'
-                    path='./examples/datePicker/FormatDate.example.tsx'
+                    path='./_examples/datePicker/FormatDate.example.tsx'
                 />
 
                 <DocExample
                     title='Disable dates'
-                    path='./examples/datePicker/Filter.example.tsx'
+                    path='./_examples/datePicker/Filter.example.tsx'
                 />
 
                 <DocExample
                     title='Customize day render'
-                    path='./examples/datePicker/CustomRenderDay.example.tsx'
+                    path='./_examples/datePicker/CustomRenderDay.example.tsx'
                 />
                 { this.renderSectionTitle('Localization') }
                 <EditableDocContent fileName='datePicker-localization' />

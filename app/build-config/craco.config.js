@@ -38,7 +38,10 @@ function configureWebpack(config, { paths }) {
         test: VFILE_SPECIAL_CASE_REGEX,
         use: [{ loader: require.resolve("imports-loader"), options: { type: "commonjs", imports: ["single process/browser process"] } }],
     });
-    /** Use older version of @svgr/webpack as a workaround for https://github.com/facebook/create-react-app/issues/11770
+    /**
+     * Fix: remove <metadata> tag.
+     *
+     * Use older version of @svgr/webpack as a workaround for https://github.com/facebook/create-react-app/issues/11770
      * Use older version of file-loader as a workaround for https://github.com/gregberge/svgr/issues/367
      * related bug: https://github.com/gregberge/svgr/issues/727
      * e.g.: uui-timeline/arrowRight.svg
@@ -91,7 +94,6 @@ function configureWebpack(config, { paths }) {
     });
 
     /** Reason: 'path' is used in some components: react-markdown
-     * app/src/common/docs/BaseDocsBlock.tsx
      * we need to get rid of it in the future.
      **/
     config.resolve.alias.path = "path-browserify";
@@ -112,16 +114,13 @@ function configureWebpack(config, { paths }) {
 
 function isUseBuildFolderOfDeps() {
     /**
-     * TODO: need to change the approach to process "docs". I.e. get rid of "require.context" and use explicit imports instead.
+     * TODO: need to change the approach to process "docs".
      * Known places:
      * app/src/common/docs/ComponentEditor.tsx
      * app/src/common/docs/DocExample.tsx
      * epam-assets/icons/index.ts
      * epam-assets/icons/legacy/index.ts
      * epam-assets/icons/loaders/index.ts
-     * epam-promo/index.docs.ts
-     * loveship/index.docs.ts
-     * uui/index.docs.ts
      *
      * @type {boolean}
      */

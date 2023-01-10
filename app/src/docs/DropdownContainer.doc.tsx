@@ -6,8 +6,8 @@ export class DropdownContainerDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/overlays/docs/dropdownContainer.doc.tsx',
-            [UUI4]: './epam-promo/components/overlays/docs/dropdownContainer.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/overlays/dropdownContainer.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/overlays/dropdownContainer.props.tsx',
         };
     }
 
@@ -16,7 +16,7 @@ export class DropdownContainerDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName='dropdownContainer-descriptions' />
                 { this.renderSectionTitle('Examples') }
-                <DocExample title='Basic' path='./examples/dropdownContainer/Basic.example.tsx'/>
+                <DocExample title='Basic' path='./_examples/dropdownContainer/Basic.example.tsx'/>
             </>
 
         );

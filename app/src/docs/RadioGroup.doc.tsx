@@ -6,8 +6,8 @@ export class RadioGroupDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/layout/docs/radioGroup.doc.ts',
-            [UUI4]: './epam-promo/components/layout/docs/radioGroup.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/layout/radioGroup.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/radioGroup.props.ts',
         };
     }
 
@@ -18,7 +18,7 @@ export class RadioGroupDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='RadioInput Group'
-                    path='./examples/radioInput/Group.example.tsx'
+                    path='./_examples/radioInput/Group.example.tsx'
                 />
             </>
         );

@@ -53,9 +53,7 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
   >
     <button
       className="container uui-button-box uui-enabled root size-18 fill-solid color-night300 root"
-      href={null}
       onClick={[Function]}
-      role="button"
       tabIndex={-1}
       type="button"
     >
@@ -76,9 +74,7 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
     </button>
     <button
       className="container uui-button-box uui-enabled root size-18 fill-solid color-night300 root"
-      href={null}
       onClick={[Function]}
-      role="button"
       tabIndex={-1}
       type="button"
     >

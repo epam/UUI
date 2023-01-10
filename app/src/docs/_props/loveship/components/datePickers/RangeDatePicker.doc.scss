@@ -1,0 +1,22 @@
+@use '~@epam/loveship/assets/styles/scss/index'  as *;
+
+.container {
+    display: flex;
+    padding: 9px 30px;
+    justify-content: space-between;
+    border-top: 1px solid var(--input-border-color);
+    align-items: center;
+    background-color: var(--uui-rdtp-bg-color);
+    position: relative;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.counter {
+    color: var(--input-border-color);
+    font-size: 15px;
+    font-family: var(--font-regular);
+}
