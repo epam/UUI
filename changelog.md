@@ -1,12 +1,14 @@
 # 4.x.x - DRAFT
 **What's New**
 * [FlexRow]: added Flexbox properties `columnGap` and `rowGap` to setting the spacing between children and rows in case of a  FlexRow wrap
+* [ColumnsConfigurationModal]: added functionality to deny applying the configuration without selected columns
 
 
 **What’s Fixed**
 * [VerticalTabButton]: fix text trimmed and text align
 * [Switch]: remove margin-left when there is no label
 * [Anchor][BaseButton]: added `rel='noopener noreferrer'` where `target='_blank'` in order to fix the security issue
+* [PickerInput]: update correctly `dataSourceState` when programmatically handling previously loaded data, if API returns empty array
 * [NumericInput]: fixed `NumericInput` by preventing rounding up numbers if `formatOptions` are defined
 
 # 4.9.2 - 14.12.2022
