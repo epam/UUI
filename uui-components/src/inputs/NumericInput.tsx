@@ -60,12 +60,6 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
     return maximumFractionDigits;
 };
 
-const toFixedWithoutRoundingUp = (value: number, fractionDigits: number) => {
-    const valueExtractor = Math.pow(10, fractionDigits);
-    const valueWithoutUnusedDigits = Math.floor(value * valueExtractor) / valueExtractor;
-    return +valueWithoutUnusedDigits.toFixed(fractionDigits);
-}
-
 export const NumericInput = (props: NumericInputProps) => {
     let { value, min, max, step, formatter, formatOptions } = props;
 
@@ -86,12 +80,11 @@ export const NumericInput = (props: NumericInputProps) => {
         const fractionDigits = getFractionDigits(formatOptions);
 
         if (newValue !== null) {
-            newValue = toFixedWithoutRoundingUp(newValue, fractionDigits);
+            newValue = +newValue.toFixed(fractionDigits);
         }
         if (formatter) {
             newValue = formatter(newValue);
         }
-
         props.onValueChange(newValue);
         if (props.getValueChangeAnalyticsEvent) {
             const event = props.getValueChangeAnalyticsEvent(newValue, props.value);
