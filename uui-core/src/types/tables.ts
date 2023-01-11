@@ -1,7 +1,7 @@
 import React, { Attributes, ReactNode } from 'react';
 import { IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps,
     ICanBeInvalid, ICanFocus, IDropdownBodyProps } from './props';
-import { FilterPredicateName, SortDirection } from './dataQuery';
+import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data';
@@ -256,6 +256,7 @@ export interface ITablePreset<TFilter = any> {
     isReadonly?: boolean;
     columnsConfig?: ColumnsConfig;
     filtersConfig?: FiltersConfig;
+    sorting?: SortingOption[];
     order?: string;
 }
 
