@@ -53,10 +53,10 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filtersConfig: newFiltersConfig,
         };
 
-        // we need it here, because the DataSources call state updates with the same value on items load, and it causes redirect
+        // we need this condition here, because the DataSources call state updates with the same value on items load, and it causes redirect
         if (JSON.stringify(oldQuery) !== JSON.stringify(newQuery)) {
             context.uuiRouter.redirect({
-                pathname: location.pathname,
+                pathname: context.uuiRouter.getCurrentLink().pathname,
                 query: newQuery,
             });
         }
