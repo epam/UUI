@@ -210,7 +210,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 };
 
 interface IParams<TFilter = Record<string, any>> {
-    columns: DataColumnProps[];
+    columns?: DataColumnProps[];
     filters?: TableFiltersConfig<TFilter>[];
     initialFilter?: TFilter;
     initialPresets?: ITablePreset<TFilter>[];
