@@ -2,27 +2,23 @@
 
 .root {
     overflow: visible;
-    fill: var(--uui-color-700);
+    fill: var(--uui-icon-btn-color);//700
 
     &:global(.-clickable:not(.uui-disabled)) {
         &:hover, &:focus {
-            fill: var(--uui-color-800);
+            fill: var(--uui-icon-btn-color-hover);//800
         }
 
         &:active {
-            fill: var(--uui-color-900);
+            fill: var(--uui-icon-btn-color-active);//900
         }
     }
 
     &:global(.uui-disabled) {
-        fill: $night500;
+        fill: var(--uui-icon-btn-color-disabled);//night500
 
         &:hover {
-            fill: $night500;
+            fill: var(--uui-icon-btn-color-disabled);
         }
-    }
-
-    &:global(.uui-invalid) {
-        fill: $fire;
     }
 }
