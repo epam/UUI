@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement,
     CX, ICanBeReadonly, IAnalyticableOnChange, IHasForwardedRef, ICanFocus, uuiMarkers, getMinMaxValidatedValue, getSeparatedValue, useUuiContext,
-    i18n,
+    toFixedWithoutRoundingUp, i18n,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './NumericInput.scss';
@@ -59,12 +59,6 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
     const { maximumFractionDigits } = new Intl.NumberFormat(i18n.locale, formatOptions).resolvedOptions();
     return maximumFractionDigits;
 };
-
-const toFixedWithoutRoundingUp = (value: number, fractionDigits: number) => {
-    const valueExtractor = Math.pow(10, fractionDigits);
-    const valueWithoutUnusedDigits = Math.floor(value * valueExtractor) / valueExtractor;
-    return +valueWithoutUnusedDigits.toFixed(fractionDigits);
-}
 
 export const NumericInput = (props: NumericInputProps) => {
     let { value, min, max, step, formatter, formatOptions } = props;
