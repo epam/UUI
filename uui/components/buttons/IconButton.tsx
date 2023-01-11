@@ -9,7 +9,7 @@ export interface IconButtonMods {
     color?: IconColor;
 }
 
-export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods { }
+export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods {}
 
 function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
     return [

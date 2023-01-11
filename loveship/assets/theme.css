@@ -328,47 +328,121 @@
     --btn-border-radius: var(--border-radius);
 }
 
-.icon-button-color-info {
-    --icon-button-icon-color: var(--info-color);
-    --icon-button-icon-color-hover: var(--info-dark-color);
-    --icon-button-icon-color-active: var(--info-darkest-color);
-    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+.icon-button-color-sky {
+    --uui-icon-btn-color: var(--info-color);
+    --uui-icon-btn-color-hover: var(--info-dark-color);
+    --uui-icon-btn-color-active: var(--info-darkest-color);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
 }
 
-.icon-button-color-success {
-    --icon-button-icon-color: var(--success-color);
-    --icon-button-icon-color-hover: var(--success-dark-color);
-    --icon-button-icon-color-active: var(--success-darkest-color);
-    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+.icon-button-color-grass {
+    --uui-icon-btn-color: var(--success-color);
+    --uui-icon-btn-color-hover: var(--success-dark-color);
+    --uui-icon-btn-color-active: var(--success-darkest-color);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
 }
 
-.icon-button-color-warning {
-    --icon-button-icon-color: var(--warning-color);
-    --icon-button-icon-color-hover: var(--warning-dark-color);
-    --icon-button-icon-color-active: var(--warning-darkest-color);
-    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+.icon-button-color-sun {
+    --uui-icon-btn-color: var(--warning-color);
+    --uui-icon-btn-color-hover: var(--warning-dark-color);
+    --uui-icon-btn-color-active: var(--warning-darkest-color);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
 }
 
-.icon-button-color-error {
-    --icon-button-icon-color: var(--error-color);
-    --icon-button-icon-color-hover: var(--error-dark-color);
-    --icon-button-icon-color-active: var(--error-darkest-color);
-    --icon-button-icon-color-disabled: var(--icon-disabled-color);
+.icon-button-color-fire {
+    --uui-icon-btn-color: var(--error-color);
+    --uui-icon-btn-color-hover: var(--error-dark-color);
+    --uui-icon-btn-color-active: var(--error-darkest-color);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
 }
+/*
+700
+800
+900
+*/
+/*.icon-button-color-carbon {*/
+/*    --uui-icon-btn-color: #3D404D;*/
+/*    --uui-icon-btn-color-hover: #272933;*/
+/*    --uui-icon-btn-color-active: #17181F;*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
 
-.icon-button-color-default {
-    --icon-button-icon-color: var(--icon-color);
-    --icon-button-icon-color-hover: var(--icon-hover-color);
-    --icon-button-icon-color-active: var(--icon-active-color);
-    --icon-button-icon-color-disabled: var(--icon-disabled-color);
-}
+/*.icon-button-color-cobalt {*/
+/*    --uui-icon-btn-color: var(--secondary-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
 
-.icon-button-color-secondary {
-    --icon-button-icon-color: var(--secondary-color);
-    --icon-button-icon-color-hover: var(--icon-hover-color);
-    --icon-button-icon-color-active: var(--icon-active-color);
-    --icon-button-icon-color-disabled: var(--icon-disabled-color);
-}
+/*.icon-button-color-lavanda {*/
+/*    --uui-icon-btn-color: var(--secondary-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
+
+/*.icon-button-color-fuchsia {*/
+/*    --uui-icon-btn-color: var(--secondary-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
+
+/*.icon-button-color-white {*/
+/*    --uui-icon-btn-color: var(--secondary-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
+
+/*.icon-button-color-night50 {*/
+/*    --uui-icon-btn-color: var(--secondary-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
+
+/*.icon-button-color-night100 {*/
+/*    --uui-icon-btn-color: var(--secondary-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
+
+/*.icon-button-color-night200 {*/
+/*    --uui-icon-btn-color: var(--secondary-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
+
+/*.icon-button-color-night300 {*/
+/*    --uui-icon-btn-color: var(--secondary-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
+
+/*.icon-button-color-night400 {*/
+/*    --uui-icon-btn-color: var(--secondary-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
+
+/*.icon-button-color-night500 {*/
+/*    --uui-icon-btn-color: var(--secondary-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
+
+/*.icon-button-color-night600 {*/
+/*    --uui-icon-btn-color: var(--icon-color);*/
+/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
+/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
+/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
+/*}*/
 
 .checkbox-vars {
     --checkbox-border-color: var(--input-border-color);

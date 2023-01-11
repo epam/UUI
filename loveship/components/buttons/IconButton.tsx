@@ -1,18 +1,24 @@
-import { IconButton as uuiIconButton, IconButtonBaseProps } from '@epam/uui-components';
+import { IconButton as uuiIconButton, IconButtonProps as UuiIconButtonProps } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
-import * as types from '../types';
+import { commonControlColors } from "../types";
 import css from './IconButton.scss';
-import styles from '../../assets/styles/scss/loveship-color-vars.scss';
 
-interface IconButtonMods extends types.ColorMod {}
 
-export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods {}
+export type IconColor = typeof commonControlColors[number];
+export const allIconColors: IconColor[] = commonControlColors;
 
-function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
+export interface IconButtonMods {
+    color?: IconColor;
+}
+
+function applyIconButtonMods(mods: Omit<UuiIconButtonProps, 'color'> & IconButtonMods) {
     return [
+        'uui-theme-loveship',
         css.root,
-        styles['color-' + (mods.color || 'night600')],
+        [`icon-button-color-${ mods.color || 'night600' }`],
     ];
 }
 
-export const IconButton = withMods<IconButtonProps, IconButtonMods>(uuiIconButton, applyIconButtonMods);
+export type IconButtonProps = Omit<UuiIconButtonProps, 'color'> & IconButtonMods;
+
+export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButtonMods>(uuiIconButton, applyIconButtonMods);
