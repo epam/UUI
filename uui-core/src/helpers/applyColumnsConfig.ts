@@ -28,11 +28,12 @@ export const getColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId
 
     columns.forEach(column => {
         const order = getOrderBetween(prevOrder, null);
-        const columnConfig = config[column.key] || {};
+        const hasPrevColumnConfig = !!config[column.key];
+        const columnConfig = hasPrevColumnConfig ? config[column.key] : {};
 
         config[column.key] = {
             width: columnConfig.width || column.width,
-            fix: columnConfig.fix || column.fix,
+            fix: hasPrevColumnConfig ? columnConfig.fix : column.fix,
             isVisible: columnConfig.isVisible !== undefined ? columnConfig.isVisible : !column.isHiddenByDefault ,
             order: columnConfig.order || getOrderBetween(order, null),
         };

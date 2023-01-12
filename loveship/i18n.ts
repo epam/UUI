@@ -56,6 +56,7 @@ export const i18n = {
                 text: 'No results found',
                 subText: 'We can’t find any item matching your request',
             },
+            enableAtLeastOneColumnMessage: 'Please enable at least one column',
             pinColumnButton: "Pin column",
             unPinColumnButton: "Unpin column",
             lockedColumnPinButton: "You cannot unpin this column",

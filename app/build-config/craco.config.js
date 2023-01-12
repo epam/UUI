@@ -1,10 +1,17 @@
 const {removeRuleByTestAttr, replaceRuleByTestAttr, changeRuleByTestAttr, normSlashes, addRule} = require("./utils/configUtils");
-const { DIRS_FOR_BABEL, CSS_URL_ROOT_PATH,
+const { DIRS_FOR_BABEL, CSS_URL_ROOT_PATH, ENTRY_WITH_EXTRACTED_DEPS_CSS,
     LIBS_WITHOUT_SOURCE_MAPS, VFILE_SPECIAL_CASE_REGEX,
 } = require("./constants");
 const SVGRLoader = require.resolve("@svgr/webpack");
 const FileLoader = require.resolve("file-loader");
 const { uuiCustomFormatter } = require("./utils/issueFormatter");
+
+/**
+ * Note: This is still experimental.
+ * In this mode, the "@epam/app" is built using "./build" folder of respective dependencies.
+ * I.e. all dependencies must be already built before "app" build is started.
+ */
+const isUseBuildFolderOfDeps = !!process.argv.find(a => a === '--app-uses-build-folder-of-deps');
 
 /**
  * See https://craco.js.org/
@@ -20,6 +27,10 @@ module.exports = function uuiConfig() {
 };
 
 function configureWebpack(config, { paths }) {
+    if (isUseBuildFolderOfDeps) {
+        paths.appIndexJs = ENTRY_WITH_EXTRACTED_DEPS_CSS;
+        config.entry = ENTRY_WITH_EXTRACTED_DEPS_CSS;
+    }
     // reason: no such use case in UUI.
     removeRuleByTestAttr(config, /\.module\.css$/);
     // reason: .sass files are always modules in UUI
@@ -44,7 +55,23 @@ function configureWebpack(config, { paths }) {
      * Use older version of @svgr/webpack as a workaround for https://github.com/facebook/create-react-app/issues/11770
      * Use older version of file-loader as a workaround for https://github.com/gregberge/svgr/issues/367
      * related bug: https://github.com/gregberge/svgr/issues/727
-     * e.g.: uui-timeline/arrowRight.svg
+     * Known svg with namespace tags (e.g.: sodipodi:namedview, inkscape:connector-curvature, etc.):
+     * epam-assets/icons/templates/generic-24.svg
+     * epam-assets/icons/templates/generic-30.svg
+     * epam-assets/icons/templates/generic.svg
+     * epam-assets/icons/templates/tall.svg
+     * epam-promo/icons/checkbox_tick.svg
+     * epam-promo/icons/menu_input_cancel.svg
+     * loveship/components/icons/checkbox_tick.svg
+     * loveship/components/icons/menu_input_cancel.svg
+     * public/static/images/customer-short-logo.svg
+     * public/static/images/customer-wide-logo.svg
+     * public/static/images/grid-overlay.svg
+     * public/static/images/h-ruler.svg
+     * public/static/images/lens.svg
+     * public/static/images/v-ruler.svg
+     * uui/icons/checkbox_tick.svg
+     * uui/icons/menu_input_cancel.svg
      * */
     replaceRuleByTestAttr(config, /\.svg$/, {
         test: /\.svg$/,
@@ -54,24 +81,16 @@ function configureWebpack(config, { paths }) {
         ],
     });
 
-    /**
-     * This is Babel for our source files. We need to include sources of all our modules, not only "app/src".
-     */
-    changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx)$/, r => {
-        if (isUseBuildFolderOfDeps()) {
-            // no need to process dependencies if they are already built.
-            // the only exception is @epam/assets which contains "*.ts" files.
-            const include = DIRS_FOR_BABEL.ASSETS.BUILD_INCLUDE;
-            include.push(r.include);
-            Object.assign(r, { include });
-            return r;
-        }
-        const include = DIRS_FOR_BABEL.DEV.INCLUDE;
-        include.push(r.include);
-        const exclude = DIRS_FOR_BABEL.DEV.EXCLUDE;
-        return Object.assign(r, { include, exclude });
-    });
-
+    if (!isUseBuildFolderOfDeps) {
+        /**
+         * This is Babel for our source files. We need to include sources of all our modules, not only "app/src".
+         */
+        changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx)$/, r => {
+            const include = [r.include, ...DIRS_FOR_BABEL.DEPS_SOURCES.INCLUDE];
+            const exclude = DIRS_FOR_BABEL.DEPS_SOURCES.EXCLUDE;
+            return Object.assign(r, { include, exclude });
+        });
+    }
     // Fix for the issue when some modules have no source maps. see this discussion for details https://github.com/facebook/create-react-app/discussions/11767
     changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx|css)$/, r =>
         Object.assign(r, { exclude: [ r.exclude, VFILE_SPECIAL_CASE_REGEX, ...LIBS_WITHOUT_SOURCE_MAPS ] }));
@@ -97,33 +116,25 @@ function configureWebpack(config, { paths }) {
      * we need to get rid of it in the future.
      **/
     config.resolve.alias.path = "path-browserify";
-    if (isUseBuildFolderOfDeps()) {
+    if (isUseBuildFolderOfDeps) {
         config.resolve.mainFields = ["epam:uui:main", "browser", "module", "main"];
     }
 
     config.plugins.forEach(p => {
-        if (p.constructor.name === 'ForkTsCheckerWebpackPlugin') {
-            p.options.formatter = uuiCustomFormatter;
-            const include = isUseBuildFolderOfDeps() ? DIRS_FOR_BABEL.BUILD.INCLUDE : DIRS_FOR_BABEL.DEV.INCLUDE;
-            p.options.issue.include = p.options.issue.include.concat(include);
+        const name = p.constructor.name;
+        switch (name) {
+            case "ForkTsCheckerWebpackPlugin": {
+                // custom formatter can be removed when next bug is fixed:
+                // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/789
+                p.options.formatter = uuiCustomFormatter;
+                if (!isUseBuildFolderOfDeps) {
+                    p.options.issue.include = p.options.issue.include.concat(DIRS_FOR_BABEL.DEPS_SOURCES.INCLUDE);
+                }
+                break;
+            }
+            default: { break; }
         }
-    })
+    });
 
     return config;
-}
-
-function isUseBuildFolderOfDeps() {
-    /**
-     * TODO: need to change the approach to process "docs".
-     * Known places:
-     * app/src/common/docs/ComponentEditor.tsx
-     * app/src/common/docs/DocExample.tsx
-     * epam-assets/icons/index.ts
-     * epam-assets/icons/legacy/index.ts
-     * epam-assets/icons/loaders/index.ts
-     *
-     * @type {boolean}
-     */
-    //return !!process.argv.find(a => a === '--use-build-folder-of-deps');
-    return false;
 }
