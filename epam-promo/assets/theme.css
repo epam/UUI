@@ -226,11 +226,13 @@
     --text-input-icon-color-clickable: var(--icon-color);
     --text-input-icon-color-clickable-hover: var(--icon-hover-color);
     --text-input-border-radius: var(--border-radius);
+
     /*  LinkButton vars   */
     --link-button-text-color: var(--primary-color);
     --link-button-text-color-hover: var(--primary-dark-color);
     --link-button-text-color-active: var(--primary-darkest-color);
     --link-button-text-color-disabled: var(--button-caption-disabled-color);
+
     /*  DatePicker vars    */
     --uui-dtp-title-bg-color: var(--input-bg-color);
     --uui-dtp-title-bg-color-hover: var(--primary-halftone-color);
@@ -238,9 +240,11 @@
     --uui-dtp-text-color: var(--input-text-color);
     --uui-dtp-next-prev-icon-color: var(--icon-color);
     --uui-dtp-next-prev-icon-bg-hover: var(--secondary-lightest-color);
+
     /*  RangeDatePicker vars    */
     --uui-rdtp-bg-color: var(--input-bg-color);
     --uui-rdtp-bg-selected-date-color: var(--primary-lightest-color);
+
     /*  Calendar vars   */
     --uui-calendar-selected-color-hover: var(--input-bg-color);
     --uui-calendar-start-end-selected-color-hover: var(--primary-dark-color);
@@ -249,6 +253,14 @@
     --uui-calendar-text-color: var(--input-text-color);
     --uui-calendar-text-color-filtered: var(--input-text-disabled-color);
     --uui-calendar-bg-selected: var(--secondary-color);
+
+    /*  tab-button-vars     */
+    --tab-button-text-color: var(--text-primary-color);
+    --tab-button-text-color-hover: var(--primary-color);
+    --tab-button-text-color-active: var(--primary-color);
+    --tab-button-text-color-disabled: var(--text-disabled-color);
+    --tab-button-count-bg-color: var(--gray30);
+    --tab-button-count-color: var(--text-secondary-color);
 }
 
 .tooltip-light {
@@ -809,15 +821,6 @@
 
 .informer-vars {
     --informer-border-radius: 50px;
-}
-
-.tab-button-vars {
-    --tab-button-text-color: var(--text-primary-color);
-    --tab-button-text-color-hover: var(--primary-color);
-    --tab-button-text-color-active: var(--primary-color);
-    --tab-button-text-color-disabled: var(--text-disabled-color);
-    --tab-button-count-bg-color: #FFFFFF;
-    --tab-button-count-color: var(--text-secondary-color);
 }
 
 .icon-container-color-info {
