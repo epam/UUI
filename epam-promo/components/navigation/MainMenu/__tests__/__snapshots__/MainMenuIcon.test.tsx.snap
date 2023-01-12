@@ -2,7 +2,7 @@
 
 exports[`MainMenuIcon should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled root icon-color-gray60 container"
+  className="container uui-button-box uui-enabled icon-button-color-default root uui-theme-promo icon-button-color-gray60 container"
   onClick={[Function]}
   tabIndex={-1}
   type="button"
@@ -20,7 +20,7 @@ exports[`MainMenuIcon should be rendered correctly 1`] = `
 
 exports[`MainMenuIcon should be rendered correctly 2`] = `
 <a
-  className="container uui-button-box uui-enabled -clickable root icon-color-gray60 container"
+  className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60 container"
   onClick={[Function]}
   rel="noopener noreferrer"
   role="link"
