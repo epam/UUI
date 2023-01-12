@@ -1,5 +1,5 @@
 const path = require("path");
-const { getBabelProcessedFolders, getExtractedCssFromDeps } = require("./utils/appDepsUtils");
+const { getBabelProcessedFolders } = require("./utils/appDepsUtils");
 const { normSlashes } = require("./utils/configUtils");
 const { assertRunFromModule } = require("../../uui-build/utils/monorepoUtils");
 
