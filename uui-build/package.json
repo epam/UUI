@@ -22,7 +22,6 @@
     "jest-enzyme": "^7.1.2",
     "jest-resolve": "24.9.0",
     "react-app-polyfill": "3.0.0",
-    "babel-preset-react-app": "9.1.2",
     "lodash.defaultsdeep": "4.6.1",
     "lodash.uniqueid": "4.0.1",
     "react-test-renderer": "16.13.1",
@@ -43,7 +42,9 @@
     "@rollup/plugin-node-resolve": "15.0.1",
     "rollup-plugin-postcss-modules": "2.1.0",
     "@svgr/rollup": "6.5.1",
-    "rollup-plugin-visualizer": "5.8.3"
+    "rollup-plugin-visualizer": "5.8.3",
+    "@lerna/package-graph": "6.4.0",
+    "@lerna/project": "6.4.0"
   },
   "devDependencies": {
     "typescript": "4.9.3"

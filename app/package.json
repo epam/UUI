@@ -8,6 +8,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "build-experimental": "craco build --app-uses-build-folder-of-deps",
     "server": "node ../server/app.js",
     "analyzer": "source-map-explorer 'build/static/**/*.js'"
   },

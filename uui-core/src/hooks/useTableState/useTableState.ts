@@ -23,6 +23,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             columnsConfig: activePreset ? activePreset.columnsConfig : {},
             filtersConfig: params.filters ? normalizeFilterConfig(urlParams.filtersConfig, filter, params.filters) : undefined,
             presetId: urlParams.presetId,
+            sorting: urlParams.sorting,
         };
     });
 
@@ -50,13 +51,14 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             ...context.uuiRouter.getCurrentLink().query,
             filter: newValue.filter,
             presetId: newValue.presetId,
+            sorting: newValue.sorting,
             filtersConfig: newFiltersConfig,
         };
 
-        // we need it here, because the DataSources call state updates with the same value on items load, and it causes redirect
+        // we need this condition here, because the DataSources call state updates with the same value on items load, and it causes redirect
         if (JSON.stringify(oldQuery) !== JSON.stringify(newQuery)) {
             context.uuiRouter.redirect({
-                pathname: location.pathname,
+                pathname: context.uuiRouter.getCurrentLink().pathname,
                 query: newQuery,
             });
         }
@@ -104,6 +106,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filter: urlParams.filter,
             presetId: urlParams.presetId,
             filtersConfig: urlParams.filtersConfig,
+            sorting: urlParams.sorting,
         });
     }, [location.search]);
 
@@ -118,6 +121,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filter: preset.filter,
             columnsConfig: preset.columnsConfig,
             filtersConfig: preset.filtersConfig,
+            sorting: preset.sorting,
             presetId: preset.id,
         });
     }, []);
@@ -143,6 +147,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             filter: tableStateValue.filter,
             columnsConfig: tableStateValue.columnsConfig,
             filtersConfig: tableStateValue.filtersConfig,
+            sorting: tableStateValue.sorting,
             isReadonly: false,
             order: getNewPresetOrder(),
         };
@@ -152,7 +157,8 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 
     const hasPresetChanged = useCallback((preset: ITablePreset<TFilter> | undefined) => {
         return !isEqual(preset?.filter, tableStateValue.filter)
-            || !isEqual(preset?.columnsConfig, tableStateValue.columnsConfig);
+            || !isEqual(preset?.columnsConfig, tableStateValue.columnsConfig)
+            || !isEqual(preset?.sorting, tableStateValue.sorting);
     }, [tableStateValue.columnsConfig,  tableStateValue.filter]);
 
     const duplicatePreset = useCallback(async (preset: ITablePreset<TFilter>) => {
