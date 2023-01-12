@@ -606,7 +606,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable root color-night600"
+            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-night600"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -815,7 +815,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable root color-night600"
+                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-night600"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -899,7 +899,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable root color-night600"
+                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-night600"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
