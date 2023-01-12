@@ -1,12 +1,15 @@
 import { ArrayListView, ArrayListViewProps } from '../ArrayListView';
 import { ArrayDataSource } from '../../ArrayDataSource';
 import { DataSourceState, IDataSourceView } from "../../../../types";
+import { BaseListView } from '../BaseListView';
 
 interface TItem {
     id: number;
     level: string;
     parentId?: number;
 }
+
+type View = ArrayListView<TItem, number, any>;
 
 const testItems: TItem[] = [
     { "id": 2, "level": "A1" },
@@ -27,7 +30,7 @@ const totalRowsCount = 12;
 const rootNodesCount = 9;
 
 let dataSource: ArrayDataSource<{ id: number, level: string }, number, any> = null;
-let view: IDataSourceView<TItem, number, any> = null;
+let view: View = null;
 
 let onValueChange: () => any = null;
 let initialValue: DataSourceState = { topIndex: 0, visibleCount: totalRowsCount };
@@ -54,11 +57,11 @@ describe('ArrayListView', () => {
                 isSelectable: true,
             }),
         };
-        view = dataSource.getView(initialValue, onValueChange, viewProps);
+        view = dataSource.getView(initialValue, onValueChange, viewProps) as View;
     });
 
     it('should create visibleRows on constructor', () => {
-        expect(view.rows).toHaveLength(rootNodesCount);
+        expect(view['rows']).toHaveLength(rootNodesCount);
     });
 
     describe('setValue logic', () => {
@@ -112,7 +115,7 @@ describe('ArrayListView', () => {
                 getId: i => i.id,
                 isFoldedByDefault: () => false,
             },
-        );
+        ) as View;
         const rows = view.getVisibleRows();
         expect(rows).toMatchObject(testItems.map(i => ({ id: i.id, value: i })));
         expect(view.getVisibleRows()).toHaveLength(testItems.length);
@@ -146,7 +149,7 @@ describe('ArrayListView', () => {
     });
 
     describe('row handlers', () => {
-        it('onCheck handler shout set id to checked array in value', async () => {
+        it('onCheck handler should set id to checked array in value', async () => {
             const row1 = view.getById(6, 6);
             row1.onCheck(row1);
             expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6] });
@@ -170,7 +173,7 @@ describe('ArrayListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 },
-            );
+            ) as View;
 
             const row1 = view.getById(6, 6);
             row1.onCheck(row1);
@@ -189,12 +192,37 @@ describe('ArrayListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 },
-            );
+            ) as View;
 
             const row = view.getById(9, 9);
             row.onCheck(row);
 
             expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [7, 8, 9, 6] });
+        });
+
+        it('should not update internal state itself on onCheck call but only on update call', () => {
+            const view = dataSource.getView(
+                { ...initialValue, checked: [] },
+                onValueChange,
+                {
+                    getId: i => i.id,
+                    cascadeSelection: true,
+                    getRowOptions: () => ({
+                        checkbox: { isVisible: true },
+                    }),
+                },
+            ) as View;
+
+            const row = view.getById(9, 9);
+            row.onCheck(row);
+
+            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] })
+            expect(view['checkedByKey']).toEqual({});
+
+            view.update({ ...initialValue, checked: [9] }, viewProps);
+            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] })
+
+            expect(view['checkedByKey']).toEqual({ 9: true });
         });
     });
 
