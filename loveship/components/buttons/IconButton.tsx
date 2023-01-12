@@ -1,7 +1,6 @@
 import { IconButton as uuiIconButton, IconButtonProps as UuiIconButtonProps } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 import { commonControlColors } from "../types";
-import css from './IconButton.scss';
 
 
 export type IconColor = typeof commonControlColors[number];
@@ -14,7 +13,6 @@ export interface IconButtonMods {
 function applyIconButtonMods(mods: Omit<UuiIconButtonProps, 'color'> & IconButtonMods) {
     return [
         'uui-theme-loveship',
-        css.root,
         [`icon-button-color-${ mods.color || 'night600' }`],
     ];
 }
