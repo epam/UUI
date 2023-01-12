@@ -3,7 +3,7 @@ const { PackageGraph } = require("@lerna/package-graph");
 const fs = require("fs");
 const path = require("path");
 
-module.exports = { assertRunFromModule, readPackageJsonContent, getAllLocalDependenciesInfo }
+module.exports = { assertRunFromModule, readPackageJsonContent, getAllLocalDependenciesInfo, getAllMonorepoPackages }
 
 function readPackageJsonContent(dir) {
     const s = fs.readFileSync(path.resolve(dir, 'package.json')).toString('utf-8');
@@ -26,9 +26,9 @@ function getAllMonorepoPackages() {
     const packages = Project.getPackagesSync();
     const graph = new PackageGraph(packages);
     return packages.reduce((acc, p) => {
-        const { location: moduleRootDir, name } = p;
+        const { location: moduleRootDir, name, version } = p;
         const localDependencies = Array.from(graph.get(name).localDependencies.values()).map(d => d.name);
-        acc[name] = { moduleRootDir, localDependencies };
+        acc[name] = { name, version, moduleRootDir, localDependencies };
         return acc;
     }, {});
 }
