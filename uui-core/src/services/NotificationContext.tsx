@@ -14,7 +14,7 @@ export interface NotificationOperation {
 
 let idCounter = 0;
 
-export class NotificationContext extends BaseContext implements INotificationContext  {
+export class NotificationContext extends BaseContext implements INotificationContext {
     private notifications: NotificationOperation[] = [];
 
     constructor(private layoutCtx: LayoutContext) {
@@ -36,7 +36,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
 
         return new Promise((resolve, reject) => {
             const layer = this.layoutCtx.getLayer();
-            let durationTimer: number;
+            let durationTimer: ReturnType<typeof setTimeout>;
 
             const notificationProps: INotification = {
                 onClose: () => {
@@ -45,7 +45,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
                     reject();
                     this.update({});
                 },
-                onSuccess : () => {
+                onSuccess: () => {
                     this.remove(layer.id);
                     this.layoutCtx.releaseLayer(layer);
                     resolve();
@@ -55,7 +55,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
                 refreshTimer: () => {
                     if (params.duration !== 'forever') {
                         clearTimeout(durationTimer);
-                        durationTimer = window.setTimeout(() => {
+                        durationTimer = setTimeout(() => {
                             notificationProps.onClose();
                         }, params.duration * 1000);
                     }
@@ -65,12 +65,12 @@ export class NotificationContext extends BaseContext implements INotificationCon
             };
 
             if (params.duration !== 'forever') {
-                durationTimer = window.setTimeout(() => {
+                durationTimer = setTimeout(() => {
                     notificationProps.onClose();
                 }, params.duration * 1000);
             }
 
-            const operation: NotificationOperation = { component: NotificationAdapter, props: notificationProps, config: params};
+            const operation: NotificationOperation = { component: NotificationAdapter, props: notificationProps, config: params };
 
             this.notifications.push(operation);
 
