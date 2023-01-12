@@ -713,7 +713,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
             }
           >
             <div
-              className="root size-24 background-none padding-24 spacing-6 groupTitle container align-items-center"
+              className="root size-24 background-none padding-24 spacing-6 groupTitle groupTitleHidden container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
