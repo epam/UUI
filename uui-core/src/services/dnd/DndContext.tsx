@@ -1,4 +1,4 @@
-import { mouseCoords, getOffset } from '../../helpers';
+import { isClientSide, mouseCoords, getOffset } from '../../helpers';
 import * as React from 'react';
 import { IDndContext, DndContextState } from '../../types';
 import { BaseContext } from '../BaseContext';
@@ -18,8 +18,10 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
 
     constructor() {
         super();
-        window.addEventListener('pointermove', this.windowPointerMoveHandler);
-        window.addEventListener('pointerup', this.windowPointerUpHandler);
+        if (isClientSide) {
+            window.addEventListener('pointermove', this.windowPointerMoveHandler);
+            window.addEventListener('pointerup', this.windowPointerUpHandler);
+        }
     }
 
     public startDrag(node: HTMLElement, data: {}, renderGhost: () => React.ReactNode) {
@@ -34,7 +36,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
 
         // prepare scroll
         this.lastScrollTime = new Date().getTime();
-        window.requestAnimationFrame(() => this.scrollWindow());
+        isClientSide && window.requestAnimationFrame(() => this.scrollWindow());
 
         this.update({
             isDragging: true,
@@ -156,11 +158,11 @@ function getScrollParent(node: HTMLElement, dimension: 'x' | 'y'): HTMLElement {
     if (dimension === 'x') {
         overflow = style && style.overflowX;
         scrollSize = node.scrollWidth;
-        clientSize =  node.clientWidth;
+        clientSize = node.clientWidth;
     } else {
         overflow = style && style.overflowY;
         scrollSize = node.scrollHeight;
-        clientSize =  node.clientHeight;
+        clientSize = node.clientHeight;
     }
 
     const isScrollable = overflow !== 'visible' && overflow !== 'hidden';

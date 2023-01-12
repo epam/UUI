@@ -302,6 +302,50 @@ describe('LazyListView', () => {
         ]);
     });
 
+    it('should not update checkboxes if onValueChange is not updating them', async () => {
+        const mockOnValueChanged = jest.fn();
+        const getView = () => ds.getView(
+            value,
+            mockOnValueChanged,
+            {
+                getRowOptions: i => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: i => false,
+            },
+        );
+
+        let ds = treeDataSource;
+        let view = getView();
+        view.getVisibleRows();
+        await delay();
+
+        let row110 = view.getVisibleRows()[1];
+        expect(row110.id).toBe(110);
+        expect(row110.isChecked).toBe(false);
+        row110.onCheck(row110);
+
+        await delay();
+        view = getView();
+        await delay();
+
+        expect(mockOnValueChanged).toBeCalledWith({ checked: [row110.id], topIndex: 0, visibleCount: 3 })
+
+        expectViewToLookLike(view, [
+            { id: 100, isChecked: false },
+            { id: 110, isChecked: false },
+            { id: 120, isChecked: false },
+        ]);
+
+        view.update({...value, checked: [row110.id] }, view.props);
+
+        expect(mockOnValueChanged).toBeCalledWith({ checked: [row110.id], topIndex: 0, visibleCount: 3 })
+
+        expectViewToLookLike(view, [
+            { id: 100, isChecked: false },
+            { id: 110, isChecked: true },
+            { id: 120, isChecked: false },
+        ]);
+    });
+
     it('Adjust parent checkbox if children are checked', async () => {
         let ds = treeDataSource;
         value.visibleCount = 10;

@@ -7,7 +7,7 @@ const postCssDynamicImport = import("rollup-plugin-postcss-modules");
 const path = require('path')
 //
 const { getExternalDeps, getTsConfigFile } = require("./rollupConfigUtils");
-const { readPackageJsonContent } = require("./../utils/moduleUtils");
+const { readPackageJsonContent } = require("../utils/monorepoUtils");
 
 module.exports = { getConfig };
 
@@ -53,7 +53,10 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
                 inlineSources: true,
             }),
             commonjs(),// needed to import commonjs-only modules without "default" export (known examples: draft-js)
-            svgr({ ref: true, exportType: "named", jsxRuntime: "classic" }),
+            svgr({
+                ref: true, exportType: "named", jsxRuntime: "classic",
+                svgoConfig: { plugins: [{ name: 'preset-default', params: { overrides: { removeViewBox: false } } }] },
+            }),
             postcss({ sourceMap: true, modules: { hashPrefix: moduleName }, extract: "styles.css" }),
             visualizer({
                 // visualizer - must be the last in the list.
