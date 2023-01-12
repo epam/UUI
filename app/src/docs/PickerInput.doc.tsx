@@ -58,6 +58,10 @@ export class PickerInputDoc extends BaseDocsBlock {
                     path='./_examples/pickerInput/EditMode.example.tsx'
                 />
                 <DocExample
+                    title='Open picker in dropdown'
+                    path='./_examples/pickerInput/PickerInputInDropdown.example.tsx'
+                />
+                <DocExample
                     title='Picker with changed array of items'
                     path='./_examples/pickerInput/PickerWithChangingItemsArray.example.tsx'
                 />
