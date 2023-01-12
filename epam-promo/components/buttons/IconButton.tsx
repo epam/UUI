@@ -2,7 +2,6 @@ import React from 'react';
 import { withMods } from '@epam/uui-core';
 import { allEpamPrimaryColors, EpamPrimaryColor } from '../types';
 import { IconButton as uuiIconButton, IconButtonProps as UuiIconButtonProps } from '@epam/uui';
-import css from './IconButton.scss';
 
 
 export type IconColor = EpamPrimaryColor | 'gray30' | 'gray50' | 'gray60';
@@ -15,7 +14,6 @@ export interface IconButtonMods {
 function applyIconButtonMods(mods: Omit<UuiIconButtonProps, 'color'> & IconButtonMods) {
     return [
         'uui-theme-promo',
-        css.root,
         [`icon-button-color-${ mods.color || "gray60" }`],
     ];
 }

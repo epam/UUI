@@ -63,6 +63,35 @@
     --red: #E54322;
     --red-dark: #D53919;
     --red-darkest: #BE3316;
+
+    /* TODO: needs to resolve old colors question */
+    /* Loveship old colors */
+    --uui-color-carbon-700: #3D404D;
+    --uui-color-carbon-800: #272933;
+    --uui-color-carbon-900: #17181F;
+    --uui-color-cobalt-700: #0E74E2;
+    --uui-color-cobalt-800: #0453C7;
+    --uui-color-cobalt-900: #003399;
+    --uui-color-lavanda-700: #2E3A9D;
+    --uui-color-lavanda-800: #21288D;
+    --uui-color-lavanda-900: #191980;
+    --uui-color-fuchsia-700: #CD0053;
+    --uui-color-fuchsia-800: #B00052;
+    --uui-color-fuchsia-900: #94004C;
+    --uui-color-white-800: #E6E6E6;
+    --uui-color-white-900: #CCCCCC;
+    --uui-color-night200-800: #C9CEE4;
+    --uui-color-night200-900: #A7B0D3;
+    --uui-color-night300-800: #C2C6D7;
+    --uui-color-night300-900: #A4AAC2;
+    --uui-color-night400-800: #B1B4C5;
+    --uui-color-night400-900: #9398B0;
+    --uui-color-night500-800: #8F93A9;
+    --uui-color-night500-900: #727793;
+    --uui-color-night600-800: #555764;
+    --uui-color-night600-900: #3D3F49;
+    /* end Loveship old colors */
+
     --accent-color: var(--green);
     --accent-light-color: var(--green-light);
     --accent-lightest-color: var(--green-lightest);
@@ -182,6 +211,7 @@
     --secondary-hover-color: var(--gray60);
     --secondary-active-color: var(--gray70);
     --surface-dark-color: var(--gray90);
+
     /*  TextInput vars  */
     --text-input-bg-color: var(--input-bg-color);
     --text-input-bg-color-disabled: var(--input-bg-disabled-color);
@@ -201,11 +231,13 @@
     --text-input-icon-color-clickable: var(--icon-color);
     --text-input-icon-color-clickable-hover: var(--icon-hover-color);
     --text-input-border-radius: var(--border-radius);
+
     /*  LinkButton vars   */
     --link-button-text-color: var(--primary-color);
     --link-button-text-color-hover: var(--primary-dark-color);
     --link-button-text-color-active: var(--primary-darkest-color);
     --link-button-text-color-disabled: var(--button-caption-disabled-color);
+
     /*  DatePicker vars   */
     --uui-dtp-title-bg-color: var(--input-bg-color);
     --uui-dtp-title-bg-color-hover: var(--primary-halftone-color);
@@ -213,9 +245,11 @@
     --uui-dtp-text-color: var(--input-text-color);
     --uui-dtp-next-prev-icon-color: var(--icon-color);
     --uui-dtp-next-prev-icon-bg-hover: var(--secondary-lightest-color);
+
     /*  RangeDatePicker vars   */
     --uui-rdtp-bg-color: var(--input-bg-color);
     --uui-rdtp-bg-selected-date-color: var(--primary-lightest-color);
+
     /*  Calendar vars   */
     --uui-calendar-selected-color-hover: var(--input-bg-color);
     --uui-calendar-start-end-selected-color-hover: var(--primary-dark-color);
@@ -306,17 +340,16 @@
     --btn-caption-color-disabled: var(--btn-caption-disabled-color);
 }
 
-/*TODO: needs to match colors to white*/
 .button-color-white {
     --btn-bg-color: var(--contrast-color);
-    --btn-bg-color-hover: #E6E6E6;
-    --btn-bg-color-active: #CCCCCC;
+    --btn-bg-color-hover: var(--uui-color-white-800);
+    --btn-bg-color-active: var(--uui-color-white-900);
     --btn-bg-color-halftone: var(--btn-bg-halftone-color);
     --btn-bg-color-halftone-hover: var(--secondary-lightest-color);
     --btn-bg-color-halftone-active: var(--secondary-light-color);
     --btn-border-color: var(--contrast-color);
-    --btn-border-color-hover: #E6E6E6;
-    --btn-border-color-active: #CCCCCC;
+    --btn-border-color-hover: var(--uui-color-white-800);
+    --btn-border-color-active: var(--uui-color-white-900);
     --btn-bg-color-disabled: var(--disabled-color);
     --btn-border-color-disabled: var(--disabled-color);
     --btn-caption-color: var(--night800);
@@ -355,94 +388,76 @@
     --uui-icon-btn-color-active: var(--error-darkest-color);
     --uui-icon-btn-color-disabled: var(--icon-disabled-color);
 }
-/*
-700
-800
-900
-*/
-/*.icon-button-color-carbon {*/
-/*    --uui-icon-btn-color: #3D404D;*/
-/*    --uui-icon-btn-color-hover: #272933;*/
-/*    --uui-icon-btn-color-active: #17181F;*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
 
-/*.icon-button-color-cobalt {*/
-/*    --uui-icon-btn-color: var(--secondary-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
+.icon-button-color-carbon {
+    --uui-icon-btn-color: var(--uui-color-carbon-700);
+    --uui-icon-btn-color-hover: var(--uui-color-carbon-800);
+    --uui-icon-btn-color-active:  var(--uui-color-carbon-900);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+}
 
-/*.icon-button-color-lavanda {*/
-/*    --uui-icon-btn-color: var(--secondary-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
+.icon-button-color-cobalt {
+    --uui-icon-btn-color: var(--uui-color-cobalt-700);
+    --uui-icon-btn-color-hover: var(--uui-color-cobalt-800);
+    --uui-icon-btn-color-active: var(--uui-color-cobalt-900);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+}
 
-/*.icon-button-color-fuchsia {*/
-/*    --uui-icon-btn-color: var(--secondary-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
+.icon-button-color-lavanda {
+    --uui-icon-btn-color: var(--uui-color-lavanda-700);
+    --uui-icon-btn-color-hover: var(--uui-color-lavanda-800);
+    --uui-icon-btn-color-active: var(--uui-color-lavanda-900);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+}
 
-/*.icon-button-color-white {*/
-/*    --uui-icon-btn-color: var(--secondary-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
+.icon-button-color-fuchsia {
+    --uui-icon-btn-color: var(--uui-color-fuchsia-700);
+    --uui-icon-btn-color-hover: var(--uui-color-fuchsia-800);
+    --uui-icon-btn-color-active: var(--uui-color-fuchsia-900);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+}
 
-/*.icon-button-color-night50 {*/
-/*    --uui-icon-btn-color: var(--secondary-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
+.icon-button-color-white {
+    --uui-icon-btn-color: var(--white);
+    --uui-icon-btn-color-hover: var(--uui-color-white-800);
+    --uui-icon-btn-color-active: var(--uui-color-white-900);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+}
 
-/*.icon-button-color-night100 {*/
-/*    --uui-icon-btn-color: var(--secondary-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
+.icon-button-color-night200 {
+    --uui-icon-btn-color: var(--gray20);
+    --uui-icon-btn-color-hover: var(--uui-color-night200-800);
+    --uui-icon-btn-color-active: var(--uui-color-night200-900);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+}
 
-/*.icon-button-color-night200 {*/
-/*    --uui-icon-btn-color: var(--secondary-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
+.icon-button-color-night300 {
+    --uui-icon-btn-color: var(--gray30);
+    --uui-icon-btn-color-hover: var(--uui-color-night300-800);
+    --uui-icon-btn-color-active: var(--uui-color-night300-900);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+}
 
-/*.icon-button-color-night300 {*/
-/*    --uui-icon-btn-color: var(--secondary-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
+.icon-button-color-night400 {
+    --uui-icon-btn-color: var(--gray40);
+    --uui-icon-btn-color-hover: var(--uui-color-night400-800);
+    --uui-icon-btn-color-active: var(--uui-color-night400-900);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+}
 
-/*.icon-button-color-night400 {*/
-/*    --uui-icon-btn-color: var(--secondary-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
+.icon-button-color-night500 {
+    --uui-icon-btn-color: var(--gray50);
+    --uui-icon-btn-color-hover: var(--uui-color-night500-800);
+    --uui-icon-btn-color-active: var(--uui-color-night500-900);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+}
 
-/*.icon-button-color-night500 {*/
-/*    --uui-icon-btn-color: var(--secondary-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
-
-/*.icon-button-color-night600 {*/
-/*    --uui-icon-btn-color: var(--icon-color);*/
-/*    --uui-icon-btn-color-hover: var(--icon-hover-color);*/
-/*    --uui-icon-btn-color-active: var(--icon-active-color);*/
-/*    --uui-icon-btn-color-disabled: var(--icon-disabled-color);*/
-/*}*/
+.icon-button-color-night600 {
+    --uui-icon-btn-color: var(--gray60);
+    --uui-icon-btn-color-hover: var(--uui-color-night600-800);
+    --uui-icon-btn-color-active: var(--uui-color-night600-900);
+    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+}
 
 .checkbox-vars {
     --checkbox-border-color: var(--input-border-color);
