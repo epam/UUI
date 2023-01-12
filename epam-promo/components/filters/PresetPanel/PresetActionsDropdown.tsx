@@ -30,9 +30,10 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
     }, []);
 
     const saveInCurrent = useCallback(async (preset: ITablePreset) => {
-        const newPreset = {
+        const newPreset: ITablePreset = {
             ...preset,
             filter: props.tableState.filter,
+            sorting: props.tableState.sorting,
             columnsConfig: props.tableState.columnsConfig,
             filtersConfig: props.tableState.filtersConfig,
         };

@@ -292,7 +292,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     }, [handleSave]);
 
     const handleClose = useCallback(() => {
-        return lock.tryRelease();
+        return lock ? lock.tryRelease() : Promise.resolve();
     }, [lock]);
 
     return {
