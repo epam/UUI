@@ -62,6 +62,8 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICa
 
     /** Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter. */
     fixedBodyPosition?: boolean;
+
+    portalTarget?: HTMLElement;
 };
 
 interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
@@ -97,7 +99,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (prevValue !== props.value) {
             return {
                 ...state,
-                dataSourceState: {...applyValueToDataSourceState(props, state.dataSourceState, props.value, props.dataSource)},
+                dataSourceState: { ...applyValueToDataSourceState(props, state.dataSourceState, props.value, props.dataSource) },
             };
         }
         if (props.isDisabled && state.opened) {
@@ -371,6 +373,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 placement={ this.props.dropdownPlacement }
                 modifiers={ this.popperModifiers }
                 closeBodyOnTogglerHidden={ !isMobile() }
+                portalTarget={ this.props.portalTarget }
             />
         );
     }
