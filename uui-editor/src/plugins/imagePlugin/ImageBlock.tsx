@@ -76,7 +76,8 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
 
     renderToolbar(props: DropdownBodyProps) {
         return (
-            <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
+            // tabIndex should be specified to prevent `event.relatedTarget = null` in Safari
+            <div tabIndex={ -1 } className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
                 <ToolbarButton isActive={ this.isAlign('align-left') } icon={ AlignLeft } onClick={ () => this.toggleBlockAlignment('align-left', props) } />
                 <ToolbarButton isActive={ this.isAlign('align-center') } icon={ AlignCenter } onClick={ () => this.toggleBlockAlignment('align-center', props) } />
                 <ToolbarButton isActive={ this.isAlign('align-right') } icon={ AlignRight } onClick={ () => this.toggleBlockAlignment('align-right', props) } />
@@ -103,12 +104,12 @@ export class ImageBlock extends React.Component<ImageBlockProps> {
             <div className={ cx(css.leftTopDot, css.dot) } /><div className={ cx(css.rightTopDot, css.dot) } /><div className={ cx(css.leftBotDot, css.dot) } /><div className={ cx(css.rightBotDot, css.dot) } />
         </>;
 
-        let size = this.props.node.data.get('imageSize') || {width: 0, height: 0};
+        let size = this.props.node.data.get('imageSize') || { width: 0, height: 0 };
         let imageRatio = size.width / size.height;
         const maxWidth = this.getImageMaxWidth();
         const maxHeight = maxWidth ? maxWidth / imageRatio : '100%';
         return <Resizable
-            size={ { width: size.width, height: size.height} }
+            size={ { width: size.width, height: size.height } }
             onResizeStop={ (e: MouseEvent | TouchEvent, d: any, ref: HTMLDivElement) => {
                 this.setSize({
                     width: ref.clientWidth,
