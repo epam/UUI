@@ -31,10 +31,11 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
              * After:
              * "sources":["rollup://<moduleName>/./src/Test.tsx",...]
              */
+            const PREFIX = `rollup://${moduleName}/./`;
             if (isCss) {
-                return `rollup://${moduleName}/./`+relativeSourcePath;
+                return PREFIX + relativeSourcePath;
             }
-            return `rollup://${moduleName}/./`+path.join(`${moduleFolderName}/build`, relativeSourcePath);
+            return PREFIX + path.join(`${moduleFolderName}/build`, relativeSourcePath);
         }
     }
 
