@@ -19,7 +19,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ editor, plugins, isReadonly })
         const isSidebarVisible = editor?.value.focusBlock
             && editor?.value.selection.isFocused
             && !editor?.readOnly;
-        
+
         if (isSidebarVisible !== isVisible) {
             // delay is used to make mouse click work on elements outside editor before they moved because of sidebar disappearing
             timeoutIdRef.current = setTimeout(() => {
@@ -33,10 +33,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ editor, plugins, isReadonly })
     if (isReadonly || !isVisible) return null;
 
     return (
-        <div className={ cx("slate-prevent-blur", css.sidebar) } ref={ sidebarRef }>
+        // tabIndex should be specified to prevent `event.relatedTarget = null` in Safari
+        <div tabIndex={ -1 } className={ cx("slate-prevent-blur", css.sidebar) } ref={ sidebarRef }>
             { flatten(plugins).map((plugin: any) => (
                 plugin.sidebarButtons?.map((Button: any, index: number) => (
-                    <Button editor={ editor } key={ `button-${ index }` }/>
+                    <Button editor={ editor } key={ `button-${ index }` } />
                 ))
             )) }
         </div>
