@@ -9,6 +9,7 @@ const cssSourcemapPathTransformPlugin = require('./plugins/cssSourceMapTransform
 //
 const { getExternalDeps, getTsConfigFile } = require("./rollupConfigUtils");
 const { readPackageJsonContent } = require("../utils/monorepoUtils");
+const { getSourceMapTransform, onwarn } = require("./utils/rollupBuildUtils");
 
 module.exports = { getConfig };
 
@@ -20,32 +21,15 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
     const moduleFolderName = path.basename(moduleRootDir);
     const outDir = `${moduleRootDir}/build`;
     const extractedCssFileName = 'styles.css';
-
-    function getSourceMapTransform(isCss) {
-        return function sourcemapPathTransform(relativeSourcePath) {
-            /**
-             * It's needed to fix sources location path in "build/index.js.map" and "build/styles.css.map".
-             * So that source maps are grouped correctly in browser dev tools.
-             * Before:
-             * "sources":["../../src/Test.tsx",...]
-             * After:
-             * "sources":["rollup://<moduleName>/./src/Test.tsx",...]
-             */
-            const PREFIX = `rollup://${moduleName}/./`;
-            if (isCss) {
-                return PREFIX + relativeSourcePath;
-            }
-            return PREFIX + path.join(`${moduleFolderName}/build`, relativeSourcePath);
-        }
-    }
-
+    const jsSourceMapTransform = getSourceMapTransform({ type: 'js', moduleFolderName, moduleName})
+    const cssSourceMapTransform = getSourceMapTransform({ type: 'css', moduleFolderName, moduleName})
 
     /** @type {import('rollup').RollupOptions} */
     const config = {
         input: moduleIndexFile,
         output: [{
             file: `${outDir}/index.js`, format: "esm", interop: "auto",
-            sourcemap: true, sourcemapPathTransform: getSourceMapTransform(false),
+            sourcemap: true, sourcemapPathTransform: jsSourceMapTransform,
         }],
         external,
         plugins: [
@@ -72,9 +56,9 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
             }),
             postcss({
                 sourceMap: true, modules: { hashPrefix: moduleName },
-                extract: path.resolve(outDir, extractedCssFileName), to: extractedCssFileName }
-            ),
-            cssSourcemapPathTransformPlugin({outDir, extractedCssFileName, transform: getSourceMapTransform(true) }),
+                extract: path.resolve(outDir, extractedCssFileName), to: extractedCssFileName
+            }),
+            cssSourcemapPathTransformPlugin({outDir, extractedCssFileName, transform: cssSourceMapTransform }),
             visualizer({
                 // visualizer - must be the last in the list.
                 projectRoot: moduleRootDir,
@@ -87,18 +71,4 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
         onwarn,
     };
     return [config];
-}
-
-function onwarn(message) {
-    switch (message?.code) {
-        case 'CIRCULAR_DEPENDENCY': {
-            // skip for now, uncomment to see how many we have.
-            // console.warn(message.message)
-            break;
-        }
-        default: {
-            console.warn(message.message)
-            break;
-        }
-    }
 }
