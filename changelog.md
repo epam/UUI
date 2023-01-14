@@ -11,6 +11,7 @@
 * [PickerInput]: update correctly `dataSourceState` when programmatically handling previously loaded data, if API returns empty array
 * [ColumnsConfigurationModal]: Removed disabling of a checkbox if a column has a `fix` property and fixed the problem with pinning the column after unpinning, if it has `fix` property in the column config.
 * [NumericInput]: fixed `NumericInput` by preventing rounding up numbers if `formatOptions` are defined
+* [RTE]: fixed focus and blur in Safari, which is required to make RTE usable for Safari users
 
 # 4.9.2 - 14.12.2022
 
