@@ -1,10 +1,9 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import ReactMarkdown from 'react-markdown';
+import { UuiReactMarkdown } from "../documents/uuiReactMarkdown";
 import { cx } from '@epam/uui';
 import { FlexRow, LinkButton, RichTextView } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
-import { getCoreProps } from '../helpers/getCoreProps';
 import css from './ReleasesCell.scss';
 
 export interface ReleasesCellProps {
@@ -50,20 +49,7 @@ export class ReleasesCell extends React.Component<ReleasesCellProps, ReleasesCel
                                 { dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY') }
                             </div>
                         </FlexRow>
-                        <ReactMarkdown source={ releaseNotes } renderers={
-                            {
-                                heading: (props) => {
-                                    return React.createElement(`h4`, getCoreProps(props), ['# ', props.children]);
-                                },
-                                linkReference: (props) => {
-                                    if (!props.href) {
-                                        return <span>{ `[${ props.children[0].props.value }]` }</span>;
-                                    }
-                                    return <a href={ props.$ref } >{ props.children[0] }</a>;
-                                },
-                            }
-                        }
-                        />
+                        <UuiReactMarkdown content={ releaseNotes } />
                     </RichTextView>
                 </div>
                 {

@@ -7,7 +7,7 @@ exports[`Paginator should be rendered correctly 1`] = `
 >
   <button
     aria-disabled={true}
-    className="container uui-button-box uui-disabled -clickable root size-24 color-night400 fill-solid style-square fill-solid size-24"
+    className="container uui-button-box uui-disabled -clickable button-vars button-color-night400 root size-24 mode-solid uui-theme-loveship size-24 style-square fill-solid size-24"
     onClick={[Function]}
     tabIndex={-1}
     type="button"
@@ -23,92 +23,92 @@ exports[`Paginator should be rendered correctly 1`] = `
   </button>
   <button
     aria-current={true}
-    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-white style-square fill-white size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-sky root size-24 mode-outline uui-theme-loveship size-24 style-square fill-white size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
-      className="uui-caption line-height-18 font-size-12 v-padding-2"
+      className="uui-caption"
     >
       1
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-sky root size-24 mode-ghost uui-theme-loveship size-24 style-square fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
-      className="uui-caption line-height-18 font-size-12 v-padding-2"
+      className="uui-caption"
     >
       2
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-sky root size-24 mode-ghost uui-theme-loveship size-24 style-square fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
-      className="uui-caption line-height-18 font-size-12 v-padding-2"
+      className="uui-caption"
     >
       3
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-sky root size-24 mode-ghost uui-theme-loveship size-24 style-square fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
-      className="uui-caption line-height-18 font-size-12 v-padding-2"
+      className="uui-caption"
     >
       4
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-sky root size-24 mode-ghost uui-theme-loveship size-24 style-square fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
-      className="uui-caption line-height-18 font-size-12 v-padding-2"
+      className="uui-caption"
     >
       5
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled root size-24 color-sky fill-light style-square fill-light size-24"
+    className="container uui-button-box uui-enabled button-vars button-color-sky root size-24 mode-ghost uui-theme-loveship size-24 style-square fill-light size-24"
     onClick={[Function]}
     tabIndex={-1}
     type="button"
   >
     <div
-      className="uui-caption line-height-18 font-size-12 v-padding-2"
+      className="uui-caption"
     >
       ...
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable root size-24 color-sky fill-light style-square fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-sky root size-24 mode-ghost uui-theme-loveship size-24 style-square fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
-      className="uui-caption line-height-18 font-size-12 v-padding-2"
+      className="uui-caption"
     >
       10
     </div>
   </button>
   <button
     aria-disabled={false}
-    className="container uui-button-box uui-enabled -clickable root size-24 color-night400 fill-white style-square fill-white size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-color-night400 root size-24 mode-outline uui-theme-loveship size-24 style-square fill-white size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"

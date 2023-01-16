@@ -60,7 +60,7 @@
 
     :global(.uui-range-datepicker-in-range) {
         &:global(.uui-calendar-day-wrapper) {
-            background-color: $blue-lightest;
+            background-color: var(--uui-rdtp-bg-selected-date-color);
             border-radius: 0;
             width: 40px;
         }
@@ -84,6 +84,6 @@
     :global(.uui-range-datepicker-separator) {
         display: flex;
         flex: 0 0 auto;
-        border-left: 1px solid $gray40;
+        border-left: 1px solid var(--input-border-color);
     }
 }

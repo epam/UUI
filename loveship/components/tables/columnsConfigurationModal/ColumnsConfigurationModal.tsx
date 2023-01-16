@@ -2,7 +2,7 @@ import styles from "./ColumnsConfigurationModal.scss";
 import * as React from "react";
 import { useCallback, useMemo } from "react";
 //
-import { ColumnsConfig, DataColumnProps, IModal } from "@epam/uui-core";
+import { ColumnsConfig, CX, DataColumnProps, IModal } from "@epam/uui-core";
 import { useColumnsConfiguration } from "@epam/uui-components";
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
@@ -22,10 +22,12 @@ interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<Col
     columns: DataColumnProps<TItem, TId, TFilter>[];
 }
 
-const renderGroupTitle = (title: string, amount: number) => <FlexRow size="24" padding="24" spacing="6" cx={ styles.groupTitle }>
-    <Text cx={ styles.groupTitleText } font="sans-semibold" lineHeight="24" fontSize="14">{ title }</Text>
-    <Badge cx={ styles.groupTitleBadge } caption={ amount } color="night300" size="18" />
-</FlexRow>;
+const renderGroupTitle = (title: string, amount: number) => (
+    <FlexRow size="24" padding="24" spacing="6" cx={ styles.groupTitle }>
+        <Text cx={ styles.groupTitleText } font="sans-semibold" lineHeight="24" fontSize="14">{ title }</Text>
+        <Badge cx={ styles.groupTitleBadge } caption={ amount } color="night300" size="18" />
+    </FlexRow>
+);
 
 export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) {
     const { columns, columnsConfig: initialColumnsConfig, defaultConfig, ...modalProps } = props;
