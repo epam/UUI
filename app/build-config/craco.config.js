@@ -5,6 +5,7 @@ const { DIRS_FOR_BABEL, CSS_URL_ROOT_PATH, ENTRY_WITH_EXTRACTED_DEPS_CSS,
 const SVGRLoader = require.resolve("@svgr/webpack");
 const FileLoader = require.resolve("file-loader");
 const { uuiCustomFormatter } = require("./utils/issueFormatter");
+const { whenDev } = require("@craco/craco")
 
 /**
  * Note: This is still experimental.
@@ -27,6 +28,9 @@ module.exports = function uuiConfig() {
 };
 
 function configureWebpack(config, { paths }) {
+    whenDev(() => {
+        config.devtool = "eval-source-map";
+    })
     if (isUseBuildFolderOfDeps) {
         paths.appIndexJs = ENTRY_WITH_EXTRACTED_DEPS_CSS;
         config.entry = ENTRY_WITH_EXTRACTED_DEPS_CSS;
