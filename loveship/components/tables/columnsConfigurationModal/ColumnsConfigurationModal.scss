@@ -15,10 +15,10 @@
                 font-family: $font-sans-semibold;
             }
         }
-    }
 
-    .group-title-hidden {
-        padding-top: 12px;
+        &:not(:first-child) {
+            padding-top: 12px;
+        }
     }
 
     .group-items {
