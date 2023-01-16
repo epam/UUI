@@ -2,7 +2,6 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
-import '../../assets/styles/variables/buttons/tabButton.scss';
 import css from './TabButton.scss';
 
 export interface TabButtonMods {
@@ -10,9 +9,10 @@ export interface TabButtonMods {
     withNotify?: boolean;
 }
 
-function applyTabButtonMods(mods: TabButtonMods & ButtonProps) {
+export type TabButtonProps = TabButtonMods & ButtonProps;
+
+function applyTabButtonMods(mods: TabButtonProps) {
     return [
-        'tab-button-vars',
         css.root,
         css['size-' + (mods.size || '48')],
         mods.withNotify && css.uuiNotification,

@@ -254,6 +254,14 @@
     --uui-calendar-text-color: var(--input-text-color);
     --uui-calendar-text-color-filtered: var(--input-text-disabled-color);
     --uui-calendar-bg-selected: var(--secondary-color);
+
+    /*  tab-button-vars     */
+    --tab-button-text-color: var(--text-primary-color);
+    --tab-button-text-color-hover: var(--primary-color);
+    --tab-button-text-color-active: var(--primary-color);
+    --tab-button-text-color-disabled: var(--text-disabled-color);
+    --tab-button-count-bg-color: var(--gray30);
+    --tab-button-count-color: var(--text-secondary-color);
 }
 
 .tooltip-light {
@@ -821,15 +829,6 @@
 
 .informer-vars {
     --informer-border-radius: 50px;
-}
-
-.tab-button-vars {
-    --tab-button-text-color: var(--text-primary-color);
-    --tab-button-text-color-hover: var(--primary-color);
-    --tab-button-text-color-active: var(--primary-color);
-    --tab-button-text-color-disabled: var(--text-disabled-color);
-    --tab-button-count-bg-color: #FFFFFF;
-    --tab-button-count-color: var(--text-secondary-color);
 }
 
 .icon-container-color-info {
