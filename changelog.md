@@ -79,7 +79,7 @@ With this release you already can build editable tables. However, we are plannin
   * DataTableCell interface extended to support editable cells (backward compatible)
 
 * ArrayDataSource - ```items``` prop value can now be updated dynamically.
-  Prior to this fix, the only way to update ```items```, is to add them as `useArrayDataSource` dependencies. This forces DataSource to re-create everything, forcing re-render of all tables' rows. This was slow, especially if you need to make cells editable - i.e. re-render on each keystroke. Now, you can safely remove your items from deps: useArrayDataSource(..., ~~~[items]~~~), which will improve performance.
+  Prior to this fix, the only way to update ```items```, is to add them as `useArrayDataSource` dependencies. This forces DataSource to re-create everything, forcing re-render of all tables' rows. This was slow, especially if you need to make cells editable - i.e. re-render on each keystroke. Now, you can safely remove your items from deps: useArrayDataSource(..., ~~[items]~~), which will improve performance.
 * DataSources: ```getRowOptions``` is called on each update, allowing to dynamically change rows behavior. For example, you can dynamically enable/disable checkboxes in Tables or PickerInputs.
 * DataSources: getRowOptions - DataRowOptions now implements `IEditable<TItem>` interface. This allows to make rows editable, by passing value/onValueChange directly, or by using lens.toProps(): `getRowOptions(item) => lens.prop(item.id).toProps()`
 
