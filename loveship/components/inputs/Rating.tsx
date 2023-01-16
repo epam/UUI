@@ -8,14 +8,13 @@ import { ReactComponent as EmptyStarIcon } from '../icons/star-empty.svg';
 import { Tooltip } from '../overlays';
 
 export interface RatingMods {
-    color?: types.EpamColor;
     size?: 18 | 24 | 30;
 }
 
 function applyRatingMods(mods: RatingMods & RatingProps) {
     return [
         css.root,
-        !mods.isDisabled && styles['color-' + (mods.color || 'sun')],
+        styles['color-sun'],
         css['size-' + (mods.size || '18')],
     ];
 }
