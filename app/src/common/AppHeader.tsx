@@ -109,7 +109,7 @@ export class AppHeader extends React.Component {
             {id: 'logo', priority: 100499, render: () => <MainMenuLogo
                     link={ { pathname: '/' } }
                     onClick={ () => this.sendEvent('Welcome') }
-                    logoUrl='/static/christmas/logo.svg'
+                    logoUrl='/static/logo.svg'
                 />,
             },
             { id: 'documents', priority: 3, render: () => <MainMenuButton
