@@ -1,5 +1,5 @@
 import React, { FC, PointerEventHandler } from "react";
-import * as cx from './ReplicationMarker.scss';
+import cx from './ReplicationMarker.scss';
 import classNames from "classnames";
 import { useReplication } from "./useReplication";
 
