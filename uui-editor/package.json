@@ -27,7 +27,7 @@
     "lodash.flatten": "4.4.0",
     "re-resizable": "6.0.0",
     "react-broadcast": "0.7.1",
-    "react-popper": "2.2.5",
+    "react-popper": "2.3.0",
     "slate": "0.47.9",
     "slate-drop-or-paste-images": "0.9.1",
     "slate-html-serializer": "0.8.5",

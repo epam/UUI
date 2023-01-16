@@ -3,7 +3,7 @@ import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRa
 import { IconContainer } from '../layout';
 import css from './Accordion.scss';
 
-export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     /** Accordion title */
     title?: string | React.ReactElement;
     /** Overrides default title rendering. */
@@ -13,6 +13,10 @@ export interface AccordionProps extends Partial<IEditable<boolean>>, IHasCX, IDi
     /** Renders additional items to component's header (after the title, and before the folding icon) */
     renderAdditionalItems?: (isOpen: boolean) => React.ReactNode;
 }
+
+type EditableAccordionProps = GeneralAccordionProps & IEditable<boolean>;
+
+export type AccordionProps = GeneralAccordionProps | EditableAccordionProps;
 
 export interface AccordionState {
     opened: boolean;
@@ -25,14 +29,20 @@ const uuiAccordion = {
     body: 'uui-accordion-body',
 };
 
+const isEditableAccordionProps = (props: AccordionProps): props is EditableAccordionProps =>
+    (props as EditableAccordionProps).onValueChange !== undefined;
+
 export class Accordion extends React.Component<AccordionProps, AccordionState> {
     state = {
-        opened: this.props.value || false,
+        opened: isEditableAccordionProps(this.props) ? this.props.value : false,
     };
 
     private toggleAccordion = () => {
         const opened = this.isOpened();
-        this.props.onValueChange ? this.props.onValueChange(!opened) : this.setState({ opened: !opened });
+
+        isEditableAccordionProps(this.props)
+            ? this.props.onValueChange(!opened)
+            : this.setState({ opened: !opened });
     }
 
     private handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
@@ -42,7 +52,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
     }
 
     isOpened = () => {
-        return this.props.value !== undefined ? this.props.value : this.state.opened;
+        return isEditableAccordionProps(this.props) ? this.props.value : this.state.opened;
     }
 
     renderHeader = () => {
