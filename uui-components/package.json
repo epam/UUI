@@ -20,7 +20,7 @@
     "@types/lodash.orderby": "4.6.6",
     "@types/lodash.range": "3.2.6",
     "@types/query-string": "6.1.0",
-    "@types/react-measure": "2.0.6",
+    "@types/react-measure": "2.0.8",
     "@types/react-transition-group": "4.4.4",
     "classnames": "2.2.6",
     "csstype": "2.6.10",
@@ -30,10 +30,10 @@
     "lodash.orderby": "4.6.0",
     "lodash.range": "3.2.0",
     "lodash.sortby": "4.5.0",
-    "react-custom-scrollbars-2": "^4.4.0",
-    "react-focus-lock": "2.7.1",
+    "react-custom-scrollbars-2": "^4.5.0",
+    "react-focus-lock": "2.9.2",
     "react-measure": "2.5.2",
-    "react-popper": "2.2.5",
+    "react-popper": "2.3.0",
     "react-transition-group": "4.4.2"
   },
   "peerDependencies": {
