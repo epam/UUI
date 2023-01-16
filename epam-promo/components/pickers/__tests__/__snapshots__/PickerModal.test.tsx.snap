@@ -1002,7 +1002,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1059,7 +1059,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1116,7 +1116,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1173,7 +1173,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1230,7 +1230,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1287,7 +1287,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1344,7 +1344,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1401,7 +1401,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1458,7 +1458,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1515,7 +1515,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
@@ -1572,7 +1572,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                     }
                   >
                     <label
-                      className="container uui-checkbox-container root size-18 mode-form checkbox-color-blue checkbox -clickable"
+                      className="container uui-checkbox-container root size-18 mode-form uui-theme-promo checkbox -clickable"
                       tabIndex={-1}
                     >
                       <div
