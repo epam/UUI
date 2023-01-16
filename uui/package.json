@@ -20,7 +20,7 @@
     "dayjs": "1.10.7"
   },
   "devDependencies": {
-    "react-test-renderer": "16.13.1",
+    "react-test-renderer": "18.2.0",
     "enzyme": "^3.9.0"
   },
   "peerDependencies": {
