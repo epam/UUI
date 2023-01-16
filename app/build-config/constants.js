@@ -23,7 +23,6 @@ const LIBS_WITHOUT_SOURCE_MAPS = [
     /node_modules[\\/]codesandbox/g,
     /node_modules[\\/]@mercuriya/g,
 ]
-const VFILE_SPECIAL_CASE_REGEX = /[\\/]node_modules[\\/]vfile[\\/]core\.js/;
 
 module.exports = {
     ENTRY_WITH_EXTRACTED_DEPS_CSS,
@@ -31,5 +30,4 @@ module.exports = {
     CSS_URL_ROOT_PATH,
     DEV_SERVER_WATCHER_IGNORED_REGEXP,
     LIBS_WITHOUT_SOURCE_MAPS,
-    VFILE_SPECIAL_CASE_REGEX,
 };
