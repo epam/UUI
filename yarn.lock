@@ -2,7 +2,6 @@
 # yarn lockfile v1
 
 
-
 "@amplitude/types@^1.10.2":
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/@amplitude/types/-/types-1.10.2.tgz#8f3c6c3c9ee24f401ee037b351c3c67eb945eefc"
@@ -1289,6 +1288,13 @@
   version "4.5.3"
   resolved "https://registry.yarnpkg.com/@epam/assets/-/assets-4.5.3.tgz#0391330577230addee7307d4ddb69fb030c2920e"
   integrity sha512-hc6U3UxrpXX44BhwU85N+AXGClN4K18Axou1g+eRs7cJQ8SpR7l6Z9cPyoBaqTpuDUJs2UjjQGhhjFF4YNEGuw==
+  dependencies:
+    normalize.css "^7.0.0"
+
+"@epam/assets@4.9.1":
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/@epam/assets/-/assets-4.9.1.tgz#d327703e672efd57194582e3ff3060d3a0137fbe"
+  integrity sha512-hebcxuzir3C7x1L/17splhrwaebxeAd6/xqA9Qg4ufn338LCCcQjhFkuZDigYB5CvL6S87k6w3dJ51/Pu+ljaA==
   dependencies:
     normalize.css "^7.0.0"
 
@@ -15743,6 +15749,16 @@ react-shallow-renderer@^16.13.1, react-shallow-renderer@^16.15.0:
   dependencies:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0 || ^18.0.0"
+
+react-test-renderer@16.13.1:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.13.1.tgz#de25ea358d9012606de51e012d9742e7f0deabc1"
+  integrity sha512-Sn2VRyOK2YJJldOqoh8Tn/lWQ+ZiKhyZTPtaO0Q6yNj+QDbmRkVFap6pZPy3YQk8DScRDfyqm/KxKYP9gCMRiQ==
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    react-is "^16.8.6"
+    scheduler "^0.19.1"
 
 react-test-renderer@18.2.0:
   version "18.2.0"
