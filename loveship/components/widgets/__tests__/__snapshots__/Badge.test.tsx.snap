@@ -3,9 +3,7 @@
 exports[`Badge should be rendered correctly 1`] = `
 <button
   className="container uui-button-box uui-enabled root style-square size-18 fill-solid color-sky root"
-  href={null}
   onClick={[Function]}
-  role="button"
   tabIndex={-1}
   type="button"
 />
@@ -14,9 +12,7 @@ exports[`Badge should be rendered correctly 1`] = `
 exports[`Badge should be rendered correctly with props 1`] = `
 <button
   className="container uui-button-box uui-enabled -clickable root style-square size-12 fill-light color-sky root"
-  href={null}
   onClick={[Function]}
-  role="button"
   tabIndex={0}
   type="button"
 >

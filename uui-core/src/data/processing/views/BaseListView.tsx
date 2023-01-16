@@ -29,7 +29,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     protected updateRowOptions(): void {
         if (this.props.getRowOptions) {
-            for(let n = 0; n < this.rows.length; n++) {
+            for (let n = 0; n < this.rows.length; n++) {
                 const row = this.rows[n];
                 if (!row.isLoading) {
                     this.applyRowOptions(row);
@@ -46,8 +46,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected handleCheckedChange(checked: TId[]) {
-        this.updateCheckedLookup(checked);
-        this.onValueChange({ ...this.value, checked });
+        this.onValueChange({ ...this.value, checked })
     }
 
     protected idToKey(id: TId) {

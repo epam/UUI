@@ -6,8 +6,8 @@ export class DropdownDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/overlays/docs/dropdown.doc.tsx',
-            [UUI4]: './epam-promo/components/overlays/docs/dropdown.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/overlays/dropdown.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/overlays/dropdown.props.tsx',
         };
     }
 
@@ -18,27 +18,27 @@ export class DropdownDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/dropdown/Basic.example.tsx'
+                    path='./_examples/dropdown/Basic.example.tsx'
                 />
 
                 <DocExample
                     title='Dropdown Open/Close modifiers'
-                    path='./examples/dropdown/CloseOpenModifiers.example.tsx'
+                    path='./_examples/dropdown/CloseOpenModifiers.example.tsx'
                 />
 
                 <DocExample
                     title='Set delay for dropdown body opening or closing'
-                    path='./examples/dropdown/DelayForOpenAndClose.example.tsx'
+                    path='./_examples/dropdown/DelayForOpenAndClose.example.tsx'
                 />
 
                 <DocExample
                     title='Handle dropdown state by yourself'
-                    path='./examples/dropdown/HandleStateByYourself.example.tsx'
+                    path='./_examples/dropdown/HandleStateByYourself.example.tsx'
                 />
 
                 <DocExample
                     title='Close dropdown from body'
-                    path='./examples/dropdown/CloseFromBody.example.tsx'
+                    path='./_examples/dropdown/CloseFromBody.example.tsx'
                 />
             </>
         );

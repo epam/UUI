@@ -1,7 +1,7 @@
 const path = require("path");
-const { getBabelProcessedFolders } = require("./utils/packageUtils");
+const { getBabelProcessedFolders } = require("./utils/appDepsUtils");
 const { normSlashes } = require("./utils/configUtils");
-const { assertRunFromModule } = require("../../uui-build/utils/moduleUtils");
+const { assertRunFromModule } = require("../../uui-build/utils/monorepoUtils");
 
 const makeAbsolute = pathStr => path.resolve(UUI_ROOT, pathStr)
 
@@ -11,6 +11,7 @@ assertRunFromModule('app');
 const UUI_ROOT = path.resolve(normSlashes('../'));
 
 const DIRS_FOR_BABEL = getBabelProcessedFolders({ uuiRoot: UUI_ROOT });
+const ENTRY_WITH_EXTRACTED_DEPS_CSS = path.resolve(UUI_ROOT, 'app/src/index.build.tsx');
 
 const CSS_URL_ROOT_PATH = makeAbsolute(normSlashes('app/public'));
 
@@ -25,6 +26,7 @@ const LIBS_WITHOUT_SOURCE_MAPS = [
 const VFILE_SPECIAL_CASE_REGEX = /[\\/]node_modules[\\/]vfile[\\/]core\.js/;
 
 module.exports = {
+    ENTRY_WITH_EXTRACTED_DEPS_CSS,
     DIRS_FOR_BABEL,
     CSS_URL_ROOT_PATH,
     DEV_SERVER_WATCHER_IGNORED_REGEXP,
