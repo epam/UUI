@@ -3,9 +3,7 @@
 exports[`MainMenuButton should be rendered correctly 1`] = `
 <button
   className="container uui-button-box uui-enabled root type-primary"
-  href={null}
   onClick={[Function]}
-  role="button"
   tabIndex={-1}
   type="button"
 />
@@ -15,6 +13,7 @@ exports[`MainMenuButton should be rendered correctly 2`] = `
 <a
   className="container uui-button-box uui-enabled -clickable root type-primary"
   onClick={[Function]}
+  rel="noopener noreferrer"
   role="link"
   tabIndex={0}
   target="_blank"

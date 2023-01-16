@@ -6,8 +6,8 @@ export class TextAreaDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/textArea.doc.ts',
-            [UUI4]: './epam-promo/components/inputs/docs/textArea.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/textArea.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/textArea.props.ts',
         };
     }
 
@@ -18,11 +18,11 @@ export class TextAreaDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/textArea/Basic.example.tsx'
+                    path='./_examples/textArea/Basic.example.tsx'
                 />
                 <DocExample
                     title='Advanced'
-                    path='./examples/textArea/Advanced.example.tsx'
+                    path='./_examples/textArea/Advanced.example.tsx'
                 />
             </>
         );

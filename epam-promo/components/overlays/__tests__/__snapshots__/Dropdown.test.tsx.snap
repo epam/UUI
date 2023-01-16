@@ -2,10 +2,8 @@
 
 exports[`Dropdown should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable button-vars button-color-primary root size-36 mode-solid uui-theme-promo"
-  href={null}
+  className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
   onClick={[Function]}
-  role="button"
   tabIndex={0}
   type="button"
 >
@@ -27,10 +25,8 @@ exports[`Dropdown should be rendered correctly 1`] = `
 
 exports[`Dropdown should be rendered correctly 2`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable button-vars button-color-primary root size-36 mode-solid uui-theme-promo"
-  href={null}
+  className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
   onClick={[Function]}
-  role="button"
   tabIndex={0}
   type="button"
 >

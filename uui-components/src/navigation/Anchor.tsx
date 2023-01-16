@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {
     handleSpaceKey, uuiMod, uuiElement, uuiMarkers, IHasRawProps, UuiContext, IHasForwardedRef,
     IHasCX, ICanRedirect, IHasChildren, UuiContexts, IDisableable, IClickable, cx, IAnalyticableClick,
@@ -6,7 +6,7 @@ import {
 import { ButtonBase } from '../buttons';
 import css from './Anchor.scss';
 
-export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IAnalyticableClick, IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>, IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> {}
+export interface AnchorProps extends IHasCX, ICanRedirect, IHasChildren, IDisableable, IClickable, IAnalyticableClick, IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>, IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> { }
 
 export class AnchorImpl extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
@@ -27,6 +27,9 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
             href = this.props.href;
         }
 
+        const { target } = this.props;
+        const relProp = target === '_blank' ? { rel: 'noopener noreferrer' } : {};
+
         return React.createElement('a', {
             className: cx(
                 css.container,
@@ -39,7 +42,8 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
             tabIndex: this.props.isDisabled ? -1 : 0,
             href,
             role: 'link',
-            target: this.props.target,
+            target,
+            ...relProp,
             ref: this.props.forwardedRef,
             onClick: this.clickHandler,
             onKeyDown: this.handleKeyDown,
