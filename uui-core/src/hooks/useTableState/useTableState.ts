@@ -159,7 +159,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         return !isEqual(preset?.filter, tableStateValue.filter)
             || !isEqual(preset?.columnsConfig, tableStateValue.columnsConfig)
             || !isEqual(preset?.sorting, tableStateValue.sorting);
-    }, [tableStateValue.columnsConfig,  tableStateValue.filter]);
+    }, [tableStateValue.columnsConfig,  tableStateValue.filter, tableStateValue.sorting]);
 
     const duplicatePreset = useCallback(async (preset: ITablePreset<TFilter>) => {
         const newPreset: ITablePreset<TFilter> = {
@@ -210,7 +210,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
 };
 
 interface IParams<TFilter = Record<string, any>> {
-    columns: DataColumnProps[];
+    columns?: DataColumnProps[];
     filters?: TableFiltersConfig<TFilter>[];
     initialFilter?: TFilter;
     initialPresets?: ITablePreset<TFilter>[];
