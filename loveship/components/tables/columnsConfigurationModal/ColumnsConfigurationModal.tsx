@@ -22,8 +22,8 @@ interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<Col
     columns: DataColumnProps<TItem, TId, TFilter>[];
 }
 
-const renderGroupTitle = (title: string, amount: number, additionalCx?: CX) => (
-    <FlexRow size="24" padding="24" spacing="6" cx={ [styles.groupTitle, additionalCx] }>
+const renderGroupTitle = (title: string, amount: number) => (
+    <FlexRow size="24" padding="24" spacing="6" cx={ styles.groupTitle }>
         <Text cx={ styles.groupTitleText } font="sans-semibold" lineHeight="24" fontSize="14">{ title }</Text>
         <Badge cx={ styles.groupTitleBadge } caption={ amount } color="night300" size="18" />
     </FlexRow>
@@ -69,7 +69,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         }
         return (
             <>
-                { renderGroupTitle(i18nLocal.hiddenSectionTitle, amountHidden, styles.groupTitleHidden) }
+                { renderGroupTitle(i18nLocal.hiddenSectionTitle, amountHidden) }
                 <FlexRow cx={ styles.groupItems } size="30" spacing={ null }>
                     { groupedColumns.hidden.map(c => <ColumnRow column={ c } key={ c.key } />) }
                 </FlexRow>
