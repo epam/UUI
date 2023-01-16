@@ -35,7 +35,7 @@ const TableDataContext1 = createContext<TableDataContextState>(null);
 
 const TableDataContext2 = createContext<TableDataContextState>(null);
 
-export const TableDataContextProvider1: FC = ({ children }) => {
+export const TableDataContextProvider1: FC<{ children: React.ReactNode }> = ({ children }) => {
     const [value, setValue] = useState<TableDataContextState[0]>(initialValue1);
 
     const state = useMemo<TableDataContextState>(() => ([value, setValue]), [value]);
@@ -43,7 +43,7 @@ export const TableDataContextProvider1: FC = ({ children }) => {
     return <TableDataContext1.Provider value={ state }>{ children }</TableDataContext1.Provider>;
 };
 
-export const TableDataContextProvider2: FC = ({ children }) => {
+export const TableDataContextProvider2: FC<{ children: React.ReactNode }> = ({ children }) => {
     const [value, setValue] = useState<TableDataContextState[0]>(initialValue2);
 
     const state = useMemo<TableDataContextState>(() => ([value, setValue]), [value]);
