@@ -1,24 +1,18 @@
 import * as types from '../types';
-import css from './Checkbox.scss';
-import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
+import { Checkbox as uuiCheckbox, CheckboxProps, CheckboxMods as UuiCheckboxMods } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
+// import css from './Checkbox.scss'; // keep it for dark / light theme on future
 import { ReactComponent as TickIcon } from '../icons/checkbox-checked.svg';
 import { ReactComponent as IndeterminateIcon } from '../icons/checkbox-partial.svg';
-import styles from '../../assets/styles/scss/loveship-color-vars.scss';
 
-export interface CheckboxMods extends types.ColorMod {
-    size?: '12' | '18';
+export interface CheckboxMods extends UuiCheckboxMods, types.ColorMod {
     theme?: 'light' | 'dark';
-    mode?: 'form' | 'cell';
 }
 
 export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
     return [
-        css.root,
-        css['size-' + (mods.size || '18')],
-        css['theme-' + (mods.theme || 'light')],
-        css['mode-' + (mods.mode || 'form')],
-        styles['color-' + (mods.color || 'sky')],
+        'uui-theme-loveship',
+        // css['theme-' + (mods.theme || 'light')],
     ];
 }
 
