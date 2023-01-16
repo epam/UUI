@@ -5,7 +5,7 @@ import { Person } from '@epam/uui-docs';
 import { DropdownBodyProps } from '@epam/uui-components';
 import css from './PickerInputInDropdown.scss';
 
-export default function PickerInputInDropdownExample() {
+export default function ConfigurePortalTargetAndPlacement() {
     const svc = useUuiContext();
     const [value, onValueChange] = useState<number[]>([]);
     const portalTargetRef = useRef<HTMLDivElement>(null);
@@ -29,7 +29,7 @@ export default function PickerInputInDropdownExample() {
                             entityName='person'
                             selectionMode='multi'
                             valueType='id'
-                            editMode='dropdown'
+                            dropdownPlacement='right-start'
                             portalTarget={ portalTargetRef.current }
                         />
                     </FlexCell>
