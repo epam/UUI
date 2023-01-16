@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { uuiMarkers, DataTableCellProps, ICanBeInvalid, TooltipCoreProps, withMods, DataTableCellOverlayProps } from '@epam/uui-core';
 import { IconContainer, DragHandle, DataTableCell as UuiDataTableCell, DataTableCellOverlay as UuiDataTableCellOverlay } from '@epam/uui-components';
+import { ReplicationMarker } from "@epam/uui-components/src/table/ReplicationMarker";
 import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Checkbox } from '../inputs';
 import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
 import css from './DataTableCell.scss';
 import { Tooltip } from '../overlays';
-import { ReplicationMarker } from "@epam/uui-components/src/table/ReplicationMarker";
 
 function renderTooltip(props: ICanBeInvalid & TooltipCoreProps): React.ReactElement {
     return <Tooltip color='red' { ...props } />;

@@ -23,7 +23,7 @@ const INITIAL_ALLOWED_DIRECTIONS: AllowedReplicationDirections = {
     left: true,
 };
 
-type DataReplicationProviderProps<Value = any> = ReplicationContextProviderProps<Value> & Parameters<FC<ReplicationContextProviderProps<Value>>>[0];
+type DataReplicationProviderProps<Value = any> = ReplicationContextProviderProps<Value> & Parameters<FC<ReplicationContextProviderProps<Value>>>[0] & { children?: React.ReactNode };
 
 export function DataReplicationProvider<Value = any>({ onReplicate, allowedDirections = INITIAL_ALLOWED_DIRECTIONS, columnDataTypes, children }: DataReplicationProviderProps<Value>) {
     const [replicationRange, setReplicationRange] = useState<ReplicationRange>(null);
