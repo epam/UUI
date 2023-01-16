@@ -25,6 +25,7 @@ describe('Avatar', () => {
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();
+
     });
 });
 

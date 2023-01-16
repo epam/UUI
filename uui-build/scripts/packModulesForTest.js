@@ -3,7 +3,7 @@
  * The output will be located next to the UUI repo root inside "packModulesForTest-output" folder.
  */
 const {runCliCommand} = require("../utils/cmdUtils");
-const {getWorkspaceFoldersNames} = require("../utils/monorepoUtils");
+const { getAllMonorepoPackages } = require("../utils/monorepoUtils");
 const {logger} = require("../utils/loggerUtils");
 const path = require('path');
 const fs = require('fs');
@@ -11,7 +11,7 @@ const fs = require('fs');
 const destRootArg = './../packModulesForTest-output';
 const uuiRoot = path.resolve('./../..');
 
-const EXCLUDE_DIRS = ['app', 'uui-build'];
+const EXCLUDED_PACKAGES = ['@epam/app', '@epam/uui-build'];
 
 function getPackDestinationDir() {
     // must be relative to root.
@@ -26,29 +26,36 @@ function getPackDestinationDir() {
     return dest;
 }
 
-function getPkgArchiveFileName(pj) {
-    const { version, name } = pj;
+function getPkgArchiveFileName(pkg) {
+    const { version, name } = pkg;
     return `${name.replace('/', '-').replace('@', '')}-${version}.tgz`
 }
 
+/**
+ * @param moduleRootDir
+ * @param packDestination
+ * @returns full path to the tgz archive.
+ */
+async function npmPackSingleModule({ pkg, packDestination }) {
+    const { moduleRootDir } = pkg
+    const cwd = path.resolve(moduleRootDir, './build');
+    await runCliCommand(cwd, `npm pack --pack-destination=${packDestination}`);
+    return path.resolve(packDestination, getPkgArchiveFileName(pkg));
+}
+
 async function main() {
-    const dest = getPackDestinationDir();
-    const dirs = getWorkspaceFoldersNames({ uuiRoot });
-    const dirsFiltered = dirs.filter(d => !EXCLUDE_DIRS.find(e => e === d));
+    const packDestination = getPackDestinationDir();
+    const allPackages = Object.values(getAllMonorepoPackages()).filter(d => !EXCLUDED_PACKAGES.find(e => e === d.name));
 
     const packageJsonDeps = {};
-    const promises = dirsFiltered.map(d => {
-        const cwd = path.resolve(uuiRoot, d, './build');
-        const pj = JSON.parse(fs.readFileSync(path.resolve(cwd, 'package.json')));
-        const { name } = pj;
-        return runCliCommand(cwd, `npm pack --pack-destination=${dest}`).then(() => {
-            logger.success(`npm pack success. "${cwd}".`);
-            packageJsonDeps[name] = path.resolve(dest, getPkgArchiveFileName(pj))
-        }).catch((err) => {
-            packageJsonDeps[name] = 'err!'
-            logger.error(`npm pack error. "${cwd}".`)
+    const promises = allPackages.map(async (pkg) => {
+        try {
+            packageJsonDeps[pkg.name] = await npmPackSingleModule({ pkg, packDestination });
+        } catch (err) {
+            packageJsonDeps[pkg.name] = 'err!'
+            logger.error(`pack error. "${moduleRootDir}".`)
             logger.error(err)
-        });
+        }
     });
     await Promise.all(promises);
     const deps = JSON.stringify(packageJsonDeps, undefined, 2)

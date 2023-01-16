@@ -1,10 +1,11 @@
-const {removeRuleByTestAttr, replaceRuleByTestAttr, changeRuleByTestAttr, normSlashes, addRule} = require("./utils/configUtils");
+const {removeRuleByTestAttr, replaceRuleByTestAttr, changeRuleByTestAttr, normSlashes} = require("./utils/configUtils");
 const { DIRS_FOR_BABEL, CSS_URL_ROOT_PATH, ENTRY_WITH_EXTRACTED_DEPS_CSS,
-    LIBS_WITHOUT_SOURCE_MAPS, VFILE_SPECIAL_CASE_REGEX,
+    LIBS_WITHOUT_SOURCE_MAPS,
 } = require("./constants");
 const SVGRLoader = require.resolve("@svgr/webpack");
 const FileLoader = require.resolve("file-loader");
 const { uuiCustomFormatter } = require("./utils/issueFormatter");
+const { whenDev } = require("@craco/craco")
 
 /**
  * Note: This is still experimental.
@@ -27,6 +28,9 @@ module.exports = function uuiConfig() {
 };
 
 function configureWebpack(config, { paths }) {
+    whenDev(() => {
+        config.devtool = "eval-source-map";
+    })
     if (isUseBuildFolderOfDeps) {
         paths.appIndexJs = ENTRY_WITH_EXTRACTED_DEPS_CSS;
         config.entry = ENTRY_WITH_EXTRACTED_DEPS_CSS;
@@ -38,17 +42,6 @@ function configureWebpack(config, { paths }) {
     // reason: all .css files are not modules in UUI
     changeRuleByTestAttr(config, /\.css$/, r => { delete r.exclude; return r; });
 
-    /**
-     * Reason: bug in vfile package which only reproduced in webpack 5.
-     * https://github.com/remarkjs/react-markdown/issues/339#issuecomment-683199835
-     * https://github.com/vfile/vfile/issues/38
-     * vfile is a transitive dependency which is here because we use ReactMarkdown.
-     * Latest version of ReactMarkdown doesn't have this issue, i.e. we need to migrate to it and remove this customization.
-     */
-    addRule(config, {
-        test: VFILE_SPECIAL_CASE_REGEX,
-        use: [{ loader: require.resolve("imports-loader"), options: { type: "commonjs", imports: ["single process/browser process"] } }],
-    });
     /**
      * Fix: remove <metadata> tag.
      *
@@ -93,7 +86,7 @@ function configureWebpack(config, { paths }) {
     }
     // Fix for the issue when some modules have no source maps. see this discussion for details https://github.com/facebook/create-react-app/discussions/11767
     changeRuleByTestAttr(config, /\.(js|mjs|jsx|ts|tsx|css)$/, r =>
-        Object.assign(r, { exclude: [ r.exclude, VFILE_SPECIAL_CASE_REGEX, ...LIBS_WITHOUT_SOURCE_MAPS ] }));
+        Object.assign(r, { exclude: [ r.exclude, ...LIBS_WITHOUT_SOURCE_MAPS ] }));
 
     // Reason: see below.
     changeRuleByTestAttr(config, /\.module\.(scss|sass)$/, prev => {
@@ -112,10 +105,6 @@ function configureWebpack(config, { paths }) {
         return prev;
     });
 
-    /** Reason: 'path' is used in some components: react-markdown
-     * we need to get rid of it in the future.
-     **/
-    config.resolve.alias.path = "path-browserify";
     if (isUseBuildFolderOfDeps) {
         config.resolve.mainFields = ["epam:uui:main", "browser", "module", "main"];
     }
