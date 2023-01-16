@@ -1,5 +1,5 @@
 import React, { FC, PointerEventHandler, useContext } from "react";
-import * as css from './ReplicationMarker.scss';
+import css from './ReplicationMarker.scss';
 import { DataTableSelectionContext } from "./DataTableSelectionContext";
 
 export interface ReplicationMarkerProps {

@@ -1,12 +1,13 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
+import {
+    Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
     Panel, PickerInput, TextArea, TextInput, useForm,
 } from '@epam/promo';
 import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui';
 import { FlexSpacer } from '@epam/uui-components';
 
 // Define interface describe data for each row
-interface ToDoItem  {
+interface ToDoItem {
     id: number;
     isDone?: boolean;
     name?: string;
@@ -76,7 +77,7 @@ export default function EditableTableExample() {
     const handleNewItem = useCallback(() => {
         // We can manipulate form state directly with the setValue
         // - pretty much like we do with the setState of React.useState.
-        setValue((current) => ({ ...current, items: [ ...current.items, { ...blankItem, id: id++ }] }))
+        setValue((current) => ({ ...current, items: [...current.items, { ...blankItem, id: id++ }] }))
     }, []);
 
     // Use state to hold DataTable state - current sorting, filtering, etc.
@@ -99,7 +100,7 @@ export default function EditableTableExample() {
                 // which should render an compatible IEditable component
                 // The cell passes the mode='cell' prop, so all compatible UUI components
                 // are rendered in a 'cell mode' - adopted to use in cells (e.g. with borders removed)
-                renderEditor={ props => <TextInput { ...props } /> }
+                renderEditor={ editorProps => <TextInput { ...editorProps } /> }
                 // Need to set smaller cell padding, that cell editor content will be aligned with header caption
                 padding='12'
                 { ...props }
@@ -176,15 +177,15 @@ export default function EditableTableExample() {
     // Here we override it to change row background for 'isDone' items.
     const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => {
         return <DataTableRow
-            { ...props}
-            background={ props.value.isDone ? 'gray5' : 'white'}
+            { ...props }
+            background={ props.value.isDone ? 'gray5' : 'white' }
         />;
     }, []);
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return <Panel shadow={ true }>
         <FlexRow>
-            {/* Render the data table */}
+            {/* Render the data table */ }
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
@@ -195,17 +196,17 @@ export default function EditableTableExample() {
                 renderRow={ renderRow }
             />
         </FlexRow>
-        {/* Render a panel with Save/Revert buttons to control the form */}
+        {/* Render a panel with Save/Revert buttons to control the form */ }
         <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom='gray40'>
             <FlexCell width='auto'>
-                <Button caption='Add new' onClick={handleNewItem} />
+                <Button caption='Add new' onClick={ handleNewItem } />
             </FlexCell>
             <FlexSpacer />
             <FlexCell width='auto'>
-                <Button caption='Save' onClick={save} />
+                <Button caption='Save' onClick={ save } />
             </FlexCell>
             <FlexCell width='auto'>
-                <Button caption='Revert' onClick={revert} />
+                <Button caption='Revert' onClick={ revert } />
             </FlexCell>
         </FlexRow>
     </Panel>;
