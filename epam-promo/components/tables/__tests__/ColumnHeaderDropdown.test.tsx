@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { windowMock } from "@epam/test-utils";
+import { windowMock, renderWithContextAsync } from "@epam/test-utils";
 import { Button } from '../../buttons';
 import { ColumnHeaderDropdown } from '../ColumnHeaderDropdown';
 
@@ -18,9 +18,8 @@ describe('ColumnHeaderDropdown', () => {
         jest.restoreAllMocks();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<ColumnHeaderDropdown
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(<ColumnHeaderDropdown
                 title=""
                 renderTarget={ props => <Button caption='Test' { ...props } /> }
                 isOpen
@@ -29,8 +28,7 @@ describe('ColumnHeaderDropdown', () => {
                 sortDirection='asc'
                 onSort={ jest.fn }
                 renderFilter={ () => <div>Picker</div> }
-            />)
-            .toJSON();
+            />);
         expect(tree).toMatchSnapshot();
     });
 });
