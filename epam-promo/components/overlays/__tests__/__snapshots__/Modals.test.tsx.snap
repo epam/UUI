@@ -29,21 +29,6 @@ exports[`Modals should be rendered correctly 1`] = `
     tabIndex={0}
   />
   <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={1}
-  />
-  <div
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -120,21 +105,6 @@ exports[`Modals should be rendered correctly 2`] = `
     tabIndex={0}
   />
   <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={1}
-  />
-  <div
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -175,7 +145,7 @@ exports[`Modals should be rendered correctly 2`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60"
             onClick={[Function]}
             tabIndex={0}
             type="button"

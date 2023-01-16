@@ -29,21 +29,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     tabIndex={0}
   />
   <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={1}
-  />
-  <div
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -84,7 +69,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable root color-night600"
+            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-night600"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -110,7 +95,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="container uui-input-box -clickable colorSky root size-30 mode-form"
+          className="container uui-input-box -clickable root size-30 mode-form uui-theme-loveship size-30"
           onBlur={[Function]}
           onFocus={[Function]}
           tabIndex={-1}
@@ -124,7 +109,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             />
           </div>
           <input
-            className="uui-input line-height-18 font-size-14 v-padding-5"
+            className="uui-input"
             inputMode="search"
             onChange={[Function]}
             onKeyDown={[Function]}
@@ -135,7 +120,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           />
         </div>
         <button
-          className="container uui-button-box uui-enabled -clickable root size-30 color-night500 fill-white style-square actionsMenu"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-night500 root size-30 mode-outline uui-theme-loveship size-30 style-square actionsMenu"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -302,7 +287,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable root color-night600"
+                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-night600"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -395,7 +380,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable root color-night600"
+                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-night600"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -477,26 +462,26 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-night500 fill-white style-square"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-night500 root size-36 mode-outline uui-theme-loveship size-36 style-square"
           onClick={[Function]}
           tabIndex={0}
           type="button"
         >
           <div
-            className="uui-caption line-height-18 font-size-14 v-padding-8"
+            className="uui-caption"
           >
             Cancel
           </div>
         </button>
         <button
           aria-disabled={false}
-          className="container uui-button-box uui-enabled -clickable root size-36 color-sky fill-solid style-square"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-sky root size-36 mode-solid uui-theme-loveship size-36 style-square"
           onClick={[Function]}
           tabIndex={0}
           type="button"
         >
           <div
-            className="uui-caption line-height-18 font-size-14 v-padding-8"
+            className="uui-caption"
           >
             Apply
           </div>
@@ -551,21 +536,6 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
     tabIndex={0}
   />
   <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={1}
-  />
-  <div
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -606,7 +576,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable root color-night600"
+            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-night600"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -632,7 +602,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         }
       >
         <div
-          className="container uui-input-box -clickable colorSky root size-30 mode-form"
+          className="container uui-input-box -clickable root size-30 mode-form uui-theme-loveship size-30"
           onBlur={[Function]}
           onFocus={[Function]}
           tabIndex={-1}
@@ -646,7 +616,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
             />
           </div>
           <input
-            className="uui-input line-height-18 font-size-14 v-padding-5"
+            className="uui-input"
             inputMode="search"
             onChange={[Function]}
             onKeyDown={[Function]}
@@ -657,7 +627,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           />
         </div>
         <button
-          className="container uui-button-box uui-enabled -clickable root size-30 color-night500 fill-white style-square actionsMenu"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-night500 root size-30 mode-outline uui-theme-loveship size-30 style-square actionsMenu"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -815,7 +785,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable root color-night600"
+                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-night600"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -899,7 +869,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable root color-night600"
+                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-loveship icon-button-color-night600"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -981,26 +951,26 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 color-night500 fill-white style-square"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-night500 root size-36 mode-outline uui-theme-loveship size-36 style-square"
           onClick={[Function]}
           tabIndex={0}
           type="button"
         >
           <div
-            className="uui-caption line-height-18 font-size-14 v-padding-8"
+            className="uui-caption"
           >
             Cancel
           </div>
         </button>
         <button
           aria-disabled={true}
-          className="container uui-button-box uui-disabled -clickable root size-36 color-sky fill-solid style-square"
+          className="container uui-button-box uui-disabled -clickable button-vars button-color-sky root size-36 mode-solid uui-theme-loveship size-36 style-square"
           onClick={[Function]}
           tabIndex={-1}
           type="button"
         >
           <div
-            className="uui-caption line-height-18 font-size-14 v-padding-8"
+            className="uui-caption"
           >
             Apply
           </div>

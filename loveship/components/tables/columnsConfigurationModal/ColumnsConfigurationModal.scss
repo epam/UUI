@@ -15,7 +15,12 @@
                 font-family: $font-sans-semibold;
             }
         }
+
+        &:not(:first-child) {
+            padding-top: 12px;
+        }
     }
+
     .group-items {
         flex-direction: column;
     }

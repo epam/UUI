@@ -7,7 +7,7 @@ exports[`RangeDataPicker should be rendered correctly 1`] = `
   onClick={[Function]}
 >
   <div
-    className="container uui-input-box -clickable text-input-vars root size-36 mode-form uui-theme-promo dateInput size-36"
+    className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
     onBlur={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
@@ -34,7 +34,7 @@ exports[`RangeDataPicker should be rendered correctly 1`] = `
     className="separator"
   />
   <div
-    className="container uui-input-box -clickable text-input-vars root size-36 mode-form uui-theme-promo dateInput size-36"
+    className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
     onBlur={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
@@ -59,7 +59,7 @@ exports[`RangeDataPicker should be rendered correctly 2`] = `
   onClick={false}
 >
   <div
-    className="container uui-input-box uui-disabled uui-readonly uui-invalid text-input-vars root size-36 mode-form uui-theme-promo dateInput size-36"
+    className="container uui-input-box uui-disabled uui-readonly uui-invalid root size-36 mode-form dateInput size-36"
     onBlur={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
@@ -91,7 +91,7 @@ exports[`RangeDataPicker should be rendered correctly 2`] = `
     className="separator"
   />
   <div
-    className="container uui-input-box uui-disabled uui-readonly uui-invalid text-input-vars root size-36 mode-form uui-theme-promo dateInput size-36"
+    className="container uui-input-box uui-disabled uui-readonly uui-invalid root size-36 mode-form dateInput size-36"
     onBlur={[Function]}
     onFocus={[Function]}
     tabIndex={-1}

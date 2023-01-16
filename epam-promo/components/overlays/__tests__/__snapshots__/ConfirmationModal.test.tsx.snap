@@ -29,21 +29,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     tabIndex={0}
   />
   <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={1}
-  />
-  <div
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -84,7 +69,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -179,7 +164,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline uui-theme-promo"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -191,7 +176,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid uui-theme-promo"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -252,21 +237,6 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
     tabIndex={0}
   />
   <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={1}
-  />
-  <div
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -307,7 +277,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -410,7 +380,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline uui-theme-promo"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -422,7 +392,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
+          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid uui-theme-promo"
           onClick={[Function]}
           tabIndex={0}
           type="button"
