@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Pass  ",
+            "text": "In some specific cases you may need to provide your own  ",
             "marks": []
           },
           {
@@ -56,6 +56,34 @@
           {
             "object": "text",
             "text": " prop, which is pointing to the parent of the parent dropdown element.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Also you can provide ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "dropdownPlacement",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "  prop to configure dropdown opening position.",
             "marks": []
           }
         ]
