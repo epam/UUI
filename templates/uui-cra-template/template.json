@@ -6,11 +6,11 @@
       "@epam/uui-core": "latest",
       "@epam/uui-components": "latest",
       "history": "4.10.1",
-      "react-router-dom": "5.2.0",
+      "react-router-dom": "5.3.4",
       "typescript": "4.5.4",
       "sass": "^1.51.0",
-      "react": "^17.0.2",
-      "react-dom": "^17.0.2",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
       "react-scripts": "^4.0.3"
     },
     "devDependencies": {
@@ -19,8 +19,8 @@
       "@types/history": "4.7.9",
       "@types/jest": "25.2.3",
       "@types/node": "14.0.5",
-      "@types/react": "17.0.3",
-      "@types/react-dom": "17.0.3",
+      "@types/react": "18.0.26",
+      "@types/react-dom": "18.0.10",
       "@types/react-router-dom": "5.1.7"
     },
     "eslintConfig": {
