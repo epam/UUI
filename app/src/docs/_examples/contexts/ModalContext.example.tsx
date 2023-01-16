@@ -10,20 +10,24 @@ export default function ModalContextExample() {
         <Button
             caption='Show modal'
             onClick={ () => uuiModals.show<React.ReactNode>((props) => <BasicModalExample { ...props } />)
-                .then(result => uuiNotifications.show((props) => (
-                    <SuccessNotification { ...props }>
-                        <FlexRow alignItems='center'>
-                            <RichTextView >{ result }</RichTextView>
-                        </FlexRow>
-                    </SuccessNotification>
-                )))
-                .catch(() => uuiNotifications.show((props) => (
-                    <WarningNotification { ...props }>
-                        <FlexRow alignItems='center'>
-                            <RichTextView>Close action</RichTextView>
-                        </FlexRow>
-                    </WarningNotification>
-                )))
+                .then(result => {
+                    uuiNotifications.show((props) => (
+                        <SuccessNotification { ...props }>
+                            <FlexRow alignItems='center'>
+                                <RichTextView >{ result }</RichTextView>
+                            </FlexRow>
+                        </SuccessNotification>
+                    )).catch(() => null);
+                })
+                .catch(() => {
+                    uuiNotifications.show((props) => (
+                        <WarningNotification { ...props }>
+                            <FlexRow alignItems='center'>
+                                <RichTextView>Close action</RichTextView>
+                            </FlexRow>
+                        </WarningNotification>
+                    )).catch(() => null);
+                })
             }
         />
     );
