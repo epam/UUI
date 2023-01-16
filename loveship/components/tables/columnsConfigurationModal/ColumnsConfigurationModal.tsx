@@ -77,7 +77,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     const noVisibleColumns = useMemo(
         () => !groupedColumns.displayedPinned.length && !groupedColumns.displayedUnpinned.length,
-        [groupedColumns.displayedPinned, groupedColumns.displayedUnpinned]
+        [groupedColumns.displayedPinned, groupedColumns.displayedUnpinned],
     );
 
     const applyButton = <Button caption={ i18nLocal.applyButton } isDisabled={ noVisibleColumns } color="sky" onClick={ apply } />;
@@ -134,7 +134,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                     <Button fill="white" color="night500" caption={ i18nLocal.cancelButton } onClick={ close } />
                     { noVisibleColumns
                         ? (
-                            <Tooltip content={ i18nLocal.enableAtLeastOneColumnMessage } placement='top-end' color='fire'>
+                            <Tooltip content={ i18nLocal.enableAtLeastOneColumnMessage } placement='top-end' color='night900'>
                                 { applyButton }
                             </Tooltip>
                         )
