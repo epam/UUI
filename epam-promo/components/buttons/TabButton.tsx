@@ -1,32 +1,12 @@
-import css from './TabButton.scss';
-import styles from '../../assets/styles/colorvars/buttons/tabButton-colorvars.scss';
-import { Button, ButtonProps } from '@epam/uui-components';
+import { TabButton as UuiTabButton, TabButtonProps, TabButtonMods as UuiTabButtonMods } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
-import { systemIcons } from '../../icons/icons';
-import { getIconClass } from './helper';
 
-export interface TabButtonMods {
-    /** Tab button size */
-    size?: '36' | '48' | '60';
+export interface TabButtonMods extends UuiTabButtonMods {}
 
-    /** Show notification red dot */
-    withNotify?: boolean;
-}
-
-function applyTabButtonMods(mods: TabButtonMods & ButtonProps) {
+function applyTabButtonMods(mods: TabButtonProps) {
     return [
-        css.root,
-        css['size-' + (mods.size || '48')],
-        mods.withNotify && css.uuiNotification,
-        styles.tabButtonColor,
-        ...getIconClass(mods),
+        'uui-theme-promo',
     ];
 }
 
-export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabButtonMods, props => ({
-    dropdownIcon: systemIcons['36'].foldingArrow,
-    clearIcon: systemIcons['36'].clear,
-    countPosition: 'right',
-    ...props,
-    rawProps: { role: 'tab', ...props.rawProps },
-}));
+export const TabButton = withMods<TabButtonProps, TabButtonMods>(UuiTabButton, applyTabButtonMods);
