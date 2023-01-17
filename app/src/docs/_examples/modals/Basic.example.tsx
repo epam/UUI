@@ -1,14 +1,35 @@
 import React from 'react';
 import { IModal, useUuiContext } from '@epam/uui';
 import { demoData } from '@epam/uui-docs';
-import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpacer, Panel, ScrollBars, Text, Button } from '@epam/promo';
+import {
+    ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpacer, Panel, ScrollBars, Text, Button,
+    SuccessNotification, RichTextView, WarningNotification,
+} from '@epam/promo';
 
 export default function BasicModalExampleToggler() {
-    const svc = useUuiContext();
+    const { uuiModals, uuiNotifications } = useUuiContext();
     return (
         <Button
             caption='Show modal'
-            onClick={ () => svc.uuiModals.show((props) => <BasicModalExample { ...props }/>) }
+            onClick={ () => uuiModals.show<string>((props) => <BasicModalExample { ...props }/>)
+                .then(result => {
+                    uuiNotifications.show((props) => (
+                        <SuccessNotification { ...props }>
+                            <FlexRow alignItems='center'>
+                                <RichTextView >{ result }</RichTextView>
+                            </FlexRow>
+                        </SuccessNotification>
+                    )).catch(() => null);
+                })
+                .catch(() => {
+                    uuiNotifications.show((props) => (
+                        <WarningNotification { ...props }>
+                            <FlexRow alignItems='center'>
+                                <RichTextView>Close action</RichTextView>
+                            </FlexRow>
+                        </WarningNotification>
+                    )).catch(() => null);
+                }) }
         />
     );
 }
