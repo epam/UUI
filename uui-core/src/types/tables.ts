@@ -156,8 +156,6 @@ export interface DataTableCellOptions<TItem = any, TId = any> {
 
     /** HTML tabIndex attribute to set on the cell */
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
-
-    canCopyPaste?: boolean;
 }
 
 export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
@@ -169,15 +167,28 @@ export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
-export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends IHasCX {
-    key: string;
-    rowProps: DataTableRowProps<TItem, TId>;
-    column: DataColumnProps<TItem, TId>;
-    index?: number;
-    isFirstColumn: boolean;
-    isLastColumn: boolean;
+export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>> {
+    /** Add-on controls to put before the cell content (folding arrow, checkbox, etc.) */
+    addons?: React.ReactNode;
+
+    /** Overrides default loading placeholder ('skeleton') rendering  */
+    renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+
+    /**
+     * If passed, the cell is rendered as editable - receives focus, show validation errors.
+     * All necessary props for the editor are passed as argument:
+     * - props implements IEditable and can be passed directly to suitable component (like TextInput)
+     * - ICanFocus props are passed as well. Component should implement it so cell focus highlight works properly
+     * - mode='cell' prop is passed to render UUI components in 'cell' mode
+     * - rowProps is passed so you depend on additional info about the row itself
+     */
+    renderEditor?(props: RenderEditorProps<TItem, TId, TCellValue>): React.ReactNode;
+
+    /** Overrides default tooltip, used to show validation message if the cell is invalid */
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
     acceptCopyDirection?: 'horizontal' | 'vertical' | 'both';
     canCopyTo?: (someCellContext: any) => boolean;
+    renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
 
     // There's a problem with type inheritance in objects, and TCellValue is not inferred.
     // In TypeScript 4.7, TCellValue should start to be inferred.

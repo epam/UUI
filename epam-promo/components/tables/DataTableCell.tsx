@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { uuiMarkers, DataTableCellProps, ICanBeInvalid, TooltipCoreProps, withMods, DataTableCellOverlayProps } from '@epam/uui-core';
 import { IconContainer, DragHandle, DataTableCell as UuiDataTableCell, DataTableCellOverlay as UuiDataTableCellOverlay } from '@epam/uui-components';
-import { ReplicationMarker } from "@epam/uui-components/src/table/ReplicationMarker";
 import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Checkbox } from '../inputs';
@@ -85,12 +84,10 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     ];
 
     const rowIndex = props.rowProps.index;
-    const { canCopyPaste, index: columnIndex } = props;
+    const { index: columnIndex } = props;
 
-    props.renderOverlay = (props => <>
-        <DataTableCellOverlay { ...props } />
-        { canCopyPaste && props.inFocus && <ReplicationMarker columnIndex={ columnIndex } rowIndex={ rowIndex } color="var(--blue)" /> }
-    </>);
+    props.renderOverlay = (props => <DataTableCellOverlay { ...props } rowIndex={ rowIndex } columnIndex={ columnIndex } />);
+
 
     return <UuiDataTableCell { ...props } />;
 }
