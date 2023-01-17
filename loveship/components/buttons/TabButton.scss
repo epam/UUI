@@ -17,20 +17,10 @@ $text-size-count: 24px;
     }
 }
 
-.root {
-    &.theme-light {
-        @include tab-button-color(var(--sky), var(--gray70), var(--sky));
+.theme-dark {
+    @include tab-button-color(var(--sky), var(--night300), var(--sky));
 
-        &:global(.uui-disabled) {
-            @include tab-button-color(var(--gray50), var(--gray50), var(--gray50));
-        }
-    }
-
-    &.theme-dark {
-        @include tab-button-color(var(--sky), var(--night300), var(--sky));
-
-        &:global(.uui-disabled) {
-            @include tab-button-color(var(--gray60), var(--gray60), var(--gray60));
-        }
+    &:global(.uui-disabled) {
+        @include tab-button-color(var(--gray60), var(--gray60), var(--gray60));
     }
 }
