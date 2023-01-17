@@ -12,7 +12,7 @@ export interface CheckboxMods extends UuiCheckboxMods, types.ColorMod {
 export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
     return [
         'uui-theme-loveship',
-        css['theme-' + (mods.theme || 'light')],
+        mods.theme === 'dark' && css['theme-dark'],
     ];
 }
 

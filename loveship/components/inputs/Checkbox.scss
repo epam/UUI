@@ -13,58 +13,6 @@
     }
 }
 
-.theme-light {
-    :global(.uui-input-label) {
-        color: var(--night700);
-    }
-
-    &:global(.uui-disabled) {
-        cursor: default;
-
-        :global(.uui-checkbox) {
-            cursor: default;
-            @include input-colors(var(--gray5), var(--gray50), var(--gray5), var(--gray30));
-
-            &:hover, &:active {
-                @include input-colors(var(--gray5), var(--gray50), var(--gray5), var(--gray30));
-            }
-        }
-
-        :global(.uui-checkbox):global(.uui-checked) {
-            @include input-colors(var(--sky-light), var(--sky-light), var(--gray5), var(--sky-light));
-
-            &:hover, &:active {
-                @include input-colors(var(--sky-light), var(--sky-light), var(--gray5), var(--sky-light));
-            }
-        }
-
-        :global(.uui-input-label) {
-            color: var(--gray50);
-        }
-    }
-
-    &:global(.uui-readonly) {
-        cursor: default;
-
-        :global(.uui-checkbox) {
-            cursor: default;
-            @include input-colors(var(--gray5), var(--gray50), var(--white), var(--gray30));
-
-            &:hover, &:active, &:focus-within {
-                @include input-colors(var(--gray5), var(--gray50), var(--white), var(--gray30));
-            }
-        }
-
-        :global(.uui-checkbox):global(.uui-checked) {
-            @include input-colors(var(--sky-light), var(--sky-light), var(--white), var(--sky-light));
-
-            &:hover, &:active, &:focus-within {
-                @include input-colors(var(--sky-light), var(--sky-light), var(--white), var(--sky-light));
-            }
-        }
-    }
-}
-
 .theme-dark {
     :global(.uui-input-label) {
         color: var(--gray5);
