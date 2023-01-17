@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { cx, DataTableCellOverlayProps, uuiMod } from '@epam/uui-core';
-import * as css from './DataTableCellOverlay.scss';
-import { TooltipProps } from '../overlays';
+import css from './DataTableCellOverlay.scss';
 import { useSelectionParams } from "./useSelectionParams";
 import { PointerEventHandler, useContext } from "react";
 import { DataTableSelectionContext } from "./DataTableSelectionContext";
@@ -15,7 +14,8 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const { isSelected, isTop, isRight, isBottom, isLeft } = useSelectionParams({ rowIndex, columnIndex });
 
     const canCopy = (currentCoordinates: Pick<CopyCheckParams, 'columnIndex' | 'rowIndex'>) =>
-        (!props.canCopyTo || props.canCopyTo(currentCoordinates /* Just Example. The place for contexts of current and start of copying cell */)) && canCopyByDirection({ startColumnIndex, startRowIndex, allowedDirection: props.acceptCopyDirection, ...currentCoordinates });
+        (!props.canCopyTo || props.canCopyTo(currentCoordinates /* Just Example. The place for contexts of current and start of copying cell */))
+        && canCopyByDirection({ startColumnIndex, startRowIndex, allowedDirection: props.acceptCopyDirection, ...currentCoordinates });
 
     const handleCopyingMarkerPointerDown: PointerEventHandler = e => {
         e.preventDefault();

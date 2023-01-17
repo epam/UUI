@@ -18,8 +18,6 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
 
-    //const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
-
     const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
 
     let content: React.ReactNode;
@@ -61,7 +59,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         } : null;
 
         content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
-            { props.renderEditor(renderCellProps) }
+            { props.renderEditor(editorProps) }
             { props.renderOverlay({ ...editorProps, inFocus: state.inFocus, rowIndex: row.index, columnIndex: props.index, acceptCopyDirection: props.acceptCopyDirection, canCopyTo: props.canCopyTo }) }
         </div>;
     } else {
@@ -98,36 +96,3 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         </FlexCell>
     );
 };
-
-
-export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
-    inFocus: boolean;
-    columnIndex: number;
-    rowIndex: number;
-    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
-}
-
-export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
-    const overlay = (
-        <div
-            className={ cx(
-                css.overlay,
-                props.isInvalid && uuiMod.invalid,
-                props.inFocus && uuiMod.focus,
-                props.cx,
-            ) }
-        />
-    );
-
-    if (props.inFocus) {
-        return props.renderTooltip({
-            trigger: 'manual',
-            placement: 'top',
-            isVisible: props.isInvalid,
-            content: props.validationMessage,
-            children: overlay,
-        });
-    } else {
-        return overlay;
-    }
-}
