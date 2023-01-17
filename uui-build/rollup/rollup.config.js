@@ -28,7 +28,7 @@ async function getConfig({ moduleRootDir, moduleIndexFile }) {
     const config = {
         input: moduleIndexFile,
         output: [{
-            file: `${outDir}/index.js`, format: "esm", interop: "auto",
+            file: `${outDir}/index.js`, format: "cjs", interop: "auto",
             sourcemap: true, sourcemapPathTransform: jsSourceMapTransform,
         }],
         external,
