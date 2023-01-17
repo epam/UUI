@@ -13,13 +13,13 @@ export type TableDataContextState = [
     setValue: Dispatch<SetStateAction<DataItemExample[]>>
 ];
 
-const initialValue1: DataItemExample[] = Array(20)
+const initialValue1: DataItemExample[] = Array(3)
     .fill({
-        column0: '"1"',
+        column0: '1',
         column1: '2%',
-        column2: '"3"',
-        column3: '4%',
-        column4: '"5"',
+        column2: '3',
+        // column3: '4%',
+        // column4: '"5"',
     });
 
 const initialValue2: DataItemExample[] = Array(20)

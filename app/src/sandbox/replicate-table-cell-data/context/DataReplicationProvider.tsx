@@ -1,12 +1,11 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
-import { AllowedReplicationDirections, canReplicateByDirection } from "./canReplicateByDirection";
-import { canReplicateByDataType } from "./canReplicateByDataType";
+import { AllowedReplicationDirections, canReplicateByDirection, canReplicateByDataType } from "../helpers";
 import {
     CanReplicate,
     DataReplicationContext,
     ReplicationContextState,
     ReplicationRange,
-} from "./data-replication-context";
+} from "./DataReplicationContext";
 
 interface ReplicationContextProviderProps<Value = any> {
     onReplicate: ReplicationHandler<Value>;

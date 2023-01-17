@@ -7,9 +7,9 @@ export const TableWithReplicationFeature: FC = () => {
         <TableDataContextProvider1>
             <Table1 />
         </TableDataContextProvider1>
-        <div style={ { width: '100px' } } />
-        <TableDataContextProvider2>
+        {/* <div style={ { width: '100px' } } /> */ }
+        {/* <TableDataContextProvider2>
             <Table2 />
-        </TableDataContextProvider2>
+        </TableDataContextProvider2> */}
     </>;
 };
