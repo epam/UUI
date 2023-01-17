@@ -16,7 +16,7 @@ export default function BasicModalExampleToggler() {
                     uuiNotifications.show((props) => (
                         <SuccessNotification { ...props }>
                             <FlexRow alignItems='center'>
-                                <RichTextView >{ result }</RichTextView>
+                                <Text>{ result }</Text>
                             </FlexRow>
                         </SuccessNotification>
                     )).catch(() => null);
@@ -25,7 +25,7 @@ export default function BasicModalExampleToggler() {
                     uuiNotifications.show((props) => (
                         <WarningNotification { ...props }>
                             <FlexRow alignItems='center'>
-                                <RichTextView>Close action</RichTextView>
+                                <Text>Close action</Text>
                             </FlexRow>
                         </WarningNotification>
                     )).catch(() => null);
