@@ -262,6 +262,21 @@
     --tab-button-text-color-disabled: var(--text-disabled-color);
     --tab-button-count-bg-color: var(--gray30);
     --tab-button-count-color: var(--text-secondary-color);
+
+    /*  radio-input-vars    */
+    --radio-input-bg-color: var(--input-bg-color);
+    --radio-input-bg-color-disabled: var(--input-bg-disabled-color);
+    --radio-input-border-color: var(--input-border-color);
+    --radio-input-border-color-checked: var(--input-border-checked-color);
+    --radio-input-border-color-hover: var(--input-border-hover-color);
+    --radio-input-border-color-disabled: var(--input-border-disabled-color);
+    --radio-input-border-color-checked-disabled: var(--input-border-checked-disabled-color);
+    --radio-input-label-color: var(--input-label-color);
+    --radio-input-label-color-disabled: var(--input-label-disabled-color);
+    --radio-input-fill-color-checked: var(--input-border-checked-color);
+    --radio-input-fill-color-hover: var(--input-border-hover-color);
+    --radio-input-fill-color-checked-disabled: var(--input-border-checked-disabled-color);
+    --radio-input-error-color: var(--negative-color);
 }
 
 .tooltip-light {
@@ -547,22 +562,6 @@
     --checkbox-label-color: var(--input-label-color);
     --checkbox-label-color-disabled: var(--input-label-disabled-color);
     --checkbox-border-radius: var(--border-radius);
-}
-
-.radio-input-vars {
-    --radio-input-bg-color: var(--input-bg-color);
-    --radio-input-bg-color-disabled: var(--input-bg-disabled-color);
-    --radio-input-border-color: var(--input-border-color);
-    --radio-input-border-color-checked: var(--input-border-checked-color);
-    --radio-input-border-color-hover: var(--input-border-hover-color);
-    --radio-input-border-color-disabled: var(--input-border-disabled-color);
-    --radio-input-border-color-checked-disabled: var(--input-border-checked-disabled-color);
-    --radio-input-label-color: var(--input-label-color);
-    --radio-input-label-color-disabled: var(--input-label-disabled-color);
-    --radio-input-fill-color-checked: var(--input-border-checked-color);
-    --radio-input-fill-color-hover: var(--input-border-hover-color);
-    --radio-input-fill-color-checked-disabled: var(--input-border-checked-disabled-color);
-    --radio-input-error-color: var(--negative-color);
 }
 
 .switch-vars {
