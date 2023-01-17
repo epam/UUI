@@ -65,6 +65,10 @@ export class PickerInputDoc extends BaseDocsBlock {
                     title='Linked pickers'
                     path='./_examples/pickerInput/LinkedPickers.example.tsx'
                 />
+                <DocExample
+                    title='Change portal target and dropdown placement'
+                    path='./_examples/pickerInput/ConfigurePortalTargetAndPlacement.example.tsx'
+                />
             </>
         );
     }
