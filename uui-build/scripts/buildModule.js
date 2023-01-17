@@ -15,7 +15,7 @@ async function main() {
     const moduleIndexFile = await getModuleIndexFile(moduleRootDir);
     if (moduleIndexFile) {
         await copyStaticFilesAsync();
-        await copyPackageJson({ moduleRootDir, isModule: true })
+        await copyPackageJson({ moduleRootDir, isModule: false })
         try {
             await buildUsingRollup({ moduleRootDir, moduleIndexFile });
         } catch(err) {

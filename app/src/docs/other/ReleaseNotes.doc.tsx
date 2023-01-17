@@ -2,8 +2,7 @@ import * as React from 'react';
 import css from './ReleaseNotesDoc.scss';
 import { svc } from '../../services';
 import { FlexCell, FlexRow, RichTextView, Spinner, Text } from '@epam/promo';
-import { getCoreProps } from '../../helpers/getCoreProps';
-import ReactMarkdown from 'react-markdown';
+import { UuiReactMarkdown } from "../../documents/uuiReactMarkdown";
 import dayjs from 'dayjs';
 import { ContentSection } from '../../common';
 
@@ -46,15 +45,6 @@ export class ReleaseNotesDoc extends React.Component {
         document.getElementById(release)?.scrollIntoView({ behavior: 'smooth' });
     }
 
-    renderHeader(release: any) {
-        return (
-            <FlexCell minWidth={ 246 } alignSelf='start' >
-                { React.createElement(`h1`, getCoreProps(release), ['# ', this.state.release.number]) }
-                <Text color='gray60' size='24' >{ this.state.release.date }</Text>
-            </FlexCell>
-        );
-    }
-
     renderReleaseRow(release: string, index: number) {
         const [header, date] = release.split('*')[0].split(' - ').map(i => i.trim());
         const content = release.substring(release.search(/\*/), release.length);
@@ -69,20 +59,7 @@ export class ReleaseNotesDoc extends React.Component {
                 </FlexCell>
                 <div className={ css.releaseContent }>
                     <RichTextView size='16'>
-                        <ReactMarkdown
-                            source={ content }
-                            renderers={ {
-                                heading: (release) => this.renderHeader(release),
-                                strong: (release) => <b>{ release.children[0] }</b>,
-                                linkReference: (release) => {
-                                    if (!release.href) {
-                                        return <span>{ `[${ release.children[0].props.value }]` }</span>;
-                                    } else {
-                                        return <a href={ release.$ref } >{ release.children[0] }</a>;
-                                    }
-                                } }
-                            }
-                        />
+                        <UuiReactMarkdown content={ content } isReplaceStrongToBold={ true } />
                     </RichTextView>
                 </div>
             </FlexRow>

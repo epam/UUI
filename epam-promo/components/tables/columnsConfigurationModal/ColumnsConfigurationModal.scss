@@ -9,11 +9,15 @@
             padding-top: 0;
         }
         margin-bottom: -6px;
-        > .group-title-badge  {
+        > .group-title-badge {
             top: -3px;
             > :global(.uui-caption) {
                 font-family: $font-sans-semibold;
             }
+        }
+
+        &:not(:first-child) {
+            padding-top: 12px;
         }
     }
     .group-items {
