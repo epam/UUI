@@ -1,6 +1,6 @@
 import React, { PointerEventHandler, useContext, useEffect, useMemo, useState } from "react";
-import { DataReplicationContext } from "./data-replication-context";
-import { ReplicationMarkerProps } from "./ReplicationMarker";
+import { DataReplicationContext } from "../context";
+import { ReplicationMarkerProps } from "../components";
 
 export interface ReplicationHookParams<Value> {
     columnIndex: number;
@@ -24,7 +24,12 @@ export function useReplication<Value = any>({ columnIndex, rowIndex, rowId, colu
     };
 
     const handlePointerDown: PointerEventHandler = () => {
-        setReplicationRange({ value, startRowIndex: rowIndex, startColumnIndex: columnIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, startRowId: rowId, startColumnId: columnId, dataType });
+        setReplicationRange({
+            value, dataType,
+            startRowIndex: rowIndex, startColumnIndex: columnIndex,
+            endRowIndex: rowIndex, endColumnIndex: columnIndex,
+            startRowId: rowId, startColumnId: columnId,
+        });
     };
 
     const handlePointerLeave: PointerEventHandler = () => {
@@ -52,13 +57,13 @@ export function useReplication<Value = any>({ columnIndex, rowIndex, rowId, colu
     }, [isSelectedForReplication]);
 
     const { isLeft, isRight, isTop, isBottom } = useMemo(() => isSelectedForReplication
-            ? ({
-                isLeft: columnIndex === leftColumnIndex || !canReplicate(rowIndex, columnIndex - 1),
-                isRight: columnIndex === rightColumnIndex || !canReplicate(rowIndex, columnIndex + 1),
-                isTop: rowIndex === topRowIndex || !canReplicate(rowIndex - 1, columnIndex),
-                isBottom: rowIndex === bottomRowIndex || !canReplicate(rowIndex + 1, columnIndex),
-            })
-            : {},
+        ? ({
+            isLeft: columnIndex === leftColumnIndex || !canReplicate(rowIndex, columnIndex - 1),
+            isRight: columnIndex === rightColumnIndex || !canReplicate(rowIndex, columnIndex + 1),
+            isTop: rowIndex === topRowIndex || !canReplicate(rowIndex - 1, columnIndex),
+            isBottom: rowIndex === bottomRowIndex || !canReplicate(rowIndex + 1, columnIndex),
+        })
+        : {},
         [replicationRange]);
 
     const replicationMarkerParams: ReplicationMarkerProps = { isHovered, handlePointerDown, isSelectedForReplication, isLeft, isRight, isTop, isBottom };

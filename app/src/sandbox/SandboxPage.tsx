@@ -18,7 +18,7 @@ import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
 import { Skills } from './skills';
 import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
-import { TableWithReplicationFeature } from "./replicate-table-cell-data/TableWithReplicationFeature";
+import { TableWithReplicationFeature } from "./replicate-table-cell-data";
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
