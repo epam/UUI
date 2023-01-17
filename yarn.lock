@@ -1291,6 +1291,13 @@
   dependencies:
     normalize.css "^7.0.0"
 
+"@epam/assets@4.9.1":
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/@epam/assets/-/assets-4.9.1.tgz#d327703e672efd57194582e3ff3060d3a0137fbe"
+  integrity sha512-hebcxuzir3C7x1L/17splhrwaebxeAd6/xqA9Qg4ufn338LCCcQjhFkuZDigYB5CvL6S87k6w3dJ51/Pu+ljaA==
+  dependencies:
+    normalize.css "^7.0.0"
+
 "@epam/draft-rte@4.9.1":
   version "4.9.1"
   resolved "https://registry.yarnpkg.com/@epam/draft-rte/-/draft-rte-4.9.1.tgz#50070f199e4078c82914b0e5eef08b0e7c03d28c"
