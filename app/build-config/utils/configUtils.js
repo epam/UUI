@@ -2,29 +2,24 @@ const path = require("path");
 
 module.exports = {
     changeRuleByTestAttr,
+    changePluginByName,
     removeRuleByTestAttr,
-    replaceRuleByTestAttr,
-    normSlashes,
-    addRule,
+    makeSlashesPlatformSpecific,
 }
 
-function addRule(config, newRule) {
-    const baseArr = config.module.rules[1];
-    baseArr.oneOf = [newRule, ...baseArr.oneOf]
-}
+function makeSlashesPlatformSpecific(pathStr) { return pathStr.replace(/\//g, path.sep); }
 
-function normSlashes(pathStr) { return pathStr.replace(/\//g, path.sep); }
+function changePluginByName(config, pluginName, changerFn) {
+    config.plugins.forEach(p => {
+        if (p.constructor.name === pluginName) {
+            changerFn(p);
+        }
+    });
+}
 
 function removeRuleByTestAttr(config, test) {
     const conditionFn = r => testAttrCondition(r.test, test);
     const changerFn = () => undefined;
-    const baseArr = config.module.rules[1];
-    mutateArrItemByCondition({ arr: baseArr.oneOf, conditionFn, changerFn })
-}
-
-function replaceRuleByTestAttr(config, test, newRule) {
-    const conditionFn = r => testAttrCondition(r.test, test);
-    const changerFn = () => newRule;
     const baseArr = config.module.rules[1];
     mutateArrItemByCondition({ arr: baseArr.oneOf, conditionFn, changerFn })
 }
