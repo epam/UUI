@@ -34,10 +34,32 @@ export function getColumns(columnsProps: ColumnsProps) {
                 canCopyTo={ ({ rowIndex }) => !!(rowIndex % 2) } // Just Example
                 acceptCopyDirection="both"
                 getLens={ l => l.prop('estimate') }
-                renderEditor={ props => <NumericInput
+                renderEditor={ props => (<NumericInput
                     { ...props }
                     formatOptions={ { maximumFractionDigits: 1 } }
-                /> }
+                />) }
+                { ...props }
+            />,
+        },
+        {
+            key: 'estimate2',
+            textAlign: 'right',
+            caption: 'Estimate2',
+            info: "Estimate in man/days2",
+            width: 120,
+            isSortable: true,
+            renderCell: (props) => <DataTableCell
+                { ...props.rowLens.prop('estimate2').toProps() }
+                canCopyTo={ ({ rowIndex }) => !!(rowIndex % 2) } // Just Example
+                onReplication={ (value) => (value ?? 0) + 10 }
+                acceptCopyDirection="horizontal"
+                getLens={ l => l.prop('estimate2') }
+                renderEditor={ props => {
+                    return <NumericInput
+                        { ...props }
+                        formatOptions={ { maximumFractionDigits: 1 } }
+                    />
+                } }
                 { ...props }
 
             />,
