@@ -1,4 +1,4 @@
-:global(.badge-color-info) {
+:global(.badge-info) {
     --uui-badge-bg: var(--uui-info);
     --uui-badge-bg-hover: var(--uui-info-active);
     //--bg-color-semitransparent: #{lighten(#008ACE, 50%)};
@@ -11,7 +11,7 @@
     --uui-badge-count: var(--uui-text-secondary);
 }
 
-:global(.badge-color-success) {
+:global(.badge-success) {
     --uui-badge-bg: var(--uui-success);
     --uui-badge-bg-hover: var(--uui-success-active);
     //--bg-color-semitransparent: #{$cyan-lightest};
@@ -24,7 +24,7 @@
     --uui-badge-count: var(--uui-text-secondary);
 }
 
-:global(.badge-color-warning) {
+:global(.badge-warning) {
     --uui-badge-bg: var(--uui-warning);
     --uui-badge-bg-hover: var(--uui-warning-active);
     //--bg-color-semitransparent: #{lighten($green, 50%)};
@@ -37,7 +37,7 @@
     --uui-badge-count: var(--uui-text-secondary);
 }
 
-:global(.badge-color-error) {
+:global(.badge-error) {
     --uui-badge-bg: var(--uui-error);
     --uui-badge-bg-hover: var(--uui-error-active);
     //--bg-color-semitransparent: #{lighten($amber, 40%)};

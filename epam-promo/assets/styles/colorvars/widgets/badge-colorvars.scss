@@ -1,6 +1,6 @@
 @use  '../../colors' as *;
 
-.badge-color-blue {
+.badge-blue {
     --background-color: #{$blue};
     --background-color-hover: #{darken($blue, 10%)};
     --background-color-semitransparent: #{lighten($blue, 50%)};
@@ -14,7 +14,7 @@
     --count-color: #{$gray60};
 }
 
-.badge-color-cyan {
+.badge-cyan {
     --background-color: #{$cyan};
     --background-color-hover: #{$cyan-dark};
     --background-color-semitransparent: #{$cyan-lightest};
@@ -28,7 +28,7 @@
     --count-color: #{$gray60};
 }
 
-.badge-color-green {
+.badge-green {
     --background-color: #{$green};
     --background-color-hover: #{darken($green, 10%)};
     --background-color-semitransparent: #{lighten($green, 50%)};
@@ -42,7 +42,7 @@
     --count-color: #{$gray60};
 }
 
-.badge-color-amber {
+.badge-amber {
     --background-color: #{$amber};
     --background-color-hover: #995A00;
     --background-color-semitransparent: #{lighten($amber, 40%)};
@@ -56,7 +56,7 @@
     --count-color: #{$gray60};
 }
 
-.badge-color-orange {
+.badge-orange {
     --background-color: #{$orange};
     --background-color-hover: #{$orange-dark};
     --background-color-semitransparent: #{$orange-lightest};
@@ -70,7 +70,7 @@
     --count-color: #{$gray60};
 }
 
-.badge-color-red {
+.badge-red {
     --background-color: #{$red};
     --background-color-hover: #A72014;
     --background-color-semitransparent: #{lighten($red, 40%)};
@@ -84,7 +84,7 @@
     --count-color: #{$gray60};
 }
 
-.badge-color-purple {
+.badge-purple {
     --background-color: #{$purple};
     --background-color-hover: #{$purple-dark};
     --background-color-semitransparent: #{$purple-lightest};
@@ -98,7 +98,7 @@
     --count-color: #{$gray60};
 }
 
-.badge-color-violet {
+.badge-violet {
     --background-color: #{$violet};
     --background-color-hover: #{$violet-dark};
     --background-color-semitransparent: #{$violet-lightest};
@@ -112,7 +112,7 @@
     --count-color: #{$gray60};
 }
 
-.badge-color-gray30 {
+.badge-gray30 {
     --background-color: #{$gray30};
     --background-color-hover: #{$gray40};
     --background-color-semitransparent: #{$gray20};

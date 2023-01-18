@@ -2,7 +2,7 @@
     --uui-btn-border-radius: var(--border-radius);
 }
 
-:global(.button-color-primary) {
+:global(.button-primary) {
     --button-bg-color: var(--uui-primary);
     --button-bg-color-hover: var(--uui-primary-dark);
     --button-bg-color-active: var(--uui-primary-darkest);
@@ -19,7 +19,7 @@
     --button-caption-color-disabled: var(--button-caption-disabled-color);
 }
 
-:global(.button-color-accent) {
+:global(.button-accent) {
     --button-bg-color: var(--uui-accent);
     --button-bg-color-hover: var(--uui-accent-dark);
     --button-bg-color-active: var(--uui-accent-darkest);
@@ -36,7 +36,7 @@
     --button-caption-color-disabled: var(--button-caption-disabled-color);
 }
 
-:global(.button-color-negative) {
+:global(.button-negative) {
     --button-bg-color: var(--uui-negative);
     --button-bg-color-hover: var(--uui-negative-dark);
     --button-bg-color-active: var(--uui-negative-darkest);
@@ -53,7 +53,7 @@
     --button-caption-color-disabled: var(--button-caption-disabled-color);
 }
 
-:global(.button-color-secondary) {
+:global(.button-secondary) {
     --button-bg-color: var(--uui-secondary);
     --button-bg-color-hover: var(--uui-secondary-dark);
     --button-bg-color-active: var(--uui-secondary-darkest);

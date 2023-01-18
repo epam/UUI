@@ -29,7 +29,7 @@ export function applyBadgeMods(mods: BadgeMods) {
         buttonCss.root,
         css['size-' + (mods.size || defaultSize)],
         css['fill-' + (mods.fill || 'solid')],
-        styles['badge-color-' + (mods.color || 'blue')],
+        styles['badge-' + (mods.color || 'blue')],
         css.root,
     ];
 }

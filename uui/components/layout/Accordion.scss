@@ -3,20 +3,20 @@
 .root {
     :global(.uui-accordion-toggler) {
         font-family: var(--font-semibold);
-        color: var(--uui-accordion-text-color);
+        color: var(--uui-accordion-text);
         cursor: pointer;
     }
 
     :global(.uui-accordion-body) {
         font-family: var(--font-regular);
-        color: var(--uui-accordion-text-color);
+        color: var(--uui-accordion-text);
     }
 
     &.mode-block {
         :global(.uui-accordion-toggler) {
-            background: var(--uui-accordion-bg-color);
+            background: var(--uui-accordion-bg);
             box-shadow: var(--uui-accordion-shadow);
-            fill: var(--uui-accordion-icon-color);
+            fill: var(--uui-accordion-icon);
             line-height: 24px;
             font-size: 18px;
             padding: 0 18px;
@@ -28,7 +28,7 @@
             }
 
             :global(.uui-accordion-title) {
-                color: var(--uui-accordion-text-color);
+                color: var(--uui-accordion-text);
             }
 
             &:hover, &:focus {
@@ -40,15 +40,15 @@
             padding: 18px;
             line-height: 24px;
             letter-spacing: 0;
-            background: var(--uui-accordion-bg-color);
+            background: var(--uui-accordion-bg);
             box-shadow: var(--uui-accordion-shadow);
-            border-top: 1px solid var(--uui-accordion-border-color);
+            border-top: 1px solid var(--uui-accordion-border);
         }
 
         &:global(.uui-opened) {
             :global(.uui-accordion-toggler) {
                 &:hover, &:focus {
-                    border-color: var(--uui-accordion-border-color);
+                    border-color: var(--uui-accordion-border);
                 }
             }
         }
@@ -56,10 +56,10 @@
         &:global(.uui-disabled) {
             :global(.uui-accordion-toggler) {
                 cursor: default;
-                fill: var(--uui-accordion-icon-color-disabled);
+                fill: var(--uui-accordion-icon-disabled);
 
                 :global(.uui-accordion-title) {
-                    color: var(--uui-accordion-text-color-disabled);
+                    color: var(--uui-accordion-text-disabled);
                 }
 
                 &:hover, &:focus {
@@ -71,8 +71,8 @@
 
     &.mode-inline {
         :global(.uui-accordion-toggler) {
-            border-bottom: 1px solid var(--uui-accordion-border-color);
-            fill: var(--uui-accordion-icon-color);
+            border-bottom: 1px solid var(--uui-accordion-border);
+            fill: var(--uui-accordion-icon);
             line-height: 18px;
             font-size: 14px;
             padding: 8px 12px 8px;
@@ -82,13 +82,13 @@
             }
 
             :global(.uui-accordion-title) {
-                color: var(--uui-accordion-text-color);
+                color: var(--uui-accordion-text);
             }
         }
 
         :global(.uui-accordion-body) {
             padding: 1px 12px 12px;
-            border-bottom: 1px solid var(--uui-accordion-border-color);
+            border-bottom: 1px solid var(--uui-accordion-border);
         }
 
         &:global(.uui-opened) {
@@ -100,11 +100,11 @@
         &:global(.uui-disabled) {
             :global(.uui-accordion-toggler) {
                 cursor: default;
-                fill: var(--uui-accordion-icon-color-disabled);
+                fill: var(--uui-accordion-icon-disabled);
                 border-bottom: unset;
 
                 :global(.uui-accordion-title) {
-                    color: var(--uui-accordion-text-color-disabled);
+                    color: var(--uui-accordion-text-disabled);
                 }
             }
         }
