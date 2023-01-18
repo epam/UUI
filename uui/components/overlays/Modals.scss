@@ -34,12 +34,12 @@
         }
 
         :global(.uui-shadow-top)::before {
-            background: var(--divider-color);
+            background: var(--uui-divider);
             height: 1px;
         }
 
         :global(.uui-shadow-bottom)::after {
-            background: var(--divider-color);
+            background: var(--uui-divider);
             height: 1px;
         }
     }
@@ -50,7 +50,7 @@
     border-bottom-right-radius: var(--modals-border-radius);
 
     &.border-top {
-        border-top: 1px solid var(--divider-color);
+        border-top: 1px solid var(--uui-divider);
     }
 }
 

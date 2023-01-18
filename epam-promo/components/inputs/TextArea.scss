@@ -6,7 +6,7 @@
 
     :global(.uui-input) {
         color: var(--text-color);
-        fill: var(--icon-color);
+        fill: var(--uui-icon);
         border-style: solid;
         font-family: $font-sans;
         box-sizing: border-box;
@@ -28,13 +28,13 @@
 
         &:global(.uui-readonly) {
             color: var(--text-color);
-            fill: var(--icon-color);
+            fill: var(--uui-icon);
             pointer-events: none;
         }
 
         &:global(.uui-disabled) {
             color: var(--text-color-disabled);
-            fill: var(--icon-color-disabled);
+            fill: var(--uui-icon-disabled);
             pointer-events: none;
 
             &::placeholder {

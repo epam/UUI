@@ -1,67 +1,67 @@
 :global(.button-color-primary) {
-    --btn-bg-color: var(--primary-color);
-    --btn-bg-color-hover: var(--primary-dark-color);
-    --btn-bg-color-active: var(--primary-darkest-color);
-    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
-    --btn-bg-color-halftone-hover: var(--primary-lightest-color);
-    --btn-bg-color-halftone-active: var(--primary-light-color);
-    --btn-bg-color-disabled: var(--disabled-color);
-    --btn-border-color: var(--primary-color);
-    --btn-border-color-hover: var(--primary-dark-color);
-    --btn-border-color-active: var(--primary-darkest-color);
-    --btn-border-color-disabled: var(--disabled-color);
-    --btn-caption-color: var(--contrast-color);
-    --btn-caption-halftone-color: var(--primary-color);
-    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+    --uui-btn-bg-color: var(--uui-primary);
+    --uui-btn-bg-color-hover: var(--uui-primary-dark);
+    --uui-btn-bg-color-active: var(--uui-primary-darkest);
+    --uui-btn-bg-color-halftone: var(--uui-btn-bg-halftone);
+    --uui-btn-bg-color-halftone-hover: var(--uui-primary-lightest);
+    --uui-btn-bg-color-halftone-active: var(--uui-primary-light);
+    --uui-btn-bg-color-disabled: var(--uui-disabled);
+    --uui-btn-border-color: var(--uui-primary);
+    --uui-btn-border-color-hover: var(--uui-primary-dark);
+    --uui-btn-border-color-active: var(--uui-primary-darkest);
+    --uui-btn-border-color-disabled: var(--uui-disabled);
+    --uui-btn-caption-color: var(--uui-contrast);
+    --uui-btn-caption-halftone-color: var(--uui-primary);
+    --uui-btn-caption-color-disabled: var(--uui-btn-caption-disabled);
 }
 
 :global(.button-color-accent) {
-    --btn-bg-color: var(--accent-color);
-    --btn-bg-color-hover: var(--accent-dark-color);
-    --btn-bg-color-active: var(--accent-darkest-color);
-    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
-    --btn-bg-color-halftone-hover: var(--accent-lightest-color);
-    --btn-bg-color-halftone-active: var(--accent-light-color);
-    --btn-bg-color-disabled: var(--disabled-color);
-    --btn-border-color: var(--accent-color);
-    --btn-border-color-hover: var(--accent-dark-color);
-    --btn-border-color-active: var(--accent-darkest-color);
-    --btn-border-color-disabled: var(--disabled-color);
-    --btn-caption-color: var(--contrast-color);
-    --btn-caption-halftone-color: var(--accent-color);
-    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+    --uui-btn-bg-color: var(--uui-accent);
+    --uui-btn-bg-color-hover: var(--uui-accent-dark);
+    --uui-btn-bg-color-active: var(--uui-accent-darkest);
+    --uui-btn-bg-color-halftone: var(--uui-btn-bg-halftone);
+    --uui-btn-bg-color-halftone-hover: var(--uui-accent-lightest);
+    --uui-btn-bg-color-halftone-active: var(--uui-accent-light);
+    --uui-btn-bg-color-disabled: var(--uui-disabled);
+    --uui-btn-border-color: var(--uui-accent);
+    --uui-btn-border-color-hover: var(--uui-accent-dark);
+    --uui-btn-border-color-active: var(--uui-accent-darkest);
+    --uui-btn-border-color-disabled: var(--uui-disabled);
+    --uui-btn-caption-color: var(--uui-contrast);
+    --uui-btn-caption-halftone-color: var(--uui-accent);
+    --uui-btn-caption-color-disabled: var(--uui-btn-caption-disabled);
 }
 
 :global(.button-color-negative) {
-    --btn-bg-color: var(--negative-color);
-    --btn-bg-color-hover: var(--negative-dark-color);
-    --btn-bg-color-active: var(--negative-darkest-color);
-    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
-    --btn-bg-color-halftone-hover: var(--negative-lightest-color);
-    --btn-bg-color-halftone-active: var(--negative-light-color);
-    --btn-bg-color-disabled: var(--disabled-color);
-    --btn-border-color: var(--negative-color);
-    --btn-border-color-hover: var(--negative-dark-color);
-    --btn-border-color-active: var(--negative-darkest-color);
-    --btn-border-color-disabled: var(--disabled-color);
-    --btn-caption-color: var(--contrast-color);
-    --btn-caption-halftone-color: var(--negative-color);
-    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+    --uui-btn-bg-color: var(--uui-negative);
+    --uui-btn-bg-color-hover: var(--uui-negative-dark);
+    --uui-btn-bg-color-active: var(--uui-negative-darkest);
+    --uui-btn-bg-color-halftone: var(--uui-btn-bg-halftone);
+    --uui-btn-bg-color-halftone-hover: var(--uui-negative-lightest);
+    --uui-btn-bg-color-halftone-active: var(--uui-negative-light);
+    --uui-btn-bg-color-disabled: var(--uui-disabled);
+    --uui-btn-border-color: var(--uui-negative);
+    --uui-btn-border-color-hover: var(--uui-negative-dark);
+    --uui-btn-border-color-active: var(--uui-negative-darkest);
+    --uui-btn-border-color-disabled: var(--uui-disabled);
+    --uui-btn-caption-color: var(--uui-contrast);
+    --uui-btn-caption-halftone-color: var(--uui-negative);
+    --uui-btn-caption-color-disabled: var(--uui-btn-caption-disabled);
 }
 
 :global(.button-color-secondary) {
-    --btn-bg-color: var(--secondary-color);
-    --btn-bg-color-hover: var(--secondary-dark-color);
-    --btn-bg-color-active: var(--secondary-darkest-color);
-    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
-    --btn-bg-color-halftone-hover: var(--secondary-lightest-color);
-    --btn-bg-color-halftone-active: var(--secondary-light-color);
-    --btn-bg-color-disabled: var(--disabled-color);
-    --btn-border-color: var(--secondary-color);
-    --btn-border-color-hover: var(--secondary-dark-color);
-    --btn-border-color-active: var(--secondary-darkest-color);
-    --btn-border-color-disabled: var(--disabled-color);
-    --btn-caption-color: var(--contrast-color);
-    --btn-caption-halftone-color: var(--secondary-dark-color);
-    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+    --uui-btn-bg-color: var(--uui-secondary);
+    --uui-btn-bg-color-hover: var(--uui-secondary-dark);
+    --uui-btn-bg-color-active: var(--uui-secondary-darkest);
+    --uui-btn-bg-color-halftone: var(--uui-btn-bg-halftone);
+    --uui-btn-bg-color-halftone-hover: var(--uui-secondary-lightest);
+    --uui-btn-bg-color-halftone-active: var(--uui-secondary-light);
+    --uui-btn-bg-color-disabled: var(--uui-disabled);
+    --uui-btn-border-color: var(--uui-secondary);
+    --uui-btn-border-color-hover: var(--uui-secondary-dark);
+    --uui-btn-border-color-active: var(--uui-secondary-darkest);
+    --uui-btn-border-color-disabled: var(--uui-disabled);
+    --uui-btn-caption-color: var(--uui-contrast);
+    --uui-btn-caption-halftone-color: var(--uui-secondary-dark);
+    --uui-btn-caption-color-disabled: var(--uui-btn-caption-disabled);
 }

@@ -18,7 +18,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
         :global(.uui-accordion-toggler) {
             background: var(--background-color);
             box-shadow: $shadow;
-            fill: var(--icon-color);
+            fill: var(--uui-icon);
             line-height: 24px;
             font-size: 18px;
             padding: 0 18px;
@@ -59,7 +59,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
         &:global(.uui-disabled) {
             :global(.uui-accordion-toggler) {
                 cursor: default;
-                fill: var(--icon-color-disabled);
+                fill: var(--uui-icon-disabled);
 
                 :global(.uui-accordion-title) {
                     color: var(--text-color-disabled);
@@ -75,7 +75,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
     &.mode-inline {
         :global(.uui-accordion-toggler) {
             border-bottom: 1px solid var(--border-color);
-            fill: var(--icon-color);
+            fill: var(--uui-icon);
             line-height: 18px;
             font-size: 14px;
             padding: 8px 12px 8px;
@@ -103,7 +103,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
         &:global(.uui-disabled) {
             :global(.uui-accordion-toggler) {
                 cursor: default;
-                fill: var(--icon-color-disabled);
+                fill: var(--uui-icon-disabled);
                 border-bottom: unset;
 
                 :global(.uui-accordion-title) {

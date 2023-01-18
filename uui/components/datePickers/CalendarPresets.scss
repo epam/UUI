@@ -17,11 +17,11 @@
         font-family: var(--font-semibold);
         font-size: 12px;
         line-height: 18px;
-        color: var(--link-button-text-color);
+        color: var(--uui-link-button-text);
         padding-bottom: 6px;
 
         &:hover {
-            color: var(--link-button-text-color-active);
+            color: var(--uui-link-button-text-active);
             cursor: pointer;
         }
     }

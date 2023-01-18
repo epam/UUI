@@ -43,7 +43,7 @@
 
         .icon {
             align-items: center;
-            fill: var(--icon-color);
+            fill: var(--uui-icon);
 
             &:hover {
                 cursor: pointer;
@@ -52,13 +52,13 @@
 
         :global(.uui-timepicker-icon-up) {
             align-items: center;
-            fill: var(--icon-color);
+            fill: var(--uui-icon);
             transform: rotate(180deg);
         }
 
         :global(.uui-timepicker-icon-down) {
             align-items: center;
-            fill: var(--icon-color);
+            fill: var(--uui-icon);
         }
     }
 

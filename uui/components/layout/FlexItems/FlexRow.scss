@@ -16,7 +16,7 @@
     box-sizing: content-box;
 
     &:global(.-clickable):hover {
-        background-color: var(--surface-hover-color);
+        background-color: var(--uui-surface-hover);
         cursor: pointer;
     }
 
@@ -111,7 +111,7 @@
     }
 
     &.border-bottom {
-        border-bottom: 1px solid var(--divider-color);
+        border-bottom: 1px solid var(--uui-divider);
     }
 }
 

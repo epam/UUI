@@ -1,3 +1,5 @@
+/*  Name convention  */
+/* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 .uui-theme-promo {
     --font-regular: 'Sans Regular', Arial, sans-serif;
     --font-semibold: 'Sans Semibold', Arial, sans-serif;
@@ -87,649 +89,668 @@
     --purple-40: #860F9E;
     --purple-50: #5E0B6F;
 
-    --accent-color: var(--green);
-    --accent-light-color: var(--green-light);
-    --accent-lightest-color: var(--green-lightest);
-    --accent-dark-color: var(--green-dark);
-    --accent-darkest-color: var(--green-darkest);
-    --primary-color: var(--blue);
-    --primary-light-color: var(--blue-light);
-    --primary-lightest-color: var(--blue-lightest);
-    --primary-halftone-color: var(--blue-lightest);
-    --primary-dark-color: var(--blue-dark);
-    --primary-darkest-color: var(--blue-darkest);
-    --secondary-color: var(--gray50);
-    --secondary-light-color: var(--gray30);
-    --secondary-lightest-color: var(--gray20);
-    --secondary-dark-color: var(--gray60);
-    --secondary-darkest-color: var(--gray70);
-    --negative-color: var(--red);
-    --negative-light-color: var(--red-light);
-    --negative-lightest-color: var(--red-lightest);
-    --negative-dark-color: var(--red-dark);
-    --negative-darkest-color: var(--red-darkest);
-    --btn-bg-halftone-color: var(--white);
-    --btn-caption-disabled-color: var(--gray50);
-    --contrast-color: var(--white);
-    --link-color: var(--blue);
-    --link-color-hover: var(--blue-dark);
-    --link-color-visited: #5214CC;
-    --link-color-disabled: var(--gray50);
-    --visited-color: #5214CC;
-    --info-color: var(--blue);
-    --info-lightest-color: var(--blue-lightest);
-    --info-light-color: var(--blue-light);
-    --info-dark-color: var(--blue-dark);
-    --info-darkest-color: var(--blue-darkest);
-    --success-color: var(--green);
-    --success-lightest-color: var(--green-lightest);
-    --success-light-color: var(--green-light);
-    --success-dark-color: var(--green-dark);
-    --success-darkest-color: var(--green-darkest);
-    --warning-color: var(--amber);
-    --warning-lightest-color: var(--amber-lightest);
-    --warning-light-color: var(--amber-light);
-    --warning-dark-color: var(--amber-dark);
-    --warning-darkest-color: var(--amber-darkest);
-    --error-color: var(--red);
-    --error-lightest-color: var(--red-lightest);
-    --error-light-color: var(--red-light);
-    --error-dark-color: var(--red-dark);
-    --error-darkest-color: var(--red-darkest);
-    --icon-color: var(--gray60);
-    --icon-hover-color: var(--gray70);
-    --icon-active-color: var(--gray80);
-    --secondary-disabled-color: var(--gray40);
-    --btn-disabled-color: var(--gray50);
-    --disabled-color: var(--gray30);
-    --icon-disabled-color: var(--gray50);
-    --surface-color: var(--white);
-    --surface-hover-color: var(--gray30);
-    --surface-light-color: var(--white);
-    --surface-inverted-color: var(--gray90);
-    --surface-inverted-light-color: var(--gray80);
-    --app-background-color: var(--gray10);
-    --divider-color: var(--gray40);
-    --text-brand-color: var(--gray90);
-    --text-primary-color: var(--gray80);
-    --text-secondary-color: var(--gray60);
-    --text-disabled-color: var(--gray50);
-    --text-contrast-color: var(--gray5);
-    --input-bg-color: var(--white);
-    --input-switch-bg-color: var(--gray40);
-    --input-bg-checked-color: var(--primary-color);
-    --input-bg-checked-hover-color: var(--primary-dark-color);
-    --input-border-checked-disabled-color: var(--primary-light-color);
-    --input-border-color: var(--gray40);
-    --input-bg-disabled-color: var(--gray5);
-    --input-bg-readonly-color: var(--gray5);
-    --input-border-checked-color: var(--primary-color);
-    --input-border-checked-hover-color: var(--primary-dark-color);
-    --input-border-checked-disabled-color-copy: var(--primary-light-color);
-    --input-border-hover-color: var(--primary-dark-color);
-    --input-switch-border-hover-color: var(--gray60);
-    --input-textinput-border-hover-color: var(--gray60);
-    --input-border-disabled-color: var(--disabled-color);
-    --input-border-readonly-color: var(--disabled-color);
-    --input-rest-color: var(--primary-color);
-    --input-hover-color: var(--primary-dark-color);
-    --input-active-color: var(--primary-darkest-color);
-    --input-label-color: var(--text-primary-color);
-    --input-label-disabled-color: var(--text-secondary-color);
-    --input-placeholder-color: var(--text-secondary-color);
-    --input-placeholder-disabled-color: var(--text-disabled-color);
-    --input-text-color: var(--text-primary-color);
-    --input-text-disabled-color: var(--text-disabled-color);
-    --input-icon-color: var(--gray50);
-    --input-icon-disabled-color: var(--gray50);
-    --input-checkbox-icon-color: var(--white);
-    --input-bg-checked-disabled-color: var(--primary-light-color);
-    --input-bg-hover-color: var(--gray60);
-    --tag-color: var(--gray30);
-    --tag-hover-color: var(--gray40);
-    --skeleton-color: var(--gray40);
-    --skeleton-gradient: linear-gradient(90deg, var(--gray40) 0%, var(--gray10) 50%, var(--gray40) 100%);
-    --overlay-color: rgba(29, 30, 38, 0.8);
-    --shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
-    --scroll-color: var(--gray60);
-    --info-hover-color: var(--blue-dark);
-    --info-active-color: var(--blue-darkest);
-    --success-hover-color: var(--green-dark);
-    --success-active-color: var(--green-darkest);
-    --warning-hover-color: var(--amber-dark);
-    --warning-active-color: var(--amber-darkest);
-    --error-hover-color: var(--red-dark);
-    --error-active-color: var(--red-darkest);
-    --secondary-hover-color: var(--gray60);
-    --secondary-active-color: var(--gray70);
-    --surface-dark-color: var(--gray90);
-    --prefix-suffix-bg-color: var(--gray10);
-    --prefix-suffix-caption-color: var(--input-placeholder-color);
-    --prefix-suffix-icon-color: var(--icon-disabled-color);
-    --prefix-suffix-border-color: var(--input-border-color);
+    --uui-accent: var(--green);
+    --uui-accent-light: var(--green-light);
+    --uui-accent-lightest: var(--green-lightest);
+    --uui-accent-dark: var(--green-dark);
+    --uui-accent-darkest: var(--green-darkest);
+
+    --uui-primary: var(--blue);
+    --uui-primary-light: var(--blue-light);
+    --uui-primary-lightest: var(--blue-lightest);
+    --uui-primary-halftone: var(--blue-lightest);
+    --uui-primary-dark: var(--blue-dark);
+    --uui-primary-darkest: var(--blue-darkest);
+
+    --uui-secondary: var(--gray50);
+    --uui-secondary-light: var(--gray30);
+    --uui-secondary-lightest: var(--gray20);
+    --uui-secondary-dark: var(--gray60);
+    --uui-secondary-darkest: var(--gray70);
+    --uui-secondary-hover: var(--gray60);
+    --uui-secondary-active: var(--gray70);
+    --uui-secondary-disabled: var(--gray40);
+
+    --uui-negative: var(--red);
+    --uui-negative-light: var(--red-light);
+    --uui-negative-lightest: var(--red-lightest);
+    --uui-negative-dark: var(--red-dark);
+    --uui-negative-darkest: var(--red-darkest);
+
+    --uui-btn-bg-halftone: var(--white);
+    --uui-btn-caption-disabled: var(--gray50);
+
+    --uui-link: var(--blue);
+    --uui-link-hover: var(--blue-dark);
+    --uui-link-visited: #5214CC;
+    --uui-link-disabled: var(--gray50);
+
+    --uui-info: var(--blue);
+    --uui-info-lightest: var(--blue-lightest);
+    --uui-info-light: var(--blue-light);
+    --uui-info-dark: var(--blue-dark);
+    --uui-info-darkest: var(--blue-darkest);
+    --uui-info-hover: var(--blue-dark);
+    --uui-info-active: var(--blue-darkest);
+
+    --uui-success: var(--green);
+    --uui-success-lightest: var(--green-lightest);
+    --uui-success-light: var(--green-light);
+    --uui-success-dark: var(--green-dark);
+    --uui-success-darkest: var(--green-darkest);
+    --uui-success-hover: var(--green-dark);
+    --uui-success-active: var(--green-darkest);
+
+    --uui-warning: var(--amber);
+    --uui-warning-lightest: var(--amber-lightest);
+    --uui-warning-light: var(--amber-light);
+    --uui-warning-dark: var(--amber-dark);
+    --uui-warning-darkest: var(--amber-darkest);
+    --uui-warning-hover: var(--amber-dark);
+    --uui-warning-active: var(--amber-darkest);
+
+    --uui-error: var(--red);
+    --uui-error-lightest: var(--red-lightest);
+    --uui-error-light: var(--red-light);
+    --uui-error-dark: var(--red-dark);
+    --uui-error-darkest: var(--red-darkest);
+    --uui-error-hover: var(--red-dark);
+    --uui-error-active: var(--red-darkest);
+
+    --uui-icon: var(--gray60);
+    --uui-icon-hover: var(--gray70);
+    --uui-icon-active: var(--gray80);
+    --uui-icon-disabled: var(--gray50);
+
+    --uui-surface: var(--white);
+    --uui-surface-hover: var(--gray30);
+    --uui-surface-light: var(--white);
+    --uui-surface-inverted: var(--gray90);
+    --uui-surface-inverted-light: var(--gray80);
+
+    --uui-visited: #5214CC;
+    --uui-disabled: var(--gray30);
+    --uui-background: var(--gray10);
+    --uui-contrast: var(--white);
+    --uui-divider: var(--gray40);
+
+    --uui-text-brand: var(--gray90);
+    --uui-text-primary: var(--gray80);
+    --uui-text-secondary: var(--gray60);
+    --uui-text-disabled: var(--gray50);
+    --uui-text-contrast: var(--gray5);
+
+    --uui-control-rest: var(--uui-primary);
+    --uui-control-hover: var(--uui-primary-dark);
+    --uui-control-active: var(--uui-primary-darkest);
+
+    --uui-control-bg: var(--white);
+    --uui-control-bg-checked: var(--uui-primary);
+    --uui-control-bg-checked-hover: var(--uui-primary-dark);
+    --uui-control-bg-checked-disabled: var(--uui-primary-light);
+    --uui-control-bg-disabled: var(--gray5);
+    --uui-control-bg-readonly: var(--gray5);
+    --uui-control-bg-hover: var(--gray60);
+
+    --uui-control-border-checked-disabled: var(--uui-primary-light);
+    --uui-control-border: var(--gray40);
+    --uui-control-border-checked: var(--uui-primary);
+    --uui-control-border-checked-hover: var(--uui-primary-dark);
+    --uui-control-border-hover: var(--uui-primary-dark);
+    --uui-control-border-disabled: var(--uui-disabled);
+    --uui-control-border-readonly: var(--uui-disabled);
+
+    --uui-control-switch-bg: var(--gray40);
+    --uui-control-switch-border-hover: var(--gray60);
+    --uui-control-textinput-border-hover: var(--gray60);
+
+    --uui-control-label: var(--uui-text-primary);
+    --uui-control-label-disabled: var(--uui-text-secondary);
+
+    --uui-control-placeholder: var(--uui-text-secondary);
+    --uui-control-placeholder-disabled: var(--uui-text-disabled);
+
+    --uui-control-text: var(--uui-text-primary);
+    --uui-control-text-disabled: var(--uui-text-disabled);
+
+    --uui-control-icon: var(--gray50);
+    --uui-control-icon-disabled: var(--gray50);
+
+    --uui-control-checkbox-icon: var(--white);
+
+    --uui-tag: var(--gray30);
+    --uui-tag-hover: var(--gray40);
+
+    --uui-skeleton: var(--gray40);
+    --uui-skeleton-gradient: linear-gradient(90deg, var(--gray40) 0%, var(--gray10) 50%, var(--gray40) 100%);
+
+    --uui-overlay: rgba(29, 30, 38, 0.8);
+    --uui-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
+    --uui-scroll: var(--gray60);
+    --uui-surface-dark: var(--gray90);
 
     /*  TextInput vars  */
-    --text-input-bg-color: var(--input-bg-color);
-    --text-input-bg-color-disabled: var(--input-bg-disabled-color);
-    --text-input-bg-color-readonly: var(--input-bg-readonly-color);
-    --text-input-border-color: var(--input-border-color);
-    --text-input-border-color-hover: var(--input-textinput-border-hover-color);
-    --text-input-border-color-active: var(--input-border-checked-color);
-    --text-input-border-color-error: var(--negative-color);
-    --text-input-border-color-disabled: var(--input-border-disabled-color);
-    --text-input-border-color-readonly: var(--input-border-readonly-color);
-    --text-input-placeholder-color: var(--input-placeholder-color);
-    --text-input-placeholder-color-disabled: var(--input-placeholder-disabled-color);
-    --text-input-text-color: var(--input-text-color);
-    --text-input-text-color-disabled: var(--input-text-disabled-color);
-    --text-input-icon-color: var(--input-icon-color);
-    --text-input-icon-color-disabled: var(--input-icon-disabled-color);
-    --text-input-icon-color-clickable: var(--icon-color);
-    --text-input-icon-color-clickable-hover: var(--icon-hover-color);
-    --text-input-border-radius: var(--border-radius);
+    --uui-text-input-bg: var(--uui-control-bg);
+    --uui-text-input-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-text-input-bg-readonly: var(--uui-control-bg-readonly);
+    --uui-text-input-border: var(--uui-control-border);
+    --uui-text-input-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-text-input-border-active: var(--uui-control-border-checked);
+    --uui-text-input-border-error: var(--uui-negative);
+    --uui-text-input-border-disabled: var(--uui-control-border-disabled);
+    --uui-text-input-border-readonly: var(--uui-control-border-readonly);
+    --uui-text-input-placeholder: var(--uui-control-placeholder);
+    --uui-text-input-placeholder-disabled: var(--uui-control-placeholder-disabled);
+    --uui-text-input-text: var(--uui-control-text);
+    --uui-text-input-text-disabled: var(--uui-control-text-disabled);
+    --uui-text-input-icon: var(--uui-control-icon);
+    --uui-text-input-icon-disabled: var(--uui-control-icon-disabled);
+    --uui-text-input-icon-clickable: var(--uui-icon);
+    --uui-text-input-icon-clickable-hover: var(--uui-icon-hover);
+    --uui-text-input-border-radius: var(--border-radius);
 
     /*  LinkButton vars   */
-    --link-button-text-color: var(--primary-color);
-    --link-button-text-color-hover: var(--primary-dark-color);
-    --link-button-text-color-active: var(--primary-darkest-color);
-    --link-button-text-color-disabled: var(--button-caption-disabled-color);
+    --uui-link-button-text: var(--uui-primary);
+    --uui-link-button-text-hover: var(--uui-primary-dark);
+    --uui-link-button-text-active: var(--uui-primary-darkest);
+    --uui-link-button-text-disabled: var(--button-caption-disabled-color);
 
     /*  DatePicker vars    */
-    --uui-dtp-title-bg-color: var(--input-bg-color);
-    --uui-dtp-title-bg-color-hover: var(--primary-halftone-color);
-    --uui-dtp-text-color-selected: var(--input-border-checked-color);
-    --uui-dtp-text-color: var(--input-text-color);
-    --uui-dtp-next-prev-icon-color: var(--icon-color);
-    --uui-dtp-next-prev-icon-bg-hover: var(--secondary-lightest-color);
+    --uui-dtp-title-bg: var(--uui-control-bg);
+    --uui-dtp-title-bg-hover: var(--uui-primary-halftone);
+    --uui-dtp-text-selected: var(--uui-control-border-checked);
+    --uui-dtp-text: var(--uui-control-text);
+    --uui-dtp-next-prev-icon: var(--uui-icon);
+    --uui-dtp-next-prev-icon-bg-hover: var(--uui-secondary-lightest);
 
     /*  RangeDatePicker vars    */
-    --uui-rdtp-bg-color: var(--input-bg-color);
-    --uui-rdtp-bg-selected-date-color: var(--primary-lightest-color);
+    --uui-rdtp-bg: var(--uui-control-bg);
+    --uui-rdtp-bg-selected-date: var(--uui-primary-lightest);
 
     /*  Calendar vars   */
-    --uui-calendar-selected-color-hover: var(--input-bg-color);
-    --uui-calendar-start-end-selected-color-hover: var(--primary-dark-color);
-    --uui-calendar-start-end-selected-color: var(--input-border-checked-color);
-    --uui-calendar-weekends-weekdates-color: var(--input-placeholder-color);
-    --uui-calendar-text-color: var(--input-text-color);
-    --uui-calendar-text-color-filtered: var(--input-text-disabled-color);
-    --uui-calendar-bg-selected: var(--secondary-color);
+    --uui-calendar-selected-hover: var(--uui-control-bg);
+    --uui-calendar-start-end-selected-hover: var(--uui-primary-dark);
+    --uui-calendar-start-end-selected: var(--uui-control-border-checked);
+    --uui-calendar-weekends-weekdates: var(--uui-control-placeholder);
+    --uui-calendar-text: var(--uui-control-text);
+    --uui-calendar-text-filtered: var(--uui-control-text-disabled);
+    --uui-calendar-bg-selected: var(--uui-secondary);
 
     /*  tab-button-vars     */
-    --tab-button-text-color: var(--text-primary-color);
-    --tab-button-text-color-hover: var(--primary-color);
-    --tab-button-text-color-active: var(--primary-color);
-    --tab-button-text-color-disabled: var(--text-disabled-color);
-    --tab-button-count-bg-color: var(--gray30);
-    --tab-button-count-color: var(--text-secondary-color);
+    --uui-tab-button-text: var(--uui-text-primary);
+    --uui-tab-button-text-hover: var(--uui-primary);
+    --uui-tab-button-text-active: var(--uui-primary);
+    --uui-tab-button-text-disabled: var(--uui-text-disabled);
+    --uui-tab-button-count-bg: var(--gray30);
+    --uui-tab-button-count: var(--uui-text-secondary);
 
     /*  radio-input-vars    */
-    --radio-input-bg-color: var(--input-bg-color);
-    --radio-input-bg-color-disabled: var(--input-bg-disabled-color);
-    --radio-input-border-color: var(--input-border-color);
-    --radio-input-border-color-checked: var(--input-border-checked-color);
-    --radio-input-border-color-hover: var(--input-border-hover-color);
-    --radio-input-border-color-disabled: var(--input-border-disabled-color);
-    --radio-input-border-color-checked-disabled: var(--input-border-checked-disabled-color);
-    --radio-input-label-color: var(--input-label-color);
-    --radio-input-label-color-disabled: var(--input-label-disabled-color);
-    --radio-input-fill-color-checked: var(--input-border-checked-color);
-    --radio-input-fill-color-hover: var(--input-border-hover-color);
-    --radio-input-fill-color-checked-disabled: var(--input-border-checked-disabled-color);
-    --radio-input-error-color: var(--negative-color);
+    --uui-radio-input-bg: var(--uui-control-bg);
+    --uui-radio-input-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-radio-input-border: var(--uui-control-border);
+    --uui-radio-input-border-checked: var(--uui-control-border-checked);
+    --uui-radio-input-border-hover: var(--uui-control-border-hover);
+    --uui-radio-input-border-disabled: var(--uui-control-border-disabled);
+    --uui-radio-input-border-checked-disabled: var(--uui-control-border-checked-disabled);
+    --uui-radio-input-label: var(--uui-control-label);
+    --uui-radio-input-label-disabled: var(--uui-control-label-disabled);
+    --uui-radio-input-fill-checked: var(--uui-control-border-checked);
+    --uui-radio-input-fill-hover: var(--uui-control-border-hover);
+    --uui-radio-input-fill-checked-disabled: var(--uui-control-border-checked-disabled);
+    --uui-radio-input-error: var(--uui-negative);
 
     /*  Checkbox vars   */
-    --checkbox-border-color: var(--input-border-color);
-    --checkbox-border-color-hover: var(--input-border-hover-color);
-    --checkbox-border-color-disabled: var(--input-border-disabled-color);
-    --checkbox-border-color-checked: var(--input-border-checked-color);
-    --checkbox-border-color-checked-disabled: var(--input-border-checked-disabled-color);
-    --checkbox-bg-color: var(--input-bg-color);
-    --checkbox-bg-color-checked: var(--input-bg-checked-color);
-    --checkbox-bg-color-disabled: var(--input-bg-disabled-color);
-    --checkbox-bg-color-checked-hover: var(--input-bg-checked-hover-color);
-    --checkbox-bg-color-checked-disabled: var(--input-bg-checked-disabled-color);
-    --checkbox-error-color: var(--negative-color);
-    --checkbox-fill-color: var(--input-checkbox-icon-color);
-    --checkbox-label-color: var(--input-label-color);
-    --checkbox-label-color-disabled: var(--input-label-disabled-color);
-    --checkbox-border-radius: var(--border-radius);
+    --uui-checkbox-border: var(--uui-control-border);
+    --uui-checkbox-border-hover: var(--uui-control-border-hover);
+    --uui-checkbox-border-disabled: var(--uui-control-border-disabled);
+    --uui-checkbox-border-checked: var(--uui-control-border-checked);
+    --uui-checkbox-border-checked-disabled: var(--uui-control-border-checked-disabled);
+    --uui-checkbox-bg: var(--uui-control-bg);
+    --uui-checkbox-bg-checked: var(--uui-control-bg-checked);
+    --uui-checkbox-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-checkbox-bg-checked-hover: var(--uui-control-bg-checked-hover);
+    --uui-checkbox-bg-checked-disabled: var(--uui-control-bg-checked-disabled);
+    --uui-checkbox-error: var(--uui-negative);
+    --uui-checkbox-fill: var(--uui-control-checkbox-icon);
+    --uui-checkbox-label: var(--uui-control-label);
+    --uui-checkbox-label-disabled: var(--uui-control-label-disabled);
+    --uui-checkbox-border-radius: var(--border-radius);
 }
 
 .tooltip-light {
-    --tooltip-bg-color: var(--surface-color);
-    --tooltip-text-color: var(--text-primary-color);
+    --uui-tooltip-bg: var(--uui-surface);
+    --uui-tooltip-text: var(--uui-text-primary);
 }
 
 .tooltip-vars {
-    --tooltip-shadow: var(--shadow);
-    --tooltip-arrow-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.20);
-    --tooltip-bg-color: var(--surface-inverted-color);
-    --tooltip-text-color: var(--contrast-color);
-    --tooltip-border-radius: var(--border-radius);
+    --uui-tooltip-shadow: var(--uui-shadow);
+    --uui-tooltip-arrow-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.20);
+    --uui-tooltip-bg: var(--uui-surface-inverted);
+    --uui-tooltip-text: var(--uui-contrast);
+    --uui-tooltip-border-radius: var(--border-radius);
 }
 
 .badge-color-cyan {
-    --badge-bg-color: var(--cyan-30);
-    --badge-bg-color-hover: var(--cyan-40);
-    --badge-caption-color-solid: var(--white);
-    --badge-count-bg-color: var(--white);
-    --badge-count-color: var(--text-secondary-color);
-    --badge-bg-color-halftone: var(--cyan-10);
-    --badge-bg-color-halftone-hover: var(--cyan-20);
-    --badge-border-color-halftone: var(--cyan-20);
-    --badge-border-color-halftone-hover: var(--cyan-30);
-    --badge-caption-color-halftone: var(--cyan-50);
+    --uui-badge-bg: var(--cyan-30);
+    --uui-badge-bg-hover: var(--cyan-40);
+    --uui-badge-caption-solid: var(--white);
+    --uui-badge-count-bg: var(--white);
+    --uui-badge-count: var(--uui-text-secondary);
+    --uui-badge-bg-halftone: var(--cyan-10);
+    --uui-badge-bg-halftone-hover: var(--cyan-20);
+    --uui-badge-border-halftone: var(--cyan-20);
+    --uui-badge-border-halftone-hover: var(--cyan-30);
+    --uui-badge-caption-halftone: var(--cyan-50);
 }
 
 .badge-color-violet {
-    --badge-bg-color: var(--violet-30);
-    --badge-bg-color-hover: var(--violet-40);
-    --badge-caption-color-solid: var(--white);
-    --badge-count-bg-color: var(--white);
-    --badge-count-color: var(--text-secondary-color);
-    --badge-bg-color-halftone: var(--violet-10);
-    --badge-bg-color-halftone-hover: var(--violet-20);
-    --badge-border-color-halftone: var(--violet-20);
-    --badge-border-color-halftone-hover: var(--violet-30);
-    --badge-caption-color-halftone: var(--violet-50);
+    --uui-badge-bg: var(--violet-30);
+    --uui-badge-bg-hover: var(--violet-40);
+    --uui-badge-caption-solid: var(--white);
+    --uui-badge-count-bg: var(--white);
+    --uui-badge-count: var(--uui-text-secondary);
+    --uui-badge-bg-halftone: var(--violet-10);
+    --uui-badge-bg-halftone-hover: var(--violet-20);
+    --uui-badge-border-halftone: var(--violet-20);
+    --uui-badge-border-halftone-hover: var(--violet-30);
+    --uui-badge-caption-halftone: var(--violet-50);
 }
 
 .badge-color-orange {
-    --badge-bg-color: var(--orange-30);
-    --badge-bg-color-hover: var(--orange-40);
-    --badge-caption-color-solid: var(--white);
-    --badge-count-bg-color: var(--white);
-    --badge-count-color: var(--text-secondary-color);
-    --badge-bg-color-halftone: var(--orange-10);
-    --badge-bg-color-halftone-hover: var(--orange-20);
-    --badge-border-color-halftone: var(--orange-20);
-    --badge-border-color-halftone-hover: var(--orange-30);
-    --badge-caption-color-halftone: var(--orange-50);
+    --uui-badge-bg: var(--orange-30);
+    --uui-badge-bg-hover: var(--orange-40);
+    --uui-badge-caption-solid: var(--white);
+    --uui-badge-count-bg: var(--white);
+    --uui-badge-count: var(--uui-text-secondary);
+    --uui-badge-bg-halftone: var(--orange-10);
+    --uui-badge-bg-halftone-hover: var(--orange-20);
+    --uui-badge-border-halftone: var(--orange-20);
+    --uui-badge-border-halftone-hover: var(--orange-30);
+    --uui-badge-caption-halftone: var(--orange-50);
 }
 
 .badge-color-purple {
-    --badge-bg-color: var(--purple-30);
-    --badge-bg-color-hover: var(--purple-40);
-    --badge-caption-color-solid: var(--white);
-    --badge-count-bg-color: var(--white);
-    --badge-count-color: var(--text-secondary-color);
-    --badge-bg-color-halftone: var(--purple-10);
-    --badge-bg-color-halftone-hover: var(--purple-20);
-    --badge-border-color-halftone: var(--purple-20);
-    --badge-border-color-halftone-hover: var(--purple-30);
-    --badge-caption-color-halftone: var(--purple-50);
+    --uui-badge-bg: var(--purple-30);
+    --uui-badge-bg-hover: var(--purple-40);
+    --uui-badge-caption-solid: var(--white);
+    --uui-badge-count-bg: var(--white);
+    --uui-badge-count: var(--uui-text-secondary);
+    --uui-badge-bg-halftone: var(--purple-10);
+    --uui-badge-bg-halftone-hover: var(--purple-20);
+    --uui-badge-border-halftone: var(--purple-20);
+    --uui-badge-border-halftone-hover: var(--purple-30);
+    --uui-badge-caption-halftone: var(--purple-50);
 }
 
 .badge-color-default {
-    --badge-bg-color: var(--tag-color);
-    --badge-bg-color-hover: var(--tag-hover-color);
-    --badge-caption-color-solid: var(--text-primary-color);
-    --badge-count-bg-color: var(--white);
-    --badge-count-color: var(--text-secondary-color);
-    --badge-bg-color-halftone: var(--gray20);
-    --badge-bg-color-halftone-hover: var(--gray30);
-    --badge-border-color-halftone: var(--gray40);
-    --badge-border-color-halftone-hover: var(--gray50);
-    --badge-caption-color-halftone: var(--text-primary-color);
+    --uui-badge-bg: var(--uui-tag);
+    --uui-badge-bg-hover: var(--uui-tag-hover);
+    --uui-badge-caption-solid: var(--uui-text-primary);
+    --uui-badge-count-bg: var(--white);
+    --uui-badge-count: var(--uui-text-secondary);
+    --uui-badge-bg-halftone: var(--gray20);
+    --uui-badge-bg-halftone-hover: var(--gray30);
+    --uui-badge-border-halftone: var(--gray40);
+    --uui-badge-border-halftone-hover: var(--gray50);
+    --uui-badge-caption-halftone: var(--uui-text-primary);
 }
 
 .badge-color-info {
-    --badge-bg-color: var(--info-color);
-    --badge-bg-color-hover: var(--info-dark-color);
-    --badge-caption-color-solid: var(--contrast-color);
-    --badge-count-bg-color: var(--white);
-    --badge-count-color: var(--text-secondary-color);
-    --badge-bg-color-halftone: var(--info-lightest-color);
-    --badge-bg-color-halftone-hover: var(--info-light-color);
-    --badge-border-color-halftone: var(--info-light-color);
-    --badge-border-color-halftone-hover: var(--info-color);
-    --badge-caption-color-halftone: var(--info-darkest-color);
+    --uui-badge-bg: var(--uui-info);
+    --uui-badge-bg-hover: var(--uui-info-dark);
+    --uui-badge-caption-solid: var(--uui-contrast);
+    --uui-badge-count-bg: var(--white);
+    --uui-badge-count: var(--uui-text-secondary);
+    --uui-badge-bg-halftone: var(--uui-info-lightest);
+    --uui-badge-bg-halftone-hover: var(--uui-info-light);
+    --uui-badge-border-halftone: var(--uui-info-light);
+    --uui-badge-border-halftone-hover: var(--uui-info);
+    --uui-badge-caption-halftone: var(--uui-info-darkest);
 }
 
 .badge-color-success {
-    --badge-bg-color: var(--success-color);
-    --badge-bg-color-hover: var(--success-dark-color);
-    --badge-caption-color-solid: var(--contrast-color);
-    --badge-count-bg-color: var(--white);
-    --badge-count-color: var(--text-secondary-color);
-    --badge-bg-color-halftone: var(--success-lightest-color);
-    --badge-bg-color-halftone-hover: var(--success-light-color);
-    --badge-border-color-halftone: var(--success-light-color);
-    --badge-border-color-halftone-hover: var(--success-color);
-    --badge-caption-color-halftone: var(--success-darkest-color);
+    --uui-badge-bg: var(--uui-success);
+    --uui-badge-bg-hover: var(--uui-success-dark);
+    --uui-badge-caption-solid: var(--uui-contrast);
+    --uui-badge-count-bg: var(--white);
+    --uui-badge-count: var(--uui-text-secondary);
+    --uui-badge-bg-halftone: var(--uui-success-lightest);
+    --uui-badge-bg-halftone-hover: var(--uui-success-light);
+    --uui-badge-border-halftone: var(--uui-success-light);
+    --uui-badge-border-halftone-hover: var(--uui-success);
+    --uui-badge-caption-halftone: var(--uui-success-darkest);
 }
 
 .badge-color-warning {
-    --badge-bg-color: var(--warning-color);
-    --badge-bg-color-hover: var(--warning-dark-color);
-    --badge-caption-color-solid: var(--text-primary-color);
-    --badge-count-bg-color: var(--white);
-    --badge-count-color: var(--text-secondary-color);
-    --badge-bg-color-halftone: var(--warning-lightest-color);
-    --badge-bg-color-halftone-hover: var(--warning-light-color);
-    --badge-border-color-halftone: var(--warning-light-color);
-    --badge-border-color-halftone-hover: var(--warning-color);
-    --badge-caption-color-halftone: var(--warning-darkest-color);
+    --uui-badge-bg: var(--uui-warning);
+    --uui-badge-bg-hover: var(--uui-warning-dark);
+    --uui-badge-caption-solid: var(--uui-text-primary);
+    --uui-badge-count-bg: var(--white);
+    --uui-badge-count: var(--uui-text-secondary);
+    --uui-badge-bg-halftone: var(--uui-warning-lightest);
+    --uui-badge-bg-halftone-hover: var(--uui-warning-light);
+    --uui-badge-border-halftone: var(--uui-warning-light);
+    --uui-badge-border-halftone-hover: var(--uui-warning);
+    --uui-badge-caption-halftone: var(--uui-warning-darkest);
 }
 
 .badge-color-error {
-    --badge-bg-color: var(--error-color);
-    --badge-bg-color-hover: var(--error-dark-color);
-    --badge-caption-color-solid: var(--contrast-color);
-    --badge-count-bg-color: var(--white);
-    --badge-count-color: var(--text-secondary-color);
-    --badge-bg-color-halftone: var(--error-lightest-color);
-    --badge-bg-color-halftone-hover: var(--error-light-color);
-    --badge-border-color-halftone: var(--error-light-color);
-    --badge-border-color-halftone-hover: var(--error-color);
-    --badge-caption-color-halftone: var(--error-darkest-color);
+    --uui-badge-bg: var(--uui-error);
+    --uui-badge-bg-hover: var(--uui-error-dark);
+    --uui-badge-caption-solid: var(--uui-contrast);
+    --uui-badge-count-bg: var(--white);
+    --uui-badge-count: var(--uui-text-secondary);
+    --uui-badge-bg-halftone: var(--uui-error-lightest);
+    --uui-badge-bg-halftone-hover: var(--uui-error-light);
+    --uui-badge-border-halftone: var(--uui-error-light);
+    --uui-badge-border-halftone-hover: var(--uui-error);
+    --uui-badge-caption-halftone: var(--uui-error-darkest);
 }
 
 .badge-vars {
-    --badge-border-radius: 100px;
+    --uui-badge-border-radius: 100px;
 }
 
 .accordion-vars {
-    --accordion-bg-color: var(--surface-color);
-    --accordion-border-color: var(--divider-color);
-    --accordion-text-color: var(--text-primary-color);
-    --accordion-text-color-disabled: var(--text-disabled-color);
-    --accordion-icon-color: var(--icon-color);
-    --accordion-icon-color-disabled: var(--icon-button-icon-color-disabled);
-    --accordion-focus-color: var(--primary-color);
-    --accordion-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
-    --accordion-shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
+    --uui-accordion-bg-color: var(--uui-surface);
+    --uui-accordion-border-color: var(--uui-divider);
+    --uui-accordion-text-color: var(--uui-text-primary);
+    --uui-accordion-text-color-disabled: var(--uui-text-disabled);
+    --uui-accordion-icon-color: var(--uui-icon);
+    --uui-accordion-icon-color-disabled: var(--icon-button-icon-color-disabled);
+    --uui-accordion-focus-color: var(--uui-primary);
+    --uui-accordion-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
+    --uui-accordion-shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
 }
 
 .button-color-blue {
-    --btn-bg-color: var(--primary-color);
-    --btn-bg-color-hover: var(--primary-dark-color);
-    --btn-bg-color-active: var(--primary-darkest-color);
-    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
-    --btn-bg-color-halftone-hover: var(--primary-lightest-color);
-    --btn-bg-color-halftone-active: var(--primary-light-color);
-    --btn-border-color: var(--primary-color);
-    --btn-border-color-hover: var(--primary-dark-color);
-    --btn-border-color-active: var(--primary-darkest-color);
-    --btn-bg-color-disabled: var(--disabled-color);
-    --btn-border-color-disabled: var(--disabled-color);
-    --btn-caption-color: var(--contrast-color);
-    --btn-caption-halftone-color: var(--primary-color);
-    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+    --uui-btn-bg-color: var(--uui-primary);
+    --uui-btn-bg-color-hover: var(--uui-primary-dark);
+    --uui-btn-bg-color-active: var(--uui-primary-darkest);
+    --uui-btn-bg-color-halftone: var(--uui-btn-bg-halftone);
+    --uui-btn-bg-color-halftone-hover: var(--uui-primary-lightest);
+    --uui-btn-bg-color-halftone-active: var(--uui-primary-light);
+    --uui-btn-border-color: var(--uui-primary);
+    --uui-btn-border-color-hover: var(--uui-primary-dark);
+    --uui-btn-border-color-active: var(--uui-primary-darkest);
+    --uui-btn-bg-color-disabled: var(--uui-disabled);
+    --uui-btn-border-color-disabled: var(--uui-disabled);
+    --uui-btn-caption-color: var(--uui-contrast);
+    --uui-btn-caption-halftone-color: var(--uui-primary);
+    --uui-btn-caption-color-disabled: var(--uui-btn-caption-disabled);
 }
 
 .button-color-green {
-    --btn-bg-color: var(--accent-color);
-    --btn-bg-color-hover: var(--accent-dark-color);
-    --btn-bg-color-active: var(--accent-darkest-color);
-    --btn-bg-color-halftone: var(--button-bg-color-halftone);
-    --btn-bg-color-halftone-hover: var(--accent-lightest-color);
-    --btn-bg-color-halftone-active: var(--accent-light-color);
-    --btn-border-color: var(--accent-color);
-    --btn-border-color-hover: var(--accent-dark-color);
-    --btn-border-color-active: var(--accent-darkest-color);
-    --btn-bg-color-disabled: var(--disabled-color);
-    --btn-border-color-disabled: var(--disabled-color);
-    --btn-caption-color: var(--contrast-color);
-    --btn-caption-halftone-color: var(--accent-color);
-    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+    --uui-btn-bg-color: var(--uui-accent);
+    --uui-btn-bg-color-hover: var(--uui-accent-dark);
+    --uui-btn-bg-color-active: var(--uui-accent-darkest);
+    --uui-btn-bg-color-halftone: var(--button-bg-color-halftone);
+    --uui-btn-bg-color-halftone-hover: var(--uui-accent-lightest);
+    --uui-btn-bg-color-halftone-active: var(--uui-accent-light);
+    --uui-btn-border-color: var(--uui-accent);
+    --uui-btn-border-color-hover: var(--uui-accent-dark);
+    --uui-btn-border-color-active: var(--uui-accent-darkest);
+    --uui-btn-bg-color-disabled: var(--uui-disabled);
+    --uui-btn-border-color-disabled: var(--uui-disabled);
+    --uui-btn-caption-color: var(--uui-contrast);
+    --uui-btn-caption-halftone-color: var(--uui-accent);
+    --uui-btn-caption-color-disabled: var(--uui-btn-caption-disabled);
 }
 
 .button-color-red {
-    --btn-bg-color: var(--negative-color);
-    --btn-bg-color-hover: var(--negative-dark-color);
-    --btn-bg-color-active: var(--negative-darkest-color);
-    --btn-bg-color-halftone: var(--button-bg-color-halftone);
-    --btn-bg-color-halftone-hover: var(--negative-lightest-color);
-    --btn-bg-color-halftone-active: var(--negative-light-color);
-    --btn-border-color: var(--negative-color);
-    --btn-border-color-hover: var(--negative-dark-color);
-    --btn-border-color-active: var(--negative-darkest-color);
-    --btn-bg-color-disabled: var(--disabled-color);
-    --btn-border-color-disabled: var(--disabled-color);
-    --btn-caption-color: var(--contrast-color);
-    --btn-caption-halftone-color: var(--negative-color);
-    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+    --uui-btn-bg-color: var(--uui-negative);
+    --uui-btn-bg-color-hover: var(--uui-negative-dark);
+    --uui-btn-bg-color-active: var(--uui-negative-darkest);
+    --uui-btn-bg-color-halftone: var(--button-bg-color-halftone);
+    --uui-btn-bg-color-halftone-hover: var(--uui-negative-lightest);
+    --uui-btn-bg-color-halftone-active: var(--uui-negative-light);
+    --uui-btn-border-color: var(--uui-negative);
+    --uui-btn-border-color-hover: var(--uui-negative-dark);
+    --uui-btn-border-color-active: var(--uui-negative-darkest);
+    --uui-btn-bg-color-disabled: var(--uui-disabled);
+    --uui-btn-border-color-disabled: var(--uui-disabled);
+    --uui-btn-caption-color: var(--uui-contrast);
+    --uui-btn-caption-halftone-color: var(--uui-negative);
+    --uui-btn-caption-color-disabled: var(--uui-btn-caption-disabled);
 }
 
 .button-color-gray50 {
-    --btn-bg-color: var(--secondary-color);
-    --btn-bg-color-hover: var(--secondary-dark-color);
-    --btn-bg-color-active: var(--secondary-darkest-color);
-    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
-    --btn-bg-color-halftone-hover: var(--secondary-lightest-color);
-    --btn-bg-color-halftone-active: var(--secondary-light-color);
-    --btn-border-color: var(--secondary-color);
-    --btn-border-color-hover: var(--secondary-dark-color);
-    --btn-border-color-active: var(--secondary-darkest-color);
-    --btn-bg-color-disabled: var(--disabled-color);
-    --btn-border-color-disabled: var(--disabled-color);
-    --btn-caption-color: var(--contrast-color);
-    --btn-caption-halftone-color: var(--secondary-dark-color);
-    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+    --uui-btn-bg-color: var(--uui-secondary);
+    --uui-btn-bg-color-hover: var(--uui-secondary-dark);
+    --uui-btn-bg-color-active: var(--uui-secondary-darkest);
+    --uui-btn-bg-color-halftone: var(--uui-btn-bg-halftone);
+    --uui-btn-bg-color-halftone-hover: var(--uui-secondary-lightest);
+    --uui-btn-bg-color-halftone-active: var(--uui-secondary-light);
+    --uui-btn-border-color: var(--uui-secondary);
+    --uui-btn-border-color-hover: var(--uui-secondary-dark);
+    --uui-btn-border-color-active: var(--uui-secondary-darkest);
+    --uui-btn-bg-color-disabled: var(--uui-disabled);
+    --uui-btn-border-color-disabled: var(--uui-disabled);
+    --uui-btn-caption-color: var(--uui-contrast);
+    --uui-btn-caption-halftone-color: var(--uui-secondary-dark);
+    --uui-btn-caption-color-disabled: var(--uui-btn-caption-disabled);
 }
 
 .button-vars {
-    --button-border-radius: var(--border-radius);
+    --uui-btn-border-radius: var(--border-radius);
 }
 
 .icon-button-color-blue {
-    --uui-icon-btn-color: var(--info-color);
-    --uui-icon-btn-color-hover: var(--info-dark-color);
-    --uui-icon-btn-color-active: var(--info-darkest-color);
-    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+    --uui-icon-btn-color: var(--uui-info);
+    --uui-icon-btn-color-hover: var(--uui-info-dark);
+    --uui-icon-btn-color-active: var(--uui-info-darkest);
+    --uui-icon-btn-color-disabled: var(--uui-icon-disabled);
 }
 
 .icon-button-color-green {
-    --uui-icon-btn-color: var(--success-color);
-    --uui-icon-btn-color-hover: var(--success-dark-color);
-    --uui-icon-btn-color-active: var(--success-darkest-color);
-    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+    --uui-icon-btn-color: var(--uui-success);
+    --uui-icon-btn-color-hover: var(--uui-success-dark);
+    --uui-icon-btn-color-active: var(--uui-success-darkest);
+    --uui-icon-btn-color-disabled: var(--uui-icon-disabled);
 }
 
 .icon-button-color-amber {
-    --uui-icon-btn-color: var(--warning-color);
-    --uui-icon-btn-color-hover: var(--warning-dark-color);
-    --uui-icon-btn-color-active: var(--warning-darkest-color);
-    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+    --uui-icon-btn-color: var(--uui-warning);
+    --uui-icon-btn-color-hover: var(--uui-warning-dark);
+    --uui-icon-btn-color-active: var(--uui-warning-darkest);
+    --uui-icon-btn-color-disabled: var(--uui-icon-disabled);
 }
 
 .icon-button-color-red {
-    --uui-icon-btn-color: var(--error-color);
-    --uui-icon-btn-color-hover: var(--error-dark-color);
-    --uui-icon-btn-color-active: var(--error-darkest-color);
-    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+    --uui-icon-btn-color: var(--uui-error);
+    --uui-icon-btn-color-hover: var(--uui-error-dark);
+    --uui-icon-btn-color-active: var(--uui-error-darkest);
+    --uui-icon-btn-color-disabled: var(--uui-icon-disabled);
 }
 
 .icon-button-color-gray30 {
-    --uui-icon-btn-color: var(--secondary-light-color);
-    --uui-icon-btn-color-hover: var(--btn-bg-halftone-color);
-    --uui-icon-btn-color-active: var(--text-contrast-color);
-    --uui-icon-btn-color-disabled: var(--icon-disabled-color);;
+    --uui-icon-btn-color: var(--uui-secondary-light);
+    --uui-icon-btn-color-hover: var(--uui-btn-bg-halftone);
+    --uui-icon-btn-color-active: var(--uui-text-contrast);
+    --uui-icon-btn-color-disabled: var(--uui-icon-disabled);;
 }
 
 .icon-button-color-gray50 {
-    --uui-icon-btn-color: var(--secondary-color);
-    --uui-icon-btn-color-hover: var(--secondary-dark-color);
-    --uui-icon-btn-color-active: var(--secondary-darkest-color);
-    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+    --uui-icon-btn-color: var(--uui-secondary);
+    --uui-icon-btn-color-hover: var(--uui-secondary-dark);
+    --uui-icon-btn-color-active: var(--uui-secondary-darkest);
+    --uui-icon-btn-color-disabled: var(--uui-icon-disabled);
 }
 
 .icon-button-color-gray60 {
-    --uui-icon-btn-color: var(--icon-color);
-    --uui-icon-btn-color-hover: var(--icon-hover-color);
-    --uui-icon-btn-color-active: var(--icon-active-color);
-    --uui-icon-btn-color-disabled: var(--icon-disabled-color);
+    --uui-icon-btn-color: var(--uui-icon);
+    --uui-icon-btn-color-hover: var(--uui-icon-hover);
+    --uui-icon-btn-color-active: var(--uui-icon-active);
+    --uui-icon-btn-color-disabled: var(--uui-icon-disabled);
 }
 
 .checkbox-vars {
-    --checkbox-border-color: var(--input-border-color);
-    --checkbox-border-color-hover: var(--input-border-hover-color);
-    --checkbox-border-color-disabled: var(--input-border-disabled-color);
-    --checkbox-border-color-checked: var(--input-border-checked-color);
-    --checkbox-border-color-checked-disabled: var(--input-border-checked-disabled-color);
-    --checkbox-bg-color: var(--input-bg-color);
-    --checkbox-bg-color-checked: var(--input-bg-checked-color);
-    --checkbox-bg-color-disabled: var(--input-bg-disabled-color);
-    --checkbox-bg-color-checked-hover: var(--input-bg-checked-hover-color);
-    --checkbox-bg-color-checked-disabled: var(--input-bg-checked-disabled-color);
-    --checkbox-error-color: var(--negative-color);
-    --checkbox-fill-color: var(--input-checkbox-icon-color);
-    --checkbox-label-color: var(--input-label-color);
-    --checkbox-label-color-disabled: var(--input-label-disabled-color);
-    --checkbox-border-radius: var(--border-radius);
+    --uui-checkbox-border: var(--uui-control-border);
+    --uui-checkbox-border-hover: var(--uui-control-border-hover);
+    --uui-checkbox-border-disabled: var(--uui-control-border-disabled);
+    --uui-checkbox-border-checked: var(--uui-control-border-checked);
+    --uui-checkbox-border-checked-disabled: var(--uui-control-border-checked-disabled);
+    --uui-checkbox-bg: var(--uui-control-bg);
+    --uui-checkbox-bg-checked: var(--uui-control-bg-checked);
+    --uui-checkbox-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-checkbox-bg-checked-hover: var(--uui-control-bg-checked-hover);
+    --uui-checkbox-bg-checked-disabled: var(--uui-control-bg-checked-disabled);
+    --uui-checkbox-error: var(--uui-negative);
+    --uui-checkbox-fill: var(--uui-control-checkbox-icon);
+    --uui-checkbox-label: var(--uui-control-label);
+    --uui-checkbox-label-disabled: var(--uui-control-label-disabled);
+    --uui-checkbox-border-radius: var(--border-radius);
 }
 
 .switch-vars {
-    --switch-bg-color: var(--input-switch-bg-color);
-    --switch-bg-color-checked: var(--input-bg-checked-color);
-    --switch-bg-color-hover: var(--input-bg-hover-color);
-    --switch-bg-color-disabled: var(--input-bg-disabled-color);
-    --switch-bg-color-checked-hover: var(--input-bg-checked-hover-color);
-    --switch-bg-color-checked-disabled: var(--input-bg-checked-disabled-color);
-    --switch-border-color: var(--input-border-color);
-    --switch-border-color-checked: var(--input-border-checked-color);
-    --switch-border-color-hover: var(--input-switch-border-hover-color);
-    --switch-border-color-disabled: var(--input-border-disabled-color);
-    --switch-border-color-checked-hover: var(--input-border-checked-hover-color);
-    --switch-border-color-checked-hover-copy: var(--input-border-checked-hover-color);
-    --switch-border-color-checked-disabled: var(--input-border-checked-disabled-color);
-    --switch-label-color: var(--input-label-color);
-    --switch-label-color-disabled: var(--input-label-disabled-color);
-    --switch-toggler-bg-color: #FFFFFF;
-    --switch-toggler-bg-color-disabled: var(--input-bg-disabled-color);
-    --switch-toggler-border-color: var(--input-switch-bg-color);
-    --switch-toggler-border-color-checked: var(--input-bg-checked-color);
-    --switch-toggler-border-color-hover: var(--input-bg-hover-color);
-    --switch-toggler-border-color-disabled: var(--input-border-disabled-color);
-    --switch-toggler-border-color-checked-hover: var(--input-bg-checked-hover-color);
-    --switch-toggler-border-color-checked-disabled: var(--input-bg-checked-disabled-color);
+    --uui-switch-bg: var(--uui-control-switch-bg);
+    --uui-switch-bg-checked: var(--uui-control-bg-checked);
+    --uui-switch-bg-hover: var(--uui-control-bg-hover);
+    --uui-switch-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-switch-bg-checked-hover: var(--uui-control-bg-checked-hover);
+    --uui-switch-bg-checked-disabled: var(--uui-control-bg-checked-disabled);
+    --uui-switch-border: var(--uui-control-border);
+    --uui-switch-border-checked: var(--uui-control-border-checked);
+    --uui-switch-border-hover: var(--uui-control-switch-border-hover);
+    --uui-switch-border-disabled: var(--uui-control-border-disabled);
+    --uui-switch-border-checked-hover: var(--uui-control-border-checked-hover);
+    --uui-switch-border-checked-hover-copy: var(--uui-control-border-checked-hover);
+    --uui-switch-border-checked-disabled: var(--uui-control-border-checked-disabled);
+    --uui-switch-label: var(--uui-control-label);
+    --uui-switch-label-disabled: var(--uui-control-label-disabled);
+    --uui-switch-toggler-bg: #FFFFFF;
+    --uui-switch-toggler-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-switch-toggler-border: var(--uui-control-switch-bg);
+    --uui-switch-toggler-border-checked: var(--uui-control-bg-checked);
+    --uui-switch-toggler-border-hover: var(--uui-control-bg-hover);
+    --uui-switch-toggler-border-disabled: var(--uui-control-border-disabled);
+    --uui-switch-toggler-border-checked-hover: var(--uui-control-bg-checked-hover);
+    --uui-switch-toggler-border-checked-disabled: var(--uui-control-bg-checked-disabled);
 }
 
 .labeled-input-vars {
-    --labeled-input-color: var(--text-primary-color);
-    --labeled-input-color-disabled: var(--text-disabled-color);
-    --labeled-input-color-error: var(--error-color);
-    --labeled-input-fill-color: var(--icon-color);
-    --labeled-input-optional-text-color: var(--text-secondary-color);
-    --labeled-input-asterisk-color: var(--error-color);
-    --input-label-color: var(--text-primary-color);
-    --input-label-color-disabled: var(--text-disabled-color);
-    --input-label-color-error: var(--error-color);
-    --input-label-fill-color: var(--icon-color);
-    --input-label-optional-text-color: var(--text-secondary-color);
-    --input-label-asterisk-color: var(--error-color);
+    --uui-labeled-input: var(--uui-text-primary);
+    --uui-labeled-input-disabled: var(--uui-text-disabled);
+    --uui-labeled-input-error: var(--uui-error);
+    --uui-labeled-input-fill: var(--uui-icon);
+    --uui-labeled-input-optional-text: var(--uui-text-secondary);
+    --uui-labeled-input-asterisk: var(--uui-error);
+    --uui-control-label: var(--uui-text-primary);
+    --uui-control-label-disabled: var(--uui-text-disabled);
+    --uui-control-label-error: var(--uui-error);
+    --uui-control-label-fill: var(--uui-icon);
+    --uui-control-label-optional-text: var(--uui-text-secondary);
+    --uui-control-label-asterisk: var(--uui-error);
 }
 
 .notification-card-warning {
-    --notification-card-fill-color: var(--warning-color);
-    --notification-card-border-color: var(--warning-color);
-    --notification-card-bg-color: var(--surface-color);
-    --notification-card-text-color: var(--text-primary-color);
+    --uui-notification-card-fill-color: var(--uui-warning);
+    --uui-notification-card-border-color: var(--uui-warning);
+    --uui-notification-card-bg-color: var(--uui-surface);
+    --uui-notification-card-text-color: var(--uui-text-primary);
 }
 
 .notification-card-success {
-    --notification-card-fill-color: var(--success-color);
-    --notification-card-border-color: var(--success-color);
-    --notification-card-bg-color: var(--surface-color);
-    --notification-card-text-color: var(--text-primary-color);
+    --uui-notification-card-fill-color: var(--uui-success);
+    --uui-notification-card-border-color: var(--uui-success);
+    --uui-notification-card-bg-color: var(--uui-surface);
+    --uui-notification-card-text-color: var(--uui-text-primary);
 }
 
 .notification-card-info {
-    --notification-card-fill-color: var(--info-color);
-    --notification-card-border-color: var(--info-color);
-    --notification-card-bg-color: var(--surface-color);
-    --notification-card-text-color: var(--text-primary-color);
+    --uui-notification-card-fill-color: var(--uui-info);
+    --uui-notification-card-border-color: var(--uui-info);
+    --uui-notification-card-bg-color: var(--uui-surface);
+    --uui-notification-card-text-color: var(--uui-text-primary);
 }
 
 .notification-card-error {
-    --notification-card-fill-color: var(--error-color);
-    --notification-card-border-color: var(--error-color);
-    --notification-card-bg-color: var(--surface-color);
-    --notification-card-text-color: var(--text-primary-color);
+    --uui-notification-card-fill-color: var(--uui-error);
+    --uui-notification-card-border-color: var(--uui-error);
+    --uui-notification-card-bg-color: var(--uui-surface);
+    --uui-notification-card-text-color: var(--uui-text-primary);
 }
 
 .notification-card-vars {
-    --notification-card-border-radius: var(--border-radius);
-    --notification-card-shadow: var(--shadow);
+    --uui-notification-card-border-radius: var(--border-radius);
+    --uui-notification-card-shadow: var(--uui-shadow);
 }
 
 .alert-error {
-    --alert-text-color: var(--text-primary-color);
-    --alert-bg-color: var(--error-lightest-color);
-    --alert-border-color: var(--negative-color);
-    --alert-icon-color: var(--negative-color);
+    --uui-alert-text-color: var(--uui-text-primary);
+    --uui-alert-bg-color: var(--uui-error-lightest);
+    --uui-alert-border-color: var(--uui-negative);
+    --uui-alert-icon-color: var(--uui-negative);
 }
 
 .alert-warning {
-    --alert-text-color: var(--text-primary-color);
-    --alert-bg-color: var(--warning-lightest-color);
-    --alert-border-color: var(--amber);
-    --alert-icon-color: var(--amber);
+    --uui-alert-text-color: var(--uui-text-primary);
+    --uui-alert-bg-color: var(--uui-warning-lightest);
+    --uui-alert-border-color: var(--amber);
+    --uui-alert-icon-color: var(--amber);
 }
 
 .alert-success {
-    --alert-text-color: var(--text-primary-color);
-    --alert-bg-color: var(--success-lightest-color);
-    --alert-border-color: var(--accent-color);
-    --alert-icon-color: var(--accent-color);
+    --uui-alert-text-color: var(--uui-text-primary);
+    --uui-alert-bg-color: var(--uui-success-lightest);
+    --uui-alert-border-color: var(--uui-accent);
+    --uui-alert-icon-color: var(--uui-accent);
 }
 
 .alert-info {
-    --alert-text-color: var(--text-primary-color);
-    --alert-bg-color: var(--info-lightest-color);
-    --alert-border-color: var(--primary-color);
-    --alert-icon-color: var(--primary-color);
+    --uui-alert-text-color: var(--uui-text-primary);
+    --uui-alert-bg-color: var(--uui-info-lightest);
+    --uui-alert-border-color: var(--uui-primary);
+    --uui-alert-icon-color: var(--uui-primary);
 }
 
 .tab-button-vars {
-    --tab-button-text-color: var(--text-primary-color);
-    --tab-button-text-color-hover: var(--primary-color);
-    --tab-button-text-color-active: var(--primary-color);
-    --tab-button-text-color-disabled: var(--text-disabled-color);
-    --tab-button-count-bg-color: var(--secondary-light-color);
-    --tab-button-count-color: var(--text-secondary-color);
-    --tab-button-icon-color: var(--icon-color);
-    --tab-button-icon-color-hover: var(--primary-color);
-    --tab-button-icon-color-active: var(--primary-color);
-    --tab-button-icon-color-disabled: var(--icon-disabled-color);
-    --tab-button-bg-color: var(--surface-color);
-    --tab-button-border-color-active: var(--primary-color);
+    --uui-tab-button-text: var(--uui-text-primary);
+    --uui-tab-button-text-hover: var(--uui-primary);
+    --uui-tab-button-text-active: var(--uui-primary);
+    --uui-tab-button-text-disabled: var(--uui-text-disabled);
+    --uui-tab-button-count-bg: var(--uui-secondary-light);
+    --uui-tab-button-count: var(--uui-text-secondary);
+    --uui-tab-button-icon-color: var(--uui-icon);
+    --uui-tab-button-icon-color-hover: var(--uui-primary);
+    --uui-tab-button-icon-color-active: var(--uui-primary);
+    --uui-tab-button-icon-color-disabled: var(--uui-icon-disabled);
+    --uui-tab-button-bg-color: var(--uui-surface);
+    --uui-tab-button-border-color-active: var(--uui-primary);
 }
 
 .dropdown-container-vars {
-    --dropdown-container-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
-    --dropdown-container-scrollbar-thumb-color: var(--scroll-color);
+    --uui-dropdown-container-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
+    --uui-dropdown-container-scrollbar-thumb: var(--uui-scroll);
 }
 
 .tag-vars {
-    --tag-bg-color: var(--tag-color);
-    --tag-bg-color-hover: var(--tag-hover-color);
-    --tag-caption-color: var(--text-primary-color);
-    --tag-fill-color: var(--icon-color);
-    --tag-fill-color-hover: var(--icon-hover-color);
-    --tag-count-bg-color: var(--white);
-    --tag-count-color: var(--text-secondary-color);
-    --tag-label-color: var(--text-secondary-color);
-    --tag-border-radius: var(--border-radius);
+    --uui-tag-bg: var(--uui-tag);
+    --uui-tag-bg-hover: var(--uui-tag-hover);
+    --uui-tag-caption: var(--uui-text-primary);
+    --uui-tag-fill: var(--uui-icon);
+    --uui-tag-fill-hover: var(--uui-icon-hover);
+    --uui-tag-count-bg: var(--white);
+    --uui-tag-count: var(--uui-text-secondary);
+    --uui-tag-label: var(--uui-text-secondary);
+    --uui-tag-border-radius: var(--border-radius);
 }
 
 .picker-toggler-vars {
-    --picker-toggler-bg-color: var(--input-bg-color);
-    --picker-toggler-bg-color-disabled: var(--input-bg-disabled-color);
-    --picker-toggler-border-color: var(--input-border-color);
-    --picker-toggler-border-color-disabled: var(--input-border-disabled-color);
-    --picker-toggler-border-color-hover: var(--input-textinput-border-hover-color);
-    --picker-toggler-border-color-active: var(--input-border-checked-color);
-    --picker-toggler-border-color-error: var(--negative-color);
-    --picker-toggler-placeholder-color: var(--input-placeholder-color);
-    --picker-toggler-text-color: var(--input-text-color);
-    --picker-toggler-text-color-disabled: var(--input-text-disabled-color);
-    --picker-toggler-icon-color: var(--input-icon-color);
-    --picker-toggler-icon-color-disabled: var(--input-icon-disabled-color);
-    --picker-toggler-icon-color-clickable: var(--icon-color);
-    --picker-toggler-icon-color-clickable-hover: var(--icon-hover-color);
+    --picker-toggler-bg-color: var(--uui-control-bg);
+    --picker-toggler-bg-color-disabled: var(--uui-control-bg-disabled);
+    --picker-toggler-border-color: var(--uui-control-border);
+    --picker-toggler-border-color-disabled: var(--uui-control-border-disabled);
+    --picker-toggler-border-color-hover: var(--uui-control-textinput-border-hover);
+    --picker-toggler-border-color-active: var(--uui-control-border-checked);
+    --picker-toggler-border-color-error: var(--uui-negative);
+    --picker-toggler-placeholder-color: var(--uui-control-placeholder);
+    --picker-toggler-text-color: var(--uui-control-text);
+    --picker-toggler-text-color-disabled: var(--uui-control-text-disabled);
+    --picker-toggler-icon-color: var(--uui-control-icon);
+    --picker-toggler-icon-color-disabled: var(--uui-control-icon-disabled);
+    --picker-toggler-icon-color-clickable: var(--uui-icon);
+    --picker-toggler-icon-color-clickable-hover: var(--uui-icon-hover);
     --picker-toggler-border-radius: var(--border-radius);
 }
 
@@ -737,86 +758,86 @@
     --main-menu-bg-color: var(--gray80);
     --main-menu-active-color: var(--gray90);
     --main-menu-hover-color: var(--gray90);
-    --main-menu-active-border-color: var(--primary-color);
+    --main-menu-active-border-color: var(--uui-primary);
     --caption-color: var(--white);
     --main-menu-dropdown-bg-color: var(--main-menu-active-color);
-    --main-menu-dropdown-hover-color: var(--primary-color);
+    --main-menu-dropdown-hover-color: var(--uui-primary);
     --main-menu-search-bg-color: var(--gray70);
     --main-menu-search-border-color: var(--gray70);
-    --main-menu-search-placeholder-color: var(--text-disabled-color);
-    --main-menu-search-text-color: var(--contrast-color);
-    --main-menu-search-icon-color: var(--icon-disabled-color);
+    --main-menu-search-placeholder-color: var(--uui-text-disabled);
+    --main-menu-search-text-color: var(--uui-contrast);
+    --main-menu-search-icon-color: var(--uui-icon-disabled);
     --main-menu-icon-color: var(--white);
 }
 
 .burger-menu {
     --burger-menu-bg-color: var(--gray90);
-    --burger-menu-caption-coor: var(--contrast-color);
-    --burger-menu-caption-hover-color: var(--primary-color);
-    --burger-menu-overlay-color: var(--overlay-color);
+    --burger-menu-caption-coor: var(--uui-contrast);
+    --burger-menu-caption-hover-color: var(--uui-primary);
+    --burger-menu-overlay-color: var(--uui-overlay);
 }
 
 .numeric-input-vars {
-    --numeric-input-bg-color: var(--input-bg-color);
-    --numeric-input-bg-color-disabled: var(--input-bg-disabled-color);
-    --numeric-input-border-color: var(--input-border-color);
-    --numeric-input-border-color-disabled: var(--input-border-disabled-color);
-    --numeric-input-border-color-hover: var(--input-textinput-border-hover-color);
-    --numeric-input-border-color-active: var(--input-border-checked-color);
-    --numeric-input-border-color-error: var(--negative-color);
-    --numeric-input-placeholder-color: var(--input-placeholder-color);
-    --numeric-input-text-color: var(--input-text-color);
-    --numeric-input-text-color-disabled: var(--input-text-disabled-color);
-    --numeric-input-icon-color-clickable: var(--icon-color);
-    --numeric-input-icon-color-clickable-hover: var(--icon-hover-color);
+    --numeric-input-bg-color: var(--uui-control-bg);
+    --numeric-input-bg-color-disabled: var(--uui-control-bg-disabled);
+    --numeric-input-border-color: var(--uui-control-border);
+    --numeric-input-border-color-disabled: var(--uui-control-border-disabled);
+    --numeric-input-border-color-hover: var(--uui-control-textinput-border-hover);
+    --numeric-input-border-color-active: var(--uui-control-border-checked);
+    --numeric-input-border-color-error: var(--uui-negative);
+    --numeric-input-placeholder-color: var(--uui-control-placeholder);
+    --numeric-input-text-color: var(--uui-control-text);
+    --numeric-input-text-color-disabled: var(--uui-control-text-disabled);
+    --numeric-input-icon-color-clickable: var(--uui-icon);
+    --numeric-input-icon-color-clickable-hover: var(--uui-icon-hover);
     --numeric-input-border-radius: var(--border-radius);
 }
 
 .time-picker-vars {
-    --time-picker-bg-color: var(--input-bg-color);
-    --time-picker-bg-color-disabled: var(--input-bg-disabled-color);
-    --time-picker-border-color: var(--input-border-color);
-    --time-picker-border-color-disabled: var(--input-border-disabled-color);
-    --time-picker-border-color-hover: var(--input-textinput-border-hover-color);
-    --time-picker-border-color-active: var(--input-border-checked-color);
-    --time-picker-border-color-error: var(--negative-color);
-    --time-picker-placeholder-color: var(--input-placeholder-color);
-    --time-picker-text-color: var(--input-text-color);
-    --time-picker-text-color-disabled: var(--input-text-disabled-color);
-    --time-picker-icon-color-clickable: var(--icon-color);
-    --time-picker-icon-color-clickable-hover: var(--icon-hover-color);
+    --time-picker-bg-color: var(--uui-control-bg);
+    --time-picker-bg-color-disabled: var(--uui-control-bg-disabled);
+    --time-picker-border-color: var(--uui-control-border);
+    --time-picker-border-color-disabled: var(--uui-control-border-disabled);
+    --time-picker-border-color-hover: var(--uui-control-textinput-border-hover);
+    --time-picker-border-color-active: var(--uui-control-border-checked);
+    --time-picker-border-color-error: var(--uui-negative);
+    --time-picker-placeholder-color: var(--uui-control-placeholder);
+    --time-picker-text-color: var(--uui-control-text);
+    --time-picker-text-color-disabled: var(--uui-control-text-disabled);
+    --time-picker-icon-color-clickable: var(--uui-icon);
+    --time-picker-icon-color-clickable-hover: var(--uui-icon-hover);
     --time-picker-border-radius: var(--border-radius);
 }
 
 .search-input-vars {
-    --search-input-bg-color: var(--input-bg-color);
-    --search-input-bg-color-disabled: var(--input-bg-disabled-color);
-    --search-input-border-color: var(--input-border-color);
-    --search-input-border-color-disabled: var(--input-border-disabled-color);
-    --search-input-border-color-hover: var(--input-textinput-border-hover-color);
-    --search-input-border-color-active: var(--input-border-checked-color);
-    --search-input-border-color-error: var(--negative-color);
-    --search-input-placeholder-color: var(--input-placeholder-color);
-    --search-input-text-color: var(--input-text-color);
-    --search-input-text-color-disabled: var(--input-text-disabled-color);
-    --search-input-icon-color-clickable: var(--icon-color);
-    --search-input-icon-color-clickable-hover: var(--icon-hover-color);
-    --search-input-icon-color-disabled: var(--icon-disabled-color);
+    --search-input-bg-color: var(--uui-control-bg);
+    --search-input-bg-color-disabled: var(--uui-control-bg-disabled);
+    --search-input-border-color: var(--uui-control-border);
+    --search-input-border-color-disabled: var(--uui-control-border-disabled);
+    --search-input-border-color-hover: var(--uui-control-textinput-border-hover);
+    --search-input-border-color-active: var(--uui-control-border-checked);
+    --search-input-border-color-error: var(--uui-negative);
+    --search-input-placeholder-color: var(--uui-control-placeholder);
+    --search-input-text-color: var(--uui-control-text);
+    --search-input-text-color-disabled: var(--uui-control-text-disabled);
+    --search-input-icon-color-clickable: var(--uui-icon);
+    --search-input-icon-color-clickable-hover: var(--uui-icon-hover);
+    --search-input-icon-color-disabled: var(--uui-icon-disabled);
     --search-input-border-radius: var(--border-radius);
 }
 
 .text-area-vars {
-    --text-area-bg-color: var(--input-bg-color);
-    --text-area-bg-color-disabled: var(--input-bg-disabled-color);
-    --text-area-border-color: var(--input-border-color);
-    --text-area-border-color-disabled: var(--input-border-disabled-color);
-    --text-area-border-color-hover: var(--input-textinput-border-hover-color);
-    --text-area-border-color-active: var(--input-border-checked-color);
-    --text-area-border-color-error: var(--negative-color);
-    --text-area-placeholder-color: var(--input-placeholder-color);
-    --text-area-text-color: var(--input-text-color);
-    --text-area-text-color-disabled: var(--input-text-disabled-color);
-    --text-area-icon-color: var(--icon-color);
+    --text-area-bg-color: var(--uui-control-bg);
+    --text-area-bg-color-disabled: var(--uui-control-bg-disabled);
+    --text-area-border-color: var(--uui-control-border);
+    --text-area-border-color-disabled: var(--uui-control-border-disabled);
+    --text-area-border-color-hover: var(--uui-control-textinput-border-hover);
+    --text-area-border-color-active: var(--uui-control-border-checked);
+    --text-area-border-color-error: var(--uui-negative);
+    --text-area-placeholder-color: var(--uui-control-placeholder);
+    --text-area-text-color: var(--uui-control-text);
+    --text-area-text-color-disabled: var(--uui-control-text-disabled);
+    --text-area-icon-color: var(--uui-icon);
     --text-area-border-radius: var(--border-radius);
 }
 
@@ -835,12 +856,12 @@
 
 .informer-color-focus {
     --informer-bg-color: var(--red);
-    --informer-caption-color: var(--contrast-color);
+    --informer-caption-color: var(--uui-contrast);
 }
 
 .informer-color-white {
-    --informer-bg-color: var(--surface-color);
-    --informer-caption-color: var(--text-secondary-color);
+    --informer-bg-color: var(--uui-surface);
+    --informer-caption-color: var(--uui-text-secondary);
 }
 
 .informer-vars {
@@ -848,42 +869,42 @@
 }
 
 .tab-button-vars {
-    --tab-button-text-color: var(--text-primary-color);
-    --tab-button-text-color-hover: var(--primary-color);
-    --tab-button-text-color-active: var(--primary-color);
-    --tab-button-text-color-disabled: var(--text-disabled-color);
-    --tab-button-count-bg-color: #FFFFFF;
-    --tab-button-count-color: var(--text-secondary-color);
+    --uui-tab-button-text: var(--uui-text-primary);
+    --uui-tab-button-text-hover: var(--uui-primary);
+    --uui-tab-button-text-active: var(--uui-primary);
+    --uui-tab-button-text-disabled: var(--uui-text-disabled);
+    --uui-tab-button-count-bg: #FFFFFF;
+    --uui-tab-button-count: var(--uui-text-secondary);
 }
 
 .icon-container-color-info {
-    --icon-container-fill-color: var(--info-color);
+    --icon-container-fill-color: var(--uui-info);
 }
 
 .icon-container-color-success {
-    --icon-container-fill-color: var(--success-color);
+    --icon-container-fill-color: var(--uui-success);
 }
 
 .icon-container-color-warning {
-    --icon-container-fill-color: var(--warning-color);
+    --icon-container-fill-color: var(--uui-warning);
 }
 
 .icon-container-color-error {
-    --icon-container-fill-color: var(--error-color);
+    --icon-container-fill-color: var(--uui-error);
 }
 
 .icon-container-color-default {
-    --icon-container-fill-color: var(--icon-color);
+    --icon-container-fill-color: var(--uui-icon);
 }
 
 .icon-container-color-secondary {
-    --icon-container-fill-color: var(--secondary-color);
+    --icon-container-fill-color: var(--uui-secondary);
 }
 
 .panel-vars {
     --panel-border-radius: var(--border-radius);
-    --panel-bg-color: var(--surface-color);
-    --panel-shadow: var(--shadow);
+    --panel-bg-color: var(--uui-surface);
+    --panel-shadow: var(--uui-shadow);
 }
 
 .scroll-bars-vars {
@@ -892,38 +913,38 @@
 }
 
 .dropdown-container-vars {
-    --dropdown-container-shadow: var(--shadow);
-    --dropdown-container-scrollbar-thumb-color: #6C6F80;
+    --uui-dropdown-container-shadow: var(--uui-shadow);
+    --uui-dropdown-container-scrollbar-thumb: #6C6F80;
 }
 
 .modals-vars {
     --modals-border-radius: var(--border-radius);
     --modals-overlay-color: rgba(29, 30, 38, 0.8);
     --modals-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
-    --modals-bg-color: var(--surface-color);
+    --modals-bg-color: var(--uui-surface);
 }
 
 .text-color-brand {
-    --text-color: var(--text-brand-color);
+    --text-color: var(--uui-text-brand);
 }
 
 .text-color-primary {
-    --text-color: var(--text-primary-color);
+    --text-color: var(--uui-text-primary);
 }
 
 .text-color-secondary {
-    --text-color: var(--text-secondary-color);
+    --text-color: var(--uui-text-secondary);
 }
 
 .text-color-disabled {
-    --text-color: var(--text-disabled-color);
+    --text-color: var(--uui-text-disabled);
 }
 
 .text-color-contrast {
-    --text-color: var(--text-contrast-color);
+    --text-color: var(--uui-text-contrast);
 }
 
 .text-placeholder-vars {
-    --text-placeholder-gradient: var(--skeleton-gradient);
-    --text-placeholder-color: var(--skeleton-color);
+    --text-placeholder-gradient: var(--uui-skeleton-gradient);
+    --text-placeholder-color: var(--uui-skeleton);
 }
