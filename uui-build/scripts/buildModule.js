@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { getIndexFilePath } = require('./../utils/indexFileUtils');
 const { logger } = require('./../utils/loggerUtils');
-const { buildUsingRollup } = require('./../rollup/rollupBuildUtils');
+const { buildUsingRollup } = require('../rollup/utils/rollupBuildUtils');
 
 const BUILD_FOLDER = 'build'
 const COPY_AS_IS = ['readme.md', 'assets']
