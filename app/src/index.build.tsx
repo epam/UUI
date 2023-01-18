@@ -1,6 +1,4 @@
 /**
- * Note: This is still experimental.
- *
  * This index file is used as webpack entrypoint when "@epam/app" is built using "./build" folder of respective dependencies.
  * - All dependencies must be already built before "app" build is started.
  * - The order of imports is important: if module "B" depends on module "A", then "A" should be imported first.
