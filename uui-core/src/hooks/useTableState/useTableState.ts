@@ -30,9 +30,8 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     const setTableState = useCallback((newValue: DataTableState) => {
         const newFilter = normalizeFilter(newValue.filter);
         const newFiltersConfig = params.filters ? normalizeFilterConfig(newValue.filtersConfig, newFilter, params.filters) : undefined;
-
         setTableStateValue(prevValue => {
-            const result = {
+            const newTableState = {
                 ...prevValue,
                 ...newValue,
                 filter: newFilter,
@@ -40,30 +39,34 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
             };
             // reset paging on filter change
             if (prevValue.page !== undefined && !isEqual(prevValue.filter, newFilter)) {
-                result.page = 1;
+                newTableState.page = 1;
             }
 
-            return result;
+            const oldQuery = context.uuiRouter.getCurrentLink().query;
+            const newQuery = stateToQueryObject(newTableState);
+
+            // we need this condition here, because the DataSources call state updates with the same value on items load, and it causes redirect
+            if (JSON.stringify(oldQuery) !== JSON.stringify(newQuery)) {
+                context.uuiRouter.redirect({
+                    pathname: context.uuiRouter.getCurrentLink().pathname,
+                    query: newQuery,
+                });
+            }
+
+            return newTableState;
         });
 
-        const oldQuery = context.uuiRouter.getCurrentLink().query;
-        const newQuery = {
-            ...context.uuiRouter.getCurrentLink().query,
-            filter: newValue.filter,
-            presetId: newValue.presetId,
-            sorting: newValue.sorting,
-            filtersConfig: newFiltersConfig,
-        };
-
-        // we need this condition here, because the DataSources call state updates with the same value on items load, and it causes redirect
-        if (JSON.stringify(oldQuery) !== JSON.stringify(newQuery)) {
-            context.uuiRouter.redirect({
-                pathname: context.uuiRouter.getCurrentLink().pathname,
-                query: newQuery,
-            });
-        }
-
     }, []);
+
+    const stateToQueryObject = (state: DataTableState) => {
+        return {
+            ...context.uuiRouter.getCurrentLink().query,
+            filter: state.filter,
+            presetId: state.presetId,
+            sorting: state.sorting,
+            filtersConfig: state.filtersConfig,
+        };
+    };
 
     const setColumnsConfig = useCallback((columnsConfig: ColumnsConfig) => {
         setTableState({
@@ -192,6 +195,16 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         params?.onPresetUpdate(preset);
     }, []);
 
+    const getPresetLink = useCallback((preset: ITablePreset) => {
+        return context.uuiRouter.createHref({
+            pathname: window.location.host + context.uuiRouter.getCurrentLink().pathname,
+            query: stateToQueryObject({
+                ...preset,
+                presetId: preset.id,
+            }),
+        });
+    }, []);
+
     return {
         tableState: tableStateValue,
         setTableState,
@@ -206,6 +219,7 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
         duplicatePreset,
         deletePreset,
         updatePreset,
+        getPresetLink,
     };
 };
 

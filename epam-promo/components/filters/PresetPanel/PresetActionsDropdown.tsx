@@ -25,7 +25,7 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
     const { uuiNotifications } = useUuiContext();
 
     const copyUrlToClipboard = useCallback(async () => {
-        await navigator.clipboard.writeText(location.href);
+        await navigator.clipboard.writeText(props.getPresetLink(props.preset));
         successNotificationHandler('Link copied!');
     }, []);
 
