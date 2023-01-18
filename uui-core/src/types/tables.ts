@@ -8,6 +8,16 @@ import { ILens } from '../data';
 import * as CSS from 'csstype';
 import { TooltipCoreProps } from './components';
 
+export type AcceptCopyDirection =  'horizontal' | 'vertical' | 'both';
+
+export interface CopyCheckParams {
+    startColumnIndex: number;
+    startRowIndex: number;
+    columnIndex: number;
+    rowIndex: number;
+    allowedDirection: DataTableCellProps["acceptCopyDirection"];
+}
+
 export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
     filtersConfig?: FiltersConfig;
@@ -158,11 +168,11 @@ export interface DataTableCellOptions<TItem = any, TId = any> {
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
 
-export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
+export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid, Partial<IEditable<unknown>> {
     inFocus: boolean;
     columnIndex: number;
     rowIndex: number;
-    acceptCopyDirection?: DataTableCellProps["acceptCopyDirection"];
+    acceptCopyDirection?: AcceptCopyDirection;
     canCopyTo?: DataTableCellProps["canCopyTo"];
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
@@ -186,8 +196,9 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
 
     /** Overrides default tooltip, used to show validation message if the cell is invalid */
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
-    acceptCopyDirection?: 'horizontal' | 'vertical' | 'both';
-    canCopyTo?: (someCellContext: any) => boolean;
+    acceptCopyDirection?: AcceptCopyDirection;
+    onReplication?: (value: TCellValue) => TCellValue;
+    canCopyTo?: (someCellContext: CopyCheckParams) => boolean;
     renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
 
     // There's a problem with type inheritance in objects, and TCellValue is not inferred.
@@ -210,6 +221,7 @@ export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
     columnIndex: number;
     rowIndex: number;
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+    onReplication: (...args: any[]) => void; // TODO: add type
 }
 
 export type ColumnsConfig = {

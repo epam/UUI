@@ -1,26 +1,34 @@
 import React from 'react';
-import { cx, DataTableCellOverlayProps, uuiMod } from '@epam/uui-core';
+import { CopyCheckParams, cx, DataTableCellOverlayProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCellOverlay.scss';
 import { useSelectionParams } from "./useSelectionParams";
 import { PointerEventHandler, useContext } from "react";
-import { DataTableSelectionContext } from "./DataTableSelectionContext";
-import { canCopyByDirection, CopyCheckParams } from "./canCopyByDirection";
+import { CellSelection, DataTableSelectionContext } from "./DataTableSelectionContext";
+import { canCopyByDirection } from "./canCopyByDirection";
+import { copyOnReplicate } from './copy';
 
 export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const { columnIndex, rowIndex } = props;
-    const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
+    const { setSelection, selectionRange } = useContext(DataTableSelectionContext);
     const { startColumnIndex, startRowIndex } = selectionRange || {};
 
     const { isSelected, isTop, isRight, isBottom, isLeft } = useSelectionParams({ rowIndex, columnIndex });
 
     const canCopy = (currentCoordinates: Pick<CopyCheckParams, 'columnIndex' | 'rowIndex'>) =>
-        (!props.canCopyTo || props.canCopyTo(currentCoordinates /* Just Example. The place for contexts of current and start of copying cell */))
+        (!props.canCopyTo || props.canCopyTo({ startColumnIndex, startRowIndex, allowedDirection: props.acceptCopyDirection, ...currentCoordinates } /* Just Example. The place for contexts of current and start of copying cell */))
         && canCopyByDirection({ startColumnIndex, startRowIndex, allowedDirection: props.acceptCopyDirection, ...currentCoordinates });
 
     const handleCopyingMarkerPointerDown: PointerEventHandler = e => {
         e.preventDefault();
         e.stopPropagation();
-        setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true });
+        const selection: CellSelection<unknown> | null = {
+            location: { row: rowIndex, column: columnIndex },
+            value: props.value,
+            onValueChange: props.onValueChange,
+            onReplication: props.onReplication,
+        };
+
+        setSelection(selection, { startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true });
     };
 
     const borderClassNames = isSelected && (!selectionRange?.isCopying
