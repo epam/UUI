@@ -2,23 +2,22 @@ const Project = require("@lerna/project");
 const { PackageGraph } = require("@lerna/package-graph");
 const fs = require("fs");
 const path = require("path");
+const { readPackageJsonContentSync } = require("./packageJsonUtils");
 
-module.exports = { assertRunFromModule, readPackageJsonContent, getAllLocalDependenciesInfo, getAllMonorepoPackages }
-
-function readPackageJsonContent(dir) {
-    const s = fs.readFileSync(path.resolve(dir, 'package.json')).toString('utf-8');
-    return JSON.parse(s)
+module.exports = {
+    assertRunFromModule, getAllLocalDependenciesInfo,
+    getAllMonorepoPackages, isAllLocalDependenciesBuilt,
 }
 
-function getModuleNameFromModuleRootDir(moduleRootDir) {
+function getModuleDirNameFromModuleRootDir(moduleRootDir) {
     const rootTokens = moduleRootDir.split(/[\\/]/);
     return rootTokens[rootTokens.length - 1]
 }
 
-function assertRunFromModule(expectedModuleName) {
-    const moduleName = getModuleNameFromModuleRootDir(process.cwd());
-    if (moduleName !== expectedModuleName) {
-        throw new Error(`This script is designed to be run from the "${expectedModuleName}" module.`)
+function assertRunFromModule(expectedModuleDirName) {
+    const moduleDirName = getModuleDirNameFromModuleRootDir(process.cwd());
+    if (moduleDirName !== expectedModuleDirName) {
+        throw new Error(`This script is designed to be run from the "${expectedModuleDirName}" module.`)
     }
 }
 
@@ -36,7 +35,7 @@ function getAllMonorepoPackages() {
 /**
  * Includes transitive local dependencies.
  */
-function getAllLocalDependenciesInfo(name) {
+function getAllLocalDependenciesInfo(moduleName) {
     function getAllLocalDependencies(name) {
         const pMap = getAllMonorepoPackages();
         function getAllDeps(n) {
@@ -51,6 +50,44 @@ function getAllLocalDependenciesInfo(name) {
         return getAllDeps(name);
     }
     const pMap = getAllMonorepoPackages();
-    const arr = getAllLocalDependencies(name);
+    const arr = getAllLocalDependencies(moduleName);
     return arr.map(i => pMap[i])
+}
+
+/**
+ * Checks that the module is built.
+ * @param moduleRootDir
+ * @returns {boolean}
+ */
+function isModuleBuilt(moduleRootDir) {
+    const pkgPath = path.resolve(moduleRootDir, './build/package.json');
+    const pkgJsonExists = fs.existsSync(pkgPath);
+    if (pkgJsonExists) {
+        const { main } = readPackageJsonContentSync(path.resolve(moduleRootDir, './build'));
+        return main ? !!fs.existsSync(path.resolve(moduleRootDir, `./build/${main}`)) : true;
+    }
+    return false;
+}
+
+/**
+ * Checks whether all dependencies of given module are built. Including all transitive dependencies.
+ * @param moduleName
+ * @returns {{isBuilt: boolean, modulesNotBuilt: array}}
+ */
+function isAllLocalDependenciesBuilt(moduleName) {
+    const depsInfo = getAllLocalDependenciesInfo(moduleName);
+    const { modulesNotBuilt, modulesBuilt } = depsInfo.reduce((acc, { name, moduleRootDir }) => {
+        if (isModuleBuilt(moduleRootDir)) {
+            acc.modulesBuilt.push(name);
+        } else {
+            acc.modulesNotBuilt.push(name);
+        }
+        return acc;
+    }, { modulesNotBuilt: [], modulesBuilt: [] });
+    const isBuilt = modulesNotBuilt.length === 0;
+    return {
+        isBuilt,
+        modulesBuilt,
+        modulesNotBuilt,
+    }
 }
