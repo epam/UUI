@@ -1,10 +1,11 @@
 const path = require("path");
 const escapeForRegex = require("escape-string-regexp");
-const { getAllLocalDependenciesInfo } = require("../../../uui-build/utils/monorepoUtils");
+const { getAllLocalDependenciesInfo, isAllLocalDependenciesBuilt } = require("../../../uui-build/utils/monorepoUtils");
+const { logger } = require("../../../uui-build/utils/loggerUtils");
 
 const APP_NAME = '@epam/app';
 
-module.exports = { getBabelProcessedFolders };
+module.exports = { getBabelProcessedFolders, assertAppDepsAreBuilt };
 
 function absoluteDirPathToRelativeRegex({ uuiRoot, dirPath }) {
     const basePath = path.resolve(uuiRoot, '..');
@@ -42,4 +43,12 @@ function getBabelProcessedFolders({ uuiRoot }) {
                 { uuiRoot, dirPathArr: depsRootDirs, nestedDirsArr: ['build', 'node_modules'] }),
         }
     };
+}
+
+function assertAppDepsAreBuilt() {
+    const { isBuilt, modulesNotBuilt } = isAllLocalDependenciesBuilt(APP_NAME);
+    if (!isBuilt) {
+        logger.error(`It's necessary to build next modules before starting build of "${APP_NAME}": \n${modulesNotBuilt.join('\n')}`)
+        throw new Error(`Some dependencies are not built.`);
+    }
 }
