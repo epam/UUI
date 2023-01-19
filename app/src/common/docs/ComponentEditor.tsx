@@ -271,6 +271,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
         const props = { ...this.state.selectedProps };
         for (const key in this.state.selectedProps) {
             const docComponent = this.state.docs.props.find(doc => doc.name === key);
+            if (!docComponent) continue;
             if (docComponent.type === 'string') {
                 props[key] = this.state.inputValues[key];
                 continue;
