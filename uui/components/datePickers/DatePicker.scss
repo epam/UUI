@@ -1,7 +1,7 @@
 @use  '../../assets/styles/index.scss' as *;
 
 .root {
-    height: 312px;
+    min-height: 312px;
 
     // DatePickerBase style
     :global(.uui-datepicker-container) {
