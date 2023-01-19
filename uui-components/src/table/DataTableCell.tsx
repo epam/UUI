@@ -2,7 +2,7 @@ import * as React from 'react';
 import { MouseEvent } from 'react';
 import {
     DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
-    TooltipCoreProps, IHasCX,
+    TooltipCoreProps, IHasCX, Lens, IEditable,
 } from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
@@ -18,16 +18,11 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
 
-    const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
+    const { setSelectionRange, selectionRange, canBeSelected } = useContext(DataTableSelectionContext);
 
     let content: React.ReactNode;
     let outline: React.ReactNode = null;
     let isEditable = !!props.onValueChange;
-
-    const handleEditorClick = React.useCallback((e: MouseEvent) => {
-        const input: HTMLInputElement = (e.target as HTMLElement).querySelector('.' + uuiElement.input);
-        input?.focus();
-    }, []);
 
     if (props.rowProps.isLoading) {
         content = props.renderPlaceholder(props);
@@ -50,7 +45,8 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             mode: 'cell',
         };
 
-        const handlePointerEnter: PointerEventHandler = props.acceptCopyDirection ? () => {
+        const canCopy = canBeSelected?.(row.index, props.index, { copyTo: true });
+        const handlePointerEnter: PointerEventHandler = canCopy ? () => {
             if (!selectionRange) {
                 return;
             }
@@ -60,7 +56,10 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
 
         content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
             { props.renderEditor(editorProps) }
-            { props.renderOverlay({ ...editorProps, inFocus: state.inFocus, rowIndex: row.index, columnIndex: props.index, acceptCopyDirection: props.acceptCopyDirection, canCopyTo: props.canCopyTo }) }
+            { props.renderOverlay({
+                ...editorProps, inFocus: state.inFocus,
+                rowIndex: row.index, columnIndex: props.index,
+            }) }
         </div>;
     } else {
         content = props.column.render(props.rowProps.value, props.rowProps);

@@ -39,8 +39,8 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     grow = Math.max(grow, minGrow);
 
     return {
-        flex: `${grow} 0 ${width}px`,
-        minWidth: `${width}px`,
+        flex: `${ grow } 0 ${ width }px`,
+        minWidth: `${ width }px`,
     };
 }
 
@@ -136,4 +136,4 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
             </FlexRow>
         )
     );
-});
+}) as <TItem, TId, TFilter = unknown>(props: DataTableRowContainerProps<TItem, TId, TFilter> & { ref?: React.ForwardedRef<HTMLDivElement> }) => React.ReactElement;

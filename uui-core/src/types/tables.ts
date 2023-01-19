@@ -76,6 +76,9 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
      */
     isFilterActive?: (filter: TFilter, column: DataColumnProps<TItem, TId, TFilter>) => boolean;
 
+    canCopy?: (cell: CellData<TItem>) => boolean;
+    canAcceptCopy?: (from: CellData<TItem>, to: CellData<TItem>) => boolean;
+
     /** Render the cell content. The item props is the value of the whole row (TItem). */
     render?(item: TItem, props: DataRowProps<TItem, TId>): any;
 
@@ -134,6 +137,12 @@ export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCe
     mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
 }
 
+export interface DataTableCellCopyProps<TItem = any, TId = any, TCellValue = any> {
+    onCopy?: (
+        src: DataTableCellProps<TItem, TId, TCellValue>,
+        selectedCells: DataTableCellProps<TItem, TId, TCellValue>,
+    ) => void;
+}
 
 export interface DataTableCellOptions<TItem = any, TId = any> {
     /** Key to use as component's key */
@@ -158,12 +167,10 @@ export interface DataTableCellOptions<TItem = any, TId = any> {
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
 
-export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
+export interface DataTableCellOverlayProps<TItem = any, TId = any, TCellValue = any> extends IHasCX, ICanBeInvalid {
     inFocus: boolean;
     columnIndex: number;
     rowIndex: number;
-    acceptCopyDirection?: DataTableCellProps["acceptCopyDirection"];
-    canCopyTo?: DataTableCellProps["canCopyTo"];
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 }
 
@@ -186,8 +193,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
 
     /** Overrides default tooltip, used to show validation message if the cell is invalid */
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
-    acceptCopyDirection?: 'horizontal' | 'vertical' | 'both';
-    canCopyTo?: (someCellContext: any) => boolean;
+
     renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
 
     // There's a problem with type inheritance in objects, and TCellValue is not inferred.
@@ -304,3 +310,17 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
 }
+
+
+export interface CellData<TItem = any> {
+    key: string;
+    columnIndex: number;
+    rowIndex: number;
+    rowLens: ILens<TItem>;
+    canCopy?: (cell: CellData<TItem>) => boolean;
+    canAcceptCopy?: (from: CellData<TItem>, to: CellData<TItem>) => boolean;
+}
+
+export type RowData<TItem> = Record<number, CellData<TItem>>;
+
+export type RowsData<TItem> = RowData<TItem>[];
