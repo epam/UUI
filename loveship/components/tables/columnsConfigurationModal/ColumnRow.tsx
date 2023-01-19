@@ -26,7 +26,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
         const { onTouchStart, onPointerDown, ...restEventHandlers } = dndActorParams.eventHandlers;
         const wrapperAttrs = {
             ...(isDndAllowed ? { ref: dndActorParams.ref } : {}),
-            ...(isDndAllowed ? { rawProps: {...restEventHandlers} } : {}),
+            ...(isDndAllowed ? { rawProps: { ...restEventHandlers } } : {}),
         };
         const dragHandleRawProps: any = {
             ...(isDndAllowed ? { onTouchStart, onPointerDown } : {}),
@@ -41,7 +41,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
                         label={ column.caption }
                         value={ isVisible }
                         onValueChange={ toggleVisibility }
-                        isDisabled={ column.isAlwaysVisible || !!column.fix }
+                        isDisabled={ column.isAlwaysVisible }
                     />
                 </FlexRow>
                 <FlexSpacer />

@@ -6,9 +6,9 @@ export class SwitchDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/switch.doc.ts',
-            [UUI4]: './epam-promo/components/inputs/docs/switch.doc.ts',
-            [UUI]: './uui/components/inputs/docs/switch.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/switch.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/switch.props.ts',
+            [UUI]: './app/src/docs/_props/uui/components/inputs/switch.props.ts',
         };
     }
 
@@ -19,7 +19,7 @@ export class SwitchDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/switch/Basic.example.tsx'
+                    path='./_examples/switch/Basic.example.tsx'
                 />
             </>
         );

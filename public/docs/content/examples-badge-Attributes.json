@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Implement badges in various layout modifications. Icons integrating are welcome.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

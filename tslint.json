@@ -11,6 +11,7 @@
   },
   "rulesDirectory": "uui-build/TSLint",
   "rules": {
+    "missing-extension" : true,
     "interface-name": false,
     "ter-indent": [true, 4, {
       "SwitchCase": 1

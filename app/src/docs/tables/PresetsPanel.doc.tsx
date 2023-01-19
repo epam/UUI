@@ -12,7 +12,7 @@ export class PresetsPanelDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/tables/PresetsPanelBasic.example.tsx'
+                    path='./_examples/tables/PresetsPanelBasic.example.tsx'
                 />
             </>
         );

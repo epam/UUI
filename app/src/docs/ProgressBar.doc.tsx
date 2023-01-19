@@ -11,15 +11,15 @@ export class ProgressBarDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic ProgressBar'
-                    path='./examples/progressBar/Basic.example.tsx'
+                    path='./_examples/progressBar/Basic.example.tsx'
                 />
                 <DocExample
                     title='IndeterminateBar example'
-                    path='./examples/progressBar/IndeterminateBar.example.tsx'
+                    path='./_examples/progressBar/IndeterminateBar.example.tsx'
                 />
                 <DocExample
                     title='IndicatorBar example'
-                    path='./examples/progressBar/IndicatorBar.example.tsx'
+                    path='./_examples/progressBar/IndicatorBar.example.tsx'
                 />
             </>
         );

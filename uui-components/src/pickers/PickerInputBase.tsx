@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus } from '@epam/uui-core';
-import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps } from './index';
+import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps, dataSourceStateToValue, applyValueToDataSourceState } from './index';
 import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
 import { i18n } from '../i18n';
 
@@ -62,6 +62,8 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICa
 
     /** Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter. */
     fixedBodyPosition?: boolean;
+
+    portalTarget?: HTMLElement;
 };
 
 interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
@@ -93,6 +95,13 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     abstract renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]): React.ReactNode;
 
     static getDerivedStateFromProps<TItem, TId>(props: PickerInputBaseProps<TItem, TId>, state: PickerInputState) {
+        const prevValue = dataSourceStateToValue(props, state.dataSourceState, props.dataSource);
+        if (prevValue !== props.value) {
+            return {
+                ...state,
+                dataSourceState: { ...applyValueToDataSourceState(props, state.dataSourceState, props.value, props.dataSource) },
+            };
+        }
         if (props.isDisabled && state.opened) {
             return {
                 ...state,
@@ -199,7 +208,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     getSearchValue = (): string | null => {
         //only for selectionMode = 'single': we're getting current value and put it into search, and when search changed we turn value to dataSourceState.search
-        if (this.props.selectionMode === 'single' && !this.state.isSearchChanged) {
+        if (this.props.selectionMode === 'single' && !this.state.isSearchChanged && this.props.value) {
             if (this.props.valueType === 'id') {
                 return this.getName(this.props?.dataSource.getById(this.props.value as TId));
             }
@@ -364,6 +373,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
                 placement={ this.props.dropdownPlacement }
                 modifiers={ this.popperModifiers }
                 closeBodyOnTogglerHidden={ !isMobile() }
+                portalTarget={ this.props.portalTarget }
             />
         );
     }

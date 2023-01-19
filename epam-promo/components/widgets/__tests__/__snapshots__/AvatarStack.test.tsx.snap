@@ -3,6 +3,12 @@
 exports[`AvatarStack should be rendered correctly 1`] = `
 <div
   className="root container align-items-center"
+  style={
+    Object {
+      "columnGap": undefined,
+      "rowGap": undefined,
+    }
+  }
 >
   <div
     className="avatars container avatar-right container align-items-center"
@@ -10,6 +16,8 @@ exports[`AvatarStack should be rendered correctly 1`] = `
     style={
       Object {
         "--overlap": "-9px",
+        "columnGap": undefined,
+        "rowGap": undefined,
       }
     }
   >
@@ -17,6 +25,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
       alt="avatar"
       className="avatar"
       height="36"
+      onError={[Function]}
       src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
       width="36"
     />
@@ -24,6 +33,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
       alt="avatar"
       className="avatar"
       height="36"
+      onError={[Function]}
       src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
       width="36"
     />
@@ -31,6 +41,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
       alt="avatar"
       className="avatar"
       height="36"
+      onError={[Function]}
       src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
       width="36"
     />

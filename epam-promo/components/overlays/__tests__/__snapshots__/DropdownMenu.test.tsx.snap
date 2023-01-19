@@ -17,21 +17,6 @@ Array [
     }
     tabIndex={0}
   />,
-  <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={1}
-  />,
   <menu
     className="menuRoot"
     data-focus-lock-disabled={false}
@@ -56,6 +41,12 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
         tabIndex={0}
       >
         <div
@@ -85,6 +76,12 @@ Array [
         onClick={[Function]}
         onKeyDown={[Function]}
         role="menuitem"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
         tabIndex={0}
       >
         <div
@@ -97,9 +94,7 @@ Array [
         />
         <button
           className="container uui-button-box uui-enabled root icon-color-gray60 icon iconAfter"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={-1}
           type="button"
         >

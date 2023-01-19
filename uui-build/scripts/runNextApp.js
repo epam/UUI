@@ -52,7 +52,10 @@ async function main() {
                 await fs.copySync(`../${module}/build/`, `./node_modules/@epam/${modulesNameMap[module]}/`);
             }
             console.log(chalk.green(`All modules are copied to next app`));
-            await fs.rmdirSync('./.next', { recursive: true, force: true });
+            const DOT_NEXT_DIR = './.next';
+            if (fs.existsSync(DOT_NEXT_DIR)) {
+                fs.rmdirSync(DOT_NEXT_DIR, { recursive: true, force: true });
+            }
         } catch (err) {
             console.log(err)
         }
