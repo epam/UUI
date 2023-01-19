@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 import { BaseCellData, CellData, RowData, RowsData, SelectedCellsData } from '@epam/uui-core';
 
-
 export interface SelectionRange {
     startColumnIndex: number;
     startRowIndex: number;
@@ -10,7 +9,7 @@ export interface SelectionRange {
     isCopying?: boolean;
 }
 
-interface SelectionManagerProps<T> {
+export interface SelectionManagerProps<T> {
     data: RowsData<T>;
 }
 
@@ -43,12 +42,11 @@ const convertToBaseCellData = <T,>({ canAcceptCopy, canCopy, ...rest }: CellData
 
 export const useSelectionManager = <T,>({ data }: SelectionManagerProps<T>): SelectionManager<T> => {
     const [selectionRange, setSelectionRange] = useState<SelectionRange>(null);
-
     const cellToCopyFrom = useMemo(() => getCopyFromCell<T>(selectionRange, data), [selectionRange, data]);
+    const range = useMemo(() => ({ selectionRange, setSelectionRange }), [selectionRange]);
 
     const canBeSelected = useCallback((rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => {
         const cell = getCell(rowIndex, columnIndex, data);
-
         if (!cellToCopyFrom && copyTo) {
             return false;
         }
@@ -63,21 +61,17 @@ export const useSelectionManager = <T,>({ data }: SelectionManagerProps<T>): Sel
         return !!cell.canAcceptCopy?.(cellToCopyFrom, cell);
     }, [cellToCopyFrom, data]);
 
-    const range = useMemo(() => ({ selectionRange, setSelectionRange }), [selectionRange]);
+    const shouldSelectCell = useCallback((row: number, column: number) => {
+        if (selectionRange.startRowIndex === row && selectionRange.startColumnIndex === column) {
+            return canBeSelected(row, column, { copyFrom: true });
+        }
+        return canBeSelected(row, column, { copyTo: true });
+    }, [canBeSelected, selectionRange]);
 
     const getSelectedCells = useCallback((): SelectedCellsData<T> => {
         const { startRowIndex, startColumnIndex, endRowIndex, endColumnIndex } = selectionRange;
-
         const [startRow, endRow] = getNormalizedLimits(startRowIndex, endRowIndex);
         const [startColumn, endColumn] = getNormalizedLimits(startColumnIndex, endColumnIndex);
-
-        const shouldSelectCell = (row: number, column: number) => {
-            if (startRowIndex === row && startColumnIndex === column) {
-                return canBeSelected(row, column, { copyFrom: true });
-            }
-
-            return canBeSelected(row, column, { copyTo: true });
-        };
 
         return data.reduce<SelectedCellsData<T>>((selected, row, rowIndex) => {
             if (rowIndex < startRow || rowIndex > endRow) {
@@ -98,7 +92,7 @@ export const useSelectionManager = <T,>({ data }: SelectionManagerProps<T>): Sel
             ];
         }, []);
 
-    }, [selectionRange, data]);
+    }, [selectionRange, data, canBeSelected, shouldSelectCell]);
 
     return {
         ...range,
