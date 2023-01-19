@@ -3,7 +3,7 @@
 exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
 Array [
   <button
-    className="container uui-button-box uui-enabled -clickable button-vars button-color-primary root size-36 mode-solid uui-theme-promo"
+    className="container uui-button-box uui-enabled -clickable button-vars button-primary root size-36 mode-solid uui-theme-promo"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -74,7 +74,7 @@ Array [
             tabIndex={0}
           >
             <button
-              className="container uui-button-box uui-enabled icon-button-color-default root uui-theme-promo icon-button-color-gray60 icon iconBefore"
+              className="container uui-button-box uui-enabled icon-button-default root uui-theme-promo icon-button-color-gray60 icon iconBefore"
               onClick={[Function]}
               tabIndex={-1}
               type="button"
@@ -108,7 +108,7 @@ Array [
             tabIndex={0}
           >
             <button
-              className="container uui-button-box uui-enabled icon-button-color-default root uui-theme-promo icon-button-color-gray60 icon iconBefore"
+              className="container uui-button-box uui-enabled icon-button-default root uui-theme-promo icon-button-color-gray60 icon iconBefore"
               onClick={[Function]}
               tabIndex={-1}
               type="button"

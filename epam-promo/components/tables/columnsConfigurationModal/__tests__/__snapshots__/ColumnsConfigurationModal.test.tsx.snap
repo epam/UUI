@@ -69,7 +69,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -120,7 +120,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           />
         </div>
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-30 mode-outline uui-theme-promo actionsMenu"
+          className="container uui-button-box uui-enabled -clickable button-vars button-gray50 root size-30 mode-outline uui-theme-promo actionsMenu"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -287,7 +287,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60"
+                      className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -380,7 +380,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60"
+                      className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -462,7 +462,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-vars button-gray50 root size-36 mode-outline uui-theme-promo"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -475,7 +475,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </button>
         <button
           aria-disabled={false}
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-vars button-green root size-36 mode-solid uui-theme-promo"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -576,7 +576,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -627,7 +627,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           />
         </div>
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-30 mode-outline uui-theme-promo actionsMenu"
+          className="container uui-button-box uui-enabled -clickable button-vars button-gray50 root size-30 mode-outline uui-theme-promo actionsMenu"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -785,7 +785,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60"
+                      className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -869,7 +869,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60"
+                      className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -951,7 +951,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-vars button-gray50 root size-36 mode-outline uui-theme-promo"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -964,7 +964,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </button>
         <button
           aria-disabled={true}
-          className="container uui-button-box uui-disabled -clickable button-vars button-color-green root size-36 mode-solid uui-theme-promo"
+          className="container uui-button-box uui-disabled -clickable button-vars button-green root size-36 mode-solid uui-theme-promo"
           onClick={[Function]}
           tabIndex={-1}
           type="button"
