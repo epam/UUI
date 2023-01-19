@@ -1,219 +1,50 @@
-@use 'sass:math';
-@use '../../assets/styles/scss/index'  as *;
-
-@mixin radio-sizes($size, $font-size, $bullet-size, $line-height) {
-    $vpadding: math.div(($line-height - $size), 2);
-
-    :global(.uui-radioinput) {
-        width: $size;
-        height: $size;
-        border-radius: math.div($size, 2);
-        margin: $vpadding 0;
-
-        :global(.uui-icon) {
-            margin: $vpadding 0;
-
-            svg {
-                height: $bullet-size;
-                width: $bullet-size;
-            }
-        }
-    }
-
+.theme-dark {
     :global(.uui-input-label) {
-        font-size: $font-size;
-        line-height: $line-height;
-    }
-}
-
-.root {
-    &:hover, &:active, &:focus-within {
-        :global(.uui-radioinput) {
-            border-color: var(--uui-color-700);
-        }
-
-        :global(.uui-checked) {
-            &:global(.uui-radioinput) {
-                border-color: var(--uui-color-800);
-            }
-
-            :global(.uui-icon) {
-                fill: var(--uui-color-800);
-            }
-        }
+        color: var(--night50);
     }
 
-    :global(.uui-radioinput) {
-        fill: $sky;
-        align-self: baseline;
-        flex-shrink: 0;
-        box-sizing: border-box;
-        border: 1px solid $night400;
-
-        &:global(.uui-checked) {
-            border: 1px solid var(--uui-color-700);
-        }
-    }
-
-    :global(.uui-icon) {
-        fill: var(--uui-color-700);
-    }
-
-    :global(.uui-input-label) {
-        @include typography-inline();
-        flex-grow: 1;
-        font-family: $font-sans;
-        margin-left: 12px;
-        display: flex;
-        align-items: center;
-    }
-
-    // Sizes
-    &.size-18 {
-        @include radio-sizes(18px, 14px, 18px, 18px);
-    }
-
-    &.size-12 {
-        @include radio-sizes(12px, 12px, 12px, 14px);
-
-        :global(.uui-input-label) {
-            margin-left: 6px;
-        }
-    }
-
-    // Mods
-    &.theme-light {
-        :global(.uui-input-label) {
-            color: $night700;
-        }
-
-        &:global(.uui-disabled),
-        &:global(.uui-readonly) {
-            cursor: default;
-
-            :global(.uui-radioinput) {
-                cursor: default;
-                background-color: $night50;
-                border-color: $night300;
-                box-shadow: none;
-            }
-
-            :global(.uui-icon) {
-                fill: var(--uui-color-600);
-            }
-
-            &:hover, &:active, &:focus-within {
-                :global(.uui-radioinput) {
-                    border-color: $night300;
-                }
-            }
-
-            &:global(.uui-checked) {
-                :global(.uui-radioinput) {
-                    border-color: var(--uui-color-600);
-                }
-
-                :global(.uui-icon) {
-                    fill: var(--uui-color-600);
-                }
-            }
-        }
-
-        &:global(.uui-readonly) {
-            :global(.uui-input-label) {
-                color: $night700;
-            }
-        }
-
-        &:global(.uui-disabled) {
-            :global(.uui-input-label) {
-                color: $night500;
-            }
-        }
-    }
-
-    &.theme-dark {
-        :global(.uui-input-label) {
-            color: $night50;
-        }
-
-        &:global(.uui-disabled),
-        &:global(.uui-readonly) {
-            cursor: default;
-
-            &:hover, &:active, &:focus-within {
-                :global(.uui-radioinput) {
-                    cursor: default;
-                    border-color: $night600;
-                }
-            }
-
-            :global(.uui-radioinput) {
-                background-color: $night600;
-                border-color: $night600;
-                box-shadow: none;
-            }
-
-            :global(.uui-icon) {
-                fill: $night500;
-            }
-
-            &:global(.uui-checked) {
-                :global(.uui-radioinput) {
-                    background-color: $night600;
-                    border-color: $night600;
-                }
-
-                :global(.uui-icon) {
-                    fill: $night500;
-                }
-            }
-        }
-
-        &:global(.uui-readonly) {
-            :global(.uui-input-label) {
-                color: $night50;
-            }
-        }
-
-        &:global(.uui-disabled) {
-            :global(.uui-input-label) {
-                color: $night500;
-            }
-        }
-    }
-
-    &:global(.uui-invalid) {
-        :global(.uui-radioinput) {
-            border-color: $fire;
-        }
-
-        :global(.uui-icon) {
-            fill: $fire;
-        }
-
-        &:global(.uui-checked) {
-            :global(.uui-radioinput) {
-                border-color: $fire;
-            }
-
-            :global(.uui-icon) {
-                fill: $fire;
-            }
-        }
+    &:global(.uui-disabled),
+    &:global(.uui-readonly) {
+        cursor: default;
 
         &:hover, &:active, &:focus-within {
             :global(.uui-radioinput) {
-                border-color: darken($fire, 10%);
-            }
-
-            :global(.uui-icon) {
-                fill: darken($fire, 10%);
+                cursor: default;
+                border-color: var(--night600);
             }
         }
 
+        :global(.uui-radioinput) {
+            background-color: var(--night600);
+            border-color: var(--night600);
+            box-shadow: none;
+        }
+
+        :global(.uui-icon) {
+            fill: var(--night500);
+        }
+
+        &:global(.uui-checked) {
+            :global(.uui-radioinput) {
+                background-color: var(--night600);
+                border-color: var(--night600);
+            }
+
+            :global(.uui-icon) {
+                fill: var(--night500);
+            }
+        }
+    }
+
+    &:global(.uui-readonly) {
         :global(.uui-input-label) {
-            color: $fire;
+            color: var(--night50);;
+        }
+    }
+
+    &:global(.uui-disabled) {
+        :global(.uui-input-label) {
+            color: var(--night500);
         }
     }
 }

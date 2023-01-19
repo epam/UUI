@@ -1,18 +1,26 @@
-# 4.x.x - DRAFT
+# 4.10.0-rc.1 - 16.01.2023
 **What's New**
-* [FlexRow]: added Flexbox properties `columnGap` and `rowGap` to setting the spacing between children and rows in case of a  FlexRow wrap
+* React 18 support
+* [PresetsPanel]: store sorting into preset
+* [useTableState]: store sorting into url
+* [FlexRow]: added Flexbox properties `columnGap` and `rowGap` to setting the spacing between children and rows in case of a FlexRow wrap
 * [ColumnsConfigurationModal]: added functionality to deny applying the configuration without selected columns
+* [Dropdown]: added `openDelay` and `closeDelay` prop, for dropdown which opens by hover
 
 
 **What’s Fixed**
 * [VerticalTabButton]: fix text trimmed and text align
 * [Switch]: remove margin-left when there is no label
-* [Anchor][BaseButton]: added `rel='noopener noreferrer'` where `target='_blank'` in order to fix the security issue
+* [Anchor][Button]: added `rel='noopener noreferrer'` where `target='_blank'`
 * [PickerInput]: update correctly `dataSourceState` when programmatically handling previously loaded data, if API returns empty array
 * [ColumnsConfigurationModal]: Removed disabling of a checkbox if a column has a `fix` property and fixed the problem with pinning the column after unpinning, if it has `fix` property in the column config.
 * [NumericInput]: fixed `NumericInput` by preventing rounding up numbers if `formatOptions` are defined
-* [ColumnsConfigurationModal]: changed hidden title padding-top to 12px
 * [Rating]: fixed loveship `Rating` color for selected stars
+* [useTableState]: now correctly work with react-router baseUrl
+* [RangeDatePicker]: move focus from 'to' value to 'from' value, in case when 'from' empty
+* [RangeDatePicker]: use `props.format` value in priority over other acceptable formats
+* [useForm]: fix close callback to work properly when lock doesn't exist
+
 
 # 4.9.2 - 14.12.2022
 

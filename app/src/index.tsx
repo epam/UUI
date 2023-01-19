@@ -11,7 +11,6 @@ import App from './App';
 import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import './index.scss';
-import css from './index.scss';
 
 const history = createBrowserHistory();
 
@@ -21,16 +20,6 @@ export class UuiEnhancedApp extends React.Component {
         Object.assign(svc, context);
         const listener = new AmplitudeListener(ampCode);
         context.uuiAnalytics.addListener(listener);
-    }
-
-    renderSnow = () => {
-        const snow = [];
-
-        for (let index = 0; index < 300; index++) {
-            snow.push(<div className={ css.christmasSnow }/>);
-        }
-
-        return <div className={ css.christmasBox }>{ snow }</div>;
     }
 
     render() {
@@ -50,7 +39,6 @@ export class UuiEnhancedApp extends React.Component {
                 enableLegacyContext={ false }
             >
                 <App />
-                { this.renderSnow() }
                 <Snackbar />
                 <Modals />
             </ContextProvider>
