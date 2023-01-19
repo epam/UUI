@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
-import React, { useCallback, useMemo } from 'react';
-import { AcceptDropParams, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
+import React, { useCallback, useMemo, useState } from 'react';
+import { AcceptDropParams, BaseCellData, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -35,7 +35,7 @@ export const ProjectDemo = () => {
         value: savedValue,
         onSave: async (value) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
-            savedValue = value;
+            onValueChange(value);
         },
         getMetadata: () => metadata,
     });
@@ -89,7 +89,19 @@ export const ProjectDemo = () => {
         }),
     });
 
-    const columns = useMemo(() => getColumns({ insertTask: () => { }, deleteTask: () => { } }), []);
+    const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
+
+    const onCopy = (copyFrom: BaseCellData<Task>, selectedCells: BaseCellData<Task>[]) => {
+        const valueToCopy = copyFrom.rowLens.prop(copyFrom.key).get();
+        const newItems = { ...value.items };
+        for (const cell of selectedCells) {
+            const cellRowId = cell.rowLens.prop('id').get();
+            newItems[cellRowId] = { ...newItems[cellRowId], [cell.key]: valueToCopy };
+        }
+
+        onValueChange({ ...value, items: newItems });
+    };
+
 
     return <Panel style={ { width: '100%' } }>
         <FlexRow spacing='12' margin='12'>
@@ -115,9 +127,7 @@ export const ProjectDemo = () => {
         </FlexRow>
         <DataTable
             headerTextCase='upper'
-            onCopy={ (src, selectedCells) => {
-
-            } }
+            onCopy={ onCopy }
             getRows={ dataView.getVisibleRows }
             columns={ columns }
             value={ tableState }

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
-import { CellData, RowsData } from '@epam/uui-core';
+import { BaseCellData, CellData, RowData, RowsData, SelectedCellsData } from '@epam/uui-core';
 
 
 export interface SelectionRange {
@@ -14,10 +14,12 @@ interface SelectionManagerProps<T> {
     data: RowsData<T>;
 }
 
-export interface SelectionManager {
+export interface SelectionManager<T> {
     selectionRange: SelectionRange;
     setSelectionRange: Dispatch<SetStateAction<SelectionRange>>;
     canBeSelected: (rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => boolean;
+    getSelectedCells: () => SelectedCellsData<T>;
+    cellToCopyFrom: BaseCellData<T>;
 }
 
 type CopyOptions =
@@ -35,11 +37,14 @@ const getCopyFromCell = <T,>(selectionRange: SelectionRange | null, data: RowsDa
     return getCell(startRowIndex, startColumnIndex, data);
 };
 
+const getNormalizedLimits = (startIndex: number, endIndex: number) => startIndex < endIndex ? [startIndex, endIndex] : [endIndex, startIndex];
 
-export const useSelectionManager = <T,>({ data }: SelectionManagerProps<T>): SelectionManager => {
+const convertToBaseCellData = <T,>({ canAcceptCopy, canCopy, ...rest }: CellData<T>): BaseCellData<T> => rest;
+
+export const useSelectionManager = <T,>({ data }: SelectionManagerProps<T>): SelectionManager<T> => {
     const [selectionRange, setSelectionRange] = useState<SelectionRange>(null);
 
-    const cellToCopyFrom = useMemo(() => getCopyFromCell(selectionRange, data), [selectionRange, data]);
+    const cellToCopyFrom = useMemo(() => getCopyFromCell<T>(selectionRange, data), [selectionRange, data]);
 
     const canBeSelected = useCallback((rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => {
         const cell = getCell(rowIndex, columnIndex, data);
@@ -60,8 +65,45 @@ export const useSelectionManager = <T,>({ data }: SelectionManagerProps<T>): Sel
 
     const range = useMemo(() => ({ selectionRange, setSelectionRange }), [selectionRange]);
 
+    const getSelectedCells = useCallback((): SelectedCellsData<T> => {
+        const { startRowIndex, startColumnIndex, endRowIndex, endColumnIndex } = selectionRange;
+
+        const [startRow, endRow] = getNormalizedLimits(startRowIndex, endRowIndex);
+        const [startColumn, endColumn] = getNormalizedLimits(startColumnIndex, endColumnIndex);
+
+        const shouldSelectCell = (row: number, column: number) => {
+            if (startRowIndex === row && startColumnIndex === column) {
+                return canBeSelected(row, column, { copyFrom: true });
+            }
+
+            return canBeSelected(row, column, { copyTo: true });
+        };
+
+        return data.reduce<SelectedCellsData<T>>((selected, row, rowIndex) => {
+            if (rowIndex < startRow || rowIndex > endRow) {
+                return selected;
+            }
+
+            const rowKeys = Object.keys(row) as unknown as Array<keyof RowData<T>>;
+            return [
+                ...selected,
+                ...rowKeys.reduce<BaseCellData<T>[]>((selectedColumns, column) => {
+                    const columnIndex = row[column].columnIndex;
+                    if (columnIndex < startColumn || columnIndex > endColumn || !shouldSelectCell(rowIndex, columnIndex)) {
+                        return selectedColumns;
+                    }
+
+                    return [...selectedColumns, convertToBaseCellData(row[column])];
+                }, []),
+            ];
+        }, []);
+
+    }, [selectionRange, data]);
+
     return {
         ...range,
         canBeSelected,
+        getSelectedCells,
+        cellToCopyFrom: cellToCopyFrom ? convertToBaseCellData(cellToCopyFrom) : null,
     };
 };

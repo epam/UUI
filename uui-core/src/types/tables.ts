@@ -137,10 +137,10 @@ export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCe
     mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
 }
 
-export interface DataTableCellCopyProps<TItem = any, TId = any, TCellValue = any> {
+export interface DataTableCellCopyProps<TItem = any> {
     onCopy?: (
-        src: DataTableCellProps<TItem, TId, TCellValue>,
-        selectedCells: DataTableCellProps<TItem, TId, TCellValue>,
+        copyFrom: BaseCellData<TItem>,
+        selectedCells: BaseCellData<TItem>[],
     ) => void;
 }
 
@@ -312,15 +312,21 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
 }
 
 
-export interface CellData<TItem = any> {
-    key: string;
+export interface BaseCellData<TItem = any> {
+    key: keyof TItem;
     columnIndex: number;
     rowIndex: number;
     rowLens: ILens<TItem>;
+}
+
+export interface CellData<TItem = any> extends BaseCellData<TItem> {
     canCopy?: (cell: CellData<TItem>) => boolean;
     canAcceptCopy?: (from: CellData<TItem>, to: CellData<TItem>) => boolean;
 }
 
+
 export type RowData<TItem> = Record<number, CellData<TItem>>;
 
 export type RowsData<TItem> = RowData<TItem>[];
+
+export type SelectedCellsData<T> = BaseCellData<T>[];
