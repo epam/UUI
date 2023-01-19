@@ -41,7 +41,6 @@ export const FilteredTable: React.FC = () => {
     }, []);
 
     const tableStateApi = useTableState<Person>({
-        columns: personColumns,
         filters: filters,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,

@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "It is possible to use a link button to organize the sorting of any elements by certain keys or characteristics.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

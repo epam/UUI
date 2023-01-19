@@ -9,6 +9,12 @@ exports[`MainMenu should be rendered correctly 1`] = `
   >
     <div
       className="container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
     >
       <div
         className="root uui-burger-menu container"
@@ -38,9 +44,7 @@ exports[`MainMenu should be rendered correctly 1`] = `
       </div>
       <button
         className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={-1}
         type="button"
       />
@@ -58,6 +62,12 @@ exports[`MainMenu should be rendered correctly with props 1`] = `
   >
     <div
       className="container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
     >
       <div
         className="root uui-burger-menu container"
@@ -87,9 +97,7 @@ exports[`MainMenu should be rendered correctly with props 1`] = `
       </div>
       <button
         className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={-1}
         type="button"
       />

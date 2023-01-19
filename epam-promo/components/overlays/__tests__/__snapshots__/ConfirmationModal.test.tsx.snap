@@ -29,21 +29,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     tabIndex={0}
   />
   <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={1}
-  />
-  <div
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -55,6 +40,12 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     >
       <div
         className="root size-36 background-white padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <div
           className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
@@ -79,9 +70,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         >
           <button
             className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={0}
             type="button"
           >
@@ -164,15 +153,19 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       </div>
       <div
         className="root size-36 background-white padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <div
           className="flexSpacer"
         />
         <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -184,9 +177,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </button>
         <button
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -246,21 +237,6 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
     tabIndex={0}
   />
   <div
-    data-focus-guard={true}
-    style={
-      Object {
-        "height": "0px",
-        "left": "1px",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "fixed",
-        "top": "1px",
-        "width": "1px",
-      }
-    }
-    tabIndex={1}
-  />
-  <div
     data-focus-lock-disabled={false}
     onBlur={[Function]}
     onFocus={[Function]}
@@ -272,6 +248,12 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
     >
       <div
         className="root size-36 background-white padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <div
           className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
@@ -296,9 +278,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         >
           <button
             className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-            href={null}
             onClick={[Function]}
-            role="button"
             tabIndex={0}
             type="button"
           >
@@ -389,15 +369,19 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
       </div>
       <div
         className="root size-36 background-white padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
       >
         <div
           className="flexSpacer"
         />
         <button
           className="container uui-button-box uui-enabled -clickable button-color-gray50 root size-36 fill-white"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >
@@ -409,9 +393,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         </button>
         <button
           className="container uui-button-box uui-enabled -clickable button-color-green root size-36 fill-solid"
-          href={null}
           onClick={[Function]}
-          role="button"
           tabIndex={0}
           type="button"
         >

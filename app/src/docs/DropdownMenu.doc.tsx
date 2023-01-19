@@ -11,7 +11,7 @@ export class DropdownMenuDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='DropdownMenu'
-                    path='./examples/dropdownMenu/Basic.example.tsx'
+                    path='./_examples/dropdownMenu/Basic.example.tsx'
                 />
             </>
         );

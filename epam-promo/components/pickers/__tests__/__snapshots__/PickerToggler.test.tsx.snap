@@ -41,9 +41,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
   >
     <button
       className="container uui-button-box uui-enabled root tag-color size-42 root"
-      href={null}
       onClick={[Function]}
-      role="button"
       tabIndex={-1}
       type="button"
     >

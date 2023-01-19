@@ -245,6 +245,43 @@ describe('useForm', () => {
                 },
             });
         });
+
+        it('Should allow to replace getMetadata prop', async () => {
+            const props = {
+                value: { dummy: "test" },
+                onSave: (form) => Promise.resolve({form: form}),
+                onError: jest.fn(),
+                getMetadata: () => ({}),
+                validationOn: 'change',
+            }
+
+            const { result, rerender } = await mountHookWithContext<UseFormProps<IFoo>, IFormApi<IFoo>>(useForm<IFoo>, props);
+
+            act(() => result.current.lens.prop('dummy').set(""));
+
+            // The form is valid, as there's nothing in metadata
+            expect(result.current.isInvalid).toEqual(false);
+
+            // Update the getMetadata callback so 'dummy' is now required
+            act(() => {
+                rerender({
+                    ...props,
+                    getMetadata: () => ({ props: { dummy: { isRequired: true }}}),
+                });
+            });
+
+            act(() => result.current.lens.prop('dummy').set(" "));
+
+            // We haven't change the form value, however with the new getMetadata is should be invalid
+            expect(result.current.isInvalid).toEqual(true);
+
+            expect(result.current.validationProps).toEqual({
+                dummy: {
+                    isInvalid: true,
+                    validationMessage: "The field is mandatory",
+                },
+            });
+        });
     });
 
     describe('isChanged, redo/undo/revert handing', () => {

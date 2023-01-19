@@ -12,14 +12,14 @@ export class AnalyticsContextDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Getting started') }
 
                 <DocExample
-                    path='./examples/contexts/AnalyticsContextBase.example.tsx'
+                    path='./_examples/contexts/AnalyticsContextBase.example.tsx'
                     onlyCode
                 />
 
                 { this.renderSectionTitle('Example') }
 
                 <DocExample
-                    path='./examples/contexts/AnalyticsContextEvents.example.tsx'
+                    path='./_examples/contexts/AnalyticsContextEvents.example.tsx'
                     onlyCode
                 />
             </>

@@ -1,4 +1,4 @@
-@use '../../../../node_modules/@epam/promo/assets/styles/colors' as *;
+@use '../../../assets/styles/colors' as *;
 
 .preset {
     &:global(.uui-has-right-icon) :global(.uui-caption) {

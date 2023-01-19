@@ -10,13 +10,13 @@ import { PresetInput } from "./PresetInput";
 import { ReactComponent as DeleteIcon } from "@epam/assets/icons/common/action-deleteforever-18.svg";
 import { ReactComponent as addIcon } from "@epam/assets/icons/common/content-plus_bold-18.svg";
 
-export interface IPresetsBlockProps extends IPresetsApi {
+interface PresetsBlockProps extends IPresetsApi {
     tableState: DataTableState;
 }
 
 type PresetAdaptiveItem = AdaptiveItemProps<{preset?: ITablePreset }>;
 
-export const PresetsPanel = (props: IPresetsBlockProps) => {
+export const PresetsPanel = (props: PresetsBlockProps) => {
     const [isAddingPreset, setIsAddingPreset] = useState(false);
 
     const setAddingPreset = useCallback(() => {

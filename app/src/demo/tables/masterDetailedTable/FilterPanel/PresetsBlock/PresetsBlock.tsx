@@ -4,10 +4,10 @@ import { ReactComponent as PlusIcon } from '@epam/assets/icons/common/content-ad
 import css from './PresetsBlock.scss';
 
 
-interface IPresetsBlockProps extends IPresetsApi {
+interface PresetsBlockProps extends IPresetsApi {
 }
 
-const PresetsBlock: React.FC<IPresetsBlockProps> = ({ presets, createNewPreset, activePresetId, hasPresetChanged, choosePreset }) => {
+const PresetsBlock: React.FC<PresetsBlockProps> = ({ presets, createNewPreset, activePresetId, hasPresetChanged, choosePreset }) => {
     const [isOpened, setIsOpened] = useState(true);
     const [isAddingPreset, setIsAddingPreset] = useState(false);
     const [inputValue, setInputValue] = useState("");

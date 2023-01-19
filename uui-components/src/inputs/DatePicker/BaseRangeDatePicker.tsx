@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat, supportedDateFormats } from '../../';
 import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType } from '@epam/uui-core';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
 dayjs.extend(customParseFormat);
 
@@ -76,11 +76,11 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     }
 
     getValueOfDate(value: string) {
-        return dayjs(value, supportedDateFormats, true).valueOf();
+        return dayjs(value, supportedDateFormats(this.getFormat()), true).valueOf();
     }
 
     valueIsValid(value: string, inputType: RangeDatePickerInputType) {
-        const isValidDate = dayjs(value, supportedDateFormats, true).isValid();
+        const isValidDate = dayjs(value, supportedDateFormats(this.getFormat()), true).isValid();
         const valueOfDate = this.getValueOfDate(value);
         const valueOfDateTo = this.getValueOfDate(this.state.inputValue.to);
         const valueOfDateFrom = this.getValueOfDate(this.state.inputValue.from);
@@ -155,8 +155,11 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
 
     onRangeChange = (value: PickerBodyValue<RangeDatePickerValue>) => {
         const isFromValueChanged = this.props.value.from != value.selectedDate.from;
+        const isToValueChanged = this.props.value.to != value.selectedDate.to;
         if (this.state.inFocus === 'from' && isFromValueChanged) {
             this.setState({ inFocus: 'to' }, () => this.setValue(value));
+        } else if (this.state.inFocus === 'to' && isToValueChanged) {
+            this.setState({ inFocus: 'from' }, () => this.setValue(value));
         } else {
             this.setValue(value);
         }
@@ -167,7 +170,7 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
         if (this.valueIsValid(value, inputType) && (!this.props.filter || this.props.filter(dayjs(value)))) {
             this.setValue({
                 selectedDate: toValueDateRangeFormat(inputValue, this.getFormat()),
-                displayedDate: dayjs(value, supportedDateFormats),
+                displayedDate: dayjs(value, supportedDateFormats(this.getFormat())),
                 view: this.state.view,
             });
         } else {
