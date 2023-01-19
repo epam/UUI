@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 import {
     PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
-    IconContainer
+    IconContainer, DataTableSelectionProvider, DataTableSelectionProviderProps,
 } from '@epam/uui-components';
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
     DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
-    cx, TableFiltersConfig, DataTableRowProps
+    cx, TableFiltersConfig, DataTableRowProps, DataTableCellCopyProps, Lens,
 } from '@epam/uui-core';
 import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal } from './';
 import { VirtualList } from '../';
@@ -14,9 +14,9 @@ import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from "../typography";
 import css from './DataTable.scss';
 import { i18n } from "../../i18n";
-import { DataTableSelectionProvider } from "@epam/uui-components/src/table/DataTableSelectionProvider";
+import { getTableRowsData } from './helpers';
 
-export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
+export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, DataTableCellCopyProps<TItem, TId> {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
@@ -100,8 +100,10 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         </>
     ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
 
+    const cellsData = getTableRowsData(props.getRows(), columns);
+
     return (
-        <DataTableSelectionProvider>
+        <DataTableSelectionProvider onCopy={ props.onCopy } data={ cellsData }>
             <VirtualList
                 value={ props.value }
                 onValueChange={ props.onValueChange }

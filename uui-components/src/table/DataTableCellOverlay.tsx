@@ -4,18 +4,12 @@ import css from './DataTableCellOverlay.scss';
 import { useSelectionParams } from "./useSelectionParams";
 import { PointerEventHandler, useContext } from "react";
 import { DataTableSelectionContext } from "./DataTableSelectionContext";
-import { canCopyByDirection, CopyCheckParams } from "./canCopyByDirection";
 
 export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const { columnIndex, rowIndex } = props;
-    const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
-    const { startColumnIndex, startRowIndex } = selectionRange || {};
+    const { setSelectionRange, selectionRange, canBeSelected } = useContext(DataTableSelectionContext);
 
     const { isSelected, isTop, isRight, isBottom, isLeft } = useSelectionParams({ rowIndex, columnIndex });
-
-    const canCopy = (currentCoordinates: Pick<CopyCheckParams, 'columnIndex' | 'rowIndex'>) =>
-        (!props.canCopyTo || props.canCopyTo(currentCoordinates /* Just Example. The place for contexts of current and start of copying cell */))
-        && canCopyByDirection({ startColumnIndex, startRowIndex, allowedDirection: props.acceptCopyDirection, ...currentCoordinates });
 
     const handleCopyingMarkerPointerDown: PointerEventHandler = e => {
         e.preventDefault();
@@ -23,6 +17,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
         setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true });
     };
 
+    const canCopyFrom = canBeSelected?.(rowIndex, columnIndex, { copyFrom: true });
     const borderClassNames = isSelected && (!selectionRange?.isCopying
         ? cx(
             'uui-selected-cell',
@@ -31,12 +26,12 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
             isBottom && 'uui-selected-cell-bottom',
             isLeft && 'uui-selected-cell-left',
         )
-        : canCopy({ columnIndex, rowIndex }) && cx(
+        : canBeSelected?.(rowIndex, columnIndex, { copyTo: true }) && cx(
             'uui-selected-cell',
-            (isTop || !canCopy({ columnIndex, rowIndex: rowIndex - 1 })) && 'uui-selected-cell-top',
-            (isRight || !canCopy({ columnIndex: columnIndex + 1, rowIndex })) && 'uui-selected-cell-right',
-            (isBottom || !canCopy({ columnIndex, rowIndex: rowIndex + 1 })) && 'uui-selected-cell-bottom',
-            (isLeft || !canCopy({ columnIndex: columnIndex - 1, rowIndex })) && 'uui-selected-cell-left',
+            (isTop || !canBeSelected(rowIndex - 1, columnIndex, { copyTo: true })) && 'uui-selected-cell-top',
+            (isRight || !canBeSelected(rowIndex, columnIndex + 1, { copyTo: true })) && 'uui-selected-cell-right',
+            (isBottom || !canBeSelected(rowIndex + 1, columnIndex, { copyTo: true })) && 'uui-selected-cell-bottom',
+            (isLeft || !canBeSelected(rowIndex, columnIndex - 1, { copyTo: true })) && 'uui-selected-cell-left',
         ));
 
     const overlay = (
@@ -49,7 +44,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
                 borderClassNames,
             ) }
         >
-            { props.inFocus && !!props.acceptCopyDirection && <div
+            { (props.inFocus && canCopyFrom) && <div
                 className={ cx(css.copyingMarker, 'uui-copying-marker') }
                 onPointerDown={ handleCopyingMarkerPointerDown } onClick={ e => e.stopPropagation() }
             /> }

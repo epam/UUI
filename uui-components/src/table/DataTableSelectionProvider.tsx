@@ -1,12 +1,18 @@
 import React, { FC, useEffect, useMemo, useState } from "react";
-import { DataTableSelectionContext, SelectionContextState, SelectionRange } from "./DataTableSelectionContext";
+import { DataTableCellProps, RowsData } from "@epam/uui-core";
+import { DataTableSelectionContext, SelectionContextState } from "./DataTableSelectionContext";
+import { SelectionRange, useSelectionManager } from "./useSelectionManager";
 
-export const DataTableSelectionProvider: FC<{
-    children: JSX.Element[] | JSX.Element,
-}> = ({ children }) => {
-    const [selectionRange, setSelectionRange] = useState<SelectionRange>(null);
+export interface DataTableSelectionProviderProps<TItem, TId, TCellValue = any> extends React.PropsWithChildren {
+    data: RowsData<TItem>;
+    onCopy: (
+        copy: TCellValue,
+        selectedCells: DataTableCellProps<TItem, TId, TCellValue>,
+    ) => void;
+}
 
-    const value = useMemo<SelectionContextState>(() => ({ selectionRange, setSelectionRange }), [selectionRange]);
+export const DataTableSelectionProvider = <TItem, TId, TCellValue = any>({ onCopy, data, children }: DataTableSelectionProviderProps<TItem, TId, TCellValue>) => {
+    const { selectionRange, setSelectionRange, canBeSelected } = useSelectionManager({ data });
 
     useEffect(() => {
         if (!selectionRange) {
@@ -21,5 +27,5 @@ export const DataTableSelectionProvider: FC<{
         return () => document.removeEventListener('pointerup', handlePointerUp);
     }, [selectionRange]);
 
-    return <DataTableSelectionContext.Provider value={ value }>{ children }</DataTableSelectionContext.Provider>;
-}
+    return <DataTableSelectionContext.Provider value={ { selectionRange, setSelectionRange, canBeSelected } }>{ children }</DataTableSelectionContext.Provider>;
+};

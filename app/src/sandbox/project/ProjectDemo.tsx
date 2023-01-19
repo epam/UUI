@@ -59,7 +59,7 @@ export const ProjectDemo = () => {
             relativeTask?.order
         );
 
-        onValueChange({ ...value, items: { ...value.items, [task.id]: task }});
+        onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
     }
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true }), []);
@@ -67,7 +67,7 @@ export const ProjectDemo = () => {
     const handleDrop = useCallback((params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData), []);
 
     //const { tableState, setTableState } = useTableState<any>({ columns });
-    const [ tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }]});
+    const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
         items: Object.values(value.items),
@@ -89,15 +89,15 @@ export const ProjectDemo = () => {
         }),
     });
 
-    const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
+    const columns = useMemo(() => getColumns({ insertTask: () => { }, deleteTask: () => { } }), []);
 
     return <Panel style={ { width: '100%' } }>
         <FlexRow spacing='12' margin='12'>
             <FlexCell width='auto'>
-                <IconButton icon={ insertAfter } onClick={() => insertTask('top')} />
+                <IconButton icon={ insertAfter } onClick={ () => insertTask('top') } />
             </FlexCell>
             <FlexCell width='auto'>
-                <IconButton icon={ insertBefore } onClick={() => insertTask('bottom')} />
+                <IconButton icon={ insertBefore } onClick={ () => insertTask('bottom') } />
             </FlexCell>
             <FlexSpacer />
             <FlexCell width='auto'>
@@ -115,6 +115,9 @@ export const ProjectDemo = () => {
         </FlexRow>
         <DataTable
             headerTextCase='upper'
+            onCopy={ (src, selectedCells) => {
+
+            } }
             getRows={ dataView.getVisibleRows }
             columns={ columns }
             value={ tableState }
