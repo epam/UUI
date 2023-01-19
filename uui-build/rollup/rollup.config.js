@@ -10,14 +10,14 @@ const cssSourcemapPathTransformPlugin = require('./plugins/cssSourceMapTransform
 const { onwarn } = require("./utils/rollupLoggerUtils");
 const { getSourceMapTransform } = require("./utils/moduleSourceMapsUtils");
 const { getExternalDeps } = require("./utils/moduleExtDependenciesUtils");
-const { readPackageJsonContent } = require("../utils/monorepoUtils");
+const { readPackageJsonContentSync } = require("../utils/packageJsonUtils");
 
 module.exports = { getConfig };
 
 async function getConfig({ moduleRootDir, moduleIndexFile, tsconfigFile }) {
     const { default: postcss } = await postCssDynamicImport;
     const external = getExternalDeps(moduleRootDir);
-    const { name: moduleName } = readPackageJsonContent(moduleRootDir);
+    const { name: moduleName } = readPackageJsonContentSync(moduleRootDir);
     const moduleFolderName = path.basename(moduleRootDir);
     const outDir = `${moduleRootDir}/build`;
     const extractedCssFileName = 'styles.css';
