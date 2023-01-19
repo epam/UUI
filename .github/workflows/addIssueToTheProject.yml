@@ -14,4 +14,4 @@ jobs:
             - uses: actions/add-to-project@v0.4.0
               with:
                   project-url: https://github.com/orgs/epam/projects/14
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  github-token: ${{ secrets.UUI_CI_SECRET }}
