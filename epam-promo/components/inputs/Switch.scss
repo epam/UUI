@@ -65,7 +65,7 @@
     :global(.uui-input-label) {
         @include typography-inline;
         font-family: $font-sans;
-        color: var(--caption-color);
+        color: var(--uui-caption);
         margin-left: 11px;
     }
 
@@ -105,7 +105,7 @@
 
     &:global(.uui-disabled) {
         :global(.uui-input-label) {
-            color: var(--caption-color-disabled);
+            color: var(--uui-caption-disabled);
         }
 
         &,

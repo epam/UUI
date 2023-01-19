@@ -2,15 +2,15 @@
 
 .color-white {
     --background-color: white;
-    --text-color: #{$gray80};
+    --uui-text: #{$gray80};
 }
 
 .color-gray90 {
     --background-color: #{$gray90};
-    --text-color: white;
+    --uui-text: white;
 }
 
 .color-red {
     --background-color: #{$red};
-    --text-color: white;
+    --uui-text: white;
 }

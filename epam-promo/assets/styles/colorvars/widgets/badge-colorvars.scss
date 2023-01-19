@@ -6,10 +6,10 @@
     --background-color-semitransparent: #{lighten($blue, 50%)};
     --background-color-semitransparent-hover: #{lighten($blue, 40%)};
     --border-color-semitransparent: #{lighten($blue, 40%)};
-    --caption-color-solid: white;
-    --caption-color-semitransparent: #{darken($blue, 10%)};
-    --caption-color-semitransparent-hover: #{darken($blue, 20%)};
-    --caption-color-transparent: #{$gray80};
+    --uui-caption-solid: white;
+    --uui-caption-semitransparent: #{darken($blue, 10%)};
+    --uui-caption-semitransparent-hover: #{darken($blue, 20%)};
+    --uui-caption-transparent: #{$gray80};
     --count-background-color: white;
     --count-color: #{$gray60};
 }
@@ -20,10 +20,10 @@
     --background-color-semitransparent: #{$cyan-lightest};
     --background-color-semitransparent-hover: #{$cyan-light};
     --border-color-semitransparent: #{$cyan-light};
-    --caption-color-solid: white;
-    --caption-color-semitransparent: #{$cyan-dark};
-    --caption-color-semitransparent-hover: #{$cyan-darkest};
-    --caption-color-transparent: #{$gray80};
+    --uui-caption-solid: white;
+    --uui-caption-semitransparent: #{$cyan-dark};
+    --uui-caption-semitransparent-hover: #{$cyan-darkest};
+    --uui-caption-transparent: #{$gray80};
     --count-background-color: white;
     --count-color: #{$gray60};
 }
@@ -34,10 +34,10 @@
     --background-color-semitransparent: #{lighten($green, 50%)};
     --background-color-semitransparent-hover: #{lighten($green, 40%)};
     --border-color-semitransparent: #{lighten($green, 40%)};
-    --caption-color-solid: white;
-    --caption-color-semitransparent: #{darken($green, 10%)};
-    --caption-color-semitransparent-hover: #{darken($green, 20%)};
-    --caption-color-transparent: #{$gray80};
+    --uui-caption-solid: white;
+    --uui-caption-semitransparent: #{darken($green, 10%)};
+    --uui-caption-semitransparent-hover: #{darken($green, 20%)};
+    --uui-caption-transparent: #{$gray80};
     --count-background-color: white;
     --count-color: #{$gray60};
 }
@@ -48,10 +48,10 @@
     --background-color-semitransparent: #{lighten($amber, 40%)};
     --background-color-semitransparent-hover: #{lighten($amber, 30%)};
     --border-color-semitransparent: #{lighten($amber, 30%)};
-    --caption-color-solid: #{$gray80};
-    --caption-color-semitransparent: #995A00;
-    --caption-color-semitransparent-hover: #804000;
-    --caption-color-transparent: #{$gray80};
+    --uui-caption-solid: #{$gray80};
+    --uui-caption-semitransparent: #995A00;
+    --uui-caption-semitransparent-hover: #804000;
+    --uui-caption-transparent: #{$gray80};
     --count-background-color: white;
     --count-color: #{$gray60};
 }
@@ -62,10 +62,10 @@
     --background-color-semitransparent: #{$orange-lightest};
     --background-color-semitransparent-hover:  #{$orange-light};
     --border-color-semitransparent: #{$orange-light};
-    --caption-color-solid: white;
-    --caption-color-semitransparent: #{$orange-dark};
-    --caption-color-semitransparent-hover: #{$orange-darkest};
-    --caption-color-transparent: #{$gray80};
+    --uui-caption-solid: white;
+    --uui-caption-semitransparent: #{$orange-dark};
+    --uui-caption-semitransparent-hover: #{$orange-darkest};
+    --uui-caption-transparent: #{$gray80};
     --count-background-color: white;
     --count-color: #{$gray60};
 }
@@ -76,10 +76,10 @@
     --background-color-semitransparent: #{lighten($red, 40%)};
     --background-color-semitransparent-hover: #{lighten($red, 30%)};
     --border-color-semitransparent: #{lighten($red, 30%)};
-    --caption-color-solid: white;
-    --caption-color-semitransparent: #A72014;
-    --caption-color-semitransparent-hover: #901111;
-    --caption-color-transparent: #{$gray80};
+    --uui-caption-solid: white;
+    --uui-caption-semitransparent: #A72014;
+    --uui-caption-semitransparent-hover: #901111;
+    --uui-caption-transparent: #{$gray80};
     --count-background-color: white;
     --count-color: #{$gray60};
 }
@@ -90,10 +90,10 @@
     --background-color-semitransparent: #{$purple-lightest};
     --background-color-semitransparent-hover: #{$purple-light};
     --border-color-semitransparent: #{$purple-light};
-    --caption-color-solid: white;
-    --caption-color-semitransparent: #{$purple-dark};
-    --caption-color-semitransparent-hover: #{$purple-darkest};
-    --caption-color-transparent: #{$gray80};
+    --uui-caption-solid: white;
+    --uui-caption-semitransparent: #{$purple-dark};
+    --uui-caption-semitransparent-hover: #{$purple-darkest};
+    --uui-caption-transparent: #{$gray80};
     --count-background-color: white;
     --count-color: #{$gray60};
 }
@@ -104,10 +104,10 @@
     --background-color-semitransparent: #{$violet-lightest};
     --background-color-semitransparent-hover: #{$violet-light};
     --border-color-semitransparent: #{$violet-light};
-    --caption-color-solid: white;
-    --caption-color-semitransparent: #{$violet-dark};
-    --caption-color-semitransparent-hover: #{$violet-darkest};
-    --caption-color-transparent: #{$gray80};
+    --uui-caption-solid: white;
+    --uui-caption-semitransparent: #{$violet-dark};
+    --uui-caption-semitransparent-hover: #{$violet-darkest};
+    --uui-caption-transparent: #{$gray80};
     --count-background-color: white;
     --count-color: #{$gray60};
 }
@@ -117,11 +117,11 @@
     --background-color-hover: #{$gray40};
     --background-color-semitransparent: #{$gray20};
     --background-color-semitransparent-hover: #{$gray30};
-    --caption-color-solid: #{$gray80};
+    --uui-caption-solid: #{$gray80};
     --border-color-semitransparent: #{$gray40};
-    --caption-color-semitransparent: #{$gray80};
-    --caption-color-semitransparent-hover: #{$gray80};
-    --caption-color-transparent: #{$gray80};
+    --uui-caption-semitransparent: #{$gray80};
+    --uui-caption-semitransparent-hover: #{$gray80};
+    --uui-caption-transparent: #{$gray80};
     --count-background-color: white;
     --count-color: #{$gray60};
 }

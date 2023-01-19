@@ -28,7 +28,7 @@
     //Colors
     :global(.uui-tooltip-body) {
         background-color: var(--background-color);
-        color: var(--text-color);
+        color: var(--uui-text);
     }
 
     &:global(.uui-tooltip-container[data-placement^='right']) {

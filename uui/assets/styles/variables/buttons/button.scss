@@ -1,5 +1,5 @@
 :global(.button-vars) {
-    --uui-btn-border-radius: var(--border-radius);
+    --uui-btn-border-radius: var(--uui-border-radius);
 }
 
 :global(.button-primary) {
@@ -16,7 +16,7 @@
     --button-border-color-disabled: var(--uui-disabled);
     --button-caption-color: var(--uui-contrast);
     --button-caption-halftone-color: var(--uui-primary);
-    --button-caption-color-disabled: var(--button-caption-disabled-color);
+    --button-caption-color-disabled: var(--uui-btn-caption-disabled);
 }
 
 :global(.button-accent) {
@@ -33,7 +33,7 @@
     --button-border-color-disabled: var(--uui-disabled);
     --button-caption-color: var(--uui-contrast);
     --button-caption-halftone-color: var(--uui-accent);
-    --button-caption-color-disabled: var(--button-caption-disabled-color);
+    --button-caption-color-disabled: var(--uui-btn-caption-disabled);
 }
 
 :global(.button-negative) {
@@ -50,7 +50,7 @@
     --button-border-color-disabled: var(--uui-disabled);
     --button-caption-color: var(--uui-contrast);
     --button-caption-halftone-color: var(--uui-negative);
-    --button-caption-color-disabled: var(--button-caption-disabled-color);
+    --button-caption-color-disabled: var(--uui-btn-caption-disabled);
 }
 
 :global(.button-secondary) {
@@ -67,5 +67,5 @@
     --button-border-color-disabled: var(--uui-disabled);
     --button-caption-color: var(--uui-contrast);
     --button-caption-halftone-color: var(--uui-secondary);
-    --button-caption-color-disabled: var(--button-caption-disabled-color);
+    --button-caption-color-disabled: var(--uui-btn-caption-disabled);
 }

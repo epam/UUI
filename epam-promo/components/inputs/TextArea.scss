@@ -5,7 +5,7 @@
     @include textArea-color();
 
     :global(.uui-input) {
-        color: var(--text-color);
+        color: var(--uui-text);
         fill: var(--uui-icon);
         border-style: solid;
         font-family: $font-sans;
@@ -27,13 +27,13 @@
         }
 
         &:global(.uui-readonly) {
-            color: var(--text-color);
+            color: var(--uui-text);
             fill: var(--uui-icon);
             pointer-events: none;
         }
 
         &:global(.uui-disabled) {
-            color: var(--text-color-disabled);
+            color: var(--uui-text-disabled);
             fill: var(--uui-icon-disabled);
             pointer-events: none;
 

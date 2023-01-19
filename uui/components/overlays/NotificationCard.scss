@@ -3,18 +3,18 @@
 .root {
     .icon-wrapper {
         :global(.uui-icon) {
-            fill: var(--uui-notification-card-fill-color);
+            fill: var(--uui-notification-card-fill);
         }
     }
 }
 
 .notification-wrapper {
     border-style: solid;
-    border-color: var(--uui-notification-card-border-color);
+    border-color: var(--uui-notification-card-border);
     border-width: var(--uui-notification-card-border-width);
     padding: 6px 18px;
     width: 360px;
-    background: var(--uui-notification-card-bg-color);
+    background: var(--uui-notification-card-bg);
     display: flex;
     overflow: hidden;
     border-radius:  var(--uui-notification-card-border-radius);

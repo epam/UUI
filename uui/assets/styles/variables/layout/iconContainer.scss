@@ -1,23 +1,23 @@
 :global(.icon-container-color-info) {
-    --icon-container-fill-color: var(--uui-info);
+    --uui-icon-container-fill: var(--uui-info);
 }
 
 :global(.icon-container-color-success) {
-    --icon-container-fill-color: var(--uui-success);
+    --uui-icon-container-fill: var(--uui-success);
 }
 
 :global(.icon-container-color-warning) {
-    --icon-container-fill-color: var(--uui-warning);
+    --uui-icon-container-fill: var(--uui-warning);
 }
 
 :global(.icon-container-color-error) {
-    --icon-container-fill-color: var(--uui-error);
+    --uui-icon-container-fill: var(--uui-error);
 }
 
 :global(.icon-container-color-default) {
-    --icon-container-fill-color: var(--uui-icon);
+    --uui-icon-container-fill: var(--uui-icon);
 }
 
 :global(.icon-container-color-secondary) {
-    --icon-container-fill-color: var(--uui-secondary);
+    --uui-icon-container-fill: var(--uui-secondary);
 }

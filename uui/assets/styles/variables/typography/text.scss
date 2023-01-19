@@ -1,19 +1,19 @@
 :global(.text-color-brand) {
-    --text-color: var(--uui-text-brand);
+    --uui-text: var(--uui-text-brand);
 }
 
 :global(.text-color-primary) {
-    --text-color: var(--uui-text-primary);
+    --uui-text: var(--uui-text-primary);
 }
 
 :global(.text-color-secondary) {
-    --text-color: var(--uui-text-secondary);
+    --uui-text: var(--uui-text-secondary);
 }
 
 :global(.text-color-disabled) {
-    --text-color: var(--uui-text-disabled);
+    --uui-text: var(--uui-text-disabled);
 }
 
 :global(.text-color-contrast) {
-    --text-color: var(--uui-text-contrast);
+    --uui-text: var(--uui-text-contrast);
 }

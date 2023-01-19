@@ -30,7 +30,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
             }
 
             :global(.uui-accordion-title) {
-                color: var(--text-color);
+                color: var(--uui-text);
             }
 
             &:hover, &:focus {
@@ -62,7 +62,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
                 fill: var(--uui-icon-disabled);
 
                 :global(.uui-accordion-title) {
-                    color: var(--text-color-disabled);
+                    color: var(--uui-text-disabled);
                 }
 
                 &:hover, &:focus {
@@ -85,7 +85,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
             }
 
             :global(.uui-accordion-title) {
-                color: var(--text-color);
+                color: var(--uui-text);
             }
         }
 
@@ -107,7 +107,7 @@ $shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 3
                 border-bottom: unset;
 
                 :global(.uui-accordion-title) {
-                    color: var(--text-color-disabled);
+                    color: var(--uui-text-disabled);
                 }
             }
         }

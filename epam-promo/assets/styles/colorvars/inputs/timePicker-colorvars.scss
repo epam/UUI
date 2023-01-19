@@ -1,6 +1,6 @@
 @use  '../../colors' as *;
 
 @mixin time-picker-color() {
-    --text-color: #{$gray70};
+    --uui-text: #{$gray70};
     --icon-color: #{$gray60};
 }

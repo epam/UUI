@@ -3,18 +3,18 @@
 .root {
     &:global(.uui-button-box) {
         background-color: transparent;
-        color: var(--text-color);
-        fill: var(--text-color);
+        color: var(--uui-text);
+        fill: var(--uui-text);
 
         &:global(.-clickable:not(.uui-disabled)) {
             &:hover, &:focus {
-                color: var(--text-color-hover);
-                fill: var(--text-color-hover);
+                color: var(--uui-text-hover);
+                fill: var(--uui-text-hover);
             }
 
             &:active {
-                color: var(--text-color-active);
-                fill: var(--text-color-active);
+                color: var(--uui-text-active);
+                fill: var(--uui-text-active);
             }
 
             &:focus {
@@ -23,8 +23,8 @@
         }
 
         &:global(.uui-disabled) {
-            color: var(--text-color-disabled);
-            fill: var(--text-color-disabled);
+            color: var(--uui-text-disabled);
+            fill: var(--uui-text-disabled);
             background-color: transparent;
 
             &:hover {

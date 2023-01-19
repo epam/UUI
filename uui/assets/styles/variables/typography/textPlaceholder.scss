@@ -1,4 +1,4 @@
 :global(.text-placeholder-vars) {
-    --text-placeholder-gradient: var(--uui-skeleton-gradient);
-    --text-placeholder-color: var(--uui-skeleton);
+    --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
+    --uui-text-placeholder: var(--uui-skeleton);
 }

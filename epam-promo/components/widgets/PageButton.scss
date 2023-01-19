@@ -5,7 +5,7 @@
 
     &:global(.-clickable) {
         &:hover {
-            color: var(--caption-color);
+            color: var(--uui-caption);
         }
     }
 }

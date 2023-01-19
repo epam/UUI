@@ -244,8 +244,8 @@
 
     &.fill-solid {
         background-color: var(--background-color);
-        color: var(--caption-color-solid);
-        fill: var(--caption-color-solid);
+        color: var(--uui-caption-solid);
+        fill: var(--uui-caption-solid);
         border-color: var(--background-color);
 
         :global(.uui-count) {
@@ -264,8 +264,8 @@
 
     &.fill-semitransparent {
         background-color: var(--background-color-semitransparent);
-        color: var(--caption-color-semitransparent);
-        fill: var(--caption-color-semitransparent);
+        color: var(--uui-caption-semitransparent);
+        fill: var(--uui-caption-semitransparent);
         border-color: var(--border-color-semitransparent);
 
         :global(.uui-count) {
@@ -276,8 +276,8 @@
         &:global(.-clickable) {
             &:hover {
                 background-color: var(--background-color-semitransparent-hover);
-                color: var(--caption-color-semitransparent-hover);
-                fill: var(--caption-color-semitransparent-hover);
+                color: var(--uui-caption-semitransparent-hover);
+                fill: var(--uui-caption-semitransparent-hover);
                 cursor: pointer;
             }
         }
@@ -285,8 +285,8 @@
 
     &.fill-transparent {
         background-color: transparent;
-        color: var(--caption-color-transparent);
-        fill: var(--caption-color-transparent);
+        color: var(--uui-caption-transparent);
+        fill: var(--uui-caption-transparent);
         border-color: transparent;
 
         &:global(.-clickable) {

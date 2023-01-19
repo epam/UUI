@@ -11,8 +11,8 @@
     --border-color-hover: #{$blue-dark};
     --border-color-active: #{$blue-darkest};
     --background-color-disabled: #{$gray30};
-    --caption-color: #{$blue};
-    --caption-color-disabled: #{$gray50};
+    --uui-caption: #{$blue};
+    --uui-caption-disabled: #{$gray50};
 }
 
 .button-color-green {
@@ -26,8 +26,8 @@
     --border-color-hover: #{$green-dark};
     --border-color-active: #{$green-darkest};
     --background-color-disabled: #{$gray30};
-    --caption-color: #{$green};
-    --caption-color-disabled: #{$gray50};
+    --uui-caption: #{$green};
+    --uui-caption-disabled: #{$gray50};
 }
 
 .button-color-red {
@@ -41,8 +41,8 @@
     --border-color-hover: #{$red-dark};
     --border-color-active: #{$red-darkest};
     --background-color-disabled: #{$gray30};
-    --caption-color: #{$red};
-    --caption-color-disabled: #{$gray50};
+    --uui-caption: #{$red};
+    --uui-caption-disabled: #{$gray50};
 }
 
 .button-color-gray50 {
@@ -56,6 +56,6 @@
     --border-color-hover: #{$gray60};
     --border-color-active: #{$gray70};
     --background-color-disabled: #{$gray30};
-    --caption-color: #{$gray60};
-    --caption-color-disabled: #{$gray50};
+    --uui-caption: #{$gray60};
+    --uui-caption-disabled: #{$gray50};
 }
