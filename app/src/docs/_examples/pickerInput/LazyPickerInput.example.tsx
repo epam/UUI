@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { FlexRow, PickerInput } from '@epam/promo';
+import { FlexCell, PickerInput } from '@epam/promo';
 import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 
@@ -14,7 +14,7 @@ export default function LazyPersonsMultiPicker() {
     const dataSource = useLazyDataSource({ api: loadPersons, selectAll: false }, []);
 
     return (
-        <FlexRow>
+        <FlexCell width='auto' style={{ maxWidth: '100%' }}>
             <PickerInput
                 dataSource={ dataSource }
                 value={ value }
@@ -24,6 +24,6 @@ export default function LazyPersonsMultiPicker() {
                 valueType='id'
 
             />
-        </FlexRow>
+        </FlexCell>
     );
 }
