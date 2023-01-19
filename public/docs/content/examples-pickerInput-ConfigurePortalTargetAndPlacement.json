@@ -1,0 +1,93 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "In some specific cases you may need to provide your own  ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "portalTarget: HTMLElement",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop to the PickerInput to render a dropdown outside of the parent component DOM node.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For example, to support changing the position of the dropdown body while scrolling if rendering inside another dropdown, it is necessary to pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "portalTarget",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop, which is pointing to the parent of the parent dropdown element.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Also you can provide ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "dropdownPlacement",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "  prop to configure dropdown opening position.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
