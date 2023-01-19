@@ -16,7 +16,7 @@ import css from './DataTable.scss';
 import { i18n } from "../../i18n";
 import { getTableRowsData } from './helpers';
 
-export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, DataTableCellCopyProps<TItem, TId> {
+export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, DataTableCellCopyProps<TItem> {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
