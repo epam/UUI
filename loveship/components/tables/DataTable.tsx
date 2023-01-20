@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, cx, IEditable,
     DataColumnProps, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions,

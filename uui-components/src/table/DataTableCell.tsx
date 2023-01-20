@@ -1,9 +1,5 @@
-import * as React from 'react';
-import { MouseEvent } from 'react';
-import {
-    DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
-    TooltipCoreProps, IHasCX, Lens, IEditable,
-} from '@epam/uui-core';
+import React from 'react';
+import { DataTableCellProps, RenderEditorProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
 import { PointerEventHandler, useContext } from "react";
