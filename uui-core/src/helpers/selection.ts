@@ -1,4 +1,4 @@
-import { Lens } from "../data";
+import { Lens } from "../data/lenses";
 import { BaseCellData, CellData, DataColumnProps, DataRowProps, IEditable, SelectionRange } from "../types";
 
 export const getCell = <TItem, TId>(rowIndex: number, columnIndex: number, rows: DataRowProps<TItem, TId>[], columns: DataColumnProps<TItem, TId>[]) => {
