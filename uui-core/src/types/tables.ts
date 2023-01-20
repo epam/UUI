@@ -167,13 +167,6 @@ export interface DataTableCellOptions<TItem = any, TId = any> {
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
 }
 
-export interface DataTableCellOverlayProps<TItem = any, TId = any, TCellValue = any> extends IHasCX, ICanBeInvalid {
-    inFocus: boolean;
-    columnIndex: number;
-    rowIndex: number;
-    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
-}
-
 export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> extends DataTableCellOptions<TItem, TId>, IHasCX, Partial<IEditable<TCellValue>> {
     /** Add-on controls to put before the cell content (folding arrow, checkbox, etc.) */
     addons?: React.ReactNode;
@@ -195,11 +188,6 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
 
     renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
-
-    // There's a problem with type inheritance in objects, and TCellValue is not inferred.
-    // In TypeScript 4.7, TCellValue should start to be inferred.
-    // Here's the test code (works in 4.7, broken on earlier versions): https://bit.ly/3jkBDfx
-    getLens?(lens: ILens<TItem>): ILens<TCellValue>;
 }
 
 export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOptions<TItem, TId> {

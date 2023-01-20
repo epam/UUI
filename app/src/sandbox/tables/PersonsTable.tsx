@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { VirtualList, DataTableHeaderRow, DataTableRow, ColumnsConfigurationModal } from '@epam/loveship';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { IEditable, DataQueryFilter, IDataSourceView, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState, DataTableRowProps, DataColumnProps } from '@epam/uui';
+import {
+    IEditable, DataQueryFilter, IDataSourceView, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig,
+    useColumnsConfig, DataTableState, DataTableRowProps, DataColumnProps,
+} from '@epam/uui';
 import { getColumns } from './columns';
 import type { VirtualListRenderRowsParams } from '@epam/uui-components';
 import type { PersonsSummary } from './PersonsTableDemo';

@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx } from "@epam/uui-core";
-import { FlexRow, FlexSpacer } from '../layout';
+import { FlexRow } from '../layout';
 import { Anchor } from '../navigation/Anchor';
 import css from './DataTableRowContainer.scss';
 
