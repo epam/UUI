@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, cx, IEditable,
+import {
+    ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, cx, IEditable,
     DataColumnProps, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions,
-    TableFiltersConfig, DataTableRowProps } from '@epam/uui-core';
+    TableFiltersConfig, DataTableRowProps,
+} from '@epam/uui-core';
 import { PositionValues, useColumnsWithFilters, VirtualListRenderRowsParams } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { IconButton, Text, VirtualList } from '../';
@@ -40,7 +42,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 {
                     props.renderNoResultsBlock ? props.renderNoResultsBlock() :
                         <>
-                            <IconButton icon={ SearchIcon } cx={ css.noResultsIcon }/>
+                            <IconButton icon={ SearchIcon } cx={ css.noResultsIcon } />
                             <Text fontSize="16" font="sans-semibold">No Results Found</Text>
                             <Text fontSize="14">We can't find any item matching your request</Text>
                         </>
@@ -84,7 +86,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     }) } />
                 </div>
                 { props.exactRowsCount !== 0 ? (
-                    <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
+                    <div className={ css.listContainer } style={ { minHeight: `${ estimatedHeight }px` } }>
                         <div
                             ref={ listContainerRef }
                             role='rowgroup'
@@ -94,7 +96,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     </div>
                 ) : renderNoResultsBlock?.() }
             </>
-    ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
+        ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
 
     return (
         <VirtualList
