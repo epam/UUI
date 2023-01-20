@@ -39,7 +39,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         />
     ), [props.size, props.border]);
 
-    const rows = useMemo(() => props.getRows(), [props.getRows]);
+    const rows = props.getRows();
 
     const renderedRows = rows.map(row => (props.renderRow || renderRow)({ ...row, columns }));
 
