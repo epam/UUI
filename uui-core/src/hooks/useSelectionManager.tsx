@@ -1,10 +1,10 @@
 import { useCallback, useMemo, useState } from 'react';
 import type { SelectedCellsData, SelectionManager, SelectionManagerProps, SelectionRange, CopyOptions } from '../types';
-import { convertToBaseCellData, getCell, getCopyFromCell, getNormalizedLimits } from '../helpers';
+import { convertToBaseCellData, getCell, getCellToCopyFrom, getNormalizedLimits } from '../helpers';
 
 export const useSelectionManager = <TItem, TId>({ rows, columns }: SelectionManagerProps<TItem, TId>): SelectionManager<TItem> => {
     const [selectionRange, setSelectionRange] = useState<SelectionRange>(null);
-    const cellToCopyFrom = useMemo(() => getCopyFromCell<TItem, TId>(selectionRange, rows, columns), [selectionRange, rows, columns]);
+    const cellToCopyFrom = useMemo(() => getCellToCopyFrom<TItem, TId>(selectionRange, rows, columns), [selectionRange, rows, columns]);
     const range = useMemo(() => ({ selectionRange, setSelectionRange }), [selectionRange]);
 
     const canBeSelected = useCallback((rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => {

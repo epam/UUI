@@ -5,6 +5,9 @@ export const getCell = <TItem, TId>(rowIndex: number, columnIndex: number, rows:
     const row = rows[rowIndex];
     const column = columns[columnIndex];
 
+    if (!row || !column) {
+        return null;
+    }
     const rowLens = Lens.onEditable(row as IEditable<TItem>);
     return {
         key: column.key,
@@ -16,7 +19,7 @@ export const getCell = <TItem, TId>(rowIndex: number, columnIndex: number, rows:
     };
 };
 
-export const getCopyFromCell = <TItem, TId>(
+export const getCellToCopyFrom = <TItem, TId>(
     selectionRange: SelectionRange | null,
     rows: DataRowProps<TItem, TId>[],
     columns: DataColumnProps<TItem, TId>[],
