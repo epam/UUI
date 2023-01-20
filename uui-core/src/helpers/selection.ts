@@ -6,10 +6,8 @@ export const getCell = <TItem, TId>(rowIndex: number, columnIndex: number, rows:
     const column = columns[columnIndex];
 
     const rowLens = Lens.onEditable(row as IEditable<TItem>);
-    const key = column.key as keyof TItem;
     return {
-        key,
-        value: rowLens.prop(key).get(),
+        key: column.key,
         columnIndex,
         rowIndex,
         rowLens,
