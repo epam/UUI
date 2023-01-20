@@ -9,8 +9,8 @@ const {assertAppDepsAreBuilt} = require("./utils/appDepsUtils");
 
 /**
  * There are two major use cases:
- * 1) (default) When "--app-dev" flag is not provided or if dev server mode. The "@epam/app" is built using "./build" folder of respective dependencies (I.e. all dependencies must be already built before "app" build is started)
- * 2) When "--app-dev" flag is provided. In such case, tje "app" and all its dependencies are build together as a single project.
+ * 1) (default) When "--app-dev" flag is not provided. The "@epam/app" is built using "./build" folder of respective dependencies (I.e. all dependencies must be already built before "app" build is started)
+ * 2) When "--app-dev" flag is provided or in dev server mode. In such case, tje "app" and all its dependencies are build together as a single project.
  */
 function getIsUseBuildFolderOfDeps() {
     let flag = !process.argv.find(a => a === "--app-dev");
