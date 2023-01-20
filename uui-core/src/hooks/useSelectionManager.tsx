@@ -23,6 +23,8 @@ export const useSelectionManager = <TItem, TId>({ rows, columns }: SelectionMana
     }, [canBeSelected, selectionRange]);
 
     const getSelectedCells = useCallback((): SelectedCellsData<TItem> => {
+        if (!selectionRange) return [];
+
         const { startRowIndex, startColumnIndex, endRowIndex, endColumnIndex } = selectionRange;
         const [startRow, endRow] = getNormalizedLimits(startRowIndex, endRowIndex);
         const [startColumn, endColumn] = getNormalizedLimits(startColumnIndex, endColumnIndex);
