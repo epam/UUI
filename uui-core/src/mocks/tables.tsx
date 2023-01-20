@@ -14,14 +14,14 @@ export const columnsMock: DataColumnProps<Row, number>[] = [
         key: 'age',
         width: 1,
         renderCell: () => (<div>1</div>),
-        canAcceptCopy: (from, to) => from.key === to.key,
+        canAcceptCopy: (from, to) => to.rowIndex % 2 === 0,
         canCopy: (cell) => cell.rowIndex % 2 === 0,
     },
     {
         key: 'salary',
         width: 1,
         renderCell: () => (<div>1</div>),
-        canAcceptCopy: (from, to) => from.key === to.key,
+        canAcceptCopy: (from, to) => true,
         canCopy: () => false,
     },
 ];
