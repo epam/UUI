@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import {
     PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
-    IconContainer, DataTableSelectionProvider, DataTableSelectionProviderProps,
+    IconContainer, DataTableSelectionProvider,
 } from '@epam/uui-components';
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
