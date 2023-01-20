@@ -92,7 +92,7 @@ export const ProjectDemo = () => {
     const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
 
     const onCopy = (copyFrom: BaseCellData<Task>, selectedCells: BaseCellData<Task>[]) => {
-        const valueToCopy = copyFrom.rowLens.prop(copyFrom.key).get();
+        const valueToCopy = copyFrom.rowLens.prop(copyFrom.key as keyof Task).get();
         const newItems = { ...value.items };
         for (const cell of selectedCells) {
             const cellRowId = cell.rowLens.prop('id').get();
