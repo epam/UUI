@@ -32,10 +32,8 @@ export const PersonsTable = (props: PersonsTableProps) => {
     };
 
     const getRows = () => {
-        return props.view.getVisibleRows().map(row => renderRow({
-            ...row,
-            columns: personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableRecord>>[]
-        }));
+        const columns = personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableRecord>>[];
+        return props.view.getVisibleRows().map(row => renderRow({ ...row, columns }));
     };
 
     const onConfigurationButtonClick = () => {
