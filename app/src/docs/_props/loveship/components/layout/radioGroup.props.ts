@@ -2,7 +2,7 @@ import { DocBuilder } from '@epam/uui-docs';
 import { RadioGroupProps } from '@epam/uui-components';
 import { RadioGroup } from '@epam/loveship';
 import { isDisabledDoc, isInvalidDoc, iEditable } from '../../docs';
-import { FormContext, DefaultContext } from '../../docs';
+import { FormContext, DefaultContext, ResizableContext } from '../../docs';
 
 const radioGroupDoc = new DocBuilder<RadioGroupProps<any>>({ name: 'RadioGroup', component: RadioGroup })
     .implements([isDisabledDoc, isInvalidDoc, iEditable])
@@ -19,6 +19,6 @@ const radioGroupDoc = new DocBuilder<RadioGroupProps<any>>({ name: 'RadioGroup',
         isRequired: true,
     })
     .prop('direction', { examples:['vertical', 'horizontal'], defaultValue: 'vertical' })
-    .withContexts(DefaultContext, FormContext);
+    .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export default radioGroupDoc;
