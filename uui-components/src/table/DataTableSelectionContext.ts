@@ -1,13 +1,13 @@
 import { createContext } from "react";
-import { SelectionManager } from "./useSelectionManager";
+import { SelectionManager } from "@epam/uui-core";
 
 
-export interface SelectionContextState<TItem = any, TId = any, TCellValue = any> {
+export interface SelectionContextState<TItem = any> {
     selectionRange: SelectionManager<TItem>['selectionRange'];
     setSelectionRange: SelectionManager<TItem>['setSelectionRange'];
     canBeSelected: SelectionManager<TItem>['canBeSelected'];
 }
 
-export const DataTableSelectionContext = createContext<SelectionContextState<any, any, any>>({
+export const DataTableSelectionContext = createContext<SelectionContextState<any>>({
     selectionRange: null, setSelectionRange: null, canBeSelected: null,
 });

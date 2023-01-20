@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { BaseCellData, DataColumnProps, DataRowProps } from "@epam/uui-core";
-import { DataTableSelectionContext, SelectionContextState } from "./DataTableSelectionContext";
-import { useSelectionManager } from "./useSelectionManager";
+import { BaseCellData, DataColumnProps, DataRowProps, useSelectionManager } from "@epam/uui-core";
+import { DataTableSelectionContext } from "./DataTableSelectionContext";
 
 export interface DataTableSelectionProviderProps<TItem, TId> extends React.PropsWithChildren {
     rows: DataRowProps<TItem, TId>[];

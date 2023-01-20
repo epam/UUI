@@ -1,4 +1,4 @@
-import React, { Attributes, ReactNode } from 'react';
+import React, { Attributes, Dispatch, ReactNode, SetStateAction } from 'react';
 import { IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps,
     ICanBeInvalid, ICanFocus, IDropdownBodyProps } from './props';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
@@ -331,3 +331,28 @@ export type RowData<TItem> = Record<number, CellData<TItem>>;
 export type RowsData<TItem> = RowData<TItem>[];
 
 export type SelectedCellsData<T> = BaseCellData<T>[];
+
+export interface SelectionRange {
+    startColumnIndex: number;
+    startRowIndex: number;
+    endColumnIndex: number;
+    endRowIndex: number;
+    isCopying?: boolean;
+}
+
+export interface SelectionManagerProps<TItem, TId> {
+    rows: DataRowProps<TItem, TId>[];
+    columns: DataColumnProps<TItem, TId>[];
+}
+
+export interface SelectionManager<T> {
+    selectionRange: SelectionRange;
+    setSelectionRange: Dispatch<SetStateAction<SelectionRange>>;
+    canBeSelected: (rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => boolean;
+    getSelectedCells: () => SelectedCellsData<T>;
+    cellToCopyFrom: BaseCellData<T>;
+}
+
+export type CopyOptions =
+    | { copyFrom: true; copyTo?: false; }
+    | { copyFrom?: false, copyTo: true };
