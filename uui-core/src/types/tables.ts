@@ -314,6 +314,7 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
 
 export interface BaseCellData<TItem = any> {
     key: keyof TItem;
+    value: TItem[BaseCellData<TItem>['key']];
     columnIndex: number;
     rowIndex: number;
     rowLens: ILens<TItem>;

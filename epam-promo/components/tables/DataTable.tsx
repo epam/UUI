@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
     PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
     IconContainer, DataTableSelectionProvider, DataTableSelectionProviderProps,
@@ -14,7 +14,6 @@ import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from "../typography";
 import css from './DataTable.scss';
 import { i18n } from "../../i18n";
-import { getTableRowsData } from './helpers';
 
 export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, DataTableCellCopyProps<TItem> {
     getRows(): DataRowProps<TItem, TId>[];
@@ -40,7 +39,9 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         />
     ), [props.size, props.border]);
 
-    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
+    const rows = useMemo(() => props.getRows(), [props.getRows]);
+
+    const renderedRows = rows.map(row => (props.renderRow || renderRow)({ ...row, columns }));
 
     const renderNoResultsBlock = React.useCallback(() => {
         return (
@@ -93,22 +94,20 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         ref={ listContainerRef }
                         role='rowgroup'
                         style={ { marginTop: offsetY } }
-                        children={ rows }
+                        children={ renderedRows }
                     />
                 </div>
             ) : renderNoResultsBlock?.() }
         </>
-    ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
-
-    const cellsData = getTableRowsData(props.getRows(), columns);
+    ), [props, columns, renderedRows, renderNoResultsBlock, onConfigurationButtonClick]);
 
     return (
-        <DataTableSelectionProvider onCopy={ props.onCopy } data={ cellsData }>
+        <DataTableSelectionProvider onCopy={ props.onCopy } rows={ rows } columns={ columns }>
             <VirtualList
                 value={ props.value }
                 onValueChange={ props.onValueChange }
                 onScroll={ props.onScroll }
-                rows={ rows }
+                rows={ renderedRows }
                 rowsCount={ props.rowsCount }
                 renderRows={ renderRowsContainer }
                 cx={ cx(css.table) }

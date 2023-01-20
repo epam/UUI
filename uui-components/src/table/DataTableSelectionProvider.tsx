@@ -1,18 +1,19 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
-import { BaseCellData, CellData, DataTableCellProps, RowsData } from "@epam/uui-core";
+import React, { useEffect } from "react";
+import { BaseCellData, DataColumnProps, DataRowProps } from "@epam/uui-core";
 import { DataTableSelectionContext, SelectionContextState } from "./DataTableSelectionContext";
-import { SelectionRange, useSelectionManager } from "./useSelectionManager";
+import { useSelectionManager } from "./useSelectionManager";
 
-export interface DataTableSelectionProviderProps<TItem> extends React.PropsWithChildren {
-    data: RowsData<TItem>;
+export interface DataTableSelectionProviderProps<TItem, TId> extends React.PropsWithChildren {
+    rows: DataRowProps<TItem, TId>[];
+    columns: DataColumnProps<TItem, TId>[];
     onCopy: (
         copyFrom: BaseCellData<TItem>,
         selectedCells: BaseCellData<TItem>[],
     ) => void;
 }
 
-export const DataTableSelectionProvider = <TItem, TId, TCellValue = any>({ onCopy, data, children }: DataTableSelectionProviderProps<TItem>) => {
-    const { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom } = useSelectionManager<TItem>({ data });
+export const DataTableSelectionProvider = <TItem, TId>({ onCopy, rows, columns, children }: DataTableSelectionProviderProps<TItem, TId>) => {
+    const { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom } = useSelectionManager<TItem, TId>({ rows, columns });
 
     useEffect(() => {
         if (!selectionRange) {
@@ -32,5 +33,9 @@ export const DataTableSelectionProvider = <TItem, TId, TCellValue = any>({ onCop
         return () => document.removeEventListener('pointerup', handlePointerUp);
     }, [selectionRange, cellToCopyFrom, getSelectedCells]);
 
-    return <DataTableSelectionContext.Provider value={ { selectionRange, setSelectionRange, canBeSelected } }>{ children }</DataTableSelectionContext.Provider>;
+    return (
+        <DataTableSelectionContext.Provider value={ { selectionRange, setSelectionRange, canBeSelected } }>
+            { children }
+        </DataTableSelectionContext.Provider>
+    );
 };

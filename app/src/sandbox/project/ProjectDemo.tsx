@@ -75,7 +75,7 @@ export const ProjectDemo = () => {
         getParentId: i => i.parentId,
     }, []);
 
-    const dataView = dataSource.useView(tableState, setTableState, {
+    const dataView = useMemo(() => dataSource.useView(tableState, setTableState, {
         getRowOptions: (task) => ({
             ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
             //checkbox: { isVisible: true },
@@ -87,7 +87,7 @@ export const ProjectDemo = () => {
                 onDrop: handleDrop,
             },
         }),
-    });
+    }), [tableState, lens, handleCanAcceptDrop, handleDrop]);
 
     const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
 
