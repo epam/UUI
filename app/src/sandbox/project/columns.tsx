@@ -35,7 +35,6 @@ export function getColumns(columnsProps: ColumnsProps) {
             },
             renderCell: (props) => <DataTableCell
                 { ...props.rowLens.prop('estimate').toProps() }
-                getLens={ l => l.prop('estimate') }
                 renderEditor={ props => (<NumericInput
                     { ...props }
                     formatOptions={ { maximumFractionDigits: 1 } }
@@ -54,7 +53,6 @@ export function getColumns(columnsProps: ColumnsProps) {
             canAcceptCopy: (from) => true,
             renderCell: (props) => <DataTableCell
                 { ...props.rowLens.prop('estimate2').toProps() }
-                getLens={ l => l.prop('estimate2') }
                 renderEditor={ props => (<NumericInput
                     { ...props }
                     formatOptions={ { maximumFractionDigits: 1 } }
