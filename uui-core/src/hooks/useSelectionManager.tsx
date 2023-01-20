@@ -9,13 +9,8 @@ export const useSelectionManager = <TItem, TId>({ rows, columns }: SelectionMana
 
     const canBeSelected = useCallback((rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => {
         const cell = getCell(rowIndex, columnIndex, rows, columns);
-        if (!cellToCopyFrom && copyTo) {
-            return false;
-        }
-
-        if (copyFrom) {
-            return !!cell.canCopy?.(cell);
-        }
+        if (!cellToCopyFrom && copyTo) return false;
+        if (copyFrom) return !!cell.canCopy?.(cell);
 
         return !!cell.canAcceptCopy?.(cellToCopyFrom, cell);
     }, [cellToCopyFrom, rows, columns]);

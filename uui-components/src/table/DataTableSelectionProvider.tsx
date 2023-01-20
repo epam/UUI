@@ -15,14 +15,10 @@ export const DataTableSelectionProvider = <TItem, TId>({ onCopy, rows, columns, 
     const { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom } = useSelectionManager<TItem, TId>({ rows, columns });
 
     useEffect(() => {
-        if (!selectionRange) {
-            return;
-        }
+        if (!selectionRange) return;
 
         const handlePointerUp = () => {
-            if (!selectionRange) {
-                return;
-            }
+            if (!selectionRange) return;
 
             onCopy(cellToCopyFrom, getSelectedCells());
             setSelectionRange(null);
