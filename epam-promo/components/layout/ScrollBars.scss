@@ -1,6 +1,8 @@
 @use '../../assets/styles/prettifyScrollBar' as *;
 
-@include prettifyCustomScroll();
+.root {
+    @include prettifyCustomScroll();
+}
 
 .theme-dark {
     &:global(.uui-shadow-top)::before {
