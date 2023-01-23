@@ -1,16 +1,16 @@
 :global(.picker-toggler-vars) {
-    --picker-toggler-bg-color: var(--input-bg-color);
-    --picker-toggler-border-color: var(--input-border-color);
-    --picker-toggler-border-color-hover: var(--input-textinput-border-hover-color);
-    --picker-toggler-border-color-active: var(--input-border-checked-color);
-    --picker-toggler-border-color-error: var(--negative-color);
-    --picker-toggler-placeholder-color: var(--input-placeholder-color);
-    --picker-toggler-text-color: var(--input-text-color);
-    --picker-toggler-text-color-disabled: var(--input-text-disabled-color);
-    --picker-toggler-icon-color: var(--input-icon-color);
-    --picker-toggler-icon-color-disabled: var(--input-icon-disabled-color);
-    --picker-toggler-icon-color-clickable: var(--icon-color);
-    --picker-toggler-icon-color-clickable-hover: var(--icon-hover-color);
+    --uui-picker-toggler-bg: var(--uui-control-bg);
+    --uui-picker-toggler-border: var(--uui-control-border);
+    --uui-picker-toggler-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-picker-toggler-border-active: var(--uui-control-border-checked);
+    --uui-picker-toggler-border-error: var(--uui-negative);
+    --uui-picker-toggler-placeholder: var(--uui-control-placeholder);
+    --uui-picker-toggler-text: var(--uui-control-text);
+    --uui-picker-toggler-text-disabled: var(--uui-control-text-disabled);
+    --uui-picker-toggler-icon: var(--uui-control-icon);
+    --uui-picker-toggler-icon-disabled: var(--uui-control-icon-disabled);
+    --uui-picker-toggler-icon-clickable: var(--uui-icon);
+    --uui-picker-toggler-icon-clickable-hover: var(--uui-icon-hover);
 
-    --picker-toggler-border-radius: var(--border-radius);
+    --uui-picker-toggler-border-radius: var(--uui-border-radius);
 }

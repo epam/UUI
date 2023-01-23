@@ -1,7 +1,7 @@
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
-import buttonCss from '../buttons/Button.scss';
+// import buttonCss from '../buttons/Button.scss';
 import styles from '../../assets/styles/colorvars/widgets/tag-colorvars.scss';
 import css from './Tag.scss';
 
@@ -22,7 +22,7 @@ export interface TagMods {
 
 export function applyTagMods(mods: TagMods) {
     return [
-        buttonCss.root,
+        // buttonCss.root,
         styles['tag-color'],
         css['size-' + (mods.size || defaultSize)],
         css.root,
