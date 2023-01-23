@@ -3,15 +3,11 @@
 
 <svg
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="18"
    height="24"
    viewBox="0 0 18 24"
    version="1.1"
-   id="svg8"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="btn_cross.svg">
+   id="svg8">
   <defs
      id="defs2">
     <pattern
@@ -36,46 +32,10 @@
        patternUnits="userSpaceOnUse"
        id="EMFhbasepattern-0" />
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#003ecc"
-     borderopacity="1"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="11.2"
-     inkscape:cx="2.9465451"
-     inkscape:cy="19.714344"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer2"
-     showgrid="true"
-     units="px"
-     inkscape:pagecheckerboard="false"
-     inkscape:showpageshadow="false"
-     showguides="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:snap-nodes="false"
-     inkscape:snap-bbox="true"
-     inkscape:bbox-nodes="true"
-     inkscape:snap-page="true">
-    <inkscape:grid
-       type="xygrid"
-       id="grid4747"
-       spacingx="1"
-       spacingy="1"
-       empspacing="6" />
-  </sodipodi:namedview>
   <g
-     inkscape:label="Grid"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-290.65)"
-     style="display:none"
-     sodipodi:insensitive="true">
+     style="display:none">
     <circle
        style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.03341123;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path4752"
@@ -104,9 +64,7 @@
        y="298.65317" />
   </g>
   <g
-     inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Icon"
      style="display:inline">
     <g
        id="g5744"
@@ -121,8 +79,7 @@
       <path
          style="opacity:1;vector-effect:none;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.26458335;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          d="m 100.76086,173.63996 -0.74836,0.74835 -0.748352,-0.74835 -0.374178,0.37417 0.748355,0.74836 -0.748355,0.74835 0.374178,0.37418 0.748352,-0.74836 0.74836,0.74836 0.37417,-0.37418 -0.74835,-0.74835 0.74835,-0.74836 z"
-         id="rect6052"
-         inkscape:connector-curvature="0" />
+         id="rect6052" />
     </g>
   </g>
 </svg>
