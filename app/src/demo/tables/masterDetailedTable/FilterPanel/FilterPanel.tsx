@@ -23,16 +23,7 @@ const FilterPanel = <TFilter extends Record<string, any>>(props: IFilterPanelPro
             </FlexRow>
 
             <ScrollBars>
-                <PresetsBlock
-                    presets={ props.presets }
-                    createNewPreset={ props.createNewPreset }
-                    activePresetId={ props.activePresetId }
-                    hasPresetChanged={ props.hasPresetChanged }
-                    choosePreset={ props.choosePreset }
-                    deletePreset={ props.deletePreset }
-                    duplicatePreset={ props.duplicatePreset }
-                    updatePreset={ props.updatePreset }
-                />
+                <PresetsBlock { ...props } />
                 <FiltersBlock
                     value={ props.tableState.filter }
                     onValueChange={ props.setFilter }

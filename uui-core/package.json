@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-core",
-  "version": "4.9.2",
+  "version": "4.10.0-rc.4",
   "description": "EPAM UUI Core",
   "author": "EPAM",
   "license": "MIT",
@@ -35,8 +35,8 @@
     "lodash.orderby": "4.6.0",
     "lodash.sortby": "4.7.0",
     "lodash.trimend": "4.5.1",
-    "react-popper": "2.3.0",
-    "query-string": "6.13.1"
+    "query-string": "6.13.1",
+    "react-popper": "2.3.0"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "7.0.2",
