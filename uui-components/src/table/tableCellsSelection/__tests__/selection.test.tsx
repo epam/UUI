@@ -1,5 +1,5 @@
-import { getCell, getCellToCopyFrom, getNormalizedLimits } from "../helpers";
-import { rowsMock, columnsMock } from '../../mocks';
+import { getCell, getCellToCopyFrom, getNormalizedLimits } from "../hooks/helpers";
+import { rowsMock, columnsMock } from '../mocks';
 
 describe('getNormalizedLimits', () => {
     it('should return normalized limits', () => {
