@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { cx, DataTableCellOverlayProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCellOverlay.scss';
 import { useSelectionParams } from "./useSelectionParams";
@@ -17,7 +17,39 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
         setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true });
     };
 
-    const canCopyFrom = canBeSelected?.(rowIndex, columnIndex, { copyFrom: true });
+    const showSelect = useCallback(() => isSelected && selectionRange?.isCopying, [isSelected, selectionRange?.isCopying]);
+
+    const canCopyFrom = useMemo(
+        () => canBeSelected?.(rowIndex, columnIndex, { copyFrom: true }),
+        [rowIndex, columnIndex, canBeSelected],
+    );
+
+    const canAcceptCopy = useMemo(
+        () => canBeSelected?.(rowIndex, columnIndex, { copyTo: true }),
+        [rowIndex, columnIndex, canBeSelected],
+    );
+
+    const canBeSelectedTop = useMemo(
+        () => showSelect() && (isTop || !canBeSelected?.(rowIndex - 1, columnIndex, { copyTo: true })),
+        [isSelected, selectionRange?.isCopying, isTop, rowIndex, columnIndex, canBeSelected, showSelect]
+    );
+
+    const canBeSelectedRight = useMemo(
+        () => showSelect() && (isRight || !canBeSelected?.(rowIndex, columnIndex + 1, { copyTo: true })),
+        [isSelected, selectionRange?.isCopying, isRight, rowIndex, columnIndex, canBeSelected, showSelect]
+    );
+
+
+    const canBeSelectedBottom = useMemo(
+        () => showSelect() && (isBottom || !canBeSelected?.(rowIndex + 1, columnIndex, { copyTo: true })),
+        [isSelected, selectionRange?.isCopying, isBottom, rowIndex, columnIndex, canBeSelected, showSelect]
+    );
+
+    const canBeSelectedLeft = useMemo(
+        () => showSelect() && (isLeft || !canBeSelected?.(rowIndex, columnIndex - 1, { copyTo: true })),
+        [isSelected, selectionRange?.isCopying, isLeft, rowIndex, columnIndex, canBeSelected, showSelect]
+    );
+
     const borderClassNames = isSelected && (!selectionRange?.isCopying
         ? cx(
             'uui-selected-cell',
@@ -26,12 +58,12 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
             isBottom && 'uui-selected-cell-bottom',
             isLeft && 'uui-selected-cell-left',
         )
-        : canBeSelected?.(rowIndex, columnIndex, { copyTo: true }) && cx(
+        : canAcceptCopy && cx(
             'uui-selected-cell',
-            (isTop || !canBeSelected(rowIndex - 1, columnIndex, { copyTo: true })) && 'uui-selected-cell-top',
-            (isRight || !canBeSelected(rowIndex, columnIndex + 1, { copyTo: true })) && 'uui-selected-cell-right',
-            (isBottom || !canBeSelected(rowIndex + 1, columnIndex, { copyTo: true })) && 'uui-selected-cell-bottom',
-            (isLeft || !canBeSelected(rowIndex, columnIndex - 1, { copyTo: true })) && 'uui-selected-cell-left',
+            canBeSelectedTop && 'uui-selected-cell-top',
+            canBeSelectedRight && 'uui-selected-cell-right',
+            canBeSelectedBottom && 'uui-selected-cell-bottom',
+            canBeSelectedLeft && 'uui-selected-cell-left',
         ));
 
     const overlay = (
