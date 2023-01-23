@@ -15,7 +15,7 @@
 .divider {
     height: 1px;
     width: 100%;
-    background-color: var(--divider-color);
+    background-color: var(--uui-divider);
 }
 
 .input {
@@ -31,7 +31,7 @@
         position: absolute;
         width: 6px;
         height: 6px;
-        background-color: var(--negative-color);
+        background-color: var(--uui-negative);
         border-radius: 50%;
         right: -3px;
         top: -3px;

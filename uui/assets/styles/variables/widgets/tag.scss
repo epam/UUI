@@ -1,9 +1,9 @@
 :global(.tag-vars) {
-    --tag-bg-color: var(--tag-color);
-    --tag-bg-color-hover: var(--tag-hover-color);
-    --tag-caption-color: var(--text-primary-color);
-    --tag-fill-color: var(--icon-color);
-    --tag-fill-color-hover: var(--icon-hover-color);
-    --tag-count-bg-color: white;
-    --tag-count-color: var(--text-secondary-color);
+    --uui-tag-bg: var(--uui-tag);
+    --uui-tag-bg-hover: var(--uui-tag-hover);
+    --uui-tag-caption: var(--uui-text-primary);
+    --uui-tag-fill: var(--uui-icon);
+    --uui-tag-fill-hover: var(--uui-icon-hover);
+    --uui-tag-count-bg: white;
+    --uui-tag-count: var(--uui-text-secondary);
 }
