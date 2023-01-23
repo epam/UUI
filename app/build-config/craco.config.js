@@ -1,18 +1,26 @@
-const {removeRuleByTestAttr, replaceRuleByTestAttr, changeRuleByTestAttr, normSlashes} = require("./utils/configUtils");
+const { removeRuleByTestAttr, changeRuleByTestAttr, makeSlashesPlatformSpecific,
+    changePluginByName } = require("./utils/configUtils");
 const { DIRS_FOR_BABEL, CSS_URL_ROOT_PATH, ENTRY_WITH_EXTRACTED_DEPS_CSS,
     LIBS_WITHOUT_SOURCE_MAPS,
 } = require("./constants");
-const SVGRLoader = require.resolve("@svgr/webpack");
-const FileLoader = require.resolve("file-loader");
 const { uuiCustomFormatter } = require("./utils/issueFormatter");
-const { whenDev } = require("@craco/craco")
+const { whenDev, whenProd } = require("@craco/craco");
+const {assertAppDepsAreBuilt} = require("./utils/appDepsUtils");
 
 /**
- * Note: This is still experimental.
- * In this mode, the "@epam/app" is built using "./build" folder of respective dependencies.
- * I.e. all dependencies must be already built before "app" build is started.
+ * There are two major use cases:
+ * 1) The "@epam/app" is built using "./build" folder of respective dependencies (I.e. all dependencies must be already built before "app" build is started):
+ *  - When "--app-dev" flag is not provided, and it's not a dev server mode.
+ * 2) The "@epam/app" and all its dependencies are build together as a single project:
+ *  - In dev server mode
+ *  - When "--app-dev" flag is provided
  */
-const isUseBuildFolderOfDeps = !!process.argv.find(a => a === '--app-uses-build-folder-of-deps');
+function getIsUseBuildFolderOfDeps() {
+    let flag = !process.argv.find(a => a === "--app-dev");
+    whenDev(() => { flag = false; });
+    return flag;
+}
+const isUseBuildFolderOfDeps = getIsUseBuildFolderOfDeps();
 
 /**
  * See https://craco.js.org/
@@ -21,16 +29,20 @@ module.exports = function uuiConfig() {
     return {
         eslint: { enable: false }, // EsLint is disabled as of now, but it would be enabled in the future.
         webpack: { configure: configureWebpack },
-        devServer: config => {
-            return config;
-        },
+        devServer: config => { return config; },
     };
 };
 
 function configureWebpack(config, { paths }) {
-    whenDev(() => {
-        config.devtool = "eval-source-map";
-    })
+    isUseBuildFolderOfDeps && assertAppDepsAreBuilt();
+    whenDev(() => { config.devtool = "eval-source-map"; });
+    whenProd(() => {
+        // splitChunks setting hangs webpack5 dev server due to a bug.
+        // (that's why we apply it only to prod)
+        // see also the discussion here: https://github.com/facebook/create-react-app/discussions/11278#discussioncomment-1808511
+        config.optimization.splitChunks = { chunks: "all" };
+    });
+
     if (isUseBuildFolderOfDeps) {
         paths.appIndexJs = ENTRY_WITH_EXTRACTED_DEPS_CSS;
         config.entry = ENTRY_WITH_EXTRACTED_DEPS_CSS;
@@ -42,36 +54,12 @@ function configureWebpack(config, { paths }) {
     // reason: all .css files are not modules in UUI
     changeRuleByTestAttr(config, /\.css$/, r => { delete r.exclude; return r; });
 
-    /**
-     * Fix: remove <metadata> tag.
-     *
-     * Use older version of @svgr/webpack as a workaround for https://github.com/facebook/create-react-app/issues/11770
-     * Use older version of file-loader as a workaround for https://github.com/gregberge/svgr/issues/367
-     * related bug: https://github.com/gregberge/svgr/issues/727
-     * Known svg with namespace tags (e.g.: sodipodi:namedview, inkscape:connector-curvature, etc.):
-     * epam-assets/icons/templates/generic-24.svg
-     * epam-assets/icons/templates/generic-30.svg
-     * epam-assets/icons/templates/generic.svg
-     * epam-assets/icons/templates/tall.svg
-     * epam-promo/icons/checkbox_tick.svg
-     * epam-promo/icons/menu_input_cancel.svg
-     * loveship/components/icons/checkbox_tick.svg
-     * loveship/components/icons/menu_input_cancel.svg
-     * public/static/images/customer-short-logo.svg
-     * public/static/images/customer-wide-logo.svg
-     * public/static/images/grid-overlay.svg
-     * public/static/images/h-ruler.svg
-     * public/static/images/lens.svg
-     * public/static/images/v-ruler.svg
-     * uui/icons/checkbox_tick.svg
-     * uui/icons/menu_input_cancel.svg
-     * */
-    replaceRuleByTestAttr(config, /\.svg$/, {
-        test: /\.svg$/,
-        use: [
-            { loader: SVGRLoader, options: { svgoConfig: { plugins: { removeViewBox: false } }, ref: true }},
-            { loader: FileLoader, options: { emitFile: false } },
-        ],
+    //
+    changeRuleByTestAttr(config, /\.svg$/, prev => {
+        delete prev.issuer; // deleting the issuer condition because of next bug: https://github.com/webpack/webpack/issues/9309
+        const fileLoader = prev.use.find(u => { return u.loader.indexOf(makeSlashesPlatformSpecific("/file-loader/")) !== -1; });
+        fileLoader.options = { emitFile: false };
+        return prev;
     });
 
     if (!isUseBuildFolderOfDeps) {
@@ -93,11 +81,11 @@ function configureWebpack(config, { paths }) {
         // replace "test". Reason: .sass files are always modules in UUI
         prev.test = /\.scss$/;
         prev.use && prev.use.forEach(u => {
-            if (u.loader && u.loader.indexOf(normSlashes("/resolve-url-loader/")) !== -1) {
+            if (u.loader && u.loader.indexOf(makeSlashesPlatformSpecific("/resolve-url-loader/")) !== -1) {
                 // Set css root for "resolve-url-loader". So that url('...') statements in .scss are resolved correctly.
                 u.options.root = CSS_URL_ROOT_PATH;
             }
-            if (u.loader && u.loader.indexOf(normSlashes("/css-loader/")) !== -1) {
+            if (u.loader && u.loader.indexOf(makeSlashesPlatformSpecific("/css-loader/")) !== -1) {
                 // Need camelCase export to keep existing UUI code working
                 u.options.modules.exportLocalsConvention = "camelCase";
             }
@@ -109,19 +97,12 @@ function configureWebpack(config, { paths }) {
         config.resolve.mainFields = ["epam:uui:main", "browser", "module", "main"];
     }
 
-    config.plugins.forEach(p => {
-        const name = p.constructor.name;
-        switch (name) {
-            case "ForkTsCheckerWebpackPlugin": {
-                // custom formatter can be removed when next bug is fixed:
-                // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/789
-                p.options.formatter = uuiCustomFormatter;
-                if (!isUseBuildFolderOfDeps) {
-                    p.options.issue.include = p.options.issue.include.concat(DIRS_FOR_BABEL.DEPS_SOURCES.INCLUDE);
-                }
-                break;
-            }
-            default: { break; }
+    changePluginByName(config, "ForkTsCheckerWebpackPlugin", plugin => {
+        // custom formatter can be removed when next bug is fixed:
+        // https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/789
+        plugin.options.formatter = uuiCustomFormatter;
+        if (!isUseBuildFolderOfDeps) {
+            plugin.options.issue.include = plugin.options.issue.include.concat(DIRS_FOR_BABEL.DEPS_SOURCES.INCLUDE);
         }
     });
 

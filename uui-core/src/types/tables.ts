@@ -268,6 +268,7 @@ export interface IPresetsApi {
     duplicatePreset(preset: ITablePreset): void;
     deletePreset(preset: ITablePreset): Promise<void>;
     updatePreset(preset: ITablePreset): Promise<void>;
+    getPresetLink(preset: ITablePreset): string;
     presets: ITablePreset[];
 }
 

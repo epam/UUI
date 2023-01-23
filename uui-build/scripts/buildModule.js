@@ -2,7 +2,8 @@ const fs = require('fs-extra');
 const path = require('path');
 const { getIndexFilePath } = require('./../utils/indexFileUtils');
 const { logger } = require('./../utils/loggerUtils');
-const { buildUsingRollup } = require('./../rollup/rollupBuildUtils');
+const { buildUsingRollup } = require('../rollup/utils/rollupBuildUtils');
+const {copyPackageJsonAsync} = require("../utils/packageJsonUtils");
 
 const BUILD_FOLDER = 'build'
 const COPY_AS_IS = ['readme.md', 'assets']
@@ -40,15 +41,17 @@ async function copyStaticFilesAsync() {
 }
 
 async function copyPackageJson({ moduleRootDir, isModule }) {
-    const from = path.resolve(moduleRootDir, './package.json');
-    const to = path.resolve(moduleRootDir, `./${BUILD_FOLDER}/package.json`);
-    const content = await fs.readJSON(from);
-    delete content['epam:uui:main'];
-    if (isModule) {
-        // content.sideEffects = false; // TODO: set only if module doesn't have side effects.
-        content.type = 'module'
-    }
-    await fs.writeFile(to, JSON.stringify(content, undefined, 2))
+    await copyPackageJsonAsync({
+        fromDir: moduleRootDir,
+        toDir: path.resolve(moduleRootDir, `./${BUILD_FOLDER}`),
+        transform: content => {
+            delete content['epam:uui:main'];
+            if (isModule) {
+                // content.sideEffects = false; // TODO: set only if module doesn't have side effects.
+                content.type = 'module'
+            }
+        }
+    });
 }
 
 /**
