@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { DataTableCellProps, RenderEditorProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
@@ -19,6 +19,11 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     let content: React.ReactNode;
     let outline: React.ReactNode = null;
     let isEditable = !!props.onValueChange;
+
+    const canCopy = useMemo(
+        () => canBeSelected?.(row.index, props.index, { copyTo: true }),
+        [row.index, props.index, canBeSelected],
+    );
 
     if (props.rowProps.isLoading) {
         content = props.renderPlaceholder(props);
@@ -41,7 +46,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             mode: 'cell',
         };
 
-        const canCopy = canBeSelected?.(row.index, props.index, { copyTo: true });
+
         const handlePointerEnter: PointerEventHandler = canCopy ? () => {
             if (!selectionRange) {
                 return;
@@ -52,7 +57,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
 
         content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
             { props.renderEditor(editorProps) }
-            { props.renderOverlay({
+            { props.renderOverlay?.({
                 ...editorProps, inFocus: state.inFocus,
                 rowIndex: row.index, columnIndex: props.index,
             }) }
