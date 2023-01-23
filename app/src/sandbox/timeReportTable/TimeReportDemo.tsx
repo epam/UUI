@@ -49,7 +49,7 @@ export const TimeReportDemo = () => {
         }
 
         onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
-    }
+    };
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true }), []);
 

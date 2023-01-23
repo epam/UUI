@@ -1,7 +1,7 @@
 import { act } from "react-dom/test-utils";
 import { renderHook } from '@testing-library/react-hooks';
-import { useSelectionManager } from '../useSelectionManager';
-import { columnsMock, rowsMock } from '../../mocks';
+import { useSelectionManager } from '../hooks';
+import { columnsMock, rowsMock } from '../mocks';
 
 describe('useSelectioManager', () => {
     describe('selectRange', () => {
