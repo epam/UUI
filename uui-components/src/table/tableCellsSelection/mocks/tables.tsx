@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataColumnProps, DataRowProps } from "../types";
+import { DataColumnProps, DataRowProps } from '@epam/uui-core';
 
 type Row = { salary: number, age: number; name: string, phone: string };
 export const rowsMock: DataRowProps<Row, number>[] = [
@@ -14,8 +14,8 @@ export const columnsMock: DataColumnProps<Row, number>[] = [
         key: 'age',
         width: 1,
         renderCell: () => (<div>1</div>),
-        canAcceptCopy: (from, to) => to.rowIndex % 2 === 0,
-        canCopy: (cell) => cell.rowIndex % 2 === 0,
+        canAcceptCopy: (from, to) => to.row.index % 2 === 0,
+        canCopy: (cell) => cell.row.index % 2 === 0,
     },
     {
         key: 'salary',

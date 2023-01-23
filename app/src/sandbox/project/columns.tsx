@@ -29,9 +29,9 @@ export function getColumns(columnsProps: ColumnsProps) {
             info: "Estimate in man/days",
             width: 120,
             isSortable: true,
-            canCopy: (cell) => !!(cell.columnIndex % 2),
+            canCopy: (cell) => !!(cell.row.index % 2),
             canAcceptCopy: (from, to) => {
-                return !!(to.rowIndex % 2);
+                return !!(to.row.index % 2);
             },
             renderCell: (props) => <DataTableCell
                 { ...props.rowLens.prop('estimate').toProps() }

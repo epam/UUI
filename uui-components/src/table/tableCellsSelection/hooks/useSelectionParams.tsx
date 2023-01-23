@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { DataTableSelectionContext } from "./DataTableSelectionContext";
+import { DataTableSelectionContext } from "../DataTableSelectionContext";
 
 export interface CellConfig {
     columnIndex: number;

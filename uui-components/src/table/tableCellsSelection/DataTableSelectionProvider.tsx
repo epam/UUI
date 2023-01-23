@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
-import { BaseCellData, DataColumnProps, DataRowProps, useSelectionManager } from "@epam/uui-core";
+import { DataColumnProps, DataRowProps, SelectedCellData } from "@epam/uui-core";
 import { DataTableSelectionContext } from "./DataTableSelectionContext";
+import { useSelectionManager } from "./hooks";
 
-export interface DataTableSelectionProviderProps<TItem, TId> extends React.PropsWithChildren {
+export interface DataTableSelectionProviderProps<TItem, TId, TFilter> extends React.PropsWithChildren {
     rows: DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
-    onCopy: (
-        copyFrom: BaseCellData<TItem>,
-        selectedCells: BaseCellData<TItem>[],
-    ) => void;
+    onCopy?: (copyFrom: SelectedCellData<TItem, TId, TFilter>, selectedCells: SelectedCellData<TItem, TId, TFilter>[]) => void;
 }
 
-export const DataTableSelectionProvider = <TItem, TId>({ onCopy, rows, columns, children }: DataTableSelectionProviderProps<TItem, TId>) => {
-    const { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom } = useSelectionManager<TItem, TId>({ rows, columns });
+export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, columns, children }: DataTableSelectionProviderProps<TItem, TId, TFilter>) => {
+    const { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom } = useSelectionManager<TItem, TId, TFilter>({ rows, columns });
 
     useEffect(() => {
         if (!selectionRange) return;
@@ -20,7 +18,7 @@ export const DataTableSelectionProvider = <TItem, TId>({ onCopy, rows, columns, 
         const handlePointerUp = () => {
             if (!selectionRange) return;
 
-            onCopy(cellToCopyFrom, getSelectedCells());
+            onCopy?.(cellToCopyFrom, getSelectedCells());
             setSelectionRange(null);
         };
 
