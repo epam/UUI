@@ -1,52 +1,24 @@
-const path = require("path");
-module.exports = { onwarn, getSourceMapTransform };
+const { getConfig } = require('../rollup.config')
+const rollup = require('rollup');
+const { getTsConfigFile } = require("./moduleTsConfigUtils");
 
-/**
- * Handles Rollup build warnings.
- * @param message
- */
-function onwarn(message) {
-    switch (message?.code) {
-        case 'CIRCULAR_DEPENDENCY': {
-            // skip for now, uncomment to see how many we have.
-            // console.warn(message.message)
-            break;
-        }
-        default: {
-            console.warn(message.message)
-            break;
-        }
-    }
-}
+module.exports = { buildUsingRollup };
 
-/**
- * It's needed to fix sources location path in "build/index.js.map" and "build/styles.css.map".
- */
-function getSourceMapTransform({ type, moduleName, moduleFolderName }) {
-    return function sourcemapPathTransform(relativeSourcePath) {
-        const PREFIX = `rollup://${moduleName}/./`;
-        switch (type) {
-            case "css": {
-                /**
-                 * Before:
-                 * "sources":["src/components/widgets/AvatarStack.scss",...]
-                 * After:
-                 * "sources":["rollup://<moduleName>/./src/components/widgets/AvatarStack.scss",...]
-                 */
-                return PREFIX + relativeSourcePath;
-            }
-            case "js": {
-                /**
-                 * Before:
-                 * "sources":["../../src/Test.tsx",...]
-                 * After:
-                 * "sources":["rollup://<moduleName>/./src/Test.tsx",...]
-                 */
-                return PREFIX + path.join(`${moduleFolderName}/build`, relativeSourcePath);
-            }
-            default: {
-                throw new Error(`Unknown type=${type}`)
-            }
-        }
+async function buildUsingRollup({ moduleRootDir, moduleIndexFile }) {
+    const tsconfigFile = getTsConfigFile(moduleRootDir);
+    const cfg = await getConfig({ moduleRootDir, moduleIndexFile, tsconfigFile });
+    const { output: outputConfig, ...inputConfig } = cfg[0];
+    let bundle;
+    const cleanup = async () => {
+        bundle && await bundle.close();
+    };
+    try {
+        bundle = await rollup.rollup({ ...inputConfig });
+        await Promise.all(outputConfig.map(bundle.write));
+    } catch (error) {
+        console.error(error);
+        process.exit(1);
+    } finally {
+        await cleanup();
     }
 }
