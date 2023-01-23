@@ -1,6 +1,6 @@
 @mixin prettifyCustomScroll() {
     :global(.uui-thumb-vertical), :global(.uui-thumb-horizontal) {
-        background: var(--scroll-bars-bg-color);
+        background: var(--uui-scroll-bars-bg);
         border-radius: 1.5px;
 
         &:hover {
@@ -9,7 +9,7 @@
 
         &:active {
             border-radius: 3px;
-            background: var(--scroll-bars-bg-color-active);
+            background: var(--uui-scroll-bars-bg-active);
         }
     }
 
