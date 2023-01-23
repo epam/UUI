@@ -15,7 +15,6 @@
 
     border-right-style: solid;
 
-
     border-top-style: none;
     border-bottom-style: none;
 
@@ -27,6 +26,10 @@
     border-right-color: var(--uui-dt-cell-border-color);
     &:last-child {
         border-right-color: transparent;
+    }
+
+    &.selecting:hover * {
+        cursor: crosshair;
     }
 }
 

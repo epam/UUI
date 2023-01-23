@@ -85,6 +85,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.cx,
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
+                selectionRange && css.selecting,
             ] }
             style={ {
                 justifyContent,
