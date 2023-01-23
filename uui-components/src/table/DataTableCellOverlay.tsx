@@ -1,9 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
 import { cx, DataTableCellOverlayProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCellOverlay.scss';
-import { useSelectionParams } from "./useSelectionParams";
+import { useSelectionParams, DataTableSelectionContext } from "./tableCellsSelection";
 import { PointerEventHandler, useContext } from "react";
-import { DataTableSelectionContext } from "./DataTableSelectionContext";
 
 export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const { columnIndex, rowIndex } = props;

@@ -6,7 +6,7 @@ import {
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
     DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
-    cx, TableFiltersConfig, DataTableRowProps, DataTableCellCopyProps, Lens,
+    cx, TableFiltersConfig, DataTableRowProps, SelectedCellData,
 } from '@epam/uui-core';
 import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal } from './';
 import { VirtualList } from '../';
@@ -15,7 +15,7 @@ import { Text } from "../typography";
 import css from './DataTable.scss';
 import { i18n } from "../../i18n";
 
-export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, DataTableCellCopyProps<TItem> {
+export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
@@ -23,6 +23,7 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
     filters?: TableFiltersConfig<any>[];
+    onCopy?: (copyFrom: SelectedCellData<TItem, TId, TFilter>, selectedCells: SelectedCellData<TItem, TId, TFilter>[]) => void;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {

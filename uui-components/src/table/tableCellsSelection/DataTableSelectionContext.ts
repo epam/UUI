@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { SelectionManager } from "@epam/uui-core";
+import { SelectionManager } from "./types";
 
 
 export interface SelectionContextState<TItem = any> {

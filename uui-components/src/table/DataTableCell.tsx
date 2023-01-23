@@ -3,7 +3,7 @@ import { DataTableCellProps, RenderEditorProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
 import { PointerEventHandler, useContext } from "react";
-import { DataTableSelectionContext } from "./DataTableSelectionContext";
+import { DataTableSelectionContext } from "./tableCellsSelection";
 
 interface DataTableCellState {
     inFocus: boolean;

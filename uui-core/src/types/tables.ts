@@ -76,8 +76,8 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
      */
     isFilterActive?: (filter: TFilter, column: DataColumnProps<TItem, TId, TFilter>) => boolean;
 
-    canCopy?: (cell: CellData<TItem>) => boolean;
-    canAcceptCopy?: (from: CellData<TItem>, to: CellData<TItem>) => boolean;
+    canCopy?: (cell: SelectedCellData<TItem, TId, TFilter>) => boolean;
+    canAcceptCopy?: (from: SelectedCellData<TItem, TId, TFilter>, to: SelectedCellData<TItem, TId, TFilter>) => boolean;
 
     /** Render the cell content. The item props is the value of the whole row (TItem). */
     render?(item: TItem, props: DataRowProps<TItem, TId>): any;
@@ -135,13 +135,6 @@ export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<
 export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, ICanFocus<any> {
     rowProps: DataRowProps<TItem, TId>;
     mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
-}
-
-export interface DataTableCellCopyProps<TItem = any> {
-    onCopy?: (
-        copyFrom: BaseCellData<TItem>,
-        selectedCells: BaseCellData<TItem>[],
-    ) => void;
 }
 
 export interface DataTableCellOptions<TItem = any, TId = any> {
@@ -300,47 +293,7 @@ export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi 
     setFiltersConfig(filtersConfig: FiltersConfig): void;
 }
 
-
-export interface BaseCellData<TItem = any> {
-    key: string;
-    columnIndex: number;
-    rowIndex: number;
-    rowLens: ILens<TItem>;
+export interface SelectedCellData <TItem = any, TId = any, TFilter = any> {
+    column: DataColumnProps<TItem, TId, TFilter>;
+    row: DataRowProps<TItem, TId>;
 }
-
-export interface CellData<TItem = any> extends BaseCellData<TItem> {
-    canCopy?: (cell: CellData<TItem>) => boolean;
-    canAcceptCopy?: (from: CellData<TItem>, to: CellData<TItem>) => boolean;
-}
-
-
-export type RowData<TItem> = Record<number, CellData<TItem>>;
-
-export type RowsData<TItem> = RowData<TItem>[];
-
-export type SelectedCellsData<T> = BaseCellData<T>[];
-
-export interface SelectionRange {
-    startColumnIndex: number;
-    startRowIndex: number;
-    endColumnIndex: number;
-    endRowIndex: number;
-    isCopying?: boolean;
-}
-
-export interface SelectionManagerProps<TItem, TId> {
-    rows: DataRowProps<TItem, TId>[];
-    columns: DataColumnProps<TItem, TId>[];
-}
-
-export interface SelectionManager<T> {
-    selectionRange: SelectionRange;
-    setSelectionRange: Dispatch<SetStateAction<SelectionRange>>;
-    canBeSelected: (rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => boolean;
-    getSelectedCells: () => SelectedCellsData<T>;
-    cellToCopyFrom: BaseCellData<T>;
-}
-
-export type CopyOptions =
-    | { copyFrom: true; copyTo?: false; }
-    | { copyFrom?: false, copyTo: true };

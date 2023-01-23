@@ -1,4 +1,3 @@
-import React from 'react';
 import { act } from "react-dom/test-utils";
 import { renderHook } from '@testing-library/react-hooks';
 import { useSelectionManager } from '../useSelectionManager';
@@ -36,15 +35,10 @@ describe('useSelectioManager', () => {
 
             expect(result.current.selectionRange).toEqual(newSelectionRange);
             expect(result.current.cellToCopyFrom).toBeDefined();
-            const { rowLens, ...cell } = result.current.cellToCopyFrom;
+            const { column, row } = result.current.cellToCopyFrom;
 
-            expect(cell).toEqual({
-                columnIndex: newSelectionRange.startColumnIndex,
-                key: expectedColumn.key,
-                rowIndex: newSelectionRange.startRowIndex,
-            });
-
-            expect(rowLens.get()).toEqual(expectedRow.value);
+            expect(column).toEqual(expectedColumn);
+            expect(row).toEqual(expectedRow);
         });
         it('should null if selection range was not set', () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
@@ -100,24 +94,13 @@ describe('useSelectioManager', () => {
                 result.current.setSelectionRange(newSelectionRange);
             });
 
-            const cells = result.current.getSelectedCells();
-            const selectedCells = cells.map(({ rowLens, ...cell }) => cell);
-
-            expect(selectedCells).toEqual([
-                { columnIndex: 0, key: "age", rowIndex: 0 },
-                { columnIndex: 1, key: "salary", rowIndex: 0 },
-                { columnIndex: 1, key: "salary", rowIndex: 1 },
-                { columnIndex: 0, key: "age", rowIndex: 2 },
-                { columnIndex: 1, key: "salary", rowIndex: 2 },
-                { columnIndex: 1, key: "salary", rowIndex: 3 },
-            ]);
-            expect(cells.map(({ rowLens }) => rowLens.get())).toEqual([
-                rowsMock[0].value,
-                rowsMock[0].value,
-                rowsMock[1].value,
-                rowsMock[2].value,
-                rowsMock[2].value,
-                rowsMock[3].value,
+            expect(result.current.getSelectedCells()).toEqual([
+                { column: columnsMock[0], row: rowsMock[0] },
+                { column: columnsMock[1], row: rowsMock[0] },
+                { column: columnsMock[1], row: rowsMock[1] },
+                { column: columnsMock[0], row: rowsMock[2] },
+                { column: columnsMock[1], row: rowsMock[2] },
+                { column: columnsMock[1], row: rowsMock[3] },
             ]);
         });
 

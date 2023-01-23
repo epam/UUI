@@ -1,22 +1,21 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { SelectedCellsData, SelectionManager, SelectionManagerProps, SelectionRange, CopyOptions } from '../types';
-import { convertToBaseCellData, getCell, getCellToCopyFrom, getNormalizedLimits } from '../helpers';
+import { SelectedCellData } from '@epam/uui-core';
+import type { SelectionManager, SelectionManagerProps, SelectionRange, CopyOptions } from '../types';
+import { getCell, getCellToCopyFrom, getNormalizedLimits } from './helpers';
 
-export const useSelectionManager = <TItem, TId>({ rows, columns }: SelectionManagerProps<TItem, TId>): SelectionManager<TItem> => {
+export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: SelectionManagerProps<TItem, TId>): SelectionManager<TItem> => {
     const [selectionRange, setSelectionRange] = useState<SelectionRange>(null);
     const cellToCopyFrom = useMemo(
-        () => getCellToCopyFrom<TItem, TId>(selectionRange, rows, columns),
+        () => getCellToCopyFrom<TItem, TId, TFilter>(selectionRange, rows, columns),
         [selectionRange?.startColumnIndex, selectionRange?.startRowIndex, rows, columns],
     );
-
-    const range = useMemo(() => ({ selectionRange, setSelectionRange }), [selectionRange]);
 
     const canBeSelected = useCallback((rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => {
         const cell = getCell(rowIndex, columnIndex, rows, columns);
         if (!cellToCopyFrom && copyTo) return false;
-        if (copyFrom) return !!cell.canCopy?.(cell);
+        if (copyFrom) return !!cell.column.canCopy?.(cell);
 
-        return !!cell.canAcceptCopy?.(cellToCopyFrom, cell);
+        return !!cell.column.canAcceptCopy?.(cellToCopyFrom, cell);
     }, [cellToCopyFrom, rows, columns]);
 
     const shouldSelectCell = useCallback((row: number, column: number) => {
@@ -26,7 +25,7 @@ export const useSelectionManager = <TItem, TId>({ rows, columns }: SelectionMana
         return canBeSelected(row, column, { copyTo: true });
     }, [canBeSelected, selectionRange]);
 
-    const getSelectedCells = useCallback((): SelectedCellsData<TItem> => {
+    const getSelectedCells = useCallback((): SelectedCellData<TItem>[] => {
         if (!selectionRange) return [];
 
         const { startRowIndex, startColumnIndex, endRowIndex, endColumnIndex } = selectionRange;
@@ -38,7 +37,7 @@ export const useSelectionManager = <TItem, TId>({ rows, columns }: SelectionMana
             for (let column = startColumn; column <= endColumn; column++) {
                 if (shouldSelectCell(row, column)) {
                     const cell = getCell(row, column, rows, columns);
-                    selectedCells.push(convertToBaseCellData(cell));
+                    selectedCells.push(cell);
                 }
             }
         }
@@ -46,10 +45,5 @@ export const useSelectionManager = <TItem, TId>({ rows, columns }: SelectionMana
         return selectedCells;
     }, [selectionRange, rows, columns, canBeSelected, shouldSelectCell]);
 
-    return {
-        ...range,
-        canBeSelected,
-        getSelectedCells,
-        cellToCopyFrom: cellToCopyFrom ? convertToBaseCellData(cellToCopyFrom) : null,
-    };
+    return { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom };
 };

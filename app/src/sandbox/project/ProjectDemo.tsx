@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
 import React, { useCallback, useMemo } from 'react';
-import { AcceptDropParams, BaseCellData, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
+import { AcceptDropParams, SelectedCellData, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -92,12 +92,12 @@ export const ProjectDemo = () => {
 
     const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
 
-    const onCopy = (copyFrom: BaseCellData<Task>, selectedCells: BaseCellData<Task>[]) => {
-        const valueToCopy = copyFrom.rowLens.prop(copyFrom.key as keyof Task).get();
+    const onCopy = (copyFrom: SelectedCellData<Task, number, DataQueryFilter<Task>>, selectedCells: SelectedCellData<Task, number, DataQueryFilter<Task>>[]) => {
+        const valueToCopy = copyFrom.row.value?.[copyFrom.column.key as keyof Task];
         const newItems = { ...value.items };
         for (const cell of selectedCells) {
-            const cellRowId = cell.rowLens.prop('id').get();
-            newItems[cellRowId] = { ...newItems[cellRowId], [cell.key]: valueToCopy };
+            const cellRowId = cell.row.value.id;
+            newItems[cellRowId] = { ...newItems[cellRowId], [cell.column.key]: valueToCopy };
         }
 
         onValueChange({ ...value, items: newItems });

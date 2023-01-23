@@ -4,5 +4,4 @@ export * from './columnsConfigurationModal';
 export * from './DataTableHeaderCell';
 export * from './DataTableCell';
 export * from './DataTableCellOverlay';
-export * from './DataTableSelectionProvider';
-export * from './DataTableSelectionContext';
+export * from './tableCellsSelection';
