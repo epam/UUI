@@ -31,23 +31,23 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
 
     const canBeSelectedTop = useMemo(
         () => showSelect() && (isTop || !canBeSelected?.(rowIndex - 1, columnIndex, { copyTo: true })),
-        [isSelected, selectionRange?.isCopying, isTop, rowIndex, columnIndex, canBeSelected, showSelect]
+        [isSelected, selectionRange?.isCopying, isTop, rowIndex, columnIndex, canBeSelected, showSelect],
     );
 
     const canBeSelectedRight = useMemo(
         () => showSelect() && (isRight || !canBeSelected?.(rowIndex, columnIndex + 1, { copyTo: true })),
-        [isSelected, selectionRange?.isCopying, isRight, rowIndex, columnIndex, canBeSelected, showSelect]
+        [isSelected, selectionRange?.isCopying, isRight, rowIndex, columnIndex, canBeSelected, showSelect],
     );
 
 
     const canBeSelectedBottom = useMemo(
         () => showSelect() && (isBottom || !canBeSelected?.(rowIndex + 1, columnIndex, { copyTo: true })),
-        [isSelected, selectionRange?.isCopying, isBottom, rowIndex, columnIndex, canBeSelected, showSelect]
+        [isSelected, selectionRange?.isCopying, isBottom, rowIndex, columnIndex, canBeSelected, showSelect],
     );
 
     const canBeSelectedLeft = useMemo(
         () => showSelect() && (isLeft || !canBeSelected?.(rowIndex, columnIndex - 1, { copyTo: true })),
-        [isSelected, selectionRange?.isCopying, isLeft, rowIndex, columnIndex, canBeSelected, showSelect]
+        [isSelected, selectionRange?.isCopying, isLeft, rowIndex, columnIndex, canBeSelected, showSelect],
     );
 
     const borderClassNames = isSelected && (!selectionRange?.isCopying
