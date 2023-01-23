@@ -1,8 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { PointerEventHandler, useContext } from 'react';
 import { DataTableCellProps, RenderEditorProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCell.scss';
-import { FlexCell } from '../layout/';
-import { PointerEventHandler, useContext } from "react";
+import { FlexCell } from '../layout';
 import { DataTableSelectionContext } from "./tableCellsSelection";
 
 interface DataTableCellState {
@@ -14,16 +13,12 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
 
-    const { setSelectionRange, selectionRange, canBeSelected } = useContext(DataTableSelectionContext);
+    const { setSelectionRange, selectionRange, useCellSelectionInfo } = useContext(DataTableSelectionContext);
+    const { canAcceptCopy = false } = useCellSelectionInfo?.(row.index, props.index) ?? {};
 
     let content: React.ReactNode;
     let outline: React.ReactNode = null;
     let isEditable = !!props.onValueChange;
-
-    const canCopy = useMemo(
-        () => canBeSelected?.(row.index, props.index, { copyTo: true }),
-        [row.index, props.index, canBeSelected],
-    );
 
     if (props.rowProps.isLoading) {
         content = props.renderPlaceholder(props);
@@ -47,7 +42,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         };
 
 
-        const handlePointerEnter: PointerEventHandler = canCopy ? () => {
+        const handlePointerEnter: PointerEventHandler = canAcceptCopy ? () => {
             if (!selectionRange) {
                 return;
             }

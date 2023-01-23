@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { SelectedCellData } from '@epam/uui-core';
 import type { SelectionManager, SelectionManagerProps, DataTableSelectionRange, CopyOptions } from '../types';
-import { getCell, getCellToCopyFrom, getNormalizedLimits } from './helpers';
+import { getCell, getCellPosition, getCellToCopyFrom, getNormalizedLimits } from './helpers';
 
 export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: SelectionManagerProps<TItem, TId>): SelectionManager<TItem> => {
     const [selectionRange, setSelectionRange] = useState<DataTableSelectionRange>(null);
@@ -45,5 +45,47 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         return selectedCells;
     }, [selectionRange, rows, columns, canBeSelected, shouldSelectCell]);
 
-    return { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom };
+    const useCellSelectionInfo = useCallback((row: number, column: number) => {
+        const { isCopying } = selectionRange || {};
+        const { isTop, isBottom, isLeft, isRight, isSelected } = useMemo(
+            () => getCellPosition(row, column, selectionRange),
+            [row, column, selectionRange],
+        );
+
+        const canCopyFrom = useMemo(
+            () => canBeSelected?.(row, column, { copyFrom: true }),
+            [row, column, canBeSelected],
+        );
+        const canAcceptCopy = useMemo(
+            () => canBeSelected?.(row, column, { copyTo: true }),
+            [row, column, canBeSelected],
+        );
+
+        const showBorder = useCallback((isCornerPosition: boolean, neighborRow: number, neighborColumn: number) => {
+            if (!isSelected) return false;
+
+            if (!isCopying) {
+                return isCornerPosition;
+            }
+
+            return canAcceptCopy && (isCornerPosition || !canBeSelected?.(neighborRow, neighborColumn, { copyTo: true }));
+        }, [isSelected, canAcceptCopy, canBeSelected]);
+
+        const showTopBorder = useMemo(() => showBorder(isTop, row - 1, column), [isTop, row, column, showBorder]);
+        const showRightBorder = useMemo(() => showBorder(isRight, row, column + 1), [isRight, row, column, showBorder]);
+        const showBottomBorder = useMemo(() => showBorder(isBottom, row + 1, column), [isBottom, row, column, showBorder]);
+        const showLeftBorder = useMemo(() => showBorder(isLeft, row, column - 1), [isLeft, row, column, showBorder]);
+
+        return useMemo(() => ({
+            isSelected,
+            showTopBorder,
+            showRightBorder,
+            showBottomBorder,
+            showLeftBorder,
+            canCopyFrom,
+            canAcceptCopy,
+        }), [isSelected, showTopBorder, showRightBorder, showBottomBorder, showLeftBorder, canCopyFrom, canAcceptCopy]);
+    }, [selectionRange, canBeSelected]);
+
+    return { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom, useCellSelectionInfo };
 };
