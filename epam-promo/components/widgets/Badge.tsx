@@ -3,7 +3,6 @@ import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { EpamAdditionalColor } from '../types';
 import { systemIcons } from '../../icons/icons';
-import buttonCss from '../buttons/Button.scss';
 import styles from '../../assets/styles/colorvars/widgets/badge-colorvars.scss';
 import css from './Badge.scss';
 
@@ -26,7 +25,6 @@ export interface BadgeMods {
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
-        buttonCss.root,
         css['size-' + (mods.size || defaultSize)],
         css['fill-' + (mods.fill || 'solid')],
         styles['badge-color-' + (mods.color || 'blue')],

@@ -40,7 +40,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
     className="body multiline"
   >
     <button
-      className="container uui-button-box uui-enabled root tag-color size-42 root"
+      className="container uui-button-box uui-enabled tag-color size-42 root"
       onClick={[Function]}
       tabIndex={-1}
       type="button"

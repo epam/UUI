@@ -19,9 +19,10 @@ const mapFillToMod: Record<FillStyle, ButtonMode> = {
     none: 'none',
 };
 
-export function applyButtonMods(mods: Omit<UUIButtonProps, "color"> & ButtonMods) {
+export function applyButtonMods(mods: ButtonMods) {
     return [
         'uui-theme-loveship',
+        `button-${mods.color || 'sky'}`,
         css['size-' + (mods.size || defaultSize)],
         css['style-' + (mods.shape || 'square')],
     ];

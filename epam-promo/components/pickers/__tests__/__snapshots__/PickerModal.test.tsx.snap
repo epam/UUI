@@ -680,7 +680,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-vars button-gray50 root size-36 mode-outline uui-theme-promo button-gray50"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -692,7 +692,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-vars button-green root size-36 mode-solid uui-theme-promo button-green"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -1628,7 +1628,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-gray50 root size-36 mode-outline uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-vars button-gray50 root size-36 mode-outline uui-theme-promo button-gray50"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -1640,7 +1640,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-color-green root size-36 mode-solid uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-vars button-green root size-36 mode-solid uui-theme-promo button-green"
           onClick={[Function]}
           tabIndex={0}
           type="button"
