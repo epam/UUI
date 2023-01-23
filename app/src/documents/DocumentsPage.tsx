@@ -48,6 +48,7 @@ export const DocumentsPage = () => {
                     value={ getQuery('id') }
                     onValueChange={ onChange }
                     items={ items }
+                    getSearchFields={ i => [i.name, ...(i.tags || [])] }
                     getItemLink={ (row) => !row.isFoldable && {
                         pathname: 'documents',
                         query: {
