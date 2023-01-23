@@ -26,3 +26,20 @@ export const getCellToCopyFrom = <TItem, TId, TFilter>(
 
 export const getNormalizedLimits = (startIndex: number, endIndex: number) =>
     startIndex < endIndex ? [startIndex, endIndex] : [endIndex, startIndex];
+
+export const getCellPosition = (row: number, column: number, selectionRange: DataTableSelectionRange) => {
+    const { startColumnIndex, startRowIndex, endColumnIndex, endRowIndex } = selectionRange || {};
+
+    const [leftColumn, rightColumn] = getNormalizedLimits(startColumnIndex, endColumnIndex);
+    const [topRow, bottomRow] = getNormalizedLimits(startRowIndex, endRowIndex);
+
+    const isSelected = (column >= leftColumn && column <= rightColumn) && (row >= topRow && row <= bottomRow);
+
+    return {
+        isLeft: column === leftColumn,
+        isRight: column === rightColumn,
+        isTop: row === topRow,
+        isBottom: row === bottomRow,
+        isSelected,
+    };
+};

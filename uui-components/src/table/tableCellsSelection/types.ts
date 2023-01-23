@@ -20,6 +20,15 @@ export interface SelectionManager<TItem = any, TId = any, TFilter = any> {
     canBeSelected: (rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => boolean;
     getSelectedCells: () => SelectedCellData<TItem, TId, TFilter>[];
     cellToCopyFrom: SelectedCellData<TItem, TId, TFilter>;
+    useCellSelectionInfo: (row: number, column: number) => {
+        isSelected: boolean;
+        showTopBorder: boolean;
+        showRightBorder: boolean;
+        showBottomBorder: boolean;
+        showLeftBorder: boolean;
+        canCopyFrom: boolean;
+        canAcceptCopy: boolean;
+    };
 }
 
 export type CopyOptions =
