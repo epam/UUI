@@ -8,7 +8,6 @@ import { ReactComponent as insertBefore } from '@epam/assets/icons/common/table-
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
-import { getInsertionOrder } from './helpers';
 
 interface FormState {
     items: Record<number, Task>;
@@ -30,7 +29,7 @@ let lastId = -1;
 
 let savedValue: FormState = { items: getDemoTasks() };
 
-export const ProjectDemo = () => {
+export const TimeReportDemo = () => {
     const { lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
@@ -52,12 +51,6 @@ export const ProjectDemo = () => {
         if (relativeTask) {
             task.parentId = relativeTask.parentId;
         }
-
-        task.order = getInsertionOrder(
-            Object.values(value.items).filter(i => i.parentId === task.parentId).map(i => i.order),
-            position == 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-            relativeTask?.order
-        );
 
         onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
     }
@@ -105,27 +98,6 @@ export const ProjectDemo = () => {
 
 
     return <Panel style={ { width: '100%' } }>
-        <FlexRow spacing='12' margin='12'>
-            <FlexCell width='auto'>
-                <IconButton icon={ insertAfter } onClick={ () => insertTask('top') } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <IconButton icon={ insertBefore } onClick={ () => insertTask('bottom') } />
-            </FlexCell>
-            <FlexSpacer />
-            <FlexCell width='auto'>
-                <Button size='30' icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button size='30' icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button size='30' caption="Save" onClick={ save } isDisabled={ !isChanged } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button size='30' caption="Revert" onClick={ revert } isDisabled={ !isChanged } />
-            </FlexCell>
-        </FlexRow>
         <DataTable
             headerTextCase='upper'
             onCopy={ onCopy }
@@ -135,7 +107,6 @@ export const ProjectDemo = () => {
             onValueChange={ setTableState }
             showColumnsConfig
             allowColumnsResizing
-            allowColumnsReordering
             { ...dataView.getListProps() }
         />
     </Panel>;
