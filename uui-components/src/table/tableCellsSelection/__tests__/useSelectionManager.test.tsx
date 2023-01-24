@@ -3,19 +3,23 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useSelectionManager } from '../hooks';
 import { columnsMock, rowsMock } from '../mocks';
 
+const waitFor = async () => new Promise((resolve) => setTimeout(resolve, 0));
+
 describe('useSelectioManager', () => {
     describe('selectRange', () => {
-        it('should select some range', () => {
+        it('should select some range', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 1, endRowIndex: 1, isCopying: true };
-            act(() => {
+            await act(async () => {
                 result.current.setSelectionRange(newSelectionRange);
+                await waitFor();
             });
 
             expect(result.current.selectionRange).toEqual(newSelectionRange);
 
-            act(() => {
+            await act(async () => {
                 result.current.setSelectionRange(null);
+                await waitFor();
             });
 
             expect(result.current.selectionRange).toEqual(null);
@@ -23,12 +27,14 @@ describe('useSelectioManager', () => {
     });
 
     describe('cellToCopyFrom', () => {
-        it('should return cell to copy from', () => {
+        it('should return cell to copy from', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 5, isCopying: true };
-            act(() => {
+            await act(async () => {
                 result.current.setSelectionRange(newSelectionRange);
+                await waitFor();
             });
+
 
             const expectedColumn = columnsMock[newSelectionRange.startColumnIndex];
             const expectedRow = rowsMock[newSelectionRange.startRowIndex];
@@ -59,22 +65,25 @@ describe('useSelectioManager', () => {
             expect(result.current.canBeSelected(2, 1, { copyFrom: true })).toBeFalsy();
         });
 
-        it('should return true if copyTo flag is set and canAcceptCopy return true', () => {
+        it('should return true if copyTo flag is set and canAcceptCopy return true', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 5, isCopying: true };
-            act(() => {
+            await act(async () => {
                 result.current.setSelectionRange(newSelectionRange);
+                await waitFor();
             });
 
             expect(result.current.canBeSelected(2, 1, { copyTo: true })).toBeTruthy();
         });
 
-        it('should return false if copyTo flag is set and canAcceptCopy return false', () => {
+        it('should return false if copyTo flag is set and canAcceptCopy return false', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 3, isCopying: true };
-            act(() => {
+            await act(async () => {
                 result.current.setSelectionRange(newSelectionRange);
+                await waitFor();
             });
+
 
             expect(result.current.canBeSelected(1, 0, { copyTo: true })).toBeFalsy();
         });
@@ -87,12 +96,14 @@ describe('useSelectioManager', () => {
 
 
     describe('getSelectedCells', () => {
-        it('should return selected range', () => {
+        it('should return selected range', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 1, endRowIndex: 3, isCopying: true };
-            act(() => {
+            await act(async () => {
                 result.current.setSelectionRange(newSelectionRange);
+                await waitFor();
             });
+
 
             expect(result.current.getSelectedCells()).toEqual([
                 { column: columnsMock[0], row: rowsMock[0] },
