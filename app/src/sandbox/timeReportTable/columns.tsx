@@ -1,13 +1,18 @@
-import { Task, InsertTaskCallback, ColumnsProps, DayKey } from "./types";
-import { resources } from './demoData';
 import React from "react";
-import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, TextArea, DataPickerRow, PickerItem } from '@epam/promo';
-import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
-import { generateDaysOfMonth, getDayName } from "./helpers";
+import { DataTableCell, TextInput, NumericInput } from '@epam/promo';
+import { DataColumnProps, DataQueryFilter, SelectedCellData } from "@epam/uui-core";
+import { Task, DayKey } from "./types";
+import { generateDaysOfHalfMonth, getDayName } from "./helpers";
 
-const resourceDataSource = new ArrayDataSource({ items: resources });
+const isSameRow = (from: SelectedCellData<Task, number, DataQueryFilter<Task>>, to: SelectedCellData<Task, number, DataQueryFilter<Task>>) =>
+    from.row.id === to.row.id;
 
-const generateColumnForDay = (day: Date): DataColumnProps<Task, number, DataQueryFilter<Task>> => {
+const isWorkingDay = (cell: SelectedCellData<Task, number, DataQueryFilter<Task>>) => {
+    const day = new Date(cell.column.key).getDay();
+    return day >= 0 && day <= 4;
+};
+
+const generateColumnForDay = (day: Date, isLast: boolean): DataColumnProps<Task, number, DataQueryFilter<Task>> => {
     const [key] = day.toISOString().split('T');
 
     const dayName = getDayName(day);
@@ -15,12 +20,15 @@ const generateColumnForDay = (day: Date): DataColumnProps<Task, number, DataQuer
 
     return {
         key,
-        textAlign: 'right',
+        textAlign: isLast ? 'center' : 'right',
         caption: `${ dayName }, ${ dayNumber }`,
-        info: `${ dayName }, ${ dayNumber }`,
-        width: 70,
+        width: isLast ? 100 : 70,
         canCopy: (cell) => true,
-        canAcceptCopy: (from, to) => true,
+        canAcceptCopy: (from, to) =>
+            isSameRow(from, to) && (
+                (isWorkingDay(from) && isWorkingDay(to)) ||
+                (!isWorkingDay(from) && !isWorkingDay(to))
+            ),
         renderCell: (props) => (<DataTableCell
             { ...props.rowLens.prop(key as DayKey).toProps() }
             renderEditor={ props => (<NumericInput
@@ -32,15 +40,15 @@ const generateColumnForDay = (day: Date): DataColumnProps<Task, number, DataQuer
     };
 };
 
-const generateColumnsForDays = (days: Date[]) => days.map(generateColumnForDay);
+const generateColumnsForDays = (days: Date[]) => days.map((day, index, arr) => generateColumnForDay(day, index === arr.length - 1));
 
-export function getColumns(columnsProps: ColumnsProps) {
-    const days = generateDaysOfMonth();
+export function getColumns() {
+    const days = generateDaysOfHalfMonth();
     const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         {
             key: 'name',
-            caption: 'Name',
-            width: 100,
+            caption: 'Project',
+            width: 175,
             fix: 'left',
             isSortable: true,
             renderCell: (props) => <DataTableCell

@@ -1,6 +1,8 @@
-import { DataTable, useForm, Panel } from '@epam/promo';
+import { DataTable, useForm, Panel, FlexRow, FlexCell, Button } from '@epam/promo';
 import React, { useMemo } from 'react';
 import { DataQueryFilter, DataTableState, Metadata, SelectedCellData, useArrayDataSource } from '@epam/uui-core';
+import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
+import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
@@ -24,7 +26,7 @@ const metadata: Metadata<FormState> = {
 let savedValue: FormState = { items: getDemoTasks() };
 
 export const TimeReportDemo = () => {
-    const { lens, value, onValueChange } = useForm<FormState>({
+    const { lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
@@ -49,7 +51,7 @@ export const TimeReportDemo = () => {
         }),
     });
 
-    const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
+    const columns = useMemo(() => getColumns(), []);
 
     const onCopy = (copyFrom: SelectedCellData<Task>, selectedCells: SelectedCellData<Task>[]) => {
         const valueToCopy = copyFrom.row.value?.[copyFrom.column.key as keyof Task];
@@ -64,6 +66,20 @@ export const TimeReportDemo = () => {
 
 
     return <Panel style={ { width: '100%' } }>
+        <FlexRow spacing='12' margin='12'>
+            <FlexCell width='auto'>
+                <Button size='30' icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
+            </FlexCell>
+            <FlexCell width='auto'>
+                <Button size='30' icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
+            </FlexCell>
+            <FlexCell width='auto'>
+                <Button size='30' caption="Save" onClick={ save } isDisabled={ !isChanged } />
+            </FlexCell>
+            <FlexCell width='auto'>
+                <Button size='30' caption="Revert" onClick={ revert } isDisabled={ !isChanged } />
+            </FlexCell>
+        </FlexRow>
         <DataTable
             headerTextCase='upper'
             onCopy={ onCopy }

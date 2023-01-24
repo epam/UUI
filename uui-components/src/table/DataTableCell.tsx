@@ -13,8 +13,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
 
-    const { setSelectionRange, selectionRange, useCellSelectionInfo } = useContext(DataTableSelectionContext);
-    const { canAcceptCopy = false } = useCellSelectionInfo?.(row.index, props.index) ?? {};
+    const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
 
     let content: React.ReactNode;
     let outline: React.ReactNode = null;
@@ -42,13 +41,13 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         };
 
 
-        const handlePointerEnter: PointerEventHandler = canAcceptCopy ? () => {
+        const handlePointerEnter: PointerEventHandler = () => {
             if (!selectionRange) {
                 return;
             }
 
             setSelectionRange(prevState => ({ ...prevState, endRowIndex: row.index, endColumnIndex: props.index }));
-        } : null;
+        };
 
         content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
             { props.renderEditor(editorProps) }
