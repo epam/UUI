@@ -1,34 +1,15 @@
-import * as types from "../types";
-import css from "./NumericInput.scss";
-// import textInputCss from "./TextInput.scss";
 import { withMods } from "@epam/uui-core";
-import { NumericInput as uuiNumericInput, NumericInputProps } from "@epam/uui-components";
-import { systemIcons } from "../../icons/icons";
-import { EditMode, IHasEditMode } from "../types";
+import { NumericInputMods as UuiNumericInputMods, NumericInput as UuiNumericInput, NumericInputProps as UuiNumericInputProps } from "@epam/uui";
 
-const defaultSize = "36";
-const defaultMode = EditMode.FORM;
+export interface NumericInputMods extends UuiNumericInputMods {}
 
-export interface NumericInputMods extends types.SizeMod, IHasEditMode {
-}
-//TODO: it needs to be remade consider a new UuiTextInput
-export function applyNumericInputMods(mods: NumericInputMods) {
+export function applyNumericInputMods() {
     return [
-        // textInputCss.root,
-        css.root,
-        css["size-" + (mods.size || defaultSize)],
-        // textInputCss["size-" + (mods.size || defaultSize)],
-        // textInputCss["mode-" + (mods.mode || defaultMode)],
+        'uui-theme-promo',
     ];
 }
 
-export const NumericInput = withMods<NumericInputProps, NumericInputMods>(
-    uuiNumericInput,
+export const NumericInput = withMods<UuiNumericInputProps, NumericInputMods>(
+    UuiNumericInput,
     applyNumericInputMods,
-    (props) => ({
-        upIcon: systemIcons[props.size || defaultSize].foldingArrow,
-        downIcon: systemIcons[props.size || defaultSize].foldingArrow,
-        align: props.align ?? (props.mode === "cell" ? "right" : "left"),
-        disableArrows: props.disableArrows ?? props.mode === "cell",
-    }),
 );
