@@ -21,7 +21,7 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
     .implements([iEditable, sizeDoc, IHasEditModeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc])
     .prop('value', { examples: ['2020-09-03'] })
     .prop('placeholder', { examples: ['Enter start date'] })
-    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY' })
+    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY', type: 'string' })
     .prop('filter', { examples: [
         {
             name: 'Filter before current day',
@@ -47,7 +47,7 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
         examples: ctx => [
             {
                 name: 'footer',
-                value: () => <FlexRow><LinkButton size='42' caption='Today' onClick={ () => ctx.getSelectedProps().onValueChange(dayjs().format('MMM D, YYYY')) } /></FlexRow>,
+                value: () => <FlexRow padding='18'><LinkButton size='42' caption='Today' onClick={ () => ctx.getSelectedProps().onValueChange(dayjs().format('MMM D, YYYY')) } /></FlexRow>,
             },
         ],
     })

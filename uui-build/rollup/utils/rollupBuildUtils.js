@@ -1,6 +1,6 @@
 const { getConfig } = require('../rollup.config')
 const rollup = require('rollup');
-const { cleanupTsConfigFile, getTsConfigFile } = require("./moduleTsConfigUtils");
+const { getTsConfigFile } = require("./moduleTsConfigUtils");
 
 module.exports = { buildUsingRollup };
 
@@ -11,7 +11,6 @@ async function buildUsingRollup({ moduleRootDir, moduleIndexFile }) {
     let bundle;
     const cleanup = async () => {
         bundle && await bundle.close();
-        cleanupTsConfigFile(moduleRootDir);
     };
     try {
         bundle = await rollup.rollup({ ...inputConfig });

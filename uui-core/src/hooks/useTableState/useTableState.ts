@@ -196,8 +196,8 @@ export const useTableState = <TFilter = Record<string, any>>(params: IParams<TFi
     }, []);
 
     const getPresetLink = useCallback((preset: ITablePreset) => {
-        return context.uuiRouter.createHref({
-            pathname: window.location.host + context.uuiRouter.getCurrentLink().pathname,
+        return window.location.origin + context.uuiRouter.createHref({
+            pathname: context.uuiRouter.getCurrentLink().pathname,
             query: stateToQueryObject({
                 ...preset,
                 presetId: preset.id,
