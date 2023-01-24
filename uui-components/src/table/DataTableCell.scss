@@ -28,8 +28,12 @@
         border-right-color: transparent;
     }
 
-    &.selecting:hover * {
+    &.selecting {
         cursor: crosshair;
+
+        &:hover * {
+            pointer-events: none;
+        }
     }
 }
 
