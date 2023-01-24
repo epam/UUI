@@ -61,9 +61,6 @@
         }
 
         &:hover {
-            background-color: var(--uui-text-input-bg);
-            border-color: var(--uui-text-input-border);
-
             :global(.-clickable) {
                 fill: var(--uui-text-input-icon-clickable);
 
@@ -72,15 +69,10 @@
                 }
             }
         }
-
-        &:global(.uui-focus) {
-            background-color: var(--uui-text-input-bg);
-            border-color: var(--uui-text-input-border-active);
-        }
     }
 
     &:global(.uui-invalid) {
-        &.mode-form, &.mode-cell {
+        &.mode-form {
             background-color: var(--uui-text-input-bg);
             border-color: var(--uui-text-input-border-error);
         }
@@ -94,11 +86,6 @@
         &.mode-form {
             background-color: var(--uui-text-input-bg-readonly);
             border-color: var(--uui-text-input-border-readonly);
-        }
-
-        &.mode-cell {
-            background-color: transparent;
-            border-color: transparent;
         }
     }
 
@@ -118,11 +105,6 @@
         &.mode-form {
             background-color: var(--uui-text-input-bg-disabled);
             border-color: var(--uui-text-input-border-disabled);
-        }
-
-        &.mode-cell {
-            background-color: transparent;
-            border-color: transparent;
         }
     }
 
