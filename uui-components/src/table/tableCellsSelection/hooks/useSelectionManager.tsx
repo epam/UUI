@@ -47,7 +47,7 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
 
     const useCellSelectionInfo = useCallback((row: number, column: number) => {
         const { isCopying } = selectionRange || {};
-        const { isTop, isBottom, isLeft, isRight, isSelected } = useMemo(
+        const { isTop, isBottom, isLeft, isRight, isSelected, isStartCell } = useMemo(
             () => getCellPosition(row, column, selectionRange),
             [row, column, selectionRange],
         );
@@ -71,10 +71,10 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
             return canAcceptCopy && (isBorderPosition || !canBeSelected?.(neighborRow, neighborColumn, { copyTo: true }));
         }, [isSelected, canAcceptCopy, canBeSelected]);
 
-        const showTopBorder = useMemo(() => showBorder(isTop, row - 1, column), [isTop, row, column, showBorder]);
-        const showRightBorder = useMemo(() => showBorder(isRight, row, column + 1), [isRight, row, column, showBorder]);
-        const showBottomBorder = useMemo(() => showBorder(isBottom, row + 1, column), [isBottom, row, column, showBorder]);
-        const showLeftBorder = useMemo(() => showBorder(isLeft, row, column - 1), [isLeft, row, column, showBorder]);
+        const showTopBorder = useMemo(() => isStartCell || showBorder(isTop, row - 1, column), [isTop, row, column, showBorder, isStartCell]);
+        const showRightBorder = useMemo(() => isStartCell || showBorder(isRight, row, column + 1), [isRight, row, column, showBorder, isStartCell]);
+        const showBottomBorder = useMemo(() => isStartCell || showBorder(isBottom, row + 1, column), [isBottom, row, column, showBorder, isStartCell]);
+        const showLeftBorder = useMemo(() => isStartCell || showBorder(isLeft, row, column - 1), [isLeft, row, column, showBorder, isStartCell]);
 
         return {
             isSelected,

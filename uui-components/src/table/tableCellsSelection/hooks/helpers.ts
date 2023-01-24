@@ -34,6 +34,7 @@ export const getCellPosition = (row: number, column: number, selectionRange: Dat
     const [topRow, bottomRow] = getNormalizedLimits(startRowIndex, endRowIndex);
 
     const isSelected = (column >= leftColumn && column <= rightColumn) && (row >= topRow && row <= bottomRow);
+    const isStartCell = row === startRowIndex && column === startColumnIndex;
 
     return {
         isLeft: column === leftColumn,
@@ -41,5 +42,6 @@ export const getCellPosition = (row: number, column: number, selectionRange: Dat
         isTop: row === topRow,
         isBottom: row === bottomRow,
         isSelected,
+        isStartCell,
     };
 };
