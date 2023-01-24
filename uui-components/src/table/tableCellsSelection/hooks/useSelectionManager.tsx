@@ -1,10 +1,12 @@
 import { useCallback, useMemo, useState } from 'react';
-import { SelectedCellData } from '@epam/uui-core';
+import { SelectedCellData, useDebounce } from '@epam/uui-core';
 import type { SelectionManager, SelectionManagerProps, DataTableSelectionRange, CopyOptions } from '../types';
 import { getCell, getCellPosition, getCellToCopyFrom, getNormalizedLimits } from './helpers';
 
 export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: SelectionManagerProps<TItem, TId>): SelectionManager<TItem> => {
     const [selectionRange, setSelectionRange] = useState<DataTableSelectionRange>(null);
+    const setSelectionRangeDebounced = useDebounce(setSelectionRange, 0);
+
     const cellToCopyFrom = useMemo(
         () => getCellToCopyFrom<TItem, TId, TFilter>(selectionRange, rows, columns),
         [selectionRange?.startColumnIndex, selectionRange?.startRowIndex, rows, columns],
@@ -87,5 +89,5 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         };
     }, [selectionRange, canBeSelected]);
 
-    return { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom, useCellSelectionInfo };
+    return { selectionRange, setSelectionRange: setSelectionRangeDebounced, canBeSelected, getSelectedCells, cellToCopyFrom, useCellSelectionInfo };
 };
