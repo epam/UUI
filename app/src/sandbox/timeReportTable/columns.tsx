@@ -11,7 +11,7 @@ const generateColumnForDay = (day: Date): DataColumnProps<Task, number, DataQuer
     const [key] = day.toISOString().split('T');
 
     const dayName = getDayName(day);
-    const dayNumber = day.getDay() + 1;
+    const dayNumber = day.getDate();
 
     return {
         key,
