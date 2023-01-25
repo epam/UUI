@@ -3,7 +3,6 @@ export interface Task {
     parentId?: number;
     name: string;
     estimate?: number;
-    estimate2?: number;
     resources?: number[];
     startDate?: string;
     isDone?: boolean;
@@ -18,13 +17,9 @@ export interface Resource {
     fullName: string;
 }
 
-export interface InsertTaskCallback {
-    (task: Partial<Task>): void;
-}
+export type InsertTaskCallback = (task: Partial<Task>) => void;
 
-export interface DeleteTaskCallback {
-    (id: number): void;
-}
+export type DeleteTaskCallback = (id: number) => void;
 
 export interface ColumnsProps {
     insertTask: InsertTaskCallback;
