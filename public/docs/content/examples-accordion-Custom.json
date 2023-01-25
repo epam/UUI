@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In case when you need to use you own custom header content, you can provide ",
+            "text": "In case when you need to use your custom header content, you can provide the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " callback with your own components.",
+            "text": " callback with your components.",
             "marks": []
           }
         ]
@@ -39,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Also you can pass ",
+            "text": "Also, you can pass ",
             "marks": []
           },
           {
@@ -55,7 +55,7 @@
           },
           {
             "object": "text",
-            "text": " to ",
+            "text": " to the ",
             "marks": []
           },
           {
@@ -71,7 +71,7 @@
           },
           {
             "object": "text",
-            "text": " prop, to redefine only title block.",
+            "text": " prop to redefine only the title block.",
             "marks": []
           }
         ]

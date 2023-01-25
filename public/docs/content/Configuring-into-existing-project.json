@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI has full integration with Create-React-App build toolchain, so we strongly recommended to use it in project which was created via ",
+            "text": "UUI has full integration with the Create-React-App build toolchain, so we strongly recommended using it in the project, which was created via ",
             "marks": []
           },
           {
@@ -30,7 +30,7 @@
           },
           {
             "object": "text",
-            "text": ". Otherwise you can face issues with importing styles or icons.",
+            "text": ". Otherwise, you can face issues with importing styles or icons.",
             "marks": []
           }
         ]
@@ -135,7 +135,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "2. Import styles from UUI packages in root of your app(e.g. index.tsx):",
+                "text": "2. Import styles from UUI packages in the root of your app(e.g., index.tsx):",
                 "marks": []
               }
             ]
@@ -583,7 +583,7 @@
               },
               {
                 "object": "text",
-                "text": " into your styles from ",
+                "text": " into your styles from the ",
                 "marks": [
                   {
                     "object": "mark",
@@ -979,7 +979,7 @@
           },
           {
             "object": "text",
-            "text": "\nconst history = createBrowserHistory();\n\nexport class UuiEnhancedApp extends React.Component {\n    render() {\n        return (\n            <ContextProvider\n                apiDefinition={ () => null}\n                loadAppContext={ () => Promise.resolve({}) }\n                onInitCompleted={ (context) => { Object.assign(svc, context); } }\n                history={ history }\n            >\n                    <App />\n                    <Snackbar />\n                    <Modals />\n            </ContextProvider>\n        );\n    }\n}\n\nReactDOM.render(<Router history={ history } ><UuiEnhancedApp /></Router>, document.getElementById('root'));",
+            "text": "\nconst history = createBrowserHistory();\n\nexport class UuiEnhancedApp extends React.Component {\n    render() {\n        return (\n            <ContextProvider\n                onInitCompleted={ (context) => { Object.assign(svc, context); } }\n                history={ history }\n            >\n                    <App />\n                    <Snackbar />\n                    <Modals />\n            </ContextProvider>\n        );\n    }\n}\n\nReactDOM.render(<Router history={ history } ><UuiEnhancedApp /></Router>, document.getElementById('root'));",
             "marks": []
           }
         ]
@@ -1001,7 +1001,23 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "then, when you import svc from 'services' you get access to contexts:",
+                    "text": "then, when you import ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "svc",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " from 'services' you get access to contexts:",
                     "marks": []
                   }
                 ]
