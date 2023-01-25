@@ -1,7 +1,7 @@
 import React from 'react';
 import { DropdownContainer, LinkButton, Text, Button, FlexRow, FlexCell, Panel, DropdownMenuButton } from "@epam/promo";
-import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
-import { IDropdownToggler } from "@epam/uui-core";
+import { Dropdown } from "@epam/uui-components";
+import { DropdownBodyProps, IDropdownToggler } from "@epam/uui-core";
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-delete-12.svg';
 import { ReactComponent as ExportIcon } from '@epam/assets/icons/common/file-export-12.svg';
 import { ReactComponent as phoneIcon } from '@epam/assets/icons/common/communication-phone-18.svg';
