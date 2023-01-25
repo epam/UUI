@@ -1,4 +1,4 @@
-import { DataColumnProps, DataRowProps, SelectedCellData } from "@epam/uui-core";
+import { DataColumnProps, DataRowProps, DataTableSelectedCellData } from "@epam/uui-core";
 import { DataTableSelectionRange } from "../types";
 
 export const getCell = <TItem, TId>(rowIndex: number, columnIndex: number, rows: DataRowProps<TItem, TId>[], columns: DataColumnProps<TItem, TId>[]) => {
@@ -15,7 +15,7 @@ export const getCellToCopyFrom = <TItem, TId, TFilter>(
     selectionRange: DataTableSelectionRange | null,
     rows: DataRowProps<TItem, TId>[],
     columns: DataColumnProps<TItem, TId>[],
-): SelectedCellData<TItem, TId, TFilter> | null => {
+): DataTableSelectedCellData<TItem, TId, TFilter> | null => {
     if (selectionRange === null) {
         return null;
     }

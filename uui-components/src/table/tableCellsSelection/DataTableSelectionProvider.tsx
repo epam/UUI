@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { DataColumnProps, DataRowProps, SelectedCellData } from "@epam/uui-core";
+import { DataColumnProps, DataRowProps, DataTableSelectedCellData } from "@epam/uui-core";
 import { DataTableSelectionContext } from "./DataTableSelectionContext";
 import { useSelectionManager } from "./hooks";
 
 export interface DataTableSelectionProviderProps<TItem, TId, TFilter> extends React.PropsWithChildren {
     rows: DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
-    onCopy?: (copyFrom: SelectedCellData<TItem, TId, TFilter>, selectedCells: SelectedCellData<TItem, TId, TFilter>[]) => void;
+    onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;
 }
 
 export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, columns, children }: DataTableSelectionProviderProps<TItem, TId, TFilter>) => {

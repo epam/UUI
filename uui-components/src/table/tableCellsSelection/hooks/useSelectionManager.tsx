@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { SelectedCellData, useDebounce } from '@epam/uui-core';
+import { DataTableSelectedCellData, useDebounce } from '@epam/uui-core';
 import type { SelectionManager, SelectionManagerProps, DataTableSelectionRange, CopyOptions } from '../types';
 import { getCell, getCellPosition, getCellToCopyFrom, getNormalizedLimits } from './helpers';
 
@@ -27,7 +27,7 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         return canBeSelected(row, column, { copyTo: true });
     }, [canBeSelected, selectionRange]);
 
-    const getSelectedCells = useCallback((): SelectedCellData<TItem>[] => {
+    const getSelectedCells = useCallback((): DataTableSelectedCellData<TItem>[] => {
         if (!selectionRange) return [];
 
         const { startRowIndex, startColumnIndex, endRowIndex, endColumnIndex } = selectionRange;
