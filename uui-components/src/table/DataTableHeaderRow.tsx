@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {
     DataSourceState, DataColumnProps, DataTableHeaderRowProps, Lens,
     getColumnsConfig, DropParams, getOrderBetween,

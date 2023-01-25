@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { DataTable, DataTableRow } from '@epam/loveship';
 import { useDemoDbRef, PersonTableRecord, DemoDb } from './state';
 import { DataSourceState, IEditable, DataQueryFilter, IDataSourceView, DataRowProps, Lens, DataColumnProps } from '@epam/uui';

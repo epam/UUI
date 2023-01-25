@@ -1,13 +1,13 @@
 import React from "react";
 import { DataTableCell, TextInput, NumericInput } from '@epam/promo';
-import { DataColumnProps, DataQueryFilter, SelectedCellData } from "@epam/uui-core";
+import { DataColumnProps, DataQueryFilter, DataTableSelectedCellData } from "@epam/uui-core";
 import { Task, DayKey } from "./types";
 import { generateDaysOfHalfMonth, getDayName } from "./helpers";
 
-const isSameRow = (from: SelectedCellData<Task, number, DataQueryFilter<Task>>, to: SelectedCellData<Task, number, DataQueryFilter<Task>>) =>
+const isSameRow = (from: DataTableSelectedCellData<Task, number, DataQueryFilter<Task>>, to: DataTableSelectedCellData<Task, number, DataQueryFilter<Task>>) =>
     from.row.id === to.row.id;
 
-const isWorkingDay = (cell: SelectedCellData<Task, number, DataQueryFilter<Task>>) => {
+const isWorkingDay = (cell: DataTableSelectedCellData<Task, number, DataQueryFilter<Task>>) => {
     const day = new Date(cell.column.key).getDay();
     return day >= 0 && day <= 4;
 };

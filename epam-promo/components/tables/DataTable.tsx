@@ -6,7 +6,7 @@ import {
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
     DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
-    cx, TableFiltersConfig, DataTableRowProps, SelectedCellData,
+    cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData,
 } from '@epam/uui-core';
 import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal } from './';
 import { VirtualList } from '../';
@@ -23,7 +23,7 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
     filters?: TableFiltersConfig<any>[];
-    onCopy?: (copyFrom: SelectedCellData<TItem, TId, TFilter>, selectedCells: SelectedCellData<TItem, TId, TFilter>[]) => void;
+    onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {

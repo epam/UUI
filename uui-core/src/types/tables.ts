@@ -1,4 +1,4 @@
-import React, { Attributes, Dispatch, ReactNode, SetStateAction } from 'react';
+import React, { Attributes, ReactNode } from 'react';
 import { IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps,
     ICanBeInvalid, ICanFocus, IDropdownBodyProps } from './props';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
