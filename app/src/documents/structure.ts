@@ -22,6 +22,7 @@ export interface DocItem {
     component?: any;
     parentId?: string;
     order?: number;
+    tags?: string[];
 }
 
 const componentsStructure = sortBy([
@@ -64,12 +65,12 @@ const componentsStructure = sortBy([
     { id: 'spinner', name: 'Spinner', component: SpinnerDoc, parentId: 'components' },
     { id: 'switch', name: 'Switch', component: SwitchDoc, parentId: 'components' },
     { id: 'tabButton', name: 'Tab Button', component: TabButtonDoc, parentId: 'components' },
-    { id: 'tables', name: 'Data Tables', parentId: 'components' },
-    { id: 'tablesOverview', name: 'Overview', component: TablesOverviewDoc, parentId: 'tables', order: 1 },
-    { id: 'editableTables', name: 'Editable Tables', component: EditableTablesDoc, parentId: 'tables', order: 2 },
-    { id: 'advancedTables', name: 'Advanced', component: AdvancedTablesDoc, parentId: 'tables', order: 3 },
-    { id: 'filtersPanel', name: 'Filters Panel', component: FiltersPanelDoc, parentId: 'tables', order: 4 },
-    { id: 'presetsPanel', name: 'Presets Panel', component: PresetsPanelDoc, parentId: 'tables', order: 5 },
+    { id: 'tables', name: 'Data Tables', parentId: 'components', tags: ['table'] },
+    { id: 'tablesOverview', name: 'Overview', component: TablesOverviewDoc, parentId: 'tables', order: 1, tags: ['tables', 'dataTable'] },
+    { id: 'editableTables', name: 'Editable Tables', component: EditableTablesDoc, parentId: 'tables', order: 2, tags: ['tables', 'dataTable'] },
+    { id: 'advancedTables', name: 'Advanced', component: AdvancedTablesDoc, parentId: 'tables', order: 3, tags: ['tables', 'dataTable'] },
+    { id: 'filtersPanel', name: 'Filters Panel', component: FiltersPanelDoc, parentId: 'tables', order: 4, tags: ['tables', 'dataTable'] },
+    { id: 'presetsPanel', name: 'Presets Panel', component: PresetsPanelDoc, parentId: 'tables', order: 5, tags: ['tables', 'dataTable'] },
     { id: 'tag', name: 'Tag', component: TagDoc, parentId: 'components' },
     { id: 'text', name: 'Text', component: TextDoc, parentId: 'components' },
     { id: 'textArea', name: 'Text Area', component: TextAreaDoc, parentId: 'components' },
@@ -105,12 +106,12 @@ export const items: DocItem[] = [
     { id: 'localization', name: 'Internationalization', component: InternationalizationDoc, parentId: 'advanced' },
     { id: 'dragAndDrop', name: 'Drag And Drop', component: DragAndDropDoc, parentId: 'advanced' },
     { id: 'contexts', name: 'Contexts' },
-    { id: 'contextProvider', name: 'Context Provider', component: ContextProviderDoc, parentId: 'contexts' },
-    { id: 'apiContext', name: 'Api Context and Error Handling', component: ApiContextDoc, parentId: 'contexts' },
-    { id: 'analyticsContext', name: 'Analytics Context', component: AnalyticsContextDoc, parentId: 'contexts' },
-    { id: 'modalContext', name: 'Modal Context', component: ModalContextDoc, parentId: 'contexts' },
-    { id: 'notificationContextDoc', name: 'Notification Context', component: NotificationContextDoc, parentId: 'contexts' },
-    { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts' },
+    { id: 'contextProvider', name: 'Context Provider', component: ContextProviderDoc, parentId: 'contexts', tags: ['contexts']},
+    { id: 'apiContext', name: 'Api Context and Error Handling', component: ApiContextDoc, parentId: 'contexts', tags: ['contexts'] },
+    { id: 'analyticsContext', name: 'Analytics Context', component: AnalyticsContextDoc, parentId: 'contexts', tags: ['contexts'] },
+    { id: 'modalContext', name: 'Modal Context', component: ModalContextDoc, parentId: 'contexts', tags: ['contexts'] },
+    { id: 'notificationContextDoc', name: 'Notification Context', component: NotificationContextDoc, parentId: 'contexts', tags: ['contexts'] },
+    { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts', tags: ['contexts'] },
     { id: 'assets', name: 'Assets' },
     { id: 'icons', name: 'Icons', component: IconsDoc, parentId: 'assets' },
     { id: 'promoColors', name: 'Colors', component: ColorsPageDoc, parentId: 'assets' },
