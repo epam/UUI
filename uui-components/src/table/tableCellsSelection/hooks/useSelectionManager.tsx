@@ -76,15 +76,7 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         const showBottomBorder = useMemo(() => showBorder(isBottom, row + 1, column), [isBottom, row, column, showBorder, isStartCell]);
         const showLeftBorder = useMemo(() => showBorder(isLeft, row, column - 1), [isLeft, row, column, showBorder, isStartCell]);
 
-        return {
-            isSelected,
-            showTopBorder,
-            showRightBorder,
-            showBottomBorder,
-            showLeftBorder,
-            canCopyFrom,
-            canAcceptCopy,
-        };
+        return { isSelected, showTopBorder, showRightBorder, showBottomBorder, showLeftBorder, canCopyFrom, canAcceptCopy };
     }, [selectionRange, canBeSelected]);
 
     return { selectionRange, setSelectionRange: setSelectionRangeDebounced, canBeSelected, getSelectedCells, cellToCopyFrom, useCellSelectionInfo };
