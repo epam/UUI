@@ -1,9 +1,6 @@
 @use  '../../assets/styles/index.scss' as *;
-@use '../../assets/styles/colorvars/inputs/numericInput-colorvars.scss' as *;
 
 .root {
-    @include numeric-input-color();
-
     &:global(.uui-input-box) {
         padding-right: 0;
         min-width: 40px;
@@ -17,7 +14,7 @@
 
             &:hover {
                 svg {
-                    fill: var(--icon-color-hovered);
+                    fill: var(--uui-numeric-input-icon-clickable-hover);
                 }
             }
         }
@@ -25,7 +22,7 @@
         :global(.uui-numeric-input-down-button) {
             &:hover {
                 svg {
-                    fill: var(--icon-color-hovered);
+                    fill: var(--uui-numeric-input-icon-clickable-hover);
                 }
             }
         }
