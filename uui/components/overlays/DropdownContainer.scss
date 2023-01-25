@@ -4,8 +4,8 @@
         flex-direction: column;
         min-width: 150px;
         box-sizing: border-box;
-        box-shadow: var(--dropdown-container-shadow);
-        background-color: var(--surface-color);
+        box-shadow: var(--uui-dropdown-container-shadow);
+        background-color: var(--uui-surface);
         border: 0;
         overflow: hidden;
 
@@ -14,7 +14,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--dropdown-container-scrollbar-thumb-color);
+            background: var(--uui-dropdown-container-scrollbar-thumb);
         }
     }
 }
