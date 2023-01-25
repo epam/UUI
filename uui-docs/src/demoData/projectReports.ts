@@ -10,5 +10,4 @@ export const projectReports: Partial<ProjectReport>[] = [
     { id: 7, name: "Time" },
     { id: 8, name: "Onboarding" },
     { id: 9, name: "Vacations" },
-    { id: 10, name: "Feedback" },
 ];
