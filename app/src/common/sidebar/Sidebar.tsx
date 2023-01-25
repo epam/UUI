@@ -12,6 +12,7 @@ export interface SidebarProps<TItem extends TreeListItem = TreeListItem> {
     getItemLink?: (item: DataRowProps<TItem, string>) => Link;
     items: TItem[];
     renderSearch?: () => React.ReactNode;
+    getSearchFields?(item: TItem): string[];
 }
 
 export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) {
@@ -48,6 +49,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
                         items={ props.items }
                         value={ value }
                         onValueChange={ setValue }
+                        getSearchFields={ props.getSearchFields }
                         renderRow={ row => (
                             <SidebarButton
                                 key={ row.key }
