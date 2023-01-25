@@ -1,3 +1,16 @@
+# 4.x.x - DRAFT
+**What's New**
+* [Tooltip]: Tooltip component is implemented on Dropdown basis.
+    - Tooltp received additional props:
+        - `closeDelay`
+        - `closeOnMouseLeave`
+        - `closeBodyOnTogglerHidden`
+        - `openDelay`
+        - `value`
+        - `onValueChange`
+* [Tooltip][BreakingChange]: Removed props `isVisible` and `trigger`. Tooltip now always opens on `hover`. If you need to programmatically control the opening, use the `value` prop. `DropdownState`, `DropdownBodyProps`, `DropdownPlacement`, `DropdownProps` were moved to `'@epam/uui-core'` library.
+
+
 # 4.10.0-rc.1 - 16.01.2023
 **What's New**
 * React 18 support

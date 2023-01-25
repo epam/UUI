@@ -3455,6 +3455,21 @@
         "comment": "<p>React Node(s) to show tooltip for</p>"
       },
       {
+        "name": "closeBodyOnTogglerHidden",
+        "value": "boolean",
+        "comment": ""
+      },
+      {
+        "name": "closeDelay",
+        "value": "number",
+        "comment": "<p>Set delay for close. Default: 0</p>"
+      },
+      {
+        "name": "closeOnMouseLeave",
+        "value": "toggler | boundary",
+        "comment": ""
+      },
+      {
         "name": "color",
         "value": "white | red | gray90",
         "comment": "<p>Tooltip color</p>"
@@ -3470,11 +3485,6 @@
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
-        "name": "isVisible",
-        "value": "boolean",
-        "comment": "<p>Is tooltip visible (for trigger=&#39;manual&#39;)</p>"
-      },
-      {
         "name": "maxWidth",
         "value": "string",
         "comment": "<p>Max width of tooltip</p>"
@@ -3483,6 +3493,21 @@
         "name": "offset",
         "value": "Offset",
         "comment": "<p>See <a href='https://popper.js.org/docs/v2/modifiers/offset/'>Popper docs</a></p>"
+      },
+      {
+        "name": "onClose",
+        "value": "() => void",
+        "comment": ""
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void",
+        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
+      },
+      {
+        "name": "openDelay",
+        "value": "number",
+        "comment": "<p>Set delay for open. Default: 0</p>"
       },
       {
         "name": "placement",
@@ -3500,9 +3525,9 @@
         "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\nThe function will only be called when content is shown, this can save performance.</p>"
       },
       {
-        "name": "trigger",
-        "value": "manual | click | press | hover",
-        "comment": "<p>Defines when to show the tooltip: &#39;hover&#39; - default and usual, &#39;press&#39; - only when mouse button is down, &#39;manual&#39; - visibility is controlled with isVisible prop</p>"
+        "name": "value",
+        "value": "boolean",
+        "comment": "<p>Set the value for the tooltip if it is visible or not. Opening a tooltip manually.</p>"
       }
     ],
     "/app/src/docs/_props/epam-promo/components/pickers/pickerInput.props.tsx": [
