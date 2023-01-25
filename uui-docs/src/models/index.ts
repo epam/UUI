@@ -266,3 +266,11 @@ export interface PersonDetails {
     attachments?: ({progress?: number} & FileUploadResponse)[];
 
 }
+
+export type Day = `${ number }-${ number }-${ number }`;
+export interface ProjectReport {
+    id: number;
+    parentId?: number;
+    name: string;
+    [day: Day]: number;
+}
