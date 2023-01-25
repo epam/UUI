@@ -13,7 +13,7 @@ export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods {}
 
 function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
     return [
-        `icon-button-color-${mods.color || 'default'}`,
+        `icon-button-${mods.color || 'default'}`,
         css.root,
     ];
 }

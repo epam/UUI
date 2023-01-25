@@ -6,10 +6,10 @@
         line-height: 24px;
         font-size: 14px;
         font-family: var(--font-regular);
-        box-shadow: var(--tooltip-shadow);
+        box-shadow: var(--uui-tooltip-shadow);
         max-width: 300px;
         word-wrap: break-word;
-        border-radius: var(--tooltip-border-radius);
+        border-radius: var(--uui-tooltip-border-radius);
     }
 
     :global(.uui-tooltip-arrow) {
@@ -24,7 +24,7 @@
         position: absolute;
         width: 8px;
         height: 8px;
-        box-shadow: var(--tooltip-arrow-shadow);
+        box-shadow: var(--uui-tooltip-arrow-shadow);
     }
 
     &:global(.uui-tooltip-container[data-placement^='right']) {
@@ -69,31 +69,31 @@
 
     //Colors
     :global(.uui-tooltip-body) {
-        background-color: var(--tooltip-bg-color);
-        color: var(--tooltip-text-color);
+        background-color: var(--uui-tooltip-bg);
+        color: var(--uui-tooltip-text);
     }
 
     &:global(.uui-tooltip-container[data-placement^='right']) {
         :global(.uui-tooltip-arrow)::after {
-            background: var(--tooltip-bg-color);
+            background: var(--uui-tooltip-bg);
         }
     }
 
     &:global(.uui-tooltip-container[data-placement^='left']) {
         :global(.uui-tooltip-arrow)::after {
-            background: var(--tooltip-bg-color);
+            background: var(--uui-tooltip-bg);
         }
     }
 
     &:global(.uui-tooltip-container[data-placement^='top']) {
         :global(.uui-tooltip-arrow)::after {
-            background: var(--tooltip-bg-color);
+            background: var(--uui-tooltip-bg);
         }
     }
 
     &:global(.uui-tooltip-container[data-placement^='bottom']) {
         :global(.uui-tooltip-arrow)::after {
-            background: var(--tooltip-bg-color);
+            background: var(--uui-tooltip-bg);
         }
     }
 }

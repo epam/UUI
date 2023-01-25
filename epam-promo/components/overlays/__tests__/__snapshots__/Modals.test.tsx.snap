@@ -145,7 +145,7 @@ exports[`Modals should be rendered correctly 2`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-color-default root uui-theme-promo icon-button-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
             onClick={[Function]}
             tabIndex={0}
             type="button"
