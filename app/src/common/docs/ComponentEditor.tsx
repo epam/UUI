@@ -186,9 +186,9 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                             />
                         </FlexCell>
                         { prop.description &&
-                        <Tooltip placement='top' content={ prop.description }>
-                            <IconButton icon={ InfoIcon } color='gray60'/>
-                        </Tooltip>
+                            <Tooltip placement='top' content={ prop.description }>
+                                <IconButton icon={ InfoIcon } color='gray60'/>
+                            </Tooltip>
                         }
                     </>
                 );
@@ -202,28 +202,28 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                             size="24"
                         />
                         { prop.description &&
-                        <Tooltip placement='top' content={ prop.description }>
-                            <IconButton icon={ InfoIcon } color='gray60'/>
-                        </Tooltip>
+                            <Tooltip placement='top' content={ prop.description }>
+                                <IconButton icon={ InfoIcon } color='gray60'/>
+                            </Tooltip>
                         }
                     </React.Fragment>
                 );
             }
         } else if (this.propExamples[prop.name].length === 1) {
             return (
-                    <React.Fragment>
-                        <RadioInput
-                            value={ !!this.state.selectedProps[prop.name] }
-                            onValueChange={ () => onExampleClick(this.propExamples[prop.name][0].id) }
-                            size='18'
-                            label={ this.propExamples[prop.name][0].name }
-                        />
-                        { prop.description &&
+                <React.Fragment>
+                    <RadioInput
+                        value={ !!this.state.selectedProps[prop.name] }
+                        onValueChange={ () => onExampleClick(this.propExamples[prop.name][0].id) }
+                        size='18'
+                        label={ this.propExamples[prop.name][0].name }
+                    />
+                    { prop.description &&
                         <Tooltip placement='top' content={ prop.description }>
                             <IconButton icon={ InfoIcon } color='gray60'/>
                         </Tooltip>
-                        }
-                    </React.Fragment>
+                    }
+                </React.Fragment>
             );
         } else {
             return null;
@@ -359,55 +359,55 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
             <>
                 {
                     isLoading
-                    ? <Spinner color='blue' cx={ css.spinner } />
-                    : <div className={ cx(css.root, this.props.cx) } >
-                        <div className={ css.container } >
-                            <FlexRow key='head' size='36' padding='12' borderBottom spacing='6' cx={ css.boxSizing } >
-                                <Text fontSize='16' lineHeight='24' cx={ css.vPadding } font='sans-semibold'>{ title }</Text>
-                                <FlexSpacer/>
-                                <Tooltip placement='auto' content={ Object.keys(this.state.selectedProps).length > 0 && 'Reset setting' } >
-                                    <IconButton
-                                        isDisabled={ !(Object.keys(this.state.selectedProps).length > 0) }
-                                        icon={ ResetIcon }
-                                        onClick={ () => this.setState({
-                                            ...this.state,
-                                            selectedProps: { ...this.initialProps },
-                                            selectedContext: docs.contexts[0].name,
-                                        }) }
-                                        color='blue'
-                                    />
-                                </Tooltip>
-                            </FlexRow>
-                            <FlexRow key='table-head' size='36' background='gray5' padding='12' spacing='6' borderBottom cx={ css.boxSizing } >
-                                <FlexCell key='name' width={ 130 } ><Text size='24' font='sans-semibold' >NAME</Text></FlexCell>
-                                <FlexCell key='default' width={ 100 }><Text size='24' font='sans-semibold' >DEFAULT</Text></FlexCell>
-                                <FlexCell key='examples' grow={ 1 }><Text size='24' font='sans-semibold' >PRESET</Text></FlexCell>
-                            </FlexRow>
-                            <div className={ css.rowProps } >
-                                <ScrollBars cx={ css.lastBorder } >
-                                    { docs.props.map((i: any) => this.renderPropertyRow(i)) }
-                                </ScrollBars>
+                        ? <Spinner color='blue' cx={ css.spinner } />
+                        : <div className={ cx(css.root, this.props.cx) } >
+                            <div className={ css.container } >
+                                <FlexRow key='head' size='36' padding='12' borderBottom spacing='6' cx={ css.boxSizing } >
+                                    <Text fontSize='16' lineHeight='24' cx={ css.vPadding } font='sans-semibold'>{ title }</Text>
+                                    <FlexSpacer/>
+                                    <Tooltip placement='auto' content={ Object.keys(this.state.selectedProps).length > 0 && 'Reset setting' } >
+                                        <IconButton
+                                            isDisabled={ !(Object.keys(this.state.selectedProps).length > 0) }
+                                            icon={ ResetIcon }
+                                            onClick={ () => this.setState({
+                                                ...this.state,
+                                                selectedProps: { ...this.initialProps },
+                                                selectedContext: docs.contexts[0].name,
+                                            }) }
+                                            color='blue'
+                                        />
+                                    </Tooltip>
+                                </FlexRow>
+                                <FlexRow key='table-head' size='36' background='gray5' padding='12' spacing='6' borderBottom cx={ css.boxSizing } >
+                                    <FlexCell key='name' width={ 130 } ><Text size='24' font='sans-semibold' >NAME</Text></FlexCell>
+                                    <FlexCell key='default' width={ 100 }><Text size='24' font='sans-semibold' >DEFAULT</Text></FlexCell>
+                                    <FlexCell key='examples' grow={ 1 }><Text size='24' font='sans-semibold' >PRESET</Text></FlexCell>
+                                </FlexRow>
+                                <div className={ css.rowProps } >
+                                    <ScrollBars cx={ css.lastBorder } >
+                                        { docs.props.map((i: any) => this.renderPropertyRow(i)) }
+                                    </ScrollBars>
+                                </div>
+                                <FlexRow key='code-head' size='36' padding='12' spacing='6' borderBottom={ this.state.showCode } >
+                                    <Switch label='View Code' value={ this.state.showCode } onValueChange={ () => this.setState({ showCode: !this.state.showCode }) } />
+                                    <FlexSpacer/>
+                                    <Tooltip content='Copy code' placement='top' >
+                                        <IconButton icon={ CopyIcon } onClick={ () => copyTextToClipboard(this.state.code, this.showNotification) } />
+                                    </Tooltip>
+                                </FlexRow>
+                                { this.state.showCode && <FlexRow key='code' size='36' padding='12'>{ this.renderCodeBlock() }</FlexRow> }
                             </div>
-                            <FlexRow key='code-head' size='36' padding='12' spacing='6' borderBottom={ this.state.showCode } >
-                                <Switch label='View Code' value={ this.state.showCode } onValueChange={ () => this.setState({ showCode: !this.state.showCode }) } />
-                                <FlexSpacer/>
-                                <Tooltip content='Copy code' placement='top' >
-                                    <IconButton icon={ CopyIcon } onClick={ () => copyTextToClipboard(this.state.code, this.showNotification) } />
-                                </Tooltip>
-                            </FlexRow>
-                            { this.state.showCode && <FlexRow key='code' size='36' padding='12'>{ this.renderCodeBlock() }</FlexRow> }
-                        </div>
-                        <div className={ css.demoContext } >
-                            <FlexRow key='head' size='36' padding='12' spacing='6' borderBottom background='white' cx={ css.contextSettingRow } >
-                                { this.renderSettings(docs.contexts) }
-                            </FlexRow>
-                            <div className={ css.demoContainer } >
-                                <ScrollBars >
-                                    { this.renderDemo() }
-                                </ScrollBars>
+                            <div className={ css.demoContext } >
+                                <FlexRow key='head' size='36' padding='12' spacing='6' borderBottom background='white' cx={ css.contextSettingRow } >
+                                    { this.renderSettings(docs.contexts) }
+                                </FlexRow>
+                                <div className={ css.demoContainer } >
+                                    <ScrollBars >
+                                        { this.renderDemo() }
+                                    </ScrollBars>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 }
             </>
         );
