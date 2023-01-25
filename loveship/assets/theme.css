@@ -77,6 +77,8 @@
 
     /* TODO: needs to resolve old colors question */
     /* Loveship old colors */
+    --uui-color-600: #EBECF1;
+
     --uui-color-carbon-700: #3D404D;
     --uui-color-carbon-800: #272933;
     --uui-color-carbon-900: #17181F;
