@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, FlexRow, FlexCell, Button } from '@epam/promo';
 import React, { useMemo } from 'react';
-import { DataQueryFilter, DataTableState, Metadata, SelectedCellData, useArrayDataSource } from '@epam/uui-core';
+import { DataQueryFilter, DataTableState, Metadata, DataTableSelectedCellData, useArrayDataSource } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { Task } from './types';
@@ -53,7 +53,10 @@ export const TimeReportDemo = () => {
 
     const columns = useMemo(() => getColumns(), []);
 
-    const onCopy = (copyFrom: SelectedCellData<Task>, selectedCells: SelectedCellData<Task>[]) => {
+    const onCopy = (
+        copyFrom: DataTableSelectedCellData<Task, number, DataQueryFilter<Task>>,
+        selectedCells: DataTableSelectedCellData<Task, number, DataQueryFilter<Task>>[],
+    ) => {
         const valueToCopy = copyFrom.row.value?.[copyFrom.column.key as keyof Task];
         const newItems = { ...value.items };
         for (const cell of selectedCells) {
