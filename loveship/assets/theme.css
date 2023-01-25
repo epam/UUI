@@ -77,6 +77,8 @@
 
     /* TODO: needs to resolve old colors question */
     /* Loveship old colors */
+    --uui-color-600: #EBECF1;
+
     --uui-color-carbon-700: #3D404D;
     --uui-color-carbon-800: #272933;
     --uui-color-carbon-900: #17181F;
@@ -355,7 +357,7 @@
     --uui-accordion-shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
 }
 
-.button-sky {
+.button-sky, .button-primary {
     --uui-btn-bg: var(--uui-primary);
     --uui-btn-bg-hover: var(--uui-primary-dark);
     --uui-btn-bg-active: var(--uui-primary-darkest);
@@ -372,7 +374,7 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.button-grass {
+.button-grass, .button-accent  {
     --uui-btn-bg: var(--uui-accent);
     --uui-btn-bg-hover: var(--uui-accent-dark);
     --uui-btn-bg-active: var(--uui-accent-darkest);
@@ -389,7 +391,7 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.button-fire {
+.button-fire, .button-negative {
     --uui-btn-bg: var(--uui-negative);
     --uui-btn-bg-hover: var(--uui-negative-dark);
     --uui-btn-bg-active: var(--uui-negative-darkest);
@@ -406,7 +408,7 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.button-night500 {
+.button-night500, .button-secondary {
     --uui-btn-bg: var(--uui-secondary);
     --uui-btn-bg-hover: var(--uui-secondary-dark);
     --uui-btn-bg-active: var(--uui-secondary-darkest);

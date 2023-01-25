@@ -7,7 +7,7 @@ exports[`Paginator should be rendered correctly 1`] = `
 >
   <button
     aria-disabled={true}
-    className="container uui-button-box uui-disabled -clickable button-vars button-night400 root size-24 mode-solid uui-theme-loveship size-24 style-square fill-solid size-24"
+    className="container uui-button-box uui-disabled -clickable button-vars button-night500 root size-24 mode-solid uui-theme-loveship size-24 style-square fill-solid size-24"
     onClick={[Function]}
     tabIndex={-1}
     type="button"
@@ -108,7 +108,7 @@ exports[`Paginator should be rendered correctly 1`] = `
   </button>
   <button
     aria-disabled={false}
-    className="container uui-button-box uui-enabled -clickable button-vars button-night400 root size-24 mode-outline uui-theme-loveship size-24 style-square fill-white size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-night500 root size-24 mode-outline uui-theme-loveship size-24 style-square fill-white size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"

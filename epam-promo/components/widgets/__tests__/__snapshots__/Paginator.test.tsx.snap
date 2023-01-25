@@ -7,7 +7,7 @@ exports[`Paginator should be rendered correctly 1`] = `
 >
   <button
     aria-disabled={false}
-    className="container uui-button-box uui-enabled -clickable fill-white size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-gray50 root size-24 mode-outline uui-theme-promo fill-white size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -22,7 +22,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-blue root size-24 mode-ghost uui-theme-promo fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -34,7 +34,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-blue root size-24 mode-ghost uui-theme-promo fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -46,7 +46,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-blue root size-24 mode-ghost uui-theme-promo fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -58,7 +58,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-blue root size-24 mode-ghost uui-theme-promo fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -70,7 +70,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-blue root size-24 mode-ghost uui-theme-promo fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -82,7 +82,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled fill-light size-24"
+    className="container uui-button-box uui-enabled button-vars button-blue root size-24 mode-ghost uui-theme-promo fill-light size-24"
     onClick={[Function]}
     tabIndex={-1}
     type="button"
@@ -94,7 +94,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable fill-light size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-blue root size-24 mode-ghost uui-theme-promo fill-light size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -107,7 +107,7 @@ exports[`Paginator should be rendered correctly 1`] = `
   </button>
   <button
     aria-disabled={false}
-    className="container uui-button-box uui-enabled -clickable fill-white size-24"
+    className="container uui-button-box uui-enabled -clickable button-vars button-gray50 root size-24 mode-outline uui-theme-promo fill-white size-24"
     onClick={[Function]}
     tabIndex={0}
     type="button"
