@@ -1,12 +1,12 @@
 @use '../../assets/styles/scss/index'  as *;
 
 .fill-light {
-    color: $night700;
+    color: var(--uui-secondary-darkest);
     box-shadow: none;
 
     &:global(.-clickable) {
         &:hover {
-            color: var(--uui-color-700);
+            color: var(--uui-primary);
         }
 
         &:focus {
@@ -16,15 +16,23 @@
 }
 
 .fill-white {
-    fill: $night600;
+    fill: var(--gray40);
+    border-color: var(--gray40);
 
     &:global(.-clickable) {
         &:focus {
             box-shadow: none;
         }
 
-        &:hover, &:active {
-            fill: $night600;
+        &:hover {
+            fill: var(--uui-secondary-hover);
+            border-color: var(--uui-color-night400-800);
+            background-color: var(--uui-button-bg-halftone);
+        }
+
+        &:active {
+            border-color: var(--uui-color-night400-800);
+            background-color: var(--uui-color-600);
         }
     }
 }
@@ -34,7 +42,7 @@
     padding-right: 0;
 
     :global(.uui-caption) {
-        font-family: $font-sans;
+        font-family: var(--font-regular);
         font-size: 14px;
     }
 
@@ -52,7 +60,7 @@
     padding-right: 2px;
 
     :global(.uui-caption) {
-        font-family: $font-sans;
+        font-family: var(--font-regular);
         font-size: 14px;
     }
 
