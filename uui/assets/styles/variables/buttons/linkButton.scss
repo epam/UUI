@@ -1,6 +1,6 @@
 :global(.link-button-vars) {
-    --link-button-text-color: var(--info-color);
-    --link-button-text-color-hover: var(--info-hover-color);
-    --link-button-text-color-active: var(--info-active-color);
-    --link-button-text-color-disabled: var(--button-disabled-color);
+    --uui-link-button-text: var(--uui-info);
+    --uui-link-button-text-hover: var(--uui-info-hover);
+    --uui-link-button-text-active: var(--uui-info-active);
+    --uui-link-button-text-disabled: var(--uui-btn-disabled);
 }
