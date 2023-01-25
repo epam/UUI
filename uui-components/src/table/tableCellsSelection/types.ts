@@ -1,4 +1,4 @@
-import { DataColumnProps, DataRowProps, SelectedCellData } from "@epam/uui-core";
+import { DataColumnProps, DataRowProps, DataTableSelectedCellData } from "@epam/uui-core";
 import { Dispatch, SetStateAction } from "react";
 
 export interface DataTableSelectionRange {
@@ -18,8 +18,8 @@ export interface SelectionManager<TItem = any, TId = any, TFilter = any> {
     selectionRange: DataTableSelectionRange;
     setSelectionRange: Dispatch<SetStateAction<DataTableSelectionRange>>;
     canBeSelected: (rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => boolean;
-    getSelectedCells: () => SelectedCellData<TItem, TId, TFilter>[];
-    cellToCopyFrom: SelectedCellData<TItem, TId, TFilter>;
+    getSelectedCells: () => DataTableSelectedCellData<TItem, TId, TFilter>[];
+    cellToCopyFrom: DataTableSelectedCellData<TItem, TId, TFilter>;
     useCellSelectionInfo: (row: number, column: number) => {
         isSelected: boolean;
         showTopBorder: boolean;
