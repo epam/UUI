@@ -23,7 +23,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To turn it on — pass the `onCopy` function as a property to `DataTable` component.",
+            "text": "To turn it on — pass the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "onCopy",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " function as a property to ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DataTable",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " component.",
             "marks": []
           }
         ]
