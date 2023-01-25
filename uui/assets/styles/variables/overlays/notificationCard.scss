@@ -1,28 +1,28 @@
 :global(.notification-card-vars) {
-    --notification-card-border-radius: var(--border-radius);
-    --notification-card-border-width: 6px 1px 1px;
+    --uui-notification-card-border-radius: var(--uui-border-radius);
+    --uui-notification-card-border-width: 6px 1px 1px;
 }
 
 :global(.notification-card-color-warning) {
-    --notification-card-fill-color: var(--warning-color);
-    --notification-card-border-color: var(--warning-color);
-    --notification-card-bg-color: white;
+    --uui-notification-card-fill: var(--uui-warning);
+    --uui-notification-card-border: var(--uui-warning);
+    --uui-notification-card-bg: white;
 }
 
 :global(.notification-card-color-success) {
-    --notification-card-fill-color: var(--success-color);
-    --notification-card-border-color: var(--success-color);
-    --notification-card-bg-color: white;
+    --uui-notification-card-fill: var(--uui-success);
+    --uui-notification-card-border: var(--uui-success);
+    --uui-notification-card-bg: white;
 }
 
 :global(.notification-card-color-info) {
-    --notification-card-fill-color: var(--info-color);
-    --notification-card-border-color: var(--info-color);
-    --notification-card-bg-color: white;
+    --uui-notification-card-fill: var(--uui-info);
+    --uui-notification-card-border: var(--uui-info);
+    --uui-notification-card-bg: white;
 }
 
 :global(.notification-card-color-error) {
-    --notification-card-fill-color: var(--error-color);
-    --notification-card-border-color: var(--error-color);
-    --notification-card-bg-color: white;
+    --uui-notification-card-fill: var(--uui-error);
+    --uui-notification-card-border: var(--uui-error);
+    --uui-notification-card-bg: white;
 }

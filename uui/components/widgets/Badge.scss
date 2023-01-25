@@ -214,20 +214,20 @@
     }
 
     &.fill-solid {
-        background-color: var(--badge-bg-color);
-        color: var(--badge-caption-color-solid);
-        fill: var(--badge-caption-color-solid);
-        border-color: var(--badge-bg-color);
+        background-color: var(--uui-badge-bg);
+        color: var(--uui-badge-caption-solid);
+        fill: var(--uui-badge-caption-solid);
+        border-color: var(--uui-badge-bg);
 
         :global(.uui-count) {
-            background-color: var(--badge-count-bg-color);
-            color: var(--badge-count-color);
+            background-color: var(--uui-badge-count-bg);
+            color: var(--uui-badge-count);
         }
 
         &:global(.-clickable) {
             &:hover {
-                background-color: var(--badge-bg-color-hover);
-                border-color: var(--badge-bg-color-hover);
+                background-color: var(--uui-badge-bg-hover);
+                border-color: var(--uui-badge-bg-hover);
                 cursor: pointer;
             }
         }
@@ -235,8 +235,8 @@
 
     //&.fill-semitransparent {
     //    background-color: var(--bg-color-semitransparent);
-    //    color: var(--caption-color-semitransparent);
-    //    fill: var(--caption-color-semitransparent);
+    //    color: var(--uui-caption-semitransparent);
+    //    fill: var(--uui-caption-semitransparent);
     //    border-color: var(--border-color-semitransparent);
     //
     //    :global(.uui-count) {
@@ -247,8 +247,8 @@
     //    &:global(.-clickable) {
     //        &:hover {
     //            background-color: var(--border-color-semitransparent);
-    //            color: var(--caption-color-semitransparent-hover);
-    //            fill: var(--caption-color-semitransparent-hover);
+    //            color: var(--uui-caption-semitransparent-hover);
+    //            fill: var(--uui-caption-semitransparent-hover);
     //            cursor: pointer;
     //        }
     //    }
@@ -256,7 +256,7 @@
     //
     //&.fill-transparent {
     //    background-color: transparent;
-    //    color: var(--caption-color-transparent);
+    //    color: var(--uui-caption-transparent);
     //    fill: var(--bg-color);
     //    border-color: transparent;
     //

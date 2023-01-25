@@ -1,9 +1,9 @@
 .root {
     overflow: hidden;
-    border-radius: var(--panel-border-radius);
+    border-radius: var(--uui-panel-border-radius);
 
     &.background {
-        background-color: var(--panel-bg-color);
+        background-color: var(--uui-panel-bg);
     }
 
     &.margin-24 {
@@ -19,7 +19,7 @@
     }
 
     &.shadow {
-        box-shadow: var(--panel-shadow);
+        box-shadow: var(--uui-panel-shadow);
     }
 
     &:global(.-clickable):hover {
