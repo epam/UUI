@@ -22,6 +22,20 @@ export const columnsMock: DataColumnProps<Row, number>[] = [
         width: 1,
         renderCell: () => (<div>1</div>),
         canAcceptCopy: (from, to) => true,
-        canCopy: () => false,
+        canCopy: () => true,
+    },
+    {
+        key: 'rate',
+        width: 1,
+        renderCell: () => (<div>1</div>),
+        canAcceptCopy: (from, to) => true,
+        canCopy: (cell) => true,
+    },
+    {
+        key: 'denyCopyCol',
+        width: 1,
+        renderCell: () => (<div>1</div>),
+        canAcceptCopy: (from, to) => false,
+        canCopy: (cell) => false,
     },
 ];

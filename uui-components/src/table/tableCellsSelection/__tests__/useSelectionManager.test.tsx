@@ -62,7 +62,7 @@ describe('useSelectioManager', () => {
 
         it('should return false if copyFrom flag is set and canCopy return false', () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            expect(result.current.canBeSelected(2, 1, { copyFrom: true })).toBeFalsy();
+            expect(result.current.canBeSelected(2, 3, { copyFrom: true })).toBeFalsy();
         });
 
         it('should return true if copyTo flag is set and canAcceptCopy return true', async () => {
@@ -121,4 +121,56 @@ describe('useSelectioManager', () => {
         });
     });
 
+
+
+    describe('useCellSelectionInfo', () => {
+        const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 2, endRowIndex: 3, isCopying: true };
+        it('should render borders for start cell', async () => {
+            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            await act(async () => {
+                result.current.setSelectionRange(selectionRange);
+                await waitFor();
+            });
+
+            const { result: infoResult } = renderHook(() => result.current.useCellSelectionInfo(0, 0));
+            expect(infoResult.current).toEqual({
+                isSelected: true, showTopBorder: true, showRightBorder: true, showBottomBorder: true, showLeftBorder: true, canCopyFrom: true,
+                canAcceptCopy: true,
+            });
+        });
+
+        it('should render border for cell near border', async () => {
+            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            await act(async () => {
+                result.current.setSelectionRange(selectionRange);
+                await waitFor();
+            });
+
+            const { result: infoResult } = renderHook(() => result.current.useCellSelectionInfo(0, 2));
+            expect(infoResult.current).toEqual({
+                isSelected: true, showTopBorder: true, showRightBorder: true, canCopyFrom: true, canAcceptCopy: true,
+                showBottomBorder: false, showLeftBorder: false,
+            });
+
+            const { result: infoResult2 } = renderHook(() => result.current.useCellSelectionInfo(3, 1));
+            expect(infoResult2.current).toEqual({
+                isSelected: true, showBottomBorder: true, showLeftBorder: true, canCopyFrom: true, canAcceptCopy: true,
+                showTopBorder: false, showRightBorder: false,
+            });
+        });
+
+        it('should not render borders for cell inside the area of selection', async () => {
+            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            await act(async () => {
+                result.current.setSelectionRange(selectionRange);
+                await waitFor();
+            });
+
+            const { result: infoResult2 } = renderHook(() => result.current.useCellSelectionInfo(2, 1));
+            expect(infoResult2.current).toEqual({
+                isSelected: true, canCopyFrom: true, canAcceptCopy: true,
+                showTopBorder: false, showRightBorder: false, showBottomBorder: false, showLeftBorder: false,
+            });
+        });
+    });
 });

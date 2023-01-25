@@ -53,7 +53,6 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
             () => getCellPosition(row, column, selectionRange),
             [row, column, selectionRange],
         );
-
         const canCopyFrom = useMemo(
             () => canBeSelected?.(row, column, { copyFrom: true }),
             [row, column, canBeSelected],
@@ -69,7 +68,6 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
             if (!isCopying) {
                 return isBorderPosition;
             }
-
             return canAcceptCopy && (isBorderPosition || !canBeSelected?.(neighborRow, neighborColumn, { copyTo: true }));
         }, [isSelected, isStartCell, canAcceptCopy, canBeSelected]);
 
