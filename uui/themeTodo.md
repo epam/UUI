@@ -11,7 +11,7 @@
 - [ ] lineHeight
 ### TextInput
 - [ ] suffix and prefix
-- [ ] check border in focus (new design in loveship-figma)
+- [ ] check border in focus (new design in loveship-figma without shadow)
 - [ ] fontSize
 - [ ] lineHeight
 - [ ] In loveship/types Interface EditMode: mode?: 'form' | 'inline' - ? | 'cell' | 'none' - ?;

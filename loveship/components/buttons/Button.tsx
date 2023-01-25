@@ -1,5 +1,5 @@
 import { FillStyle, ControlShape, ColorMod } from "../types";
-import { Button as uuiButton, ButtonMode, UUIButtonProps, ControlSize } from '@epam/uui';
+import { Button as uuiButton, ButtonMode, ButtonProps as UuiButtonProps, ControlSize } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import css from './Button.scss';
@@ -19,7 +19,9 @@ const mapFillToMod: Record<FillStyle, ButtonMode> = {
     none: 'none',
 };
 
-export function applyButtonMods(mods: Omit<UUIButtonProps, "color"> & ButtonMods) {
+export type ButtonProps = Omit<UuiButtonProps, "color"> & ButtonMods;
+
+export function applyButtonMods(mods: ButtonProps) {
     return [
         'uui-theme-loveship',
         css['size-' + (mods.size || defaultSize)],
@@ -27,7 +29,7 @@ export function applyButtonMods(mods: Omit<UUIButtonProps, "color"> & ButtonMods
     ];
 }
 
-export const Button = withMods<Omit<UUIButtonProps, "color">, ButtonMods>(
+export const Button = withMods<Omit<UuiButtonProps, "color">, ButtonMods>(
     uuiButton,
     applyButtonMods,
     (props) => ({

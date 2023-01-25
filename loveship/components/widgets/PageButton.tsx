@@ -1,14 +1,11 @@
-import * as types from '../types';
-import css from './PageButton.scss';
 import { withMods } from '@epam/uui-core';
-import { Button } from '../buttons';
-import { ButtonProps } from '@epam/uui-components';
+import { Button, ButtonProps } from '../buttons';
+import css from './PageButton.scss';
 
 const defaultSize = '30';
 
-export interface PageButtonMods extends types.ColorMod {
+export interface PageButtonMods {
     size?: '24' | '30';
-    fill?: types.FillStyle;
 }
 
 export function applyPageButtonMods(mods: PageButtonMods & ButtonProps) {

@@ -1,11 +1,11 @@
 @use  '../../assets/styles/index.scss' as *;
 
 .fill-light {
-    color: $gray80;
+    color: var(--uui-text-primary);
 
     &:global(.-clickable) {
         &:hover {
-            color: var(--caption-color);
+            color:  var(--uui-primary);
         }
     }
 }
@@ -15,7 +15,7 @@
     padding-right: 0;
 
     :global(.uui-caption) {
-        font-family: $font-sans;
+        font-family: var(--font-regular);
         font-size: 14px;
     }
 
@@ -33,7 +33,7 @@
     padding-right: 2px;
 
     :global(.uui-caption) {
-        font-family: $font-sans;
+        font-family: var(--font-regular);
         font-size: 14px;
     }
 
