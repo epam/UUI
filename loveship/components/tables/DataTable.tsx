@@ -2,15 +2,15 @@ import React from 'react';
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, cx, IEditable,
     DataColumnProps, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions,
-    TableFiltersConfig, DataTableRowProps,
+    TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData,
 } from '@epam/uui-core';
-import { PositionValues, useColumnsWithFilters, VirtualListRenderRowsParams } from '@epam/uui-components';
+import { DataTableSelectionProvider, PositionValues, useColumnsWithFilters, VirtualListRenderRowsParams } from '@epam/uui-components';
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { IconButton, Text, VirtualList } from '../';
 import css from './DataTable.scss';
 import { ReactComponent as SearchIcon } from '../icons/search-24.svg';
 
-export interface DataTableProps<TItem, TId>
+export interface DataTableProps<TItem, TId, TFilter = any>
     extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
@@ -19,6 +19,10 @@ export interface DataTableProps<TItem, TId>
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
     filters?: TableFiltersConfig<any>[];
+    onCopy?: (
+        copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>,
+        selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[],
+    ) => void;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
@@ -51,7 +55,8 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         );
     }, [props.renderNoResultsBlock]);
 
-    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
+    const rows = props.getRows();
+    const renderedRows = rows.map(row => (props.renderRow || renderRow)({ ...row, columns }));
 
     const onConfigurationButtonClick = React.useCallback(() => {
         uuiModals.show<ColumnsConfig>(modalProps => (
@@ -91,7 +96,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                             ref={ listContainerRef }
                             role='rowgroup'
                             style={ { marginTop: offsetY } }
-                            children={ rows }
+                            children={ renderedRows }
                         />
                     </div>
                 ) : renderNoResultsBlock?.() }
@@ -99,20 +104,21 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
 
     return (
-        <VirtualList
-            value={ props.value }
-            onValueChange={ props.onValueChange }
-            onScroll={ props.onScroll }
-            rows={ rows }
-            rowsCount={ props.rowsCount }
-            renderRows={ renderRowsContainer }
-            cx={ cx(css.table) }
-            rawProps={ {
-                role: 'table',
-                'aria-colcount': columns.length,
-                'aria-rowcount': props.rowsCount,
-            } }
-        />
+        <DataTableSelectionProvider onCopy={ props.onCopy } rows={ rows } columns={ columns }>
+            <VirtualList
+                value={ props.value }
+                onValueChange={ props.onValueChange }
+                onScroll={ props.onScroll }
+                rows={ renderedRows }
+                rowsCount={ props.rowsCount }
+                renderRows={ renderRowsContainer }
+                cx={ cx(css.table) }
+                rawProps={ {
+                    role: 'table',
+                    'aria-colcount': columns.length,
+                    'aria-rowcount': props.rowsCount,
+                } }
+            />
+        </DataTableSelectionProvider>
     );
 }
-

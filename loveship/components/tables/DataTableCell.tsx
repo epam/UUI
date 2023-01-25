@@ -1,13 +1,23 @@
 import React from 'react';
-import { uuiMarkers, cx, DataTableCellProps } from '@epam/uui-core';
-import { IconContainer, DragHandle, DataTableCell as UuiDataTableCell } from '@epam/uui-components';
-import { FlexCell } from '../layout';
+import { uuiMarkers, DataTableCellProps, withMods, DataTableCellOverlayProps, ICanBeInvalid, TooltipCoreProps } from '@epam/uui-core';
+import { IconContainer, DragHandle, DataTableCell as UuiDataTableCell, DataTableCellOverlay as UuiDataTableCellOverlay } from '@epam/uui-components';
 import { Checkbox } from '../inputs';
 import { TextPlaceholder, Text } from '../typography';
 import { Tooltip } from '../overlays';
 import { DataTableCellMods } from './types';
+
 import { ReactComponent as FoldingArrow } from '../icons/tree_folding_arrow.svg';
 import css from './DataTableCell.scss';
+
+function renderTooltip(props: ICanBeInvalid & TooltipCoreProps): React.ReactElement {
+    return <Tooltip color='fire' { ...props } />;
+}
+
+const DataTableCellOverlay = withMods<DataTableCellOverlayProps, {}>(
+    UuiDataTableCellOverlay,
+    () => [css.overlay],
+    props => ({ renderTooltip }),
+);
 
 function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
     const row = props.rowProps;
@@ -33,7 +43,7 @@ function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TI
                     <IconContainer
                         key='icon'
                         icon={ FoldingArrow }
-                        cx={ [css.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable] }
+                        cx={ [css.foldingArrow, css[`folding-arrow-${ additionalItemSize }`], uuiMarkers.clickable] }
                         rotate={ row.isFolded ? '90ccw' : '0' }
                         onClick={ () => row.onFold(row) }
                     />
@@ -70,9 +80,14 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         props.isFirstColumn && css[`padding-left-${ props.padding || '24' }`],
         props.isLastColumn && css['padding-right-24'],
         css[`align-widgets-${ props.alignActions || 'top' }`],
-        props.background && css[`background-${props.background}`],
+        props.background && css[`background-${ props.background }`],
         props.border && css['border-' + (props.border)],
     ];
+
+    const rowIndex = props.rowProps.index;
+    const { index: columnIndex } = props;
+
+    props.renderOverlay = (props => <DataTableCellOverlay { ...props } rowIndex={ rowIndex } columnIndex={ columnIndex } />);
 
     return <UuiDataTableCell { ...props } />;
 }

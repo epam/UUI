@@ -23,7 +23,10 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
     filters?: TableFiltersConfig<any>[];
-    onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;
+    onCopy?: (
+        copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>,
+        selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[],
+    ) => void;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
