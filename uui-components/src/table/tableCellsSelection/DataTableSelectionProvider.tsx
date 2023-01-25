@@ -15,7 +15,7 @@ export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, 
     } = useSelectionManager<TItem, TId, TFilter>({ rows, columns });
 
     useEffect(() => {
-        if (!selectionRange) return;
+        if (!selectionRange || !onCopy) return;
 
         const handlePointerUp = () => {
             if (!selectionRange) return;
@@ -27,6 +27,10 @@ export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, 
         document.addEventListener('pointerup', handlePointerUp);
         return () => document.removeEventListener('pointerup', handlePointerUp);
     }, [selectionRange, cellToCopyFrom, getSelectedCells]);
+
+    if (!onCopy) {
+        return <>{ children }</>;
+    }
 
     return (
         <DataTableSelectionContext.Provider value={ { selectionRange, setSelectionRange, canBeSelected, useCellSelectionInfo } }>
