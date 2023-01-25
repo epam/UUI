@@ -11,12 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To disable the spinner, use ",
+            "text": "You can also use ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "hideSpinner",
+            "text": "Anchor",
             "marks": [
               {
                 "object": "mark",
@@ -27,35 +27,26 @@
           },
           {
             "object": "text",
-            "text": " prop.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To avoid content jumps after loading, use the ",
+            "text": " within text blocks. To apply link styles, wrap your text with link into ",
             "marks": []
           },
           {
-            "object": "text",
-            "text": "spacerHeight",
-            "marks": [
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=richTextView&mode=doc&skin=UUI4_promo&category=components"
+            },
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "object": "text",
+                "text": "RichTextView",
+                "marks": []
               }
             ]
           },
           {
             "object": "text",
-            "text": " prop, which set the minimum height of the content.",
+            "text": " component.",
             "marks": []
           }
         ]
