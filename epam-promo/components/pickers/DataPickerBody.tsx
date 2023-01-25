@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Lens, DataSourceState, isMobile, cx } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
-import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
 import css from './DataPickerBody.scss';
 import { Text } from "../typography";
+import { SearchInput } from '../inputs';
 
 export interface DataPickerBodyProps extends PickerBodyBaseProps {
     maxHeight?: number;

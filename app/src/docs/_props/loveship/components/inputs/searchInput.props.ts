@@ -7,7 +7,7 @@ import {
     FormContext, ResizableContext, DefaultContext,
 } from '../../docs';
 
-const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditableDebouncerOptions>({ name: 'SearchInput', component: SearchInput })
+const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditableDebouncerOptions>({ name: 'SearchInput', component: SearchInput as any })
     .implements([onClickDoc, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc])
     .prop('value', { examples: [
         { value: 'Hello, World!', isDefault: true },

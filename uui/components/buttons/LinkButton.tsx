@@ -14,7 +14,6 @@ export interface LinkButtonMods {
 
 function applyLinkButtonMods(mods: LinkButtonMods & ButtonProps) {
     return [
-        'link-button-vars',
         css.root,
         css['size-' + (mods.size || defaultSize)],
         ...getIconClass(mods),

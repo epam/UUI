@@ -1,0 +1,67 @@
+:global(.button-color-primary) {
+    --btn-bg-color: var(--primary-color);
+    --btn-bg-color-hover: var(--primary-dark-color);
+    --btn-bg-color-active: var(--primary-darkest-color);
+    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
+    --btn-bg-color-halftone-hover: var(--primary-lightest-color);
+    --btn-bg-color-halftone-active: var(--primary-light-color);
+    --btn-bg-color-disabled: var(--disabled-color);
+    --btn-border-color: var(--primary-color);
+    --btn-border-color-hover: var(--primary-dark-color);
+    --btn-border-color-active: var(--primary-darkest-color);
+    --btn-border-color-disabled: var(--disabled-color);
+    --btn-caption-color: var(--contrast-color);
+    --btn-caption-halftone-color: var(--primary-color);
+    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+}
+
+:global(.button-color-accent) {
+    --btn-bg-color: var(--accent-color);
+    --btn-bg-color-hover: var(--accent-dark-color);
+    --btn-bg-color-active: var(--accent-darkest-color);
+    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
+    --btn-bg-color-halftone-hover: var(--accent-lightest-color);
+    --btn-bg-color-halftone-active: var(--accent-light-color);
+    --btn-bg-color-disabled: var(--disabled-color);
+    --btn-border-color: var(--accent-color);
+    --btn-border-color-hover: var(--accent-dark-color);
+    --btn-border-color-active: var(--accent-darkest-color);
+    --btn-border-color-disabled: var(--disabled-color);
+    --btn-caption-color: var(--contrast-color);
+    --btn-caption-halftone-color: var(--accent-color);
+    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+}
+
+:global(.button-color-negative) {
+    --btn-bg-color: var(--negative-color);
+    --btn-bg-color-hover: var(--negative-dark-color);
+    --btn-bg-color-active: var(--negative-darkest-color);
+    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
+    --btn-bg-color-halftone-hover: var(--negative-lightest-color);
+    --btn-bg-color-halftone-active: var(--negative-light-color);
+    --btn-bg-color-disabled: var(--disabled-color);
+    --btn-border-color: var(--negative-color);
+    --btn-border-color-hover: var(--negative-dark-color);
+    --btn-border-color-active: var(--negative-darkest-color);
+    --btn-border-color-disabled: var(--disabled-color);
+    --btn-caption-color: var(--contrast-color);
+    --btn-caption-halftone-color: var(--negative-color);
+    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+}
+
+:global(.button-color-secondary) {
+    --btn-bg-color: var(--secondary-color);
+    --btn-bg-color-hover: var(--secondary-dark-color);
+    --btn-bg-color-active: var(--secondary-darkest-color);
+    --btn-bg-color-halftone: var(--btn-bg-halftone-color);
+    --btn-bg-color-halftone-hover: var(--secondary-lightest-color);
+    --btn-bg-color-halftone-active: var(--secondary-light-color);
+    --btn-bg-color-disabled: var(--disabled-color);
+    --btn-border-color: var(--secondary-color);
+    --btn-border-color-hover: var(--secondary-dark-color);
+    --btn-border-color-active: var(--secondary-darkest-color);
+    --btn-border-color-disabled: var(--disabled-color);
+    --btn-caption-color: var(--contrast-color);
+    --btn-caption-halftone-color: var(--secondary-dark-color);
+    --btn-caption-color-disabled: var(--btn-caption-disabled-color);
+}

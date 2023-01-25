@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { RangeDatePicker, RangeDatePickerProps } from '@epam/promo';
+import { RangeDatePicker } from '@epam/promo';
+import { RangeDatePickerProps } from '@epam/uui';
 import css from './RangeDatePicker.doc.scss';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, FormContext, DefaultContext, ResizableContext } from '../../docs';
@@ -36,7 +37,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
             },
         ],
     })
-    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY' })
+    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY', type: 'string' })
     .prop('filter', {
         examples: [
             {
@@ -93,7 +94,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                         <Text color='gray60' size='24' >Days: { getRangeLength(value) }</Text>
                     </div>
                     <div className={ css.buttonGroup }>
-                        <Button cx={ css.buttonContainer } caption='Done' color='green' fill='solid' size='24' onClick={ () => null } />
+                        <Button cx={ css.buttonContainer } caption='Done' color='green' fill='solid' size='24' onClick={ () => {} } />
                     </div>
                 </div>,
             },
