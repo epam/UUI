@@ -100,7 +100,7 @@ export default function EditableTableExample() {
                 // which should render an compatible IEditable component
                 // The cell passes the mode='cell' prop, so all compatible UUI components
                 // are rendered in a 'cell mode' - adopted to use in cells (e.g. with borders removed)
-                renderEditor={ editorProps => <TextInput { ...editorProps } /> }
+                renderEditor={ props => <TextInput { ...props } /> }
                 // Need to set smaller cell padding, that cell editor content will be aligned with header caption
                 padding='12'
                 { ...props }

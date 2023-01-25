@@ -29,30 +29,8 @@ export function getColumns(columnsProps: ColumnsProps) {
             info: "Estimate in man/days",
             width: 120,
             isSortable: true,
-            canCopy: (cell) => !!(cell.row.index % 2),
-            canAcceptCopy: (from, to) => {
-                return !!(to.row.index % 2);
-            },
             renderCell: (props) => <DataTableCell
                 { ...props.rowLens.prop('estimate').toProps() }
-                renderEditor={ props => (<NumericInput
-                    { ...props }
-                    formatOptions={ { maximumFractionDigits: 1 } }
-                />) }
-                { ...props }
-            />,
-        },
-        {
-            key: 'estimate2',
-            textAlign: 'right',
-            caption: 'Estimate2',
-            info: "Estimate in man/days",
-            width: 120,
-            isSortable: true,
-            canCopy: () => false,
-            canAcceptCopy: (from) => true,
-            renderCell: (props) => <DataTableCell
-                { ...props.rowLens.prop('estimate2').toProps() }
                 renderEditor={ props => (<NumericInput
                     { ...props }
                     formatOptions={ { maximumFractionDigits: 1 } }

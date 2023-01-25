@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
 import React, { useCallback, useMemo } from 'react';
-import { AcceptDropParams, SelectedCellData, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
+import { AcceptDropParams, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -35,7 +35,7 @@ export const ProjectDemo = () => {
         value: savedValue,
         onSave: async (value) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
-            onValueChange(value);
+            savedValue = value;
         },
         getMetadata: () => metadata,
     });
@@ -56,11 +56,11 @@ export const ProjectDemo = () => {
         task.order = getInsertionOrder(
             Object.values(value.items).filter(i => i.parentId === task.parentId).map(i => i.order),
             position == 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-            relativeTask?.order
+            relativeTask?.order,
         );
 
         onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
-    }
+    };
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true }), []);
 
@@ -92,18 +92,6 @@ export const ProjectDemo = () => {
 
     const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
 
-    const onCopy = (copyFrom: SelectedCellData<Task, number, DataQueryFilter<Task>>, selectedCells: SelectedCellData<Task, number, DataQueryFilter<Task>>[]) => {
-        const valueToCopy = copyFrom.row.value?.[copyFrom.column.key as keyof Task];
-        const newItems = { ...value.items };
-        for (const cell of selectedCells) {
-            const cellRowId = cell.row.value.id;
-            newItems[cellRowId] = { ...newItems[cellRowId], [cell.column.key]: valueToCopy };
-        }
-
-        onValueChange({ ...value, items: newItems });
-    };
-
-
     return <Panel style={ { width: '100%' } }>
         <FlexRow spacing='12' margin='12'>
             <FlexCell width='auto'>
@@ -128,7 +116,6 @@ export const ProjectDemo = () => {
         </FlexRow>
         <DataTable
             headerTextCase='upper'
-            onCopy={ onCopy }
             getRows={ dataView.getVisibleRows }
             columns={ columns }
             value={ tableState }
