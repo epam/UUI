@@ -17,7 +17,6 @@ export interface SelectionManagerProps<TItem, TId> {
 export interface SelectionManager<TItem = any, TId = any, TFilter = any> {
     selectionRange: DataTableSelectionRange;
     setSelectionRange: Dispatch<SetStateAction<DataTableSelectionRange>>;
-    canBeSelected: (rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => boolean;
     getSelectedCells: () => DataTableSelectedCellData<TItem, TId, TFilter>[];
     cellToCopyFrom: DataTableSelectedCellData<TItem, TId, TFilter>;
     getCellSelectionInfo: (row: number, column: number) => {

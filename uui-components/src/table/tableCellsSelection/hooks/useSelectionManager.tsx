@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { DataTableSelectedCellData, useDebounce, useForceUpdate } from '@epam/uui-core';
+import { DataTableSelectedCellData, useForceUpdate } from '@epam/uui-core';
 import type { SelectionManager, SelectionManagerProps, DataTableSelectionRange, CopyOptions } from '../types';
 import { getCell, getCellPosition, getCellToCopyFrom, getNormalizedLimits } from './helpers';
 
@@ -82,5 +82,5 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         };
     }, [selectionRange, canBeSelected]);
 
-    return { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom, getCellSelectionInfo };
+    return { selectionRange, setSelectionRange, getSelectedCells, cellToCopyFrom, getCellSelectionInfo };
 };
