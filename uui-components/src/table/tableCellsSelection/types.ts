@@ -20,7 +20,7 @@ export interface SelectionManager<TItem = any, TId = any, TFilter = any> {
     canBeSelected: (rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => boolean;
     getSelectedCells: () => DataTableSelectedCellData<TItem, TId, TFilter>[];
     cellToCopyFrom: DataTableSelectedCellData<TItem, TId, TFilter>;
-    useCellSelectionInfo: (row: number, column: number) => {
+    getCellSelectionInfo: (row: number, column: number) => {
         isSelected: boolean;
         showTopBorder: boolean;
         showRightBorder: boolean;
