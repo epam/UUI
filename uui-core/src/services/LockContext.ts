@@ -1,5 +1,6 @@
 import { BaseContext } from './BaseContext';
 import { IRouterContext, Link } from '../types';
+import { isClientSide } from "../helpers";
 
 export class Lock {
     constructor(public tryRelease?: () => Promise<void>) {}
@@ -14,6 +15,9 @@ export class LockContext extends BaseContext {
     }
 
     public acquire(tryRelease?: () => Promise<any>): Promise<Lock | null> {
+        if (!isClientSide) {
+            return Promise.reject('LockContext not supported in SSR mode.');
+        }
         if (this.currentLock) {
             return this.tryRelease().then(() => this.acquire(tryRelease));
         } else {

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useUuiContext } from '../services';
 import { ApiCallInfo, ApiRecoveryReason, UuiError, UuiErrorInfo } from '../types';
 import { useForceUpdate } from './useForceUpdate';
+import { isClientSide } from "../helpers";
 
 export type UuiRecoveryErrorInfo = {
     title: string,
@@ -45,7 +46,7 @@ export const useUuiError = (props: UseUuiErrorProps) => {
 
     // we need to subscribe contexts before component mount, to be able to handle errors during the first render
     if (initializing.current)  {
-        uuiRouter.listen(onRouteChange);
+        isClientSide && uuiRouter.listen(onRouteChange);
         uuiApi.subscribe(forceUpdate);
         uuiErrors.subscribe(forceUpdate);
         initializing.current = false;

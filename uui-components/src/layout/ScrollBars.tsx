@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
+import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import css from './ScrollBars.scss';
