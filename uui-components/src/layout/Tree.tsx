@@ -18,6 +18,7 @@ export interface TreeListItem {
 export interface TreeProps<TItem extends TreeListItem> extends IHasCX, IHasChildren, IEditable<DataSourceState> {
     items: TreeListItem[];
     renderRow(row: DataRowProps<TItem, string>): void;
+    getSearchFields?(item: TItem): string[];
     search?: string;
 }
 
@@ -32,7 +33,7 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
         props.onValueChange,
         {
             getParentId: i => i.parentId,
-            getSearchFields: i => [i.name],
+            getSearchFields: props.getSearchFields || (i => [i.name]),
         },
     );
 

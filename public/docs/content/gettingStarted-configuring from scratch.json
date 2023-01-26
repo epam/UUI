@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The best way to configure your application from scratch it's use our custom ",
+            "text": "The best way to configure your application is to start with our custom ",
             "marks": []
           },
           {
@@ -186,7 +186,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It will create and initialize environment and dependencies automatically. Also it will setup minimal UUI configuration with simple layout.",
+            "text": "It will create and initialize the environment and dependencies automatically. Also, it will set up a minimal UUI configuration with a simple layout.",
             "marks": []
           }
         ]
