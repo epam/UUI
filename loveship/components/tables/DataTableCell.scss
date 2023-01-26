@@ -226,4 +226,8 @@
     & :global(.uui-copying-marker) {
         background-color: $sky;
     }
+
+    & :global(.uui-copying-marker-hover) {
+        background-color: $night400;
+    }
 }

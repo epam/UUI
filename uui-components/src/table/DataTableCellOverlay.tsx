@@ -26,7 +26,8 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
         showLeftBorder && 'uui-selected-cell-left',
     );
 
-    const showMarker = (isCopying && isStartCell) || (!isCopying && canCopyFrom);
+    const showMarkerHover = !isCopying && canCopyFrom;
+    const showMarker = (isCopying && isStartCell) || showMarkerHover;
 
     const overlay = (
         <div
@@ -39,7 +40,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
             ) }
         >
             { showMarker && <div
-                className={ cx(css.copyingMarker, 'uui-copying-marker') }
+                className={ cx(css.copyingMarker, showMarkerHover ? 'uui-copying-marker-hover' : 'uui-copying-marker') }
                 onPointerDown={ handleCopyingMarkerPointerDown } onClick={ e => e.stopPropagation() }
             /> }
         </div>

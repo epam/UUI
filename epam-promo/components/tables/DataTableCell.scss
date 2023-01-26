@@ -229,4 +229,8 @@
     & :global(.uui-copying-marker) {
         background-color: $blue;
     }
+
+    & :global(.uui-copying-marker-hover) {
+        background-color: $gray40;
+    }
 }
