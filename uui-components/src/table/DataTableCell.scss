@@ -27,14 +27,6 @@
     &:last-child {
         border-right-color: transparent;
     }
-
-    &.selecting {
-        cursor: crosshair;
-
-        &:hover * {
-            pointer-events: none;
-        }
-    }
 }
 
 .editor-wrapper {

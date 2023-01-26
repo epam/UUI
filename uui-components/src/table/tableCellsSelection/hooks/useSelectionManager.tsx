@@ -48,33 +48,25 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
     }, [selectionRange, rows, columns, canBeSelected, shouldSelectCell]);
 
     const useCellSelectionInfo = useCallback((row: number, column: number) => {
+    const getCellSelectionInfo = useCallback((row: number, column: number) => {
         const { isCopying } = selectionRange || {};
-        const { isTop, isBottom, isLeft, isRight, isSelected, isStartCell } = useMemo(
-            () => getCellPosition(row, column, selectionRange),
-            [row, column, selectionRange],
-        );
-        const canCopyFrom = useMemo(
-            () => canBeSelected?.(row, column, { copyFrom: true }),
-            [row, column, canBeSelected],
-        );
-        const canAcceptCopy = useMemo(
-            () => canBeSelected?.(row, column, { copyTo: true }),
-            [row, column, canBeSelected],
-        );
+        const { isTop, isBottom, isLeft, isRight, isSelected, isStartCell } = getCellPosition(row, column, selectionRange);
+        const canCopyFrom = canBeSelected?.(row, column, { copyFrom: true });
+        const canAcceptCopy = canBeSelected?.(row, column, { copyTo: true });
 
-        const showBorder = useCallback((isBorderPosition: boolean, neighborRow: number, neighborColumn: number) => {
+        const showBorder = (isBorderPosition: boolean, neighborRow: number, neighborColumn: number) => {
             if (isStartCell) return true;
             if (!isSelected) return false;
             if (!isCopying) {
                 return isBorderPosition;
             }
             return canAcceptCopy && (isBorderPosition || !canBeSelected?.(neighborRow, neighborColumn, { copyTo: true }));
-        }, [isSelected, isStartCell, canAcceptCopy, canBeSelected]);
+        };
 
-        const showTopBorder = useMemo(() => showBorder(isTop, row - 1, column), [isTop, row, column, showBorder, isStartCell]);
-        const showRightBorder = useMemo(() => showBorder(isRight, row, column + 1), [isRight, row, column, showBorder, isStartCell]);
-        const showBottomBorder = useMemo(() => showBorder(isBottom, row + 1, column), [isBottom, row, column, showBorder, isStartCell]);
-        const showLeftBorder = useMemo(() => showBorder(isLeft, row, column - 1), [isLeft, row, column, showBorder, isStartCell]);
+        const showTopBorder = showBorder(isTop, row - 1, column);
+        const showRightBorder = showBorder(isRight, row, column + 1);
+        const showBottomBorder = showBorder(isBottom, row + 1, column);
+        const showLeftBorder = showBorder(isLeft, row, column - 1);
 
         return {
             isSelected, canCopyFrom, canAcceptCopy, isStartCell,
@@ -82,5 +74,5 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         };
     }, [selectionRange, canBeSelected]);
 
-    return { selectionRange, setSelectionRange: setSelectionRangeDebounced, canBeSelected, getSelectedCells, cellToCopyFrom, useCellSelectionInfo };
+    return { selectionRange, setSelectionRange: setSelectionRangeDebounced, canBeSelected, getSelectedCells, cellToCopyFrom, getCellSelectionInfo };
 };

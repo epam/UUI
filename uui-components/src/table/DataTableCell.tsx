@@ -2,7 +2,6 @@ import React, { PointerEventHandler, useCallback, useContext } from 'react';
 import { DataTableCellProps, RenderEditorProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout';
-import { DataTableSelectionContext } from "./tableCellsSelection";
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -13,16 +12,9 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
 
-    const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
-
     let content: React.ReactNode;
     let outline: React.ReactNode = null;
     let isEditable = !!props.onValueChange;
-
-    const handlePointerEnter: PointerEventHandler = useCallback(() => {
-        if (!selectionRange) return;
-        setSelectionRange(prevState => ({ ...prevState, endRowIndex: row.index, endColumnIndex: props.index }));
-    }, [selectionRange, row.index, props.index]);
 
     if (props.rowProps.isLoading) {
         content = props.renderPlaceholder(props);
@@ -45,7 +37,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             mode: 'cell',
         };
 
-        content = <div className={ css.editorWrapper } onPointerEnter={ handlePointerEnter } >
+        content = <div className={ css.editorWrapper } >
             { props.renderEditor(editorProps) }
             { props.renderOverlay?.({
                 ...editorProps, inFocus: state.inFocus,
@@ -75,7 +67,6 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.cx,
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
-                selectionRange && css.selecting,
             ] }
             style={ {
                 justifyContent,

@@ -11,7 +11,7 @@ export interface DataTableSelectionProviderProps<TItem, TId, TFilter> extends Re
 
 export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, columns, children }: DataTableSelectionProviderProps<TItem, TId, TFilter>) => {
     const {
-        selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom, useCellSelectionInfo,
+        selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom, getCellSelectionInfo,
     } = useSelectionManager<TItem, TId, TFilter>({ rows, columns });
 
     useEffect(() => {
@@ -33,7 +33,7 @@ export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, 
     }
 
     return (
-        <DataTableSelectionContext.Provider value={ { selectionRange, setSelectionRange, canBeSelected, useCellSelectionInfo } }>
+        <DataTableSelectionContext.Provider value={ { selectionRange, setSelectionRange, canBeSelected, getCellSelectionInfo } }>
             { children }
         </DataTableSelectionContext.Provider>
     );

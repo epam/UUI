@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { cx, DataTableCellOverlayProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCellOverlay.scss';
 import { DataTableSelectionContext } from "./tableCellsSelection";
@@ -6,10 +6,10 @@ import { PointerEventHandler, useContext } from "react";
 
 export function DataTableCellOverlayComponent(props: DataTableCellOverlayProps) {
     const { columnIndex, rowIndex } = props;
-    const { selectionRange, setSelectionRange, useCellSelectionInfo } = useContext(DataTableSelectionContext);
+    const { selectionRange, setSelectionRange, getCellSelectionInfo } = useContext(DataTableSelectionContext);
     const {
         isSelected, showBottomBorder, showLeftBorder, showRightBorder, showTopBorder, canCopyFrom, isStartCell,
-    } = useCellSelectionInfo?.(rowIndex, columnIndex) ?? {};
+    } = getCellSelectionInfo?.(rowIndex, columnIndex) ?? {};
 
     const { isCopying } = selectionRange ?? {};
     const handleCopyingMarkerPointerDown: PointerEventHandler = e => {
@@ -17,6 +17,11 @@ export function DataTableCellOverlayComponent(props: DataTableCellOverlayProps) 
         e.stopPropagation();
         setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true });
     };
+
+    const handlePointerEnter: PointerEventHandler = useCallback(() => {
+        if (!selectionRange) return;
+        setSelectionRange(prevState => ({ ...prevState, endRowIndex: rowIndex, endColumnIndex: columnIndex }));
+    }, [selectionRange, rowIndex, columnIndex]);
 
     const borderClassNames = isSelected && cx(
         'uui-selected-cell',
@@ -31,12 +36,14 @@ export function DataTableCellOverlayComponent(props: DataTableCellOverlayProps) 
 
     const overlay = (
         <div
+            onPointerEnter={ handlePointerEnter }
             className={ cx(
                 css.root,
                 props.isInvalid && uuiMod.invalid,
                 props.inFocus && uuiMod.focus,
                 props.cx,
                 borderClassNames,
+                selectionRange && css.selecting,
             ) }
         >
             { showMarker && <div
