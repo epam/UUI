@@ -4,7 +4,7 @@ import css from './DataTableCellOverlay.scss';
 import { DataTableSelectionContext } from "./tableCellsSelection";
 import { PointerEventHandler, useContext } from "react";
 
-export function DataTableCellOverlayComponent(props: DataTableCellOverlayProps) {
+export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const { columnIndex, rowIndex } = props;
     const { selectionRange, setSelectionRange, getCellSelectionInfo } = useContext(DataTableSelectionContext);
     const {
@@ -66,5 +66,3 @@ export function DataTableCellOverlayComponent(props: DataTableCellOverlayProps) 
         return overlay;
     }
 }
-
-export const DataTableCellOverlay = React.memo(DataTableCellOverlayComponent);

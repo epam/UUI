@@ -48,45 +48,6 @@ describe('useSelectioManager', () => {
         });
     });
 
-    describe('canBeSelected', () => {
-        it('should return true if copyFrom flag is set and canCopy return true', () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            expect(result.current.canBeSelected(2, 0, { copyFrom: true })).toBeTruthy();
-        });
-
-        it('should return false if copyFrom flag is set and canCopy return false', () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            expect(result.current.canBeSelected(2, 3, { copyFrom: true })).toBeFalsy();
-        });
-
-        it('should return true if copyTo flag is set and canAcceptCopy return true', async () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            const newSelectionRange = { startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 5, isCopying: true };
-            act(() => {
-                result.current.setSelectionRange(newSelectionRange);
-            });
-
-            expect(result.current.canBeSelected(2, 1, { copyTo: true })).toBeTruthy();
-        });
-
-        it('should return false if copyTo flag is set and canAcceptCopy return false', async () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            const newSelectionRange = { startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 3, isCopying: true };
-            act(() => {
-                result.current.setSelectionRange(newSelectionRange);
-            });
-
-
-            expect(result.current.canBeSelected(1, 0, { copyTo: true })).toBeFalsy();
-        });
-
-        it('should return false if copyTo flag is set and no cell to copy was selected', () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            expect(result.current.canBeSelected(2, 0, { copyTo: true })).toBeFalsy();
-        });
-    });
-
-
     describe('getSelectedCells', () => {
         it('should return selected range', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
