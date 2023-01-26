@@ -6,11 +6,12 @@ import { PointerEventHandler, useContext } from "react";
 
 export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const { columnIndex, rowIndex } = props;
-    const { setSelectionRange, useCellSelectionInfo } = useContext(DataTableSelectionContext);
+    const { selectionRange, setSelectionRange, useCellSelectionInfo } = useContext(DataTableSelectionContext);
     const {
-        isSelected, showBottomBorder, showLeftBorder, showRightBorder, showTopBorder, canCopyFrom,
+        isSelected, showBottomBorder, showLeftBorder, showRightBorder, showTopBorder, canCopyFrom, isStartCell,
     } = useCellSelectionInfo?.(rowIndex, columnIndex) ?? {};
 
+    const { isCopying } = selectionRange ?? {};
     const handleCopyingMarkerPointerDown: PointerEventHandler = e => {
         e.preventDefault();
         e.stopPropagation();
@@ -25,6 +26,8 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
         showLeftBorder && 'uui-selected-cell-left',
     );
 
+    const showMarker = (isCopying && isStartCell) || (!isCopying && canCopyFrom);
+
     const overlay = (
         <div
             className={ cx(
@@ -35,7 +38,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
                 borderClassNames,
             ) }
         >
-            { (props.inFocus && canCopyFrom) && <div
+            { showMarker && <div
                 className={ cx(css.copyingMarker, 'uui-copying-marker') }
                 onPointerDown={ handleCopyingMarkerPointerDown } onClick={ e => e.stopPropagation() }
             /> }

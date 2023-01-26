@@ -28,6 +28,7 @@ export interface SelectionManager<TItem = any, TId = any, TFilter = any> {
         showLeftBorder: boolean;
         canCopyFrom: boolean;
         canAcceptCopy: boolean;
+        isStartCell: boolean;
     };
 }
 
