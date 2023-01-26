@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { DataColumnProps, DataRowProps, DataTableSelectedCellData } from "@epam/uui-core";
 import { DataTableSelectionContext } from "./DataTableSelectionContext";
 import { useSelectionManager } from "./hooks";
@@ -11,7 +11,7 @@ export interface DataTableSelectionProviderProps<TItem, TId, TFilter> extends Re
 
 export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, columns, children }: DataTableSelectionProviderProps<TItem, TId, TFilter>) => {
     const {
-        selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom, getCellSelectionInfo,
+        selectionRange, setSelectionRange, getSelectedCells, cellToCopyFrom, getCellSelectionInfo,
     } = useSelectionManager<TItem, TId, TFilter>({ rows, columns });
 
     useEffect(() => {
@@ -32,8 +32,15 @@ export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, 
         return <>{ children }</>;
     }
 
+    const value = useMemo(
+        () => ({ selectionRange, setSelectionRange, getCellSelectionInfo }),
+        // as if `useSelectionManager` is working with rows ref, it is possible to ignore `getCellSelectionInfo`
+        // in order to improve performance on rows update
+        [selectionRange],
+    );
+
     return (
-        <DataTableSelectionContext.Provider value={ { selectionRange, setSelectionRange, canBeSelected, getCellSelectionInfo } }>
+        <DataTableSelectionContext.Provider value={ value }>
             { children }
         </DataTableSelectionContext.Provider>
     );
