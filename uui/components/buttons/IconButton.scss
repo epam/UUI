@@ -1,28 +1,28 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    fill: var(--uui-icon-btn-color);
+    fill: var(--uui-icon-btn);
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            fill: var(--uui-icon-btn-color-hover);
+            fill: var(--uui-icon-btn-hover);
         }
 
         &:active {
-            fill: var(--uui-icon-btn-color-active);
+            fill: var(--uui-icon-btn-active);
         }
     }
 
     &:global(.uui-disabled) {
-        fill: var(--uui-icon-btn-color-disabled);
+        fill: var(--uui-icon-btn-disabled);
 
         &:global(.-clickable) {
             &:hover, &:focus {
-                fill: var(--uui-icon-btn-color-disabled);
+                fill: var(--uui-icon-btn-disabled);
             }
 
             &:active {
-                fill: var(--uui-icon-btn-color-disabled);
+                fill: var(--uui-icon-btn-disabled);
             }
         }
     }

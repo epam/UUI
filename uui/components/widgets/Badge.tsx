@@ -32,7 +32,7 @@ export interface BadgeProps extends ButtonProps, BadgeMods {}
 export function applyBadgeMods(mods: BadgeMods) {
     return [
 
-        `badge-color-${(mods.color || 'info')}`,
+        `badge-${(mods.color || 'info')}`,
         buttonCss.root,
         css['size-' + (mods.size || defaultSize)],
         css['fill-' + (mods.fill || 'solid')],

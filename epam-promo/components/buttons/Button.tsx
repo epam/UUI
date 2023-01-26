@@ -1,4 +1,4 @@
-import { Button as uuiButton, UUIButtonProps, ButtonMode } from '@epam/uui';
+import { Button as uuiButton, ButtonProps as UuiButtonProps, ButtonMode } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 import { FillStyle } from '../types';
 
@@ -21,9 +21,9 @@ const mapFillToMod: Record<FillStyle, ButtonMode> = {
 
 export const applyButtonMods = () => ['uui-theme-promo'];
 
-export type ButtonProps = Omit<UUIButtonProps, "color"> & ButtonMods;
+export type ButtonProps = Omit<UuiButtonProps, "color"> & ButtonMods;
 
-export const Button = withMods<Omit<UUIButtonProps, "color">, ButtonMods>(
+export const Button = withMods<Omit<UuiButtonProps, "color">, ButtonMods>(
     uuiButton,
     applyButtonMods,
     (props) => ({
