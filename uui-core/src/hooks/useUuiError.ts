@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useUuiContext } from '../services';
 import { ApiCallInfo, ApiRecoveryReason, UuiError, UuiErrorInfo } from '../types';
 import { useForceUpdate } from './useForceUpdate';
-import { isClientSide } from "../helpers";
+import { isClientSide } from "../helpers/ssr";
 
 export type UuiRecoveryErrorInfo = {
     title: string,

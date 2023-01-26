@@ -1,6 +1,6 @@
 import { BaseContext } from './BaseContext';
 import { IRouterContext, Link } from '../types';
-import { isClientSide } from "../helpers";
+import { isClientSide } from "../helpers/ssr";
 
 export class Lock {
     constructor(public tryRelease?: () => Promise<void>) {}
