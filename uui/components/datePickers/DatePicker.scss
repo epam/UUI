@@ -5,7 +5,7 @@
 
     // DatePickerBase style
     :global(.uui-datepicker-container) {
-        background-color: var(--uui-dtp-title-bg-color);
+        background-color: var(--uui-dtp-title-bg);
     }
 
     // Header styles
@@ -20,12 +20,12 @@
 
     :global(.uui-datepickerheader-nav-title) {
         font-family: var(--font-semibold);
-        color: var(--uui-dtp-text-color-selected);
+        color: var(--uui-dtp-text-selected);
         font-size: 14px;
         padding: 3px 10px;
 
         &:hover {
-            background-color: var(--uui-dtp-title-bg-color-hover);
+            background-color: var(--uui-dtp-title-bg-hover);
             cursor: pointer;
         }
 
@@ -35,7 +35,7 @@
     }
 
     :global(.uui-datepickerheader-nav-icon-right), :global(.uui-datepickerheader-nav-icon-left) {
-        fill: var(--uui-dtp-next-prev-icon-color);
+        fill: var(--uui-dtp-next-prev-icon);
         width: 36px;
         height: 36px;
         align-items: center;
@@ -94,12 +94,12 @@
         height: 36px;
         border-radius: 20px;
         margin: 6px;
-        color: var(--uui-dtp-text-color);
+        color: var(--uui-dtp-text);
 
         &:hover {
             width: 70px;
             height: 34px;
-            border: 1px solid var(--uui-dtp-text-color-selected);
+            border: 1px solid var(--uui-dtp-text-selected);
             cursor: pointer;
         }
     }
@@ -112,27 +112,27 @@
         align-items: center;
         border-radius: 20px;
         margin: 6px 0;
-        color: var(--uui-dtp-text-color);
+        color: var(--uui-dtp-text);
 
         &:hover {
             width: 61px;
             height: 34px;
-            border: 1px solid var(--uui-dtp-text-color-selected);
+            border: 1px solid var(--uui-dtp-text-selected);
             cursor: pointer;
         }
     }
 
     :global(.uui-monthselection-current-month) {
         &:global(.uui-monthselection-month) {
-            background-color: var(--uui-dtp-text-color-selected);
-            color: var(--uui-dtp-title-bg-color);
+            background-color: var(--uui-dtp-text-selected);
+            color: var(--uui-dtp-title-bg);
         }
     }
 
     :global(.uui-yearselection-current-year) {
         &:global(.uui-yearselection-year) {
-            background-color: var(--uui-dtp-text-color-selected);
-            color: var(--uui-dtp-title-bg-color);
+            background-color: var(--uui-dtp-text-selected);
+            color: var(--uui-dtp-title-bg);
         }
     }
 }

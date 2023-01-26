@@ -3,21 +3,21 @@
 .root {
     .icon-wrapper {
         :global(.uui-icon) {
-            fill: var(--notification-card-fill-color);
+            fill: var(--uui-notification-card-fill);
         }
     }
 }
 
 .notification-wrapper {
     border-style: solid;
-    border-color: var(--notification-card-border-color);
-    border-width: var(--notification-card-border-width);
+    border-color: var(--uui-notification-card-border);
+    border-width: var(--uui-notification-card-border-width);
     padding: 6px 18px;
     width: 360px;
-    background: var(--notification-card-bg-color);
+    background: var(--uui-notification-card-bg);
     display: flex;
     overflow: hidden;
-    border-radius:  var(--notification-card-border-radius);
+    border-radius:  var(--uui-notification-card-border-radius);
 
     @media (max-width: 720px) {
         width: 100%;

@@ -11,7 +11,7 @@ export class Paginator extends React.Component<PaginatorProps> {
     renderPaginator(params: PaginatorParams) {
         return (
             <nav role="navigation" className={ css.root } { ...params.rawProps }>
-                <PageButton size={ params.size } icon={ (params.size === '30') ? ArrowLeftIcon_30 : ArrowLeftIcon_24 } onClick={ params.goToPrev } isDisabled={ params.isFirst } fill={ (params.isFirst && 'solid') || 'white' } color='night400' />
+                <PageButton size={ params.size } icon={ (params.size === '30') ? ArrowLeftIcon_30 : ArrowLeftIcon_24 } onClick={ params.goToPrev } isDisabled={ params.isFirst } fill={ (params.isFirst && 'solid') || 'white' } color='night500' />
                 {
                     params.pages.map((page, index) => {
                         if (page.type === 'spacer') {
@@ -21,7 +21,7 @@ export class Paginator extends React.Component<PaginatorProps> {
                         }
                     })
                 }
-                <PageButton size={ params.size } icon={ (params.size === '30') ? ArrowRightIcon_30 : ArrowRightIcon_24 } onClick={ params.goToNext } isDisabled={ params.isLast } fill={ (params.isLast && 'solid') || 'white' } color='night400' />
+                <PageButton size={ params.size } icon={ (params.size === '30') ? ArrowRightIcon_30 : ArrowRightIcon_24 } onClick={ params.goToNext } isDisabled={ params.isLast } fill={ (params.isLast && 'solid') || 'white' } color='night500' />
             </nav>
         );
     }

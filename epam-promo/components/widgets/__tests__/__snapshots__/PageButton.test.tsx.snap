@@ -2,7 +2,7 @@
 
 exports[`PageButton should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled button-color-blue root size-30 fill-light fill-light size-30"
+  className="container uui-button-box uui-enabled button-vars button-blue root size-30 mode-ghost uui-theme-promo fill-light size-30"
   onClick={[Function]}
   tabIndex={-1}
   type="button"
@@ -17,7 +17,7 @@ exports[`PageButton should be rendered correctly 1`] = `
 
 exports[`PageButton should be rendered correctly with props 1`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable button-color-blue root size-24 fill-white fill-white size-24"
+  className="container uui-button-box uui-enabled -clickable button-vars button-blue root size-24 mode-outline uui-theme-promo fill-white size-24"
   onClick={[Function]}
   tabIndex={0}
   type="button"
