@@ -4,7 +4,7 @@ import css from './DataTableCellOverlay.scss';
 import { DataTableSelectionContext } from "./tableCellsSelection";
 import { PointerEventHandler, useContext } from "react";
 
-export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
+export function DataTableCellOverlayComponent(props: DataTableCellOverlayProps) {
     const { columnIndex, rowIndex } = props;
     const { selectionRange, setSelectionRange, useCellSelectionInfo } = useContext(DataTableSelectionContext);
     const {
@@ -26,8 +26,8 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
         showLeftBorder && 'uui-selected-cell-left',
     );
 
-    const showMarkerHover = !isCopying && canCopyFrom;
-    const showMarker = (isCopying && isStartCell) || showMarkerHover;
+    const showMarkerHover = !isCopying && canCopyFrom && !props.inFocus;
+    const showMarker = (isCopying && isStartCell) || (props.inFocus && canCopyFrom) || showMarkerHover;
 
     const overlay = (
         <div
@@ -59,3 +59,5 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
         return overlay;
     }
 }
+
+export const DataTableCellOverlay = React.memo(DataTableCellOverlayComponent);
