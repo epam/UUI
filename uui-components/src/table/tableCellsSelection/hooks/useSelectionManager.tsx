@@ -14,7 +14,6 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
     }, [rows]);
 
     const [selectionRange, setSelectionRange] = useState<DataTableSelectionRange>(null);
-    const setSelectionRangeDebounced = useDebounce(setSelectionRange, 0);
 
     const cellToCopyFrom = useMemo(
         () => getCellToCopyFrom<TItem, TId, TFilter>(selectionRange, rowsRef.current, columns),
@@ -83,5 +82,5 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         };
     }, [selectionRange, canBeSelected]);
 
-    return { selectionRange, setSelectionRange: setSelectionRangeDebounced, canBeSelected, getSelectedCells, cellToCopyFrom, getCellSelectionInfo };
+    return { selectionRange, setSelectionRange, canBeSelected, getSelectedCells, cellToCopyFrom, getCellSelectionInfo };
 };

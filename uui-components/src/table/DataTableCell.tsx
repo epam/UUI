@@ -1,4 +1,4 @@
-import React, { PointerEventHandler, useCallback, useContext } from 'react';
+import React from 'react';
 import { DataTableCellProps, RenderEditorProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout';

@@ -3,23 +3,19 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useSelectionManager } from '../hooks';
 import { columnsMock, rowsMock } from '../mocks';
 
-const waitFor = async () => new Promise((resolve) => setTimeout(resolve, 0));
-
 describe('useSelectioManager', () => {
     describe('selectRange', () => {
         it('should select some range', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 1, endRowIndex: 1, isCopying: true };
-            await act(async () => {
+            act(() => {
                 result.current.setSelectionRange(newSelectionRange);
-                await waitFor();
             });
 
             expect(result.current.selectionRange).toEqual(newSelectionRange);
 
-            await act(async () => {
+            act(() => {
                 result.current.setSelectionRange(null);
-                await waitFor();
             });
 
             expect(result.current.selectionRange).toEqual(null);
@@ -30,11 +26,9 @@ describe('useSelectioManager', () => {
         it('should return cell to copy from', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 5, isCopying: true };
-            await act(async () => {
+            act(() => {
                 result.current.setSelectionRange(newSelectionRange);
-                await waitFor();
             });
-
 
             const expectedColumn = columnsMock[newSelectionRange.startColumnIndex];
             const expectedRow = rowsMock[newSelectionRange.startRowIndex];
@@ -68,9 +62,8 @@ describe('useSelectioManager', () => {
         it('should return true if copyTo flag is set and canAcceptCopy return true', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 5, isCopying: true };
-            await act(async () => {
+            act(() => {
                 result.current.setSelectionRange(newSelectionRange);
-                await waitFor();
             });
 
             expect(result.current.canBeSelected(2, 1, { copyTo: true })).toBeTruthy();
@@ -79,9 +72,8 @@ describe('useSelectioManager', () => {
         it('should return false if copyTo flag is set and canAcceptCopy return false', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 3, isCopying: true };
-            await act(async () => {
+            act(() => {
                 result.current.setSelectionRange(newSelectionRange);
-                await waitFor();
             });
 
 
@@ -99,9 +91,8 @@ describe('useSelectioManager', () => {
         it('should return selected range', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 1, endRowIndex: 3, isCopying: true };
-            await act(async () => {
+            act(() => {
                 result.current.setSelectionRange(newSelectionRange);
-                await waitFor();
             });
 
 
@@ -127,13 +118,11 @@ describe('useSelectioManager', () => {
         const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 2, endRowIndex: 3, isCopying: true };
         it('should render borders for start cell', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            await act(async () => {
+            act(() => {
                 result.current.setSelectionRange(selectionRange);
-                await waitFor();
             });
 
-            const { result: infoResult } = renderHook(() => result.current.useCellSelectionInfo(0, 0));
-            expect(infoResult.current).toEqual({
+            expect(result.current.getCellSelectionInfo(0, 0)).toEqual({
                 isSelected: true, showTopBorder: true, showRightBorder: true, showBottomBorder: true, showLeftBorder: true, canCopyFrom: true,
                 canAcceptCopy: true, isStartCell: true,
             });
@@ -141,19 +130,16 @@ describe('useSelectioManager', () => {
 
         it('should render border for cell near border', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            await act(async () => {
+            act(() => {
                 result.current.setSelectionRange(selectionRange);
-                await waitFor();
             });
 
-            const { result: infoResult } = renderHook(() => result.current.useCellSelectionInfo(0, 2));
-            expect(infoResult.current).toEqual({
+            expect(result.current.getCellSelectionInfo(0, 2)).toEqual({
                 isSelected: true, showTopBorder: true, showRightBorder: true, canCopyFrom: true, canAcceptCopy: true,
                 showBottomBorder: false, showLeftBorder: false, isStartCell: false,
             });
 
-            const { result: infoResult2 } = renderHook(() => result.current.useCellSelectionInfo(3, 1));
-            expect(infoResult2.current).toEqual({
+            expect(result.current.getCellSelectionInfo(3, 1)).toEqual({
                 isSelected: true, showBottomBorder: true, showLeftBorder: true, canCopyFrom: true, canAcceptCopy: true,
                 showTopBorder: false, showRightBorder: false, isStartCell: false,
             });
@@ -161,13 +147,11 @@ describe('useSelectioManager', () => {
 
         it('should not render borders for cell inside the area of selection', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            await act(async () => {
+            act(() => {
                 result.current.setSelectionRange(selectionRange);
-                await waitFor();
             });
 
-            const { result: infoResult2 } = renderHook(() => result.current.useCellSelectionInfo(2, 1));
-            expect(infoResult2.current).toEqual({
+            expect(result.current.getCellSelectionInfo(2, 1)).toEqual({
                 isSelected: true, canCopyFrom: true, canAcceptCopy: true,
                 showTopBorder: false, showRightBorder: false, showBottomBorder: false, showLeftBorder: false, isStartCell: false,
             });
