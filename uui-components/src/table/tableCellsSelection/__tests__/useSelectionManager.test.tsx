@@ -135,7 +135,7 @@ describe('useSelectioManager', () => {
             const { result: infoResult } = renderHook(() => result.current.useCellSelectionInfo(0, 0));
             expect(infoResult.current).toEqual({
                 isSelected: true, showTopBorder: true, showRightBorder: true, showBottomBorder: true, showLeftBorder: true, canCopyFrom: true,
-                canAcceptCopy: true,
+                canAcceptCopy: true, isStartCell: true,
             });
         });
 
@@ -149,13 +149,13 @@ describe('useSelectioManager', () => {
             const { result: infoResult } = renderHook(() => result.current.useCellSelectionInfo(0, 2));
             expect(infoResult.current).toEqual({
                 isSelected: true, showTopBorder: true, showRightBorder: true, canCopyFrom: true, canAcceptCopy: true,
-                showBottomBorder: false, showLeftBorder: false,
+                showBottomBorder: false, showLeftBorder: false, isStartCell: false,
             });
 
             const { result: infoResult2 } = renderHook(() => result.current.useCellSelectionInfo(3, 1));
             expect(infoResult2.current).toEqual({
                 isSelected: true, showBottomBorder: true, showLeftBorder: true, canCopyFrom: true, canAcceptCopy: true,
-                showTopBorder: false, showRightBorder: false,
+                showTopBorder: false, showRightBorder: false, isStartCell: false,
             });
         });
 
@@ -169,7 +169,7 @@ describe('useSelectioManager', () => {
             const { result: infoResult2 } = renderHook(() => result.current.useCellSelectionInfo(2, 1));
             expect(infoResult2.current).toEqual({
                 isSelected: true, canCopyFrom: true, canAcceptCopy: true,
-                showTopBorder: false, showRightBorder: false, showBottomBorder: false, showLeftBorder: false,
+                showTopBorder: false, showRightBorder: false, showBottomBorder: false, showLeftBorder: false, isStartCell: false,
             });
         });
     });
