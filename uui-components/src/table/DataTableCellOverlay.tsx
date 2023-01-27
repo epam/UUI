@@ -41,9 +41,9 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
                 css.root,
                 props.isInvalid && uuiMod.invalid,
                 props.inFocus && uuiMod.focus,
+                selectionRange && css.selecting,
                 props.cx,
                 borderClassNames,
-                selectionRange && css.selecting,
             ) }
         >
             { showMarker && <div
