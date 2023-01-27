@@ -61,6 +61,9 @@
         z-index: 2;
         visibility: visible;
         border-color: var(--uui-dt-cell-editor-focus-border-color);
+        // Overlay borders of cell at the left and top
+        margin-left: calc(var(--uui-dt-cell-border-width) * -1);
+        margin-right: calc(var(--uui-dt-cell-border-width) * -1);
     }
 
     .cell &:global(.uui-invalid) {
