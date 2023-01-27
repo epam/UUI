@@ -67,6 +67,50 @@
         "nodes": [
           {
             "object": "text",
+            "text": "For allowing columns to copy and receive copies use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "canCopy",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "canAcceptCopy",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " callbacks props while defining column configuration.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
             "text": "You can find the simplest example of copying below.",
             "marks": []
           }
