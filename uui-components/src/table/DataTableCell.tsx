@@ -41,7 +41,6 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         content = <div className={ css.editorWrapper } >
             { props.renderEditor(editorProps) }
             <DataTableCellOverlay
-                cx={ css.overlay }
                 { ...editorProps }
                 renderTooltip={ props.renderTooltip }
                 inFocus={ state.inFocus }
@@ -67,6 +66,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 role: 'cell',
             } }
             cx={ [
+                'uui-cell',
                 css.cell,
                 props.column.cx,
                 props.cx,
