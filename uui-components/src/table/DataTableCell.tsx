@@ -2,6 +2,7 @@ import React from 'react';
 import { DataTableCellProps, RenderEditorProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout';
+import { DataTableCellOverlay } from './DataTableCellOverlay';
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -39,10 +40,14 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
 
         content = <div className={ css.editorWrapper } >
             { props.renderEditor(editorProps) }
-            { props.renderOverlay?.({
-                ...editorProps, inFocus: state.inFocus,
-                rowIndex: row.index, columnIndex: props.index,
-            }) }
+            <DataTableCellOverlay
+                cx={ css.overlay }
+                { ...editorProps }
+                renderTooltip={ props.renderTooltip }
+                inFocus={ state.inFocus }
+                rowIndex={ row.index }
+                columnIndex={ props.index }
+            />
         </div>;
     } else {
         content = props.column.render(props.rowProps.value, props.rowProps);

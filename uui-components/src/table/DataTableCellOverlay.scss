@@ -1,9 +1,5 @@
 .root {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     &:not(.selecting) {
         pointer-events: none;
     }
@@ -23,7 +19,6 @@
     width: 7px;
     height: 7px;
     cursor: crosshair;
-    background-color: blue;
     pointer-events: all;
 
     &::after {
