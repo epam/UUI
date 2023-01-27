@@ -1,18 +1,18 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { IHasChildren, withDeferRenderingForSsr } from "@epam/uui-core";
+import { IHasChildren } from "@epam/uui-core";
+import { useEffect } from "react";
 
 export interface PortalProps extends IHasChildren {
     target?: HTMLElement;
     key?: string;
 }
 
-interface PortalState {
-    el: HTMLElement;
-    root: HTMLElement;
-}
+export const Portal: React.FC<PortalProps> = (props) => {
+    const [isMounted, setIsMounted] = React.useState(false);
+    useEffect(() => setIsMounted(true), []);
+    if (!isMounted) return null;
 
-export const Portal: React.FC<PortalProps> = withDeferRenderingForSsr((props) => {
     const rootElement = props.target || document.getElementById('main') || document.getElementById('root') || document.body;
     return ReactDOM.createPortal(props.children, rootElement, props.key);
-});
+};
