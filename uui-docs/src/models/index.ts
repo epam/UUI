@@ -267,10 +267,3 @@ export interface PersonDetails {
 
 }
 
-export type Day = `${ number }-${ number }-${ number }`;
-export interface ProjectReport {
-    id: number;
-    parentId?: number;
-    name: string;
-    [day: Day]: number;
-}
