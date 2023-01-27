@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
 import React, { useMemo } from 'react';
-import { DataQueryFilter, DataTableState, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
+import { DataQueryFilter, DropPosition, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -38,6 +38,7 @@ export const ProjectTasksDemo = () => {
         },
         getMetadata: () => metadata,
     });
+    const columns = useMemo(() => getColumns(), []);
 
     // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = (position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
@@ -49,7 +50,7 @@ export const ProjectTasksDemo = () => {
     };
 
     //const { tableState, setTableState } = useTableState<any>({ columns });
-    const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
+    const { tableState, setTableState } = useTableState({ columns });
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
         items: Object.values(value.items),
@@ -60,12 +61,8 @@ export const ProjectTasksDemo = () => {
     const dataView = dataSource.useView(tableState, setTableState, {
         getRowOptions: (task) => ({
             ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
-            //checkbox: { isVisible: true },
-            isSelectable: true,
         }),
     });
-
-    const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
 
     const onCopy = (copyFrom: SelectedCellData, selectedCells: SelectedCellData[]) => {
         const valueToCopy = copyFrom.row.value?.[copyFrom.column.key as keyof Task];
@@ -102,14 +99,13 @@ export const ProjectTasksDemo = () => {
         </FlexRow>
         <DataTable
             headerTextCase='upper'
+            showColumnsConfig
             getRows={ dataView.getVisibleRows }
             columns={ columns }
             value={ tableState }
             onValueChange={ setTableState }
             onCopy={ onCopy }
-            showColumnsConfig
             allowColumnsResizing
-            allowColumnsReordering
             { ...dataView.getListProps() }
         />
     </Panel>;

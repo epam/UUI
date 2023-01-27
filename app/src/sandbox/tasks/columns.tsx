@@ -1,14 +1,14 @@
 import React from "react";
 import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, TextArea, DataPickerRow, PickerItem } from '@epam/promo';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
-import { Task, ColumnsProps, SelectedCellData } from "./types";
+import { Task, SelectedCellData } from "./types";
 import { status } from './demoData';
 
 const resourceDataSource = new ArrayDataSource({ items: status });
 
 const isSameColumn = (from: SelectedCellData, to: SelectedCellData) => from.column.key === to.column.key;
 
-export function getColumns(columnsProps: ColumnsProps) {
+export function getColumns() {
     const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         {
             key: 'name',
@@ -136,6 +136,13 @@ export function getColumns(columnsProps: ColumnsProps) {
                 ) }
                 { ...props }
             />,
+        },
+        {
+            key: 'detailed',
+            render: (p) => <></>,
+            width: 54,
+            alignSelf: 'center',
+            fix: 'right',
         },
     ];
 
