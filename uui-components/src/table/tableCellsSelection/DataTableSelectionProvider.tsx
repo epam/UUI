@@ -34,9 +34,7 @@ export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, 
 
     const value = useMemo(
         () => ({ selectionRange, setSelectionRange, getCellSelectionInfo }),
-        // as if `useSelectionManager` is working with rows ref, it is possible to ignore `getCellSelectionInfo`
-        // in order to improve performance on rows update
-        [selectionRange],
+        [selectionRange, getCellSelectionInfo],
     );
 
     return (

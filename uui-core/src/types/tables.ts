@@ -179,8 +179,6 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
 
     /** Overrides default tooltip, used to show validation message if the cell is invalid */
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
-
-    renderOverlay?(props: DataTableCellOverlayProps): React.ReactNode;
 }
 
 export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOptions<TItem, TId> {
