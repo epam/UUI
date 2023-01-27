@@ -38,12 +38,14 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
         <div
             onPointerEnter={ handlePointerEnter }
             className={ cx(
-                css.root,
-                props.isInvalid && uuiMod.invalid,
-                props.inFocus && uuiMod.focus,
-                selectionRange && css.selecting,
+                'uui-cell-overlay',
+                selectionRange && 'uui-cell-selection',
                 props.cx,
+                css.root,
+                css.overlay,
                 borderClassNames,
+                props.inFocus && uuiMod.focus,
+                props.isInvalid && uuiMod.invalid,
             ) }
         >
             { showMarker && <div
