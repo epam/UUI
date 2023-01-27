@@ -1,9 +1,24 @@
 import { DataTable, useForm, Panel, DataTableCell, NumericInput, TextInput } from '@epam/promo';
 import React, { useMemo } from 'react';
 import { DataQueryFilter, DataTableState, DataTableSelectedCellData, useArrayDataSource, DataColumnProps } from '@epam/uui-core';
-import { ProjectReport, demoData, Day } from '@epam/uui-docs';
 
 import css from "./TablesExamples.scss";
+
+enum Day {
+    Monday = 'Monday',
+    Tuesday = 'Tuesday',
+    Wednesday = 'Wednesday',
+    Thursday = 'Thursday',
+    Friday = 'Friday',
+    Saturday = 'Saturday',
+    Sunday = 'Sunday',
+}
+
+export interface ProjectReport extends Record<Day, number> {
+    id: number;
+    parentId?: number;
+    name: string;
+}
 
 interface FormState {
     items: Record<number, ProjectReport>;
@@ -11,57 +26,65 @@ interface FormState {
 
 type SelectedCellData = DataTableSelectedCellData<ProjectReport, number, DataQueryFilter<ProjectReport>>;
 
-const generateDaysOfHalfMonth = (month: number = 1) =>
-    new Array(10).fill(0).map((_, index) => new Date(2023, month - 1, index + 1));
+export const projectReports: Partial<ProjectReport>[] = [
+    { id: 1, name: "Learn" },
+    { id: 2, name: "Heroes" },
+    { id: 3, name: "People" },
+    { id: 4, name: "Assessment" },
+    { id: 5, name: "Level Up" },
+    { id: 6, name: "Grow" },
+    { id: 7, name: "Time" },
+    { id: 8, name: "Onboarding" },
+    { id: 9, name: "Vacations" },
+];
 
-const getDayName = (date: Date, locale: string = 'en-US') => {
-    return date.toLocaleDateString(locale, { weekday: 'short' });
-};
+export const getDemoTasks = () => projectReports.reduce((acc, task) => ({ ...acc, [task.id]: task }), {});
 
-export const getDemoTasks = () => demoData.projectReports.reduce((acc, task) => ({ ...acc, [task.id]: task }), {});
+const getWorkingDayColumn = (day: Day): DataColumnProps<ProjectReport, number, DataQueryFilter<ProjectReport>> => ({
+    key: day,
+    textAlign: 'center',
+    caption: day,
+    grow: 1,
+    width: 73,
+    canCopy: () => true,
+    canAcceptCopy: (from, to) =>
+        from.row.id === to.row.id &&
+        ![Day.Saturday, Day.Sunday].includes(from.column.key as Day),
 
-const isSameRow = (from: SelectedCellData, to: SelectedCellData) => from.row.id === to.row.id;
-
-const isWorkingDay = (cell: SelectedCellData) => {
-    const day = new Date(cell.column.key).getDay();
-    return day >= 0 && day <= 4;
-};
-
-const generateColumnForDay = (day: Date, isLast: boolean = false): DataColumnProps<ProjectReport, number, DataQueryFilter<ProjectReport>> => {
-    const [key] = day.toISOString().split('T');
-
-    const dayName = getDayName(day);
-    const dayNumber = day.getDate();
-
-    return {
-        key,
-        textAlign: 'center',
-        caption: `${ dayName }, ${ dayNumber }`,
-        width: 73,
-        ...(isLast ? { grow: 1 } : {}),
-        canCopy: () => true,
-        canAcceptCopy: (from, to) =>
-            isSameRow(from, to) && (
-                (isWorkingDay(from) && isWorkingDay(to)) ||
-                (!isWorkingDay(from) && !isWorkingDay(to))
-            ),
-        renderCell: (props) => (<DataTableCell
-            { ...props.rowLens.prop(key as Day).toProps() }
-            renderEditor={ props => (<NumericInput
-                { ...props }
-                formatOptions={ { maximumFractionDigits: 1 } }
-            />) }
+    renderCell: (props) => (
+        <DataTableCell
+            { ...props.rowLens.prop(day as Day).toProps() }
+            renderEditor={ props => (
+                <NumericInput
+                    { ...props }
+                    formatOptions={ { maximumFractionDigits: 1 } }
+                />) }
             { ...props }
         />),
-    };
-};
+});
 
-const generateColumnsForDays = (days: Date[]) => days.map((day, index, arr) =>
-    generateColumnForDay(day, index === arr.length - 1),
-);
+const getWeekendColumn = (day: Day): DataColumnProps<ProjectReport, number, DataQueryFilter<ProjectReport>> => ({
+    key: day,
+    textAlign: 'center',
+    caption: day,
+    width: 80,
+    canCopy: () => false, // `canCopy` and `canAcceptCopy` functions can be undefined
+    canAcceptCopy: (from, to) => false,
+    renderCell: (props) => (
+        <DataTableCell
+            cx={ css.weekendDay }
+            { ...props.rowLens.prop(day as Day).toProps() }
+            renderEditor={ props => (
+                <NumericInput
+                    { ...props }
+                    formatOptions={ { maximumFractionDigits: 1 } }
+                    isDisabled={ true }
+                />) }
+            { ...props }
+        />),
+});
 
 function getColumns() {
-    const days = generateDaysOfHalfMonth();
     const columns: DataColumnProps<ProjectReport, number, DataQueryFilter<ProjectReport>>[] = [
         {
             key: 'name',
@@ -76,7 +99,13 @@ function getColumns() {
                 { ...props }
             />,
         },
-        ...generateColumnsForDays(days),
+        getWorkingDayColumn(Day.Monday),
+        getWorkingDayColumn(Day.Tuesday),
+        getWorkingDayColumn(Day.Wednesday),
+        getWorkingDayColumn(Day.Thursday),
+        getWorkingDayColumn(Day.Friday),
+        getWeekendColumn(Day.Saturday),
+        getWeekendColumn(Day.Sunday),
     ];
 
     return columns;

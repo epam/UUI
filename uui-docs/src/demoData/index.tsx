@@ -6,7 +6,6 @@ import { universities } from './universities';
 import { loremIpsum } from './loremIpsum';
 import { slateInitialValue } from './slateInitialValue';
 import { workloadItems } from './workload';
-import { projectReports } from './projectReports';
 
 export const demoData = {
     featureClasses,
@@ -17,5 +16,4 @@ export const demoData = {
     loremIpsum,
     slateInitialValue,
     workloadItems,
-    projectReports,
 };
