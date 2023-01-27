@@ -1,12 +1,7 @@
-import isEmpty from "lodash.isempty";
+import { clearEmptyValueToRecord } from "./clearEmptyValueToRecord";
 
-export const normalizeFilter = (filter: Record<string, any> | undefined) => {
+export const normalizeFilter = <TFilter = Record<string, any>>(filter: TFilter | undefined): TFilter => {
     if (filter === undefined) return filter;
-    
-    const result = Object.keys(filter).reduce((acc, key) => {
-        if (filter[key] !== undefined) acc[key] = filter[key];
-        return acc;
-    }, {} as typeof filter);
-    
-    return isEmpty(result) ? undefined : result;
+
+    return clearEmptyValueToRecord<TFilter>(filter);
 };

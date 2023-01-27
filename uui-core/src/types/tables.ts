@@ -8,10 +8,11 @@ import { ILens } from '../data';
 import * as CSS from 'csstype';
 import { TooltipCoreProps } from './components';
 
-export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
+export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
     filtersConfig?: FiltersConfig;
     presetId?: number | null;
+    viewState?: TViewState;
 }
 
 export type ICanBeFixed = {
@@ -249,7 +250,7 @@ type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
 export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter>
     | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter>;
 
-export interface ITablePreset<TFilter = any> {
+export interface ITablePreset<TFilter = any, TViewState = any> {
     name: string;
     id: number | null;
     filter?: TFilter;
@@ -258,6 +259,7 @@ export interface ITablePreset<TFilter = any> {
     filtersConfig?: FiltersConfig;
     sorting?: SortingOption[];
     order?: string;
+    viewState?: TViewState;
 }
 
 export interface IPresetsApi {
@@ -272,10 +274,11 @@ export interface IPresetsApi {
     presets: ITablePreset[];
 }
 
-export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
+export interface ITableState<TFilter = Record<string, any>, TViewState = any> extends IPresetsApi {
     tableState: DataTableState;
     setTableState(newState: DataTableState): void;
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
+    setViewState(newViewState: TViewState): void;
 }
