@@ -15,19 +15,18 @@ export class LockContext extends BaseContext {
     }
 
     public acquire(tryRelease?: () => Promise<any>): Promise<Lock | null> {
-        if (!isClientSide) {
-            return Promise.reject('LockContext not supported in SSR mode.');
-        }
         if (this.currentLock) {
             return this.tryRelease().then(() => this.acquire(tryRelease));
         } else {
             const lock = new Lock(tryRelease);
-
-            this.unblock = this.router.block(location => {
-                this.routerWillLeave(location);
-            });
-
-            this.currentLock = lock;
+            if (isClientSide) {
+                this.unblock = this.router.block(location => {
+                    this.routerWillLeave(location);
+                });
+                this.currentLock = lock;
+            } else {
+                console.warn('An attempt to acquire lock in server side won\'t have any effect.');
+            }
             return Promise.resolve(lock);
         }
     }
