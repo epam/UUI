@@ -33,10 +33,15 @@
     &:hover :global(.uui-cell-overlay) {
         visibility: hidden;
 
-        &:not(:global(.uui-selected-cell)):not(:global(.uui-focus)) {
+        &:not(:global(.uui-cell-selection)):not(:global(.uui-focus)) {
             z-index: 1;
             visibility: visible;
             border-color: var(--uui-dt-cell-editor-hover-border-color);
+        }
+
+        &:global(.uui-cell-selection) {
+            z-index: 1;
+            visibility: visible;
         }
     }
 }
