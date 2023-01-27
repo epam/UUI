@@ -24,7 +24,7 @@
         }
 
         &:global(.-clickable) {
-            &:hover {
+            &:hover, &:active, &:focus {
                 background-color: var(--uui-tag-bg-hover);
                 fill: var(--uui-tag-fill-hover);
                 cursor: pointer;
