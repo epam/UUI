@@ -1,5 +1,11 @@
 @use '../../assets/styles/scss/index' as *;
 
+.root {
+    :global(.uui-caption) {
+        text-transform: none;
+    }
+}
+
 // Border style
 .style-round {
     &.size-18 { border-radius: 10px; }

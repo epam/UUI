@@ -16,16 +16,18 @@
     }
 
     :global(.uui-caption) {
-        font-family: $font-sans;
+        text-transform: none;
+        font-family: var(--font-regular);
         align-self: center;
         white-space: nowrap;
     }
 
     :global(.uui-count) {
+        height: auto;
         font-size: 12px;
         letter-spacing: 0;
-        color: $night600;
-        background-color: $white;
+        color: var(--night600);
+        background-color: var(--white);
         padding: 0 6px;
         border-radius: 9px;
         min-height: 18px;
@@ -41,6 +43,7 @@
     }
 
     &.size-18 {
+        min-height: 18px;
         min-width: 18px;
         height: 18px;
         padding-left: 2px;
@@ -54,6 +57,7 @@
         }
 
         :global(.uui-count) {
+            height: auto;
             min-height: 12px;
             min-width: 6px;
             line-height: 12px;
@@ -138,17 +142,5 @@
             line-height: 24px;
             border-radius: 12px;
         }
-    }
-
-    &.fill-solid {
-        @include button-colors(var(--uui-color-700), var(--uui-contrast-color-700), var(--uui-color-700));
-    }
-
-    &.fill-white {
-        @include button-colors($white, var(--uui-color-700), var(--uui-color-700));
-    }
-
-    &.fill-none {
-        @include button-colors(transparent, var(--uui-color-700), var(--uui-color-700));
     }
 }

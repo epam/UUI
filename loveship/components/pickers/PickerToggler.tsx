@@ -5,7 +5,8 @@ import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui
 import { DataRowProps } from '@epam/uui-core';
 import { TextPlaceholder } from '../typography';
 import { systemIcons } from '../icons/icons';
-import { Tag, TagSize } from '../widgets';
+import { Tag } from '../widgets';
+import { TagSize } from '@epam/uui';
 import css from './PickerToggler.scss';
 
 const defaultSize = '36';
@@ -38,7 +39,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
         const maxItems = (props.maxItems || props.maxItems === 0) ? props.maxItems : 100;
 
         if (row.isLoading) {
-            return <TextPlaceholder />;
+            return <TextPlaceholder/>;
         } else if (!props.getName || props.selection?.length > maxItems) {
             return row.value;
         } else {
