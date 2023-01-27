@@ -1,5 +1,8 @@
 .root {
     position: absolute;
+    &:not(:global(.uui-cell-selection)) {
+        pointer-events: none;
+    }
     &:global(.uui-cell-selection):hover * {
         pointer-events: none;
     }
