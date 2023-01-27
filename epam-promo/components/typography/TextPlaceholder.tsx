@@ -15,7 +15,7 @@ export interface TextPlaceholderProps extends IHasRawProps<React.HTMLAttributes<
 
 export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<TextPlaceholderProps>> = (props) => {
     const pattern = `0`;
-    const shouldRender = useDeferRenderForSsr();
+    const shouldRender = useDeferRenderForSsr().shouldRender;
     const text = React.useMemo(() => {
         const words = [];
         for (let i = 0; i < (props.wordsCount || 1); i++) {

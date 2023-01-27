@@ -6,5 +6,5 @@ import { useEffect, useState } from "react";
 export function useDeferRenderForSsr() {
     const [shouldRender, setShouldRender] = useState(false);
     useEffect(() => { setShouldRender(true); }, []);
-    return shouldRender;
+    return { shouldRender };
 }

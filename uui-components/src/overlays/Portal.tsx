@@ -8,7 +8,7 @@ export interface PortalProps extends IHasChildren {
 }
 
 export const Portal: React.FC<PortalProps> = (props) => {
-    if (!useDeferRenderForSsr()) {
+    if (!useDeferRenderForSsr().shouldRender) {
         return null;
     }
     const rootElement = props.target || document.getElementById('main') || document.getElementById('root') || document.body;
