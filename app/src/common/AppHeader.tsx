@@ -91,6 +91,7 @@ export class AppHeader extends React.Component {
                     </DropdownMenuBody>
                 ) }
                 placement="bottom-end"
+                key='theme'
             />
         );
     }
@@ -101,15 +102,16 @@ export class AppHeader extends React.Component {
 
         return [
             { id: 'burger', priority: 100500, collapsedContainer: true, render: () => <Burger
-                    key={ 'burger' }
                     renderBurgerContent={ this.renderBurger }
                     logoUrl='/static/logo.svg'
+                    key='burger'
                 />,
             },
             {id: 'logo', priority: 100499, render: () => <MainMenuLogo
                     link={ { pathname: '/' } }
                     onClick={ () => this.sendEvent('Welcome') }
                     logoUrl='/static/logo.svg'
+                    key='logo'
                 />,
             },
             { id: 'documents', priority: 3, render: () => <MainMenuButton
@@ -118,6 +120,7 @@ export class AppHeader extends React.Component {
                     isLinkActive={ (pathName === '/documents' && category !== 'components' && category !== 'assets') }
                     showInBurgerMenu
                     clickAnalyticsEvent={ analyticsEvents.header.link('Documents') }
+                    key='documents'
                 />,
             },
             { id: 'assets', priority: 2, render: () => <MainMenuButton
@@ -126,6 +129,7 @@ export class AppHeader extends React.Component {
                     isLinkActive={ (pathName === '/documents' && category === 'assets') }
                     showInBurgerMenu
                     clickAnalyticsEvent={ analyticsEvents.header.link('Assets') }
+                    key='assets'
                 />,
             },
             { id: 'components', priority: 2, render: () => <MainMenuButton
@@ -134,6 +138,7 @@ export class AppHeader extends React.Component {
                     isLinkActive={ (pathName === '/documents' && category === 'components') }
                     showInBurgerMenu
                     clickAnalyticsEvent={ analyticsEvents.header.link('Components') }
+                    key='components'
                 />,
             },
             { id: 'demo', priority: 2, render: () => <MainMenuButton
@@ -142,6 +147,7 @@ export class AppHeader extends React.Component {
                     isLinkActive={ pathName === '/demo' }
                     showInBurgerMenu
                     clickAnalyticsEvent={ analyticsEvents.header.link('Demo') }
+                    key='demo'
                 />,
             },
             window.location.host.includes('localhost') && { id: 'Sandbox', priority: 1, render: () =>
@@ -149,18 +155,19 @@ export class AppHeader extends React.Component {
                     caption="Sandbox"
                     link={ { pathname: '/sandbox' } }
                     isLinkActive={ pathName === '/sandbox' }
+                    key='sandbox'
                 />,
             },
-            { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } /> },
+            { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key='spacer' /> },
             window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: this.renderThemeSwitcher },
             { id: 'git', priority: 0, render: () => (
-                    <Anchor cx={ css.linkContainer } href={ GIT_LINK } target='_blank' onClick={ () => this.sendEvent(GIT_LINK) } >
+                    <Anchor cx={ css.linkContainer } href={ GIT_LINK } target='_blank' onClick={ () => this.sendEvent(GIT_LINK) } key='git'>
                         <IconContainer icon={ GitIcon } color='white' />
                         <Text font='sans-semibold' fontSize='14' lineHeight='24' cx={ css.linkCaption } >Open Git</Text>
                     </Anchor>
                 ),
             },
-            { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu /> },
+            { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key='globalMenu'/> },
         ].filter(i => !!i);
     }
 

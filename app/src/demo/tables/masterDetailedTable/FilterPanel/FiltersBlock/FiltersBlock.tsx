@@ -7,10 +7,10 @@ interface IFiltersProps<TFilter extends Record<string, any>> extends IEditable<T
     filters: TableFiltersConfig<TFilter>[];
 }
 
-const FiltersBlockImpl = <TFilter extends Record<string, any>>(props: IFiltersProps<TFilter>) => {
+const FiltersBlockImpl = (props: IFiltersProps<any>) => {
     const { value, onValueChange, filters } = props;
     
-    const handleChange = useCallback((newFilter: TFilter) => {
+    const handleChange = useCallback((newFilter: any) => {
         onValueChange({
             ...value,
             ...newFilter,

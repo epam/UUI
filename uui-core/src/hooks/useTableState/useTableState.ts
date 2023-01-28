@@ -4,9 +4,8 @@ import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, ITablePr
 import { getOrderBetween } from "../../helpers";
 import { useUuiContext } from "../../services";
 import sortBy from "lodash.sortby";
-import { normalizeFilter } from "./normalizeFilter";
 import { normalizeFilterConfig } from "./normalizeFilterConfig";
-import { normalizeViewState } from "./normalizeViewState";
+import { clearEmptyValueFromRecord } from "./clearEmptyValueFromRecord";
 
 export const useTableState = <TFilter = Record<string, any>, TViewState = any>(params: IParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
     const context = useUuiContext();
@@ -30,9 +29,9 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
     });
 
     const setTableState = useCallback((newValue: DataTableState<TFilter, TViewState>) => {
-        const newFilter = normalizeFilter(newValue.filter);
+        const newFilter = clearEmptyValueFromRecord(newValue.filter);
         const newFiltersConfig = params.filters ? normalizeFilterConfig(newValue.filtersConfig, newFilter, params.filters) : undefined;
-        const newViewState = normalizeViewState(newValue.viewState);
+        const newViewState = clearEmptyValueFromRecord(newValue.viewState);
         setTableStateValue(prevValue => {
             const newTableState = {
                 ...prevValue,
@@ -91,13 +90,6 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
         setTableState({
             ...tableStateValue,
             filter,
-        });
-    }, [tableStateValue]);
-
-    const setViewState = useCallback((viewState: TViewState) => {
-        setTableState({
-            ...tableStateValue,
-            viewState,
         });
     }, [tableStateValue]);
 
@@ -226,7 +218,6 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
         setColumnsConfig,
         setFiltersConfig,
         setFilter,
-        setViewState,
         presets,
         activePresetId,
         choosePreset,
