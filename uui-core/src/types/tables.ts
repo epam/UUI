@@ -262,7 +262,7 @@ export interface ITablePreset<TFilter = any, TViewState = any> {
     viewState?: TViewState;
 }
 
-export interface IPresetsApi {
+export interface IPresetsApi<TFilter = any, TViewState = any> {
     activePresetId: number | null;
     choosePreset(preset: ITablePreset): void;
     createNewPreset(name: string): Promise<number>;
@@ -274,11 +274,10 @@ export interface IPresetsApi {
     presets: ITablePreset[];
 }
 
-export interface ITableState<TFilter = Record<string, any>, TViewState = any> extends IPresetsApi {
-    tableState: DataTableState;
+export interface ITableState<TFilter = Record<string, any>, TViewState = any> extends IPresetsApi<TFilter, TViewState> {
+    tableState: DataTableState<TFilter, TViewState>;
     setTableState(newState: DataTableState): void;
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
-    setViewState(newViewState: TViewState): void;
 }

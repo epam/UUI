@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import css from './FilteredTable.scss';
-import { DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, TabButton, Text } from '@epam/promo';
+import { DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text } from '@epam/promo';
 import { getFilters } from './filters';
 import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset, DataQueryFilter } from "@epam/uui-core";
 import { FilteredTableFooter } from "./FilteredTableFooter";
@@ -8,11 +8,6 @@ import { Person } from '@epam/uui-docs';
 import { personColumns } from './columns';
 import { SearchInput } from "@epam/uui";
 import { TApi } from "../../../data";
-
-enum PageTab {
-    FULL,
-    SHORT,
-}
 
 const defaultPresets: ITablePreset[] = [
     {
@@ -28,22 +23,15 @@ const defaultPresets: ITablePreset[] = [
         filter: {
             managerId: [13],
         },
-        viewState: {
-            tab: PageTab.FULL,
-        },
         isReadonly: true,
     },
 ];
-
-interface PageViewState {
-    tab: PageTab;
-}
 
 export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
-    const [initialPresets, setInitialPresets] = useState<ITablePreset<DataQueryFilter<Person>, PageViewState>[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
+    const [initialPresets, setInitialPresets] = useState<ITablePreset<DataQueryFilter<Person>>[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
 
 
     useEffect(() => {
@@ -52,7 +40,7 @@ export const FilteredTable: React.FC = () => {
             .catch(console.error);
     }, []);
 
-    const tableStateApi = useTableState<DataQueryFilter<Person>, PageViewState>({
+    const tableStateApi = useTableState<DataQueryFilter<Person>>({
         filters: filters,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
@@ -86,29 +74,14 @@ export const FilteredTable: React.FC = () => {
 
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({ ...tableStateApi.tableState, search: val });
 
-    const { setTableState, setFilter, setColumnsConfig, setFiltersConfig, setViewState, ...presetsApi } = tableStateApi;
+    const { setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi } = tableStateApi;
 
-    const tab = tableStateApi.tableState.viewState?.tab || PageTab.FULL;
 
     return (
         <div className={ css.container }>
             <div className={ css.presetsPanel }>
                 <Text fontSize="24" lineHeight='30' font='museo-sans' cx={ css.presetsTitle }>Users Dashboard</Text>
                 <PresetsPanel { ...presetsApi } />
-                <FlexRow padding='24' background='none' >
-                    <TabButton
-                        size='60'
-                        caption='View with search'
-                        isLinkActive={ tab === PageTab.FULL }
-                        onClick={ () => setViewState({ tab: PageTab.FULL }) }
-                    />
-                    <TabButton
-                        size='60'
-                        caption='Simple view'
-                        isLinkActive={ tab === PageTab.SHORT }
-                        onClick={ () => setViewState({ tab: PageTab.SHORT }) }
-                    />
-                </FlexRow>
             </div>
             <FlexRow cx={ css.filterPanelWrapper } background="gray5" borderBottom={ true }>
                 <FlexRow cx={ css.filterPanel }>
@@ -118,16 +91,14 @@ export const FilteredTable: React.FC = () => {
                         setTableState={ tableStateApi.setTableState }
                     />
                 </FlexRow>
-                {
-                    tab === PageTab.FULL && <FlexCell cx={ css.search } width={ 295 }>
-                        <SearchInput
-                            value={ tableStateApi.tableState.search }
-                            onValueChange={ searchHandler }
-                            placeholder="Search"
-                            debounceDelay={ 1000 }
-                        />
-                    </FlexCell>
-                }
+                <FlexCell cx={ css.search } width={ 295 }>
+                    <SearchInput
+                        value={ tableStateApi.tableState.search }
+                        onValueChange={ searchHandler }
+                        placeholder="Search"
+                        debounceDelay={ 1000 }
+                    />
+                </FlexCell>
             </FlexRow>
             <DataTable
                 headerTextCase={ "upper" as "upper" | "normal" }
