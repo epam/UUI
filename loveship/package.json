@@ -1,6 +1,6 @@
 {
   "name": "@epam/loveship",
-  "version": "4.10.0-rc.4",
+  "version": "4.10.0-rc.5",
   "description": "EPAM UUI components set branded with 'loveship' style",
   "author": "EPAM",
   "license": "MIT",
@@ -12,9 +12,9 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "4.10.0-rc.4",
-    "@epam/uui-components": "4.10.0-rc.4",
-    "@epam/uui-core": "4.10.0-rc.4",
+    "@epam/assets": "4.10.0-rc.5",
+    "@epam/uui-components": "4.10.0-rc.5",
+    "@epam/uui-core": "4.10.0-rc.5",
     "@types/classnames": "2.2.6",
     "@types/lodash.isequal": "4.5.5",
     "@types/lodash.sortby": "4.7.6",
