@@ -1,3 +1,9 @@
+# 4.10.0-rc.5 - 28.01.2023
+**What's New**
+* [useTableState]: adding viewState into DataTableState and store it into presets
+* [TimePicker]: change IEditable typing to accept null
+* [PresetPanel]: fix copy link action on not active preset
+
 # 4.10.0-rc.1 - 16.01.2023
 **What's New**
 * React 18 support
