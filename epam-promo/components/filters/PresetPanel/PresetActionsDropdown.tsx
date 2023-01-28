@@ -36,6 +36,7 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
             sorting: props.tableState.sorting,
             columnsConfig: props.tableState.columnsConfig,
             filtersConfig: props.tableState.filtersConfig,
+            viewState: props.tableState.viewState
         };
         await props.updatePreset(newPreset);
         successNotificationHandler('Changes saved!');
