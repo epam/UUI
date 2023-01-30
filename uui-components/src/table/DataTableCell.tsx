@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataTableCellProps, RenderEditorProps, uuiMod } from '@epam/uui-core';
+import { DataTableCellProps, RenderEditorProps, uuiElement, uuiMod } from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout';
 import { DataTableCellOverlay } from './DataTableCellOverlay';
@@ -16,6 +16,11 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     let content: React.ReactNode;
     let outline: React.ReactNode = null;
     let isEditable = !!props.onValueChange;
+
+    const handleEditorClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
+        const input: HTMLInputElement = (e.target as HTMLElement).querySelector('.' + uuiElement.input);
+        input?.focus();
+    }, []);
 
     if (props.rowProps.isLoading) {
         content = props.renderPlaceholder(props);
@@ -38,7 +43,10 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             mode: 'cell',
         };
 
-        content = <div className={ css.editorWrapper } >
+        content = <div
+            className={ css.editorWrapper }
+            onClick={ handleEditorClick }
+        >
             { props.renderEditor(editorProps) }
             <DataTableCellOverlay
                 { ...editorProps }
