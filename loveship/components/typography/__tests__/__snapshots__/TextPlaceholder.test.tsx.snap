@@ -9,7 +9,7 @@ exports[`TextPlaceholder should be rendered correctly 1`] = `
     className="loadingWord color-night100 animatedLoading"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+        "__html": "",
       }
     }
   />

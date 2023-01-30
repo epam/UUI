@@ -113,8 +113,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
               "bottom": 0,
               "flex": "1 1 auto",
               "left": 0,
-              "marginBottom": 0,
-              "marginRight": 0,
               "overflow": "scroll",
               "position": "relative",
               "right": 0,
@@ -126,7 +124,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="uui-track-horizontal"
           style={
             Object {
-              "display": "none",
               "height": 6,
               "position": "absolute",
             }
@@ -140,7 +137,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="uui-track-vertical"
           style={
             Object {
-              "display": "none",
               "position": "absolute",
               "width": 6,
             }

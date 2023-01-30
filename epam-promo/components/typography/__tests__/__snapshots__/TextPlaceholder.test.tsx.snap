@@ -9,7 +9,7 @@ exports[`TextPlaceholder should be rendered correctly 1`] = `
     className="loadingWord text-placeholder-color-gray40 animatedLoading"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "0000000000000",
+        "__html": "",
       }
     }
   />

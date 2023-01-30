@@ -35,8 +35,6 @@ Array [
             "flex": "1 1 auto",
             "flexDirection": "column",
             "left": 0,
-            "marginBottom": 0,
-            "marginRight": 0,
             "overflow": "scroll",
             "position": "relative",
             "right": 0,
@@ -487,7 +485,6 @@ Array [
         className="uui-track-horizontal"
         style={
           Object {
-            "display": "none",
             "height": 6,
             "position": "absolute",
           }
@@ -501,7 +498,6 @@ Array [
         className="uui-track-vertical"
         style={
           Object {
-            "display": "none",
             "position": "absolute",
             "width": 6,
           }
