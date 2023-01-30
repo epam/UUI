@@ -42,13 +42,13 @@ exports[`Alert should be rendered correctly with props 1`] = `
         className="actionWrapper"
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-24 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon actionLink"
+          className="container uui-button-box uui-enabled -clickable root size-24 uui-no-left-icon uui-no-right-icon uui-theme-loveship actionLink"
           onClick={[Function]}
           tabIndex={0}
           type="button"
         >
           <div
-            className="uui-caption line-height-18 font-size-14 v-padding-3"
+            className="uui-caption"
           >
             test
           </div>
