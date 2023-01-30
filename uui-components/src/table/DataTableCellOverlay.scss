@@ -3,9 +3,6 @@
     &:not(:global(.uui-table-cell-selection)) {
         pointer-events: none;
     }
-    &:global(.uui-table-cell-selection):hover * {
-        pointer-events: none;
-    }
 }
 
 .copying-marker {
@@ -70,11 +67,14 @@
             visibility: visible;
             border-color: var(--uui-dt-cell-editor-hover-border-color);
         }
+    }
 
-        &:global(.uui-table-cell-selection) {
-            z-index: 1;
-            visibility: visible;
-        }
+    // This style is required for Safari. If mouse is pressed, `:hover` is not respected.
+    // So, for proper handling of `onPointerEnter` event, it is necessary to apply this style if `.uui-table-cell-selection`
+    // class exists.
+    :global(.uui-table-cell) &:global(.uui-table-cell-selection) {
+        z-index: 3;
+        visibility: visible;
     }
 
     :global(.uui-table-cell) &:global(.uui-table-cell-selected) {
