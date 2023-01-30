@@ -32,18 +32,14 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
 
     const { isCopying } = selectionRange ?? {};
 
-    const focusOnInput = useCallback((e: React.PointerEvent<Element>) => {
-        const input: HTMLInputElement = (e.target as HTMLElement).parentElement.parentElement.querySelector('.' + uuiElement.input);
-        input?.focus();
-    }, []);
-
     const handleCopyingMarkerPointerDown: PointerEventHandler = useCallback((e) => {
         e.preventDefault();
         e.stopPropagation();
-        focusOnInput(e);
+
+        (document.activeElement as HTMLElement)?.blur();
 
         setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true });
-    }, [setSelectionRange, columnIndex, rowIndex, focusOnInput]);
+    }, [setSelectionRange, columnIndex, rowIndex]);
 
     const handlePointerEnter: PointerEventHandler = useCallback(() => {
         if (!selectionRange) return;
