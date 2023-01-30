@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { IHasCX, IHasRawProps } from '@epam/uui-core';
+import { IHasCX, IHasRawProps, useDeferRenderForSsr } from '@epam/uui-core';
 import * as types from '../types';
 import styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import css from './TextPlaceholder.scss';
@@ -13,6 +13,7 @@ export interface TextPlaceholderProps extends IHasCX, IHasRawProps<React.HTMLAtt
 
 export const TextPlaceholder = React.forwardRef<HTMLDivElement, TextPlaceholderProps>((props, ref) => {
     const pattern = `&nbsp;`;
+    const isDeferred = useDeferRenderForSsr().isDeferred;
     const text = React.useMemo(() => {
         const words = [];
         for (let i = 0; i < (props.wordsCount || 1); i++) {
@@ -27,7 +28,7 @@ export const TextPlaceholder = React.forwardRef<HTMLDivElement, TextPlaceholderP
             { text.map((it, index) => (
                 <span
                     key={ index }
-                    dangerouslySetInnerHTML={ { __html: it } }
+                    dangerouslySetInnerHTML={ { __html: isDeferred ? '' : it } }
                     className={ cx([
                         props.cx,
                         css.loadingWord,

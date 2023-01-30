@@ -35,7 +35,7 @@ Array [
           "left": "0",
           "position": "fixed",
           "top": "0",
-          "zIndex": undefined,
+          "zIndex": 2000,
         }
       }
     >

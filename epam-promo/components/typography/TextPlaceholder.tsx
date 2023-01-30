@@ -2,7 +2,7 @@ import * as React from 'react';
 import css from './TextPlaceholder.scss';
 import cx from 'classnames';
 import { PropsWithChildren } from 'react';
-import { IHasRawProps } from "@epam/uui-core";
+import { IHasRawProps, useDeferRenderForSsr } from "@epam/uui-core";
 
 export interface TextPlaceholderProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Number of fake 'words to show */
@@ -15,6 +15,7 @@ export interface TextPlaceholderProps extends IHasRawProps<React.HTMLAttributes<
 
 export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<TextPlaceholderProps>> = (props) => {
     const pattern = `0`;
+    const isDeferred = useDeferRenderForSsr().isDeferred;
     const text = React.useMemo(() => {
         const words = [];
         for (let i = 0; i < (props.wordsCount || 1); i++) {
@@ -24,19 +25,24 @@ export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<TextPlac
         return words;
     }, [props.wordsCount]);
 
+
+    function renderText() {
+        return text.map((it: string, index: number) => (
+            <span
+                key={ index }
+                className={ cx([
+                    css.loadingWord,
+                    css['text-placeholder-color-' + (props.color || 'gray40')],
+                    !props.isNotAnimated && css.animatedLoading,
+                ]) }
+                dangerouslySetInnerHTML={ {__html: isDeferred ? '' : it} }
+            />
+        ));
+    }
+
     return (
-        <div aria-busy={ true } className={ css.container } { ...props.rawProps }>{
-            text.map((it: string, index: number) => (
-                <span
-                    key={ index }
-                    className={ cx([
-                        css.loadingWord,
-                        css['text-placeholder-color-' + (props.color || 'gray40')],
-                        !props.isNotAnimated && css.animatedLoading,
-                    ]) }
-                    dangerouslySetInnerHTML={ {__html: it} }
-                />
-            )) }
+        <div aria-busy={ true } className={ css.container } { ...props.rawProps }>
+            { renderText() }
         </div>
     );
 };

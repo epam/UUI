@@ -1,6 +1,6 @@
 import * as React from "react";
-import type { IEditable } from '../../index';
-import { VirtualListState } from "../../index";
+import type { IEditable, VirtualListState } from '../types';
+import { useLayoutEffectSafeForSsr } from "../ssrUtils";
 
 interface UuiScrollPositionValues {
     scrollTop: number;
@@ -126,7 +126,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         setEstimatedHeight(newEstimatedHeight);
     }, [estimatedHeight, rowOffsets.current, rowsCount, value, listContainer.current, scrollContainer.current, listOffset]);
 
-    React.useLayoutEffect(() => {
+    useLayoutEffectSafeForSsr(() => {
         if (process.env.JEST_WORKER_ID) return;
         updateRowHeights();
         handleScroll();
@@ -147,10 +147,10 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         scrollContainer.current.scrollTo({ top: topCoordinate, behavior});
     }, [scrollContainer.current, rowOffsets.current]);
 
-    React.useLayoutEffect(handleScrollToIndex, [value?.indexToScroll]);
-    React.useLayoutEffect(handleScrollToFocus, [value?.focusedIndex]);
+    useLayoutEffectSafeForSsr(handleScrollToIndex, [value?.indexToScroll]);
+    useLayoutEffectSafeForSsr(handleScrollToFocus, [value?.focusedIndex]);
 
-    React.useLayoutEffect(() => {
+    useLayoutEffectSafeForSsr(() => {
         if (!scrollContainer.current || !listContainer.current) return;
         const { top: scrollContainerTop } = scrollContainer.current.getBoundingClientRect();
         const { top: listContainerTop } = listContainer.current.getBoundingClientRect();

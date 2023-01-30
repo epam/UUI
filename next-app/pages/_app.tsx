@@ -6,7 +6,7 @@ import '@epam/uui/styles.css';
 import '@epam/uui-editor/styles.css';
 import { DragGhost } from "@epam/uui-core";
 import { Snackbar, Modals } from "@epam/uui-components";
-import { Blocker } from '@epam/promo';
+import { Blocker, ErrorHandler } from '@epam/promo';
 import type { AppProps } from 'next/app';
 import { SideBar } from "../components/SideBar";
 import { AppHeader } from "../components/AppHeader";
@@ -25,17 +25,19 @@ const MyApp = ({ Component, pageProps, appData }: MyAppProps<any>) => {
 
     return (
         <UuiContext.Provider value={ services }>
-            <div className={ 'container' }>
-                <AppHeader />
-                <SideBar />
-                <div className={ 'mainContainer' }>
-                    <Component { ...pageProps } />
-                    { isLoading && <Blocker isEnabled={ isLoading }/> }
+            <ErrorHandler>
+                <div className={ 'container' }>
+                    <AppHeader />
+                    <SideBar />
+                    <div className={ 'mainContainer' }>
+                        <Component { ...pageProps } />
+                        { isLoading && <Blocker isEnabled={ isLoading }/> }
+                    </div>
+                    <Snackbar />
+                    <Modals />
+                    <DragGhost />
                 </div>
-                <Snackbar />
-                <Modals />
-                <DragGhost />
-            </div>
+            </ErrorHandler>
         </UuiContext.Provider>
     );
 };
