@@ -48,13 +48,13 @@
 
     visibility: hidden;
 
-    :global(.uui-cell) &:global(.uui-focus) {
+    &:global(.uui-focus) {
         z-index: 2;
         visibility: visible;
         border-color: var(--uui-dt-cell-editor-focus-border-color);
     }
 
-    :global(.uui-cell) &:global(.uui-invalid) {
+    &:global(.uui-invalid) {
         z-index: 3;
         visibility: visible;
         border-color: var(--uui-dt-cell-editor-invalid-border-color);
@@ -66,6 +66,19 @@
 
     & :global(.uui-copying-marker-hover) {
         background-color: var(--uui-dt-cell-editor-hover-border-color);
+    }
+
+    :global(.uui-cell):hover & {
+        &:not(:global(.uui-cell-selection)):not(:global(.uui-focus)) {
+            z-index: 1;
+            visibility: visible;
+            border-color: var(--uui-dt-cell-editor-hover-border-color);
+        }
+
+        &:global(.uui-cell-selection) {
+            z-index: 1;
+            visibility: visible;
+        }
     }
 
     :global(.uui-cell) &:global(.uui-selected-cell) {

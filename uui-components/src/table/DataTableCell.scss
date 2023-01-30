@@ -29,21 +29,4 @@
     position: relative;
     align-self: stretch;
     background-color: var(--uui-dt-cell-editor-background);
-
-    &:hover :global(.uui-cell-overlay) {
-        visibility: hidden;
-
-        &:not(:global(.uui-cell-selection)):not(:global(.uui-focus)) {
-            &:has(:global(.uui-copying-marker-hover)) {
-                z-index: 1;
-                visibility: visible;
-                border-color: var(--uui-dt-cell-editor-hover-border-color);
-            }
-        }
-
-        &:global(.uui-cell-selection) {
-            z-index: 1;
-            visibility: visible;
-        }
-    }
 }
