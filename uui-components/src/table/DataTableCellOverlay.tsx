@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { cx, ICanBeInvalid, IHasCX, TooltipCoreProps, uuiMod } from '@epam/uui-core';
+import { cx, ICanBeInvalid, IHasCX, TooltipCoreProps, uuiElement, uuiMod } from '@epam/uui-core';
 import css from './DataTableCellOverlay.scss';
 import { DataTableSelectionContext } from "./tableCellsSelection";
 import { PointerEventHandler, useContext } from "react";
@@ -31,11 +31,19 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     } = getCellSelectionInfo?.(rowIndex, columnIndex) ?? {};
 
     const { isCopying } = selectionRange ?? {};
-    const handleCopyingMarkerPointerDown: PointerEventHandler = e => {
+
+    const focusOnInput = useCallback((e: React.PointerEvent<Element>) => {
+        const input: HTMLInputElement = (e.target as HTMLElement).parentElement.parentElement.querySelector('.' + uuiElement.input);
+        input?.focus();
+    }, []);
+
+    const handleCopyingMarkerPointerDown: PointerEventHandler = useCallback((e) => {
         e.preventDefault();
         e.stopPropagation();
+        focusOnInput(e);
+
         setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true });
-    };
+    }, [setSelectionRange, columnIndex, rowIndex, focusOnInput]);
 
     const handlePointerEnter: PointerEventHandler = useCallback(() => {
         if (!selectionRange) return;
