@@ -208,7 +208,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -248,7 +248,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -288,7 +288,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -328,7 +328,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -368,7 +368,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -408,7 +408,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -448,7 +448,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -488,7 +488,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -528,7 +528,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -568,7 +568,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -608,7 +608,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -957,7 +957,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1014,7 +1014,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1071,7 +1071,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1128,7 +1128,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1185,7 +1185,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1242,7 +1242,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1299,7 +1299,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1356,7 +1356,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1413,7 +1413,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1470,7 +1470,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1527,7 +1527,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
