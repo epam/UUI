@@ -25,7 +25,7 @@ export class TooltipDoc extends BaseDocsBlock {
                     title='Variants (Styles)'
                     path='./_examples/tooltip/Variants.example.tsx'
                 />
-
+                { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Tooltip placement'
                     path='./_examples/tooltip/Placement.example.tsx'
@@ -36,7 +36,11 @@ export class TooltipDoc extends BaseDocsBlock {
                     path='./_examples/tooltip/CustomMarkup.example.tsx'
                 />
 
-                { this.renderSectionTitle('Examples') }
+                <DocExample
+                    title='Close modifiers'
+                    path='./_examples/tooltip/CloseModifiers.example.tsx'
+                />
+
                 <DocExample
                     title='Tooltip with delay'
                     path='./_examples/tooltip/Delay.example.tsx'
@@ -45,10 +49,7 @@ export class TooltipDoc extends BaseDocsBlock {
                     title='Tooltip with icon'
                     path='./_examples/tooltip/WithIcon.example.tsx'
                 />
-                <DocExample
-                    title='Tooltip with a link'
-                    path='./_examples/tooltip/WithLink.example.tsx'
-                />
+
             </>
         );
     }
