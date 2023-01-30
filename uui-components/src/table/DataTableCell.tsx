@@ -8,6 +8,10 @@ interface DataTableCellState {
     inFocus: boolean;
 }
 
+const uuiDataTableCellMarkers = {
+    uuiTableCell: 'uui-table-cell',
+} as const;
+
 export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue>) => {
     const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
     const row = props.rowProps;
@@ -74,7 +78,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 role: 'cell',
             } }
             cx={ [
-                'uui-cell',
+                uuiDataTableCellMarkers.uuiTableCell,
                 css.cell,
                 props.column.cx,
                 props.cx,

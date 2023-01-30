@@ -1,9 +1,9 @@
 .root {
     position: absolute;
-    &:not(:global(.uui-cell-selection)) {
+    &:not(:global(.uui-table-cell-selection)) {
         pointer-events: none;
     }
-    &:global(.uui-cell-selection):hover * {
+    &:global(.uui-table-cell-selection):hover * {
         pointer-events: none;
     }
 }
@@ -68,56 +68,56 @@
         background-color: var(--uui-dt-cell-editor-hover-border-color);
     }
 
-    :global(.uui-cell):hover & {
-        &:not(:global(.uui-cell-selection)):not(:global(.uui-focus)) {
+    :global(.uui-table-cell):hover & {
+        &:not(:global(.uui-table-cell-selection)):not(:global(.uui-focus)) {
             z-index: 1;
             visibility: visible;
             border-color: var(--uui-dt-cell-editor-hover-border-color);
         }
 
-        &:global(.uui-cell-selection) {
+        &:global(.uui-table-cell-selection) {
             z-index: 1;
             visibility: visible;
         }
     }
 
-    :global(.uui-cell) &:global(.uui-selected-cell) {
+    :global(.uui-table-cell) &:global(.uui-table-cell-selected) {
         z-index: 3;
         visibility: visible;
 
-        &:global(.uui-selected-cell-top) {
+        &:global(.uui-table-cell-selected-top) {
             border-top-color: var(--uui-dt-cell-editor-focus-border-color);
         }
 
-        &:global(.uui-selected-cell-right) {
+        &:global(.uui-table-cell-selected-right) {
             border-right-color: var(--uui-dt-cell-editor-focus-border-color);
         }
 
-        &:global(.uui-selected-cell-bottom) {
+        &:global(.uui-table-cell-selected-bottom) {
             border-bottom-color: var(--uui-dt-cell-editor-focus-border-color);
         }
 
-        &:global(.uui-selected-cell-left) {
+        &:global(.uui-table-cell-selected-left) {
             border-left-color: var(--uui-dt-cell-editor-focus-border-color);
         }
 
         // to prevent borders to be cut, it is required to set border-{side} = 0px;
-        &:global(.uui-selected-cell-top),
-        &:global(.uui-selected-cell-bottom) {
-            &:not(:global(.uui-selected-cell-right)) {
+        &:global(.uui-table-cell-selected-top),
+        &:global(.uui-table-cell-selected-bottom) {
+            &:not(:global(.uui-table-cell-selected-right)) {
                 border-right: 0px;
             }
-            &:not(:global(.uui-selected-cell-left)) {
+            &:not(:global(.uui-table-cell-selected-left)) {
                 border-left: 0px;
             }
         }
 
-        &:global(.uui-selected-cell-right),
-        &:global(.uui-selected-cell-left) {
-            &:not(:global(.uui-selected-cell-bottom)) {
+        &:global(.uui-table-cell-selected-right),
+        &:global(.uui-table-cell-selected-left) {
+            &:not(:global(.uui-table-cell-selected-bottom)) {
                 border-bottom: 0px;
             }
-            &:not(:global(.uui-selected-cell-top)) {
+            &:not(:global(.uui-table-cell-selected-top)) {
                 border-top: 0px;
             }
         }
