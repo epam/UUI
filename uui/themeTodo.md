@@ -11,4 +11,5 @@
 - [ ] Do we need light/dark theme in Loveship Checkbox component? 
 - [ ] PgeButton (Paginator) colors in figma and in our site are different. Where are the correct set?
 - [ ] Tag and LinkButton in figma have only one color, but we have a lot of them on our previous version.
+- [ ] In components which use other uuiComponent, like UuiButton, in classes has that component specific classes (UuiTag has button-primary, root, mode-solid size_... etc)
 
