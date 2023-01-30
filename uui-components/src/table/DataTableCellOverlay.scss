@@ -35,14 +35,14 @@
     // if --uui-dt-cell-editor-border-width is bigger - it will inset into the cell
     top: calc(var(--uui-dt-row-border-width) * -1);
     bottom: calc(var(--uui-dt-row-border-width) * -1);
-    left: calc(var(--uui-dt-cell-border-width) * -1);
-    right: calc(var(--uui-dt-cell-border-width) * -1);
-    border-width: var(--uui-dt-cell-editor-border-width);
+    left: 0;
+    right: 0;
 
     // Overlay borders of cell at the left and top
     margin-left: calc(var(--uui-dt-cell-border-width) * -1);
     margin-right: calc(var(--uui-dt-cell-border-width) * -1);
 
+    border-width: var(--uui-dt-cell-editor-border-width);
     border-style: solid;
     border-color: transparent;
 
