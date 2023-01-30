@@ -13,18 +13,17 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
 
     const canBeSelected = useCallback((rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => {
         const cell = getCell(rowIndex, columnIndex, rows, columns);
-        if (!cell) return false;
         if (!cellToCopyFrom && copyTo) return false;
         if (copyFrom) return !!cell.column.canCopy?.(cell);
 
         return !!cell.column.canAcceptCopy?.(cellToCopyFrom, cell);
     }, [cellToCopyFrom, columns, rows]);
 
-    const shouldSelectCell = useCallback((row: number, column: number) => {
-        if (selectionRange.startRowIndex === row && selectionRange.startColumnIndex === column) {
-            return canBeSelected(row, column, { copyFrom: true });
+    const shouldSelectCell = useCallback((rowIndex: number, columnIndex: number) => {
+        if (selectionRange.startRowIndex === rowIndex && selectionRange.startColumnIndex === columnIndex) {
+            return canBeSelected(rowIndex, columnIndex, { copyFrom: true });
         }
-        return canBeSelected(row, column, { copyTo: true });
+        return canBeSelected(rowIndex, columnIndex, { copyTo: true });
     }, [canBeSelected, selectionRange]);
 
     const getSelectedCells = useCallback((): DataTableSelectedCellData<TItem>[] => {
@@ -35,10 +34,10 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         const [startColumn, endColumn] = getNormalizedLimits(startColumnIndex, endColumnIndex);
 
         const selectedCells = [];
-        for (let row = startRow; row <= endRow; row++) {
-            for (let column = startColumn; column <= endColumn; column++) {
-                if (shouldSelectCell(row, column)) {
-                    const cell = getCell(row, column, rows, columns);
+        for (let rowIndex = startRow; rowIndex <= endRow; rowIndex++) {
+            for (let columnIndex = startColumn; columnIndex <= endColumn; columnIndex++) {
+                if (shouldSelectCell(rowIndex, columnIndex)) {
+                    const cell = getCell(rowIndex, columnIndex, rows, columns);
                     selectedCells.push(cell);
                 }
             }
@@ -47,11 +46,11 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         return selectedCells;
     }, [selectionRange, columns, shouldSelectCell, rows]);
 
-    const getCellSelectionInfo = useCallback((row: number, column: number) => {
+    const getCellSelectionInfo = useCallback((rowIndex: number, columnIndex: number) => {
         const { isCopying } = selectionRange || {};
-        const { isTop, isBottom, isLeft, isRight, isSelected, isStartCell } = getCellPosition(row, column, selectionRange);
-        const canCopyFrom = canBeSelected?.(row, column, { copyFrom: true });
-        const canAcceptCopy = canBeSelected?.(row, column, { copyTo: true });
+        const { isTop, isBottom, isLeft, isRight, isSelected, isStartCell } = getCellPosition(rowIndex, columnIndex, selectionRange);
+        const canCopyFrom = canBeSelected?.(rowIndex, columnIndex, { copyFrom: true });
+        const canAcceptCopy = canBeSelected?.(rowIndex, columnIndex, { copyTo: true });
 
         const showBorder = (isBorderPosition: boolean, neighborRow: number, neighborColumn: number) => {
             if (isStartCell) return true;
@@ -62,10 +61,10 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
             return canAcceptCopy && (isBorderPosition || !canBeSelected?.(neighborRow, neighborColumn, { copyTo: true }));
         };
 
-        const showTopBorder = showBorder(isTop, row - 1, column);
-        const showRightBorder = showBorder(isRight, row, column + 1);
-        const showBottomBorder = showBorder(isBottom, row + 1, column);
-        const showLeftBorder = showBorder(isLeft, row, column - 1);
+        const showTopBorder = showBorder(isTop, rowIndex - 1, columnIndex);
+        const showRightBorder = showBorder(isRight, rowIndex, columnIndex + 1);
+        const showBottomBorder = showBorder(isBottom, rowIndex + 1, columnIndex);
+        const showLeftBorder = showBorder(isLeft, rowIndex, columnIndex - 1);
 
         return {
             isSelected, canCopyFrom, canAcceptCopy, isStartCell,
