@@ -1,7 +1,7 @@
 import * as types from '../types';
 import { withMods } from '@epam/uui-core';
 import { LinkButton as UuiLinkButton, LinkButtonProps } from '@epam/uui';
-import { TextSettings } from "../../build/helpers/textLayout";
+import { TextSettings } from "../../helpers/textLayout";
 
 export interface LinkButtonMods extends TextSettings {
     color?: types.EpamColor;
