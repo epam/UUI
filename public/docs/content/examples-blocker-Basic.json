@@ -11,7 +11,19 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic placement of a Blocker, for example, above a form, waiting for some data. Also if there is a need to secure access to controls covered by the Blocker component, you can pass the ",
+            "text": "In this example we show a common case, when you need to block the form during the loading.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Additionally if you need to secure access to controls covered by the Blocker component, you can pass the ",
             "marks": []
           },
           {

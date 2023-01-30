@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Blocker notifies the user to wait for the completion of any action (download, calculation, etc.).",
+            "text": "The blocker notifies the user to wait for the completion of any action (download, calculation, etc.).",
             "marks": []
           }
         ]
@@ -44,9 +44,16 @@
                 "data": {},
                 "nodes": [
                   {
-                    "object": "text",
-                    "text": "show user that some operation is going on",
-                    "marks": []
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "show a user that some operation is going on",
+                        "marks": []
+                      }
+                    ]
                   }
                 ]
               }
@@ -63,9 +70,16 @@
                 "data": {},
                 "nodes": [
                   {
-                    "object": "text",
-                    "text": "block user to interact with the covered UI (when it's isEnabled={ true } )",
-                    "marks": []
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "block user to interact with the covered UI (when it's isEnabled={ true } )",
+                        "marks": []
+                      }
+                    ]
                   }
                 ]
               }
@@ -80,7 +94,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Sometimes, you have no UI underneath the Blocker. For example, you are loading something, and you just have nothing to render underneath. In this case, use the spacerHeight prop (see example below)",
+            "text": "Sometimes, you have no UI underneath the Blocker. For example, you are loading something and have nothing to render underneath. In this case, use the spacerHeight prop (see example below)",
             "marks": []
           }
         ]
