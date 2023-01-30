@@ -189,14 +189,6 @@ export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOp
     rowLens: ILens<TItem>;
 }
 
-
-export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
-    inFocus: boolean;
-    columnIndex: number;
-    rowIndex: number;
-    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
-}
-
 export type ColumnsConfig = {
     [key: string]: IColumnConfig,
 };
