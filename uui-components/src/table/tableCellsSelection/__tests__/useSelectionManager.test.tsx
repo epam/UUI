@@ -22,7 +22,7 @@ describe('useSelectioManager', () => {
         });
     });
 
-    describe('cellToCopyFrom', () => {
+    describe('startCell', () => {
         it('should return cell to copy from', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             const newSelectionRange = { startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 5, isCopying: true };
@@ -34,8 +34,8 @@ describe('useSelectioManager', () => {
             const expectedRow = rowsMock[newSelectionRange.startRowIndex];
 
             expect(result.current.selectionRange).toEqual(newSelectionRange);
-            expect(result.current.cellToCopyFrom).toBeDefined();
-            const { column, row } = result.current.cellToCopyFrom;
+            expect(result.current.startCell).toBeDefined();
+            const { column, row } = result.current.startCell;
 
             expect(column).toEqual(expectedColumn);
             expect(row).toEqual(expectedRow);
@@ -44,7 +44,7 @@ describe('useSelectioManager', () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
 
             expect(result.current.selectionRange).toBeNull();
-            expect(result.current.cellToCopyFrom).toBeNull();
+            expect(result.current.startCell).toBeNull();
         });
     });
 

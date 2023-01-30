@@ -18,7 +18,7 @@ export interface SelectionManager<TItem = any, TId = any, TFilter = any> {
     selectionRange: DataTableSelectionRange;
     setSelectionRange: Dispatch<SetStateAction<DataTableSelectionRange>>;
     getSelectedCells: () => DataTableSelectedCellData<TItem, TId, TFilter>[];
-    cellToCopyFrom: DataTableSelectedCellData<TItem, TId, TFilter>;
+    startCell: DataTableSelectedCellData<TItem, TId, TFilter>;
     getCellSelectionInfo: (row: number, column: number) => {
         isSelected: boolean;
         showTopBorder: boolean;

@@ -11,7 +11,7 @@ export const getCell = <TItem, TId>(rowIndex: number, columnIndex: number, rows:
     return { column, row };
 };
 
-export const getCellToCopyFrom = <TItem, TId, TFilter>(
+export const getStartCell = <TItem, TId, TFilter>(
     selectionRange: DataTableSelectionRange | null,
     rows: DataRowProps<TItem, TId>[],
     columns: DataColumnProps<TItem, TId>[],

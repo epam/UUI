@@ -1,23 +1,23 @@
 import { useCallback, useMemo, useState } from 'react';
 import { DataTableSelectedCellData } from '@epam/uui-core';
 import type { SelectionManager, SelectionManagerProps, DataTableSelectionRange, CopyOptions } from '../types';
-import { getCell, getCellPosition, getCellToCopyFrom, getNormalizedLimits } from './helpers';
+import { getCell, getCellPosition, getStartCell, getNormalizedLimits } from './helpers';
 
 export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: SelectionManagerProps<TItem, TId>): SelectionManager<TItem> => {
     const [selectionRange, setSelectionRange] = useState<DataTableSelectionRange>(null);
 
-    const cellToCopyFrom = useMemo(
-        () => getCellToCopyFrom<TItem, TId, TFilter>(selectionRange, rows, columns),
+    const startCell = useMemo(
+        () => getStartCell<TItem, TId, TFilter>(selectionRange, rows, columns),
         [selectionRange?.startColumnIndex, selectionRange?.startRowIndex, rows, columns],
     );
 
     const canBeSelected = useCallback((rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => {
         const cell = getCell(rowIndex, columnIndex, rows, columns);
-        if (!cellToCopyFrom && copyTo) return false;
+        if (!startCell && copyTo) return false;
         if (copyFrom) return !!cell.column.canCopy?.(cell);
 
-        return !!cell.column.canAcceptCopy?.(cellToCopyFrom, cell);
-    }, [cellToCopyFrom, columns, rows]);
+        return !!cell.column.canAcceptCopy?.(startCell, cell);
+    }, [startCell, columns, rows]);
 
     const shouldSelectCell = useCallback((rowIndex: number, columnIndex: number) => {
         if (selectionRange.startRowIndex === rowIndex && selectionRange.startColumnIndex === columnIndex) {
@@ -72,5 +72,5 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         };
     }, [selectionRange, canBeSelected]);
 
-    return { selectionRange, setSelectionRange, getSelectedCells, cellToCopyFrom, getCellSelectionInfo };
+    return { selectionRange, setSelectionRange, getSelectedCells, startCell, getCellSelectionInfo };
 };
