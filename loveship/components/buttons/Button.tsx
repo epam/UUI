@@ -24,7 +24,6 @@ export type ButtonProps = Omit<UuiButtonProps, "color"> & ButtonMods;
 export function applyButtonMods(mods: ButtonProps) {
     return [
         'uui-theme-loveship',
-        css.root,
         css['size-' + (mods.size || defaultSize)],
         css['style-' + (mods.shape || 'square')],
     ];
