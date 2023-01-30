@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { IHasChildren, useDeferRenderForSsr } from "@epam/uui-core";
+import { IHasChildren } from "@epam/uui-core";
 
 export interface PortalProps extends IHasChildren {
     target?: HTMLElement;
@@ -8,9 +8,6 @@ export interface PortalProps extends IHasChildren {
 }
 
 export const Portal: React.FC<PortalProps> = (props) => {
-    if (useDeferRenderForSsr().isDeferred) {
-        return null;
-    }
     const rootElement = props.target || document.getElementById('main') || document.getElementById('root') || document.body;
     return ReactDOM.createPortal(props.children, rootElement, props.key);
 };

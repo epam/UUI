@@ -1,8 +1,10 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { IHasCX, Icon, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
-import { IconContainer, Portal } from '../../../index';
+import { IconContainer } from '../../../index';
 import css from './Burger.scss';
+import { Ref } from "react";
+import { PortalWithCssTransition } from "../../../overlays/portalWithCssTransition";
 
 interface BurgerState {
     isOpen: boolean;
@@ -67,19 +69,27 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
                         <IconContainer icon={ this.state.isOpen ? this.props.crossIcon : this.props.burgerIcon } />
                     </div>
                 </div>
-                { <Portal>
-                    <div
-                        className={ cx(this.props.cx, this.props.burgerContentCx, uuiBurger.overlay, this.state.isOpen && uuiBurger.overlayVisible) }
-                        onClick={ this.toggleBurgerMenu }
-                    >
-                        <div
-                            className={ cx(this.props.cx, uuiBurger.items, this.state.isOpen && uuiBurger.itemsVisible) }
-                            onClick={ (e) => e.stopPropagation() } // Temp solution
-                        >
-                            { this.state.isOpen && this.props.renderBurgerContent ? this.props.renderBurgerContent(({ onClose: this.toggleBurgerMenu })) : undefined }
-                        </div>
-                    </div>
-                </Portal> }
+                <PortalWithCssTransition
+                    timeout={ 200 }
+                    cssTransitionClass="burger-transition"
+                    isOpen={ this.state.isOpen }
+                    renderContent={ (ref) => {
+                        return (
+                            <div
+                                ref={ ref as Ref<HTMLDivElement> }
+                                className={ cx(this.props.cx, this.props.burgerContentCx, uuiBurger.overlay, uuiBurger.overlayVisible, css.containerContent) }
+                                onClick={ this.toggleBurgerMenu }
+                            >
+                                <div
+                                    className={ cx(this.props.cx, uuiBurger.items, uuiBurger.itemsVisible) }
+                                    onClick={ (e) => e.stopPropagation() } // Temp solution
+                                >
+                                    { this.props.renderBurgerContent ? this.props.renderBurgerContent(({ onClose: this.toggleBurgerMenu })) : undefined }
+                                </div>
+                            </div>
+                        );
+                    } }
+                />
             </>
         );
     }

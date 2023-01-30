@@ -2,3 +2,20 @@
     position: relative;
     display: flex;
 }
+
+.container-content {
+    &:global(.burger-transition-enter) {
+        opacity: 0;
+    }
+    &:global(.burger-transition-enter-active) {
+        opacity: 1;
+        transition: opacity 200ms ease-in-out;
+    }
+    &:global(.burger-transition-exit) {
+        opacity: 1;
+    }
+    &:global(.burger-transition-exit-active) {
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+    }
+}
