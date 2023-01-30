@@ -24,11 +24,6 @@ export class AdvancedTablesDoc extends BaseDocsBlock {
                     title='Table with paging'
                     path='./_examples/tables/PagedTable.example.tsx'
                 />
-
-                <DocExample
-                    title='Table with copying'
-                    path='./_examples/tables/TableWithCopying.example.tsx'
-                />
             </>
         );
     }
