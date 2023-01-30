@@ -1,4 +1,4 @@
-import { getCell, getCellPosition, getCellToCopyFrom, getNormalizedLimits } from "../hooks/helpers";
+import { getCell, getCellPosition, getStartCell, getNormalizedLimits } from "../hooks/helpers";
 import { rowsMock, columnsMock } from '../mocks';
 
 describe('getNormalizedLimits', () => {
@@ -25,7 +25,7 @@ describe('getCell', () => {
     });
 });
 
-describe('getCellToCopyFrom', () => {
+describe('getStartCell', () => {
     it('should find a cell to copy from by coordinates', () => {
         const copyCellColumn = 0;
         const copyCellRow = 1;
@@ -33,13 +33,13 @@ describe('getCellToCopyFrom', () => {
         const expectedRow = rowsMock[copyCellRow];
         const selectionRange = { startColumnIndex: copyCellColumn, startRowIndex: copyCellRow, endColumnIndex: 1, endRowIndex: 2 };
 
-        const { column, row } = getCellToCopyFrom(selectionRange, rowsMock, columnsMock);
+        const { column, row } = getStartCell(selectionRange, rowsMock, columnsMock);
         expect(column).toEqual(expectedColumn);
         expect(row).toEqual(expectedRow);
     });
 
     it('should return null if no cell was selected', () => {
-        expect(getCellToCopyFrom(null, rowsMock, columnsMock)).toBeNull();
+        expect(getStartCell(null, rowsMock, columnsMock)).toBeNull();
     });
 });
 
