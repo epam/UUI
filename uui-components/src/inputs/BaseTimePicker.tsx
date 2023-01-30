@@ -5,7 +5,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat.js";
 import { Dropdown, DropdownBodyProps } from '../overlays';
 dayjs.extend(customParseFormat);
 
-export interface BaseTimePickerProps extends IEditable<TimePickerValue>, IDisableable, ICanBeReadonly, IHasPlaceholder {
+export interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, IDisableable, ICanBeReadonly, IHasPlaceholder {
     minutesStep?: number;
     format?: 12 | 24;
     id?: string;
