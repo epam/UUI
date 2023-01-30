@@ -52,7 +52,7 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
     className="body multiline"
   >
     <button
-      className="container uui-button-box uui-enabled button-vars button-night300 root size-18 mode-solid size-18 root uui-theme-loveship root size-18"
+      className="container uui-button-box uui-enabled button-vars button-night300 root size-18 mode-solid size-18 root uui-theme-loveship"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
@@ -73,7 +73,7 @@ exports[`PickerInput should be rendered correctly with extra props 1`] = `
       </div>
     </button>
     <button
-      className="container uui-button-box uui-enabled button-vars button-night300 root size-18 mode-solid size-18 root uui-theme-loveship root size-18"
+      className="container uui-button-box uui-enabled button-vars button-night300 root size-18 mode-solid size-18 root uui-theme-loveship"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
