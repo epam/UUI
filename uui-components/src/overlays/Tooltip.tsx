@@ -29,7 +29,6 @@ export function Tooltip(props: TooltipProps) {
             return (
                 <DropdownContainer
                     showArrow={ true }
-                    style={ {pointerEvents: (closeOnMouseLeave && closeOnMouseLeave === 'boundary') ? 'auto' : 'none'} }
                     maxWidth={ maxWidth ?? 300 }
                     cx={ cx(tooltipCX, uuiElement.tooltipContainer) }
                     { ...props }
