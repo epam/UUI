@@ -13,7 +13,7 @@ export interface IFilterPanelProps<TFilter extends Record<string, any>> extends 
     closePanel(): void;
 }
 
-const FilterPanel = <TFilter extends Record<string, any>>(props: IFilterPanelProps<TFilter>) => {
+const FilterPanel = (props: IFilterPanelProps<any>) => {
     return (
         <>
             <FlexRow borderBottom size='48' padding='18'>
