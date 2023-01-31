@@ -13,7 +13,7 @@ export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
 
 const uuiDataTableCellOverlayMarkers = {
     uuiTableCellOverlay: 'uui-table-cell-overlay',
-    uuiTableCellSelection: 'uui-table-cell-selection',
+    uuiTableCellSelectionInProgress: 'uui-table-cell-selection-in-progress',
     uuiTableCellSelected: 'uui-table-cell-selected',
     uuiTableCellSelectedTop: 'uui-table-cell-selected-top',
     uuiTableCellSelectedRight: 'uui-table-cell-selected-right',
@@ -62,7 +62,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
             onPointerEnter={ handlePointerEnter }
             className={ cx(
                 uuiDataTableCellOverlayMarkers.uuiTableCellOverlay,
-                selectionRange && uuiDataTableCellOverlayMarkers.uuiTableCellSelection,
+                selectionRange && uuiDataTableCellOverlayMarkers.uuiTableCellSelectionInProgress,
                 props.cx,
                 css.root,
                 css.overlay,
