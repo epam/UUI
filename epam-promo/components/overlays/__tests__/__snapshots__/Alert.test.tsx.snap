@@ -42,7 +42,7 @@ exports[`Alert should be rendered correctly 2`] = `
         className="actionWrapper"
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-24 linkButton-color-blue uui-no-left-icon uui-no-right-icon actionLink"
+          className="container uui-button-box uui-enabled -clickable root size-24 uui-no-left-icon uui-no-right-icon uui-theme-promo actionLink"
           onClick={[Function]}
           tabIndex={0}
           type="button"
