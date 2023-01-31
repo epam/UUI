@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown, DropdownContainer, FlexCell, FlexRow, IconContainer, Text } from '@epam/promo';
-import { IDropdownToggler } from '@epam/uui';
+import { IDropdownToggler } from '@epam/uui-core';
 import { DropdownBodyProps } from '@epam/uui-components';
 import { ReactComponent as myIcon } from '@epam/assets/icons/common/notification-warning-outline-18.svg';
 import css from './WithLinkExample.scss';

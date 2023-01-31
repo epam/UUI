@@ -1,10 +1,10 @@
 import React, { ForwardRefExoticComponent, RefAttributes, useCallback, useEffect, useMemo, useState } from 'react';
+import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource, DataTableCellProps, RenderCellProps } from '@epam/uui-core';
 import { useForm } from '@epam/promo';
 import * as promo from "@epam/promo";
 import * as loveship from "@epam/loveship";
-import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource, DatePickerProps } from '@epam/uui';
+import {  DatePickerProps } from '@epam/uui';
 import { PickerInputBaseProps } from '@epam/uui-components';
-import { DataTableCellProps, RenderCellProps } from '@epam/uui-core';
 
 // Defined interface describe data for each row
 interface Item {

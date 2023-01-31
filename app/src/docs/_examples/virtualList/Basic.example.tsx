@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { IconButton, FlexRow, Panel, Text, TextPlaceholder, VirtualList } from '@epam/promo';
-import { VirtualListState } from '@epam/uui';
+import { VirtualListState } from '@epam/uui-core';
 import { ReactComponent as UnfoldedIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { ReactComponent as FoldedIcon } from '@epam/assets/icons/common/navigation-chevron-up-18.svg';
 import css from './BasicExample.scss';

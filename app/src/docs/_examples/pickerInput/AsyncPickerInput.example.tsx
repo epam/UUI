@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Location } from "@epam/uui-docs";
-import { useAsyncDataSource, useUuiContext } from "@epam/uui";
+import { useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { PickerInput } from "@epam/promo";
 import { TApi } from "../../../data";
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataTable, DataTableRow } from '@epam/loveship';
 import { useDemoDbRef, PersonTableRecord, DemoDb } from './state';
-import { DataSourceState, IEditable, DataQueryFilter, IDataSourceView, DataRowProps, Lens } from '@epam/uui';
+import { DataSourceState, IEditable, DataQueryFilter, IDataSourceView, DataRowProps, Lens } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import { getColumns } from './columns';
 import { useDbView } from '@epam/uui-db';

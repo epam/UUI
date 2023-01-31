@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Value } from 'slate';
+import { useUuiContext } from '@epam/uui-core';
 import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
-import { useUuiContext } from '@epam/uui';
 import {
     SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin,
     toDoListPlugin, baseMarksPlugin,

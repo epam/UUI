@@ -1,7 +1,7 @@
 import * as React from 'react';
 import sortBy from 'lodash.sortby';
 import { DragHandle } from '@epam/uui-components';
-import { DndActor, IEditable, cx, uuiDndState, DropParams, getOrderBetween } from '@epam/uui';
+import { DndActor, IEditable, cx, uuiDndState, DropParams, getOrderBetween } from '@epam/uui-core';
 import { FlexRow, IconContainer, DropMarker, Text, RichTextView, FlexSpacer, Panel, Badge } from '@epam/promo';
 import { CriterionItem, DndCriterion } from './DndCriterion';
 import { DndMaterial, MaterialItem } from './DndMaterial';

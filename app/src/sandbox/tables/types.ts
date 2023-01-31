@@ -1,4 +1,4 @@
-import { DataQueryFilter } from '@epam/uui';
+import { DataQueryFilter } from '@epam/uui-core';
 import { Person, PersonGroup, Location } from '@epam/uui-docs';
 
 export type PersonTableRecord = Person | PersonGroup | Location;

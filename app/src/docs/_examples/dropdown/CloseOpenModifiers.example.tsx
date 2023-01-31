@@ -1,8 +1,8 @@
  import React from 'react';
 import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
-import { Button, Text, FlexRow, DropdownContainer, FlexCell } from '@epam/promo';
+import { Button, Text, FlexRow, DropdownContainer, FlexCell, Avatar } from '@epam/promo';
 import css from './HandleStateExample.scss';
-import { Avatar, IDropdownToggler } from '@epam/uui';
+import { IDropdownToggler } from '@epam/uui-core';
 
 export default function CloseOpenModifiersExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {
