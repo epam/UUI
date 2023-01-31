@@ -1,8 +1,8 @@
 import React from 'react';
 import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
-import { Button, Text, FlexRow, DropdownContainer, FlexCell, LinkButton } from '@epam/promo';
+import { IDropdownToggler } from '@epam/uui-core';
+import { Text, FlexRow, DropdownContainer, FlexCell, LinkButton, Avatar } from '@epam/promo';
 import css from './HandleStateExample.scss';
-import { Avatar, IDropdownToggler } from '@epam/uui';
 
 export default function DelayForOpenAndCloseExample() {
     const renderDropdownBody = (props: DropdownBodyProps, name: string) => {

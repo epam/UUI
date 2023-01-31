@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { demoData } from "@epam/uui-docs";
-import { ArrayDataSource } from "@epam/uui";
+import { ArrayDataSource } from '@epam/uui-core';
 import {PickerInput, MultiSwitch, FlexRow, FlexCell} from "@epam/promo";
 
 const fullLevelsList = demoData.languageLevels;

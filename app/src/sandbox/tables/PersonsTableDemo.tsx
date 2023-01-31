@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput } from '@epam/loveship';
 import { PersonsTable } from './PersonsTable';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
+import { DataSourceState, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui-core';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
 import css from './PersonsTableDemo.scss';
@@ -62,7 +62,7 @@ export const PersonsTableDemo = () => {
                 ids.forEach(([type, id]) => {
                     idsByType[type] = idsByType[type] || [];
                     idsByType[type].push(id);
-                })
+                });
 
                 const typesToLoad = Object.keys(idsByType) as PersonTableRecordType[];
                 const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
@@ -74,7 +74,7 @@ export const PersonsTableDemo = () => {
                         : (type == 'Location') ? svc.api.demo.locations : null;
 
                     const apiResponse = await api(idsRequest);
-                    response.items = [ ...response.items, ...apiResponse.items ];
+                    response.items = [...response.items, ...apiResponse.items];
                 });
 
                 await Promise.all(promises);
@@ -91,19 +91,19 @@ export const PersonsTableDemo = () => {
 
             const getPersons = async (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
                 if (groupBy && !ctx.parent) {
-                    const res = await svc.api.demo.personGroups({
+                    const personGroupsResponse = await svc.api.demo.personGroups({
                         ...rq,
                         filter: { groupBy },
                         search: null,
                         itemsRequest: { filter, search: rq.search },
                         ids,
                     } as any);
-                    updateSummary(res as PersonsApiResponse);
-                    return res;
+                    updateSummary(personGroupsResponse as PersonsApiResponse);
+                    return personGroupsResponse;
                 } else {
-                    const res_1 = await svc.api.demo.persons(rq);
-                    updateSummary(res_1 as PersonsApiResponse);
-                    return res_1;
+                    const personsResponse = await svc.api.demo.persons(rq);
+                    updateSummary(personsResponse as PersonsApiResponse);
+                    return personsResponse;
                 }
             };
 

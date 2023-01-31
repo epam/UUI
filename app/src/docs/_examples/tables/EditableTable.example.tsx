@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
 import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
     Panel, PickerInput, TextArea, TextInput, useForm,
 } from '@epam/promo';
-import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui';
 import { FlexSpacer } from '@epam/uui-components';
 
 // Define interface describe data for each row

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui';
+import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui-core';
 import { Snackbar, Modals } from '@epam/uui-components';
 import { skinContext as promoSkinContext } from '@epam/promo';
 import { AmplitudeListener } from "./analyticsEvents";

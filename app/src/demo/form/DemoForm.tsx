@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext, cx } from '@epam/uui';
+import { useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext, cx } from '@epam/uui-core';
 import { demoData, Country } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import {
@@ -69,8 +69,8 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
         <>
             <RichTextView><h3>Location</h3></RichTextView>
 
-            <FlexRow vPadding='12' alignItems='top' cx={css.sectionRow}>
-                <FlexCell minWidth={ 200 } grow={1}>
+            <FlexRow vPadding='12' alignItems='top' cx={ css.sectionRow }>
+                <FlexCell minWidth={ 200 } grow={ 1 }>
                     <LabeledInput  htmlFor="country" label='Country' { ...lens.prop('country').toProps() }>
                         <PickerInput
                             { ...lens.prop('country').toProps() }
@@ -83,7 +83,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
                         />
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell minWidth={ 200 } grow={1}>
+                <FlexCell minWidth={ 200 } grow={ 1 }>
                     <LabeledInput htmlFor="city" label='City' { ...lens.prop('city').toProps() }>
                         <PickerInput
                             { ...lens.prop('city').toProps() }
@@ -110,8 +110,8 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
             </Tooltip>
         </FlexRow>
 
-        <FlexRow vPadding='12' alignItems='top' cx={css.sectionRow}>
-            <FlexCell minWidth={ 200 } grow={1}>
+        <FlexRow vPadding='12' alignItems='top' cx={ css.sectionRow }>
+            <FlexCell minWidth={ 200 } grow={ 1 }>
                 <LabeledInput htmlFor="status" label='Status' { ...lens.prop('status').toProps() }>
                     <TextInput
                         { ...lens.prop('status').toProps() }
@@ -120,7 +120,7 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
                     />
                 </LabeledInput>
             </FlexCell>
-            <FlexCell minWidth={ 200 } grow={1}>
+            <FlexCell minWidth={ 200 } grow={ 1 }>
                 <LabeledInput htmlFor="productionCategory" label='Production Category' { ...lens.prop('productionCategory').toProps() }>
                     <TextInput
                         { ...lens.prop('productionCategory').toProps() }
@@ -130,8 +130,8 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
                 </LabeledInput>
             </FlexCell>
         </FlexRow>
-        <FlexRow vPadding='12' alignItems='top' cx={css.sectionRow}>
-            <FlexCell minWidth={ 324 } grow={1}>
+        <FlexRow vPadding='12' alignItems='top' cx={ css.sectionRow }>
+            <FlexCell minWidth={ 324 } grow={ 1 }>
                 <LabeledInput htmlFor="organizationalCategory" label='Organizational category' { ...lens.prop('organizationalCategory').toProps() }>
                     <TextInput
                         { ...lens.prop('organizationalCategory').toProps() }
@@ -140,7 +140,7 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
                     />
                 </LabeledInput>
             </FlexCell>
-            <FlexCell minWidth={ 186 } grow={1}>
+            <FlexCell minWidth={ 186 } grow={ 1 }>
                 <LabeledInput htmlFor="jobFunction" label='Job Function' { ...lens.prop('jobFunction').toProps() }>
                     <TextInput
                         { ...lens.prop('jobFunction').toProps() }
@@ -149,7 +149,7 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
                     />
                 </LabeledInput>
             </FlexCell>
-            <FlexCell minWidth={ 120 } grow={1}>
+            <FlexCell minWidth={ 120 } grow={ 1 }>
                 <LabeledInput htmlFor="jobFunctionLevel" label='Job Function Level' { ...lens.prop('jobFunctionLevel').toProps() }>
                     <TextInput
                         { ...lens.prop('jobFunctionLevel').toProps() }
@@ -159,10 +159,10 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
                 </LabeledInput>
             </FlexCell>
         </FlexRow>
-        <FlexRow vPadding='12' alignItems='top' cx={css.sectionRow}>
-            <FlexCell minWidth={ 324 } grow={1}>
+        <FlexRow vPadding='12' alignItems='top' cx={ css.sectionRow }>
+            <FlexCell minWidth={ 324 } grow={ 1 }>
                 <FlexRow spacing='18'>
-                    <FlexCell minWidth={ 120 } grow={1}>
+                    <FlexCell minWidth={ 120 } grow={ 1 }>
                         <LabeledInput htmlFor="currentProject" label='Current Project' { ...lens.prop('currentProject').toProps() }>
                             <TextInput
                                 { ...lens.prop('currentProject').toProps() }
@@ -171,7 +171,7 @@ const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>
                             />
                         </LabeledInput>
                     </FlexCell>
-                    <FlexCell minWidth={ 186 } grow={1}>
+                    <FlexCell minWidth={ 186 } grow={ 1 }>
                         <LabeledInput htmlFor="projectRole" label='Role' { ...lens.prop('projectRole').toProps() }>
                             <TextInput
                                 { ...lens.prop('projectRole').toProps() }
@@ -217,8 +217,8 @@ const Education = ({ lens }: { lens: ILens<PersonDetails['education']> }) => {
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
-            <FlexRow vPadding='12' alignItems='top' cx={css.sectionRow}>
-                <FlexCell minWidth={ 200 } grow={1}>
+            <FlexRow vPadding='12' alignItems='top' cx={ css.sectionRow }>
+                <FlexCell minWidth={ 200 } grow={ 1 }>
                     <LabeledInput htmlFor="faculty" label='Faculty' { ...lens.prop('faculty').toProps() }>
                         <TextInput
                             { ...lens.prop('faculty').toProps() }
@@ -227,7 +227,7 @@ const Education = ({ lens }: { lens: ILens<PersonDetails['education']> }) => {
                         />
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell minWidth={ 200 } grow={1}>
+                <FlexCell minWidth={ 200 } grow={ 1 }>
                     <LabeledInput htmlFor="department" label='Department' { ...lens.prop('department').toProps() }>
                         <TextInput
                             { ...lens.prop('department').toProps() }
@@ -237,8 +237,8 @@ const Education = ({ lens }: { lens: ILens<PersonDetails['education']> }) => {
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
-            <FlexRow vPadding='12' alignItems='top' cx={css.sectionRow}>
-                <FlexCell minWidth={ 200 } grow={1}>
+            <FlexRow vPadding='12' alignItems='top' cx={ css.sectionRow }>
+                <FlexCell minWidth={ 200 } grow={ 1 }>
                     <LabeledInput htmlFor="degree" label='Degree' { ...lens.prop('degree').toProps() }>
                         <TextInput
                             { ...lens.prop('degree').toProps() }
@@ -247,7 +247,7 @@ const Education = ({ lens }: { lens: ILens<PersonDetails['education']> }) => {
                         />
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell minWidth={ 200 } grow={1}>
+                <FlexCell minWidth={ 200 } grow={ 1 }>
                     <LabeledInput htmlFor="speciality" label='Speciality' { ...lens.prop('speciality').toProps() }>
                         <TextInput
                             { ...lens.prop('speciality').toProps() }

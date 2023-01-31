@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { FlexCell, PickerInput, Button, FlexRow } from '@epam/promo';
-import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { City } from '@epam/uui-docs';
 import css from './TogglerConfiguration.scss';
 

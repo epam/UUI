@@ -1,7 +1,7 @@
 import * as React from 'react';
 import css from './PromoColorsDoc.scss';
 import { FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip } from '@epam/promo';
-import { cx, arrayToMatrix, INotification } from '@epam/uui';
+import { cx, arrayToMatrix, INotification } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
 import { svc } from '../../../services';
 import { ReactComponent as NotificationIcon } from '../../../icons/notification-check-fill-24.svg';
