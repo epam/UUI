@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx } from "@epam/uui-core";
-import { FlexRow, FlexSpacer } from '../layout';
+import { FlexRow } from '../layout';
 import { Anchor } from '../navigation/Anchor';
 import css from './DataTableRowContainer.scss';
 
@@ -39,8 +39,8 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     grow = Math.max(grow, minGrow);
 
     return {
-        flex: `${grow} 0 ${width}px`,
-        minWidth: `${width}px`,
+        flex: `${ grow } 0 ${ width }px`,
+        minWidth: `${ width }px`,
     };
 }
 
@@ -136,4 +136,4 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
             </FlexRow>
         )
     );
-});
+}) as <TItem, TId, TFilter = any>(props: DataTableRowContainerProps<TItem, TId, TFilter> & { ref?: React.ForwardedRef<HTMLDivElement> }) => React.ReactElement;

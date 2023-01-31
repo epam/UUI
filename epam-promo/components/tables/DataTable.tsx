@@ -1,9 +1,13 @@
-import * as React from 'react';
-import { PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
-        IconContainer } from '@epam/uui-components';
-import { ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
-        DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
-        cx, TableFiltersConfig, DataTableRowProps } from '@epam/uui-core';
+import React from 'react';
+import {
+    PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
+    IconContainer, DataTableSelectionProvider,
+} from '@epam/uui-components';
+import {
+    ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
+    DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
+    cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData,
+} from '@epam/uui-core';
 import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal } from './';
 import { VirtualList } from '../';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
@@ -11,7 +15,7 @@ import { Text } from "../typography";
 import css from './DataTable.scss';
 import { i18n } from "../../i18n";
 
-export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
+export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
     renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
@@ -19,6 +23,10 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
     filters?: TableFiltersConfig<any>[];
+    onCopy?: (
+        copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>,
+        selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[],
+    ) => void;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
@@ -35,14 +43,16 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         />
     ), [props.size, props.border]);
 
-    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
+    const rows = props.getRows();
+
+    const renderedRows = rows.map(row => (props.renderRow || renderRow)({ ...row, columns }));
 
     const renderNoResultsBlock = React.useCallback(() => {
         return (
             <div className={ css.noResults }>
                 { props.renderNoResultsBlock ? props.renderNoResultsBlock?.() :
                     <>
-                        <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon }/>
+                        <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon } />
                         <Text cx={ css.noResultsTitle } fontSize='24' lineHeight='30' color='gray80' font='sans-semibold'>{ i18n.dataTable.title }</Text>
                         <Text fontSize='16' lineHeight='24' font='sans' color='gray80'>{ i18n.dataTable.message }</Text>
                     </>
@@ -83,32 +93,34 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 }) } />
             </div>
             { props.exactRowsCount !== 0 ? (
-                <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
+                <div className={ css.listContainer } style={ { minHeight: `${ estimatedHeight }px` } }>
                     <div
                         ref={ listContainerRef }
                         role='rowgroup'
                         style={ { marginTop: offsetY } }
-                        children={ rows }
+                        children={ renderedRows }
                     />
                 </div>
             ) : renderNoResultsBlock?.() }
         </>
-    ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
+    ), [props, columns, renderedRows, renderNoResultsBlock, onConfigurationButtonClick]);
 
     return (
-        <VirtualList
-            value={ props.value }
-            onValueChange={ props.onValueChange }
-            onScroll={ props.onScroll }
-            rows={ rows }
-            rowsCount={ props.rowsCount }
-            renderRows={ renderRowsContainer }
-            cx={ cx(css.table) }
-            rawProps={ {
-                role: 'table',
-                'aria-colcount': columns.length,
-                'aria-rowcount': props.rowsCount,
-            } }
-        />
+        <DataTableSelectionProvider onCopy={ props.onCopy } rows={ rows } columns={ columns }>
+            <VirtualList
+                value={ props.value }
+                onValueChange={ props.onValueChange }
+                onScroll={ props.onScroll }
+                rows={ renderedRows }
+                rowsCount={ props.rowsCount }
+                renderRows={ renderRowsContainer }
+                cx={ cx(css.table) }
+                rawProps={ {
+                    role: 'table',
+                    'aria-colcount': columns.length,
+                    'aria-rowcount': props.rowsCount,
+                } }
+            />
+        </DataTableSelectionProvider>
     );
 }
