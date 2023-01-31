@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import css from './FilteredTable.scss';
 import { DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text } from '@epam/promo';
 import { getFilters } from './filters';
-import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset } from "@epam/uui-core";
+import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset, DataQueryFilter } from "@epam/uui-core";
 import { FilteredTableFooter } from "./FilteredTableFooter";
 import { Person } from '@epam/uui-docs';
 import { personColumns } from './columns';
@@ -31,7 +31,7 @@ export const FilteredTable: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
     const filters = useMemo(getFilters, []);
     const [totalCount, setTotalCount] = useState(0);
-    const [initialPresets, setInitialPresets] = useState<ITablePreset<Person>[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
+    const [initialPresets, setInitialPresets] = useState<ITablePreset<DataQueryFilter<Person>>[]>([...defaultPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
 
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export const FilteredTable: React.FC = () => {
             .catch(console.error);
     }, []);
 
-    const tableStateApi = useTableState<Person>({
+    const tableStateApi = useTableState<DataQueryFilter<Person>>({
         filters: filters,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
@@ -75,6 +75,7 @@ export const FilteredTable: React.FC = () => {
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({ ...tableStateApi.tableState, search: val });
 
     const { setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi } = tableStateApi;
+
 
     return (
         <div className={ css.container }>
