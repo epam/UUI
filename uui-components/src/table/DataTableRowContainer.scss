@@ -32,7 +32,7 @@
     background-clip: content-box;
     box-sizing: border-box;
 
-    &:has(:global(.uui-table-cell-selection)) {
+    &:has(:global(.uui-table-cell-selection-in-progress)) {
         cursor: crosshair;
     }
 }

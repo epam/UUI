@@ -1,6 +1,6 @@
 .root {
     position: absolute;
-    &:not(:global(.uui-table-cell-selection)) {
+    &:not(:global(.uui-table-cell-selection-in-progress)) {
         pointer-events: none;
     }
 }
@@ -62,7 +62,7 @@
     }
 
     :global(.uui-table-cell):hover & {
-        &:not(:global(.uui-table-cell-selection)):not(:global(.uui-focus)) {
+        &:not(:global(.uui-table-cell-selection-in-progress)):not(:global(.uui-focus)) {
             z-index: 1;
             visibility: visible;
             border-color: var(--uui-dt-cell-editor-hover-border-color);
@@ -70,9 +70,9 @@
     }
 
     // This style is required for Safari. If mouse is pressed, `:hover` is not respected.
-    // So, for proper handling of `onPointerEnter` event, it is necessary to apply this style if `.uui-table-cell-selection`
+    // So, for proper handling of `onPointerEnter` event, it is necessary to apply this style if `.uui-table-cell-selection-in-progress`
     // class exists.
-    :global(.uui-table-cell) &:global(.uui-table-cell-selection) {
+    :global(.uui-table-cell) &:global(.uui-table-cell-selection-in-progress) {
         z-index: 3;
         visibility: visible;
     }
