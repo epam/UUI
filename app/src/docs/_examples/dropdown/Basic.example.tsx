@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dropdown, DropdownBodyProps, FlexSpacer } from '@epam/uui-components';
+import { Dropdown, FlexSpacer } from '@epam/uui-components';
+import { DropdownBodyProps } from '@epam/uui-core';
 import { Panel, Text, FlexRow, LinkButton, DropdownContainer, Badge, IconButton, FlexCell, IconContainer } from '@epam/promo';
 import { Avatar, IDropdownToggler } from '@epam/uui';
 import css from './BasicExample.scss';

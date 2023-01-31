@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import { DropdownBodyProps, defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat, supportedDateFormats } from '../../';
-import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType } from '@epam/uui-core';
+import { DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType } from '@epam/uui-core';
+import { defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat, supportedDateFormats } from '../../';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 

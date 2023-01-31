@@ -1,6 +1,6 @@
 import React from 'react';
-import { IDropdownToggler } from '@epam/uui-core';
-import { BaseTimePicker, BaseTimePickerProps, DropdownBodyProps } from '@epam/uui-components';
+import { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
+import { BaseTimePicker, BaseTimePickerProps } from '@epam/uui-components';
 import { SizeMod, EditMode } from '../types';
 import { TextInput } from './TextInput';
 import css from './TimePicker.scss';
@@ -43,6 +43,6 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
                     rawProps={ this.props.rawProps?.body }
                 />
             </DropdownContainer>
-        )
+        );
     }
 }
