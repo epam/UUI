@@ -10,7 +10,7 @@
     "test": "node uui-build/scripts/runTests.js",
     "coverage": "yarn test --coverage",
     "process-icons": "node uui-build/scripts/processIcons.js",
-    "start": "cd ./app && cross-env DEV=TRUE yarn start",
+    "start": "cd ./app && set NODE_OPTIONS=--openssl-legacy-provider && cross-env DEV=TRUE yarn start",
     "next:dev": "cd ./next-app && yarn && node ../uui-build/scripts/runNextApp.js && yarn dev",
     "build": "cd ./app && yarn build --stats",
     "build-dev": "cd ./app && yarn build-dev",
