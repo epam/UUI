@@ -266,3 +266,4 @@ export interface PersonDetails {
     attachments?: ({progress?: number} & FileUploadResponse)[];
 
 }
+

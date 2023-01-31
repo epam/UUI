@@ -14,50 +14,68 @@
     }
 
     &:global(.uui-focus) {
-        --uui-dt-cell-editor-border-width:2px;
+        --uui-dt-cell-editor-border-width: 2px;
     }
 
     &.align-widgets-top {
-        &.size-24, &.size-30 {
-            :global(.uui-checkbox), .folding-arrow {
+        &.size-24,
+        &.size-30 {
+            :global(.uui-checkbox),
+            .folding-arrow {
                 margin-top: 6px;
             }
         }
 
         &.size-36 {
-            :global(.uui-checkbox), .folding-arrow {
+            :global(.uui-checkbox),
+            .folding-arrow {
                 margin-top: 9px;
             }
         }
 
         &.size-42 {
-            :global(.uui-checkbox), .folding-arrow {
+            :global(.uui-checkbox),
+            .folding-arrow {
                 margin-top: 12px;
             }
         }
 
         &.size-48 {
-            :global(.uui-checkbox), .folding-arrow {
+            :global(.uui-checkbox),
+            .folding-arrow {
                 margin-top: 15px;
             }
         }
 
         &.size-60 {
-            :global(.uui-checkbox), .folding-arrow {
+            :global(.uui-checkbox),
+            .folding-arrow {
                 margin-top: 21px;
             }
         }
     }
 
-    &.align-widgets-center { align-self: center; }
+    &.align-widgets-center {
+        align-self: center;
+    }
 
-    &.padding-12 { padding: 0 12px; }
-    &.padding-24 { padding: 0 24px; }
+    &.padding-12 {
+        padding: 0 12px;
+    }
+    &.padding-24 {
+        padding: 0 24px;
+    }
 
-    &.padding-left-12 { padding-left: 12px; }
-    &.padding-left-24 { padding-left: 24px; }
+    &.padding-left-12 {
+        padding-left: 12px;
+    }
+    &.padding-left-24 {
+        padding-left: 24px;
+    }
 
-    &.padding-right-24 { padding-right: 24px; }
+    &.padding-right-24 {
+        padding-right: 24px;
+    }
 
     &:global(.uui-invalid) {
         --uui-dt-cell-editor-background: #{$fire-lightest};
@@ -89,7 +107,8 @@
     align-self: stretch;
     visibility: hidden;
 
-    :global(.-draggable.uui-table-row):not(:global(.uui-drop-accepted)):hover & {
+    :global(.-draggable.uui-table-row):not(:global(.uui-drop-accepted)):hover
+        & {
         visibility: visible;
     }
 }
