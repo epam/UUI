@@ -22,7 +22,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const { renderFooter, rawProps, ...restProps } = this.props;
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
             { ...restProps }
-            rawProps={rawProps?.body}
+            rawProps={ rawProps?.body }
             { ...props }
             caption={ this.getPlaceholder() }
             initialValue={ this.props.value as any }
@@ -48,7 +48,12 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return <PickerItem title={ this.getName(item) } size={ this.getRowSize() } { ...rowProps } />;
+        return <PickerItem
+            title={ this.getName(item) }
+            size={ this.getRowSize() }
+            subtitle={ this.getSubtitle(rowProps) }
+            { ...rowProps }
+        />;
     }
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {

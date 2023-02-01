@@ -117,9 +117,9 @@ export class Tree<TItem, TId> {
 
     public getTotalRecursiveCount() {
         let count = 0;
-        for(var [id, info] of this.nodeInfoById) {
+        for (var [id, info] of this.nodeInfoById) {
             if (info.count == null) {
-                 // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
+                // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
                 // return;
             } else {
                 count += info.count;
@@ -252,7 +252,7 @@ export class Tree<TItem, TId> {
 
         const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
 
-        for(let [parentId, ids] of newByParentId) {
+        for (let [parentId, ids] of newByParentId) {
             newNodeInfoById.set(parentId, { count: ids.length });
         }
 
@@ -320,7 +320,7 @@ export class Tree<TItem, TId> {
         }
 
         const result = [];
-        for(var [id, value] of selectedIdsMap) {
+        for (var [id, value] of selectedIdsMap) {
             value && result.push(id);
         }
 
@@ -533,6 +533,42 @@ export class Tree<TItem, TId> {
         }
     }
 
+    private getMissingParentIds(id: TId) {
+        if (!this.byId.has(id) || !this.params.getParentId) {
+            return [];
+        }
+        const parentIds = new Set<TId>();
+        let itemId = id;
+        while (true) {
+            const item = this.byId.get(itemId);
+            if (!item) break;
+
+            const parentId = this.getParentId(item);
+            console.log('parentId', parentId);
+            if (parentId == null) break;
+
+            console.log('byId.has(parentId)', this.byId.has(parentId));
+            if (!this.byId.has(parentId)) {
+                parentIds.add(parentId);
+            } else {
+                console.log('parentId', this.byId.get(parentId));
+            }
+            itemId = parentId;
+        }
+        return Array.from(parentIds).reverse();
+    }
+
+    public getParents(id: TId) {
+        const parentIds = this.getParentIdsRecursive(id);
+        const parents = parentIds.reduce<TItem[]>((acc, parentId) => {
+            if (!this.byId.has(parentId)) {
+                return acc;
+            }
+            return [...acc, this.byId.get(parentId)];
+        }, []);
+        return parents;
+    }
+
     private async loadMissingIdsAndParents<TFilter>(
         options: LoadTreeOptions<TItem, TId, TFilter>,
         idsToLoad: TId[],
@@ -551,12 +587,12 @@ export class Tree<TItem, TId> {
             }
 
             if (this.params.getParentId) {
-                for(let [id, item] of byId) {
+                for (let [, item] of byId) {
                     const parentId = this.getParentId(item);
                     if (parentId != null && !byId.has(parentId)) {
                         missingIds.add(parentId);
                     }
-                };
+                }
             }
 
             if (missingIds.size === 0) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts } from "@epam/uui-core";
+import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts, DataRowProps } from "@epam/uui-core";
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
 
@@ -44,6 +44,18 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         } else {
             return i.name;
         }
+    }
+
+    getSubtitle = ({ path }: DataRowProps<TItem, TId>) => {
+        const { search } = this.state.dataSourceState;
+        if (!search) return;
+
+        const pathWithItem = [];
+        if (path.length) {
+            const pathString = path.map(({ value }) => this.getName(value)).filter(Boolean);
+            pathWithItem.push(...pathString);
+        }
+        return pathWithItem.join(' / ');
     }
 
     getPluralName = () => {

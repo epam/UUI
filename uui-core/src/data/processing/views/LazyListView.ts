@@ -1,5 +1,7 @@
-import { DataRowProps, IEditable, DataSourceState,
-    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
+import {
+    DataRowProps, IEditable, DataSourceState,
+    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps
+} from "../../../types";
 import isEqual from 'lodash.isequal';
 import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
@@ -278,13 +280,21 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             return { isUpdated, isOutdated, tree: newTree };
 
-        } catch(e) {
+        } catch (e) {
             // TBD - correct error handling
             console.log("LazyListView: Error while loading items");
             return { isUpdated: false, isOutdated: false, tree: loadingTree };
         }
     }
-
+    private collectNotIncludedParents(id: TId, item: TItem): DataRowProps<TItem, TId>[] {
+        const foundParents = this.tree.getParents(id);
+        const parents: DataRowProps<TItem, TId>[] = [];
+        foundParents.forEach((parent) => {
+            const parentRowProps = this.getRowProps(parent, 0, parents);
+            parents.push(parentRowProps);
+        });
+        return parents;
+    }
     // Extracts a flat list of currently visible rows from the tree
     private rebuildRows() {
         const rows: DataRowProps<TItem, TId>[] = [];
@@ -295,7 +305,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const iterateNode = (
             parentId: TId,
             appendRows: boolean, // Will be false, if we are iterating folded nodes.
-                                 // We still need to iterate them to get their stats. E.g if there are any item of if any item inside is checked.
+            // We still need to iterate them to get their stats. E.g if there are any item of if any item inside is checked.
             parents: DataRowProps<TItem, TId>[], // Parents from top to lower level
             estimatedCount: number = null,
         ) => {
@@ -316,8 +326,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);
-                const row = this.getRowProps(item, index, parents);
+                const hasNotIncludedParents = this.props.getParentId?.(item) && !parents.length;
 
+                const itemParents = hasNotIncludedParents
+                    ? this.collectNotIncludedParents(id, item)
+                    : parents;
+
+                const row = this.getRowProps(item, index, itemParents);
                 if (appendRows && index < lastIndex) {
                     rows.push(row);
                     layerRows.push(row);
@@ -540,7 +555,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             rowsCount = this.rows.length;
             exactRowsCount = this.rows.length;
             totalCount = this.tree.getTotalRecursiveCount();
-        }  else {
+        } else {
             // We definitely have more rows to show below the last visible row.
             // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.
             // We have to balance this number.
