@@ -1,57 +1,60 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { NextRouterAdapter, UuiContext } from "../services";
 import type { IUseUuiServicesProps } from "../hooks";
-import type { IAnalyticsListener } from "../types";
 import { useUuiServices } from "../hooks";
+import { IRouterContext } from "../types";
 
 type ClientRouterEventType = 'routeChangeComplete' | 'routeChangeError' | 'routeChangeStart';
-type ClientRouterType = {
+interface ClientRouterType extends IRouterContext {
     events: {
         on: (e: ClientRouterEventType, handler: (...events: any[]) => void) => void;
         off: (e: ClientRouterEventType, handler: (...events: any[]) => void) => void;
     };
-};
-type ServerRouterType = {};
+}
 
-export interface IContextProviderSsrProps<TApi, TAppContext> {
-    uuiServicesProps?: Omit<IUseUuiServicesProps<TApi, TAppContext>, 'router'>;
-    onGetAnalyticsListeners?: () => IAnalyticsListener[];
-    children: ({ isLoading }: { isLoading: boolean }) => ReactNode;
-    nextRouter: ClientRouterType | ServerRouterType;
+export interface IContextProviderSsrProps<TApi, TAppContext> extends IUseUuiServicesProps<TApi, TAppContext> {
+    children: ({ isChangingRoute }: { isChangingRoute: boolean }) => ReactNode;
+    router: any;
 }
 
 /**
- * This component creates uui context with UUI ssr-compatible services.
- * - sets "services.isSsr" flag to true. So that it's possible to change behavior of components in SSR mode.
- * - wraps uui router with adapter for next.js.
- * - provides possibility to subscribe to analytics events.
+ * This component creates UUI context compatible with Next.js app.
+ * - sets "isNextJsApp" flag to true in the UUI context.
+ * - wraps router with adapter for Next.js.
+ * - provides isChangingRoute flag OOTB.
  *
  * @param props
  */
 export function UuiContextProviderSsr<TApi, TAppContext>(props: IContextProviderSsrProps<TApi, TAppContext>) {
-    const { nextRouter, onGetAnalyticsListeners, uuiServicesProps } = props;
-    const [isLoading, setIsLoading] = useState(false);
-    const routerEventsListeners = {
-        routeChangeComplete: () => setIsLoading(false),
-        routeChangeError: () => setIsLoading(false),
-        routeChangeStart: () => setIsLoading(true),
-    };
-    const nextRouterWithAdapter = new NextRouterAdapter(nextRouter);
+    const { router, ...restProps } = props;
+    const { isChangingRoute } = useIsChangingRoute(router);
+    const nextRouterWithAdapter = new NextRouterAdapter(router);
     const { services } = useUuiServices<TApi, TAppContext>({
-        ...uuiServicesProps,
+        ...restProps,
         router: nextRouterWithAdapter,
     });
     /**
      * This flag is true when the app is rendered by next.js
      * In such case, it remains true even on client side
-     * (i.e. no matter whether the render is actually on server or it's already on client)
+     * (i.e. no matter whether the render is in progress: on server or it's already on client)
      */
-    services.isSsr = true;
+    services.isNextJsApp = true;
 
+    return (
+        <UuiContext.Provider value={ services }>
+            { props.children({ isChangingRoute }) }
+        </UuiContext.Provider>
+    );
+}
+
+function useIsChangingRoute(nextRouter: IRouterContext) {
+    const [isChangingRoute, setIsChangingRoute] = useState(false);
     useEffect(() => {
-        onGetAnalyticsListeners?.().forEach(listener => {
-            services.uuiAnalytics.addListener(listener);
-        });
+        const routerEventsListeners = {
+            routeChangeComplete: () => setIsChangingRoute(false),
+            routeChangeError: () => setIsChangingRoute(false),
+            routeChangeStart: () => setIsChangingRoute(true),
+        };
         const unsubscribeArr = Object.keys(routerEventsListeners).map((k) => {
             const e = k as ClientRouterEventType;
             const handler = routerEventsListeners[e];
@@ -66,16 +69,6 @@ export function UuiContextProviderSsr<TApi, TAppContext>(props: IContextProvider
         return () => {
             unsubscribeArr.forEach(fn => fn());
         };
-    }, []);
-    useEffect(() => {
-        return () => {
-            nextRouterWithAdapter.unSubscribe();
-        };
-    }, []);
-
-    return (
-        <UuiContext.Provider value={ services }>
-            { props.children({ isLoading }) }
-        </UuiContext.Provider>
-    );
+    }, [nextRouter]);
+    return { isChangingRoute };
 }
