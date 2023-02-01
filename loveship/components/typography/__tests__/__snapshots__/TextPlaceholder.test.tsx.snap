@@ -12,6 +12,7 @@ exports[`TextPlaceholder should be rendered correctly 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
 </div>
 `;
@@ -28,6 +29,7 @@ exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
   <span
     className="loadingWord color-sun"
@@ -36,6 +38,7 @@ exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
   <span
     className="loadingWord color-sun"
@@ -44,6 +47,7 @@ exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
   <span
     className="loadingWord color-sun"
@@ -52,6 +56,7 @@ exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
   <span
     className="loadingWord color-sun"
@@ -60,6 +65,7 @@ exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
   <span
     className="loadingWord color-sun"
@@ -68,6 +74,7 @@ exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
   <span
     className="loadingWord color-sun"
@@ -76,6 +83,7 @@ exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
   <span
     className="loadingWord color-sun"
@@ -84,6 +92,7 @@ exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
   <span
     className="loadingWord color-sun"
@@ -92,6 +101,7 @@ exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
   <span
     className="loadingWord color-sun"
@@ -100,6 +110,7 @@ exports[`TextPlaceholder should be rendered correctly with extra props 1`] = `
         "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
+    suppressHydrationWarning={true}
   />
 </div>
 `;
