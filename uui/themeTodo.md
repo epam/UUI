@@ -12,4 +12,8 @@
 - [ ] PgeButton (Paginator) colors in figma and in our site are different. Where are the correct set?
 - [ ] Tag and LinkButton in figma have only one color, but we have a lot of them on our previous version.
 - [ ] In components which use other uuiComponent, like UuiButton, in classes has that component specific classes (UuiTag has button-primary, root, mode-solid size_... etc)
+- [ ] WithMods function - нужно её отрефакторить под кейсы: 
+      1) когда нужно заменить часть типизации пропсов (например в теме меняется набор цветов).
+      2) когда нужно только добывить дополнительные пропсы.
+- [ ] 
 
