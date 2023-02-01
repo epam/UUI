@@ -218,9 +218,6 @@
 
     --uui-control-checkbox-icon: var(--white);
 
-    --uui-tag: var(--gray30);
-    --uui-tag-hover: var(--gray40);
-
     --uui-skeleton: var(--gray40);
     --uui-skeleton-gradient: linear-gradient(90deg, var(--gray40) 0%, var(--gray10) 50%, var(--gray40) 100%);
 
@@ -316,6 +313,17 @@
     --uui-checkbox-label: var(--uui-control-label);
     --uui-checkbox-label-disabled: var(--uui-control-label-disabled);
     --uui-checkbox-border-radius: var(--uui-border-radius);
+
+/*  tag-vars    */
+    --uui-tag-bg: var(--gray30);
+    --uui-tag-bg-hover: var(--gray40);
+    --uui-tag-caption: var(--uui-text-primary);
+    --uui-tag-fill: var(--uui-icon);
+    --uui-tag-fill-hover: var(--uui-icon-hover);
+    --uui-tag-count-bg: var(--white);
+    --uui-tag-count: var(--uui-text-secondary);
+    --uui-tag-label: var(--uui-text-secondary);
+    --uui-tag-border-radius: var(--uui-border-radius);
 }
 
 .tooltip-light {
@@ -384,8 +392,8 @@
 }
 
 .badge-default {
-    --uui-badge-bg: var(--uui-tag);
-    --uui-badge-bg-hover: var(--uui-tag-hover);
+    --uui-badge-bg: var(--gray30);
+    --uui-badge-bg-hover: var(--gray40);
     --uui-badge-caption-solid: var(--uui-text-primary);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
@@ -708,18 +716,6 @@
 .dropdown-container-vars {
     --uui-dropdown-container-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
     --uui-dropdown-container-scrollbar-thumb: var(--uui-scroll);
-}
-
-.tag-vars {
-    --uui-tag-bg: var(--uui-tag);
-    --uui-tag-bg-hover: var(--uui-tag-hover);
-    --uui-tag-caption: var(--uui-text-primary);
-    --uui-tag-fill: var(--uui-icon);
-    --uui-tag-fill-hover: var(--uui-icon-hover);
-    --uui-tag-count-bg: var(--white);
-    --uui-tag-count: var(--uui-text-secondary);
-    --uui-tag-label: var(--uui-text-secondary);
-    --uui-tag-border-radius: var(--uui-border-radius);
 }
 
 .picker-toggler-vars {

@@ -15,5 +15,5 @@
 - [ ] WithMods function - нужно её отрефакторить под кейсы: 
       1) когда нужно заменить часть типизации пропсов (например в теме меняется набор цветов).
       2) когда нужно только добывить дополнительные пропсы.
-- [ ] 
+- [ ] Tag: now removed colors set in loveship according figma (deprecate colors in loveship?), do we need fill (solid | white | none) in loveship (now it's present)?
 
