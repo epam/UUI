@@ -1,16 +1,11 @@
-import React from "react";
-import css from './Switch.scss';
-import { Switch as uuiSwitch, SwitchProps } from '@epam/uui-components';
+import { Switch as uuiSwitch, SwitchMods} from '@epam/uui';
 import { withMods } from '@epam/uui-core';
+import { SwitchProps } from '@epam/uui-components';
 
-export interface SwitchMods {
-    size?: '12' | '18' | '24';
-}
 
-export function applySwitchMods(mods: SwitchMods & SwitchProps) {
+export function applySwitchMods() {
     return [
-        css.root,
-        css['size-' + (mods.size || '18')],
+        'uui-theme-promo',
     ];
 }
 
