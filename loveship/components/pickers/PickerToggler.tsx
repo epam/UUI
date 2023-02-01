@@ -54,7 +54,6 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
             <Tag
                 key={ row.rowKey }
                 caption={ getCaption(row) }
-                color="night300"
                 tabIndex={ -1 }
                 size={ props.size ? tagSize : '30' }
                 onClear={ e => {
