@@ -5,7 +5,6 @@ import uuiAppData from '../demoData/uuiAppData.json';
 import { NextPageContext } from "next";
 import { getApi, TApi } from "../helpers/apiDefinition";
 import { MyAppView } from "./_appView";
-import { useRouter } from "next/router";
 
 interface MyAppProps<TAppContext> extends AppProps {
     appContext?: TAppContext;
@@ -13,12 +12,11 @@ interface MyAppProps<TAppContext> extends AppProps {
 type AppContextType = Awaited<ReturnType<typeof getInitialProps>>;
 
 function MyApp(props: MyAppProps<AppContextType>) {
-    const { Component, pageProps, appContext } = props;
-    const nextRouter = useRouter();
+    const { Component, pageProps, appContext, router } = props;
     const renderContent = ({ isChangingRoute }: { isChangingRoute: boolean }) => <MyAppView isChangingRoute={ isChangingRoute } { ...{ Component, pageProps } } />;
     return (
         <UuiContextProviderSsr<TApi, AppContextType>
-            router={ nextRouter }
+            router={ router }
             skinContext={ skinContext }
             apiDefinition={ getApi }
             appContext={ appContext }>
