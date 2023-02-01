@@ -8,7 +8,11 @@ export default function LazyTreePicker() {
     const [value, onValueChange] = useState<string[]>();
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
-        api: (request, ctx) => svc.api.demo.locations({ ...request, filter: request.search ? {} : { parentId: ctx?.parentId } }),
+        api: (request, ctx) => {
+            const search = ctx?.parentId ? undefined : request.search;
+            const filter = search ? {} : { parentId: ctx?.parentId };
+            return svc.api.demo.locations({ ...request, search, filter });
+        },
         getId: i => i.id,
         getParentId: i => i.parentId,
         getChildCount: l => l.childCount,
