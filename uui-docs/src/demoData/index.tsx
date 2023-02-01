@@ -15,5 +15,5 @@ export const demoData = {
     universities,
     loremIpsum,
     slateInitialValue,
-    workloadItems
+    workloadItems,
 };

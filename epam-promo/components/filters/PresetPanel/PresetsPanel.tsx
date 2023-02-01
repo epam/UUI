@@ -102,7 +102,7 @@ export const PresetsPanel = (props: PresetsBlockProps) => {
 
     return (
         <FlexCell grow={ 1 } minWidth={ 310 }>
-            <FlexRow spacing='12' cx={ css.presetsWrapper }>
+            <FlexRow size={ null } spacing='12' cx={ css.presetsWrapper }>
                 <AdaptivePanel items={ getPanelItems() } />
             </FlexRow>
         </FlexCell>

@@ -69,7 +69,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             ID
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+            className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon"
             onClick={[Function]}
             tabIndex={-1}
             type="button"
@@ -137,7 +137,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             name
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
+            className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon sortIconActive"
             onClick={[Function]}
             tabIndex={-1}
             type="button"
@@ -192,7 +192,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             Level
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+            className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon"
             onClick={[Function]}
             tabIndex={-1}
             type="button"
@@ -247,7 +247,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
             DATE
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+            className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon"
             onClick={[Function]}
             tabIndex={-1}
             type="button"
@@ -321,7 +321,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             ID
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+            className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon"
             onClick={[Function]}
             tabIndex={-1}
             type="button"
@@ -379,7 +379,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             name
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon sortIconActive"
+            className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon sortIconActive"
             onClick={[Function]}
             tabIndex={-1}
             type="button"
@@ -424,7 +424,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             Level
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+            className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon"
             onClick={[Function]}
             tabIndex={-1}
             type="button"
@@ -469,7 +469,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
             DATE
           </div>
           <button
-            className="container uui-button-box uui-enabled root size-24 color-night400 font-sans-semibold uui-has-left-icon uui-no-right-icon icon sortIcon"
+            className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon"
             onClick={[Function]}
             tabIndex={-1}
             type="button"

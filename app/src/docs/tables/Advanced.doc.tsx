@@ -9,7 +9,7 @@ export class AdvancedTablesDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName='advanced-tables-descriptions' />
                 { this.renderSectionTitle('Examples') }
-                
+
                 <DocExample
                     title='Columns Configuration'
                     path='./_examples/tables/ColumnsConfig.example.tsx'

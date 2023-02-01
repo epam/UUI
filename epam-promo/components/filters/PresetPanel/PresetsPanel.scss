@@ -18,6 +18,7 @@
 }
 
 .presetsWrapper {
+    min-height: 60px;
     :not(:first-child) {
         &.addPresetContainer {
             padding-left: 6px;

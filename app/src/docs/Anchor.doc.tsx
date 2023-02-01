@@ -17,8 +17,12 @@ export class AnchorDoc extends BaseDocsBlock {
                 <EditableDocContent fileName='anchor-descriptions' />
                 { this.renderSectionTitle('Examples') }
                 <DocExample
-                    title='Basic'
+                    title='With block nodes'
                     path='./_examples/anchor/Basic.example.tsx'
+                />
+                <DocExample
+                    title='In text'
+                    path='./_examples/anchor/AnchorInText.example.tsx'
                 />
             </>
         );
