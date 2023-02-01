@@ -243,9 +243,6 @@
 
     --uui-control-checkbox-icon: var(--white);
 
-    --uui-tag: var(--night300);
-    --uui-tag-hover: var(--night400);
-
     --uui-skeleton: var(--night400);
     --uui-skeleton-gradient: linear-gradient(90deg, var(--night400) 0%, var(--night100) 50%, var(--night400) 100%);
 
@@ -343,6 +340,17 @@
     --uui-checkbox-label: var(--uui-control-label);
     --uui-checkbox-label-disabled: var(--uui-control-label-disabled);
     --uui-checkbox-border-radius: var(--uui-border-radius);
+
+/*  tag-vars    */
+    --uui-tag-bg: var(--night300);
+    --uui-tag-bg-hover: var(--night400);
+    --uui-tag-caption: var(--uui-text-primary);
+    --uui-tag-fill: var(--uui-icon);
+    --uui-tag-fill-hover: var(--uui-icon-hover);
+    --uui-tag-count-bg: var(--white);
+    --uui-tag-count: var(--uui-text-secondary);
+    --uui-tag-label: var(--uui-text-secondary);
+    --uui-tag-border-radius: 30px;
 }
 
 .accordion-vars {
@@ -712,21 +720,9 @@
     --uui-dropdown-container-scrollbar-thumb: var(--uui-scroll);
 }
 
-.tag-vars {
-    --uui-tag-bg: var(--uui-tag);
-    --uui-tag-bg-hover: var(--uui-tag-hover);
-    --uui-tag-caption: var(--uui-text-primary);
-    --uui-tag-fill: var(--uui-icon);
-    --uui-tag-fill-hover: var(--uui-icon-hover);
-    --uui-tag-count-bg: var(--white);
-    --uui-tag-count: var(--uui-text-secondary);
-    --uui-tag-label: var(--uui-text-secondary);
-    --uui-tag-border-radius: var(--uui-border-radius);
-}
-
 .badge-default {
-    --uui-badge-bg: var(--uui-tag);
-    --uui-badge-bg-hover: var(--uui-tag-hover);
+    --uui-badge-bg: var(--night300);
+    --uui-badge-bg-hover: var(--night400);
     --uui-badge-caption-solid: var(--uui-text-primary);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
