@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { Manager, Reference, Popper, PopperChildrenProps } from 'react-popper';
-import { uuiElement, LayoutLayer, closest, cx, useUuiContext, TooltipCoreProps } from '@epam/uui-core';
-import { Portal } from './Portal';
-import css from './Tooltip.scss';
-import { useCallback } from "react";
-import PopoverArrow from "./PopoverArrow";
+import { IDropdownToggler, uuiElement, cx, TooltipCoreProps, DropdownBodyProps } from '@epam/uui-core';
+import { Dropdown } from './Dropdown';
+import { DropdownContainer } from './DropdownContainer';
 
 export interface TooltipState {
     isOpen: boolean;
@@ -13,138 +10,55 @@ export interface TooltipState {
 export interface TooltipProps extends TooltipCoreProps {}
 
 export function Tooltip(props: TooltipProps) {
-    const { uuiLayout } = useUuiContext();
-    const layer = React.useRef<LayoutLayer>();
-    const node = React.useRef<HTMLElement>();
-    const prevNode = React.useRef<HTMLElement>(node.current);
-    const prevProps = React.useRef<TooltipProps>(props);
-    const [isOpen, setOpen] = React.useState<boolean>(false);
+    const { cx: tooltipCX, maxWidth, children, closeOnMouseLeave } = props;
 
-    const mouseEnterHandler = (e: MouseEvent) => setOpen(true);
-    const mouseLeaveHandler = (e: MouseEvent) => setOpen(false);
-    const mouseUpHandler = (e: Event) => setOpen(false);
-    const mouseDownHandler = (e: MouseEvent) => setOpen(!isOpen);
-    const mouseClickHandler = (e: MouseEvent) => setOpen((value) => closest((e.target as HTMLElement), node.current) ? !value : false);
-
-    const attachHandlers = (node: HTMLElement | null) => {
-        if (!node) return;
-
-        switch (props.trigger) {
-            case 'click': {
-                node.addEventListener('click', mouseClickHandler);
-                break;
-            }
-
-            case 'press': {
-                node.addEventListener('mousedown', mouseDownHandler);
-                node.addEventListener('mouseup', mouseUpHandler);
-                break;
-            }
-
-            case 'manual': break;
-
-            default: {
-                node.addEventListener('mouseenter', mouseEnterHandler);
-                node.addEventListener('mouseleave', mouseLeaveHandler);
-                break;
-            }
-        }
-    };
-
-    const detachHandlers = (node: HTMLElement | null) => {
-        if (!node) return;
-
-        switch (props.trigger) {
-            case 'click': {
-                node.removeEventListener('click', mouseClickHandler);
-                break;
-            }
-
-            case 'press': {
-                node.removeEventListener('mousedown', mouseDownHandler);
-                node.removeEventListener('mouseup', mouseUpHandler);
-                break;
-            }
-
-            case 'manual': break;
-
-            default: {
-                node.removeEventListener('mouseenter', mouseEnterHandler);
-                node.removeEventListener('mouseleave', mouseLeaveHandler);
-                break;
-            }
-        }
-    };
-
-    React.useEffect(() => {
-        layer.current = uuiLayout?.getLayer();
-
-        return () => {
-            detachHandlers(node.current);
-            layer.current && uuiLayout?.releaseLayer(layer.current);
-        };
-    }, []);
+    const isTooltipExist = () => !!props.content || !!props.renderContent;
 
     const renderTooltip = () => (
-        <div role="tooltip" aria-hidden={ isTooltipExist() } className={ uuiElement.tooltipBody } style={ {maxWidth: props.maxWidth ?? "300px"} }>
+        <div
+            role="tooltip"
+            aria-hidden={ isTooltipExist() }
+            className={ uuiElement.tooltipBody }
+        >
             { props.content || props.renderContent?.() }
         </div>
     );
 
-    const renderTooltipBody = ({ ref, placement, style, arrowProps, isReferenceHidden }: PopperChildrenProps) => {
-        if (isReferenceHidden && isOpen) {
-            // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in case
-            setTimeout(() => setOpen(false), 0);
+    const renderDropdownBody = (props: DropdownBodyProps) => {
+        if (isTooltipExist()) {
+            return (
+                <DropdownContainer
+                    showArrow={ true }
+                    maxWidth={ maxWidth ?? 300 }
+                    cx={ cx(tooltipCX, uuiElement.tooltipContainer) }
+                    { ...props }
+                >
+                    { renderTooltip() }
+                </DropdownContainer>
+            );
+        } else {
             return null;
         }
-
-        return (
-            <div
-                ref={ ref }
-                style={ { ...style, zIndex: layer.current?.zIndex } }
-                className={ cx(props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
-                data-placement={ placement }
-                data-popper-reference-hidden={ isReferenceHidden }
-            >
-                { renderTooltip() }
-                <PopoverArrow ref={ arrowProps.ref } arrowProps={ arrowProps } placement={ placement }/>
-            </div>
-        );
     };
 
-    const isTooltipExist = () => !!props.content || !!props.renderContent;
 
-    const getInnerRef = useCallback((nodeRef: typeof node.current, callbackRef: React.Ref<typeof node.current>) => {
-        if (node.current !== nodeRef) prevNode.current = node.current;
-        node.current = nodeRef;
-        detachHandlers(prevNode.current);
-        attachHandlers(node.current);
-        (callbackRef as React.RefCallback<typeof nodeRef>)(nodeRef);
-    }, []);
+    const renderTarget = (props: IDropdownToggler) => (
+        React.Children.map(children, (child, idx) => {
+            if (idx > 0 || !React.isValidElement(child)) return child;
+            return React.cloneElement<React.ComponentPropsWithRef<any>>(child, {ref: props.ref});
+        })
+    );
 
     return (
-        <Manager>
-            <Reference>
-                { ({ ref }) => React.Children.map(props.children, (child, idx) => {
-                    if (idx > 0 || !React.isValidElement(child)) return child;
-                    return React.cloneElement(child, {
-                        ref: (node: HTMLElement) => getInnerRef(node, ref),
-                    } as object);
-                }) }
-            </Reference>
-            { isTooltipExist() && (isOpen || props.isVisible) && <Portal target={ props.portalTarget }>
-                <Popper
-                    placement={ props.placement || 'top' }
-                    modifiers={ [
-                        { name: 'preventOverflow', options: { boundary: props.boundaryElement } },
-                        { name: 'offset', options: { offset: props.offset || [0, 12] } },
-                        { name: 'computeStyles', options: { gpuAcceleration: false } },
-                        { name: 'hide', enabled: true },
-                    ] }
-                >
-                    { renderTooltipBody }
-                </Popper>
-            </Portal> }
-        </Manager>
+        <Dropdown
+            { ...props }
+            renderBody={ (props) => renderDropdownBody(props) }
+            openOnHover={ true }
+            closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
+            modifiers={ [
+                { name: 'offset', options: { offset: props.offset || [0, 12] } },
+            ] }
+            renderTarget={ (props: IDropdownToggler) => renderTarget(props) }
+        />
     );
 }
