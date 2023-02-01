@@ -1,6 +1,6 @@
 import React from 'react';
-import { cx, DatePickerCoreProps, IDropdownToggler, uuiMod } from "@epam/uui-core";
-import { BaseDatePicker, DropdownBodyProps } from "@epam/uui-components";
+import { cx, DatePickerCoreProps, IDropdownToggler, uuiMod, DropdownBodyProps } from "@epam/uui-core";
+import { BaseDatePicker } from "@epam/uui-components";
 import { EditMode, SizeMod, IHasEditMode } from "../types";
 import { TextInput } from "../inputs";
 import { DatePickerBody } from "./DatePickerBody";
