@@ -2,7 +2,7 @@ import React, { useState, useCallback, FC, useRef } from 'react';
 import { PickerInput, DropdownContainer, FlexCell, FlexRow, Button, Dropdown, Text, Panel } from '@epam/promo';
 import { IDropdownToggler, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
-import { DropdownBodyProps } from '@epam/uui-components';
+import { DropdownBodyProps } from '@epam/uui-core';
 import css from './PickerInputInDropdown.scss';
 
 export default function ConfigurePortalTargetAndPlacement() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
-import { DropdownProps, Dropdown } from '@epam/uui-components';
+import { Dropdown } from '@epam/uui-components';
+import { DropdownProps } from '@epam/uui-core';
 import { DropdownMenuItemMods, DropdownMenuButton, Button, DropdownMenuSplitter, DropdownMenuBody, DropdownMenuHeader } from '@epam/loveship';
 import { DefaultContext } from '../../docs';
 

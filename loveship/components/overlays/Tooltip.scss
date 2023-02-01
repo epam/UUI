@@ -32,26 +32,20 @@
         color: var(--uui-contrast-color-700);
     }
 
-    &:global(.uui-tooltip-container[data-placement^='right']) {
-        :global(.uui-popover-arrow)::after {
+    &:global(.uui-tooltip-container) {
+        :global(.uui-popover-arrow[data-placement^='right'])::after {
             background: var(--uui-color-700);
         }
-    }
 
-    &:global(.uui-tooltip-container[data-placement^='left']) {
-        :global(.uui-popover-arrow)::after {
+        :global(.uui-popover-arrow[data-placement^='left'])::after {
             background: var(--uui-color-700);
         }
-    }
 
-    &:global(.uui-tooltip-container[data-placement^='top']) {
-        :global(.uui-popover-arrow)::after {
+        :global(.uui-popover-arrow[data-placement^='top'])::after {
             background: var(--uui-color-700);
         }
-    }
 
-    &:global(.uui-tooltip-container[data-placement^='bottom']) {
-        :global(.uui-popover-arrow)::after {
+        :global(.uui-popover-arrow[data-placement^='bottom'])::after {
             background: var(--uui-color-700);
         }
     }

@@ -26,7 +26,7 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                                 onClick: item.props.onClick ? () => {
                                     item.props.onClick();
                                     props.onClose();
-                                } : null
+                                } : null,
                             });
                         }) }
                     </div>
