@@ -1,5 +1,3 @@
-@use  '../../assets/styles/index.scss' as *;
-
 @mixin control-switch-size($size) {
     :global(.uui-switch-body) {
         height: $size;
@@ -43,7 +41,7 @@
     }
 
     :global(.uui-switch-body) {
-        background-color: var(--uui-switch-bg);
+        background-color: var(--uui-control-switch-bg);
         border: 1px solid var(--uui-switch-border);
         width: 36px;
         border-radius: 18px;
@@ -55,7 +53,7 @@
         border-radius: 50%;
         box-sizing: border-box;
         background-color: var(--uui-switch-toggler-bg);
-        border: 1px solid var(--uui-switch-toggler-border);
+        border: 1px solid var(--uui-control-switch-bg);
         transition: 0.1s transform cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -70,7 +68,7 @@
     &:hover, &:focus-within {
         :global(.uui-switch-body) {
             background-color: var(--uui-switch-bg-hover);
-            border-color: var(--uui-switch-border-hover);
+            border-color: var(--uui-control-switch-border-hover);
         }
 
         :global(.uui-switch-toggler) {

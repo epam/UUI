@@ -8,12 +8,14 @@
 - [x] In loveship/types Interface EditMode: mode?: 'form' | 'inline' - ? | 'cell' | 'none' - ?; - leave only in both skins for TextArea and TextInput
 - [ ] Remade SearchInput in PickerInput to fit Figma UUI3 styles.
 - [ ] in uui-core/helpers/withMods.ts removed inherited IHasCX, because DatePicker no need cx props, but it has inputCx and BodyCx, so we need to remade it
-- [ ] Do we need light/dark theme in Loveship Checkbox component? 
+- [ ] Do we need light/dark theme in Loveship Checkbox component?
 - [ ] PgeButton (Paginator) colors in figma and in our site are different. Where are the correct set?
 - [ ] Tag and LinkButton in figma have only one color, but we have a lot of them on our previous version.
 - [ ] In components which use other uuiComponent, like UuiButton, in classes has that component specific classes (UuiTag has button-primary, root, mode-solid size_... etc)
-- [ ] WithMods function - нужно её отрефакторить под кейсы: 
+- [ ] WithMods function - нужно её отрефакторить под кейсы:
       1) когда нужно заменить часть типизации пропсов (например в теме меняется набор цветов).
       2) когда нужно только добывить дополнительные пропсы.
 - [ ] Tag: now removed colors set in loveship according figma (deprecate colors in loveship?), do we need fill (solid | white | none) in loveship (now it's present)?
+- [ ] Switch: Delete from Loveship color & theme props.
+- [ ]
 
