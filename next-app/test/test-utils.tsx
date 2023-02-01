@@ -1,8 +1,10 @@
 import { render, RenderOptions } from "@testing-library/react";
 import React, { ReactElement } from 'react';
 import uuiAppData from '../demoData/uuiAppData.json';
-import { UuiContext } from "@epam/uui-core";
-import { useServices } from "../hooks/useServices";
+import { useUuiServicesSsr, UuiContext } from "@epam/uui-core";
+import { getApi, TApi } from "../helpers/apiDefinition";
+import { useRouter } from "next/router";
+import { skinContext } from "@epam/promo";
 
 type ProviderProps = {
     children: ReactElement<any, any> | null;
@@ -46,9 +48,15 @@ jest.mock("next/router", () => ({
         };
     },
 }));
-
+type AppContextType = typeof uuiAppData;
 const Providers = ({ children }: ProviderProps) => {
-    const { services } = useServices({ appData: uuiAppData });
+    const router = useRouter();
+
+    const { services } = useUuiServicesSsr<TApi, AppContextType>({
+        appContext: uuiAppData, router: router,
+        apiDefinition: getApi,
+        skinContext,
+    });
     return <UuiContext.Provider value={ services }>{ children }</UuiContext.Provider>;
 };
 

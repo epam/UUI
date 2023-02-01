@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest --silent"
   },
   "dependencies": {
     "@epam/assets": "latest",
@@ -22,7 +22,7 @@
     "antd": "^4.16.13",
     "babel-plugin-inline-react-svg": "^2.0.1",
     "history": "4.10.1",
-    "next": "12.3.4",
+    "next": "13.1.5",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.2",
     "normalize.css": "^8.0.1",
