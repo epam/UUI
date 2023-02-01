@@ -1,8 +1,8 @@
 import React, { ReactNode, useCallback, useMemo } from "react";
 import css from "./ColumnHeaderDropdown.scss";
 import { Modifier } from "react-popper";
-import { IDropdownToggler, isMobile, mobilePopperModifier } from "@epam/uui-core";
-import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
+import { DropdownBodyProps, IDropdownToggler, isMobile, mobilePopperModifier } from "@epam/uui-core";
+import { Dropdown } from "@epam/uui-components";
 import { Panel } from "../../layout";
 import { MobileDropdownWrapper } from "../../pickers";
 import { SortingPanel, SortingPanelProps } from "./SortingPanel";

@@ -396,7 +396,7 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                 <ErrorNotification  { ...props }>
                     <Text size='36' font='sans' fontSize='14'>File size shouldn't exceed 5 MB and cannot upload more than 20 files!</Text>
                 </ErrorNotification>
-            ), { duration: 2 });
+            ), { duration: 2 }).catch(() => null);
         }
     };
 
@@ -486,7 +486,8 @@ export function DemoForm() {
         onSuccess: () => svc.uuiNotifications.show(props =>
             <SuccessNotification { ...props }>
                 <Text size='36' font='sans' fontSize='14'>Data has been saved!</Text>
-            </SuccessNotification>, { duration: 2 }),
+            </SuccessNotification>, { duration: 2 })
+            .catch(() => null),
     });
 
     const countriesDS = useAsyncDataSource<Country, string, unknown>({

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { VirtualList, DataTableHeaderRow, DataTableRow, ColumnsConfigurationModal } from '@epam/loveship';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
 import { IEditable, DataQueryFilter, IDataSourceView, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState, DataTableRowProps } from '@epam/uui-core';
@@ -32,7 +32,8 @@ export const PersonsTable = (props: PersonsTableProps) => {
     };
 
     const getRows = () => {
-        return props.view.getVisibleRows().map(row => renderRow({ ...row, columns: personColumns }));
+        const columns = personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableRecord>>[];
+        return props.view.getVisibleRows().map(row => renderRow({ ...row, columns }));
     };
 
     const onConfigurationButtonClick = () => {

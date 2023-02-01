@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
-import { UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus } from '@epam/uui-core';
+import { DropdownBodyProps, DropdownState, UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus } from '@epam/uui-core';
 import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps, dataSourceStateToValue, applyValueToDataSourceState } from './index';
-import { Dropdown, DropdownBodyProps, DropdownState } from '../overlays';
+import { Dropdown } from '../overlays';
 import { i18n } from '../i18n';
 
 export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
