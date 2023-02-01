@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI supports different buttons sizes, according to Button height. You can change size by passing ",
+            "text": "UUI supports different button sizes according to Button height. You can change the size by passing the ",
             "marks": []
           },
           {

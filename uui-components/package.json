@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-components",
-  "version": "4.10.0-rc.4",
+  "version": "4.10.0-rc.5",
   "description": "EPAM UUI Components",
   "author": "EPAM",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "4.10.0-rc.4",
+    "@epam/uui-core": "4.10.0-rc.5",
     "@popperjs/core": "2.9.0",
     "@types/classnames": "2.2.6",
     "@types/lodash.clone": "4.5.6",
@@ -43,7 +43,8 @@
   },
   "devDependencies": {
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.10.0"
+    "enzyme-adapter-react-16": "^1.10.0",
+    "@testing-library/react-hooks": "7.0.2"
   },
   "repository": {
     "type": "git",

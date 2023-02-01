@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If you going  to use ",
+            "text": "If you are going to use ",
             "marks": []
           },
           {
@@ -30,7 +30,7 @@
           },
           {
             "object": "text",
-            "text": " for your application it is a best way to configure it from scratch with our custom UUI Template for ",
+            "text": " for your application, it is best to configure it with our custom UUI Template for ",
             "marks": []
           },
           {
@@ -50,18 +50,6 @@
           {
             "object": "text",
             "text": ".",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "For example: ",
             "marks": []
           }
         ]
@@ -267,7 +255,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It will create and initialize environment and dependencies automatically. Also it will setup minimal UUI configuration with simple layout.",
+            "text": "It will create and initialize the environment and dependencies automatically. Also, it will set up a minimal UUI configuration with a simple layout.",
             "marks": []
           }
         ]
