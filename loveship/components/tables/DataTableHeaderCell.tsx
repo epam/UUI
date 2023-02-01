@@ -43,7 +43,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 <div className={ cx(
                     css.iconCell,
                     this.props.column.textAlign && css['align-' + this.props.column.textAlign],
-                    uuiDataTableHeaderCell.uuiTableHeaderCaption
+                    uuiDataTableHeaderCell.uuiTableHeaderCaption,
                 ) }>
                     <Text key="text" cx={ cx(css.caption, this.getTextStyle()) }>{ this.props.column.caption }</Text>
                     { this.props.column.info && <div><Text key="tooltip-marker">*</Text></div> }
@@ -77,7 +77,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 </div>
             </Tooltip>
         </div>
-    );
+    )
 
     renderHeaderCheckbox = () => this.props.selectAll && this.props.isFirstColumn && (
         <Checkbox

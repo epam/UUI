@@ -1,7 +1,7 @@
 import React from 'react';
-import { Dropdown, DropdownBodyProps, FlexSpacer } from '@epam/uui-components';
+import { Dropdown, FlexSpacer } from '@epam/uui-components';
 import { Panel, Text, FlexRow, LinkButton, DropdownContainer, Badge, IconButton, FlexCell, IconContainer, Avatar } from '@epam/promo';
-import { IDropdownToggler } from '@epam/uui-core';
+import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import css from './BasicExample.scss';
 import { ReactComponent as pinIcon } from '@epam/assets/icons/common/action-pin_on-18.svg';
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';

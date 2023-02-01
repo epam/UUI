@@ -2,6 +2,7 @@
 
 .root {
     &:global(.uui-button-box) {
+        border-radius: var(--uui-tag-border-radius);
         background-color: var(--uui-tag-bg);
         fill: var(--uui-tag-fill);
         border: 0;
@@ -24,7 +25,7 @@
         }
 
         &:global(.-clickable) {
-            &:hover {
+            &:hover, &:active, &:focus {
                 background-color: var(--uui-tag-bg-hover);
                 fill: var(--uui-tag-fill-hover);
                 cursor: pointer;
@@ -32,6 +33,7 @@
         }
 
         :global(.uui-caption) {
+            text-transform: none;
             font-family: var(--font-regular);
             color: var(--uui-tag-caption);
         }

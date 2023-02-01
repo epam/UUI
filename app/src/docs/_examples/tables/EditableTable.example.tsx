@@ -6,7 +6,7 @@ import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, F
 import { FlexSpacer } from '@epam/uui-components';
 
 // Define interface describe data for each row
-interface ToDoItem  {
+interface ToDoItem {
     id: number;
     isDone?: boolean;
     name?: string;
@@ -76,7 +76,7 @@ export default function EditableTableExample() {
     const handleNewItem = useCallback(() => {
         // We can manipulate form state directly with the setValue
         // - pretty much like we do with the setState of React.useState.
-        setValue((current) => ({ ...current, items: [ ...current.items, { ...blankItem, id: id++ }] }))
+        setValue((current) => ({ ...current, items: [...current.items, { ...blankItem, id: id++ }] }))
     }, []);
 
     // Use state to hold DataTable state - current sorting, filtering, etc.
@@ -176,8 +176,8 @@ export default function EditableTableExample() {
     // Here we override it to change row background for 'isDone' items.
     const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => {
         return <DataTableRow
-            { ...props}
-            background={ props.value.isDone ? 'gray5' : 'white'}
+            { ...props }
+            background={ props.value.isDone ? 'gray5' : 'white' }
         />;
     }, []);
 
@@ -195,17 +195,17 @@ export default function EditableTableExample() {
                 renderRow={ renderRow }
             />
         </FlexRow>
-        {/* Render a panel with Save/Revert buttons to control the form */}
+        {/* Render a panel with Save/Revert buttons to control the form */ }
         <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom='gray40'>
             <FlexCell width='auto'>
-                <Button caption='Add new' onClick={handleNewItem} />
+                <Button caption='Add new' onClick={ handleNewItem } />
             </FlexCell>
             <FlexSpacer />
             <FlexCell width='auto'>
-                <Button caption='Save' onClick={save} />
+                <Button caption='Save' onClick={ save } />
             </FlexCell>
             <FlexCell width='auto'>
-                <Button caption='Revert' onClick={revert} />
+                <Button caption='Revert' onClick={ revert } />
             </FlexCell>
         </FlexRow>
     </Panel>;

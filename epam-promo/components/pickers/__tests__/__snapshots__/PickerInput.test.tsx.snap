@@ -52,7 +52,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
     className="body multiline"
   >
     <button
-      className="container uui-button-box uui-enabled tag-color size-42 root"
+      className="container uui-button-box uui-enabled button-vars button-primary root size-42 mode-solid size-42 root uui-theme-promo"
       onClick={[Function]}
       tabIndex={-1}
       type="button"
@@ -68,7 +68,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       </div>
     </button>
     <button
-      className="container uui-button-box uui-enabled tag-color size-42 root"
+      className="container uui-button-box uui-enabled button-vars button-primary root size-42 mode-solid size-42 root uui-theme-promo"
       onClick={[Function]}
       tabIndex={-1}
       type="button"

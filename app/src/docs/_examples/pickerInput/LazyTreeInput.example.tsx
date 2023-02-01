@@ -15,16 +15,14 @@ export default function LazyTreePicker() {
     }, []);
 
     return (
-        <FlexRow>
-            <PickerInput
-                dataSource={ dataSource }
-                value={ value }
-                onValueChange={ onValueChange }
-                cascadeSelection={ true }
-                entityName='location'
-                selectionMode='multi'
-                valueType='id'
-            />
-        </FlexRow>
+        <PickerInput
+            dataSource={ dataSource }
+            value={ value }
+            onValueChange={ onValueChange }
+            cascadeSelection={ true }
+            entityName='location'
+            selectionMode='multi'
+            valueType='id'
+        />
     );
 }

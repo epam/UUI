@@ -77,6 +77,9 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
      */
     isFilterActive?: (filter: TFilter, column: DataColumnProps<TItem, TId, TFilter>) => boolean;
 
+    canCopy?: (cell: DataTableSelectedCellData<TItem, TId, TFilter>) => boolean;
+    canAcceptCopy?: (from: DataTableSelectedCellData<TItem, TId, TFilter>, to: DataTableSelectedCellData<TItem, TId, TFilter>) => boolean;
+
     /** Render the cell content. The item props is the value of the whole row (TItem). */
     render?(item: TItem, props: DataRowProps<TItem, TId>): any;
 
@@ -280,4 +283,9 @@ export interface ITableState<TFilter = Record<string, any>, TViewState = any> ex
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
+}
+
+export interface DataTableSelectedCellData <TItem = any, TId = any, TFilter = any> {
+    column: DataColumnProps<TItem, TId, TFilter>;
+    row: DataRowProps<TItem, TId>;
 }

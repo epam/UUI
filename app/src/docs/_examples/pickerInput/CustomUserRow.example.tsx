@@ -28,16 +28,14 @@ export default function LazyPersonsMultiPickerWithCustomUserRow() {
     );
 
     return (
-        <FlexRow>
-            <PickerInput
-                dataSource={ dataSource }
-                value={ value }
-                onValueChange={ onValueChange }
-                renderRow={ renderUserRow }
-                entityName='person'
-                selectionMode='multi'
-                valueType='id'
-            />
-        </FlexRow>
+        <PickerInput
+            dataSource={ dataSource }
+            value={ value }
+            onValueChange={ onValueChange }
+            renderRow={ renderUserRow }
+            entityName='person'
+            selectionMode='multi'
+            valueType='id'
+        />
     );
 }

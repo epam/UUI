@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Dropdown, DropdownBodyProps } from '@epam/uui-components';
+import { Dropdown } from '@epam/uui-components';
 import { Text, FlexRow, DropdownContainer, LinkButton, FlexCell, Avatar } from "@epam/promo";
-import { IDropdownToggler } from '@epam/uui-core';
+import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import css from './HandleStateExample.scss';
 
 
