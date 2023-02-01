@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useMemo, useState } from "react";
 import { NextRouterAdapter, UuiContext } from "../services";
 import type { IUseUuiServicesProps } from "../hooks";
 import { useUuiServices } from "../hooks";
@@ -28,7 +28,7 @@ export interface IContextProviderSsrProps<TApi, TAppContext> extends IUseUuiServ
 export function UuiContextProviderSsr<TApi, TAppContext>(props: IContextProviderSsrProps<TApi, TAppContext>) {
     const { router, ...restProps } = props;
     const { isChangingRoute } = useIsChangingRoute(router);
-    const nextRouterWithAdapter = new NextRouterAdapter(router);
+    const nextRouterWithAdapter = useMemo(() => new NextRouterAdapter(router), [router]);
     const { services } = useUuiServices<TApi, TAppContext>({
         ...restProps,
         router: nextRouterWithAdapter,
