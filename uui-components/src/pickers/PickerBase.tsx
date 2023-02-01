@@ -50,12 +50,10 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         const { search } = this.state.dataSourceState;
         if (!search) return;
 
-        const pathWithItem = [];
-        if (path.length) {
-            const pathString = path.map(({ value }) => this.getName(value)).filter(Boolean);
-            pathWithItem.push(...pathString);
-        }
-        return pathWithItem.join(' / ');
+        return path
+            .map(({ value }) => this.getName(value))
+            .filter(Boolean)
+            .join(' / ');
     }
 
     getPluralName = () => {
