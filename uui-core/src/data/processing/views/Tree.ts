@@ -1,4 +1,4 @@
-import { BaseListViewProps, DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../types";
+import { DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../types";
 import { LazyListViewProps } from "./LazyListView";
 import { CompositeKeysMap } from './CompositeKeysMap';
 
@@ -531,31 +531,6 @@ export class Tree<TItem, TId> {
             nodeInfo,
             loadedItems,
         }
-    }
-
-    private getMissingParentIds(id: TId) {
-        if (!this.byId.has(id) || !this.params.getParentId) {
-            return [];
-        }
-        const parentIds = new Set<TId>();
-        let itemId = id;
-        while (true) {
-            const item = this.byId.get(itemId);
-            if (!item) break;
-
-            const parentId = this.getParentId(item);
-            console.log('parentId', parentId);
-            if (parentId == null) break;
-
-            console.log('byId.has(parentId)', this.byId.has(parentId));
-            if (!this.byId.has(parentId)) {
-                parentIds.add(parentId);
-            } else {
-                console.log('parentId', this.byId.get(parentId));
-            }
-            itemId = parentId;
-        }
-        return Array.from(parentIds).reverse();
     }
 
     public getParents(id: TId) {
