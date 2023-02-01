@@ -1,6 +1,6 @@
-import React, { CSSProperties, forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
+import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
-import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
+import { IHasCX, cx, IHasRawProps, useDeferRenderForSsr } from '@epam/uui-core';
 import css from './ScrollBars.scss';
 import type { Scrollbars, ScrollbarProps as LibScrollbarProps, positionValues } from 'react-custom-scrollbars-2';
 
@@ -25,6 +25,22 @@ enum uuiScrollbars {
     uuiShadowBottomVisible = 'uui-shadow-bottom-visible',
 }
 
+/**
+ * This method is needed to fix hydration error.
+ * Root cause: "react-custom-scrollbars-2" tries to calculate scrollbar width and some other styles even in SSR mode.
+ * So the solution here is to omit conflicting styles on first render.
+ */
+function filterOutStylesNotReadyForRender(styles: CSSProperties, isDeferred: boolean) {
+    if (!isDeferred) {
+        return styles;
+    }
+    const stylesFiltered = { ...styles };
+    delete stylesFiltered.display;
+    delete stylesFiltered.marginRight;
+    delete stylesFiltered.marginBottom;
+    return stylesFiltered;
+}
+
 export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     style,
     hasBottomShadow,
@@ -33,6 +49,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     ...props
 }, ref) => {
     const bars = useRef<ScrollbarsApi>();
+    const { isDeferred } = useDeferRenderForSsr();
 
     useImperativeHandle(ref, () => bars.current, [bars.current]);
 
@@ -55,13 +72,27 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useEffect(handleUpdateScroll);
 
-    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) => {
-        const propsRenderView = props.renderView as (p: any) => any;
-        const rv = propsRenderView?.({ style: { ...style, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest });
-        return rv || (
-            <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />
-        );
+    const renderSafeForSsr = {
+        renderView: ({ style }: { style: CSSProperties }) => {
+            const styleFiltered = filterOutStylesNotReadyForRender(style, isDeferred);
+            if (props.renderView) {
+                return props.renderView({ style: styleFiltered });
+            }
+            return (
+                <div style={ { ...styleFiltered, ...{ position: 'relative', flex: '1 1 auto' } } } />
+            );
+        },
+        renderTrackHorizontal: ({ style }: { style: CSSProperties }) => {
+            const styleFiltered = filterOutStylesNotReadyForRender(style, isDeferred);
+            return <div style={ styleFiltered } className={ uuiScrollbars.uuiTrackHorizontal } />;
+        },
+        renderTrackVertical: ({ style }: { style: CSSProperties }) => {
+            const styleFiltered = filterOutStylesNotReadyForRender(style, isDeferred);
+            return <div style={ styleFiltered } className={ uuiScrollbars.uuiTrackVertical } />;
+        },
     };
+
+    const { renderView, renderTrackHorizontal, renderTrackVertical, ...propsNonConflicting } = props;
 
     return (
         <ReactCustomScrollBars
@@ -72,16 +103,16 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
                 hasTopShadow && uuiScrollbars.uuiShadowTop,
                 hasBottomShadow && uuiScrollbars.uuiShadowBottom,
             ) }
-            renderView={ renderView }
-            renderTrackHorizontal={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
-            renderTrackVertical={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } /> }
+            renderView={ renderSafeForSsr.renderView }
+            renderTrackHorizontal={ renderSafeForSsr.renderTrackHorizontal }
+            renderTrackVertical={ renderSafeForSsr.renderTrackVertical }
             renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
             renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
             style={ { ...{ display: 'flex' }, ...style } }
             onScroll={ handleUpdateScroll }
             hideTracksWhenNotNeeded
             ref={ bars }
-            { ...props }
+            { ...propsNonConflicting }
             { ...rawProps }
         />
     );

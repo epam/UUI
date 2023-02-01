@@ -7,11 +7,6 @@ export interface PortalProps extends IHasChildren {
     key?: string;
 }
 
-interface PortalState {
-    el: HTMLElement;
-    root: HTMLElement;
-}
-
 export const Portal: React.FC<PortalProps> = (props) => {
     const rootElement = props.target || document.getElementById('main') || document.getElementById('root') || document.body;
     return ReactDOM.createPortal(props.children, rootElement, props.key);

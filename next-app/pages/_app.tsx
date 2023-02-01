@@ -1,51 +1,44 @@
-import 'normalize.css';
-import '../styles/globals.scss';
-import '@epam/uui-components/styles.css';
-import '@epam/promo/styles.css';
-import '@epam/uui/styles.css';
-import '@epam/uui-editor/styles.css';
-import { DragGhost } from "@epam/uui-core";
-import { Snackbar, Modals } from "@epam/uui-components";
-import { Blocker } from '@epam/promo';
+import { GAListener, UuiContextProviderSsr } from "@epam/uui-core";
+import { skinContext } from '@epam/promo';
 import type { AppProps } from 'next/app';
-import { SideBar } from "../components/SideBar";
-import { AppHeader } from "../components/AppHeader";
 import uuiAppData from '../demoData/uuiAppData.json';
 import { NextPageContext } from "next";
-import { UuiContext } from '@epam/uui-core';
-import { useServices } from "../hooks/useServices";
+import { AmplitudeListener } from "../helpers/ampListener";
+import { getApi, TApi } from "../helpers/apiDefinition";
+import { MyAppView } from "./_appView";
+import { useRouter } from "next/router";
 
 interface MyAppProps<TAppContext> extends AppProps {
-    appData?: TAppContext;
+    appContext?: TAppContext;
+}
+type AppContextType = Awaited<ReturnType<typeof getInitialProps>>;
+
+function getAnalyticsListeners() {
+    const AMPLITUDE_KEY = 'b2260a6d42a038e9f9e3863f67042cc1';
+    const ampClient =  new AmplitudeListener(AMPLITUDE_KEY);
+    const gaClient = new GAListener('UA-132675234-1');
+    return [ampClient, gaClient];
 }
 
-const MyApp = ({ Component, pageProps, appData }: MyAppProps<any>) => {
-
-    const { services, isLoading } = useServices({ appData });
-
+function MyApp(props: MyAppProps<AppContextType>) {
+    const { Component, pageProps, appContext } = props;
+    const nextRouter = useRouter();
     return (
-        <UuiContext.Provider value={ services }>
-            <div className={ 'container' }>
-                <AppHeader />
-                <SideBar />
-                <div className={ 'mainContainer' }>
-                    <Component { ...pageProps } />
-                    { isLoading && <Blocker isEnabled={ isLoading }/> }
-                </div>
-                <Snackbar />
-                <Modals />
-                <DragGhost />
-            </div>
-        </UuiContext.Provider>
+        <UuiContextProviderSsr<TApi, AppContextType>
+            nextRouter={ nextRouter }
+            onGetAnalyticsListeners={ getAnalyticsListeners }
+            uuiServicesProps={ { skinContext, apiDefinition: getApi, appContext } }>
+            {
+                ({ isLoading }) => <MyAppView isLoading={ isLoading } { ...{ Component, pageProps } } />
+            }
+        </UuiContextProviderSsr>
     );
-};
+}
 
-
-MyApp.getInitialProps = async (ctx: NextPageContext) => {
-    const appData = await uuiAppData;
-    return {
-        appData,
-    };
-};
+async function getInitialProps(ctx: NextPageContext) {
+    const appContext = await uuiAppData;
+    return { appContext };
+}
+MyApp.getInitialProps = getInitialProps;
 
 export default MyApp;

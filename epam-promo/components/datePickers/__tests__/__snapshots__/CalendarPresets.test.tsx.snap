@@ -2,7 +2,7 @@
 
 exports[`CalendarPresets should be rendered correctly 1`] = `
 <div
-  className="container uui-presets-container root"
+  className="uui-presets-container root"
 >
   <div
     className="uui-presets-header"
