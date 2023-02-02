@@ -33,15 +33,6 @@ exports[`MainMenu should be rendered correctly 1`] = `
           </div>
         </div>
       </div>
-      <div
-        className="root burgerContent uui-burger-overlay"
-        onClick={[Function]}
-      >
-        <div
-          className="root uui-burger-items"
-          onClick={[Function]}
-        />
-      </div>
       <button
         className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
         onClick={[Function]}
@@ -85,15 +76,6 @@ exports[`MainMenu should be rendered correctly with props 1`] = `
             />
           </div>
         </div>
-      </div>
-      <div
-        className="root burgerContent uui-burger-overlay"
-        onClick={[Function]}
-      >
-        <div
-          className="root uui-burger-items"
-          onClick={[Function]}
-        />
       </div>
       <button
         className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
