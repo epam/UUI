@@ -10,14 +10,22 @@ exports[`DataTableCell should be rendered correctly 1`] = `
       "flexBasis": "150px",
       "flexGrow": undefined,
       "flexShrink": undefined,
-      "justifyContent": undefined,
       "minWidth": "150px",
       "textAlign": undefined,
     }
   }
 >
-  <div>
-    Test
+  <div
+    className="contentWrapper"
+    style={
+      Object {
+        "justifyContent": undefined,
+      }
+    }
+  >
+    <div>
+      Test
+    </div>
   </div>
 </div>
 `;
@@ -32,14 +40,22 @@ exports[`DataTableCell should be rendered correctly 2`] = `
       "flexBasis": "150px",
       "flexGrow": undefined,
       "flexShrink": undefined,
-      "justifyContent": undefined,
       "minWidth": "150px",
       "textAlign": undefined,
     }
   }
 >
-  <div>
-    Test
+  <div
+    className="contentWrapper"
+    style={
+      Object {
+        "justifyContent": undefined,
+      }
+    }
+  >
+    <div>
+      Test
+    </div>
   </div>
 </div>
 `;

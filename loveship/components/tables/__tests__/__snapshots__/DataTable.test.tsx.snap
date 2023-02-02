@@ -304,14 +304,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1
+                </div>
               </div>
             </div>
             <div
@@ -336,14 +344,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1
+                </div>
               </div>
             </div>
             <div
@@ -355,14 +371,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                Chief Executive Officer
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  Chief Executive Officer
+                </div>
               </div>
             </div>
             <div
@@ -374,14 +398,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
-                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1969-01-29
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1969-01-29
+                </div>
               </div>
             </div>
           </div>
@@ -416,14 +448,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                2
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  2
+                </div>
               </div>
             </div>
             <div
@@ -448,14 +488,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                2
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  2
+                </div>
               </div>
             </div>
             <div
@@ -467,14 +515,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                Vice President of Engineering
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  Vice President of Engineering
+                </div>
               </div>
             </div>
             <div
@@ -486,14 +542,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
-                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1971-08-01
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1971-08-01
+                </div>
               </div>
             </div>
           </div>
@@ -528,14 +592,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                3
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  3
+                </div>
               </div>
             </div>
             <div
@@ -560,14 +632,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                3
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  3
+                </div>
               </div>
             </div>
             <div
@@ -579,14 +659,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                Engineering Manager
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  Engineering Manager
+                </div>
               </div>
             </div>
             <div
@@ -598,14 +686,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
-                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1974-11-12
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1974-11-12
+                </div>
               </div>
             </div>
           </div>
@@ -640,14 +736,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                4
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  4
+                </div>
               </div>
             </div>
             <div
@@ -672,14 +776,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                4
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  4
+                </div>
               </div>
             </div>
             <div
@@ -691,14 +803,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                Senior Tool Designer
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  Senior Tool Designer
+                </div>
               </div>
             </div>
             <div
@@ -710,14 +830,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
-                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1974-12-23
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1974-12-23
+                </div>
               </div>
             </div>
           </div>
@@ -752,14 +880,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                5
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  5
+                </div>
               </div>
             </div>
             <div
@@ -784,14 +920,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                5
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  5
+                </div>
               </div>
             </div>
             <div
@@ -803,14 +947,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                Design Engineer
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  Design Engineer
+                </div>
               </div>
             </div>
             <div
@@ -822,14 +974,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
-                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1952-09-27
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1952-09-27
+                </div>
               </div>
             </div>
           </div>
@@ -864,14 +1024,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                6
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  6
+                </div>
               </div>
             </div>
             <div
@@ -896,14 +1064,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                6
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  6
+                </div>
               </div>
             </div>
             <div
@@ -915,14 +1091,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                Design Engineer
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  Design Engineer
+                </div>
               </div>
             </div>
             <div
@@ -934,14 +1118,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
-                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1959-03-11
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1959-03-11
+                </div>
               </div>
             </div>
           </div>
@@ -976,14 +1168,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                7
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  7
+                </div>
               </div>
             </div>
             <div
@@ -1008,14 +1208,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                7
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  7
+                </div>
               </div>
             </div>
             <div
@@ -1027,14 +1235,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                Research and Development Manager
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  Research and Development Manager
+                </div>
               </div>
             </div>
             <div
@@ -1046,14 +1262,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
-                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1987-02-24
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1987-02-24
+                </div>
               </div>
             </div>
           </div>
@@ -1088,14 +1312,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                8
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  8
+                </div>
               </div>
             </div>
             <div
@@ -1120,14 +1352,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                8
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  8
+                </div>
               </div>
             </div>
             <div
@@ -1139,14 +1379,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                Research and Development Engineer
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  Research and Development Engineer
+                </div>
               </div>
             </div>
             <div
@@ -1158,14 +1406,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
-                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1986-06-05
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1986-06-05
+                </div>
               </div>
             </div>
           </div>
@@ -1200,14 +1456,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                9
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  9
+                </div>
               </div>
             </div>
             <div
@@ -1232,14 +1496,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                9
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  9
+                </div>
               </div>
             </div>
             <div
@@ -1251,14 +1523,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                Research and Development Engineer
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  Research and Development Engineer
+                </div>
               </div>
             </div>
             <div
@@ -1270,14 +1550,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
-                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1979-01-21
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1979-01-21
+                </div>
               </div>
             </div>
           </div>
@@ -1312,14 +1600,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                10
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  10
+                </div>
               </div>
             </div>
             <div
@@ -1344,14 +1640,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                10
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  10
+                </div>
               </div>
             </div>
             <div
@@ -1363,14 +1667,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                Research and Development Manager
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  Research and Development Manager
+                </div>
               </div>
             </div>
             <div
@@ -1382,14 +1694,22 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
-                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1984-11-30
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "justifyContent": undefined,
+                  }
+                }
+              >
+                <div>
+                  1984-11-30
+                </div>
               </div>
             </div>
           </div>

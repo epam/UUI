@@ -216,21 +216,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -256,21 +264,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -296,21 +312,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -336,21 +360,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -376,21 +408,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -416,21 +456,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -456,21 +504,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -496,21 +552,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -536,21 +600,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -576,21 +648,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -616,21 +696,29 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -965,7 +1053,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -987,16 +1074,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        C2
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          C2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1022,7 +1118,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1044,16 +1139,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        C1+
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          C1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1079,7 +1183,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1101,16 +1204,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        C1
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          C1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1136,7 +1248,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1158,16 +1269,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        B2+
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B2+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1193,7 +1313,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1215,16 +1334,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        B2
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1250,7 +1378,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1272,16 +1399,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        B1+
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1307,7 +1443,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1329,16 +1464,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        B1
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          B1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1364,7 +1508,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1386,16 +1529,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        A2+
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A2+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1421,7 +1573,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1443,16 +1594,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        A2
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1478,7 +1638,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1500,16 +1659,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        A1+
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1535,7 +1703,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1557,16 +1724,25 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "justifyContent": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        className="renderItem"
                       >
-                        A1
+                        <div
+                          className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-9 container"
+                        >
+                          A1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
