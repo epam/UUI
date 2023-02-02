@@ -2,7 +2,7 @@ import { render, RenderOptions } from "@testing-library/react";
 import React, { ReactElement } from 'react';
 import uuiAppData from '../demoData/uuiAppData.json';
 import { useUuiServicesSsr, UuiContext } from "@epam/uui-core";
-import { getApi, TApi } from "../helpers/apiDefinition";
+import { apiDefinition, TApi } from "../helpers/apiDefinition";
 import { useRouter } from "next/router";
 import { skinContext } from "@epam/promo";
 
@@ -54,7 +54,7 @@ const Providers = ({ children }: ProviderProps) => {
 
     const { services } = useUuiServicesSsr<TApi, AppContextType>({
         appContext: uuiAppData, router: router,
-        apiDefinition: getApi,
+        apiDefinition,
         skinContext,
     });
     return <UuiContext.Provider value={ services }>{ children }</UuiContext.Provider>;

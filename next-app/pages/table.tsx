@@ -10,6 +10,8 @@ import {
 import {Person} from "@epam/uui-docs";
 import {NextPageContext} from "next";
 import {fetcher, UUI_API_POINT} from "../helpers/apiHelper";
+import { TApi } from "../helpers/apiDefinition";
+import { AppContextType } from "../helpers/appContext";
 
 interface PagedTableState extends DataSourceState<{}> {
     page?: number;
@@ -19,7 +21,7 @@ interface PagedTableState extends DataSourceState<{}> {
 
 const TableExample = () => {
     const [state, setState] = useState<PagedTableState>({ page: 1, visibleCount: 15, totalCount: 0, pageSize: 100 });
-    const svc = useUuiContext();
+    const svc = useUuiContext<TApi, AppContextType>();
 
     const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {
         const result = await svc.api.demo.personsPaged({
