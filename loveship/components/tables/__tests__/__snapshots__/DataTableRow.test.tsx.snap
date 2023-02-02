@@ -30,13 +30,21 @@ exports[`DataTableRow should be rendered correctly 1`] = `
           "flexBasis": "96px",
           "flexGrow": 0,
           "flexShrink": 0,
-          "justifyContent": undefined,
           "minWidth": "96px",
           "textAlign": undefined,
         }
       }
     >
-      <div />
+      <div
+        className="contentWrapper"
+        style={
+          Object {
+            "justifyContent": undefined,
+          }
+        }
+      >
+        <div />
+      </div>
     </div>
   </div>
 </div>

@@ -157,19 +157,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -193,19 +201,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -229,19 +245,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -265,19 +289,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -301,19 +333,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -337,19 +377,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -373,19 +421,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -409,19 +465,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -445,19 +509,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -481,19 +553,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -517,19 +597,27 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "justifyContent": undefined,
+                    }
+                  }
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
+                    className="renderItem"
+                  >
+                    <div />
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
