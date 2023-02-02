@@ -288,11 +288,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
     private collectNotIncludedParents(id: TId, item: TItem): DataRowProps<TItem, TId>[] {
         const foundParents = this.tree.getParents(id);
-        const prevParents: DataRowProps<TItem, TId>[] = [];
         const parents: DataRowProps<TItem, TId>[] = [];
         foundParents.forEach((parent) => {
-            const parentRowProps = this.getRowProps(parent, 0, prevParents);
-            prevParents.push(parentRowProps);
+            const parentRowProps = this.getRowProps(parent, 0, parents);
             parents.push(parentRowProps);
         });
         return parents;
