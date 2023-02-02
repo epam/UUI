@@ -32,7 +32,7 @@ export interface PagedTableState extends DataSourceState<{}> {
     totalCount: number;
 }
 
-const UuiApp = () => {
+const ArrayTable = () => {
     const { uuiApp } = useUuiContext<TApi, AppContextType>();
 
     const [value, onValueChange] = useState({});
@@ -97,4 +97,4 @@ const UuiApp = () => {
     );
 };
 
-export default UuiApp;
+export default ArrayTable;
