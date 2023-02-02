@@ -3,6 +3,8 @@ import { DataSourceState, DataColumnProps, useArrayDataSource, useUuiContext} fr
 import { useMemo, useState} from "react";
 import Image from "next/image";
 import {Badge} from "@epam/promo";
+import { TApi } from "../helpers/apiDefinition";
+import { AppContextType } from "../helpers/appContext";
 
 type Location  = {
     name: string;
@@ -31,7 +33,8 @@ export interface PagedTableState extends DataSourceState<{}> {
 }
 
 const UuiApp = () => {
-    const { uuiApp } = useUuiContext();
+    const { uuiApp } = useUuiContext<TApi, AppContextType>();
+
     const [value, onValueChange] = useState({});
 
     const dataSource = useArrayDataSource<ItemData, number, unknown>({

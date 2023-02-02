@@ -43,7 +43,7 @@
     "@types/react": "18.0.26",
     "babel-jest": "^27.4.5",
     "eslint": "^8.0.1",
-    "eslint-config-next": "11.1.2",
+    "eslint-config-next": "13.1.6",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.4.5",
     "typescript": "4.9.3"
