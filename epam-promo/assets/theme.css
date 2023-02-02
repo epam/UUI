@@ -200,8 +200,8 @@
     --uui-control-border-disabled: var(--uui-disabled);
     --uui-control-border-readonly: var(--uui-disabled);
 
-    --uui-control-switch-bg: var(--gray40);
-    --uui-control-switch-border-hover: var(--gray60);
+    --uui-switch-bg: var(--gray40);
+    --uui-switch-border-hover: var(--gray60);
     --uui-control-textinput-border-hover: var(--gray60);
 
     --uui-control-label: var(--uui-text-primary);
