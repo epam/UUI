@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { MouseEvent } from 'react';
-import { DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
-    TooltipCoreProps, IHasCX } from '@epam/uui-core';
+import {
+    DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
+    TooltipCoreProps, IHasCX
+} from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
 
@@ -17,7 +19,6 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     //const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
 
     let content: React.ReactNode;
-    let outline: React.ReactNode = null;
     let isEditable = !!props.onValueChange;
 
     const handleEditorClick = React.useCallback((e: MouseEvent) => {
@@ -83,13 +84,11 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }
-            style={ {
-                justifyContent,
-            } }
         >
             { props.addons }
-            { content }
-            { outline }
+            <div style={ { justifyContent } } className={ css.contentWrapper }>
+                { content }
+            </div>
         </FlexCell>
     );
 };
@@ -104,14 +103,14 @@ interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
 
 function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const overlay = (
-            <div
-                className={ cx(
-                    css.overlay,
-                    props.isInvalid && uuiMod.invalid,
-                    props.inFocus && uuiMod.focus,
-                    props.cx,
-                ) }
-            />
+        <div
+            className={ cx(
+                css.overlay,
+                props.isInvalid && uuiMod.invalid,
+                props.inFocus && uuiMod.focus,
+                props.cx,
+            ) }
+        />
     );
 
     if (props.inFocus) {
