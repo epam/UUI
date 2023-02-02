@@ -47,7 +47,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     }
 
     getSubtitle = (rowProps: DataRowProps<TItem, TId>) => {
-        const { path, indent, parentId } = rowProps;
+        const { path, parentId } = rowProps;
         const { search } = this.state.dataSourceState;
         const shouldShowSubtitle = search && parentId;
         if (!shouldShowSubtitle) return;
