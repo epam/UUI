@@ -13,6 +13,8 @@ export interface IContextProviderSsrProps<TApi, TAppContext> extends IUseUuiServ
  * @example
  * const { services } = useUuiServicesSsr({ ... });
  * <UuiContext.Provider value={ services }> ... </UuiContext.Provider>
+ * // And then, use it in code like this:
+ * const services = useUuiContext<TApi, AppContextType>();
  *
  * @param props
  */
