@@ -1,5 +1,5 @@
 import { getDemoApi } from "@epam/uui-docs";
-import type { ApiCallOptions, CommonContexts, UuiContexts } from "@epam/uui-core";
+import type { ApiCallOptions } from "@epam/uui-core";
 
 export interface GetCodeParams {
     path: string;
@@ -12,7 +12,7 @@ export interface GetCodeResponse {
     highlighted: string;
 }
 
-export function getApi(processRequest: (request: string, requestMethod: string, data?: any, options?: ApiCallOptions) => any, origin: string = '') {
+export function apiDefinition(processRequest: (request: string, requestMethod: string, data?: any, options?: ApiCallOptions) => any, origin: string = '') {
     return {
         demo: getDemoApi(processRequest, origin),
         success: {
@@ -36,5 +36,4 @@ export function getApi(processRequest: (request: string, requestMethod: string, 
     };
 }
 
-export type TApi = ReturnType<typeof getApi>;
-export const svc: Partial<CommonContexts<TApi, UuiContexts>> = {};
+export type TApi = ReturnType<typeof apiDefinition>;
