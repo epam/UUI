@@ -15,13 +15,11 @@ function useDemoAccessApi() {
             .then(res => {
                 console.log('Response from "api.getDataFromApi1"', res);
             });
-    }, [api])
+    }, [api]);
 }
 
 const Home: NextPage = () => {
-    const { api } = useUuiContext<TApi, AppContextType>();
-
-    // Note: this is just a demonstration UUI context is accessed.
+    // Note: this is just a demonstration of how UUI context is accessed.
     useDemoAccessApi();
 
   return (
