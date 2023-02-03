@@ -1,4 +1,4 @@
-import { IEditable, DataSourceState, DataSourceListCounts } from "../../../types";
+import { IEditable, DataSourceState, DataSourceListCounts, DataRowPathItem } from "../../../types";
 import { BaseListView } from "./BaseListView";
 
 export class LoadingListView<TId> extends BaseListView<any, any, any> {
@@ -37,6 +37,14 @@ export class LoadingListView<TId> extends BaseListView<any, any, any> {
 
     getSelectedRows: () => any = () => {
         return [];
+    }
+
+    protected getPathItem(item: any): DataRowPathItem<any, any> {
+        return {
+            id: this.props.getId(item),
+            value: item,
+            isLastChild: false,
+        };
     }
 
 }

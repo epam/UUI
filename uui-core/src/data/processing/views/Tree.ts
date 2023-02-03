@@ -535,12 +535,13 @@ export class Tree<TItem, TId> {
 
     public getParents(id: TId) {
         const parentIds = this.getParentIdsRecursive(id);
-        const parents = parentIds.reduce<TItem[]>((acc, parentId) => {
-            if (!this.byId.has(parentId)) {
-                return acc;
+        const parents: TItem[] = [];
+        parentIds.forEach((parentId) => {
+            if (this.byId.has(parentId)) {
+                parents.push(this.byId.get(parentId));
             }
-            return [...acc, this.byId.get(parentId)];
-        }, []);
+        });
+
         return parents;
     }
 
