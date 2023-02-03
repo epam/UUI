@@ -1,10 +1,10 @@
 import React, { useRef, useContext, useState, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
 import {
-    cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption,
-    IDisableable, IAnalyticableClick, IHasCX, IClickable
+    cx, DropdownBodyProps, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption,
+    IDisableable, IAnalyticableClick, IHasCX, IClickable,
 } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer, DropdownBodyProps } from '@epam/uui-components';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
 import { Switch } from '../inputs';
 import { systemIcons } from '../../icons/icons';
 import css from './DropdownMenu.scss';
@@ -90,7 +90,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
         onClick,
         toggleDropdownOpening,
         isDropdown,
-        target
+        target,
     } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
