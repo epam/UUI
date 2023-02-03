@@ -5,9 +5,9 @@ import { FormContext, ResizableContext, DefaultContext } from '../../docs';
 import { iconDoc, iconOptionsDoc } from '../../docs';
 import { colors } from '../../docs/helpers/colorMap';
 import { allEpamAdditionalColors } from '@epam/promo';
-import { BadgeProps } from "@epam/uui";
+import { BadgeProps } from "@epam/promo";
 
-const badgeDoc = new DocBuilder<Omit<BadgeProps, 'color'> & BadgeMods>({ name: 'Badge', component: Badge })
+const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', component: Badge })
     .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: [...allEpamAdditionalColors, "gray30"]})
     .implements([iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc])
     .prop('caption', { examples: [
