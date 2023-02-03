@@ -1,7 +1,7 @@
 import React from "react";
-import { DropdownBodyProps, FlexSpacer } from "@epam/uui-components";
+import { FlexSpacer } from "@epam/uui-components";
 import { NumericInput } from "../inputs";
-import { isMobile } from "@epam/uui-core";
+import { DropdownBodyProps, isMobile } from "@epam/uui-core";
 import { FlexCell, FlexRow } from "../layout";
 import { LinkButton } from "../buttons";
 import { i18n } from "../../i18n";
