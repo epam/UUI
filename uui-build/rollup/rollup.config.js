@@ -2,6 +2,7 @@ const typescript = require("@rollup/plugin-typescript");
 const svgr = require("@svgr/rollup");
 const commonjs = require("@rollup/plugin-commonjs");
 const nodeResolve = require("@rollup/plugin-node-resolve");
+const replace = require('@rollup/plugin-replace')
 const { visualizer } = require("rollup-plugin-visualizer");
 const postCssDynamicImport = import("rollup-plugin-postcss-modules");
 const path = require('path')
@@ -17,7 +18,7 @@ module.exports = { getConfig };
 async function getConfig({ moduleRootDir, moduleIndexFile, tsconfigFile }) {
     const { default: postcss } = await postCssDynamicImport;
     const external = getExternalDeps(moduleRootDir);
-    const { name: moduleName } = readPackageJsonContentSync(moduleRootDir);
+    const { name: moduleName, version } = readPackageJsonContentSync(moduleRootDir);
     const moduleFolderName = path.basename(moduleRootDir);
     const outDir = `${moduleRootDir}/build`;
     const extractedCssFileName = 'styles.css';
@@ -33,6 +34,10 @@ async function getConfig({ moduleRootDir, moduleIndexFile, tsconfigFile }) {
         }],
         external,
         plugins: [
+            replace({
+                UUI_VERSION_VARIABLE: version,
+                preventAssignment: true,
+            }),
             nodeResolve({
                 // https://www.npmjs.com/package/@rollup/plugin-node-resolve
                 jail: path.resolve(moduleRootDir, '..'),
