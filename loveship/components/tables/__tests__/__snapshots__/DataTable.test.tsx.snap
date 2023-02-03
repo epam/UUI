@@ -17,7 +17,6 @@ exports[`DataTable should be rendered correctly 1`] = `
   <div
     aria-colcount={4}
     aria-rowcount={10}
-    className=""
     role="table"
     style={
       Object {
@@ -45,7 +44,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         style={
           Object {
             "columnGap": undefined,
-            "minWidth": "566px",
+            "minWidth": "563px",
             "rowGap": undefined,
           }
         }
@@ -112,8 +111,8 @@ exports[`DataTable should be rendered correctly 1`] = `
           className="section scrollingSection uui-table-scrolling-section"
           style={
             Object {
-              "flex": "2 0 470px",
-              "minWidth": "470px",
+              "flex": "2 0 467px",
+              "minWidth": "467px",
             }
           }
         >
@@ -281,7 +280,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -322,8 +321,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -393,7 +392,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -434,8 +433,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -505,7 +504,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -546,8 +545,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -617,7 +616,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -658,8 +657,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -729,7 +728,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -770,8 +769,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -841,7 +840,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -882,8 +881,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -953,7 +952,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -994,8 +993,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -1065,7 +1064,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -1106,8 +1105,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -1177,7 +1176,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -1218,8 +1217,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -1289,7 +1288,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -1330,8 +1329,8 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >

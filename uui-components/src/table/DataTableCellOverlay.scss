@@ -44,28 +44,22 @@
     &:global(.uui-focus) {
         z-index: 2;
         visibility: visible;
-        border-color: var(--uui-dt-cell-editor-focus-border-color);
-    }
-
-    &:global(.uui-invalid) {
-        z-index: 3;
-        visibility: visible;
-        border-color: var(--uui-dt-cell-editor-invalid-border-color);
+        border-color: var(--uui-dt-cell-editor-focus-border);
     }
 
     & :global(.uui-copying-marker) {
-        background-color: var(--uui-dt-cell-editor-focus-border-color);
+        background-color: var(--uui-dt-cell-editor-focus-border);
     }
 
     & :global(.uui-copying-marker-hover) {
-        background-color: var(--uui-dt-cell-editor-hover-border-color);
+        background-color: var(--uui-dt-cell-editor-hover-border);
     }
 
     :global(.uui-table-cell):hover & {
         &:not(:global(.uui-table-cell-selection-in-progress)):not(:global(.uui-focus)) {
             z-index: 1;
             visibility: visible;
-            border-color: var(--uui-dt-cell-editor-hover-border-color);
+            border-color: var(--uui-dt-cell-editor-hover-border);
         }
     }
 
@@ -82,39 +76,39 @@
         visibility: visible;
 
         &:global(.uui-table-cell-selected-top) {
-            border-top-color: var(--uui-dt-cell-editor-focus-border-color);
+            border-top-color: var(--uui-dt-cell-editor-focus-border);
         }
 
         &:global(.uui-table-cell-selected-right) {
-            border-right-color: var(--uui-dt-cell-editor-focus-border-color);
+            border-right-color: var(--uui-dt-cell-editor-focus-border);
         }
 
         &:global(.uui-table-cell-selected-bottom) {
-            border-bottom-color: var(--uui-dt-cell-editor-focus-border-color);
+            border-bottom-color: var(--uui-dt-cell-editor-focus-border);
         }
 
         &:global(.uui-table-cell-selected-left) {
-            border-left-color: var(--uui-dt-cell-editor-focus-border-color);
+            border-left-color: var(--uui-dt-cell-editor-focus-border);
         }
 
         // to prevent borders to be cut, it is required to set border-{side} = 0px;
         &:global(.uui-table-cell-selected-top),
         &:global(.uui-table-cell-selected-bottom) {
             &:not(:global(.uui-table-cell-selected-right)) {
-                border-right: 0px;
+                border-right: 0;
             }
             &:not(:global(.uui-table-cell-selected-left)) {
-                border-left: 0px;
+                border-left: 0;
             }
         }
 
         &:global(.uui-table-cell-selected-right),
         &:global(.uui-table-cell-selected-left) {
             &:not(:global(.uui-table-cell-selected-bottom)) {
-                border-bottom: 0px;
+                border-bottom: 0;
             }
             &:not(:global(.uui-table-cell-selected-top)) {
-                border-top: 0px;
+                border-top: 0;
             }
         }
     }
