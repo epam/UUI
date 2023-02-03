@@ -1,5 +1,7 @@
-import { DataRowProps, SortingOption, IEditable, DataSourceState,
-    DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
+import {
+    DataRowProps, SortingOption, IEditable, DataSourceState,
+    DataSourceListProps, IDataSourceView, BaseListViewProps, DataRowPathItem,
+} from "../../../types";
 import { getSearchFilter } from '../../querying';
 import { BaseListView } from './BaseListView';
 import isEqual from 'lodash.isequal';
@@ -14,7 +16,6 @@ export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewPro
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     props: ArrayListViewProps<TItem, TId, TFilter>;
-    tree: Tree<TItem, TId>;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
@@ -71,6 +72,20 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         });
     }
 
+    protected getPathItem(item: TItem): DataRowPathItem<TId, TItem> {
+        const parentId = this.props.getParentId?.(item);
+        const id = this.props.getId?.(item);
+        const ids = this.tree.getChildrenIdsByParentId(parentId);
+        const index = ids.indexOf(id);
+
+        const isLastChild = index !== -1 && (index === ids.length - 1);
+        return {
+            id: this.props.getId(item),
+            value: item,
+            isLastChild,
+        };
+    }
+
     private updateNodes() {
         const applySearch = this.buildSearchFilter(this.value);
         const applyFilter = this.props.getFilter && this.props.getFilter(this.value.filter);
@@ -84,7 +99,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         const empty = { rows: [] as DataRowProps<TItem, TId>[], checkedCount: 0, checkableCount: 0, selectedCount: 0 };
 
-        const getNodesRec = (items: TItem[], parents: DataRowProps<TItem, TId>[], depth: number) => {
+        const getNodesRec = (items: TItem[], depth: number) => {
             let checkedCount = 0;
             let selectedCount = 0;
             let checkableCount = 0;
@@ -94,14 +109,15 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             for (let n = 0; n < items.length; n++) {
                 const item = items[n];
                 const childrenItems = this.tree.getChildren(item);
-                const rowProps = this.getRowProps(item, currentIndex, parents);
+                const path = this.getPathById(this.props.getId(item));
+                const rowProps = this.getRowProps(item, currentIndex, path);
                 rowProps.isLastChild = n === (items.length - 1);
                 let children = empty;
                 const isPassedSearch = applySearch ? applySearch(item) : true;
                 const isPassedFilter = applyFilter ? applyFilter(item) : true;
 
                 if (childrenItems.length > 0) {
-                    children = getNodesRec(childrenItems, [...parents, rowProps], depth + 1);
+                    children = getNodesRec(childrenItems, depth + 1);
                     checkedCount += children.checkedCount;
                     selectedCount += children.selectedCount;
                     checkableCount += children.checkableCount;
@@ -160,7 +176,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         const all = getNodesRec(
             this.tree.getRootItems(),
-            [],
             this.tree.isFlatList() ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
         );
 
@@ -197,7 +212,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     private buildSorter(sortBy?: (item: TItem, sorting: SortingOption) => any) {
-        const compareScalars = (new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'})).compare;
+        const compareScalars = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
 
         const comparers: ((a: TItem, b: TItem) => number)[] = [];
 
