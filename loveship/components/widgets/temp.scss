@@ -1,4 +1,4 @@
-@use  '../../assets/styles/index' as *;
+@use '../../assets/styles/scss/index'  as *;
 
 @mixin transparent-button-layout() {
     padding-left: 0;
@@ -6,6 +6,10 @@
 }
 
 .root {
+    cursor: default;
+    flex-shrink: 0;
+    font-family: $font-sans;
+
     :global(.uui-count) {
         font-family: $font-sans-semibold;
         margin: auto;
@@ -17,27 +21,75 @@
         padding-right: 6px;
         min-width: 6px;
         text-align: center;
+
+        &:not(:first-child) {
+            margin-left: 6px;
+        }
     }
 
-    :global(.uui-count):not(:first-child) {
-        margin-left: 6px;
+    &:focus {
+        box-shadow: none;
     }
 
-    :global(.uui-caption) {
-        font-family: $font-sans;
+    &:hover:not(:global(.-clickable)) {
+        cursor: default;
     }
 
-    &:global(.uui-button-box) {
-        border-width: 1px;
+    &.size-12 {
+        @include control-horizontal-layout(12px, 1px);
+        padding: 0 2px;
 
+        :global(.uui-count) {
+            height: 10px;
+            line-height: 10px;
+            font-size: 8px;
+            border-radius: 5px;
+            padding-left: 3px;
+            padding-right: 3px;
+
+            &:not(:first-child) {
+                margin-left: 3px;
+            }
+        }
+
+        :global(.uui-caption), :global(.uui-input) {
+            line-height: 10px;
+            font-size: 10px;
+            padding: 1px 3px;
+        }
+
+        &:global(.uui-button-box), &:global(.uui-input-box) {
+            min-height: 12px;
+            border-width: 1px;
+        }
+
+        :global(.uui-icon) {
+            svg {
+                height: 10px;
+                max-width: 10px;
+            }
+        }
+
+        &.fill-transparent {
+            @include transparent-button-layout;
+
+            :global(.uui-caption) {
+                margin-left: 17px;
+                padding-right: 0;
+                padding-left: 0;
+            }
+
+            &::before {
+                width: 8px;
+                height: 8px;
+                top: 2px;
+                left: 1px;
+            }
+        }
     }
 
     &.size-18 {
-        min-width: 18px;
-        min-height: 18px;
-        padding-left: 3px;
-        padding-right: 3px;
-        border-radius: 9px;
+        @include button-layout(18px, 1px);
 
         :global(.uui-count) {
             height: 12px;
@@ -46,16 +98,17 @@
             border-radius: 6px;
             padding-left: 3px;
             padding-right: 3px;
-        }
 
-        :global(.uui-count):not(:first-child) {
-            margin-left: 3px;
+            &:not(:first-child) {
+                margin-left: 3px;
+            }
         }
 
         :global(.uui-caption) {
-            padding: 2px 3px;
+            padding-top: 2px;
+            padding-bottom: 2px;
             line-height: 12px;
-            font-size: 12px;
+            font-size: 10px;
         }
 
         &.fill-transparent {
@@ -77,15 +130,13 @@
     }
 
     &.size-24 {
-        @include button-horizontal-layout(24px, 1px);
-        border-radius: 12px;
-        min-height: 24px;
+        @include button-layout(24px, 1px);
 
         :global(.uui-caption) {
-            padding-top: 2px;
-            padding-bottom: 2px;
-            line-height: 18px;
-            font-size: 14px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            line-height: 12px;
+            font-size: 12px;
         }
 
         &.fill-transparent {
@@ -107,9 +158,7 @@
     }
 
     &.size-30 {
-        @include button-horizontal-layout(30px, 1px);
-        border-radius: 15px;
-        min-height: 30px;
+        @include button-layout(30px, 1px);
 
         :global(.uui-caption) {
             padding-top: 5px;
@@ -137,14 +186,12 @@
     }
 
     &.size-36 {
-        @include button-horizontal-layout(36px, 1px);
-        border-radius: 18px;
-        min-height: 36px;
+        @include button-layout(36px, 1px);
 
         :global(.uui-caption) {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            line-height: 24px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            line-height: 18px;
             font-size: 14px;
         }
 
@@ -167,9 +214,7 @@
     }
 
     &.size-42 {
-        @include button-horizontal-layout(42px, 1px);
-        border-radius: 21px;
-        min-height: 42px;
+        @include button-layout(42px, 1px);
 
         :global(.uui-count) {
             height: 24px;
@@ -205,9 +250,7 @@
     }
 
     &.size-48 {
-        @include button-horizontal-layout(48px, 1px);
-        border-radius: 24px;
-        min-height: 48px;
+        @include button-layout(48px, 1px);
 
         :global(.uui-count) {
             height: 24px;
@@ -243,64 +286,49 @@
     }
 
     &.fill-solid {
-        background-color: var(--background-color);
-        color: var(--caption-color-solid);
-        fill: var(--caption-color-solid);
-        border-color: var(--background-color);
+        @include button-colors(var(--uui-color-700), var(--uui-contrast-color-700), var(--uui-color-700));
 
         :global(.uui-count) {
-            background-color: var(--count-background-color);
-            color: var(--count-color);
-        }
-
-        &:global(.-clickable) {
-            &:hover {
-                background-color: var(--background-color-hover);
-                border-color: var(--background-color-hover);
-                cursor: pointer;
-            }
+            background-color: $white;
+            color: $night600;
         }
     }
 
+    &.fill-white {
+        @include button-colors($white, var(--uui-color-700), var(--uui-color-700));
+    }
+
     &.fill-semitransparent {
-        background-color: var(--background-color-semitransparent);
-        color: var(--caption-color-semitransparent);
-        fill: var(--caption-color-semitransparent);
-        border-color: var(--border-color-semitransparent);
+        @include button-colors(var(--uui-color-500), var(--uui-color-900), var(--uui-color-600));
 
         :global(.uui-count) {
-            background-color: var(--count-background-color);
-            color: var(--count-color);
-        }
-
-        &:global(.-clickable) {
-            &:hover {
-                background-color: var(--background-color-semitransparent-hover);
-                color: var(--caption-color-semitransparent-hover);
-                fill: var(--caption-color-semitransparent-hover);
-                cursor: pointer;
-            }
+            background-color: $white;
+            color: $night600;
         }
     }
 
     &.fill-transparent {
-        background-color: transparent;
-        color: var(--caption-color-transparent);
-        fill: var(--caption-color-transparent);
-        border-color: transparent;
-
-        &:global(.-clickable) {
-            &:hover {
-                fill: var(--background-color-hover);
-                cursor: pointer;
-            }
-        }
+        @include button-colors(transparent, $night800, transparent);
 
         &::before {
             position: absolute;
             content: '';
             border-radius: 50%;
-            background-color: var(--background-color);
+            background-color: var(--uui-color-700);
         }
+    }
+
+    &.fill-none {
+        @include button-colors(transparent, var(--uui-color-700), var(--uui-color-700));
+    }
+
+    &.style-round {
+        &.size-12 { border-radius: 7px; }
+        &.size-18 { border-radius: 9px; }
+        &.size-24 { border-radius: 12px; }
+        &.size-30 { border-radius: 15px; }
+        &.size-36 { border-radius: 18px; }
+        &.size-42 { border-radius: 21px; }
+        &.size-48 { border-radius: 24px; }
     }
 }
