@@ -3,6 +3,7 @@ import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metad
 import { useForm } from '@epam/promo';
 import * as promo from "@epam/promo";
 import * as loveship from "@epam/loveship";
+import * as uui from "@epam/uui";
 import {  DatePickerProps } from '@epam/uui';
 import { PickerInputBaseProps } from '@epam/uui-components';
 
@@ -92,15 +93,22 @@ const metadata: Metadata<FormState> = {
 };
 
 const skinMods = {
-    'promo': { altBackground: 'gray5', cellColors: ['gray5', 'red', 'blue', 'green', 'amber'] },
-    'loveship': { altBackground: 'night50', cellColors: ['night50', 'fire', 'sky', 'grass', 'sun'] },
+    'promo': { border: 'gray30', altBackground: 'gray5', cellColors: ['gray5', 'red', 'blue', 'green', 'amber'] },
+    'loveship': { border: 'night300', altBackground: 'night50', cellColors: ['night50', 'fire', 'sky', 'grass', 'sun'] },
+    'uui': { border: true, altBackground: 'edited', cellColors: ['edited', 'invalid'] },
 };
 
 type SkinName = keyof typeof skinMods;
 
+const skins = {
+    'promo': promo,
+    'loveship': loveship,
+    'uui': uui,
+};
+
 export default function TableCellsStylesSandbox() {
     const [skinName, setSkinName] = useState<SkinName>('promo');
-    const skin: (typeof promo | typeof loveship) = (skinName === 'promo') ? promo : loveship;
+    const skin: (typeof promo | typeof loveship | typeof uui) = skins[skinName];
 
     // These component types doesn't merge correctly/acceptably between skins
     const SkinDatePicker = skin.DatePicker as ForwardRefExoticComponent<DatePickerProps & RefAttributes<any>>;
@@ -186,7 +194,7 @@ export default function TableCellsStylesSandbox() {
             caption: 'TextArea',
             renderCell: (props) => <SkinDataTableCell
                 { ...props.rowLens.prop('textArea').toProps() }
-                renderEditor={ props => <skin.TextArea { ...props } autoSize/> }
+                renderEditor={ props => <skin.TextInput { ...props }/> }
                 { ...props }
                 background={ getCellBackground(props) }
             />,
@@ -240,15 +248,17 @@ export default function TableCellsStylesSandbox() {
     const view = dataSource.useView(tableState, setTableState, {
         getRowOptions: (item: Item, index: number) => ({
             ...lens.prop('items').index(index).toProps(),
+            isSelectable: true,
+            checkbox: { isVisible: true },
         }),
     });
 
     const renderRow = useCallback((props: DataTableRowProps<Item, number>) => {
         return <skin.DataTableRow
             { ...props }
-            background={ (props.value.altBackground && skinMods[skinName].altBackground) as any }
+            background={ (props.value.altBackground && skinMods[skinName].altBackground) as never }
         />;
-    }, []);
+    }, [skinName]);
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return <skin.Panel key={ skinName }>
@@ -260,6 +270,7 @@ export default function TableCellsStylesSandbox() {
                     items={ [
                         { id: 'loveship' as SkinName, caption: 'Loveship' },
                         { id: 'promo' as SkinName, caption: 'Promo' },
+                        { id: 'uui' as SkinName, caption: 'UUI' },
                     ] }
                 />
             </skin.FlexCell>

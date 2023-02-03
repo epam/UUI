@@ -26,7 +26,6 @@ Array [
       }
     >
       <div
-        className=""
         style={
           Object {
             "WebkitOverflowScrolling": "touch",
@@ -580,7 +579,6 @@ Array [
       }
     >
       <div
-        className=""
         style={
           Object {
             "WebkitOverflowScrolling": "touch",

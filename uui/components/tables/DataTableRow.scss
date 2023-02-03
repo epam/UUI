@@ -1,0 +1,54 @@
+@use  '../../assets/styles/index' as *;
+@use  '~@epam/assets/scss/dnd' as *;
+
+.root {
+    &:global(.-clickable) {
+        cursor: pointer;
+
+        &:hover {
+            --uui-dt-row-bg: var(--uui-dt-row-bg-hover);
+        }
+    }
+
+    &:global(.-draggable) {
+        @include dnd-cursor-style();
+    }
+
+    &:global(.uui-selected.uui-table-row) {
+        --uui-dt-row-bg: var(--uui-dt-row-bg-selected);
+    }
+
+    &:global(.uui-invalid.uui-table-row) {
+        --uui-dt-row-bg: var(--uui-dt-row-bg-invalid);
+    }
+
+    &:global(.uui-dragged-out) {
+        opacity: 0.5;
+    }
+
+    &:global(.uui-drag-ghost) {
+        @include dnd-ghost-shadow();
+    }
+
+    &:global(.uui-focus) {
+        //border: 1px solid $blue;
+    }
+}
+
+// Sizes
+
+.size-24 { min-height: 24px; }
+.size-30 { min-height: 30px; }
+.size-36 { min-height: 36px; }
+.size-48 { min-height: 48px; }
+.size-60 { min-height: 60px; }
+
+// Backgrounds
+
+.background-white {
+    --uui-dt-row-background: white;
+}
+
+.background-gray5 {
+    //--uui-dt-row-background: #{$gray5};
+}

@@ -15,7 +15,7 @@ describe("DataTableHeaderRow", () => {
                 value={ dataSourceState }
                 onValueChange={ jest.fn() }
                 columns={ demoColumns }
-            />
+            />,
         );
 
         expect(tree).toMatchSnapshot();
@@ -32,7 +32,7 @@ describe("DataTableHeaderRow", () => {
                 allowColumnsResizing={ true }
                 allowColumnsReordering={ true }
                 selectAll={ { value: false, onValueChange: jest.fn() } }
-            />
+            />,
         );
 
         expect(tree).toMatchSnapshot();

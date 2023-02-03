@@ -7,7 +7,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   style={
     Object {
       "columnGap": undefined,
-      "minWidth": "566px",
+      "minWidth": "563px",
       "rowGap": undefined,
     }
   }
@@ -98,8 +98,8 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     className="section scrollingSection uui-table-scrolling-section"
     style={
       Object {
-        "flex": "2 0 470px",
-        "minWidth": "470px",
+        "flex": "2 0 467px",
+        "minWidth": "467px",
       }
     }
   >
@@ -279,7 +279,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   style={
     Object {
       "columnGap": undefined,
-      "minWidth": "566px",
+      "minWidth": "563px",
       "rowGap": undefined,
     }
   }
@@ -346,8 +346,8 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     className="section scrollingSection uui-table-scrolling-section"
     style={
       Object {
-        "flex": "2 0 470px",
-        "minWidth": "470px",
+        "flex": "2 0 467px",
+        "minWidth": "467px",
       }
     }
   >

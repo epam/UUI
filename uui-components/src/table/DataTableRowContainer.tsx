@@ -1,7 +1,7 @@
 import React from "react";
 import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx } from "@epam/uui-core";
 import { FlexRow } from '../layout';
-import { Anchor } from '../navigation/Anchor';
+import { Anchor } from '../navigation';
 import css from './DataTableRowContainer.scss';
 
 export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLAnchorElement | HTMLDivElement | HTMLButtonElement>> {
@@ -31,7 +31,7 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     let width = 0;
 
     columns.forEach(column => {
-        const columnWidth = (typeof column.width === 'number' ? column.width : (column.minWidth || 0));
+        const columnWidth = (typeof column.width === 'number' ? (column.fix ? column.width : column.width - 1) : (column.minWidth || 0));  // (column.width - 1) do not forget the negative margin of the scrolling columns in the calculation of the width
         width += columnWidth;
         grow += typeof column.grow === 'number' ? column.grow : 0;
     });
@@ -39,8 +39,8 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     grow = Math.max(grow, minGrow);
 
     return {
-        flex: `${ grow } 0 ${ width }px`,
-        minWidth: `${ width }px`,
+        flex: `${grow} 0 ${width}px`,
+        minWidth: `${width}px`,
     };
 }
 

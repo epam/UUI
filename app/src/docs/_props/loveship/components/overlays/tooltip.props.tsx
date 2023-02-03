@@ -3,8 +3,9 @@ import { DocBuilder } from '@epam/uui-docs';
 import { TooltipProps } from '@epam/uui-components';
 import { Button, Tooltip, TooltipMods } from '@epam/loveship';
 import { DefaultContext, iEditable } from '../../docs';
+import { ForwardedRef, forwardRef } from "react";
 
-const Sfc = (props: any) => <div ref={ props.ref }>123</div>;
+const Sfc = forwardRef((props: any, ref: ForwardedRef<HTMLDivElement>) => <div ref={ ref }>123</div>);
 
 const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip', component: Tooltip })
     .prop('content', { examples: [{ value: 'Some text', isDefault: true },
