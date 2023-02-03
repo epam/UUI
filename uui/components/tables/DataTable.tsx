@@ -18,7 +18,7 @@ import { i18n } from "../../i18n";
 export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): DataRowProps<TItem, TId>[];
     columns: DataColumnProps<TItem, TId>[];
-    renderRow?(props: DataTableRowProps<TItem, TId> & DataTableRowMods): React.ReactNode;
+    renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
@@ -39,13 +39,14 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
         return <DataTableRow
             key={ rowProps.rowKey }
-            size={ rowProps.size }
+            size={ props.size }
+            borderBottom={ props.border }
             { ...rowProps }
         />;
     }, []);
 
     const rows = props.getRows();
-    const renderedRows = rows.map(row => (props.renderRow || renderRow)({ ...row, columns, size: props.size || defaultSize, borderBottom: props.border }));
+    const renderedRows = rows.map(row => (props.renderRow || renderRow)({ ...row, columns }));
 
     const renderNoResultsBlock = React.useCallback(() => {
         return (
