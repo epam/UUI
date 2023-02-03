@@ -4,7 +4,6 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import buttonCss from '../buttons/Button/Button.scss';
 import css from './Badge.scss';
-import '../../assets/styles/variables/widgets/badge.scss';
 
 const defaultSize = '36';
 
@@ -17,26 +16,25 @@ const mapSize = {
     '18': '18',
 };
 
-export type BadgeColor = 'info' | 'success' | 'warning' | 'error';
-export type BadgeFill = 'solid';
+export type BadgeColor = 'info' | 'success' | 'warning' | 'error' | 'default' | 'cyan' | 'orange' | 'purple' | 'violet';
+export type BadgeFill =  'solid' | 'semitransparent' | 'transparent';
 export type BadgeSize = '18' | '24' | '30' | '36' | '42' | '48';
 
 export interface BadgeMods {
+    color?: BadgeColor;
     fill?: BadgeFill;
     size?: BadgeSize;
-    color?: BadgeColor;
 }
 
-export interface BadgeProps extends ButtonProps, BadgeMods {}
+export type BadgeProps = ButtonProps & BadgeMods;
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
-
-        `badge-${(mods.color || 'info')}`,
+        css.root,
         buttonCss.root,
         css['size-' + (mods.size || defaultSize)],
         css['fill-' + (mods.fill || 'solid')],
-        css.root,
+        mods.color && `badge-${(mods.color)}`,
     ];
 }
 
