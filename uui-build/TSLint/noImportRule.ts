@@ -5,7 +5,7 @@ const regexpNoSubmoduleImport = /^@epam\/[\w-]+\//i;
 const regexpAssetsException = /^@epam\/assets\/\w+(\/\w+)?(\/\w+)?(\/[\w-]+\.[a-z]+)?$/i;
 const regexpInternalException = /^@epam\/internal/i;
 
-const epamModules = ['epam-uui', 'loveship', 'epam-promo', 'uui', 'uui-db', 'uui-components', 'uui-timeline', 'uui-editor', 'draft-rte', 'edu-bo-components', 'extra',
+const epamModules = ['next-app', 'epam-uui', 'loveship', 'epam-promo', 'uui', 'uui-db', 'uui-components', 'uui-timeline', 'uui-editor', 'draft-rte', 'edu-bo-components', 'extra',
     'epam-assets', 'edu-utils', 'edu-ui-base', 'edu-core-routing', 'edu-core', 'uui-docs', 'grow', 'app', 'uui-v', 'uui-core'];
 
 const getNoModuleOutsideRegExp = (url: string) => {

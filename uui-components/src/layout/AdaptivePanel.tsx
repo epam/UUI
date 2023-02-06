@@ -1,8 +1,8 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import css from './AdaptivePanel.scss';
 import { FlexRow } from "./flexItems";
 import sortBy from "lodash.sortby";
-import { IHasCX } from "@epam/uui-core";
+import { IHasCX, useLayoutEffectSafeForSsr } from "@epam/uui-core";
 import cx from 'classnames';
 
 export type AdaptiveItemProps<T = unknown> = T & {
@@ -83,7 +83,7 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
         return itemsWidth;
     };
 
-    useLayoutEffect(() => {
+    useLayoutEffectSafeForSsr(() => {
         if (isChanged || !itemsWidth) {
             const newItemsWidth = getItemsWidth();
             setItemsWidth(newItemsWidth);

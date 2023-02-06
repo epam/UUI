@@ -1,4 +1,5 @@
 import { IRouterContext, Link } from "../../types";
+import { queryToSearch, searchToQuery } from '../../helpers';
 
 export interface IHistory4 {
     location: Link;
@@ -48,41 +49,18 @@ export class HistoryAdaptedRouter implements IRouterContext {
     private static searchToQuery(link: Link): Link {
         if (link.query !== undefined) return link;
 
-        const query = {} as any;
-        new URLSearchParams(link.search).forEach((value, key) => {
-            if (!value) return;
-
-            try {
-                query[key] = JSON.parse(decodeURIComponent(value));
-            } catch (e) {
-                query[key] = value;
-            }
-        });
-
         return {
             ...link,
-            query,
+            query: searchToQuery(link.search),
         };
     }
 
     private static queryToSearch(link: Link): Link {
         if (!link.query) return link;
 
-        const params = new URLSearchParams();
-
-        Object.keys(link.query).forEach(key => {
-            if (link.query[key] === undefined) return;
-
-            if (typeof link.query[key] === "object") {
-                params.set(key, JSON.stringify(link.query[key]));
-            } else {
-                params.set(key, link.query[key]);
-            }
-        });
-
         return {
             ...link,
-            search: params.toString(),
+            search: queryToSearch(link.query),
         };
     }
 }

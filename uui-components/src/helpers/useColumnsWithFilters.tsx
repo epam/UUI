@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { DataColumnProps, ILens, TableFiltersConfig, useUuiContext } from "@epam/uui-core";
-import { DropdownBodyProps } from "../overlays";
+import { DropdownBodyProps, DataColumnProps, ILens, TableFiltersConfig, useUuiContext } from "@epam/uui-core";
 
 export const useColumnsWithFilters = <TFilter extends Record<string, any>>(initialColumns: DataColumnProps[], filters: TableFiltersConfig<TFilter>[] | undefined) => {
     const context = useUuiContext();
@@ -35,6 +34,6 @@ export const useColumnsWithFilters = <TFilter extends Record<string, any>>(initi
         }
         return initialColumns;
     }, [filters, initialColumns]);
-    
+
     return columns;
 };

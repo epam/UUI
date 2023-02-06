@@ -21,8 +21,8 @@ export function Form<T>(props: FormProps<T>) {
                 }]
             }>
                 <RichTextView><Text size="36">{ i18n.form.notifications.unsavedChangesMessage }</Text></RichTextView>
-            </WarningNotification>, { duration: 5, position: 'bot-left' });
-    }
+            </WarningNotification>, { duration: 5, position: 'bot-left' }).catch(() => null);
+    };
 
     return (
         <UuiForm<T>
