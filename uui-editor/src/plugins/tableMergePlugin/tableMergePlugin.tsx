@@ -1,9 +1,10 @@
 export {};
-// import { Editor, Block, KeyUtils } from 'slate';
+
+// import { Editor } from 'slate';
 //
 // export const mergeCellsPlugin = () => {
 //
-//     const getCellIndex = (editor: Editor, cell: any) => {
+//     const getCellIndex = (editor: any, cell: any) => {
 //         let elemPosition = 0;
 //         let counter = 0;
 //         (editor.value.document as any).getParent(cell.key).nodes.toArray().forEach((elem: any) => {
@@ -98,25 +99,25 @@ export {};
 //     };
 //
 //     const createNewCell = (cellType: string, key?: string, data?: any) => {
-//         const emptyParagraph = Block.create({
-//             object: 'block',
-//             type: 'paragraph',
-//             key: KeyUtils.create(),
-//         });
-//
-//         return Block.create({
-//             object: 'block',
-//             type: cellType,
-//             key: key || KeyUtils.create(),
-//             nodes: [emptyParagraph],
-//             data: data || {
-//                 colSpan: 1,
-//                 rowSpan: 1,
-//             },
-//         });
+//         // const emptyParagraph = Block.create({
+//         //     object: 'block',
+//         //     type: 'paragraph',
+//         //     //key: KeyUtils.create(),
+//         // });
+//         //
+//         // return Block.create({
+//         //     object: 'block',
+//         //     type: cellType,
+//         //     key: key || KeyUtils.create(),
+//         //     nodes: [emptyParagraph],
+//         //     data: data || {
+//         //         colSpan: 1,
+//         //         rowSpan: 1,
+//         //     },
+//         // });
 //     };
 //
-//     const updateCellStyle = async (editor: Editor, updatingCell: any, mergedCells: any, typeOfMerge: string, trElements: any, tdArrayIndex: any) => {
+//     const updateCellStyle = async (editor: any, updatingCell: any, mergedCells: any, typeOfMerge: string, trElements: any, tdArrayIndex: any) => {
 //         const selectedParent = trElements[0];
 //         const selectedIndex = tdArrayIndex[0];
 //
@@ -146,7 +147,7 @@ export {};
 //             ));
 //     };
 //
-//     const unmergeCells = (editor: Editor, props: any, selectedCells: any[]) => {
+//     const unmergeCells = (editor: any, props: any, selectedCells: any[]) => {
 //         selectedCells.map((selectedCell: any) => {
 //             let cell: any = editor.value.document.getParent(selectedCell.key);
 //             let row: any = editor.value.document.getParent(cell.key);
@@ -183,7 +184,7 @@ export {};
 //         });
 //     };
 //
-//     const mergeCells = (editor: Editor, props: any, selectedCells: any[]) => {
+//     const mergeCells = (editor: any, props: any, selectedCells: any[]) => {
 //         let typeOfMerge = 'combine';
 //
 //         // logic for preventing header and body merging
@@ -246,7 +247,7 @@ export {};
 //
 //         editor.replaceNodeByKey(tdArray[0], requiredNode);
 //
-//         const updatedCell: any = editor.value.document.getNode(requiredNode.key);
+//         const updatedCell: any = editor.value.document.getNode(requiredNode);
 //         const updatedCellPath = editor.value.document.getPath(updatedCell.nodes.toArray()[0].nodes.toArray()[0]);
 //
 //         editor.insertTextByPath(updatedCellPath, 0, textFromCells);

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "module": "commonjs",
@@ -27,17 +28,43 @@
       "baseUrl": ".",
       "isolatedModules": true,
       "moduleResolution": "Node"
+=======
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "target": "ES6",
+    "declaration": false,
+    "declarationMap": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "strictFunctionTypes": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "jsx": "react",
+    "outDir": "./build",
+    "rootDir": ".",
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@epam/test-utils": [
+        "test-utils"
+      ]
+>>>>>>> 5575ee80bcf3211b40fefbdc59abbb4036f53f5a
     },
-    "exclude": [
-        "node_modules",
-        "built",
-        "build",
-        "**/build",
-        "webpack",
-        "jest",
-        "templates",
-        "*/**/__tests__",
-        "*/**/globals.d.ts",
-        "./next-app"
-    ]
+    "baseUrl": ".",
+    "isolatedModules": true,
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "node_modules",
+    "./templates",
+    "./next-app",
+    "**/node_modules",
+    "**/build",
+    "**/__tests__",
+    "**/globals.d.ts"
+  ]
 }

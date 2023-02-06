@@ -23,7 +23,7 @@ export class FlexItemsDoc extends BaseDocsBlock {
 
                 { this.renderSectionTitle('Examples') }
                 <DocExample
-                    path='./examples/flexItems/Basic.example.tsx'
+                    path='./_examples/flexItems/Basic.example.tsx'
                 />
             </>
         );

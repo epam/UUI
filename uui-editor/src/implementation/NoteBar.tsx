@@ -1,4 +1,5 @@
 import * as React from 'react';
+<<<<<<< HEAD
 import { DropdownBodyProps } from '@epam/uui-components';
 import { uuiSkin } from '@epam/uui-core';
 
@@ -14,6 +15,15 @@ import { ReactComponent as NoteIconWarning } from '../icons/info-block.svg';
 import { ReactComponent as NoteIconLink } from '../icons/info-block-link.svg';
 import { ReactComponent as NoteIconQuote } from '../icons/info-block-quote.svg';
 
+=======
+import { Editor } from 'slate-react';
+import { DropdownBodyProps, uuiSkin } from "@epam/uui-core";
+import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
+import { ReactComponent as NoteIconError } from "../icons/info-block-warning.svg";
+import { ReactComponent as NoteIconWarning } from "../icons/info-block.svg";
+import { ReactComponent as NoteIconLink } from "../icons/info-block-link.svg";
+import { ReactComponent as NoteIconQuote } from "../icons/info-block-quote.svg";
+>>>>>>> 5575ee80bcf3211b40fefbdc59abbb4036f53f5a
 import { ToolbarButton } from './ToolbarButton';
 
 const { FlexRow } = uuiSkin;

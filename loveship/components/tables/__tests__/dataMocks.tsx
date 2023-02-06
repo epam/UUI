@@ -1,6 +1,5 @@
 import React from "react";
 import { ArrayDataSource, DataColumnProps } from "@epam/uui-core";
-import { Person } from '../docs/TableContext'
 
 const personDemoData = [
     {
@@ -138,6 +137,20 @@ const personDemoData = [
 export const dataSource = new ArrayDataSource({
     items: personDemoData,
 });
+
+type Person = {
+    id: number,
+    name: string,
+    phoneNumber: string,
+    gender: string,
+    avatarUrl?: string,
+    personType?: string,
+    jobTitle?: string,
+    birthDate?: string,
+    hireDate?: string,
+    departmentId?: number,
+    departmentName?: string,
+};
 
 export const demoColumns: DataColumnProps<Person>[] = [
     {

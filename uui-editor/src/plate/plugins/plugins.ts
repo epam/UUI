@@ -1,7 +1,6 @@
 import {
     createSoftBreakPlugin,
     createExitBreakPlugin,
-    createMediaEmbedPlugin,
     createTablePlugin,
     ELEMENT_TR, ELEMENT_TD, ELEMENT_TH
 } from '@udecode/plate';
@@ -33,6 +32,7 @@ import { placeholderPlugin } from "./placeholderPlugin/placeholderPlugin";
 import { attachmentPlugin } from "./attachmentPlugin/attachmentPlugin";
 import { uploadFilePlugin } from "./uploadFilePlugin/uploadFilePlugin";
 import { iframePlugin } from "./iframePlugin/iframePlugin";
+import { tablePlugin } from "./tablePlugin/tablePlugin";
 
 export const customPlugins = [
     createSoftBreakPlugin(),
@@ -66,19 +66,5 @@ export const customPlugins = [
     uploadFilePlugin({ uploadFile }),
     videoPlugin(),
 
-    createTablePlugin({
-        overrideByKey: {
-            [ELEMENT_TR]: {
-                type: 'table_row',
-            },
-            [ELEMENT_TD]: {
-                type: 'table_cell',
-            },
-            [ELEMENT_TH]: {
-                type: 'table_head_cell',
-            },
-        },
-    }),
-
-    //createMediaEmbedPlugin(),
+    tablePlugin(),
 ];

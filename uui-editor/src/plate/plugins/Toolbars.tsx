@@ -27,6 +27,7 @@ import { PlaceholderButton } from "./placeholderPlugin/placeholderPlugin";
 import { UploadFileButton } from "./uploadFilePlugin/uploadFilePlugin";
 import { IframeButton } from "./iframePlugin/iframePlugin";
 import { VideoButton } from "./videoPlugin/videoPlugin";
+import { TableButton } from "./tablePlugin/tablePlugin";
 
 
 export const MarkBalloonToolbar = () => {
@@ -68,6 +69,7 @@ const BlockToolbarButtons = () => {
             <VideoButton editor={ editorRef } />
             <IframeButton editor={ editorRef } />
             <SeparatorButton editor={ editorRef } />
+            <TableButton editor={ editorRef } />
             <PlaceholderButton editor={ editorRef } />
         </>
     );

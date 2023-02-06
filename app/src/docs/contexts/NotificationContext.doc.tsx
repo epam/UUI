@@ -10,7 +10,7 @@ export class NotificationContextDoc extends BaseDocsBlock {
                 <EditableDocContent fileName='notification-context-descriptions' />
                 <DocExample
                     title='Example'
-                    path='./examples/contexts/NotificationContext.example.tsx'
+                    path='./_examples/contexts/NotificationContext.example.tsx'
                 />
             </>
         );

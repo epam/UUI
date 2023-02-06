@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 exports.getFilterPredicate = exports.simplifyPredicates = void 0;
 var dayjs_1 = __importDefault(require("dayjs"));
-var isSameOrBefore_1 = __importDefault(require("dayjs/plugin/isSameOrBefore"));
-var isSameOrAfter_1 = __importDefault(require("dayjs/plugin/isSameOrAfter"));
+var isSameOrBefore_1 = __importDefault(require("dayjs/plugin/isSameOrBefore.js"));
+var isSameOrAfter_1 = __importDefault(require("dayjs/plugin/isSameOrAfter.js"));
 dayjs_1["default"].extend(isSameOrBefore_1["default"]);
 dayjs_1["default"].extend(isSameOrAfter_1["default"]);
 function simplifyPredicates(filter) {

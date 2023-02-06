@@ -1,9 +1,10 @@
 {
   "name": "@epam/uui-editor",
-  "version": "4.9.1",
+  "version": "4.10.0-rc.5",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
+  "epam:uui:main": "build/index.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
@@ -12,9 +13,9 @@
   "dependencies": {
     "@braintree/sanitize-url": "4.0.1",
     "@convertkit/slate-lists": "0.2.2",
-    "@epam/assets": "4.9.1",
-    "@epam/uui-components": "4.9.1",
-    "@epam/uui-core": "4.9.1",
+    "@epam/assets": "4.10.0-rc.5",
+    "@epam/uui-components": "4.10.0-rc.5",
+    "@epam/uui-core": "4.10.0-rc.5",
     "@mercuriya/slate-linkify": "0.1.2",
     "@popperjs/core": "2.9.0",
     "@styled-icons/material": "^10.46.0",
@@ -35,6 +36,7 @@
     "lodash.flatten": "4.4.0",
     "re-resizable": "6.0.0",
     "react-broadcast": "0.7.1",
+<<<<<<< HEAD
     "react-dnd": "15.1.2",
     "react-dnd-html5-backend": "15.1.3",
     "react-popper": "2.2.5",
@@ -50,6 +52,15 @@
   },
   "devDependencies": {
     "@types/styled-components": "5.1.25"
+=======
+    "react-popper": "2.3.0",
+    "slate": "0.47.9",
+    "slate-drop-or-paste-images": "0.9.1",
+    "slate-html-serializer": "0.8.5",
+    "slate-react": "0.22.10",
+    "slate-soft-break": "0.9.0",
+    "slate-uui-table-plugin": "1.0.6"
+>>>>>>> 5575ee80bcf3211b40fefbdc59abbb4036f53f5a
   },
   "peerDependencies": {
     "react": ">=16.0.0",

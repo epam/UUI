@@ -6,9 +6,9 @@ export class CheckboxDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/checkbox.doc.tsx',
-            [UUI4]: './epam-promo/components/inputs/docs/checkbox.doc.ts',
-            [UUI]: './uui/components/inputs/docs/checkbox.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/checkbox.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/checkbox.props.ts',
+            [UUI]: './app/src/docs/_props/uui/components/inputs/checkbox.props.ts',
         };
     }
 
@@ -19,11 +19,11 @@ export class CheckboxDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/checkbox/Basic.example.tsx'
+                    path='./_examples/checkbox/Basic.example.tsx'
                 />
                 <DocExample
                     title='Checkbox Group'
-                    path='./examples/checkbox/Group.example.tsx'
+                    path='./_examples/checkbox/Group.example.tsx'
                 />
             </>
         );

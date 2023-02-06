@@ -12,17 +12,17 @@ export class AdvancedTablesDoc extends BaseDocsBlock {
                 
                 <DocExample
                     title='Columns Configuration'
-                    path='./examples/tables/ColumnsConfig.example.tsx'
+                    path='./_examples/tables/ColumnsConfig.example.tsx'
                 />
 
                 <DocExample
                     title='Table with rows Drag&Drop'
-                    path='./examples/tables/TableWithDnD.example.tsx'
+                    path='./_examples/tables/TableWithDnD.example.tsx'
                 />
 
                 <DocExample
                     title='Table with paging'
-                    path='./examples/tables/PagedTable.example.tsx'
+                    path='./_examples/tables/PagedTable.example.tsx'
                 />
             </>
         );

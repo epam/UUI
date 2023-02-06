@@ -6,8 +6,9 @@ import { UUI4, UUI3 } from '../common';
 import { items, DocItem } from './structure';
 import { getQuery } from '../helpers';
 import { codesandboxService } from '../data/codesandbox/service';
-import { TreeListItem } from 'uui-components';
-import { DataRowProps } from 'uui-core';
+import { TreeListItem } from '@epam/uui-components';
+import { DataRowProps } from '@epam/uui-core';
+import css from './DocumentsPage.scss';
 
 type DocsQuery = {
     id: string,
@@ -48,6 +49,7 @@ export const DocumentsPage = () => {
                     value={ getQuery('id') }
                     onValueChange={ onChange }
                     items={ items }
+                    getSearchFields={ i => [i.name, ...(i.tags || [])] }
                     getItemLink={ (row) => !row.isFoldable && {
                         pathname: 'documents',
                         query: {

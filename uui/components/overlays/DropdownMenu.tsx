@@ -1,8 +1,10 @@
 import React, { useRef, useContext, useState, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
-import { cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption,
-    IDisableable, IAnalyticableClick, IHasCX, IClickable } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer, DropdownBodyProps } from '@epam/uui-components';
+import {
+    cx, DropdownBodyProps, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption,
+    IDisableable, IAnalyticableClick, IHasCX, IClickable,
+} from '@epam/uui-core';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
 import { Switch } from '../inputs';
 import { systemIcons } from '../../icons/icons';
 import css from './DropdownMenu.scss';
@@ -28,7 +30,7 @@ export const DropdownControlKeys = {
 const DropdownMenuContainer = (props: IDropdownMenuContainer) => {
     const menuRef = useRef<HTMLMenuElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(-1);
-    const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
+    const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${ uuiMod.disabled })`)) : [];
 
     useEffect(() => {
         menuRef.current?.focus();
@@ -88,6 +90,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
         onClick,
         toggleDropdownOpening,
         isDropdown,
+        target,
     } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -136,6 +139,7 @@ export const DropdownMenuButton = (props: IDropdownMenuItemProps) => {
             rawProps={ { role: 'menuitem', tabIndex: isDisabled ? -1 : 0 } }
             onClick={ handleClick }
             isDisabled={ isDisabled }
+            target={ target }
         >
             { getMenuButtonContent() }
         </Anchor>
@@ -158,11 +162,11 @@ DropdownMenuButton.displayName = 'DropdownMenuButton';
 
 export const DropdownMenuSplitter = (props: IHasCX) => (
     <div className={ cx(props.cx, css.splitterRoot) }>
-        <hr className={ css.splitter }/>
+        <hr className={ css.splitter } />
     </div>
 );
 
-interface IDropdownMenuHeader extends IHasCX, IHasCaption {}
+interface IDropdownMenuHeader extends IHasCX, IHasCaption { }
 
 export const DropdownMenuHeader = (props: IDropdownMenuHeader) => (
     <div className={ cx(props.cx, css.headerRoot) }>

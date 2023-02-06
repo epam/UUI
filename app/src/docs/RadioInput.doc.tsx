@@ -6,9 +6,9 @@ export class RadioInputDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/radioInput.doc.tsx',
-            [UUI4]: './epam-promo/components/inputs/docs/radioInput.doc.ts',
-            [UUI]: './uui/components/inputs/docs/radioInput.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/radioInput.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/radioInput.props.ts',
+            [UUI]: './app/src/docs/_props/uui/components/inputs/radioInput.props.ts',
         };
     }
 
@@ -19,11 +19,11 @@ export class RadioInputDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/radioInput/Basic.example.tsx'
+                    path='./_examples/radioInput/Basic.example.tsx'
                 />
                 <DocExample
                     title='RadioInput Group'
-                    path='./examples/radioInput/Group.example.tsx'
+                    path='./_examples/radioInput/Group.example.tsx'
                 />
             </>
         );

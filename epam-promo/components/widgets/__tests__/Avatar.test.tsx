@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar } from '../Avatar';
 import renderer from 'react-test-renderer';
+import {render, screen, fireEvent} from '@testing-library/react'
 
 describe('Avatar', () => {
     it('should be rendered correctly', () => {
@@ -25,6 +26,7 @@ describe('Avatar', () => {
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();
+
     });
 });
 
