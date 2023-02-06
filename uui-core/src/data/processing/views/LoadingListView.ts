@@ -38,13 +38,4 @@ export class LoadingListView<TId> extends BaseListView<any, any, any> {
     getSelectedRows: () => any = () => {
         return [];
     }
-
-    protected getPathItem(item: any): DataRowPathItem<any, any> {
-        return {
-            id: this.props.getId(item),
-            value: item,
-            isLastChild: false,
-        };
-    }
-
 }

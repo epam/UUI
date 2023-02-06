@@ -1,4 +1,4 @@
-import { DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../types";
+import { DataRowPathItem, DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../types";
 import { LazyListViewProps } from "./LazyListView";
 import { CompositeKeysMap } from './CompositeKeysMap';
 
@@ -543,6 +543,35 @@ export class Tree<TItem, TId> {
         });
 
         return parents;
+    }
+
+    public getPathById(id: TId): DataRowPathItem<TId, TItem>[] {
+        const foundParents = this.getParents(id);
+        const path: DataRowPathItem<TId, TItem>[] = [];
+        foundParents.forEach((parent) => {
+            const pathItem: DataRowPathItem<TId, TItem> = this.getPathItem(parent);
+            path.push(pathItem);
+        });
+        return path;
+    }
+
+    public getPathItem(item: TItem) {
+        const parentId = this.getParentId?.(item);
+        const id = this.getId?.(item);
+
+        const ids = this.getChildrenIdsByParentId(parentId);
+        const nodeInfo = this.getNodeInfo(parentId);
+        const lastId = ids[ids.length - 1];
+
+        const isLastChild =
+            lastId !== undefined && lastId === id
+            && nodeInfo.count === ids.length;
+
+        return {
+            id: this.getId(item),
+            value: item,
+            isLastChild,
+        };
     }
 
     private async loadMissingIdsAndParents<TFilter>(

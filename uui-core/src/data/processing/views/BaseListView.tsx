@@ -189,16 +189,4 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
         };
     }
-    protected abstract getPathItem(item: TItem): DataRowPathItem<TId, TItem>;
-
-    protected getPathById(id: TId): DataRowPathItem<TId, TItem>[] {
-        const foundParents = this.tree.getParents(id);
-        const path: DataRowPathItem<TId, TItem>[] = [];
-        foundParents.forEach((parent) => {
-            const pathItem: DataRowPathItem<TId, TItem> = this.getPathItem(parent);
-            path.push(pathItem);
-        });
-        return path;
-    }
 }
-

@@ -286,21 +286,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
     }
 
-    protected getPathItem(item: TItem) {
-        const parentId = this.props.getParentId?.(item);
-        const id = this.props.getId?.(item);
-
-        const ids = this.tree.getChildrenIdsByParentId(parentId);
-        const nodeInfo = this.tree.getNodeInfo(parentId);
-        const index = ids.indexOf(id);
-        const isLastChild = index !== -1 && index == (ids.length - 1) && (nodeInfo.count === ids.length);
-        return {
-            id: this.props.getId(item),
-            value: item,
-            isLastChild,
-        };
-    }
-
     // Extracts a flat list of currently visible rows from the tree
     private rebuildRows() {
         const rows: DataRowProps<TItem, TId>[] = [];
@@ -331,7 +316,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);
-                path = this.getPathById(id);
+                path = this.tree.getPathById(id);
 
                 const row = this.getRowProps(item, index, path);
                 if (appendRows && index < lastIndex) {
@@ -382,7 +367,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                             stats.isAllChecked = stats.isAllChecked && childStats.isAllChecked;
                             stats.hasMoreRows = stats.hasMoreRows || childStats.hasMoreRows;
                         } else { // children are not loaded
-                            const parentsWithRow = [...path, this.getPathItem(item)];
+                            const parentsWithRow = [...path, this.tree.getPathItem(item)];
 
                             if (!row.isFolded && appendRows) {
                                 for (let m = 0; m < estimatedChildrenCount && index < lastIndex; m++) {

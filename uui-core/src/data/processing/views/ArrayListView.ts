@@ -72,20 +72,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         });
     }
 
-    protected getPathItem(item: TItem): DataRowPathItem<TId, TItem> {
-        const parentId = this.props.getParentId?.(item);
-        const id = this.props.getId?.(item);
-        const ids = this.tree.getChildrenIdsByParentId(parentId);
-        const index = ids.indexOf(id);
-
-        const isLastChild = index !== -1 && (index === ids.length - 1);
-        return {
-            id: this.props.getId(item),
-            value: item,
-            isLastChild,
-        };
-    }
-
     private updateNodes() {
         const applySearch = this.buildSearchFilter(this.value);
         const applyFilter = this.props.getFilter && this.props.getFilter(this.value.filter);
@@ -109,7 +95,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             for (let n = 0; n < items.length; n++) {
                 const item = items[n];
                 const childrenItems = this.tree.getChildren(item);
-                const path = this.getPathById(this.props.getId(item));
+                const path = this.tree.getPathById(this.props.getId(item));
                 const rowProps = this.getRowProps(item, currentIndex, path);
                 rowProps.isLastChild = n === (items.length - 1);
                 let children = empty;
