@@ -1,17 +1,18 @@
 import React, { Attributes, ReactNode } from 'react';
 import { IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps,
     ICanBeInvalid, ICanFocus, IDropdownBodyProps } from './props';
-import { FilterPredicateName, SortDirection } from './dataQuery';
+import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data';
 import * as CSS from 'csstype';
 import { TooltipCoreProps } from './components';
 
-export interface DataTableState<TFilter = any> extends DataSourceState<TFilter> {
+export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
     filtersConfig?: FiltersConfig;
     presetId?: number | null;
+    viewState?: TViewState;
 }
 
 export type ICanBeFixed = {
@@ -249,17 +250,19 @@ type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
 export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter>
     | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter>;
 
-export interface ITablePreset<TFilter = any> {
+export interface ITablePreset<TFilter = any, TViewState = any> {
     name: string;
     id: number | null;
     filter?: TFilter;
     isReadonly?: boolean;
     columnsConfig?: ColumnsConfig;
     filtersConfig?: FiltersConfig;
+    sorting?: SortingOption[];
     order?: string;
+    viewState?: TViewState;
 }
 
-export interface IPresetsApi {
+export interface IPresetsApi<TFilter = any, TViewState = any> {
     activePresetId: number | null;
     choosePreset(preset: ITablePreset): void;
     createNewPreset(name: string): Promise<number>;
@@ -267,11 +270,12 @@ export interface IPresetsApi {
     duplicatePreset(preset: ITablePreset): void;
     deletePreset(preset: ITablePreset): Promise<void>;
     updatePreset(preset: ITablePreset): Promise<void>;
+    getPresetLink(preset: ITablePreset): string;
     presets: ITablePreset[];
 }
 
-export interface ITableState<TFilter = Record<string, any>> extends IPresetsApi {
-    tableState: DataTableState;
+export interface ITableState<TFilter = Record<string, any>, TViewState = any> extends IPresetsApi<TFilter, TViewState> {
+    tableState: DataTableState<TFilter, TViewState>;
     setTableState(newState: DataTableState): void;
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;

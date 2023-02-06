@@ -10,14 +10,14 @@ export {};
 // import { ReactComponent as RemoveRow } from "../icons/table-delete-row.svg";
 // import { ReactComponent as UnmergeCellsIcon } from '../icons/table-un-merge.svg';
 // import { ReactComponent as RemoveTable } from '../icons/table-table_remove-24.svg';
-// import { Editor } from 'slate-react';
+// import { PlateEditor } from '@udecode/plate';
 // import { Popper } from 'react-popper';
 // import { LayoutLayer, UuiContext, UuiContexts } from "@epam/uui-core";
 // import cx from 'classnames';
 // import { ToolbarButton } from './ToolbarButton';
 //
 // interface TableProps {
-//     editor: Editor;
+//     editor: PlateEditor;
 //     isVisible: boolean;
 // }
 //
@@ -39,35 +39,35 @@ export {};
 //     }
 //
 //     virtualReferenceElement() {
-//         if (!this.tablebar) {
-//             return;
-//         }
-//
-//         return {
-//             getBoundingClientRect: () => {
-//                 let cellCoordPath = this.props.editor.value.document.getPath(this.props.editor.value.anchorBlock.key);
-//                 let CellCoord = (this.props.editor.findDOMNode(cellCoordPath) as any).getBoundingClientRect();
-//                 return CellCoord;
-//             },
-//             clientWidth: this.tablebar?.getBoundingClientRect().width,
-//             clientHeight: this.tablebar?.getBoundingClientRect().height,
-//         };
+//         // if (!this.tablebar) {
+//         //     return;
+//         // }
+//         //
+//         // return {
+//         //     getBoundingClientRect: () => {
+//         //         let cellCoordPath = this.props.editor.value.document.getPath(this.props.editor.value.anchorBlock.key);
+//         //         let CellCoord = (this.props.editor.findDOMNode(cellCoordPath) as any).getBoundingClientRect();
+//         //         return CellCoord;
+//         //     },
+//         //     clientWidth: this.tablebar?.getBoundingClientRect().width,
+//         //     clientHeight: this.tablebar?.getBoundingClientRect().height,
+//         // };
 //     }
 //
 //     isBlock = (blockType: string) => {
-//         return this.props.editor.value.anchorBlock && (this.props.editor.value.anchorBlock.type === blockType || (this.props.editor.value.document.getParent(this.props.editor.value.anchorBlock.key) as any).type === blockType);
+//         //return this.props.editor.value.anchorBlock && (this.props.editor.value.anchorBlock.type === blockType || (this.props.editor.value.document.getParent(this.props.editor.value.anchorBlock.key) as any).type === blockType);
 //     }
 //
 //     isTableCell = () => {
-//         return this.isBlock('table_cell') || this.isBlock('table_header_cell');
+//         //return this.isBlock('table_cell') || this.isBlock('table_header_cell');
 //     }
 //
 //     isMerged = () => {
-//         return this.props.editor.value.anchorBlock
-//          && (this.props.editor.value.anchorBlock.data.get('colSpan') > 1
-//             || (this.props.editor.value.anchorBlock.data.get('rowSpan') > 1
-//             || (this.props.editor.value.document.getParent(this.props.editor.value.anchorBlock.key) as any).data.get('colSpan') > 1)
-//             || (this.props.editor.value.document.getParent(this.props.editor.value.anchorBlock.key) as any).data.get('rowSpan') > 1);
+//         // return this.props.editor.value.anchorBlock
+//         //  && (this.props.editor.value.anchorBlock.data.get('colSpan') > 1
+//         //     || (this.props.editor.value.anchorBlock.data.get('rowSpan') > 1
+//         //     || (this.props.editor.value.document.getParent(this.props.editor.value.anchorBlock.key) as any).data.get('colSpan') > 1)
+//         //     || (this.props.editor.value.document.getParent(this.props.editor.value.anchorBlock.key) as any).data.get('rowSpan') > 1);
 //     }
 //
 //     render() {

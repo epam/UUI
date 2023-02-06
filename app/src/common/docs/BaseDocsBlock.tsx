@@ -1,5 +1,4 @@
 import * as React from 'react';
-import path from 'path';
 import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui';
 import { DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/promo';
 import { ComponentEditor } from './ComponentEditor';
@@ -41,18 +40,25 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         super(props);
 
         if (this.getPropsDocPath() !== null) {
-            svc.api.getProps() && svc.api.getProps().then(res => {
+            const propsPromise = svc.api.getProps();
+            propsPromise && propsPromise.then(res => {
                 const skin = this.getPropsDocPath()[UUI4] === undefined ? UUI3 : UUI4;
-                Object.keys(res.content.props).find(docPath => {
-                    if (docPath.includes(path.normalize(this.getPropsDocPath()[skin]))) {
-                        this.propsDS = new ArrayDataSource({
-                            items: res.content.props[docPath],
-                            getId: i => i.name,
-                        });
-
-                        this.setState({ props: res.content.props[docPath] });
-                    }
-                });
+                const resProps = res.content.props;
+                const docPath = this.getPropsDocPath()[skin];
+                const docPathNorm = docPath.indexOf('.') === 0 ? docPath.substring(1) : docPath;
+                const props = resProps[docPathNorm];
+                /**
+                 * Keys in "public/docs/componentsPropsSet.json":
+                 * - always start from "/"
+                 * - are relative to the monorepo root.
+                 */
+                if (props) {
+                    this.propsDS = new ArrayDataSource({
+                        items: props,
+                        getId: i => i.name,
+                    });
+                    this.setState({ props: props });
+                }
             });
         }
 
@@ -146,7 +152,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderPropEditor() {
         if (!this.getPropsDocPath()) {
-            return svc.uuiRouter.redirect({
+            svc.uuiRouter.redirect({
                 pathname: '/documents',
                 query: {
                     category: getQuery('category'),
@@ -155,6 +161,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                     skin: getQuery('skin'),
                 },
             });
+            return null;
         }
         if (!this.getPropsDocPath()[getQuery('skin') as Skin]) {
             return this.renderNotSupportPropExplorer();

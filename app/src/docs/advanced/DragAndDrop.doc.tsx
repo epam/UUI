@@ -11,7 +11,7 @@ export class DragAndDropDoc extends BaseDocsBlock {
 
                 <DocExample
                     title='Basic'
-                    path='./examples/dnd/Basic.example.tsx'
+                    path='./_examples/dnd/Basic.example.tsx'
                 />
 
                 <EditableDocContent fileName='DragAndDrop-stateManagement' />

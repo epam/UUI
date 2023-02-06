@@ -699,6 +699,108 @@
                     ]
                   }
                 ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "columnGap",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "sets column gap between children inside the component",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "rowGap",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "sets gap between row if the row has a wrap on net line",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }

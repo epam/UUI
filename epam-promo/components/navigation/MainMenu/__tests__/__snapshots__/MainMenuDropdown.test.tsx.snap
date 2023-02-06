@@ -3,9 +3,7 @@
 exports[`MainMenuDropdown should be rendered correctly 1`] = `
 <button
   className="container uui-button-box uui-enabled -clickable root type-primary"
-  href={null}
   onClick={[Function]}
-  role="button"
   tabIndex={0}
   type="button"
 >
@@ -23,9 +21,7 @@ exports[`MainMenuDropdown should be rendered correctly 1`] = `
 exports[`MainMenuDropdown should be rendered correctly 2`] = `
 <button
   className="container uui-button-box uui-enabled -clickable root type-primary"
-  href={null}
   onClick={[Function]}
-  role="button"
   tabIndex={0}
   type="button"
 >

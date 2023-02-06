@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest --silent"
   },
   "dependencies": {
     "@epam/assets": "latest",
@@ -22,12 +22,12 @@
     "antd": "^4.16.13",
     "babel-plugin-inline-react-svg": "^2.0.1",
     "history": "4.10.1",
-    "next": "12.0.7",
+    "next": "13.1.5",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.2",
     "normalize.css": "^8.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sass": "^1.42.1",
     "slate": "0.47.9",
     "swr": "^1.0.1"
@@ -36,14 +36,14 @@
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/dom": "^8.11.1",
-    "@testing-library/react": "^12.1.2",
+    "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/amplitude-js": "^8.0.1",
     "@types/jest": "^27.0.3",
-    "@types/react": "17.0.29",
+    "@types/react": "18.0.26",
     "babel-jest": "^27.4.5",
     "eslint": "^8.0.1",
-    "eslint-config-next": "11.1.2",
+    "eslint-config-next": "13.1.6",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.4.5",
     "typescript": "4.9.3"

@@ -55,7 +55,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For react-router redirects you need to wrap your application in ",
+            "text": "For react-router redirects, you need to wrap your application in ",
             "marks": []
           },
           {

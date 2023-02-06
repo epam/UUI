@@ -1,14 +1,14 @@
 import React from 'react';
 import css from './DatePicker.scss';
-import { cx, IDropdownToggler, uuiMod, DatePickerCoreProps } from "@epam/uui-core";
-import { BaseDatePicker, DropdownBodyProps } from '@epam/uui-components';
+import { cx, DropdownBodyProps, IDropdownToggler, uuiMod, DatePickerCoreProps } from "@epam/uui-core";
+import { BaseDatePicker } from '@epam/uui-components';
 import { DropdownContainer, DatePickerBody, SizeMod, TextInput, IHasEditMode, EditMode } from '../';
 import { systemIcons } from '../../icons/icons';
 
 const defaultMode = EditMode.FORM;
 
 export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {
-    
+
 }
 
 export class DatePicker extends BaseDatePicker<DatePickerProps> {

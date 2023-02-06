@@ -22,20 +22,19 @@ interface DocExampleState {
     raw?: string;
     stylesheets?: FilesRecord;
 }
+const EXAMPLES_PATH_PREFIX = './_examples';
 
-const requireContext = require.context('../../docs/', true, /\.example.(ts|tsx)$/, 'lazy');
+const requireContext = require.context('../../docs/_examples', true, /\.example.(ts|tsx)$/, 'lazy');
 
 export class DocExample extends React.Component<DocExampleProps, DocExampleState> {
-    constructor(props: DocExampleProps) {
-        super(props);
-    }
-
     componentDidMount(): void {
-        requireContext(this.props.path).then((module: any) => {
+        const { path } = this.props;
+        const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
+        requireContext(exPathRelative).then((module: any) => {
             this.setState({ component: module.default });
         });
 
-        svc.api.getCode({ path: this.props.path }).then(r => {
+        svc.api.getCode({ path }).then(r => {
             this.setState({ code: r.highlighted, raw: r.raw });
             return r.raw;
         }).then(raw => this.getComponentStylesheet(raw));
@@ -47,10 +46,15 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     };
 
     private getDescriptionFileName(): string {
-        return this.props.path
+        // Files are stored here: "public/docs/content"
+        const name = this.props.path
             .replace(new RegExp(/\.example.tsx|\./g), '')
             .replace(/\//g, '-')
             .replace(/^-/, '');
+
+        // next line removes leading underscore
+        // i.e. "_examples-alert-Basic.json" -> "examples-alert-Basic.json"
+        return name.substring(1);
     }
 
     private getComponentStylesheet(raw: string): void {
@@ -91,7 +95,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
         return (
             <>
-                <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12' >
+                <FlexRow size={ null } vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12' >
                     { this.state.component && React.createElement(this.state.component) }
                 </FlexRow>
                 <FlexRow padding='12' vPadding='12' cx={ css.containerFooter }>

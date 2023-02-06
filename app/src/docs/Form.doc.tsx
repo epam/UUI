@@ -12,32 +12,32 @@ export class FormDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/form/Basic.example.tsx'
+                    path='./_examples/form/Basic.example.tsx'
                 />
 
                 <DocExample
                     title='Advanced'
-                    path='./examples/form/Advanced.example.tsx'
+                    path='./_examples/form/Advanced.example.tsx'
                 />
 
                 <DocExample
                     title='Modal with Form'
-                    path='./examples/modals/ModalWithForm.example.tsx'
+                    path='./_examples/modals/ModalWithForm.example.tsx'
                 />
 
                 <DocExample
                     title='Server-side validation'
-                    path='./examples/form/ServerValidation.example.tsx'
+                    path='./_examples/form/ServerValidation.example.tsx'
                 />
 
                 <DocExample
                     title='Usage with class components'
-                    path='./examples/form/FormWIthClasses.example.tsx'
+                    path='./_examples/form/FormWIthClasses.example.tsx'
                 />
 
                 <DocExample
                     title='Usage with validateOn: "onchange" '
-                    path='./examples/form/FormValidateOnChange.example.tsx'
+                    path='./_examples/form/FormValidateOnChange.example.tsx'
                 />
             </>
         );

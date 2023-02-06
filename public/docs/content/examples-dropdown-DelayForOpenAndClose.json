@@ -1,0 +1,65 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "openDelay",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "closeDelay",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " props for cases when you want to delay dropdown opening or closing. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For example it might be useful, when you have scrollable list with dropdowns and you want to prevent dropdown body opening when user scroll over the toggler, but show it only if user hold cursor over item for some period of time.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

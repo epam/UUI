@@ -25,16 +25,18 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
     const { uuiNotifications } = useUuiContext();
 
     const copyUrlToClipboard = useCallback(async () => {
-        await navigator.clipboard.writeText(location.href);
+        await navigator.clipboard.writeText(props.getPresetLink(props.preset));
         successNotificationHandler('Link copied!');
     }, []);
 
     const saveInCurrent = useCallback(async (preset: ITablePreset) => {
-        const newPreset = {
+        const newPreset: ITablePreset = {
             ...preset,
             filter: props.tableState.filter,
+            sorting: props.tableState.sorting,
             columnsConfig: props.tableState.columnsConfig,
             filtersConfig: props.tableState.filtersConfig,
+            viewState: props.tableState.viewState
         };
         await props.updatePreset(newPreset);
         successNotificationHandler('Changes saved!');

@@ -66,7 +66,7 @@ export function SlateEditor(props: any) {
 
         return <p { ...attributes }>{ children }</p>;
     };
-console.log((props?.value ? { initialValue: migrateSchema(props.value) } : {}), props?.value);
+
     const renderEditor = () => (
         <DndProvider backend={ HTML5Backend }>
                 <Plate

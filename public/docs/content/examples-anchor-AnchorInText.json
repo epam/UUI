@@ -1,0 +1,56 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You can also use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Anchor",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " within text blocks. To apply link styles, wrap your text with link into ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=richTextView&mode=doc&skin=UUI4_promo&category=components"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "RichTextView",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " component.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

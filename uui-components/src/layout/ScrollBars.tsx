@@ -1,14 +1,16 @@
-import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import Scrollbars, * as CustomScrollBars from 'react-custom-scrollbars-2';
+import React, { CSSProperties, forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
+import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import css from './ScrollBars.scss';
+import type { Scrollbars, ScrollbarProps as LibScrollbarProps, positionValues } from 'react-custom-scrollbars-2';
 
-export interface ScrollbarProps extends IHasCX, Omit<CustomScrollBars.ScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
+export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
     hasTopShadow?: boolean;
     hasBottomShadow?: boolean;
+    renderView?: (props: any) => React.ReactElement;
 }
 
-export interface PositionValues extends CustomScrollBars.positionValues {}
+export interface PositionValues extends positionValues {}
 
 export interface ScrollbarsApi extends Scrollbars {}
 
@@ -53,13 +55,16 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useEffect(handleUpdateScroll);
 
-    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) =>
-        props.renderView?.({ style: { ...style, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest }) || (
-        <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />
-    );
+    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) => {
+        const propsRenderView = props.renderView as (p: any) => any;
+        const rv = propsRenderView?.({ style: { ...style, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest });
+        return rv || (
+            <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />
+        );
+    };
 
     return (
-        <CustomScrollBars.default
+        <ReactCustomScrollBars
             className={ cx(
                 css.root,
                 props.cx,

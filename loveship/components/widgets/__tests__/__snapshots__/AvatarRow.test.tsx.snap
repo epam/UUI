@@ -7,6 +7,7 @@ exports[`AvatarRow should be rendered correctly 1`] = `
   <img
     className="avatar avatarContent size-42"
     height="42"
+    onError={[Function]}
     src="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
     width="42"
   />
