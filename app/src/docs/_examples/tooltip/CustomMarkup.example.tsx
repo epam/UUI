@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, FlexCell, FlexRow, Text, Tooltip } from '@epam/promo';
-import css from './CustomMarkup.example.scss';
+import css from './CustomMarkupExample.scss';
 
 export default function CustomMarkupExample() {
     const months = ['MAY', 'JUN', 'JUL', 'AUG', 'SEP'];

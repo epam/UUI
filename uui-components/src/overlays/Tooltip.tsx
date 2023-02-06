@@ -55,6 +55,7 @@ export function Tooltip(props: TooltipProps) {
             renderBody={ (props) => renderDropdownBody(props) }
             openOnHover={ true }
             closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
+            placement={ props.placement || 'top' }
             modifiers={ [
                 { name: 'offset', options: { offset: props.offset || [0, 12] } },
             ] }
