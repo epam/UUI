@@ -55,7 +55,7 @@ async function buildStaticModule({ moduleRootDir }) {
  *
  * @param {Object}      options
  * @param {string}      options.moduleRootDir   "absolute" path to the module root dir
- * @param {string[]}    options.copyAsIs        array of file/folder names in the module root dir
+ * @param {string[]}    [options.copyAsIs]        array of file/folder names in the module root dir
  *      which must be copied to the output "as-is" (except for package.json which is always copied anyway).
  * @param {any}         [options.packageJsonTransform] pass callback if content of copied package.json needs to be adjusted.
  * @param {boolean}     [options.isWatch = false]       pass true to start rollup watcher.

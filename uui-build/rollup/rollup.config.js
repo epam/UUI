@@ -23,14 +23,17 @@ module.exports = { createRollupConfigForModule };
  * Creates rollup config for the module.
  *
  * @param {Object} options
- * @param {string} options.moduleRootDir absolute path to module root dir
+ * @param {string} [options.moduleRootDir] absolute path to module root dir. it uses process.cwd() if nothing is provided
  * @param {string} options.indexFileRelativePath relative path to module index file
  * @param {any} options.external pass a callback if you need to override default behavior
- * @param {boolean} [options.isWatch] pass true if it's used in watch mode
+ * @param {boolean} [options.isWatch] pass true if it's used in watch mode. it checks --watch command line argument if nothing is provided
  * @returns {Promise<import('rollup').RollupOptions[]>}
  */
 async function createRollupConfigForModule(options) {
-    const { moduleRootDir, indexFileRelativePath, external, isWatch } = options;
+    const isWatchDefault = !!process.argv.find(a => a === "--watch");
+    const moduleRootDirDefault = process.cwd();
+    //
+    const { moduleRootDir = moduleRootDirDefault, indexFileRelativePath, external, isWatch = isWatchDefault } = options;
     const externalEffective = external ? external({ moduleRootDir }) : getExternalDeps({ moduleRootDir });
     const tsconfigFile = getTsConfigFile(moduleRootDir);
     const { default: postcss } = await postCssDynamicImport;
@@ -50,7 +53,7 @@ async function createRollupConfigForModule(options) {
         external: externalEffective,
         plugins: [
             replace({
-                UUI_VERSION_VARIABLE: version,
+                PACKAGE_VERSION: version,
                 preventAssignment: true,
             }),
             nodeResolve({
