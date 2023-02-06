@@ -1,6 +1,6 @@
 import { convertFromHTML as draftConvertFromHTML, convertToHTML as draftConvertToHTML } from 'draft-convert';
 import { ContentBlock, ContentState, convertToRaw, EditorState, RawDraftEntity, SelectionState } from 'draft-js';
-import getContentStateFragment from 'draft-js/lib/getContentStateFragment';
+import getContentStateFragment from 'draft-js/lib/getContentStateFragment.js';
 import * as React from 'react';
 import { Link } from '../decorators';
 

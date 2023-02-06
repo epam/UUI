@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, DatePickerCoreProps } from '@epam/uui-core';
+import { DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, DatePickerCoreProps } from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-import utc from 'dayjs/plugin/utc';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
+import utc from 'dayjs/plugin/utc.js';
 import { PickerBodyValue, defaultFormat, valueFormat, ViewType, supportedDateFormats } from '../';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
-import { Dropdown, DropdownBodyProps } from '../../';
+import { Dropdown } from '../../';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
@@ -64,7 +64,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
 
     getIsValidDate = (value: string) => {
         if (!value) return false;
-        const parsedDate = dayjs(value, supportedDateFormats, true);
+        const parsedDate = dayjs(value, supportedDateFormats(this.getFormat()), true);
         const isValidDate = parsedDate.isValid();
         if (!isValidDate) return false;
         return this.props.filter ? this.props.filter(parsedDate) : true;

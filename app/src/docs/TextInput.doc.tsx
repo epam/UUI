@@ -6,9 +6,9 @@ export class TextInputDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/inputs/docs/textInput.doc.ts',
-            [UUI4]: './epam-promo/components/inputs/docs/textInput.doc.ts',
-            [UUI]: './uui/components/inputs/docs/textInput.doc.ts',
+            [UUI3]: './app/src/docs/_props/loveship/components/inputs/textInput.props.ts',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/inputs/textInput.props.ts',
+            [UUI]: './app/src/docs/_props/uui/components/inputs/textInput.props.ts',
         };
     }
 
@@ -20,15 +20,15 @@ export class TextInputDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/textInput/Basic.example.tsx'
+                    path='./_examples/textInput/Basic.example.tsx'
                 />
                 <DocExample
                     title='Size'
-                    path='./examples/textInput/Size.example.tsx'
+                    path='./_examples/textInput/Size.example.tsx'
                 />
                 <DocExample
                     title='Action'
-                    path='./examples/textInput/Action.example.tsx'
+                    path='./_examples/textInput/Action.example.tsx'
                 />
             </>
         );

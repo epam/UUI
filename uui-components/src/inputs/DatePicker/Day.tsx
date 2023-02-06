@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cx, CX, IEditable, uuiMarkers, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
 import { uuiDaySelection } from './Calendar';
-import isToday from "dayjs/plugin/isToday";
+import isToday from "dayjs/plugin/isToday.js";
 dayjs.extend(isToday);
 
 export interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {

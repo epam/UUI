@@ -1,7 +1,7 @@
 import React from 'react';
-import { DropdownPlacement } from "./Dropdown";
-import './PopoverArrow.scss';
 import { PopperArrowProps } from 'react-popper';
+import { DropdownPlacement } from '@epam/uui-core';
+import './PopoverArrow.scss';
 
 interface PopoverArrow {
     arrowProps?: PopperArrowProps;

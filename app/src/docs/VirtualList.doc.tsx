@@ -11,12 +11,12 @@ export class VirtualListDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/virtualList/Basic.example.tsx'
+                    path='./_examples/virtualList/Basic.example.tsx'
                 />
 
                 <DocExample
                     title='Advanced'
-                    path='./examples/virtualList/Advanced.example.tsx'
+                    path='./_examples/virtualList/Advanced.example.tsx'
                 />
             </>
         );

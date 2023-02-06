@@ -1,8 +1,8 @@
 import React, { useCallback, useState, useMemo, useEffect } from "react";
 import dayjs from "dayjs";
 import cx from "classnames";
-import { TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue } from "@epam/uui-core";
-import { Dropdown, DropdownBodyProps } from "@epam/uui-components";
+import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue } from "@epam/uui-core";
+import { Dropdown } from "@epam/uui-components";
 import { i18n } from "../../i18n";
 import { FilterPanelItemToggler } from "./FilterPanelItemToggler";
 import { Panel } from "../layout";

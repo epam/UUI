@@ -7,7 +7,7 @@ import { TextPlaceholder, Text } from '../typography';
 import { Tooltip } from '../overlays';
 import { DataTableCellMods } from './types';
 import { ReactComponent as FoldingArrow } from '../icons/tree_folding_arrow.svg';
-import * as css from './DataTableCell.scss';
+import css from './DataTableCell.scss';
 
 function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
     const row = props.rowProps;

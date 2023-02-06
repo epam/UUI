@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Icon, IHasCX, NotificationOperation, NotificationContext, UuiContext, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import * as css from './Snackbar.scss';
+import css from './Snackbar.scss';
 
 const itemsOffset = 12;
 const offset = 30;
@@ -50,7 +50,6 @@ const uuiSnackbar = {
 
 export class Snackbar extends React.Component<SnackbarProps> {
     static contextType = UuiContext;
-    private transitionRef = React.createRef<HTMLDivElement>();
 
     context: { uuiNotifications: NotificationContext };
 
@@ -81,9 +80,11 @@ export class Snackbar extends React.Component<SnackbarProps> {
             style = uuiSnackbar.itemWrapperRight;
         }
 
+        const transitionRef = React.createRef<HTMLDivElement>();
+
         return (
-            <CSSTransition nodeRef={ this.transitionRef } classNames={ style } timeout={ 200 } key={ item.props.id }>
-                <div ref={ this.transitionRef } className={ isItemOnLeftSide ? uuiSnackbar.itemWrapper.self : isItemOnCenter ? uuiSnackbar.itemWrapperCenter.self : uuiSnackbar.itemWrapperRight.self } key={ item.props.key } style={ isItemOnBottom ? { bottom: position } : { top: position } }>
+            <CSSTransition nodeRef={ transitionRef } classNames={ style } timeout={ 200 } key={ item.props.id }>
+                <div ref={ transitionRef } className={ isItemOnLeftSide ? uuiSnackbar.itemWrapper.self : isItemOnCenter ? uuiSnackbar.itemWrapperCenter.self : uuiSnackbar.itemWrapperRight.self } key={ item.props.key } style={ isItemOnBottom ? { bottom: position } : { top: position } }>
                     <div className={ cx(uuiSnackbar.item.self) } ref={ node => this.updateHeight(item, node) }>
                         { React.createElement(item.component, item.props) }
                     </div>

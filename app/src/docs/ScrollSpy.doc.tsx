@@ -11,7 +11,7 @@ export class ScrollSpyDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Scroll Spy Basic Usage'
-                    path='./examples/scrollSpy/BasicScrollSpy.example.tsx'
+                    path='./_examples/scrollSpy/BasicScrollSpy.example.tsx'
                 />
             </>
         );

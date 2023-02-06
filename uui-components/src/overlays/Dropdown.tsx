@@ -1,41 +1,8 @@
 import * as React from 'react';
-import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps, Modifier } from 'react-popper';
+import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
-import { Placement, Boundary } from '@popperjs/core';
-import { isClickableChildClicked, IEditable, LayoutLayer, IDropdownToggler, UuiContexts, UuiContext, closest, IDropdownBodyProps } from '@epam/uui-core';
+import { isClickableChildClicked, LayoutLayer, UuiContexts, UuiContext, closest, DropdownProps, DropdownState } from '@epam/uui-core';
 import { Portal } from './Portal';
-
-export interface DropdownState {
-    opened: boolean;
-    bodyBoundingRect: { y: number | null; x: number | null, width: number | null, height: number | null };
-    closeDropdownTimerId: any;
-}
-
-export interface DropdownBodyProps extends IDropdownBodyProps {}
-
-export type DropdownPlacement = Placement;
-
-export interface DropdownProps extends Partial<IEditable<boolean>> {
-    renderTarget: (props: IDropdownToggler) => React.ReactNode;
-    renderBody: (props: DropdownBodyProps) => React.ReactNode;
-    onClose?: () => void;
-    isNotUnfoldable?: boolean;
-    zIndex?: number;
-    placement?: DropdownPlacement;
-    modifiers?: Modifier<any>[];
-    /** Should we close dropdown on click on the Toggler, if it's already open? Default is true. */
-
-    openOnClick?: boolean; // default: true
-    openOnHover?: boolean; // default: false
-    closeOnTargetClick?: boolean; // default: true
-    closeOnClickOutside?: boolean; // default: true
-    closeOnMouseLeave?: 'toggler' | 'boundary' | false;
-
-    portalTarget?: HTMLElement;
-    boundaryElement?: Boundary;
-
-    closeBodyOnTogglerHidden?: boolean; // default: true; Set false if you do not want to hide the dropdown body in case Toggler is out of the viewport
-}
 
 const isInteractedOutsideDropdown = (e: Event, stopNodes: HTMLElement[]) => {
     const [relatedNode] = stopNodes;
@@ -58,11 +25,12 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     static contextType = UuiContext;
     public context: UuiContexts;
     private layer: LayoutLayer;
+    private openDropdownTimerId: NodeJS.Timeout = null;
+    private closeDropdownTimerId: NodeJS.Timeout = null;
 
     state: DropdownState = {
         opened: this.props.value || false,
         bodyBoundingRect: { y: null, x: null, height: null, width: null },
-        closeDropdownTimerId: null,
     };
 
     constructor(props: DropdownProps) {
@@ -78,7 +46,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             this.targetNode?.addEventListener?.('mouseenter', this.handleMouseEnter);
         }
 
-        if (this.props.closeOnMouseLeave === 'toggler') {
+        if (this.props.closeOnMouseLeave) {
             this.targetNode?.addEventListener?.('mouseleave', this.handleMouseLeave);
         }
 
@@ -117,7 +85,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     private handleTargetClick = (e: React.SyntheticEvent<HTMLElement>) => {
         if (!this.props.isNotUnfoldable && !(e && isClickableChildClicked(e))) {
-            const currentValue = this.props.value !== undefined ? this.props.value : this.state.opened;
+            const currentValue = this.isOpened();
             const newValue = (this.props.closeOnTargetClick === false) ? true : !currentValue;
 
             if (currentValue !== newValue) {
@@ -127,11 +95,24 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private handleMouseEnter = (e: Event) => {
-        this.handleOpenedChange(true);
+        this.clearCloseDropdownTimer();
+        if (this.props.openDelay) {
+            this.setOpenDropdownTimer();
+        } else {
+            this.handleOpenedChange(true);
+        }
     }
 
     private handleMouseLeave = (e: MouseEvent) => {
-        this.handleOpenedChange(false);
+        this.clearOpenDropdownTimer();
+
+        if (this.props.closeOnMouseLeave !== 'boundary') { // For boundary mode we have separate logic on onMouseMove handler
+            if (this.props.closeDelay) {
+                this.isOpened() && this.setCloseDropdownTimer(this.props.closeDelay);
+            } else {
+                this.handleOpenedChange(false);
+            }
+        }
     }
 
     isClientInArea(e: MouseEvent) {
@@ -143,29 +124,47 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }
     }
 
-    setCloseDropdownTimer() {
-        this.setState({
-            closeDropdownTimerId: setTimeout(() => {
-                this.handleOpenedChange(false);
-                this.clearCloseDropdownTimer();
-            }, 1500),
-        });
+    setOpenDropdownTimer() {
+        this.openDropdownTimerId = setTimeout(() => {
+            this.handleOpenedChange(true);
+            this.clearOpenDropdownTimer();
+        }, this.props.openDelay || 0);
+    }
+
+    setCloseDropdownTimer(delay: number) {
+        this.closeDropdownTimerId = setTimeout(() => {
+            this.handleOpenedChange(false);
+            this.clearCloseDropdownTimer();
+        }, delay);
+    }
+
+    clearOpenDropdownTimer() {
+        if (this.openDropdownTimerId) {
+            clearTimeout(this.openDropdownTimerId);
+            this.openDropdownTimerId = null;
+        }
     }
 
     clearCloseDropdownTimer() {
-        if (this.state.closeDropdownTimerId) {
-            clearTimeout(this.state.closeDropdownTimerId);
-            this.setState({ closeDropdownTimerId: null });
+        if (this.closeDropdownTimerId) {
+            clearTimeout(this.closeDropdownTimerId);
+            this.closeDropdownTimerId = null;
         }
     }
 
     private handleMouseMove = (e: MouseEvent) => {
-        if (this.isInteractedOutside(e) && !this.isClientInArea(e)) {
-            this.handleOpenedChange(false);
+        if (this.isInteractedOutside(e) && !this.isClientInArea(e)) { // User leave boundary area, close dropdown immediately or with this.props.closeDelay
             this.clearCloseDropdownTimer();
-        } else if (this.isInteractedOutside(e) && !this.state.closeDropdownTimerId) {
-            this.setCloseDropdownTimer();
-        } else if (!this.isInteractedOutside(e) && this.state.closeDropdownTimerId) {
+            this.clearOpenDropdownTimer();
+
+            if (this.props.closeDelay) {
+                this.isOpened() && this.setCloseDropdownTimer(this.props.closeDelay);
+            } else {
+                this.handleOpenedChange(false);
+            }
+        } else if (this.isInteractedOutside(e) && !this.closeDropdownTimerId) { // User cursor in boundary area, but not inside toggler or body
+            this.setCloseDropdownTimer(this.props.closeDelay || 1500);
+        } else if (!this.isInteractedOutside(e) && this.closeDropdownTimerId) { // User returned to the toggler or body area, we need to clear close timer
             this.clearCloseDropdownTimer();
         }
     }
@@ -206,7 +205,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             }
         };
 
-        if (isReferenceHidden && this.props.closeBodyOnTogglerHidden !== false && (this.state.opened || this.props.value)) {
+        if (isReferenceHidden && this.props.closeBodyOnTogglerHidden !== false && this.isOpened()) {
             // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in this case
             setTimeout(() => this.handleOpenedChange(false), 0);
             return null;

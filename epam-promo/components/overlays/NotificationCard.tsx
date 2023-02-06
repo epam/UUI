@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { IconContainer } from '@epam/uui-components';
-import { INotification, Icon, IHasChildren, IHasCX, IHasRawProps, useUuiContext } from '@epam/uui-core';
+import { INotification, Icon, IHasChildren, IHasCX, IHasRawProps, useUuiContext, useLayoutEffectSafeForSsr } from '@epam/uui-core';
 import { IconButton } from '../buttons';
 import { i18n } from '../../i18n';
 import { EpamPrimaryColor, LinkButton } from '..';
@@ -10,8 +10,8 @@ import { ReactComponent as WarningIcon } from '../../icons/notification-warning-
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
 import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
-import * as styles from '../../assets/styles/colorvars/overlays/notificationCard-colorvars.scss';
-import * as css from './NotificationCard.scss';
+import styles from '../../assets/styles/colorvars/overlays/notificationCard-colorvars.scss';
+import css from './NotificationCard.scss';
 
 interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     name: string;
@@ -32,7 +32,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
 
     React.useImperativeHandle(ref, () => notificationCardNode.current, [notificationCardNode.current]);
 
-    React.useLayoutEffect(() => {
+    useLayoutEffectSafeForSsr(() => {
         notificationCardNode.current?.addEventListener('mouseenter', props.clearTimer);
         notificationCardNode.current?.addEventListener('mouseleave', props.refreshTimer);
         return () => {

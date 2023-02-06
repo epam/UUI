@@ -12,7 +12,7 @@ export class FiltersPanelDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/tables/FiltersPanelBasic.example.tsx'
+                    path='./_examples/tables/FiltersPanelBasic.example.tsx'
                 />
             </>
         );

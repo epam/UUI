@@ -5,7 +5,7 @@ import { cx } from '@epam/uui-core';
 import { Button } from '@epam/uui-components';
 import { DraftBlockStyleButton, DraftButtonProps } from '../types';
 import { blockTypeIsActive } from './helpers';
-import * as css from '../common/Toolbar/buttons/HeaderDropdownButton.scss'
+import css from '../common/Toolbar/buttons/HeaderDropdownButton.scss'
 
 export function createBlockStyleDropDownItem({ blockType, icon, caption = '' }: DraftBlockStyleButton) {
     return class BlockStyleDropDownItem extends React.Component<DraftButtonProps> {

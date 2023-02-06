@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To disable spinner, use ",
+            "text": "To disable the spinner, use ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop;",
+            "text": " prop.",
             "marks": []
           }
         ]
@@ -39,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": " To avoid content jumps after loading, use the ",
+            "text": "To avoid content jumps after loading, use the ",
             "marks": []
           },
           {
@@ -55,7 +55,7 @@
           },
           {
             "object": "text",
-            "text": " props, which set the minimum height of the content.",
+            "text": " prop, which set the minimum height of the content.",
             "marks": []
           }
         ]

@@ -1,7 +1,7 @@
 import { FlexRow, Panel } from '@epam/loveship';
 import React, { useState } from 'react';
-import { RichTextEditor, ToolbarButton } from '../../../../draft-rte';
-import * as css from './DraftRTEDemo.scss';
+import { RichTextEditor, ToolbarButton } from '@epam/draft-rte';
+import css from './DraftRTEDemo.scss';
 
 export const DraftRTEDemo = (props: any) => {
     const [value, setValue] = useState('');

@@ -1,5 +1,5 @@
 import { Anchor, Text } from "@epam/promo";
-import * as css from "./DemoItemCard.scss";
+import css from "./DemoItemCard.scss";
 import * as React from "react";
 import { DemoItem } from "../structure";
 

@@ -2,6 +2,7 @@
 
 .container {
     margin: 24px 0;
+    max-width: 100%;
 }
 
 .title-row {
@@ -34,6 +35,7 @@
     background: $white;
     border: 1px solid $gray40;
     width: 960px;
+    max-width: 100%;
 
     .external-link {
         cursor: pointer;

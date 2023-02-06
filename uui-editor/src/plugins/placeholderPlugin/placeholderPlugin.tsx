@@ -5,7 +5,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { isTextSelected } from '../../helpers';
 import { PlaceholderBlock } from './PlaceholderBlock';
 import { Dropdown } from "@epam/uui-components";
-import * as css from './PlaceholderPlugin.scss';
+import css from './PlaceholderPlugin.scss';
 
 export interface PlaceholderPluginParams {
     items: {

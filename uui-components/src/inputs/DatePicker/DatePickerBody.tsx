@@ -5,9 +5,9 @@ import { MonthSelection } from './MonthSelection';
 import { Calendar } from './Calendar';
 import { DatePickerHeader } from "./DatePickerHeader";
 import { YearSelection } from './YearSelection';
-import { i18n } from "../../../i18n";
+import { i18n } from "../../i18n";
 import { CalendarPresets } from './CalendarPresets';
-import updateLocale from 'dayjs/plugin/updateLocale';
+import updateLocale from 'dayjs/plugin/updateLocale.js';
 import { cx } from "@epam/uui-core";
 dayjs.extend(updateLocale);
 

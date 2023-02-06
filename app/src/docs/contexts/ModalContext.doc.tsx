@@ -10,7 +10,7 @@ export class ModalContextDoc extends BaseDocsBlock {
                 <EditableDocContent fileName='modal-context-descriptions' />
                 <DocExample
                     title='Example'
-                    path='./examples/contexts/ModalContext.example.tsx'
+                    path='./_examples/modals/Basic.example.tsx'
                 />
             </>
         );

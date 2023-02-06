@@ -2,8 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import * as types from '../types';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import * as css from './TextPlaceholder.scss';
+import styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import css from './TextPlaceholder.scss';
 
 export interface TextPlaceholderProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     wordsCount?: number;
@@ -26,6 +26,7 @@ export const TextPlaceholder = React.forwardRef<HTMLDivElement, TextPlaceholderP
         <div ref={ ref } aria-busy={ true } className={ css.container } { ...props.rawProps }>
             { text.map((it, index) => (
                 <span
+                    suppressHydrationWarning={ true }
                     key={ index }
                     dangerouslySetInnerHTML={ { __html: it } }
                     className={ cx([

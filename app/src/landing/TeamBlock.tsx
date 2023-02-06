@@ -3,7 +3,7 @@ import Measure from 'react-measure';
 import { FlexCell, FlexRow, FlexSpacer, LinkButton, Text } from '@epam/promo';
 import { team } from '../docs';
 import { analyticsEvents } from '../analyticsEvents';
-import * as css from './TeamBlock.scss';
+import css from './TeamBlock.scss';
 import { ReactComponent as LinkIcon } from '@epam/assets/icons/common/navigation-chevron-right-18.svg';
 
 export class TeamBlock extends React.Component {

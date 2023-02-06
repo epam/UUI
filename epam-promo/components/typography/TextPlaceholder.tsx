@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './TextPlaceholder.scss';
+import css from './TextPlaceholder.scss';
 import cx from 'classnames';
 import { PropsWithChildren } from 'react';
 import { IHasRawProps } from "@epam/uui-core";
@@ -24,19 +24,25 @@ export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<TextPlac
         return words;
     }, [props.wordsCount]);
 
+
+    function renderText() {
+        return text.map((it: string, index: number) => (
+            <span
+                suppressHydrationWarning={ true }
+                key={ index }
+                className={ cx([
+                    css.loadingWord,
+                    css['text-placeholder-color-' + (props.color || 'gray40')],
+                    !props.isNotAnimated && css.animatedLoading,
+                ]) }
+                dangerouslySetInnerHTML={ {__html: it} }
+            />
+        ));
+    }
+
     return (
-        <div aria-busy={ true } className={ css.container } { ...props.rawProps }>{
-            text.map((it: string, index: number) => (
-                <span
-                    key={ index }
-                    className={ cx([
-                        css.loadingWord,
-                        css['text-placeholder-color-' + (props.color || 'gray40')],
-                        !props.isNotAnimated && css.animatedLoading,
-                    ]) }
-                    dangerouslySetInnerHTML={ {__html: it} }
-                />
-            )) }
+        <div aria-busy={ true } className={ css.container } { ...props.rawProps }>
+            { renderText() }
         </div>
     );
 };

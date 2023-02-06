@@ -1,9 +1,9 @@
 import * as React from 'react';
-import * as css from './LabeledInput.scss';
+import css from './LabeledInput.scss';
 import { Icon, uuiElement, labelMod, LabeledInputCoreProps, cx } from '@epam/uui-core';
 import { TooltipProps } from '../overlays/Tooltip';
 import { Svg } from '../widgets/Svg';
-import { i18n } from '../../i18n';
+import { i18n } from '../i18n';
 
 export interface LabeledInputProps extends LabeledInputCoreProps {
     /** Overrides the default Tooltip component to use for info tooltip */
