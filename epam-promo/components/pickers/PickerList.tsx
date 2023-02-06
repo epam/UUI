@@ -25,7 +25,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
     context: UuiContexts;
 
     renderRow = (row: DataRowProps<TItem, TId>) => {
-        return <PickerListItem getName={ item => this.getName(item) } { ...row } key={ row.rowKey }/>;
+        return <PickerListItem getName={ item => this.getName(item) } { ...row } key={ row.rowKey } />;
     }
 
     handleShowPicker = () => {
@@ -67,8 +67,8 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
                 { !rows.length && (this.props.noOptionsMessage ?
                     this.props.noOptionsMessage :
                     <Text color={ 'gray60' }
-                          size={ this.props.size as TextSize }>No options available</Text>) }
-                { rows.map(row => renderRow(row)) }
+                        size={ this.props.size as TextSize }>No options available</Text>) }
+                { rows.map(row => renderRow(row, this.state.dataSourceState)) }
                 { showPicker && renderToggler({
                     onClick: this.handleShowPicker,
                     caption: this.getModalTogglerCaption(viewProps.totalCount, selectedRows.length),
