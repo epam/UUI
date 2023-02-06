@@ -69,7 +69,6 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                         </FlexRow>
                         { !this.isSingleSelect() && <Switch
                             cx={ css.switch }
-                            color='sky'
                             size='18'
                             value={ this.state.showSelected }
                             onValueChange={ (nV) => this.setState({ showSelected: nV, dataSourceState: { ...this.state.dataSourceState, search: '' } }) }

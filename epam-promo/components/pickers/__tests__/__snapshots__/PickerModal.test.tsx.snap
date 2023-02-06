@@ -860,7 +860,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           </div>
         </div>
         <label
-          className="container root size-18 switch uui-disabled"
+          className="container switch-vars root size-18 uui-theme-promo switch uui-disabled"
         >
           <div
             className="uui-switch-body"
