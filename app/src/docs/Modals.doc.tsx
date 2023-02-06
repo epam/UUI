@@ -11,17 +11,17 @@ export class ModalsDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/modals/Basic.example.tsx'
+                    path='./_examples/modals/Basic.example.tsx'
                 />
 
                 <DocExample
                     title='Modal with Form'
-                    path='./examples/modals/ModalWithForm.example.tsx'
+                    path='./_examples/modals/ModalWithForm.example.tsx'
                 />
 
                 <DocExample
                     title='Disable close on click outside modal and modal header cross disabling'
-                    path='./examples/modals/DisableClickOutsideAndCross.example.tsx'
+                    path='./_examples/modals/DisableClickOutsideAndCross.example.tsx'
                 />
             </>
         );

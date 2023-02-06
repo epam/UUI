@@ -6,7 +6,7 @@ import { FlexRow, IconContainer, DropMarker, Text, RichTextView, FlexSpacer, Pan
 import { CriterionItem, DndCriterion } from './DndCriterion';
 import { DndMaterial, MaterialItem } from './DndMaterial';
 import { demoText } from './defaultState';
-import * as css from './DndSection.scss';
+import css from './DndSection.scss';
 import { ReactComponent as DownIcon } from '@epam/assets/icons/common/navigation-chevron-down-24.svg';
 
 export interface SectionItem {

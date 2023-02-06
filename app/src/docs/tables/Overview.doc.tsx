@@ -12,22 +12,22 @@ export class TablesOverviewDoc extends BaseDocsBlock {
 
                 <DocExample
                     title='Async Table'
-                    path='./examples/tables/AsyncTable.example.tsx'
+                    path='./_examples/tables/AsyncTable.example.tsx'
                 />
 
                 <DocExample
                     title='Lazy Table'
-                    path='./examples/tables/LazyTable.example.tsx'
+                    path='./_examples/tables/LazyTable.example.tsx'
                 />
 
                 <DocExample
                     title='Array Table'
-                    path='./examples/tables/ArrayTable.example.tsx'
+                    path='./_examples/tables/ArrayTable.example.tsx'
                 />
 
                 <DocExample
                     title='Tree Table'
-                    path='./examples/tables/TreeTable.example.tsx'
+                    path='./_examples/tables/TreeTable.example.tsx'
                 />
             </>
         );

@@ -10,13 +10,13 @@ export class ContextProviderDoc extends BaseDocsBlock {
                 <EditableDocContent fileName='context-provider-descriptions' />
                 <DocExample
                     title='Example'
-                    path='./examples/contexts/ContextProvider.example.tsx'
+                    path='./_examples/contexts/ContextProvider.example.tsx'
                     onlyCode={ true }
                 />
 
                 <DocExample
                     title='Example with hook'
-                    path='./examples/contexts/UseUuiServices.example.tsx'
+                    path='./_examples/contexts/UseUuiServices.example.tsx'
                     onlyCode={ true }
                 />
             </>

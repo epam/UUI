@@ -1,12 +1,12 @@
 import React from 'react';
-import { DropdownBodyProps, RangeDatePickerValue, BaseRangeDatePicker } from '@epam/uui-components';
-import { DropdownContainer, FlexRow, TextInput, SizeMod, EditMode, RangeDatePickerBody } from '../index';
-import { IDropdownToggler, uuiMod, IHasRawProps, BaseRangeDatePickerProps } from "@epam/uui-core";
+import { RangeDatePickerValue, BaseRangeDatePicker } from '@epam/uui-components';
+import { DropdownBodyProps, IDropdownToggler, uuiMod, IHasRawProps, BaseRangeDatePickerProps } from "@epam/uui-core";
 import cx from 'classnames';
+import { DropdownContainer, FlexRow, TextInput, SizeMod, EditMode, RangeDatePickerBody } from '../index';
 import { TextSettings } from '../../helpers/textLayout';
 import { systemIcons } from '../icons/icons';
 import { i18n } from '../../i18n';
-import * as css from './RangeDatePicker.scss';
+import css from './RangeDatePicker.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod, TextSettings, EditMode {
     getPlaceholder?(type: InputType): string;

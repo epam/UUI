@@ -1,6 +1,6 @@
 import { linkifyPlugin } from '@mercuriya/slate-linkify';
 import * as React from 'react';
-import * as css from './link.scss';
+import css from './link.scss';
 import { Editor } from "slate";
 import { useUuiContext } from "@epam/uui-core";
 import { ReactComponent as LinkIcon } from "../../icons/link.svg";

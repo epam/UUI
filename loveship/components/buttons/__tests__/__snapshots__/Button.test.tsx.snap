@@ -3,9 +3,7 @@
 exports[`Button should be rendered correctly 1`] = `
 <button
   className="container uui-button-box uui-enabled root size-36 color-sky fill-solid style-square"
-  href={null}
   onClick={[Function]}
-  role="button"
   tabIndex={-1}
   type="button"
 />
@@ -15,9 +13,7 @@ exports[`Button should be rendered correctly with props 1`] = `
 <button
   aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable root size-36 color-sun fill-white style-square"
-  href={null}
   onClick={[Function]}
-  role="button"
   tabIndex={0}
   type="button"
 >

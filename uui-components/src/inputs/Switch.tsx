@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers, IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef, IHasTabIndex } from '@epam/uui-core';
-import * as css from './Switch.scss';
+import css from './Switch.scss';
 
 export interface SwitchProps extends IHasCX, IDisableable, IEditable<boolean>, IHasLabel, IAnalyticableOnChange<boolean>,
     IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>, IHasForwardedRef<HTMLLabelElement>, IHasTabIndex {
@@ -50,7 +50,7 @@ export class Switch extends React.Component<SwitchProps> {
                     />
                     <div className={ uuiElement.switchToggler } />
                 </div>
-                <div className={ uuiElement.inputLabel }>{ this.props.label }</div>
+                { this.props.label && <div className={ uuiElement.inputLabel }>{ this.props.label }</div> }
             </label>
         );
     }

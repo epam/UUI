@@ -5,8 +5,8 @@ import { IEditable, DataQueryFilter, IDataSourceView, cx, uuiScrollShadows, useU
 import { getColumns } from './columns';
 import type { VirtualListRenderRowsParams } from '@epam/uui-components';
 import type { PersonsSummary } from './PersonsTableDemo';
-import type{ TApi } from '../../data';
-import * as css from './PersonsTable.scss';
+import type { TApi } from '../../data';
+import css from './PersonsTable.scss';
 
 export interface PersonsTableProps extends IEditable<DataTableState> {
     view: IDataSourceView<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableFilter>>;
@@ -66,7 +66,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
                 }) } />
             </div>
             { props.view.getListProps().exactRowsCount !== 0 && (
-                <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
+                <div className={ css.listContainer } style={ { minHeight: `${ estimatedHeight }px` } }>
                     <div
                         ref={ listContainerRef }
                         role='rowgroup'

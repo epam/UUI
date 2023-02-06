@@ -1,11 +1,11 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler, IHasRawProps } from '@epam/uui-core';
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import { Dropdown, DropdownBodyProps } from '../overlays';
+import { DropdownBodyProps, isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler, IHasRawProps } from '@epam/uui-core';
+import customParseFormat from "dayjs/plugin/customParseFormat.js";
+import { Dropdown } from '../overlays';
 dayjs.extend(customParseFormat);
 
-export interface BaseTimePickerProps extends IEditable<TimePickerValue>, IDisableable, ICanBeReadonly, IHasPlaceholder {
+export interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, IDisableable, ICanBeReadonly, IHasPlaceholder {
     minutesStep?: number;
     format?: 12 | 24;
     id?: string;

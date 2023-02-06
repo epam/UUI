@@ -2,9 +2,9 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import * as types from '../../components/types';
-import * as styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import * as buttonCss from '../buttons/Button.scss';
-import * as css from './Tag.scss';
+import styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import buttonCss from '../buttons/Button.scss';
+import css from './Tag.scss';
 
 export type TagSize = '18' | '24' | '30' | '36' | '42' | '48';
 

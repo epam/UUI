@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './ExploreBlock.scss';
+import css from './ExploreBlock.scss';
 import { Anchor, FlexRow, IconContainer, Text } from '@epam/promo';
 import { ReactComponent as DownloadIcon } from '../icons/download.svg';
 import { UUI4 } from '../common/docs';

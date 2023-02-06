@@ -16,6 +16,12 @@ exports[`FileCard should be rendered correctly 1`] = `
 >
   <div
     className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
   >
     <div
       className="container uui-icon uui-enabled root icon-container-color-gray60 xlsColor"
@@ -103,6 +109,12 @@ exports[`FileCard should be rendered correctly 2`] = `
 >
   <div
     className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
   >
     <div
       className="container uui-icon uui-enabled root icon-container-color-gray60 docColor"
@@ -190,6 +202,12 @@ exports[`FileCard should be rendered correctly 3`] = `
 >
   <div
     className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
   >
     <div
       className="container uui-icon uui-enabled root icon-container-color-gray60 imgColor"
@@ -233,9 +251,7 @@ exports[`FileCard should be rendered correctly 3`] = `
     >
       <button
         className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={0}
         type="button"
       >

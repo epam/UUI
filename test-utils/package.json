@@ -5,10 +5,10 @@
   "dependencies": {
     "@epam/uui-core": "4.6.2",
     "enzyme": "^3.9.0",
-    "@types/react-test-renderer": "17.0.1",
+    "@types/react-test-renderer": "18.0.0",
     "enzyme-adapter-react-16": "^1.10.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
-    "react-test-renderer": "17.0.2",
+    "react-test-renderer": "18.2.0",
     "@testing-library/react-hooks": "^7.0.2"
 	},
   "peerDependencies": {

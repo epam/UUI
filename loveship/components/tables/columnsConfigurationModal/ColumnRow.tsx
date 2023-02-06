@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./ColumnRow.scss";
+import styles from "./ColumnRow.scss";
 import { cx, DataColumnProps, DndActor, DndActorRenderParams, IColumnConfig } from "@epam/uui-core";
 import { FlexRow, Checkbox, DropMarker } from "../../.";
 import { DragHandle, FlexSpacer, ColumnsConfigurationRowProps } from "@epam/uui-components";
@@ -26,7 +26,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
         const { onTouchStart, onPointerDown, ...restEventHandlers } = dndActorParams.eventHandlers;
         const wrapperAttrs = {
             ...(isDndAllowed ? { ref: dndActorParams.ref } : {}),
-            ...(isDndAllowed ? { rawProps: {...restEventHandlers} } : {}),
+            ...(isDndAllowed ? { rawProps: { ...restEventHandlers } } : {}),
         };
         const dragHandleRawProps: any = {
             ...(isDndAllowed ? { onTouchStart, onPointerDown } : {}),
@@ -41,7 +41,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
                         label={ column.caption }
                         value={ isVisible }
                         onValueChange={ toggleVisibility }
-                        isDisabled={ column.isAlwaysVisible || !!column.fix }
+                        isDisabled={ column.isAlwaysVisible }
                     />
                 </FlexRow>
                 <FlexSpacer />

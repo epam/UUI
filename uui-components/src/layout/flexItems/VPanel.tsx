@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as css from './VPanel.scss';
+import css from './VPanel.scss';
 import {
     isClickableChildClicked,
     uuiMarkers,

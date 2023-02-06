@@ -5,7 +5,7 @@ import { Blocker } from '@epam/loveship';
 import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin, notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin, codeBlockPlugin,
 } from "@epam/uui-editor";
 import { svc } from '../../services';
-import * as css from './EditableDocContent.scss';
+import css from './EditableDocContent.scss';
 
 export interface EditableDocContentProps {
     fileName: string;

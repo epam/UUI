@@ -5,10 +5,16 @@ exports[`MainMenu should be rendered correctly 1`] = `
   className="root uui-mainmenu-container container"
 >
   <div
-    className="itemsContainer"
+    className="itemsContainer mainWrapper"
   >
     <div
       className="container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
     >
       <div
         className="root uui-burger-menu container"
@@ -27,20 +33,9 @@ exports[`MainMenu should be rendered correctly 1`] = `
           </div>
         </div>
       </div>
-      <div
-        className="root burgerContent uui-burger-overlay"
-        onClick={[Function]}
-      >
-        <div
-          className="root uui-burger-items"
-          onClick={[Function]}
-        />
-      </div>
       <button
         className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={-1}
         type="button"
       />
@@ -54,10 +49,16 @@ exports[`MainMenu should be rendered correctly with props 1`] = `
   className="root uui-mainmenu-container container uui-mainmenu-transparent"
 >
   <div
-    className="itemsContainer"
+    className="itemsContainer mainWrapper"
   >
     <div
       className="container align-items-center"
+      style={
+        Object {
+          "columnGap": undefined,
+          "rowGap": undefined,
+        }
+      }
     >
       <div
         className="root uui-burger-menu container"
@@ -76,20 +77,9 @@ exports[`MainMenu should be rendered correctly with props 1`] = `
           </div>
         </div>
       </div>
-      <div
-        className="root burgerContent uui-burger-overlay"
-        onClick={[Function]}
-      >
-        <div
-          className="root uui-burger-items"
-          onClick={[Function]}
-        />
-      </div>
       <button
         className="container uui-button-box uui-enabled root type-primary fontSansSemibold"
-        href={null}
         onClick={[Function]}
-        role="button"
         tabIndex={-1}
         type="button"
       />

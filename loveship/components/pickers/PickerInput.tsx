@@ -1,6 +1,6 @@
 import React from 'react';
-import { DataRowProps, DataSourceListProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
-import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
+import { DataRowProps, DataSourceListProps, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
+import { PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerModal } from './PickerModal';
 import { Panel } from '../layout';
@@ -10,7 +10,7 @@ import { PickerItem } from './PickerItem';
 import { DataPickerFooter } from './DataPickerFooter';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import { SizeMod, EditMode } from '../types';
-import * as css from './PickerInput.scss';
+import css from './PickerInput.scss';
 
 export type PickerInputProps = SizeMod & EditMode & {};
 
@@ -22,7 +22,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const { renderFooter, rawProps, ...restProps } = this.props;
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
             { ...restProps }
-            rawProps={rawProps?.body}
+            rawProps={ rawProps?.body }
             { ...props }
             caption={ this.getPlaceholder() }
             initialValue={ this.props.value as any }
@@ -31,11 +31,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             valueType={ this.props.valueType }
         />)
             .then(newSelection => {
-                this.handleSelectionValueChange(newSelection)
-                this.returnFocusToInput()
+                this.handleSelectionValueChange(newSelection);
+                this.returnFocusToInput();
             })
             .catch(() => {
-                this.returnFocusToInput()
+                this.returnFocusToInput();
             });
     }
 
@@ -92,7 +92,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) {
-        const renderedDataRows = rows.map(props => this.renderRow(props))
+        const renderedDataRows = rows.map(props => this.renderRow(props));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : (this.props.dropdownHeight || pickerHeight);
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : (this.props.minBodyWidth || pickerWidth);
 
@@ -106,8 +106,8 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 <MobileDropdownWrapper
                     title={ this.props.entityName }
                     close={ () => {
-                        this.returnFocusToInput()
-                        this.toggleBodyOpening(false)
+                        this.returnFocusToInput();
+                        this.toggleBodyOpening(false);
                     } }
                 >
                     <DataPickerBody

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IHasCX, IEditable, VirtualListState, IHasRawProps, useVirtualList, useScrollShadows, cx, uuiMarkers } from '@epam/uui-core';
 import { PositionValues, ScrollBars, ScrollbarsApi } from '../layout';
-import * as css from './VirtualList.scss';
+import css from './VirtualList.scss';
 
 export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {
     listContainerRef: React.MutableRefObject<List>;
@@ -50,7 +50,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         )
     );
 
-    const scrollBarsRef = React.useCallback(scrollbars => {
+    const scrollBarsRef = React.useCallback((scrollbars: ScrollbarsApi) => {
         if (!scrollbars?.container?.firstChild) return;
         scrollContainerRef.current = scrollbars.container.firstChild as HTMLDivElement;
     }, []);

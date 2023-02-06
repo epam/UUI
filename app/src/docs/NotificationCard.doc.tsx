@@ -6,8 +6,8 @@ export class NotificationCardDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/overlays/docs/notificationCard.doc.tsx',
-            [UUI4]: './epam-promo/components/overlays/docs/notificationCard.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/overlays/notificationCard.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/overlays/notificationCard.props.tsx',
         };
     }
 
@@ -18,11 +18,11 @@ export class NotificationCardDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/notificationCard/Basic.example.tsx'
+                    path='./_examples/notificationCard/Basic.example.tsx'
                 />
                 <DocExample
                     title='Advanced'
-                    path='./examples/notificationCard/Advanced.example.tsx'
+                    path='./_examples/notificationCard/Advanced.example.tsx'
                 />
             </>
         );

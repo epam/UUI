@@ -6,8 +6,8 @@ export class AccordionDoc extends BaseDocsBlock {
 
     getPropsDocPath() {
         return {
-            [UUI3]: './loveship/components/layout/docs/accordion.doc.tsx',
-            [UUI4]: './epam-promo/components/layout/docs/accordion.doc.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/layout/accordion.props.tsx',
+            [UUI4]: './app/src/docs/_props/epam-promo/components/layout/accordion.props.tsx',
         };
     }
 
@@ -19,15 +19,15 @@ export class AccordionDoc extends BaseDocsBlock {
                 { this.renderSectionTitle('Examples') }
                 <DocExample
                     title='Basic'
-                    path='./examples/accordion/Basic.example.tsx'
+                    path='./_examples/accordion/Basic.example.tsx'
                 />
                 <DocExample
                     title='Handle Accordion state by yourself'
-                    path='./examples/accordion/HandleStateByYourself.example.tsx'
+                    path='./_examples/accordion/HandleStateByYourself.example.tsx'
                 />
                 <DocExample
                     title='Custom accordion'
-                    path='./examples/accordion/Custom.example.tsx'
+                    path='./_examples/accordion/Custom.example.tsx'
                 />
             </>
         );

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PickerBase, PickerBaseState } from './PickerBase';
 import { UuiContexts, DataRowProps, UuiContext, PickerBaseProps } from '@epam/uui-core';
-import { i18n } from "../../i18n";
+import { i18n } from "../i18n";
 
 export type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
     /**

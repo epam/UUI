@@ -1,7 +1,7 @@
 import { IconButtonBaseProps, IconButton as uuiIconButton } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import '../../assets/styles/variables/buttons/iconButton.scss';
-import * as css from './IconButton.scss';
+import css from './IconButton.scss';
 
 export type IconColor = 'info' | 'success' | 'warning' | 'error' | 'secondary' | 'default';
 export const allIconColors: IconColor[] = ['info', 'success', 'warning', 'error', 'secondary', 'default'];

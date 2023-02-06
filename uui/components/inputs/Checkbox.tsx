@@ -1,6 +1,6 @@
 import { withMods } from '@epam/uui-core';
 import { Checkbox as uuiCheckbox, CheckboxProps } from '@epam/uui-components';
-import * as css from './Checkbox.scss';
+import css from './Checkbox.scss';
 import { ReactComponent as Check_12 } from '../../icons/check-12.svg';
 import { ReactComponent as Check_18 } from '../../icons/check-18.svg';
 import { ReactComponent as PartlySelect_12 } from '../../icons/partly-select-12.svg';

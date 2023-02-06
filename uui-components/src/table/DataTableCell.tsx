@@ -2,7 +2,7 @@ import * as React from 'react';
 import { MouseEvent } from 'react';
 import { DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
     TooltipCoreProps, IHasCX } from '@epam/uui-core';
-import * as css from './DataTableCell.scss';
+import css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
 
 interface DataTableCellState {
@@ -83,9 +83,9 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }
-            style={{
-                justifyContent
-            }}
+            style={ {
+                justifyContent,
+            } }
         >
             { props.addons }
             { content }
@@ -118,7 +118,7 @@ function DataTableCellOverlay(props: DataTableCellOverlayProps) {
         return props.renderTooltip({
             trigger: 'manual',
             placement: 'top',
-            isVisible: props.isInvalid,
+            value: props.isInvalid,
             content: props.validationMessage,
             children: overlay,
         });

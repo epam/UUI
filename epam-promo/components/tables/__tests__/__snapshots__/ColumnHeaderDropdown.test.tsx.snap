@@ -4,9 +4,7 @@ exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
 Array [
   <button
     className="container uui-button-box uui-enabled -clickable button-color-blue root size-36 fill-solid"
-    href={null}
     onClick={[Function]}
-    role="button"
     tabIndex={0}
     type="button"
   >
@@ -42,7 +40,7 @@ Array [
       }
     >
       <div
-        className="root shadow background-white container"
+        className="root shadow background-white panel container"
         style={
           Object {
             "width": undefined,
@@ -50,7 +48,7 @@ Array [
         }
       >
         <div
-          className=""
+          className="sortingPanelContainer"
           style={
             Object {
               "alignSelf": undefined,
@@ -67,13 +65,17 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             role="menuitem"
+            style={
+              Object {
+                "columnGap": undefined,
+                "rowGap": undefined,
+              }
+            }
             tabIndex={0}
           >
             <button
               className="container uui-button-box uui-enabled root icon-color-gray60 icon iconBefore"
-              href={null}
               onClick={[Function]}
-              role="button"
               tabIndex={-1}
               type="button"
             >
@@ -97,13 +99,17 @@ Array [
             onClick={[Function]}
             onKeyDown={[Function]}
             role="menuitem"
+            style={
+              Object {
+                "columnGap": undefined,
+                "rowGap": undefined,
+              }
+            }
             tabIndex={0}
           >
             <button
               className="container uui-button-box uui-enabled root icon-color-gray60 icon iconBefore"
-              href={null}
               onClick={[Function]}
-              role="button"
               tabIndex={-1}
               type="button"
             >

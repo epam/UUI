@@ -13,12 +13,12 @@ export class ApiContextDoc extends BaseDocsBlock {
 
                 <DocExample
                     title='Handle server errors'
-                    path='./examples/contexts/ApiContextBase.example.tsx'
+                    path='./_examples/contexts/ApiContextBase.example.tsx'
                 />
 
                 <DocExample
                     title='Throw errors from your code'
-                    path='./examples/contexts/ApiContextThrowUUIError.example.tsx'
+                    path='./_examples/contexts/ApiContextThrowUUIError.example.tsx'
                 />
             </>
         );

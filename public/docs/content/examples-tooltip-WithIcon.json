@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Small icons allowed to be shown in a tooltip, just to support quick scanning & getting a hint meaning.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

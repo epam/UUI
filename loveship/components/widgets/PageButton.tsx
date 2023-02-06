@@ -1,5 +1,5 @@
 import * as types from '../types';
-import * as css from './PageButton.scss';
+import css from './PageButton.scss';
 import { withMods } from '@epam/uui-core';
 import { Button } from '../buttons';
 import { ButtonProps } from '@epam/uui-components';

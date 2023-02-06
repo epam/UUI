@@ -6,8 +6,8 @@ import { FlexCell, FlexRow } from '../../layout';
 import { DatePickerBody } from './DatePickerBody';
 import { CalendarPresets } from './CalendarPresets';
 import { arrayToMatrix, cx, IEditable, RangeDatePickerPresets } from "@epam/uui-core";
-import isoWeek from 'dayjs/plugin/isoWeek';
-import * as css from './RangeDatePickerBody.scss';
+import isoWeek from 'dayjs/plugin/isoWeek.js';
+import css from './RangeDatePickerBody.scss';
 dayjs.extend(isoWeek);
 
 export function weekCount(displayedDate: Dayjs) {

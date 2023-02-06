@@ -5,7 +5,7 @@ import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
-import * as css from './DataPickerBody.scss';
+import css from './DataPickerBody.scss';
 import { Text } from "../typography";
 
 export interface DataPickerBodyProps extends PickerBodyBaseProps {

@@ -3,7 +3,7 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
 import * as types from '../types';
-import * as css from './LinkButton.scss';
+import css from './LinkButton.scss';
 import '../../assets/styles/variables/buttons/linkButton.scss';
 
 const defaultSize = '36';
