@@ -523,7 +523,7 @@ Array [
     }
   >
     <label
-      className="container root size-18 color-sky theme-light uui-disabled"
+      className="container switch-vars root size-18 uui-theme-loveship uui-disabled"
     >
       <div
         className="uui-switch-body"
@@ -1077,7 +1077,7 @@ Array [
     }
   >
     <label
-      className="container root size-18 color-sky theme-light uui-disabled"
+      className="container switch-vars root size-18 uui-theme-loveship uui-disabled"
     >
       <div
         className="uui-switch-body"
