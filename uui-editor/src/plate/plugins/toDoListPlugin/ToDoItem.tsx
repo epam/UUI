@@ -5,7 +5,7 @@ import {
     setElements,
 } from '@udecode/plate';
 
-import * as css from './ToDoItem.scss';
+import css from './ToDoItem.scss';
 
 const { Checkbox, FlexRow } = uuiSkin;
 

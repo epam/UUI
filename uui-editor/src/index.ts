@@ -1,3 +1,3 @@
 export * from './SlateEditor';
-// export * from './plugins';
+export * from './plate/plugins';
 // export * from './helpers';

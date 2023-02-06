@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { UploadFileToggler, FlexSpacer } from '@epam/uui-components';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
-import * as css from './AddImageModal.scss';
+import css from './AddImageModal.scss';
 
 const {
     LabeledInput,

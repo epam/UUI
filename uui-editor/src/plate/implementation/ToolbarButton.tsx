@@ -3,7 +3,7 @@ import { Editor } from "slate";
 import { Button } from '@epam/uui-components';
 import { Icon, cx } from '@epam/uui-core';
 
-import * as css from './ToolbarButton.scss';
+import css from './ToolbarButton.scss';
 
 export interface ToolbarButtonProps  {
     isActive?: boolean;
