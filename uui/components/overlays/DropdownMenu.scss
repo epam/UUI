@@ -32,8 +32,8 @@
     }
 }
 
-@mixin withSelected {
-    &:global(.uui-selected) {
+@mixin withActive {
+    &:global(.uui-active) {
         @include fillColor(var(--uui-primary));
 
         &:hover, &:focus {
@@ -47,10 +47,12 @@
 }
 
 @mixin itemRoot {
-    padding: 0.5em 1em;
-    line-height: 1.5;
+    padding: 6px 12px;
+    line-height: 18px;
+    font-size: 14px;
     box-sizing: border-box;
     width: 100%;
+    font-family: var(--font-regular);
 
     &:focus {
         outline: none;
@@ -107,16 +109,17 @@
 
 .itemRoot {
     @include icon-layout(36px);
-    @include withSelected;
+    @include withActive;
     @include itemRoot;
+    @include fillColor(var(--uui-icon), var(--uui-text-primary));
 
     .icon {
+        @include withActive;
         justify-content: flex-start;
     }
 
     &.link {
-        @include withSelected;
-        @include fillColor(var(--uui-icon), var(--uui-text-primary));
+        @include withActive();
         display: flex;
         align-items: center;
 
@@ -140,6 +143,11 @@
             background-color: transparent;
             cursor: default;
         }
+    }
+
+    &:global(.uui-opened) {
+        background-color: var(--uui-surface-hover);
+        fill: var(--uui-text-primary)
     }
 
     & > *:not(:last-child) {

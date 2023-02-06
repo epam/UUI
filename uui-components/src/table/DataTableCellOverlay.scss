@@ -1,5 +1,12 @@
 .root {
+    --uui-dt-cell-editor-border-width: 1px;
+
+    &:global(.uui-focus) {
+        --uui-dt-cell-editor-border-width: 2px;
+    }
+
     position: absolute;
+
     &:not(:global(.uui-table-cell-selection-in-progress)) {
         pointer-events: none;
     }

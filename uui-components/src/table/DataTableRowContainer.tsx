@@ -22,6 +22,8 @@ const uuiDataTableRowCssMarkers = {
     uuiScrollShadowRight: 'uui-scroll-shadow-right',
 } as const;
 
+const CELL_BORDER_WIDTH = 1;
+
 // Scrolling/Fixed sections wrappers, as well as the whole row itself, has to have matching flex-item parameters.
 // This is required to have the same width, as the sum of column's width, and grow in the same proportion, as columns inside.
 // E.g. for 2 columns: { width: 100, grow: 0 }, { width: 200, grow: 1 } we compute { width: 300, grow: 1 }
@@ -31,7 +33,7 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     let width = 0;
 
     columns.forEach(column => {
-        const columnWidth = (typeof column.width === 'number' ? (column.fix ? column.width : column.width - 1) : (column.minWidth || 0));  // (column.width - 1) do not forget the negative margin of the scrolling columns in the calculation of the width
+        const columnWidth = (typeof column.width === 'number' ? (column.fix ? column.width : column.width - CELL_BORDER_WIDTH) : (column.minWidth || 0));  // (column.width - CELL_BORDER_WIDTH) do not forget the negative margin of the scrolling columns in the calculation of the width
         width += columnWidth;
         grow += typeof column.grow === 'number' ? column.grow : 0;
     });
@@ -41,6 +43,7 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     return {
         flex: `${grow} 0 ${width}px`,
         minWidth: `${width}px`,
+        '--uui-dt-cell-border-width': `${ CELL_BORDER_WIDTH }px`,
     };
 }
 
