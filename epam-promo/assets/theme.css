@@ -200,8 +200,8 @@
     --uui-control-border-disabled: var(--uui-disabled);
     --uui-control-border-readonly: var(--uui-disabled);
 
-    --uui-control-switch-bg: var(--gray40);
-    --uui-control-switch-border-hover: var(--gray60);
+    --uui-switch-bg: var(--gray40);
+    --uui-switch-border-hover: var(--gray60);
     --uui-control-textinput-border-hover: var(--gray60);
 
     --uui-control-label: var(--uui-text-primary);
@@ -612,7 +612,6 @@
 }
 
 .switch-vars {
-    --uui-switch-bg: var(--uui-control-switch-bg);
     --uui-switch-bg-checked: var(--uui-control-bg-checked);
     --uui-switch-bg-hover: var(--uui-control-bg-hover);
     --uui-switch-bg-disabled: var(--uui-control-bg-disabled);
@@ -620,16 +619,14 @@
     --uui-switch-bg-checked-disabled: var(--uui-control-bg-checked-disabled);
     --uui-switch-border: var(--uui-control-border);
     --uui-switch-border-checked: var(--uui-control-border-checked);
-    --uui-switch-border-hover: var(--uui-control-switch-border-hover);
     --uui-switch-border-disabled: var(--uui-control-border-disabled);
     --uui-switch-border-checked-hover: var(--uui-control-border-checked-hover);
     --uui-switch-border-checked-hover-copy: var(--uui-control-border-checked-hover);
     --uui-switch-border-checked-disabled: var(--uui-control-border-checked-disabled);
     --uui-switch-label: var(--uui-control-label);
     --uui-switch-label-disabled: var(--uui-control-label-disabled);
-    --uui-switch-toggler-bg: #FFFFFF;
+    --uui-switch-toggler-bg: var(--white);
     --uui-switch-toggler-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-switch-toggler-border: var(--uui-control-switch-bg);
     --uui-switch-toggler-border-checked: var(--uui-control-bg-checked);
     --uui-switch-toggler-border-hover: var(--uui-control-bg-hover);
     --uui-switch-toggler-border-disabled: var(--uui-control-border-disabled);
