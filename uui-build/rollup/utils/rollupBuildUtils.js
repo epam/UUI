@@ -1,7 +1,6 @@
 const { createRollupConfigForModule } = require('../rollup.config')
 const rollup = require('rollup');
 const { logger } = require("./../../utils/loggerUtils");
-const { getExternalDeps } = require("./moduleExtDependenciesUtils");
 const {getIndexFileRelativePath} = require("../../utils/indexFileUtils");
 
 module.exports = { buildUsingRollup, watchUsingRollup };
@@ -12,6 +11,8 @@ module.exports = { buildUsingRollup, watchUsingRollup };
  * @param {Object} params
  * @param {string} params.moduleRootDir absolute path to module root dir
  * @param {any} [params.external] pass a callback if you need to override default behavior
+ * @param {any} [params.packageJsonTransform] (it's applied before build is started). callback to adjust content of package.json when it's copied to the "build" folder.
+ * @param {string[]} [params.copyAsIs] (it's applied before build is started). files to copy as is to the "build" folder.
  * @returns {Promise<void>}
  */
 async function buildUsingRollup(params) {
@@ -38,6 +39,8 @@ async function buildUsingRollup(params) {
  * @param {Object} params
  * @param {string} params.moduleRootDir absolute path to module root dir
  * @param {any} [params.external] pass a callback if you need to override default behavior
+ * @param {any} [params.packageJsonTransform] (it's applied before build is started). callback to adjust content of package.json when it's copied to the "build" folder.
+ * @param {string[]} [params.copyAsIs] (it's applied before build is started). files to copy as is to the "build" folder.
  * @returns {Promise<void>}
  */
 async function watchUsingRollup(params) {
@@ -75,10 +78,15 @@ async function watchUsingRollup(params) {
  * @param {string} params.moduleRootDir absolute path to module root dir
  * @param {any} [params.external] pass a callback if you need to override default behavior
  * @param {boolean} [params.isWatch] pass true if the config will be used in watch mode
+ * @param {any} [params.packageJsonTransform] (it's applied before build is started). callback to adjust content of package.json when it's copied to the "build" folder.
+ * @param {string[]} [params.copyAsIs] (it's applied before build is started). files to copy as is to the "build" folder.
  * @returns {Promise<import('rollup').RollupOptions[]>}
  */
 async function getConfigEffective(params) {
-    const { moduleRootDir, external, isWatch } = params;
+    const { moduleRootDir, external, isWatch, packageJsonTransform, copyAsIs } = params;
     const indexFileRelativePath = await getIndexFileRelativePath(moduleRootDir);
-    return await createRollupConfigForModule({ moduleRootDir, indexFileRelativePath, external, isWatch });
+    return await createRollupConfigForModule({
+        moduleRootDir, indexFileRelativePath, external,
+        isWatch, packageJsonTransform, copyAsIs,
+    });
 }
