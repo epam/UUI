@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { Editor } from 'slate-react';
 import { DropdownBodyProps, uuiSkin } from "@epam/uui-core";
+
 import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
 import { ReactComponent as H1Icon } from "../icons/heading-H1.svg";
 import { ReactComponent as H2Icon } from "../icons/heading-H2.svg";
 import { ReactComponent as H3Icon } from "../icons/heading-H3.svg";
+
 import { ToolbarButton } from './ToolbarButton';
-<<<<<<< HEAD
-import {DropdownBodyProps } from '@epam/uui-components';
-import { uuiSkin } from "@epam/uui-core";
-=======
->>>>>>> 5575ee80bcf3211b40fefbdc59abbb4036f53f5a
 
 import {
     setElements,

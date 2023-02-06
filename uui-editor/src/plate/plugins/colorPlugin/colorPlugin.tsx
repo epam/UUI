@@ -33,7 +33,7 @@ export const ColorButton = ({ editor }: IToolbarButton) => {
     const type = getPluginType(editor, MARK_COLOR);
     const markValue = getMark(editor, type);
 
-    const updateColor = useCallback((color) => {
+    const updateColor = useCallback((color: string) => {
         if (markValue !== color) {
             setMarks(editor, { [type]: color });
         } else {

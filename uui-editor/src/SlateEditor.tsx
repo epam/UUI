@@ -1,7 +1,7 @@
 import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { uuiMod, cx } from '@epam/uui-core';
+import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui-components';
 
 import {
@@ -13,6 +13,8 @@ import {
     TRenderElementProps,
     TEditableProps,
     Toolbar,
+    createSoftBreakPlugin,
+    createParagraphPlugin,
 } from '@udecode/plate';
 
 import {
@@ -23,14 +25,35 @@ import {
 import { migrateSchema } from './migration';
 
 import { customPlugins } from './plate/plugins/plugins';
+import { baseMarksPlugin } from './plate/plugins';
 
-import * as style from '@epam/assets/scss/promo/typography.scss';
-import * as css from './SlateEditor.scss';
+import style from '@epam/assets/scss/promo/typography.scss';
+import css from './SlateEditor.scss';
 
 let components = createPlateUI();
 
-export const defaultPlugins: any = [];
-export const basePlugins: any = [];
+export const defaultPlugins: any = [
+    createSoftBreakPlugin(),
+    createParagraphPlugin(),
+];
+
+export const basePlugins: any = [
+    baseMarksPlugin(),
+    ...defaultPlugins,
+];
+
+interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<HTMLDivElement>  {
+    isReadonly?: boolean;
+    plugins?: Plugin[];
+    autoFocus?: boolean;
+    minHeight?: number | 'none';
+    placeholder?: string;
+    mode?: 'form' | 'inline';
+    fontSize?: '14' | '16';
+    onKeyDown?: (event: KeyboardEvent, value: any | null) => void;
+    onBlur?: (event: FocusEvent, value: any | null) => void;
+    scrollbars?: boolean;
+}
 
 const plugins = createPlugins(customPlugins.flat(), {
     components,
@@ -38,9 +61,8 @@ const plugins = createPlugins(customPlugins.flat(), {
 
 let id = Date.now();
 
-export function SlateEditor(props: any) {
+export function SlateEditor(props: SlateEditorProps) {
     const {
-        spellCheck,
         autoFocus,
         isReadonly,
         placeholder,
@@ -48,9 +70,8 @@ export function SlateEditor(props: any) {
     const currentId = String(id++);
     const editor = usePlateEditorState();
     const isFocused = isEditorFocused(editor);
-
+    console.log(props.plugins, customPlugins.flat());
     const editableProps: TEditableProps = {
-        spellCheck,
         autoFocus,
         readOnly: isReadonly,
         placeholder,
@@ -102,7 +123,8 @@ export function SlateEditor(props: any) {
                 style.typographyPromo,
                 props.fontSize == '16' ? style.typography16 : style.typography14,
             ) }
-            style={ { minHeight: props.minHeight || 350, padding: '0 24px' } }
+            //@ts-ignore
+            style={ { minHeight: props.minHeight || 350, padding: '0 24px' } as any }
             { ...props.rawProps }
         >
             { props.scrollbars

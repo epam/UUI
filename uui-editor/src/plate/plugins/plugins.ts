@@ -34,6 +34,8 @@ import { uploadFilePlugin } from "./uploadFilePlugin/uploadFilePlugin";
 import { iframePlugin } from "./iframePlugin/iframePlugin";
 import { tablePlugin } from "./tablePlugin/tablePlugin";
 
+export { baseMarksPlugin } from './baseMarksPlugin/baseMarksPlugin';
+
 export const customPlugins = [
     createSoftBreakPlugin(),
     createExitBreakPlugin(),

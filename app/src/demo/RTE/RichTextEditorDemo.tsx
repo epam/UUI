@@ -3,24 +3,24 @@ import { Descendant } from 'slate';
 import {
     SlateEditor,
     defaultPlugins,
-    // imagePlugin,
-    // videoPlugin,
-    // attachmentPlugin,
-    // toDoListPlugin,
-    // baseMarksPlugin,
-    // linkPlugin,
-    // iframePlugin,
-    // notePlugin,
-    // separatorPlugin,
-    // uploadFilePlugin,
-    // tablePlugin,
-    // quotePlugin,
-    // colorPlugin,
-    // superscriptPlugin,
-    // headerPlugin,
-    // listPlugin,
-    // placeholderPlugin,
-    // codeBlockPlugin,
+    imagePlugin,
+    videoPlugin,
+    attachmentPlugin,
+    toDoListPlugin,
+    baseMarksPlugin,
+    linkPlugin,
+    iframePlugin,
+    notePlugin,
+    separatorPlugin,
+    uploadFilePlugin,
+    tablePlugin,
+    quotePlugin,
+    colorPlugin,
+    superscriptPlugin,
+    headerPlugin,
+    listPlugin,
+    placeholderPlugin,
+    codeBlockPlugin,
 } from "@epam/uui-editor";
 import { svc } from '../../services';
 import { demoData } from '@epam/uui-docs';
@@ -48,37 +48,37 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
 
     plugins = [
         ...defaultPlugins,
-        // baseMarksPlugin(),
-        // headerPlugin(),
-        // colorPlugin(),
-        // superscriptPlugin(),
-        // listPlugin(),
-        // toDoListPlugin(),
-        // quotePlugin(),
-        // linkPlugin(),
-        // notePlugin(),
-        // uploadFilePlugin({
-        //     uploadFile: this.uploadFile,
-        // }),
-        // attachmentPlugin(),
-        // imagePlugin(),
-        // videoPlugin(),
-        // iframePlugin(),
-        // separatorPlugin(),
-        // tablePlugin(),
-        // placeholderPlugin({
-        //     items: [
-        //         {
-        //             name: 'Name',
-        //             field: 'name',
-        //         },
-        //         {
-        //             name: 'Email',
-        //             field: 'email',
-        //         },
-        //     ],
-        // }),
-        // codeBlockPlugin(),
+        baseMarksPlugin(),
+        headerPlugin(),
+        colorPlugin(),
+        superscriptPlugin(),
+        listPlugin(),
+        toDoListPlugin(),
+        quotePlugin(),
+        linkPlugin(),
+        notePlugin(),
+        uploadFilePlugin({
+            uploadFile: this.uploadFile,
+        }),
+        attachmentPlugin(),
+        imagePlugin(),
+        videoPlugin(),
+        iframePlugin(),
+        separatorPlugin(),
+        tablePlugin(),
+        placeholderPlugin({
+            items: [
+                {
+                    name: 'Name',
+                    field: 'name',
+                },
+                {
+                    name: 'Email',
+                    field: 'email',
+                },
+            ],
+        }),
+        codeBlockPlugin(),
     ];
 
     render() {
@@ -86,12 +86,12 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
         return (
             <div className={ css.container }>
                 <SlateEditor
-                    //value={ this.state.value }
-                    //onValueChange={ this.onChange }
-                    //autoFocus={ true }
-                    //plugins={ this.plugins }
-                    //placeholder='Add description'
-                    //minHeight={ 'none' }
+                    value={ this.state.value }
+                    onValueChange={ this.onChange }
+                    autoFocus={ true }
+                    plugins={ this.plugins }
+                    placeholder='Add description'
+                    minHeight={ 'none' }
                 />
             </div>
         );
