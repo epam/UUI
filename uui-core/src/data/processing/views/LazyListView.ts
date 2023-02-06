@@ -387,7 +387,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                             if (!row.isFolded && appendRows) {
                                 for (let m = 0; m < estimatedChildrenCount && index < lastIndex; m++) {
                                     const row = this.getLoadingRow('_loading_' + index, index, parentsWithRow);
-                                    row.indent = parentsWithRow.length;
+                                    row.indent = parentsWithRow.length + 1;
                                     row.isLastChild = m == (estimatedChildrenCount - 1);
                                     rows.push(row);
                                     index++;
