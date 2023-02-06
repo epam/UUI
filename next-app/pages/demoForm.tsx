@@ -468,7 +468,7 @@ const DemoForm = () => {
         onSuccess: () => svc.uuiNotifications.show(props =>
             <SuccessNotification { ...props }>
                 <Text size='36' font='sans' fontSize='14'>Data has been saved!</Text>
-            </SuccessNotification>, { duration: 2 }),
+            </SuccessNotification>, { duration: 2 }).catch(() => null),
     });
 
     const countriesDS = useAsyncDataSource<Country, string, unknown>({

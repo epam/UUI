@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceListProps, IDisableable, IDropdownToggler, IEditable, isMobile, uuiMarkers } from '@epam/uui-core';
-import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
+import { DataRowProps, DataSourceListProps, DropdownBodyProps, IDisableable, IDropdownToggler, IEditable, isMobile, uuiMarkers } from '@epam/uui-core';
+import { PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper, FlexRow, FlexCell, LinkButton, i18n } from '../../index';
 import cx from "classnames";
 import css from "./FilterPickerBody.scss";
