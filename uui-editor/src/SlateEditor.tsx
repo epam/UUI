@@ -14,7 +14,8 @@ import {
     TEditableProps,
     Toolbar,
     createSoftBreakPlugin,
-    createParagraphPlugin,
+    createParagraphPlugin, createExitBreakPlugin,
+    PlatePlugin,
 } from '@udecode/plate';
 
 import {
@@ -24,7 +25,6 @@ import {
 
 import { migrateSchema } from './migration';
 
-import { customPlugins } from './plate/plugins/plugins';
 import { baseMarksPlugin } from './plate/plugins';
 
 import style from '@epam/assets/scss/promo/typography.scss';
@@ -34,6 +34,7 @@ let components = createPlateUI();
 
 export const defaultPlugins: any = [
     createSoftBreakPlugin(),
+    createExitBreakPlugin(),
     createParagraphPlugin(),
 ];
 
@@ -44,7 +45,7 @@ export const basePlugins: any = [
 
 interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<HTMLDivElement>  {
     isReadonly?: boolean;
-    plugins?: Plugin[];
+    plugins?: any[];
     autoFocus?: boolean;
     minHeight?: number | 'none';
     placeholder?: string;
@@ -54,10 +55,6 @@ interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<H
     onBlur?: (event: FocusEvent, value: any | null) => void;
     scrollbars?: boolean;
 }
-
-const plugins = createPlugins(customPlugins.flat(), {
-    components,
-});
 
 let id = Date.now();
 
@@ -70,7 +67,11 @@ export function SlateEditor(props: SlateEditorProps) {
     const currentId = String(id++);
     const editor = usePlateEditorState();
     const isFocused = isEditorFocused(editor);
-    console.log(props.plugins, customPlugins.flat());
+
+    const plugins = createPlugins((props.plugins || []).flat(), {
+        components,
+    });
+
     const editableProps: TEditableProps = {
         autoFocus,
         readOnly: isReadonly,

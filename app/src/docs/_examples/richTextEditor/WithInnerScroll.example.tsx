@@ -4,11 +4,11 @@ import { Panel } from '@epam/promo';
 import { useUuiContext } from '@epam/uui';
 import {
     SlateEditor, defaultPlugins,
-    // imagePlugin, videoPlugin, attachmentPlugin,
-    // toDoListPlugin, baseMarksPlugin,
-    // linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin,
-    // tablePlugin, quotePlugin, colorPlugin,
-    // superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
+    imagePlugin, videoPlugin, attachmentPlugin,
+    toDoListPlugin, baseMarksPlugin,
+    linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin,
+    tablePlugin, quotePlugin, colorPlugin,
+    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 
@@ -26,34 +26,34 @@ export default function WithInnerScrollExample() {
 
     const plugins = [
         ...defaultPlugins,
-        // baseMarksPlugin(),
-        // headerPlugin(),
-        // colorPlugin(),
-        // superscriptPlugin(),
-        // listPlugin(),
-        // toDoListPlugin(),
-        // quotePlugin(),
-        // linkPlugin(),
-        // notePlugin(),
-        // uploadFilePlugin({ uploadFile }),
-        // attachmentPlugin(),
-        // imagePlugin(),
-        // videoPlugin(),
-        // iframePlugin(),
-        // separatorPlugin(),
-        // tablePlugin(),
-        // placeholderPlugin({
-        //     items: [
-        //         {
-        //             name: 'Name',
-        //             field: 'name',
-        //         },
-        //         {
-        //             name: 'Email',
-        //             field: 'email',
-        //         },
-        //     ],
-        // }),
+        baseMarksPlugin(),
+        headerPlugin(),
+        colorPlugin(),
+        superscriptPlugin(),
+        listPlugin(),
+        toDoListPlugin(),
+        quotePlugin(),
+        linkPlugin(),
+        notePlugin(),
+        uploadFilePlugin({ uploadFile }),
+        attachmentPlugin(),
+        imagePlugin(),
+        videoPlugin(),
+        iframePlugin(),
+        separatorPlugin(),
+        tablePlugin(),
+        placeholderPlugin({
+            items: [
+                {
+                    name: 'Name',
+                    field: 'name',
+                },
+                {
+                    name: 'Email',
+                    field: 'email',
+                },
+            ],
+        }),
     ];
 
     return (

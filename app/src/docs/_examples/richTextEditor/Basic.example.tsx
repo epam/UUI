@@ -3,12 +3,13 @@ import { Descendant } from 'slate';
 import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
 import { useUuiContext } from '@epam/uui';
 import {
-    SlateEditor, defaultPlugins,
-    // imagePlugin, videoPlugin, attachmentPlugin,
-    // toDoListPlugin, baseMarksPlugin,
-    // linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin,
-    // tablePlugin, quotePlugin, colorPlugin,
-    // superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
+    SlateEditor,
+    defaultPlugins,
+    imagePlugin, videoPlugin, attachmentPlugin,
+    toDoListPlugin, baseMarksPlugin,
+    linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin,
+    tablePlugin, quotePlugin, colorPlugin,
+    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.scss';
@@ -32,34 +33,34 @@ export default function SlateEditorBasicExample() {
 
     const plugins = [
         ...defaultPlugins,
-        // baseMarksPlugin(),
-        // headerPlugin(),
-        // colorPlugin(),
-        // superscriptPlugin(),
-        // listPlugin(),
-        // toDoListPlugin(),
-        // quotePlugin(),
-        // linkPlugin(),
-        // notePlugin(),
-        // uploadFilePlugin({ uploadFile }),
-        // attachmentPlugin(),
-        // imagePlugin(),
-        // videoPlugin(),
-        // iframePlugin(),
-        // separatorPlugin(),
-        // tablePlugin(),
-        // placeholderPlugin({
-        //     items: [
-        //         {
-        //             name: 'Name',
-        //             field: 'name',
-        //         },
-        //         {
-        //             name: 'Email',
-        //             field: 'email',
-        //         },
-        //     ],
-        // }),
+        baseMarksPlugin(),
+        headerPlugin(),
+        colorPlugin(),
+        superscriptPlugin(),
+        listPlugin(),
+        toDoListPlugin(),
+        quotePlugin(),
+        linkPlugin(),
+        notePlugin(),
+        uploadFilePlugin({ uploadFile }),
+        attachmentPlugin(),
+        imagePlugin(),
+        videoPlugin(),
+        iframePlugin(),
+        separatorPlugin(),
+        tablePlugin(),
+        placeholderPlugin({
+            items: [
+                {
+                    name: 'Name',
+                    field: 'name',
+                },
+                {
+                    name: 'Email',
+                    field: 'email',
+                },
+            ],
+        }),
     ];
 
     return (
