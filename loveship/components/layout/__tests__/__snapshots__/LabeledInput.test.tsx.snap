@@ -2,7 +2,7 @@
 
 exports[`LabeledInput should be rendered correctly 1`] = `
 <div
-  className="container root size-36 color-night700"
+  className="container root size-36 uui-theme-loveship"
 >
   <div
     className="uui-label-top"
@@ -30,7 +30,7 @@ exports[`LabeledInput should be rendered correctly 1`] = `
 
 exports[`LabeledInput should be rendered correctly with props 1`] = `
 <div
-  className="container root size-36 color-night700"
+  className="container root size-36 uui-theme-loveship"
 >
   <div
     className="uui-label-left"

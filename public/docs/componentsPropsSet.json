@@ -1733,11 +1733,6 @@
         "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
       },
       {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
         "name": "isReadonly",
         "value": "boolean",
         "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
@@ -1771,16 +1766,6 @@
         "name": "tabIndex",
         "value": "number",
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
       },
       {
         "name": "value",
@@ -7453,11 +7438,6 @@
     ],
     "/app/src/docs/_props/loveship/components/inputs/switch.props.ts": [
       {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
-      },
-      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -7481,11 +7461,6 @@
         "name": "isDisabled",
         "value": "boolean",
         "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
       },
       {
         "name": "isReadonly",
@@ -7521,21 +7496,6 @@
         "name": "tabIndex",
         "value": "number",
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
-      },
-      {
-        "name": "theme",
-        "value": "light | dark",
-        "comment": null
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
       },
       {
         "name": "value",
@@ -12290,11 +12250,6 @@
         "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
       },
       {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
         "name": "isReadonly",
         "value": "boolean",
         "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
@@ -12328,16 +12283,6 @@
         "name": "tabIndex",
         "value": "number",
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
       },
       {
         "name": "value",

@@ -2,7 +2,7 @@
 
 exports[`Switch should be rendered correctly 1`] = `
 <label
-  className="container root size-18 color-sky theme-light -clickable"
+  className="container switch-vars root size-18 uui-theme-loveship -clickable"
 >
   <div
     className="uui-switch-body"
@@ -23,7 +23,7 @@ exports[`Switch should be rendered correctly 1`] = `
 
 exports[`Switch should be rendered correctly with new props 1`] = `
 <label
-  className="container root size-12 color-sky theme-dark -clickable"
+  className="container switch-vars root size-12 uui-theme-loveship -clickable"
 >
   <div
     className="uui-switch-body"

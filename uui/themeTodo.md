@@ -16,14 +16,17 @@
 - [-] Badge: leave all color set for both skins, in uui only semantic
 - [-] Badge: fill: solid | semitransparent | transparent for both skins, fill: white only in loveship
 - [-] Badge: square leave only in loveship
+- [-] theme.css - maybe convert it into scss?
 
 - [ ] WithMods function - need to rework:
      1) case when we need to redefine some variable typo, for example - color.
      2) case when we need to add some specific for skin typing
      3) we removed inherited IHasCX, because DatePicker no need cx props, but it has inputCx and BodyCx, so we need to remade it
+- [ ] LabeledInput: remove color prop from Loveship & Promo
 
 # TODO for UUI package
 ### Panel
 - [ ] discuss background props
 ### PickerInput
 - [ ] DataPickerBody renderNotFound promo has been modified with different logic than loveship
+

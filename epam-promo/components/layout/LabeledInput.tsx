@@ -1,23 +1,11 @@
-import css from './LabeledInput.scss';
-import * as types from '../types';
 import { withMods } from '@epam/uui-core';
-import { LabeledInput as uuiLabeledInput, LabeledInputProps } from '@epam/uui-components';
-import { Tooltip } from '../overlays';
-import { systemIcons } from '../../icons/icons';
+import { LabeledInput as uuiLabeledInput, LabeledInputMods } from '@epam/uui';
+import { LabeledInputProps } from '@epam/uui-components';
 
-
-const defaultSize = '36';
-
-export interface LabeledInputMods extends types.SizeMod {}
-
-function applyLabeledInputMods(mods: LabeledInputMods) {
+function applyLabeledInputMods() {
     return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
+        'uui-theme-promo',
     ];
 }
 
-export const LabeledInput = withMods<LabeledInputProps, LabeledInputMods>(uuiLabeledInput, applyLabeledInputMods, (props) => ({
-    Tooltip,
-    infoIcon: systemIcons[props.size || defaultSize].help,
-}));
+export const LabeledInput = withMods<LabeledInputProps, LabeledInputMods>(uuiLabeledInput, applyLabeledInputMods);
