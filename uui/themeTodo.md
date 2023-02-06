@@ -13,9 +13,9 @@
 - [-] Tag leave all colors set only in loveship via loveship css mods
 - [-] Tag: do we need fill (solid | white | none) in loveship (now it's present) - leave only in loveship
 - [-] remove carbon color from all components
-- [-] Badge: leave all color set for both skins, in uui only semantic
-- [-] Badge: fill: solid | semitransparent | transparent for both skins, fill: white only in loveship
-- [-] Badge: square leave only in loveship
+- [ ] Badge: leave all color set for both skins, in uui only semantic
+- [ ] Badge: fill: solid | semitransparent | transparent for both skins, fill: white only in loveship
+- [ ] Badge: square leave only in loveship
 
 - [ ] WithMods function - need to rework:
      1) case when we need to redefine some variable typo, for example - color.
