@@ -16,6 +16,7 @@
 - [-] Badge: leave all color set for both skins, in uui only semantic
 - [-] Badge: fill: solid | semitransparent | transparent for both skins, fill: white only in loveship
 - [-] Badge: square leave only in loveship
+- [-] theme.css - maybe convert it into scss?
 
 - [ ] WithMods function - need to rework:
      1) case when we need to redefine some variable typo, for example - color.
