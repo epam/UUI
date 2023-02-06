@@ -21,6 +21,7 @@
      1) case when we need to redefine some variable typo, for example - color.
      2) case when we need to add some specific for skin typing
      3) we removed inherited IHasCX, because DatePicker no need cx props, but it has inputCx and BodyCx, so we need to remade it
+- [ ] LabeledInput: remove color prop from Loveship & Promo
 
 
 
