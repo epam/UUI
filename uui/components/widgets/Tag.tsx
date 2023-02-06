@@ -1,5 +1,5 @@
 import { withMods } from '@epam/uui-core';
-import { Button, ButtonProps } from '../buttons';
+import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import css from './Tag.scss';
 
