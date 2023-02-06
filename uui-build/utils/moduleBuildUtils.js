@@ -3,11 +3,10 @@ const path = require('path');
 const { getIndexFileRelativePath } = require('./../utils/indexFileUtils');
 const { logger, ModuleBuildProgressLogger } = require('./../utils/loggerUtils');
 const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBuildUtils');
-const { copyPackageJsonAsync } = require("../utils/packageJsonUtils");
 
 const BUILD_FOLDER = 'build'
 
-module.exports = { buildUuiModule, beforeRollupBuild };
+module.exports = { buildUuiModule };
 
 async function withEventsLogger({ moduleRootDir, isRollup, asyncCallback }) {
     const moduleBuildLogger = new ModuleBuildProgressLogger({ moduleRootDir, isRollup });
@@ -50,13 +49,6 @@ async function buildStaticModule({ moduleRootDir }) {
     await withEventsLogger({ moduleRootDir, isRollup: false, asyncCallback });
 }
 
-
-async function beforeRollupBuild({ moduleRootDir, packageJsonTransform, copyAsIs }) {
-    fs.emptyDirSync(BUILD_FOLDER);
-    await copyStaticFilesAsync(copyAsIs);
-    await copyPackageJson({ moduleRootDir, packageJsonTransform });
-}
-
 /**
  * Builds module using Rollup.
  *
@@ -73,8 +65,7 @@ async function beforeRollupBuild({ moduleRootDir, packageJsonTransform, copyAsIs
 async function buildModuleUsingRollup(options) {
     const { moduleRootDir, copyAsIs, packageJsonTransform, external, isWatch } = options;
     const asyncCallback = async () => {
-        await beforeRollupBuild({ moduleRootDir, packageJsonTransform, copyAsIs });
-        const params = { moduleRootDir, external };
+        const params = { moduleRootDir, external, packageJsonTransform, copyAsIs };
         if (isWatch) {
             await watchUsingRollup(params);
         } else {
@@ -86,27 +77,6 @@ async function buildModuleUsingRollup(options) {
         return await asyncCallback();
     }
     await withEventsLogger({ moduleRootDir, isRollup: true, asyncCallback })
-}
-
-/**
- * @param {string[]} copyAsIs
- * @returns {Promise<void>}
- */
-async function copyStaticFilesAsync(copyAsIs = []) {
-    const p = copyAsIs.map(async (c) => {
-        if (await fs.exists(c)) {
-            await fs.copy(c, `${BUILD_FOLDER}/${c}`);
-        }
-    })
-    await Promise.all(p)
-}
-
-async function copyPackageJson({ moduleRootDir, packageJsonTransform }) {
-    await copyPackageJsonAsync({
-        fromDir: moduleRootDir,
-        toDir: path.resolve(moduleRootDir, `./${BUILD_FOLDER}`),
-        transform: packageJsonTransform
-    });
 }
 
 /**

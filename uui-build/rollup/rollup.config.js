@@ -12,6 +12,7 @@ const {getTsConfigFile} = require("./utils/moduleTsConfigUtils");
 const cssSourcemapPathTransformPlugin = require("./plugins/cssSourceMapTransform");
 const { onwarn } = require("./utils/rollupLoggerUtils");
 const { getSourceMapTransform } = require("./utils/moduleSourceMapsUtils");
+const { beforeRollupBuild } = require("./utils/beforeRollupBuild");
 const { readPackageJsonContentSync } = require("../utils/packageJsonUtils");
 
 const EXTRACTED_CSS_FILE_NAME = "styles.css";
@@ -27,13 +28,19 @@ module.exports = { createRollupConfigForModule };
  * @param {string} options.indexFileRelativePath relative path to module index file
  * @param {any} options.external pass a callback if you need to override default behavior
  * @param {boolean} [options.isWatch] pass true if it's used in watch mode. it checks --watch command line argument if nothing is provided
+ * @param {any} [options.packageJsonTransform] (it's applied before build is started). callback to adjust content of package.json when it's copied to the "build" folder.
+ * @param {string[]} [options.copyAsIs] (it's applied before build is started). files to copy as is to the "build" folder.
  * @returns {Promise<import('rollup').RollupOptions[]>}
  */
 async function createRollupConfigForModule(options) {
     const isWatchDefault = !!process.argv.find(a => a === "--watch");
     const moduleRootDirDefault = process.cwd();
     //
-    const { moduleRootDir = moduleRootDirDefault, indexFileRelativePath, external, isWatch = isWatchDefault } = options;
+    const { moduleRootDir = moduleRootDirDefault, indexFileRelativePath,
+        external, isWatch = isWatchDefault,
+        packageJsonTransform,
+        copyAsIs,
+    } = options;
     const externalEffective = external ? external({ moduleRootDir }) : getExternalDeps({ moduleRootDir });
     const tsconfigFile = getTsConfigFile(moduleRootDir);
     const { default: postcss } = await postCssDynamicImport;
@@ -42,6 +49,9 @@ async function createRollupConfigForModule(options) {
     const outDir = `${moduleRootDir}/${BUILD_OUTPUT_DIR}`;
     const jsSourceMapTransform = getSourceMapTransform({ type: "js", moduleFolderName, moduleName});
     const cssSourceMapTransform = getSourceMapTransform({ type: "css", moduleFolderName, moduleName});
+
+    // TODO: maybe we need to move it to plugin.
+    await beforeRollupBuild({ moduleRootDir, packageJsonTransform, copyAsIs });
 
     /** @type {import('rollup').RollupOptions} */
     const config = {
