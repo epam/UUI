@@ -7,7 +7,7 @@ const { copyPackageJsonAsync } = require("../utils/packageJsonUtils");
 
 const BUILD_FOLDER = 'build'
 
-module.exports = { buildUuiModule, buildModuleUsingRollup };
+module.exports = { buildUuiModule, beforeRollupBuild };
 
 async function withEventsLogger({ moduleRootDir, isRollup, asyncCallback }) {
     const moduleBuildLogger = new ModuleBuildProgressLogger({ moduleRootDir, isRollup });
@@ -50,6 +50,13 @@ async function buildStaticModule({ moduleRootDir }) {
     await withEventsLogger({ moduleRootDir, isRollup: false, asyncCallback });
 }
 
+
+async function beforeRollupBuild({ moduleRootDir, packageJsonTransform, copyAsIs }) {
+    fs.emptyDirSync(BUILD_FOLDER);
+    await copyStaticFilesAsync(copyAsIs);
+    await copyPackageJson({ moduleRootDir, packageJsonTransform });
+}
+
 /**
  * Builds module using Rollup.
  *
@@ -66,9 +73,7 @@ async function buildStaticModule({ moduleRootDir }) {
 async function buildModuleUsingRollup(options) {
     const { moduleRootDir, copyAsIs, packageJsonTransform, external, isWatch } = options;
     const asyncCallback = async () => {
-        fs.emptyDirSync(BUILD_FOLDER);
-        await copyStaticFilesAsync(copyAsIs);
-        await copyPackageJson({ moduleRootDir, packageJsonTransform });
+        await beforeRollupBuild({ moduleRootDir, packageJsonTransform, copyAsIs });
         const params = { moduleRootDir, external };
         if (isWatch) {
             await watchUsingRollup(params);
