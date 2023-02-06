@@ -356,8 +356,6 @@
     --uui-tag-border-radius: 30px;
 
     /* DropMarker vars */
-    --uui-drop-marker-offset: -1px;
-    --uui-drop-marker-width: 2px;
     --uui-drop-marker: var(--uui-primary);
     --uui-drop-marker-blocked: var(--uui-error);
 
@@ -389,9 +387,6 @@
     --uui-picker-toggler-border-radius: var(--uui-border-radius);
 
     /* DataTable vars */
-    --uui-dt-cell-border-width: 1px;
-    --uui-dt-cell-editor-border-width: 1px;
-
     --uui-dt-cell-bg: transparent;
     --uui-dt-cell-resize-bg: #EF55331F;
     --uui-dt-cell-border: transparent;
@@ -399,8 +394,6 @@
     --uui-dt-cell-editor-hover-border: var(--uui-control-textinput-border-hover);
     --uui-dt-cell-editor-focus-border: var(--uui-control-border-checked);
     --uui-dt-cell-editor-invalid-border: var(--uui-negative);
-
-    --uui-dt-row-border-width: 0;
 
     --uui-dt-row-bg: var(--white);
     --uui-dt-row-bg-hover: var(--gray10);
@@ -435,21 +428,12 @@
 
 .uui-theme-loveship .uui-dt-row-border {
     --uui-dt-row-border: var(--gray30);
-    --uui-dt-row-border-width: 1px;
 }
 
 .uui-theme-loveship .uui-table-header-row {
     --uui-dt-row-bg: var(--gray5);
     --uui-dt-row-bg-hover: var(--gray20);
     --uui-dt-row-border: var(--gray30);
-    --uui-dt-row-border-width: 1px;
-}
-
-.uui-theme-loveship .uui-focus {
-    --uui-dt-cell-editor-border-width: 2px;
-}
-.uui-theme-loveship .uui-table-row {
-    --uui-drop-marker-offset: -1px;
 }
 
 /* ------------------------------------ */

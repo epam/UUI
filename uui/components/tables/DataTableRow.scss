@@ -2,6 +2,10 @@
 @use  '~@epam/assets/scss/dnd' as *;
 
 .root {
+    &:global(.uui-dt-row-border.uui-table-row) {
+        --uui-dt-row-border-width: 1px;
+    }
+
     &:global(.-clickable) {
         cursor: pointer;
 
