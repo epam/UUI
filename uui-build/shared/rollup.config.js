@@ -2,15 +2,19 @@
  * Creates shared rollup config with default settings.
  */
 const { createRollupConfigForModule } = require('../rollup/rollup.config');
-const { beforeRollupBuild } = require("../utils/moduleBuildUtils");
 
 module.exports = {
     default: async () => {
-        const moduleRootDir = process.cwd();
+        const indexFileRelativePath = 'index.tsx';
         const packageJsonTransform = content => {
-            content.main = 'index.js';
+            content.main = './index.js';
+            if (content.exports?.['.']) {
+                content.exports['.'] = './index.js';
+            }
+            if (content.exports?.['./styles.css']) {
+                content.exports['./styles.css'] = './styles.css';
+            }
         };
-        await beforeRollupBuild({ moduleRootDir, packageJsonTransform });
-        return await createRollupConfigForModule({ moduleRootDir, indexFileRelativePath: "index.tsx" });
+        return await createRollupConfigForModule({ indexFileRelativePath, packageJsonTransform });
     }
 }
