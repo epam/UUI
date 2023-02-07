@@ -342,7 +342,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
                 row.isFoldable = false;
                 row.isLastChild = (n == ids.length - 1) && (nodeInfo.count === ids.length);
-
                 if (!flatten && this.props.getChildCount) {
                     let estimatedChildrenCount = this.props.getChildCount(item);
                     const childrenIds = this.tree.getChildrenIdsByParentId(id);
