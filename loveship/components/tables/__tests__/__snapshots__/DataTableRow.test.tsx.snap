@@ -7,7 +7,7 @@ exports[`DataTableRow should be rendered correctly 1`] = `
   style={
     Object {
       "columnGap": undefined,
-      "minWidth": "96px",
+      "minWidth": "95px",
       "rowGap": undefined,
     }
   }
@@ -16,8 +16,9 @@ exports[`DataTableRow should be rendered correctly 1`] = `
     className="section scrollingSection uui-table-scrolling-section"
     style={
       Object {
-        "flex": "1 0 96px",
-        "minWidth": "96px",
+        "--uui-dt-cell-border-width": "1px",
+        "flex": "1 0 95px",
+        "minWidth": "95px",
       }
     }
   >

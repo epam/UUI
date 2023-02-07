@@ -1,4 +1,5 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
+import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/uui';
+import { useForm } from '@epam/promo';
 import React, { useMemo } from 'react';
 import { DataQueryFilter, DropPosition, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';

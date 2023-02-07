@@ -35,7 +35,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
 
         return (
             <FlexRow size="30" cx={ wrapperClasses } { ...wrapperAttrs }>
-                <FlexRow size="30" background="white" spacing='6' cx={ styles.title }>
+                <FlexRow size="30" spacing='6' cx={ styles.title }>
                     <DragHandle rawProps={ dragHandleRawProps } isDisabled={ !isDndAllowed } cx={ cx(styles.dragHandle, !isDndAllowed && styles.dndDisabled) } />
                     <Checkbox
                         key={ column.key }

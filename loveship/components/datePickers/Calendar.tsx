@@ -1,5 +1,6 @@
 import React from 'react';
-import { Calendar as UuiCalendar, withMods } from "@epam/uui";
+import { withMods } from "@epam/uui-core";
+import { Calendar as UuiCalendar } from "@epam/uui";
 
 const applyCalendarMods = () => ['uui-theme-loveship'];
 

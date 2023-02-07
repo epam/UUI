@@ -25,3 +25,10 @@
      2) case when we need to add some specific for skin typing
      3) we removed inherited IHasCX, because DatePicker no need cx props, but it has inputCx and BodyCx, so we need to remade it
 - [ ] LabeledInput: remove color prop from Loveship & Promo
+
+# TODO for UUI package
+### Panel
+- [ ] discuss background props
+### PickerInput
+- [ ] DataPickerBody renderNotFound promo has been modified with different logic than loveship
+

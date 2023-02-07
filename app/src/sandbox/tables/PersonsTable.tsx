@@ -1,10 +1,7 @@
 import React from 'react';
 import { VirtualList, DataTableHeaderRow, DataTableRow, ColumnsConfigurationModal } from '@epam/loveship';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import {
-    IEditable, DataQueryFilter, IDataSourceView, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig,
-    useColumnsConfig, DataTableState, DataTableRowProps, DataColumnProps,
-} from '@epam/uui';
+import { IEditable, DataQueryFilter, IDataSourceView, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState, DataTableRowProps, DataColumnProps } from '@epam/uui-core';
 import { getColumns } from './columns';
 import type { VirtualListRenderRowsParams } from '@epam/uui-components';
 import type { PersonsSummary } from './PersonsTableDemo';
@@ -66,7 +63,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
                     onValueChange={ props.onValueChange }
                 />
                 <div className={ cx(uuiScrollShadows.top, {
-                    [uuiScrollShadows.topVisible]: scrollShadows.vertical,
+                    [uuiScrollShadows.topVisible]: scrollShadows.verticalTop,
                 }) } />
             </div>
             { props.view.getListProps().exactRowsCount !== 0 && (

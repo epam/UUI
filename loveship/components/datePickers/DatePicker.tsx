@@ -1,5 +1,6 @@
 import React from 'react';
-import { withMods, DatePickerProps, DatePicker as UuiDatePicker } from "@epam/uui";
+import { withMods } from '@epam/uui-core';
+import {  DatePickerProps, DatePicker as UuiDatePicker } from '@epam/uui';
 
 export const DatePicker = withMods<DatePickerProps>(
     UuiDatePicker, () => {},

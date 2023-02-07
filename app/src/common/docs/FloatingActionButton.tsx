@@ -1,7 +1,7 @@
 import * as React from 'react';
 import css from './FloatingActionButton.scss';
 import { Button, Tooltip } from '@epam/promo';
-import { cx, Icon } from '@epam/uui';
+import { cx, Icon } from '@epam/uui-core';
 
 interface FloatingActionButtonProps {
     icon: Icon;

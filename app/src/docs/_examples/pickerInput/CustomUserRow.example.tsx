@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { FlexRow, PickerInput, DataPickerRow, PickerItem } from '@epam/promo';
-import { DataRowProps, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { DataRowProps, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 

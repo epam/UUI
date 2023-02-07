@@ -1,0 +1,12 @@
+@use  '../../assets/styles/index' as *;
+
+.header-cell {
+    background: none;
+}
+
+.config-icon {
+    position: absolute;
+    height: 100%;
+    right: 24px;
+    z-index: 2;
+}

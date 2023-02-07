@@ -1,6 +1,0 @@
-:global(.panel-vars) {
-    --uui-panel-border-radius: var(--uui-border-radius);
-    --uui-panel-bg: var(--uui-surface);
-    //noinspection CssInvalidFunction
-    --uui-panel-shadow: var(--uui-shadow, 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10)); // WebStorm Bag Report https://youtrack.jetbrains.com/issue/WEB-54442
-}

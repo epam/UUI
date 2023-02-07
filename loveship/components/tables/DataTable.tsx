@@ -87,7 +87,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         onValueChange={ props.onValueChange }
                     />
                     <div className={ cx(uuiScrollShadows.top, {
-                        [uuiScrollShadows.topVisible]: scrollShadows.vertical,
+                        [uuiScrollShadows.topVisible]: scrollShadows.verticalTop,
                     }) } />
                 </div>
                 { props.exactRowsCount !== 0 ? (

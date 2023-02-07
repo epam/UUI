@@ -1,9 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import {
-    Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
+import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
+import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
     Panel, PickerInput, TextArea, TextInput, useForm,
 } from '@epam/promo';
-import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui';
 import { FlexSpacer } from '@epam/uui-components';
 
 // Define interface describe data for each row
@@ -185,7 +184,7 @@ export default function EditableTableExample() {
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return <Panel shadow={ true }>
         <FlexRow>
-            {/* Render the data table */ }
+            {/* Render the data table */}
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }

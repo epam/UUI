@@ -1,5 +1,6 @@
 import React from 'react';
-import { RangeDatePicker as UuiRangeDatePicker, RangeDatePickerProps, withMods } from "@epam/uui";
+import { withMods } from '@epam/uui-core';
+import { RangeDatePicker as UuiRangeDatePicker, RangeDatePickerProps } from '@epam/uui';
 
 export const RangeDatePicker = withMods<RangeDatePickerProps>(
     UuiRangeDatePicker, () => {},

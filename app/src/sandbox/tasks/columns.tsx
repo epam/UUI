@@ -1,5 +1,6 @@
 import React from "react";
-import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, TextArea, DataPickerRow, PickerItem } from '@epam/promo';
+import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, DataPickerRow, PickerItem } from '@epam/uui';
+import { TextArea } from '@epam/promo';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
 import { Task, SelectedCellData } from "./types";
 import { status } from './demoData';
