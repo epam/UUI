@@ -218,9 +218,6 @@
 
     --uui-control-checkbox-icon: var(--white);
 
-    --uui-tag: var(--gray30);
-    --uui-tag-hover: var(--gray40);
-
     --uui-skeleton: var(--gray40);
     --uui-skeleton-gradient: linear-gradient(90deg, var(--gray40) 0%, var(--gray10) 50%, var(--gray40) 100%);
 
@@ -229,6 +226,9 @@
     --uui-scroll: var(--gray60);
     --uui-surface-dark: var(--gray90);
     --uui-border-radius: 0px;
+
+    /*  Button-vars */
+    --uui-btn-border-radius: var(--uui-border-radius);
 
     /*  TextInput vars  */
     --uui-text-input-bg: var(--uui-control-bg);
@@ -328,6 +328,9 @@
     --uui-tag-label: var(--uui-text-secondary);
     --uui-tag-border-radius: var(--uui-border-radius);
 
+    /*  Badge vars  */
+    --uui-badge-border-radius: 100px;
+
     /* DropMarker vars */
     --uui-drop-marker: var(--uui-primary);
     --uui-drop-marker-blocked: var(--uui-error);
@@ -426,128 +429,124 @@
     --uui-tooltip-text: var(--uui-contrast);
 }
 
-.badge-cyan {
+.uui-theme-promo.badge-cyan {
     --uui-badge-bg: var(--cyan-30);
     --uui-badge-bg-hover: var(--cyan-40);
     --uui-badge-caption-solid: var(--white);
+    --uui-badge-caption-halftone: var(--cyan-50);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
     --uui-badge-bg-halftone: var(--cyan-10);
     --uui-badge-bg-halftone-hover: var(--cyan-20);
     --uui-badge-border-halftone: var(--cyan-20);
     --uui-badge-border-halftone-hover: var(--cyan-30);
-    --uui-badge-caption-halftone: var(--cyan-50);
 }
 
-.badge-violet {
+.uui-theme-promo.badge-violet {
     --uui-badge-bg: var(--violet-30);
     --uui-badge-bg-hover: var(--violet-40);
     --uui-badge-caption-solid: var(--white);
+    --uui-badge-caption-halftone: var(--violet-50);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
     --uui-badge-bg-halftone: var(--violet-10);
     --uui-badge-bg-halftone-hover: var(--violet-20);
     --uui-badge-border-halftone: var(--violet-20);
     --uui-badge-border-halftone-hover: var(--violet-30);
-    --uui-badge-caption-halftone: var(--violet-50);
 }
 
-.badge-orange {
+.uui-theme-promo.badge-orange {
     --uui-badge-bg: var(--orange-30);
     --uui-badge-bg-hover: var(--orange-40);
     --uui-badge-caption-solid: var(--white);
+    --uui-badge-caption-halftone: var(--orange-50);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
     --uui-badge-bg-halftone: var(--orange-10);
     --uui-badge-bg-halftone-hover: var(--orange-20);
     --uui-badge-border-halftone: var(--orange-20);
     --uui-badge-border-halftone-hover: var(--orange-30);
-    --uui-badge-caption-halftone: var(--orange-50);
 }
 
-.badge-purple {
+.uui-theme-promo.badge-purple {
     --uui-badge-bg: var(--purple-30);
     --uui-badge-bg-hover: var(--purple-40);
     --uui-badge-caption-solid: var(--white);
+    --uui-badge-caption-halftone: var(--purple-50);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
     --uui-badge-bg-halftone: var(--purple-10);
     --uui-badge-bg-halftone-hover: var(--purple-20);
     --uui-badge-border-halftone: var(--purple-20);
     --uui-badge-border-halftone-hover: var(--purple-30);
-    --uui-badge-caption-halftone: var(--purple-50);
 }
 
-.badge-default {
-    --uui-badge-bg: var(--uui-tag);
-    --uui-badge-bg-hover: var(--uui-tag-hover);
+.uui-theme-promo.badge-default, .uui-theme-promo.badge-gray30 {
+    --uui-badge-bg: var(--gray30);
+    --uui-badge-bg-hover: var(--gray40);
     --uui-badge-caption-solid: var(--uui-text-primary);
+    --uui-badge-caption-halftone: var(--uui-text-primary);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
     --uui-badge-bg-halftone: var(--gray20);
     --uui-badge-bg-halftone-hover: var(--gray30);
     --uui-badge-border-halftone: var(--gray40);
     --uui-badge-border-halftone-hover: var(--gray50);
-    --uui-badge-caption-halftone: var(--uui-text-primary);
 }
 
-.badge-info {
+.uui-theme-promo.badge-info, .uui-theme-promo.badge-blue {
     --uui-badge-bg: var(--uui-info);
     --uui-badge-bg-hover: var(--uui-info-dark);
     --uui-badge-caption-solid: var(--uui-contrast);
+    --uui-badge-caption-halftone: var(--uui-info-darkest);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
     --uui-badge-bg-halftone: var(--uui-info-lightest);
     --uui-badge-bg-halftone-hover: var(--uui-info-light);
     --uui-badge-border-halftone: var(--uui-info-light);
     --uui-badge-border-halftone-hover: var(--uui-info);
-    --uui-badge-caption-halftone: var(--uui-info-darkest);
 }
 
-.badge-success {
+.uui-theme-promo.badge-success, .uui-theme-promo.badge-green {
     --uui-badge-bg: var(--uui-success);
     --uui-badge-bg-hover: var(--uui-success-dark);
     --uui-badge-caption-solid: var(--uui-contrast);
+    --uui-badge-caption-halftone: var(--uui-success-darkest);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
     --uui-badge-bg-halftone: var(--uui-success-lightest);
     --uui-badge-bg-halftone-hover: var(--uui-success-light);
     --uui-badge-border-halftone: var(--uui-success-light);
     --uui-badge-border-halftone-hover: var(--uui-success);
-    --uui-badge-caption-halftone: var(--uui-success-darkest);
 }
 
-.badge-warning {
+.uui-theme-promo.badge-warning, .uui-theme-promo.badge-amber {
     --uui-badge-bg: var(--uui-warning);
     --uui-badge-bg-hover: var(--uui-warning-dark);
     --uui-badge-caption-solid: var(--uui-text-primary);
+    --uui-badge-caption-halftone: var(--uui-warning-darkest);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
     --uui-badge-bg-halftone: var(--uui-warning-lightest);
     --uui-badge-bg-halftone-hover: var(--uui-warning-light);
     --uui-badge-border-halftone: var(--uui-warning-light);
     --uui-badge-border-halftone-hover: var(--uui-warning);
-    --uui-badge-caption-halftone: var(--uui-warning-darkest);
 }
 
-.badge-error {
+.uui-theme-promo.badge-error, .uui-theme-promo.badge-red {
     --uui-badge-bg: var(--uui-error);
     --uui-badge-bg-hover: var(--uui-error-dark);
     --uui-badge-caption-solid: var(--uui-contrast);
+    --uui-badge-caption-halftone: var(--uui-error-darkest);
     --uui-badge-count-bg: var(--white);
     --uui-badge-count: var(--uui-text-secondary);
     --uui-badge-bg-halftone: var(--uui-error-lightest);
     --uui-badge-bg-halftone-hover: var(--uui-error-light);
     --uui-badge-border-halftone: var(--uui-error-light);
     --uui-badge-border-halftone-hover: var(--uui-error);
-    --uui-badge-caption-halftone: var(--uui-error-darkest);
 }
 
-.badge-vars {
-    --uui-badge-border-radius: 100px;
-}
-
-.accordion-vars {
+.uui-theme-promo.accordion-vars {
     --uui-accordion-bg: var(--uui-surface);
     --uui-accordion-border: var(--uui-divider);
     --uui-accordion-text: var(--uui-text-primary);
@@ -559,7 +558,7 @@
     --uui-accordion-shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
 }
 
-.button-blue, .button-primary {
+.uui-theme-promo.button-blue, .uui-theme-promo.button-primary {
     --uui-btn-bg: var(--uui-primary);
     --uui-btn-bg-hover: var(--uui-primary-dark);
     --uui-btn-bg-active: var(--uui-primary-darkest);
@@ -576,7 +575,7 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.button-green, .button-accent {
+.uui-theme-promo.button-green, .uui-theme-promo.button-accent {
     --uui-btn-bg: var(--uui-accent);
     --uui-btn-bg-hover: var(--uui-accent-dark);
     --uui-btn-bg-active: var(--uui-accent-darkest);
@@ -593,7 +592,7 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.button-red, .button-negative {
+.uui-theme-promo.button-red, .uui-theme-promo.button-negative {
     --uui-btn-bg: var(--uui-negative);
     --uui-btn-bg-hover: var(--uui-negative-dark);
     --uui-btn-bg-active: var(--uui-negative-darkest);
@@ -610,7 +609,7 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.button-gray50, .button-secondary {
+.uui-theme-promo.button-gray50, .uui-theme-promo.button-secondary {
     --uui-btn-bg: var(--uui-secondary);
     --uui-btn-bg-hover: var(--uui-secondary-dark);
     --uui-btn-bg-active: var(--uui-secondary-darkest);
@@ -627,60 +626,62 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.button-vars {
-    --uui-btn-border-radius: var(--uui-border-radius);
-}
-
-.icon-button-blue, .icon-button-info {
+.uui-theme-promo.icon-button-blue,
+.uui-theme-promo.icon-button-info {
     --uui-icon-btn: var(--uui-info);
     --uui-icon-btn-hover: var(--uui-info-dark);
     --uui-icon-btn-active: var(--uui-info-darkest);
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
-.icon-button-green, .icon-button-success {
+.uui-theme-promo.icon-button-green,
+.uui-theme-promo.icon-button-success {
     --uui-icon-btn: var(--uui-success);
     --uui-icon-btn-hover: var(--uui-success-dark);
     --uui-icon-btn-active: var(--uui-success-darkest);
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
-.icon-button-amber, .icon-button-warning {
+.uui-theme-promo.icon-button-amber,
+.uui-theme-promo.icon-button-warning {
     --uui-icon-btn: var(--uui-warning);
     --uui-icon-btn-hover: var(--uui-warning-dark);
     --uui-icon-btn-active: var(--uui-warning-darkest);
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
-.icon-button-red, .icon-button-error {
+.uui-theme-promo.icon-button-red,
+.uui-theme-promo.icon-button-error {
     --uui-icon-btn: var(--uui-error);
     --uui-icon-btn-hover: var(--uui-error-dark);
     --uui-icon-btn-active: var(--uui-error-darkest);
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
-.icon-button-gray30 {
+.uui-theme-promo.icon-button-gray30 {
     --uui-icon-btn: var(--uui-secondary-light);
     --uui-icon-btn-hover: var(--uui-button-bg-halftone);
     --uui-icon-btn-active: var(--uui-text-contrast);
     --uui-icon-btn-disabled: var(--uui-icon-disabled);;
 }
 
-.icon-button-gray50, .icon-button-secondary {
+.uui-theme-promo.icon-button-gray50,
+.uui-theme-promo.icon-button-secondary {
     --uui-icon-btn: var(--uui-secondary);
     --uui-icon-btn-hover: var(--uui-secondary-dark);
     --uui-icon-btn-active: var(--uui-secondary-darkest);
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
-.icon-button-gray60, .icon-button-default {
+.uui-theme-promo.icon-button-gray60,
+.uui-theme-promo.icon-button-default {
     --uui-icon-btn: var(--uui-icon);
     --uui-icon-btn-hover: var(--uui-icon-hover);
     --uui-icon-btn-active: var(--uui-icon-active);
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
-.checkbox-vars {
+.uui-theme-promo.checkbox-vars {
     --uui-checkbox-border: var(--uui-control-border);
     --uui-checkbox-border-hover: var(--uui-control-border-hover);
     --uui-checkbox-border-disabled: var(--uui-control-border-disabled);
@@ -698,7 +699,7 @@
     --uui-checkbox-border-radius: var(--uui-border-radius);
 }
 
-.switch-vars {
+.uui-theme-promo.switch-vars {
     --uui-switch-bg-checked: var(--uui-control-bg-checked);
     --uui-switch-bg-hover: var(--uui-control-bg-hover);
     --uui-switch-bg-disabled: var(--uui-control-bg-disabled);
@@ -721,7 +722,7 @@
     --uui-switch-toggler-border-checked-disabled: var(--uui-control-bg-checked-disabled);
 }
 
-.labeled-input-vars {
+.uui-theme-promo.labeled-input-vars {
     --uui-labeled-input: var(--uui-text-primary);
     --uui-labeled-input-disabled: var(--uui-text-disabled);
     --uui-labeled-input-error: var(--uui-error);
@@ -737,73 +738,73 @@
     --uui-control-label-asterisk: var(--uui-error);
 }
 
-.notification-card-warning {
+.uui-theme-promo.notification-card-warning {
     --uui-notification-card-fill: var(--uui-warning);
     --uui-notification-card-border: var(--uui-warning);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.notification-card-success {
+.uui-theme-promo.notification-card-success {
     --uui-notification-card-fill: var(--uui-success);
     --uui-notification-card-border: var(--uui-success);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.notification-card-info {
+.uui-theme-promo.notification-card-info {
     --uui-notification-card-fill: var(--uui-info);
     --uui-notification-card-border: var(--uui-info);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.notification-card-error {
+.uui-theme-promo.notification-card-error {
     --uui-notification-card-fill: var(--uui-error);
     --uui-notification-card-border: var(--uui-error);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.notification-card-vars {
+.uui-theme-promo.notification-card-vars {
     --uui-notification-card-border-radius: var(--uui-border-radius);
     --uui-notification-card-shadow: var(--uui-shadow);
 }
 
-.alert-error {
+.uui-theme-promo.alert-error {
     --uui-alert-text: var(--uui-text-primary);
     --uui-alert-bg: var(--uui-error-lightest);
     --uui-alert-border: var(--uui-negative);
     --uui-alert-icon: var(--uui-negative);
 }
 
-.alert-warning {
+.uui-theme-promo.alert-warning {
     --uui-alert-text: var(--uui-text-primary);
     --uui-alert-bg: var(--uui-warning-lightest);
     --uui-alert-border: var(--amber);
     --uui-alert-icon: var(--amber);
 }
 
-.alert-success {
+.uui-theme-promo.alert-success {
     --uui-alert-text: var(--uui-text-primary);
     --uui-alert-bg: var(--uui-success-lightest);
     --uui-alert-border: var(--uui-accent);
     --uui-alert-icon: var(--uui-accent);
 }
 
-.alert-info {
+.uui-theme-promo.alert-info {
     --uui-alert-text: var(--uui-text-primary);
     --uui-alert-bg: var(--uui-info-lightest);
     --uui-alert-border: var(--uui-primary);
     --uui-alert-icon: var(--uui-primary);
 }
 
-.dropdown-container-vars {
+.uui-theme-promo.dropdown-container-vars {
     --uui-dropdown-container-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
     --uui-dropdown-container-scrollbar-thumb: var(--uui-scroll);
 }
 
-.main-menu-vars {
+.uui-theme-promo.main-menu-vars {
     --uui-main-menu-bg: var(--gray80);
     --uui-main-menu-active: var(--gray90);
     --uui-main-menu-hover: var(--gray90);
@@ -819,14 +820,14 @@
     --uui-main-menu-icon: var(--white);
 }
 
-.burger-menu {
+.uui-theme-promo.burger-menu {
     --uui-burger-menu-bg: var(--gray90);
     --uui-burger-menu-caption: var(--uui-contrast);
     --uui-burger-menu-caption-hover: var(--uui-primary);
     --uui-burger-menu-overlay: var(--uui-overlay);
 }
 
-.numeric-input-vars {
+.uui-theme-promo.numeric-input-vars {
     --uui-numeric-input-bg: var(--uui-control-bg);
     --uui-numeric-input-bg-disabled: var(--uui-control-bg-disabled);
     --uui-numeric-input-border: var(--uui-control-border);
@@ -842,7 +843,7 @@
     --uui-numeric-input-border-radius: var(--uui-border-radius);
 }
 
-.time-picker-vars {
+.uui-theme-promo.time-picker-vars {
     --uui-time-picker-bg: var(--uui-control-bg);
     --uui-time-picker-bg-disabled: var(--uui-control-bg-disabled);
     --uui-time-picker-border: var(--uui-control-border);
@@ -858,7 +859,7 @@
     --uui-time-picker-border-radius: var(--uui-border-radius);
 }
 
-.search-input-vars {
+.uui-theme-promo.search-input-vars {
     --uui-search-input-bg: var(--uui-control-bg);
     --uui-search-input-bg-disabled: var(--uui-control-bg-disabled);
     --uui-search-input-border: var(--uui-control-border);
@@ -875,7 +876,7 @@
     --uui-search-input-border-radius: var(--uui-border-radius);
 }
 
-.text-area-vars {
+.uui-theme-promo.text-area-vars {
     --uui-text-area-bg: var(--uui-control-bg);
     --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
     --uui-text-area-border: var(--uui-control-border);
@@ -890,89 +891,89 @@
     --uui-text-area-border-radius: var(--uui-border-radius);
 }
 
-.popover-vars {
+.uui-theme-promo.popover-vars {
     --uui-popover-shadow: 0 5px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
 }
 
-.footer-vars {
+.uui-theme-promo.footer-vars {
     --uui-footer-bg: var(--gray80);
 }
 
-.informer-color-default {
+.uui-theme-promo.informer-color-default {
     --uui-informer-bg: var(--gray30);
     --uui-informer-caption: var(--gray60);
 }
 
-.informer-color-focus {
+.uui-theme-promo.informer-color-focus {
     --uui-informer-bg: var(--red);
     --uui-informer-caption: var(--uui-contrast);
 }
 
-.informer-color-white {
+.uui-theme-promo.informer-color-white {
     --uui-informer-bg: var(--uui-surface);
     --uui-informer-caption: var(--uui-text-secondary);
 }
 
-.informer-vars {
+.uui-theme-promo.informer-vars {
     --uui-informer-border-radius: 50px;
 }
 
-.icon-container-color-info {
+.uui-theme-promo.icon-container-color-info {
     --uui-icon-container-fill: var(--uui-info);
 }
 
-.icon-container-color-success {
+.uui-theme-promo.icon-container-color-success {
     --uui-icon-container-fill: var(--uui-success);
 }
 
-.icon-container-color-warning {
+.uui-theme-promo.icon-container-color-warning {
     --uui-icon-container-fill: var(--uui-warning);
 }
 
-.icon-container-color-error {
+.uui-theme-promo.icon-container-color-error {
     --uui-icon-container-fill: var(--uui-error);
 }
 
-.icon-container-color-default {
+.uui-theme-promo.icon-container-color-default {
     --uui-icon-container-fill: var(--uui-icon);
 }
 
-.icon-container-color-secondary {
+.uui-theme-promo.icon-container-color-secondary {
     --uui-icon-container-fill: var(--uui-secondary);
 }
 
-.panel-vars {
+.uui-theme-promo.panel-vars {
     --uui-panel-border-radius: var(--uui-border-radius);
     --uui-panel-bg: var(--uui-surface);
     --uui-panel-shadow: var(--uui-shadow);
 }
 
-.dropdown-container-vars {
+.uui-theme-promo.dropdown-container-vars {
     --uui-dropdown-container-shadow: var(--uui-shadow);
     --uui-dropdown-container-scrollbar-thumb: #6C6F80;
 }
 
-.text-color-brand {
+.uui-theme-promo.text-color-brand {
     --uui-text: var(--uui-text-brand);
 }
 
-.text-color-primary {
+.uui-theme-promo.text-color-primary {
     --uui-text: var(--uui-text-primary);
 }
 
-.text-color-secondary {
+.uui-theme-promo.text-color-secondary {
     --uui-text: var(--uui-text-secondary);
 }
 
-.text-color-disabled {
+.uui-theme-promo.text-color-disabled {
     --uui-text: var(--uui-text-disabled);
 }
 
-.text-color-contrast {
+.uui-theme-promo.text-color-contrast {
     --uui-text: var(--uui-text-contrast);
 }
 
-.text-placeholder-vars {
+.uui-theme-promo.text-placeholder-vars {
     --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
     --uui-text-placeholder: var(--uui-skeleton);
 }

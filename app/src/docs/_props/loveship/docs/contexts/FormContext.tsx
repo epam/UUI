@@ -137,7 +137,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                 </FlexRow>
                 <FlexRow type="form">
                     <FlexSpacer />
-                    <Button size={ size } fill="none" color="carbon" caption="Cancel"/>
+                    <Button size={ size } fill="none" color="night600" caption="Cancel"/>
                     <Button size={ size } color="grass" caption="Submit"/>
                 </FlexRow>
             </Panel>

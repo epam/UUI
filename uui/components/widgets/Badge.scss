@@ -233,45 +233,47 @@
         }
     }
 
-    //&.fill-semitransparent {
-    //    background-color: var(--bg-color-semitransparent);
-    //    color: var(--uui-caption-semitransparent);
-    //    fill: var(--uui-caption-semitransparent);
-    //    border-color: var(--border-color-semitransparent);
-    //
-    //    :global(.uui-count) {
-    //        background-color: var(--count-bg-color);
-    //        color: var(--count-color);
-    //    }
-    //
-    //    &:global(.-clickable) {
-    //        &:hover {
-    //            background-color: var(--border-color-semitransparent);
-    //            color: var(--uui-caption-semitransparent-hover);
-    //            fill: var(--uui-caption-semitransparent-hover);
-    //            cursor: pointer;
-    //        }
-    //    }
-    //}
-    //
-    //&.fill-transparent {
-    //    background-color: transparent;
-    //    color: var(--uui-caption-transparent);
-    //    fill: var(--bg-color);
-    //    border-color: transparent;
-    //
-    //    &:global(.-clickable) {
-    //        &:hover {
-    //            fill: var(--bg-color-hover);
-    //            cursor: pointer;
-    //        }
-    //    }
-    //
-    //    &::before {
-    //        position: absolute;
-    //        content: '';
-    //        border-radius: 50%;
-    //        background-color: var(--bg-color);
-    //    }
-    //}
+    &.fill-semitransparent {
+        background-color: var(--uui-badge-bg-halftone);
+        color: var(--uui-badge-caption-halftone);
+        fill: var(--uui-badge-caption-halftone);
+        border-color: var(--uui-badge-border-halftone);
+
+        :global(.uui-count) {
+            background-color: var(--uui-badge-count-bg);
+            color: var(--uui-badge-count);
+        }
+
+        &:global(.-clickable) {
+            &:hover {
+                background-color: var(--uui-badge-bg-halftone-hover);
+                color: var(--uui-badge-caption-halftone);
+                fill: var(--uui-badge-caption-halftone);
+                border-color: var(--uui-badge-border-halftone-hover);
+                cursor: pointer;
+            }
+        }
+    }
+
+    &.fill-transparent {
+        background-color: transparent;
+        color: var(--uui-text-primary);
+        fill: var(--uui-text-primary);
+        border-color: transparent;
+
+        &:global(.-clickable) {
+            &:hover {
+                color: var(--uui-badge-bg-hover);
+                fill: var(--uui-badge-bg-hover);
+                cursor: pointer;
+            }
+        }
+
+        &::before {
+            position: absolute;
+            content: '';
+            border-radius: 50%;
+            background-color: var(--uui-badge-bg);
+        }
+    }
 }
