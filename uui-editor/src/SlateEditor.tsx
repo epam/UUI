@@ -64,7 +64,7 @@ export function SlateEditor(props: SlateEditorProps) {
         isReadonly,
         placeholder,
     } = props;
-    const currentId = String(id);
+    const currentId = String(id++);
     const editor = usePlateEditorState();
     const isFocused = isEditorFocused(editor);
 
@@ -79,7 +79,7 @@ export function SlateEditor(props: SlateEditorProps) {
     };
 
     const onChange = (value: any) => {
-        props?.onValueChange(value);
+        //props?.onValueChange(value);
     };
 
     const renderElement = (props: TRenderElementProps): JSX.Element => {
@@ -88,7 +88,7 @@ export function SlateEditor(props: SlateEditorProps) {
         return <p { ...attributes }>{ children }</p>;
     };
 
-    const initialValue = useMemo(() => migrateSchema(props.value), []);
+    const initialValue = useMemo(() => migrateSchema(props.value), [props.value]);
 
     const renderEditor = useCallback(() => (
         <DndProvider backend={ HTML5Backend }>
