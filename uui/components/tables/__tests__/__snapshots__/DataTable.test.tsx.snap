@@ -52,6 +52,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           className="section scrollingSection uui-table-scrolling-section"
           style={
             Object {
+              "--uui-dt-cell-border-width": "1px",
               "flex": "1 0 0px",
               "minWidth": "0px",
             }

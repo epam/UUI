@@ -61,7 +61,7 @@ Array [
           }
         >
           <div
-            className="itemRoot container -clickable align-items-center"
+            className="itemRoot uui-active container -clickable align-items-center"
             onClick={[Function]}
             onKeyDown={[Function]}
             role="menuitem"
@@ -73,14 +73,21 @@ Array [
             }
             tabIndex={0}
           >
-            <div
-              className="container uui-icon uui-enabled icon iconBefore"
-              style={Object {}}
+            <button
+              className="container uui-button-box uui-enabled icon-button-info root icon iconBefore"
+              onClick={[Function]}
+              tabIndex={-1}
+              type="button"
             >
-              <svg
-                className=""
-              />
-            </div>
+              <div
+                className="container uui-icon uui-enabled"
+                style={Object {}}
+              >
+                <svg
+                  className=""
+                />
+              </div>
+            </button>
             <div
               className="caption container"
             >
@@ -100,14 +107,21 @@ Array [
             }
             tabIndex={0}
           >
-            <div
-              className="container uui-icon uui-enabled icon iconBefore"
-              style={Object {}}
+            <button
+              className="container uui-button-box uui-enabled icon-button-default root icon iconBefore"
+              onClick={[Function]}
+              tabIndex={-1}
+              type="button"
             >
-              <svg
-                className=""
-              />
-            </div>
+              <div
+                className="container uui-icon uui-enabled"
+                style={Object {}}
+              >
+                <svg
+                  className=""
+                />
+              </div>
+            </button>
             <div
               className="caption container"
             >
