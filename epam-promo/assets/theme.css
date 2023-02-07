@@ -653,6 +653,7 @@
     --uui-labeled-input-disabled: var(--uui-text-disabled);
     --uui-labeled-input-error: var(--uui-error);
     --uui-labeled-input-fill: var(--uui-icon);
+    --uui-labeled-input-info-fill: var(--uui-icon);
     --uui-labeled-input-optional-text: var(--uui-text-secondary);
     --uui-labeled-input-asterisk: var(--uui-error);
     --uui-control-label: var(--uui-text-primary);
