@@ -18,6 +18,7 @@
 - [ ] Badge: square leave only in loveship
 - [-] Badge: подумать насчет дефолтных значений для цветов, тут 2 варианта: либо мы придумываем какие дефолты ставить, либо делаем color обязательным
 - [-] theme.css - maybe convert it into scss?
+- [-] move skins themes into @epam/assets and make it scss
 
 - [ ] WithMods function - need to rework:
      1) case when we need to redefine some variable typo, for example - color.
