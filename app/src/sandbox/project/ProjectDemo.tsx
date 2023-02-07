@@ -1,5 +1,6 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
+import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/uui';
+import { useForm } from '@epam/promo';
 import { AcceptDropParams, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -59,15 +60,20 @@ export const ProjectDemo = () => {
             relativeTask?.order,
         );
 
-        onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
+        onValueChange({ ...value, items: { ...value.items, [task.id]: task }});
     };
 
-    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true }), []);
+    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
+        if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
+            return null;
+        } else {
+            return { bottom: true, top: true, inside: true };
+        }
+    }, []);
 
     const handleDrop = useCallback((params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData), []);
 
-    //const { tableState, setTableState } = useTableState<any>({ columns });
-    const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
+    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }]});
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
         items: Object.values(value.items),
@@ -75,15 +81,14 @@ export const ProjectDemo = () => {
         getParentId: i => i.parentId,
     }, []);
 
-
     const dataView = dataSource.useView(tableState, setTableState, {
         getRowOptions: (task) => ({
             ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
             //checkbox: { isVisible: true },
             isSelectable: true,
             dnd: {
-                srcData: task,
-                dstData: task,
+                srcData: { ...task, isTask: true },
+                dstData: { ...task, isTask: true },
                 canAcceptDrop: handleCanAcceptDrop,
                 onDrop: handleDrop,
             },

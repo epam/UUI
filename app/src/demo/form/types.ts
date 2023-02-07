@@ -1,4 +1,4 @@
-import { FileUploadResponse } from '@epam/uui';
+import { FileUploadResponse } from '@epam/uui-core';
 
 export interface PersonalInfo {
     fullName?: string;

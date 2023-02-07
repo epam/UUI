@@ -17,7 +17,6 @@ exports[`DataTable should be rendered correctly 1`] = `
   <div
     aria-colcount={4}
     aria-rowcount={10}
-    className=""
     role="table"
     style={
       Object {
@@ -45,7 +44,7 @@ exports[`DataTable should be rendered correctly 1`] = `
         style={
           Object {
             "columnGap": undefined,
-            "minWidth": "566px",
+            "minWidth": "563px",
             "rowGap": undefined,
           }
         }
@@ -54,6 +53,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
           style={
             Object {
+              "--uui-dt-cell-border-width": "1px",
               "flex": "0 0 96px",
               "minWidth": "96px",
             }
@@ -112,8 +112,9 @@ exports[`DataTable should be rendered correctly 1`] = `
           className="section scrollingSection uui-table-scrolling-section"
           style={
             Object {
-              "flex": "2 0 470px",
-              "minWidth": "470px",
+              "--uui-dt-cell-border-width": "1px",
+              "flex": "2 0 467px",
+              "minWidth": "467px",
             }
           }
         >
@@ -281,7 +282,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -290,6 +291,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
+                "--uui-dt-cell-border-width": "1px",
                 "flex": "0 0 96px",
                 "minWidth": "96px",
               }
@@ -322,8 +324,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "--uui-dt-cell-border-width": "1px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -393,7 +396,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -402,6 +405,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
+                "--uui-dt-cell-border-width": "1px",
                 "flex": "0 0 96px",
                 "minWidth": "96px",
               }
@@ -434,8 +438,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "--uui-dt-cell-border-width": "1px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -505,7 +510,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -514,6 +519,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
+                "--uui-dt-cell-border-width": "1px",
                 "flex": "0 0 96px",
                 "minWidth": "96px",
               }
@@ -546,8 +552,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "--uui-dt-cell-border-width": "1px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -617,7 +624,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -626,6 +633,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
+                "--uui-dt-cell-border-width": "1px",
                 "flex": "0 0 96px",
                 "minWidth": "96px",
               }
@@ -658,8 +666,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "--uui-dt-cell-border-width": "1px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -729,7 +738,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -738,6 +747,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
+                "--uui-dt-cell-border-width": "1px",
                 "flex": "0 0 96px",
                 "minWidth": "96px",
               }
@@ -770,8 +780,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "--uui-dt-cell-border-width": "1px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -841,7 +852,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -850,6 +861,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
+                "--uui-dt-cell-border-width": "1px",
                 "flex": "0 0 96px",
                 "minWidth": "96px",
               }
@@ -882,8 +894,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "--uui-dt-cell-border-width": "1px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -953,7 +966,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -962,6 +975,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
+                "--uui-dt-cell-border-width": "1px",
                 "flex": "0 0 96px",
                 "minWidth": "96px",
               }
@@ -994,8 +1008,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "--uui-dt-cell-border-width": "1px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -1065,7 +1080,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -1074,6 +1089,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
+                "--uui-dt-cell-border-width": "1px",
                 "flex": "0 0 96px",
                 "minWidth": "96px",
               }
@@ -1106,8 +1122,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "--uui-dt-cell-border-width": "1px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -1177,7 +1194,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -1186,6 +1203,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
+                "--uui-dt-cell-border-width": "1px",
                 "flex": "0 0 96px",
                 "minWidth": "96px",
               }
@@ -1218,8 +1236,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "--uui-dt-cell-border-width": "1px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >
@@ -1289,7 +1308,7 @@ exports[`DataTable should be rendered correctly 1`] = `
           style={
             Object {
               "columnGap": undefined,
-              "minWidth": "566px",
+              "minWidth": "563px",
               "rowGap": undefined,
             }
           }
@@ -1298,6 +1317,7 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
             style={
               Object {
+                "--uui-dt-cell-border-width": "1px",
                 "flex": "0 0 96px",
                 "minWidth": "96px",
               }
@@ -1330,8 +1350,9 @@ exports[`DataTable should be rendered correctly 1`] = `
             className="section scrollingSection uui-table-scrolling-section"
             style={
               Object {
-                "flex": "2 0 470px",
-                "minWidth": "470px",
+                "--uui-dt-cell-border-width": "1px",
+                "flex": "2 0 467px",
+                "minWidth": "467px",
               }
             }
           >

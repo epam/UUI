@@ -160,7 +160,6 @@ exports[`PickerModal should be rendered correctly 1`] = `
           }
         >
           <div
-            className=""
             style={
               Object {
                 "WebkitOverflowScrolling": "touch",
@@ -909,7 +908,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
           }
         >
           <div
-            className=""
             style={
               Object {
                 "WebkitOverflowScrolling": "touch",

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Text,  DataTable, Panel, IconButton, DataTableMods } from '@epam/promo';
-import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import css from "./TablesExamples.scss";
 import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";

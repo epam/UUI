@@ -3,7 +3,7 @@ import css from "./InfoSidebarPanel.scss";
 import { Badge, EpamAdditionalColor, FlexCell, FlexRow, FlexSpacer, IconButton, Panel, ScrollBars, Text } from "@epam/promo";
 import { Person } from "@epam/uui-docs";
 import { ReactComponent as CrossIcon } from "@epam/assets/icons/common/navigation-close-24.svg";
-import { cx } from "@epam/uui";
+import { cx } from "@epam/uui-core";
 
 interface SidebarPanelProps {
     data: Person;

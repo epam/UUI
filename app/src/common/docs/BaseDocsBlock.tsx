@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui';
+import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui-core';
 import { DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/promo';
 import { ComponentEditor } from './ComponentEditor';
 import { svc } from '../../services';

@@ -1,8 +1,4 @@
 .cell {
-    position: relative;
-    box-sizing: border-box;
-    width: 0;
-
     &.wrapper {
         display: flex;
         align-items: flex-start;
@@ -49,6 +45,10 @@
     &.padding-left-24 { padding-left: 24px; }
 
     &.padding-right-24 { padding-right: 24px; }
+
+    &:global(.uui-invalid) {
+        background-color: var(--uui-dt-cell-editor-bg-invalid);
+    }
 }
 
 .drag-handle {
@@ -83,7 +83,6 @@
 
     &:global(.uui-icon) {
         position: relative;
-        fill: var(--uui-icon);
     }
 }
 
@@ -104,5 +103,3 @@
         height: 18px;
     }
 }
-
-

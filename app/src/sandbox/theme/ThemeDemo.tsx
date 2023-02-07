@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui';
+import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui-core';
 import {
     Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput,
     FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge,
@@ -171,7 +171,7 @@ export const ThemeDemo = () => {
 
     return (
         <Panel style={ { height: 'calc(100vh - 60px)', width: '100%' } }>
-            <Panel background shadow rawProps={ { style: { margin: '24px auto' } } }>
+            <Panel shadow rawProps={ { style: { margin: '24px auto' } } }>
                 <ScrollBars>
                     { renderDemoForm() }
                 </ScrollBars>

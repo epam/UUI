@@ -8,7 +8,7 @@ import { UuiContext } from "../ContextProvider";
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
     render(props: DndActorRenderParams): React.ReactNode;
-};
+}
 
 const DND_START_THRESHOLD = 5;
 
