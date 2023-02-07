@@ -126,7 +126,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           />
         </div>
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-secondary root size-30 mode-none"
+          className="container uui-button-box uui-enabled -clickable button-secondary root size-30 mode-none"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -197,7 +197,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 Displayed in table
               </div>
               <button
-                className="container uui-button-box uui-enabled badge-info root size-18 fill-solid root groupTitleBadge"
+                className="container uui-button-box uui-enabled root root size-18 fill-solid badge-info groupTitleBadge"
                 onClick={[Function]}
                 tabIndex={-1}
                 type="button"
@@ -469,7 +469,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-secondary root size-36 mode-ghost"
+          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -482,7 +482,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </button>
         <button
           aria-disabled={false}
-          className="container uui-button-box uui-enabled -clickable button-vars button-accent root size-36 mode-solid"
+          className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -640,7 +640,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           />
         </div>
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-secondary root size-30 mode-none"
+          className="container uui-button-box uui-enabled -clickable button-secondary root size-30 mode-none"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -711,7 +711,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 Hidden in table
               </div>
               <button
-                className="container uui-button-box uui-enabled badge-info root size-18 fill-solid root groupTitleBadge"
+                className="container uui-button-box uui-enabled root root size-18 fill-solid badge-info groupTitleBadge"
                 onClick={[Function]}
                 tabIndex={-1}
                 type="button"
@@ -965,7 +965,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-vars button-secondary root size-36 mode-ghost"
+          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -978,7 +978,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </button>
         <button
           aria-disabled={true}
-          className="container uui-button-box uui-disabled -clickable button-vars button-accent root size-36 mode-solid"
+          className="container uui-button-box uui-disabled -clickable button-accent root size-36 mode-solid"
           onClick={[Function]}
           tabIndex={-1}
           type="button"
