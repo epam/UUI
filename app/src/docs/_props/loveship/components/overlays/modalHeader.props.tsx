@@ -24,7 +24,7 @@ const ModalHeaderDoc = new DocBuilder<ModalHeaderProps>({ name: 'ModalHeader', c
                     </FlexRow>
                     <FlexRow>
                         <Button onClick={ () => {} } color='grass' caption='Ok'/>
-                        <Button onClick={ () => {} } fill='none' color='carbon' caption='Cancel'/>
+                        <Button onClick={ () => {} } fill='none' color='night600' caption='Cancel'/>
                     </FlexRow>
                 </FlexRow>
                 </React.Fragment>, name: 'Base',
