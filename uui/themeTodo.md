@@ -19,6 +19,7 @@
 - [-] Badge: подумать насчет дефолтных значений для цветов, тут 2 варианта: либо мы придумываем какие дефолты ставить, либо делаем color обязательным
 - [-] theme.css - maybe convert it into scss?
 - [-] We deprecated line-height font-size v-padding in loveship, is it Ok (TextArea as example)?
+- [-] move skins themes into @epam/assets and make it scss
 
 - [ ] WithMods function - need to rework:
      1) case when we need to redefine some variable typo, for example - color.
