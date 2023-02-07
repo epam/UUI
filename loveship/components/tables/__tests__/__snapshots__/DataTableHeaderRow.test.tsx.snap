@@ -16,6 +16,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
     style={
       Object {
+        "--uui-dt-cell-border-width": "1px",
         "flex": "0 0 96px",
         "minWidth": "96px",
       }
@@ -98,6 +99,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     className="section scrollingSection uui-table-scrolling-section"
     style={
       Object {
+        "--uui-dt-cell-border-width": "1px",
         "flex": "2 0 467px",
         "minWidth": "467px",
       }
@@ -288,6 +290,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     className="section uui-table-fixed-section fixedColumnsSectionLeft uui-table-fixed-section-left"
     style={
       Object {
+        "--uui-dt-cell-border-width": "1px",
         "flex": "0 0 96px",
         "minWidth": "96px",
       }
@@ -346,6 +349,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     className="section scrollingSection uui-table-scrolling-section"
     style={
       Object {
+        "--uui-dt-cell-border-width": "1px",
         "flex": "2 0 467px",
         "minWidth": "467px",
       }
