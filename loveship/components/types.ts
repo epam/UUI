@@ -16,8 +16,8 @@ export const allRowSizes: RowSize[] = ['24', '30', '36', '42', '48'];
 export type EpamPrimaryColor = 'sky' | 'grass' | 'sun' | 'fire';
 export const allEpamPrimaryColors: EpamPrimaryColor[] = ['sky', 'grass', 'sun', 'fire'];
 
-export type EpamAdditionalColor = 'carbon' | 'cobalt' | 'lavanda' | 'fuchsia';
-export const allEpamAdditionalColors: EpamAdditionalColor[] = ['carbon', 'cobalt', 'lavanda', 'fuchsia'];
+export type EpamAdditionalColor = 'cobalt' | 'lavanda' | 'fuchsia';
+export const allEpamAdditionalColors: EpamAdditionalColor[] = ['cobalt', 'lavanda', 'fuchsia'];
 
 export type EpamGrayscaleColor = 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
 export const allEpamGrayscaleColors: EpamGrayscaleColor[] = ['white', 'night50', 'night100', 'night200', 'night300', 'night400', 'night500', 'night600', 'night700', 'night800', 'night900'];
