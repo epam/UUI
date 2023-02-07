@@ -1,32 +1,19 @@
 import React from 'react';
 import { withMods } from '@epam/uui-core';
-import { TextArea as uuiTextArea, TextAreaProps } from '@epam/uui-components';
-import colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
-import { getTextClasses, TextSettings } from '../../helpers/textLayout';
-import * as types from '../types';
-import css from './TextArea.scss';
+import { TextArea as uuiTextArea, TextAreaProps as UuiTextAreaProps, TextAreaMods as UuiTextAreaMods } from "@epam/uui";
 
-export interface TextAreaMods extends types.EditMode, TextSettings {
-    size?: types.ControlSize | '60';
+export interface TextAreaMods {
+    size?: UuiTextAreaMods["size"];
+    mode?: UuiTextAreaMods["mode"];
 }
 
-export function applyTextAreaMods(mods: TextAreaMods) {
+export function applyTextAreaMods() {
     return [
-        colorStyle.colorSky,
-        css.root,
-        css['size-' + (mods.size || '36')],
-        css['mode-' + (mods.mode || 'form')],
+        'uui-theme-loveship',
     ];
 }
 
-export const TextArea = withMods<TextAreaProps, TextAreaMods>(
+export const TextArea = withMods<UuiTextAreaProps, TextAreaMods>(
     uuiTextArea,
     applyTextAreaMods,
-    (props) => ({
-        inputCx: getTextClasses({
-            size: props.size || '36',
-            lineHeight: props.lineHeight,
-            fontSize: props.fontSize,
-        }, true),
-    }),
 );

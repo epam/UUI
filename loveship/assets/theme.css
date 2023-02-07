@@ -341,7 +341,7 @@
     --uui-checkbox-label-disabled: var(--uui-control-label-disabled);
     --uui-checkbox-border-radius: var(--uui-border-radius);
 
-/*  tag-vars    */
+    /*  tag-vars    */
     --uui-tag-bg: var(--night300);
     --uui-tag-bg-hover: var(--night400);
     --uui-tag-caption: var(--uui-text-primary);
@@ -351,6 +351,20 @@
     --uui-tag-count: var(--uui-text-secondary);
     --uui-tag-label: var(--uui-text-secondary);
     --uui-tag-border-radius: 30px;
+
+    /*  text-area-vars  */
+    --uui-text-area-bg: var(--uui-control-bg);
+    --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-text-area-border: var(--uui-control-border);
+    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
+    --uui-text-area-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-text-area-border-active: var(--uui-control-border-checked);
+    --uui-text-area-border-error: var(--uui-negative);
+    --uui-text-area-placeholder: var(--uui-control-placeholder);
+    --uui-text-area-text: var(--uui-control-text);
+    --uui-text-area-text-disabled: var(--uui-control-text-disabled);
+    --uui-text-area-icon: var(--uui-icon);
+    --uui-text-area-border-radius: var(--uui-border-radius);
 }
 
 .accordion-vars {
@@ -928,21 +942,6 @@
     --uui-search-input-border-radius: var(--uui-border-radius);
 }
 
-.text-area-vars {
-    --uui-text-area-bg: var(--uui-control-bg);
-    --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-text-area-border: var(--uui-control-border);
-    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
-    --uui-text-area-border-hover: var(--uui-control-textinput-border-hover);
-    --uui-text-area-border-active: var(--uui-control-border-checked);
-    --uui-text-area-border-error: var(--uui-negative);
-    --uui-text-area-placeholder: var(--uui-control-placeholder);
-    --uui-text-area-text: var(--uui-control-text);
-    --uui-text-area-text-disabled: var(--uui-control-text-disabled);
-    --uui-text-area-icon: var(--uui-icon);
-    --uui-text-area-border-radius: var(--uui-border-radius);
-}
-
 .footer-vars {
     --uui-footer-bg: var(--night800);
 }
@@ -1001,7 +1000,7 @@
 }
 
 .scroll-bars-vars {
-    --uui-scroll-bars-bg: #CED0DB;
+    --uui-scroll-bars-bg: var(--gray40);
     --uui-scroll-bars-bg-active: #6C6F80;
 }
 

@@ -1,29 +1,19 @@
 import * as React from 'react';
 import { withMods } from '@epam/uui-core';
-import { TextArea as uuiTextArea, TextAreaProps } from '@epam/uui-components';
-import * as types from '../types';
-import css from './TextArea.scss';
+import { TextArea as uuiTextArea, TextAreaProps as UuiTextAreaProps, TextAreaMods as UuiTextAreaMods } from '@epam/uui';
 
-const defaultSize = '36';
-const defaultMode = types.EditMode.FORM;
-
-export interface TextAreaMods extends types.IHasEditMode {
-    size?: types.ControlSize;
+export interface TextAreaMods {
+    size?: UuiTextAreaMods["size"];
+    mode?: UuiTextAreaMods["mode"];
 }
 
-export function applyTextAreaMods(mods: TextAreaMods) {
+export function applyTextAreaMods() {
     return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        css['mode-' + (mods.mode || defaultMode)],
+        'uui-theme-promo',
     ];
 }
 
-export const TextArea = withMods<TextAreaProps, TextAreaMods>(
+export const TextArea = withMods<UuiTextAreaProps, TextAreaMods>(
     uuiTextArea,
     applyTextAreaMods,
-    props => ({
-        autoSize: props.mode === types.EditMode.CELL ? true : props.autoSize,
-        maxLength: props.mode === types.EditMode.CELL ? undefined : props.maxLength,
-    }),
 );

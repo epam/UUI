@@ -324,6 +324,20 @@
     --uui-tag-count: var(--uui-text-secondary);
     --uui-tag-label: var(--uui-text-secondary);
     --uui-tag-border-radius: var(--uui-border-radius);
+
+    /*  text-area-vars  */
+    --uui-text-area-bg: var(--uui-control-bg);
+    --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-text-area-border: var(--uui-control-border);
+    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
+    --uui-text-area-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-text-area-border-active: var(--uui-control-border-checked);
+    --uui-text-area-border-error: var(--uui-negative);
+    --uui-text-area-placeholder: var(--uui-control-placeholder);
+    --uui-text-area-text: var(--uui-control-text);
+    --uui-text-area-text-disabled: var(--uui-control-text-disabled);
+    --uui-text-area-icon: var(--uui-icon);
+    --uui-text-area-border-radius: var(--uui-border-radius);
 }
 
 .tooltip-light {
@@ -803,21 +817,6 @@
     --uui-search-input-icon-clickable-hover: var(--uui-icon-hover);
     --uui-search-input-icon-disabled: var(--uui-icon-disabled);
     --uui-search-input-border-radius: var(--uui-border-radius);
-}
-
-.text-area-vars {
-    --uui-text-area-bg: var(--uui-control-bg);
-    --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-text-area-border: var(--uui-control-border);
-    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
-    --uui-text-area-border-hover: var(--uui-control-textinput-border-hover);
-    --uui-text-area-border-active: var(--uui-control-border-checked);
-    --uui-text-area-border-error: var(--uui-negative);
-    --uui-text-area-placeholder: var(--uui-control-placeholder);
-    --uui-text-area-text: var(--uui-control-text);
-    --uui-text-area-text-disabled: var(--uui-control-text-disabled);
-    --uui-text-area-icon: var(--uui-icon);
-    --uui-text-area-border-radius: var(--uui-border-radius);
 }
 
 .popover-vars {
