@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
@@ -14,8 +14,8 @@ import {
     TEditableProps,
     Toolbar,
     createSoftBreakPlugin,
-    createParagraphPlugin, createExitBreakPlugin,
-    PlatePlugin,
+    createParagraphPlugin,
+    createExitBreakPlugin,
 } from '@udecode/plate';
 
 import {
@@ -64,7 +64,7 @@ export function SlateEditor(props: SlateEditorProps) {
         isReadonly,
         placeholder,
     } = props;
-    const currentId = String(id++);
+    const currentId = String(id);
     const editor = usePlateEditorState();
     const isFocused = isEditorFocused(editor);
 
@@ -79,8 +79,7 @@ export function SlateEditor(props: SlateEditorProps) {
     };
 
     const onChange = (value: any) => {
-        // props?.onValueChange(value);
-        // focusEditor(editor);
+        props?.onValueChange(value);
     };
 
     const renderElement = (props: TRenderElementProps): JSX.Element => {
@@ -89,27 +88,29 @@ export function SlateEditor(props: SlateEditorProps) {
         return <p { ...attributes }>{ children }</p>;
     };
 
-    const renderEditor = () => (
+    const initialValue = useMemo(() => migrateSchema(props.value), []);
+
+    const renderEditor = useCallback(() => (
         <DndProvider backend={ HTML5Backend }>
-                <Plate
-                    onChange={ onChange }
-                    editableProps={ editableProps }
-                    renderElement={ renderElement }
-                    id={ currentId }
-                    plugins={ plugins }
-                    { ...(props?.value ? { initialValue: migrateSchema(props.value) } : {}) }
-                >
-                    <MarkBalloonToolbar />
-                    <Toolbar id={ currentId } style={ {
-                        position: 'sticky',
-                        bottom: 12,
-                        display: 'flex',
-                    } }>
-                        <ToolbarButtons />
-                    </Toolbar>
-                </Plate>
+            <Plate
+                onChange={ onChange }
+                editableProps={ editableProps }
+                renderElement={ renderElement }
+                id={ currentId }
+                plugins={ plugins }
+                initialValue={ initialValue }
+            >
+                <MarkBalloonToolbar />
+                <Toolbar id={ currentId } style={ {
+                    position: 'sticky',
+                    bottom: 12,
+                    display: 'flex',
+                } }>
+                    <ToolbarButtons />
+                </Toolbar>
+            </Plate>
         </DndProvider>
-    );
+    ), [editableProps, currentId, plugins, initialValue]);
 
     return (
         <div
