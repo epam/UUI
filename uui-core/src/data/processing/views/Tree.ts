@@ -1,6 +1,7 @@
-import { BaseListViewProps, DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../types";
+import { DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange, SortingOption } from "../../../types";
 import { LazyListViewProps } from "./LazyListView";
 import { CompositeKeysMap } from './CompositeKeysMap';
+import { getSearchFilter } from "../../querying";
 
 export interface TreeParams<TItem, TId> {
     getId?(item: TItem): TId;
@@ -19,6 +20,21 @@ export interface LoadTreeOptions<TItem, TId, TFilter> extends
 
 export interface TreeNodeInfo {
     count?: number;
+}
+
+interface ApplyFilterOptions<TItem, TId, TFilter> {
+    filter: DataSourceState<TFilter, TId>['filter'];
+    getFilter?: (filter: TFilter) => (item: TItem) => boolean;
+}
+
+interface ApplySearchOptions<TItem, TId, TFilter> {
+    search: DataSourceState<TFilter, TId>['search'];
+    getSearchFields?: (item: TItem) => string[];
+}
+
+interface ApplySortOptions<TItem, TId, TFilter> {
+    sorting: DataSourceState<TFilter, TId>['sorting'];
+    sortBy?(item: TItem, sorting: SortingOption): any;
 }
 
 //     <TItem, TId> {
@@ -70,7 +86,6 @@ export class Tree<TItem, TId> {
             // TBD: restore this optimization if needed. TBD: compare node index to detect when items are moved without changing
             // const isItemsEqual = (this.props.items.length === this.tree.getTotalRecursiveCount())
             //     && this.props.items.every((value, index) => value === this.tree.getById(this.props.getId(value)));
-
             return Tree.blank(params).append(items);
         }
     }
@@ -117,9 +132,9 @@ export class Tree<TItem, TId> {
 
     public getTotalRecursiveCount() {
         let count = 0;
-        for(var [id, info] of this.nodeInfoById) {
+        for (var [id, info] of this.nodeInfoById) {
             if (info.count == null) {
-                 // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
+                // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
                 // return;
             } else {
                 count += info.count;
@@ -252,7 +267,7 @@ export class Tree<TItem, TId> {
 
         const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
 
-        for(let [parentId, ids] of newByParentId) {
+        for (let [parentId, ids] of newByParentId) {
             newNodeInfoById.set(parentId, { count: ids.length });
         }
 
@@ -320,7 +335,7 @@ export class Tree<TItem, TId> {
         }
 
         const result = [];
-        for(var [id, value] of selectedIdsMap) {
+        for (var [id, value] of selectedIdsMap) {
             value && result.push(id);
         }
 
@@ -551,7 +566,7 @@ export class Tree<TItem, TId> {
             }
 
             if (this.params.getParentId) {
-                for(let [id, item] of byId) {
+                for (let [id, item] of byId) {
                     const parentId = this.getParentId(item);
                     if (parentId != null && !byId.has(parentId)) {
                         missingIds.add(parentId);
@@ -600,5 +615,109 @@ export class Tree<TItem, TId> {
 
     private cloneMap<TKey, TValue>(map: IMap<TKey, TValue>) {
         return new (map.constructor as any)(map) as IMap<TKey, TValue>;
+    }
+
+    public filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): Tree<TItem, TId> {
+        const filter = options.getFilter?.(options.filter);
+        return this.applyMatchToTree(filter);
+    }
+
+    public search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): Tree<TItem, TId> {
+        const search = this.buildSearchFilter(options);
+        return this.applyMatchToTree(search);
+    }
+
+    public sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {
+        const sort = this.buildSorter(options);
+        const sortedItems: TItem[] = [];
+        const sortRec = (items: TItem[]) => {
+            sortedItems.push(...sort(items));
+            items.forEach((item) => {
+                const children = this.getChildren(item);
+                sortRec(children);
+            });
+        };
+
+        sortRec(this.getRootItems());
+        return Tree.create({ ...this.params }, sortedItems);
+    }
+
+    private buildSearchFilter<TFilter>({ search, getSearchFields }: ApplySearchOptions<TItem, TId, TFilter>) {
+        if (!search) return null;
+
+        if (!getSearchFields) {
+            console.warn("[Tree] Search value is set, but options.getSearchField is not specified. Nothing to search on.");
+            return null;
+        }
+        const searchFilter = getSearchFilter(search);
+        return (i: TItem) => searchFilter(getSearchFields(i));
+    }
+
+
+    private buildSorter<TFilter>({ sorting, sortBy }: ApplySortOptions<TItem, TId, TFilter>) {
+        const compareScalars = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
+        const comparers: ((a: TItem, b: TItem) => number)[] = [];
+
+        if (sorting) {
+            sorting.forEach(sortingOption => {
+                const sortByFn = sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
+                const sign = sortingOption.direction === 'desc' ? -1 : 1;
+                comparers.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
+            });
+        }
+
+        return (items: TItem[]) => {
+            if (comparers.length == 0) {
+                return items;
+            }
+
+            const indexes = new Map<TItem, number>();
+            items.forEach((item, index) => indexes.set(item, index));
+
+            const comparer = (a: TItem, b: TItem) => {
+                for (let n = 0; n < comparers.length; n++) {
+                    const comparer = comparers[n];
+                    const result = comparer(a, b);
+                    if (result != 0) {
+                        return result;
+                    }
+                }
+
+                // to make sort stable, compare items indices if other comparers return 0 (equal)
+                return indexes.get(a) - indexes.get(b);
+            };
+
+            items = [...items];
+            items.sort(comparer);
+            return items;
+        };
+    }
+
+    private applyMatchToTree(isMatchingFn: undefined | ((item: TItem) => boolean)) {
+        if (!isMatchingFn) return this;
+
+        const matchedItems: TItem[] = [];
+        const applyMatchRec = (items: TItem[]) => {
+            let isSomeMatching = false;
+            items.forEach((item) => {
+                const isItemMatching = isMatchingFn?.(item) ?? true;
+                const isSomeChildMatching = applyMatchRec(this.getChildren(item));
+                const isMatching = isItemMatching || isSomeChildMatching;
+                if (isMatching) {
+                    matchedItems.push(item);
+                }
+
+                if (!isSomeMatching) {
+                    isSomeMatching = isMatching;
+                }
+
+            });
+
+            return isSomeMatching;
+        };
+
+        applyMatchRec(this.getRootItems());
+
+        return Tree.create({ ...this.params }, matchedItems);
     }
 }
