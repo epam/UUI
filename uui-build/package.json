@@ -2,7 +2,7 @@
   "name": "@epam/uui-build",
   "version": "4.10.0",
   "bin": {
-    "uui-build": "./bin/cli.js"
+    "epam-uui-build": "./bin/cli.js"
   },
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
