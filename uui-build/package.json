@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "4.10.0-rc.5",
+  "version": "4.10.0",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api": "ts-node getComponentsPropsSet.ts",
@@ -11,8 +11,8 @@
     "@lerna/project": "6.4.0",
     "@rollup/plugin-commonjs": "24.0.0",
     "@rollup/plugin-node-resolve": "15.0.1",
-    "@rollup/plugin-typescript": "10.0.1",
     "@rollup/plugin-replace": "5.0.2",
+    "@rollup/plugin-typescript": "11.0.0",
     "@svgr/rollup": "6.5.1",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
@@ -34,7 +34,7 @@
     "react-app-polyfill": "3.0.0",
     "react-test-renderer": "18.2.0",
     "replace-in-files": "^2.0.3",
-    "rollup": "3.7.5",
+    "rollup": "3.12.1",
     "rollup-plugin-postcss-modules": "2.1.0",
     "rollup-plugin-visualizer": "5.8.3",
     "sass": "1.57.0",

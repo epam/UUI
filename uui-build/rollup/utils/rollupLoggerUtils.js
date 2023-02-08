@@ -1,3 +1,6 @@
+const os = require('os');
+const {logger} = require("../../utils/loggerUtils");
+
 module.exports = { onwarn }
 
 /**
@@ -12,7 +15,15 @@ function onwarn(message) {
             break;
         }
         default: {
-            console.warn(message.message)
+            if (message.plugin === 'typescript' && message.code === 'PLUGIN_WARNING') {
+                // we should really print it as an error
+                const { loc } = message;
+                const locFormatted = loc ? `at ${loc.file}:${loc.line}:${loc.column}` : '';
+                const msg = `${message.message}${os.EOL}${locFormatted}`
+                logger.error(msg);
+            } else {
+                console.warn(message.message, message)
+            }
             break;
         }
     }

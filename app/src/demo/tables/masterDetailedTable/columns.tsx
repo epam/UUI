@@ -13,6 +13,8 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 200,
         fix: 'left',
         isSortable: true,
+        justifyContent: 'space-between',
+        textAlign: 'right',
         isAlwaysVisible: true,
     },
     {

@@ -1,31 +1,19 @@
-# 4.x.x - DRAFT
+# 4.10.0 - 06.02.2023
+
 **What's New**
-* [Tooltip]: Tooltip component is implemented on Dropdown basis.
-    - Tooltp received additional props:
-        - `closeDelay`
-        - `closeOnMouseLeave`
-        - `closeBodyOnTogglerHidden`
-        - `openDelay`
-        - `value`
-        - `onValueChange`
-* [Tooltip][BreakingChange]: Removed props `isVisible` and `trigger`. Tooltip now always opens on `hover`. If you need to programmatically control the opening, use the `value` prop. `DropdownState`, `DropdownBodyProps`, `DropdownPlacement`, `DropdownProps` were moved to `'@epam/uui-core'` library.
-
-
-# 4.10.0-rc.5 - 28.01.2023
-**What's New**
-* [useTableState]: adding viewState into DataTableState and store it into presets
-* [TimePicker]: change IEditable typing to accept null
-* [PresetPanel]: fix copy link action on not active preset
-
-
-# 4.10.0-rc.1 - 16.01.2023
-**What's New**
-* React 18 support
+* React v18 support. You can still use React v17 or lower, no changes required from your side.
+* [Tooltip]: Tooltip component implemented based on Dropdown.
+  - In accordance with this change, Tooltip received some Dropdown features, such as: `closeOnMouseLeave: 'boundary'`, `closeDelay` and `openDelay`
+  - [BreakingChange]: Removed prop `trigger`. Now tooltip always opens on hover, use dropdown for cases when you need to open body by click.
+  - [BreakingChange]: Removed prop `isVisible`. If you need to programmatically control the opening, use the value/onValueChange props.
 * [PresetsPanel]: store sorting into preset
 * [useTableState]: store sorting into url
 * [FlexRow]: added Flexbox properties `columnGap` and `rowGap` to setting the spacing between children and rows in case of a FlexRow wrap
 * [ColumnsConfigurationModal]: added functionality to deny applying the configuration without selected columns
 * [Dropdown]: added `openDelay` and `closeDelay` prop, for dropdown which opens by hover
+* [useTableState]: adding viewState into DataTableState and store it into presets
+* [TimePicker]: change IEditable typing to accept null
+* [PresetPanel]: fix copy link action on non-active preset
 
 
 **What’s Fixed**
@@ -38,9 +26,9 @@
 * [Rating]: fixed loveship `Rating` color for selected stars
 * [useTableState]: now correctly work with react-router baseUrl
 * [RangeDatePicker]: move focus from 'to' value to 'from' value, in case when 'from' empty
-* [RangeDatePicker]: use `props.format` value in priority over other acceptable formats
+* [DatePicker, RangeDatePicker]: use `props.format` value in priority over other acceptable formats
 * [useForm]: fix close callback to work properly when lock doesn't exist
-
+* [PresetPanel]: set minHeight: 60px for presets container
 
 # 4.9.2 - 14.12.2022
 
