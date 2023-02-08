@@ -401,6 +401,20 @@
     --uui-tag-label: var(--uui-text-secondary);
     --uui-tag-border-radius: 30px;
 
+    /*  TextArea vars  */
+    --uui-text-area-bg: var(--uui-control-bg);
+    --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-text-area-border: var(--uui-control-border);
+    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
+    --uui-text-area-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-text-area-border-active: var(--uui-control-border-checked);
+    --uui-text-area-border-error: var(--uui-negative);
+    --uui-text-area-placeholder: var(--uui-control-placeholder);
+    --uui-text-area-text: var(--uui-control-text);
+    --uui-text-area-text-disabled: var(--uui-control-text-disabled);
+    --uui-text-area-icon: var(--uui-icon);
+    --uui-text-area-border-radius: var(--uui-border-radius);
+
     /* DropMarker vars */
     --uui-drop-marker: var(--uui-primary);
     --uui-drop-marker-blocked: var(--uui-error);
@@ -1122,21 +1136,6 @@
     --uui-search-input-border-radius: var(--uui-border-radius);
 }
 
-.uui-theme-loveship.text-area-vars {
-    --uui-text-area-bg: var(--uui-control-bg);
-    --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-text-area-border: var(--uui-control-border);
-    --uui-text-area-border-disabled: var(--uui-control-border-disabled);
-    --uui-text-area-border-hover: var(--uui-control-textinput-border-hover);
-    --uui-text-area-border-active: var(--uui-control-border-checked);
-    --uui-text-area-border-error: var(--uui-negative);
-    --uui-text-area-placeholder: var(--uui-control-placeholder);
-    --uui-text-area-text: var(--uui-control-text);
-    --uui-text-area-text-disabled: var(--uui-control-text-disabled);
-    --uui-text-area-icon: var(--uui-icon);
-    --uui-text-area-border-radius: var(--uui-border-radius);
-}
-
 .uui-theme-loveship.footer-vars {
     --uui-footer-bg: var(--night800);
 }
@@ -1195,7 +1194,7 @@
 }
 
 .uui-theme-loveship.scroll-bars-vars {
-    --uui-scroll-bars-bg: #CED0DB;
+    --uui-scroll-bars-bg: var(--gray40);
     --uui-scroll-bars-bg-active: #6C6F80;
 }
 

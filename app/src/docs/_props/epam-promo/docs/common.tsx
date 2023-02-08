@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { IHasIcon, Icon } from '@epam/uui-core';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
-import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, allEpamPrimaryColors, IHasEditMode } from '@epam/promo';
+import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, allEpamPrimaryColors } from '@epam/promo';
 import { getIconList } from '../../../../documents/iconListHelpers';
 import { IconPicker } from './editors';
 import { colors } from "./helpers/colorMap";
+import { IHasEditMode } from "@epam/uui";
 
 export const sizeDoc = new DocBuilder<SizeMod>({ name: 'Size' })
     .prop('size', { examples: allSizes, defaultValue: '36' });
@@ -40,6 +41,6 @@ export const iconOptionsDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
     .prop('onIconClick', { examples: ctx => [ctx.getCallback('onIconClick')] });
 
 export const IHasEditModeDoc = new DocBuilder<IHasEditMode>({ name: 'mode' })
-    .prop('mode', { examples: ['form', 'cell'], defaultValue: 'form' });
+    .prop('mode', { examples: ['form', 'inline', 'cell'], defaultValue: 'form' });
 
 export * from '@epam/uui-docs';
