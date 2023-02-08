@@ -33,10 +33,11 @@ export interface SizeMod {
 }
 
 export interface IHasEditMode {
-    mode?: 'form' | 'cell';
+    mode?: 'form' | 'cell' | 'inline';
 }
 
 export enum EditMode {
     FORM = 'form',
     CELL = 'cell',
+    INLINE = 'inline',
 }
