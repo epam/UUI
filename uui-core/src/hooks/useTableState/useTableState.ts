@@ -115,12 +115,12 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
             sorting: urlParams.sorting,
             viewState: urlParams.viewState,
         });
-    }, [location.search]);
+    }, [JSON.stringify(context.uuiRouter.getCurrentLink().query)]);
 
-    const activePresetId = useMemo(() => {
+    const getActivePresetId = () => {
         const presetId = context.uuiRouter.getCurrentLink().query?.presetId;
         return presetId ? +presetId : undefined;
-    }, [location.search]);
+    };
 
     const choosePreset = useCallback((preset: ITablePreset<TFilter, TViewState>) => {
         setTableState({
@@ -219,7 +219,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
         setFiltersConfig,
         setFilter,
         presets,
-        activePresetId,
+        activePresetId: getActivePresetId(),
         choosePreset,
         createNewPreset,
         hasPresetChanged,

@@ -24,3 +24,5 @@ export * from './mobile';
 export * from './ssr';
 export * from './batch';
 export * from './forwardRef';
+export * from './queryToSearch';
+export * from './searchToQuery';
