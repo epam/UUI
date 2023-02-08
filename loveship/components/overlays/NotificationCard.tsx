@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { INotification, Icon, IHasChildren, IHasCX, IHasRawProps, useUuiContext } from '@epam/uui-core';
+import { INotification, Icon, IHasChildren, IHasCX, IHasRawProps, useUuiContext, useLayoutEffectSafeForSsr } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton } from '../buttons';
 import { EpamColor, LinkButton } from '..';
@@ -32,7 +32,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
 
     React.useImperativeHandle(ref, () => notificationCardNode.current, [notificationCardNode.current]);
 
-    React.useLayoutEffect(() => {
+    useLayoutEffectSafeForSsr(() => {
         notificationCardNode.current?.addEventListener('mouseenter', props.clearTimer);
         notificationCardNode.current?.addEventListener('mouseleave', props.refreshTimer);
         return () => {
