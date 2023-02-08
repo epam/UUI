@@ -1,6 +1,9 @@
 {
   "name": "@epam/uui-build",
   "version": "4.10.0",
+  "bin": {
+    "uui-build": "./bin/cli.js"
+  },
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api": "ts-node getComponentsPropsSet.ts",
@@ -46,7 +49,8 @@
     "ts-morph": "17.0.1",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
-    "tslint-react": "^3.6.0"
+    "tslint-react": "^3.6.0",
+    "cross-spawn": "7.0.3"
   },
   "devDependencies": {
     "typescript": "4.9.3"

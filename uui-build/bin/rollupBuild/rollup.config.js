@@ -1,7 +1,7 @@
 /**
  * Creates shared rollup config with default settings.
  */
-const { createRollupConfigForModule } = require('../rollup/rollup.config');
+const { createRollupConfigForModule } = require('../../rollup/rollup.config');
 
 module.exports = {
     default: async () => {
