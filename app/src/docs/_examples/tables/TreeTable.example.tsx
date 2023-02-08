@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Location } from '@epam/uui-docs';
-import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui';
+import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { Text, LinkButton, DataTable, DataTableMods, Panel } from '@epam/promo';
 import css from './TablesExamples.scss';
 

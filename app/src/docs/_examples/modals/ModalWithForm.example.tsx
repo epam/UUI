@@ -1,5 +1,5 @@
 import React from 'react';
-import { IModal, INotification, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui';
+import { IModal, INotification, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { Country } from '@epam/uui-docs';
 import {
     ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput,

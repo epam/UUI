@@ -1,9 +1,10 @@
-import React from "react";
-import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, TextArea, DataPickerRow, PickerItem } from '@epam/promo';
-import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
-import { RowKebabButton } from "./RowKebabButton";
 import { Task, ColumnsProps } from "./types";
 import { resources } from './demoData';
+import React from "react";
+import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, DataPickerRow, PickerItem } from '@epam/uui';
+import { TextArea } from '@epam/promo';
+import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
+import { RowKebabButton } from "./RowKebabButton";
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
 

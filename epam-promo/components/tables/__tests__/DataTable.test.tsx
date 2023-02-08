@@ -18,7 +18,7 @@ describe('DataTable', () => {
                 getRows={ () => [] }
                 value={ {} }
                 onValueChange={ jest.fn }
-            />
+            />,
         );
 
         expect(tree).toMatchSnapshot();

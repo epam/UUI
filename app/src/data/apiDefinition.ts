@@ -1,5 +1,5 @@
 import { getDemoApi } from "@epam/uui-docs";
-import type { IProcessRequest, CommonContexts, UuiContexts, ITablePreset } from "@epam/uui";
+import type { IProcessRequest, CommonContexts, UuiContexts, ITablePreset } from "@epam/uui-core";
 
 export const delay = (ms: number = 1): Promise<void> => new Promise(resolve => {
     setTimeout(resolve, ms);

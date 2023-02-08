@@ -53,8 +53,8 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 { props.renderNoResultsBlock ? props.renderNoResultsBlock?.() :
                     <>
                         <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon } />
-                        <Text cx={ css.noResultsTitle } fontSize='24' lineHeight='30' color='gray80' font='sans-semibold'>{ i18n.dataTable.title }</Text>
-                        <Text fontSize='16' lineHeight='24' font='sans' color='gray80'>{ i18n.dataTable.message }</Text>
+                        <Text cx={ css.noResultsTitle } fontSize='24' lineHeight='30' color='gray80' font='sans-semibold'>{ i18n.tables.noResultsBlock.title }</Text>
+                        <Text fontSize='16' lineHeight='24' font='sans' color='gray80'>{ i18n.tables.noResultsBlock.message }</Text>
                     </>
                 }
             </div>
@@ -89,7 +89,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     onValueChange={ props.onValueChange }
                 />
                 <div className={ cx(uuiScrollShadows.top, {
-                    [uuiScrollShadows.topVisible]: scrollShadows.vertical,
+                    [uuiScrollShadows.topVisible]: scrollShadows.verticalTop,
                 }) } />
             </div>
             { props.exactRowsCount !== 0 ? (
