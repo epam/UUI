@@ -16,8 +16,10 @@
     "@epam/uui-components": "4.10.0-rc.5",
     "@epam/uui-core": "4.10.0-rc.5",
     "classnames": "2.2.6",
+    "dayjs": "1.10.7",
+    "lodash.sortby": "4.7.0",
     "react-focus-lock": "2.9.2",
-    "dayjs": "1.10.7"
+    "react-popper": "2.3.0"
   },
   "devDependencies": {
     "react-test-renderer": "18.2.0",

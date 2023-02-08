@@ -10,7 +10,7 @@
 
 .search-wrapper ~ .body {
     &:not(.editMode-modal) {
-        :global(.-scrolled-vertical) {
+        :global(.-scrolled-top) {
             border-top: 1px solid var(--gray40);
         }
     }

@@ -3,7 +3,7 @@ import { IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawPro
     ICanBeInvalid, ICanFocus, IDropdownBodyProps } from './props';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
-import { DataRowProps, DataSourceListProps, DataSourceState, IDataSource } from './dataSources';
+import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data';
 import * as CSS from 'csstype';
 import { TooltipCoreProps } from './components';
@@ -207,12 +207,6 @@ export type FiltersConfig<TFilter = any> = {
 export type IFilterConfig = {
     isVisible: boolean;
     order?: string;
-};
-
-export type DataTableProps<TItem, TId> = DataSourceListProps & IEditable<DataSourceState> & {
-    getRows(from: number, count: number): DataRowProps<TItem, TId>[];
-    columns?: DataColumnProps<TItem, TId>[];
-    renderRow?(props: DataRowProps<TItem, TId>): React.ReactNode;
 };
 
 export type DataTableConfigModalParams = IEditable<DataSourceState> & {

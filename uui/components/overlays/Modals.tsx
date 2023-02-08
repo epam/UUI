@@ -5,7 +5,6 @@ import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
-import '../../assets/styles/variables/overlays/modals.scss';
 import css from './Modals.scss';
 
 export interface ModalBlockerMods {
@@ -13,7 +12,6 @@ export interface ModalBlockerMods {
 }
 
 export const ModalBlocker = withMods<ModalBlockerProps, ModalBlockerMods>(uuiModalBlocker, mods => [
-    'modals-vars',
     css.modalBlocker,
     mods.overlay && css['blocker-overlay'],
 ]);
@@ -25,7 +23,7 @@ export interface ModalWindowMods {
 
 export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(
     uuiModalWindow,
-    () => ['modals-vars', css.modal],
+    () => [css.modal],
     props => (
     { rawProps: {
         style: {
@@ -44,8 +42,8 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
             <FlexRow
                 padding={ this.props.padding || '24' }
                 vPadding='12'
-                borderBottom
-                cx={ ['modals-vars', css.modalHeader, this.props.cx] }
+                borderBottom={ this.props.borderBottom }
+                cx={ [css.modalHeader, this.props.cx] }
                 spacing='12'
                 rawProps={ this.props.rawProps }
             >
@@ -65,7 +63,7 @@ export class ModalFooter extends React.Component<ModalFooterProps> {
         return (
             <FlexRow
                 spacing={ this.props.spacing || '12' }
-                cx={ ['modals-vars', css.modalFooter, this.props.borderTop && css.borderTop, this.props.cx] }
+                cx={ [css.modalFooter, this.props.borderTop && css.borderTop, this.props.cx] }
                 padding={ this.props.padding || '24' }
                 vPadding={ this.props.vPadding || '24' }
                 rawProps={ this.props.rawProps }

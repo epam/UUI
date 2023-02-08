@@ -1,5 +1,6 @@
 export * from './buttons';
 export * from './datePickers';
+export * from './dnd';
 export * from './inputs';
 export * from './layout';
 export * from './overlays';
