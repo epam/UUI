@@ -48,7 +48,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-18 v-padding-12 uui-theme-promo container"
         >
           Test
         </div>
@@ -69,7 +69,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -256,7 +256,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-18 v-padding-12 uui-theme-promo container"
         >
           Test
         </div>
@@ -277,7 +277,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo"
             onClick={[Function]}
             tabIndex={0}
             type="button"

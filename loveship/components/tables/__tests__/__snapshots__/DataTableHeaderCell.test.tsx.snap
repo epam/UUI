@@ -24,7 +24,7 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
       className="iconCell uui-table-header-caption"
     >
       <div
-        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
+        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship caption font-size-14 container"
       >
         Test
       </div>
