@@ -100,7 +100,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
             for (let n = 0; n < items.length; n++) {
                 const item = items[n];
-                const childrenItems = this.tree.getChildren(item);
+                const childrenItems = tree.getChildren(item);
                 const rowProps = this.getRowProps(item, currentIndex, parents);
                 rowProps.isLastChild = n === (items.length - 1);
                 let children = empty;
