@@ -8,6 +8,7 @@
     --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
     --font-mono: 'Roboto Mono', Arial, sans-serif;
     --font-redacted: 'Redacted';
+    --font-light: 'Sans Light', Arial, sans-serif;
 
     --white: #FFFFFF;
 
@@ -1137,24 +1138,55 @@
     --uui-modals-bg: var(--uui-surface);
 }
 
-.uui-theme-loveship.text-color-brand {
+.uui-theme-loveship.uui-text-brand,
+.uui-theme-loveship.uui-text-night900 {
     --uui-text: var(--uui-text-brand);
 }
 
-.uui-theme-loveship.text-color-primary {
+.uui-theme-loveship.uui-text-primary,
+.uui-theme-loveship.uui-text-night800 {
     --uui-text: var(--uui-text-primary);
 }
 
-.uui-theme-loveship.text-color-secondary {
+.uui-theme-loveship.uui-text-night700 {
+    --uui-text: var(--night700);
+}
+
+.uui-theme-loveship.uui-text-secondary,
+.uui-theme-loveship.uui-text-night600 {
     --uui-text: var(--uui-text-secondary);
 }
 
-.uui-theme-loveship.text-color-disabled {
+.uui-theme-loveship.uui-text-disabled,
+.uui-theme-loveship.uui-text-night500 {
     --uui-text: var(--uui-text-disabled);
 }
 
-.uui-theme-loveship.text-color-contrast {
+.uui-theme-loveship.uui-text-night400 {
+    --uui-text: var(--night400);
+}
+
+.uui-theme-loveship.uui-text-night300 {
+    --uui-text: var(--night300);
+}
+
+.uui-theme-loveship.uui-text-contrast,
+.uui-theme-loveship.uui-text-night50 {
     --uui-text: var(--uui-text-contrast);
+}
+
+.uui-theme-promo.uui-font-regular,
+.uui-theme-loveship.uui-font-sans {
+    --uui-font: var(--font-regular);
+}
+
+.uui-theme-promo.uui-font-semibold,
+.uui-theme-loveship.uui-font-sans-semibold {
+    --uui-font: var(--font-semibold);
+}
+
+.uui-theme-loveship.uui-font-sans-light {
+    --uui-font: var(--font-light);
 }
 
 .uui-theme-loveship.text-placeholder-vars {

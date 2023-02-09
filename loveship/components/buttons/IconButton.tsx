@@ -10,13 +10,18 @@ export interface IconButtonMods {
     color?: IconColor;
 }
 
-function applyIconButtonMods(mods: Omit<UuiIconButtonProps, 'color'> & IconButtonMods) {
+function applyIconButtonMods() {
     return [
         'uui-theme-loveship',
-        [`icon-button-color-${ mods.color || 'night600' }`],
     ];
 }
 
 export type IconButtonProps = Omit<UuiIconButtonProps, 'color'> & IconButtonMods;
 
-export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButtonMods>(uuiIconButton, applyIconButtonMods);
+export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButtonMods>(
+    uuiIconButton,
+    applyIconButtonMods,
+    (props) => ({
+        color: props.color ?? 'night600',
+    }) as IconButtonProps,
+);

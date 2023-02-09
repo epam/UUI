@@ -11,13 +11,18 @@ export interface IconButtonMods {
     color?: IconColor;
 }
 
-function applyIconButtonMods(mods: Omit<UuiIconButtonProps, 'color'> & IconButtonMods) {
+function applyIconButtonMods() {
     return [
         'uui-theme-promo',
-        [`icon-button-color-${ mods.color || "gray60" }`],
     ];
 }
 
 export type IconButtonProps = Omit<UuiIconButtonProps, 'color'> & IconButtonMods;
 
-export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButtonMods>(uuiIconButton, applyIconButtonMods);
+export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButtonMods>(
+    uuiIconButton,
+    applyIconButtonMods,
+    (props) => ({
+        color: props.color ?? 'gray60',
+    }) as IconButtonProps,
+);

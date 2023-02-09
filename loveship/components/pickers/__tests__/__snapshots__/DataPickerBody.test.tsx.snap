@@ -25,7 +25,7 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
     }
   >
     <div
-      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+      className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
     >
       No Results found
     </div>
@@ -58,7 +58,7 @@ exports[`DataPickerBody should be rendered correctly with empty rows 1`] = `
     }
   >
     <div
-      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+      className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
     >
       No Results found
     </div>

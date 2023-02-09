@@ -56,7 +56,7 @@ exports[`Alert should be rendered correctly 2`] = `
       </div>
     </div>
     <button
-      className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo icon-button-color-gray60 closeIcon"
+      className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo closeIcon"
       onClick={[Function]}
       tabIndex={0}
       type="button"

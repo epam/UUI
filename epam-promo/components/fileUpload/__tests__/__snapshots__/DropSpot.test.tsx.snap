@@ -29,7 +29,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
         />
       </div>
       <div
-        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-0 container"
+        className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-14 v-padding-0 uui-theme-promo container"
       >
          
         Drop files to attach or
@@ -43,7 +43,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
           type="file"
         />
         <div
-          className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-0 container"
+          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-14 v-padding-0 uui-theme-promo container"
         >
           <a
             className="container uui-anchor uui-enabled -clickable link"
@@ -57,7 +57,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-0 container"
+        className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-14 v-padding-0 uui-theme-promo container"
       >
         your local files
       </div>
@@ -95,7 +95,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         />
       </div>
       <div
-        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-0 container"
+        className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-14 v-padding-0 uui-theme-promo container"
       >
          
         Drop files to attach or
@@ -109,7 +109,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
           type="file"
         />
         <div
-          className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-0 container"
+          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-14 v-padding-0 uui-theme-promo container"
         >
           <a
             className="container uui-anchor uui-enabled -clickable link"
@@ -123,13 +123,13 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         </div>
       </div>
       <div
-        className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-0 container"
+        className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-14 v-padding-0 uui-theme-promo container"
       >
         your local files
       </div>
     </div>
     <div
-      className="root font-sans text-color-gray60 line-height-24 font-size-14 v-padding-0 container"
+      className="uui-font-sans uui-text-gray60 root line-height-24 font-size-14 v-padding-0 uui-theme-promo container"
     >
       Test info
     </div>
