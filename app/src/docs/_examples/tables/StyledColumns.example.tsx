@@ -11,7 +11,9 @@ export default function StyledColumnsExample() {
         items: demoData.featureClasses,
     }, []);
 
-    const view = dataSource.useView(value, onValueChange, {});
+    const view = dataSource.useView(value, onValueChange, {
+        getRowOptions: item => ({ checkbox: { isVisible: true } }),
+    });
 
     const productColumns: DataColumnProps<FeatureClass>[] = useMemo(() => [
         {
@@ -20,13 +22,16 @@ export default function StyledColumnsExample() {
             render: item => <Text color='gray80'>{ item.id }</Text>,
             isSortable: true,
             isAlwaysVisible: true,
-            width: 100,
+            width: 200,
+            alignSelf: 'center',
+            textAlign: 'right',
         }, {
             key: 'name',
             caption: 'Name',
             render: item => <Text color='gray80'>{ item.name }</Text>,
             isSortable: true,
-            width: 300,
+            width: 200,
+            alignSelf: 'center',
         }, {
             key: 'description',
             caption: 'Description',
@@ -34,6 +39,7 @@ export default function StyledColumnsExample() {
             grow: 1,
             minWidth: 150,
             width: 300,
+            justifyContent: 'center',
         },
     ], []);
 

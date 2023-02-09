@@ -257,6 +257,25 @@
                 ]
               }
             ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Columns content styling ",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
