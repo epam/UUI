@@ -3,8 +3,7 @@ import { IHasIcon, Icon } from '@epam/uui-core';
 import { ColorPicker, IconPicker } from './index';
 import { DocBuilder } from '@epam/uui-docs';
 import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, commonControlColors } from '@epam/loveship';
-import { IHasEditMode } from '@epam/uui';
-import { TextMods } from '@epam/loveship';
+import { TextMods, IHasEditMode } from '@epam/uui';
 import { getIconList } from '../../../../documents/iconListHelpers';
 import { colors } from './helpers/colorMap';
 

@@ -16,7 +16,7 @@ const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: 
             },
         ], type: 'string'})
     .prop('color', {
-        examples: ['gray5', 'gray60', 'gray80', 'gray90'],
+        examples: ['gray5', 'gray50', 'gray60', 'gray80', 'gray90'],
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
     })
     .withContexts(DefaultContext, ResizableContext, FormContext);

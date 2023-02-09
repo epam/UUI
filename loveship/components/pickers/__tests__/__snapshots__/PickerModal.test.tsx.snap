@@ -48,7 +48,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-sans-semibold uui-text-night700 root line-height-24 font-size-18 v-padding-12 uui-theme-loveship container"
         >
           Please select
         </div>
@@ -69,7 +69,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-loveship icon-button-color-night600"
+            className="container uui-button-box uui-enabled -clickable icon-button-night600 root uui-theme-loveship"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -225,7 +225,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
                       >
                         Ken Sánchez
                       </div>
@@ -267,7 +267,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
                       >
                         Terri Duffy
                       </div>
@@ -309,7 +309,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
                       >
                         Roberto Tamburello
                       </div>
@@ -351,7 +351,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
                       >
                         Rob Walters
                       </div>
@@ -393,7 +393,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
                       >
                         Gail Erickson
                       </div>
@@ -435,7 +435,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
                       >
                         Jossef Goldberg
                       </div>
@@ -477,7 +477,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
                       >
                         Dylan Miller
                       </div>
@@ -519,7 +519,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
                       >
                         Diane Margheim
                       </div>
@@ -561,7 +561,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
                       >
                         Gigi Matthew
                       </div>
@@ -603,7 +603,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       className="renderItem"
                     >
                       <div
-                        className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+                        className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
                       >
                         Michael Raheem
                       </div>

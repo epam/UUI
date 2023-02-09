@@ -8,6 +8,7 @@
     --font-promo: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
     --font-mono: 'Roboto Mono', Arial, sans-serif;
     --font-redacted: 'Redacted';
+    --font-light: 'Sans Light', Arial, sans-serif;
 
     --gray5: #FAFAFC;
     --gray10: #F5F6FA;
@@ -952,24 +953,54 @@
     --uui-dropdown-container-scrollbar-thumb: #6C6F80;
 }
 
-.uui-theme-promo.text-color-brand {
+.uui-theme-promo.uui-text-brand,
+.uui-theme-promo.uui-text-gray90 {
     --uui-text: var(--uui-text-brand);
 }
 
-.uui-theme-promo.text-color-primary {
+.uui-theme-promo.uui-text-primary,
+.uui-theme-promo.uui-text-gray80 {
     --uui-text: var(--uui-text-primary);
 }
 
-.uui-theme-promo.text-color-secondary {
+.uui-theme-promo.uui-text-secondary,
+.uui-theme-promo.uui-text-gray60 {
     --uui-text: var(--uui-text-secondary);
 }
 
-.uui-theme-promo.text-color-disabled {
+.uui-theme-promo.uui-text-disabled,
+.uui-theme-promo.uui-text-gray50 {
     --uui-text: var(--uui-text-disabled);
 }
 
-.uui-theme-promo.text-color-contrast {
+.uui-theme-promo.uui-text-contrast,
+.uui-theme-promo.uui-text-gray5 {
     --uui-text: var(--uui-text-contrast);
+}
+
+.uui-theme-promo.uui-font-regular,
+.uui-theme-promo.uui-font-sans{
+    --uui-font: var(--font-regular);
+}
+
+.uui-theme-promo.uui-font-semibold,
+.uui-theme-promo.uui-font-sans-semibold {
+    --uui-font: var(--font-semibold);
+}
+
+.uui-theme-promo.uui-font-italic,
+.uui-theme-promo.uui-font-sans-italic {
+    --uui-font: var(--font-italic);
+}
+
+.uui-theme-promo.uui-font-primary,
+.uui-theme-promo.uui-font-museo-sans {
+    --uui-font: var(--font-primary);
+}
+
+.uui-theme-promo.uui-font-promo,
+.uui-theme-promo.uui-font-museo-slab {
+    --uui-font: var(--font-promo);
 }
 
 .uui-theme-promo.text-placeholder-vars {

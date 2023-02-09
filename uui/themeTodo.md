@@ -26,6 +26,8 @@
      2) case when we need to add some specific for skin typing
      3) we removed inherited IHasCX, because DatePicker no need cx props, but it has inputCx and BodyCx, so we need to remade it
 - [ ] LabeledInput: remove color prop from Loveship & Promo
+- [ ] Do we need semantic color class in components or only current theme color class?
+- [ ] подумать нужен ли нам Text компонент в UUI
 
 # TODO for UUI package
 ### Panel
