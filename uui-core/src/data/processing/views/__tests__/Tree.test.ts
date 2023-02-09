@@ -230,4 +230,17 @@ describe('Tree', () => {
             expect(searchTree.getChildrenByParentId(300).map(n => n.id)).toEqual([310, 320, 330]);
         });
     });
+
+    describe('filter', () => {
+        it('should return filtered tree', () => {
+            const searchTree = testTree.filter({
+                filter: ({ value }: TestItem) => value > 3,
+                getFilter: (filter) => (item) => filter(item),
+            });
+
+            expect(searchTree.getRootIds()).toEqual([100, 200]);
+            expect(searchTree.getChildrenByParentId(100).map(n => n.id)).toEqual([120]);
+            expect(searchTree.getChildrenByParentId(120).map(n => n.id)).toEqual([122]);
+        });
+    });
 });
