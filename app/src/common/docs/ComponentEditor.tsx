@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArrayDataSource, cx, IHasCX, INotification } from "@epam/uui";
+import { ArrayDataSource, cx, IHasCX, INotification } from "@epam/uui-core";
 import { PropDoc, PropSamplesCreationContext, IComponentDocs, PropExample, DemoContext } from '@epam/uui-docs';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel,
     ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';

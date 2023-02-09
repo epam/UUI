@@ -2,7 +2,6 @@ import { IconContainer as uuiIconContainer, ControlIconProps } from '@epam/uui-c
 import { withMods } from '@epam/uui-core';
 import { IconColor } from '../buttons';
 import css from './IconContainer.scss';
-import '../../assets/styles/variables/layout/iconContainer.scss';
 
 export interface IconContainerMods {
     color?: IconColor;

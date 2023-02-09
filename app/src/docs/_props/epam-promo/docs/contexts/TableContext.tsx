@@ -71,7 +71,7 @@ export const TableContext = (contextProps: DemoComponentProps) => {
             caption: 'Name',
             renderCell: (props) => <DataTableCell
                 { ...props.rowLens.prop('name').toProps() }
-                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props }/> }
+                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props } /> }
                 { ...props }
             />,
             isSortable: true,

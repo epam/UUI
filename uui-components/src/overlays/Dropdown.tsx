@@ -85,7 +85,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     private handleTargetClick = (e: React.SyntheticEvent<HTMLElement>) => {
         if (!this.props.isNotUnfoldable && !(e && isClickableChildClicked(e))) {
-            const currentValue = this.props.value !== undefined ? this.props.value : this.state.opened;
+            const currentValue = this.isOpened();
             const newValue = (this.props.closeOnTargetClick === false) ? true : !currentValue;
 
             if (currentValue !== newValue) {
@@ -108,7 +108,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
         if (this.props.closeOnMouseLeave !== 'boundary') { // For boundary mode we have separate logic on onMouseMove handler
             if (this.props.closeDelay) {
-                this.state.opened && this.setCloseDropdownTimer(this.props.closeDelay);
+                this.isOpened() && this.setCloseDropdownTimer(this.props.closeDelay);
             } else {
                 this.handleOpenedChange(false);
             }
@@ -158,7 +158,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             this.clearOpenDropdownTimer();
 
             if (this.props.closeDelay) {
-                this.state.opened && this.setCloseDropdownTimer(this.props.closeDelay);
+                this.isOpened() && this.setCloseDropdownTimer(this.props.closeDelay);
             } else {
                 this.handleOpenedChange(false);
             }
@@ -205,7 +205,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             }
         };
 
-        if (isReferenceHidden && this.props.closeBodyOnTogglerHidden !== false && (this.state.opened || this.props.value)) {
+        if (isReferenceHidden && this.props.closeBodyOnTogglerHidden !== false && this.isOpened()) {
             // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in this case
             setTimeout(() => this.handleOpenedChange(false), 0);
             return null;

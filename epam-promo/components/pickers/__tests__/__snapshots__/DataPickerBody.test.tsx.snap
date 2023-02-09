@@ -103,7 +103,6 @@ Array [
       }
     >
       <div
-        className=""
         style={
           Object {
             "WebkitOverflowScrolling": "touch",

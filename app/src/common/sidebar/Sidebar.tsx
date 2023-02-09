@@ -3,7 +3,7 @@ import css from './Sidebar.scss';
 import { ScrollBars, SearchInput } from '@epam/promo';
 import { Tree, TreeListItem } from '@epam/uui-components';
 import { SidebarButton } from './SidebarButton';
-import { DataRowProps, DataSourceState, Link, useUuiContext } from "@epam/uui";
+import { DataRowProps, DataSourceState, Link, useUuiContext } from "@epam/uui-core";
 import { analyticsEvents } from "../../analyticsEvents";
 
 export interface SidebarProps<TItem extends TreeListItem = TreeListItem> {
