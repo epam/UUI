@@ -54,7 +54,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="font-semibold text-color-primary root line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
         >
           Configure columns
         </div>
@@ -192,7 +192,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               }
             >
               <div
-                className="font-semibold text-color-primary root line-height-24 font-size-14 v-padding-6 groupTitleText container"
+                className="uui-font-semibold uui-text-primary root line-height-24 font-size-14 v-padding-6 groupTitleText container"
               >
                 Displayed in table
               </div>
@@ -568,7 +568,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         }
       >
         <div
-          className="font-semibold text-color-primary root line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
         >
           Configure columns
         </div>
@@ -706,7 +706,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
               }
             >
               <div
-                className="font-semibold text-color-primary root line-height-24 font-size-14 v-padding-6 groupTitleText container"
+                className="uui-font-semibold uui-text-primary root line-height-24 font-size-14 v-padding-6 groupTitleText container"
               >
                 Hidden in table
               </div>
