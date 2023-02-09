@@ -29,6 +29,11 @@ export class TablesOverviewDoc extends BaseDocsBlock {
                     title='Tree Table'
                     path='./_examples/tables/TreeTable.example.tsx'
                 />
+
+                <DocExample
+                    title='Table with styled columns'
+                    path='./_examples/tables/StyledColumns.example.tsx'
+                />
             </>
         );
     }
