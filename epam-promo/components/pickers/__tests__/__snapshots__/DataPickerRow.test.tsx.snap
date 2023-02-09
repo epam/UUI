@@ -30,7 +30,8 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
       className="contentWrapper"
       style={
         Object {
-          "justifyContent": undefined,
+          "alignSelf": undefined,
+          "textAlign": undefined,
         }
       }
     >
@@ -79,7 +80,8 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
       className="contentWrapper"
       style={
         Object {
-          "justifyContent": undefined,
+          "alignSelf": undefined,
+          "textAlign": undefined,
         }
       }
     >

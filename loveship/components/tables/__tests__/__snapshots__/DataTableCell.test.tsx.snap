@@ -15,17 +15,8 @@ exports[`DataTableCell should be rendered correctly 1`] = `
     }
   }
 >
-  <div
-    className="contentWrapper"
-    style={
-      Object {
-        "justifyContent": undefined,
-      }
-    }
-  >
-    <div>
-      test
-    </div>
+  <div>
+    test
   </div>
 </div>
 `;
@@ -45,17 +36,8 @@ exports[`DataTableCell should be rendered correctly with extra props 1`] = `
     }
   }
 >
-  <div
-    className="contentWrapper"
-    style={
-      Object {
-        "justifyContent": undefined,
-      }
-    }
-  >
-    <div>
-      test
-    </div>
+  <div>
+    test
   </div>
 </div>
 `;

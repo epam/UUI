@@ -313,7 +313,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="contentWrapper"
                 style={
                   Object {
-                    "justifyContent": undefined,
+                    "alignSelf": undefined,
+                    "textAlign": undefined,
                   }
                 }
               >
@@ -349,17 +350,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1
-                </div>
+              <div>
+                1
               </div>
             </div>
             <div
@@ -376,17 +368,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  Chief Executive Officer
-                </div>
+              <div>
+                Chief Executive Officer
               </div>
             </div>
             <div
@@ -403,17 +386,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1969-01-29
-                </div>
+              <div>
+                1969-01-29
               </div>
             </div>
           </div>
@@ -457,7 +431,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="contentWrapper"
                 style={
                   Object {
-                    "justifyContent": undefined,
+                    "alignSelf": undefined,
+                    "textAlign": undefined,
                   }
                 }
               >
@@ -493,17 +468,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  2
-                </div>
+              <div>
+                2
               </div>
             </div>
             <div
@@ -520,17 +486,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  Vice President of Engineering
-                </div>
+              <div>
+                Vice President of Engineering
               </div>
             </div>
             <div
@@ -547,17 +504,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1971-08-01
-                </div>
+              <div>
+                1971-08-01
               </div>
             </div>
           </div>
@@ -601,7 +549,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="contentWrapper"
                 style={
                   Object {
-                    "justifyContent": undefined,
+                    "alignSelf": undefined,
+                    "textAlign": undefined,
                   }
                 }
               >
@@ -637,17 +586,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  3
-                </div>
+              <div>
+                3
               </div>
             </div>
             <div
@@ -664,17 +604,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  Engineering Manager
-                </div>
+              <div>
+                Engineering Manager
               </div>
             </div>
             <div
@@ -691,17 +622,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1974-11-12
-                </div>
+              <div>
+                1974-11-12
               </div>
             </div>
           </div>
@@ -745,7 +667,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="contentWrapper"
                 style={
                   Object {
-                    "justifyContent": undefined,
+                    "alignSelf": undefined,
+                    "textAlign": undefined,
                   }
                 }
               >
@@ -781,17 +704,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  4
-                </div>
+              <div>
+                4
               </div>
             </div>
             <div
@@ -808,17 +722,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  Senior Tool Designer
-                </div>
+              <div>
+                Senior Tool Designer
               </div>
             </div>
             <div
@@ -835,17 +740,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1974-12-23
-                </div>
+              <div>
+                1974-12-23
               </div>
             </div>
           </div>
@@ -889,7 +785,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="contentWrapper"
                 style={
                   Object {
-                    "justifyContent": undefined,
+                    "alignSelf": undefined,
+                    "textAlign": undefined,
                   }
                 }
               >
@@ -925,17 +822,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  5
-                </div>
+              <div>
+                5
               </div>
             </div>
             <div
@@ -952,17 +840,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  Design Engineer
-                </div>
+              <div>
+                Design Engineer
               </div>
             </div>
             <div
@@ -979,17 +858,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1952-09-27
-                </div>
+              <div>
+                1952-09-27
               </div>
             </div>
           </div>
@@ -1033,7 +903,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="contentWrapper"
                 style={
                   Object {
-                    "justifyContent": undefined,
+                    "alignSelf": undefined,
+                    "textAlign": undefined,
                   }
                 }
               >
@@ -1069,17 +940,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  6
-                </div>
+              <div>
+                6
               </div>
             </div>
             <div
@@ -1096,17 +958,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  Design Engineer
-                </div>
+              <div>
+                Design Engineer
               </div>
             </div>
             <div
@@ -1123,17 +976,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1959-03-11
-                </div>
+              <div>
+                1959-03-11
               </div>
             </div>
           </div>
@@ -1177,7 +1021,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="contentWrapper"
                 style={
                   Object {
-                    "justifyContent": undefined,
+                    "alignSelf": undefined,
+                    "textAlign": undefined,
                   }
                 }
               >
@@ -1213,17 +1058,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  7
-                </div>
+              <div>
+                7
               </div>
             </div>
             <div
@@ -1240,17 +1076,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  Research and Development Manager
-                </div>
+              <div>
+                Research and Development Manager
               </div>
             </div>
             <div
@@ -1267,17 +1094,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1987-02-24
-                </div>
+              <div>
+                1987-02-24
               </div>
             </div>
           </div>
@@ -1321,7 +1139,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="contentWrapper"
                 style={
                   Object {
-                    "justifyContent": undefined,
+                    "alignSelf": undefined,
+                    "textAlign": undefined,
                   }
                 }
               >
@@ -1357,17 +1176,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  8
-                </div>
+              <div>
+                8
               </div>
             </div>
             <div
@@ -1384,17 +1194,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  Research and Development Engineer
-                </div>
+              <div>
+                Research and Development Engineer
               </div>
             </div>
             <div
@@ -1411,17 +1212,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1986-06-05
-                </div>
+              <div>
+                1986-06-05
               </div>
             </div>
           </div>
@@ -1465,7 +1257,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="contentWrapper"
                 style={
                   Object {
-                    "justifyContent": undefined,
+                    "alignSelf": undefined,
+                    "textAlign": undefined,
                   }
                 }
               >
@@ -1501,17 +1294,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  9
-                </div>
+              <div>
+                9
               </div>
             </div>
             <div
@@ -1528,17 +1312,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  Research and Development Engineer
-                </div>
+              <div>
+                Research and Development Engineer
               </div>
             </div>
             <div
@@ -1555,17 +1330,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1979-01-21
-                </div>
+              <div>
+                1979-01-21
               </div>
             </div>
           </div>
@@ -1609,7 +1375,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="contentWrapper"
                 style={
                   Object {
-                    "justifyContent": undefined,
+                    "alignSelf": undefined,
+                    "textAlign": undefined,
                   }
                 }
               >
@@ -1645,17 +1412,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  10
-                </div>
+              <div>
+                10
               </div>
             </div>
             <div
@@ -1672,17 +1430,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  Research and Development Manager
-                </div>
+              <div>
+                Research and Development Manager
               </div>
             </div>
             <div
@@ -1699,17 +1448,8 @@ exports[`DataTable should be rendered correctly 1`] = `
                 }
               }
             >
-              <div
-                className="contentWrapper"
-                style={
-                  Object {
-                    "justifyContent": undefined,
-                  }
-                }
-              >
-                <div>
-                  1984-11-30
-                </div>
+              <div>
+                1984-11-30
               </div>
             </div>
           </div>
