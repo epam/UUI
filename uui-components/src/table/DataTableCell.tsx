@@ -2,7 +2,7 @@ import * as React from 'react';
 import { MouseEvent } from 'react';
 import {
     DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
-    TooltipCoreProps, IHasCX
+    TooltipCoreProps, IHasCX,
 } from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
@@ -15,8 +15,6 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
-
-    //const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
 
     let content: React.ReactNode;
     let isEditable = !!props.onValueChange;
@@ -64,10 +62,14 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         content = props.column.render(props.rowProps.value, props.rowProps);
     }
 
-    let justifyContent = props.column.justifyContent;
-    if (!justifyContent && props.column.textAlign) {
-        justifyContent = props.column.textAlign;
-    }
+    const { justifyContent, textAlign, alignSelf } = props.column;
+    const style = { textAlign, alignSelf, ...(justifyContent ? { justifyContent, display: 'flex' } : {}) };
+
+    const getWrappedContent = () => (
+        <div style={ style } className={ css.contentWrapper }>
+            { content }
+        </div>
+    );
 
     return (
         <FlexCell
@@ -84,11 +86,10 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }
+            { ...(props.isFirstColumn ? {} : { style }) }
         >
             { props.addons }
-            <div style={ { justifyContent } } className={ css.contentWrapper }>
-                { content }
-            </div>
+            { props.isFirstColumn ? getWrappedContent() : content }
         </FlexCell>
     );
 };

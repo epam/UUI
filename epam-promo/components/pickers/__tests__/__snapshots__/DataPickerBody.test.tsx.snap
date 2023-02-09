@@ -166,7 +166,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >
@@ -210,7 +211,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >
@@ -254,7 +256,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >
@@ -298,7 +301,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >
@@ -342,7 +346,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >
@@ -386,7 +391,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >
@@ -430,7 +436,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >
@@ -474,7 +481,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >
@@ -518,7 +526,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >
@@ -562,7 +571,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >
@@ -606,7 +616,8 @@ Array [
                   className="contentWrapper"
                   style={
                     Object {
-                      "justifyContent": undefined,
+                      "alignSelf": undefined,
+                      "textAlign": undefined,
                     }
                   }
                 >

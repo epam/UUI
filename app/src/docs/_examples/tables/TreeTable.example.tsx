@@ -19,6 +19,8 @@ export default function TreeTableExample({ size }: DataTableMods) {
             width: 336,
             isSortable: true,
             fix: 'left',
+            justifyContent: 'center',
+            textAlign: 'right',
         },
         {
             key: 'country',
