@@ -10,8 +10,11 @@ function readPackageJsonContentSync(dir) {
 
 async function copyPackageJsonAsync({ fromDir, toDir, transform }) {
     const content = readPackageJsonContentSync(fromDir);
-    transform(content);
+    transform && transform(content);
     const contentStr = JSON.stringify(content, undefined, 2);
     const to = path.resolve(toDir, `./package.json`);
+    if (!fs.existsSync(toDir)){
+        fs.mkdirSync(toDir);
+    }
     await fs.writeFileSync(to, contentStr)
 }

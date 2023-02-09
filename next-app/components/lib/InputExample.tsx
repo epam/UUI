@@ -3,6 +3,8 @@ import { Checkbox, FlexCell, FlexRow, LabeledInput, Panel, PickerInput, Switch, 
 import React, { useCallback, useState } from "react";
 import { LazyDataSourceApiRequest, useArrayDataSource, useLazyDataSource, useUuiContext } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
+import { TApi } from "../../helpers/apiDefinition";
+import { AppContextType } from "../../helpers/appContext";
 
 const languageLevels = [
     { "id": 2, "level": "A1" },
@@ -28,7 +30,7 @@ export const InputExample = () => {
     const [valueLazy, onValueChangeLazy] = useState<number[]>([]);
     const [valueArray, onValueChangeArray] = useState<any[]>([]);
 
-    const svc = useUuiContext();
+    const svc = useUuiContext<TApi, AppContextType>();
 
     const loadPersons = useCallback((request: LazyDataSourceApiRequest<Person, number>) => {
         return svc.api.demo.persons(request);

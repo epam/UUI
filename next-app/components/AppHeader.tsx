@@ -1,9 +1,14 @@
 import * as React from 'react';
-import { MainMenu, FlexSpacer, GlobalMenu, Text, IconContainer, Dropdown, MainMenuButton, DropdownMenuBody,
-    DropdownMenuButton } from '@epam/promo';
+import {
+    MainMenu, FlexSpacer, GlobalMenu, Text, IconContainer, Dropdown, MainMenuButton, DropdownMenuBody,
+    DropdownMenuButton, BurgerButton, SuccessNotification,
+} from '@epam/promo';
 import { MainMenuCustomElement } from '@epam/uui-components';
 import css from './AppHeader.module.scss';
 import GitIcon from '@epam/assets/icons/common/social-network-github-18.svg';
+import { useCallback, useContext } from "react";
+import { INotification, UuiContext } from "@epam/uui-core";
+import { BasicModalExample } from "./Modal";
 
 type Theme = 'promo' | 'loveship_dark';
 
@@ -11,6 +16,7 @@ const GIT_LINK = 'https://github.com/epam/UUI';
 
 export const AppHeader = () => {
     const [theme, setTheme] = React.useState<Theme>('promo');
+    const { uuiModals, uuiNotifications } = useContext(UuiContext);
 
     const handleTheme = (newTheme: Theme) => {
         document.body.classList.remove(`uui-theme-${theme}`);
@@ -41,6 +47,32 @@ export const AppHeader = () => {
         );
     };
 
+    const handleShowModal = useCallback(() => {
+        uuiModals
+            .show((props) => <BasicModalExample { ...props } />)
+            .finally(() => {
+                uuiNotifications
+                    .show(
+                        (props: INotification) => (
+                            <SuccessNotification { ...props }>
+                                <Text size="36" font="sans" fontSize="14">
+                                    It`s Ok!
+                                </Text>
+                            </SuccessNotification>
+                        ),
+                        { duration: 2, position: 'bot-left' },
+                    )
+                    .catch(() => null);
+            });
+    }, [uuiModals, uuiNotifications]);
+
+    const handleRenderBurger = useCallback(() => {
+        return (
+            <BurgerButton caption="Show modal dialog" onClick={ handleShowModal } />
+        );
+    }, [handleShowModal]);
+
+
     return (
         <MainMenu
             cx={ css.root }
@@ -48,6 +80,7 @@ export const AppHeader = () => {
             onLogoClick={ () => null }
             appLogoUrl={ '/icons/logo.svg' }
             logoWidth={ 168 }
+            renderBurger={ handleRenderBurger }
         >
             <FlexSpacer priority={ 100500 } />
             { renderThemeSwitcher() }

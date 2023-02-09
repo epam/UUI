@@ -12,7 +12,7 @@ const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip',
     .prop('content', { examples: [{ value: 'Some text', isDefault: true },
     {value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa', name: 'long text' }], type: 'string' })
     .prop('children', {
-        examples: [{ value:<Button color="blue" size="36" caption="Button"/>, name: 'Blue button', isDefault: true }, { value: <Sfc>123</Sfc>, name: 'sfc' }],
+        examples: [{ value:<Button color="blue" size="36" caption="Button"/>, name: 'Blue button', isDefault: true }],
     })
     .prop('placement', {
         examples: [
@@ -26,8 +26,8 @@ const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip',
     .prop('color', { examples: ['white', { name: 'gray90', value: 'gray90', isDefault: true }, 'red'] })
     .prop('closeDelay', { examples: [{ value: 0, isDefault: true }, { value: 500}, { value: 1000}] })
     .prop('openDelay', { examples: [{ value: 0, isDefault: true }, { value: 500}, { value: 1000}] })
-    .implements([iEditable])
-    .prop('value', { examples: [true, false], description: "controls visibility in 'manual' trigger mode" })
+    .prop('onValueChange', { examples: ctx => [{ value: ctx.getChangeHandler('onValueChange'), name: '(newValue) => { ... }' }] })
+    .prop('value', { examples: [true, false] })
     .withContexts(DefaultContext);
 
 export default tooltipDoc;
