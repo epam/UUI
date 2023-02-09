@@ -18,7 +18,7 @@ var Lint = require("tslint");
 var regexpNoSubmoduleImport = /^@epam\/[\w-]+\//i;
 var regexpAssetsException = /^@epam\/assets\/\w+(\/\w+)?(\/\w+)?(\/[\w-]+\.[a-z]+)?$/i;
 var regexpInternalException = /^@epam\/internal/i;
-var epamModules = ['epam-uui', 'loveship', 'epam-promo', 'uui', 'uui-db', 'uui-components', 'uui-timeline', 'uui-editor', 'draft-rte', 'edu-bo-components', 'extra',
+var epamModules = ['next-app', 'epam-uui', 'loveship', 'epam-promo', 'uui', 'uui-db', 'uui-components', 'uui-timeline', 'uui-editor', 'draft-rte', 'edu-bo-components', 'extra',
     'epam-assets', 'edu-utils', 'edu-ui-base', 'edu-core-routing', 'edu-core', 'uui-docs', 'grow', 'app', 'uui-v', 'uui-core'];
 var getNoModuleOutsideRegExp = function (url) {
     var urlArr = url.split('/');

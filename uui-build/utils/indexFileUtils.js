@@ -1,20 +1,22 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-module.exports = { getIndexFilePath };
+module.exports = { getIndexFileRelativePath };
 
 
 const indexFileNames = ["index.ts", "index.tsx"];
 /**
- * Returns absolute path to "index" file if it exists.
- * @param moduleRootDir
+ * Returns relative path to "index" file if it exists.
+ *
+ * @param {string} moduleRootDir
  */
-async function getIndexFilePath(moduleRootDir) {
+async function getIndexFileRelativePath(moduleRootDir) {
     const found = await Promise.all(
         indexFileNames.map(async (name) => {
-            const pathResolved = path.resolve(moduleRootDir, `./${name}`)
+            const relativePath = `./${name}`;
+            const pathResolved = path.resolve(moduleRootDir, relativePath)
             if (await fs.exists(pathResolved)) {
-                return pathResolved;
+                return relativePath;
             }
         })
     );

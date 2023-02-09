@@ -1,28 +1,35 @@
-import '../styles/globals.css';
-import '@epam/uui-components/styles.css';
-import '@epam/promo/styles.css';
-
-import { UuiContext, DragGhost } from '@epam/uui-core';
+import { skinContext } from '@epam/promo';
+import { UuiContext, useUuiServicesSsr } from '@epam/uui-core';
 import type { AppProps } from 'next/app';
-import { ErrorHandler, Blocker } from '@epam/promo';
-import { Snackbar, Modals } from "@epam/uui-components";
-import { useServices } from '../hooks/useServices';
-import {AppHeader} from "../components/AppHeader";
+import { apiDefinition, TApi } from "../helpers/apiDefinition";
+import { useIsChangingRoute } from "../hooks/useIsChangingRoute";
+import { MyAppView } from './_appView'
+import { AppContextType, getAppContext } from "../helpers/appContext";
 
-function MyApp({ Component, pageProps }: AppProps) {
-    const { services, isLoading } = useServices();
+interface MyAppProps<TAppContext> extends AppProps {
+    appContext?: TAppContext;
+}
+
+function MyApp(props: MyAppProps<AppContextType>) {
+    const { Component, pageProps, appContext, router } = props;
+    const { services } = useUuiServicesSsr<TApi, AppContextType>({
+        appContext,
+        skinContext,
+        apiDefinition,
+        router,
+    });
+    const { isChangingRoute } = useIsChangingRoute(router);
     return (
         <UuiContext.Provider value={ services }>
-            <ErrorHandler>
-                <AppHeader />
-                <Component { ...pageProps } />
-                { isLoading && <Blocker isEnabled={ isLoading }/> }
-                <Snackbar />
-                <Modals />
-                <DragGhost />
-            </ErrorHandler>
+            <MyAppView isChangingRoute={ isChangingRoute } { ...{ Component, pageProps } } />
         </UuiContext.Provider>
     );
 }
+
+async function getInitialProps() {
+    const appContext = await getAppContext();
+    return { appContext };
+}
+MyApp.getInitialProps = getInitialProps;
 
 export default MyApp;
