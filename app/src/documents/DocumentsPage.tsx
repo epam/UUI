@@ -24,7 +24,7 @@ export const DocumentsPage = () => {
     });
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {
-        redirectTo({ id: items[0].id, mode: 'doc', skin: UUI4 })
+        redirectTo({ id: items[0].id, mode: 'doc', skin: UUI4 });
     }
 
     const onChange = (row: DataRowProps<TreeListItem, string>) => {

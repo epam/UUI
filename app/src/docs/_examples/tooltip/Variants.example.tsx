@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Text, Tooltip } from '@epam/promo';
-import { cx } from '@epam/uui';
+import { cx } from '@epam/uui-core';
 import css from './TypesExample.scss';
 
 export default function VariantsTooltipExample() {

@@ -60,6 +60,8 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', compon
         examples: [500, 1000, 1500, 2000],
         defaultValue: 0,
     })
+    .prop('onValueChange', { examples: ctx => [{ value: ctx.getChangeHandler('onValueChange'), name: '(newValue) => { ... }' }] })
+    .prop('value', { examples: [true, false] })
     .withContexts(DefaultContext);
 
 export default dropdownMenuDoc;

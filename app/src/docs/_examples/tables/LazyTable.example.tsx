@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui-core';
 import { Text, DataTable, Panel, IconButton } from '@epam/promo';
-import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui';
 import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from "@epam/loveship";
 import { City } from '@epam/uui-docs';
 import { Dropdown } from "@epam/uui-components";

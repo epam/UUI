@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Measure from 'react-measure';
-import { cx } from '@epam/uui';
+import { cx } from '@epam/uui-core';
 import { FlexRow, Text } from '@epam/promo';
 import css from './HeroBlock.scss';
 

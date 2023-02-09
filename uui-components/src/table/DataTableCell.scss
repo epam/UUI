@@ -4,7 +4,7 @@
     background-clip: padding-box;
     display: flex;
     align-items: flex-start;
-    background-color: var(--uui-dt-cell-background);
+    background-color: var(--uui-dt-cell-bg);
     border-width: var(--uui-dt-cell-border-width);
 
     // Overlay borders of cell at the left and top
@@ -16,12 +16,12 @@
     border-top-style: none;
     border-bottom-style: none;
 
-    border-left-color: var(--uui-dt-cell-border-color);
+    border-left-color: var(--uui-dt-cell-border);
     &:first-child {
         border-left-color: transparent;
     }
 
-    border-right-color: var(--uui-dt-cell-border-color);
+    border-right-color: var(--uui-dt-cell-border);
     &:last-child {
         border-right-color: transparent;
     }
@@ -32,5 +32,5 @@
     min-width: 0;
     position: relative;
     align-self: stretch;
-    background-color: var(--uui-dt-cell-editor-background);
+    background-color: var(--uui-dt-cell-editor-bg);
 }

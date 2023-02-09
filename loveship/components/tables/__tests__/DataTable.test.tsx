@@ -22,7 +22,7 @@ describe('DataTable', () => {
                 getRows={ view.getVisibleRows }
                 value={ {} }
                 onValueChange={ jest.fn() }
-            />
+            />,
         );
 
         expect(tree).toMatchSnapshot();

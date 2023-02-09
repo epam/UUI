@@ -1,0 +1,14 @@
+@use  '../../../assets/styles/index' as *;
+
+.sorting-panel-container {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--uui-divider);
+    
+    @media screen and (max-width: 720px) {
+        padding: 0;
+    }
+}
+
+.sort-active {
+    margin-right: 12px;
+}

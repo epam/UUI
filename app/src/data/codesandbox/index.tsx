@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from "react-dom";
 import { ErrorHandler, FlexRow, skinContext as promoSkinContext } from "@epam/promo";
-import { ApiCallOptions, ContextProvider, UuiContexts } from "@epam/uui";
+import { ApiCallOptions, ContextProvider, UuiContexts } from "@epam/uui-core";
 import { Modals, Snackbar } from "@epam/uui-components";
 import "@epam/uui-components/styles.css";
 import "@epam/promo/styles.css";

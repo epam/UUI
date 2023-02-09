@@ -18,6 +18,8 @@
 - [ ] Badge: square leave only in loveship
 - [-] Badge: подумать насчет дефолтных значений для цветов, тут 2 варианта: либо мы придумываем какие дефолты ставить, либо делаем color обязательным
 - [-] theme.css - maybe convert it into scss?
+- [-] We deprecated line-height font-size v-padding in loveship, is it Ok (TextArea as example)?
+- [-] move skins themes into @epam/assets and make it scss
 
 - [ ] WithMods function - need to rework:
      1) case when we need to redefine some variable typo, for example - color.
@@ -26,3 +28,10 @@
 - [ ] LabeledInput: remove color prop from Loveship & Promo
 - [ ] Do we need semantic color class in components or only current theme color class?
 - [ ] подумать нужен ли нам Text компонент в UUI
+
+# TODO for UUI package
+### Panel
+- [ ] discuss background props
+### PickerInput
+- [ ] DataPickerBody renderNotFound promo has been modified with different logic than loveship
+

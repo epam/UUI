@@ -1,9 +1,29 @@
 import { IRouterContext, Link } from "../../types";
+import { queryToSearch } from "../../helpers";
 
 const createHref = (location: Link, basePath: string) => {
     const { pathname, query } = location;
     const search = new URLSearchParams(query).toString();
     return `${basePath}${pathname}${search ? '?' + search : ''}`;
+};
+
+const parseQuery = (link: Link): Link => {
+    const query = {} as any;
+    Object.keys(link.query).forEach((key) => {
+        const value = link.query[key];
+        if (!value) return;
+
+        try {
+            query[key] = JSON.parse(decodeURIComponent(value));
+        } catch (e) {
+            query[key] = value;
+        }
+    });
+
+    return {
+        ...link,
+        query,
+    };
 };
 
 export class NextRouterAdapter implements IRouterContext {
@@ -17,21 +37,31 @@ export class NextRouterAdapter implements IRouterContext {
     }
 
     public getCurrentLink(): Link {
-        return {
+        const parsedLink = parseQuery({
             pathname: this.router.pathname,
             query: this.router.query,
+        });
+        return parsedLink;
+    }
+
+    parseLinkWithQuery(link: Link): Link {
+        const result =  {
+            ...link,
+            search: queryToSearch(link.query),
         };
+        delete result.query;
+        return result;
     }
 
     public redirect(link: Link): void {
-        this.router.push(link);
+        this.router.push(this.parseLinkWithQuery(link));
         if (this.isBlockRun) {
             this.blockedUrl = link;
         }
     }
 
     public transfer(link: Link): void {
-        this.router.replace(link);
+        this.router.replace(this.parseLinkWithQuery(link));
         if (this.isBlockRun) {
             this.blockedUrl = link;
         }
@@ -77,5 +107,4 @@ export class NextRouterAdapter implements IRouterContext {
         this.router.events.off('routeChangeError', this.handleRouterChangeError);
         this.router.events.off('beforeHistoryChange', this.handleBeforeHistoryChange);
     }
-
 }

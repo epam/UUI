@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { INotification, Metadata, IFormApi } from '@epam/uui';
+import { INotification, Metadata, IFormApi } from '@epam/uui-core';
 import { Spinner } from '@epam/uui-components';
 import { PersonDetails } from '@epam/uui-docs';
 import { LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpacer, SuccessNotification, Form, MultiSwitch } from '@epam/loveship';

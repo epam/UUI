@@ -1,10 +1,7 @@
 .root {
     overflow: hidden;
     border-radius: var(--uui-panel-border-radius);
-
-    &.background {
-        background-color: var(--uui-panel-bg);
-    }
+    background-color: var(--uui-panel-bg);
 
     &.margin-24 {
         margin: 24px;
