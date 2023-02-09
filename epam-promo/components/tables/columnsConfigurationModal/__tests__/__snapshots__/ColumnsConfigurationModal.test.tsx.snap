@@ -48,7 +48,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-18 v-padding-12 uui-theme-promo container"
         >
           Configure columns
         </div>
@@ -69,7 +69,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -185,7 +185,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               }
             >
               <div
-                className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-6 groupTitleText container"
+                className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-14 v-padding-6 uui-theme-promo groupTitleText container"
               >
                 Displayed in table
               </div>
@@ -287,7 +287,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
+                      className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -380,7 +380,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
+                      className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -555,7 +555,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         }
       >
         <div
-          className="root font-sans-semibold text-color-gray80 line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-18 v-padding-12 uui-theme-promo container"
         >
           Configure columns
         </div>
@@ -576,7 +576,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
+            className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -692,7 +692,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
               }
             >
               <div
-                className="root font-sans-semibold text-color-gray80 line-height-24 font-size-14 v-padding-6 groupTitleText container"
+                className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-14 v-padding-6 uui-theme-promo groupTitleText container"
               >
                 Hidden in table
               </div>
@@ -785,7 +785,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
+                      className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -869,7 +869,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   >
                     <button
                       aria-disabled={false}
-                      className="container uui-button-box uui-enabled -clickable icon-button-default root uui-theme-promo icon-button-color-gray60"
+                      className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo"
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"

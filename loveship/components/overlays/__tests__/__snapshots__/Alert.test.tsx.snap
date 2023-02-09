@@ -57,7 +57,7 @@ exports[`Alert should be rendered correctly with props 1`] = `
     </div>
   </div>
   <button
-    className="container uui-button-box uui-enabled -clickable icon-button-night600 root uui-theme-loveship icon-button-color-night600 closeIcon"
+    className="container uui-button-box uui-enabled -clickable icon-button-night600 root uui-theme-loveship closeIcon"
     onClick={[Function]}
     tabIndex={0}
     type="button"

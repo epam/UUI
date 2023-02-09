@@ -74,7 +74,7 @@ Array [
             tabIndex={0}
           >
             <button
-              className="container uui-button-box uui-enabled icon-button-default root uui-theme-promo icon-button-color-gray60 icon iconBefore"
+              className="container uui-button-box uui-enabled icon-button-gray60 root uui-theme-promo icon iconBefore"
               onClick={[Function]}
               tabIndex={-1}
               type="button"
@@ -108,7 +108,7 @@ Array [
             tabIndex={0}
           >
             <button
-              className="container uui-button-box uui-enabled icon-button-default root uui-theme-promo icon-button-color-gray60 icon iconBefore"
+              className="container uui-button-box uui-enabled icon-button-gray60 root uui-theme-promo icon iconBefore"
               onClick={[Function]}
               tabIndex={-1}
               type="button"
