@@ -169,10 +169,10 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
         const dataSourceState = this.getDataSourceState();
 
         // TBD: What if user doesn't want to sort selection? E.g. he has manually sorted Enum, or already passed ordered ids in defaultIds
-        const sorting = dataSourceState.sorting && dataSourceState.sorting[0];
+        const sorting = dataSourceState.sorting?.[0];
         const sortBy = this.props.sortBy || ((i: any) => sorting ? i[sorting.field] : this.getName(i));
-        const sign = sorting?.direction == 'asc' ? 1 : -1;
-        const stringComparer = (new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'})).compare;
+        const sign = sorting?.direction ? (sorting?.direction === 'asc' ? 1 : -1) : 0; // if sorting direction is not specified, leave the original order
+        const stringComparer = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
         const comparer = (a: DataRowProps<TItem, TId>, b: DataRowProps<TItem, TId>) => {
             const loadingComparison = (b.isLoading ? 0 : 1) - (a.isLoading ? 0 : 1);
             if (loadingComparison != 0 || (a.isLoading && b.isLoading)) {
@@ -181,8 +181,9 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
                 return sign * stringComparer(sortBy(a.value, sorting), sortBy(b.value, sorting));
             }
         };
-        result.sort(comparer);
 
-        return result;
+        const sortedResult = [...result].sort(comparer);
+
+        return sortedResult;
     }
 }
