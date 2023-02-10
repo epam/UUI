@@ -314,6 +314,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 style={
                   Object {
                     "alignSelf": undefined,
+                    "justifyContent": undefined,
                     "textAlign": undefined,
                   }
                 }
@@ -345,6 +346,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
@@ -363,6 +365,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
@@ -381,6 +384,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
+                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
@@ -432,6 +436,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 style={
                   Object {
                     "alignSelf": undefined,
+                    "justifyContent": undefined,
                     "textAlign": undefined,
                   }
                 }
@@ -463,6 +468,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
@@ -481,6 +487,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
@@ -499,6 +506,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
+                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
@@ -550,6 +558,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 style={
                   Object {
                     "alignSelf": undefined,
+                    "justifyContent": undefined,
                     "textAlign": undefined,
                   }
                 }
@@ -581,6 +590,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
@@ -599,6 +609,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
@@ -617,6 +628,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
+                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
@@ -668,6 +680,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 style={
                   Object {
                     "alignSelf": undefined,
+                    "justifyContent": undefined,
                     "textAlign": undefined,
                   }
                 }
@@ -699,6 +712,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
@@ -717,6 +731,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
@@ -735,6 +750,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
+                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
@@ -786,6 +802,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 style={
                   Object {
                     "alignSelf": undefined,
+                    "justifyContent": undefined,
                     "textAlign": undefined,
                   }
                 }
@@ -817,6 +834,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
@@ -835,6 +853,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
@@ -853,6 +872,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
+                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
@@ -904,6 +924,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 style={
                   Object {
                     "alignSelf": undefined,
+                    "justifyContent": undefined,
                     "textAlign": undefined,
                   }
                 }
@@ -935,6 +956,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
@@ -953,6 +975,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
@@ -971,6 +994,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
+                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
@@ -1022,6 +1046,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 style={
                   Object {
                     "alignSelf": undefined,
+                    "justifyContent": undefined,
                     "textAlign": undefined,
                   }
                 }
@@ -1053,6 +1078,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
@@ -1071,6 +1097,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
@@ -1089,6 +1116,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
+                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
@@ -1140,6 +1168,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 style={
                   Object {
                     "alignSelf": undefined,
+                    "justifyContent": undefined,
                     "textAlign": undefined,
                   }
                 }
@@ -1171,6 +1200,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
@@ -1189,6 +1219,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
@@ -1207,6 +1238,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
+                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
@@ -1258,6 +1290,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 style={
                   Object {
                     "alignSelf": undefined,
+                    "justifyContent": undefined,
                     "textAlign": undefined,
                   }
                 }
@@ -1289,6 +1322,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
@@ -1307,6 +1341,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
@@ -1325,6 +1360,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
+                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }
@@ -1376,6 +1412,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                 style={
                   Object {
                     "alignSelf": undefined,
+                    "justifyContent": undefined,
                     "textAlign": undefined,
                   }
                 }
@@ -1407,6 +1444,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "200px",
                   "flexGrow": 1,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "200px",
                   "textAlign": undefined,
                 }
@@ -1425,6 +1463,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "150px",
                   "flexGrow": undefined,
                   "flexShrink": undefined,
+                  "justifyContent": undefined,
                   "minWidth": "150px",
                   "textAlign": undefined,
                 }
@@ -1443,6 +1482,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "120px",
                   "flexGrow": 1,
                   "flexShrink": 0,
+                  "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
                 }

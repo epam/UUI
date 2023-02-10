@@ -226,6 +226,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -275,6 +276,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -324,6 +326,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -373,6 +376,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -422,6 +426,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -471,6 +476,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -520,6 +526,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -569,6 +576,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -618,6 +626,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -667,6 +676,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -716,6 +726,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1089,6 +1100,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1155,6 +1167,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1221,6 +1234,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1287,6 +1301,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1353,6 +1368,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1419,6 +1435,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1485,6 +1502,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1551,6 +1569,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1617,6 +1636,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1683,6 +1703,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }
@@ -1749,6 +1770,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       style={
                         Object {
                           "alignSelf": undefined,
+                          "justifyContent": undefined,
                           "textAlign": undefined,
                         }
                       }

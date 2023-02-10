@@ -31,6 +31,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
       style={
         Object {
           "alignSelf": undefined,
+          "justifyContent": undefined,
           "textAlign": undefined,
         }
       }
@@ -81,6 +82,7 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
       style={
         Object {
           "alignSelf": undefined,
+          "justifyContent": undefined,
           "textAlign": undefined,
         }
       }

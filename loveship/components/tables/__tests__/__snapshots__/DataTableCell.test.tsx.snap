@@ -10,6 +10,7 @@ exports[`DataTableCell should be rendered correctly 1`] = `
       "flexBasis": "200px",
       "flexGrow": undefined,
       "flexShrink": undefined,
+      "justifyContent": undefined,
       "minWidth": "200px",
       "textAlign": undefined,
     }
@@ -31,6 +32,7 @@ exports[`DataTableCell should be rendered correctly with extra props 1`] = `
       "flexBasis": "200px",
       "flexGrow": undefined,
       "flexShrink": undefined,
+      "justifyContent": undefined,
       "minWidth": "200px",
       "textAlign": undefined,
     }
