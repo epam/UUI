@@ -68,10 +68,10 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     }
 
     const { textAlign, alignSelf } = props.column;
-    const style = { textAlign, alignSelf, justifyContent };
+    const styles = { textAlign, alignSelf, justifyContent };
 
     const getWrappedContent = () => (
-        <div style={ { ...style, ...(justifyContent ? { display: 'flex' } : {}) } } className={ css.contentWrapper }>
+        <div style={ styles } className={ css.contentWrapper }>
             { content }
         </div>
     );
@@ -79,11 +79,12 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     return (
         <FlexCell
             ref={ ref }
-            { ...props.column }
+            grow={ props.column.grow }
+            width={ props.column.width }
             minWidth={ props.column.width }
-            rawProps={ {
-                role: 'cell',
-            } }
+            textAlign={ props.isFirstColumn ? undefined : props.column.textAlign }
+            alignSelf={ props.isFirstColumn ? undefined : props.column.alignSelf }
+            rawProps={ { role: 'cell' } }
             cx={ [
                 css.cell,
                 props.column.cx,
@@ -91,7 +92,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }
-            { ...(props.isFirstColumn ? {} : { style }) }
+            style={ !props.isFirstColumn && { justifyContent: justifyContent } }
         >
             { props.addons }
             { props.isFirstColumn ? getWrappedContent() : content }
