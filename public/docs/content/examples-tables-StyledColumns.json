@@ -11,7 +11,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It is possible to set up ",
+            "text": "UUI DataTable column represents flex item block, so to set its sizes use flex-box properties:  ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "grow",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ",  ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "shrink",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
             "marks": []
           },
           {
@@ -27,7 +59,7 @@
           },
           {
             "object": "text",
-            "text": ", ",
+            "text": "(flex-basis) and ",
             "marks": []
           },
           {
@@ -43,7 +75,19 @@
           },
           {
             "object": "text",
-            "text": ", ",
+            "text": "(used only to limit the column width during resizing). ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To align column content you can use ",
             "marks": []
           },
           {
@@ -75,7 +119,7 @@
           },
           {
             "object": "text",
-            "text": ", ",
+            "text": " and ",
             "marks": []
           },
           {
@@ -91,51 +135,7 @@
           },
           {
             "object": "text",
-            "text": " props of the column content.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "It is necessary to remember, that only ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "width",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "minWidth",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " and ",
+            "text": " props. However, only ",
             "marks": []
           },
           {
@@ -151,7 +151,102 @@
           },
           {
             "object": "text",
-            "text": " are applied to the header content.",
+            "text": " property will affect header content, so use it instead of ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "justifyContent",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", for simple cases when you need to align both ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "–",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(32, 33, 36)",
+                    "font-family": null,
+                    "font-size": "14px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(32, 33, 36)",
+                    "font-family": null,
+                    "font-size": "14px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "header and column content.",
             "marks": []
           }
         ]

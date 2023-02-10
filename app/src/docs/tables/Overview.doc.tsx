@@ -31,7 +31,7 @@ export class TablesOverviewDoc extends BaseDocsBlock {
                 />
 
                 <DocExample
-                    title='Table with styled columns'
+                    title='Column size and content align configuration'
                     path='./_examples/tables/StyledColumns.example.tsx'
                 />
             </>

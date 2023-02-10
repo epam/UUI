@@ -26,7 +26,6 @@ export default function StyledColumnsExample() {
             width: 200,
             fix: 'left',
             isSortable: true,
-            alignSelf: 'center',
         },
         {
             key: 'profileStatus',
@@ -37,43 +36,25 @@ export default function StyledColumnsExample() {
                     color={ p.profileStatus.toLowerCase() as EpamAdditionalColor }
                     caption={ p.profileStatus } />
             </FlexRow>,
-            grow: 0,
-            shrink: 0,
             width: 140,
             isSortable: true,
-            isFilterActive: f => !!f.profileStatusId,
             alignSelf: 'center',
+        },
+        {
+            key: 'salary',
+            caption: "Salary",
+            render: p => <Text>{ p.salary }</Text>,
+            isSortable: true,
+            width: 100,
+            textAlign: 'right',
         },
         {
             key: 'jobTitle',
             caption: "Title",
             render: r => <Text>{ r.jobTitle }</Text>,
             width: 200,
+            grow: 1,
             isSortable: true,
-            isFilterActive: f => !!f.jobTitleId,
-            justifyContent: 'space-between',
-        },
-        {
-            key: 'departmentName',
-            caption: "Department",
-            render: p => <Text>{ p.departmentName }</Text>,
-            grow: 0,
-            shrink: 0,
-            width: 200,
-            isSortable: true,
-            isFilterActive: f => !!f.departmentId,
-            isHiddenByDefault: true,
-        },
-        {
-            key: 'salary',
-            caption: "Salary",
-            render: p => <Text>{ p.salary }</Text>,
-            grow: 0,
-            shrink: 0,
-            isSortable: true,
-            width: 100,
-            textAlign: 'right',
-            alignSelf: 'center',
         },
         {
             key: 'detailed',
@@ -92,7 +73,6 @@ export default function StyledColumnsExample() {
                 value={ value }
                 onValueChange={ onValueChange }
                 columns={ productColumns }
-                headerTextCase='upper'
                 showColumnsConfig={ true }
                 allowColumnsResizing={ true }
                 allowColumnsReordering={ true }
