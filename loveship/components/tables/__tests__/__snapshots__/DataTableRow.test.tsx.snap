@@ -40,6 +40,7 @@ exports[`DataTableRow should be rendered correctly 1`] = `
         style={
           Object {
             "alignSelf": undefined,
+            "justifyContent": undefined,
             "textAlign": undefined,
           }
         }
