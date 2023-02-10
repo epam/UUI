@@ -62,11 +62,16 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         content = props.column.render(props.rowProps.value, props.rowProps);
     }
 
-    const { justifyContent, textAlign, alignSelf } = props.column;
-    const style = { textAlign, alignSelf, ...(justifyContent ? { justifyContent, display: 'flex' } : {}) };
+    let justifyContent = props.column.justifyContent;
+    if (!justifyContent && props.column.textAlign) {
+        justifyContent = props.column.textAlign;
+    }
+
+    const { textAlign, alignSelf } = props.column;
+    const style = { textAlign, alignSelf, justifyContent };
 
     const getWrappedContent = () => (
-        <div style={ style } className={ css.contentWrapper }>
+        <div style={ { ...style, ...(justifyContent ? { display: 'flex' } : {}) } } className={ css.contentWrapper }>
             { content }
         </div>
     );
