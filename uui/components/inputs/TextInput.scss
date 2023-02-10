@@ -48,26 +48,33 @@
         }
     }
 
+    &.mode-inline {
+        background-color: transparent;
+        border-color: transparent;
+
+        :global(.-clickable) {
+            fill: var(--uui-text-input-icon-clickable);
+
+            &:hover {
+                fill: var(--uui-text-input-icon-clickable-hover);
+            }
+        }
+
+        &:hover {
+            border-color: var(--uui-text-input-border-hover);
+        }
+
+        &:global(.uui-focus) {
+            border-color: var(--uui-text-input-border-active);
+        }
+    }
+
     &.mode-cell {
         background-color: transparent;
         border-color: transparent;
 
-        :global(.uui-icon):first-child {
-            padding-left: 6px;
-        }
-
         :global(.-clickable) {
             fill: transparent;
-        }
-
-        &:hover {
-            :global(.-clickable) {
-                fill: var(--uui-text-input-icon-clickable);
-
-                &:hover {
-                    fill: var(--uui-text-input-icon-clickable-hover);
-                }
-            }
         }
     }
 
