@@ -43,6 +43,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         if (prevTree != this.tree || this.isCacheIsOutdated(newValue, currentValue)) {
             this.tree = this.getUpdatedTree(newValue);
+            this.updateCheckedLookup(this.value.checked);
             this.updateNodes();
         } else {
             if (newValue.focusedIndex !== currentValue.focusedIndex) {
@@ -93,8 +94,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         let emptySelection: TId[] = [];
         let currentIndex = 0;
         let isFlatList = this.tree.isFlatList();
-
-        this.updateCheckedLookup(this.value.checked);
 
         const empty = { rows: [] as DataRowProps<TItem, TId>[], checkedCount: 0, checkableCount: 0, selectedCount: 0 };
 
