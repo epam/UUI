@@ -82,23 +82,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Ken Sánchez
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Ken Sánchez
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -124,23 +134,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Terri Duffy
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Terri Duffy
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -166,23 +186,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Roberto Tamburello
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Roberto Tamburello
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -208,23 +238,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Rob Walters
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Rob Walters
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -250,23 +290,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Gail Erickson
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Gail Erickson
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -292,23 +342,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Jossef Goldberg
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Jossef Goldberg
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -334,23 +394,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Dylan Miller
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Dylan Miller
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -376,23 +446,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Diane Margheim
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Diane Margheim
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -418,23 +498,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Gigi Matthew
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Gigi Matthew
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -460,23 +550,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Michael Raheem
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Michael Raheem
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -636,23 +736,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Ken Sánchez
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Ken Sánchez
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -678,23 +788,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Terri Duffy
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Terri Duffy
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -720,23 +840,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Roberto Tamburello
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Roberto Tamburello
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -762,23 +892,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Rob Walters
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Rob Walters
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -804,23 +944,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Gail Erickson
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Gail Erickson
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -846,23 +996,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Jossef Goldberg
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Jossef Goldberg
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -888,23 +1048,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Dylan Miller
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Dylan Miller
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -930,23 +1100,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Diane Margheim
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Diane Margheim
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -972,23 +1152,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Gigi Matthew
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Gigi Matthew
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
@@ -1014,23 +1204,33 @@ Array [
                     "flexBasis": "0",
                     "flexGrow": 1,
                     "flexShrink": undefined,
-                    "justifyContent": undefined,
                     "minWidth": 0,
                     "textAlign": undefined,
                   }
                 }
               >
                 <div
-                  className="renderItem"
+                  className="contentWrapper"
+                  style={
+                    Object {
+                      "alignSelf": undefined,
+                      "justifyContent": undefined,
+                      "textAlign": undefined,
+                    }
+                  }
                 >
                   <div
-                    className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    className="renderItem"
                   >
-                    Michael Raheem
+                    <div
+                      className="text font-sans color-night700 line-height-18 font-size-14 v-padding-6 container"
+                    >
+                      Michael Raheem
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
                   </div>
-                  <div
-                    className="flexSpacer"
-                  />
                 </div>
               </div>
             </div>
