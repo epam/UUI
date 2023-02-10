@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
+import useForceUpdate from 'use-force-update';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
@@ -16,6 +17,7 @@ import {
     createSoftBreakPlugin,
     createParagraphPlugin,
     createExitBreakPlugin,
+    PlateProvider,
 } from '@udecode/plate';
 
 import {
@@ -56,7 +58,34 @@ interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<H
     scrollbars?: boolean;
 }
 
-let id = Date.now();
+const Editor = (props: any) => {
+    const editor = usePlateEditorState();
+    const forceUpdate = useForceUpdate();
+
+    React.useEffect(() => {
+        if (props.initialValue) {
+            editor.children = props.initialValue;
+        }
+        forceUpdate();
+    },
+    [editor, props.initialValue, forceUpdate]);
+    return (
+        <DndProvider backend={ HTML5Backend }>
+            <Plate
+                id={ props.id }
+            >
+                <MarkBalloonToolbar />
+                <Toolbar  style={ {
+                    position: 'sticky',
+                    bottom: 12,
+                    display: 'flex',
+                } }>
+                    <ToolbarButtons />
+                </Toolbar>
+            </Plate>
+        </DndProvider>
+    );
+};
 
 export function SlateEditor(props: SlateEditorProps) {
     const {
@@ -64,7 +93,8 @@ export function SlateEditor(props: SlateEditorProps) {
         isReadonly,
         placeholder,
     } = props;
-    const currentId = String(id++);
+
+    const currentId = React.useRef(String(Date.now()));
     const editor = usePlateEditorState();
     const isFocused = isEditorFocused(editor);
 
@@ -79,7 +109,7 @@ export function SlateEditor(props: SlateEditorProps) {
     };
 
     const onChange = (value: any) => {
-        //props?.onValueChange(value);
+        props?.onValueChange(value);
     };
 
     const renderElement = (props: TRenderElementProps): JSX.Element => {
@@ -90,27 +120,24 @@ export function SlateEditor(props: SlateEditorProps) {
 
     const initialValue = useMemo(() => migrateSchema(props.value), [props.value]);
 
-    const renderEditor = useCallback(() => (
-        <DndProvider backend={ HTML5Backend }>
-            <Plate
+    const renderEditor = () => (
+        <PlateProvider
+            onChange={ onChange }
+            renderElement={ renderElement }
+            plugins={ plugins }
+            initialValue={ initialValue }
+            id={ currentId.current }
+        >
+            <Editor
                 onChange={ onChange }
                 editableProps={ editableProps }
                 renderElement={ renderElement }
-                id={ currentId }
+                id={ currentId.current }
                 plugins={ plugins }
                 initialValue={ initialValue }
-            >
-                <MarkBalloonToolbar />
-                <Toolbar id={ currentId } style={ {
-                    position: 'sticky',
-                    bottom: 12,
-                    display: 'flex',
-                } }>
-                    <ToolbarButtons />
-                </Toolbar>
-            </Plate>
-        </DndProvider>
-    ), [editableProps, currentId, plugins, initialValue]);
+            />
+        </PlateProvider>
+    );
 
     return (
         <div
