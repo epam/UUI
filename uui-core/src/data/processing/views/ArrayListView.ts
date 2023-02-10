@@ -42,7 +42,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         }
 
         if (prevTree != this.tree || this.isCacheIsOutdated(newValue, currentValue)) {
-            this.tree = this.getUpdatedTree(currentValue, newValue);
+            this.tree = this.getUpdatedTree(newValue);
             this.updateNodes();
         } else {
             if (newValue.focusedIndex !== currentValue.focusedIndex) {
@@ -77,26 +77,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         });
     }
 
-    private getUpdatedTree(
-        { filter: prevFilter, search: prevSearch, sorting: prevSorting }: DataSourceState<TFilter, TId>,
-        { filter, search, sorting }: DataSourceState<TFilter, TId>,
-    ) {
+    private getUpdatedTree({ filter, search, sorting }: DataSourceState<TFilter, TId>) {
         const { getSearchFields, getFilter, sortBy } = this.props;
-
-        let tree = this.originalTree;
-        if (prevFilter !== filter) {
-            tree = tree.filter({ filter, getFilter });
-        }
-
-        if (prevSearch !== search) {
-            tree = tree.search({ search, getSearchFields });
-        }
-
-        if (!isEqual(prevSorting, sorting)) {
-            tree = tree.sort({ sorting, sortBy });
-        }
-
-        return tree;
+        return this.originalTree
+            .filter({ filter, getFilter })
+            .search({ search, getSearchFields })
+            .sort({ sorting, sortBy });
     }
 
     private updateNodes() {
