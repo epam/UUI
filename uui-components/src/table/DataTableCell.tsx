@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { MouseEvent } from 'react';
-import { DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
-    TooltipCoreProps, IHasCX } from '@epam/uui-core';
+import {
+    DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
+    TooltipCoreProps, IHasCX,
+} from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout/';
 
@@ -14,10 +16,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
 
-    //const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
-
     let content: React.ReactNode;
-    let outline: React.ReactNode = null;
     let isEditable = !!props.onValueChange;
 
     const handleEditorClick = React.useCallback((e: MouseEvent) => {
@@ -68,14 +67,24 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         justifyContent = props.column.textAlign;
     }
 
+    const { textAlign, alignSelf } = props.column;
+    const styles = { textAlign, alignSelf, justifyContent };
+
+    const getWrappedContent = () => (
+        <div style={ styles } className={ css.contentWrapper }>
+            { content }
+        </div>
+    );
+
     return (
         <FlexCell
             ref={ ref }
-            { ...props.column }
+            grow={ props.column.grow }
+            width={ props.column.width }
             minWidth={ props.column.width }
-            rawProps={ {
-                role: 'cell',
-            } }
+            textAlign={ props.isFirstColumn ? undefined : props.column.textAlign }
+            alignSelf={ props.isFirstColumn ? undefined : props.column.alignSelf }
+            rawProps={ { role: 'cell' } }
             cx={ [
                 css.cell,
                 props.column.cx,
@@ -83,13 +92,10 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }
-            style={ {
-                justifyContent,
-            } }
+            style={ !props.isFirstColumn && { justifyContent: justifyContent } }
         >
             { props.addons }
-            { content }
-            { outline }
+            { props.isFirstColumn ? getWrappedContent() : content }
         </FlexCell>
     );
 };
@@ -104,14 +110,14 @@ interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
 
 function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const overlay = (
-            <div
-                className={ cx(
-                    css.overlay,
-                    props.isInvalid && uuiMod.invalid,
-                    props.inFocus && uuiMod.focus,
-                    props.cx,
-                ) }
-            />
+        <div
+            className={ cx(
+                css.overlay,
+                props.isInvalid && uuiMod.invalid,
+                props.inFocus && uuiMod.focus,
+                props.cx,
+            ) }
+        />
     );
 
     if (props.inFocus) {
