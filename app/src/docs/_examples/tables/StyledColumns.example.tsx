@@ -1,45 +1,88 @@
 import React, { useMemo, useState } from 'react';
-import { DataTable, Panel, Text } from "@epam/promo";
-import { DataColumnProps, useArrayDataSource } from '@epam/uui';
-import { demoData, FeatureClass } from '@epam/uui-docs';
+import { Badge, DataTable, EpamAdditionalColor, FlexRow, Panel, Text } from "@epam/promo";
+import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui';
+import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.scss';
+import { TApi } from "../../../data";
 
 export default function StyledColumnsExample() {
+    const svc = useUuiContext<TApi, UuiContexts>();
+
     const [value, onValueChange] = useState({});
 
-    const dataSource = useArrayDataSource<FeatureClass, number, unknown>({
-        items: demoData.featureClasses,
+    const dataSource = useLazyDataSource<Person, number, Person>({
+        api: svc.api.demo.persons,
     }, []);
 
     const view = dataSource.useView(value, onValueChange, {
         getRowOptions: item => ({ checkbox: { isVisible: true } }),
     });
 
-    const productColumns: DataColumnProps<FeatureClass>[] = useMemo(() => [
+    const productColumns: DataColumnProps<Person>[] = useMemo(() => [
         {
-            key: 'id',
-            caption: 'Id',
-            render: item => <Text color='gray80'>{ item.id }</Text>,
-            isSortable: true,
-            isAlwaysVisible: true,
-            width: 200,
-            alignSelf: 'center',
-            textAlign: 'right',
-        }, {
             key: 'name',
-            caption: 'Name',
-            render: item => <Text color='gray80'>{ item.name }</Text>,
-            isSortable: true,
+            caption: "Name",
+            render: p => <Text>{ p.name }</Text>,
             width: 200,
+            fix: 'left',
+            isSortable: true,
+            textAlign: 'right',
             alignSelf: 'center',
-        }, {
-            key: 'description',
-            caption: 'Description',
-            render: item => <Text color='gray80'>{ item.description }</Text>,
-            grow: 1,
-            minWidth: 150,
-            width: 300,
-            justifyContent: 'center',
+        },
+        {
+            key: 'profileStatus',
+            caption: 'Profile Status',
+            render: p => p.profileStatus && <FlexRow>
+                <Badge
+                    fill="transparent"
+                    color={ p.profileStatus.toLowerCase() as EpamAdditionalColor }
+                    caption={ p.profileStatus } />
+            </FlexRow>,
+            grow: 0,
+            shrink: 0,
+            width: 140,
+            isSortable: true,
+            isFilterActive: f => !!f.profileStatusId,
+            alignSelf: 'center',
+        },
+        {
+            key: 'jobTitle',
+            caption: "Title",
+            render: r => <Text>{ r.jobTitle }</Text>,
+            width: 200,
+            isSortable: true,
+            isFilterActive: f => !!f.jobTitleId,
+            textAlign: 'left',
+        },
+        {
+            key: 'departmentName',
+            caption: "Department",
+            render: p => <Text>{ p.departmentName }</Text>,
+            grow: 0,
+            shrink: 0,
+            width: 200,
+            isSortable: true,
+            isFilterActive: f => !!f.departmentId,
+            isHiddenByDefault: true,
+        },
+        {
+            key: 'officeAddress',
+            caption: "Office",
+            render: p => <Text>{ p.officeAddress }</Text>,
+            grow: 0,
+            shrink: 0,
+            isSortable: true,
+            isFilterActive: f => !!f.officeId,
+            minWidth: 100,
+            width: 200,
+            justifyContent: 'space-between',
+        },
+        {
+            key: 'detailed',
+            render: () => {},
+            width: 54,
+            alignSelf: 'center',
+            fix: 'right',
         },
     ], []);
 
@@ -52,6 +95,9 @@ export default function StyledColumnsExample() {
                 onValueChange={ onValueChange }
                 columns={ productColumns }
                 headerTextCase='upper'
+                showColumnsConfig={ true }
+                allowColumnsResizing={ true }
+                allowColumnsReordering={ true }
             />
         </Panel>
     );
