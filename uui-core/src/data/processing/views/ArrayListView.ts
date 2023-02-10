@@ -132,14 +132,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                 rowProps.onFold = isFoldable ? this.handleOnFold : undefined;
 
                 if (rowProps.checkbox && rowProps.checkbox.isVisible && !rowProps.checkbox.isDisabled) {
-                    if (rowProps.checkbox.isDisabled) {
-                        if (rowProps.isChecked) {
-                            fullSelection.push(rowProps.id);
-                            emptySelection.push(rowProps.id);
-                        }
-                    } else {
-                        fullSelection.push(rowProps.id);
-                    }
+                    fullSelection.push(rowProps.id);
                     checkableCount++;
                     if (rowProps.isChecked) {
                         checkedCount++;
@@ -160,7 +153,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                     rows = rows.concat(children.rows);
                 }
 
-                currentIndex = currentIndex + 1;
+                currentIndex++;
             }
 
             return { rows, checkableCount, checkedCount, selectedCount };
