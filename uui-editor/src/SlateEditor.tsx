@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import useForceUpdate from 'use-force-update';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui-components';
+import { useForceUpdate } from '@epam/uui-core';
 
 import {
     Plate,
