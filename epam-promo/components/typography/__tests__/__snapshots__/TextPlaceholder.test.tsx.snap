@@ -6,13 +6,12 @@ exports[`TextPlaceholder should be rendered correctly 1`] = `
   className="container"
 >
   <span
-    className="loadingWord text-placeholder-color-gray40 animatedLoading"
+    className="uui-theme-promo loadingWord animatedLoading"
     dangerouslySetInnerHTML={
       Object {
         "__html": "0000000000000",
       }
     }
-    suppressHydrationWarning={true}
   />
 </div>
 `;
@@ -23,49 +22,44 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
   className="container"
 >
   <span
-    className="loadingWord text-placeholder-color-gray40"
+    className="uui-theme-promo loadingWord"
     dangerouslySetInnerHTML={
       Object {
         "__html": "0000000000000",
       }
     }
-    suppressHydrationWarning={true}
   />
   <span
-    className="loadingWord text-placeholder-color-gray40"
+    className="uui-theme-promo loadingWord"
     dangerouslySetInnerHTML={
       Object {
         "__html": "0000000000000",
       }
     }
-    suppressHydrationWarning={true}
   />
   <span
-    className="loadingWord text-placeholder-color-gray40"
+    className="uui-theme-promo loadingWord"
     dangerouslySetInnerHTML={
       Object {
         "__html": "0000000000000",
       }
     }
-    suppressHydrationWarning={true}
   />
   <span
-    className="loadingWord text-placeholder-color-gray40"
+    className="uui-theme-promo loadingWord"
     dangerouslySetInnerHTML={
       Object {
         "__html": "0000000000000",
       }
     }
-    suppressHydrationWarning={true}
   />
   <span
-    className="loadingWord text-placeholder-color-gray40"
+    className="uui-theme-promo loadingWord"
     dangerouslySetInnerHTML={
       Object {
         "__html": "0000000000000",
       }
     }
-    suppressHydrationWarning={true}
   />
 </div>
 `;

@@ -409,6 +409,10 @@
     --uui-modals-overlay: rgba(29, 30, 38, 0.8);
     --uui-modals-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
     --uui-modals-bg: var(--uui-surface);
+
+    /*    TextPlaceholder   */
+    --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
+    --uui-text-placeholder: var(--uui-skeleton);
 }
 
 /* modification of the states of table components */
@@ -1001,9 +1005,4 @@
 .uui-theme-promo.uui-font-promo,
 .uui-theme-promo.uui-font-museo-slab {
     --uui-font: var(--font-promo);
-}
-
-.uui-theme-promo.text-placeholder-vars {
-    --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
-    --uui-text-placeholder: var(--uui-skeleton);
 }
