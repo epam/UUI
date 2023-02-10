@@ -1,6 +1,7 @@
-import { DataRowProps, SortingOption, IEditable, DataSourceState,
-    DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
-import { getSearchFilter } from '../../querying';
+import {
+    DataRowProps, SortingOption, IEditable, DataSourceState,
+    DataSourceListProps, IDataSourceView, BaseListViewProps,
+} from "../../../types";
 import { BaseListView } from './BaseListView';
 import isEqual from 'lodash.isequal';
 import { Tree } from "./Tree";
@@ -72,13 +73,20 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     private updateNodes() {
-        const applySearch = this.buildSearchFilter(this.value);
-        const applyFilter = this.props.getFilter && this.props.getFilter(this.value.filter);
-        const sort = this.buildSorter(this.props.sortBy);
+        const { getSearchFields, getFilter, sortBy } = this.props;
+        const { filter, search, sorting } = this.value;
+
+        const tree = this.tree
+            .filter({ filter, getFilter })
+            .search({ search, getSearchFields })
+            .sort({ sorting, sortBy });
+
+        const searchIsApplied = this.value?.search && getSearchFields;
+
         let fullSelection: TId[] = [];
         let emptySelection: TId[] = [];
         let currentIndex = 0;
-        let isFlatList = this.tree.isFlatList();
+        let isFlatList = tree.isFlatList();
 
         this.updateCheckedLookup(this.value.checked);
 
@@ -89,16 +97,13 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             let selectedCount = 0;
             let checkableCount = 0;
             let rows: DataRowProps<TItem, TId>[] = [];
-            items = sort(items);
 
             for (let n = 0; n < items.length; n++) {
                 const item = items[n];
-                const childrenItems = this.tree.getChildren(item);
+                const childrenItems = tree.getChildren(item);
                 const rowProps = this.getRowProps(item, currentIndex, parents);
                 rowProps.isLastChild = n === (items.length - 1);
                 let children = empty;
-                const isPassedSearch = applySearch ? applySearch(item) : true;
-                const isPassedFilter = applyFilter ? applyFilter(item) : true;
 
                 if (childrenItems.length > 0) {
                     children = getNodesRec(childrenItems, [...parents, rowProps], depth + 1);
@@ -109,43 +114,41 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
                 let isFolded = this.isFolded(item);
 
-                if (applySearch && children.rows.length > 0) {
+                if (searchIsApplied && children.rows.length > 0) {
                     isFolded = false;
                 }
 
                 const isFoldable = children && children.rows.length > 0;
 
-                if ((isPassedSearch && isPassedFilter) || children.rows.length > 0) {
-                    rowProps.indent = isFlatList ? 0 : depth;
-                    rowProps.depth = depth;
-                    rowProps.isFolded = isFolded;
-                    rowProps.isFoldable = isFoldable;
-                    rowProps.onFold = isFoldable ? this.handleOnFold : undefined;
+                rowProps.indent = isFlatList ? 0 : depth;
+                rowProps.depth = depth;
+                rowProps.isFolded = isFolded;
+                rowProps.isFoldable = isFoldable;
+                rowProps.onFold = isFoldable ? this.handleOnFold : undefined;
 
-                    if (rowProps.checkbox && rowProps.checkbox.isVisible && !rowProps.checkbox.isDisabled) {
-                        if (rowProps.checkbox.isDisabled) {
-                            if (rowProps.isChecked) {
-                                fullSelection.push(rowProps.id);
-                                emptySelection.push(rowProps.id);
-                            }
-                        } else {
-                            fullSelection.push(rowProps.id);
-                        }
-                        checkableCount++;
+                if (rowProps.checkbox && rowProps.checkbox.isVisible && !rowProps.checkbox.isDisabled) {
+                    if (rowProps.checkbox.isDisabled) {
                         if (rowProps.isChecked) {
-                            checkedCount++;
+                            fullSelection.push(rowProps.id);
+                            emptySelection.push(rowProps.id);
                         }
-
-                        rowProps.isChildrenChecked = children.checkedCount > 0;
+                    } else {
+                        fullSelection.push(rowProps.id);
+                    }
+                    checkableCount++;
+                    if (rowProps.isChecked) {
+                        checkedCount++;
                     }
 
-                    if (rowProps.isSelectable && rowProps.isSelected) {
-                        selectedCount++;
-                    }
-
-                    rowProps.isChildrenSelected = children.selectedCount > 0;
-                    rows.push(rowProps);
+                    rowProps.isChildrenChecked = children.checkedCount > 0;
                 }
+
+                if (rowProps.isSelectable && rowProps.isSelected) {
+                    selectedCount++;
+                }
+
+                rowProps.isChildrenSelected = children.selectedCount > 0;
+                rows.push(rowProps);
 
 
                 if (!isFolded && children) {
@@ -159,9 +162,9 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         };
 
         const all = getNodesRec(
-            this.tree.getRootItems(),
+            tree.getRootItems(),
             [],
-            this.tree.isFlatList() ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
+            tree.isFlatList() ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
         );
 
         this.rows = all.rows;
@@ -179,58 +182,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                 onValueChange: checked => this.handleCheckedChange(checked ? fullSelection : emptySelection),
                 indeterminate: all.checkedCount > 0 && !isAllChecked,
             };
-        }
-    }
-
-    private buildSearchFilter(value: DataSourceState) {
-        if (value && value.search) {
-            if (this.props.getSearchFields) {
-                const searchFilter = getSearchFilter(value.search);
-                return (i: TItem) => searchFilter(this.props.getSearchFields(i));
-            } else {
-                console.warn("[ArrayDataSource] Search value is set, but props.getSearchField is not specified. Nothing to search on.");
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
-    private buildSorter(sortBy?: (item: TItem, sorting: SortingOption) => any) {
-        const compareScalars = (new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'})).compare;
-
-        const comparers: ((a: TItem, b: TItem) => number)[] = [];
-
-        this.value.sorting && this.value.sorting.forEach(sorting => {
-            const sortByFn = sortBy || ((i: TItem) => i[sorting.field as keyof TItem] || '');
-            const sign = sorting.direction === 'desc' ? -1 : 1;
-            comparers.push((a, b) => sign * compareScalars(sortByFn(a, sorting) + '', sortByFn(b, sorting) + ''));
-        });
-
-        return (items: TItem[]) => {
-            if (comparers.length == 0) {
-                return items;
-            }
-
-            const indexes = new Map<TItem, number>();
-            items.forEach((item, index) => indexes.set(item, index));
-
-            let comparer = (a: TItem, b: TItem) => {
-                for (let n = 0; n < comparers.length; n++) {
-                    const comparer = comparers[n];
-                    const result = comparer(a, b);
-                    if (result != 0) {
-                        return result;
-                    }
-                }
-
-                // to make sort stable, compare items indices if other comparers return 0 (equal)
-                return indexes.get(a) - indexes.get(b);
-            };
-
-            items = [...items];
-            items.sort(comparer);
-            return items;
         }
     }
 
@@ -261,8 +212,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                 isSelectable: (item: TItem) => {
                     const { isCheckable } = this.getRowProps(item, null, []);
                     return isCheckable;
-                }
-            }
+                },
+            },
         );
 
         this.handleCheckedChange(checked);
