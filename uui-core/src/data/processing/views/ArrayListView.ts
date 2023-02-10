@@ -15,6 +15,7 @@ export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewPro
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     props: ArrayListViewProps<TItem, TId, TFilter>;
+    originalTree: Tree<TItem, TId>;
     tree: Tree<TItem, TId>;
 
     constructor(
@@ -34,10 +35,14 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const prevTree = this.tree;
 
         if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
-            this.tree = Tree.create(this.props, this.props.items);
+            this.originalTree = Tree.create(this.props, this.props.items);
+            if (!this.tree) {
+                this.tree = this.originalTree;
+            }
         }
 
         if (prevTree != this.tree || this.isCacheIsOutdated(newValue, currentValue)) {
+            this.tree = this.getUpdatedTree(currentValue, newValue);
             this.updateNodes();
         } else {
             if (newValue.focusedIndex !== currentValue.focusedIndex) {
@@ -72,21 +77,36 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         });
     }
 
-    private updateNodes() {
+    private getUpdatedTree(
+        { filter: prevFilter, search: prevSearch, sorting: prevSorting }: DataSourceState<TFilter, TId>,
+        { filter, search, sorting }: DataSourceState<TFilter, TId>,
+    ) {
         const { getSearchFields, getFilter, sortBy } = this.props;
-        const { filter, search, sorting } = this.value;
 
-        const tree = this.tree
-            .filter({ filter, getFilter })
-            .search({ search, getSearchFields })
-            .sort({ sorting, sortBy });
+        let tree = this.originalTree;
+        if (prevFilter !== filter) {
+            tree = tree.filter({ filter, getFilter });
+        }
 
+        if (prevSearch !== search) {
+            tree = tree.search({ search, getSearchFields });
+        }
+
+        if (!isEqual(prevSorting, sorting)) {
+            tree = tree.sort({ sorting, sortBy });
+        }
+
+        return tree;
+    }
+
+    private updateNodes() {
+        const { getSearchFields } = this.props;
         const searchIsApplied = this.value?.search && getSearchFields;
 
         let fullSelection: TId[] = [];
         let emptySelection: TId[] = [];
         let currentIndex = 0;
-        let isFlatList = tree.isFlatList();
+        let isFlatList = this.tree.isFlatList();
 
         this.updateCheckedLookup(this.value.checked);
 
@@ -100,7 +120,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
             for (let n = 0; n < items.length; n++) {
                 const item = items[n];
-                const childrenItems = tree.getChildren(item);
+                const childrenItems = this.tree.getChildren(item);
                 const rowProps = this.getRowProps(item, currentIndex, parents);
                 rowProps.isLastChild = n === (items.length - 1);
                 let children = empty;
@@ -162,9 +182,9 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         };
 
         const all = getNodesRec(
-            tree.getRootItems(),
+            this.tree.getRootItems(),
             [],
-            tree.isFlatList() ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
+            this.tree.isFlatList() ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
         );
 
         this.rows = all.rows;
