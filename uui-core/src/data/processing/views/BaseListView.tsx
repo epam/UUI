@@ -1,13 +1,16 @@
-import { Lens } from "../../lenses";
 import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView } from "../../../types";
+import { Tree } from "./Tree";
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     protected rows: DataRowProps<TItem, TId>[] = [];
+    protected tree: Tree<TItem, TId>;
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
     public selectAll?: ICheckable;
     protected isDestroyed = false;
+    protected hasMoreRows = false;
+    protected partialLoad = false;
 
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
@@ -46,7 +49,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected handleCheckedChange(checked: TId[]) {
-        this.onValueChange({ ...this.value, checked })
+        this.onValueChange({ ...this.value, checked });
     }
 
     protected idToKey(id: TId) {
@@ -191,5 +194,182 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
         };
     }
+
+    // Extracts a flat list of currently visible rows from the tree
+    protected rebuildRows() {
+        const rows: DataRowProps<TItem, TId>[] = [];
+        let index = 0;
+        let lastIndex = this.value.topIndex + this.value.visibleCount;
+        const isFlattenSearch = this.isFlattenSearch?.() ?? false;
+        const searchIsApplied = !!this.value?.search;
+
+        const iterateNode = (
+            parentId: TId,
+            appendRows: boolean, // Will be false, if we are iterating folded nodes.
+            // We still need to iterate them to get their stats. E.g if there are any item of if any item inside is checked.
+            parents: DataRowProps<TItem, TId>[], // Parents from top to lower level
+            estimatedCount: number = null,
+        ) => {
+            let addedCount = 0;
+            let stats = {
+                isSomeCheckable: false,
+                isSomeChecked: false,
+                isAllChecked: true,
+                isSomeSelected: false,
+                hasMoreRows: false,
+            };
+
+            const layerRows: DataRowProps<TItem, TId>[] = [];
+            const nodeInfo = this.tree.getNodeInfo(parentId);
+
+            const ids = this.tree.getChildrenIdsByParentId(parentId);
+
+            for (let n = 0; n < ids.length; n++) {
+                const id = ids[n];
+                const item = this.tree.getById(id);
+                const row = this.getRowProps(item, index, parents);
+
+                if (appendRows && (!this.partialLoad || (this.partialLoad && index < lastIndex))) {
+                    rows.push(row);
+                    layerRows.push(row);
+                    index++;
+                    addedCount++;
+                }
+
+                if (row.checkbox) {
+                    stats.isSomeCheckable = true;
+                    if (row.isChecked) {
+                        stats.isSomeChecked = true;
+                    } else if (!row.checkbox.isDisabled) {
+                        stats.isAllChecked = false;
+                    }
+                }
+
+                if (row.isSelected) {
+                    stats.isSomeSelected = true;
+                }
+
+                row.isFoldable = false;
+                row.isLastChild = (n == ids.length - 1) && (nodeInfo.count === ids.length);
+                row.indent = isFlattenSearch ? 0 : parents.length + 1;
+
+                const childCount = this.getChildCount(item);
+                if (!isFlattenSearch && childCount !== undefined) {
+                    let estimatedChildrenCount = childCount;
+                    const childrenIds = this.tree.getChildrenIdsByParentId(id);
+                    const childrenInfo = this.tree.getNodeInfo(id);
+
+                    if (childrenInfo && childrenInfo.count != null) {
+                        // nodes are already loaded, and we know the actual count
+                        estimatedChildrenCount = childrenInfo.count;
+                    }
+
+                    if (estimatedChildrenCount > 0) {
+                        row.isFoldable = true;
+                        let isFolded = this.isFolded(item);
+                        if (searchIsApplied && childrenIds.length > 0) {
+                            isFolded = false;
+                        }
+                        row.isFolded = isFolded;
+                        row.onFold = row.isFoldable && this.handleOnFold;
+
+                        const parentsWithRow = [...parents, row];
+
+                        if (childrenIds.length > 0) { // some children are loaded
+                            const childStats = iterateNode(id, appendRows && !row.isFolded, parentsWithRow, estimatedChildrenCount);
+                            row.isChildrenChecked = childStats.isSomeChecked;
+                            row.isChildrenSelected = childStats.isSomeSelected;
+                            stats.isSomeCheckable = stats.isSomeCheckable || childStats.isSomeCheckable;
+                            stats.isSomeChecked = stats.isSomeChecked || childStats.isSomeChecked;
+                            stats.isAllChecked = stats.isAllChecked && childStats.isAllChecked;
+                            stats.hasMoreRows = stats.hasMoreRows || childStats.hasMoreRows;
+                        } else { // children are not loaded
+                            // stats.isAllChecked = false;
+                            // stats.hasMoreRows = true;
+
+                            if (!row.isFolded && appendRows) {
+                                for (let m = 0; m < estimatedChildrenCount && index < lastIndex; m++) {
+                                    const row = this.getLoadingRow('_loading_' + index, index, parentsWithRow);
+                                    row.indent = parentsWithRow.length + 1;
+                                    row.depth = parentsWithRow.length + 1;
+                                    row.isLastChild = m == (estimatedChildrenCount - 1);
+                                    rows.push(row);
+                                    index++;
+                                    addedCount++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (appendRows) {
+                let missingCount: number;
+
+                // Estimate how many more nodes there are at current level, to put 'loading' placeholders.
+
+                if (nodeInfo.count != null) { // Exact count known
+                    missingCount = nodeInfo.count - addedCount;
+                } else if (estimatedCount == null && rows.length < lastIndex) { // estimatedCount = null for top-level rows only.
+                    missingCount = lastIndex - rows.length; // let's put placeholders down to the bottom of visible list
+                } else if (estimatedCount > addedCount) { // According to getChildCount (put into estimatedCount), there are more rows on this level
+                    missingCount = estimatedCount - addedCount;
+                } else {
+                    // We have a bad estimate - it even less that actual items we have
+                    // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
+                    // let's guess we have at least 1 item more than loaded
+                    missingCount = 1;
+                }
+
+                if (missingCount > 0) {
+                    stats.hasMoreRows = true;
+                }
+
+                // Append loading rows, stop at lastIndex (last row visible)
+                while (index < lastIndex && missingCount > 0) {
+                    const row = this.getLoadingRow('_loading_' + index, index, parents);
+                    rows.push(row);
+                    layerRows.push(row);
+                    index++;
+                    addedCount++;
+                    missingCount--;
+                }
+            }
+
+            const isListFlat = parents.length === 0 && !layerRows.some(r => r.isFoldable);
+
+            const indent = isListFlat ? 0 : parents.length + 1;
+            layerRows.forEach(r => r.indent = indent);
+
+            return stats;
+        };
+
+        const rootStats = iterateNode(undefined, true, []);
+
+        if (rootStats.isSomeCheckable && this.isSelectAllEnabled()) {
+            this.selectAll = {
+                value: rootStats.isAllChecked,
+                onValueChange: this.handleSelectAll,
+                indeterminate: this.value.checked && this.value.checked.length > 0 && !rootStats.isAllChecked,
+            };
+        } else if (this.tree.getRootIds().length === 0 && this.props.rowOptions?.checkbox?.isVisible && this.isSelectAllEnabled()) {
+            // Nothing loaded yet, but we guess that something is checkable. Add disabled checkbox for less flicker.
+            this.selectAll = {
+                value: false,
+                onValueChange: () => {},
+                isDisabled: true,
+                indeterminate: this.value.checked?.length > 0,
+            };
+        } else {
+            this.selectAll = null;
+        }
+
+        this.rows = rows;
+        this.hasMoreRows = rootStats.hasMoreRows;
+    }
+
+    protected abstract handleSelectAll(checked: boolean): void;
+    protected abstract getChildCount(item: TItem): number | undefined;
+    protected isFlattenSearch = () => false;
 }
 
