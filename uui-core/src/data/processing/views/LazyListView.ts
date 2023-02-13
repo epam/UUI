@@ -74,7 +74,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private isUpdatePending = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
-    protected partialLoad = false;
+    protected partialLoad = true;
 
     constructor(editable: IEditable<DataSourceState<TFilter, TId>>, props: LazyListViewProps<TItem, TId, TFilter>, cache?: ListApiCache<TItem, TId, TFilter>) {
         super(editable, props);
