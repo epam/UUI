@@ -9,7 +9,7 @@ exports[`TextPlaceholder should be rendered correctly 1`] = `
     className="uui-theme-promo loadingWord animatedLoading"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "0000000000000",
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
   />
@@ -25,7 +25,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
     className="uui-theme-promo loadingWord"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "0000000000000",
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
   />
@@ -33,7 +33,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
     className="uui-theme-promo loadingWord"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "0000000000000",
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
   />
@@ -41,7 +41,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
     className="uui-theme-promo loadingWord"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "0000000000000",
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
   />
@@ -49,7 +49,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
     className="uui-theme-promo loadingWord"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "0000000000000",
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
   />
@@ -57,7 +57,7 @@ exports[`TextPlaceholder should be rendered correctly 2`] = `
     className="uui-theme-promo loadingWord"
     dangerouslySetInnerHTML={
       Object {
-        "__html": "0000000000000",
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
       }
     }
   />
