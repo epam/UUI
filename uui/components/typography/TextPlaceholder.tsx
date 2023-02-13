@@ -12,7 +12,7 @@ export interface ITextPlaceholderProps extends IHasRawProps<React.HTMLAttributes
 export type TextPlaceholderProps = PropsWithChildren<ITextPlaceholderProps>;
 
 export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<ITextPlaceholderProps>> = (props) => {
-    const pattern = `0`;
+    const pattern =  `&nbsp;`;
     const text = React.useMemo(() => {
         const words = [];
         for (let i = 0; i < (props.wordsCount || 1); i++) {
