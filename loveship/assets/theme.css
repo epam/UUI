@@ -273,8 +273,12 @@
     --uui-control-hover: var(--uui-primary-dark);
     --uui-control-active: var(--uui-primary-darkest);
 
-    --uui-control-label: var(--night800);
-    --uui-control-label-disabled: var(--night600);
+    --uui-control-label: var(--uui-text-primary);
+    --uui-control-label-disabled: var(--uui-text-disabled);
+    --uui-control-label-error: var(--uui-error);
+    --uui-control-label-fill: var(--uui-icon);
+    --uui-control-label-optional-text: var(--uui-text-secondary);
+    --uui-control-label-asterisk: var(--uui-error);
 
     --uui-control-placeholder: var(--night600);
     --uui-control-placeholder-disabled: var(--night500);
@@ -489,12 +493,6 @@
     --uui-labeled-input-info-fill: var(--uui-info);
     --uui-labeled-input-optional-text: var(--uui-text-secondary);
     --uui-labeled-input-asterisk: var(--uui-error);
-    --uui-control-label: var(--uui-text-primary);
-    --uui-control-label-disabled: var(--uui-text-disabled);
-    --uui-control-label-error: var(--uui-error);
-    --uui-control-label-fill: var(--uui-icon);
-    --uui-control-label-optional-text: var(--uui-text-secondary);
-    --uui-control-label-asterisk: var(--uui-error);
 
     /* Accordion */
     --uui-accordion-bg: var(--uui-surface);
@@ -832,30 +830,42 @@
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.uui-theme-loveship.notification-card-success {
+.uui-theme-loveship.notification-card-success,
+.uui-theme-loveship.notification-card-grass {
     --uui-notification-card-fill: var(--uui-success);
     --uui-notification-card-border: var(--uui-success);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.uui-theme-loveship.notification-card-info {
+.uui-theme-loveship.notification-card-info,
+.uui-theme-loveship.notification-card-sky {
     --uui-notification-card-fill: var(--uui-info);
     --uui-notification-card-border: var(--uui-info);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.uui-theme-loveship.notification-card-error {
+.uui-theme-loveship.notification-card-error,
+.uui-theme-loveship.notification-card-fire {
     --uui-notification-card-fill: var(--uui-error);
     --uui-notification-card-border: var(--uui-error);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
+.uui-theme-loveship.notification-card-night600 {
+    --uui-notification-card-fill: var(--night600);
+    --uui-notification-card-border: var(--night600);
+    --uui-notification-card-bg: var(--uui-surface);
+    --uui-notification-card-text: var(--uui-text-primary);
+}
+
 .uui-theme-loveship.notification-card-vars {
     --uui-notification-card-border-radius: var(--uui-border-radius);
-    --uui-notification-card-shadow: 0 4px 22px 0 rgba(29, 30, 38, 0.15);
+    --uui-notification-card-border-width: 0;
+    --uui-notification-card-border-top-width: 6px;
+    --uui-notification-card-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .orange {
