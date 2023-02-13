@@ -72,6 +72,7 @@ const Editor = (props: any) => {
     return (
         <DndProvider backend={ HTML5Backend }>
             <Plate
+                { ...props }
                 id={ props.id }
             >
                 <MarkBalloonToolbar />
@@ -107,7 +108,7 @@ export function SlateEditor(props: SlateEditorProps) {
         readOnly: isReadonly,
         placeholder,
     };
-
+    console.log(isReadonly, props);
     const onChange = (value: any) => {
         props?.onValueChange(value);
     };
