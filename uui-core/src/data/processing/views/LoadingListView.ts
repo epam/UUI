@@ -39,4 +39,6 @@ export class LoadingListView<TId> extends BaseListView<any, any, any> {
         return [];
     }
 
+    protected getChildCount = () => 0;
+    protected handleSelectAll = () => {};
 }
