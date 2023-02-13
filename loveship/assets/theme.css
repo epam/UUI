@@ -816,7 +816,9 @@
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
-.uui-theme-loveship.icon-button-night600 {
+.uui-theme-loveship.icon-button-night600,
+.uui-theme-promo.icon-button-default,
+.uui-theme-promo .icon-button-default {
     --uui-icon-btn: var(--gray60);
     --uui-icon-btn-hover: var(--uui-color-night600-800);
     --uui-icon-btn-active: var(--uui-color-night600-900);
