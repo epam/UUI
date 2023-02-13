@@ -10,7 +10,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     public selectAll?: ICheckable;
     protected isDestroyed = false;
     protected hasMoreRows = false;
-    protected partialLoad = false;
 
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
@@ -229,7 +228,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 const item = this.tree.getById(id);
                 const row = this.getRowProps(item, index, parents);
 
-                if (appendRows && (!this.partialLoad || (this.partialLoad && index < lastIndex))) {
+                if (appendRows && (!this.isPartialLoad() || (this.isPartialLoad() && index < lastIndex))) {
                     rows.push(row);
                     layerRows.push(row);
                     index++;
@@ -370,5 +369,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected abstract handleSelectAll(checked: boolean): void;
     protected abstract getChildCount(item: TItem): number | undefined;
     protected isFlattenSearch = () => false;
+    protected isPartialLoad = () => false;
 }
 
