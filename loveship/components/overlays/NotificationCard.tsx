@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { useUuiContext, withMods } from '@epam/uui-core';
 import { NotificationCard as uuiNotificationCard, NotificationCardProps as uuiNotificationCardProps, DefaultNotificationProps } from '@epam/uui';
 import { EpamPrimaryColor } from '../types';
-import { IconButtonProps, LinkButton } from '../buttons';
+import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
 import { ReactComponent as SuccessIcon } from '../icons/notification-check-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../icons/notification-warning-fill-24.svg';
@@ -13,7 +13,6 @@ import css from './NotificationCard.scss';
 
 export interface NotificationCardMods {
     color: EpamPrimaryColor | 'night600';
-    closeButtonProps?: IconButtonProps;
 }
 
 function applyNotificationCardMods() {
@@ -22,20 +21,15 @@ function applyNotificationCardMods() {
     ];
 }
 
-export interface NotificationCardProps extends Omit<uuiNotificationCardProps, 'color' | 'closeButtonProps'>, NotificationCardMods {}
+export interface NotificationCardProps extends Omit<uuiNotificationCardProps, 'color' >, NotificationCardMods {}
 
 
-export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color' | 'closeButtonProps'>, NotificationCardMods>(
+export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color' >, NotificationCardMods>(
     uuiNotificationCard,
     applyNotificationCardMods,
     (props) => ({
         ...props,
         color: props.color ?? 'night600',
-        closeButtonProps: {
-            ...props.closeButtonProps,
-            color: props.closeButtonProps?.color ?? 'night600',
-            cx: cx('uui-theme-loveship', props.closeButtonProps?.cx),
-        },
     }),
 );
 

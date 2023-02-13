@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { IconContainer } from '@epam/uui-components';
 import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps } from '@epam/uui-core';
-import { IconButton, IconColor, LinkButton, IconButtonProps } from '../buttons';
+import { IconButton, LinkButton } from '../buttons';
 import { SemanticColor } from '../types';
 import { i18n } from '../../i18n';
 import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
@@ -24,7 +24,6 @@ export interface DefaultNotificationProps extends INotification, IHasChildren, I
 export interface NotificationCardProps extends DefaultNotificationProps {
     icon?: Icon;
     color?: SemanticColor;
-    closeButtonProps?: IconButtonProps;
 }
 
 export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {
@@ -73,9 +72,9 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
                     <div className={ css.closeWrapper }>
                             <IconButton
                                 icon={ CrossIcon }
-                                color={ props.closeButtonProps?.color ?? 'default' }
+                                color={ 'default' }
                                 onClick={ props.onClose }
-                                cx={ cx(css.closeIcon, props.closeButtonProps?.cx) }
+                                cx={ css.closeIcon }
                             />
                     </div>
                 ) }

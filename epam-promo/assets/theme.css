@@ -802,7 +802,8 @@
 }
 
 .uui-theme-promo.icon-button-gray60,
-.uui-theme-promo.icon-button-default {
+.uui-theme-promo.icon-button-default,
+.uui-theme-promo .icon-button-default {
     --uui-icon-btn: var(--uui-icon);
     --uui-icon-btn-hover: var(--uui-icon-hover);
     --uui-icon-btn-active: var(--uui-icon-active);
