@@ -1,103 +1,58 @@
-import * as React from 'react';
+import React from 'react';
 import cx from 'classnames';
-import { IconContainer } from '@epam/uui-components';
-import { INotification, Icon, IHasChildren, IHasCX, IHasRawProps, useUuiContext, useLayoutEffectSafeForSsr } from '@epam/uui-core';
-import { IconButton } from '../buttons';
+import { useUuiContext, withMods } from '@epam/uui-core';
+import { NotificationCard as uuiNotificationCard, NotificationCardProps as uuiNotificationCardProps, DefaultNotificationProps } from '@epam/uui';
+import { EpamPrimaryColor } from '../types';
+import { IconButtonProps, LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
-import { EpamPrimaryColor, LinkButton } from '..';
 import { ReactComponent as SuccessIcon } from '../../icons/notification-check_circle-fill-24.svg';
 import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
-import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
-import styles from '../../assets/styles/colorvars/overlays/notificationCard-colorvars.scss';
 import css from './NotificationCard.scss';
 
-interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
-    name: string;
-    action: () => void;
-}
-
-export interface DefaultNotificationProps extends INotification, IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    actions?: NotificationAction[];
-}
-
-export interface NotificationCardProps extends DefaultNotificationProps {
-    icon?: Icon;
+export interface NotificationCardMods {
     color: EpamPrimaryColor | 'gray60';
+    closeButtonProps?: IconButtonProps;
 }
 
-export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {
-    const notificationCardNode = React.useRef(null);
+function applyNotificationCardMods() {
+    return [
+        'uui-theme-promo',
+    ];
+}
 
-    React.useImperativeHandle(ref, () => notificationCardNode.current, [notificationCardNode.current]);
+export interface NotificationCardProps extends Omit<uuiNotificationCardProps, 'color' | 'closeButtonProps'>, NotificationCardMods {}
 
-    useLayoutEffectSafeForSsr(() => {
-        notificationCardNode.current?.addEventListener('mouseenter', props.clearTimer);
-        notificationCardNode.current?.addEventListener('mouseleave', props.refreshTimer);
-        return () => {
-            notificationCardNode.current?.removeEventListener('mouseenter', props.clearTimer);
-            notificationCardNode.current?.removeEventListener('mouseleave', props.refreshTimer);
-        };
-    }, []);
 
-    return (
-        <div
-            role="alert"
-            className={ cx(css.notificationWrapper, styles[`color-${props.color}`], css.root, props.cx) }
-            ref={ notificationCardNode }
-            { ...props.rawProps }
-        >
-            <div className={ css.mainPath }>
-                { props.icon && (
-                    <div className={ css.iconWrapper }>
-                        <IconContainer icon={ props.icon } cx={ css.actionIcon } />
-                    </div>
-                ) }
-                <div className={ css.content }>
-                    { props.children }
-                    { props.actions && <div className={ css.actionWrapper }>
-                        { props.actions.map(action => (
-                            <LinkButton
-                                caption={ action.name }
-                                onClick={ action.action }
-                                key={ action.name }
-                                cx={ css.actionLink }
-                                size='36'
-                                rawProps={ action.rawProps }
-                            />
-                        )) }
-                    </div> }
-                </div>
-                { props.onClose && (
-                    <div className={ css.closeWrapper }>
-                            <IconButton
-                                icon={ CrossIcon }
-                                color='gray60'
-                                onClick={ props.onClose }
-                                cx={ css.closeIcon }
-                            />
-                    </div>
-                ) }
-            </div>
-        </div>
-    );
-});
+export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color' | 'closeButtonProps'>, NotificationCardMods>(
+    uuiNotificationCard,
+    applyNotificationCardMods,
+    (props) => ({
+        ...props,
+        color: props.color ?? 'gray60',
+        closeButtonProps: {
+            ...props.closeButtonProps,
+            color: props.closeButtonProps?.color ?? 'gray60',
+            cx: cx('uui-theme-promo', props.closeButtonProps?.cx),
+        },
+    }),
+);
 
 export const WarningNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ WarningIcon } color='amber' { ...props } ref={ ref } cx={ cx(props.cx) } />
+    <NotificationCard icon={ WarningIcon } color='amber' { ...props } ref={ ref } cx={ props.cx } />
 ));
 
 export const SuccessNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ SuccessIcon } color='green' { ...props } cx={ cx(props.cx) } />
+    <NotificationCard icon={ SuccessIcon } color='green' { ...props } ref={ ref } cx={ props.cx } />
 ));
 
 export const HintNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ HintIcon } color='blue' { ...props } cx={ cx(props.cx) } />
+    <NotificationCard icon={ HintIcon } color='blue' { ...props } ref={ ref } cx={ props.cx } />
 ));
 
 export const ErrorNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ ErrorIcon } color='red' { ...props } cx={ cx(props.cx) } />
+    <NotificationCard icon={ ErrorIcon } color='red' { ...props } ref={ ref } cx={ props.cx } />
 ));
 
 export const ClearNotification = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
