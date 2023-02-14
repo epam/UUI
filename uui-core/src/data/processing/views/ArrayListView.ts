@@ -118,10 +118,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     protected handleSelectAll = (checked: boolean) => {
-        const rowsToSelect = this.rows
-            .filter((row) => row.checkbox && row.checkbox.isVisible && !row.checkbox.isDisabled)
-            .map(({ id }) => id);
-
+        const rowsToSelect = this.rows.filter(this.canBeSelected).map(({ id }) => id);
         this.handleCheckedChange(checked ? rowsToSelect : []);
     }
 
