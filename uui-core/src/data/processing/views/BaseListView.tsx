@@ -207,7 +207,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             appendRows: boolean, // Will be false, if we are iterating folded nodes.
             // We still need to iterate them to get their stats. E.g if there are any item of if any item inside is checked.
             parents: DataRowProps<TItem, TId>[], // Parents from top to lower level
-            estimatedCount: number = null,
         ) => {
             let addedCount = 0;
             let stats = {
@@ -222,7 +221,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             const nodeInfo = this.tree.getNodeInfo(parentId);
 
             const ids = this.tree.getChildrenIdsByParentId(parentId);
-
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);
@@ -252,16 +250,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 row.isLastChild = (n == ids.length - 1) && (nodeInfo.count === ids.length);
                 row.indent = isFlattenSearch ? 0 : parents.length + 1;
 
-                const childCount = this.getChildCount(item);
-                if (!isFlattenSearch && childCount !== undefined) {
-                    let estimatedChildrenCount = childCount;
+                const estimatedChildrenCount = this.getEstimatedChildrenCount(id);
+                if (!isFlattenSearch && estimatedChildrenCount !== undefined) {
                     const childrenIds = this.tree.getChildrenIdsByParentId(id);
-                    const childrenInfo = this.tree.getNodeInfo(id);
-
-                    if (childrenInfo && childrenInfo.count != null) {
-                        // nodes are already loaded, and we know the actual count
-                        estimatedChildrenCount = childrenInfo.count;
-                    }
 
                     if (estimatedChildrenCount > 0) {
                         row.isFoldable = true;
@@ -275,7 +266,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                         const parentsWithRow = [...parents, row];
 
                         if (childrenIds.length > 0) { // some children are loaded
-                            const childStats = iterateNode(id, appendRows && !row.isFolded, parentsWithRow, estimatedChildrenCount);
+                            const childStats = iterateNode(id, appendRows && !row.isFolded, parentsWithRow);
                             row.isChildrenChecked = childStats.isSomeChecked;
                             row.isChildrenSelected = childStats.isSomeSelected;
                             stats.isSomeCheckable = stats.isSomeCheckable || childStats.isSomeCheckable;
@@ -283,9 +274,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                             stats.isAllChecked = stats.isAllChecked && childStats.isAllChecked;
                             stats.hasMoreRows = stats.hasMoreRows || childStats.hasMoreRows;
                         } else { // children are not loaded
-                            // stats.isAllChecked = false;
-                            // stats.hasMoreRows = true;
-
                             if (!row.isFolded && appendRows) {
                                 for (let m = 0; m < estimatedChildrenCount && index < lastIndex; m++) {
                                     const row = this.getLoadingRow('_loading_' + index, index, parentsWithRow);
@@ -302,22 +290,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             }
 
             if (appendRows) {
-                let missingCount: number;
-
-                // Estimate how many more nodes there are at current level, to put 'loading' placeholders.
-
-                if (nodeInfo.count != null) { // Exact count known
-                    missingCount = nodeInfo.count - addedCount;
-                } else if (estimatedCount == null && rows.length < lastIndex) { // estimatedCount = null for top-level rows only.
-                    missingCount = lastIndex - rows.length; // let's put placeholders down to the bottom of visible list
-                } else if (estimatedCount > addedCount) { // According to getChildCount (put into estimatedCount), there are more rows on this level
-                    missingCount = estimatedCount - addedCount;
-                } else {
-                    // We have a bad estimate - it even less that actual items we have
-                    // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
-                    // let's guess we have at least 1 item more than loaded
-                    missingCount = 1;
-                }
+                let missingCount: number = this.getMissingRecordsCount(parentId, rows.length, addedCount);
 
                 if (missingCount > 0) {
                     stats.hasMoreRows = true;
@@ -335,7 +308,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             }
 
             const isListFlat = parents.length === 0 && !layerRows.some(r => r.isFoldable);
-
             const indent = isListFlat ? 0 : parents.length + 1;
             layerRows.forEach(r => r.indent = indent);
 
@@ -365,6 +337,50 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.rows = rows;
         this.hasMoreRows = rootStats.hasMoreRows;
     }
+
+    private getEstimatedChildrenCount = (id: TId) => {
+        if (!id) return undefined;
+
+        const item = this.tree.getById(id);
+        const childCount = this.getChildCount(item);
+        if (childCount === undefined) return undefined;
+
+        const nodeInfo = this.tree.getNodeInfo(id);
+        if (nodeInfo?.count !== undefined) {
+            // nodes are already loaded, and we know the actual count
+            return nodeInfo.count;
+        }
+
+        return childCount;
+    }
+
+    private getMissingRecordsCount(id: TId, rowsCount: number, addedRowsCount: number) {
+        const nodeInfo = this.tree.getNodeInfo(id);
+
+        const estimatedChildCount = this.getEstimatedChildrenCount(id);
+
+        // Estimate how many more nodes there are at current level, to put 'loading' placeholders.
+        if (nodeInfo.count !== undefined) { // Exact count known
+            return nodeInfo.count - addedRowsCount;
+        }
+
+        const lastIndex = this.getLastRecordIndex();
+        // estimatedChildCount = undefined for top-level rows only.
+        if (!id && rowsCount < lastIndex) {
+            return lastIndex - rowsCount; // let's put placeholders down to the bottom of visible list
+        }
+
+        if (estimatedChildCount > addedRowsCount) { // According to getChildCount (put into estimatedChildCount), there are more rows on this level
+            return estimatedChildCount - addedRowsCount;
+        }
+
+        // We have a bad estimate - it even less that actual items we have
+        // This would happen is getChildCount provides a guess count, and we scroll thru children past this count
+        // let's guess we have at least 1 item more than loaded
+        return 1;
+    }
+
+    private getLastRecordIndex = () => this.value.topIndex + this.value.visibleCount;
 
     protected abstract handleSelectAll(checked: boolean): void;
     protected abstract getChildCount(item: TItem): number | undefined;
