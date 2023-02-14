@@ -31,7 +31,7 @@ export const ColorButton = ({ editor }: IToolbarButton) => {
     if (!isPluginActive(MARK_COLOR)) return null;
 
     const type = getPluginType(editor, MARK_COLOR);
-    const markValue = getMark(editor, type);
+    const markValue: any = getMark(editor, type);
 
     const updateColor = useCallback((color: string) => {
         if (markValue !== color) {
@@ -49,7 +49,7 @@ export const ColorButton = ({ editor }: IToolbarButton) => {
         <Dropdown
             renderTarget={ (props) =>  (
                 <PlateToolbarButton
-                    styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                    styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                     active={ true }
                     onMouseDown={
                         editor

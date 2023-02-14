@@ -39,8 +39,6 @@ export function NoteBar({ editor, type }: NoteBarProps) {
         <FlexRow rawProps={ { style: { background: '#303240' } } }>
             <PlateToolbarButton
                 styles={ { root: {width: 'auto', cursor: 'pointer' }} }
-                iconColor='red'
-                isActive={ false }
                 icon={ <ToolbarButton
                     onClick={ noop }
                     icon={ ClearIcon }
@@ -50,7 +48,6 @@ export function NoteBar({ editor, type }: NoteBarProps) {
             />
             <PlateToolbarButton
                 styles={ { root: {width: 'auto', cursor: 'pointer' }} }
-                isActive={ false }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-quote' }
                     onClick={ noop }
@@ -61,7 +58,6 @@ export function NoteBar({ editor, type }: NoteBarProps) {
             />
             <PlateToolbarButton
                 styles={ { root: {width: 'auto', cursor: 'pointer' }} }
-                isActive={ false }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-error' }
                     onClick={ noop }
@@ -72,7 +68,6 @@ export function NoteBar({ editor, type }: NoteBarProps) {
             />
             <PlateToolbarButton
                 styles={ { root: {width: 'auto', cursor: 'pointer' }} }
-                isActive={ false }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-warning' }
                     onClick={ noop }
@@ -83,7 +78,6 @@ export function NoteBar({ editor, type }: NoteBarProps) {
             />
             <PlateToolbarButton
                 styles={ { root: {width: 'auto', cursor: 'pointer' }} }
-                isActive={ false }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-link' }
                     onClick={ noop }

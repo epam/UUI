@@ -23,8 +23,7 @@ export function ColorBar({ updateColor, clearColor, value }: IColorBar) {
 
     return <FlexRow rawProps={ { style: { background: '#303240' } } }>
         <PlateToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer' }} }
-            isActive={ false }
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
             icon={ <ToolbarButton
                 onClick={ noop }
                 isActive={ false }
@@ -33,9 +32,7 @@ export function ColorBar({ updateColor, clearColor, value }: IColorBar) {
             onMouseDown={ clearColor }
         />
         <PlateToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer' }} }
-            iconColor='red'
-            isActive={ false }
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
             icon={ <ToolbarButton
                 onClick={ noop }
                 iconColor='red'
@@ -45,9 +42,7 @@ export function ColorBar({ updateColor, clearColor, value }: IColorBar) {
             onMouseDown={ () => updateColor('#A72014') }
         />
         <PlateToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer' }} }
-            iconColor='amber'
-            isActive={ false }
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
             icon={ <ToolbarButton
                 onClick={ noop }
                 iconColor='amber'
@@ -57,9 +52,7 @@ export function ColorBar({ updateColor, clearColor, value }: IColorBar) {
             onMouseDown={ () => updateColor('#995A00') }
         />
         <PlateToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer' }} }
-            iconColor='green'
-            isActive={ false }
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
             icon={ <ToolbarButton
                 onClick={ noop }
                 iconColor='green'

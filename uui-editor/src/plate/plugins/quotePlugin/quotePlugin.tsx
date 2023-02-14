@@ -47,7 +47,7 @@ export const QuoteButton = ({ editor }: ToolbarButton) => {
 
     return (
         <BlockToolbarButton
-            styles={ { root: { width: 'auto', cursor: 'pointer' }} }
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
             type={ getPluginType(editor, KEY) }
             icon={ <ToolbarButton
                 onClick={ noop }

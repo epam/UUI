@@ -84,7 +84,7 @@ export const ListButton = ({ editor }: IToolbarButton) => {
     return (
         <>
             <ListToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                 type={ getPluginType(editor, ELEMENT_UL_CUSTOM) }
                 icon={ <ToolbarButton
                     onClick={ noop }
@@ -93,7 +93,7 @@ export const ListButton = ({ editor }: IToolbarButton) => {
                 /> }
             />
             <ListToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                 type={ getPluginType(editor, ELEMENT_OL_CUSTOM) }
                 icon={ <ToolbarButton
                     onClick={ noop }

@@ -95,7 +95,7 @@ export const ImageButton = ({
 
     return (
         <PlateToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
             onMouseDown={ async (event) => {
                 if (!editor) return;
 

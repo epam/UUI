@@ -108,7 +108,7 @@ export function SlateEditor(props: SlateEditorProps) {
         readOnly: isReadonly,
         placeholder,
     };
-    console.log(isReadonly, props);
+
     const onChange = (value: any) => {
         props?.onValueChange(value);
     };
