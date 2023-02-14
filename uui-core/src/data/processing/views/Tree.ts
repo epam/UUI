@@ -249,7 +249,6 @@ export class Tree<TItem, TId> {
                 }
             }
         });
-
         const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
 
         for (let [parentId, ids] of newByParentId) {
@@ -555,7 +554,7 @@ export class Tree<TItem, TId> {
         return path;
     }
 
-    public getPathItem(item: TItem) {
+    public getPathItem(item: TItem): DataRowPathItem<TId, TItem> {
         const parentId = this.getParentId?.(item);
         const id = this.getId?.(item);
 

@@ -136,10 +136,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return true;
     }
 
-    protected getRowProps(item: TItem, index: number, path: DataRowPathItem<TId, TItem>[]): DataRowProps<TItem, TId> {
+    protected getRowProps(item: TItem, index: number): DataRowProps<TItem, TId> {
         const id = this.props.getId(item);
         const key = this.idToKey(id);
-
+        const path = this.tree.getPathById(id);
         const parentId = path.length > 0 ? path[path.length - 1].id : undefined;
 
         const rowProps = {

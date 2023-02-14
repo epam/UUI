@@ -1,6 +1,6 @@
 import {
     DataRowProps, SortingOption, IEditable, DataSourceState,
-    DataSourceListProps, IDataSourceView, BaseListViewProps, DataRowPathItem,
+    DataSourceListProps, IDataSourceView, BaseListViewProps,
 } from "../../../types";
 import { getSearchFilter } from '../../querying';
 import { BaseListView } from './BaseListView';
@@ -62,7 +62,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     public getById = (id: TId, index: number) => {
         const item = this.tree.getById(id);
-        return this.getRowProps(item, index, []);
+        return this.getRowProps(item, index);
     }
 
     private updateFocusedItem = () => {
@@ -95,8 +95,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             for (let n = 0; n < items.length; n++) {
                 const item = items[n];
                 const childrenItems = this.tree.getChildren(item);
-                const path = this.tree.getPathById(this.props.getId(item));
-                const rowProps = this.getRowProps(item, currentIndex, path);
+                const rowProps = this.getRowProps(item, currentIndex);
                 rowProps.isLastChild = n === (items.length - 1);
                 let children = empty;
                 const isPassedSearch = applySearch ? applySearch(item) : true;
@@ -260,7 +259,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             {
                 cascade: this.props.cascadeSelection,
                 isSelectable: (item: TItem) => {
-                    const { isCheckable } = this.getRowProps(item, null, []);
+                    const { isCheckable } = this.getRowProps(item, null);
                     return isCheckable;
                 }
             }
