@@ -3,7 +3,6 @@ import {
     DataSourceListProps, IDataSourceView, BaseListViewProps,
 } from "../../../types";
 import { BaseListView } from './BaseListView';
-import isEqual from 'lodash.isequal';
 import { Tree } from "./Tree";
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
