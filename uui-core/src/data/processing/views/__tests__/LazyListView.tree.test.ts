@@ -335,7 +335,7 @@ describe('LazyListView', () => {
             { id: 120, isChecked: false },
         ]);
 
-        view.update({...value, checked: [row110.id] }, view.props);
+        view.update({ ...value, checked: [row110.id] }, view.props);
 
         expect(mockOnValueChanged).toBeCalledWith({ checked: [row110.id], topIndex: 0, visibleCount: 3 })
 
@@ -366,11 +366,11 @@ describe('LazyListView', () => {
             { id: 110 },
             { id: 120, isChildrenChecked: true },
             { id: 121, isChecked: true },
-            { id: 122, isChecked: true  },
+            { id: 122, isChecked: true },
             { id: 200 },
             { id: 300, isChildrenChecked: true },
-            { id: 310, isChecked: true  },
-            { id: 320, isChecked: true  },
+            { id: 310, isChecked: true },
+            { id: 320, isChecked: true },
             { id: 330 },
         ]);
     });
@@ -516,11 +516,11 @@ describe('LazyListView', () => {
             { id: 110, isChecked: true },
             { id: 120, isChecked: true, isChildrenChecked: true },
             { id: 121, isChecked: true },
-            { id: 122, isChecked: true  },
+            { id: 122, isChecked: true },
             { id: 200, isChecked: true },
             { id: 300, isChecked: true, isChildrenChecked: true },
-            { id: 310, isChecked: true  },
-            { id: 320, isChecked: true  },
+            { id: 310, isChecked: true },
+            { id: 320, isChecked: true },
             { id: 330, isChecked: true },
         ], 10);
 
@@ -538,11 +538,11 @@ describe('LazyListView', () => {
             { id: 110, isChecked: false },
             { id: 120, isChecked: false, isChildrenChecked: false },
             { id: 121, isChecked: false },
-            { id: 122, isChecked: false  },
+            { id: 122, isChecked: false },
             { id: 200, isChecked: false },
             { id: 300, isChecked: false, isChildrenChecked: false },
-            { id: 310, isChecked: false  },
-            { id: 320, isChecked: false  },
+            { id: 310, isChecked: false },
+            { id: 320, isChecked: false },
             { id: 330, isChecked: false },
         ], 10);
     });
@@ -785,13 +785,13 @@ describe('LazyListView', () => {
         expectViewToLookLike(view, [
             { id: 100, isChildrenChecked: true },
             { id: 110 },
-            { id: 120, isChecked: true , isChildrenChecked: true },
+            { id: 120, isChecked: true, isChildrenChecked: true },
             { id: 121, isChecked: true },
-            { id: 122, isChecked: true  },
+            { id: 122, isChecked: true },
             { id: 200 },
             { id: 300, isChildrenChecked: false },
-            { id: 310, isChecked: false  },
-            { id: 320, isChecked: false  },
+            { id: 310, isChecked: false },
+            { id: 320, isChecked: false },
             { id: 330 },
         ]);
 
@@ -802,15 +802,14 @@ describe('LazyListView', () => {
         expectViewToLookLike(view, [
             { id: 100, isChildrenChecked: true },
             { id: 110 },
-            { id: 120, isChecked: false , isChildrenChecked: true },
+            { id: 120, isChecked: false, isChildrenChecked: true },
             { id: 121, isChecked: false },
-            { id: 122, isChecked: true  },
+            { id: 122, isChecked: true },
             { id: 200 },
             { id: 300, isChildrenChecked: false },
-            { id: 310, isChecked: false  },
-            { id: 320, isChecked: false  },
+            { id: 310, isChecked: false },
+            { id: 320, isChecked: false },
             { id: 330 },
         ]);
-
     });
 });

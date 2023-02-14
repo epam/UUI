@@ -15,7 +15,7 @@ export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], reque
     }
 
     if (request.search) {
-        searchBy = searchBy || ((i: any) => i.name);
+        searchBy = searchBy || ((i: any) => [i.name]);
         const searchFilter = getSearchFilter(request.search);
         items = items.filter(item => searchFilter(searchBy(item)));
     }
