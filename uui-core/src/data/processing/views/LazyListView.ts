@@ -135,12 +135,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (prevValue == null
             || prevProps == null
             || this.tree == null
-            || this.value.search !== prevValue.search
-            || !isEqual(this.value.sorting, prevValue.sorting)
-            || !isEqual(this.value.filter, prevValue.filter)
+            || this.shouldRebuildTree(this.value, prevValue)
             || !isEqual(this.props.filter, prevProps.filter)
-            || this.value.page !== prevValue.page
-            || this.value.pageSize !== prevValue.pageSize
         ) {
             this.tree = this.tree ? this.tree.clearStructure() : Tree.blank<TItem, TId>(this.props);
             completeReset = true;
@@ -148,13 +144,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         let isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
 
-        const newValueLastIndex = this.value.topIndex + this.value.visibleCount;
+        const newValueLastIndex = this.getLastRecordIndex();
         const moreRowsNeeded = newValueLastIndex > this.rows.length;
 
         if (completeReset
-            || !isEqual(this.value.checked, prevValue.checked)
-            || this.value.selectedId !== prevValue.selectedId
-            || isFoldingChanged
+            || this.shouldRebuildRows(this.value, prevValue)
             || !isEqual(this.props.rowOptions, prevProps.rowOptions)
             || this.props.getRowOptions !== prevProps.getRowOptions
             || moreRowsNeeded
@@ -360,7 +354,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         let rowsCount: number;
         let totalCount: number;
-        let lastVisibleIndex = this.value.topIndex + this.value.visibleCount;
+        let lastVisibleIndex = this.getLastRecordIndex();
         let rootInfo = this.tree.getNodeInfo(undefined);
         let rootCount = rootInfo.count;
 
