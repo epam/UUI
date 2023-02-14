@@ -214,7 +214,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             appendRows: boolean, // Will be false, if we are iterating folded nodes.
             // We still need to iterate them to get their stats. E.g if there are any item of if any item inside is checked.
             parents: DataRowProps<TItem, TId>[], // Parents from top to lower level
-        ) => {
+        ): NodeStats => {
             let currentLevelRows = 0;
             let stats = this.getDefaultNodeStats();
 
@@ -394,6 +394,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         isAllChecked: parentStats.isAllChecked && childStats.isAllChecked,
         hasMoreRows: parentStats.hasMoreRows || childStats.hasMoreRows,
     })
+
+    protected canBeSelected = (row: DataRowProps<TItem, TId>) =>
+        row.checkbox && row.checkbox.isVisible && !row.checkbox.isDisabled
 
     private getLastRecordIndex = () => this.value.topIndex + this.value.visibleCount;
 
