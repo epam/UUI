@@ -9,7 +9,9 @@ export default function LazyTreePicker() {
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
         api: (request, ctx) => {
-            const search = ctx?.parentId ? undefined : request.search;
+            const { search } = request;
+            // if search is specified, it is required to search over all the children,
+            // and since parentId is meaningful value, it is required to exclude it from the filter.
             const filter = search ? {} : { parentId: ctx?.parentId };
             return svc.api.demo.locations({ ...request, search, filter });
         },
@@ -30,7 +32,6 @@ export default function LazyTreePicker() {
                 dataSource={ dataSource }
                 value={ value }
                 onValueChange={ onValueChange }
-                cascadeSelection={ true }
                 entityName='location'
                 selectionMode='multi'
                 valueType='id'

@@ -52,7 +52,7 @@ describe('LazyListView', () => {
 
     let ds = new LazyDataSource({ api, getChildCount: (i) => i.childrenCount });
     const viewProps = {
-        cascadeSelection: true,
+        flattenSearchResults: true,
         getRowOptions: i => ({ checkbox: { isVisible: true } }),
         isFoldedByDefault: i => false,
         getParentId: i => i.parentId,
@@ -75,7 +75,7 @@ describe('LazyListView', () => {
         expect(rows).toEqual([expect.objectContaining({
             id: 125,
             depth: 2,
-            indent: 1,
+            indent: 0,
             index: 0,
             parentId: 120,
             path: [
@@ -103,7 +103,7 @@ describe('LazyListView', () => {
             {
                 id: 121,
                 depth: 2,
-                indent: 1,
+                indent: 0,
                 index: 0,
                 parentId: 120,
                 path,
@@ -113,7 +113,7 @@ describe('LazyListView', () => {
             {
                 id: 122,
                 depth: 2,
-                indent: 1,
+                indent: 0,
                 index: 1,
                 parentId: 120,
                 path,
@@ -123,7 +123,7 @@ describe('LazyListView', () => {
             {
                 id: 123,
                 depth: 2,
-                indent: 1,
+                indent: 0,
                 index: 2,
                 parentId: 120,
                 path,
@@ -133,7 +133,7 @@ describe('LazyListView', () => {
             {
                 id: 124,
                 depth: 2,
-                indent: 1,
+                indent: 0,
                 index: 3,
                 parentId: 120,
                 path,
@@ -143,7 +143,7 @@ describe('LazyListView', () => {
             {
                 id: 125,
                 depth: 2,
-                indent: 1,
+                indent: 0,
                 index: 4,
                 parentId: 120,
                 path,
