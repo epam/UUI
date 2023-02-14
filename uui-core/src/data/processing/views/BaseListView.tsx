@@ -1,3 +1,4 @@
+import isEqual from "lodash.isequal";
 import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView } from "../../../types";
 import { Tree } from "./Tree";
 
@@ -205,7 +206,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     // Extracts a flat list of currently visible rows from the tree
     protected rebuildRows() {
         const rows: DataRowProps<TItem, TId>[] = [];
-        let lastIndex = this.value.topIndex + this.value.visibleCount;
+        let lastIndex = this.getLastRecordIndex();
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
         const searchIsApplied = !!this.value?.search;
 
@@ -398,7 +399,22 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected canBeSelected = (row: DataRowProps<TItem, TId>) =>
         row.checkbox && row.checkbox.isVisible && !row.checkbox.isDisabled
 
-    private getLastRecordIndex = () => this.value.topIndex + this.value.visibleCount;
+    protected getLastRecordIndex = () => this.value.topIndex + this.value.visibleCount;
+
+    protected shouldRebuildTree = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
+        newValue.search !== prevValue.search
+        || !isEqual(newValue.sorting, prevValue.sorting)
+        || !isEqual(newValue.filter, prevValue.filter)
+        || newValue.page !== prevValue.page
+        || newValue.pageSize !== prevValue.pageSize
+
+
+    protected shouldRebuildRows = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
+        !prevValue
+        || !isEqual(newValue.checked, prevValue.checked)
+        || newValue.selectedId !== prevValue.selectedId
+        || newValue.folded !== prevValue.folded
+
 
     protected abstract handleSelectAll(checked: boolean): void;
     protected abstract getChildCount(item: TItem): number | undefined;

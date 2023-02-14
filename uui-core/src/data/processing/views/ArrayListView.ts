@@ -52,17 +52,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.updateRowOptions();
     }
 
-    private isCacheIsOutdated(newValue: DataSourceState, prevValue: DataSourceState) {
-        if (newValue.search !== prevValue.search ||
-            !isEqual(newValue.checked, prevValue.checked) ||
-            !isEqual(newValue.sorting, prevValue.sorting) ||
-            newValue.selectedId !== prevValue.selectedId ||
-            newValue.folded !== prevValue.folded ||
-            newValue.filter !== prevValue.filter
-        ) {
-            return true;
-        }
-        return false;
+    private isCacheIsOutdated(newValue: DataSourceState<TFilter, TId>, prevValue: DataSourceState<TFilter, TId>) {
+        return this.shouldRebuildTree(newValue, prevValue) || this.shouldRebuildRows(newValue, prevValue);
     }
 
     public getById = (id: TId, index: number) => {
@@ -86,7 +77,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     public getVisibleRows = () => {
-        return this.rows.slice(this.value.topIndex, this.value.topIndex + this.value.visibleCount);
+        return this.rows.slice(this.value.topIndex, this.getLastRecordIndex());
     }
 
     public getListProps = (): DataSourceListProps => {
