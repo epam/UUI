@@ -259,15 +259,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                             row.isChildrenChecked = childStats.isSomeChecked;
                             row.isChildrenSelected = childStats.isSomeSelected;
                             stats = this.mergeStats(stats, childStats);
-                        } else { // children are not loaded
-                            if (!row.isFolded && appendRows) {
-                                for (let m = 0; m < estimatedChildrenCount && rows.length < lastIndex; m++) {
-                                    const row = this.getLoadingRow('_loading_' + rows.length, rows.length, parentsWithRow);
-                                    row.indent = parentsWithRow.length + 1;
-                                    row.isLastChild = m == (estimatedChildrenCount - 1);
-                                    rows.push(row);
-                                    currentLevelRows++;
-                                }
+                        } else if (!row.isFolded && appendRows) {  // children are not loaded
+                            for (let m = 0; m < estimatedChildrenCount && rows.length < lastIndex; m++) {
+                                const row = this.getLoadingRow('_loading_' + rows.length, rows.length, parentsWithRow);
+                                row.indent = parentsWithRow.length + 1;
+                                row.isLastChild = m == (estimatedChildrenCount - 1);
+                                rows.push(row);
+                                currentLevelRows++;
                             }
                         }
                     }
