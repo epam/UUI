@@ -1,6 +1,14 @@
 import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView } from "../../../types";
 import { Tree } from "./Tree";
 
+interface NodeStats {
+    isSomeCheckable: boolean;
+    isSomeChecked: boolean;
+    isAllChecked: boolean;
+    isSomeSelected: boolean;
+    hasMoreRows: boolean;
+}
+
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     protected rows: DataRowProps<TItem, TId>[] = [];
     protected tree: Tree<TItem, TId>;
@@ -197,7 +205,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     // Extracts a flat list of currently visible rows from the tree
     protected rebuildRows() {
         const rows: DataRowProps<TItem, TId>[] = [];
-        let index = 0;
         let lastIndex = this.value.topIndex + this.value.visibleCount;
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
         const searchIsApplied = !!this.value?.search;
@@ -208,14 +215,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             // We still need to iterate them to get their stats. E.g if there are any item of if any item inside is checked.
             parents: DataRowProps<TItem, TId>[], // Parents from top to lower level
         ) => {
-            let addedCount = 0;
-            let stats = {
-                isSomeCheckable: false,
-                isSomeChecked: false,
-                isAllChecked: true,
-                isSomeSelected: false,
-                hasMoreRows: false,
-            };
+            let currentLevelRows = 0;
+            let stats = this.getDefaultNodeStats();
 
             const layerRows: DataRowProps<TItem, TId>[] = [];
             const nodeInfo = this.tree.getNodeInfo(parentId);
@@ -224,27 +225,15 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);
-                const row = this.getRowProps(item, index, parents);
+                const row = this.getRowProps(item, rows.length, parents);
 
-                if (appendRows && (!this.isPartialLoad() || (this.isPartialLoad() && index < lastIndex))) {
+                if (appendRows && (!this.isPartialLoad() || (this.isPartialLoad() && rows.length < lastIndex))) {
                     rows.push(row);
                     layerRows.push(row);
-                    index++;
-                    addedCount++;
+                    currentLevelRows++;
                 }
 
-                if (row.checkbox) {
-                    stats.isSomeCheckable = true;
-                    if (row.isChecked) {
-                        stats.isSomeChecked = true;
-                    } else if (!row.checkbox.isDisabled) {
-                        stats.isAllChecked = false;
-                    }
-                }
-
-                if (row.isSelected) {
-                    stats.isSomeSelected = true;
-                }
+                stats = this.getRowStats(row, stats);
 
                 row.isFoldable = false;
                 row.isLastChild = (n == ids.length - 1) && (nodeInfo.count === ids.length);
@@ -269,19 +258,15 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                             const childStats = iterateNode(id, appendRows && !row.isFolded, parentsWithRow);
                             row.isChildrenChecked = childStats.isSomeChecked;
                             row.isChildrenSelected = childStats.isSomeSelected;
-                            stats.isSomeCheckable = stats.isSomeCheckable || childStats.isSomeCheckable;
-                            stats.isSomeChecked = stats.isSomeChecked || childStats.isSomeChecked;
-                            stats.isAllChecked = stats.isAllChecked && childStats.isAllChecked;
-                            stats.hasMoreRows = stats.hasMoreRows || childStats.hasMoreRows;
+                            stats = this.mergeStats(stats, childStats);
                         } else { // children are not loaded
                             if (!row.isFolded && appendRows) {
-                                for (let m = 0; m < estimatedChildrenCount && index < lastIndex; m++) {
-                                    const row = this.getLoadingRow('_loading_' + index, index, parentsWithRow);
+                                for (let m = 0; m < estimatedChildrenCount && rows.length < lastIndex; m++) {
+                                    const row = this.getLoadingRow('_loading_' + rows.length, rows.length, parentsWithRow);
                                     row.indent = parentsWithRow.length + 1;
                                     row.isLastChild = m == (estimatedChildrenCount - 1);
                                     rows.push(row);
-                                    index++;
-                                    addedCount++;
+                                    currentLevelRows++;
                                 }
                             }
                         }
@@ -290,19 +275,18 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             }
 
             if (appendRows) {
-                let missingCount: number = this.getMissingRecordsCount(parentId, rows.length, addedCount);
+                let missingCount: number = this.getMissingRecordsCount(parentId, rows.length, currentLevelRows);
 
                 if (missingCount > 0) {
                     stats.hasMoreRows = true;
                 }
 
                 // Append loading rows, stop at lastIndex (last row visible)
-                while (index < lastIndex && missingCount > 0) {
-                    const row = this.getLoadingRow('_loading_' + index, index, parents);
+                while (rows.length < lastIndex && missingCount > 0) {
+                    const row = this.getLoadingRow('_loading_' + rows.length, rows.length, parents);
                     rows.push(row);
                     layerRows.push(row);
-                    index++;
-                    addedCount++;
+                    currentLevelRows++;
                     missingCount--;
                 }
             }
@@ -354,24 +338,24 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return childCount;
     }
 
-    private getMissingRecordsCount(id: TId, rowsCount: number, addedRowsCount: number) {
+    private getMissingRecordsCount(id: TId, totalRowsCount: number, loadedChildrenCount: number) {
         const nodeInfo = this.tree.getNodeInfo(id);
 
         const estimatedChildCount = this.getEstimatedChildrenCount(id);
 
         // Estimate how many more nodes there are at current level, to put 'loading' placeholders.
         if (nodeInfo.count !== undefined) { // Exact count known
-            return nodeInfo.count - addedRowsCount;
+            return nodeInfo.count - loadedChildrenCount;
         }
 
         const lastIndex = this.getLastRecordIndex();
         // estimatedChildCount = undefined for top-level rows only.
-        if (!id && rowsCount < lastIndex) {
-            return lastIndex - rowsCount; // let's put placeholders down to the bottom of visible list
+        if (!id && totalRowsCount < lastIndex) {
+            return lastIndex - totalRowsCount; // let's put placeholders down to the bottom of visible list
         }
 
-        if (estimatedChildCount > addedRowsCount) { // According to getChildCount (put into estimatedChildCount), there are more rows on this level
-            return estimatedChildCount - addedRowsCount;
+        if (estimatedChildCount > loadedChildrenCount) { // According to getChildCount (put into estimatedChildCount), there are more rows on this level
+            return estimatedChildCount - loadedChildrenCount;
         }
 
         // We have a bad estimate - it even less that actual items we have
@@ -379,6 +363,39 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         // let's guess we have at least 1 item more than loaded
         return 1;
     }
+
+    private getDefaultNodeStats = () => ({
+        isSomeCheckable: false, isSomeChecked: false, isAllChecked: true,
+        isSomeSelected: false, hasMoreRows: false,
+    })
+
+    private getRowStats = (row: DataRowProps<TItem, TId>, actualStats: NodeStats): NodeStats => {
+        let { isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected } = actualStats;
+
+        if (row.checkbox) {
+            isSomeCheckable = true;
+            if (row.isChecked) {
+                isSomeChecked = true;
+            }
+            if (!row.isChecked && !row.checkbox.isDisabled) {
+                isAllChecked = false;
+            }
+        }
+
+        if (row.isSelected) {
+            isSomeSelected = true;
+        }
+
+        return { ...actualStats, isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected };
+    }
+
+    private mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
+        ...parentStats,
+        isSomeCheckable: parentStats.isSomeCheckable || childStats.isSomeCheckable,
+        isSomeChecked: parentStats.isSomeChecked || childStats.isSomeChecked,
+        isAllChecked: parentStats.isAllChecked && childStats.isAllChecked,
+        hasMoreRows: parentStats.hasMoreRows || childStats.hasMoreRows,
+    })
 
     private getLastRecordIndex = () => this.value.topIndex + this.value.visibleCount;
 
