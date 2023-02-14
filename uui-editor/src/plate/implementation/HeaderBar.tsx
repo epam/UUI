@@ -19,28 +19,24 @@ export function HeaderBar() {
     return (
         <FlexRow rawProps={ {style: { background: '#303240' }} }>
             <BlockToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                 type={ CLEAR_TYPE }
-                isActive={ false }
                 inactiveType=''
                 icon={ <UUIToolbarButton onClick={ () => {} } isActive={ false } icon={ ClearIcon } /> }
             />
             <BlockToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                 type={ H1_TYPE }
-                isActive={ false }
                 icon={ <UUIToolbarButton onClick={ () => {} } isActive={ false } icon={ H1Icon } /> }
             />
             <BlockToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                 type={ H2_TYPE }
-                isActive={ false }
                 icon={ <UUIToolbarButton onClick={ () => {} } isActive={ false } icon={ H2Icon } /> }
             />
             <BlockToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                 type={ H3_TYPE }
-                isActive={ false }
                 icon={ <UUIToolbarButton onClick={ () => {} } isActive={ false } icon={ H3Icon } /> }
             />
         </FlexRow>

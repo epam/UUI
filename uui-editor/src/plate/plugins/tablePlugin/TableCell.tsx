@@ -1,7 +1,7 @@
 import * as React from 'react';
 import css from './Table.scss';
 
-import { TableCellElement, useTableStore } from '@udecode/plate';
+import { TableCellElement, useTableStore, useTableColSizes } from '@udecode/plate';
 
 export function TableCell(props: any) {
     const { attributes, element } = props;

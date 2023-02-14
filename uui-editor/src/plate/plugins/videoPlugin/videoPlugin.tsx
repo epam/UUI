@@ -38,7 +38,7 @@ export const VideoButton = ({
 
     return (
         <PlateToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
             onMouseDown={ async (event) => {
                 if (!editor) return;
                 event.preventDefault();
@@ -52,7 +52,7 @@ export const VideoButton = ({
             } }
             icon={ <ToolbarButton
                 onClick={ noop }
-                isDisabled={ isTextSelected(editor, true) }
+                isDisabled={ !!isTextSelected(editor, true) }
                 icon={ VideoIcon }
                 isActive={ block?.length && block[0].type === 'image' }
             /> }

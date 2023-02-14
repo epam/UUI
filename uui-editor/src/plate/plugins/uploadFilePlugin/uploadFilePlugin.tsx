@@ -46,7 +46,7 @@ export const UploadFileButton = ({ editor }: IUploadFileButton): any => {
         <UploadFileToggler
             render={ (props) => (
                 <PlateToolbarButton
-                    styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                    styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                     active={ true }
                     onMouseDown={
                         editor

@@ -78,7 +78,7 @@ export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
         <Dropdown
             renderTarget={ (props) => (
                 <PlateToolbarButton
-                    styles={ { root: { width: 'auto', cursor: 'pointer' }} }
+                    styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                     active={ true }
                     onMouseDown={
                         editor

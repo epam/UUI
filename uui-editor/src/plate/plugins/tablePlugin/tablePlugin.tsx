@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 
 import {
     createTablePlugin,
@@ -12,6 +12,7 @@ import {
     insertTableRow,
     deleteTable,
     ToolbarButton as PlateToolbarButton,
+    getSelectionBoundingClientRect,
     deleteColumn,
     deleteRow,
     PlateEditor,
@@ -41,6 +42,9 @@ import { ReactComponent as UnmergeCellsIcon } from "../../../icons/table-un-merg
 import { Dropdown } from "@epam/uui-components";
 import { uuiSkin } from "@epam/uui-core";
 import { isPluginActive, isTextSelected } from "../../../helpers";
+import { Toolbar } from '../../../implementation/Toolbar';
+
+import tableCSS from './Table.scss';
 
 const { FlexRow } = uuiSkin;
 
@@ -49,12 +53,12 @@ const Table = (props: any) => {
     const { cell, row } = getTableEntries(editor) || {};
 
     const { element } = props;
+    const { data } = element;
 
     const cellEntries = getTableGridAbove(editor, { format: 'cell' });
 
     const cellPath = useMemo(() => cell && cell[1], [cell]);
     const rowPath = useMemo(() => row && row[1][2] !== 0 && row[1], [row]);
-
 
     const mergeCells = () => {
         const rowArray: any[] = [];
@@ -93,7 +97,7 @@ const Table = (props: any) => {
 
         Object.values(cols).forEach((paths: any) => {
             paths?.forEach((path: []) => {
-                removeNodes(editor, { at: path});
+                removeNodes(editor, { at: paths[0]});
             });
         });
 
@@ -101,7 +105,59 @@ const Table = (props: any) => {
     };
 
     const unmergeCells = () => {
-        console.log(cellEntries);
+        const [item]: any[] = cellEntries;
+        const emptyCol = {
+            "data": { colSpan: 1, rowSpan: 1 },
+            "type": "td",
+            "children": [
+                {
+                    "data": {},
+                    "type": "paragraph",
+                    "children": [
+                        {
+                            "text": cellEntries.map(([data]: any) => data?.children[0]?.children[0]?.text).join(' '),
+                        },
+                    ],
+                },
+            ],
+        };
+        const emptyColWithoutText = {
+            "data": { colSpan: 1, rowSpan: 1 },
+            "type": "td",
+            "children": [
+                {
+                    "data": {},
+                    "type": "paragraph",
+                    "children": [
+                        {
+                            "text": '',
+                        },
+                    ],
+                },
+            ],
+        };
+
+        const cols: any = {};
+
+        cellEntries.forEach(([, path]) => {
+            if (cols[path[2]]) {
+                cols[path[2]].push(path);
+            } else {
+                cols[path[2]] = [path];
+            }
+        });
+
+        removeNodes(editor, { at: item[1]});
+        for (let i = 1; i < item[0].data.colSpan; i++) {
+            insertElements(editor, emptyColWithoutText, {at: item[1]});
+        }
+        for (let i = 1; i < item[0].data.rowSpan; i++) {
+            insertElements(editor, emptyColWithoutText, {
+                // Plus one row, when is vertical align
+                at: item[1].map((item: number, index: number) => index === 2 ? item + 1 : item),
+            });
+        }
+        insertElements(editor, emptyCol, {at: item[1]});
     };
 
     const renderMergeToolbar = useCallback(() => {
@@ -157,14 +213,43 @@ const Table = (props: any) => {
     }, [element, cellPath, rowPath, cellEntries]);
 
     return (
+        <div className={ cx(css.wrapper, tableCSS.tableWrapper) }>
+            <TableElement
+                { ...props }
+                className={ tableCSS.table }
+                element={ {
+                    ...element,
+                    ...(data?.cellSizes ? { colSizes: data?.cellSizes } : {}),
+                } }
+            />
+            { !!cellEntries?.length && <Toolbar
+                placement='bottom'
+                children={ cellEntries.length > 1 ? renderMergeToolbar() : renderToolbar() }
+                editor={ editor }
+                isTable={ !!cellEntries }
+            /> }
+        </div>
+    );
+    return (
         <Dropdown
             renderTarget={ (innerProps: any) => (
-                <div ref={ innerProps.ref } className={ cx(css.wrapper) }>
-                    <TableElement { ...props } />
+                <div ref={ innerProps.ref } className={ cx(css.wrapper, tableCSS.tableWrapper) }>
+                    <TableElement
+                        { ...props }
+                        className={ tableCSS.table }
+                        element={ {
+                            ...element,
+                            ...(data?.cellSizes ? { colSizes: data?.cellSizes } : {}),
+                        } }
+                    />
                 </div>
             ) }
             renderBody={ () =>  <FlexRow cx={ css.imageToolbarWrapper }>
-                { cellEntries && cellEntries.length > 1 ? renderMergeToolbar() : renderToolbar() }
+                <Toolbar
+                    children={ cellEntries && cellEntries.length > 1 ? renderMergeToolbar() : renderToolbar() }
+                    editor={ editor }
+                    isImage={ false }
+                />
             </FlexRow> }
             value={ !!cellEntries?.length }
             placement='bottom'
@@ -203,7 +288,7 @@ export const TableButton = ({
 
     return (
         <PlateToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
             onMouseDown={ async (event) => {
                 if (!editor) return;
 

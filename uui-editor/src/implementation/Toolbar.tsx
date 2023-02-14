@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
-import { usePlateEditorState, isEditorFocused } from '@udecode/plate';
+import { usePlateEditorState, isEditorFocused, getSelectionBoundingClientRect } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
 
 import { isImageSelected, isTextSelected } from '../helpers';
@@ -8,9 +8,11 @@ import css from './Toolbar.scss';
 
 interface ToolbarProps {
     editor: any;
-    plugins: any;
+    plugins?: any;
     children: any;
-    isImage: boolean;
+    isImage?: boolean;
+    isTable?: boolean;
+    placement?: 'top' | 'bottom' | 'right' | 'left' | 'auto';
 }
 
 export function Toolbar(props: ToolbarProps): any {
@@ -20,29 +22,29 @@ export function Toolbar(props: ToolbarProps): any {
 
     const virtualReferenceElement = () => {
         return {
-            clientWidth: ref?.current?.getBoundingClientRect().width,
-            clientHeight: ref?.current?.getBoundingClientRect().height,
-            getBoundingClientRect() {
+            clientWidth: getSelectionBoundingClientRect().width,
+            clientHeight: getSelectionBoundingClientRect().height,
+            getBoundingClientRect(): any {
                 const native = window.getSelection();
                 const range = native?.getRangeAt(0);
-                return range?.getBoundingClientRect();
+                return getSelectionBoundingClientRect();
             },
         };
     };
 
     return (
         <Portal>
-            { (props.isImage ? isImageSelected(editor) : isTextSelected(editor, inFocus)) && (
+            { (props.isImage ? isImageSelected(editor) : props.isTable || isTextSelected(editor, inFocus)) && (
                 <Popper
                     referenceElement={ virtualReferenceElement() }
-                    placement='top'
+                    placement={ props.placement || 'top' }
                     modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
                 >
                     { popperProps =>  (
                         <div
                             onMouseDown={ e => e.preventDefault() }
                             className={ css.container }
-                            style={ { ...popperProps.style } }
+                            style={ { ...popperProps.style, zIndex: 10 } }
                             ref={ node => {
                                 ref.current = node;
                                 (popperProps.ref as React.RefCallback<HTMLDivElement>)(node);
