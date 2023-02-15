@@ -1,5 +1,5 @@
 import React from 'react';
-import { PickerListBase, PickerModalOptions } from '@epam/uui-components';
+import { dataSourceStateToValue, PickerListBase, PickerModalOptions } from '@epam/uui-components';
 import { DataRowProps, IClickable, IHasCaption, IHasPlaceholder, UuiContext, UuiContexts } from '@epam/uui-core';
 import { Text } from '../typography';
 import { TextSize, SizeMod } from '../types';
@@ -18,7 +18,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
     context: UuiContexts;
 
     renderRow = (row: DataRowProps<TItem, TId>) => {
-        return <PickerListItem getName={ item => this.getName(item) } { ...row } key={ row.rowKey }/>;
+        return <PickerListItem getName={ item => this.getName(item) } { ...row } key={ row.rowKey } />;
     }
 
     handleShowPicker = () => {
@@ -60,8 +60,8 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
                 { !rows.length && (this.props.noOptionsMessage ?
                     this.props.noOptionsMessage :
                     <Text color={ 'secondary' }
-                          size={ this.props.size as TextSize }>No options available</Text>) }
-                { rows.map(row => renderRow(row)) }
+                        size={ this.props.size as TextSize }>No options available</Text>) }
+                { rows.map(row => renderRow(row, this.state.dataSourceState)) }
                 { showPicker && renderToggler({
                     onClick: this.handleShowPicker,
                     caption: this.getModalTogglerCaption(viewProps.totalCount, selectedRows.length),
