@@ -15,7 +15,6 @@ export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewPro
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     props: ArrayListViewProps<TItem, TId, TFilter>;
-    tree: Tree<TItem, TId>;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
@@ -62,7 +61,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     public getById = (id: TId, index: number) => {
         const item = this.tree.getById(id);
-        return this.getRowProps(item, index, []);
+        return this.getRowProps(item, index);
     }
 
     private updateFocusedItem = () => {
@@ -92,7 +91,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         const empty = { rows: [] as DataRowProps<TItem, TId>[], checkedCount: 0, checkableCount: 0, selectedCount: 0 };
 
-        const getNodesRec = (items: TItem[], parents: DataRowProps<TItem, TId>[], depth: number) => {
+        const getNodesRec = (items: TItem[], depth: number) => {
             let checkedCount = 0;
             let selectedCount = 0;
             let checkableCount = 0;
@@ -101,12 +100,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             for (let n = 0; n < items.length; n++) {
                 const item = items[n];
                 const childrenItems = tree.getChildren(item);
-                const rowProps = this.getRowProps(item, currentIndex, parents);
+                const rowProps = this.getRowProps(item, currentIndex);
                 rowProps.isLastChild = n === (items.length - 1);
                 let children = empty;
 
                 if (childrenItems.length > 0) {
-                    children = getNodesRec(childrenItems, [...parents, rowProps], depth + 1);
+                    children = getNodesRec(childrenItems, depth + 1);
                     checkedCount += children.checkedCount;
                     selectedCount += children.selectedCount;
                     checkableCount += children.checkableCount;
@@ -163,7 +162,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         const all = getNodesRec(
             tree.getRootItems(),
-            [],
             tree.isFlatList() ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
         );
 
@@ -210,7 +208,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             {
                 cascade: this.props.cascadeSelection,
                 isSelectable: (item: TItem) => {
-                    const { isCheckable } = this.getRowProps(item, null, []);
+                    const { isCheckable } = this.getRowProps(item, null);
                     return isCheckable;
                 },
             },
