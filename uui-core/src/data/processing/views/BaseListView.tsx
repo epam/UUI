@@ -1,5 +1,5 @@
 import isEqual from "lodash.isequal";
-import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView } from "../../../types";
+import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView, DataRowPathItem } from "../../../types";
 import { Tree } from "./Tree";
 
 interface NodeStats {
@@ -11,8 +11,8 @@ interface NodeStats {
 }
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
-    protected rows: DataRowProps<TItem, TId>[] = [];
     protected tree: Tree<TItem, TId>;
+    protected rows: DataRowProps<TItem, TId>[] = [];
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
@@ -146,11 +146,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return true;
     }
 
-    protected getRowProps(item: TItem, index: number, parents: DataRowProps<TItem, TId>[]): DataRowProps<TItem, TId> {
+    protected getRowProps(item: TItem, index: number): DataRowProps<TItem, TId> {
         const id = this.props.getId(item);
         const key = this.idToKey(id);
-
-        const path = parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value }));
+        const path = this.tree.getPathById(id);
         const parentId = path.length > 0 ? path[path.length - 1].id : undefined;
 
         const rowProps = {
@@ -160,7 +159,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             rowKey: key,
             index,
             value: item,
-            depth: parents.length,
+            depth: path.length,
             path,
         } as DataRowProps<TItem, TId>;
 
@@ -187,18 +186,16 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         row.onFocus = (isSelectable || isCheckable) && this.handleOnFocus;
     }
 
-    protected getLoadingRow(id: any, index: number = 0, parents: DataRowProps<TItem, TId>[] = null): DataRowProps<TItem, TId> {
+    protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
         const rowOptions = this.props.rowOptions;
-
-        const path = parents ? parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value })) : [];
 
         return {
             id,
             rowKey: this.idToKey(id),
             index,
             isLoading: true,
-            depth: parents ? parents.length : 0,
-            path,
+            depth: path ? path.length : 0,
+            path: path ?? [],
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
         };
     }
@@ -213,8 +210,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const iterateNode = (
             parentId: TId,
             appendRows: boolean, // Will be false, if we are iterating folded nodes.
-            // We still need to iterate them to get their stats. E.g if there are any item of if any item inside is checked.
-            parents: DataRowProps<TItem, TId>[], // Parents from top to lower level
         ): NodeStats => {
             let currentLevelRows = 0;
             let stats = this.getDefaultNodeStats();
@@ -226,7 +221,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);
-                const row = this.getRowProps(item, rows.length, parents);
+                const row = this.getRowProps(item, rows.length);
 
                 if (appendRows && (!this.isPartialLoad() || (this.isPartialLoad() && rows.length < lastIndex))) {
                     rows.push(row);
@@ -238,8 +233,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
                 row.isFoldable = false;
                 row.isLastChild = (n == ids.length - 1) && (nodeInfo.count === ids.length);
-                row.indent = isFlattenSearch ? 0 : parents.length + 1;
-
+                row.indent = isFlattenSearch ? 0 : row.path.length + 1;
                 const estimatedChildrenCount = this.getEstimatedChildrenCount(id);
                 if (!isFlattenSearch && estimatedChildrenCount !== undefined) {
                     const childrenIds = this.tree.getChildrenIdsByParentId(id);
@@ -253,14 +247,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                         row.isFolded = isFolded;
                         row.onFold = row.isFoldable && this.handleOnFold;
 
-                        const parentsWithRow = [...parents, row];
-
                         if (childrenIds.length > 0) { // some children are loaded
-                            const childStats = iterateNode(id, appendRows && !row.isFolded, parentsWithRow);
+                            const childStats = iterateNode(id, appendRows && !row.isFolded);
                             row.isChildrenChecked = childStats.isSomeChecked;
                             row.isChildrenSelected = childStats.isSomeSelected;
                             stats = this.mergeStats(stats, childStats);
                         } else if (!row.isFolded && appendRows) {  // children are not loaded
+                            const parentsWithRow = [...row.path, this.tree.getPathItem(item)];
                             for (let m = 0; m < estimatedChildrenCount && rows.length < lastIndex; m++) {
                                 const row = this.getLoadingRow('_loading_' + rows.length, rows.length, parentsWithRow);
                                 row.indent = parentsWithRow.length + 1;
@@ -273,6 +266,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 }
             }
 
+            const pathToParent = this.tree.getPathById(parentId);
+            const path = parentId ? [...pathToParent, this.tree.getPathItem(this.tree.getById(parentId))] : pathToParent;
             if (appendRows) {
                 let missingCount: number = this.getMissingRecordsCount(parentId, rows.length, currentLevelRows);
 
@@ -282,7 +277,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
                 // Append loading rows, stop at lastIndex (last row visible)
                 while (rows.length < lastIndex && missingCount > 0) {
-                    const row = this.getLoadingRow('_loading_' + rows.length, rows.length, parents);
+                    const row = this.getLoadingRow('_loading_' + rows.length, rows.length, path);
                     rows.push(row);
                     layerRows.push(row);
                     currentLevelRows++;
@@ -290,14 +285,15 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 }
             }
 
-            const isListFlat = parents.length === 0 && !layerRows.some(r => r.isFoldable);
-            const indent = isListFlat ? 0 : parents.length + 1;
-            layerRows.forEach(r => r.indent = indent);
+            const isListFlat = path.length === 0 && !layerRows.some(r => r.isFoldable);
+            if (isListFlat || isFlattenSearch) {
+                layerRows.forEach(r => r.indent = 0);
+            }
 
             return stats;
         };
 
-        const rootStats = iterateNode(undefined, true, []);
+        const rootStats = iterateNode(undefined, true);
 
         if (rootStats.isSomeCheckable && this.isSelectAllEnabled()) {
             this.selectAll = {
@@ -421,4 +417,3 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected isFlattenSearch = () => false;
     protected isPartialLoad = () => false;
 }
-

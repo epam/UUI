@@ -14,7 +14,7 @@ import { ReactComponent as SearchIcon } from '../../icons/search-with-background
 
 export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     renderRow(rowProps: DataRowProps<TItem, TId>) {
-        return this.props.renderRow ? this.props.renderRow(rowProps) : (
+        return this.props.renderRow ? this.props.renderRow(rowProps, this.state.dataSourceState) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
@@ -46,11 +46,11 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     renderNotFound = () => {
         return this.props.renderNotFound
             ? this.props.renderNotFound({ search: this.state.dataSourceState.search, onClose: () => this.props.success(null) })
-            :   <div className={ css.noFoundModalContainer }>
-                    <IconContainer  cx={ css.noFoundModalContainerIcon } icon={ SearchIcon }/>
-                    <Text cx={ css.noFoundModalContainerText } font='sans-semibold' fontSize='16' lineHeight='24' color='gray80' size={ '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
-                    <Text cx={ css.noFoundModalContainerText } fontSize='12' lineHeight='18' font='sans' color='gray80' size={ '36' }>{ i18n.dataPickerBody.noRecordsSubTitle }</Text>
-                </div>;
+            : <div className={ css.noFoundModalContainer }>
+                <IconContainer cx={ css.noFoundModalContainerIcon } icon={ SearchIcon } />
+                <Text cx={ css.noFoundModalContainerText } font='sans-semibold' fontSize='16' lineHeight='24' color='gray80' size={ '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
+                <Text cx={ css.noFoundModalContainerText } fontSize='12' lineHeight='18' font='sans' color='gray80' size={ '36' }>{ i18n.dataPickerBody.noRecordsSubTitle }</Text>
+            </div>;
     }
 
     render() {
@@ -62,7 +62,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
         return (
             <ModalBlocker blockerShadow='dark' { ...this.props } >
                 <ModalWindow width='600' height='700'>
-                    <ModalHeader borderBottom title={ this.props.caption || i18n.pickerModal.headerTitle } onClose={ () => this.props.abort()  } />
+                    <ModalHeader borderBottom title={ this.props.caption || i18n.pickerModal.headerTitle } onClose={ () => this.props.abort() } />
                     <FlexCell cx={ css.subHeaderWrapper }>
                         <FlexRow vPadding='24'>
                             <SearchInput

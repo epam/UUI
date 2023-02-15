@@ -106,7 +106,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public update(newValue: DataSourceState<TFilter, TId>, props: LazyListViewProps<TItem, TId, TFilter>): void {
         this.isUpdatePending = true;
 
-        if (!isEqual(newValue.checked, this.value?.checked)) {
+        if (!isEqual(newValue?.checked, this.value?.checked)) {
             this.updateCheckedLookup(newValue.checked);
         }
 
@@ -187,7 +187,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public getById = (id: TId, index: number) => {
         const item = this.cache.byId(id);
         if (item !== null) {
-            return this.getRowProps(item, index, []);
+            return this.getRowProps(item, index);
         } else {
             return this.getLoadingRow('_loading_' + id, index, []);
         }
@@ -310,7 +310,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             {
                 cascade: isRoot || this.props.cascadeSelection,
                 isSelectable: (item: TItem) => {
-                    const { isCheckable } = this.getRowProps(item, null, []);
+                    const { isCheckable } = this.getRowProps(item, null);
                     return isCheckable;
                 },
             },

@@ -303,14 +303,24 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                1
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "justifyContent": undefined,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div>
+                  1
+                </div>
               </div>
             </div>
             <div
@@ -372,7 +382,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "alignSelf": undefined,
                   "flexBasis": "120px",
                   "flexGrow": 1,
-                  "flexShrink": 0,
+                  "flexShrink": undefined,
                   "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
@@ -414,14 +424,24 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                2
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "justifyContent": undefined,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div>
+                  2
+                </div>
               </div>
             </div>
             <div
@@ -483,7 +503,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "alignSelf": undefined,
                   "flexBasis": "120px",
                   "flexGrow": 1,
-                  "flexShrink": 0,
+                  "flexShrink": undefined,
                   "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
@@ -525,14 +545,24 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                3
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "justifyContent": undefined,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div>
+                  3
+                </div>
               </div>
             </div>
             <div
@@ -594,7 +624,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "alignSelf": undefined,
                   "flexBasis": "120px",
                   "flexGrow": 1,
-                  "flexShrink": 0,
+                  "flexShrink": undefined,
                   "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
@@ -636,14 +666,24 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                4
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "justifyContent": undefined,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div>
+                  4
+                </div>
               </div>
             </div>
             <div
@@ -705,7 +745,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "alignSelf": undefined,
                   "flexBasis": "120px",
                   "flexGrow": 1,
-                  "flexShrink": 0,
+                  "flexShrink": undefined,
                   "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
@@ -747,14 +787,24 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                5
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "justifyContent": undefined,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div>
+                  5
+                </div>
               </div>
             </div>
             <div
@@ -816,7 +866,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "alignSelf": undefined,
                   "flexBasis": "120px",
                   "flexGrow": 1,
-                  "flexShrink": 0,
+                  "flexShrink": undefined,
                   "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
@@ -858,14 +908,24 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                6
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "justifyContent": undefined,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div>
+                  6
+                </div>
               </div>
             </div>
             <div
@@ -927,7 +987,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "alignSelf": undefined,
                   "flexBasis": "120px",
                   "flexGrow": 1,
-                  "flexShrink": 0,
+                  "flexShrink": undefined,
                   "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
@@ -969,14 +1029,24 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                7
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "justifyContent": undefined,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div>
+                  7
+                </div>
               </div>
             </div>
             <div
@@ -1038,7 +1108,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "alignSelf": undefined,
                   "flexBasis": "120px",
                   "flexGrow": 1,
-                  "flexShrink": 0,
+                  "flexShrink": undefined,
                   "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
@@ -1080,14 +1150,24 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                8
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "justifyContent": undefined,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div>
+                  8
+                </div>
               </div>
             </div>
             <div
@@ -1149,7 +1229,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "alignSelf": undefined,
                   "flexBasis": "120px",
                   "flexGrow": 1,
-                  "flexShrink": 0,
+                  "flexShrink": undefined,
                   "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
@@ -1191,14 +1271,24 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                9
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "justifyContent": undefined,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div>
+                  9
+                </div>
               </div>
             </div>
             <div
@@ -1260,7 +1350,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "alignSelf": undefined,
                   "flexBasis": "120px",
                   "flexGrow": 1,
-                  "flexShrink": 0,
+                  "flexShrink": undefined,
                   "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,
@@ -1302,14 +1392,24 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "flexBasis": "96px",
                   "flexGrow": 0,
                   "flexShrink": undefined,
-                  "justifyContent": undefined,
                   "minWidth": "96px",
                   "textAlign": undefined,
                 }
               }
             >
-              <div>
-                10
+              <div
+                className="contentWrapper"
+                style={
+                  Object {
+                    "alignSelf": undefined,
+                    "justifyContent": undefined,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div>
+                  10
+                </div>
               </div>
             </div>
             <div
@@ -1371,7 +1471,7 @@ exports[`DataTable should be rendered correctly 1`] = `
                   "alignSelf": undefined,
                   "flexBasis": "120px",
                   "flexGrow": 1,
-                  "flexShrink": 0,
+                  "flexShrink": undefined,
                   "justifyContent": undefined,
                   "minWidth": "120px",
                   "textAlign": undefined,

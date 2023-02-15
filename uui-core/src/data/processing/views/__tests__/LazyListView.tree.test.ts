@@ -811,6 +811,5 @@ describe('LazyListView', () => {
             { id: 320, isChecked: false },
             { id: 330 },
         ]);
-
     });
 });

@@ -57,7 +57,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     public getById = (id: TId, index: number) => {
         const item = this.tree.getById(id);
-        return this.getRowProps(item, index, []);
+        return this.getRowProps(item, index);
     }
 
     private updateFocusedItem = () => {
@@ -99,7 +99,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             {
                 cascade: this.props.cascadeSelection,
                 isSelectable: (item: TItem) => {
-                    const { isCheckable } = this.getRowProps(item, null, []);
+                    const { isCheckable } = this.getRowProps(item, null);
                     return isCheckable;
                 },
             },
