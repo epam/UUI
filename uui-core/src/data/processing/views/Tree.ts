@@ -306,7 +306,6 @@ export class Tree<TItem, TId> {
             if (selectedId != null) {
                 selectedIdsMap.set(selectedId, true);
             }
-
             if (options.cascade) {
                 // check all children recursively
                 forEachChildren(id => selectedIdsMap.set(id, true));

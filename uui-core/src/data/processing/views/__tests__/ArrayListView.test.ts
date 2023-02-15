@@ -1,7 +1,6 @@
 import { ArrayListView, ArrayListViewProps } from '../ArrayListView';
 import { ArrayDataSource } from '../../ArrayDataSource';
-import { DataSourceState, IDataSourceView } from "../../../../types";
-import { BaseListView } from '../BaseListView';
+import { DataSourceState } from "../../../../types";
 
 interface TItem {
     id: number;
@@ -66,20 +65,20 @@ describe('ArrayListView', () => {
 
     describe('setValue logic', () => {
         it('should set new value and update rows', () => {
-            const updateNodesSpy = jest.spyOn(view, 'updateNodes' as any);
+            const rebuildRowsSpy = jest.spyOn(view, 'rebuildRows' as any);
 
             view.update({ filter: {} }, viewProps);
 
             expect(view.value).toStrictEqual({ filter: {} });
-            expect(updateNodesSpy).toHaveBeenCalled();
+            expect(rebuildRowsSpy).toHaveBeenCalled();
         });
 
         it('should not update nodes when setValue called with the same value', () => {
-            const updateNodesSpy = jest.spyOn(view, 'updateNodes' as any);
+            const rebuildRowsSpy = jest.spyOn(view, 'rebuildRows' as any);
 
             view.update(initialValue, viewProps);
 
-            expect(updateNodesSpy).toHaveBeenCalledTimes(0);
+            expect(rebuildRowsSpy).toHaveBeenCalledTimes(0);
         });
 
         it('should update focused item if only focusedIndex changed in value', () => {
