@@ -1,6 +1,7 @@
 import { ArrayListView, ArrayListViewProps } from '../ArrayListView';
 import { ArrayDataSource } from '../../ArrayDataSource';
-import { DataSourceState } from "../../../../types";
+import { DataQueryFilter, DataSourceState, SortDirection, SortingOption } from "../../../../types";
+import { Tree } from '../Tree';
 
 interface TItem {
     id: number;
@@ -57,6 +58,7 @@ describe('ArrayListView', () => {
             }),
         };
         view = dataSource.getView(initialValue, onValueChange, viewProps) as View;
+        jest.clearAllMocks();
     });
 
     it('should create visibleRows on constructor', () => {
@@ -144,6 +146,124 @@ describe('ArrayListView', () => {
 
             expect(rows).toHaveLength(2);
             expect(rowsIds).toEqual([10, 11]);
+        });
+    });
+
+
+    describe('updateTree', () => {
+        const getFilter = (filter) => (item) => filter(item);
+        const filter = (item) => item.parentId === 6;
+
+        let value: View['value'] = initialValue;
+        let onValueChange = (newValue: typeof value) => {
+            value = newValue;
+        };
+
+        it('should update tree if filter was changed', () => {
+            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
+            realView.update({ ...value, topIndex: 0, visibleCount: 20, filter }, { ...viewProps, getFilter });
+            const rows = realView.getVisibleRows();
+            const rowsIds = rows.map(i => i.id);
+
+            expect(rows).toHaveLength(1);
+            expect(rowsIds).toEqual([6]);
+
+            const [row] = rows;
+            row.onFold(row);
+            realView.update({ ...value, topIndex: 0, visibleCount: 20, filter }, { ...viewProps, getFilter });
+
+            const unfoldedRows = realView.getVisibleRows();
+            const unfoldedRowsIds = unfoldedRows.map(i => i.id);
+            expect(unfoldedRows).toHaveLength(4);
+            expect(unfoldedRowsIds).toEqual([6, 7, 8, 9]);
+        });
+
+        it('should update tree if filter and search was changed', () => {
+            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
+            const dataSourceState = { ...value, topIndex: 0, visibleCount: 20, filter, search: 'B1' };
+            realView.update(dataSourceState, { ...viewProps, getFilter });
+            const rows = realView.getVisibleRows();
+            const rowsIds = rows.map(i => i.id);
+
+            expect(rows).toHaveLength(2);
+            expect(rowsIds).toEqual([6, 7]);
+        });
+
+        it('should update tree if filter, search and sorting was changed', () => {
+            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
+            const dataSourceState = {
+                ...value, topIndex: 0, visibleCount: 20, filter, search: 'B',
+                sorting: [{ field: 'level', direction: 'desc' as SortDirection }],
+            };
+            realView.update(dataSourceState, { ...viewProps, getFilter });
+            const rows = realView.getVisibleRows();
+            const rowsIds = rows.map(i => i.id);
+
+            expect(rows).toHaveLength(4);
+            expect(rowsIds).toEqual([6, 9, 8, 7]);
+        });
+
+        it('should filter/search/sort tree if filter was changed', () => {
+            const filterMock = jest.spyOn(Tree.prototype, 'filter');
+            const searchMock = jest.spyOn(Tree.prototype, 'search');
+            const sortMock = jest.spyOn(Tree.prototype, 'sort');
+
+            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
+
+            const dataSourceState = { ...value, topIndex: 0, visibleCount: 20, filter };
+            realView.update(dataSourceState, { ...viewProps, getFilter });
+
+            expect(filterMock).toBeCalledTimes(1);
+            expect(searchMock).toBeCalledTimes(1);
+            expect(sortMock).toBeCalledTimes(1);
+
+            realView.update({ ...dataSourceState, filter: () => {} }, { ...viewProps, getFilter });
+
+            expect(filterMock).toBeCalledTimes(2);
+            expect(searchMock).toBeCalledTimes(2);
+            expect(sortMock).toBeCalledTimes(2);
+        });
+
+        it('should search/sort tree if search was changed', () => {
+            const filterMock = jest.spyOn(Tree.prototype, 'filter');
+            const searchMock = jest.spyOn(Tree.prototype, 'search');
+            const sortMock = jest.spyOn(Tree.prototype, 'sort');
+
+            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
+
+            const dataSourceState = { ...value, topIndex: 0, visibleCount: 20, filter };
+            realView.update(dataSourceState, { ...viewProps, getFilter });
+
+            expect(filterMock).toBeCalledTimes(1);
+            expect(searchMock).toBeCalledTimes(1);
+            expect(sortMock).toBeCalledTimes(1);
+
+            realView.update({ ...dataSourceState, search: 'C' }, { ...viewProps, getFilter });
+
+            expect(filterMock).toBeCalledTimes(1);
+            expect(searchMock).toBeCalledTimes(2);
+            expect(sortMock).toBeCalledTimes(2);
+        });
+
+        it('should sort tree if sorting was changed', () => {
+            const filterMock = jest.spyOn(Tree.prototype, 'filter');
+            const searchMock = jest.spyOn(Tree.prototype, 'search');
+            const sortMock = jest.spyOn(Tree.prototype, 'sort');
+
+            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
+
+            const dataSourceState = { ...value, topIndex: 0, visibleCount: 20, filter };
+            realView.update(dataSourceState, { ...viewProps, getFilter });
+
+            expect(filterMock).toBeCalledTimes(1);
+            expect(searchMock).toBeCalledTimes(1);
+            expect(sortMock).toBeCalledTimes(1);
+
+            realView.update({ ...dataSourceState, sorting: [{ field: 'level', direction: 'asc' }] }, { ...viewProps, getFilter });
+
+            expect(filterMock).toBeCalledTimes(1);
+            expect(searchMock).toBeCalledTimes(1);
+            expect(sortMock).toBeCalledTimes(2);
         });
     });
 
