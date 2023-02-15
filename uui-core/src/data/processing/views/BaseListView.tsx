@@ -1,5 +1,8 @@
 import isEqual from "lodash.isequal";
-import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView, DataRowPathItem } from "../../../types";
+import {
+    BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
+    IDataSourceView, DataRowPathItem,
+} from "../../../types";
 import { Tree } from "./Tree";
 
 interface NodeStats {
@@ -398,9 +401,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected getLastRecordIndex = () => this.value.topIndex + this.value.visibleCount;
 
     protected shouldRebuildTree = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
-        newValue.search !== prevValue.search
-        || !isEqual(newValue.sorting, prevValue.sorting)
-        || !isEqual(newValue.filter, prevValue.filter)
+        this.searchWasChanged(prevValue, newValue)
+        || this.sortingWasChanged(prevValue, newValue)
+        || this.filterWasChanged(prevValue, newValue)
         || newValue.page !== prevValue.page
         || newValue.pageSize !== prevValue.pageSize
 
@@ -411,6 +414,15 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         || newValue.selectedId !== prevValue.selectedId
         || newValue.folded !== prevValue.folded
 
+
+    protected sortingWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
+        !isEqual(newValue.sorting, prevValue.sorting)
+
+    protected filterWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
+        !isEqual(newValue.filter, prevValue.filter)
+
+    protected searchWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
+        newValue.search !== prevValue.search
 
     protected abstract handleSelectAll(checked: boolean): void;
     protected abstract getChildCount(item: TItem): number | undefined;
