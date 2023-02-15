@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useState, useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
@@ -58,17 +58,17 @@ interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<H
     scrollbars?: boolean;
 }
 
-const Editor = (props: any) => {
+const Editor = ({ initialValue, ...props }: any) => {
     const editor = usePlateEditorState();
     const forceUpdate = useForceUpdate();
 
-    React.useEffect(() => {
-        if (props.initialValue) {
-            editor.children = props.initialValue;
+    useEffect(() => {
+        if (initialValue) {
+            editor.children = initialValue;
         }
-        forceUpdate();
     },
-    [editor, props.initialValue, forceUpdate]);
+    [editor, initialValue, forceUpdate]);
+
     return (
         <DndProvider backend={ HTML5Backend }>
             <Plate
@@ -95,7 +95,9 @@ export function SlateEditor(props: SlateEditorProps) {
         placeholder,
     } = props;
 
-    const currentId = React.useRef(String(Date.now()));
+    const [value, setValue] = useState(null);
+
+    const currentId = useRef(String(Date.now()));
     const editor = usePlateEditorState();
     const isFocused = isEditorFocused(editor);
 
@@ -121,12 +123,18 @@ export function SlateEditor(props: SlateEditorProps) {
 
     const initialValue = useMemo(() => migrateSchema(props.value), [props.value]);
 
+    useEffect(() => {
+        if (!value) {
+            setValue(initialValue);
+        }
+    }, [initialValue, value]);
+
     const renderEditor = () => (
         <PlateProvider
             onChange={ onChange }
             renderElement={ renderElement }
             plugins={ plugins }
-            initialValue={ initialValue }
+            initialValue={ value }
             id={ currentId.current }
         >
             <Editor
@@ -134,8 +142,8 @@ export function SlateEditor(props: SlateEditorProps) {
                 editableProps={ editableProps }
                 renderElement={ renderElement }
                 id={ currentId.current }
+                initialValue={ value }
                 plugins={ plugins }
-                initialValue={ initialValue }
             />
         </PlateProvider>
     );
