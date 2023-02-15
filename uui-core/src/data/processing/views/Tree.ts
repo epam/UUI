@@ -1,4 +1,4 @@
-import { BaseListViewProps, DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../types";
+import { DataRowPathItem, DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../types";
 import { LazyListViewProps } from "./LazyListView";
 import { CompositeKeysMap } from './CompositeKeysMap';
 
@@ -117,9 +117,9 @@ export class Tree<TItem, TId> {
 
     public getTotalRecursiveCount() {
         let count = 0;
-        for(var [id, info] of this.nodeInfoById) {
+        for (var [id, info] of this.nodeInfoById) {
             if (info.count == null) {
-                 // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
+                // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
                 // return;
             } else {
                 count += info.count;
@@ -249,10 +249,9 @@ export class Tree<TItem, TId> {
                 }
             }
         });
-
         const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
 
-        for(let [parentId, ids] of newByParentId) {
+        for (let [parentId, ids] of newByParentId) {
             newNodeInfoById.set(parentId, { count: ids.length });
         }
 
@@ -320,7 +319,7 @@ export class Tree<TItem, TId> {
         }
 
         const result = [];
-        for(var [id, value] of selectedIdsMap) {
+        for (var [id, value] of selectedIdsMap) {
             value && result.push(id);
         }
 
@@ -533,6 +532,47 @@ export class Tree<TItem, TId> {
         }
     }
 
+    public getParents(id: TId) {
+        const parentIds = this.getParentIdsRecursive(id);
+        const parents: TItem[] = [];
+        parentIds.forEach((parentId) => {
+            if (this.byId.has(parentId)) {
+                parents.push(this.byId.get(parentId));
+            }
+        });
+
+        return parents;
+    }
+
+    public getPathById(id: TId): DataRowPathItem<TId, TItem>[] {
+        const foundParents = this.getParents(id);
+        const path: DataRowPathItem<TId, TItem>[] = [];
+        foundParents.forEach((parent) => {
+            const pathItem: DataRowPathItem<TId, TItem> = this.getPathItem(parent);
+            path.push(pathItem);
+        });
+        return path;
+    }
+
+    public getPathItem(item: TItem): DataRowPathItem<TId, TItem> {
+        const parentId = this.getParentId?.(item);
+        const id = this.getId?.(item);
+
+        const ids = this.getChildrenIdsByParentId(parentId);
+        const nodeInfo = this.getNodeInfo(parentId);
+        const lastId = ids[ids.length - 1];
+
+        const isLastChild =
+            lastId !== undefined && lastId === id
+            && nodeInfo.count === ids.length;
+
+        return {
+            id: this.getId(item),
+            value: item,
+            isLastChild,
+        };
+    }
+
     private async loadMissingIdsAndParents<TFilter>(
         options: LoadTreeOptions<TItem, TId, TFilter>,
         idsToLoad: TId[],
@@ -551,12 +591,12 @@ export class Tree<TItem, TId> {
             }
 
             if (this.params.getParentId) {
-                for(let [id, item] of byId) {
+                for (let [, item] of byId) {
                     const parentId = this.getParentId(item);
                     if (parentId != null && !byId.has(parentId)) {
                         missingIds.add(parentId);
                     }
-                };
+                }
             }
 
             if (missingIds.size === 0) {

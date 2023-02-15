@@ -18,7 +18,6 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const ref = React.useRef<HTMLDivElement>();
 
     let content: React.ReactNode;
-    let outline: React.ReactNode = null;
     let isEditable = !!props.onValueChange;
 
     const handleEditorClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
@@ -69,14 +68,24 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         justifyContent = props.column.textAlign;
     }
 
+    const { textAlign, alignSelf } = props.column;
+    const styles = { textAlign, alignSelf, justifyContent };
+
+    const getWrappedContent = () => (
+        <div style={ styles } className={ css.contentWrapper }>
+            { content }
+        </div>
+    );
+
     return (
         <FlexCell
             ref={ ref }
-            { ...props.column }
+            grow={ props.column.grow }
+            width={ props.column.width }
             minWidth={ props.column.width }
-            rawProps={ {
-                role: 'cell',
-            } }
+            textAlign={ props.isFirstColumn ? undefined : props.column.textAlign }
+            alignSelf={ props.isFirstColumn ? undefined : props.column.alignSelf }
+            rawProps={ { role: 'cell' } }
             cx={ [
                 uuiDataTableCellMarkers.uuiTableCell,
                 css.cell,
@@ -85,13 +94,10 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }
-            style={ {
-                justifyContent,
-            } }
+            style={ !props.isFirstColumn && { justifyContent: justifyContent } }
         >
             { props.addons }
-            { content }
-            { outline }
+            { props.isFirstColumn ? getWrappedContent() : content }
         </FlexCell>
     );
 };
