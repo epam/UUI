@@ -22,6 +22,7 @@
     "@types/node": "16.18.4",
     "babel-jest": "24.9.0",
     "chalk": "2.4.1",
+    "cross-spawn": "7.0.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^8.3.0",

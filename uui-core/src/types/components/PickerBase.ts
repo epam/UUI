@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { IAnalyticableOnChange, IEditable } from "../props";
-import { IDataSource, IDataSourceView, DataRowOptions, DataRowProps } from "../dataSources";
+import { IDataSource, IDataSourceView, DataRowOptions, DataRowProps, DataSourceState } from "../dataSources";
 import { SortingOption } from "../dataQuery";
 
 export type SinglePickerProps<TId, TItem> =
@@ -46,7 +46,7 @@ export type PickerBaseOptions<TItem, TId> = {
     getName?: (item: TItem) => string;
 
     /** Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc. */
-    renderRow?: (props: DataRowProps<TItem, TId>) => ReactNode;
+    renderRow?: (props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState) => ReactNode;
 
     /** Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks. */
     getRowOptions?: (item: TItem, index: number) => DataRowOptions<TItem, TId>;

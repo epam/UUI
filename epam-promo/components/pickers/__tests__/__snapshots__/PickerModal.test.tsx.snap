@@ -215,21 +215,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -255,21 +265,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -295,21 +315,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -335,21 +365,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -375,21 +415,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -415,21 +465,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -455,21 +515,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -495,21 +565,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -535,21 +615,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -575,21 +665,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -615,21 +715,31 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
                     }
                   >
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
-                      />
-                      <div
-                        className="flexSpacer"
-                      />
+                        className="renderItem"
+                      >
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        />
+                        <div
+                          className="flexSpacer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -963,7 +1073,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -985,16 +1094,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        C2
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          C2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1020,7 +1140,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1042,16 +1161,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        C1+
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          C1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1077,7 +1207,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1099,16 +1228,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        C1
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          C1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1134,7 +1274,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1156,16 +1295,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        B2+
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          B2+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1191,7 +1341,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1213,16 +1362,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        B2
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          B2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1248,7 +1408,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1270,16 +1429,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        B1+
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          B1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1305,7 +1475,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1327,16 +1496,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        B1
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          B1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1362,7 +1542,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1384,16 +1563,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        A2+
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          A2+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1419,7 +1609,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1441,16 +1630,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        A2
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          A2
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1476,7 +1676,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1498,16 +1697,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        A1+
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          A1+
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
@@ -1533,7 +1743,6 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         "flexBasis": "0",
                         "flexGrow": 1,
                         "flexShrink": undefined,
-                        "justifyContent": undefined,
                         "minWidth": 0,
                         "textAlign": undefined,
                       }
@@ -1555,16 +1764,27 @@ exports[`PickerModal should be rendered correctly 2`] = `
                       </div>
                     </label>
                     <div
-                      className="renderItem"
+                      className="contentWrapper"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "justifyContent": undefined,
+                          "textAlign": undefined,
+                        }
+                      }
                     >
                       <div
-                        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        className="renderItem"
                       >
-                        A1
+                        <div
+                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+                        >
+                          A1
+                        </div>
+                        <div
+                          className="flexSpacer"
+                        />
                       </div>
-                      <div
-                        className="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
