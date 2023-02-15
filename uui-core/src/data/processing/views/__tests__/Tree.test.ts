@@ -31,23 +31,56 @@ describe('Tree', () => {
     describe('basic queries', () => {
         it('getById', () => {
             expect(testTree.getById(100)).toBe(testData[0]);
-        })
+        });
 
         it('getChildrenByParentId', () => {
             const nodes = testTree.getChildrenByParentId(100);
             expect(nodes).toEqual([testTree.getById(110), testTree.getById(120)]);
-        })
+        });
 
         it('getRootItems', () => {
             const parents = testTree.getRootItems();
             const parentIds = parents.map(item => item.id);
             expect(parentIds).toEqual([100, 200, 300]);
-        })
+        });
 
         it('getParentIdsRecursive', () => {
             const parentIds = testTree.getParentIdsRecursive(122);
             expect(parentIds).toEqual([100, 120]);
-        })
+        });
+
+        it('getParents', () => {
+            const parents = testTree.getParents(122);
+            expect(parents).toEqual([
+                { id: 100, value: 3, name: 'item1' },
+                { id: 120, parentId: 100, value: 2, name: 'item11' },
+            ]);
+        });
+
+        it('getPathById', () => {
+            const path = testTree.getPathById(122);
+            expect(path).toEqual([
+                {
+                    id: 100,
+                    isLastChild: false,
+                    value: { id: 100, value: 3, name: 'item1' },
+                },
+                {
+                    id: 120,
+                    isLastChild: true,
+                    value: { id: 120, parentId: 100, value: 2, name: 'item11' },
+                },
+            ]);
+        });
+
+        it('getPathItem', () => {
+            const pathItem = testTree.getPathItem(testData[4]);
+            expect(pathItem).toEqual({
+                id: 122,
+                isLastChild: true,
+                value: { id: 122, parentId: 120, value: 4, name: 'item13' },
+            });
+        });
     });
 
     describe('append', () => {

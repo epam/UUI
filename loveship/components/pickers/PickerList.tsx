@@ -26,18 +26,18 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
     context: UuiContexts;
 
     renderRow = (row: DataRowProps<TItem, TId>) => {
-        return <PickerListItem theme={ this.props.theme } getName={ item => this.getName(item) } { ...row } key={ row.rowKey }/>;
+        return <PickerListItem theme={ this.props.theme } getName={ item => this.getName(item) } { ...row } key={ row.rowKey } />;
     }
 
     handleShowPicker = () => {
         this.context.uuiModals.show(props => <PickerModal<TItem, TId>
-                { ...props }
-                { ...this.props }
-                caption={ this.props.placeholder || `Please select ${ this.getEntityName() ? this.getEntityName() : "" }` }
-                initialValue={ this.props.value as any }
-                selectionMode={ this.props.selectionMode }
-                valueType={ this.props.valueType }
-            />)
+            { ...props }
+            { ...this.props }
+            caption={ this.props.placeholder || `Please select ${ this.getEntityName() ? this.getEntityName() : "" }` }
+            initialValue={ this.props.value as any }
+            selectionMode={ this.props.selectionMode }
+            valueType={ this.props.valueType }
+        />)
             .then((value: any) => {
                 this.appendLastSelected([...this.getSelectedIdsArray(value)]);
                 this.props.onValueChange(value);
@@ -64,8 +64,8 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
             <div { ...(this.props.rawProps as object) }>
                 { !rows.length && (this.props.noOptionsMessage ?
                     this.props.noOptionsMessage :
-                    <Text color={ this.props.theme === 'dark' ? 'night300' : 'night500'  } size={ this.props.size as TextSize }>No options available</Text>) }
-                { rows.map(row => renderRow(row)) }
+                    <Text color={ this.props.theme === 'dark' ? 'night300' : 'night500' } size={ this.props.size as TextSize }>No options available</Text>) }
+                { rows.map(row => renderRow(row, this.state.dataSourceState)) }
                 { showPicker && renderToggler({ onClick: this.handleShowPicker, caption: this.getModalTogglerCaption(viewProps.totalCount, selectedRows.length) }, selectedRows) }
             </div>
         );
