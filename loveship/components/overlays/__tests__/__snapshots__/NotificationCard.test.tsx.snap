@@ -21,7 +21,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 
 exports[`ErrorNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-vars notification-card-fire root uui-theme-loveship typeError"
+  className="notification-card-vars notification-card-fire root uui-theme-loveship"
   role="alert"
 >
   <div
@@ -67,7 +67,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
 
 exports[`HintNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-vars notification-card-sky root uui-theme-loveship typeHint"
+  className="notification-card-vars notification-card-sky root uui-theme-loveship"
   role="alert"
 >
   <div
@@ -205,7 +205,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
 
 exports[`SuccessNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-vars notification-card-grass root uui-theme-loveship typeSuccess"
+  className="notification-card-vars notification-card-grass root uui-theme-loveship"
   role="alert"
 >
   <div
@@ -251,7 +251,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
 
 exports[`WarningNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-vars notification-card-sun root uui-theme-loveship typeWarning"
+  className="notification-card-vars notification-card-sun root uui-theme-loveship"
   role="alert"
 >
   <div
