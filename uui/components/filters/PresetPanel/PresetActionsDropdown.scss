@@ -1,17 +1,14 @@
-@use '../../../assets/styles/colors' as *;
-@use '../../../assets/styles/fonts' as *;
-
 .preset-dropdown-panel {
     min-width: 150px;
 }
 
 .delete-row {
     svg {
-        fill: $red-darkest;
+        fill: var(--uui-negative-darkest);
     }
 
     .delete-button {
-        color: $red-darkest;
+        color: var(--uui-negative-darkest);
     }
 }
 

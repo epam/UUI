@@ -479,6 +479,15 @@
     --uui-modals-overlay: rgba(29, 30, 38, 0.8);
     --uui-modals-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
     --uui-modals-bg: var(--uui-surface);
+
+    /* FilterPanelItemToggler vars */
+    --uui-filters-toggler-border: var(--uui-text-input-border);
+    --uui-filters-toggler-border-hover: var(--uui-text-input-border-hover);
+    --uui-filters-toggler-border-radius: var(--uui-border-radius);
+    --uui-filters-toggler-bg: var(--white);
+    --uui-filters-toggler-bg-hover: var(--night100);
+    --uui-filters-toggler-text: var(--uui-text-input-text);
+    --uui-filters-toggler-icon: var(--uui-text-input-icon-clickable);
 }
 
 /* modification of the states of table components */
@@ -526,7 +535,7 @@
     --uui-accordion-shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
 }
 
-.uui-theme-loveship.button-sky, .uui-theme-loveship.button-primary {
+.uui-theme-loveship .button-sky, .uui-theme-loveship .button-primary {
     --uui-btn-bg: var(--uui-primary);
     --uui-btn-bg-hover: var(--uui-primary-dark);
     --uui-btn-bg-active: var(--uui-primary-darkest);
@@ -543,7 +552,7 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.uui-theme-loveship.button-grass, .uui-theme-loveship.button-accent  {
+.uui-theme-loveship .button-grass, .uui-theme-loveship .button-accent  {
     --uui-btn-bg: var(--uui-accent);
     --uui-btn-bg-hover: var(--uui-accent-dark);
     --uui-btn-bg-active: var(--uui-accent-darkest);
@@ -560,7 +569,7 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.uui-theme-loveship.button-fire, .uui-theme-loveship.button-negative {
+.uui-theme-loveship .button-fire, .uui-theme-loveship .button-negative {
     --uui-btn-bg: var(--uui-negative);
     --uui-btn-bg-hover: var(--uui-negative-dark);
     --uui-btn-bg-active: var(--uui-negative-darkest);
@@ -577,7 +586,7 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.uui-theme-loveship.button-night500, .uui-theme-loveship.button-secondary {
+.uui-theme-loveship .button-night500, .uui-theme-loveship .button-secondary {
     --uui-btn-bg: var(--uui-secondary);
     --uui-btn-bg-hover: var(--uui-secondary-dark);
     --uui-btn-bg-active: var(--uui-secondary-darkest);
@@ -594,7 +603,7 @@
     --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
 }
 
-.uui-theme-loveship.button-white {
+.uui-theme-loveship .button-white {
     --uui-btn-bg: var(--uui-contrast);
     --uui-btn-bg-hover: var(--uui-color-white-800);
     --uui-btn-bg-active: var(--uui-color-white-900);
@@ -709,7 +718,7 @@
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
-.uui-theme-loveship.switch-vars {
+.uui-theme-loveship .switch-vars {
     --uui-switch-bg-checked: var(--uui-control-bg-checked);
     --uui-switch-bg-hover: var(--uui-control-bg-hover);
     --uui-switch-bg-disabled: var(--uui-control-bg-disabled);
@@ -817,7 +826,7 @@
     --uui-alert-icon: var(--uui-info);
 }
 
-.uui-theme-loveship.dropdown-container-vars {
+.uui-theme-loveship .dropdown-container-vars {
     --uui-dropdown-container-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1);
     --uui-dropdown-container-scrollbar-thumb: var(--uui-scroll);
 }
@@ -1164,99 +1173,93 @@
     --uui-popover-shadow: 0 5px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
 }
 
-.uui-theme-loveship.icon-container-color-info {
+.uui-theme-loveship .icon-container-color-info {
     --uui-icon-container-fill: var(--uui-info);
 }
 
-.uui-theme-loveship.icon-container-color-success {
+.uui-theme-loveship .icon-container-color-success {
     --uui-icon-container-fill: var(--uui-success);
 }
 
-.uui-theme-loveship.icon-container-color-warning {
+.uui-theme-loveship .icon-container-color-warning {
     --uui-icon-container-fill: var(--uui-warning);
 }
 
-.uui-theme-loveship.icon-container-color-error {
+.uui-theme-loveship .icon-container-color-error {
     --uui-icon-container-fill: var(--uui-error);
 }
 
-.uui-theme-loveship.icon-container-color-default {
+.uui-theme-loveship .icon-container-color-default {
     --uui-icon-container-fill: var(--uui-icon);
 }
 
-.uui-theme-loveship.icon-container-color-secondary {
+.uui-theme-loveship .icon-container-color-secondary {
     --uui-icon-container-fill: var(--uui-secondary);
 }
 
-.uui-theme-loveship.panel-vars {
-    --uui-panel-border-radius: var(--uui-border-radius);
-    --uui-panel-bg: var(--uui-surface);
-    --uui-panel-shadow: var(--uui-shadow);
-}
-
-.uui-theme-loveship.scroll-bars-vars {
+.uui-theme-loveship .scroll-bars-vars {
     --uui-scroll-bars-bg: var(--gray40);
     --uui-scroll-bars-bg-active: #6C6F80;
 }
 
-.uui-theme-loveship.dropdown-container-vars {
+.uui-theme-loveship .dropdown-container-vars {
     --uui-dropdown-container-shadow: var(--uui-shadow);
     --uui-dropdown-container-scrollbar-thumb: #6C6F80;
 }
 
 
-.uui-theme-loveship.uui-text-brand,
-.uui-theme-loveship.uui-text-night900 {
+.uui-theme-loveship .uui-text-brand,
+.uui-theme-loveship .uui-text-night900 {
     --uui-text: var(--uui-text-brand);
 }
 
-.uui-theme-loveship.uui-text-primary,
-.uui-theme-loveship.uui-text-night800 {
+.uui-theme-loveship .uui-text-primary,
+.uui-theme-loveship .uui-text-night800 {
     --uui-text: var(--uui-text-primary);
 }
 
-.uui-theme-loveship.uui-text-night700 {
+.uui-theme-loveship .uui-text-night700 {
     --uui-text: var(--night700);
 }
 
-.uui-theme-loveship.uui-text-secondary,
-.uui-theme-loveship.uui-text-night600 {
+.uui-theme-loveship .uui-text-secondary,
+.uui-theme-loveship .uui-text-night600 {
     --uui-text: var(--uui-text-secondary);
 }
 
-.uui-theme-loveship.uui-text-disabled,
-.uui-theme-loveship.uui-text-night500 {
+.uui-theme-loveship .uui-text-disabled,
+.uui-theme-loveship .uui-text-night500 {
     --uui-text: var(--uui-text-disabled);
 }
 
-.uui-theme-loveship.uui-text-night400 {
+.uui-theme-loveship .uui-text-night400 {
     --uui-text: var(--night400);
 }
 
-.uui-theme-loveship.uui-text-night300 {
+.uui-theme-loveship .uui-text-night300 {
     --uui-text: var(--night300);
 }
 
-.uui-theme-loveship.uui-text-contrast,
-.uui-theme-loveship.uui-text-night50 {
+.uui-theme-loveship .uui-text-contrast,
+.uui-theme-loveship .uui-text-night50 {
     --uui-text: var(--uui-text-contrast);
 }
 
-.uui-theme-promo.uui-font-regular,
-.uui-theme-loveship.uui-font-sans {
+.uui-theme-loveship .uui-font-regular,
+.uui-theme-loveship .uui-font-sans {
     --uui-font: var(--font-regular);
 }
 
-.uui-theme-promo.uui-font-semibold,
-.uui-theme-loveship.uui-font-sans-semibold {
+.uui-theme-loveship .uui-font-semibold,
+.uui-theme-loveship .uui-font-sans-semibold {
     --uui-font: var(--font-semibold);
 }
 
-.uui-theme-loveship.uui-font-sans-light {
+.uui-theme-loveship .uui-font-sans-light {
     --uui-font: var(--font-light);
 }
 
-.uui-theme-loveship.text-placeholder-vars {
+.uui-theme-loveship .text-placeholder-vars {
     --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
     --uui-text-placeholder: var(--uui-skeleton);
 }

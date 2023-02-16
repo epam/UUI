@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps } from '@epam/uui-core';
-import {
-    Checkbox, FlexRow, FlexCell, TextInput, Spinner, Button, ModalWindow, ModalBlocker, ModalFooter, ModalHeader,
-    LabeledInput, IconButton, ButtonColor, IconButtonProps, DatePicker, RangeDatePicker, FilterItemBody,
-} from "./components";
+import { Checkbox, FlexRow, FlexCell, TextInput, Spinner, Button, ModalWindow, ModalBlocker, ModalFooter, ModalHeader,
+    LabeledInput, IconButton, ButtonColor, IconButtonProps, DatePicker, RangeDatePicker } from "./components";
+import { FilterItemBody } from '@epam/uui';
 
 const buttonTypeToColor: { [key: string]: ButtonColor } = {
     'success': "green",
