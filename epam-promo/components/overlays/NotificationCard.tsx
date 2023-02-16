@@ -34,19 +34,19 @@ export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color' 
 );
 
 export const WarningNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ WarningIcon } color='amber' { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ WarningIcon } color='amber' { ...props } ref={ ref } />
 ));
 
 export const SuccessNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ SuccessIcon } color='green' { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ SuccessIcon } color='green' { ...props } ref={ ref } />
 ));
 
 export const HintNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ HintIcon } color='blue' { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ HintIcon } color='blue' { ...props } ref={ ref } />
 ));
 
 export const ErrorNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ ErrorIcon } color='red' { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ ErrorIcon } color='red' { ...props } ref={ ref } />
 ));
 
 export const ClearNotification = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
