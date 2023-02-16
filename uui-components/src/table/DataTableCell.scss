@@ -27,6 +27,11 @@
     }
 }
 
+.content-wrapper {
+    display: flex;
+    flex-grow: 1;
+}
+
 .editor-wrapper {
     flex: 1 1 0;
     min-width: 0;
