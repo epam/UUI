@@ -605,6 +605,12 @@
 
     /* Footer */
     --uui-footer-bg: var(--night800);
+
+    /* NotificationCard */
+    --uui-notification-card-border-radius: var(--uui-border-radius);
+    --uui-notification-card-border-width: 0;
+    --uui-notification-card-border-top-width: 6px;
+    --uui-notification-card-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* modification of the states of table components */
@@ -825,6 +831,7 @@
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
+.uui-theme-loveship.notification-card-sun,
 .uui-theme-loveship.notification-card-warning {
     --uui-notification-card-fill: var(--uui-warning);
     --uui-notification-card-border: var(--uui-warning);
@@ -861,13 +868,6 @@
     --uui-notification-card-border: var(--night600);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
-}
-
-.uui-theme-loveship.notification-card-vars {
-    --uui-notification-card-border-radius: var(--uui-border-radius);
-    --uui-notification-card-border-width: 0;
-    --uui-notification-card-border-top-width: 6px;
-    --uui-notification-card-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .orange {
