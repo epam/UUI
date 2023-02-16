@@ -52,7 +52,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
-        return this.props.renderRow ? this.props.renderRow(rowProps) : (
+        return this.props.renderRow ? this.props.renderRow(rowProps, this.state.dataSourceState) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
@@ -84,7 +84,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
         return (
             <IEditableDebouncer
-                value={ targetProps.value  }
+                value={ targetProps.value }
                 onValueChange={ this.handleTogglerSearchChange }
                 render={ editableProps => renderTarget({ ...this.getTogglerMods(), ...targetProps, ...editableProps }) }
             />
@@ -121,7 +121,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                 search: this.state.dataSourceState.search,
                                 onClose: () => this.toggleBodyOpening(false),
                             }) : undefined
-                    }
+                        }
                     />
                     { !this.isSingleSelect() && this.renderFooter() }
                 </MobileDropdownWrapper>

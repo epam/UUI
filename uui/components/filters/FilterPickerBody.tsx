@@ -34,7 +34,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
             rowProps.onSelect = this.onSelect;
         }
 
-        return this.props.renderRow ? this.props.renderRow(rowProps) : (
+        return this.props.renderRow ? this.props.renderRow(rowProps, this.state.dataSourceState) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
@@ -48,7 +48,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
 
     renderFooter = (isSelectAll: (IEditable<boolean> & IDisableable & { indeterminate?: boolean }) | undefined) => {
         if (isSelectAll) {
-            return <DataPickerFooter { ...this.getFooterProps() } hideShowOnlySelected={ this.isSingleSelect() } size="36"/>;
+            return <DataPickerFooter { ...this.getFooterProps() } hideShowOnlySelected={ this.isSingleSelect() } size="36" />;
         }
 
         const { clearSelection, view } = this.getFooterProps();

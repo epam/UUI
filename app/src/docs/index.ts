@@ -26,7 +26,6 @@ export * from "./DropdownMenu.doc";
 export * from './MainMenu.doc';
 export * from './Badge.doc';
 export * from './Modals.doc';
-export * from './Table.doc';
 export * from './Paginator.doc';
 export * from './Spinner.doc';
 export * from './Slider.doc';

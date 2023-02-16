@@ -30,6 +30,7 @@
 - [ ] Do we need semantic color class in components or only current theme color class?
 - [ ] подумать нужен ли нам Text компонент в UUI
 - [ ] skinContext in promo uses FilterItemBody, maybe move hook in another place?
+- [ ] UuiTextPlaceholder подумать нужны ли нам в UUI все цвета (вся палитра) в loveship и gray10 в promo. Сейчас оставили только один стандартный gray40.
 
 # TODO for UUI package
 ### Panel

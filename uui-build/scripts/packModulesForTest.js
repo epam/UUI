@@ -11,7 +11,7 @@ const fs = require('fs');
 const destRootArg = './../packModulesForTest-output';
 const uuiRoot = path.resolve('./../..');
 
-const EXCLUDED_PACKAGES = ['@epam/app', '@epam/uui-build'];
+const EXCLUDED_PACKAGES = ['@epam/app'];
 
 function getPackDestinationDir() {
     // must be relative to root.
