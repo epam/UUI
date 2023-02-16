@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataPickerRow, FlexRow, PickerInput, PickerItem } from '@epam/promo';
-import { DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 export default function LazyTreePicker() {
