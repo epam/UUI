@@ -204,7 +204,11 @@
     --uui-control-textinput-border-hover: var(--gray60);
 
     --uui-control-label: var(--uui-text-primary);
-    --uui-control-label-disabled: var(--uui-text-secondary);
+    --uui-control-label-disabled: var(--uui-text-disabled);
+    --uui-control-label-error: var(--uui-error);
+    --uui-control-label-fill: var(--uui-icon);
+    --uui-control-label-optional-text: var(--uui-text-secondary);
+    --uui-control-label-asterisk: var(--uui-error);
 
     --uui-control-placeholder: var(--uui-text-secondary);
     --uui-control-placeholder-disabled: var(--uui-text-disabled);
@@ -420,13 +424,6 @@
     --uui-labeled-input-info-fill: var(--uui-icon);
     --uui-labeled-input-optional-text: var(--uui-text-secondary);
     --uui-labeled-input-asterisk: var(--uui-error);
-    --uui-control-label: var(--uui-text-primary);
-    --uui-control-label-disabled: var(--uui-text-disabled);
-    --uui-control-label-error: var(--uui-error);
-    --uui-control-label-fill: var(--uui-icon);
-    --uui-control-label-optional-text: var(--uui-text-secondary);
-    --uui-control-label-asterisk: var(--uui-error);
-
 
     /* Accordion */
     --uui-accordion-bg: var(--uui-surface);
@@ -539,6 +536,12 @@
 
      /* Footer */
     --uui-footer-bg: var(--gray80);
+
+    /* NotificationCard */
+    --uui-notification-card-border-radius: var(--uui-border-radius);
+    --uui-notification-card-border-width: 1px;
+    --uui-notification-card-border-top-width: 6px;
+    --uui-notification-card-shadow: unset;
 }
 
 /* modification of the states of table components */
@@ -807,13 +810,15 @@
 }
 
 .uui-theme-promo.icon-button-gray60,
-.uui-theme-promo.icon-button-default {
+.uui-theme-promo.icon-button-default,
+.uui-theme-promo .icon-button-default {
     --uui-icon-btn: var(--uui-icon);
     --uui-icon-btn-hover: var(--uui-icon-hover);
     --uui-icon-btn-active: var(--uui-icon-active);
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
+.uui-theme-promo.notification-card-amber,
 .uui-theme-promo.notification-card-warning {
     --uui-notification-card-fill: var(--uui-warning);
     --uui-notification-card-border: var(--uui-warning);
@@ -821,30 +826,35 @@
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.uui-theme-promo.notification-card-success {
+.uui-theme-promo.notification-card-success,
+.uui-theme-promo.notification-card-green {
     --uui-notification-card-fill: var(--uui-success);
     --uui-notification-card-border: var(--uui-success);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.uui-theme-promo.notification-card-info {
+.uui-theme-promo.notification-card-info,
+.uui-theme-promo.notification-card-blue {
     --uui-notification-card-fill: var(--uui-info);
     --uui-notification-card-border: var(--uui-info);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.uui-theme-promo.notification-card-error {
+.uui-theme-promo.notification-card-error,
+.uui-theme-promo.notification-card-red {
     --uui-notification-card-fill: var(--uui-error);
     --uui-notification-card-border: var(--uui-error);
     --uui-notification-card-bg: var(--uui-surface);
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.uui-theme-promo.notification-card-vars {
-    --uui-notification-card-border-radius: var(--uui-border-radius);
-    --uui-notification-card-shadow: var(--uui-shadow);
+.uui-theme-promo.notification-card-gray60 {
+    --uui-notification-card-fill: var(--uui-secondary-dark);
+    --uui-notification-card-border: var(--uui-secondary-dark);
+    --uui-notification-card-bg: var(--uui-surface);
+    --uui-notification-card-text: var(--uui-text-primary);
 }
 
 .uui-theme-promo.alert-error {
