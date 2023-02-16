@@ -3,16 +3,15 @@ import {
     SwitchDoc, CheckboxGroupDoc, RadioGroupDoc, MultiSwitchDoc, NumericInputDoc, RatingDoc, SearchInputDoc, TextAreaDoc,
     AccordionDoc, ContextProviderDoc, ApiContextDoc, ModalContextDoc, NotificationContextDoc, DropdownDoc, MainMenuDoc,
     ModalsDoc, BadgeDoc, FiltersPanelDoc, TagDoc, PaginatorDoc, SpinnerDoc, RichTextViewDoc, TextDoc, TextPlaceholderDoc,
-    DatePickerDoc, RangeDatePickerDoc, TimePickerDoc, ControlGroupDoc, GettingStartedDoc, NotificationCardDoc, TooltipDoc,
+    DatePickerDoc, RangeDatePickerDoc, TimePickerDoc, ControlGroupDoc, InstallationDoc, NotificationCardDoc, TooltipDoc,
     LabeledInputDoc, AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc,
     ReleaseNotesDoc, FlexItemsDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, AvatarDoc,
     InternationalizationDoc, FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarStackDoc, PickerListDoc, TeamDoc,
     AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc, EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc,
     VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc, DropdownContainerDoc,
-    AdaptivePanelDoc, EditableTablesDoc, TablesOverviewDoc, AdvancedTablesDoc, PresetsPanelDoc
+    AdaptivePanelDoc, EditableTablesDoc, TablesOverviewDoc, AdvancedTablesDoc, PresetsPanelDoc, GettingStartedDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
-import { OverviewDoc } from '../docs/Overview';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
 import { AnchorDoc } from "../docs/Anchor.doc";
 
@@ -89,9 +88,9 @@ const componentsStructure = sortBy([
 ], (item) => item.order || item.name);
 
 export const items: DocItem[] = [
-    { id: 'overview', name: 'Overview', component: OverviewDoc },
-    { id: 'coreConcepts', name: 'Core Concepts', component: CoreConceptsDoc },
     { id: 'gettingStarted', name: 'Getting Started', component: GettingStartedDoc },
+    { id: 'installation', name: 'Installation', component: InstallationDoc },
+    { id: 'coreConcepts', name: 'Core Concepts', component: CoreConceptsDoc },
     { id: 'forDesigners', name: 'For Designers' },
     { id: 'gettingStartedForDesigners', name: 'Getting Started', component: GettingStartedForDesignersDoc, parentId: 'forDesigners' },
     { id: 'guidelines', name: 'Guidelines', parentId: 'forDesigners' },

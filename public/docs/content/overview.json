@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI a set of React-based NPM packages, providing:",
+            "text": "UUI is a set of React-based NPM package that provides:",
             "marks": []
           }
         ]
@@ -45,58 +45,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Rich set of components: from",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/documents?category=components&id=button&mode=doc&skin=UUI4_promo"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "buttons",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ", to ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/documents?category=components&id=tables&mode=doc&skin=UUI4_promo"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "tables",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
+                    "text": "rich components, from buttons to tables and rich text editors.",
                     "marks": []
                   }
                 ]
@@ -115,45 +64,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Common services: modals, notifications, error recovery, forms and data binding, monitoring, and more",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Open for contribution, actively evolving, supported, and used by 20+ production projects",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Not opinionated, you don't have to go all in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.",
+                    "text": "common services: modals, notifications, error recovery, forms, data binding, monitoring, and more.",
                     "marks": []
                   }
                 ]
@@ -169,27 +80,53 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If you are ready to jump in, visit the ",
+            "text": "Unified UI is also:",
             "marks": []
-          },
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
           {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?id=gettingStarted&mode=doc&skin=UUI4_promo"
-            },
+            "object": "block",
+            "type": "list-item",
+            "data": {},
             "nodes": [
               {
-                "object": "text",
-                "text": "Getting Started",
-                "marks": []
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "open for contribution, actively evolving, supported, and used by dozens of production projects.",
+                    "marks": []
+                  }
+                ]
               }
             ]
           },
           {
-            "object": "text",
-            "text": " section.",
-            "marks": []
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "non-opinionated, compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -200,26 +137,45 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can also explore our ",
+            "text": "Ready to jump in? Visit the ",
             "marks": []
           },
           {
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/demo"
+              "url": "https://uui.epam.com/documents?id=installation"
             },
             "nodes": [
               {
                 "object": "text",
-                "text": "demo page",
+                "text": "installation",
                 "marks": []
               }
             ]
           },
           {
             "object": "text",
-            "text": " to get an overview of UUI's capabilities.",
+            "text": " section and the ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://uui.epam.com/demo"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "demo",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " page to get an overview of UUI's capabilities.",
             "marks": []
           }
         ]
@@ -430,7 +386,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Some component libraries build around the concept to not being a \"Framework\", but a \"Library\". React itself is an example. Being \"just a Library\" means not being opinionated at all cost: do not dictate how you build your app, structure your code, do your state management. It's up to the developers or architect to decide how to build their app.",
+            "text": "Some component libraries build around not being a \"Framework\" but a \"Library.\" React itself is an example. \"Just a library\" means being non-opinionated at all costs, i.e., not dictating how you build your app, structure your code, or handle your state management. It's up to the developers or architects to decide how to develop their apps.",
             "marks": []
           }
         ]
@@ -442,7 +398,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "On the other hand, there is a \"Frameworks\" camp, like Angular. They see that it's really beneficial to have something that guides your team to success, with guidelines how to structure your code, how to manage state, and even in which folder to put each type of file. They often push this idea to the limits.",
+            "text": "On the other hand, there is a \"frameworks\" camp, gathering supporters of frameworks like Angular. They see that it's beneficial to have something that guides your team to success - guidelines on how to structure your code, manage state, and even which folder to put each type of file into. They often push this idea to the limits.",
             "marks": []
           }
         ]
@@ -454,7 +410,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI is somewhere in between these two approaches. We support common application-wide tasks, like state-management, API calls, and error handing, but we doesn't force you to use any of it.",
+            "text": "UUI is somewhere in between these two approaches. We support common application-wide tasks, like state management, API calls, and error handling, but we don't force you to use any of them.",
             "marks": []
           }
         ]
@@ -466,7 +422,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "We never dictate, we give a hand.",
+            "text": "We never dictate; we give a hand.",
             "marks": []
           }
         ]
@@ -519,7 +475,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "List/Table/Tree state management - including lazy-loading, filtering and paging",
+                    "text": "List/Table/Tree state management - including lazy-loading, virtualisation, filtering and paging",
                     "marks": []
                   }
                 ]
@@ -538,7 +494,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Services - API calls with error-handing, convenient web-analytics events, managing modal windows",
+                    "text": "Services - API calls with error-handing, convenient web-analytics events, managing modal windows and notifications",
                     "marks": []
                   }
                 ]
@@ -604,7 +560,19 @@
         "nodes": [
           {
             "object": "text",
-            "text": "But if you use our helpers, you'll find that 80% of your screens can be built in a breeze, without any complicated solutions like Redux.",
+            "text": "But with our helpers, you'll find that 80% of your screens can be built in a breeze without complicated solutions like Redux.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "\n",
             "marks": []
           }
         ]
