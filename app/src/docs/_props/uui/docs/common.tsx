@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IHasIcon } from '@epam/uui-core';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import {
-    allSizes, IHasEditMode, allEpamSemanticColors, SizeMod, ColorMod,
+    allSizes, IHasEditMode, allSemanticColors, SizeMod, ColorMod,
 } from '@epam/uui';
 
 export const sizeDoc = new DocBuilder<SizeMod>({ name: 'Size' })
@@ -20,7 +20,7 @@ export const textSettingsDoc = new DocBuilder<TextSettings>({ name: 'Text' })
 //     .prop('font', { examples: allFontStyles, defaultValue: 'sans' });
 
 export const colorDoc = new DocBuilder<ColorMod>({ name: 'Color' })
-    .prop('color', { renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map(i => ({ value: i })) } { ...editable } />, examples: allEpamSemanticColors });
+    .prop('color', { renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map(i => ({ value: i })) } { ...editable } />, examples: allSemanticColors });
 
 // export const iconDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
 //     .prop('icon', {
