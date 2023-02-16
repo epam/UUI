@@ -1,4 +1,7 @@
+import {i18n as uuiI18n} from '@epam/uui-core';
+
 export const i18n = {
+    ...uuiI18n,
     dataPickerBody: {
         searchPlaceholder: 'Search',
         noRecordsMessage: 'No records found',

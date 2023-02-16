@@ -4,7 +4,7 @@ import { i18n } from "../../i18n";
 import { DatePickerCoreProps, IDropdownBodyProps } from "@epam/uui-core";
 import { BaseDatePicker, DatePickerState } from '@epam/uui-components';
 import { FlexSpacer, LinkButton, FlexRow, FlexCell, Text } from '../../index';
-import { DatePickerBody } from "@epam/uui";
+import { DatePickerBody } from "../";
 
 export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
 
@@ -33,7 +33,7 @@ export class FilterDataPickerBody extends BaseDatePicker<DatePickerProps> {
     renderBody() {
         return (
             <>
-                <FlexRow borderBottom="gray40">
+                <FlexRow borderBottom={ true }>
                     <DatePickerBody
                         filter={ this.props.filter }
                         value={ this.getValue() }

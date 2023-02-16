@@ -20,6 +20,7 @@
 - [-] theme.css - maybe convert it into scss?
 - [-] We deprecated line-height font-size v-padding in loveship, is it Ok (TextArea as example)?
 - [-] move skins themes into @epam/assets and make it scss
+- [-] app/src/demo/tables/filteredTable/FilteredTableFooter.tsx uses some components from promo and in loveship theme they work wrong.
 
 - [ ] WithMods function - need to rework:
      1) case when we need to redefine some variable typo, for example - color.
@@ -28,6 +29,7 @@
 - [ ] LabeledInput: remove color prop from Loveship & Promo
 - [ ] Do we need semantic color class in components or only current theme color class?
 - [ ] подумать нужен ли нам Text компонент в UUI
+- [ ] skinContext in promo uses FilterItemBody, maybe move hook in another place?
 
 # TODO for UUI package
 ### Panel

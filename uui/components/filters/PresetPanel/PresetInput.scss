@@ -1,6 +1,3 @@
-@use '../../../assets/styles/colors' as *;
-@use '../../../assets/styles/fonts' as *;
-
 .preset-input-cell {
     margin-top: auto;
     margin-bottom: auto;
@@ -23,22 +20,22 @@
         :global(.uui-icon-accept) {
 
             &:global(.-clickable) {
-                fill: $white;
-                background-color: $green;
+                fill: var(--white);
+                background-color: var(--uui-accent);
 
                 &:hover {
-                    fill: $white;
-                    background-color: darken($green, 2%);
+                    fill: var(--white);
+                    background-color: var(--uui-accent-dark);
                 }
             }
         }
 
         :global(.uui-icon-cancel) {
-            background-color: $gray20;
+            background-color: var(--uui-secondary-lightest);
             margin-left: 1px;
 
             &:hover {
-                background-color: darken($gray20, 2%);
+                background-color: var(--uui-secondary-light);
             }
         }
     }

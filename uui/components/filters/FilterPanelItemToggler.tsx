@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './FilterPaneltemToggler.scss';
+import css from './FilterPanelItemToggler.scss';
 import cx from "classnames";
 import { IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod } from "@epam/uui-core";
 import { systemIcons } from "../../icons/icons";
@@ -42,10 +42,10 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
             ref={ ref }
         >
             <FlexRow cx={ css.titleWrapper }>
-                <Text color="gray60" cx={ css.title }>{ getTitle }</Text>
+                <Text color="secondary" cx={ css.title }>{ getTitle }</Text>
                 <div className={ css.textWrapper }>
-                    <Text color="gray90" cx={ css.selection }>{ props.selection }</Text>
-                    { props.postfix && <Text color="gray90" cx={ css.postfix }>{ props.postfix }</Text> }
+                    <Text color="brand" cx={ css.selection }>{ props.selection }</Text>
+                    { props.postfix && <Text color="brand" cx={ css.postfix }>{ props.postfix }</Text> }
                 </div>
             </FlexRow>
             {

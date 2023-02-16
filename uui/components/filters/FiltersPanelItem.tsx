@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import dayjs from "dayjs";
 import cx from "classnames";
 import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue } from "@epam/uui-core";
@@ -74,7 +74,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                     value={ predicate }
                     onValueChange={ changePredicate }
                     size="24"
-                /> : <Text color="gray60" fontSize="12">{ props.title }</Text>
+                /> : <Text color="secondary" fontSize="12">{ props.title }</Text>
             }
             { !props?.isAlwaysVisible && (
                 <LinkButton
@@ -89,7 +89,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const renderBody = (dropdownProps: DropdownBodyProps) => (
         <DropdownContainer>
-            <Panel background="white">
+            <Panel>
                 { renderHeader() }
                 { <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange }/> }
             </Panel>
@@ -113,7 +113,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 const selection = currentValue ? currentValue?.slice(0, 2).map((i: any) => {
                     const item = view.getById(i, null);
                     isLoading = item.isLoading;
-                    return item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item.value) : item.value.name);
+                    return item.isLoading ? <TextPlaceholder /> : (props.getName ? props.getName(item.value) : item.value.name);
                 }) : [i18n.filterToolbar.pickerInput.emptyValueCaption];
 
                 const selectionText = isLoading ? selection : selection.join(', ');
@@ -136,7 +136,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 if (!item) {
                     return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
                 }
-                const selection = item.isLoading ? <TextPlaceholder color="gray40"/> : (props.getName ? props.getName(item.value) : item.value.name);
+                const selection = item.isLoading ? <TextPlaceholder /> : (props.getName ? props.getName(item.value) : item.value.name);
                 return { selection };
             }
             case "datePicker": {
