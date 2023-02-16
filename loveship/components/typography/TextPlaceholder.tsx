@@ -1,42 +1,7 @@
-import React from 'react';
-import cx from 'classnames';
-import { IHasCX, IHasRawProps } from '@epam/uui-core';
-import * as types from '../types';
-import styles from '../../assets/styles/scss/loveship-color-vars.scss';
-import css from './TextPlaceholder.scss';
+import * as React from 'react';
+import { withMods } from "@epam/uui-core";
+import { TextPlaceholderProps, TextPlaceholder as UuiTextPlaceholder } from "@epam/uui";
 
-export interface TextPlaceholderProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    wordsCount?: number;
-    color?: types.EpamColor;
-    isNotAnimated?: boolean;
-}
+const applyTextPlaceholderMods = () => ['uui-theme-loveship'];
 
-export const TextPlaceholder = React.forwardRef<HTMLDivElement, TextPlaceholderProps>((props, ref) => {
-    const pattern = `&nbsp;`;
-    const text = React.useMemo(() => {
-        const words = [];
-        for (let i = 0; i < (props.wordsCount || 1); i++) {
-            const lengthWord = Math.floor(Math.random() * 10 + 8);
-            words.push(pattern.repeat(lengthWord));
-        }
-        return words;
-    }, [props.wordsCount]);
-
-    return (
-        <div ref={ ref } aria-busy={ true } className={ css.container } { ...props.rawProps }>
-            { text.map((it, index) => (
-                <span
-                    suppressHydrationWarning={ true }
-                    key={ index }
-                    dangerouslySetInnerHTML={ { __html: it } }
-                    className={ cx([
-                        props.cx,
-                        css.loadingWord,
-                        styles[`color-${props.color || 'night100'}`],
-                        !props.isNotAnimated && css.animatedLoading,
-                    ]) }
-                />
-            )) }
-        </div>
-    );
-});
+export const TextPlaceholder = withMods<TextPlaceholderProps>(UuiTextPlaceholder, applyTextPlaceholderMods);

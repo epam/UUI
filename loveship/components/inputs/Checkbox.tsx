@@ -5,7 +5,7 @@ import css from './Checkbox.scss';
 import { ReactComponent as TickIcon } from '../icons/checkbox-checked.svg';
 import { ReactComponent as IndeterminateIcon } from '../icons/checkbox-partial.svg';
 
-export interface CheckboxMods extends UuiCheckboxMods, types.ColorMod {
+export interface CheckboxMods extends UuiCheckboxMods {
     theme?: 'light' | 'dark';
 }
 

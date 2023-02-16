@@ -267,9 +267,6 @@
     --uui-control-border-disabled: var(--uui-disabled);
     --uui-control-border-readonly: var(--uui-disabled);
 
-    --uui-switch-bg: var(--night400);
-    --uui-switch-border-hover: var(--night600);
-
     --uui-control-textinput-border-hover: var(--night600);
 
     --uui-control-rest: var(--uui-primary);
@@ -480,6 +477,137 @@
     --uui-modals-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
     --uui-modals-bg: var(--uui-surface);
 
+    /*    TextPlaceholder   */
+    --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
+    --uui-text-placeholder: var(--uui-skeleton);
+
+    /* LabeledInput */
+    --uui-labeled-input: var(--uui-text-primary);
+    --uui-labeled-input-disabled: var(--uui-text-disabled);
+    --uui-labeled-input-error: var(--uui-error);
+    --uui-labeled-input-fill: var(--uui-icon);
+    --uui-labeled-input-info-fill: var(--uui-info);
+    --uui-labeled-input-optional-text: var(--uui-text-secondary);
+    --uui-labeled-input-asterisk: var(--uui-error);
+    --uui-control-label: var(--uui-text-primary);
+    --uui-control-label-disabled: var(--uui-text-disabled);
+    --uui-control-label-error: var(--uui-error);
+    --uui-control-label-fill: var(--uui-icon);
+    --uui-control-label-optional-text: var(--uui-text-secondary);
+    --uui-control-label-asterisk: var(--uui-error);
+
+    /* Accordion */
+    --uui-accordion-bg: var(--uui-surface);
+    --uui-accordion-border: var(--uui-divider);
+    --uui-accordion-text: var(--uui-text-primary);
+    --uui-accordion-text-disabled: var(--uui-text-disabled);
+    --uui-accordion-icon: var(--uui-icon);
+    --uui-accordion-icon-disabled: var(--uui-text-input-icon-disabled);
+    --uui-accordion-focus: var(--uui-primary);
+    --uui-accordion-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
+    --uui-accordion-shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
+
+    /* Switch */
+    --uui-switch-bg: var(--night400);
+    --uui-switch-border-hover: var(--night600);
+    --uui-switch-bg-checked: var(--uui-control-bg-checked);
+    --uui-switch-bg-hover: var(--uui-control-bg-hover);
+    --uui-switch-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-switch-bg-checked-hover: var(--uui-control-bg-checked-hover);
+    --uui-switch-bg-checked-disabled: var(--uui-control-bg-checked-disabled);
+    --uui-switch-border: var(--uui-control-border);
+    --uui-switch-border-checked: var(--uui-control-border-checked);
+    --uui-switch-border-disabled: var(--uui-control-border-disabled);
+    --uui-switch-border-checked-hover: var(--uui-control-border-checked-hover);
+    --uui-switch-border-checked-hover-copy: var(--uui-control-border-checked-hover);
+    --uui-switch-border-checked-disabled: var(--uui-control-border-checked-disabled);
+    --uui-switch-label: var(--uui-control-label);
+    --uui-switch-label-disabled: var(--uui-control-label-disabled);
+    --uui-switch-toggler-bg: var(--white);
+    --uui-switch-toggler-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-switch-toggler-border-checked: var(--uui-control-bg-checked);
+    --uui-switch-toggler-border-hover: var(--uui-control-bg-hover);
+    --uui-switch-toggler-border-disabled: var(--uui-control-border-disabled);
+    --uui-switch-toggler-border-checked-hover: var(--uui-control-bg-checked-hover);
+    --uui-switch-toggler-border-checked-disabled: var(--uui-control-bg-checked-disabled);
+
+    /* DropdownContainer */
+    --uui-dropdown-container-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1);
+    --uui-dropdown-container-scrollbar-thumb: var(--uui-scroll);
+
+    /* MainMenu */
+    --uui-main-menu-bg: var(--gray80);
+    --uui-main-menu-active: var(--gray90);
+    --uui-main-menu-hover: var(--gray90);
+    --uui-main-menu-active-border: var(--uui-primary);
+    --uui-caption: var(--white);
+    --uui-main-menu-dropdown-bg: var(--uui-main-menu-active);
+    --uui-main-menu-dropdown-hover: var(--uui-primary);
+    --uui-main-menu-search-bg: var(--gray70);
+    --uui-main-menu-search-border: var(--gray70);
+    --uui-main-menu-search-placeholder: var(--uui-text-disabled);
+    --uui-main-menu-search-text: var(--uui-contrast);
+    --uui-main-menu-search-icon: var(--uui-icon-disabled);
+    --uui-main-menu-icon: var(--white);
+
+    /* BurgerMenu */
+    --uui-burger-menu-bg: var(--gray90);
+    --uui-burger-menu-caption: var(--white);
+    --uui-burger-menu-caption-hover: var(--uui-primary);
+    --uui-burger-menu-overlay: #000000;
+
+    /* NumericInput */
+    --uui-numeric-input-bg: var(--uui-control-bg);
+    --uui-numeric-input-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-numeric-input-border: var(--uui-control-border);
+    --uui-numeric-input-border-disabled: var(--uui-control-border-disabled);
+    --uui-numeric-input-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-numeric-input-border-active: var(--uui-control-border-checked);
+    --uui-numeric-input-border-error: var(--uui-negative);
+    --uui-numeric-input-placeholder: var(--uui-control-placeholder);
+    --uui-numeric-input-text: var(--uui-control-text);
+    --uui-numeric-input-text-disabled: var(--uui-control-text-disabled);
+    --uui-numeric-input-icon-clickable: var(--uui-icon);
+    --uui-numeric-input-icon-clickable-hover: var(--uui-icon-hover);
+    --uui-numeric-input-border-radius: var(--uui-border-radius);
+
+    /* TimePicker */
+    --uui-time-picker-bg: var(--uui-control-bg);
+    --uui-time-picker-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-time-picker-border: var(--uui-control-border);
+    --uui-time-picker-border-disabled: var(--uui-control-border-disabled);
+    --uui-time-picker-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-time-picker-border-active: var(--uui-control-border-checked);
+    --uui-time-picker-border-error: var(--uui-negative);
+    --uui-time-picker-placeholder: var(--uui-control-placeholder);
+    --uui-time-picker-text: var(--uui-control-text);
+    --uui-time-picker-text-disabled: var(--uui-control-text-disabled);
+    --uui-time-picker-icon-clickable: var(--uui-icon);
+    --uui-time-picker-icon-clickable-hover: var(--uui-icon-hover);
+    --uui-time-picker-border-radius: var(--uui-border-radius);
+
+    /* SearchPicker */
+    --uui-search-input-bg: var(--uui-control-bg);
+    --uui-search-input-bg-disabled: var(--uui-control-bg-disabled);
+    --uui-search-input-border: var(--uui-control-border);
+    --uui-search-input-border-disabled: var(--uui-control-border-disabled);
+    --uui-search-input-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-search-input-border-active: var(--uui-control-border-checked);
+    --uui-search-input-border-error: var(--uui-negative);
+    --uui-search-input-placeholder: var(--uui-control-placeholder);
+    --uui-search-input-text: var(--uui-control-text);
+    --uui-search-input-text-disabled: var(--uui-control-text-disabled);
+    --uui-search-input-icon-clickable: var(--uui-icon);
+    --uui-search-input-icon-clickable-hover: var(--uui-icon-hover);
+    --uui-search-input-icon-disabled: var(--uui-icon-disabled);
+    --uui-search-input-border-radius: var(--uui-border-radius);
+
+    /* Popover */
+    --uui-popover-shadow: 0 5px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
+
+    /* Footer */
+    --uui-footer-bg: var(--night800);
+
     /* FilterPanelItemToggler vars */
     --uui-filters-toggler-border: var(--uui-text-input-border);
     --uui-filters-toggler-border-hover: var(--uui-text-input-border-hover);
@@ -521,18 +649,6 @@
 .tooltip-critical {
     --uui-tooltip-bg: var(--uui-error-dark);
     --uui-tooltip-text: var(--uui-contrast);
-}
-
-.uui-theme-loveship.accordion-vars {
-    --uui-accordion-bg: var(--uui-surface);
-    --uui-accordion-border: var(--uui-divider);
-    --uui-accordion-text: var(--uui-text-primary);
-    --uui-accordion-text-disabled: var(--uui-text-disabled);
-    --uui-accordion-icon: var(--uui-icon);
-    --uui-accordion-icon-disabled: var(--uui-text-input-icon-disabled);
-    --uui-accordion-focus: var(--uui-primary);
-    --uui-accordion-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
-    --uui-accordion-shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
 }
 
 .uui-theme-loveship .button-sky, .uui-theme-loveship .button-primary {
@@ -718,45 +834,6 @@
     --uui-icon-btn-disabled: var(--uui-icon-disabled);
 }
 
-.uui-theme-loveship .switch-vars {
-    --uui-switch-bg-checked: var(--uui-control-bg-checked);
-    --uui-switch-bg-hover: var(--uui-control-bg-hover);
-    --uui-switch-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-switch-bg-checked-hover: var(--uui-control-bg-checked-hover);
-    --uui-switch-bg-checked-disabled: var(--uui-control-bg-checked-disabled);
-    --uui-switch-border: var(--uui-control-border);
-    --uui-switch-border-checked: var(--uui-control-border-checked);
-    --uui-switch-border-disabled: var(--uui-control-border-disabled);
-    --uui-switch-border-checked-hover: var(--uui-control-border-checked-hover);
-    --uui-switch-border-checked-hover-copy: var(--uui-control-border-checked-hover);
-    --uui-switch-border-checked-disabled: var(--uui-control-border-checked-disabled);
-    --uui-switch-label: var(--uui-control-label);
-    --uui-switch-label-disabled: var(--uui-control-label-disabled);
-    --uui-switch-toggler-bg: var(--white);
-    --uui-switch-toggler-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-switch-toggler-border-checked: var(--uui-control-bg-checked);
-    --uui-switch-toggler-border-hover: var(--uui-control-bg-hover);
-    --uui-switch-toggler-border-disabled: var(--uui-control-border-disabled);
-    --uui-switch-toggler-border-checked-hover: var(--uui-control-bg-checked-hover);
-    --uui-switch-toggler-border-checked-disabled: var(--uui-control-bg-checked-disabled);
-}
-
-.uui-theme-loveship.labeled-input-vars {
-    --uui-labeled-input: var(--uui-text-primary);
-    --uui-labeled-input-disabled: var(--uui-text-disabled);
-    --uui-labeled-input-error: var(--uui-error);
-    --uui-labeled-input-fill: var(--uui-icon);
-    --uui-labeled-input-info-fill: var(--uui-info);
-    --uui-labeled-input-optional-text: var(--uui-text-secondary);
-    --uui-labeled-input-asterisk: var(--uui-error);
-    --uui-control-label: var(--uui-text-primary);
-    --uui-control-label-disabled: var(--uui-text-disabled);
-    --uui-control-label-error: var(--uui-error);
-    --uui-control-label-fill: var(--uui-icon);
-    --uui-control-label-optional-text: var(--uui-text-secondary);
-    --uui-control-label-asterisk: var(--uui-error);
-}
-
 .uui-theme-loveship.notification-card-warning {
     --uui-notification-card-fill: var(--uui-warning);
     --uui-notification-card-border: var(--uui-warning);
@@ -824,11 +901,6 @@
     --uui-alert-bg: #E1F4FA;
     --uui-alert-border: var(--uui-info);
     --uui-alert-icon: var(--uui-info);
-}
-
-.uui-theme-loveship .dropdown-container-vars {
-    --uui-dropdown-container-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1);
-    --uui-dropdown-container-scrollbar-thumb: var(--uui-scroll);
 }
 
 .uui-theme-loveship.badge-default, .uui-theme-loveship.badge-night300 {
@@ -1074,82 +1146,6 @@
     --uui-picker-toggler-border-radius: var(--uui-border-radius);
 }
 
-.uui-theme-loveship.main-menu-vars {
-    --uui-main-menu-bg: var(--gray80);
-    --uui-main-menu-active: var(--gray90);
-    --uui-main-menu-hover: var(--gray90);
-    --uui-main-menu-active-border: var(--uui-primary);
-    --uui-caption: var(--white);
-    --uui-main-menu-dropdown-bg: var(--uui-main-menu-active);
-    --uui-main-menu-dropdown-hover: var(--uui-primary);
-    --uui-main-menu-search-bg: var(--gray70);
-    --uui-main-menu-search-border: var(--gray70);
-    --uui-main-menu-search-placeholder: var(--uui-text-disabled);
-    --uui-main-menu-search-text: var(--uui-contrast);
-    --uui-main-menu-search-icon: var(--uui-icon-disabled);
-    --uui-main-menu-icon: var(--white);
-}
-
-.uui-theme-loveship.burger-menu {
-    --uui-burger-menu-bg: var(--gray90);
-    --uui-burger-menu-caption: var(--white);
-    --uui-burger-menu-caption-hover: var(--uui-primary);
-    --uui-burger-menu-overlay: #000000;
-}
-
-.uui-theme-loveship.numeric-input-vars {
-    --uui-numeric-input-bg: var(--uui-control-bg);
-    --uui-numeric-input-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-numeric-input-border: var(--uui-control-border);
-    --uui-numeric-input-border-disabled: var(--uui-control-border-disabled);
-    --uui-numeric-input-border-hover: var(--uui-control-textinput-border-hover);
-    --uui-numeric-input-border-active: var(--uui-control-border-checked);
-    --uui-numeric-input-border-error: var(--uui-negative);
-    --uui-numeric-input-placeholder: var(--uui-control-placeholder);
-    --uui-numeric-input-text: var(--uui-control-text);
-    --uui-numeric-input-text-disabled: var(--uui-control-text-disabled);
-    --uui-numeric-input-icon-clickable: var(--uui-icon);
-    --uui-numeric-input-icon-clickable-hover: var(--uui-icon-hover);
-    --uui-numeric-input-border-radius: var(--uui-border-radius);
-}
-
-.uui-theme-loveship.time-picker-vars {
-    --uui-time-picker-bg: var(--uui-control-bg);
-    --uui-time-picker-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-time-picker-border: var(--uui-control-border);
-    --uui-time-picker-border-disabled: var(--uui-control-border-disabled);
-    --uui-time-picker-border-hover: var(--uui-control-textinput-border-hover);
-    --uui-time-picker-border-active: var(--uui-control-border-checked);
-    --uui-time-picker-border-error: var(--uui-negative);
-    --uui-time-picker-placeholder: var(--uui-control-placeholder);
-    --uui-time-picker-text: var(--uui-control-text);
-    --uui-time-picker-text-disabled: var(--uui-control-text-disabled);
-    --uui-time-picker-icon-clickable: var(--uui-icon);
-    --uui-time-picker-icon-clickable-hover: var(--uui-icon-hover);
-    --uui-time-picker-border-radius: var(--uui-border-radius);
-}
-
-.uui-theme-loveship.search-input-vars {
-    --uui-search-input-bg: var(--uui-control-bg);
-    --uui-search-input-bg-disabled: var(--uui-control-bg-disabled);
-    --uui-search-input-border: var(--uui-control-border);
-    --uui-search-input-border-disabled: var(--uui-control-border-disabled);
-    --uui-search-input-border-hover: var(--uui-control-textinput-border-hover);
-    --uui-search-input-border-active: var(--uui-control-border-checked);
-    --uui-search-input-border-error: var(--uui-negative);
-    --uui-search-input-placeholder: var(--uui-control-placeholder);
-    --uui-search-input-text: var(--uui-control-text);
-    --uui-search-input-text-disabled: var(--uui-control-text-disabled);
-    --uui-search-input-icon-clickable: var(--uui-icon);
-    --uui-search-input-icon-clickable-hover: var(--uui-icon-hover);
-    --uui-search-input-icon-disabled: var(--uui-icon-disabled);
-    --uui-search-input-border-radius: var(--uui-border-radius);
-}
-
-.uui-theme-loveship.footer-vars {
-    --uui-footer-bg: var(--night800);
-}
-
 .uui-theme-loveship.informer-color-default {
     --uui-informer-bg: var(--night300);
     --uui-informer-caption: var(--night600);
@@ -1169,11 +1165,7 @@
     --uui-informer-border-radius: 50px;
 }
 
-.uui-theme-loveship.popover-vars {
-    --uui-popover-shadow: 0 5px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
-}
-
-.uui-theme-loveship .icon-container-color-info {
+.uui-theme-loveship.icon-container-color-info {
     --uui-icon-container-fill: var(--uui-info);
 }
 
@@ -1196,17 +1188,6 @@
 .uui-theme-loveship .icon-container-color-secondary {
     --uui-icon-container-fill: var(--uui-secondary);
 }
-
-.uui-theme-loveship .scroll-bars-vars {
-    --uui-scroll-bars-bg: var(--gray40);
-    --uui-scroll-bars-bg-active: #6C6F80;
-}
-
-.uui-theme-loveship .dropdown-container-vars {
-    --uui-dropdown-container-shadow: var(--uui-shadow);
-    --uui-dropdown-container-scrollbar-thumb: #6C6F80;
-}
-
 
 .uui-theme-loveship .uui-text-brand,
 .uui-theme-loveship .uui-text-night900 {
@@ -1257,9 +1238,4 @@
 
 .uui-theme-loveship .uui-font-sans-light {
     --uui-font: var(--font-light);
-}
-
-.uui-theme-loveship .text-placeholder-vars {
-    --uui-text-placeholder-gradient: var(--uui-skeleton-gradient);
-    --uui-text-placeholder: var(--uui-skeleton);
 }
