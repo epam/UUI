@@ -23,7 +23,35 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Additionally if you need to secure access to controls covered by the Blocker component, you can pass the ",
+            "text": "Pay attention, that It's expected to place ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Blocker",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " into 'position: relative' context.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Additionally if you need to disable access to controls covered by the Blocker component, you can pass the ",
             "marks": []
           },
           {
