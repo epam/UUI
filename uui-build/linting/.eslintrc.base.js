@@ -14,8 +14,7 @@ module.exports = {
             extends: ['react-app/jest'],
             env: { 'jest/globals': true },
             rules: { 'testing-library/render-result-naming-convention': 0 },
-        },
-        {
+        }, {
             files: ['**/*.ts?(x)'],
             extends: ['airbnb', 'airbnb/hooks', 'airbnb-typescript'],
             rules: {
@@ -23,18 +22,7 @@ module.exports = {
                 ...sharedReactRules(),
                 ...sharedTsRules(),
             },
-        },
-        {
-            files: ['./next-app/**/*.ts?(x)'],
-            extends: ['airbnb', 'airbnb/hooks', 'airbnb-typescript'],
-            rules: {
-                ...sharedJsRules(),
-                ...sharedReactRules(),
-                ...sharedTsRules(),
-                'react/react-in-jsx-scope': 0,
-            },
-        },
-        {
+        }, {
             files: ['./server/**/*.js', './uui-build/**/*.js'],
             env: { node: true, commonjs: true },
             parserOptions: { ecmaVersion: 2020 },
