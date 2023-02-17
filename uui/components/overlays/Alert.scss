@@ -1,12 +1,10 @@
-@use  '../../assets/styles/index' as *;
-
 .root {
-    background-color: var(--background-color);
-    border-left: 6px solid var(--fill-color);
+    background-color: var(--uui-alert-bg);
+    border-left: 6px solid var(--uui-alert-border);
 
     .icon-wrapper {
         :global(.uui-icon) {
-            fill: var(--fill-color);
+            fill: var(--uui-alert-icon);
         }
     }
 }
@@ -16,11 +14,12 @@
     display: flex;
     overflow: hidden;
     min-width: 170px;
+    border-radius: var(--uui-alert-border-radius);
 }
 
 .icon-wrapper {
     height: 100%;
-    margin-right: 14px;
+    margin-right: var(--uui-alert-icon-margin-right);
 }
 
 .action-wrapper {
