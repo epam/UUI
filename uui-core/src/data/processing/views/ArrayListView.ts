@@ -1,3 +1,4 @@
+import isEqual from "lodash.isequal";
 import {
     DataRowProps, SortingOption, IEditable, DataSourceState,
     DataSourceListProps, IDataSourceView, BaseListViewProps,
@@ -14,7 +15,11 @@ export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewPro
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     props: ArrayListViewProps<TItem, TId, TFilter>;
+
     originalTree: Tree<TItem, TId>;
+    searchTree: Tree<TItem, TId>;
+    filteredTree: Tree<TItem, TId>;
+    sortedTree: Tree<TItem, TId>;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
@@ -40,7 +45,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         }
 
         if (prevTree != this.tree || this.isCacheIsOutdated(newValue, currentValue)) {
-            this.tree = this.getUpdatedTree(newValue);
+            this.updateTree(currentValue, newValue);
             this.updateCheckedLookup(this.value.checked);
             this.rebuildRows();
         } else {
@@ -67,12 +72,27 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         });
     }
 
-    private getUpdatedTree({ filter, search, sorting }: DataSourceState<TFilter, TId>) {
+    private updateTree(prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) {
+        const { filter, search, sorting } = newValue;
         const { getSearchFields, getFilter, sortBy } = this.props;
-        return this.originalTree
-            .filter({ filter, getFilter })
-            .search({ search, getSearchFields })
-            .sort({ sorting, sortBy });
+
+        let filterTreeIsUpdated = false;
+        if (this.filterWasChanged(prevValue, newValue) || !this.filteredTree) {
+            this.filteredTree = this.originalTree.filter({ filter, getFilter });
+            filterTreeIsUpdated = true;
+        }
+
+        let searchTreeIsUpdated = false;
+        if (this.searchWasChanged(prevValue, newValue) || !this.searchTree || filterTreeIsUpdated) {
+            this.searchTree = this.filteredTree.search({ search, getSearchFields });
+            searchTreeIsUpdated = true;
+        }
+
+        if (this.sortingWasChanged(prevValue, newValue) || !this.sortedTree || searchTreeIsUpdated) {
+            this.sortedTree = this.searchTree.sort({ sorting, sortBy });
+        }
+
+        this.tree = this.sortedTree;
     }
 
     public getVisibleRows = () => {
