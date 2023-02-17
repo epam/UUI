@@ -1,7 +1,7 @@
-const path = require("path");
-const { getBabelProcessedFolders } = require("./utils/appDepsUtils");
-const { makeSlashesPlatformSpecific } = require("./utils/configUtils");
-const { assertRunFromModule } = require("../../uui-build/utils/monorepoUtils");
+const path = require('path');
+const { getBabelProcessedFolders } = require('./utils/appDepsUtils');
+const { makeSlashesPlatformSpecific } = require('./utils/configUtils');
+const { assertRunFromModule } = require('../../uui-build/utils/monorepoUtils');
 
 const makeAbsolute = pathStr => path.resolve(UUI_ROOT, pathStr)
 
@@ -25,6 +25,7 @@ const LIBS_WITHOUT_SOURCE_MAPS = [
 ]
 
 module.exports = {
+    UUI_ROOT,
     ENTRY_WITH_EXTRACTED_DEPS_CSS,
     DIRS_FOR_BABEL,
     CSS_URL_ROOT_PATH,

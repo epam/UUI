@@ -25,7 +25,7 @@ describe('IEditableDebouncer', () => {
         expect(outerOnValueChange).toBeCalledWith(2);
     });
 
-    it('should call onValueChanged delayed', async done => {
+    it('should call onValueChanged delayed', async () => {
         const outerOnValueChange = jest.fn();
         let lastRenderProps: IEditable<number> = null;
         await mountWithContextAsync(
@@ -50,11 +50,12 @@ describe('IEditableDebouncer', () => {
             expect(outerOnValueChange).not.toBeCalled();
         }, 1);
 
-        setTimeout(() => {
-            expect(lastRenderProps.value).toBe(2);
-            expect(outerOnValueChange).toBeCalledWith(2);
-            done();
-        }, 1000);
+        await new Promise(resolve => {
+            setTimeout(resolve, 1000);
+        });
+
+        expect(lastRenderProps.value).toBe(2);
+        expect(outerOnValueChange).toBeCalledWith(2);
     });
 
     it('should change inner value immediately if outer value is changed outside', async () => {
