@@ -74,7 +74,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                     value={ predicate }
                     onValueChange={ changePredicate }
                     size="24"
-                /> : <Text color="gray60" fontSize="12">{ props.title }</Text>
+                /> : <Text color="secondary" fontSize="12">{ props.title }</Text>
             }
             { !props?.isAlwaysVisible && (
                 <LinkButton
@@ -89,7 +89,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const renderBody = (dropdownProps: DropdownBodyProps) => (
         <DropdownContainer>
-            <Panel background="white">
+            <Panel>
                 { renderHeader() }
                 { <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange }/> }
             </Panel>

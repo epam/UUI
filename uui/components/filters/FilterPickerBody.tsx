@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { DataRowProps, DataSourceListProps, DropdownBodyProps, IDisableable, IDropdownToggler, IEditable, isMobile, uuiMarkers } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
-import { Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper, FlexRow, FlexCell, LinkButton, i18n } from '../../index';
+import { Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper, FlexRow, FlexCell, LinkButton } from '../../index';
+import { i18n } from "../../i18n";
 import cx from "classnames";
 import css from "./FilterPickerBody.scss";
 
@@ -16,10 +17,11 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
         return this.props.isOpen;
     }
 
-    toggleModalOpening(opened: boolean) {}
+    toggleModalOpening(opened: boolean) {
+    }
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return <PickerItem title={ this.getName(item) } size='36' { ...rowProps } />;
+        return <PickerItem title={ this.getName(item) } size="36" { ...rowProps } />;
     }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
@@ -36,9 +38,9 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                borderBottom='none'
-                size='36'
-                padding='12'
+                borderBottom="none"
+                size="36"
+                padding="12"
                 renderItem={ this.renderItem }
             />
         );
@@ -58,7 +60,8 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
         };
 
         return (
-            <FlexRow padding="12" background="white" cx={ cx(css.footerWrapper) }>
+            <FlexRow padding="12" cx={ cx(css.footerWrapper) }
+            >
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
                         isDisabled={ !hasSelection }
@@ -94,10 +97,11 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
 
                     <DataPickerBody
                         { ...props }
+                        selectionMode={ this.props.selectionMode }
                         rows={ renderedDataRows }
                         maxHeight={ maxHeight }
-                        searchSize='36'
-                        editMode='dropdown'
+                        searchSize="36"
+                        editMode="dropdown"
                         showSearch={ true }
                     />
                     { this.renderFooter(props.selectAll) }

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {
     IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement,
-    CX, ICanBeReadonly, IAnalyticableOnChange, IHasForwardedRef, ICanFocus, uuiMarkers, getMinMaxValidatedValue, getSeparatedValue, useUuiContext,
-    toFixedWithoutRoundingUp, i18n,
+    CX, ICanBeReadonly, IAnalyticableOnChange, IHasForwardedRef, ICanFocus, uuiMarkers, getMinMaxValidatedValue, getSeparatedValue,
+    useUuiContext, toFixedWithoutRoundingUp,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
+import { i18n } from "../i18n";
 import css from './NumericInput.scss';
 
 export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
@@ -56,7 +57,7 @@ export const uuiNumericInput = {
 } as const;
 
 const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
-    const { maximumFractionDigits } = new Intl.NumberFormat(i18n.locale, formatOptions).resolvedOptions();
+    const { maximumFractionDigits } = new Intl.NumberFormat(i18n.numericInput.locale, formatOptions).resolvedOptions();
     return maximumFractionDigits;
 };
 
@@ -103,7 +104,7 @@ export const NumericInput = (props: NumericInputProps) => {
 
         // clearing the input when entering invalid data using special characters
         if (event.target.validity?.badInput) {
-            inputRef.current.value = ""
+            inputRef.current.value = "";
         } else {
             const validatedValue = getMinMaxValidatedValue({ value, min, max });
             if (validatedValue !== props.value) props.onValueChange(validatedValue);
@@ -135,23 +136,23 @@ export const NumericInput = (props: NumericInputProps) => {
         }
     };
 
-    const inputRef = React.useRef<HTMLInputElement>()
+    const inputRef = React.useRef<HTMLInputElement>();
 
     // disable changing the value by scrolling the wheel when the input is in focus and hover
     React.useEffect(() => {
-        const preventValueChange = (e: WheelEvent) => (document.activeElement === e.target) && e.preventDefault()
+        const preventValueChange = (e: WheelEvent) => (document.activeElement === e.target) && e.preventDefault();
 
-        inputRef?.current?.addEventListener('wheel', preventValueChange, { passive: false })
+        inputRef?.current?.addEventListener('wheel', preventValueChange, { passive: false });
 
-        return () => { inputRef?.current?.removeEventListener('wheel', preventValueChange) }
-    }, [])
+        return () => { inputRef?.current?.removeEventListener('wheel', preventValueChange); };
+    }, []);
 
     const isPlaceholderColored = React.useMemo(() => Boolean(props.value || props.value === 0), [props.value]);
     const inputValue = React.useMemo(() => (inFocus && (props.value || props.value === 0)) ? props.value : "", [props.value, inFocus]);
 
     const placeholderValue = React.useMemo(() => {
         if (!value && value !== 0) return props.placeholder || "0";
-        return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
+        return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.numericInput.locale);
     }, [props.placeholder, props.value, props.formatOptions, props.disableLocaleFormatting]);
 
     const showArrows = !props.disableArrows && !props.isReadonly && !props.isDisabled;

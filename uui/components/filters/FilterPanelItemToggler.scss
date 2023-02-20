@@ -8,8 +8,9 @@
         position: relative;
         display: flex;
         outline: none;
-        border: 1px solid $gray40;
-        background-color: $white;
+        border: 1px solid var(--uui-filters-toggler-border);
+        border-radius: var(--uui-filters-toggler-border-radius);
+        background-color: var(--uui-filters-toggler-bg);
         padding-left: 6px;
         padding-right: 6px;
 
@@ -18,17 +19,17 @@
         }
 
         &:hover {
-            border-color: $gray40;
-            background-color: $gray10;
+            border-color: var(--uui-filters-toggler-border-hover);
+            background-color: var(--uui-filters-toggler-bg-hover);
         }
 
         &:global(.uui-opened) {
-            border-color: $gray80;
-            background-color: $gray10;
+            border-color: var(--uui-filters-toggler-border-hover);
+            background-color: var(--uui-filters-toggler-bg-hover);
         }
 
         .title-wrapper {
-            font-family: $font-sans;
+            font-family: var(--font-regular);
             flex: 1 1 auto;
             min-width: 0;
             outline: none;
@@ -41,6 +42,7 @@
                 overflow: visible;
                 padding-top: 0;
                 padding-bottom: 0;
+                color: var(--uui-filters-toggler-label);
             }
 
             .text-wrapper {
@@ -55,6 +57,7 @@
             .selection {
                 padding-top: 0;
                 padding-bottom: 0;
+                color: var(--uui-filters-toggler-text);
                 div {
                     display: inline-block;
                     margin-right: 3px;
@@ -70,10 +73,11 @@
                 padding-bottom: 0;
                 padding-left: 6px;
                 overflow: visible;
+                color: var(--uui-filters-toggler-text);
             }
 
             .selected {
-                color: $gray80;
+                color: var(--uui-filters-toggler-text);
             }
         }
 
@@ -99,7 +103,7 @@
         }
 
         :global(.uui-icon-dropdown) {
-            fill: $gray80;
+            fill: var(--uui-filters-toggler-icon);
             margin-top: auto;
             margin-bottom: auto;
             padding-left: 3px;

@@ -2,8 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import sortBy from "lodash.sortby";
 import { i18n } from "../../i18n";
 import { Button, PickerInput, PickerItem, DataPickerRow } from "../../index";
-import { DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter,
-    getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
+import { DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter, getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
 import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
 import { FiltersPanelItem } from "./FiltersPanelItem";
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
@@ -127,8 +126,8 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
             caption={ i18n.filterToolbar.addCaption }
             icon={ addIcon }
             iconPosition="left"
-            fill="light"
-            color="blue"
+            mode="ghost"
+            color="primary"
         />;
     }, []);
 
