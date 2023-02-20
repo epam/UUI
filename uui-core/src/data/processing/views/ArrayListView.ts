@@ -1,4 +1,3 @@
-import isEqual from "lodash.isequal";
 import {
     DataRowProps, SortingOption, IEditable, DataSourceState,
     DataSourceListProps, IDataSourceView, BaseListViewProps,
@@ -6,11 +5,14 @@ import {
 import { BaseListView } from './BaseListView';
 import { Tree } from "./Tree";
 
-export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
-    items?: TItem[] | Tree<TItem, TId>;
+export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
+}
+
+export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
+    items: TItem[] | Tree<TItem, TId>;
 }
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
