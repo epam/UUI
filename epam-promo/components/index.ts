@@ -13,4 +13,4 @@ export * from './tables';
 export * from './dnd';
 export * from './fileUpload';
 export * from './errors';
-export { FiltersPanel, PresetsPanel } from "@epam/uui";
+export { FiltersPanel, PresetsPanel, defaultPredicates } from "@epam/uui";

@@ -42,6 +42,7 @@
                 overflow: visible;
                 padding-top: 0;
                 padding-bottom: 0;
+                color: var(--uui-filters-toggler-label);
             }
 
             .text-wrapper {
@@ -56,6 +57,7 @@
             .selection {
                 padding-top: 0;
                 padding-bottom: 0;
+                color: var(--uui-filters-toggler-text);
                 div {
                     display: inline-block;
                     margin-right: 3px;
@@ -71,6 +73,7 @@
                 padding-bottom: 0;
                 padding-left: 6px;
                 overflow: visible;
+                color: var(--uui-filters-toggler-text);
             }
 
             .selected {

@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-    PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
-    IconContainer, DataTableSelectionProvider,
-} from '@epam/uui-components';
+import { PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider } from '@epam/uui-components';
+import { useColumnsWithFilters } from "@epam/uui";
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
     DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
