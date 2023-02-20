@@ -12,16 +12,17 @@ export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListVie
 }
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
-    items: TItem[] | Tree<TItem, TId>;
+    items?: TItem[] | Tree<TItem, TId>;
 }
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
-    props: ArrayListViewProps<TItem, TId, TFilter>;
+    protected props: ArrayListViewProps<TItem, TId, TFilter>;
 
     originalTree: Tree<TItem, TId>;
     searchTree: Tree<TItem, TId>;
     filteredTree: Tree<TItem, TId>;
     sortedTree: Tree<TItem, TId>;
+    protected items: TItem[];
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
@@ -29,19 +30,21 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     ) {
         super(editable, props);
         this.props = props;
+        this.tree = Tree.blank(props);
         this.update(editable.value, props);
     }
 
     public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
         const currentValue = { ...this.value };
         this.value = newValue;
-        this.props = newProps;
+        const prevItems = this.props.items;
+        const newItems = newProps.items || this.props.items;
+        this.props = { ...newProps, items: newItems };
 
         const prevTree = this.tree;
-
         if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
-            this.originalTree = Tree.create(this.props, this.props.items);
-            if (!this.tree) {
+            if (prevItems !== newItems || !this.originalTree) {
+                this.originalTree = Tree.create(this.props, this.props.items);
                 this.tree = this.originalTree;
             }
         }

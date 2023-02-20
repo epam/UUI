@@ -172,7 +172,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected applyRowOptions(row: DataRowProps<TItem, TId>) {
-        const rowOptions = this.props.getRowOptions ? this.props.getRowOptions(row.value, row.index) : this.props.rowOptions;
+        const isLoading = row.value === undefined;
+        const rowOptions = (this.props.getRowOptions && !isLoading)
+            ? this.props.getRowOptions(row.value, row.index)
+            : this.props.rowOptions;
         const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
         const isSelectable = rowOptions && rowOptions.isSelectable;
         if (rowOptions != null) {
@@ -207,6 +210,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected rebuildRows() {
         const rows: DataRowProps<TItem, TId>[] = [];
         let lastIndex = this.getLastRecordIndex();
+
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
         const searchIsApplied = !!this.value?.search;
 
@@ -273,7 +277,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             const path = parentId ? [...pathToParent, this.tree.getPathItem(this.tree.getById(parentId))] : pathToParent;
             if (appendRows) {
                 let missingCount: number = this.getMissingRecordsCount(parentId, rows.length, currentLevelRows);
-
                 if (missingCount > 0) {
                     stats.hasMoreRows = true;
                 }
@@ -394,6 +397,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         isAllChecked: parentStats.isAllChecked && childStats.isAllChecked,
         hasMoreRows: parentStats.hasMoreRows || childStats.hasMoreRows,
     })
+
+    public load() {}
 
     protected canBeSelected = (row: DataRowProps<TItem, TId>) =>
         row.checkbox && row.checkbox.isVisible && !row.checkbox.isDisabled

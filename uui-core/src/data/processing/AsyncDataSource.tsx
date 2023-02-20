@@ -1,7 +1,7 @@
 import { ArrayDataSource, ArrayDataSourceProps } from "./ArrayDataSource";
 import { BaseArrayListViewProps } from './views/ArrayListView';
-import { LoadingListView } from './views/LoadingListView';
 import { DataSourceState, IDataSourceView } from "../../types";
+import { AsyncListView, AsyncListViewProps } from "./views/AsyncListView";
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
     api(): Promise<TItem[]>;
@@ -29,31 +29,10 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
     isLoading: boolean = false;
     isLoaded: boolean = false;
 
-    private recreateViews() {
-        // AsyncDataSource uses two different view - LoadingListView and ArrayList view.
-        // When we swap them, we need to force all views to update and clear them to get new views.
-        const existingViews = new Map(this.views);
-        this.views.clear();
-        existingViews.forEach(view => view._forceUpdate());
-    }
-
-    private load() {
-        if (!this.isLoading) {
-            this.isLoading = true;
-            this.api().then(res => {
-                this.isLoading = false;
-                this.isLoaded = true;
-                this.setProps({ ...this.props, items: res });
-                this.recreateViews();
-            });
-        }
-    }
-
     reload() {
         this.isLoading = false;
         this.isLoaded = false;
         this.setProps({ ...this.props, items: [] });
-        this.recreateViews();
     }
 
     getView(
@@ -61,20 +40,29 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         onValueChange: (val: DataSourceState<any, TId>) => any,
         options?: Partial<BaseArrayListViewProps<TItem, TId, TFilter>>,
     ): IDataSourceView<TItem, TId, TFilter> {
-        if (!this.isLoaded) {
-            this.load();
-            const view = this.views.get(onValueChange) as LoadingListView<TId>;
-            if (view) {
-                view.update(value, {});
-                return view;
-            } else {
-                const newView: any = new LoadingListView({ value, onValueChange }, {});
-                this.views.set(onValueChange, newView);
-                return newView;
-            }
-        }
+        const view = this.views.get(onValueChange) as AsyncListView<TItem, TId, TFilter>;
+        const { items, ...props } = this.props;
+        const viewProps: AsyncListViewProps<TItem, TId, TFilter> = {
+            ...props,
+            ...options,
+            api: this.api,
+            // These defaults are added for compatibility reasons.
+            // We'll require getId and getParentId callbacks in other APIs, including the views.
+            getId: this.getId,
+            getParentId: options?.getParentId,
+        };
 
-        return super.getView(value, onValueChange, options);
+        if (view) {
+            view.update(value, viewProps);
+            if (!view.isLoaded) {
+                view.load();
+            }
+            return view;
+        } else {
+            const newView = new AsyncListView({ value, onValueChange }, viewProps);
+            this.views.set(onValueChange, newView);
+            return newView;
+        }
     }
 }
 
