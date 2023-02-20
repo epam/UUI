@@ -4,7 +4,8 @@ import {
     DataColumnProps, DataTableState, DataSourceListProps, DataTableColumnsConfigOptions,
     TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData,
 } from '@epam/uui-core';
-import { DataTableSelectionProvider, PositionValues, useColumnsWithFilters, VirtualListRenderRowsParams } from '@epam/uui-components';
+import { DataTableSelectionProvider, PositionValues, VirtualListRenderRowsParams } from '@epam/uui-components';
+import { useColumnsWithFilters } from "@epam/uui";
 import { ColumnsConfigurationModal, DataTableHeaderRow, DataTableRow, DataTableMods } from './';
 import { IconButton, Text, VirtualList } from '../';
 import css from './DataTable.scss';

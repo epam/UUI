@@ -53,7 +53,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
         const isClearDisabled = typeof props.value !== 'number' && typeof props.value !== 'object';
 
         return (
-            <FlexRow padding="12" background="white">
+            <FlexRow padding="12">
                 <FlexSpacer/>
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
@@ -71,7 +71,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
         const value = props.value as INumericRangeValue;
         return (
             <div>
-                <FlexRow padding="12" vPadding="24" alignItems="center" spacing="12" borderBottom="gray40">
+                <FlexRow padding="12" vPadding="24" alignItems="center" spacing="12" borderBottom={ true }>
                     <FlexCell width={ '100%' }>
                         <NumericInput
                             value={ value?.from ?? null }
@@ -98,7 +98,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
 
     return (
         <div>
-            <FlexRow padding="12" vPadding="24" alignItems="center" borderBottom="gray40">
+            <FlexRow padding="12" vPadding="24" alignItems="center" borderBottom={ true }>
                 <FlexCell width={ 130 }>
                     <NumericInput
                         value={ typeof props.value === 'number' ? props.value : null }

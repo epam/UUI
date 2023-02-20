@@ -44,8 +44,8 @@ export const PresetsPanel = (props: PresetsBlockProps) => {
                     caption={ i18n.presetPanel.addCaption }
                     icon={ addIcon }
                     iconPosition="left"
-                    fill="light"
-                    color="blue"
+                    mode="ghost"
+                    color="primary"
                 /> :
                 <PresetInput
                     onCancel={ cancelAddingPreset }
@@ -66,7 +66,12 @@ export const PresetsPanel = (props: PresetsBlockProps) => {
                 renderTarget={ (props) =>
                     <FlexRow>
                         <div className={ css.divider } />
-                        <Button fill='light' color='gray50' caption={ `${hiddenItems?.length || ''} more` } { ...props } />
+                        <Button
+                            mode="ghost"
+                            color='secondary'
+                            caption={ `${hiddenItems?.length || ''} more` }
+                            { ...props }
+                        />
                     </FlexRow>
             }
                 renderBody={ () => <DropdownContainer width={ 230 }>

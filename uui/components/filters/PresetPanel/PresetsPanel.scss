@@ -1,8 +1,6 @@
-@use '../../../assets/styles/colors' as *;
-
 .divider {
     margin-right: 3px;
-    border-left: 1px solid $gray40;
+    border-left: 1px solid var(--uui-divider);
     height: 24px;
 }
 

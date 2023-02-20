@@ -37,7 +37,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
     propSamplesCreationContext: PropSamplesCreationContext<any> = {
         getCallback: (name: string) => {
             const callback = (...args: any[]) => {
-                svc.uuiNotifications.show(props =>
+                svc.uuiNotifications.show(() =>
                         <Panel background='white' shadow={ true }>
                             <FlexRow padding='12' borderBottom={ true }>
                                 <pre>{ name }({ args.length } args)</pre>
@@ -51,7 +51,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
             callback.displayName = `callback`;
             return callback;
         },
-        getChangeHandler: (name) => {
+        getChangeHandler: () => {
             const cb: any = (newValue: string) => this.setState({ ...this.state, selectedProps: { ...this.state.selectedProps, value: newValue } });
             cb.displayName = "(newValue) => { ... }";
             return cb;
@@ -238,7 +238,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                     { !prop.isRequired && <RadioInput
                         label={ prop.defaultValue == null ? 'none' : (prop.defaultValue + '') }
                         size='18'
-                        value={ this.state.selectedProps[prop.name] ? false : true }
+                        value={ !this.state.selectedProps[prop.name] }
                         onValueChange={ () => this.setState({ ...this.state, selectedProps: { ...this.state.selectedProps, [prop.name]: null } }) }
                     /> }
                 </FlexCell>
@@ -351,9 +351,22 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
             </NotificationCard>, { duration: 3 });
     }
 
+    getTheme(route: string) {
+        const routeArray = route?.split('/');
+        const id = routeArray?.indexOf('_props');
+        if (!id) return '';
+        switch (routeArray[id + 1]) {
+            case 'uui': return 'uui-theme-promo';
+            case 'epam-promo': return 'uui-theme-promo';
+            case 'loveship': return 'uui-theme-loveship';
+            default: return '';
+        }
+    }
+
     render() {
         const { title } = this.props;
         const { isLoading, docs } = this.state;
+        const currentTheme = this.getTheme(this.props.propsDocPath);
 
         return (
             <>
@@ -401,7 +414,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                                 <FlexRow key='head' size='36' padding='12' spacing='6' borderBottom background='white' cx={ css.contextSettingRow } >
                                     { this.renderSettings(docs.contexts) }
                                 </FlexRow>
-                                <div className={ css.demoContainer } >
+                                <div className={ cx(css.demoContainer, currentTheme) } >
                                     <ScrollBars >
                                         { this.renderDemo() }
                                     </ScrollBars>

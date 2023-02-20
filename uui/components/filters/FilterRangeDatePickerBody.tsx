@@ -1,12 +1,12 @@
 import * as React from 'react';
-import dayjs from "dayjs";
 import { BaseRangeDatePickerProps, IDropdownBodyProps, RangeDatePickerInputType, uuiMod } from "@epam/uui-core";
 import { BaseRangeDatePicker } from '@epam/uui-components';
-import { FlexRow, i18n, TextInput, LinkButton, FlexSpacer, FlexCell } from '../../index';
+import { FlexRow, TextInput, LinkButton, FlexSpacer, FlexCell } from '../../index';
+import { i18n } from "../../i18n";
 import cx from "classnames";
 import css from "./FilterRangeDatePickerBody.scss";
 import { systemIcons } from "../../icons/icons";
-import { RangeDatePickerBody } from "@epam/uui";
+import { RangeDatePickerBody } from ".././";
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, IDropdownBodyProps {}
 
@@ -19,7 +19,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
     renderBody() {
         return (
             <>
-                <FlexRow borderBottom="gray40">
+                <FlexRow borderBottom={ true }>
                     <RangeDatePickerBody
                         value={ this.getValue() }
                         onValueChange={ this.onRangeChange }

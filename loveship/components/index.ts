@@ -13,3 +13,4 @@ export * from './tables';
 export * from './datePickers';
 export * from './forms';
 export * from './dev';
+export { FiltersPanel, PresetsPanel, defaultPredicates } from "@epam/uui";
