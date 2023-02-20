@@ -545,7 +545,6 @@
 
     /* Alert */
     --uui-alert-border-radius: var(--uui-border-radius);
-    --uui-alert-icon-margin-right: 14px
 }
 
 /* modification of the states of table components */
