@@ -42,7 +42,7 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
             ref={ ref }
         >
             <FlexRow cx={ css.titleWrapper }>
-                <Text color="secondary" cx={ css.title }>{ getTitle }</Text>
+                <Text cx={ css.title }>{ getTitle }</Text>
                 <div className={ css.textWrapper }>
                     <Text color="brand" cx={ css.selection }>{ props.selection }</Text>
                     { props.postfix && <Text color="brand" cx={ css.postfix }>{ props.postfix }</Text> }

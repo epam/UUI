@@ -1,8 +1,6 @@
 import * as React from 'react';
-import {
-    PositionValues, VirtualListRenderRowsParams, useColumnsWithFilters,
-    IconContainer, DataTableSelectionProvider,
-} from '@epam/uui-components';
+import { PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider } from '@epam/uui-components';
+import { useColumnsWithFilters } from "../../helpers";
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
     DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
@@ -28,8 +26,6 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
         selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[],
     ) => void;
 }
-
-const defaultSize = '36';
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
