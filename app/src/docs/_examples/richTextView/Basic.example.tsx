@@ -11,8 +11,7 @@ import {
 import { Svg } from "@epam/uui-components";
 import { cx } from "@epam/uui";
 import { ReactComponent as Calendar } from "@epam/assets/icons/common/action-calendar-18.svg";
-// tslint:disable-next-line:no-import
-import css from "@epam/promo/assets/styles/typography.scss";
+import css from '@epam/promo/assets/styles/typography.scss';
 
 export default function BasicExample() {
     return (
