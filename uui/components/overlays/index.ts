@@ -1,3 +1,4 @@
+export * from './Alert';
 export * from './Dropdown';
 export * from './DropdownContainer';
 export * from './DropdownMenu';
