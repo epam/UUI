@@ -51,8 +51,8 @@ export const ListToolbarButtons = () => {
 
     return (
         <>
-            <ToDoListButton editor={ editor }/>
             <ListButton editor={ editor } />
+            <ToDoListButton editor={ editor }/>
         </>
     );
 };

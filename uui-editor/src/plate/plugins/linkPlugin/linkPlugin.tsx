@@ -25,7 +25,7 @@ export const linkPlugin = () => createLinkPlugin({
         ...(!isEditorReadOnly(editor) ? {} : { onClick: (e: Event) => {
             e.preventDefault();
             e.stopPropagation();
-            window.location.replace(sanitizeUrl(`${element.url}`));
+            window.open(sanitizeUrl(`${element.url}`), '_blank');
         } }),
     }),
 });
