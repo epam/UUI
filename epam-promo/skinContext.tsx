@@ -2,7 +2,6 @@ import * as React from 'react';
 import { ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps } from '@epam/uui-core';
 import { Checkbox, FlexRow, FlexCell, TextInput, Spinner, Button, ModalWindow, ModalBlocker, ModalFooter, ModalHeader,
     LabeledInput, IconButton, ButtonColor, IconButtonProps, DatePicker, RangeDatePicker } from "./components";
-import { FilterItemBody } from '@epam/uui';
 
 const buttonTypeToColor: { [key: string]: ButtonColor } = {
     'success': "green",
@@ -36,7 +35,6 @@ export const skinContext: ISkin = {
     ModalFooter: skinComponent(ModalFooter),
     ModalHeader: skinComponent(ModalHeader, props => ({ borderBottom: "gray40" as const, ...props })),
     LabeledInput: skinComponent(LabeledInput, props => ({ size: '36' as const, ...props })),
-    FilterItemBody: skinComponent(FilterItemBody),
     DatePicker: skinComponent(DatePicker),
     RangeDatePicker: skinComponent(RangeDatePicker),
 };
