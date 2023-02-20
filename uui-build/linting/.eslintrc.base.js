@@ -4,45 +4,29 @@
  * - https://eslint.org/blog/2020/05/changes-to-rules-policies/#what-are-the-changes
  *
  */
+process.env.NODE_ENV = 'production'; // this line is required by "babel-preset-react-app".
 module.exports = {
     env: { browser: true, es6: true, node: true },
-    extends: ['airbnb/base'],
-    rules: { ...sharedJsRules() },
+    extends: ['react-app'],
+    rules: {
+        ...sharedJsRules(),
+        ...sharedTsRules(),
+        ...sharedReactRules(),
+
+    },
     overrides: [
         {
             files: ['**/__tests__/**/*', '**/*.{test}.ts?(x)'],
             extends: ['react-app/jest'],
             env: { 'jest/globals': true },
             rules: { 'testing-library/render-result-naming-convention': 0 },
-        }, {
-            files: ['**/*.ts?(x)'],
-            extends: ['airbnb', 'airbnb/hooks', 'airbnb-typescript'],
-            rules: {
-                ...sharedJsRules(),
-                ...sharedReactRules(),
-                ...sharedTsRules(),
-            },
-        }, {
-            files: ['./server/**/*.js', './uui-build/**/*.js'],
-            env: { node: true, commonjs: true },
-            parserOptions: { ecmaVersion: 2020 },
-            extends: ['airbnb/base'],
-            rules: { ...sharedJsRules() },
-        },
+        }
     ],
 };
 
 function sharedTsRules() {
     return {
         // off
-        indent: 0, // it's not TS rule, but we need to explicitly turn it off to avoid conflict with TS indents.
-        '@typescript-eslint/dot-notation': 0,
-        '@typescript-eslint/no-implied-eval': 0,
-        '@typescript-eslint/no-throw-literal': 0,
-        '@typescript-eslint/return-await': 0,
-        '@typescript-eslint/no-use-before-define': 0,
-        '@typescript-eslint/naming-convention': 0,
-        '@typescript-eslint/func-call-spacing': 0,
         // err
         '@typescript-eslint/indent': [2, 4],
         '@typescript-eslint/no-unused-expressions': [2, { allowShortCircuit: true }],
@@ -53,25 +37,8 @@ function sharedTsRules() {
 function sharedJsRules() {
     return {
         // off
-        'arrow-body-style': 0,
-        'arrow-parens': 0,
-        'class-methods-use-this': 0,
-        'consistent-return': 0,
-        'default-case': 0,
-        'global-require': 0,
-        'import/extensions': 0,
-        'import/no-extraneous-dependencies': 0,
-        'import/no-mutable-exports': 0,
-        'import/order': 0,
-        'import/prefer-default-export': 0,
-        'max-classes-per-file': 0,
-        'no-continue': 0,
-        'no-plusplus': 0,
-        'no-underscore-dangle': 0,
-        'no-use-before-define': 0,
-        'prefer-destructuring': 0,
-        'vars-on-top': 0,
-        camelcase: 0,
+        'default-case': 0, // exists in cra
+        'no-use-before-define': 0, // exists in cra only for js
         // warn
         'guard-for-in': 1,
         'import/no-cycle': 1,
@@ -84,8 +51,8 @@ function sharedJsRules() {
                 code: 170, ignoreUrls: true, ignoreComments: true, ignoreTemplateLiterals: true,
             },
         ],
-        'no-cond-assign': [2, 'except-parens'],
-        'no-unused-expressions': [2, { allowShortCircuit: true }],
+        'no-cond-assign': [2, 'except-parens'], // exists in cra, but as warn
+        'no-unused-expressions': [2, { allowShortCircuit: true }], // exists in cra
         'object-curly-newline': [2, { multiline: true, minProperties: 4 }],
         'array-bracket-newline': [2, { multiline: true, minItems: 4 }],
         'object-property-newline': [2, { allowAllPropertiesOnSameLine: true }],
@@ -97,28 +64,13 @@ function sharedJsRules() {
 function sharedReactRules() {
     return {
         // off
-        'jsx-a11y/control-has-associated-label': 0,
-        'jsx-a11y/no-autofocus': 0,
-        'react/destructuring-assignment': 0,
-        'react/function-component-definition': 0,
-        'react/jsx-boolean-value': 0,
-        'react/jsx-props-no-spreading': 0, // TBD: I would rather not disable this rule, but it's violated in many places.
-        'react/no-children-prop': 0,
-        'react/no-danger': 0,
-        'react/no-unused-class-component-methods': 0,
-        'react/no-unused-prop-types': 0,
-        'react/no-unused-state': 0,
-        'react/require-default-props': 0,
-        'react/sort-comp': 0,
-        'react/state-in-constructor': 0,
-        'react/static-property-placement': 0,
         // warn
         'jsx-a11y/click-events-have-key-events': 1,
-        'jsx-a11y/iframe-has-title': 1,
-        'jsx-a11y/img-redundant-alt': 1,
+        'jsx-a11y/iframe-has-title': 1, // exists in cra
+        'jsx-a11y/img-redundant-alt': 1, // exists in cra
         'jsx-a11y/mouse-events-have-key-events': 1,
         'jsx-a11y/no-static-element-interactions': 1,
-        'react-hooks/exhaustive-deps': 1,
+        'react-hooks/exhaustive-deps': 1, // exists in cra
         'react/forbid-prop-types': 1,
         'react/no-array-index-key': 1,
         'react/no-find-dom-node': 1,
