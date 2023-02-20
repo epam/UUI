@@ -1,12 +1,12 @@
 const lessSyntax = require('postcss-less')
 const { rules: sassGuidelinesRules } = require('stylelint-config-sass-guidelines');
+const { rules: stylelintConfigPrettierRules } = require('stylelint-config-prettier');
 
 const sassGuidelinesRulesSubsetForLess = Object.keys(sassGuidelinesRules)
     .filter(k => k.indexOf('scss/') !== 0)
     .reduce((acc, k) => {acc[k] = sassGuidelinesRules[k]; return acc;}, {});
 
 const SCSS_AND_LESS_COMMON_RULES = {
-    "indentation": 4,
     "declaration-empty-line-before": "never",
     "order/properties-alphabetical-order": null,
     "max-nesting-depth": null,
@@ -30,12 +30,13 @@ const SCSS_AND_LESS_COMMON_RULES = {
 }
 
 module.exports = {
-    extends: "stylelint-config-sass-guidelines",
-    plugins: ['stylelint-order'],
+    plugins: ['stylelint-order', 'stylelint-prettier'],
     overrides: [
         {
+            extends: ["stylelint-config-sass-guidelines", 'stylelint-config-prettier'],
             files: ['**/*.scss'],
             "rules": {
+                "prettier/prettier": true,
                 ...SCSS_AND_LESS_COMMON_RULES,
                 "scss/at-mixin-pattern": null,
                 "scss/at-import-partial-extension-blacklist": null,
@@ -46,10 +47,11 @@ module.exports = {
         {
             files: ['**/*.less'],
             customSyntax: lessSyntax,
-            extends: [],
             rules: {
+                "prettier/prettier": true,
                 ...sassGuidelinesRulesSubsetForLess,
                 ...SCSS_AND_LESS_COMMON_RULES,
+                ...stylelintConfigPrettierRules,
             },
         },
     ],
