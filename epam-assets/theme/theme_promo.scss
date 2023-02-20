@@ -822,8 +822,7 @@
     }
 
     :global(.icon-button-gray60),
-    :global(.icon-button-default),
-    &:global(.icon-button-default) {
+    :global(.icon-button-default) {
         --uui-icon-btn: var(--uui-icon);
         --uui-icon-btn-hover: var(--uui-icon-hover);
         --uui-icon-btn-active: var(--uui-icon-active);
@@ -838,63 +837,63 @@
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    &:global(.notification-card-success) ,
-    &:global(.notification-card-green) {
+    :global(.notification-card-success) ,
+    :global(.notification-card-green) {
         --uui-notification-card-fill: var(--uui-success);
         --uui-notification-card-border: var(--uui-success);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    &:global(.notification-card-info),
-    &:global(.notification-card-blue) {
+    :global(.notification-card-info),
+    :global(.notification-card-blue) {
         --uui-notification-card-fill: var(--uui-info);
         --uui-notification-card-border: var(--uui-info);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    &:global(.notification-card-error),
-    &:global(.notification-card-red) {
+    :global(.notification-card-error),
+    :global(.notification-card-red) {
         --uui-notification-card-fill: var(--uui-error);
         --uui-notification-card-border: var(--uui-error);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    &:global(.notification-card-gray60) {
+    :global(.notification-card-gray60) {
         --uui-notification-card-fill: var(--uui-secondary-dark);
         --uui-notification-card-border: var(--uui-secondary-dark);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    &:global(.alert-error),
-    &:global(.alert-red) {
+    :global(.alert-error),
+    :global(.alert-red) {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: var(--uui-error-lightest);
         --uui-alert-border: var(--uui-negative);
         --uui-alert-icon: var(--uui-negative);
     }
 
-    &:global(.alert-warning),
-    &:global(.alert-amber) {
+    :global(.alert-warning),
+    :global(.alert-amber) {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: var(--uui-warning-lightest);
         --uui-alert-border: var(--amber);
         --uui-alert-icon: var(--amber);
     }
 
-    &:global(.alert-success),
-    &:global(.alert-green) {
+    :global(.alert-success),
+    :global(.alert-green) {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: var(--uui-success-lightest);
         --uui-alert-border: var(--uui-accent);
         --uui-alert-icon: var(--uui-accent);
     }
 
-    &:global(.alert-info),
-    &:global(.alert-blue) {
+    :global(.alert-info),
+    :global(.alert-blue) {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: var(--uui-info-lightest);
         --uui-alert-border: var(--uui-primary);
