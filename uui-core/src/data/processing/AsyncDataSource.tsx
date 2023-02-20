@@ -3,9 +3,7 @@ import { BaseArrayListViewProps } from './views/ArrayListView';
 import { DataSourceState, IDataSourceView } from "../../types";
 import { AsyncListView, AsyncListViewProps } from "./views/AsyncListView";
 
-export interface AsyncDataSourceProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
-    api(): Promise<TItem[]>;
-}
+export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
 export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends ArrayDataSource<TItem, TId> {
     api: () => Promise<TItem[]> = null;
