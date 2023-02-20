@@ -2,7 +2,7 @@
 // import Html from 'slate-html-serializer';
 import { useSlate, useFocused } from "slate-react";
 import { Range, Editor } from 'slate';
-import { getPlugins, usePlateEditorState, getSelectionRects } from "@udecode/plate";
+import { getPlugins, usePlateEditorState } from "@udecode/plate";
 //
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {

@@ -37,6 +37,7 @@ export const SeparatorButton = ({ editor }: ToolbarButton) => {
         <BlockToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
             type={ getPluginType(editor, KEY) }
+            actionHandler='onMouseDown'
             icon={ <ToolbarButton
                 isDisabled={ isTextSelected(editor, true) }
                 onClick={ noop }

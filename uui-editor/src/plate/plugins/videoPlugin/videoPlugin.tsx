@@ -54,7 +54,7 @@ export const VideoButton = ({
                 onClick={ noop }
                 isDisabled={ !!isTextSelected(editor, true) }
                 icon={ VideoIcon }
-                isActive={ block?.length && block[0].type === 'image' }
+                isActive={ block?.length && block[0].type === 'iframe' }
             /> }
         />
     );

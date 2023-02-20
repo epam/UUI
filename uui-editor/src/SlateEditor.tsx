@@ -61,6 +61,7 @@ interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<H
 const Editor = ({ initialValue, ...props }: any) => {
     const editor = usePlateEditorState();
     const forceUpdate = useForceUpdate();
+    const isFocused = isEditorFocused(editor);
 
     useEffect(() => {
         if (initialValue) {
@@ -69,22 +70,49 @@ const Editor = ({ initialValue, ...props }: any) => {
     },
     [editor, initialValue, forceUpdate]);
 
-    return (
+    const renderEditor = () => (
         <DndProvider backend={ HTML5Backend }>
             <Plate
                 { ...props }
                 id={ props.id }
             >
-                <MarkBalloonToolbar />
-                <Toolbar  style={ {
-                    position: 'sticky',
-                    bottom: 12,
-                    display: 'flex',
-                } }>
-                    <ToolbarButtons />
-                </Toolbar>
+
             </Plate>
+            <MarkBalloonToolbar />
+            <Toolbar style={ {
+                position: 'sticky',
+                bottom: 12,
+                display: 'flex',
+            } }>
+                <ToolbarButtons />
+            </Toolbar>
         </DndProvider>
+    );
+
+    return (
+        <div
+            className={ cx(
+                props.cx,
+                css.container,
+                css['mode-' + (props.mode || 'form')],
+                (!props.isReadonly && isFocused) && uuiMod.focus,
+                props.isReadonly && uuiMod.readonly,
+                props.scrollbars && css.withScrollbars,
+                // from slate editor
+                style.typographyPromo,
+                props.fontSize == '16' ? style.typography16 : style.typography14,
+            ) }
+            //@ts-ignore
+            style={ { minHeight: props.minHeight || 350, padding: '0 24px' } as any }
+            { ...props.rawProps }
+        >
+            { props.scrollbars
+                ? <ScrollBars cx={ css.scrollbars }>
+                    { renderEditor() }
+                </ScrollBars>
+                : renderEditor()
+            }
+        </div>
     );
 };
 
@@ -98,8 +126,6 @@ export function SlateEditor(props: SlateEditorProps) {
     const [value, setValue] = useState(null);
 
     const currentId = useRef(String(Date.now()));
-    const editor = usePlateEditorState();
-    const isFocused = isEditorFocused(editor);
 
     const plugins = createPlugins((props.plugins || []).flat(), {
         components,
@@ -129,7 +155,7 @@ export function SlateEditor(props: SlateEditorProps) {
         }
     }, [initialValue, value]);
 
-    const renderEditor = () => (
+    return (
         <PlateProvider
             onChange={ onChange }
             renderElement={ renderElement }
@@ -144,33 +170,8 @@ export function SlateEditor(props: SlateEditorProps) {
                 id={ currentId.current }
                 initialValue={ value }
                 plugins={ plugins }
+                { ...props }
             />
-        </PlateProvider>
-    );
-
-    return (
-        <div
-            className={ cx(
-                props.cx,
-                css.container,
-                css['mode-' + (props.mode || 'form')],
-                (!props.isReadonly && isFocused) && uuiMod.focus,
-                props.isReadonly && uuiMod.readonly,
-                props.scrollbars && css.withScrollbars,
-                // from slate editor
-                style.typographyPromo,
-                props.fontSize == '16' ? style.typography16 : style.typography14,
-            ) }
-            //@ts-ignore
-            style={ { minHeight: props.minHeight || 350, padding: '0 24px' } as any }
-            { ...props.rawProps }
-        >
-            { props.scrollbars
-                ? <ScrollBars cx={ css.scrollbars }>
-                    { renderEditor() }
-                </ScrollBars>
-                : renderEditor()
-            }
-        </div>
+    </PlateProvider>
     );
 }

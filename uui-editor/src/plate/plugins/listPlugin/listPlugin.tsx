@@ -85,20 +85,22 @@ export const ListButton = ({ editor }: IToolbarButton) => {
         <>
             <ListToolbarButton
                 styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
-                type={ getPluginType(editor, ELEMENT_UL_CUSTOM) }
-                icon={ <ToolbarButton
-                    onClick={ noop }
-                    icon={ UnorderedList }
-                    isActive={ !!editor?.selection && isUnorderedActive }
-                /> }
-            />
-            <ListToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                 type={ getPluginType(editor, ELEMENT_OL_CUSTOM) }
+                actionHandler='onMouseDown'
                 icon={ <ToolbarButton
                     onClick={ noop }
                     icon={ NumberedList }
                     isActive={ !!editor?.selection && isOrderedActive }
+                /> }
+            />
+            <ListToolbarButton
+                styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+                type={ getPluginType(editor, ELEMENT_UL_CUSTOM) }
+                actionHandler='onMouseDown'
+                icon={ <ToolbarButton
+                    onClick={ noop }
+                    icon={ UnorderedList }
+                    isActive={ !!editor?.selection && isUnorderedActive }
                 /> }
             />
         </>
