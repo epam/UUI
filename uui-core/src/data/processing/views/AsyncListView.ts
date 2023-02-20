@@ -1,6 +1,4 @@
-import {
-    IEditable, DataSourceState, IDataSourceView,
-} from "../../../types";
+import { IEditable, DataSourceState, IDataSourceView } from "../../../types";
 import { ArrayListView, BaseArrayListViewProps } from "./ArrayListView";
 
 export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
