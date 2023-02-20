@@ -19,15 +19,18 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
     }
 
     public load() {
-        if (!this.isLoaded && !this.isLoading) {
-            this.isLoading = true;
-            this.props.api().then((items) => {
-                this.isLoaded = true;
-                this.isLoading = false;
-                this.update(this.editable.value, { ...this.props, items });
-                this._forceUpdate();
-            });
+
+        if (this.isLoaded || this.isLoading) {
+            return;
         }
+
+        this.isLoading = true;
+        this.props.api().then((items) => {
+            this.isLoaded = true;
+            this.isLoading = false;
+            this.update(this.editable.value, { ...this.props, items });
+            this._forceUpdate();
+        });
     }
 
     public getVisibleRows = () => {

@@ -59,6 +59,13 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      * See more here: https://github.com/epam/UUI/issues/8
      */
     flattenSearchResults?: boolean;
+
+
+    /**
+     * This options is added for the purpose of supporting legacy behavior with fetching data on `getVisibleRows`
+     * not to break own implementations of users.
+     */
+    loadDataOnGetVisualRows?: boolean;
 }
 
 interface LoadResult<TItem, TId, TFilter> {
@@ -75,10 +82,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
 
-    constructor(editable: IEditable<DataSourceState<TFilter, TId>>, props: LazyListViewProps<TItem, TId, TFilter>, cache?: ListApiCache<TItem, TId, TFilter>) {
-        super(editable, props);
-        this.props = this.applyDefaultsToProps(props);
-        this.tree = Tree.blank<TItem, TId>(props);
+    constructor(
+        editable: IEditable<DataSourceState<TFilter, TId>>,
+        { loadDataOnGetVisualRows = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
+        cache?: ListApiCache<TItem, TId, TFilter>,
+    ) {
+        const newProps = { loadDataOnGetVisualRows, ...props };
+        super(editable, newProps);
+        this.props = this.applyDefaultsToProps(newProps);
+        this.tree = Tree.blank<TItem, TId>(newProps);
         this.cache = cache;
         if (!this.cache) {
             this.cache = new ListApiCache({
@@ -114,12 +126,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         // Let's shallow-copy value to survive at least simple cases when it's mutated outside
         this.value = { topIndex: 0, visibleCount: 20, ...newValue };
 
-        this.props = props;
+        this.props = {
+            ...props,
+            loadDataOnGetVisualRows: props.loadDataOnGetVisualRows ?? this.props.loadDataOnGetVisualRows,
+        };
 
         this.updateRowOptions();
     }
 
-    private updateRowsAndLoadMissing(): void {
+    public load(): void {
         if (!this.isUpdatePending) {
             return;
         }
@@ -320,7 +335,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     public getVisibleRows = () => {
-        this.updateRowsAndLoadMissing();
+        if (this.props.loadDataOnGetVisualRows) {
+            this.load();
+        }
 
         const from = this.value.topIndex;
         const count = this.value.visibleCount;
@@ -350,7 +367,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     public getListProps = (): DataSourceListProps => {
-        this.updateRowsAndLoadMissing();
+        if (this.props.loadDataOnGetVisualRows) {
+            this.load();
+        }
 
         let rowsCount: number;
         let totalCount: number;
