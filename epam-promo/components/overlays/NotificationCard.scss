@@ -1,13 +1,5 @@
 @use  '../../assets/styles/index' as *;
 
-.root {
-    .icon-wrapper {
-        :global(.uui-icon) {
-            fill: var(--fill-color);
-        }
-    }
-}
-
 .notification-wrapper {
     border: 1px solid var(--fill-color);
     border-top: 6px solid var(--fill-color);
@@ -22,43 +14,9 @@
     }
 }
 
-.icon-wrapper {
-    padding: 6px 0;
-}
-
-.action-wrapper {
-    display: flex;
-}
-
-.action-link:not(:last-child) {
-    margin-right: 12px;
-}
-
-.close-icon {
-    padding: 6px 0;
-}
-
-.main-path {
-    width: 100%;
-    display: flex;
-}
-
-.content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 12px;
-    width: 100%;
-}
-
 .clear-button {
     justify-content: center;
     align-items: center;
     height: 48px;
     padding: 0 18px;
-}
-
-.close-wrapper {
-    display: flex;
-    align-items: flex-start;
 }

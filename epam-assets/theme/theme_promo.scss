@@ -204,7 +204,11 @@
     --uui-control-textinput-border-hover: var(--gray60);
 
     --uui-control-label: var(--uui-text-primary);
-    --uui-control-label-disabled: var(--uui-text-secondary);
+    --uui-control-label-disabled: var(--uui-text-disabled);
+    --uui-control-label-error: var(--uui-error);
+    --uui-control-label-fill: var(--uui-icon);
+    --uui-control-label-optional-text: var(--uui-text-secondary);
+    --uui-control-label-asterisk: var(--uui-error);
 
     --uui-control-placeholder: var(--uui-text-secondary);
     --uui-control-placeholder-disabled: var(--uui-text-disabled);
@@ -420,13 +424,6 @@
     --uui-labeled-input-info-fill: var(--uui-icon);
     --uui-labeled-input-optional-text: var(--uui-text-secondary);
     --uui-labeled-input-asterisk: var(--uui-error);
-    --uui-control-label: var(--uui-text-primary);
-    --uui-control-label-disabled: var(--uui-text-disabled);
-    --uui-control-label-error: var(--uui-error);
-    --uui-control-label-fill: var(--uui-icon);
-    --uui-control-label-optional-text: var(--uui-text-secondary);
-    --uui-control-label-asterisk: var(--uui-error);
-
 
     /* Accordion */
     --uui-accordion-bg: var(--uui-surface);
@@ -539,6 +536,15 @@
 
     /* Footer */
     --uui-footer-bg: var(--gray80);
+
+    /* NotificationCard */
+    --uui-notification-card-border-radius: var(--uui-border-radius);
+    --uui-notification-card-border-width: 1px;
+    --uui-notification-card-border-top-width: 6px;
+    --uui-notification-card-shadow: unset;
+
+    /* Alert */
+    --uui-alert-border-radius: var(--uui-border-radius);
 
     /* FilterPanelItemToggler vars */
     --uui-filters-toggler-border: var(--uui-text-input-border);
@@ -816,13 +822,15 @@
     }
 
     :global(.icon-button-gray60),
-    :global(.icon-button-default) {
+    :global(.icon-button-default),
+    &:global(.icon-button-default) {
         --uui-icon-btn: var(--uui-icon);
         --uui-icon-btn-hover: var(--uui-icon-hover);
         --uui-icon-btn-active: var(--uui-icon-active);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
+    :global(.notification-card-amber),
     :global(.notification-card-warning) {
         --uui-notification-card-fill: var(--uui-warning);
         --uui-notification-card-border: var(--uui-warning);
@@ -830,54 +838,63 @@
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.notification-card-success) {
+    &:global(.notification-card-success) ,
+    &:global(.notification-card-green) {
         --uui-notification-card-fill: var(--uui-success);
         --uui-notification-card-border: var(--uui-success);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.notification-card-info) {
+    &:global(.notification-card-info),
+    &:global(.notification-card-blue) {
         --uui-notification-card-fill: var(--uui-info);
         --uui-notification-card-border: var(--uui-info);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.notification-card-error) {
+    &:global(.notification-card-error),
+    &:global(.notification-card-red) {
         --uui-notification-card-fill: var(--uui-error);
         --uui-notification-card-border: var(--uui-error);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.notification-card-vars) {
-        --uui-notification-card-border-radius: var(--uui-border-radius);
-        --uui-notification-card-shadow: var(--uui-shadow);
+    &:global(.notification-card-gray60) {
+        --uui-notification-card-fill: var(--uui-secondary-dark);
+        --uui-notification-card-border: var(--uui-secondary-dark);
+        --uui-notification-card-bg: var(--uui-surface);
+        --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.alert-error) {
+    &:global(.alert-error),
+    &:global(.alert-red) {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: var(--uui-error-lightest);
         --uui-alert-border: var(--uui-negative);
         --uui-alert-icon: var(--uui-negative);
     }
 
-    :global(.alert-warning) {
+    &:global(.alert-warning),
+    &:global(.alert-amber) {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: var(--uui-warning-lightest);
         --uui-alert-border: var(--amber);
         --uui-alert-icon: var(--amber);
     }
 
-    :global(.alert-success) {
+    &:global(.alert-success),
+    &:global(.alert-green) {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: var(--uui-success-lightest);
         --uui-alert-border: var(--uui-accent);
         --uui-alert-icon: var(--uui-accent);
     }
 
-    :global(.alert-info) {
+    &:global(.alert-info),
+    &:global(.alert-blue) {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: var(--uui-info-lightest);
         --uui-alert-border: var(--uui-primary);
