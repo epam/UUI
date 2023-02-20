@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import dayjs from "dayjs";
-import {PickerBodyValue, RangeDatePickerBody, RangeDatePickerValue} from '../..';
-
-
+import dayjs from 'dayjs';
+import { PickerBodyValue, RangeDatePickerBody, RangeDatePickerValue } from '../..';
 
 describe('DatePickerBody', () => {
     let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
@@ -18,15 +16,18 @@ describe('DatePickerBody', () => {
         let baseValue = { from: '2019-10-12', to: '2019-10-17' };
         let newState: any = {};
 
-        wrapper = shallow(<RangeDatePickerBody
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: { from: null, to: null },
-                displayedDate: dayjs().startOf('day'),
-            } }
-            onValueChange={ (nV: any) => newState = nV }
-            focusPart={ 'from' }
-        />, {});
+        wrapper = shallow(
+            <RangeDatePickerBody
+                value={{
+                    view: 'DAY_SELECTION',
+                    selectedDate: { from: null, to: null },
+                    displayedDate: dayjs().startOf('day'),
+                }}
+                onValueChange={(nV: any) => (newState = nV)}
+                focusPart={'from'}
+            />,
+            {}
+        );
 
         let range = (wrapper.instance() as any).getRange(baseValue.from);
         expect(range).toEqual({
@@ -73,7 +74,7 @@ describe('DatePickerBody', () => {
         let baseValue = { from: '2019-09-10', to: '2019-09-12' };
 
         const onValueChangeSpy = jest.fn((nV: any) => null);
-        const setStateSpy = jest.fn((nextState) => null);
+        const setStateSpy = jest.fn(nextState => null);
 
         const pickerSetState = RangeDatePickerBody.prototype.setState;
         RangeDatePickerBody.prototype.setState = setStateSpy;
@@ -84,11 +85,7 @@ describe('DatePickerBody', () => {
             displayedDate: dayjs().startOf('day'),
         };
 
-        wrapper = shallow(<RangeDatePickerBody
-            value={ defaultValue }
-            onValueChange={ onValueChangeSpy }
-            focusPart={ 'from' }
-        />, {});
+        wrapper = shallow(<RangeDatePickerBody value={defaultValue} onValueChange={onValueChangeSpy} focusPart={'from'} />, {});
         const instance: any = wrapper.instance();
 
         instance.setSelectedDate(baseValue.from);
@@ -117,9 +114,8 @@ describe('DatePickerBody', () => {
     });
 
     it('should set new displayedDate and view', () => {
-        const setStateSpy = jest.fn((nextState) => null);
+        const setStateSpy = jest.fn(nextState => null);
         const onValueChangeSpy = jest.fn((nV: any) => null);
-
 
         const pickerSetState = RangeDatePickerBody.prototype.setState;
         RangeDatePickerBody.prototype.setState = setStateSpy;
@@ -130,33 +126,28 @@ describe('DatePickerBody', () => {
             displayedDate: dayjs().startOf('day'),
         };
 
-        wrapper = shallow(<RangeDatePickerBody
-            value={ defaultValue }
-            onValueChange={ onValueChangeSpy }
-            focusPart={ 'from' }
-        />, {});
+        wrapper = shallow(<RangeDatePickerBody value={defaultValue} onValueChange={onValueChangeSpy} focusPart={'from'} />, {});
         const instance: any = wrapper.instance();
 
         //set from value
-        instance.setDisplayedDateAndView(dayjs("09-25-2020", "MM-DD-YYYY"), 'MONTH_SELECTION', 'from');
+        instance.setDisplayedDateAndView(dayjs('09-25-2020', 'MM-DD-YYYY'), 'MONTH_SELECTION', 'from');
 
         expect(onValueChangeSpy).toHaveBeenLastCalledWith({
             ...defaultValue,
-            displayedDate: dayjs("09-25-2020", "MM-DD-YYYY"),
+            displayedDate: dayjs('09-25-2020', 'MM-DD-YYYY'),
             view: 'MONTH_SELECTION',
         });
-        expect(setStateSpy).toHaveBeenCalledWith({ activePart: 'from'});
+        expect(setStateSpy).toHaveBeenCalledWith({ activePart: 'from' });
 
         //set to value
-        instance.setDisplayedDateAndView(dayjs("09-25-2020", "MM-DD-YYYY"), 'YEAR_SELECTION', 'to');
+        instance.setDisplayedDateAndView(dayjs('09-25-2020', 'MM-DD-YYYY'), 'YEAR_SELECTION', 'to');
 
         expect(onValueChangeSpy).toHaveBeenLastCalledWith({
             ...defaultValue,
-            displayedDate: dayjs("09-25-2020", "MM-DD-YYYY").subtract(1, 'months'),
+            displayedDate: dayjs('09-25-2020', 'MM-DD-YYYY').subtract(1, 'months'),
             view: 'YEAR_SELECTION',
         });
-        expect(setStateSpy).toHaveBeenCalledWith({activePart: 'to'});
-
+        expect(setStateSpy).toHaveBeenCalledWith({ activePart: 'to' });
 
         RangeDatePickerBody.prototype.setState = pickerSetState;
     });
@@ -164,15 +155,18 @@ describe('DatePickerBody', () => {
     it('should get styles', () => {
         let baseValue = { from: '2019-09-10', to: '2019-09-12' };
         const mockDay = dayjs().startOf('day');
-        wrapper = shallow(<RangeDatePickerBody
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: { from: null, to: null },
-                displayedDate: mockDay,
-            } }
-            onValueChange={ () => { } }
-            focusPart={ 'from' }
-        />, {});
+        wrapper = shallow(
+            <RangeDatePickerBody
+                value={{
+                    view: 'DAY_SELECTION',
+                    selectedDate: { from: null, to: null },
+                    displayedDate: mockDay,
+                }}
+                onValueChange={() => {}}
+                focusPart={'from'}
+            />,
+            {}
+        );
         const instance: any = wrapper.instance();
 
         let styles = instance.getDayCX(dayjs(baseValue.from));
@@ -180,26 +174,26 @@ describe('DatePickerBody', () => {
         expect(styles).toEqual([false, false, false, false, false, false]);
         //get styles when date does not selected
 
-        wrapper.setProps({ value: { selectedDate: baseValue, displayedDate: mockDay, } });
+        wrapper.setProps({ value: { selectedDate: baseValue, displayedDate: mockDay } });
         styles = instance.getDayCX(dayjs(baseValue.from));
         expect(styles).toEqual([
-            "uui-range-datepicker-in-range",
-            "uui-range-datepicker-first-day-in-range-wrapper",
+            'uui-range-datepicker-in-range',
+            'uui-range-datepicker-first-day-in-range-wrapper',
             false,
             false,
             false,
-            "uui-calendar-selected-day",
+            'uui-calendar-selected-day',
         ]);
         //get styles for first date
 
         styles = instance.getDayCX(dayjs(baseValue.to));
         expect(styles).toEqual([
-            "uui-range-datepicker-in-range",
+            'uui-range-datepicker-in-range',
             false,
             false,
-            "uui-range-datepicker-last-day-in-range-wrapper",
+            'uui-range-datepicker-last-day-in-range-wrapper',
             false,
-            "uui-calendar-selected-day",
+            'uui-calendar-selected-day',
         ]);
         //get styles for last date;
     });
@@ -207,15 +201,18 @@ describe('DatePickerBody', () => {
     it('should get from value', () => {
         let baseValue = { from: '2019-09-10', to: '2019-09-12' };
 
-        wrapper = shallow(<RangeDatePickerBody
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: baseValue,
-                displayedDate: dayjs().startOf('day'),
-            } }
-            onValueChange={ () => { } }
-            focusPart={ 'from' }
-        />, {});
+        wrapper = shallow(
+            <RangeDatePickerBody
+                value={{
+                    view: 'DAY_SELECTION',
+                    selectedDate: baseValue,
+                    displayedDate: dayjs().startOf('day'),
+                }}
+                onValueChange={() => {}}
+                focusPart={'from'}
+            />,
+            {}
+        );
         const instance: any = wrapper.instance();
 
         let fromValue = instance.getFromValue();
@@ -225,21 +222,23 @@ describe('DatePickerBody', () => {
             displayedDate: dayjs().startOf('day'),
             selectedDate: '2019-09-10',
         });
-
     });
 
     it('should get to value', () => {
         let baseValue = { from: '2019-09-10', to: '2019-09-12' };
 
-        wrapper = shallow(<RangeDatePickerBody
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: baseValue,
-                displayedDate: dayjs().startOf('day'),
-            } }
-            onValueChange={ () => { } }
-            focusPart={ 'from' }
-        />, {});
+        wrapper = shallow(
+            <RangeDatePickerBody
+                value={{
+                    view: 'DAY_SELECTION',
+                    selectedDate: baseValue,
+                    displayedDate: dayjs().startOf('day'),
+                }}
+                onValueChange={() => {}}
+                focusPart={'from'}
+            />,
+            {}
+        );
         const instance: any = wrapper.instance();
 
         let fromValue = instance.getToValue();
@@ -249,6 +248,5 @@ describe('DatePickerBody', () => {
             selectedDate: '2019-09-12',
             displayedDate: dayjs().startOf('day').add(1, 'months'),
         });
-
     });
 });

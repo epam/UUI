@@ -1,4 +1,4 @@
-import { ControlSize } from "..";
+import { ControlSize } from '..';
 
 interface BaseRowMods {
     size?: ControlSize | '60';
@@ -35,4 +35,4 @@ export interface DataTableHeaderRowMods extends BaseRowMods {
     textCase?: 'upper' | 'normal';
 }
 
-export interface ScrollRowMods extends BaseRowMods { }
+export interface ScrollRowMods extends BaseRowMods {}

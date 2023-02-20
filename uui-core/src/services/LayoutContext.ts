@@ -2,8 +2,6 @@ import { BaseContext } from './BaseContext';
 import maxBy from 'lodash.maxby';
 import { LayoutLayer } from '../types/objects';
 
-
-
 export class LayoutContext extends BaseContext {
     layerIdCounter = 0;
     layers: LayoutLayer[] = [];

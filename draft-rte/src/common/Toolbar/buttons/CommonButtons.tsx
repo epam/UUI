@@ -22,37 +22,50 @@ export const UnorderedListButton = createBlockStyleLinkButton({ blockType: 'unor
 
 export const UndoButton = (props: any) => (
     <div
-        onMouseDown={ (event: React.MouseEvent<HTMLDivElement>) => { event.preventDefault(); } }
+        onMouseDown={(event: React.MouseEvent<HTMLDivElement>) => {
+            event.preventDefault();
+        }}
     >
         <IconButton
-            icon={ UndoArrowIcon }
-            color='night600'
-            onClick={ (event: any) => { props.onValueChange(EditorState.undo(props.value)); } }
-            isDisabled={ props.value.getUndoStack().isEmpty() }
+            icon={UndoArrowIcon}
+            color="night600"
+            onClick={(event: any) => {
+                props.onValueChange(EditorState.undo(props.value));
+            }}
+            isDisabled={props.value.getUndoStack().isEmpty()}
         />
     </div>
 );
 
 export const RedoButton = (props: any) => (
     <div
-        onMouseDown={ (event: React.MouseEvent<HTMLDivElement>) => { event.preventDefault(); } }
+        onMouseDown={(event: React.MouseEvent<HTMLDivElement>) => {
+            event.preventDefault();
+        }}
     >
         <IconButton
-            icon={ RedoArrowIcon }
-            color='night600'
-            onClick={ (event: any) => { props.onValueChange(EditorState.redo(props.value)); } }
-            isDisabled={ props.value.getRedoStack().isEmpty() }
+            icon={RedoArrowIcon}
+            color="night600"
+            onClick={(event: any) => {
+                props.onValueChange(EditorState.redo(props.value));
+            }}
+            isDisabled={props.value.getRedoStack().isEmpty()}
         />
     </div>
 );
 
 export const ClearFormatButton = (props: any) => (
-    <div onMouseDown={ (event: React.MouseEvent<HTMLDivElement>) => { event.preventDefault(); } }>
+    <div
+        onMouseDown={(event: React.MouseEvent<HTMLDivElement>) => {
+            event.preventDefault();
+        }}
+    >
         <IconButton
-            icon={ ClearFormatIcon }
-            onClick={ (event: any) => { props.onValueChange(clearFormatting(RichUtils.toggleBlockType(props.value, 'unstyled'))); } }
-            color='night600'
+            icon={ClearFormatIcon}
+            onClick={(event: any) => {
+                props.onValueChange(clearFormatting(RichUtils.toggleBlockType(props.value, 'unstyled')));
+            }}
+            color="night600"
         />
     </div>
 );
-

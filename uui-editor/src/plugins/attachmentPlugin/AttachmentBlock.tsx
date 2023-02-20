@@ -16,7 +16,7 @@ import { ReactComponent as TextIcon } from '../../icons/file-file_text-24.svg';
 import { ReactComponent as MailIcon } from '../../icons/file-file_eml-24.svg';
 
 interface AttachmentBlockState {
-    progress: number| null;
+    progress: number | null;
     fileName: string;
 }
 
@@ -47,7 +47,7 @@ export class AttachmentBlock extends React.Component<RenderBlockProps, Attachmen
     changeName(name: string) {
         const { editor, node } = this.props;
         editor.setNodeByKey(node.key, {
-            ...node as any,
+            ...(node as any),
             data: {
                 ...this.props.node.data.toObject(),
                 fileName: name,
@@ -61,76 +61,74 @@ export class AttachmentBlock extends React.Component<RenderBlockProps, Attachmen
         switch (type) {
             case 'doc':
             case 'docx': {
-                return <IconContainer size={ 48 } icon={ DocIcon } cx={ css.docColor }/>;
+                return <IconContainer size={48} icon={DocIcon} cx={css.docColor} />;
             }
             case 'xls':
             case 'xlsx': {
-                return <IconContainer size={ 48 } icon={ ExelIcon } cx={ css.xlsColor }/>;
+                return <IconContainer size={48} icon={ExelIcon} cx={css.xlsColor} />;
             }
             case 'pdf': {
-                return <IconContainer size={ 48 } icon={ PdfIcon } cx={ css.pdfColor }/>;
+                return <IconContainer size={48} icon={PdfIcon} cx={css.pdfColor} />;
             }
             case 'gif':
             case 'jpg':
             case 'jpeg':
             case 'png':
             case 'webp': {
-                return <IconContainer size={ 48 } icon={ ImgIcon } cx={ css.img }/>;
+                return <IconContainer size={48} icon={ImgIcon} cx={css.img} />;
             }
             case 'avi':
             case 'mov':
             case 'mp4':
             case 'wmw':
             case 'mkv': {
-                return <IconContainer size={ 48 } icon={ VideoIcon } cx={ css.img }/>;
+                return <IconContainer size={48} icon={VideoIcon} cx={css.img} />;
             }
             case 'csv':
             case 'xml': {
-                return <IconContainer size={ 48 } icon={ TableIcon } cx={ css.img }/>;
+                return <IconContainer size={48} icon={TableIcon} cx={css.img} />;
             }
             case 'rtf':
             case 'txt': {
-                return <IconContainer size={ 48 } icon={ TextIcon } cx={ css.img }/>;
+                return <IconContainer size={48} icon={TextIcon} cx={css.img} />;
             }
             case 'eml':
             case 'emlx': {
-                return <IconContainer size={ 48 } icon={ MailIcon } cx={ css.img }/>;
+                return <IconContainer size={48} icon={MailIcon} cx={css.img} />;
             }
             default: {
-                return <IconContainer size={ 48 } icon={ FileIcon } cx={ css.img }/>;
+                return <IconContainer size={48} icon={FileIcon} cx={css.img} />;
             }
         }
     }
 
     render() {
-
         return (
-            <FlexRow
-                rawProps={ this.props.attributes }
-                alignItems='stretch'
-                cx={ cx(css.row, this.props.isFocused && uuiMod.focus) }
-            >
-                <FlexCell width={ 90 } shrink={ 0 } cx={ css.imgBox }>
-                    { this.getIcon() }
+            <FlexRow rawProps={this.props.attributes} alignItems="stretch" cx={cx(css.row, this.props.isFocused && uuiMod.focus)}>
+                <FlexCell width={90} shrink={0} cx={css.imgBox}>
+                    {this.getIcon()}
                 </FlexCell>
-                <FlexCell width="100%" cx={ css.info }>
-                    {
-                        this.props.readOnly
-                            ? <div className={ css.fileName }> { this.lens.prop('fileName').get() }</div>
-                            : <TextInput
-                                cx={ css.input }
-                                onClick={ (e: any) =>  { e.stopPropagation(); e.preventDefault(); } }
-                                placeholder='Describe attachment: book, link...'
-                                onBlur={ () => this.changeName(this.state.fileName) }
-                                { ...this.lens.prop('fileName').toProps() }
-                                isReadonly={ this.props.readOnly }
-                            />
-                    }
-                    <div className={ css.sizeLabel }> { getReadableFileSizeString(this.props.node.data.get('size')) } </div>
+                <FlexCell width="100%" cx={css.info}>
+                    {this.props.readOnly ? (
+                        <div className={css.fileName}> {this.lens.prop('fileName').get()}</div>
+                    ) : (
+                        <TextInput
+                            cx={css.input}
+                            onClick={(e: any) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                            }}
+                            placeholder="Describe attachment: book, link..."
+                            onBlur={() => this.changeName(this.state.fileName)}
+                            {...this.lens.prop('fileName').toProps()}
+                            isReadonly={this.props.readOnly}
+                        />
+                    )}
+                    <div className={css.sizeLabel}> {getReadableFileSizeString(this.props.node.data.get('size'))} </div>
                 </FlexCell>
-                <FlexCell width='auto' shrink={ 0 } cx={ css.imgBox }>
-                    <a href={ this.props.node.data.get('path') } download={ true } className={ css.linkWrapper }>
-                        <IconContainer icon={ DownloadIcon } cx={ css.img }/>
+                <FlexCell width="auto" shrink={0} cx={css.imgBox}>
+                    <a href={this.props.node.data.get('path')} download={true} className={css.linkWrapper}>
+                        <IconContainer icon={DownloadIcon} cx={css.img} />
                     </a>
                 </FlexCell>
             </FlexRow>

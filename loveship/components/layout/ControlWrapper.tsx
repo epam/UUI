@@ -9,11 +9,7 @@ interface ControlWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<
 }
 
 export const ControlWrapper = React.forwardRef<HTMLDivElement, ControlWrapperProps>((props, ref) => (
-    <div
-        ref={ ref }
-        className={ cx(css.root, css['size-' + props.size], props.cx) }
-        { ...props.rawProps }
-    >
-        { props.children }
+    <div ref={ref} className={cx(css.root, css['size-' + props.size], props.cx)} {...props.rawProps}>
+        {props.children}
     </div>
 ));

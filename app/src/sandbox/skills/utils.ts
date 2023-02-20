@@ -1,8 +1,7 @@
 import dayjs from 'dayjs';
 import { ISkillLevel } from './index';
 
-export const getDateInFormat = (date: Date) =>
-    dayjs(date).format('MMM DD, YYYY');
+export const getDateInFormat = (date: Date) => dayjs(date).format('MMM DD, YYYY');
 
 export const getLevel = (level: ISkillLevel): string => {
     switch (level) {

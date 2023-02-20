@@ -12,22 +12,12 @@ describe('TextPlaceholder', () => {
     });
 
     it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<TextPlaceholder />)
-            .toJSON();
+        const tree = renderer.create(<TextPlaceholder />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<TextPlaceholder
-                color='gray40'
-                wordsCount={ 5 }
-                isNotAnimated
-            />)
-            .toJSON();
+        const tree = renderer.create(<TextPlaceholder color="gray40" wordsCount={5} isNotAnimated />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });
-
-

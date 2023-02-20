@@ -19,7 +19,6 @@ import { ReactComponent as Info24 } from './info-24.svg';
 import { ReactComponent as Help10 } from './help-fill-10.svg';
 import { ReactComponent as Help16 } from './help-fill-16.svg';
 
-
 export const systemIcons: { [key: string]: any } = {
     '18': {
         clear: BtnCross12,
@@ -84,7 +83,7 @@ export const systemIcons: { [key: string]: any } = {
         info: Info24,
         help: Help16,
     },
-    'none': {
+    none: {
         clear: BtnCross18,
         foldingArrow: FoldingArrow18,
         accept: Accept18,

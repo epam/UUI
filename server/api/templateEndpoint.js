@@ -9,10 +9,10 @@ router.post('/template-endpoint', async (req, res) => {
 
         const appDirectory = await fs.realpath(process.cwd());
 
-        res.json({ hello: "Hello", request: req.body, appDirectory });
+        res.json({ hello: 'Hello', request: req.body, appDirectory });
     } catch {
         res.statusCode(500);
     }
-})
+});
 
 module.exports = router;

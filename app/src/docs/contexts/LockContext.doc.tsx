@@ -7,7 +7,7 @@ export class LockContextDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='lock-context-descriptions' />
+                <EditableDocContent fileName="lock-context-descriptions" />
             </>
         );
     }

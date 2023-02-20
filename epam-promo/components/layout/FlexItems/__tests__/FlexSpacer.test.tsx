@@ -4,9 +4,7 @@ import renderer from 'react-test-renderer';
 
 describe('FlexSpacer', () => {
     it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<FlexSpacer />)
-            .toJSON();
+        const tree = renderer.create(<FlexSpacer />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

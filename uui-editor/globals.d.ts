@@ -23,8 +23,8 @@ declare module 're-resizable';
 declare module 'react-broadcast';
 
 // inherited definitions, required for module build
-declare module "jsurl";
-declare module "query-string";
+declare module 'jsurl';
+declare module 'query-string';
 declare module 'draft-js-plugins-editor';
 declare module 'draft-js-clear-formatting';
 declare module 'draft-convert';

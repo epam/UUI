@@ -5,10 +5,9 @@ import { ReactComponent as navigationIcon } from '@epam/assets/icons/common/navi
 
 export default function IconPositionExample() {
     return (
-        <FlexRow columnGap='18'>
-            <LinkButton caption='PLAY' link={ { pathname: '/' } } icon={ playIcon } size='48' />
-            <LinkButton caption='NEXT STEP' link={ { pathname: '/' } } icon={ navigationIcon }
-                size='48' iconPosition='right' />
+        <FlexRow columnGap="18">
+            <LinkButton caption="PLAY" link={{ pathname: '/' }} icon={playIcon} size="48" />
+            <LinkButton caption="NEXT STEP" link={{ pathname: '/' }} icon={navigationIcon} size="48" iconPosition="right" />
         </FlexRow>
     );
 }

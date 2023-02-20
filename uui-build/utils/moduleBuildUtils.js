@@ -4,7 +4,7 @@ const { getIndexFileRelativePath } = require('./../utils/indexFileUtils');
 const { logger, ModuleBuildProgressLogger } = require('./../utils/loggerUtils');
 const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBuildUtils');
 
-const BUILD_FOLDER = 'build'
+const BUILD_FOLDER = 'build';
 
 module.exports = { buildUuiModule };
 
@@ -13,9 +13,9 @@ async function withEventsLogger({ moduleRootDir, isRollup, asyncCallback }) {
     moduleBuildLogger.start();
     try {
         await asyncCallback();
-        moduleBuildLogger.done()
-    } catch(err) {
-        moduleBuildLogger.error()
+        moduleBuildLogger.done();
+    } catch (err) {
+        moduleBuildLogger.error();
         err && err.message && logger.error(err.message);
         process.exit(1);
     }
@@ -28,7 +28,9 @@ async function buildUuiModule() {
         await buildModuleUsingRollup({
             moduleRootDir,
             copyAsIs: ['readme.md', 'assets'],
-            packageJsonTransform: content => { delete content['epam:uui:main']; },
+            packageJsonTransform: content => {
+                delete content['epam:uui:main'];
+            },
         });
     } else {
         await buildStaticModule({ moduleRootDir });
@@ -76,7 +78,7 @@ async function buildModuleUsingRollup(options) {
         // Don't log anything, because Rollup watcher already does it.
         return await asyncCallback();
     }
-    await withEventsLogger({ moduleRootDir, isRollup: true, asyncCallback })
+    await withEventsLogger({ moduleRootDir, isRollup: true, asyncCallback });
 }
 
 /**
@@ -84,11 +86,11 @@ async function buildModuleUsingRollup(options) {
  * @param {string} moduleRootDir
  */
 function copyAllModuleFilesToOutputSync(moduleRootDir) {
-    for(let file of fs.readdirSync(moduleRootDir)) {
+    for (let file of fs.readdirSync(moduleRootDir)) {
         if (file !== BUILD_FOLDER) {
             const from = path.resolve(moduleRootDir, file);
-            const to = path.resolve(moduleRootDir, BUILD_FOLDER, file)
-            fs.copySync(from, to)
+            const to = path.resolve(moduleRootDir, BUILD_FOLDER, file);
+            fs.copySync(from, to);
         }
     }
 }

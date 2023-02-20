@@ -9,7 +9,7 @@ export interface MainMenuIconProps extends ButtonProps, IAdaptiveItem {
 }
 
 export const MainMenuIcon = React.forwardRef<HTMLDivElement, MainMenuIconProps>((props: MainMenuIconProps, ref) => (
-    <IconButton ref={ ref } icon={ props.icon } cx={ cx(props.cx, css.container) } { ...props } />
+    <IconButton ref={ref} icon={props.icon} cx={cx(props.cx, css.container)} {...props} />
 ));
 
 MainMenuIcon.displayName = 'MainMenuIcon';

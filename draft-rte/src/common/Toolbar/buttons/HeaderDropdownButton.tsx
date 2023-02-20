@@ -40,27 +40,24 @@ const buttons: DraftBlockStyleButton[] = [
 const headerButtons = buttons.map(b => createBlockStyleDropDownItem(b));
 
 const renderDropdownBody = (props: any) => (
-    <Panel
-        background='white'
-        shadow
-        cx={ css.HeaderDropdownBody }
-    >
-        { headerButtons.map((HeaderButton, i) => <HeaderButton { ...props } key={ HeaderButton.name + i } />) }
+    <Panel background="white" shadow cx={css.HeaderDropdownBody}>
+        {headerButtons.map((HeaderButton, i) => (
+            <HeaderButton {...props} key={HeaderButton.name + i} />
+        ))}
     </Panel>
 );
 
 export const HeaderDropDownButton = (props: any) => (
-    <div onMouseDown={ (event: React.MouseEvent<HTMLDivElement>) => { event.preventDefault(); } }>
+    <div
+        onMouseDown={(event: React.MouseEvent<HTMLDivElement>) => {
+            event.preventDefault();
+        }}
+    >
         <Dropdown
-            renderBody={ () => renderDropdownBody(props) }
-            renderTarget={ (props: any) => (
-                <IconButton
-                    { ...props }
-                    icon={ HeaderDropdownIcon }
-                    color='night600'
-                    cx={ cx('header-dropdown-button', { active: props.isOpen }) }
-                />
-            ) }
+            renderBody={() => renderDropdownBody(props)}
+            renderTarget={(props: any) => (
+                <IconButton {...props} icon={HeaderDropdownIcon} color="night600" cx={cx('header-dropdown-button', { active: props.isOpen })} />
+            )}
         />
     </div>
 );

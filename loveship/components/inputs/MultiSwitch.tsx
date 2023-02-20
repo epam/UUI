@@ -17,26 +17,29 @@ export interface MultiSwitchProps<TValue> extends IEditable<TValue>, types.Color
 
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
     return (
-        <ControlGroup ref={ ref } rawProps={ { ...props.rawProps, role: 'tablist' } }>
-            { props.items.map((item, index) => {
+        <ControlGroup ref={ref} rawProps={{ ...props.rawProps, role: 'tablist' }}>
+            {props.items.map((item, index) => {
                 const isActive = props.value === item.id;
                 return (
                     <Button
-                        {  ...item }
-                        cx={ cx(item.cx, { [css.selectedItem]: isActive }) }
-                        key={ index + '-' + item.id }
-                        onClick={ () => props.onValueChange(item.id) }
+                        {...item}
+                        cx={cx(item.cx, { [css.selectedItem]: isActive })}
+                        key={index + '-' + item.id}
+                        onClick={() => props.onValueChange(item.id)}
                         shape="square"
-                        fill={ isActive ? 'solid' : 'white' }
-                        color={ props.color === 'night600' && props.value === item.id ? 'sky' : props.color || 'sky' }
-                        size={ props.size }
-                        rawProps={ { 'aria-current': props.value === item.id, role: 'tab' } }
-                        isDisabled={ props.isDisabled }
+                        fill={isActive ? 'solid' : 'white'}
+                        color={props.color === 'night600' && props.value === item.id ? 'sky' : props.color || 'sky'}
+                        size={props.size}
+                        rawProps={{ 'aria-current': props.value === item.id, role: 'tab' }}
+                        isDisabled={props.isDisabled}
                     />
                 );
-            }) }
+            })}
         </ControlGroup>
     );
 }
 
-export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) => JSX.Element;
+export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(
+    props: MultiSwitchProps<TValue>,
+    ref: React.ForwardedRef<HTMLDivElement>
+) => JSX.Element;

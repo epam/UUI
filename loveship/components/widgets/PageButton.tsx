@@ -12,13 +12,7 @@ export interface PageButtonMods extends types.ColorMod {
 }
 
 export function applyPageButtonMods(mods: PageButtonMods & ButtonProps) {
-    return [
-        css['fill-' + (mods.fill || 'white')],
-        css['size-' + (mods.size || defaultSize)],
-    ];
+    return [css['fill-' + (mods.fill || 'white')], css['size-' + (mods.size || defaultSize)]];
 }
 
-export const PageButton = withMods<ButtonProps, PageButtonMods>(
-    Button,
-    applyPageButtonMods,
-);
+export const PageButton = withMods<ButtonProps, PageButtonMods>(Button, applyPageButtonMods);

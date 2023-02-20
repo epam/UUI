@@ -15,7 +15,7 @@ export class PickerListItem<TItem, TId> extends React.Component<PickerListItemPr
         let label: any;
 
         if (this.props.isLoading) {
-            label = <TextPlaceholder wordsCount={ 2 } />;
+            label = <TextPlaceholder wordsCount={2} />;
         } else {
             label = this.props.getName(this.props.value);
         }
@@ -23,24 +23,28 @@ export class PickerListItem<TItem, TId> extends React.Component<PickerListItemPr
         let component: any;
 
         if (this.props.checkbox) {
-            component = <Checkbox
-                { ...this.props.checkbox }
-                isDisabled={ this.props.isLoading || this.props.checkbox.isDisabled }
-                label={ label }
-                value={ this.props.isChecked }
-                onValueChange={ () => this.props.onCheck(this.props) }
-                theme={ this.props.theme }
-            />;
+            component = (
+                <Checkbox
+                    {...this.props.checkbox}
+                    isDisabled={this.props.isLoading || this.props.checkbox.isDisabled}
+                    label={label}
+                    value={this.props.isChecked}
+                    onValueChange={() => this.props.onCheck(this.props)}
+                    theme={this.props.theme}
+                />
+            );
         } else {
-            component = <RadioInput
-                label={ label }
-                value={ this.props.isSelected }
-                isDisabled={ this.props.isLoading || !this.props.isSelectable }
-                onValueChange={ () => this.props.onSelect(this.props) }
-                theme={ this.props.theme }
-            />;
+            component = (
+                <RadioInput
+                    label={label}
+                    value={this.props.isSelected}
+                    isDisabled={this.props.isLoading || !this.props.isSelectable}
+                    onValueChange={() => this.props.onSelect(this.props)}
+                    theme={this.props.theme}
+                />
+            );
         }
 
-        return <div className={ css.row }>{ component }</div>;
+        return <div className={css.row}>{component}</div>;
     }
 }

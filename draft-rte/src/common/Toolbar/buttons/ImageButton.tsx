@@ -14,14 +14,11 @@ export class ImageButton extends React.Component<DraftButtonProps> {
 
     onMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
-    }
+    };
 
     isImageSelected = () => {
-        return this.props.value && EditorUtils.hasEntity(
-            this.props.value,
-            'IMAGE',
-        );
-    }
+        return this.props.value && EditorUtils.hasEntity(this.props.value, 'IMAGE');
+    };
 
     handleClick = (src: string, alt: string, width: number, height: number) => {
         const prependedSrc = prependHttp(src, { https: true });
@@ -34,24 +31,13 @@ export class ImageButton extends React.Component<DraftButtonProps> {
             const contentStateWithEntity = contentState.mergeEntityData(entityKey, { alt, width, height, src: prependedSrc });
             newEditorState = EditorState.set(editorState, { currentContent: contentStateWithEntity });
         } else {
-            const contentStateWithEntity = contentState.createEntity(
-                'IMAGE',
-                'IMMUTABLE',
-                { alt, width, height, src: prependedSrc },
-            );
+            const contentStateWithEntity = contentState.createEntity('IMAGE', 'IMMUTABLE', { alt, width, height, src: prependedSrc });
             const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-            newEditorState = AtomicBlockUtils.insertAtomicBlock(
-                editorState,
-                entityKey,
-                ' ',
-            );
+            newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
         }
 
-        this.props.onValueChange(EditorState.forceSelection(
-            newEditorState,
-            newEditorState.getCurrentContent().getSelectionAfter(),
-        ));
-    }
+        this.props.onValueChange(EditorState.forceSelection(newEditorState, newEditorState.getCurrentContent().getSelectionAfter()));
+    };
 
     render() {
         let modalInitialState: ImageModalState;
@@ -72,17 +58,17 @@ export class ImageButton extends React.Component<DraftButtonProps> {
         }
 
         return (
-            <div
-                onMouseDown={ this.onMouseDown }
-            >
+            <div onMouseDown={this.onMouseDown}>
                 <IconButton
-                    icon={ PhotoIcon }
-                    color={ this.isImageSelected() ? 'sky' : 'night600' }
-                    onClick={ () => {
+                    icon={PhotoIcon}
+                    color={this.isImageSelected() ? 'sky' : 'night600'}
+                    onClick={() => {
                         showImageModal(this.context, modalInitialState)
-                            .then(data => { this.handleClick(data.src, data.alt, data.width, data.height); })
+                            .then(data => {
+                                this.handleClick(data.src, data.alt, data.width, data.height);
+                            })
                             .catch(() => null);
-                    } }
+                    }}
                 />
             </div>
         );

@@ -9,11 +9,19 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
     .prop('children', {
         examples: [
             {
-                value: <Text size="36" font='sans' >Warning notification</Text>,
+                value: (
+                    <Text size="36" font="sans">
+                        Warning notification
+                    </Text>
+                ),
                 name: 'Short',
             },
             {
-                value: <Text size="36" font='sans' >Warning notification with some buttons and long long text with blaaaaaa blaaaaaaaaaa</Text>,
+                value: (
+                    <Text size="36" font="sans">
+                        Warning notification with some buttons and long long text with blaaaaaa blaaaaaaaaaa
+                    </Text>
+                ),
                 name: 'Long',
             },
         ],
@@ -24,7 +32,7 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
                 value: [
                     {
                         name: 'ACTION 1',
-                        action: () => { },
+                        action: () => {},
                     },
                 ],
                 name: '1 action',
@@ -33,11 +41,11 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
                 value: [
                     {
                         name: 'ACTION 1',
-                        action: () => { },
+                        action: () => {},
                     },
                     {
                         name: 'ACTION 2',
-                        action: () => { },
+                        action: () => {},
                     },
                 ],
                 name: '2 actions',
@@ -47,7 +55,7 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
     .prop('onClose', {
         examples: [
             {
-                value: () => { },
+                value: () => {},
                 name: 'OnClose',
             },
         ],

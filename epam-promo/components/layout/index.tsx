@@ -8,4 +8,4 @@ export * from './IconContainer';
 export * from './LabeledInput';
 export * from './RadioGroup';
 export * from './ScrollBars';
-export * from  './VirtualList';
+export * from './VirtualList';

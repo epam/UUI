@@ -7,13 +7,10 @@ export class EditableTablesDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='editable-tables-descriptions' />
-                { this.renderSectionTitle('Examples') }
+                <EditableDocContent fileName="editable-tables-descriptions" />
+                {this.renderSectionTitle('Examples')}
 
-                <DocExample
-                    title='Editable Table'
-                    path='./_examples/tables/EditableTable.example.tsx'
-                />
+                <DocExample title="Editable Table" path="./_examples/tables/EditableTable.example.tsx" />
             </>
         );
     }

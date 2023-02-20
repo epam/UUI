@@ -6,20 +6,15 @@ import { systemIcons } from '../../icons/icons';
 import '../../assets/styles/variables/layout/labeledInput.scss';
 import css from './LabeledInput.scss';
 
-
 const defaultSize = '36';
 
 export interface LabeledInputMods extends types.SizeMod {}
 
 function applyLabeledInputMods(mods: LabeledInputMods) {
-    return [
-        'labeled-input-vars',
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-    ];
+    return ['labeled-input-vars', css.root, css['size-' + (mods.size || defaultSize)]];
 }
 
-export const LabeledInput = withMods<LabeledInputProps, LabeledInputMods>(uuiLabeledInput, applyLabeledInputMods, (props) => ({
+export const LabeledInput = withMods<LabeledInputProps, LabeledInputMods>(uuiLabeledInput, applyLabeledInputMods, props => ({
     Tooltip,
     infoIcon: systemIcons[props.size || defaultSize].help,
 }));

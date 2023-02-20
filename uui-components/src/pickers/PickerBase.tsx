@@ -1,5 +1,15 @@
 import React from 'react';
-import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts, DataRowProps } from "@epam/uui-core";
+import {
+    DataSourceState,
+    DataRowOptions,
+    Lens,
+    IDataSourceView,
+    DataSourceListProps,
+    PickerBaseProps,
+    PickerFooterProps,
+    UuiContexts,
+    DataRowProps,
+} from '@epam/uui-core';
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
 
@@ -8,7 +18,10 @@ export interface PickerBaseState {
     showSelected?: boolean;
 }
 
-export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<TProps, TState> {
+export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<
+    TProps,
+    TState
+> {
     public context: UuiContexts;
     state: TState = this.getInitialState();
     lens = Lens.onState<PickerBaseState>(this);
@@ -44,7 +57,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         } else {
             return i.name;
         }
-    }
+    };
 
     getPluralName = () => {
         const { entityName } = this.props;
@@ -52,18 +65,18 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         if (entityName.endsWith('s')) return entityName.concat('es');
         if (entityName.endsWith('y')) return entityName.concat('(s)');
         return entityName.concat('s');
-    }
+    };
 
     getEntityName = (countSelected?: number) => {
         const { entityName, entityPluralName, selectionMode } = this.props;
-        if (!entityName && !entityPluralName || (!entityName && countSelected === 1)) return '';
-        if (countSelected <= 1 && entityName || selectionMode === 'single') return entityName;
+        if ((!entityName && !entityPluralName) || (!entityName && countSelected === 1)) return '';
+        if ((countSelected <= 1 && entityName) || selectionMode === 'single') return entityName;
         return entityPluralName || this.getPluralName();
-    }
+    };
 
     isSingleSelect = () => {
         return this.props.selectionMode == 'single';
-    }
+    };
 
     getSelectedIdsArray = (value: any): TId[] => {
         if (value) {
@@ -74,7 +87,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             }
         }
         return [];
-    }
+    };
 
     getValueFromState = (state: DataSourceState) => {
         if (this.isSingleSelect()) {
@@ -82,7 +95,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         } else {
             return state.checked;
         }
-    }
+    };
 
     protected handleSelectionValueChange = (newValue: any) => {
         this.props.onValueChange(newValue);
@@ -91,7 +104,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             const event = this.props.getValueChangeAnalyticsEvent(newValue, this.props.value);
             this.context.uuiAnalytics.sendEvent(event);
         }
-    }
+    };
 
     protected handleDataSourceValueChange = (newDataSourceState: DataSourceState) => {
         let showSelected = this.state.showSelected;
@@ -106,11 +119,11 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         if (!isEqual(this.props.value, newValue)) {
             this.handleSelectionValueChange(newValue);
         }
-    }
+    };
 
     getDataSourceState = () => {
         return applyValueToDataSourceState(this.props, this.state.dataSourceState, this.props.value, this.props.dataSource);
-    }
+    };
 
     getRowOptions = (item: TItem, index: number) => {
         let options: DataRowOptions<TItem, TId> = {};
@@ -123,7 +136,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         const externalOptions = this.props.getRowOptions ? this.props.getRowOptions(item, index) : {};
 
         return { ...options, ...externalOptions };
-    }
+    };
 
     clearSelection = () => {
         this.handleDataSourceValueChange({
@@ -131,7 +144,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             selectedId: this.props.emptyValue,
             checked: [],
         });
-    }
+    };
 
     hasSelection() {
         if (Array.isArray(this.props.value)) {
@@ -181,10 +194,11 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             view: this.getView(),
             showSelected: {
                 value: this.state.showSelected,
-                onValueChange: (nV: boolean) => this.setState({
-                    showSelected: nV,
-                    dataSourceState: { ...this.state.dataSourceState },
-                }),
+                onValueChange: (nV: boolean) =>
+                    this.setState({
+                        showSelected: nV,
+                        dataSourceState: { ...this.state.dataSourceState },
+                    }),
             },
             clearSelection: this.clearSelection,
         };

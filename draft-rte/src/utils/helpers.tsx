@@ -8,7 +8,7 @@ export const colorStyle: { [key: string]: string } = {
     sky: '#30B6DD',
     grass: '#9BC837',
     carbon: '#5B5A59',
-    night:'#525462',
+    night: '#525462',
     cobalt: '#577CE6',
     lavanda: '#8A7CBB',
     fuchsia: '#CD5485',
@@ -38,16 +38,16 @@ export function convertDraftStateToHtml(contentState: ContentState): string {
         },
         entityToHTML: (entity: RawDraftEntity, text: string) => {
             if (entity.type === 'LINK') {
-                return <Link data={ entity.data }>{ entity.data.displayText }</Link>;
+                return <Link data={entity.data}>{entity.data.displayText}</Link>;
             }
             if (entity.type === 'IMAGE') {
-                return  <img src={ entity.data.src } alt={ entity.data.alt } width={ "100%" }/>;
+                return <img src={entity.data.src} alt={entity.data.alt} width={'100%'} />;
             }
             return text;
         },
         styleToHTML: (style: string) => {
             if (!!colorStyle[style]) {
-                return <span style={ { color: colorStyle[style] } } />;
+                return <span style={{ color: colorStyle[style] }} />;
             }
         },
     })(contentState);
@@ -63,18 +63,10 @@ export function convertHtmlToDraftState(html: string): ContentState {
     return draftConvertFromHTML({
         htmlToEntity: (nodeName: string, node: any, createEntity: (type: string, mutability: string, data: object) => string) => {
             if (nodeName === 'a') {
-                return createEntity(
-                    'LINK',
-                    'IMMUTABLE',
-                    { displayText: node.innerText, href: node.href },
-                );
+                return createEntity('LINK', 'IMMUTABLE', { displayText: node.innerText, href: node.href });
             }
             if (nodeName === 'img') {
-                return createEntity(
-                    'IMAGE',
-                    'IMMUTABLE',
-                    { alt: node.alt, src: node.src, width: node.width, height: node.height },
-                );
+                return createEntity('IMAGE', 'IMMUTABLE', { alt: node.alt, src: node.src, width: node.width, height: node.height });
             }
         },
         htmlToBlock: (nodeName: string, node: any) => {
@@ -90,7 +82,6 @@ export function convertHtmlToDraftState(html: string): ContentState {
                 return currentStyle;
             }
         },
-
     })(html);
 }
 
@@ -111,10 +102,12 @@ export function rgbToHex(value: string) {
     }
 
     const rgb = value.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-    return (rgb && rgb.length === 4) ? "#" +
-    ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) +
-    ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
-    ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2) : '';
+    return rgb && rgb.length === 4
+        ? '#' +
+              ('0' + parseInt(rgb[1], 10).toString(16)).slice(-2) +
+              ('0' + parseInt(rgb[2], 10).toString(16)).slice(-2) +
+              ('0' + parseInt(rgb[3], 10).toString(16)).slice(-2)
+        : '';
 }
 
 export function blockTypeIsActive(editorState: EditorState, blockType: string | string[]): boolean {
@@ -122,10 +115,7 @@ export function blockTypeIsActive(editorState: EditorState, blockType: string | 
         return false;
     }
 
-    const type = editorState
-        .getCurrentContent()
-        .getBlockForKey(editorState.getSelection().getStartKey())
-        .getType();
+    const type = editorState.getCurrentContent().getBlockForKey(editorState.getSelection().getStartKey()).getType();
 
     if (Array.isArray(blockType)) {
         return blockType.indexOf(type) >= 0;
@@ -134,7 +124,7 @@ export function blockTypeIsActive(editorState: EditorState, blockType: string | 
     }
 }
 
-export function getEntityRange(editorState: EditorState): { startOffset: number, endOffset: number } {
+export function getEntityRange(editorState: EditorState): { startOffset: number; endOffset: number } {
     const selection = editorState.getSelection();
 
     if (!selection.isCollapsed()) {

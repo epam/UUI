@@ -14,23 +14,16 @@ interface IMobileDropdownWrapperProps {
 
 export const MobileDropdownWrapper: React.FC<IMobileDropdownWrapperProps> = props => {
     const isVisible = isMobile();
-    
+
     useAppMobileHeight();
 
     return (
         <>
-            { isVisible && <DataPickerHeader title={ props.title } close={ props.close }/> }
+            {isVisible && <DataPickerHeader title={props.title} close={props.close} />}
 
-            { props.children }
+            {props.children}
 
-            { isVisible && (
-                <LinkButton
-                    caption='DONE'
-                    onClick={ () => props.close?.() }
-                    cx={ css.done }
-                    size='48'
-                />
-            ) }
+            {isVisible && <LinkButton caption="DONE" onClick={() => props.close?.()} cx={css.done} size="48" />}
         </>
     );
 };

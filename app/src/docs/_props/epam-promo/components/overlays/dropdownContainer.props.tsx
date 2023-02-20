@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext } from '../../docs';
-import { DropdownContainer, Text } from "@epam/promo";
+import { DropdownContainer, Text } from '@epam/promo';
 
 const dropdownContainerDoc = new DocBuilder({
     name: 'DropdownContainer',
@@ -19,6 +19,7 @@ const dropdownContainerDoc = new DocBuilder({
     .prop('children', {
         examples: [{ value: <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, pariatur!</Text>, name: 'Basic' }],
         isRequired: true,
-    }).withContexts(DefaultContext);
+    })
+    .withContexts(DefaultContext);
 
 export default dropdownContainerDoc;

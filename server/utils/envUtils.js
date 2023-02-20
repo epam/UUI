@@ -1,6 +1,6 @@
 module.exports = {
-    isDevServer
-}
+    isDevServer,
+};
 
 function isDevServer() {
     // https://github.com/webpack/webpack-dev-server/pull/3000

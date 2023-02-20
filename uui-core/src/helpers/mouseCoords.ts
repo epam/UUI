@@ -20,7 +20,7 @@ if (isClientSide) {
         mouseCoords.mouseDySmooth = mouseCoords.mouseDySmooth * 0.8 + mouseCoords.mouseDy * 0.2;
         mouseCoords.mousePageX = e.pageX;
         mouseCoords.mousePageY = e.pageY;
-        if (mouseCoords.buttons == 0 && e.buttons > 0 || e.pointerType === 'touch') {
+        if ((mouseCoords.buttons == 0 && e.buttons > 0) || e.pointerType === 'touch') {
             mouseCoords.mouseDownPageX = mouseCoords.mousePageX;
             mouseCoords.mouseDownPageY = mouseCoords.mousePageY;
         }

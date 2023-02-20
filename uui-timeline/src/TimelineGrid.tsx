@@ -2,12 +2,9 @@ import { TimelineTransform } from './TimelineTransform';
 import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from './BaseTimelineCanvasComponent';
 import { msPerDay } from './helpers';
 
-export interface TimelineGridProps extends BaseTimelineCanvasComponentProps {
-
-}
+export interface TimelineGridProps extends BaseTimelineCanvasComponentProps {}
 
 export class TimelineGrid extends BaseTimelineCanvasComponent<TimelineGridProps> {
-
     protected renderLine(ctx: CanvasRenderingContext2D, x: number, width?: number) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
@@ -42,7 +39,7 @@ export class TimelineGrid extends BaseTimelineCanvasComponent<TimelineGridProps>
     }
 
     protected renderHours(ctx: CanvasRenderingContext2D, t: TimelineTransform) {
-        const pxPerHour = t.pxPerMs * msPerDay / 24;
+        const pxPerHour = (t.pxPerMs * msPerDay) / 24;
         const width = pxPerHour > 100 ? 2 : 1;
 
         t.getVisibleHours().map(w => {
@@ -121,7 +118,7 @@ export class TimelineGrid extends BaseTimelineCanvasComponent<TimelineGridProps>
             this.renderWeeks(ctx, t);
         }
 
-        if (pxPerDay > 0.50) {
+        if (pxPerDay > 0.5) {
             this.renderMonths(ctx, t);
         }
 

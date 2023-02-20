@@ -1,10 +1,14 @@
-import { DataQuery } from "../../types";
-import { getOrderComparer } from "./getOrderComparer";
-import { getFilterPredicate } from "./getFilterPredicate";
+import { DataQuery } from '../../types';
+import { getOrderComparer } from './getOrderComparer';
+import { getFilterPredicate } from './getFilterPredicate';
 import { getSearchFilter } from './getSearchFilter';
 import orderBy from 'lodash.orderby';
 
-export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], request: DataQuery<TItem> & { ids?: any[] }, searchBy?: (item: TItem) => string[]) {
+export function runDataQuery<TItem extends { id: any }>(
+    allItems: TItem[],
+    request: DataQuery<TItem> & { ids?: any[] },
+    searchBy?: (item: TItem) => string[]
+) {
     let items = allItems || [];
     request = request || {};
 

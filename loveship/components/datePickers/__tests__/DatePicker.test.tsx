@@ -13,11 +13,7 @@ describe('DataPicker', () => {
     });
 
     it('should change input value after change props', () => {
-        wrapper = shallow(<DatePicker
-            format='MMM D, YYYY'
-            value={ null }
-            onValueChange={ () => { } }
-        />, {});
+        wrapper = shallow(<DatePicker format="MMM D, YYYY" value={null} onValueChange={() => {}} />, {});
 
         wrapper.setProps({ value: '2017-01-22' });
         expect(wrapper.state('inputValue')).toEqual('Jan 22, 2017');
@@ -25,43 +21,26 @@ describe('DataPicker', () => {
     });
 
     it('should render with default props', () => {
-        wrapper = shallow(<DatePicker
-            format='MMM D, YYYY'
-            value={ null }
-            onValueChange={ () => { } }
-        />, {});
+        wrapper = shallow(<DatePicker format="MMM D, YYYY" value={null} onValueChange={() => {}} />, {});
 
         expect(wrapper.isEmptyRender()).toBe(false);
     });
 
     it('should change state on picker clear', () => {
         let newState: any = {};
-        wrapper = shallow(<DatePicker
-            value={ null }
-            onValueChange={ (nV: any) => newState = nV }
-            format='MMM D, YYYY'
-        />, {});
+        wrapper = shallow(<DatePicker value={null} onValueChange={(nV: any) => (newState = nV)} format="MMM D, YYYY" />, {});
         (wrapper.instance() as any).handleCancel();
         expect(newState).toEqual(null);
-
     });
 
     it(`should open picker on field focus`, () => {
-        wrapper = shallow(<DatePicker
-            format="MMM D, YYYY"
-            value={ null }
-            onValueChange={ () => null }
-        />);
+        wrapper = shallow(<DatePicker format="MMM D, YYYY" value={null} onValueChange={() => null} />);
         (wrapper.instance() as any).handleFocus('from');
         expect((wrapper.instance().state as any).isOpen).toBe(true);
     });
 
     it(`should close picker on field blur`, () => {
-        wrapper = shallow(<DatePicker
-            format="MMM D, YYYY"
-            value={ null }
-            onValueChange={ () => null }
-        />);
+        wrapper = shallow(<DatePicker format="MMM D, YYYY" value={null} onValueChange={() => null} />);
         (wrapper.instance() as any).handleBlur('from');
         expect((wrapper.instance().state as any).isOpen).toBe(false);
     });
@@ -69,16 +48,11 @@ describe('DataPicker', () => {
     it('should reset invalid value onBlur', () => {
         let baseValue = '2019-10-47';
         let newState: any = { inputValue: baseValue, value: baseValue };
-        wrapper = shallow(<DatePicker
-            value={ null }
-            onValueChange={ (nV: any) => newState.value = nV }
-            format='MMM D, YYYY'
-        />, {});
-        const instance = (wrapper.instance() as any);
+        wrapper = shallow(<DatePicker value={null} onValueChange={(nV: any) => (newState.value = nV)} format="MMM D, YYYY" />, {});
+        const instance = wrapper.instance() as any;
         instance.handleInputChange(baseValue);
         instance.handleBlur('from');
         expect(newState.value).toEqual(null);
-
     });
 
     it('should set new value', () => {
@@ -88,16 +62,12 @@ describe('DataPicker', () => {
         const displayedTestDate = dayjs(testValue);
 
         const onValueChangeSpy = jest.fn((nV: any) => null);
-        const setStateSpy = jest.fn((nextState) => null);
+        const setStateSpy = jest.fn(nextState => null);
 
         const pickerSetState = DatePicker.prototype.setState;
         DatePicker.prototype.setState = setStateSpy;
 
-        wrapper = shallow(<DatePicker
-            value={ null }
-            onValueChange={ onValueChangeSpy }
-            format={ inputFormat }
-        />, {});
+        wrapper = shallow(<DatePicker value={null} onValueChange={onValueChangeSpy} format={inputFormat} />, {});
         const instance: any = wrapper.instance();
 
         instance.setSelectedDate(testValue);
@@ -115,11 +85,7 @@ describe('DataPicker', () => {
         let newValue = '2019-09-10';
         const defaultFormat = 'MMM D, YYYY';
 
-        wrapper = shallow(<DatePicker
-            value={ '' }
-            onValueChange={ () => {} }
-            format={ defaultFormat }
-        />, {});
+        wrapper = shallow(<DatePicker value={''} onValueChange={() => {}} format={defaultFormat} />, {});
         const instance: any = wrapper.instance();
 
         wrapper.setProps({
@@ -133,18 +99,13 @@ describe('DataPicker', () => {
     it('should set isOpen on picker toggle', () => {
         let baseValue = '2019-10-47';
         let newState: any = { inputValue: baseValue, value: baseValue };
-        wrapper = shallow(<DatePicker
-            value={ baseValue }
-            onValueChange={ (nV: any) => newState.value = nV }
-            format="MMM D, YYYY"
-        />, {});
+        wrapper = shallow(<DatePicker value={baseValue} onValueChange={(nV: any) => (newState.value = nV)} format="MMM D, YYYY" />, {});
         const instance: any = wrapper.instance();
         expect(instance.state.isOpen).toEqual(false);
         instance.onToggle(true);
         expect(instance.state.isOpen).toEqual(true);
         instance.onToggle(false);
         expect(instance.state.isOpen).toEqual(false);
-
     });
 
     it('should set new value when you type date in input', () => {
@@ -152,16 +113,12 @@ describe('DataPicker', () => {
         const defaultFormat = 'DD-MM-YYYY';
 
         const onValueChangeSpy = jest.fn((nV: any) => null);
-        const setStateSpy = jest.fn((nextState) => null);
+        const setStateSpy = jest.fn(nextState => null);
 
         const pickerSetState = DatePicker.prototype.setState;
         DatePicker.prototype.setState = setStateSpy;
 
-        wrapper = shallow(<DatePicker
-            value={ null }
-            onValueChange={ onValueChangeSpy }
-            format={ defaultFormat }
-        />, {});
+        wrapper = shallow(<DatePicker value={null} onValueChange={onValueChangeSpy} format={defaultFormat} />, {});
         const instance: any = wrapper.instance();
 
         instance.handleInputChange(baseValue);
@@ -174,11 +131,7 @@ describe('DataPicker', () => {
     it('should return format', () => {
         const defaultFormat = 'DD-MM-YYYY';
 
-        wrapper = shallow(<DatePicker
-            value={ null }
-            onValueChange={ () => { } }
-            format={ defaultFormat }
-        />, {});
+        wrapper = shallow(<DatePicker value={null} onValueChange={() => {}} format={defaultFormat} />, {});
         const instance: any = wrapper.instance();
         let format = instance.getFormat();
 
@@ -189,11 +142,7 @@ describe('DataPicker', () => {
         const defaultFormat = 'DD-MM-YYYY';
         let baseValue = '2019-10-10';
 
-        wrapper = shallow(<DatePicker
-            value={ baseValue }
-            onValueChange={ () => { } }
-            format={ defaultFormat }
-        />, {});
+        wrapper = shallow(<DatePicker value={baseValue} onValueChange={() => {}} format={defaultFormat} />, {});
         const instance: any = wrapper.instance();
 
         let value = instance.getValue();

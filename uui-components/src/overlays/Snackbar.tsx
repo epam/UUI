@@ -70,7 +70,11 @@ export class Snackbar extends React.Component<SnackbarProps> {
     }
 
     public renderItem(item: NotificationOperation, position: number) {
-        let isItemOnBottom = item.config.position === 'bot-left' || item.config.position === 'bot-right' || item.config.position === 'bot-center' || !item.config.position;
+        let isItemOnBottom =
+            item.config.position === 'bot-left' ||
+            item.config.position === 'bot-right' ||
+            item.config.position === 'bot-center' ||
+            !item.config.position;
         let isItemOnLeftSide = item.config.position === 'bot-left' || item.config.position === 'top-left' || !item.config.position;
         let isItemOnCenter = item.config.position === 'bot-center' || item.config.position === 'top-center';
         let style = uuiSnackbar.itemWrapper;
@@ -83,10 +87,21 @@ export class Snackbar extends React.Component<SnackbarProps> {
         const transitionRef = React.createRef<HTMLDivElement>();
 
         return (
-            <CSSTransition nodeRef={ transitionRef } classNames={ style } timeout={ 200 } key={ item.props.id }>
-                <div ref={ transitionRef } className={ isItemOnLeftSide ? uuiSnackbar.itemWrapper.self : isItemOnCenter ? uuiSnackbar.itemWrapperCenter.self : uuiSnackbar.itemWrapperRight.self } key={ item.props.key } style={ isItemOnBottom ? { bottom: position } : { top: position } }>
-                    <div className={ cx(uuiSnackbar.item.self) } ref={ node => this.updateHeight(item, node) }>
-                        { React.createElement(item.component, item.props) }
+            <CSSTransition nodeRef={transitionRef} classNames={style} timeout={200} key={item.props.id}>
+                <div
+                    ref={transitionRef}
+                    className={
+                        isItemOnLeftSide
+                            ? uuiSnackbar.itemWrapper.self
+                            : isItemOnCenter
+                            ? uuiSnackbar.itemWrapperCenter.self
+                            : uuiSnackbar.itemWrapperRight.self
+                    }
+                    key={item.props.key}
+                    style={isItemOnBottom ? { bottom: position } : { top: position }}
+                >
+                    <div className={cx(uuiSnackbar.item.self)} ref={node => this.updateHeight(item, node)}>
+                        {React.createElement(item.component, item.props)}
                     </div>
                 </div>
             </CSSTransition>
@@ -103,7 +118,9 @@ export class Snackbar extends React.Component<SnackbarProps> {
     }
 
     public render() {
-        const items: NotificationOperation[] = this.props.notifications ? this.props.notifications : this.context.uuiNotifications.getNotifications().slice().reverse();
+        const items: NotificationOperation[] = this.props.notifications
+            ? this.props.notifications
+            : this.context.uuiNotifications.getNotifications().slice().reverse();
         let botLeftOffset = offset;
         let botRightOffset = offset;
         let topLeftOffset = offset;
@@ -111,36 +128,41 @@ export class Snackbar extends React.Component<SnackbarProps> {
         let topCenterOffset = offset;
         let botCenterOffset = offset;
 
-        const botLeftItems = items.filter((item: NotificationOperation) => item.config.position === 'bot-left' || !item.config.position)
+        const botLeftItems = items
+            .filter((item: NotificationOperation) => item.config.position === 'bot-left' || !item.config.position)
             .map(this.renderItemWithOffset(botLeftOffset));
 
-        const botRightItems = items.filter((item: NotificationOperation) => item.config.position === 'bot-right')
+        const botRightItems = items
+            .filter((item: NotificationOperation) => item.config.position === 'bot-right')
             .map(this.renderItemWithOffset(botRightOffset));
 
-        const topLeftItems = items.filter((item: NotificationOperation) => item.config.position === 'top-left')
+        const topLeftItems = items
+            .filter((item: NotificationOperation) => item.config.position === 'top-left')
             .map(this.renderItemWithOffset(topLeftOffset));
 
-        const topRightItems = items.filter((item: NotificationOperation) => item.config.position === 'top-right')
+        const topRightItems = items
+            .filter((item: NotificationOperation) => item.config.position === 'top-right')
             .map(this.renderItemWithOffset(topRightOffset));
 
-        const topCenterItems = items.filter((item: NotificationOperation) => item.config.position === 'top-center')
+        const topCenterItems = items
+            .filter((item: NotificationOperation) => item.config.position === 'top-center')
             .map(this.renderItemWithOffset(topCenterOffset));
 
-        const botCenterItems = items.filter((item: NotificationOperation) => item.config.position === 'bot-center')
+        const botCenterItems = items
+            .filter((item: NotificationOperation) => item.config.position === 'bot-center')
             .map(this.renderItemWithOffset(botCenterOffset));
 
         return (
-            <div className={ cx(css.container, uuiSnackbar.snackbar, this.props.cx) } { ...this.props.rawProps } ref={ this.props.forwardedRef }>
+            <div className={cx(css.container, uuiSnackbar.snackbar, this.props.cx)} {...this.props.rawProps} ref={this.props.forwardedRef}>
                 <TransitionGroup>
-                    { botLeftItems }
-                    { botRightItems }
-                    { topLeftItems }
-                    { topRightItems }
-                    { topCenterItems }
-                    { botCenterItems }
+                    {botLeftItems}
+                    {botRightItems}
+                    {topLeftItems}
+                    {topRightItems}
+                    {topCenterItems}
+                    {botCenterItems}
                 </TransitionGroup>
             </div>
         );
     }
-
 }

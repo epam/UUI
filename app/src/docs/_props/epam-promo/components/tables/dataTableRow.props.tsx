@@ -8,9 +8,7 @@ import { TableContext } from './TableContext';
 const DataTableRowDoc = new DocBuilder<DataTableRowProps & DataTableRowMods>({ name: 'DataTableRow', component: DataTableRow })
     .implements([ColumnsHeaderRowDoc])
     .prop('value', {
-        examples: [
-            { name: 'person', value: demoData.personDemoData[1] },
-        ],
+        examples: [{ name: 'person', value: demoData.personDemoData[1] }],
         isRequired: true,
     })
     .prop('isFoldable', {
@@ -43,23 +41,23 @@ const DataTableRowDoc = new DocBuilder<DataTableRowProps & DataTableRowMods>({ n
         examples: [{ name: 'Can be dragged', value: { srcData: {} } }],
     })
     .prop('borderBottom', {
-        examples: [{ name: "gray30", value: "gray30", isDefault: true }],
-        defaultValue: "none",
+        examples: [{ name: 'gray30', value: 'gray30', isDefault: true }],
+        defaultValue: 'none',
     })
     .prop('onCheck', {
         examples: ctx => [ctx.getCallback('onCheck')],
-       })
+    })
     .prop('onClick', {
-         examples: ctx => [ctx.getCallback('onClick')],
-        })
+        examples: ctx => [ctx.getCallback('onClick')],
+    })
     .prop('onFold', {
         examples: ctx => [ctx.getCallback('onFold')],
-       })
+    })
     .prop('onSelect', {
         examples: ctx => [ctx.getCallback('onSelect')],
-       })
+    })
     .prop('size', {
-        examples: [{ name: "30", value: "30", isDefault: true }, "36"],
+        examples: [{ name: '30', value: '30', isDefault: true }, '36'],
         defaultValue: '36',
     })
     .prop('isLoading', {

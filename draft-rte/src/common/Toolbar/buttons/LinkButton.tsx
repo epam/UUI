@@ -9,20 +9,16 @@ import { getEntityRange, getSelectionText } from '../../../utils';
 import { LinkModalState, showLinkModal } from '../modals/LinkModal';
 
 export class LinkButton extends React.Component<DraftButtonProps> {
-
     static contextType = UuiContext;
     context: UuiContexts;
 
     onMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
-    }
+    };
 
     isLinkSelected = () => {
-        return this.props.value && EditorUtils.hasEntity(
-            this.props.value,
-            'LINK',
-        );
-    }
+        return this.props.value && EditorUtils.hasEntity(this.props.value, 'LINK');
+    };
 
     handleClick = (href: string, displayText: string, isRemove: boolean = false) => {
         if (isRemove) {
@@ -58,7 +54,7 @@ export class LinkButton extends React.Component<DraftButtonProps> {
             newEditorState = EditorState.set(this.props.value, { currentContent: contentStateWithLink });
         }
         this.props.onValueChange(newEditorState);
-    }
+    };
 
     render() {
         let modalInitialState: LinkModalState;
@@ -79,17 +75,17 @@ export class LinkButton extends React.Component<DraftButtonProps> {
         }
 
         return (
-            <div
-                onMouseDown={ this.onMouseDown }
-            >
+            <div onMouseDown={this.onMouseDown}>
                 <IconButton
-                    color={ this.isLinkSelected() ? 'sky' : 'night600' }
-                    onClick={ () => {
+                    color={this.isLinkSelected() ? 'sky' : 'night600'}
+                    onClick={() => {
                         showLinkModal(this.context, modalInitialState)
-                            .then(data => { this.handleClick(data.href, data.displayText, data.isRemove); })
+                            .then(data => {
+                                this.handleClick(data.href, data.displayText, data.isRemove);
+                            })
                             .catch(() => null);
-                    } }
-                    icon={ LinkIcon }
+                    }}
+                    icon={LinkIcon}
                 />
             </div>
         );

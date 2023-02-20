@@ -13,15 +13,10 @@ export interface LinkButtonMods {
 }
 
 function applyLinkButtonMods(mods: LinkButtonMods & ButtonProps) {
-    return [
-        'link-button-vars',
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        ...getIconClass(mods),
-    ];
+    return ['link-button-vars', css.root, css['size-' + (mods.size || defaultSize)], ...getIconClass(mods)];
 }
 
-export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, (props) => ({
+export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, props => ({
     dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
     clearIcon: systemIcons[props.size || defaultSize].clear,
 }));

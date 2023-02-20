@@ -12,17 +12,16 @@ export interface TextMods extends TextSettings {
 }
 
 function applyTextMods(mods: TextMods) {
-    const textClasses = getTextClasses({
-        size: mods.size || '36',
-        lineHeight: mods.lineHeight,
-        fontSize: mods.fontSize,
-    }, false);
+    const textClasses = getTextClasses(
+        {
+            size: mods.size || '36',
+            lineHeight: mods.lineHeight,
+            fontSize: mods.fontSize,
+        },
+        false
+    );
 
-    return [
-        css.root,
-        css['font-' + (mods.font || 'sans')],
-        css['text-color-' + (mods.color || 'gray80')],
-    ].concat(textClasses);
+    return [css.root, css['font-' + (mods.font || 'sans')], css['text-color-' + (mods.color || 'gray80')]].concat(textClasses);
 }
 
 export const Text = withMods<TextProps, TextMods>(uuiText, applyTextMods);

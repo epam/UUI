@@ -11,7 +11,6 @@ interface ColorButtonProps extends DraftButtonProps {
 }
 
 export class ColorButton extends React.Component<ColorButtonProps, any> {
-
     state = {
         color: this.props.textColors[0],
     };
@@ -21,20 +20,18 @@ export class ColorButton extends React.Component<ColorButtonProps, any> {
 
     onMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault();
-    }
+    };
 
     toggleColor(toggledColor: string) {
         const editorState = this.props.value;
         const selection = editorState.getSelection();
 
-        const nextContentState = this.props.textColors
-        .reduce((contentState, color) => Modifier.removeInlineStyle(contentState, selection, color), editorState.getCurrentContent());
-
-        let nextEditorState = EditorState.push(
-            editorState,
-            nextContentState,
-            'change-inline-style',
+        const nextContentState = this.props.textColors.reduce(
+            (contentState, color) => Modifier.removeInlineStyle(contentState, selection, color),
+            editorState.getCurrentContent()
         );
+
+        let nextEditorState = EditorState.push(editorState, nextContentState, 'change-inline-style');
 
         const currentStyle = editorState.getCurrentInlineStyle();
         const hasToggledColor = currentStyle.has(toggledColor);
@@ -44,10 +41,7 @@ export class ColorButton extends React.Component<ColorButtonProps, any> {
         }
 
         if (!hasToggledColor) {
-            nextEditorState = RichUtils.toggleInlineStyle(
-                nextEditorState,
-                toggledColor,
-            );
+            nextEditorState = RichUtils.toggleInlineStyle(nextEditorState, toggledColor);
         }
 
         this.props.onValueChange(nextEditorState);
@@ -55,49 +49,32 @@ export class ColorButton extends React.Component<ColorButtonProps, any> {
     }
 
     render() {
-
         return (
-            <div
-                onMouseDown={ this.onMouseDown }
-            >
-                <div
-                    className={ css.colorPicker }
-                    onClick={ () => this.toggleColor(this.state.color) }
-                >
-                    <div className={ css.textColor }> A </div>
-                    <div
-                        className={ css.colorLine }
-                        style={ { background: colorStyle[this.state.color] } }
-                    />
+            <div onMouseDown={this.onMouseDown}>
+                <div className={css.colorPicker} onClick={() => this.toggleColor(this.state.color)}>
+                    <div className={css.textColor}> A </div>
+                    <div className={css.colorLine} style={{ background: colorStyle[this.state.color] }} />
                     <Dropdown
-                        renderTarget={ (props) => (
-                            <Button
-                                { ...props }
-                                isDropdown
-                                cx={ css.button }
-                                size='30'
-                                fill={ 'white' }
-                            />
-                        ) }
-                        renderBody={ (props) => (
-                            <div className={ css.colors }>
-                                {
-                                    this.props.textColors.map(style => {
-                                        return <div
-                                            key={ style }
-                                            className={ css.colorButton }
-                                            style={ { background: colorStyle[style] } }
-                                            onClick={ (e) => {
+                        renderTarget={props => <Button {...props} isDropdown cx={css.button} size="30" fill={'white'} />}
+                        renderBody={props => (
+                            <div className={css.colors}>
+                                {this.props.textColors.map(style => {
+                                    return (
+                                        <div
+                                            key={style}
+                                            className={css.colorButton}
+                                            style={{ background: colorStyle[style] }}
+                                            onClick={e => {
                                                 this.toggleColor(style);
                                                 e.stopPropagation();
                                                 props.onClose();
-                                            } }
-                                        />;
-                                    })
-                                }
+                                            }}
+                                        />
+                                    );
+                                })}
                             </div>
-                        ) }
-                        placement={ "bottom-end" }
+                        )}
+                        placement={'bottom-end'}
                     />
                 </div>
             </div>

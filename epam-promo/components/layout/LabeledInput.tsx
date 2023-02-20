@@ -5,19 +5,15 @@ import { LabeledInput as uuiLabeledInput, LabeledInputProps } from '@epam/uui-co
 import { Tooltip } from '../overlays';
 import { systemIcons } from '../../icons/icons';
 
-
 const defaultSize = '36';
 
 export interface LabeledInputMods extends types.SizeMod {}
 
 function applyLabeledInputMods(mods: LabeledInputMods) {
-    return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-    ];
+    return [css.root, css['size-' + (mods.size || defaultSize)]];
 }
 
-export const LabeledInput = withMods<LabeledInputProps, LabeledInputMods>(uuiLabeledInput, applyLabeledInputMods, (props) => ({
+export const LabeledInput = withMods<LabeledInputProps, LabeledInputMods>(uuiLabeledInput, applyLabeledInputMods, props => ({
     Tooltip,
     infoIcon: systemIcons[props.size || defaultSize].help,
 }));

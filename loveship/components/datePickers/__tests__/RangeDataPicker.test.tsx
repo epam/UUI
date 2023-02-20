@@ -12,10 +12,7 @@ describe('RangeDataPicker', () => {
     });
 
     it('should change input value after change props', () => {
-        wrapper = shallow(<RangeDatePicker
-            value={ null }
-            onValueChange={ () => { } }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={null} onValueChange={() => {}} />, {});
 
         wrapper.setProps({ value: { from: '2017-01-22', to: '2017-01-28' } });
         expect(wrapper.state('inputValue')).toEqual({ from: 'Jan 22, 2017', to: 'Jan 28, 2017' });
@@ -23,59 +20,39 @@ describe('RangeDataPicker', () => {
     });
 
     it('should render with default props', () => {
-
-        wrapper = shallow(<RangeDatePicker
-            value={ null }
-            onValueChange={ () => { } }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={null} onValueChange={() => {}} />, {});
 
         expect(wrapper.isEmptyRender()).toBe(false);
     });
 
     it('should change state on picker clear', () => {
         let newState: any = {};
-        wrapper = shallow(<RangeDatePicker
-            value={ null }
-            onValueChange={ (nV: any) => newState = nV }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={null} onValueChange={(nV: any) => (newState = nV)} />, {});
         (wrapper.instance() as any).onClear();
         expect(newState.from).toEqual(null);
         expect(newState.to).toEqual(null);
-
     });
 
     it(`should open picker on 'from' field focus`, () => {
-        wrapper = shallow(<RangeDatePicker
-            value={ null }
-            onValueChange={ () => null }
-        />);
+        wrapper = shallow(<RangeDatePicker value={null} onValueChange={() => null} />);
         (wrapper.instance() as any).handleFocus('from');
         expect((wrapper.instance().state as any).isOpen).toBe(true);
     });
 
     it(`should close picker on 'from' field blur`, () => {
-        wrapper = shallow(<RangeDatePicker
-            value={ null }
-            onValueChange={ () => null }
-        />);
+        wrapper = shallow(<RangeDatePicker value={null} onValueChange={() => null} />);
         (wrapper.instance() as any).handleBlur('from');
         expect((wrapper.instance().state as any).isOpen).toBe(false);
     });
 
     it(`should open picker on 'to' field focus`, () => {
-        wrapper = shallow(<RangeDatePicker
-            value={ null }
-            onValueChange={ () => null }
-        />);
+        wrapper = shallow(<RangeDatePicker value={null} onValueChange={() => null} />);
         (wrapper.instance() as any).handleFocus('to');
         expect((wrapper.instance().state as any).isOpen).toBe(true);
     });
 
     it(`should close picker on 'to' field blur`, () => {
-        wrapper = shallow(<RangeDatePicker
-            value={ null }
-            onValueChange={ () => null }
-        />);
+        wrapper = shallow(<RangeDatePicker value={null} onValueChange={() => null} />);
         (wrapper.instance() as any).handleBlur('to');
         expect((wrapper.instance().state as any).isOpen).toBe(false);
     });
@@ -83,11 +60,8 @@ describe('RangeDataPicker', () => {
     it('should reset invalid value onBlur', () => {
         let baseValue = { from: '2019-10-47', to: '2019-10-07' };
         const onValueChangeSpy = jest.fn((nV: any) => null);
-        wrapper = shallow(<RangeDatePicker
-            value={ baseValue }
-            onValueChange={ onValueChangeSpy }
-        />, {});
-        const event = { target: { value: baseValue} };
+        wrapper = shallow(<RangeDatePicker value={baseValue} onValueChange={onValueChangeSpy} />, {});
+        const event = { target: { value: baseValue } };
         (wrapper.instance() as any).handleBlur(event, 'from');
         expect(onValueChangeSpy).toHaveBeenLastCalledWith({
             from: null,
@@ -99,15 +73,12 @@ describe('RangeDataPicker', () => {
         let baseValue = { from: '2019-09-10', to: '2019-09-12' };
 
         const onValueChangeSpy = jest.fn((nV: any) => null);
-        const setStateSpy = jest.fn((nextState) => null);
+        const setStateSpy = jest.fn(nextState => null);
 
         const pickerSetState = RangeDatePicker.prototype.setState;
         RangeDatePicker.prototype.setState = setStateSpy;
 
-        wrapper = shallow(<RangeDatePicker
-            value={ { from: null, to: null } }
-            onValueChange={ onValueChangeSpy }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={{ from: null, to: null }} onValueChange={onValueChangeSpy} />, {});
         const instance: any = wrapper.instance();
 
         instance.setValue({
@@ -154,11 +125,7 @@ describe('RangeDataPicker', () => {
 
         const pickerSetValue = RangeDatePicker.prototype.setValue;
 
-        wrapper = shallow(<RangeDatePicker
-            value={ value }
-            onValueChange={ () => { } }
-            format={ 'MMM D, YYYY' }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={value} onValueChange={() => {}} format={'MMM D, YYYY'} />, {});
         const instance: any = wrapper.instance();
         instance.setValue = setValueSpy;
 
@@ -185,15 +152,12 @@ describe('RangeDataPicker', () => {
     it('should set state to default on picker close', () => {
         let baseValue = { from: '2019-09-10', to: '2019-10-10' };
 
-        const setStateSpy = jest.fn((nextState) => null);
+        const setStateSpy = jest.fn(nextState => null);
 
         const pickerSetState = RangeDatePicker.prototype.setState;
         RangeDatePicker.prototype.setState = setStateSpy;
 
-        wrapper = shallow(<RangeDatePicker
-            value={ baseValue }
-            onValueChange={ () => { } }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={baseValue} onValueChange={() => {}} />, {});
         const instance: any = wrapper.instance();
 
         instance.toggleOpening(false, 'from');
@@ -212,15 +176,12 @@ describe('RangeDataPicker', () => {
         let baseValue = { from: '2019-09-10', to: '2019-09-12' };
 
         const onValueChangeSpy = jest.fn((nV: any) => null);
-        const setStateSpy = jest.fn((nextState) => null);
+        const setStateSpy = jest.fn(nextState => null);
 
         const pickerSetState = RangeDatePicker.prototype.setState;
         RangeDatePicker.prototype.setState = setStateSpy;
 
-        wrapper = shallow(<RangeDatePicker
-            value={ baseValue }
-            onValueChange={ onValueChangeSpy }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={baseValue} onValueChange={onValueChangeSpy} />, {});
         const instance: any = wrapper.instance();
 
         instance.handleCancel();
@@ -234,10 +195,7 @@ describe('RangeDataPicker', () => {
     it('should get value', () => {
         let baseValue = { from: '2019-09-10', to: '2019-09-12' };
 
-        wrapper = shallow(<RangeDatePicker
-            value={ baseValue }
-            onValueChange={ () => { } }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={baseValue} onValueChange={() => {}} />, {});
         const instance: any = wrapper.instance();
 
         let value = instance.getValue();
@@ -257,10 +215,7 @@ describe('RangeDataPicker', () => {
         const focusSpy = jest.fn((nV: any) => null);
         const pickerSetValue = RangeDatePicker.prototype.setValue;
 
-        wrapper = shallow(<RangeDatePicker
-            value={ { from: null, to: null } }
-            onValueChange={ () => { } }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={{ from: null, to: null }} onValueChange={() => {}} />, {});
         const instance: any = wrapper.instance();
         instance.setValue = setValueSpy;
         wrapper.setState({ inFocus: 'from' });
@@ -279,11 +234,13 @@ describe('RangeDataPicker', () => {
         expect(instance.state.inFocus).toEqual('to');
         //arrived new value
 
-        wrapper.setProps({ value: {
-            displayedDate: inputValue,
-            selectedDate: baseValue,
-            view: 'DAY_SELECTION',
-        } });
+        wrapper.setProps({
+            value: {
+                displayedDate: inputValue,
+                selectedDate: baseValue,
+                view: 'DAY_SELECTION',
+            },
+        });
         instance.handleCancel();
 
         instance.onRangeChange({
@@ -300,24 +257,20 @@ describe('RangeDataPicker', () => {
         expect(instance.state.inFocus).toEqual('from');
         //arrived same value
 
-
         instance.setValue = pickerSetValue;
     });
 
     it('should format value onBlur', () => {
         let baseValue = { from: '2019-09-10', to: '2019-10-10' };
 
-        const setStateSpy = jest.fn((nextState) => null);
+        const setStateSpy = jest.fn(nextState => null);
 
         const pickerSetState = RangeDatePicker.prototype.setState;
         RangeDatePicker.prototype.setState = setStateSpy;
 
-        wrapper = shallow(<RangeDatePicker
-            value={ baseValue }
-            onValueChange={ () => { } }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={baseValue} onValueChange={() => {}} />, {});
         const instance: any = wrapper.instance();
-        const event = { target: { value: baseValue} };
+        const event = { target: { value: baseValue } };
 
         (wrapper.instance() as any).handleBlur(event, 'from');
 
@@ -329,10 +282,7 @@ describe('RangeDataPicker', () => {
     });
 
     it('should return format', () => {
-        wrapper = shallow(<RangeDatePicker
-            value={ { from: null, to: null } }
-            onValueChange={ () => { } }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={{ from: null, to: null }} onValueChange={() => {}} />, {});
         const instance: any = wrapper.instance();
         let format = instance.getFormat();
 
@@ -349,15 +299,12 @@ describe('RangeDataPicker', () => {
         let baseValue = { from: '2019-09-10', to: '2019-09-10' };
 
         const onValueChangeSpy = jest.fn((nV: any) => null);
-        const setStateSpy = jest.fn((nextState) => null);
+        const setStateSpy = jest.fn(nextState => null);
 
         const pickerSetState = RangeDatePicker.prototype.setState;
         RangeDatePicker.prototype.setState = setStateSpy;
 
-        wrapper = shallow(<RangeDatePicker
-            value={ { from: null, to: null } }
-            onValueChange={ onValueChangeSpy }
-        />, {});
+        wrapper = shallow(<RangeDatePicker value={{ from: null, to: null }} onValueChange={onValueChangeSpy} />, {});
         const instance: any = wrapper.instance();
 
         instance.setValue({
@@ -395,5 +342,3 @@ describe('RangeDataPicker', () => {
         RangeDatePicker.prototype.setState = pickerSetState;
     });
 });
-
-

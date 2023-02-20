@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
 import RemarkGfm from 'remark-gfm';
-import * as React from "react";
+import * as React from 'react';
 
 interface UuiReactMarkdownProps {
     content: string;
@@ -20,13 +20,13 @@ export function UuiReactMarkdown(props: UuiReactMarkdownProps) {
     const comp = React.useMemo(() => {
         const c: Components = {};
         if (isReplaceStrongToBold) {
-            c.strong = ({ node, ...props }) => (<b>{ props.children[0] }</b>);
+            c.strong = ({ node, ...props }) => <b>{props.children[0]}</b>;
         }
         return c;
     }, [isReplaceStrongToBold]);
     return (
-        <ReactMarkdown remarkPlugins={ [RemarkGfm] } components={ comp }>
-            { props.content }
+        <ReactMarkdown remarkPlugins={[RemarkGfm]} components={comp}>
+            {props.content}
         </ReactMarkdown>
     );
 }

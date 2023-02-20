@@ -25,7 +25,4 @@ export function applyPageButtonMods(mods: PageButtonMods & ButtonProps) {
     ];
 }
 
-export const PageButton = withMods<ButtonProps, PageButtonMods>(
-    Button,
-    applyPageButtonMods,
-);
+export const PageButton = withMods<ButtonProps, PageButtonMods>(Button, applyPageButtonMods);

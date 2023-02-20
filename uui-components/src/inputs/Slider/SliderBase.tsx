@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { IHasCX, IEditable, IDisableable, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 
-export interface SliderBaseProps<TSelection> extends IHasCX, IEditable<TSelection>, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface SliderBaseProps<TSelection>
+    extends IHasCX,
+        IEditable<TSelection>,
+        IDisableable,
+        IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
+        IHasForwardedRef<HTMLDivElement> {
     /** Min value (when slider is at leftmost position) */
     min: number;
     /** Max value (when slider is at rightmost position) */
@@ -50,7 +55,7 @@ export abstract class SliderBase<TSelection, TState extends SliderBaseState> ext
     }
 
     roundToStep(value: number, step: number) {
-        let normalized = this.props.min + Math.round(Math.abs(((value - this.props.min) / step))) * step;
+        let normalized = this.props.min + Math.round(Math.abs((value - this.props.min) / step)) * step;
         return normalized > this.props.max ? this.props.max : normalized;
     }
 
@@ -58,23 +63,23 @@ export abstract class SliderBase<TSelection, TState extends SliderBaseState> ext
         if (this.state.valueWidth * (this.props.max - this.props.min) !== this.slider?.offsetWidth) {
             this.forceUpdate();
         }
-    }
+    };
 
     handleMouseDown = (e: React.MouseEvent<any>) => {
         this.setState({ isActive: true });
-    }
+    };
 
     handleMouseUp = (e: Event) => {
         this.state.isActive && this.setState({ isActive: false });
-    }
+    };
 
-    getValue = (mouseX: number , valueWidth?: number) => {
+    getValue = (mouseX: number, valueWidth?: number) => {
         if (mouseX < this.slider.getBoundingClientRect().left) {
             return this.props.min;
         } else if (mouseX > this.slider.getBoundingClientRect().right) {
             return this.props.max;
         } else {
-            return this.roundToStep((mouseX - this.slider.getBoundingClientRect().left) / valueWidth + this.props.min, this.props.step) ;
+            return this.roundToStep((mouseX - this.slider.getBoundingClientRect().left) / valueWidth + this.props.min, this.props.step);
         }
-    }
+    };
 }

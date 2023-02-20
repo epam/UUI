@@ -20,7 +20,19 @@ export type EpamAdditionalColor = EpamPrimaryColor | 'cyan' | 'orange' | 'purple
 export const allEpamAdditionalColors: EpamAdditionalColor[] = [...allEpamPrimaryColors, 'cyan', 'orange', 'purple', 'violet'];
 
 export type EpamGrayscaleColor = 'white' | 'gray5' | 'gray10' | 'gray20' | 'gray30' | 'gray40' | 'gray50' | 'gray60' | 'gray70' | 'gray80' | 'gray90';
-export const allEpamGrayscaleColors: EpamGrayscaleColor[] = ['white', 'gray5', 'gray10', 'gray20', 'gray30', 'gray40', 'gray50', 'gray60', 'gray70', 'gray80', 'gray90'];
+export const allEpamGrayscaleColors: EpamGrayscaleColor[] = [
+    'white',
+    'gray5',
+    'gray10',
+    'gray20',
+    'gray30',
+    'gray40',
+    'gray50',
+    'gray60',
+    'gray70',
+    'gray80',
+    'gray90',
+];
 
 export type EpamColor = EpamPrimaryColor | EpamGrayscaleColor | EpamAdditionalColor;
 export const commonControlColors: EpamColor[] = ['blue', 'green', 'white'];

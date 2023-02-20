@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { ModalFooter, ModalFooterProps } from '@epam/promo';
-import { DefaultContext} from '../../docs';
+import { DefaultContext } from '../../docs';
 import { FlexRow } from '@epam/promo';
 import { Text } from '@epam/promo';
 import { Button } from '@epam/promo';
@@ -13,17 +13,21 @@ const ModalFooterDoc = new DocBuilder<ModalFooterProps>({ name: 'ModalFooter', c
         examples: [
             {
                 isDefault: true,
-                value: <React.Fragment>
-                <FlexRow vPadding='12' spacing='6'>
-                    <FlexRow>
-                        <Text size="30" font='sans'>Modal footer text in children props</Text>
-                    </FlexRow>
-                    <FlexRow spacing='6'>
-                        <Button onClick={ () => {} } color='green' caption='Ok'/>
-                        <Button onClick={ () => {} } fill='none' color='gray50' caption='Cancel'/>
-                    </FlexRow>
-                </FlexRow>
-                </React.Fragment>,
+                value: (
+                    <React.Fragment>
+                        <FlexRow vPadding="12" spacing="6">
+                            <FlexRow>
+                                <Text size="30" font="sans">
+                                    Modal footer text in children props
+                                </Text>
+                            </FlexRow>
+                            <FlexRow spacing="6">
+                                <Button onClick={() => {}} color="green" caption="Ok" />
+                                <Button onClick={() => {}} fill="none" color="gray50" caption="Cancel" />
+                            </FlexRow>
+                        </FlexRow>
+                    </React.Fragment>
+                ),
                 name: 'Caption with buttons',
             },
         ],

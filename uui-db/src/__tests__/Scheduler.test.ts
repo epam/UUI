@@ -7,12 +7,12 @@ const testApi = async (params: any) => {
     return params;
 };
 
-describe("db - Scheduler", () => {
+describe('db - Scheduler', () => {
     beforeEach(() => {
         //testTask.mockReset();
     });
 
-    it("runs and completes a single task", async () => {
+    it('runs and completes a single task', async () => {
         const scheduler = new Scheduler();
         const testTask = jest.fn(testApi);
         const result = await scheduler.run(() => testTask(123));

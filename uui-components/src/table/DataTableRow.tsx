@@ -1,7 +1,19 @@
-import React, { ReactNode, Component } from "react";
+import React, { ReactNode, Component } from 'react';
 import isEqual from 'lodash.isequal';
-import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable } from '@epam/uui-core';
-import { DataTableRowContainer } from "./DataTableRowContainer";
+import {
+    DataColumnProps,
+    DataRowProps,
+    FlexRowProps,
+    DataTableCellProps,
+    uuiMod,
+    DndActorRenderParams,
+    DndActor,
+    uuiMarkers,
+    DataTableRowProps,
+    Lens,
+    IEditable,
+} from '@epam/uui-core';
+import { DataTableRowContainer } from './DataTableRowContainer';
 
 const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
@@ -32,7 +44,10 @@ function compareProps(props: any, nextProps: any) {
     return isDeepEqual;
 }
 
-const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(props: DataTableRowProps<TItem, TId>, ref: React.ForwardedRef<HTMLDivElement>) {
+const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(
+    props: DataTableRowProps<TItem, TId>,
+    ref: React.ForwardedRef<HTMLDivElement>
+) {
     const rowLens = Lens.onEditable(props as IEditable<TItem>);
 
     const renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
@@ -48,22 +63,22 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             isLastColumn,
             rowLens,
         });
-    }
+    };
 
     const renderRow = (params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
         return (
             <DataTableRowContainer
-                columns={ props.columns }
-                ref={ params.ref || ref }
-                renderCell={ renderCell }
-                onClick={ clickHandler && (() => clickHandler(props)) }
-                rawProps={ {
+                columns={props.columns}
+                ref={params.ref || ref}
+                renderCell={renderCell}
+                onClick={clickHandler && (() => clickHandler(props))}
+                rawProps={{
                     ...params.eventHandlers,
                     role: 'row',
                     'aria-expanded': props.isFolded == undefined ? undefined : !props.isFolded,
                     ...(props.isSelectable && { 'aria-selected': props.isSelected }),
-                } }
-                cx={ [
+                }}
+                cx={[
                     params.classNames,
                     props.isSelected && uuiMod.selected,
                     params.isDraggable && uuiMarkers.draggable,
@@ -71,9 +86,9 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
                     uuiDataTableRow.uuiTableRow,
                     props.cx,
                     props.isFocused && uuiMod.focus,
-                ] }
-                overlays={ overlays }
-                link={ props.link }
+                ]}
+                overlays={overlays}
+                link={props.link}
             />
         );
     };
@@ -81,12 +96,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
     const clickHandler = props.onClick || props.onSelect || props.onFold || props.onCheck;
 
     if (props.dnd && (props.dnd.srcData || props.dnd.canAcceptDrop)) {
-        return (
-            <DndActor
-                { ...props.dnd }
-                render={ params => renderRow(params, clickHandler, props.renderDropMarkers?.(params)) }
-            />
-        );
+        return <DndActor {...props.dnd} render={params => renderRow(params, clickHandler, props.renderDropMarkers?.(params))} />;
     } else {
         return renderRow({}, clickHandler);
     }

@@ -1,9 +1,9 @@
-import { Editor, RenderBlockProps } from "slate-react";
-import { Editor as CoreEditor, Block, KeyUtils } from "slate";
-import * as React from "react";
-import { NotePluginBlock } from "./NotePluginBlock";
-import { Dropdown } from "@epam/uui-components";
-import { ReactComponent as NoteIcon } from "../../icons/info-block-quote.svg";
+import { Editor, RenderBlockProps } from 'slate-react';
+import { Editor as CoreEditor, Block, KeyUtils } from 'slate';
+import * as React from 'react';
+import { NotePluginBlock } from './NotePluginBlock';
+import { Dropdown } from '@epam/uui-components';
+import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { NoteBar } from '../../implementation/NoteBar';
 
@@ -13,13 +13,13 @@ export const notePlugin = () => {
     const renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
         switch (props.node.type) {
             case 'note-error':
-                return <NotePluginBlock { ...props } type='error'/>;
+                return <NotePluginBlock {...props} type="error" />;
             case 'note-warning':
-                return <NotePluginBlock { ...props } type='warning'/>;
+                return <NotePluginBlock {...props} type="warning" />;
             case 'note-link':
-                return <NotePluginBlock { ...props } type='link'/>;
+                return <NotePluginBlock {...props} type="link" />;
             case 'note-quote':
-                return <NotePluginBlock { ...props } type='quote'/>;
+                return <NotePluginBlock {...props} type="quote" />;
             default:
                 return next();
         }
@@ -48,7 +48,6 @@ export const notePlugin = () => {
             return editor.unwrapBlock('note');
         }
 
-
         if (event.keyCode == 13 && (editor as any).hasBlock(noteBlocks)) {
             return (editor as any).insertEmptyBlock(editor);
         }
@@ -68,15 +67,14 @@ export const notePlugin = () => {
 };
 
 const ToolbarNoteButton = (editorProps: { editor: any }) => {
-    return <Dropdown
-        renderTarget={ (props) => <ToolbarButton
-            icon={ NoteIcon }
-            isActive={ editorProps.editor.hasBlock(noteBlocks) }
-            onClick={ () => null }
-            { ...props }
-        /> }
-        renderBody={ (props) => <NoteBar editor={ editorProps.editor } { ...props } /> }
-        placement='top-start'
-        modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
-    />;
+    return (
+        <Dropdown
+            renderTarget={props => (
+                <ToolbarButton icon={NoteIcon} isActive={editorProps.editor.hasBlock(noteBlocks)} onClick={() => null} {...props} />
+            )}
+            renderBody={props => <NoteBar editor={editorProps.editor} {...props} />}
+            placement="top-start"
+            modifiers={[{ name: 'offset', options: { offset: [0, 3] } }]}
+        />
+    );
 };

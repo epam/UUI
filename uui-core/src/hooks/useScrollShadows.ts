@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 interface UseScrollShadowsProps {
     root?: HTMLElement;
@@ -8,7 +8,7 @@ interface UseScrollShadowsApi {
     vertical: boolean;
     horizontalLeft: boolean;
     horizontalRight: boolean;
-};
+}
 
 export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShadowsApi {
     const [vertical, setVertical] = React.useState({ active: false });
@@ -82,4 +82,4 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
         horizontalLeft: horizontal.right || shouldHaveRightShadow(root),
         horizontalRight: horizontal.left || shouldHaveLeftShadow(root),
     };
-};
+}

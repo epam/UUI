@@ -12,10 +12,7 @@ export interface SpinnerMods {
 }
 
 export function applySpinnerMods(mods: SpinnerMods) {
-    return [
-        styles['spinner-color-' + (mods.color || 'blue')],
-        css.root,
-    ];
+    return [styles['spinner-color-' + (mods.color || 'blue')], css.root];
 }
 
 export const Spinner = withMods<SpinnerProps, SpinnerMods>(uuiSpinner, applySpinnerMods);

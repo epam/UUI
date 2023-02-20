@@ -11,16 +11,12 @@ export class IconButtonDoc extends BaseDocsBlock {
         };
     }
 
-
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='icon-button-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/iconButton/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="icon-button-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/iconButton/Basic.example.tsx" />
             </>
         );
     }

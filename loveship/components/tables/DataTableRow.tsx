@@ -10,14 +10,10 @@ import { DropMarker } from '../dnd';
 // As we need our mods to style the cell properly, we extract them from DataTableCellProps.rowProps, which is a hack, but it's reliable enough.
 export const renderCell = (props: DataTableCellProps) => {
     const mods = props.rowProps as DataTableRowMods & DataTableRowProps;
-    return <DataTableCell
-        size={ mods.size }
-        padding={ mods.padding }
-        { ...props }
-    />;
+    return <DataTableCell size={mods.size} padding={mods.padding} {...props} />;
 };
 
-export const renderDropMarkers = (props: DndActorRenderParams) => <DropMarker { ...props } enableBlocker={ true } />;
+export const renderDropMarkers = (props: DndActorRenderParams) => <DropMarker {...props} enableBlocker={true} />;
 
 export const propsMods = { renderCell, renderDropMarkers };
 
@@ -29,5 +25,5 @@ export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
         css['border-' + (mods.borderBottom || 'night300')],
         css['size-' + (mods.size || '30')],
     ],
-    mods => propsMods,
+    mods => propsMods
 );

@@ -22,8 +22,7 @@ export interface ModalOperation {
 
 let idCounter = 0;
 
-export class ModalOperationCancelled {
-}
+export class ModalOperationCancelled {}
 
 export class ModalContext extends BaseContext implements IModalContext {
     private operations: ModalOperation[] = [];
@@ -49,7 +48,7 @@ export class ModalContext extends BaseContext implements IModalContext {
 
     private showModal<TParameters, TResult>(
         component: React.ComponentType<ModalComponentProps<TParameters, TResult>>,
-        parameters?: TParameters,
+        parameters?: TParameters
     ): Promise<TResult> {
         const layer = this.layoutCtx.getLayer();
         return new Promise((resolve, reject) => {
@@ -69,7 +68,7 @@ export class ModalContext extends BaseContext implements IModalContext {
                 zIndex: layer.zIndex,
                 depth: layer.depth,
                 isActive: true,
-                key: (idCounter++) + '',
+                key: idCounter++ + '',
                 parameters,
             };
 

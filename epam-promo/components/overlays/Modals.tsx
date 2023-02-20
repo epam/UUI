@@ -31,19 +31,27 @@ export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {}
 
 export const ModalHeader = React.forwardRef<HTMLDivElement, ModalHeaderProps>((props, ref) => (
     <FlexRow
-        background={ props.background || 'none' }
-        padding={ props.padding || '24' }
-        vPadding='12'
-        borderBottom={ props.borderBottom ? 'gray40' : undefined }
-        cx={ [css.modalHeader, props.cx] }
-        spacing='12'
-        ref={ ref }
-        rawProps={ props.rawProps }
+        background={props.background || 'none'}
+        padding={props.padding || '24'}
+        vPadding="12"
+        borderBottom={props.borderBottom ? 'gray40' : undefined}
+        cx={[css.modalHeader, props.cx]}
+        spacing="12"
+        ref={ref}
+        rawProps={props.rawProps}
     >
-        { props.title && <Text size='48' fontSize='18' font='sans-semibold'>{ props.title }</Text> }
-        { props.children }
-        { props.onClose && <FlexSpacer /> }
-        { props.onClose && <FlexCell shrink={ 0 } width='auto'><IconButton icon={ CrossIcon } onClick={ props.onClose } /></FlexCell> }
+        {props.title && (
+            <Text size="48" fontSize="18" font="sans-semibold">
+                {props.title}
+            </Text>
+        )}
+        {props.children}
+        {props.onClose && <FlexSpacer />}
+        {props.onClose && (
+            <FlexCell shrink={0} width="auto">
+                <IconButton icon={CrossIcon} onClick={props.onClose} />
+            </FlexCell>
+        )}
     </FlexRow>
 ));
 
@@ -51,14 +59,14 @@ export interface ModalFooterProps extends RowMods, ModalFooterCoreProps {}
 
 export const ModalFooter = React.forwardRef<HTMLDivElement, ModalFooterProps>((props, ref) => (
     <FlexRow
-        ref={ ref }
-        spacing={ props.spacing || '12' }
-        cx={ [css.modalFooter, props.borderTop && css.borderTop, props.cx] }
-        padding={ props.padding || '24' }
-        vPadding={ props.vPadding || '24' }
-        background={ props.background || 'none' }
-        rawProps={ props.rawProps }
+        ref={ref}
+        spacing={props.spacing || '12'}
+        cx={[css.modalFooter, props.borderTop && css.borderTop, props.cx]}
+        padding={props.padding || '24'}
+        vPadding={props.vPadding || '24'}
+        background={props.background || 'none'}
+        rawProps={props.rawProps}
     >
-        { props.children }
+        {props.children}
     </FlexRow>
 ));

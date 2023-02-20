@@ -1,7 +1,7 @@
-import React from "react";
-import { GroupedDataColumnProps } from "../types";
-import { ColumnsConfig, DataColumnProps } from "@epam/uui-core";
-import { isColumnFilteredOut, sortColumnsAndAddGroupKey } from "../columnsConfigurationUtils";
+import React from 'react';
+import { GroupedDataColumnProps } from '../types';
+import { ColumnsConfig, DataColumnProps } from '@epam/uui-core';
+import { isColumnFilteredOut, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';
 
 function getTestDataSet1() {
     const A: DataColumnProps = { key: '1', fix: 'left', caption: 'a', isAlwaysVisible: false, width: 10 };

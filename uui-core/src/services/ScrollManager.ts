@@ -1,5 +1,5 @@
 import { uuiMarkers } from '../constants';
-import { isClientSide } from "../helpers";
+import { isClientSide } from '../helpers';
 
 export interface ScrollPosition {
     x: number;
@@ -8,7 +8,7 @@ export interface ScrollPosition {
 
 /**
  * @deprecated will be removed in the next major release
-*/
+ */
 export class ScrollManager {
     public scrollPosition: ScrollPosition = {
         y: 0,
@@ -26,7 +26,7 @@ export class ScrollManager {
     };
 
     subscribers: { node: HTMLElement }[] = [];
-    scrollNodes: { node: HTMLElement, scrollHandler: any }[] = [];
+    scrollNodes: { node: HTMLElement; scrollHandler: any }[] = [];
 
     updateScrollPosition(scrollPosition: ScrollPosition) {
         if (scrollPosition.x === this.scrollPosition.x && scrollPosition.y === this.scrollPosition.y) {
@@ -102,7 +102,7 @@ export class ScrollManager {
     }
 
     updateXScroll(x: number) {
-        this.updateScrollPosition({...this.scrollPosition, x });
+        this.updateScrollPosition({ ...this.scrollPosition, x });
     }
 
     handleOnWheel(e: WheelEvent, node: HTMLElement) {
@@ -116,15 +116,17 @@ export class ScrollManager {
         }
     }
 
-    resizeObserver = isClientSide && new ResizeObserver(entries => {
-        for (let entry of entries) {
-            const contentRect = entry.contentRect;
+    resizeObserver =
+        isClientSide &&
+        new ResizeObserver(entries => {
+            for (let entry of entries) {
+                const contentRect = entry.contentRect;
 
-            if (contentRect.width !== this.scrollWidth || contentRect.width < this.scrollWidth) {
-                entries.forEach(element => this.updateMarkers(element.target as HTMLElement));
+                if (contentRect.width !== this.scrollWidth || contentRect.width < this.scrollWidth) {
+                    entries.forEach(element => this.updateMarkers(element.target as HTMLElement));
+                }
             }
-        }
-    });
+        });
 
     attachNode(node: HTMLElement) {
         this.subscribers.push({ node });
@@ -152,7 +154,7 @@ export class ScrollManager {
             node,
             scrollHandler,
         });
-    }
+    };
 
     detachScrollNode(node: HTMLElement) {
         const subscriber = this.scrollNodes.find(s => s.node === node);

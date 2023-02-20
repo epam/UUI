@@ -11,18 +11,9 @@ export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHea
     uuiDataTableHeaderRow,
     mods => [css.root],
     mods => ({
-        renderCell: props => <DataTableHeaderCell
-            { ...props }
-            size={ mods.size }
-            textCase={ mods.textCase || 'normal' }
-            key={ props.column.key }
-        />,
-        renderConfigButton: () => <LinkButton
-            key='configuration'
-            onClick={ mods.onConfigButtonClick }
-            cx={ css.configIcon }
-            size='30'
-            color='night600'
-            icon={ GearIcon }
-        />,
-    }));
+        renderCell: props => <DataTableHeaderCell {...props} size={mods.size} textCase={mods.textCase || 'normal'} key={props.column.key} />,
+        renderConfigButton: () => (
+            <LinkButton key="configuration" onClick={mods.onConfigButtonClick} cx={css.configIcon} size="30" color="night600" icon={GearIcon} />
+        ),
+    })
+);

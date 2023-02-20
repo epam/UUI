@@ -1,5 +1,5 @@
 export const windowMock = {
-    matchMedia: () => ({matches: false}),
+    matchMedia: () => ({ matches: false }),
     addEventListener: jest.fn(),
     removeEventListener: jest.fn(),
     document: {

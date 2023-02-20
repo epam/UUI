@@ -11,20 +11,21 @@ import { DataRowProps } from '@epam/uui-core';
 import css from './DocumentsPage.scss';
 
 type DocsQuery = {
-    id: string,
-    mode?: string,
-    skin?: UUI3 | UUI4,
-    category?: string,
+    id: string;
+    mode?: string;
+    skin?: UUI3 | UUI4;
+    category?: string;
 };
 
 export const DocumentsPage = () => {
-    const redirectTo = (query: DocsQuery) => svc.uuiRouter.redirect({
-        pathname: '/documents',
-        query,
-    });
+    const redirectTo = (query: DocsQuery) =>
+        svc.uuiRouter.redirect({
+            pathname: '/documents',
+            query,
+        });
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {
-        redirectTo({ id: items[0].id, mode: 'doc', skin: UUI4 })
+        redirectTo({ id: items[0].id, mode: 'doc', skin: UUI4 });
     }
 
     const onChange = (row: DataRowProps<TreeListItem, string>) => {
@@ -43,22 +44,24 @@ export const DocumentsPage = () => {
     const PageComponent = items.find(item => item.id === getQuery('id')).component;
 
     return (
-        <Page renderHeader={ () => <AppHeader /> } >
-            <FlexRow alignItems='stretch'>
+        <Page renderHeader={() => <AppHeader />}>
+            <FlexRow alignItems="stretch">
                 <Sidebar<DocItem>
-                    value={ getQuery('id') }
-                    onValueChange={ onChange }
-                    items={ items }
-                    getSearchFields={ i => [i.name, ...(i.tags || [])] }
-                    getItemLink={ (row) => !row.isFoldable && {
-                        pathname: 'documents',
-                        query: {
-                            id: row.id,
-                            mode: row.parentId && svc.uuiRouter.getCurrentLink().query.mode || 'doc',
-                            skin: row.parentId && svc.uuiRouter.getCurrentLink().query.skin || UUI4,
-                            category: row.parentId && row.parentId,
-                        },
-                    } }
+                    value={getQuery('id')}
+                    onValueChange={onChange}
+                    items={items}
+                    getSearchFields={i => [i.name, ...(i.tags || [])]}
+                    getItemLink={row =>
+                        !row.isFoldable && {
+                            pathname: 'documents',
+                            query: {
+                                id: row.id,
+                                mode: (row.parentId && svc.uuiRouter.getCurrentLink().query.mode) || 'doc',
+                                skin: (row.parentId && svc.uuiRouter.getCurrentLink().query.skin) || UUI4,
+                                category: row.parentId && row.parentId,
+                            },
+                        }
+                    }
                 />
                 <PageComponent />
             </FlexRow>

@@ -14,16 +14,10 @@ export class TextAreaDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='textArea-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/textArea/Basic.example.tsx'
-                />
-                <DocExample
-                    title='Advanced'
-                    path='./_examples/textArea/Advanced.example.tsx'
-                />
+                <EditableDocContent fileName="textArea-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/textArea/Basic.example.tsx" />
+                <DocExample title="Advanced" path="./_examples/textArea/Advanced.example.tsx" />
             </>
         );
     }

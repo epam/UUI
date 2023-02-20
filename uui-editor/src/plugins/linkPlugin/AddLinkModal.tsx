@@ -28,25 +28,35 @@ export class AddLinkModal extends React.Component<AddLinkModalProps> {
         };
 
         return (
-            <ModalBlocker { ...this.props }>
+            <ModalBlocker {...this.props}>
                 <ModalWindow>
-                    <ModalHeader title="Add link" onClose={ this.props.abort } />
-                    <FlexRow cx={ css.inputWrapper }>
-                        <LabeledInput label='Link' { ...linkValidationProps }>
-                            <TextInput value={ this.state.link } onValueChange={ (newVal) => this.setState({ link: newVal }) } autoFocus/>
+                    <ModalHeader title="Add link" onClose={this.props.abort} />
+                    <FlexRow cx={css.inputWrapper}>
+                        <LabeledInput label="Link" {...linkValidationProps}>
+                            <TextInput value={this.state.link} onValueChange={newVal => this.setState({ link: newVal })} autoFocus />
                         </LabeledInput>
                     </FlexRow>
-                    <ModalFooter borderTop >
+                    <ModalFooter borderTop>
                         <FlexSpacer />
-                        <Button type='cancel' caption='Delete' onClick={ () => { this.props.editor.unwrapLink(); this.props.abort(); } } />
-                        <Button type='success' caption='Save' onClick={ () => {
-                            this.props.editor.wrapLink(this.state.link);
-                            this.props.success(true);
-                        } } />
+                        <Button
+                            type="cancel"
+                            caption="Delete"
+                            onClick={() => {
+                                this.props.editor.unwrapLink();
+                                this.props.abort();
+                            }}
+                        />
+                        <Button
+                            type="success"
+                            caption="Save"
+                            onClick={() => {
+                                this.props.editor.wrapLink(this.state.link);
+                                this.props.success(true);
+                            }}
+                        />
                     </ModalFooter>
                 </ModalWindow>
             </ModalBlocker>
         );
     }
-
 }

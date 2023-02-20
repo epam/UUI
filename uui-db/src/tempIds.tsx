@@ -1,6 +1,6 @@
-import { DbTablePatch, DbTablesSet, DbPatch, DbFieldSchema, DbSaveResponse } from "./types";
-import { Db } from "./Db";
-import { objectKeys } from "./utils";
+import { DbTablePatch, DbTablesSet, DbPatch, DbFieldSchema, DbSaveResponse } from './types';
+import { Db } from './Db';
+import { objectKeys } from './utils';
 import { DataQuery, DataQueryFilter, DataQueryFilterCondition } from '@epam/uui-core';
 
 let lastTempId = -1;
@@ -24,8 +24,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
     private serverToClientIds = new Map<keyof TTables, Map<any, number>>();
     private clientToServerIds = new Map<number, any>();
 
-    constructor(private db: Db<TTables>) {
-    }
+    constructor(private db: Db<TTables>) {}
 
     public clientToServer = (id: number): any => this.clientToServerIds.get(id);
 
@@ -39,7 +38,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
         }
 
         return request;
-    }
+    };
 
     public clientToServerDataFilter = (filter: DataQueryFilter<any>) => {
         filter = { ...filter };
@@ -59,7 +58,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
         for (let n = 0; n < keys.length; n++) {
             const key = keys[n];
             let condition = filter[key] as DataQueryFilterCondition<any, any>;
-            if (condition != null && typeof condition === "object") {
+            if (condition != null && typeof condition === 'object') {
                 condition = { ...condition };
                 if ('in' in condition && Array.isArray(condition.in) && condition.in.length) {
                     condition.in = condition.in.map(clientToServer);
@@ -70,9 +69,9 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
             filter[key] = condition;
         }
         return filter;
-    }
+    };
 
-    private copyPatch(patch:DbPatch<TTables>) {
+    private copyPatch(patch: DbPatch<TTables>) {
         const newPatch = { ...patch };
 
         objectKeys(patch).forEach(tableName => {
@@ -87,13 +86,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
     protected mapFields(
         patch: DbPatch<TTables>,
         filter: (schema: DbFieldSchema<any, any>, name: string) => boolean,
-        callback: (
-            fieldName: any,
-            fieldSchema: DbFieldSchema<any, any>,
-            fieldValue: any,
-            entityPatch: any,
-            tableName: keyof TTables,
-        ) => void,
+        callback: (fieldName: any, fieldSchema: DbFieldSchema<any, any>, fieldValue: any, entityPatch: any, tableName: keyof TTables) => void
     ): void {
         objectKeys(patch).forEach(tableName => {
             const schema = this.db.tables[tableName].schema;
@@ -116,13 +109,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
 
                     const fieldValue = entityPatch[field.name as any];
 
-                    callback(
-                        field.name,
-                        field.schema,
-                        fieldValue,
-                        entityPatch,
-                        tableName,
-                    );
+                    callback(field.name, field.schema, fieldValue, entityPatch, tableName);
                 }
             });
         });
@@ -155,14 +142,14 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
                     this.getServerToClientMap(tableName).set(fieldValue, clientId);
                 }
                 entityPatch[fieldName] = clientId;
-            },
+            }
         );
 
         this.mapFields(
             patch,
-            f => !!(f.fk || (f.default != null) || f.toClient),
+            f => !!(f.fk || f.default != null || f.toClient),
             (fieldName, fieldSchema, fieldValue, entityPatch, tableName) => {
-                let isUndefined = typeof (fieldValue) === 'undefined';
+                let isUndefined = typeof fieldValue === 'undefined';
 
                 if (fieldSchema.default != null && fieldValue == null) {
                     fieldValue = fieldSchema.default;
@@ -170,7 +157,8 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
                 }
 
                 if (fieldSchema.fk && fieldValue != null) {
-                    const fkTableName = typeof fieldSchema.fk.tableName === 'function' ? fieldSchema.fk.tableName(entityPatch) : fieldSchema.fk.tableName;
+                    const fkTableName =
+                        typeof fieldSchema.fk.tableName === 'function' ? fieldSchema.fk.tableName(entityPatch) : fieldSchema.fk.tableName;
                     let clientId = this.getServerToClientMap(fkTableName as keyof TTables).get(fieldValue);
                     if (!clientId) {
                         clientId = getTempId();
@@ -187,7 +175,7 @@ export class TempIdMap<TTables extends DbTablesSet<TTables>> implements IClientI
                 if (!isUndefined) {
                     entityPatch[fieldName] = fieldValue;
                 }
-            },
+            }
         );
 
         return patch;

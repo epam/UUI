@@ -6,7 +6,10 @@ import { colors } from '../../docs/helpers/colorMap';
 import * as React from 'react';
 
 const spinnerDoc = new DocBuilder<SpinnerProps & SpinnerMods>({ name: 'Spinner', component: Spinner })
-    .prop('color', { renderEditor:  (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: allSpinnerColors })
+    .prop('color', {
+        renderEditor: (editable, examples) => <ColorPicker colors={examples.map(i => ({ value: i, hex: colors[i] }))} {...editable} />,
+        examples: allSpinnerColors,
+    })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export default spinnerDoc;

@@ -1,9 +1,16 @@
-import { ReactElement, ReactNode } from "react";
-import { Dayjs } from "dayjs";
-import { Placement } from "@popperjs/core";
-import { IAnalyticableOnChange, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasPlaceholder } from "../../props";
+import { ReactElement, ReactNode } from 'react';
+import { Dayjs } from 'dayjs';
+import { Placement } from '@popperjs/core';
+import { IAnalyticableOnChange, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasPlaceholder } from '../../props';
 
-export interface BaseDatePickerProps extends IEditable<string | null>, ICanFocus<HTMLInputElement>, IHasCX, IDisableable, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<string> {
+export interface BaseDatePickerProps
+    extends IEditable<string | null>,
+        ICanFocus<HTMLInputElement>,
+        IHasCX,
+        IDisableable,
+        IHasPlaceholder,
+        ICanBeReadonly,
+        IAnalyticableOnChange<string> {
     /** Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format) */
     format?: string;
 

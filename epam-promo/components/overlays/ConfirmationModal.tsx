@@ -10,27 +10,24 @@ export interface ConfirmationModalWindowProps extends IModal<any> {
 }
 
 export class ConfirmationModal extends React.Component<ConfirmationModalWindowProps> {
-
     render() {
         let bodyContent;
 
         if (this.props.bodyContent) {
-            bodyContent = <Panel margin='24'>
-                { this.props.bodyContent }
-                </Panel>;
+            bodyContent = <Panel margin="24">{this.props.bodyContent}</Panel>;
         }
 
         return (
-            <ModalBlocker blockerShadow='dark' { ...this.props }>
-                <ModalWindow width='420'>
-                    <ModalHeader borderBottom title={ this.props.caption } onClose={ () => this.props.abort() } background='white' />
-                    <ScrollBars>
-                    { bodyContent }
-                    </ScrollBars>
-                    <ModalFooter background='white'>
+            <ModalBlocker blockerShadow="dark" {...this.props}>
+                <ModalWindow width="420">
+                    <ModalHeader borderBottom title={this.props.caption} onClose={() => this.props.abort()} background="white" />
+                    <ScrollBars>{bodyContent}</ScrollBars>
+                    <ModalFooter background="white">
                         <FlexSpacer />
-                        { this.props.hideCancelButton || <Button caption={ i18n.form.modals.discardButton } onClick={ () => this.props.success(false) } fill='white' color='gray50'/> }
-                        <Button caption={ i18n.form.modals.saveButton } onClick={ () => this.props.success(true) } color='green'/>
+                        {this.props.hideCancelButton || (
+                            <Button caption={i18n.form.modals.discardButton} onClick={() => this.props.success(false)} fill="white" color="gray50" />
+                        )}
+                        <Button caption={i18n.form.modals.saveButton} onClick={() => this.props.success(true)} color="green" />
                     </ModalFooter>
                 </ModalWindow>
             </ModalBlocker>

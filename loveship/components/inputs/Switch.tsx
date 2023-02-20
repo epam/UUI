@@ -10,12 +10,7 @@ export interface SwitchMods extends types.ColorMod {
 }
 
 export function applySwitchMods(mods: SwitchMods & SwitchProps) {
-    return [
-        css.root,
-        css['size-' + (mods.size || '18')],
-        styles['color-' + (mods.color || 'sky')],
-        css['theme-' + (mods.theme || 'light')],
-    ];
+    return [css.root, css['size-' + (mods.size || '18')], styles['color-' + (mods.color || 'sky')], css['theme-' + (mods.theme || 'light')]];
 }
 
 export const Switch = withMods<SwitchProps, SwitchMods>(uuiSwitch, applySwitchMods);

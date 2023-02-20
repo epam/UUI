@@ -7,21 +7,19 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { isTextSelected } from '../../helpers';
 
 export const videoPlugin = () => {
-
     return {
-        sidebarButtons: [
-            VideoButton,
-        ],
+        sidebarButtons: [VideoButton],
     };
 };
 
 const VideoButton = (props: { editor: Editor }) => {
     const context = useUuiContext();
-    
-    return <ToolbarButton
-        onClick={ () => context.uuiModals.show<string>(modalProps => <AddVideoModal { ...modalProps } editor={ props.editor } />)
-            .catch(() => null) }
-        icon={ VideoIcon }
-        isDisabled={ isTextSelected(props.editor) }
-    />;
+
+    return (
+        <ToolbarButton
+            onClick={() => context.uuiModals.show<string>(modalProps => <AddVideoModal {...modalProps} editor={props.editor} />).catch(() => null)}
+            icon={VideoIcon}
+            isDisabled={isTextSelected(props.editor)}
+        />
+    );
 };

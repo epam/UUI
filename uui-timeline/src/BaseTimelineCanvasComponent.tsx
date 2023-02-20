@@ -9,8 +9,10 @@ export interface BaseTimelineCanvasComponentProps {
     renderOnTop?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
 }
 
-export abstract class BaseTimelineCanvasComponent<TProps extends BaseTimelineCanvasComponentProps, TState = {}>
-    extends React.Component<TProps, TState> {
+export abstract class BaseTimelineCanvasComponent<TProps extends BaseTimelineCanvasComponentProps, TState = {}> extends React.Component<
+    TProps,
+    TState
+> {
     canvas: HTMLCanvasElement | null;
     protected canvasHeight = 60;
 
@@ -40,14 +42,19 @@ export abstract class BaseTimelineCanvasComponent<TProps extends BaseTimelineCan
 
     protected renderCanvasElement(props?: any): JSX.Element {
         const width = this.props.timelineController.currentViewport.widthPx;
-        return <canvas
-            className={ cx(this.props.className, props && props.className) }
-            style={{ width, height: this.canvasHeight }}
-            width={ width * devicePixelRatio }
-            height={ this.canvasHeight * devicePixelRatio }
-            ref={ c => { props && props.ref && props.ref(c); this.canvas = c; } }
-            { ...props }
-        />;
+        return (
+            <canvas
+                className={cx(this.props.className, props && props.className)}
+                style={{ width, height: this.canvasHeight }}
+                width={width * devicePixelRatio}
+                height={this.canvasHeight * devicePixelRatio}
+                ref={c => {
+                    props && props.ref && props.ref(c);
+                    this.canvas = c;
+                }}
+                {...props}
+            />
+        );
     }
 
     render() {

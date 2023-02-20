@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Editor as CoreEditor } from "slate";
-import { RenderBlockProps } from "slate-react";
+import { Editor as CoreEditor } from 'slate';
+import { RenderBlockProps } from 'slate-react';
 import { getBlockDesirialiser } from '../../helpers';
 
 export const paragraphPlugin = () => {
     const renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
         switch (props.node.type) {
             case 'paragraph':
-                return <p { ...props.attributes }>{ props.children }</p>;
+                return <p {...props.attributes}>{props.children}</p>;
             default:
                 return next();
         }

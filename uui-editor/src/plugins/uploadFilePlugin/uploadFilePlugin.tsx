@@ -1,9 +1,9 @@
-import { getEventTransfer, getEventRange, Editor } from "slate-react";
-import { ReactComponent as AttachIcon } from "../../icons/attach-file.svg";
-import { Editor as CoreEditor, Range} from "slate";
-import { FileUploadResponse, BlockTypes } from "@epam/uui-core";
-import { UploadFileToggler} from "@epam/uui-components";
-import * as React from "react";
+import { getEventTransfer, getEventRange, Editor } from 'slate-react';
+import { ReactComponent as AttachIcon } from '../../icons/attach-file.svg';
+import { Editor as CoreEditor, Range } from 'slate';
+import { FileUploadResponse, BlockTypes } from '@epam/uui-core';
+import { UploadFileToggler } from '@epam/uui-components';
+import * as React from 'react';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { isTextSelected } from '../../helpers';
 
@@ -18,13 +18,17 @@ export const uploadFilePlugin = (options: UploadFileOptions) => {
         }
         editor.insertBlock('loader');
         const loaderKey = editor.value.anchorBlock.key;
-        options.uploadFile(file, (process) => { })
+        options
+            .uploadFile(file, process => {})
             .then((res: FileUploadResponse) => {
-                const block = (editor as any).createBlock({
-                    ...res,
-                    src: res.path,
-                    fileName: res.name,
-                }, type ? type : res.type);
+                const block = (editor as any).createBlock(
+                    {
+                        ...res,
+                        src: res.path,
+                        fileName: res.name,
+                    },
+                    type ? type : res.type
+                );
                 editor.removeNodeByKey(loaderKey);
                 range ? editor.setBlocksAtRange(range as Range, block) : editor.insertBlock(block);
             });
@@ -51,12 +55,10 @@ export const uploadFilePlugin = (options: UploadFileOptions) => {
 const FileUploadButton = (props: { editor: Editor }) => {
     return (
         <UploadFileToggler
-            render={ togglerProps => <ToolbarButton
-                { ...togglerProps }
-                icon={ AttachIcon }
-                isDisabled={ isTextSelected(props.editor) }
-            /> }
-            onFilesAdded={ files => { files.map(file => (props.editor as any).handleUploadFile(file, null, 'attachment')); } }
+            render={togglerProps => <ToolbarButton {...togglerProps} icon={AttachIcon} isDisabled={isTextSelected(props.editor)} />}
+            onFilesAdded={files => {
+                files.map(file => (props.editor as any).handleUploadFile(file, null, 'attachment'));
+            }}
         />
     );
 };

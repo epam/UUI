@@ -1,7 +1,13 @@
 import * as React from 'react';
 import {
-    DataSourceState, DataColumnProps, DataTableHeaderRowProps, DropdownBodyProps, Lens,
-    getColumnsConfig, DropParams, getOrderBetween,
+    DataSourceState,
+    DataColumnProps,
+    DataTableHeaderRowProps,
+    DropdownBodyProps,
+    Lens,
+    getColumnsConfig,
+    DropParams,
+    getOrderBetween,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import css from './DataTableHeaderRow.scss';
@@ -33,7 +39,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
         }
 
         this.props.onValueChange({ ...this.props.value, columnsConfig });
-    }
+    };
 
     renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
         const { field, direction } = this.sortLens.index(0).default({ field: null, direction: 'asc' }).get();
@@ -50,24 +56,25 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
             sortDirection: field === column.key ? direction : null,
             allowColumnsReordering: this.props.allowColumnsReordering,
             allowColumnsResizing: this.props.allowColumnsResizing,
-            onSort: dir => this.props.onValueChange({
-                ...this.props.value,
-                sorting: dir ? [{ field: column.key, direction: dir }] : [],
-            }),
+            onSort: dir =>
+                this.props.onValueChange({
+                    ...this.props.value,
+                    sorting: dir ? [{ field: column.key, direction: dir }] : [],
+                }),
             onDrop: params => this.onCellDrop(params, idx),
             renderFilter: (dropdownProps: DropdownBodyProps) => column.renderFilter(this.filterLens, dropdownProps),
             isDropdown: !!column.renderFilter,
         });
-    }
+    };
 
     render() {
         return (
             <DataTableRowContainer
-                cx={ [css.root, this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow] }
-                columns={ this.props.columns }
-                renderCell={ this.renderCell }
-                rawProps={ { role: 'row' } }
-                renderConfigButton={ this.props.onConfigButtonClick && this.props.renderConfigButton }
+                cx={[css.root, this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow]}
+                columns={this.props.columns}
+                renderCell={this.renderCell}
+                rawProps={{ role: 'row' }}
+                renderConfigButton={this.props.onConfigButtonClick && this.props.renderConfigButton}
             />
         );
     }

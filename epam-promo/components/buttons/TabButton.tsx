@@ -14,13 +14,7 @@ export interface TabButtonMods {
 }
 
 function applyTabButtonMods(mods: TabButtonMods & ButtonProps) {
-    return [
-        css.root,
-        css['size-' + (mods.size || '48')],
-        mods.withNotify && css.uuiNotification,
-        styles.tabButtonColor,
-        ...getIconClass(mods),
-    ];
+    return [css.root, css['size-' + (mods.size || '48')], mods.withNotify && css.uuiNotification, styles.tabButtonColor, ...getIconClass(mods)];
 }
 
 export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabButtonMods, props => ({

@@ -3,7 +3,6 @@ import { LazyDataSourceApi, LazyDataSourceApiRequestOptions, LazyDataSourceApiRe
 import { batch } from '../../helpers/batch';
 
 export interface ListApiSettings<TItem, TId, TFilter> {
-
     /** Lazy List API used to fetch items */
     api: LazyDataSourceApi<TItem, TId, TFilter>;
 

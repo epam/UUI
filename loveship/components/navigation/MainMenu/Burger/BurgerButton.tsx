@@ -1,5 +1,5 @@
 import { withMods, IHasIcon, IDropdownToggler } from '@epam/uui-core';
-import {  Button, ButtonProps } from '@epam/uui-components';
+import { Button, ButtonProps } from '@epam/uui-components';
 import { ReactComponent as TriangleIcon } from '../../../icons/triangle.svg';
 import css from './BurgerButton.scss';
 
@@ -17,5 +17,5 @@ export const BurgerButton = withMods<ButtonProps, BurgerButtonMods>(
         props.isDropdown && css.dropdown,
         props.icon && css.hasIcon,
     ],
-    () => ({ dropdownIcon: TriangleIcon, dropdownIconPosition: 'left' }),
+    () => ({ dropdownIcon: TriangleIcon, dropdownIconPosition: 'left' })
 );

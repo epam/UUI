@@ -2,7 +2,16 @@ import * as React from 'react';
 import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button } from '@epam/loveship';
 import { PersonsTable } from './PersonsTable';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, IEditable, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
+import {
+    DataSourceState,
+    IEditable,
+    useArrayDataSource,
+    useLazyDataSource,
+    LazyDataSourceApiRequest,
+    DataQueryFilter,
+    LazyDataSourceApiResponse,
+    Lens,
+} from '@epam/uui';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
 import css from './PersonsTableDemo.scss';
@@ -34,15 +43,21 @@ export const PersonsTableDemo = () => {
         totalSalary: '',
     });
 
-    const groupings = React.useMemo(() => [
-        { id: 'jobTitle', name: "Job Title" },
-        { id: 'department', name: "Department" },
-        { id: 'location', name: "Location" },
-    ], []);
+    const groupings = React.useMemo(
+        () => [
+            { id: 'jobTitle', name: 'Job Title' },
+            { id: 'department', name: 'Department' },
+            { id: 'location', name: 'Location' },
+        ],
+        []
+    );
 
-    const groupingDataSource = useArrayDataSource({
-        items: groupings,
-    }, []);
+    const groupingDataSource = useArrayDataSource(
+        {
+            items: groupings,
+        },
+        []
+    );
 
     const [value, onValueChange] = React.useState<PersonsTableState>(() => ({
         topIndex: 0,
@@ -53,114 +68,117 @@ export const PersonsTableDemo = () => {
 
     const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
-    const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
-        async api(request, ctx) {
-            const { ids, filter: requestFilter, ...rq } = request;
+    const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>(
+        {
+            async api(request, ctx) {
+                const { ids, filter: requestFilter, ...rq } = request;
 
-            if (ids != null) {
-                const idsByType: Record<PersonTableRecordType, (string | number)[]> = {} as any;
-                ids.forEach(([type, id]) => {
-                    idsByType[type] = idsByType[type] || [];
-                    idsByType[type].push(id);
-                })
+                if (ids != null) {
+                    const idsByType: Record<PersonTableRecordType, (string | number)[]> = {} as any;
+                    ids.forEach(([type, id]) => {
+                        idsByType[type] = idsByType[type] || [];
+                        idsByType[type].push(id);
+                    });
 
-                const typesToLoad = Object.keys(idsByType) as PersonTableRecordType[];
-                const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
+                    const typesToLoad = Object.keys(idsByType) as PersonTableRecordType[];
+                    const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
 
-                const promises = typesToLoad.map(async type => {
-                    const idsRequest: LazyDataSourceApiRequest<any, any, any> = { ids: idsByType[type] };
-                    const api = (type === 'Person') ? svc.api.demo.persons
-                        : (type == 'PersonGroup') ? svc.api.demo.personGroups
-                        : (type == 'Location') ? svc.api.demo.locations : null;
+                    const promises = typesToLoad.map(async type => {
+                        const idsRequest: LazyDataSourceApiRequest<any, any, any> = { ids: idsByType[type] };
+                        const api =
+                            type === 'Person'
+                                ? svc.api.demo.persons
+                                : type == 'PersonGroup'
+                                ? svc.api.demo.personGroups
+                                : type == 'Location'
+                                ? svc.api.demo.locations
+                                : null;
 
-                    const apiResponse = await api(idsRequest);
-                    response.items = [ ...response.items, ...apiResponse.items ];
-                });
+                        const apiResponse = await api(idsRequest);
+                        response.items = [...response.items, ...apiResponse.items];
+                    });
 
-                await Promise.all(promises);
-                return response;
-            }
+                    await Promise.all(promises);
+                    return response;
+                }
 
-            const { groupBy, ...filter } = requestFilter || {};
+                const { groupBy, ...filter } = requestFilter || {};
 
-            const updateSummary = (response: PersonsApiResponse) => {
-                const { summary, totalCount } = response;
-                const totalSalary = formatCurrency(Number(summary.totalSalary));
-                setSummary({ totalCount, totalSalary });
-            };
+                const updateSummary = (response: PersonsApiResponse) => {
+                    const { summary, totalCount } = response;
+                    const totalSalary = formatCurrency(Number(summary.totalSalary));
+                    setSummary({ totalCount, totalSalary });
+                };
 
-            const getPersons = async (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
-                if (groupBy && !ctx.parent) {
-                    const res = await svc.api.demo.personGroups({
+                const getPersons = async (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
+                    if (groupBy && !ctx.parent) {
+                        const res = await svc.api.demo.personGroups({
+                            ...rq,
+                            filter: { groupBy },
+                            search: null,
+                            itemsRequest: { filter, search: rq.search },
+                            ids,
+                        } as any);
+                        updateSummary(res as PersonsApiResponse);
+                        return res;
+                    } else {
+                        const res_1 = await svc.api.demo.persons(rq);
+                        updateSummary(res_1 as PersonsApiResponse);
+                        return res_1;
+                    }
+                };
+
+                if (request.search) {
+                    return getPersons({ ...rq, filter });
+                } else if (groupBy == 'location') {
+                    if (!ctx.parent) {
+                        return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true } } });
+                    } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
+                        return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id } });
+                    } else {
+                        return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id } });
+                    }
+                } else if (groupBy && !ctx.parent) {
+                    return getPersons({
                         ...rq,
                         filter: { groupBy },
                         search: null,
                         itemsRequest: { filter, search: rq.search },
                         ids,
                     } as any);
-                    updateSummary(res as PersonsApiResponse);
-                    return res;
                 } else {
-                    const res_1 = await svc.api.demo.persons(rq);
-                    updateSummary(res_1 as PersonsApiResponse);
-                    return res_1;
+                    const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
+                    return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
                 }
-            };
+            },
+            getId: i => [i.__typename, i.id],
+            complexIds: true,
+            getParentId: i => {
+                const groupBy = value.filter?.groupBy;
+                if (i.__typename == 'PersonGroup') {
+                    return null;
+                } else if (i.__typename == 'Location') {
+                    return i.parentId ? ['Location', i.parentId] : undefined;
+                } else if (i.__typename == 'Person') {
+                    if (groupBy == 'location') {
+                        return ['Location', i.locationId];
+                    } else if (groupBy == 'jobTitle') {
+                        return ['PersonGroup', i.jobTitleId];
+                    } else if (groupBy == 'department') {
+                        return ['PersonGroup', i.departmentId];
+                    } else {
+                        return undefined;
+                    }
+                }
 
-            if (request.search) {
-                return getPersons({ ...rq, filter });
-            } else if (groupBy == 'location') {
-                if (!ctx.parent) {
-                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true }} });
-                } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
-                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id }  });
-                } else {
-                    return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id }  });
-                }
-            } else if (groupBy && !ctx.parent) {
-                return getPersons({
-                    ...rq,
-                    filter: { groupBy },
-                    search: null,
-                    itemsRequest: { filter, search: rq.search },
-                    ids,
-                } as any);
-            } else {
-                const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
-                return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
-            }
+                throw new Error('PersonTableDemo: unknown typename/groupBy combination');
+            },
+            getChildCount: item =>
+                item.__typename === 'PersonGroup' ? item.count : item.__typename === 'Location' ? (item.type == 'city' ? 1 : 10) : null,
+            fetchStrategy: value.filter?.groupBy == 'location' ? 'sequential' : 'parallel',
         },
-        getId: i => [i.__typename, i.id],
-        complexIds: true,
-        getParentId: i => {
-            const groupBy = value.filter?.groupBy;
-            if (i.__typename == 'PersonGroup') {
-                return null;
-            } else if (i.__typename == 'Location') {
-                return i.parentId ? ['Location', i.parentId] : undefined;
-            } else if (i.__typename == 'Person') {
-                if (groupBy == 'location') {
-                    return ['Location', i.locationId];
-                } else if (groupBy == 'jobTitle') {
-                    return ['PersonGroup', i.jobTitleId];
-                } else if (groupBy == 'department') {
-                    return ['PersonGroup', i.departmentId];
-                } else {
-                    return undefined;
-                }
-            }
-
-            throw new Error('PersonTableDemo: unknown typename/groupBy combination');
-        },
-        getChildCount: item =>
-            item.__typename === 'PersonGroup'
-            ? item.count
-            : item.__typename === 'Location' ? item.type == 'city'
-                ? 1
-                : 10
-            : null,
-        fetchStrategy: value.filter?.groupBy == 'location' ? 'sequential' : 'parallel',
-    }, [value.filter?.groupBy]);
+        [value.filter?.groupBy]
+    );
 
     const personsDataView = dataSource.useView(value, onValueChange, {
         rowOptions: { checkbox: { isVisible: true } },
@@ -169,41 +187,36 @@ export const PersonsTableDemo = () => {
     });
 
     return (
-        <div className={ css.container }>
-            <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
-                <FlexCell width={ 200 }>
-                    <SearchInput { ...lens.prop('search').toProps() } size='30' />
+        <div className={css.container}>
+            <FlexRow spacing="12" padding="24" vPadding="12" borderBottom={true}>
+                <FlexCell width={200}>
+                    <SearchInput {...lens.prop('search').toProps()} size="30" />
                 </FlexCell>
-                <FlexCell width='auto'>
-                    <Text size='30'>Group By:</Text>
+                <FlexCell width="auto">
+                    <Text size="30">Group By:</Text>
                 </FlexCell>
-                <FlexCell width={ 130 }>
+                <FlexCell width={130}>
                     <PickerInput
-                        { ...lens.prop('filter').prop('groupBy').toProps() }
-                        dataSource={ groupingDataSource }
-                        selectionMode='single'
-                        valueType='id'
-                        size='30'
+                        {...lens.prop('filter').prop('groupBy').toProps()}
+                        dataSource={groupingDataSource}
+                        selectionMode="single"
+                        valueType="id"
+                        size="30"
                     />
                 </FlexCell>
                 <FlexSpacer />
-                <FlexCell width='auto'>
+                <FlexCell width="auto">
                     <Button
-                        caption={ value.isFolded ? "Unfold All" : "Fold All" }
-                        onClick={ () => onValueChange({ ...value, folded: {}, isFolded: !value.isFolded }) }
-                        size='30'
+                        caption={value.isFolded ? 'Unfold All' : 'Fold All'}
+                        onClick={() => onValueChange({ ...value, folded: {}, isFolded: !value.isFolded })}
+                        size="30"
                     />
                 </FlexCell>
-                <FlexCell width='auto'>
-                    <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
+                <FlexCell width="auto">
+                    <Button caption="Reload" onClick={() => dataSource.clearCache()} size="30" />
                 </FlexCell>
             </FlexRow>
-            <PersonsTable
-                value={ value }
-                onValueChange={ onValueChange }
-                summary={ summary }
-                view={ personsDataView }
-            />
+            <PersonsTable value={value} onValueChange={onValueChange} summary={summary} view={personsDataView} />
         </div>
     );
 };

@@ -14,12 +14,9 @@ export class CheckboxGroupDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='checkboxGroup-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Checkbox Group'
-                    path='./_examples/checkbox/Group.example.tsx'
-                />
+                <EditableDocContent fileName="checkboxGroup-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Checkbox Group" path="./_examples/checkbox/Group.example.tsx" />
             </>
         );
     }

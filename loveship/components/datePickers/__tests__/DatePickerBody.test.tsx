@@ -12,13 +12,7 @@ describe('DatePickerBody', () => {
     };
 
     it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<DatePickerBody
-                value={ value }
-                setSelectedDate={ jest.fn() }
-                setDisplayedDateAndView={ jest.fn() }
-            />)
-            .toJSON();
+        const tree = renderer.create(<DatePickerBody value={value} setSelectedDate={jest.fn()} setDisplayedDateAndView={jest.fn()} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

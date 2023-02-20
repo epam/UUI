@@ -4,8 +4,6 @@ export class RouterMock {
     listen(listener: Function) {
         this.listeners.push(listener);
     }
-    
-    block() {
-        
-    }
+
+    block() {}
 }

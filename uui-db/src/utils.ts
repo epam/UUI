@@ -26,7 +26,7 @@ export function difference(object: any, base: any) {
     function changes(object: any, base: any) {
         return transform(object, function (result: any, value: any, key: any) {
             if (!isEqual(value, base[key])) {
-                result[key] = (typeof value === "object" && typeof base[key] === "object") ? changes(value, base[key]) : value;
+                result[key] = typeof value === 'object' && typeof base[key] === 'object' ? changes(value, base[key]) : value;
             }
         });
     }

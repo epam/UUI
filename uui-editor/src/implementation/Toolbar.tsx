@@ -41,36 +41,39 @@ export class Toolbar extends React.Component<ToolbarProps> {
     }
 
     renderButton = (Button: React.ComponentType<{ editor: Editor }>, index: number) => {
-        return <Button editor={ this.props.editor } key={ `toolbar-button-${index}` } />;
-    }
+        return <Button editor={this.props.editor} key={`toolbar-button-${index}`} />;
+    };
 
     render() {
         if (!this.props.editor) return null;
 
         return (
             <Portal>
-                { isTextSelected(this.props.editor) && (
+                {isTextSelected(this.props.editor) && (
                     <Popper
-                        referenceElement={ this.virtualReferenceElement() }
-                        placement='top'
-                        modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
+                        referenceElement={this.virtualReferenceElement()}
+                        placement="top"
+                        modifiers={[{ name: 'offset', options: { offset: [0, 12] } }]}
                     >
-                        { props => (
+                        {props => (
                             <div
-                                onMouseDown={ e => e.preventDefault() }
-                                className={ css.container }
-                                style={ { ...props.style, zIndex: this.layer.zIndex } }
-                                ref={ node => {
+                                onMouseDown={e => e.preventDefault()}
+                                className={css.container}
+                                style={{ ...props.style, zIndex: this.layer.zIndex }}
+                                ref={node => {
                                     this.toolbar = node;
                                     (props.ref as React.RefCallback<HTMLDivElement>)(node);
-                                } }
+                                }}
                             >
-                                { flatten(this.props.plugins).map((plugin: any) => plugin.toolbarButtons
-                                    && plugin.toolbarButtons.map((button: any, index: number) => this.renderButton(button, index))) }
+                                {flatten(this.props.plugins).map(
+                                    (plugin: any) =>
+                                        plugin.toolbarButtons &&
+                                        plugin.toolbarButtons.map((button: any, index: number) => this.renderButton(button, index))
+                                )}
                             </div>
-                        ) }
+                        )}
                     </Popper>
-                ) }
+                )}
             </Portal>
         );
     }

@@ -1,14 +1,14 @@
-import { Editor as CoreEditor } from "slate";
+import { Editor as CoreEditor } from 'slate';
 import EditTable from 'slate-uui-table-plugin';
-import * as React from "react";
-import { Table } from "./Table";
-import { TableRow } from "./TableRow";
-import { TableCell } from "./TableCell";
-import { TableHeaderCell } from "./TableHeaderCell";
-import { Editor } from "slate-react";
-import { ReactComponent as TableIcon } from "../../icons/table-add.svg";
+import * as React from 'react';
+import { Table } from './Table';
+import { TableRow } from './TableRow';
+import { TableCell } from './TableCell';
+import { TableHeaderCell } from './TableHeaderCell';
+import { Editor } from 'slate-react';
+import { ReactComponent as TableIcon } from '../../icons/table-add.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import {getBlockDesirialiser, isTextSelected} from '../../helpers';
+import { getBlockDesirialiser, isTextSelected } from '../../helpers';
 import { mergeCellsPlugin } from '../tableMergePlugin/tableMergePlugin';
 
 export const tablePlugin = () => {
@@ -16,10 +16,14 @@ export const tablePlugin = () => {
 
     const renderBlock = (props: any, editor: CoreEditor, next: () => any) => {
         switch (props.node.type) {
-            case 'table': return <Table { ...props } editor={ editor } />;
-            case 'table_row': return <TableRow { ...props } />;
-            case 'table_cell': return <TableCell { ...props } editor={ editor } />;
-            case 'table_header_cell': return <TableHeaderCell { ...props } editor={ editor } />;
+            case 'table':
+                return <Table {...props} editor={editor} />;
+            case 'table_row':
+                return <TableRow {...props} />;
+            case 'table_cell':
+                return <TableCell {...props} editor={editor} />;
+            case 'table_header_cell':
+                return <TableHeaderCell {...props} editor={editor} />;
         }
         return next();
     };
@@ -27,7 +31,12 @@ export const tablePlugin = () => {
     const onKeyDown = (event: KeyboardEvent, editor: Editor, next: () => any) => {
         let parentNode: any = editor.value.document.getParent(editor.value.focusBlock.key);
 
-        if ((event.key === 'Backspace' || event.key === 'Delete') && parentNode.type === 'table_cell' && parentNode.nodes.toArray().length === 1 && editor.value.focusBlock.text === '') {
+        if (
+            (event.key === 'Backspace' || event.key === 'Delete') &&
+            parentNode.type === 'table_cell' &&
+            parentNode.nodes.toArray().length === 1 &&
+            editor.value.focusBlock.text === ''
+        ) {
             return;
         }
 
@@ -40,7 +49,7 @@ export const tablePlugin = () => {
         const elemParent = editor.value.document.getParent(elem.key);
 
         (editor.value.document as any).getParent(elemParent.key).nodes.forEach((elem: any) => {
-            elem.key === elemParent.key ? elemPosition = counter : counter += 1;
+            elem.key === elemParent.key ? (elemPosition = counter) : (counter += 1);
         });
 
         return elemPosition;
@@ -58,7 +67,7 @@ export const tablePlugin = () => {
         if (parentElem.data !== undefined && parentElem.data.get('colSpan') > 1 && position !== 'before') {
             startBlockIndex += parentElem.data.get('colSpan') - 1;
         }
-        (editor as any).insertColumn(startBlockIndex, {typeHeaderCell: 'table_header_cell'});
+        (editor as any).insertColumn(startBlockIndex, { typeHeaderCell: 'table_header_cell' });
     };
 
     const removeSelectedColumn = (editor: CoreEditor, props: any) => {
@@ -88,7 +97,7 @@ export const tablePlugin = () => {
                                 colSpan: colspan - 1,
                             },
                         });
-                    } else if (colspan > 1 && (startBlockIndex > cellIndex && startBlockIndex < cellIndex + colspan)) {
+                    } else if (colspan > 1 && startBlockIndex > cellIndex && startBlockIndex < cellIndex + colspan) {
                         editor.setNodeByKey(cell.key, {
                             ...cell,
                             data: {
@@ -101,7 +110,7 @@ export const tablePlugin = () => {
             let cellSizes = selectedTable.data.get('cellSizes').filter((item: any, index: number) => index != startBlockIndex);
             const newData = selectedTable.data.set('cellSizes', cellSizes);
             editor.setNodeByKey(selectedTable.key, {
-                ...selectedTable as any,
+                ...(selectedTable as any),
                 data: newData,
             });
             (editor as any).removeColumn(startBlockIndex);
@@ -123,7 +132,11 @@ export const tablePlugin = () => {
         }
 
         for (let i = 0; i < selectedRow.nodes.toArray().length; i++) {
-            if (selectedRow.nodes.toArray()[i].data !== undefined && selectedRow.nodes.toArray()[i].data.get('rowSpan') > 1 && selectedRow.nodes.toArray()[i].data.get('rowSpan') > rowSpanIndex) {
+            if (
+                selectedRow.nodes.toArray()[i].data !== undefined &&
+                selectedRow.nodes.toArray()[i].data.get('rowSpan') > 1 &&
+                selectedRow.nodes.toArray()[i].data.get('rowSpan') > rowSpanIndex
+            ) {
                 rowSpanIndex = selectedRow.nodes.toArray()[i].data.get('rowSpan');
             }
         }
@@ -148,25 +161,34 @@ export const tablePlugin = () => {
             return;
         }
 
-        while (selectedTable.nodes.toArray()[currentRowIndex].nodes.toArray().some((item: any) => item.data.get('style') === 'none') && currentRowIndex > 0) {
+        while (
+            selectedTable.nodes
+                .toArray()
+                [currentRowIndex].nodes.toArray()
+                .some((item: any) => item.data.get('style') === 'none') &&
+            currentRowIndex > 0
+        ) {
             currentRowIndex--;
         }
 
         if (currentRowIndex !== rowIndex) {
-            selectedTable.nodes.toArray()[currentRowIndex].nodes.toArray().map((item: any) => {
-                let cellRowSpan = item.data.get('rowSpan');
-                let isArterPasteValid = position !== 'before' && cellRowSpan > rowIndex - currentRowIndex + 1;
-                let isBeforePasteValid = position === 'before' && cellRowSpan > rowIndex - currentRowIndex;
-                if (cellRowSpan && (isArterPasteValid || isBeforePasteValid)) {
-                    editor.setNodeByKey(item.key, {
-                        ...item,
-                        data: {
-                            rowSpan: cellRowSpan + 1,
-                        },
-                    });
-                    shouldHideCells = true;
-                }
-            });
+            selectedTable.nodes
+                .toArray()
+                [currentRowIndex].nodes.toArray()
+                .map((item: any) => {
+                    let cellRowSpan = item.data.get('rowSpan');
+                    let isArterPasteValid = position !== 'before' && cellRowSpan > rowIndex - currentRowIndex + 1;
+                    let isBeforePasteValid = position === 'before' && cellRowSpan > rowIndex - currentRowIndex;
+                    if (cellRowSpan && (isArterPasteValid || isBeforePasteValid)) {
+                        editor.setNodeByKey(item.key, {
+                            ...item,
+                            data: {
+                                rowSpan: cellRowSpan + 1,
+                            },
+                        });
+                        shouldHideCells = true;
+                    }
+                });
         } else {
             selectedRow.nodes.toArray().map((item: any) => {
                 let cellRowSpan = item.data.get('rowSpan');
@@ -182,17 +204,20 @@ export const tablePlugin = () => {
             });
         }
 
-        position !== 'before' ? rowIndex += rowSpanIndex : null;
+        position !== 'before' ? (rowIndex += rowSpanIndex) : null;
         let insertIndex = position === 'before' ? rowIndex : rowIndex + 1;
 
-        let editorAfterInsert = insertIndex === 0 && selectedCell.type === 'table_cell'
-            ? (editor as any).insertHeaderRow(insertIndex)
-            : selectedCell.type === 'table_header_cell' && selectedTable.nodes.toArray()[rowIndex + 1]
+        let editorAfterInsert =
+            insertIndex === 0 && selectedCell.type === 'table_cell'
+                ? (editor as any).insertHeaderRow(insertIndex)
+                : selectedCell.type === 'table_header_cell' && selectedTable.nodes.toArray()[rowIndex + 1]
                 ? (editor as any).insertHeaderRow(insertIndex)
                 : (editor as any).insertRow(insertIndex);
 
         if (shouldHideCells) {
-            const currentCell: any = editorAfterInsert.value.document.getParent(editorAfterInsert.value.document.getPath(editorAfterInsert.value.anchorBlock.key));
+            const currentCell: any = editorAfterInsert.value.document.getParent(
+                editorAfterInsert.value.document.getPath(editorAfterInsert.value.anchorBlock.key)
+            );
             const newRow: any = editorAfterInsert.value.document.getParent(editorAfterInsert.value.document.getPath(currentCell.key));
 
             newRow.nodes.toArray().map((item: any, index: number) => {
@@ -205,7 +230,6 @@ export const tablePlugin = () => {
                     });
                 }
             });
-
         }
     };
 
@@ -226,20 +250,30 @@ export const tablePlugin = () => {
             }
         } else {
             let currentRowIndex = rowIndex;
-            while (selectedTable.nodes.toArray()[currentRowIndex].nodes.toArray().some((item: any) => item.data.get('style') === 'none')) {
+            while (
+                selectedTable.nodes
+                    .toArray()
+                    [currentRowIndex].nodes.toArray()
+                    .some((item: any) => item.data.get('style') === 'none')
+            ) {
                 currentRowIndex--;
             }
 
             if (currentRowIndex !== rowIndex) {
-                selectedTable.nodes.toArray()[currentRowIndex].nodes.toArray().map((item: any) => {
-                    let cellRowSpan = item.data.get('rowSpan');
-                    cellRowSpan && cellRowSpan > 1 ? editor.setNodeByKey(item.key, {
-                        ...item,
-                        data: {
-                            rowSpan: cellRowSpan - 1,
-                        },
-                    }) : null;
-                });
+                selectedTable.nodes
+                    .toArray()
+                    [currentRowIndex].nodes.toArray()
+                    .map((item: any) => {
+                        let cellRowSpan = item.data.get('rowSpan');
+                        cellRowSpan && cellRowSpan > 1
+                            ? editor.setNodeByKey(item.key, {
+                                  ...item,
+                                  data: {
+                                      rowSpan: cellRowSpan - 1,
+                                  },
+                              })
+                            : null;
+                    });
             } else {
                 let rowSpansInRow: any[] = [];
                 let rowSpansInRowIndex: any[] = [];
@@ -272,8 +306,6 @@ export const tablePlugin = () => {
         (editor as any).insertTableByKey(currentKey, 0, 2, 2);
     };
 
-
-
     return {
         ...editTable,
         ...mergeCellsPlugin(),
@@ -296,7 +328,7 @@ export const tablePlugin = () => {
 };
 
 export const TableButton = (props: { editor: Editor }) => {
-    return <ToolbarButton isDisabled={ isTextSelected(props.editor) } onClick={ () => ((props.editor as any).insertTableIn()) } icon={ TableIcon } />;
+    return <ToolbarButton isDisabled={isTextSelected(props.editor)} onClick={() => (props.editor as any).insertTableIn()} icon={TableIcon} />;
 };
 
 const TABLE_TAGS: any = {

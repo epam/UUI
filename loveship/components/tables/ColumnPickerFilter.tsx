@@ -14,24 +14,21 @@ export interface PickerFilterState extends PickerBaseState {}
 const pickerHeight = 300;
 
 export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, PickerFilterProps<TItem, TId>, PickerFilterState> {
-
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
-        return this.props.renderRow ? this.props.renderRow(rowProps, this.state.dataSourceState) : (
+        return this.props.renderRow ? (
+            this.props.renderRow(rowProps, this.state.dataSourceState)
+        ) : (
             <DataPickerRow
-                { ...rowProps }
-                key={ rowProps.rowKey }
+                {...rowProps}
+                key={rowProps.rowKey}
                 borderBottom="none"
-                size={ this.props.size || '30' }
-                renderItem={ i => (
-                    <Text size={ this.props.size || '30' }>
-                        { rowProps.isLoading
-                            ? <TextPlaceholder wordsCount={ 2 } />
-                            : this.getName(i) }
-                    </Text>
-                ) }
+                size={this.props.size || '30'}
+                renderItem={i => (
+                    <Text size={this.props.size || '30'}>{rowProps.isLoading ? <TextPlaceholder wordsCount={2} /> : this.getName(i)}</Text>
+                )}
             />
         );
-    }
+    };
 
     getRows() {
         const view = this.getView();
@@ -51,18 +48,15 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
         return (
             <>
                 <DataPickerBody
-                    { ...this.getListProps() }
-                    value={ this.getDataSourceState() }
-                    onValueChange={ this.handleDataSourceValueChange }
-                    maxHeight={ maxHeight }
-                    rows={ renderedDataRows }
-                    search={ this.lens.prop('dataSourceState').prop('search').toProps() }
-                    showSearch={ this.props.showSearch }
+                    {...this.getListProps()}
+                    value={this.getDataSourceState()}
+                    onValueChange={this.handleDataSourceValueChange}
+                    maxHeight={maxHeight}
+                    rows={renderedDataRows}
+                    search={this.lens.prop('dataSourceState').prop('search').toProps()}
+                    showSearch={this.props.showSearch}
                 />
-                <DataPickerFooter
-                    { ...this.getFooterProps() }
-                    size={ this.props.size }
-                />
+                <DataPickerFooter {...this.getFooterProps()} size={this.props.size} />
             </>
         );
     }

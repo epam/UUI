@@ -22,7 +22,7 @@ export interface BadgeMods extends types.ColorMod {
     /** Badge shape: square or round */
     shape?: types.ControlShape;
     /** Badge fill style */
-    fill?: types.FillStyle  | 'semitransparent' | 'transparent';
+    fill?: types.FillStyle | 'semitransparent' | 'transparent';
     /** Badge size */
     size?: '12' | '18' | '24' | '30' | '36' | '42' | '48';
 }
@@ -38,12 +38,8 @@ export function applyBadgeMods(mods: BadgeMods) {
     ];
 }
 
-export const Badge = withMods<ButtonProps, BadgeMods>(
-    Button,
-    applyBadgeMods,
-    (props) => ({
-        dropdownIcon: systemIcons[mapSizeToIconSize[props.size || defaultSize]].foldingArrow,
-        clearIcon: systemIcons[mapSizeToIconSize[props.size || defaultSize]].clear,
-        countPosition: 'left',
-    }),
-);
+export const Badge = withMods<ButtonProps, BadgeMods>(Button, applyBadgeMods, props => ({
+    dropdownIcon: systemIcons[mapSizeToIconSize[props.size || defaultSize]].foldingArrow,
+    clearIcon: systemIcons[mapSizeToIconSize[props.size || defaultSize]].clear,
+    countPosition: 'left',
+}));

@@ -21,7 +21,7 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
     constructor(
         private dbRef: DbRef<TTables, any>,
         private getTracker: () => ILoadingTracker<TRequest, TResult>,
-        private options: LoaderOptions<TTables, TResult, TRequest>,
+        private options: LoaderOptions<TTables, TResult, TRequest>
     ) {
         this.loaded = getTracker();
         this.loadedAndLoading = getTracker();
@@ -91,5 +91,5 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
                 return result;
             }
         }
-    }
+    };
 }

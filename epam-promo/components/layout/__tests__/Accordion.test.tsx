@@ -5,22 +5,12 @@ import { ReactComponent as Arrow } from '@epam/assets/icons/common/navigation-ar
 
 describe('Accordion', () => {
     it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<Accordion
-                title='Test title'
-            />)
-            .toJSON();
+        const tree = renderer.create(<Accordion title="Test title" />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly with props', () => {
-        const tree = renderer
-            .create(<Accordion
-                title='Test title'
-                mode='inline'
-                dropdownIcon={ Arrow }
-            />)
-            .toJSON();
+        const tree = renderer.create(<Accordion title="Test title" mode="inline" dropdownIcon={Arrow} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

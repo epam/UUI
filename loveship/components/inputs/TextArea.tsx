@@ -11,22 +11,16 @@ export interface TextAreaMods extends types.EditMode, TextSettings {
 }
 
 export function applyTextAreaMods(mods: TextAreaMods) {
-    return [
-        colorStyle.colorSky,
-        css.root,
-        css['size-' + (mods.size || '36')],
-        css['mode-' + (mods.mode || 'form')],
-    ];
+    return [colorStyle.colorSky, css.root, css['size-' + (mods.size || '36')], css['mode-' + (mods.mode || 'form')]];
 }
 
-export const TextArea = withMods<TextAreaProps, TextAreaMods>(
-    uuiTextArea,
-    applyTextAreaMods,
-    (props) => ({
-        inputCx: getTextClasses({
+export const TextArea = withMods<TextAreaProps, TextAreaMods>(uuiTextArea, applyTextAreaMods, props => ({
+    inputCx: getTextClasses(
+        {
             size: props.size || '36',
             lineHeight: props.lineHeight,
             fontSize: props.fontSize,
-        }, true),
-    }),
-);
+        },
+        true
+    ),
+}));

@@ -10,19 +10,21 @@ describe('DatePickerBody', () => {
         wrapper && wrapper.unmount();
     });
 
-
     it('should change selectedDate on day click', () => {
         let newState: any = {};
-        wrapper = shallow(<DatePickerBody
-            value={ {
-                view: 'DAY_SELECTION',
-                selectedDate: '',
-                displayedDate: dayjs().startOf('day'),
-            } }
-            setSelectedDate={ (nV: any) => newState = { selectedDate: nV} }
-            setDisplayedDateAndView={ (displayedDate, view) => {  } }
-        />, {});
-        (wrapper.instance() as any).onDayClick(dayjs("2017-01-22"));
-        expect(newState.selectedDate).toEqual("2017-01-22");
+        wrapper = shallow(
+            <DatePickerBody
+                value={{
+                    view: 'DAY_SELECTION',
+                    selectedDate: '',
+                    displayedDate: dayjs().startOf('day'),
+                }}
+                setSelectedDate={(nV: any) => (newState = { selectedDate: nV })}
+                setDisplayedDateAndView={(displayedDate, view) => {}}
+            />,
+            {}
+        );
+        (wrapper.instance() as any).onDayClick(dayjs('2017-01-22'));
+        expect(newState.selectedDate).toEqual('2017-01-22');
     });
 });

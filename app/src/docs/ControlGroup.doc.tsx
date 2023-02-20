@@ -14,12 +14,9 @@ export class ControlGroupDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='controlGroup-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/controlGroup/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="controlGroup-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/controlGroup/Basic.example.tsx" />
             </>
         );
     }

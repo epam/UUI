@@ -1,10 +1,6 @@
-const {
-    createSummaryFromMessages, convertSummaryToHtml,
-    sumComparator, convertResultsToHtml,
-    getReportLocationPath,
-} = require('./formatterUtils');
+const { createSummaryFromMessages, convertSummaryToHtml, sumComparator, convertResultsToHtml, getReportLocationPath } = require('./formatterUtils');
 
-module.exports = (results) => {
+module.exports = results => {
     let summary;
     results.forEach(({ messages }, index) => {
         summary = createSummaryFromMessages(messages, summary);

@@ -9,6 +9,8 @@ export interface BlockerMods {
     color?: SpinnerColor;
 }
 
-export const Blocker = withMods<BlockerProps, BlockerMods>(uuiBlocker, () => [css.root],
-    (cmpProps) => ({ renderSpinner: cmpProps.renderSpinner || ((props: BlockerMods) => <Spinner color={ props.color }/>) }),
+export const Blocker = withMods<BlockerProps, BlockerMods>(
+    uuiBlocker,
+    () => [css.root],
+    cmpProps => ({ renderSpinner: cmpProps.renderSpinner || ((props: BlockerMods) => <Spinner color={props.color} />) })
 );

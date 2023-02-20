@@ -9,14 +9,7 @@ export interface IconContainerMods {
 }
 
 export function applyIconContainerMods(mods: IconContainerMods) {
-    return [
-        `icon-container-color-${mods.color || 'default'}`,
-        css.root,
-    ];
+    return [`icon-container-color-${mods.color || 'default'}`, css.root];
 }
 
-export const IconContainer = withMods<ControlIconProps, IconContainerMods>(
-    uuiIconContainer,
-    applyIconContainerMods,
-    () => ({ tabIndex: 0 }),
-);
+export const IconContainer = withMods<ControlIconProps, IconContainerMods>(uuiIconContainer, applyIconContainerMods, () => ({ tabIndex: 0 }));

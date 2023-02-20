@@ -9,8 +9,7 @@ function applyMainMenuMods(mods: MainMenuMods) {
     return [css.root];
 }
 
-export const MainMenu = withMods<MainMenuProps, MainMenuMods>(uuiMainMenu, applyMainMenuMods, (props) => ({
+export const MainMenu = withMods<MainMenuProps, MainMenuMods>(uuiMainMenu, applyMainMenuMods, props => ({
     Burger,
     MainMenuDropdown,
 }));
-

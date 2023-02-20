@@ -8,7 +8,7 @@ export interface TextPlaceholderProps {
     isNotAnimated?: boolean;
 }
 
-export const TextPlaceholder: React.FunctionComponent<TextPlaceholderProps> = (props) => {
+export const TextPlaceholder: React.FunctionComponent<TextPlaceholderProps> = props => {
     const pattern = `0`;
     const text = React.useMemo(() => {
         const words = [];
@@ -20,18 +20,14 @@ export const TextPlaceholder: React.FunctionComponent<TextPlaceholderProps> = (p
     }, [props.wordsCount]);
 
     return (
-        <div aria-busy={ true } className={ css.container }>{
-            text.map((it: string, index: number) => (
+        <div aria-busy={true} className={css.container}>
+            {text.map((it: string, index: number) => (
                 <span
-                    key={ index }
-                    className={ cx([
-                        'text-placeholder-vars',
-                        css.loadingWord,
-                        !props.isNotAnimated && css.animatedLoading,
-                    ]) }
-                    dangerouslySetInnerHTML={ {__html: it} }
+                    key={index}
+                    className={cx(['text-placeholder-vars', css.loadingWord, !props.isNotAnimated && css.animatedLoading])}
+                    dangerouslySetInnerHTML={{ __html: it }}
                 />
-            )) }
+            ))}
         </div>
     );
 };

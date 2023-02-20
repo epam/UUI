@@ -1,7 +1,7 @@
-import { LazyDataSource } from "../../LazyDataSource";
-import { LazyListView } from "../LazyListView";
-import { delay } from "@epam/test-utils";
-import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps } from "../../../../types";
+import { LazyDataSource } from '../../LazyDataSource';
+import { LazyListView } from '../LazyListView';
+import { delay } from '@epam/test-utils';
+import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
 
 interface TestItem {
@@ -24,47 +24,47 @@ describe('LazyListView', () => {
         { id: 330, parentId: 300 }, //  9     330
     ];
 
-    testData.forEach(i => { i.childrenCount = testData.filter(x => x.parentId == i.id).length; });
+    testData.forEach(i => {
+        i.childrenCount = testData.filter(x => x.parentId == i.id).length;
+    });
 
     const testDataById = (Object as any).fromEntries(testData.map(i => [i.id, i]));
 
     let value: DataSourceState;
-    let onValueChanged = (newValue: DataSourceState) => { value = newValue; };
+    let onValueChanged = (newValue: DataSourceState) => {
+        value = newValue;
+    };
 
-    const testApi = jest.fn(
-        (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq)),
+    const testApi = jest.fn((rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) =>
+        Promise.resolve(runDataQuery(testData, rq))
     );
 
     let treeDataSource = new LazyDataSource({
-        api: (rq, ctx) => ctx?.parent
-            ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
-            : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
-        getChildCount: (i) => i.childrenCount,
+        api: (rq, ctx) =>
+            ctx?.parent
+                ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
+                : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
+        getChildCount: i => i.childrenCount,
         getParentId: i => i.parentId,
     });
 
     beforeEach(() => {
         value = { topIndex: 0, visibleCount: 3 };
-        onValueChanged = (newValue: DataSourceState) => { value = newValue; };
+        onValueChanged = (newValue: DataSourceState) => {
+            value = newValue;
+        };
         testApi.mockClear();
     });
 
     it('testApi is ok', async () => {
         let data = await testApi({ filter: { parentId: 100 } });
         expect(data).toEqual({
-            items: [
-                testDataById[110],
-                testDataById[120],
-            ],
+            items: [testDataById[110], testDataById[120]],
             count: 2,
         });
     });
 
-    function expectViewToLookLike(
-        view: LazyListView<TestItem, number>,
-        rows: Partial<DataRowProps<TestItem, number>>[],
-        rowsCount?: number,
-    ) {
+    function expectViewToLookLike(view: LazyListView<TestItem, number>, rows: Partial<DataRowProps<TestItem, number>>[], rowsCount?: number) {
         let viewRows = view.getVisibleRows();
 
         rows.forEach(r => {
@@ -92,11 +92,15 @@ describe('LazyListView', () => {
         expect(testApi).toBeCalledTimes(1);
         testApi.mockClear();
 
-        expectViewToLookLike(view, [
-            { id: 100, isFoldable: true, isFolded: true, path: [] },
-            { id: 200, isFoldable: false, path: [] },
-            { id: 300, isFoldable: true, isFolded: true, path: [] },
-        ], 3);
+        expectViewToLookLike(
+            view,
+            [
+                { id: 100, isFoldable: true, isFolded: true, path: [] },
+                { id: 200, isFoldable: false, path: [] },
+                { id: 300, isFoldable: true, isFolded: true, path: [] },
+            ],
+            3
+        );
 
         // Unfold some rows
         let rows = view.getVisibleRows();
@@ -104,23 +108,31 @@ describe('LazyListView', () => {
         view = ds.getView(value, onValueChanged, {});
         rows[0].onFold(rows[0]);
         view = ds.getView(value, onValueChanged, {});
-        expectViewToLookLike(view, [
-            { id: 100, depth: 0, indent: 1 },
-            { isLoading: true, depth: 1, indent: 2 },
-            { isLoading: true, depth: 1, indent: 2 },
-            { id: 200, depth: 0, indent: 1 },
-            { id: 300, depth: 0, indent: 1 },
-        ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to receive exact rows count here
+        expectViewToLookLike(
+            view,
+            [
+                { id: 100, depth: 0, indent: 1 },
+                { isLoading: true, depth: 1, indent: 2 },
+                { isLoading: true, depth: 1, indent: 2 },
+                { id: 200, depth: 0, indent: 1 },
+                { id: 300, depth: 0, indent: 1 },
+            ],
+            5
+        ); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to receive exact rows count here
 
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
-            { id: 110, depth: 1, indent: 2, isFoldable: false },
-            { id: 120, depth: 1, indent: 2, isFoldable: true },
-            { id: 200, depth: 0, indent: 1 },
-            { id: 300, depth: 0, indent: 1 },
-        ], 5);
+        expectViewToLookLike(
+            view,
+            [
+                { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
+                { id: 110, depth: 1, indent: 2, isFoldable: false },
+                { id: 120, depth: 1, indent: 2, isFoldable: true },
+                { id: 200, depth: 0, indent: 1 },
+                { id: 300, depth: 0, indent: 1 },
+            ],
+            5
+        );
 
         // Unfold more rows
         rows = view.getVisibleRows();
@@ -151,17 +163,19 @@ describe('LazyListView', () => {
         value.topIndex = 5;
         view = ds.getView(value, onValueChanged, {});
 
-        expectViewToLookLike(view, [
-            { id: 200, depth: 0, indent: 1 },
-            { id: 300, depth: 0, indent: 1 },
-        ], 7);
+        expectViewToLookLike(
+            view,
+            [
+                { id: 200, depth: 0, indent: 1 },
+                { id: 300, depth: 0, indent: 1 },
+            ],
+            7
+        );
     });
 
     it('Multi-level folding', async () => {
-        const getView = () => ds.getView(
-            value,
-            onValueChanged,
-            {
+        const getView = () =>
+            ds.getView(value, onValueChanged, {
                 cascadeSelection: true,
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
@@ -173,18 +187,11 @@ describe('LazyListView', () => {
         view.getListProps(); // trigger loading
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100 },
-            { id: 110 },
-            { id: 120 },
-            { id: 121 },
-            { id: 122 },
-            { id: 200 },
-            { id: 300 },
-            { id: 310 },
-            { id: 320 },
-            { id: 330 },
-        ], 10);
+        expectViewToLookLike(
+            view,
+            [{ id: 100 }, { id: 110 }, { id: 120 }, { id: 121 }, { id: 122 }, { id: 200 }, { id: 300 }, { id: 310 }, { id: 320 }, { id: 330 }],
+            10
+        );
 
         // fold row #120
         let rows = view.getVisibleRows();
@@ -192,16 +199,7 @@ describe('LazyListView', () => {
         view = getView();
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100 },
-            { id: 110 },
-            { id: 120 },
-            { id: 200 },
-            { id: 300 },
-            { id: 310 },
-            { id: 320 },
-            { id: 330 },
-        ], 8);
+        expectViewToLookLike(view, [{ id: 100 }, { id: 110 }, { id: 120 }, { id: 200 }, { id: 300 }, { id: 310 }, { id: 320 }, { id: 330 }], 8);
 
         // fold row #100
         rows = view.getVisibleRows();
@@ -209,14 +207,7 @@ describe('LazyListView', () => {
         view = getView();
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100 },
-            { id: 200 },
-            { id: 300 },
-            { id: 310 },
-            { id: 320 },
-            { id: 330 },
-        ], 6);
+        expectViewToLookLike(view, [{ id: 100 }, { id: 200 }, { id: 300 }, { id: 310 }, { id: 320 }, { id: 330 }], 6);
     });
 
     it('load children lazily', async () => {
@@ -227,44 +218,29 @@ describe('LazyListView', () => {
         view.getListProps(); // trigger loading
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100 },
-            { id: 110 },
-            { id: 120 },
-        ]);
+        expectViewToLookLike(view, [{ id: 100 }, { id: 110 }, { id: 120 }]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
         // Scroll down
         value.topIndex = 2;
         view = getView();
 
-        expectViewToLookLike(view, [
-            { id: 120 },
-            { isLoading: true },
-            { isLoading: true },
-        ]);
+        expectViewToLookLike(view, [{ id: 120 }, { isLoading: true }, { isLoading: true }]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(4);
 
         await delay();
 
         view = getView();
 
-        expectViewToLookLike(view, [
-            { id: 120 },
-            { id: 121 },
-            { id: 122 },
-        ]);
+        expectViewToLookLike(view, [{ id: 120 }, { id: 121 }, { id: 122 }]);
     });
 
     it('Checkboxes works', async () => {
-        const getView = () => ds.getView(
-            value,
-            onValueChanged,
-            {
+        const getView = () =>
+            ds.getView(value, onValueChanged, {
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
-            },
-        );
+            });
 
         let ds = treeDataSource;
         value.visibleCount = 3;
@@ -304,14 +280,11 @@ describe('LazyListView', () => {
 
     it('should not update checkboxes if onValueChange is not updating them', async () => {
         const mockOnValueChanged = jest.fn();
-        const getView = () => ds.getView(
-            value,
-            mockOnValueChanged,
-            {
+        const getView = () =>
+            ds.getView(value, mockOnValueChanged, {
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
-            },
-        );
+            });
 
         let ds = treeDataSource;
         let view = getView();
@@ -327,7 +300,7 @@ describe('LazyListView', () => {
         view = getView();
         await delay();
 
-        expect(mockOnValueChanged).toBeCalledWith({ checked: [row110.id], topIndex: 0, visibleCount: 3 })
+        expect(mockOnValueChanged).toBeCalledWith({ checked: [row110.id], topIndex: 0, visibleCount: 3 });
 
         expectViewToLookLike(view, [
             { id: 100, isChecked: false },
@@ -337,7 +310,7 @@ describe('LazyListView', () => {
 
         view.update({ ...value, checked: [row110.id] }, view.props);
 
-        expect(mockOnValueChanged).toBeCalledWith({ checked: [row110.id], topIndex: 0, visibleCount: 3 })
+        expect(mockOnValueChanged).toBeCalledWith({ checked: [row110.id], topIndex: 0, visibleCount: 3 });
 
         expectViewToLookLike(view, [
             { id: 100, isChecked: false },
@@ -350,14 +323,11 @@ describe('LazyListView', () => {
         let ds = treeDataSource;
         value.visibleCount = 10;
         value.checked = [121, 122, 310, 320];
-        let view = ds.getView(
-            value,
-            onValueChanged,
-            {
-                cascadeSelection: true,
-                getRowOptions: i => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: i => false,
-            });
+        let view = ds.getView(value, onValueChanged, {
+            cascadeSelection: true,
+            getRowOptions: i => ({ checkbox: { isVisible: true } }),
+            isFoldedByDefault: i => false,
+        });
         view.getListProps(); // trigger loading
         await delay();
 
@@ -376,15 +346,12 @@ describe('LazyListView', () => {
     });
 
     it('Cascade selection works', async () => {
-        const getView = () => ds.getView(
-            value,
-            onValueChanged,
-            {
+        const getView = () =>
+            ds.getView(value, onValueChanged, {
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
                 cascadeSelection: true,
-            },
-        );
+            });
 
         let ds = treeDataSource;
         value.visibleCount = 6;
@@ -439,15 +406,11 @@ describe('LazyListView', () => {
         };
 
         function getView() {
-            return ds.getView(
-                value,
-                onValueChanged,
-                {
-                    getRowOptions: i => ({ checkbox: { isVisible: true } }),
-                    isFoldedByDefault: i => false,
-                    cascadeSelection: true,
-                },
-            );
+            return ds.getView(value, onValueChanged, {
+                getRowOptions: i => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: i => false,
+                cascadeSelection: true,
+            });
         }
 
         view = getView();
@@ -481,10 +444,8 @@ describe('LazyListView', () => {
     });
 
     it('Select All', async () => {
-        const getView = () => ds.getView(
-            value,
-            onValueChanged,
-            {
+        const getView = () =>
+            ds.getView(value, onValueChanged, {
                 cascadeSelection: true,
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
@@ -511,18 +472,22 @@ describe('LazyListView', () => {
         selectAll = view.getListProps().selectAll;
         expect(selectAll.value).toBe(true);
         expect(selectAll.indeterminate).toBe(false);
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: true, isChildrenChecked: true },
-            { id: 110, isChecked: true },
-            { id: 120, isChecked: true, isChildrenChecked: true },
-            { id: 121, isChecked: true },
-            { id: 122, isChecked: true },
-            { id: 200, isChecked: true },
-            { id: 300, isChecked: true, isChildrenChecked: true },
-            { id: 310, isChecked: true },
-            { id: 320, isChecked: true },
-            { id: 330, isChecked: true },
-        ], 10);
+        expectViewToLookLike(
+            view,
+            [
+                { id: 100, isChecked: true, isChildrenChecked: true },
+                { id: 110, isChecked: true },
+                { id: 120, isChecked: true, isChildrenChecked: true },
+                { id: 121, isChecked: true },
+                { id: 122, isChecked: true },
+                { id: 200, isChecked: true },
+                { id: 300, isChecked: true, isChildrenChecked: true },
+                { id: 310, isChecked: true },
+                { id: 320, isChecked: true },
+                { id: 330, isChecked: true },
+            ],
+            10
+        );
 
         selectAll.onValueChange(false);
         await delay();
@@ -533,18 +498,22 @@ describe('LazyListView', () => {
         selectAll = view.getListProps().selectAll;
         expect(selectAll.value).toBe(false);
         expect(selectAll.indeterminate).toBe(false);
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: false, isChildrenChecked: false },
-            { id: 110, isChecked: false },
-            { id: 120, isChecked: false, isChildrenChecked: false },
-            { id: 121, isChecked: false },
-            { id: 122, isChecked: false },
-            { id: 200, isChecked: false },
-            { id: 300, isChecked: false, isChildrenChecked: false },
-            { id: 310, isChecked: false },
-            { id: 320, isChecked: false },
-            { id: 330, isChecked: false },
-        ], 10);
+        expectViewToLookLike(
+            view,
+            [
+                { id: 100, isChecked: false, isChildrenChecked: false },
+                { id: 110, isChecked: false },
+                { id: 120, isChecked: false, isChildrenChecked: false },
+                { id: 121, isChecked: false },
+                { id: 122, isChecked: false },
+                { id: 200, isChecked: false },
+                { id: 300, isChecked: false, isChildrenChecked: false },
+                { id: 310, isChecked: false },
+                { id: 320, isChecked: false },
+                { id: 330, isChecked: false },
+            ],
+            10
+        );
     });
 
     it('FocusedIndex works', async () => {
@@ -558,15 +527,11 @@ describe('LazyListView', () => {
         };
 
         function getView() {
-            return ds.getView(
-                value,
-                onValueChanged,
-                {
-                    getRowOptions: i => ({ checkbox: { isVisible: true } }),
-                    isFoldedByDefault: i => false,
-                    cascadeSelection: true,
-                },
-            );
+            return ds.getView(value, onValueChanged, {
+                getRowOptions: i => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: i => false,
+                cascadeSelection: true,
+            });
         }
 
         view = getView();
@@ -603,10 +568,8 @@ describe('LazyListView', () => {
     });
 
     it('Correctly computes path and isLastChild', async () => {
-        const getView = () => ds.getView(
-            value,
-            onValueChanged,
-            {
+        const getView = () =>
+            ds.getView(value, onValueChanged, {
                 cascadeSelection: true,
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
@@ -624,47 +587,70 @@ describe('LazyListView', () => {
         view = getView();
         view.getListProps(); // trigger loading
 
-        expectViewToLookLike(view, [
-            { id: 100, path: [], isLastChild: false },
-            { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
-            { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
-            {
-                isLoading: true,
-                path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
-                isLastChild: false,
-            },
-            {
-                isLoading: true,
-                path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
-                isLastChild: true,
-            },
-            { id: 200, path: [], isLastChild: false },
-            { id: 300, path: [], isLastChild: true },
-            { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
-            { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
-            { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
-        ], 10);
+        expectViewToLookLike(
+            view,
+            [
+                { id: 100, path: [], isLastChild: false },
+                { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+                { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+                {
+                    isLoading: true,
+                    path: [
+                        { id: 100, isLastChild: false, value: testDataById[100] },
+                        { id: 120, isLastChild: true, value: testDataById[120] },
+                    ],
+                    isLastChild: false,
+                },
+                {
+                    isLoading: true,
+                    path: [
+                        { id: 100, isLastChild: false, value: testDataById[100] },
+                        { id: 120, isLastChild: true, value: testDataById[120] },
+                    ],
+                    isLastChild: true,
+                },
+                { id: 200, path: [], isLastChild: false },
+                { id: 300, path: [], isLastChild: true },
+                { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
+            ],
+            10
+        );
 
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100, path: [], isLastChild: false },
-            { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
-            { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
-            {
-                id: 121,
-                path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
-                isLastChild: false,
-            },
-            { id: 122, path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }], isLastChild: true },
-            { id: 200, path: [], isLastChild: false },
-            { id: 300, path: [], isLastChild: true },
-            { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
-            { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
-            { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
-        ], 10);
+        expectViewToLookLike(
+            view,
+            [
+                { id: 100, path: [], isLastChild: false },
+                { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+                { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+                {
+                    id: 121,
+                    path: [
+                        { id: 100, isLastChild: false, value: testDataById[100] },
+                        { id: 120, isLastChild: true, value: testDataById[120] },
+                    ],
+                    isLastChild: false,
+                },
+                {
+                    id: 122,
+                    path: [
+                        { id: 100, isLastChild: false, value: testDataById[100] },
+                        { id: 120, isLastChild: true, value: testDataById[120] },
+                    ],
+                    isLastChild: true,
+                },
+                { id: 200, path: [], isLastChild: false },
+                { id: 300, path: [], isLastChild: true },
+                { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
+            ],
+            10
+        );
     });
-
 
     it('Correctly fold inner children in hierarchy', async () => {
         const testData: TestItem[] = [
@@ -692,26 +678,29 @@ describe('LazyListView', () => {
             { id: 900 },
         ];
 
-        testData.forEach(i => { i.childrenCount = testData.filter(x => x.parentId == i.id).length; });
+        testData.forEach(i => {
+            i.childrenCount = testData.filter(x => x.parentId == i.id).length;
+        });
 
         let value: DataSourceState = { visibleCount: 5 };
-        let onValueChanged = (newValue: DataSourceState) => { value = newValue; };
+        let onValueChanged = (newValue: DataSourceState) => {
+            value = newValue;
+        };
 
-        const testApi = jest.fn(
-            (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq)),
+        const testApi = jest.fn((rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) =>
+            Promise.resolve(runDataQuery(testData, rq))
         );
 
         let ds = new LazyDataSource({
-            api: (rq, ctx) => ctx.parent
-                ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
-                : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
-            getChildCount: (i) => i.childrenCount,
+            api: (rq, ctx) =>
+                ctx.parent
+                    ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
+                    : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
+            getChildCount: i => i.childrenCount,
         });
 
-        const getView = () => ds.getView(
-            value,
-            onValueChanged,
-            {
+        const getView = () =>
+            ds.getView(value, onValueChanged, {
                 cascadeSelection: true,
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
@@ -728,26 +717,14 @@ describe('LazyListView', () => {
         view = getView();
         rows = view.getVisibleRows();
 
-        expect(rows).toEqual([
-            { id: 100 },
-            { id: 200 },
-            { id: 300 },
-            { id: 400 },
-            { id: 500 },
-        ].map(r => expect.objectContaining(r)));
+        expect(rows).toEqual([{ id: 100 }, { id: 200 }, { id: 300 }, { id: 400 }, { id: 500 }].map(r => expect.objectContaining(r)));
 
         await delay();
 
         rows = view.getVisibleRows();
         view = getView();
 
-        expect(rows).toEqual([
-            { id: 100 },
-            { id: 200 },
-            { id: 300 },
-            { id: 400 },
-            { id: 500 },
-        ].map(r => expect.objectContaining(r)));
+        expect(rows).toEqual([{ id: 100 }, { id: 200 }, { id: 300 }, { id: 400 }, { id: 500 }].map(r => expect.objectContaining(r)));
     });
 
     it('should check/uncheck parents if all/no siblings checked', async () => {
@@ -760,15 +737,12 @@ describe('LazyListView', () => {
             view = getView();
         };
 
-        const getView = () => ds.getView(
-            value,
-            onValueChanged,
-            {
+        const getView = () =>
+            ds.getView(value, onValueChanged, {
                 getRowOptions: i => ({ checkbox: { isVisible: true } }),
                 isFoldedByDefault: i => false,
                 cascadeSelection: true,
-            },
-        );
+            });
 
         view = getView();
         view.getVisibleRows();

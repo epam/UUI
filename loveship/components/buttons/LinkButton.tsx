@@ -25,12 +25,15 @@ function applyLinkButtonMods(mods: LinkButtonMods & ButtonProps) {
     ];
 }
 
-export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, (props) => ({
+export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, props => ({
     dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
     clearIcon: systemIcons[props.size || defaultSize].clear,
-    captionCX: getTextClasses({
-        size: props.size || defaultSize,
-        lineHeight: props.lineHeight,
-        fontSize: props.fontSize,
-    }, false),
+    captionCX: getTextClasses(
+        {
+            size: props.size || defaultSize,
+            lineHeight: props.lineHeight,
+            fontSize: props.fontSize,
+        },
+        false
+    ),
 }));

@@ -6,9 +6,9 @@ import { ReactComponent as AccountIcon24 } from '@epam/assets/icons/common/actio
 export default function BasicIconContainerExample() {
     return (
         <>
-            <IconContainer icon={ AccountIcon24 } />
-            <IconContainer icon={ AccountIcon24 } color='blue' flipY={ true } isDisabled={ true } />
-            <IconContainer icon={ EyeIcon24 } color='violet' style={ { 'transform': 'skew(-15deg, 18deg)' } } />
+            <IconContainer icon={AccountIcon24} />
+            <IconContainer icon={AccountIcon24} color="blue" flipY={true} isDisabled={true} />
+            <IconContainer icon={EyeIcon24} color="violet" style={{ transform: 'skew(-15deg, 18deg)' }} />
         </>
     );
 }

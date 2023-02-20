@@ -9,10 +9,6 @@ export interface MainMenuButtonMods {
 
 export const MainMenuButton = withMods<ButtonProps, MainMenuButtonMods & IAdaptiveItem>(
     Button,
-    mods => [
-        css.root,
-        css['type-' + (mods.type || 'primary')],
-        css.fontSansSemibold,
-    ],
-    () => ({ dropdownIcon: TriangleIcon }),
+    mods => [css.root, css['type-' + (mods.type || 'primary')], css.fontSansSemibold],
+    () => ({ dropdownIcon: TriangleIcon })
 );

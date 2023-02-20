@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Text, Badge, EpamAdditionalColor, FlexRow, LinkButton } from '@epam/promo';
-import { DataColumnProps, getSeparatedValue } from "@epam/uui";
-import { Person } from "@epam/uui-docs";
+import { DataColumnProps, getSeparatedValue } from '@epam/uui';
+import { Person } from '@epam/uui-docs';
 import css from './FilteredTable.scss';
 
 export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'name',
-        caption: "Name",
-        render: p => <Text>{ p.name }</Text>,
+        caption: 'Name',
+        render: p => <Text>{p.name}</Text>,
         width: 200,
         fix: 'left',
         isSortable: true,
@@ -17,12 +17,12 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'profileStatus',
         caption: 'Profile Status',
-        render: p => p.profileStatus && <FlexRow>
-            <Badge
-                fill="transparent"
-                color={ p.profileStatus.toLowerCase() as EpamAdditionalColor }
-                caption={ p.profileStatus }/>
-        </FlexRow>,
+        render: p =>
+            p.profileStatus && (
+                <FlexRow>
+                    <Badge fill="transparent" color={p.profileStatus.toLowerCase() as EpamAdditionalColor} caption={p.profileStatus} />
+                </FlexRow>
+            ),
         grow: 0,
         shrink: 0,
         width: 140,
@@ -32,23 +32,27 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'salary',
         caption: 'salary',
-        render: p => <Text>{ getSeparatedValue(+p.salary, {style: "currency", currency: "USD", maximumFractionDigits: 2, minimumFractionDigits: 2}, 'en-US') }</Text>,
+        render: p => (
+            <Text>
+                {getSeparatedValue(+p.salary, { style: 'currency', currency: 'USD', maximumFractionDigits: 2, minimumFractionDigits: 2 }, 'en-US')}
+            </Text>
+        ),
         width: 150,
         textAlign: 'right',
         isSortable: true,
     },
     {
         key: 'jobTitle',
-        caption: "Title",
-        render: r => <Text>{ r.jobTitle }</Text>,
+        caption: 'Title',
+        render: r => <Text>{r.jobTitle}</Text>,
         width: 200,
         isSortable: true,
         isFilterActive: f => !!f.jobTitleId,
     },
     {
         key: 'departmentName',
-        caption: "Department",
-        render: p => <Text>{ p.departmentName }</Text>,
+        caption: 'Department',
+        render: p => <Text>{p.departmentName}</Text>,
         grow: 0,
         shrink: 0,
         width: 200,
@@ -58,8 +62,8 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     },
     {
         key: 'officeAddress',
-        caption: "Office",
-        render: p => <Text>{ p.officeAddress }</Text>,
+        caption: 'Office',
+        render: p => <Text>{p.officeAddress}</Text>,
         grow: 0,
         shrink: 0,
         width: 150,
@@ -68,8 +72,8 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     },
     {
         key: 'managerName',
-        caption: "Manager",
-        render: p => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#"/>,
+        caption: 'Manager',
+        render: p => <LinkButton caption={p.managerName} captionCX={css.managerCell} href="#" />,
         grow: 0,
         shrink: 0,
         width: 150,
@@ -79,7 +83,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'countryName',
         caption: 'Country',
-        render: p => <Text>{ p.countryName }</Text>,
+        render: p => <Text>{p.countryName}</Text>,
         grow: 0,
         shrink: 0,
         width: 150,
@@ -89,7 +93,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'cityName',
         caption: 'City',
-        render: p => <Text>{ p.cityName }</Text>,
+        render: p => <Text>{p.cityName}</Text>,
         grow: 0,
         shrink: 0,
         width: 150,
@@ -99,15 +103,15 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'profileType',
         caption: 'Profile Type',
-        render: p => <Text>{ p.hireDate ? 'Employee' : 'Student' }</Text>,
+        render: p => <Text>{p.hireDate ? 'Employee' : 'Student'}</Text>,
         grow: 0,
         shrink: 0,
         width: 150,
     },
     {
         key: 'birthDate',
-        caption: "Birth Date",
-        render: p => p?.birthDate && <Text>{ new Date(p.birthDate).toLocaleDateString() }</Text>,
+        caption: 'Birth Date',
+        render: p => p?.birthDate && <Text>{new Date(p.birthDate).toLocaleDateString()}</Text>,
         grow: 0,
         shrink: 0,
         width: 120,
@@ -115,8 +119,8 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     },
     {
         key: 'relatedNPR',
-        caption: "Related NPR",
-        render: p => <Text>{ p.relatedNPR ? 'Completed' : 'Uncompleted' }</Text>,
+        caption: 'Related NPR',
+        render: p => <Text>{p.relatedNPR ? 'Completed' : 'Uncompleted'}</Text>,
         grow: 0,
         shrink: 0,
         width: 120,
@@ -126,7 +130,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'titleLevel',
         caption: 'Track & Level',
-        render: p => <Text>{ p.titleLevel }</Text>,
+        render: p => <Text>{p.titleLevel}</Text>,
         grow: 1,
         shrink: 0,
         width: 100,
@@ -136,7 +140,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'workload',
         caption: 'Workload',
-        render: p => <Text>{ p.workload }%</Text>,
+        render: p => <Text>{p.workload}%</Text>,
         width: 120,
         textAlign: 'right',
         isSortable: true,

@@ -1,13 +1,13 @@
-import { RenderBlockProps, Editor } from "slate-react";
-import * as React from "react";
-import { ImageBlock } from "./ImageBlock";
+import { RenderBlockProps, Editor } from 'slate-react';
+import * as React from 'react';
+import { ImageBlock } from './ImageBlock';
 import css from './ImageBlock.scss';
-import { useUuiContext } from "@epam/uui-core";
-import {AddImageModal} from "./AddImageModal";
-import { ReactComponent as ImageIcon } from "../../icons/image.svg";
+import { useUuiContext } from '@epam/uui-core';
+import { AddImageModal } from './AddImageModal';
+import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { uuiSkin } from "@epam/uui-core";
-import {isTextSelected} from "../../helpers";
+import { uuiSkin } from '@epam/uui-core';
+import { isTextSelected } from '../../helpers';
 
 export const imagePlugin = () => {
     const { Spinner } = uuiSkin;
@@ -15,9 +15,9 @@ export const imagePlugin = () => {
     const renderBlock = (props: RenderBlockProps, editor: Editor, next: () => any) => {
         switch (props.node.type) {
             case 'loader':
-                return <Spinner { ...props } cx={ css.spinner }/>;
+                return <Spinner {...props} cx={css.spinner} />;
             case 'image':
-                return <ImageBlock { ...props } editor={ editor } />;
+                return <ImageBlock {...props} editor={editor} />;
             default:
                 return next();
         }
@@ -45,12 +45,13 @@ export const imagePlugin = () => {
 
 export const ImageButton = (props: { editor: Editor }) => {
     const context = useUuiContext();
-    return <ToolbarButton
-        onClick={ () => context.uuiModals.show<string>(modalProps => <AddImageModal { ...modalProps } editor={ props.editor } />)
-            .catch(() => null) }
-        icon={ ImageIcon }
-        isDisabled={ isTextSelected(props.editor) }
-    />;
+    return (
+        <ToolbarButton
+            onClick={() => context.uuiModals.show<string>(modalProps => <AddImageModal {...modalProps} editor={props.editor} />).catch(() => null)}
+            icon={ImageIcon}
+            isDisabled={isTextSelected(props.editor)}
+        />
+    );
 };
 
 const imageDesializer = (el: any, next: any) => {

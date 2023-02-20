@@ -1,1 +1,1 @@
-export * from "./DemoTablePaged";
+export * from './DemoTablePaged';

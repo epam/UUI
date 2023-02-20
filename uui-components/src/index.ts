@@ -1,3 +1,4 @@
+import '../assets/styles/index.scss';
 export * from './Text';
 export * from './layout';
 export * from './overlays';
@@ -11,4 +12,3 @@ export * from './RichTextView';
 export * from './pickers';
 export * from './errors';
 export * from './helpers';
-import '../assets/styles/index.scss';

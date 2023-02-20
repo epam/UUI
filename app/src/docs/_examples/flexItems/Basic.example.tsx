@@ -12,40 +12,50 @@ const imgPath = 'https://avatars.dicebear.com/api/human/avatar12.svg?background=
 export default function BasicExample() {
     return (
         <>
-            <Panel margin='24' style={ { width: '400px' } } background='white' shadow>
-                <FlexRow padding='12' >
-                    <Text font='sans-semibold' size='48'>Identity Document</Text>
+            <Panel margin="24" style={{ width: '400px' }} background="white" shadow>
+                <FlexRow padding="12">
+                    <Text font="sans-semibold" size="48">
+                        Identity Document
+                    </Text>
                     <FlexSpacer />
-                    <IconButton icon={ TickIcon } color='green' />
+                    <IconButton icon={TickIcon} color="green" />
                 </FlexRow>
-                <FlexRow padding='12' vPadding='12' >
-                    <FlexCell width='100%'>
-                        <Text size='24' font='sans' color='gray60'>Passport</Text>
+                <FlexRow padding="12" vPadding="12">
+                    <FlexCell width="100%">
+                        <Text size="24" font="sans" color="gray60">
+                            Passport
+                        </Text>
                     </FlexCell>
                 </FlexRow>
-                <FlexRow padding='12'>
-                    <LinkButton caption='EDIT' icon={ PencilIcon } size='30'/>
+                <FlexRow padding="12">
+                    <LinkButton caption="EDIT" icon={PencilIcon} size="30" />
                     <FlexSpacer />
-                    <Text size='18' font='sans' color='gray60'>Updated on 21 Aug 2018, 16:00</Text>
+                    <Text size="18" font="sans" color="gray60">
+                        Updated on 21 Aug 2018, 16:00
+                    </Text>
                 </FlexRow>
             </Panel>
             <FlexSpacer />
-            <Panel margin='24' style={ { width: '400px' } } shadow background='white'>
-                <FlexRow background='gray5' padding='12'>
-                    <LinkButton caption='online' icon={ OnlineIcon } color='blue' />
+            <Panel margin="24" style={{ width: '400px' }} shadow background="white">
+                <FlexRow background="gray5" padding="12">
+                    <LinkButton caption="online" icon={OnlineIcon} color="blue" />
                     <FlexSpacer />
-                    <IconButton icon={ TrashIcon } color='blue' />
+                    <IconButton icon={TrashIcon} color="blue" />
                 </FlexRow>
-                <FlexRow padding='12' vPadding='12' borderBottom>
-                    <FlexCell width='100%'>
-                        <Text size='36' font='sans' color='gray60' >{ demoData.loremIpsum }</Text>
+                <FlexRow padding="12" vPadding="12" borderBottom>
+                    <FlexCell width="100%">
+                        <Text size="36" font="sans" color="gray60">
+                            {demoData.loremIpsum}
+                        </Text>
                     </FlexCell>
                 </FlexRow>
-                <FlexRow padding='12' spacing='6'>
-                    <LinkButton icon={ GearIcon } />
-                    <Badge size='18' caption='Olivia Wilde' icon={ () => <Avatar img={ imgPath } size={ '12' } /> } />
+                <FlexRow padding="12" spacing="6">
+                    <LinkButton icon={GearIcon} />
+                    <Badge size="18" caption="Olivia Wilde" icon={() => <Avatar img={imgPath} size={'12'} />} />
                     <FlexSpacer />
-                    <Text size='36' font='sans' color='gray60'>98%</Text>
+                    <Text size="36" font="sans" color="gray60">
+                        98%
+                    </Text>
                 </FlexRow>
             </Panel>
         </>

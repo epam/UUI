@@ -10,5 +10,5 @@ declare module '*.svg' {
     export default src;
 }
 
-declare module "jsurl";
-declare module "query-string";
+declare module 'jsurl';
+declare module 'query-string';

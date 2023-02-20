@@ -9,34 +9,36 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
     render() {
         return (
             <Dropdown
-                renderTarget={ props => (
+                renderTarget={props => (
                     <MainMenuButton
-                        { ...props }
-                        caption={ this.props.caption }
-                        cx={ cx(props.isOpen && css.open, this.props.cx) }
-                        rawProps={ this.props.rawProps }
-                        isLinkActive={ this.props.isLinkActive }
+                        {...props}
+                        caption={this.props.caption}
+                        cx={cx(props.isOpen && css.open, this.props.cx)}
+                        rawProps={this.props.rawProps}
+                        isLinkActive={this.props.isLinkActive}
                     />
-                    ) }
-                renderBody={ (props) => (
-                    <DropdownMenuBody color='night' inMainMenu cx={ css.dropdownContainer }>
-                        { React.Children.map(this.props.children, (item: any) => {
+                )}
+                renderBody={props => (
+                    <DropdownMenuBody color="night" inMainMenu cx={css.dropdownContainer}>
+                        {React.Children.map(this.props.children, (item: any) => {
                             if (!item) {
                                 return item;
                             }
                             const itemProps = {
                                 ...item.props,
-                                onClick: item.props.onClick ? () => {
-                                    item.props.onClick();
-                                    props.onClose();
-                                }: null
+                                onClick: item.props.onClick
+                                    ? () => {
+                                          item.props.onClick();
+                                          props.onClose();
+                                      }
+                                    : null,
                             };
 
                             return React.createElement(item.type, itemProps);
-                        }) }
+                        })}
                     </DropdownMenuBody>
-                ) }
-                placement='bottom-start'
+                )}
+                placement="bottom-start"
             />
         );
     }

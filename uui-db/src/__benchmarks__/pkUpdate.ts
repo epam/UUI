@@ -6,8 +6,7 @@ import range from 'lodash.range';
 import { DbTable } from '..';
 
 [1e1, 1e2, 1e3, 1e4, 1e5, 1e6].forEach(size => {
-    const testPersons = range(0, size)
-        .map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * 10) }));
+    const testPersons = range(0, size).map(id => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * 10) }));
     const pairs = testPersons.map(p => [p.id, p] as [number, Person]);
     const person = testPersons[0];
 
@@ -69,6 +68,6 @@ import { DbTable } from '..';
 
         b.cycle(),
         b.complete(),
-        b.save({ file: `pkUpdate-${size}`, version: '1.0.0' }),
+        b.save({ file: `pkUpdate-${size}`, version: '1.0.0' })
     );
 });

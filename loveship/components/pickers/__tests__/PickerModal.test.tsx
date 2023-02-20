@@ -1,25 +1,23 @@
-import React from "react";
-import { renderWithContextAsync } from "@epam/test-utils";
-import { dataSource } from "./dataMocks";
-import { PickerModal } from "../PickerModal";
+import React from 'react';
+import { renderWithContextAsync } from '@epam/test-utils';
+import { dataSource } from './dataMocks';
+import { PickerModal } from '../PickerModal';
 
-describe("PickerModal", () => {
-    it("should be rendered correctly", async () => {
+describe('PickerModal', () => {
+    it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(
             <PickerModal
                 key="test"
                 valueType="id"
-                dataSource={ dataSource }
-                success={ jest.fn() }
-                abort={ jest.fn() }
-                zIndex={ 1 }
+                dataSource={dataSource}
+                success={jest.fn()}
+                abort={jest.fn()}
+                zIndex={1}
                 selectionMode="single"
-                initialValue={ null }
+                initialValue={null}
                 isActive
-            />,
+            />
         );
         expect(tree).toMatchSnapshot();
     });
 });
-
-

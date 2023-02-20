@@ -28,11 +28,7 @@ export function applyButtonMods(mods: ButtonMods & ButtonProps) {
     ];
 }
 
-export const Button = withMods<ButtonProps, ButtonMods>(
-    uuiButton,
-    applyButtonMods,
-    (props) => ({
-        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-        clearIcon: systemIcons[props.size || defaultSize].clear,
-    }),
-);
+export const Button = withMods<ButtonProps, ButtonMods>(uuiButton, applyButtonMods, props => ({
+    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+    clearIcon: systemIcons[props.size || defaultSize].clear,
+}));

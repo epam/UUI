@@ -9,11 +9,7 @@ export interface AccordionMods {
 }
 
 function applyAccordionMods(mods: AccordionMods & AccordionProps) {
-    return [
-        css.root,
-        css['mode-' + (mods.mode || 'block')],
-        mods.padding && css['padding-' + mods.padding],
-    ];
+    return [css.root, css['mode-' + (mods.mode || 'block')], mods.padding && css['padding-' + mods.padding]];
 }
 
 export const Accordion = withMods<AccordionProps, AccordionMods>(uuiAccordion, applyAccordionMods, (mods: AccordionMods & AccordionProps) => ({

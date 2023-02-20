@@ -1,8 +1,8 @@
-import { Db } from "./types";
+import { Db } from './types';
 import { DbPatch } from './types';
 import { DbSchema, DbEntitySchema } from './DbSchema';
 import { DbEntityLens } from './DbLenses';
-import * as I from "immutable";
+import * as I from 'immutable';
 import { objectKeys } from './helpers';
 
 export interface DbSaveRequest<T> {
@@ -85,8 +85,7 @@ export class DbRef<T> {
         this.onUpdate();
     }
 
-    public enqueueFetch(run: () => DbPatch<T>) {
-    }
+    public enqueueFetch(run: () => DbPatch<T>) {}
 
     public entityLens<TEntityName extends keyof T>(name: TEntityName, filter: Partial<T[TEntityName]>): DbEntityLens<T, TEntityName> {
         return new DbEntityLens(this, name, filter);
@@ -103,7 +102,10 @@ export class DbRef<T> {
             const lastLogEntry = this.log.length;
             const logEntriesToSave = this.log.slice(this.savedPoint, lastLogEntry);
             const updatedDb = this.current;
-            const cumulativePatch = this.makeCumulativePatch(updatedDb, logEntriesToSave.map(t => t.patch));
+            const cumulativePatch = this.makeCumulativePatch(
+                updatedDb,
+                logEntriesToSave.map(t => t.patch)
+            );
             this.onUpdate();
             this.save(cumulativePatch)
                 .then(response => {
@@ -145,11 +147,13 @@ export class DbRef<T> {
             patches.forEach(patch => {
                 ids = ids.union((patch[entityName] || []).map(e => entitySchema.getKey(e as any)));
             });
-            result[entityName] = ids.map(id => {
-                const entity = (updatedDb as any)[entityName]().byId(id);
-                const entityWithPatchedIds = this.replaceTempIds(entitySchema, entity);
-                return entityWithPatchedIds as any;
-            }).toArray();
+            result[entityName] = ids
+                .map(id => {
+                    const entity = (updatedDb as any)[entityName]().byId(id);
+                    const entityWithPatchedIds = this.replaceTempIds(entitySchema, entity);
+                    return entityWithPatchedIds as any;
+                })
+                .toArray();
         });
 
         return result;

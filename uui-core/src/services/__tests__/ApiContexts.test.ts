@@ -1,8 +1,8 @@
-import { ApiCallError, ApiContext } from "../ApiContext";
+import { ApiCallError, ApiContext } from '../ApiContext';
 
 const delay = (time?: number) => new Promise(resolve => setTimeout(resolve, time || 0));
 
-describe("ApiContext", () => {
+describe('ApiContext', () => {
     let context = new ApiContext({});
 
     const testData = { testData: 'test test' };
@@ -11,7 +11,7 @@ describe("ApiContext", () => {
     headers.append('Content-Type', 'application/json');
 
     const getFetchMock = (status: number, data?: any): any => {
-        return jest.fn((req) => {
+        return jest.fn(req => {
             return Promise.resolve({
                 json: () => Promise.resolve(data || testData),
                 ok: status === 200,
@@ -25,8 +25,7 @@ describe("ApiContext", () => {
         context = new ApiContext({});
     });
 
-
-    it("should make a request", async () => {
+    it('should make a request', async () => {
         const fetchMock = getFetchMock(200);
         global.fetch = fetchMock;
 
@@ -40,8 +39,7 @@ describe("ApiContext", () => {
         });
     });
 
-
-    it("should handle api error", async () => {
+    it('should handle api error', async () => {
         const fetchMock = getFetchMock(500);
         global.fetch = fetchMock;
 
@@ -52,7 +50,7 @@ describe("ApiContext", () => {
         expect(call.httpStatus).toEqual(500);
     });
 
-    it("should handle connection lost", async () => {
+    it('should handle connection lost', async () => {
         const fetchMock = getFetchMock(408);
         global.fetch = fetchMock;
 
@@ -68,11 +66,11 @@ describe("ApiContext", () => {
         });
     });
 
-    it("should handle auth lost", async () => {
+    it('should handle auth lost', async () => {
         const fetchMock = getFetchMock(401);
         global.fetch = fetchMock;
 
-        const windowOpenMock =  jest.fn((url) => {});
+        const windowOpenMock = jest.fn(url => {});
         global.open = windowOpenMock as any;
 
         context.processRequest('path', 'POST', testData);
@@ -87,7 +85,7 @@ describe("ApiContext", () => {
         (global.open as any).mockClear();
     });
 
-    it("should reject promise on api error with type manual", async () => {
+    it('should reject promise on api error with type manual', async () => {
         const fetchMock500 = getFetchMock(500);
         const fetchMock503 = getFetchMock(503);
 

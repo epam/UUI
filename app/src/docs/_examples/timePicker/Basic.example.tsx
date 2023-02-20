@@ -6,10 +6,7 @@ export default function TimePickerBaseExample() {
 
     return (
         <FlexRow>
-            <TimePicker
-                value={ value }
-                onValueChange={ onValueChange }
-            />
+            <TimePicker value={value} onValueChange={onValueChange} />
         </FlexRow>
     );
 }

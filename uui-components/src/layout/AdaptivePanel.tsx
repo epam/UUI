@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 import css from './AdaptivePanel.scss';
-import { FlexRow } from "./flexItems";
-import sortBy from "lodash.sortby";
-import { IHasCX, useLayoutEffectSafeForSsr } from "@epam/uui-core";
+import { FlexRow } from './flexItems';
+import sortBy from 'lodash.sortby';
+import { IHasCX, useLayoutEffectSafeForSsr } from '@epam/uui-core';
 import cx from 'classnames';
 
 export type AdaptiveItemProps<T = unknown> = T & {
@@ -28,7 +28,7 @@ const layoutItems = (items: AdaptiveItemProps[], containerWidth: number, itemsWi
 
     let maxHiddenItemPriority = -1;
 
-    itemsByPriority.forEach((item) => {
+    itemsByPriority.forEach(item => {
         if (sumChildrenWidth + itemsWidth[item.id] > containerWidth) {
             if (item.priority > maxHiddenItemPriority) {
                 maxHiddenItemPriority = item.priority;
@@ -52,11 +52,14 @@ export const measureAdaptiveItems = (items: AdaptiveItemProps[], containerWidth:
         let collapsedContainer: AdaptiveItemProps = null;
         // if max hidden item priority more than collapsed container priority, try to re-layout items with another container with higher priority
         while (collapsedContainer === null || result.maxHiddenItemPriority >= collapsedContainer.priority) {
-            collapsedContainer = sortBy(items.filter(i => i.collapsedContainer && i.priority > result.maxHiddenItemPriority), i => i.priority)[0];
+            collapsedContainer = sortBy(
+                items.filter(i => i.collapsedContainer && i.priority > result.maxHiddenItemPriority),
+                i => i.priority
+            )[0];
             if (!collapsedContainer) {
                 return result;
             }
-            const itemsWithCollapsedContainer = items.filter(i => i.collapsedContainer ? i.id === collapsedContainer.id : true);
+            const itemsWithCollapsedContainer = items.filter(i => (i.collapsedContainer ? i.id === collapsedContainer.id : true));
             result = layoutItems(itemsWithCollapsedContainer, containerWidth, itemsWidth);
         }
     }
@@ -78,7 +81,9 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
 
         if (!children.length) return;
         const itemsWidth: Record<string, number> = {};
-        children.forEach((child, index) => { itemsWidth[props.items[index].id] = child.getBoundingClientRect().width; });
+        children.forEach((child, index) => {
+            itemsWidth[props.items[index].id] = child.getBoundingClientRect().width;
+        });
 
         return itemsWidth;
     };
@@ -92,7 +97,7 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
     });
 
     useEffect(() => {
-        const resizeObserver = new ResizeObserver((e) => {
+        const resizeObserver = new ResizeObserver(e => {
             setIsChanged(true);
         });
 
@@ -114,10 +119,8 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
     };
 
     return (
-        <div className={ cx(props.cx, css.mainWrapper) } ref={ wrapperRef }>
-            <FlexRow ref={ displayedRowRef }>
-                { renderItems() }
-            </FlexRow>
+        <div className={cx(props.cx, css.mainWrapper)} ref={wrapperRef}>
+            <FlexRow ref={displayedRowRef}>{renderItems()}</FlexRow>
         </div>
     );
 };

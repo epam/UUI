@@ -3,8 +3,7 @@ import { runQuery } from './runQuery';
 import { SortDirection } from '@epam/uui-core';
 
 export class QueryBuilder<T = any> implements IQueryable<T> {
-    constructor(private db: DbState, private query: DbQuery) {
-    }
+    constructor(private db: DbState, private query: DbQuery) {}
 
     private clone(): this {
         const clone = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
@@ -54,7 +53,7 @@ export class QueryBuilder<T = any> implements IQueryable<T> {
 
     public thenBy(name: Extract<keyof T, string>, dir?: SortDirection) {
         const clone = this.clone();
-        clone.query.order = [...clone.query.order || [], { name: name, dir: dir || 'asc' }];
+        clone.query.order = [...(clone.query.order || []), { name: name, dir: dir || 'asc' }];
         return clone;
     }
 }

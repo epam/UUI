@@ -6,29 +6,19 @@ import { blockTypeIsActive } from './helpers';
 
 export function createBlockStyleLinkButton({ blockType, icon, caption }: DraftBlockStyleButton) {
     return class BlockStyleLinkButton extends React.Component<DraftButtonProps> {
-
         toggleStyle = (event: React.MouseEvent<HTMLDivElement>) => {
             event.preventDefault();
-            this.props.onValueChange(
-                RichUtils.toggleBlockType(
-                    this.props.value,
-                    blockType,
-                ),
-            );
-        }
+            this.props.onValueChange(RichUtils.toggleBlockType(this.props.value, blockType));
+        };
 
-        preventBubblingUp = (event: React.MouseEvent<HTMLDivElement>) => { event.preventDefault(); };
+        preventBubblingUp = (event: React.MouseEvent<HTMLDivElement>) => {
+            event.preventDefault();
+        };
 
         render() {
             return (
-                <div
-                    onMouseDown={ this.preventBubblingUp }
-                >
-                    <IconButton
-                        onClick={ this.toggleStyle }
-                        icon={ icon }
-                        color={ blockTypeIsActive(this.props.value, blockType) ? 'sky' : 'night600' }
-                    />
+                <div onMouseDown={this.preventBubblingUp}>
+                    <IconButton onClick={this.toggleStyle} icon={icon} color={blockTypeIsActive(this.props.value, blockType) ? 'sky' : 'night600'} />
                 </div>
             );
         }

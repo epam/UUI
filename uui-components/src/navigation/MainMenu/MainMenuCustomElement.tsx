@@ -5,8 +5,6 @@ export interface MainMenuCustomElementProps extends IAdaptiveItem, IHasChildren 
 
 export class MainMenuCustomElement extends React.Component<MainMenuCustomElementProps> {
     render() {
-        return (
-            this.props.children
-        );
+        return this.props.children;
     }
 }

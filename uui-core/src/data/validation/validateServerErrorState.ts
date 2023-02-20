@@ -1,7 +1,7 @@
-import { ICanBeInvalid } from "../../types";
+import { ICanBeInvalid } from '../../types';
 
 export function validateServerErrorState<T extends any>(currentFormState: T, lastSentFormState: T, serverValidation: ICanBeInvalid) {
-    let result: ICanBeInvalid = {isInvalid: false};
+    let result: ICanBeInvalid = { isInvalid: false };
 
     if (serverValidation.validationProps) {
         Object.keys(serverValidation.validationProps).forEach(key => {
@@ -11,7 +11,7 @@ export function validateServerErrorState<T extends any>(currentFormState: T, las
                 currentFormState[key as keyof typeof currentFormState],
                 lastSentFormState[key as keyof typeof lastSentFormState],
                 childProps,
-                result,
+                result
             );
         });
     } else {
@@ -22,19 +22,25 @@ export function validateServerErrorState<T extends any>(currentFormState: T, las
 }
 
 function validateValue(newValue: any, oldValue: any, validationProp: ICanBeInvalid): ICanBeInvalid {
-    if (!validationProp.isInvalid) return {isInvalid: false};
+    if (!validationProp.isInvalid) return { isInvalid: false };
 
     return newValue === oldValue
         ? {
-            isInvalid: true,
-            validationMessage: validationProp.validationMessage,
-        }
+              isInvalid: true,
+              validationMessage: validationProp.validationMessage,
+          }
         : {
-            isInvalid: false,
-        };
+              isInvalid: false,
+          };
 }
 
-function validateItem(key: string, currentFormStatePart: any, lastSavedFormStatePart: any, serverValidation: ICanBeInvalid, parentResult: ICanBeInvalid) {
+function validateItem(
+    key: string,
+    currentFormStatePart: any,
+    lastSavedFormStatePart: any,
+    serverValidation: ICanBeInvalid,
+    parentResult: ICanBeInvalid
+) {
     const valueResult = validateValue(currentFormStatePart, lastSavedFormStatePart, serverValidation);
     const recursiveResult = validateServerErrorState(currentFormStatePart, lastSavedFormStatePart, serverValidation);
 

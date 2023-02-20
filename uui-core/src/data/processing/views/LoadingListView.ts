@@ -1,5 +1,5 @@
-import { IEditable, DataSourceState, DataSourceListCounts, DataRowPathItem } from "../../../types";
-import { BaseListView } from "./BaseListView";
+import { IEditable, DataSourceState, DataSourceListCounts, DataRowPathItem } from '../../../types';
+import { BaseListView } from './BaseListView';
 
 export class LoadingListView<TId> extends BaseListView<any, any, any> {
     value: DataSourceState<any>;
@@ -37,5 +37,5 @@ export class LoadingListView<TId> extends BaseListView<any, any, any> {
 
     getSelectedRows: () => any = () => {
         return [];
-    }
+    };
 }

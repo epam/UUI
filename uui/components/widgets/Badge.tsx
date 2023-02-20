@@ -31,8 +31,7 @@ export interface BadgeProps extends ButtonProps, BadgeMods {}
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
-
-        `badge-color-${(mods.color || 'info')}`,
+        `badge-color-${mods.color || 'info'}`,
         buttonCss.root,
         css['size-' + (mods.size || defaultSize)],
         css['fill-' + (mods.fill || 'solid')],
@@ -40,12 +39,8 @@ export function applyBadgeMods(mods: BadgeMods) {
     ];
 }
 
-export const Badge = withMods<ButtonProps, BadgeMods>(
-    Button,
-    applyBadgeMods,
-    (props) => ({
-        dropdownIcon: systemIcons[props.size && mapSize[props.size] || defaultSize].foldingArrow,
-        clearIcon: systemIcons[props.size && mapSize[props.size] || defaultSize].clear,
-        countPosition: 'left',
-    }),
-);
+export const Badge = withMods<ButtonProps, BadgeMods>(Button, applyBadgeMods, props => ({
+    dropdownIcon: systemIcons[(props.size && mapSize[props.size]) || defaultSize].foldingArrow,
+    clearIcon: systemIcons[(props.size && mapSize[props.size]) || defaultSize].clear,
+    countPosition: 'left',
+}));

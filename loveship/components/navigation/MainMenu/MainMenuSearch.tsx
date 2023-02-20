@@ -5,17 +5,16 @@ import { ReactComponent as CancelIcon } from '../../icons/menu_input_cancel.svg'
 import { cx, IAdaptiveItem } from '@epam/uui-core';
 import css from './MainMenuSearch.scss';
 
-export interface MainMenuSearchProps extends TextInputProps, IAdaptiveItem {
-}
+export interface MainMenuSearchProps extends TextInputProps, IAdaptiveItem {}
 
 export const MainMenuSearch = React.forwardRef<HTMLInputElement, MainMenuSearchProps>((props: MainMenuSearchProps, ref) => (
     <TextInput
-        ref={ ref }
-        iconPosition='left'
-        icon={ LensIcon }
-        cancelIcon={ props.value.length > 0 && CancelIcon }
-        { ...props }
-        cx={ cx(css.searchInput, props.cx) }
+        ref={ref}
+        iconPosition="left"
+        icon={LensIcon}
+        cancelIcon={props.value.length > 0 && CancelIcon}
+        {...props}
+        cx={cx(css.searchInput, props.cx)}
     />
 ));
 

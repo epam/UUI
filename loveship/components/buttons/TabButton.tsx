@@ -25,5 +25,5 @@ export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabBu
     clearIcon: systemIcons['36'].clear,
     countPosition: 'right',
     ...props,
-    rawProps: { role: 'tab', ...props.rawProps }
+    rawProps: { role: 'tab', ...props.rawProps },
 }));

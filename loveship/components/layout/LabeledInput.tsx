@@ -11,14 +11,10 @@ const defaultSize = '36';
 export interface LabeledInputMods extends types.ColorMod, types.SizeMod {}
 
 function applyLabeledInputMods(mods: LabeledInputMods) {
-    return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        styles['color-' + (mods.color || 'night700')],
-    ];
+    return [css.root, css['size-' + (mods.size || defaultSize)], styles['color-' + (mods.color || 'night700')]];
 }
 
-export const LabeledInput = withMods<LabeledInputProps, LabeledInputMods>(uuiLabeledInput, applyLabeledInputMods, (props) => ({
+export const LabeledInput = withMods<LabeledInputProps, LabeledInputMods>(uuiLabeledInput, applyLabeledInputMods, props => ({
     Tooltip,
     infoIcon: systemIcons[props.size || defaultSize].info,
 }));

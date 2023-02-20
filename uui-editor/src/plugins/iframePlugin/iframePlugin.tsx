@@ -1,24 +1,23 @@
-import { RenderBlockProps, Editor } from "slate-react";
-import * as React from "react";
-import { IframeBlock } from "./IframeBlock";
+import { RenderBlockProps, Editor } from 'slate-react';
+import * as React from 'react';
+import { IframeBlock } from './IframeBlock';
 import { UploadFileToggler } from '@epam/uui-components';
-import { ReactComponent as PdfIcon } from "../../icons/pdf.svg";
+import { ReactComponent as PdfIcon } from '../../icons/pdf.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { parseStringToCSSProperties } from "@epam/uui-core";
-import {isTextSelected} from "../../helpers";
+import { parseStringToCSSProperties } from '@epam/uui-core';
+import { isTextSelected } from '../../helpers';
 
 export const iframePlugin = () => {
     const renderBlock = (props: RenderBlockProps, editor: Editor, next: () => any) => {
         switch (props.node.type) {
             case 'iframe':
-                return <IframeBlock { ...props } />;
+                return <IframeBlock {...props} />;
             default:
                 return next();
         }
     };
 
     const onKeyDown = (event: KeyboardEvent, editor: Editor, next: () => any) => {
-
         if (event.keyCode == 13 && editor.value.focusBlock.type === 'iframe') {
             return (editor as any).insertEmptyBlock();
         }
@@ -41,9 +40,13 @@ export const iframePlugin = () => {
 const FileUploadButton = (props: { editor: Editor }) => {
     return (
         <UploadFileToggler
-            render={ toglerProps => <ToolbarButton { ...toglerProps } icon={ PdfIcon } isDisabled={ isTextSelected(props.editor) } /*cx={ css.pdfButton }*//> }
-            onFilesAdded={ files => { files.map(file => (props.editor as any).handleUploadFile(file)); } }
-            accept='.pdf'
+            render={toglerProps => (
+                <ToolbarButton {...toglerProps} icon={PdfIcon} isDisabled={isTextSelected(props.editor)} /*cx={ css.pdfButton }*/ />
+            )}
+            onFilesAdded={files => {
+                files.map(file => (props.editor as any).handleUploadFile(file));
+            }}
+            accept=".pdf"
         />
     );
 };

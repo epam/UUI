@@ -13,7 +13,7 @@ const DataTableCellDoc = new DocBuilder<DataTableCellProps & DataTableCellMods>(
                 value: {
                     key: 'name',
                     caption: 'Name',
-                    render: () => <Text size='24'>first</Text>,
+                    render: () => <Text size="24">first</Text>,
                     width: 150,
                     fix: 'left',
                 },
@@ -23,7 +23,7 @@ const DataTableCellDoc = new DocBuilder<DataTableCellProps & DataTableCellMods>(
         isRequired: true,
     })
     .prop('size', {
-        examples: ["60"],
+        examples: ['60'],
     })
     .prop('rowProps', {
         examples: [

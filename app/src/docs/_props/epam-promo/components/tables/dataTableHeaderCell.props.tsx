@@ -5,7 +5,10 @@ import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, ResizableContext, FormContext } from '../../docs';
 import { Text, DataTableHeaderCellMods } from '@epam/promo';
 
-const DataTableHeaderCellDoc = new DocBuilder<DataTableHeaderCellProps & DataTableHeaderCellMods>({ name: 'DataTableHeaderCell', component: DataTableHeaderCell })
+const DataTableHeaderCellDoc = new DocBuilder<DataTableHeaderCellProps & DataTableHeaderCellMods>({
+    name: 'DataTableHeaderCell',
+    component: DataTableHeaderCell,
+})
     .prop('column', {
         examples: [
             {
@@ -13,7 +16,7 @@ const DataTableHeaderCellDoc = new DocBuilder<DataTableHeaderCellProps & DataTab
                 value: {
                     key: 'name',
                     caption: 'Name',
-                    render: () => <Text size='24'>first</Text>,
+                    render: () => <Text size="24">first</Text>,
                     width: 150,
                     fix: 'left',
                 },
@@ -35,7 +38,7 @@ const DataTableHeaderCellDoc = new DocBuilder<DataTableHeaderCellProps & DataTab
         examples: [true, false],
     })
     .prop('selectAll', {
-        examples: [{ value: true, onValueChange: () => { } }],
+        examples: [{ value: true, onValueChange: () => {} }],
     })
     .prop('onSort', {
         examples: [

@@ -16,13 +16,13 @@ export default function EditModePickerExample() {
     return (
         <div>
             <PickerInput
-                dataSource={ dataSource }
-                value={ value }
-                onValueChange={ onValueChange }
-                entityName='person'
-                selectionMode='multi'
-                valueType='id'
-                editMode='modal'
+                dataSource={dataSource}
+                value={value}
+                onValueChange={onValueChange}
+                entityName="person"
+                selectionMode="multi"
+                valueType="id"
+                editMode="modal"
             />
         </div>
     );

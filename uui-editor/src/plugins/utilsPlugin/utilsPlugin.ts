@@ -1,13 +1,15 @@
-import { Editor } from "slate-react";
-import { Block, KeyUtils, Inline } from "slate";
+import { Editor } from 'slate-react';
+import { Block, KeyUtils, Inline } from 'slate';
 
 export const utilsPlugin: any = () => {
     const onKeyDown = (event: KeyboardEvent, editor: Editor, next: () => any) => {
-        if (event.ctrlKey && event.keyCode === 90) { // ctrl + z
+        if (event.ctrlKey && event.keyCode === 90) {
+            // ctrl + z
             return editor.undo();
         }
 
-        if (event.ctrlKey && event.keyCode === 89) { //ctrl + y
+        if (event.ctrlKey && event.keyCode === 89) {
+            //ctrl + y
             return editor.redo();
         }
 
@@ -24,7 +26,6 @@ export const utilsPlugin: any = () => {
     };
 
     const createInline = (editor: Editor, data: any, type: string) => {
-
         return Inline.create({
             object: 'inline',
             type: type,

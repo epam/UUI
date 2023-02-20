@@ -5,7 +5,10 @@ import { ColumnsHeaderRowDoc } from './common';
 import { DataTableHeaderRowMods, DataTableHeaderRow } from '@epam/promo';
 import { TableContext } from './TableContext';
 
-const DataTableHeaderRowDoc = new DocBuilder<DataTableHeaderRowProps & DataTableHeaderRowMods>({ name: 'DataTableHeaderRow', component: DataTableHeaderRow })
+const DataTableHeaderRowDoc = new DocBuilder<DataTableHeaderRowProps & DataTableHeaderRowMods>({
+    name: 'DataTableHeaderRow',
+    component: DataTableHeaderRow,
+})
     .implements([ColumnsHeaderRowDoc, iEditable])
     .prop('size', {
         examples: ['30', '36'],

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui-core';
 import * as ls from '@epam/loveship';
 
-interface ILens<TBig, TSmall> {   
+interface ILens<TBig, TSmall> {
     get(big: TBig): TSmall;
     set(big: TBig, small: TSmall): TBig;
 }
@@ -10,7 +10,7 @@ interface ILens<TBig, TSmall> {
 class Lens<TBig, TSmall> {
     static on<TBig>(): Lens<TBig, TBig> {
         return null;
-    }    
+    }
 
     public toEditable(editable: uui.IEditable<TBig>): uui.IEditable<TSmall> {
         return null;
@@ -39,10 +39,11 @@ const countryLens = lens.onChange((n, o) => ({ ...n, city: null })).prop('countr
 
 class TestComponent extends React.Component<uui.IEditable<TestObj>> {
     render() {
-        return <>
-            { /* <ls.TextInput { ...lens.prop('name').toEditable(this.props) } />
-            <ls.TextInput { ...countryLens.toEditable(this.props) } /> */ }
-        </>;
+        return (
+            <>
+                {/* <ls.TextInput { ...lens.prop('name').toEditable(this.props) } />
+            <ls.TextInput { ...countryLens.toEditable(this.props) } /> */}
+            </>
+        );
     }
 }
-

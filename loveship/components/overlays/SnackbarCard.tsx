@@ -14,20 +14,20 @@ export interface SnackbarCardProps extends INotification, IHasChildren, IHasRawP
 }
 
 const SnackbarIcon = {
-    success : SuccessIcon,
-    warning : WarningIcon,
-    danger : CrossIcon,
-    info : InfoIcon,
+    success: SuccessIcon,
+    warning: WarningIcon,
+    danger: CrossIcon,
+    info: InfoIcon,
 };
 
 export const SnackbarCard = React.forwardRef<HTMLDivElement, SnackbarCardProps>((props, ref) => (
-    <div ref={ ref } className={ css.snackbar } { ...props.rawProps }>
-        <div className={ cx([css[props.snackType], css.iconContainer]) }>
-            <IconContainer icon={ SnackbarIcon[props.snackType] } cx={ css.actionIcon } />
+    <div ref={ref} className={css.snackbar} {...props.rawProps}>
+        <div className={cx([css[props.snackType], css.iconContainer])}>
+            <IconContainer icon={SnackbarIcon[props.snackType]} cx={css.actionIcon} />
         </div>
-        <div className={ css.mainPath }>
-            <div className={ css.content }>{ props.children }</div>
-            <IconButton icon={ CrossIcon } color='night600' onClick={ props.onClose } cx={ css.closeIcon } />
+        <div className={css.mainPath}>
+            <div className={css.content}>{props.children}</div>
+            <IconButton icon={CrossIcon} color="night600" onClick={props.onClose} cx={css.closeIcon} />
         </div>
     </div>
 ));

@@ -4,9 +4,7 @@ import './ScrollBars.scss';
 import '../../assets/styles/variables/layout/scrollBars.scss';
 
 function applyScrollBarsMods() {
-    return [
-        'scroll-bars-vars',
-    ];
+    return ['scroll-bars-vars'];
 }
 
 export const ScrollBars = withMods<ScrollbarProps>(uuiScrollBars, applyScrollBarsMods);

@@ -1,8 +1,6 @@
 const { whenDev, whenProd } = require('@craco/craco');
-const { removeRuleByTestAttr, changeRuleByTestAttr, makeSlashesPlatformSpecific,
-    changePluginByName } = require('./utils/configUtils');
-const { DIRS_FOR_BABEL, CSS_URL_ROOT_PATH, ENTRY_WITH_EXTRACTED_DEPS_CSS,
-    LIBS_WITHOUT_SOURCE_MAPS, UUI_ROOT } = require('./constants');
+const { removeRuleByTestAttr, changeRuleByTestAttr, makeSlashesPlatformSpecific, changePluginByName } = require('./utils/configUtils');
+const { DIRS_FOR_BABEL, CSS_URL_ROOT_PATH, ENTRY_WITH_EXTRACTED_DEPS_CSS, LIBS_WITHOUT_SOURCE_MAPS, UUI_ROOT } = require('./constants');
 const { uuiCustomFormatter } = require('./formatters/issueFormatter');
 const { assertAppDepsAreBuilt } = require('./utils/appDepsUtils');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
@@ -17,7 +15,9 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
  */
 function getIsUseBuildFolderOfDeps() {
     let flag = !process.argv.find(a => a === '--app-dev');
-    whenDev(() => { flag = false; });
+    whenDev(() => {
+        flag = false;
+    });
     return flag;
 }
 const isUseBuildFolderOfDeps = getIsUseBuildFolderOfDeps();
@@ -29,18 +29,24 @@ const isEnableStylelint = false;
  */
 module.exports = function uuiConfig() {
     return {
-        eslint: isEnableEslint ? {
-            enable: true,
-            mode: 'file',
-        } : { enable: false },
+        eslint: isEnableEslint
+            ? {
+                  enable: true,
+                  mode: 'file',
+              }
+            : { enable: false },
         webpack: { configure: configureWebpack },
-        devServer: config => { return config; },
+        devServer: config => {
+            return config;
+        },
     };
 };
 
 function configureWebpack(config, { paths }) {
     isUseBuildFolderOfDeps && assertAppDepsAreBuilt();
-    whenDev(() => { config.devtool = 'eval-source-map'; });
+    whenDev(() => {
+        config.devtool = 'eval-source-map';
+    });
     whenProd(() => {
         // splitChunks setting hangs webpack5 dev server due to a bug.
         // (that's why we apply it only to prod)
@@ -57,12 +63,17 @@ function configureWebpack(config, { paths }) {
     // reason: .sass files are always modules in UUI
     removeRuleByTestAttr(config, /\.(scss|sass)$/);
     // reason: all .css files are not modules in UUI
-    changeRuleByTestAttr(config, /\.css$/, r => { delete r.exclude; return r; });
+    changeRuleByTestAttr(config, /\.css$/, r => {
+        delete r.exclude;
+        return r;
+    });
 
     //
     changeRuleByTestAttr(config, /\.svg$/, prev => {
         delete prev.issuer; // deleting the issuer condition because of next bug: https://github.com/webpack/webpack/issues/9309
-        const fileLoader = prev.use.find(u => { return u.loader.indexOf(makeSlashesPlatformSpecific('/file-loader/')) !== -1; });
+        const fileLoader = prev.use.find(u => {
+            return u.loader.indexOf(makeSlashesPlatformSpecific('/file-loader/')) !== -1;
+        });
         fileLoader.options = { emitFile: false };
         return prev;
     });
@@ -84,16 +95,17 @@ function configureWebpack(config, { paths }) {
     changeRuleByTestAttr(config, /\.module\.(scss|sass)$/, prev => {
         // replace "test". Reason: .sass files are always modules in UUI
         prev.test = /\.scss$/;
-        prev.use && prev.use.forEach(u => {
-            if (u.loader && u.loader.indexOf(makeSlashesPlatformSpecific('/resolve-url-loader/')) !== -1) {
-                // Set css root for "resolve-url-loader". So that url('...') statements in .scss are resolved correctly.
-                u.options.root = CSS_URL_ROOT_PATH;
-            }
-            if (u.loader && u.loader.indexOf(makeSlashesPlatformSpecific('/css-loader/')) !== -1) {
-                // Need camelCase export to keep existing UUI code working
-                u.options.modules.exportLocalsConvention = 'camelCase';
-            }
-        });
+        prev.use &&
+            prev.use.forEach(u => {
+                if (u.loader && u.loader.indexOf(makeSlashesPlatformSpecific('/resolve-url-loader/')) !== -1) {
+                    // Set css root for "resolve-url-loader". So that url('...') statements in .scss are resolved correctly.
+                    u.options.root = CSS_URL_ROOT_PATH;
+                }
+                if (u.loader && u.loader.indexOf(makeSlashesPlatformSpecific('/css-loader/')) !== -1) {
+                    // Need camelCase export to keep existing UUI code working
+                    u.options.modules.exportLocalsConvention = 'camelCase';
+                }
+            });
         return prev;
     });
 
@@ -109,22 +121,26 @@ function configureWebpack(config, { paths }) {
             plugin.options.issue.include = plugin.options.issue.include.concat(DIRS_FOR_BABEL.DEPS_SOURCES.INCLUDE);
         }
     });
-    isEnableEslint && changePluginByName(config, 'ESLintWebpackPlugin', plugin => {
-        Object.assign(plugin.options, {
-            formatter: 'unix',
-            outputReport: false,
-            emitWarning: false,
-            context: UUI_ROOT,
+    isEnableEslint &&
+        changePluginByName(config, 'ESLintWebpackPlugin', plugin => {
+            Object.assign(plugin.options, {
+                formatter: 'unix',
+                outputReport: false,
+                emitWarning: false,
+                context: UUI_ROOT,
+            });
+            return plugin;
         });
-        return plugin;
-    });
 
-    isEnableStylelint && config.plugins.push(new StyleLintPlugin({
-        formatter: 'unix',
-        configBasedir: UUI_ROOT,
-        context: UUI_ROOT,
-        files: ['**/*.scss', '**/*.less'],
-    }));
+    isEnableStylelint &&
+        config.plugins.push(
+            new StyleLintPlugin({
+                formatter: 'unix',
+                configBasedir: UUI_ROOT,
+                context: UUI_ROOT,
+                files: ['**/*.scss', '**/*.less'],
+            })
+        );
 
     return config;
 }

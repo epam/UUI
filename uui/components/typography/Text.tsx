@@ -14,17 +14,16 @@ export interface TextMods extends TextSettings {
 }
 
 function applyTextMods(mods: TextMods) {
-    const textClasses = getTextClasses({
-        size: mods.size || '36',
-        lineHeight: mods.lineHeight,
-        fontSize: mods.fontSize,
-    }, false);
+    const textClasses = getTextClasses(
+        {
+            size: mods.size || '36',
+            lineHeight: mods.lineHeight,
+            fontSize: mods.fontSize,
+        },
+        false
+    );
 
-    return [
-        `font-${mods.font || 'regular'}`,
-        `text-color-${mods.color || 'primary'}`,
-        css.root,
-    ].concat(textClasses);
+    return [`font-${mods.font || 'regular'}`, `text-color-${mods.color || 'primary'}`, css.root].concat(textClasses);
 }
 
 export const Text = withMods<TextProps, TextMods>(uuiText, applyTextMods);

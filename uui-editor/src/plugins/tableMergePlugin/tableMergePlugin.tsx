@@ -1,13 +1,15 @@
 import { Editor, Block, KeyUtils } from 'slate';
 
 export const mergeCellsPlugin = () => {
-
     const getCellIndex = (editor: Editor, cell: any) => {
         let elemPosition = 0;
         let counter = 0;
-        (editor.value.document as any).getParent(cell.key).nodes.toArray().forEach((elem: any) => {
-            cell.key === elem.key ? elemPosition = counter : counter += 1;
-        });
+        (editor.value.document as any)
+            .getParent(cell.key)
+            .nodes.toArray()
+            .forEach((elem: any) => {
+                cell.key === elem.key ? (elemPosition = counter) : (counter += 1);
+            });
 
         return elemPosition;
     };
@@ -22,7 +24,7 @@ export const mergeCellsPlugin = () => {
                 if (!cell.data.get('colSpan')) {
                     return ++accumulator;
                 } else if (cell.data.get('colSpan') > 0) {
-                    return accumulator += cell.data.get('colSpan');
+                    return (accumulator += cell.data.get('colSpan'));
                 }
             }, 0);
         }
@@ -34,7 +36,7 @@ export const mergeCellsPlugin = () => {
                 }
 
                 if (cell.data.get('colSpan') > 1) {
-                    return accumulator += cell.data.get('colSpan') - 1;
+                    return (accumulator += cell.data.get('colSpan') - 1);
                 }
             }, 0);
         }
@@ -48,7 +50,7 @@ export const mergeCellsPlugin = () => {
                 if (!cell.data.get('colSpan')) {
                     return ++accumulator;
                 } else if (cell.data.get('colSpan') >= 1) {
-                    return accumulator += cell.data.get('colSpan');
+                    return (accumulator += cell.data.get('colSpan'));
                 }
             }, 0);
         }
@@ -62,7 +64,7 @@ export const mergeCellsPlugin = () => {
                 }
 
                 if (cell.data.get('rowSpan') > 1) {
-                    return accumulator += cell.data.get('rowSpan') - 1;
+                    return (accumulator += cell.data.get('rowSpan') - 1);
                 }
             }, 0);
         }
@@ -76,7 +78,7 @@ export const mergeCellsPlugin = () => {
                 if (!cell.data.get('rowSpan')) {
                     return ++accumulator;
                 } else if (cell.data.get('rowSpan') > 0) {
-                    return accumulator += cell.data.get('rowSpan');
+                    return (accumulator += cell.data.get('rowSpan'));
                 }
             }, 0);
         }
@@ -90,7 +92,7 @@ export const mergeCellsPlugin = () => {
                 if (!cell.data.get('rowSpan')) {
                     return ++accumulator;
                 } else if (cell.data.get('rowSpan') >= 1) {
-                    return accumulator += cell.data.get('rowSpan');
+                    return (accumulator += cell.data.get('rowSpan'));
                 }
             }, 0);
         }
@@ -131,18 +133,18 @@ export const mergeCellsPlugin = () => {
         };
 
         editor.setNodeByKey(updatingCell.key, {
-            ...updatingCell as any,
+            ...(updatingCell as any),
             data: updatedData,
         });
     };
 
     const isCellWithValidStructure = (cell: any, currentColSpan: number, currentRowSpan: number) => {
-        return (cell &&
-            (
-                cell.data.get('style') === 'none' ||
+        return (
+            cell &&
+            (cell.data.get('style') === 'none' ||
                 (cell.data.get('colSpan') > 1 && cell.data.get('colSpan') <= currentColSpan) ||
-                (cell.data.get('rowSpan') > 1 && cell.data.get('rowSpan') <= currentRowSpan)
-            ));
+                (cell.data.get('rowSpan') > 1 && cell.data.get('rowSpan') <= currentRowSpan))
+        );
     };
 
     const unmergeCells = (editor: Editor, props: any, selectedCells: any[]) => {
@@ -186,7 +188,8 @@ export const mergeCellsPlugin = () => {
         let typeOfMerge = 'combine';
 
         // logic for preventing header and body merging
-        let isNotValidMerge = selectedCells.some((cell: any) => cell.type === "table_header_cell") && selectedCells.some((cell: any) => cell.type === "table_cell");
+        let isNotValidMerge =
+            selectedCells.some((cell: any) => cell.type === 'table_header_cell') && selectedCells.some((cell: any) => cell.type === 'table_cell');
 
         let tdArray: any = [];
 
@@ -196,7 +199,9 @@ export const mergeCellsPlugin = () => {
 
         const newHeaderCellNode = createNewCell('table_header_cell');
         const newCellNode = createNewCell('table_cell');
-        let isCellsInOneRow = editor.value.document.getParent(selectedCells[0].key).key === editor.value.document.getParent(selectedCells[selectedCells.length - 1].key).key;
+        let isCellsInOneRow =
+            editor.value.document.getParent(selectedCells[0].key).key ===
+            editor.value.document.getParent(selectedCells[selectedCells.length - 1].key).key;
         let isCellsInOneColumn = getCellIndex(editor, selectedCells[0]) === getCellIndex(editor, selectedCells[selectedCells.length - 1]);
         let firstCell: any = selectedCells[0];
 
@@ -250,7 +255,6 @@ export const mergeCellsPlugin = () => {
 
         editor.insertTextByPath(updatedCellPath, 0, textFromCells);
         updateCellStyle(editor, requiredNode, tdArray, typeOfMerge, trElements, tdArrayIndex);
-
 
         for (let i = 1; i < tdArray.length; i++) {
             const deletedNode = createNewCell(tdArray[i].type, tdArray[i].key, { style: 'none' });

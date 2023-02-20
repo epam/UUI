@@ -14,19 +14,11 @@ export class MainMenuDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='mainMenu-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/mainMenu/Basic.example.tsx'
-                    width='auto'
-                />
+                <EditableDocContent fileName="mainMenu-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/mainMenu/Basic.example.tsx" width="auto" />
 
-                <DocExample
-                    title='Responsive'
-                    path='./_examples/mainMenu/Responsive.example.tsx'
-                    width='auto'
-                />
+                <DocExample title="Responsive" path="./_examples/mainMenu/Responsive.example.tsx" width="auto" />
             </>
         );
     }

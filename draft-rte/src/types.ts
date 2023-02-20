@@ -2,7 +2,7 @@ import { EditorState, DraftInlineStyleType, DraftBlockType, ContentState } from 
 import { Icon, IEditable, IHasChildren } from '@epam/uui-core';
 import React from 'react';
 
-export interface DraftButtonProps  extends IEditable<EditorState> {}
+export interface DraftButtonProps extends IEditable<EditorState> {}
 
 export interface DraftInlineStyleButton {
     style: DraftInlineStyleType;
@@ -24,6 +24,19 @@ export interface DecoratorComponentProps extends IHasChildren {
     contentState?: ContentState;
 }
 
-export type ToolbarButton = 'bold' | 'italic' | 'underline' | 'header' | 'header-dropdown' | 'unordered-list' | 'ordered-list' | 'link' | 'image' | 'undo' | 'redo' | 'separator' | 'clear-format';
+export type ToolbarButton =
+    | 'bold'
+    | 'italic'
+    | 'underline'
+    | 'header'
+    | 'header-dropdown'
+    | 'unordered-list'
+    | 'ordered-list'
+    | 'link'
+    | 'image'
+    | 'undo'
+    | 'redo'
+    | 'separator'
+    | 'clear-format';
 
 export type ToolbarTextColor = 'sky' | 'grass' | 'carbon' | 'night' | 'cobalt' | 'lavanda' | 'fuchsia' | 'fire' | 'sun';

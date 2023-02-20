@@ -1,6 +1,4 @@
-const {
-    convertSummaryToHtml, createSummaryFromMessages, sumComparator, convertResultsToHtml, getReportLocationPath,
-} = require('./formatterUtils');
+const { convertSummaryToHtml, createSummaryFromMessages, sumComparator, convertResultsToHtml, getReportLocationPath } = require('./formatterUtils');
 const path = require('path');
 const fs = require('fs');
 

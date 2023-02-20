@@ -7,7 +7,7 @@ import { DropdownContainer } from '../overlays';
 import { TextInput } from './TextInput';
 import { TimePickerBody } from './TimePickerBody';
 import css from './TimePicker.scss';
-import customParseFormat from "dayjs/plugin/customParseFormat.js";
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;
@@ -19,34 +19,37 @@ export interface TimePickerProps extends BaseTimePickerProps, SizeMod, IHasEditM
 export class TimePicker extends BaseTimePicker<TimePickerProps> {
     renderInput = (props: IDropdownToggler) => (
         <TextInput
-            { ...props }
-            onClick={ null }
-            size={ this.props.size || '36' }
-            isDisabled={ this.props.isDisabled }
-            isReadonly={ this.props.isReadonly }
-            isInvalid={ this.props.isInvalid }
-            cx={ css.dateInput }
-            value={ this.state.value }
-            onValueChange={ this.handleInputChange }
-            onCancel={ this.onClear }
-            onFocus={ this.handleFocus }
-            onBlur={ this.handleBlur }
-            isDropdown={ false }
-            placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
-            mode={ this.props.mode || defaultMode }
-            rawProps={ this.props.rawProps?.input }
+            {...props}
+            onClick={null}
+            size={this.props.size || '36'}
+            isDisabled={this.props.isDisabled}
+            isReadonly={this.props.isReadonly}
+            isInvalid={this.props.isInvalid}
+            cx={css.dateInput}
+            value={this.state.value}
+            onValueChange={this.handleInputChange}
+            onCancel={this.onClear}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            isDropdown={false}
+            placeholder={this.props.placeholder ? this.props.placeholder : this.getFormat()}
+            mode={this.props.mode || defaultMode}
+            rawProps={this.props.rawProps?.input}
         />
-    )
+    );
 
     renderBody = (props: DropdownBodyProps) => {
-        return !this.props.isDisabled && !this.props.isReadonly && (
-            <DropdownContainer { ...props }>
-                <TimePickerBody
-                    { ...this.props }
-                    value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }
-                    rawProps={ this.props.rawProps?.body }
-                />
-            </DropdownContainer>
+        return (
+            !this.props.isDisabled &&
+            !this.props.isReadonly && (
+                <DropdownContainer {...props}>
+                    <TimePickerBody
+                        {...this.props}
+                        value={this.props.value !== null ? this.props.value : { hours: null, minutes: null }}
+                        rawProps={this.props.rawProps?.body}
+                    />
+                </DropdownContainer>
+            )
         );
-    }
+    };
 }

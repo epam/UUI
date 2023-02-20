@@ -1,1 +1,1 @@
-export * from "./FilterItemBody";
+export * from './FilterItemBody';

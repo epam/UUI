@@ -29,47 +29,36 @@ export interface AlertProps extends IHasChildren, IHasCX, IHasRawProps<React.HTM
 }
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <div
-        role="alert"
-        ref={ ref }
-        className={ cx(css.alertWrapper, styles[`color-${props.color || 'blue'}`], css.root, props.cx) }
-        { ...props.rawProps }
-    >
-        <div className={ css.mainPath }>
-            { props.icon && <div className={ css.iconWrapper }>
-                <IconContainer icon={ props.icon } cx={ css.actionIcon } />
-            </div> }
-            <div className={ css.content }>
-                { props.children }
-                { props.actions && <div className={ css.actionWrapper }>
-                    { props.actions.map(action => (
-                        <LinkButton
-                            caption={ action.name }
-                            onClick={ action.action }
-                            key={ action.name }
-                            cx={ css.actionLink }
-                            size='24'
-                        />
-                    )) }
-                </div> }
+    <div role="alert" ref={ref} className={cx(css.alertWrapper, styles[`color-${props.color || 'blue'}`], css.root, props.cx)} {...props.rawProps}>
+        <div className={css.mainPath}>
+            {props.icon && (
+                <div className={css.iconWrapper}>
+                    <IconContainer icon={props.icon} cx={css.actionIcon} />
+                </div>
+            )}
+            <div className={css.content}>
+                {props.children}
+                {props.actions && (
+                    <div className={css.actionWrapper}>
+                        {props.actions.map(action => (
+                            <LinkButton caption={action.name} onClick={action.action} key={action.name} cx={css.actionLink} size="24" />
+                        ))}
+                    </div>
+                )}
             </div>
-            { props.onClose && <IconButton icon={ CrossIcon } color='gray60' onClick={ props.onClose } cx={ css.closeIcon } /> }
+            {props.onClose && <IconButton icon={CrossIcon} color="gray60" onClick={props.onClose} cx={css.closeIcon} />}
         </div>
     </div>
 ));
 
 export const WarningAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <Alert icon={ WarningIcon } color='amber' ref={ ref } { ...props } />
+    <Alert icon={WarningIcon} color="amber" ref={ref} {...props} />
 ));
 
 export const SuccessAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <Alert icon={ SuccessIcon } color='green' ref={ ref } { ...props } />
+    <Alert icon={SuccessIcon} color="green" ref={ref} {...props} />
 ));
 
-export const HintAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <Alert icon={ HintIcon } color='blue' ref={ ref } { ...props } />
-));
+export const HintAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => <Alert icon={HintIcon} color="blue" ref={ref} {...props} />);
 
-export const ErrorAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <Alert icon={ ErrorIcon } color='red' ref={ ref } { ...props } />
-));
+export const ErrorAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => <Alert icon={ErrorIcon} color="red" ref={ref} {...props} />);

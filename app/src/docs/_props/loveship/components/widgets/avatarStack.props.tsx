@@ -1,25 +1,18 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext } from '../../docs';
 import { AvatarStackProps } from '@epam/uui-components';
-import { AvatarStack, Tooltip } from "@epam/loveship";
-import { uuiMarkers } from "@epam/uui-core";
-import React from "react";
+import { AvatarStack, Tooltip } from '@epam/loveship';
+import { uuiMarkers } from '@epam/uui-core';
+import React from 'react';
 
 const renderItem = (url: string) => {
     const handleClick = () => {
-        console.log("handleClick");
+        console.log('handleClick');
     };
 
     return (
-        <Tooltip content='Some text' placement='bottom' >
-            <img
-                src={ url }
-                alt='avatar'
-                width={ 36 }
-                height={ 36 }
-                onClick={ handleClick }
-                className={ uuiMarkers.clickable }
-            />
+        <Tooltip content="Some text" placement="bottom">
+            <img src={url} alt="avatar" width={36} height={36} onClick={handleClick} className={uuiMarkers.clickable} />
         </Tooltip>
     );
 };
@@ -30,9 +23,9 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
             {
                 name: 'Olivia',
                 value: [
-                    "https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50",
-                    "https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50",
-                    "https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50",
+                    'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50',
+                    'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50',
+                    'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50',
                 ],
                 isDefault: true,
             },
@@ -48,11 +41,7 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
         isRequired: true,
     })
     .prop('avatarsCount', {
-        examples: [
-            1,
-            2,
-            3
-        ]
+        examples: [1, 2, 3],
     })
     .prop('renderItem', {
         examples: [

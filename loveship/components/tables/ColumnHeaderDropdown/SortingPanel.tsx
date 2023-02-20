@@ -4,9 +4,9 @@ import { isMobile, SortDirection } from '@epam/uui-core';
 import { ReactComponent as SortIcon } from '../../icons/sort_asc-12.svg';
 import { ReactComponent as SortIconDesc } from '../../icons/sort_desc-12.svg';
 import { ReactComponent as SortActive } from '../../icons/tick-24.svg';
-import { i18n } from "../../../i18n";
+import { i18n } from '../../../i18n';
 import { LinkButton } from '../../buttons';
-import { FlexCell, FlexRow, FlexSpacer } from "../../layout";
+import { FlexCell, FlexRow, FlexSpacer } from '../../layout';
 
 export interface SortingPanelProps {
     onSort(dir: SortDirection): void;
@@ -16,48 +16,44 @@ export interface SortingPanelProps {
 const SortingPanelImpl: React.FC<SortingPanelProps> = props => {
     const sortAsc = useCallback(() => props.onSort(props.sortDirection === 'asc' ? undefined : 'asc'), [props.onSort]);
     const sortDesc = useCallback(() => props.onSort(props.sortDirection === 'desc' ? undefined : 'desc'), [props.onSort]);
-    const size = isMobile() ? "48" : undefined;
-    
+    const size = isMobile() ? '48' : undefined;
+
     return (
-        <FlexCell cx={ css.sortingPanelContainer }>
-            <FlexRow size={ size }>
+        <FlexCell cx={css.sortingPanelContainer}>
+            <FlexRow size={size}>
                 <LinkButton
                     size="24"
                     fontSize="14"
                     lineHeight="30"
                     color="night600"
-                    caption={ i18n.pickerFilterHeader.sortAscending }
-                    icon={ SortIcon }
+                    caption={i18n.pickerFilterHeader.sortAscending}
+                    icon={SortIcon}
                     font="sans"
-                    onClick={ sortAsc }
-                    cx={ css.filterSortButton }
+                    onClick={sortAsc}
+                    cx={css.filterSortButton}
                 />
 
-                <FlexSpacer/>
+                <FlexSpacer />
 
-                { props.sortDirection === 'asc' && (
-                    <LinkButton size="30" icon={ SortActive } color="sky" cx={ css.sortActive }/>
-                ) }
+                {props.sortDirection === 'asc' && <LinkButton size="30" icon={SortActive} color="sky" cx={css.sortActive} />}
             </FlexRow>
 
-            <FlexRow size={ size }>
+            <FlexRow size={size}>
                 <LinkButton
                     size="24"
                     fontSize="14"
                     lineHeight="30"
                     color="night600"
-                    caption={ i18n.pickerFilterHeader.sortDescending }
-                    icon={ SortIconDesc }
+                    caption={i18n.pickerFilterHeader.sortDescending}
+                    icon={SortIconDesc}
                     font="sans"
-                    onClick={ sortDesc }
-                    cx={ css.filterSortButton }
+                    onClick={sortDesc}
+                    cx={css.filterSortButton}
                 />
 
-                <FlexSpacer/>
+                <FlexSpacer />
 
-                { props.sortDirection === 'desc' && (
-                    <LinkButton size="30" icon={ SortActive } color="sky" cx={ css.sortActive }/>
-                ) }
+                {props.sortDirection === 'desc' && <LinkButton size="30" icon={SortActive} color="sky" cx={css.sortActive} />}
             </FlexRow>
         </FlexCell>
     );

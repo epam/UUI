@@ -8,7 +8,7 @@ interface ApplyQueryOptions {
 }
 
 interface DbIndex<TEntity, TId> {
-    field: (keyof TEntity);
+    field: keyof TEntity;
     map: I.Map<any, I.Set<any>>;
 }
 
@@ -21,7 +21,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
     constructor(
         public readonly schema: DbEntitySchema<TEntity, TId, TTables>,
         private state?: DbTableState<TEntity, TId, TTables>,
-        private q?: DbQuery<TEntity>,
+        private q?: DbQuery<TEntity>
     ) {
         if (!state) {
             const indexes: DbIndex<TEntity, TId>[] = (schema.indexes || []).map(indexDef => {
@@ -88,9 +88,11 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
         let newPk = this.state.pk.merge(idVal);
 
         // TBD: replace with deleteAll after migrating to immutable 4
-        updates.filter(u => u.isDeleted).forEach(u => {
-            newPk = newPk.delete(u.immId);
-        });
+        updates
+            .filter(u => u.isDeleted)
+            .forEach(u => {
+                newPk = newPk.delete(u.immId);
+            });
 
         const newIndexes = this.state.indexes.map(index => {
             let newMap = index.map;
@@ -118,38 +120,38 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
 
         const newState: DbTableState<TEntity, TId, TTables> = { pk: newPk, indexes: newIndexes };
 
-        return this.update(t => t.state = newState);
+        return this.update(t => (t.state = newState));
     }
 
     /* Query */
 
     public find(filter: DataQueryFilter<TEntity>): DbTable<TEntity, TId, TTables> {
-        return this.update(t => t.q = { ...t.q, filter: { ...this.q.filter as any, ...filter as any } });
+        return this.update(t => (t.q = { ...t.q, filter: { ...(this.q.filter as any), ...(filter as any) } }));
     }
 
     public order(order: SortingOption[]) {
-        return this.update(t => t.q = { ...t.q, sorting: order });
+        return this.update(t => (t.q = { ...t.q, sorting: order }));
     }
 
     public orderBy(field: Extract<keyof TEntity, string>, direction: SortDirection = 'asc') {
-        return this.update(t => t.q = { ...t.q, sorting: [{ field, direction }] });
+        return this.update(t => (t.q = { ...t.q, sorting: [{ field, direction }] }));
     }
 
     public thenBy(field: Extract<keyof TEntity, string>, direction?: SortDirection) {
-        return this.update(t => t.q = { ...t.q, sorting: [...t.q.sorting, { field, direction }] });
+        return this.update(t => (t.q = { ...t.q, sorting: [...t.q.sorting, { field, direction }] }));
     }
 
     public search(text: string) {
         if (!this.schema.searchBy) {
             throw new Error(`Can't search in the ${this.schema.typeName} table - searchBy is not defined in the schema.`);
         }
-        return this.update(t => t.q = { ...t.q, search: text });
+        return this.update(t => (t.q = { ...t.q, search: text }));
     }
 
     /* Materializing */
 
     public range(from: number, count: number): TEntity[] {
-        return this.runQuery({ ...this.q, range: { from, count }});
+        return this.runQuery({ ...this.q, range: { from, count } });
     }
 
     public count() {
@@ -185,7 +187,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
                     const { [index.field]: condition, ...rest } = filter as any;
                     let conditionValues: any[] = null;
 
-                    if (condition != null && typeof condition === "object") {
+                    if (condition != null && typeof condition === 'object') {
                         // Attempt to use index for 'in' and 'isNull' criteria.
                         // We need to be very conservative here, indexed field should work the same way as getPatternPredicate. So
                         // - it's better to leave corner cases to getPatternPredicate
@@ -229,7 +231,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
                             }
                         }
 
-                        filter = Object.keys(rest).length > 0 ? rest as any : null;
+                        filter = Object.keys(rest).length > 0 ? (rest as any) : null;
                         break;
                     }
                 }

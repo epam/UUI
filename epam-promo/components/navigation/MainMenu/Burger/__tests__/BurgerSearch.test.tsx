@@ -5,12 +5,7 @@ import { renderWithContextAsync } from '@epam/test-utils';
 
 describe('BurgerSearch', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
-            <BurgerSearch
-                value={ null }
-                onValueChange={ () => {} }
-            />
-        );
+        const tree = await renderWithContextAsync(<BurgerSearch value={null} onValueChange={() => {}} />);
 
         expect(tree).toMatchSnapshot();
     });
@@ -18,12 +13,12 @@ describe('BurgerSearch', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderWithContextAsync(
             <BurgerSearch
-                value={ null }
-                onValueChange={ () => {} }
-                onAccept={ () => {} }
-                onCancel={ () => {} }
-                icon={ CalendarIcon }
-                iconPosition='right'
+                value={null}
+                onValueChange={() => {}}
+                onAccept={() => {}}
+                onCancel={() => {}}
+                icon={CalendarIcon}
+                iconPosition="right"
                 isDropdown
                 isOpen
             />
@@ -32,5 +27,3 @@ describe('BurgerSearch', () => {
         expect(tree).toMatchSnapshot();
     });
 });
-
-

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { ReactComponent as ClearIcon } from "../icons/text-color-default.svg";
+import { ReactComponent as ClearIcon } from '../icons/text-color-default.svg';
 import { ReactComponent as ColorIcon } from '../icons/text-color-select.svg';
 import { ToolbarButton } from './ToolbarButton';
 import { Editor } from 'slate-react';
-import { uuiSkin } from "@epam/uui-core";
+import { uuiSkin } from '@epam/uui-core';
 
 interface ColorBarProps {
     editor: Editor;
@@ -31,17 +31,38 @@ export class ColorBar extends React.Component<ColorBarProps> {
     }
 
     renderColorMenu() {
-
-        return <FlexRow rawProps={ { style: { background: '#303240' } } }>
-            <ToolbarButton isActive={ false } icon={ ClearIcon } onClick={ () => this.removeMarks() } />
-            <ToolbarButton iconColor='red' isActive={ false } icon={ ColorIcon } onClick={ () => { this.toggleMark('#A72014'); } } />
-            <ToolbarButton iconColor='amber' isActive={ false } icon={ ColorIcon } onClick={ () => { this.toggleMark('#995A00'); } } />
-            <ToolbarButton iconColor='green' isActive={ false } icon={ ColorIcon } onClick={ () => { this.toggleMark('#669900'); } } />
-        </FlexRow>;
+        return (
+            <FlexRow rawProps={{ style: { background: '#303240' } }}>
+                <ToolbarButton isActive={false} icon={ClearIcon} onClick={() => this.removeMarks()} />
+                <ToolbarButton
+                    iconColor="red"
+                    isActive={false}
+                    icon={ColorIcon}
+                    onClick={() => {
+                        this.toggleMark('#A72014');
+                    }}
+                />
+                <ToolbarButton
+                    iconColor="amber"
+                    isActive={false}
+                    icon={ColorIcon}
+                    onClick={() => {
+                        this.toggleMark('#995A00');
+                    }}
+                />
+                <ToolbarButton
+                    iconColor="green"
+                    isActive={false}
+                    icon={ColorIcon}
+                    onClick={() => {
+                        this.toggleMark('#669900');
+                    }}
+                />
+            </FlexRow>
+        );
     }
 
     render() {
-
         return this.renderColorMenu();
     }
 }

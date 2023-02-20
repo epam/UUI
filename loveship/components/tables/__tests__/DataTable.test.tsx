@@ -13,16 +13,10 @@ global.ResizeObserver = ResizeObserverMock;
 
 describe('DataTable', () => {
     it('should be rendered correctly', async () => {
-        const view = dataSource.getView({topIndex: 0, visibleCount: 20}, () => {});
+        const view = dataSource.getView({ topIndex: 0, visibleCount: 20 }, () => {});
 
         const tree = await renderWithContextAsync(
-            <DataTable
-                { ...view.getListProps() }
-                columns={ demoColumns }
-                getRows={ view.getVisibleRows }
-                value={ {} }
-                onValueChange={ jest.fn() }
-            />
+            <DataTable {...view.getListProps()} columns={demoColumns} getRows={view.getVisibleRows} value={{}} onValueChange={jest.fn()} />
         );
 
         expect(tree).toMatchSnapshot();

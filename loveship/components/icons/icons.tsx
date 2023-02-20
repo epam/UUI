@@ -74,7 +74,7 @@ export const systemIcons: { [key: string]: any } = {
         calendar: Calendar24,
         info: Info24,
     },
-    'none': {
+    none: {
         clear: BtnCross18,
         foldingArrow: FoldingArrow18,
         accept: Accept18,

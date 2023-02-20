@@ -14,12 +14,9 @@ export class TextDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='text-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/text/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="text-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/text/Basic.example.tsx" />
             </>
         );
     }

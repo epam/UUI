@@ -23,20 +23,20 @@ export const TextPlaceholder = React.forwardRef<HTMLDivElement, TextPlaceholderP
     }, [props.wordsCount]);
 
     return (
-        <div ref={ ref } aria-busy={ true } className={ css.container } { ...props.rawProps }>
-            { text.map((it, index) => (
+        <div ref={ref} aria-busy={true} className={css.container} {...props.rawProps}>
+            {text.map((it, index) => (
                 <span
-                    suppressHydrationWarning={ true }
-                    key={ index }
-                    dangerouslySetInnerHTML={ { __html: it } }
-                    className={ cx([
+                    suppressHydrationWarning={true}
+                    key={index}
+                    dangerouslySetInnerHTML={{ __html: it }}
+                    className={cx([
                         props.cx,
                         css.loadingWord,
                         styles[`color-${props.color || 'night100'}`],
                         !props.isNotAnimated && css.animatedLoading,
-                    ]) }
+                    ])}
                 />
-            )) }
+            ))}
         </div>
     );
 });

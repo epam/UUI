@@ -14,10 +14,10 @@ export const transformTokensFromJsonToCss = async function () {
     async function getFilesWithTokens(dir: string): Promise<string[]> {
         const dirents = await readdir(dir, { withFileTypes: true });
         const files = [];
-        for await(const dirent of dirents) {
+        for await (const dirent of dirents) {
             const res = resolve(dir, dirent.name);
             if (dirent.isDirectory()) {
-                !ignoreDirList.includes(dirent.name) && files.push(...await getFilesWithTokens(res));
+                !ignoreDirList.includes(dirent.name) && files.push(...(await getFilesWithTokens(res)));
             } else {
                 const pathBase = parse(res).base;
                 files.push(pathBase.includes('tokens.json') ? res : undefined);
@@ -34,7 +34,7 @@ export const transformTokensFromJsonToCss = async function () {
     function createCssVariables(palletObj: UuiComponent | PaletteToken | CoreTokens | TokenObject) {
         const vars: string[] = [];
         Object.entries(palletObj).forEach(([key, value]) => {
-            if (!value.type && Array.isArray(value) || typeof value === 'string') return;
+            if ((!value.type && Array.isArray(value)) || typeof value === 'string') return;
 
             if ('type' in value) {
                 vars.push(`\t--${key}: ${transformHandler[value.type as keyof typeof transformHandler](value.value as any)};${EOL}`);
@@ -59,7 +59,7 @@ export const transformTokensFromJsonToCss = async function () {
         const tokens: string[] = [];
         Object.entries(coreObj).forEach(([key, token]) => {
             if ('type' in token) {
-                tokens.push(`\t--${ key }: ${ transformHandler[token.type as keyof typeof transformHandler](token.value as any) };${ EOL }`);
+                tokens.push(`\t--${key}: ${transformHandler[token.type as keyof typeof transformHandler](token.value as any)};${EOL}`);
             } else {
                 tokens.push(...createCssVariables(token));
             }
@@ -72,8 +72,8 @@ export const transformTokensFromJsonToCss = async function () {
         const { palette, core, ...components } = themeObj;
 
         let data = `.uui-theme-${themeName} {${EOL}`;
-        createCssVariables(palette).forEach(value => data += value);
-        createCoreTokens(core).forEach(value => data += value);
+        createCssVariables(palette).forEach(value => (data += value));
+        createCoreTokens(core).forEach(value => (data += value));
         data += `}${EOL}`;
 
         Object.values(components).forEach(value => {
@@ -94,7 +94,7 @@ export const transformTokensFromJsonToCss = async function () {
         createThemeCssFile(defaultThemeFile, 'default', checkedTheme);
 
         Object.entries(restThemes).forEach(([key, value]) => {
-            const themeFile = resolve(pathObj.dir, `${ key }-theme.css`);
+            const themeFile = resolve(pathObj.dir, `${key}-theme.css`);
             const mergedTheme = defaultsDeep(value, defaultTheme);
 
             const checkedTheme = checkTokens(mergedTheme, defaultTokens, key);

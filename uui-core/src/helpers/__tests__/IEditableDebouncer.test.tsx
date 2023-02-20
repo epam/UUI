@@ -1,6 +1,6 @@
 import React from 'react';
-import { act } from "react-dom/test-utils";
-import { mountWithContextAsync, mountWrappedComponentAsync } from "@epam/test-utils";
+import { act } from 'react-dom/test-utils';
+import { mountWithContextAsync, mountWrappedComponentAsync } from '@epam/test-utils';
 import { IEditable } from '../../types';
 import { IEditableDebouncer } from '../IEditableDebouncer';
 
@@ -10,14 +10,14 @@ describe('IEditableDebouncer', () => {
         let lastRenderProps: IEditable<number> = null;
         await mountWithContextAsync(
             <IEditableDebouncer
-                value={ 1 }
-                onValueChange={ outerOnValueChange }
-                render={ (props) => {
+                value={1}
+                onValueChange={outerOnValueChange}
+                render={props => {
                     lastRenderProps = props;
                     return null;
-                } }
-                disableDebounce={ true }
-            />,
+                }}
+                disableDebounce={true}
+            />
         );
 
         act(() => lastRenderProps.onValueChange(2));
@@ -30,14 +30,14 @@ describe('IEditableDebouncer', () => {
         let lastRenderProps: IEditable<number> = null;
         await mountWithContextAsync(
             <IEditableDebouncer
-                value={ 1 }
-                onValueChange={ outerOnValueChange }
-                render={ (props) => {
+                value={1}
+                onValueChange={outerOnValueChange}
+                render={props => {
                     lastRenderProps = props;
                     return null;
-                } }
-                debounceDelay={ 100 }
-            />,
+                }}
+                debounceDelay={100}
+            />
         );
 
         act(() => lastRenderProps.onValueChange(2));
@@ -59,8 +59,7 @@ describe('IEditableDebouncer', () => {
     });
 
     it('should change inner value immediately if outer value is changed outside', async () => {
-        const outerOnValueChange = jest.fn(() => {
-        });
+        const outerOnValueChange = jest.fn(() => {});
         let lastRenderProps: IEditable<number> = null;
 
         const component = await mountWrappedComponentAsync(IEditableDebouncer, {

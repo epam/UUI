@@ -8,9 +8,10 @@ import { LinkButton } from '../buttons';
 import { SizeMod } from '../types';
 import css from './DataPickerFooter.scss';
 
-type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> & SizeMod & {
-    hideShowOnlySelected?: boolean;
-};
+type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> &
+    SizeMod & {
+        hideShowOnlySelected?: boolean;
+    };
 
 const switchSizes = {
     '24': '12',
@@ -21,7 +22,7 @@ const switchSizes = {
 
 const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFooterProps<TItem, TId>>) => {
     const { clearSelection, view, showSelected } = props;
-    const size = isMobile() ? '48' : (props.size || '36');
+    const size = isMobile() ? '48' : props.size || '36';
     const switchSize = switchSizes[size as keyof typeof switchSizes];
     const hasSelection = view.getSelectedRows().length > 0;
 
@@ -30,35 +31,29 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
     };
 
     return (
-        <FlexRow padding='12' background='white' cx={ cx(css.footerWrapper) }>
-            {
-                !props.hideShowOnlySelected && <Switch
-                    size={ switchSize }
-                    value={ showSelected.value }
-                    isDisabled={ !hasSelection }
-                    onValueChange={ showSelected.onValueChange }
-                    label={ i18n.pickerInput.showOnlySelectedLabel }
+        <FlexRow padding="12" background="white" cx={cx(css.footerWrapper)}>
+            {!props.hideShowOnlySelected && (
+                <Switch
+                    size={switchSize}
+                    value={showSelected.value}
+                    isDisabled={!hasSelection}
+                    onValueChange={showSelected.onValueChange}
+                    label={i18n.pickerInput.showOnlySelectedLabel}
                 />
-            }
+            )}
 
-            <FlexSpacer/>
+            <FlexSpacer />
 
-            { view.selectAll && (
-                <FlexCell width='auto' alignSelf='center'>
+            {view.selectAll && (
+                <FlexCell width="auto" alignSelf="center">
                     <LinkButton
-                        size={ size }
-                        caption={ hasSelection
-                            ? i18n.pickerInput.clearSelectionButton
-                            : i18n.pickerInput.selectAllButton
-                        }
-                        onClick={ hasSelection
-                            ? clearSelection
-                            : () => view.selectAll.onValueChange(true)
-                        }
-                        rawProps={ { onKeyDown: handleKeyDown } }
+                        size={size}
+                        caption={hasSelection ? i18n.pickerInput.clearSelectionButton : i18n.pickerInput.selectAllButton}
+                        onClick={hasSelection ? clearSelection : () => view.selectAll.onValueChange(true)}
+                        rawProps={{ onKeyDown: handleKeyDown }}
                     />
                 </FlexCell>
-            ) }
+            )}
         </FlexRow>
     );
 };

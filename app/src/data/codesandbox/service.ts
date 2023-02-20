@@ -1,15 +1,15 @@
 import { getParameters } from 'codesandbox/lib/api/define';
-import { FilesRecord, getCodesandboxConfig } from "./getCodesandboxConfig";
-import { svc } from "../../services";
+import { FilesRecord, getCodesandboxConfig } from './getCodesandboxConfig';
+import { svc } from '../../services';
 
 const CodesandboxFiles: Record<string, string> = {
-    'index.html':           '../data/codesandbox/index.html',
-    'index.tsx':            '../data/codesandbox/index.tsx',
-    'package.json':         '../data/codesandbox/package.json',
-    'tsconfig.json':        '../data/codesandbox/tsconfig.json',
-    'apiDefinitions.ts':    '../data/apiDefinition.ts',
-    'globals.d.ts':         '../data/codesandbox/globals.d.ts',
-    '.env':                 '../data/codesandbox/.env',
+    'index.html': '../data/codesandbox/index.html',
+    'index.tsx': '../data/codesandbox/index.tsx',
+    'package.json': '../data/codesandbox/package.json',
+    'tsconfig.json': '../data/codesandbox/tsconfig.json',
+    'apiDefinitions.ts': '../data/apiDefinition.ts',
+    'globals.d.ts': '../data/codesandbox/globals.d.ts',
+    '.env': '../data/codesandbox/.env',
 };
 
 export type CodesandboxFilesRecord = Record<string, string>;
@@ -22,10 +22,13 @@ class CodesandboxService {
     }
 
     public getFiles(): Promise<void> {
-        return Promise.all(Object.keys(CodesandboxFiles).map(name => {
-            return svc.api.getCode({ path: CodesandboxFiles[name] });
-        })).then(data => data.map(file => file.raw)).then(
-            ([indexHTML, indexTSX, packageJSON, tsConfigJSON, api, globalTypings, env]) => {
+        return Promise.all(
+            Object.keys(CodesandboxFiles).map(name => {
+                return svc.api.getCode({ path: CodesandboxFiles[name] });
+            })
+        )
+            .then(data => data.map(file => file.raw))
+            .then(([indexHTML, indexTSX, packageJSON, tsConfigJSON, api, globalTypings, env]) => {
                 Object.assign(this.files, {
                     indexHTML,
                     indexTSX,
@@ -35,8 +38,7 @@ class CodesandboxService {
                     globalTypings,
                     env,
                 });
-            },
-        );
+            });
     }
 
     public clearFiles(): void {
@@ -45,11 +47,7 @@ class CodesandboxService {
 
     public getCodesandboxParameters(code: string, stylesheets?: FilesRecord): string {
         return getParameters({
-            files: getCodesandboxConfig(
-                this.processCodeContent(code),
-                this.processStylesheets(stylesheets),
-                this.files,
-            ),
+            files: getCodesandboxConfig(this.processCodeContent(code), this.processStylesheets(stylesheets), this.files),
         });
     }
 
@@ -70,13 +68,15 @@ class CodesandboxService {
         const iconFiles = lines.filter(line => line.includes(`.svg';`) || line.includes(`.svg";`));
         const stylesheetFiles = lines.filter(line => line.includes(`.scss';`) || line.includes(`.scss";`));
         if (iconFiles.length > 0 || stylesheetFiles.length > 0) {
-            return lines.map(line => {
-                if (iconFiles.includes(line)) {
-                    return line.replace(/import\s\*\sas\s(\w+)/, 'import { ReactComponent as $1 }');
-                } else if (stylesheetFiles.includes(line)) {
-                    return line.replace(/(.example)?.scss/, '.module.scss');
-                } else return line;
-            }).join(separator);
+            return lines
+                .map(line => {
+                    if (iconFiles.includes(line)) {
+                        return line.replace(/import\s\*\sas\s(\w+)/, 'import { ReactComponent as $1 }');
+                    } else if (stylesheetFiles.includes(line)) {
+                        return line.replace(/(.example)?.scss/, '.module.scss');
+                    } else return line;
+                })
+                .join(separator);
         } else return code;
     }
 

@@ -1,19 +1,19 @@
 const mockedUrl = {
-    href: "/",
-    search: "",
+    href: '/',
+    search: '',
 };
 
 const setMockedUrl = (filter: any, presetId?: string) => {
-    mockedUrl.href = "/?" + new URLSearchParams({ filter, presetId }).toString();
+    mockedUrl.href = '/?' + new URLSearchParams({ filter, presetId }).toString();
     mockedUrl.search = new URLSearchParams({ filter, presetId }).toString();
 };
 
 const clearMockedUrl = () => {
-    mockedUrl.href = "/";
-    mockedUrl.search = "";
+    mockedUrl.href = '/';
+    mockedUrl.search = '';
 };
 
-Object.defineProperty(window, "location", {
+Object.defineProperty(window, 'location', {
     get: () => mockedUrl,
 });
 

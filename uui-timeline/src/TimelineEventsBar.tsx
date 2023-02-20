@@ -27,7 +27,7 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
         ctx.lineTo(t.getX(new Date()), yTo);
         ctx.lineWidth = 2;
         ctx.stroke();
-    }
+    };
 
     renderStage(ctx: CanvasRenderingContext2D, t: TimelineTransform, stage: Stage) {
         const stageSegment = {
@@ -40,7 +40,7 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
             stageSegment.leftTrimmed - thickness,
             0,
             stageSegment.widthTrimmed + thickness * 2,
-            this.canvasHeight + thickness * 2 - thickness,
+            this.canvasHeight + thickness * 2 - thickness
         );
 
         ctx.fillStyle = stage.color;

@@ -14,32 +14,17 @@ export class DropdownDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='dropdown-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/dropdown/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="dropdown-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/dropdown/Basic.example.tsx" />
 
-                <DocExample
-                    title='Dropdown Open/Close modifiers'
-                    path='./_examples/dropdown/CloseOpenModifiers.example.tsx'
-                />
+                <DocExample title="Dropdown Open/Close modifiers" path="./_examples/dropdown/CloseOpenModifiers.example.tsx" />
 
-                <DocExample
-                    title='Set delay for dropdown body opening or closing'
-                    path='./_examples/dropdown/DelayForOpenAndClose.example.tsx'
-                />
+                <DocExample title="Set delay for dropdown body opening or closing" path="./_examples/dropdown/DelayForOpenAndClose.example.tsx" />
 
-                <DocExample
-                    title='Handle dropdown state by yourself'
-                    path='./_examples/dropdown/HandleStateByYourself.example.tsx'
-                />
+                <DocExample title="Handle dropdown state by yourself" path="./_examples/dropdown/HandleStateByYourself.example.tsx" />
 
-                <DocExample
-                    title='Close dropdown from body'
-                    path='./_examples/dropdown/CloseFromBody.example.tsx'
-                />
+                <DocExample title="Close dropdown from body" path="./_examples/dropdown/CloseFromBody.example.tsx" />
             </>
         );
     }

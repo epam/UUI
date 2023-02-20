@@ -9,13 +9,15 @@ const DatepickerDoc = new DocBuilder<CalendarProps<Dayjs>>({ name: 'Calendar', c
     .implements([iEditable])
     .prop('value', { examples: [{ value: dayjs('2017-12-30') }] })
     .prop('displayedDate', { examples: [{ value: dayjs('2017-12-30'), isDefault: true }], isRequired: true })
-    .prop('filter', { examples: [
+    .prop('filter', {
+        examples: [
             {
                 name: 'Filter before current day',
                 value: (day: Dayjs) => day.valueOf() >= dayjs().subtract(1, 'day').valueOf(),
             },
-        ] })
-    .prop('hideAnotherMonths', {examples: [true, false]})
+        ],
+    })
+    .prop('hideAnotherMonths', { examples: [true, false] })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export default DatepickerDoc;

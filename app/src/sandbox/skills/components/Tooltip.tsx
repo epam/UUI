@@ -21,16 +21,8 @@ const Tooltip: React.FC<ITooltip> = ({ level, data }) => {
                 </Text>
             </FlexRow>
             {Object.entries(data.options).map((val, index) => (
-                <FlexRow
-                    key={`${index}-tooltip`}
-                    spacing="6"
-                    cx={css.tooltipBlockRow}
-                >
-                    <IconContainer
-                        cx={css.tooltipItem}
-                        icon={val[1].icon}
-                        color={val[1].activeColor}
-                    />
+                <FlexRow key={`${index}-tooltip`} spacing="6" cx={css.tooltipBlockRow}>
+                    <IconContainer cx={css.tooltipItem} icon={val[1].icon} color={val[1].activeColor} />
                     <Text cx={css.tooltipItem} color="gray60">
                         {val[1].prefix}
                     </Text>

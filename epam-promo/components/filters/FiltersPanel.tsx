@@ -1,11 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import sortBy from "lodash.sortby";
-import { i18n } from "../../i18n";
-import { Button, PickerInput, PickerItem, DataPickerRow } from "../../index";
-import { DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter,
-    getOrderBetween, DataTableState, useArrayDataSource } from "@epam/uui-core";
-import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
-import { FiltersPanelItem } from "./FiltersPanelItem";
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import sortBy from 'lodash.sortby';
+import { i18n } from '../../i18n';
+import { Button, PickerInput, PickerItem, DataPickerRow } from '../../index';
+import {
+    DataRowOptions,
+    TableFiltersConfig,
+    FiltersConfig,
+    DataQueryFilter,
+    getOrderBetween,
+    DataTableState,
+    useArrayDataSource,
+} from '@epam/uui-core';
+import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
+import { FiltersPanelItem } from './FiltersPanelItem';
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
 
 interface FiltersToolbarProps<TFilter> {
@@ -14,7 +21,7 @@ interface FiltersToolbarProps<TFilter> {
     setTableState: (newState: DataTableState) => void;
 }
 
-const normalizeFilterWithPredicates = <TFilter, >(filter: TFilter) => {
+const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
     if (!filter) {
         return {};
     }
@@ -23,7 +30,7 @@ const normalizeFilterWithPredicates = <TFilter, >(filter: TFilter) => {
     for (let n = 0; n < keys.length; n++) {
         const key = keys[n];
         const filterValue: any = filter[key];
-        if (filterValue && typeof filterValue === "object") {
+        if (filterValue && typeof filterValue === 'object') {
             if ('from' in filterValue && 'to' in filterValue) {
                 continue;
             }
@@ -57,10 +64,13 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
     const { filters, tableState, setTableState } = props;
     const [newFilterId, setNewFilterId] = useState(null);
 
-    const dataSource = useArrayDataSource({
-        items: filters,
-        getId: item => item.field,
-    }, []);
+    const dataSource = useArrayDataSource(
+        {
+            items: filters,
+            getId: item => item.field,
+        },
+        []
+    );
 
     const onFiltersChange = (filters: TableFiltersConfig<TFilter>[]) => {
         const newConfig: FiltersConfig = {};
@@ -87,7 +97,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
     };
 
     const handleFilterChange = (newFilter: TFilter) => {
-        const filter = normalizeFilterWithPredicates({...tableState.filter, ...newFilter});
+        const filter = normalizeFilterWithPredicates({ ...tableState.filter, ...newFilter });
         setTableState({
             ...tableState,
             filter: filter,
@@ -120,25 +130,30 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
     }, [filters, tableState.filtersConfig]);
 
     const renderAddFilterToggler = useCallback((props: PickerTogglerProps) => {
-        return <Button
-            size="36"
-            onClick={ props.onClick }
-            ref={ props.ref }
-            caption={ i18n.filterToolbar.addCaption }
-            icon={ addIcon }
-            iconPosition="left"
-            fill="light"
-            color="blue"
-        />;
+        return (
+            <Button
+                size="36"
+                onClick={props.onClick}
+                ref={props.ref}
+                caption={i18n.filterToolbar.addCaption}
+                icon={addIcon}
+                iconPosition="left"
+                fill="light"
+                color="blue"
+            />
+        );
     }, []);
 
-    const getRowOptions = useCallback((item: TableFiltersConfig<any>): DataRowOptions<any, any> => ({
-        isDisabled: item.isAlwaysVisible,
-        checkbox: {
-            isVisible: true,
+    const getRowOptions = useCallback(
+        (item: TableFiltersConfig<any>): DataRowOptions<any, any> => ({
             isDisabled: item.isAlwaysVisible,
-        },
-    }), []);
+            checkbox: {
+                isVisible: true,
+                isDisabled: item.isAlwaysVisible,
+            },
+        }),
+        []
+    );
 
     useEffect(() => {
         // Reset new filter id, after first render with autofocus
@@ -147,38 +162,42 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
 
     return (
         <>
-            { sortedActiveFilters.map(f => (
-                <FlexCell width="auto" key={ f.field as string }>
+            {sortedActiveFilters.map(f => (
+                <FlexCell width="auto" key={f.field as string}>
                     <FiltersPanelItem
-                        { ...f }
-                        value={ tableState.filter?.[f.field] }
-                        onValueChange={ handleFilterChange }
-                        key={ f.field as string }
-                        autoFocus={ newFilterId === f.field }
-                        removeFilter={ removeFilter }
+                        {...f}
+                        value={tableState.filter?.[f.field]}
+                        onValueChange={handleFilterChange}
+                        key={f.field as string}
+                        autoFocus={newFilterId === f.field}
+                        removeFilter={removeFilter}
                     />
                 </FlexCell>
-            )) }
+            ))}
             <PickerInput
-                dataSource={ dataSource }
-                value={ selectedFilters }
-                onValueChange={ onFiltersChange }
+                dataSource={dataSource}
+                value={selectedFilters}
+                onValueChange={onFiltersChange}
                 selectionMode="multi"
                 valueType="entity"
-                key={ newFilterId }
-                renderRow={ (props) =>
+                key={newFilterId}
+                renderRow={props => (
                     <DataPickerRow
-                        { ...props }
+                        {...props}
                         padding="12"
-                        key={ props.key }
-                        onCheck={ (row) => { props.onCheck(row); !row.isChecked && setNewFilterId(row.value.field); } }
-                        renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }
-                    /> }
-                getName={ i => i.title }
-                renderToggler={ renderAddFilterToggler }
-                emptyValue={ [] }
-                getRowOptions={ getRowOptions }
-                fixedBodyPosition={ true }
+                        key={props.key}
+                        onCheck={row => {
+                            props.onCheck(row);
+                            !row.isChecked && setNewFilterId(row.value.field);
+                        }}
+                        renderItem={(item, rowProps) => <PickerItem {...rowProps} title={item.title} />}
+                    />
+                )}
+                getName={i => i.title}
+                renderToggler={renderAddFilterToggler}
+                emptyValue={[]}
+                getRowOptions={getRowOptions}
+                fixedBodyPosition={true}
             />
         </>
     );

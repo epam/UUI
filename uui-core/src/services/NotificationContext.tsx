@@ -11,7 +11,6 @@ export interface NotificationOperation {
     config: NotificationParams;
 }
 
-
 let idCounter = 0;
 
 export class NotificationContext extends BaseContext implements INotificationContext {
@@ -61,7 +60,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
                     }
                 },
                 id: layer.id,
-                key: (idCounter++) + '',
+                key: idCounter++ + '',
             };
 
             if (params.duration !== 'forever') {
@@ -79,7 +78,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
     }
 
     public getNotifications(): NotificationOperation[] {
-        return this.notifications.map((op) => {
+        return this.notifications.map(op => {
             op = clone(op);
             return op;
         });
@@ -99,4 +98,3 @@ export class NotificationContext extends BaseContext implements INotificationCon
         this.update({});
     }
 }
-

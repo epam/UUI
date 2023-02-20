@@ -22,8 +22,7 @@ export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
     ];
 }
 
-export const Checkbox = withMods<CheckboxProps, CheckboxMods>(
-    uuiCheckbox,
-    applyCheckboxMods,
-    () => ({ icon: TickIcon, indeterminateIcon: IndeterminateIcon }),
-);
+export const Checkbox = withMods<CheckboxProps, CheckboxMods>(uuiCheckbox, applyCheckboxMods, () => ({
+    icon: TickIcon,
+    indeterminateIcon: IndeterminateIcon,
+}));

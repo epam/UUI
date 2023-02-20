@@ -1,6 +1,6 @@
 import * as React from 'react';
 import css from './Table.scss';
-import * as ReactDOM from "react-dom";
+import * as ReactDOM from 'react-dom';
 import { Broadcast } from 'react-broadcast';
 import { mouseCoords } from '@epam/uui-core';
 import { RenderBlockProps } from 'slate-react';
@@ -53,7 +53,7 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
     tableNode: any = null;
     tableWrapperNode: any = null;
 
-    constructor (props: any) {
+    constructor(props: any) {
         super(props);
     }
 
@@ -87,7 +87,6 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
                 this.setState({ selectedCells: [this.props.editor.value.anchorBlock] });
                 this.setSize(cellsWidth);
             }
-
         }
     }
 
@@ -102,45 +101,49 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
 
         this.tableNode.style.userSelect = null;
         this.tableNode.removeAttribute('contenteditable');
-    }
+    };
 
     setSize = (data: any) => {
         const newData = this.props.node.data.set('cellSizes', data);
         this.props.editor.setNodeByKey(this.props.node.key, {
-            ...this.props.node as any,
+            ...(this.props.node as any),
             data: newData,
         });
-    }
+    };
 
     isCellsWidthValid = (curCellW: number, nextCellW: number) => {
-        return curCellW > MIN_CELL_WIDTH && (nextCellW && (nextCellW > MIN_CELL_WIDTH) || nextCellW == null);
-    }
+        return curCellW > MIN_CELL_WIDTH && ((nextCellW && nextCellW > MIN_CELL_WIDTH) || nextCellW == null);
+    };
 
     isMouseInsideTable = (e: any) => {
         return e.target.closest('table');
-    }
+    };
 
     isTableWidthValid = () => {
-        let tableSize = this.tableNode && this.tableNode.getBoundingClientRect() || {width: 0};
+        let tableSize = (this.tableNode && this.tableNode.getBoundingClientRect()) || { width: 0 };
         const editorNode: HTMLElement = ReactDOM.findDOMNode(this.props.editor) as any;
 
         return tableSize.width < editorNode.getBoundingClientRect().width;
-    }
+    };
 
     isSelectionMovedOnAnotherCell = (currentCell: any, currentRow: any) => {
         return currentCell && (currentCell.cellIndex !== this.state.currentCell.cellIndex || currentRow.rowIndex !== this.state.currentCell.rowIndex);
-    }
+    };
 
     isSomeCellsSelected = (currentCell: any, currentRow: any) => {
-        return currentCell && !this.state.isTextSelectingForbiden && (this.state.firstSelectedCell.cellNumber !== currentCell.cellIndex || this.state.firstSelectedCell.rowNumber !== currentRow.rowIndex);
-    }
+        return (
+            currentCell &&
+            !this.state.isTextSelectingForbiden &&
+            (this.state.firstSelectedCell.cellNumber !== currentCell.cellIndex || this.state.firstSelectedCell.rowNumber !== currentRow.rowIndex)
+        );
+    };
 
     forbidTextSelection = () => {
         this.setState({ isTextSelectingForbiden: true });
         window.getSelection().setPosition(this.tableNode);
         this.tableNode.style.userSelect = 'none';
         this.tableNode.setAttribute('contenteditable', 'false');
-    }
+    };
 
     windowMouseMoveHandler = (e: MouseEvent) => {
         if (this.props.editor.readOnly) {
@@ -192,41 +195,48 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
                     },
                 });
 
-                let startColumnIndex = this.state.firstSelectedCell.cellNumber <= currentCell.cellIndex ? this.state.firstSelectedCell.cellNumber : currentCell.cellIndex;
-                let startRowIndex = this.state.firstSelectedCell.rowNumber <= currentRow.rowIndex ? this.state.firstSelectedCell.rowNumber : currentRow.rowIndex;
-                let endColumnIndex = this.state.firstSelectedCell.cellNumber > currentCell.cellIndex ? this.state.firstSelectedCell.cellNumber : currentCell.cellIndex;
-                let endRowIndex = this.state.firstSelectedCell.rowNumber > currentRow.rowIndex ? this.state.firstSelectedCell.rowNumber : currentRow.rowIndex;
+                let startColumnIndex =
+                    this.state.firstSelectedCell.cellNumber <= currentCell.cellIndex
+                        ? this.state.firstSelectedCell.cellNumber
+                        : currentCell.cellIndex;
+                let startRowIndex =
+                    this.state.firstSelectedCell.rowNumber <= currentRow.rowIndex ? this.state.firstSelectedCell.rowNumber : currentRow.rowIndex;
+                let endColumnIndex =
+                    this.state.firstSelectedCell.cellNumber > currentCell.cellIndex ? this.state.firstSelectedCell.cellNumber : currentCell.cellIndex;
+                let endRowIndex =
+                    this.state.firstSelectedCell.rowNumber > currentRow.rowIndex ? this.state.firstSelectedCell.rowNumber : currentRow.rowIndex;
 
                 let selectedCells: any = [];
 
                 this.props.node.nodes.toArray().map((row: any, rowIndex: number) => {
                     let isRowInSelection = rowIndex >= startRowIndex && rowIndex <= endRowIndex;
-                    isRowInSelection && row.nodes.toArray().map((cell: any, cellIndex: number) => {
-                        let cellRowSpan = cell.data.get('rowSpan') || 1;
-                        let cellColSpan = cell.data.get('colSpan') || 1;
-                        let isCellInSelection = cellIndex >= startColumnIndex && cellIndex <= endColumnIndex;
+                    isRowInSelection &&
+                        row.nodes.toArray().map((cell: any, cellIndex: number) => {
+                            let cellRowSpan = cell.data.get('rowSpan') || 1;
+                            let cellColSpan = cell.data.get('colSpan') || 1;
+                            let isCellInSelection = cellIndex >= startColumnIndex && cellIndex <= endColumnIndex;
 
-                        if (isCellInSelection && cellRowSpan > 1 && endRowIndex < rowIndex + cellRowSpan - 1) {
-                            endRowIndex = rowIndex + cellRowSpan - 1;
-                        }
-                        if (isCellInSelection && cellColSpan > 1 && endColumnIndex < cellIndex + cellColSpan - 1) {
-                            endColumnIndex = cellIndex + cellColSpan - 1;
-                        }
-                    });
+                            if (isCellInSelection && cellRowSpan > 1 && endRowIndex < rowIndex + cellRowSpan - 1) {
+                                endRowIndex = rowIndex + cellRowSpan - 1;
+                            }
+                            if (isCellInSelection && cellColSpan > 1 && endColumnIndex < cellIndex + cellColSpan - 1) {
+                                endColumnIndex = cellIndex + cellColSpan - 1;
+                            }
+                        });
                 });
                 this.props.node.nodes.toArray().map((row: any, rowIndex: number) => {
                     let isRowInSelection = rowIndex >= startRowIndex && rowIndex <= endRowIndex;
-                    isRowInSelection && row.nodes.toArray().map((cell: any, cellIndex: number) => {
-                        let isCellInSelection = cellIndex >= startColumnIndex && cellIndex <= endColumnIndex;
-                        isCellInSelection && selectedCells.push(cell);
-                    });
+                    isRowInSelection &&
+                        row.nodes.toArray().map((cell: any, cellIndex: number) => {
+                            let isCellInSelection = cellIndex >= startColumnIndex && cellIndex <= endColumnIndex;
+                            isCellInSelection && selectedCells.push(cell);
+                        });
                 });
 
                 this.setState({ selectedCells: selectedCells });
             }
         }
-
-    }
+    };
 
     windowMouseDownHandler = (e: any) => {
         if (this.props.editor.readOnly) {
@@ -248,10 +258,12 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
                 cellIndex: currentCell.cellIndex,
                 width: this.props.node.data.get('cellSizes')[currentCell.cellIndex],
             };
-            let nextCellInfo = nextCell ? {
-                cellIndex: nextCell.cellIndex,
-                width: this.props.node.data.get('cellSizes')[nextCell.cellIndex],
-            } : null;
+            let nextCellInfo = nextCell
+                ? {
+                      cellIndex: nextCell.cellIndex,
+                      width: this.props.node.data.get('cellSizes')[nextCell.cellIndex],
+                  }
+                : null;
             this.setState({
                 isBorderMoving: true,
                 mouseDownX: mouseCoords.mousePageX,
@@ -273,35 +285,41 @@ export class Table extends React.Component<RenderBlockProps, TableState> {
         }
 
         if (!this.isMouseInsideTable(e) && !e.target.closest('.merge-cells-bar') && !e.target.closest('.uui-rte-tablebar')) {
-            this.state.selectedCells.length > 0 && this.setState({selectedCells: []});
+            this.state.selectedCells.length > 0 && this.setState({ selectedCells: [] });
         }
-    }
+    };
 
     getColumnsCount = () => {
-        return this.props.node.nodes.toArray().reduce((accum: number, row: any) => row.nodes.size > accum ? row.nodes.size : accum, 0);
-    }
+        return this.props.node.nodes.toArray().reduce((accum: number, row: any) => (row.nodes.size > accum ? row.nodes.size : accum), 0);
+    };
 
     getTableWidth = () => {
-        return (this.props.node.data.get('cellSizes') || DEFAULT_COLUMNS).reduce((summ: number, size: any) => summ += size);
-    }
+        return (this.props.node.data.get('cellSizes') || DEFAULT_COLUMNS).reduce((summ: number, size: any) => (summ += size));
+    };
 
     render() {
-        return <div className={ css.tableWrapper } ref={ (el) => this.tableWrapperNode = el }>
-            <Broadcast value={ this.state.selectedCells } channel='uui-rte-table'>
-                <table className={ css.table } style={ {width: `${this.getTableWidth()}px`} } ref={ (el) => this.tableNode = el }>
-                    <colgroup>
-                        { (this.props.node.data.get('cellSizes') || DEFAULT_COLUMNS).map((size: number, index: number) => {
-                            let hoverStyle = this.state.hoverCellIndex === index ? { borderRight: '2px solid #008ACE' } : null;
-                            return <col style={ { width: `${ size }px`, ...hoverStyle } } key={ `col-${ index }` } />;
-                        }) }
-                    </colgroup>
-                    <tbody { ...this.props.attributes } className={ css.tableBody }>
-                        { this.props.children }
-                    </tbody>
-                </table>
-            </Broadcast>
-            <MergeCellBar editor={ this.props.editor } selectedCells={ this.state.selectedCells } clearSelection={ () => this.setState({ selectedCells: [] }) } />
-            <TableBar editor={ this.props.editor } isVisible={ this.state.selectedCells.length == 1 && this.props.isFocused } />
-        </div>;
+        return (
+            <div className={css.tableWrapper} ref={el => (this.tableWrapperNode = el)}>
+                <Broadcast value={this.state.selectedCells} channel="uui-rte-table">
+                    <table className={css.table} style={{ width: `${this.getTableWidth()}px` }} ref={el => (this.tableNode = el)}>
+                        <colgroup>
+                            {(this.props.node.data.get('cellSizes') || DEFAULT_COLUMNS).map((size: number, index: number) => {
+                                let hoverStyle = this.state.hoverCellIndex === index ? { borderRight: '2px solid #008ACE' } : null;
+                                return <col style={{ width: `${size}px`, ...hoverStyle }} key={`col-${index}`} />;
+                            })}
+                        </colgroup>
+                        <tbody {...this.props.attributes} className={css.tableBody}>
+                            {this.props.children}
+                        </tbody>
+                    </table>
+                </Broadcast>
+                <MergeCellBar
+                    editor={this.props.editor}
+                    selectedCells={this.state.selectedCells}
+                    clearSelection={() => this.setState({ selectedCells: [] })}
+                />
+                <TableBar editor={this.props.editor} isVisible={this.state.selectedCells.length == 1 && this.props.isFocused} />
+            </div>
+        );
     }
 }

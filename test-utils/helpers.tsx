@@ -5,24 +5,19 @@ import { act as reactAct } from 'react-dom/test-utils';
 import renderer, { act as rendererAct } from 'react-test-renderer';
 import { ContextProvider, UuiContexts } from '@epam/uui-core';
 
-export const delay = (ms: number = 1): Promise<void> => new Promise(resolve => {
-    setTimeout(resolve, ms);
-});
+export const delay = (ms: number = 1): Promise<void> =>
+    new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
 
 export const testSvc = {} as UuiContexts;
 
 export async function mountHookWithContext<TProps, TResult>(hook: (props: TProps) => TResult, initialProps?: TProps) {
     const wrapper = ({ children }: { children?: React.ReactNode }) => (
-        <ContextProvider onInitCompleted={ svc => Object.assign(testSvc, svc) }>
-            { children }
-        </ContextProvider>
+        <ContextProvider onInitCompleted={svc => Object.assign(testSvc, svc)}>{children}</ContextProvider>
     );
 
-    const {
-        waitForNextUpdate,
-        rerender,
-        ...rest
-    } = renderHook<TProps, TResult>(hook, { wrapper, initialProps: initialProps });
+    const { waitForNextUpdate, rerender, ...rest } = renderHook<TProps, TResult>(hook, { wrapper, initialProps: initialProps });
 
     await waitForNextUpdate();
 
@@ -31,18 +26,18 @@ export async function mountHookWithContext<TProps, TResult>(hook: (props: TProps
         waitForNextUpdate,
         ...rest,
     };
-};
+}
 
 export const mountWithContextAsync = async (children: ReactNode, enableLegacyContext = false) => {
     const wrapper = mount(
         <ContextProvider
-            onInitCompleted={ svc => {
+            onInitCompleted={svc => {
                 Object.assign(testSvc, svc);
-            } }
-            enableLegacyContext={ enableLegacyContext }
+            }}
+            enableLegacyContext={enableLegacyContext}
         >
-            { children }
-        </ContextProvider>,
+            {children}
+        </ContextProvider>
     );
 
     await reactAct(delay);
@@ -51,22 +46,27 @@ export const mountWithContextAsync = async (children: ReactNode, enableLegacyCon
     return wrapper;
 };
 
-export const mountWrappedComponentAsync = async <TComponent extends ComponentType<TProps>, TProps>(Component: TComponent, props: TProps, enableLegacyContext = false) => {
-    const renderComponent = (properties: TProps) => mount(
-        React.createElement(
-            (p: any) => (
-                <ContextProvider
-                    onInitCompleted={ svc => {
-                        Object.assign(testSvc, svc);
-                    } }
-                    enableLegacyContext={ enableLegacyContext }
-                >
-                    <Component { ...p }/>
-                </ContextProvider>
-            ),
-            properties,
-        ),
-    );
+export const mountWrappedComponentAsync = async <TComponent extends ComponentType<TProps>, TProps>(
+    Component: TComponent,
+    props: TProps,
+    enableLegacyContext = false
+) => {
+    const renderComponent = (properties: TProps) =>
+        mount(
+            React.createElement(
+                (p: any) => (
+                    <ContextProvider
+                        onInitCompleted={svc => {
+                            Object.assign(testSvc, svc);
+                        }}
+                        enableLegacyContext={enableLegacyContext}
+                    >
+                        <Component {...p} />
+                    </ContextProvider>
+                ),
+                properties
+            )
+        );
     const wrapper = renderComponent(props);
 
     await reactAct(delay);
@@ -78,13 +78,13 @@ export const mountWrappedComponentAsync = async <TComponent extends ComponentTyp
 export const renderWithContextAsync = async (component: ReactElement, enableLegacyContext = false) => {
     const result = renderer.create(
         <ContextProvider
-            onInitCompleted={ svc => {
+            onInitCompleted={svc => {
                 Object.assign(testSvc, svc);
-            } }
-            enableLegacyContext={ enableLegacyContext }
+            }}
+            enableLegacyContext={enableLegacyContext}
         >
-            { component }
-        </ContextProvider>,
+            {component}
+        </ContextProvider>
     );
 
     await rendererAct(delay);

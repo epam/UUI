@@ -1,7 +1,9 @@
 const spawn = require('cross-spawn');
 const path = require('path');
 
-function forwardSlashes(pathStr) { return pathStr.replace(/\\/g, '/'); }
+function forwardSlashes(pathStr) {
+    return pathStr.replace(/\\/g, '/');
+}
 
 function hasArg(arg) {
     return process.argv.includes(arg);

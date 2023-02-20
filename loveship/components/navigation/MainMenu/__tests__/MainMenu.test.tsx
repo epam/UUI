@@ -1,11 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
 import { renderWithContextAsync } from '@epam/test-utils';
-import {MainMenu} from "../MainMenu";
-import {MainMenuButton} from "../MainMenuButton";
-import {BurgerButton} from "../Burger";
-import ReactDOM from "react-dom";
+import { MainMenu } from '../MainMenu';
+import { MainMenuButton } from '../MainMenuButton';
+import { BurgerButton } from '../Burger';
+import ReactDOM from 'react-dom';
 
-describe("MainMenu", () => {
+describe('MainMenu', () => {
     const oldPortal = ReactDOM.createPortal;
 
     beforeAll(() => {
@@ -16,24 +16,29 @@ describe("MainMenu", () => {
         ReactDOM.createPortal = oldPortal;
     });
 
-    it("should be rendered correctly", async () => {
-        const tree = await renderWithContextAsync(<MainMenu><MainMenuButton /></MainMenu>);
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <MainMenu>
+                <MainMenuButton />
+            </MainMenu>
+        );
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly with props', async () => {
-
-        const tree = await renderWithContextAsync(<MainMenu
-                renderBurger={ () => <BurgerButton /> }
-                logoLink={ { pathname: '/' } }
-                appLogoUrl=''
-                logoWidth={ 120 }
+        const tree = await renderWithContextAsync(
+            <MainMenu
+                renderBurger={() => <BurgerButton />}
+                logoLink={{ pathname: '/' }}
+                appLogoUrl=""
+                logoWidth={120}
                 isTransparent
-                serverBadge='Dev'
-                tooltipTechInfo='Tech Info'
+                serverBadge="Dev"
+                tooltipTechInfo="Tech Info"
             >
                 <MainMenuButton />
-            </MainMenu>);
+            </MainMenu>
+        );
         expect(tree).toMatchSnapshot();
     });
 });

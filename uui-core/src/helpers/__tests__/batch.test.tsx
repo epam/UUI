@@ -1,5 +1,5 @@
-import { batch } from "../batch";
-import { delay } from "@epam/test-utils";
+import { batch } from '../batch';
+import { delay } from '@epam/test-utils';
 
 describe('batch', () => {
     jest.useRealTimers();
@@ -82,7 +82,7 @@ describe('batch', () => {
     it('Errors are passed thru', async () => {
         const batchFn = jest.fn(async (arr: number[]) => {
             await delay(2);
-            throw "My Error";
+            throw 'My Error';
         });
         const fn = batch(batchFn);
 
@@ -90,8 +90,8 @@ describe('batch', () => {
         //await delay(5);
         let r2 = fn(2);
 
-        await expect(r1).rejects.toEqual("My Error");
-        await expect(r2).rejects.toEqual("My Error");
+        await expect(r1).rejects.toEqual('My Error');
+        await expect(r2).rejects.toEqual('My Error');
         expect(batchFn).toBeCalledTimes(1);
     });
 
@@ -99,7 +99,7 @@ describe('batch', () => {
         const batchFn = jest.fn(async (arr: number[]) => {
             await delay(1);
             if (arr[0] == 1) {
-                throw "My Error";
+                throw 'My Error';
             } else {
                 return arr;
             }
@@ -107,9 +107,9 @@ describe('batch', () => {
 
         const fn = batch(batchFn);
 
-        let p1 = expect(fn(1)).rejects.toEqual("My Error");;
+        let p1 = expect(fn(1)).rejects.toEqual('My Error');
         await delay(5);
-        let p2 = expect(fn(2)).resolves.toEqual(2);;
+        let p2 = expect(fn(2)).resolves.toEqual(2);
 
         await p1;
         await p2;

@@ -16,17 +16,15 @@ export default function ValueTypeExamplePicker() {
     return (
         <div>
             <PickerInput
-                dataSource={ dataSource }
-                value={ value }
-                onValueChange={ onValueChange }
-                entityName='person'
-                selectionMode='multi'
-                emptyValue={ [] }
-                valueType='entity'
+                dataSource={dataSource}
+                value={value}
+                onValueChange={onValueChange}
+                entityName="person"
+                selectionMode="multi"
+                emptyValue={[]}
+                valueType="entity"
             />
-            <Text>
-                Selected users: { value.map(i => i.name).join(', ') }
-            </Text>
+            <Text>Selected users: {value.map(i => i.name).join(', ')}</Text>
         </div>
     );
 }

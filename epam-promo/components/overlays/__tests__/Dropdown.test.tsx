@@ -6,24 +6,15 @@ import { Button } from '../../buttons';
 describe('Dropdown', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
-            .create(<Dropdown
-                renderTarget={ props => <Button caption='Test' { ...props } /> }
-                renderBody={ props => jest.fn() }
-            />)
+            .create(<Dropdown renderTarget={props => <Button caption="Test" {...props} />} renderBody={props => jest.fn()} />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly', () => {
         const tree = renderer
-            .create(<Dropdown
-                renderTarget={ props => <Button caption='Test' { ...props } /> }
-                renderBody={ props => jest.fn() }
-                onClose={ jest.fn }
-            />)
+            .create(<Dropdown renderTarget={props => <Button caption="Test" {...props} />} renderBody={props => jest.fn()} onClose={jest.fn} />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
 });
-
-

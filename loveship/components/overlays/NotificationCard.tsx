@@ -44,71 +44,65 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
     return (
         <div
             role="alert"
-            className={ cx(css.notificationWrapper, styles[`color-${ props.color }`], props.cx) }
-            ref={ notificationCardNode }
-            { ...props.rawProps }
+            className={cx(css.notificationWrapper, styles[`color-${props.color}`], props.cx)}
+            ref={notificationCardNode}
+            {...props.rawProps}
         >
-            <div className={ css.mainPath }>
-                { props.icon && (
-                    <div className={ css.iconWrapper }>
-                        <IconContainer icon={ props.icon } cx={ css.actionIcon } />
+            <div className={css.mainPath}>
+                {props.icon && (
+                    <div className={css.iconWrapper}>
+                        <IconContainer icon={props.icon} cx={css.actionIcon} />
                     </div>
-                ) }
-                <div className={ css.content }>
-                    { props.children }
-                    { props.actions && <div className={ css.actionWrapper }>
-                        { props.actions.map(action => (
-                            <LinkButton
-                                caption={ action.name }
-                                onClick={ action.action }
-                                key={ action.name }
-                                cx={ css.actionLink }
-                                size='36'
-                                rawProps={ action.rawProps }
-                            />
-                        )) }
-                    </div> }
+                )}
+                <div className={css.content}>
+                    {props.children}
+                    {props.actions && (
+                        <div className={css.actionWrapper}>
+                            {props.actions.map(action => (
+                                <LinkButton
+                                    caption={action.name}
+                                    onClick={action.action}
+                                    key={action.name}
+                                    cx={css.actionLink}
+                                    size="36"
+                                    rawProps={action.rawProps}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
-                { props.onClose && (
-                    <div className={ css.closeWrapper }>
-                        <IconButton
-                            icon={ CrossIcon }
-                            color='night600'
-                            onClick={ props.onClose }
-                            cx={ css.closeIcon }
-                        />
+                {props.onClose && (
+                    <div className={css.closeWrapper}>
+                        <IconButton icon={CrossIcon} color="night600" onClick={props.onClose} cx={css.closeIcon} />
                     </div>
-                ) }
+                )}
             </div>
         </div>
     );
 });
 
 export const WarningNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ WarningIcon } color='sun' ref={ ref } { ...props } cx={ cx(props.cx, css.typeWarning) } />
+    <NotificationCard icon={WarningIcon} color="sun" ref={ref} {...props} cx={cx(props.cx, css.typeWarning)} />
 ));
 
 export const SuccessNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ SuccessIcon } ref={ ref } color='grass' { ...props } cx={ cx(props.cx, css.typeSuccess) } />
+    <NotificationCard icon={SuccessIcon} ref={ref} color="grass" {...props} cx={cx(props.cx, css.typeSuccess)} />
 ));
 
 export const HintNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ HintIcon } ref={ ref } color='sky' { ...props } cx={ cx(props.cx, css.typeHint) } />
+    <NotificationCard icon={HintIcon} ref={ref} color="sky" {...props} cx={cx(props.cx, css.typeHint)} />
 ));
 
 export const ErrorNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ ErrorIcon } color='fire' ref={ ref } { ...props } cx={ cx(props.cx, css.typeError) } />
+    <NotificationCard icon={ErrorIcon} color="fire" ref={ref} {...props} cx={cx(props.cx, css.typeError)} />
 ));
 
 export const ClearNotification = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
     const context = useUuiContext();
 
     return (
-        <div ref={ ref } className={ cx(css.notificationWrapper, css.clearButton) }>
-            <LinkButton
-                caption={ i18n.notificationCard.closeAllNotificationsButton }
-                onClick={ () => context.uuiNotifications.clearAll() }
-            />
+        <div ref={ref} className={cx(css.notificationWrapper, css.clearButton)}>
+            <LinkButton caption={i18n.notificationCard.closeAllNotificationsButton} onClick={() => context.uuiNotifications.clearAll()} />
         </div>
     );
 });

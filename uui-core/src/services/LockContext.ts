@@ -1,6 +1,6 @@
 import { BaseContext } from './BaseContext';
 import { IRouterContext, Link } from '../types';
-import { isClientSide } from "../helpers/ssr";
+import { isClientSide } from '../helpers/ssr';
 
 export class Lock {
     constructor(public tryRelease?: () => Promise<void>) {}
@@ -25,7 +25,7 @@ export class LockContext extends BaseContext {
                 });
                 this.currentLock = lock;
             } else {
-                console.warn('An attempt to acquire lock in server side won\'t have any effect.');
+                console.warn("An attempt to acquire lock in server side won't have any effect.");
             }
             return Promise.resolve(lock);
         }
@@ -57,9 +57,11 @@ export class LockContext extends BaseContext {
 
     public routerWillLeave(nextLocation: Link) {
         if (this.currentLock) {
-            this.tryRelease().then(() => {
-                this.router.redirect(nextLocation);
-            }).catch(() => {});
+            this.tryRelease()
+                .then(() => {
+                    this.router.redirect(nextLocation);
+                })
+                .catch(() => {});
         }
     }
 

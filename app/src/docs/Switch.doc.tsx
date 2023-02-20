@@ -15,12 +15,9 @@ export class SwitchDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='switch-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/switch/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="switch-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/switch/Basic.example.tsx" />
             </>
         );
     }

@@ -14,10 +14,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         this.component = docs.component || null;
     }
 
-    public prop<TProp extends keyof TProps>(
-        name: TProp,
-        details?: Partial<PropDoc<TProps, TProp>>,
-    ) {
+    public prop<TProp extends keyof TProps>(name: TProp, details?: Partial<PropDoc<TProps, TProp>>) {
         // Apply defaults
         details.isRequired = details.isRequired || false;
         details.examples = details.examples || [];
@@ -40,14 +37,20 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         return this;
     }
 
-    public withContexts(...contexts: (ComponentType<DemoComponentProps>)[]) {
+    public withContexts(...contexts: ComponentType<DemoComponentProps>[]) {
         contexts.forEach(context => this.contexts.push({ context, name: context.displayName }));
         return this;
     }
 
     private normalizeExamples(examples: PropExample<any>[]) {
         return examples.map((example, index) => {
-            if (example == null || typeof example === 'number' || typeof example === 'string' || typeof example === 'boolean' || typeof example === 'function') {
+            if (
+                example == null ||
+                typeof example === 'number' ||
+                typeof example === 'string' ||
+                typeof example === 'boolean' ||
+                typeof example === 'function'
+            ) {
                 example = {
                     value: example,
                 };

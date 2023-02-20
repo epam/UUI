@@ -34,7 +34,7 @@ export function applyTagMods(mods: TagMods & ButtonProps) {
     ];
 }
 
-export const Tag = withMods<ButtonProps, TagMods>(Button, applyTagMods, (props) => ({
+export const Tag = withMods<ButtonProps, TagMods>(Button, applyTagMods, props => ({
     dropdownIcon: systemIcons[mapSize[props.size || defaultSize]].foldingArrow,
     clearIcon: systemIcons[mapSize[props.size || defaultSize]].clear,
     countPosition: 'left',

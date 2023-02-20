@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import css from './Avatar.scss';
 
@@ -23,23 +23,30 @@ const AvatarComponent = (props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
     const [isError, setIsError] = React.useState<boolean>(false);
 
     function onError() {
-      if (!isError) {
-        setIsError(true);
-      }
+        if (!isError) {
+            setIsError(true);
+        }
     }
     return (
-            <img
-                onClick={ props.onClick }
-                ref={ ref }
-                className={ cx(css.avatar, props.cx) }
-                width={ props.size }
-                height={ props.size }
-                src={ (props.isLoading || !props.img || isError) ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg' : props.img }
-                alt={ props.alt }
-                onError={ onError }
-                { ...props.rawProps }
-            />
+        <img
+            onClick={props.onClick}
+            ref={ref}
+            className={cx(css.avatar, props.cx)}
+            width={props.size}
+            height={props.size}
+            src={
+                props.isLoading || !props.img || isError
+                    ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg'
+                    : props.img
+            }
+            alt={props.alt}
+            onError={onError}
+            {...props.rawProps}
+        />
     );
 };
 
-export const Avatar = React.forwardRef(AvatarComponent) as <AvatarComponent>(props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) => JSX.Element;
+export const Avatar = React.forwardRef(AvatarComponent) as <AvatarComponent>(
+    props: AvatarProps,
+    ref: React.ForwardedRef<HTMLImageElement>
+) => JSX.Element;

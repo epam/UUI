@@ -1,6 +1,6 @@
 import { ArrayListView, ArrayListViewProps } from '../ArrayListView';
 import { ArrayDataSource } from '../../ArrayDataSource';
-import { DataSourceState, IDataSourceView } from "../../../../types";
+import { DataSourceState, IDataSourceView } from '../../../../types';
 import { BaseListView } from '../BaseListView';
 
 interface TItem {
@@ -12,30 +12,29 @@ interface TItem {
 type View = ArrayListView<TItem, number, any>;
 
 const testItems: TItem[] = [
-    { "id": 2, "level": "A1" },
-    { "id": 5, "level": "A2+" },
-    { "id": 1, "level": "A0" },
-    { "id": 3, "level": "A1+" },
-    { "id": 4, "level": "A2" },
-    { "id": 6, "level": "B" },
-    { "id": 7, "level": "B1+", parentId: 6 },
-    { "id": 8, "level": "B2", parentId: 6 },
-    { "id": 9, "level": "B2+", parentId: 6 },
-    { "id": 10, "level": "C1" },
-    { "id": 11, "level": "C1+" },
-    { "id": 12, "level": "C2" },
+    { id: 2, level: 'A1' },
+    { id: 5, level: 'A2+' },
+    { id: 1, level: 'A0' },
+    { id: 3, level: 'A1+' },
+    { id: 4, level: 'A2' },
+    { id: 6, level: 'B' },
+    { id: 7, level: 'B1+', parentId: 6 },
+    { id: 8, level: 'B2', parentId: 6 },
+    { id: 9, level: 'B2+', parentId: 6 },
+    { id: 10, level: 'C1' },
+    { id: 11, level: 'C1+' },
+    { id: 12, level: 'C2' },
 ];
 
 const totalRowsCount = 12;
 const rootNodesCount = 9;
 
-let dataSource: ArrayDataSource<{ id: number, level: string }, number, any> = null;
+let dataSource: ArrayDataSource<{ id: number; level: string }, number, any> = null;
 let view: View = null;
 
 let onValueChange: () => any = null;
 let initialValue: DataSourceState = { topIndex: 0, visibleCount: totalRowsCount };
 let viewProps: ArrayListViewProps<TItem, number, any>;
-
 
 describe('ArrayListView', () => {
     beforeEach(() => {
@@ -49,7 +48,7 @@ describe('ArrayListView', () => {
 
         viewProps = {
             getId: i => i.id,
-            getSearchFields: (item) => [item.level],
+            getSearchFields: item => [item.level],
             getRowOptions: (item, index) => ({
                 checkbox: {
                     isVisible: true,
@@ -108,14 +107,10 @@ describe('ArrayListView', () => {
     });
 
     it('should return all nodes, if isFoldedByDefault is false', () => {
-        view = dataSource.getView(
-            initialValue,
-            () => {},
-            {
-                getId: i => i.id,
-                isFoldedByDefault: () => false,
-            },
-        ) as View;
+        view = dataSource.getView(initialValue, () => {}, {
+            getId: i => i.id,
+            isFoldedByDefault: () => false,
+        }) as View;
         const rows = view.getVisibleRows();
         expect(rows).toMatchObject(testItems.map(i => ({ id: i.id, value: i })));
         expect(view.getVisibleRows()).toHaveLength(testItems.length);
@@ -163,17 +158,13 @@ describe('ArrayListView', () => {
         });
 
         it('should check all children when parent checked with cascadeSelection true', () => {
-            view = dataSource.getView(
-                initialValue,
-                onValueChange,
-                {
-                    getId: i => i.id,
-                    cascadeSelection: true,
-                    getRowOptions: () => ({
-                        checkbox: { isVisible: true },
-                    }),
-                },
-            ) as View;
+            view = dataSource.getView(initialValue, onValueChange, {
+                getId: i => i.id,
+                cascadeSelection: true,
+                getRowOptions: () => ({
+                    checkbox: { isVisible: true },
+                }),
+            }) as View;
 
             const row1 = view.getById(6, 6);
             row1.onCheck(row1);
@@ -182,17 +173,13 @@ describe('ArrayListView', () => {
         });
 
         it('should check parent if all siblings checked', () => {
-            view = dataSource.getView(
-                { ...initialValue, checked: [7, 8] },
-                onValueChange,
-                {
-                    getId: i => i.id,
-                    cascadeSelection: true,
-                    getRowOptions: () => ({
-                        checkbox: { isVisible: true },
-                    }),
-                },
-            ) as View;
+            view = dataSource.getView({ ...initialValue, checked: [7, 8] }, onValueChange, {
+                getId: i => i.id,
+                cascadeSelection: true,
+                getRowOptions: () => ({
+                    checkbox: { isVisible: true },
+                }),
+            }) as View;
 
             const row = view.getById(9, 9);
             row.onCheck(row);
@@ -201,26 +188,22 @@ describe('ArrayListView', () => {
         });
 
         it('should not update internal state itself on onCheck call but only on update call', () => {
-            const view = dataSource.getView(
-                { ...initialValue, checked: [] },
-                onValueChange,
-                {
-                    getId: i => i.id,
-                    cascadeSelection: true,
-                    getRowOptions: () => ({
-                        checkbox: { isVisible: true },
-                    }),
-                },
-            ) as View;
+            const view = dataSource.getView({ ...initialValue, checked: [] }, onValueChange, {
+                getId: i => i.id,
+                cascadeSelection: true,
+                getRowOptions: () => ({
+                    checkbox: { isVisible: true },
+                }),
+            }) as View;
 
             const row = view.getById(9, 9);
             row.onCheck(row);
 
-            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] })
+            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] });
             expect(view['checkedByKey']).toEqual({});
 
             view.update({ ...initialValue, checked: [9] }, viewProps);
-            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] })
+            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] });
 
             expect(view['checkedByKey']).toEqual({ 9: true });
         });

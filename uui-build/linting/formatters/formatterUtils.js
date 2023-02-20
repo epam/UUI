@@ -20,7 +20,9 @@ function getReportLocationPath() {
     }
 }
 
-function forwardSlashes(pathStr) { return pathStr.replace(/\\/g, '/'); }
+function forwardSlashes(pathStr) {
+    return pathStr.replace(/\\/g, '/');
+}
 
 function getSeverityOpts(kind) {
     let error;
@@ -99,7 +101,7 @@ function createSummaryFromMessages(messages, initial, ruleIdPropName = 'ruleId',
         [SEV_OPTS.error.id]: { amount: 0, amountByRuleId: {} },
         [SEV_OPTS.warning.id]: { amount: 0, amountByRuleId: {} },
     };
-    messages.forEach((msg) => {
+    messages.forEach(msg => {
         const severity = msg.severity;
         const ruleId = msg[ruleIdPropName];
         if (!sum[severity].amountByRuleId[ruleId]) {
@@ -122,8 +124,7 @@ function createSummaryFromMessages(messages, initial, ruleIdPropName = 'ruleId',
 function sumComparator(s1, s2, kind = 'eslint') {
     const SEV_OPTS = getSeverityOpts(kind);
 
-    return s2[SEV_OPTS.error.id].amount - s1[SEV_OPTS.error.id].amount
-        || s2[SEV_OPTS.warning.id].amount - s1[SEV_OPTS.warning.id].amount;
+    return s2[SEV_OPTS.error.id].amount - s1[SEV_OPTS.error.id].amount || s2[SEV_OPTS.warning.id].amount - s1[SEV_OPTS.warning.id].amount;
 }
 
 function convertResultsToHtml(results, kind = 'eslint') {
@@ -185,16 +186,12 @@ function singleFileResultsToHtml(fileRow, kind) {
     const totalWarn = fileRow.fileSummary[SEV_OPTS.warning.id].amount;
     const total = `${totalErr} errors, ${totalWarn} warnings`;
 
-    if ((totalErr + totalWarn) === 0) {
+    if (totalErr + totalWarn === 0) {
         return '';
     }
 
     function htmlEsc(t) {
-        return t.replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
+        return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
     }
 
     function msgToHtml(msg) {

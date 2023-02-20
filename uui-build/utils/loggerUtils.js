@@ -10,7 +10,12 @@ function ModuleBuildProgressLogger({ moduleRootDir, isRollup }) {
 
 module.exports = { logger, ModuleBuildProgressLogger };
 
-function info(...args) { console.log(...args); }
-function error(...args) { console.log(chalk.red(...args)); }
-function success(...args) { console.log(chalk.green(...args)); }
-
+function info(...args) {
+    console.log(...args);
+}
+function error(...args) {
+    console.log(chalk.red(...args));
+}
+function success(...args) {
+    console.log(chalk.green(...args));
+}

@@ -34,4 +34,4 @@ export interface DataTableHeaderRowMods extends BaseRowMods {
     textCase?: 'upper' | 'normal';
 }
 
-export interface ScrollRowMods extends BaseRowMods { }
+export interface ScrollRowMods extends BaseRowMods {}

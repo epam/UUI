@@ -13,14 +13,10 @@ export interface CheckboxMods {
 }
 
 export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
-    return [
-        'checkbox-vars',
-        css.root,
-        css['size-' + (mods.size || '18')],
-    ];
+    return ['checkbox-vars', css.root, css['size-' + (mods.size || '18')]];
 }
 
-export const Checkbox = withMods<CheckboxProps, CheckboxMods>(uuiCheckbox, applyCheckboxMods, (props) => ({
-    icon: (props.size === '12') ? Check_12 : Check_18,
-    indeterminateIcon: (props.size === '12') ? PartlySelect_12 : PartlySelect_18,
+export const Checkbox = withMods<CheckboxProps, CheckboxMods>(uuiCheckbox, applyCheckboxMods, props => ({
+    icon: props.size === '12' ? Check_12 : Check_18,
+    indeterminateIcon: props.size === '12' ? PartlySelect_12 : PartlySelect_18,
 }));

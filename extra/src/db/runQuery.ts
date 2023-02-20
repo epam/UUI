@@ -1,4 +1,4 @@
-import { DbQuery, DbState, EntityState, ColumnOrder } from "./types";
+import { DbQuery, DbState, EntityState, ColumnOrder } from './types';
 import * as I from 'immutable';
 
 export const runQuery = runQueryNaive;
@@ -68,7 +68,7 @@ function withCache<T>(db: DbState, key: string, create: () => T) {
     }
 }
 
-function cached<Params, Result>(getKey: (p: Params) => string, fn: (db: DbState, p: Params) => Result): ((db: DbState, p: Params) => Result) {
+function cached<Params, Result>(getKey: (p: Params) => string, fn: (db: DbState, p: Params) => Result): (db: DbState, p: Params) => Result {
     return function (db: DbState, p: Params) {
         const key = getKey(p);
         return withCache(db, key, () => fn(db, p));

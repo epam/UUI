@@ -7,7 +7,7 @@ export interface IxSetIndexDefinition<TEntity> {
     fields: (keyof TEntity)[];
 }
 
-const ID = Symbol("ID");
+const ID = Symbol('ID');
 
 type IndexKey<TEntity> = TEntity & { [ID]: any };
 
@@ -31,9 +31,11 @@ function defaultComparator(a: any, b: any) {
     return a < b ? -1 : a > b ? 1 : 0;
 }
 
-function iterator<T>(next: () => {done: boolean, value?: T} = (() => ({ done:true, value:undefined }))): IterableIterator<T> {
+function iterator<T>(next: () => { done: boolean; value?: T } = () => ({ done: true, value: undefined })): IterableIterator<T> {
     const result: any = { next };
-    result[Symbol.iterator] = function () { return this; };
+    result[Symbol.iterator] = function () {
+        return this;
+    };
     return result;
 }
 
@@ -45,10 +47,7 @@ export class IxSet<TEntity, TId> {
 
     indexes: IxSetIndex<TEntity>[];
 
-    constructor(
-        private getId: (e: Partial<TEntity>) => TId,
-        indexesDefinition: IxSetIndexDefinition<TEntity>[],
-    ) {
+    constructor(private getId: (e: Partial<TEntity>) => TId, indexesDefinition: IxSetIndexDefinition<TEntity>[]) {
         this.empty = new BTree([]);
         this.pk = this.empty;
         this.indexes = indexesDefinition.map(definition => {
@@ -105,7 +104,9 @@ export class IxSet<TEntity, TId> {
             }
             let existingIndexEntry = { ...existing, [ID]: id };
             let updatedIndexEntry = { ...updated, [ID]: id };
-            Object.keys(patch).forEach(f => { updatedFields[f] = true; });
+            Object.keys(patch).forEach(f => {
+                updatedFields[f] = true;
+            });
             return { id, patch, existing, updated, existingIndexEntry, updatedIndexEntry };
         });
 
@@ -139,7 +140,7 @@ export class IxSet<TEntity, TId> {
         const filterFieldTypes = {} as Record<keyof TEntity, FilterConditionType>;
         filterFields.forEach(f => {
             const condition = filter[f] as DataQueryFilterCondition<TEntity, any>;
-            if (condition != null && typeof condition === "object") {
+            if (condition != null && typeof condition === 'object') {
                 if (condition.in) {
                     filterFieldTypes[f] = FilterConditionType.Multi;
                 }
@@ -148,44 +149,48 @@ export class IxSet<TEntity, TId> {
             }
         });
 
-        let plans = this.indexes.map(index => {
-            if (filterFieldTypes[index.fields[0]]) {
-                let matchCount = 0;
-                const from: IndexKey<TEntity> = { [ID]: -Infinity } as any;
-                const to: IndexKey<TEntity> = { [ID]: +Infinity } as any;
-                const lookupFields = {} as Record<keyof TEntity, boolean>;
-                let isRemainingUnused = false;
+        let plans = this.indexes
+            .map(index => {
+                if (filterFieldTypes[index.fields[0]]) {
+                    let matchCount = 0;
+                    const from: IndexKey<TEntity> = { [ID]: -Infinity } as any;
+                    const to: IndexKey<TEntity> = { [ID]: +Infinity } as any;
+                    const lookupFields = {} as Record<keyof TEntity, boolean>;
+                    let isRemainingUnused = false;
 
-                for (let i = 0; i < index.fields.length; i++) {
-                    const field: keyof TEntity = index.fields[i];
-                    if (!isRemainingUnused && filterFieldTypes[field] === FilterConditionType.Single) {
-                        lookupFields[field] = true;
-                        from[field] = filter[field] as any;
-                        to[field] = filter[field] as any;
-                        matchCount++;
-                    } else {
-                        isRemainingUnused = true;
-                        from[field] = -Infinity as any;
-                        to[field] = Infinity as any;
+                    for (let i = 0; i < index.fields.length; i++) {
+                        const field: keyof TEntity = index.fields[i];
+                        if (!isRemainingUnused && filterFieldTypes[field] === FilterConditionType.Single) {
+                            lookupFields[field] = true;
+                            from[field] = filter[field] as any;
+                            to[field] = filter[field] as any;
+                            matchCount++;
+                        } else {
+                            isRemainingUnused = true;
+                            from[field] = -Infinity as any;
+                            to[field] = Infinity as any;
+                        }
+                    }
+
+                    let remainingFilter: DataQueryFilter<TEntity> = null;
+                    filterFields
+                        .filter(f => !lookupFields[f])
+                        .forEach(f => {
+                            if (!remainingFilter) {
+                                remainingFilter = {};
+                            }
+                            remainingFilter[f] = filter[f];
+                        });
+
+                    const score = matchCount;
+                    if (matchCount > 0) {
+                        return { score, index, from, to, remainingFilter };
                     }
                 }
 
-                let remainingFilter: DataQueryFilter<TEntity> = null;
-                filterFields.filter(f => !lookupFields[f]).forEach(f => {
-                    if (!remainingFilter) {
-                        remainingFilter = {};
-                    }
-                    remainingFilter[f] = filter[f];
-                });
-
-                const score = matchCount;
-                if (matchCount > 0) {
-                    return { score, index, from, to, remainingFilter };
-                }
-            }
-
-            return null;
-        }).filter(p => p != null);
+                return null;
+            })
+            .filter(p => p != null);
 
         plans = orderBy(plans, 'score', 'desc');
         let plan = plans[0];

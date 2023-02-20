@@ -1,4 +1,13 @@
-import { CompositeDecorator, Editor, EditorState, RichUtils, DraftHandleValue, DefaultDraftBlockRenderMap, convertFromRaw, convertToRaw } from 'draft-js';
+import {
+    CompositeDecorator,
+    Editor,
+    EditorState,
+    RichUtils,
+    DraftHandleValue,
+    DefaultDraftBlockRenderMap,
+    convertFromRaw,
+    convertToRaw,
+} from 'draft-js';
 import * as React from 'react';
 import { IEditable, IHasCX, uuiMarkers, uuiElement, ICanBeReadonly } from '@epam/uui-core';
 import { Toolbar } from './common';
@@ -12,7 +21,7 @@ import { ScrollBars } from '@epam/loveship';
 import cx from 'classnames';
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 
-export type RichTextEditorBindingProps = (RawRichTextEditorProps | HtmlRichTextEditorProps | MarkdownRichTextEditorProps);
+export type RichTextEditorBindingProps = RawRichTextEditorProps | HtmlRichTextEditorProps | MarkdownRichTextEditorProps;
 export type HtmlRichTextEditorProps = { valueType: 'html' } & IEditable<string>;
 export type MarkdownRichTextEditorProps = { valueType: 'markdown' } & IEditable<string>;
 export type RawRichTextEditorProps = { valueType: 'raw' } & IEditable<EditorState>;
@@ -22,33 +31,34 @@ export type RichTextEditorProps = {
     // textColors?: ToolbarTextColor[];
     customClass?: string;
     placeholder?: string;
-} & IHasCX & ICanBeReadonly & RichTextEditorBindingProps;
+} & IHasCX &
+    ICanBeReadonly &
+    RichTextEditorBindingProps;
 
 const blockRenderMap = I.Map({
-    'paragraph': {
+    paragraph: {
         element: 'p',
     },
-    'unstyled': {
+    unstyled: {
         element: 'p',
     },
 });
 const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap as any);
 
 export class RichTextEditor extends React.Component<RichTextEditorProps> {
-
     public editor: Editor;
     private currentValue = this.props.value;
     private editorState: EditorState = this.getStateFromProps(this.props);
 
     getStateFromProps(props: RichTextEditorProps) {
         switch (props.valueType) {
-            case "html": {
+            case 'html': {
                 return convertHtmlToDraftState(props.value || '') ? this.createWithContent(props.value) : this.createEmpty();
             }
-            case "markdown": {
+            case 'markdown': {
                 return EditorState.createWithContent(convertFromRaw(markdownToDraft(props.value)), new CompositeDecorator([linkDecorator]));
             }
-            case "raw": {
+            case 'raw': {
                 return props.value ? props.value : this.createEmpty();
             }
         }
@@ -66,15 +76,15 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
         let newValue;
         this.editorState = editorState;
         switch (this.props.valueType) {
-            case "html": {
+            case 'html': {
                 newValue = convertDraftStateToHtml(editorState.getCurrentContent());
                 break;
             }
-            case "markdown": {
-                newValue = draftToMarkdown(convertToRaw(editorState.getCurrentContent()), {preserveNewlines: true});
+            case 'markdown': {
+                newValue = draftToMarkdown(convertToRaw(editorState.getCurrentContent()), { preserveNewlines: true });
                 break;
             }
-            case "raw": {
+            case 'raw': {
                 newValue = editorState;
                 break;
             }
@@ -86,7 +96,7 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
         } else {
             this.forceUpdate();
         }
-    }
+    };
 
     handleKeyCommand = (command: string, editorState: EditorState): DraftHandleValue => {
         const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -95,7 +105,7 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
             return 'handled';
         }
         return 'not-handled';
-    }
+    };
 
     createWithContent(value: string): EditorState {
         return EditorState.createWithContent(convertHtmlToDraftState(value || ''), new CompositeDecorator([linkDecorator]));
@@ -111,7 +121,7 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
 
     focus = () => {
         this.editor.focus();
-    }
+    };
 
     // getColorStyleMap(colors: ToolbarTextColor[]) {
     //     let colorStyleMap: { [key: string]: { color: string} } = {};
@@ -135,8 +145,8 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
                     let component;
 
                     if (entity.getType() === 'IMAGE') {
-                        const { src, alt, width, height  } = entity.getData();
-                        component = <img src={ src } alt={ alt } width={ '100%' }/>;
+                        const { src, alt, width, height } = entity.getData();
+                        component = <img src={src} alt={alt} width={'100%'} />;
                     }
 
                     return component;
@@ -145,7 +155,7 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
             };
         }
         return null;
-    }
+    };
 
     /*
     protected renderEditor() {
@@ -158,33 +168,42 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
 
     // Overridable method to add stuff to the editor window
     protected renderEditor() {
-        return <Editor
-            editorState={ this.editorState }
-            onChange={ this.handleChange }
-            placeholder={ this.currentValue === '' && this.props.placeholder }
-            readOnly={ this.props.isReadonly }
-            ref={ (editor) => this.editor = editor }
-            handleKeyCommand={ this.handleKeyCommand }
-            // customStyleMap={ this.getColorStyleMap(defaultTextColors) }
-            blockRendererFn={ this.imageBlockRenderer }
-            blockRenderMap={ extendedBlockRenderMap as any }
-            onTab={ (event: React.KeyboardEvent<any>) => {
-                const newEditorState = RichUtils.onTab(
-                    event,
-                    this.editorState,
-                    2,
-                );
-                if (newEditorState !== this.editorState) {
-                    this.handleChange(newEditorState);
-                }
-            } }
-        />;
+        return (
+            <Editor
+                editorState={this.editorState}
+                onChange={this.handleChange}
+                placeholder={this.currentValue === '' && this.props.placeholder}
+                readOnly={this.props.isReadonly}
+                ref={editor => (this.editor = editor)}
+                handleKeyCommand={this.handleKeyCommand}
+                // customStyleMap={ this.getColorStyleMap(defaultTextColors) }
+                blockRendererFn={this.imageBlockRenderer}
+                blockRenderMap={extendedBlockRenderMap as any}
+                onTab={(event: React.KeyboardEvent<any>) => {
+                    const newEditorState = RichUtils.onTab(event, this.editorState, 2);
+                    if (newEditorState !== this.editorState) {
+                        this.handleChange(newEditorState);
+                    }
+                }}
+            />
+        );
     }
 
     render() {
-
         const defaultStructure: ToolbarButton[] = [
-            'bold', 'italic', 'underline',  'link', 'separator', 'header', 'unordered-list', 'ordered-list', 'separator', 'image', 'separator', 'undo', 'redo',
+            'bold',
+            'italic',
+            'underline',
+            'link',
+            'separator',
+            'header',
+            'unordered-list',
+            'ordered-list',
+            'separator',
+            'image',
+            'separator',
+            'undo',
+            'redo',
         ];
 
         // const defaultTextColors: ToolbarTextColor[] = ['sky', 'grass', 'carbon', 'night', 'cobalt', 'lavanda', 'fuchsia', 'fire', 'sun'];
@@ -194,15 +213,17 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
         const structure = this.props.structure || defaultStructure;
 
         return (
-            <div className={ cx(css.container, this.props.cx, uuiMarkers.clickable, uuiElement.input) }>
-                { !this.props.isReadonly && structure.length > 0 && <Toolbar
-                    structure={ this.props.structure || defaultStructure }
-                    // textColors={ this.props.textColors || defaultTextColors }
-                    value={ this.editorState }
-                    onValueChange={ this.handleChange }
-                /> }
-                <div className={ cx("public-DraftEditor-container", editorClass) } onClick={ this.focus } >
-                    { this.renderEditor() }
+            <div className={cx(css.container, this.props.cx, uuiMarkers.clickable, uuiElement.input)}>
+                {!this.props.isReadonly && structure.length > 0 && (
+                    <Toolbar
+                        structure={this.props.structure || defaultStructure}
+                        // textColors={ this.props.textColors || defaultTextColors }
+                        value={this.editorState}
+                        onValueChange={this.handleChange}
+                    />
+                )}
+                <div className={cx('public-DraftEditor-container', editorClass)} onClick={this.focus}>
+                    {this.renderEditor()}
                 </div>
             </div>
         );

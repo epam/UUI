@@ -7,24 +7,22 @@ export class FlexItemsDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='flex-descriptions' />
+                <EditableDocContent fileName="flex-descriptions" />
 
-                { this.renderSectionTitle('Panel') }
-                <EditableDocContent fileName='panel-description' />
+                {this.renderSectionTitle('Panel')}
+                <EditableDocContent fileName="panel-description" />
 
-                { this.renderSectionTitle('FlexRow') }
-                <EditableDocContent fileName='flexRow-description' />
+                {this.renderSectionTitle('FlexRow')}
+                <EditableDocContent fileName="flexRow-description" />
 
-                { this.renderSectionTitle('FlexCell') }
-                <EditableDocContent fileName='flexCell-description' />
+                {this.renderSectionTitle('FlexCell')}
+                <EditableDocContent fileName="flexCell-description" />
 
-                { this.renderSectionTitle('FlexSpacer') }
-                <EditableDocContent fileName='flexSpacer-description' />
+                {this.renderSectionTitle('FlexSpacer')}
+                <EditableDocContent fileName="flexSpacer-description" />
 
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    path='./_examples/flexItems/Basic.example.tsx'
-                />
+                {this.renderSectionTitle('Examples')}
+                <DocExample path="./_examples/flexItems/Basic.example.tsx" />
             </>
         );
     }

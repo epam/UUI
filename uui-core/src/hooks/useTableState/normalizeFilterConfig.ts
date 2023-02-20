@@ -1,7 +1,11 @@
-import { FiltersConfig, TableFiltersConfig } from "../../types";
-import { getOrderBetween } from "../../helpers";
+import { FiltersConfig, TableFiltersConfig } from '../../types';
+import { getOrderBetween } from '../../helpers';
 
-export const normalizeFilterConfig = <TFilter>(filtersConfig: FiltersConfig, filterValue: Record<string, any> | undefined, filters: TableFiltersConfig<TFilter>[]) => {
+export const normalizeFilterConfig = <TFilter>(
+    filtersConfig: FiltersConfig,
+    filterValue: Record<string, any> | undefined,
+    filters: TableFiltersConfig<TFilter>[]
+) => {
     let result: FiltersConfig = {};
     let order: string | null = null;
     filters.forEach(filter => {

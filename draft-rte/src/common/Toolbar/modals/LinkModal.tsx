@@ -12,13 +12,12 @@ export interface LinkModalState {
     isLinkSelected?: boolean;
 }
 
-interface LinkModalProps extends IModal<LinkModalState>, LinkModalState { }
+interface LinkModalProps extends IModal<LinkModalState>, LinkModalState {}
 
 export const showLinkModal = (context: UuiContexts, initialState: LinkModalState) =>
-    context.uuiModals.show<LinkModalState>(modalProps => <LinkModal { ...modalProps } { ...initialState } />);
+    context.uuiModals.show<LinkModalState>(modalProps => <LinkModal {...modalProps} {...initialState} />);
 
 class LinkModal extends React.Component<LinkModalProps, LinkModalState> {
-
     state = {
         href: this.props.href,
         displayText: this.props.displayText,
@@ -28,7 +27,7 @@ class LinkModal extends React.Component<LinkModalProps, LinkModalState> {
     verifyForm = () => {
         this.setState({ displayTextIsInvalid: !this.state.displayText });
         return this.state.displayText;
-    }
+    };
 
     render() {
         const displayTextValidationProps = {
@@ -37,48 +36,48 @@ class LinkModal extends React.Component<LinkModalProps, LinkModalState> {
         };
 
         return (
-            <ModalBlocker blockerShadow='dark' { ...this.props }>
+            <ModalBlocker blockerShadow="dark" {...this.props}>
                 <ModalWindow>
-                    <Panel background='white' style={ { overflowY: 'auto', maxHeight: '100%' } } cx='draftRTE__link-modal'>
-                        <ModalHeader borderBottom title={ i18n.rte.linkModal.modalHeader } onClose={ () => this.props.abort() } />
-                        <FlexRow type='form'>
-                            <LabeledInput label={ i18n.rte.linkModal.inputUrl }>
+                    <Panel background="white" style={{ overflowY: 'auto', maxHeight: '100%' }} cx="draftRTE__link-modal">
+                        <ModalHeader borderBottom title={i18n.rte.linkModal.modalHeader} onClose={() => this.props.abort()} />
+                        <FlexRow type="form">
+                            <LabeledInput label={i18n.rte.linkModal.inputUrl}>
+                                <TextInput value={this.state.href} onValueChange={value => this.setState({ href: value })} />
+                            </LabeledInput>
+                        </FlexRow>
+                        <FlexRow type="form">
+                            <LabeledInput {...displayTextValidationProps} label={i18n.rte.linkModal.inputDisplayText}>
                                 <TextInput
-                                    value={ this.state.href }
-                                    onValueChange={ (value) => this.setState({ href: value }) }
+                                    isInvalid={this.state.displayTextIsInvalid}
+                                    value={this.state.displayText}
+                                    onValueChange={value => this.setState({ displayText: value })}
                                 />
                             </LabeledInput>
                         </FlexRow>
-                        <FlexRow type='form'>
-                            <LabeledInput { ...displayTextValidationProps } label={ i18n.rte.linkModal.inputDisplayText }>
-                                <TextInput
-                                    isInvalid={ this.state.displayTextIsInvalid }
-                                    value={ this.state.displayText }
-                                    onValueChange={ (value) => this.setState({ displayText: value }) }
-                                />
-                            </LabeledInput>
-                        </FlexRow>
-                        <FlexRow padding='24' vPadding='24'>
-                            {
-                                this.props.isLinkSelected &&
+                        <FlexRow padding="24" vPadding="24">
+                            {this.props.isLinkSelected && (
                                 <Button
-                                    cx={ css.remove }
-                                    onClick={ () => this.props.success({
-                                        href: this.state.href,
-                                        displayText: this.state.displayText,
-                                        isRemove: true,
-                                    }) }
-                                    color='night200'
-                                    caption={ i18n.rte.linkModal.buttonRemove }
+                                    cx={css.remove}
+                                    onClick={() =>
+                                        this.props.success({
+                                            href: this.state.href,
+                                            displayText: this.state.displayText,
+                                            isRemove: true,
+                                        })
+                                    }
+                                    color="night200"
+                                    caption={i18n.rte.linkModal.buttonRemove}
                                 />
-                            }
+                            )}
                             <FlexSpacer />
-                            <Button onClick={ () => this.props.abort() } color='night200' caption={ i18n.rte.linkModal.buttonCancel } />
+                            <Button onClick={() => this.props.abort()} color="night200" caption={i18n.rte.linkModal.buttonCancel} />
                             <Button
-                                onClick={ () => this.verifyForm() && this.props.success({ href: this.state.href, displayText: this.state.displayText }) }
-                                color='grass'
-                                caption={ i18n.rte.linkModal.buttonOk }
-                                cx='draftRTE__link-modal--confirm-button'
+                                onClick={() =>
+                                    this.verifyForm() && this.props.success({ href: this.state.href, displayText: this.state.displayText })
+                                }
+                                color="grass"
+                                caption={i18n.rte.linkModal.buttonOk}
+                                cx="draftRTE__link-modal--confirm-button"
                             />
                         </FlexRow>
                     </Panel>

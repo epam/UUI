@@ -6,10 +6,10 @@ import { demoItems } from './structure';
 import { analyticsEvents } from '../analyticsEvents';
 import { getQuery } from '../helpers';
 import css from './DemoPage.scss';
-import { useEffect } from "react";
-import { useFullScreenApi } from "../common/services/useFullScreenApi";
-import { AppFooterDemo } from "../common/appFooterDemo/AppFooterDemo";
-import { DemoItemCard } from "./demoItemCard/DemoItemCard";
+import { useEffect } from 'react';
+import { useFullScreenApi } from '../common/services/useFullScreenApi';
+import { AppFooterDemo } from '../common/appFooterDemo/AppFooterDemo';
+import { DemoItemCard } from './demoItemCard/DemoItemCard';
 
 function getSelectedDemoItem() {
     const selectedDemoId = getQuery('id');
@@ -39,9 +39,9 @@ export const DemoPage = () => {
         if (demoItem) {
             return (
                 <AppFooterDemo
-                    demoItem={ demoItem }
-                    isFullScreenSupported={ fullScreenApi.isSupported }
-                    onOpenFullScreen={ fullScreenApi.openFullScreen }
+                    demoItem={demoItem}
+                    isFullScreenSupported={fullScreenApi.isSupported}
+                    onOpenFullScreen={fullScreenApi.openFullScreen}
                 />
             );
         }
@@ -52,35 +52,25 @@ export const DemoPage = () => {
         return <AppHeader />;
     }, []);
 
-
     let pageContent;
     if (demoItem) {
-        pageContent = <ScrollBars> { React.createElement(demoItem.component) } </ScrollBars>;
+        pageContent = <ScrollBars> {React.createElement(demoItem.component)} </ScrollBars>;
     } else {
         pageContent = (
-            <div className={ css.navPage } >
-                <div className={ css.navTitle }>Demo</div>
-                <div className={ css.navCards }>
-                    {
-                        demoItems.map((item) => {
-                            return (
-                                <DemoItemCard demoItem={ item } key={ item.id } onOpenItem={ sendEvent } />
-                            );
-                        })
-                    }
+            <div className={css.navPage}>
+                <div className={css.navTitle}>Demo</div>
+                <div className={css.navCards}>
+                    {demoItems.map(item => {
+                        return <DemoItemCard demoItem={item} key={item.id} onOpenItem={sendEvent} />;
+                    })}
                 </div>
             </div>
         );
     }
 
     return (
-        <Page
-            contentCx={ css.root }
-            renderHeader={ renderHeader }
-            renderFooter={ renderFooter }
-            isFullScreen={ fullScreenApi.isFullScreen }
-        >
-            { pageContent }
+        <Page contentCx={css.root} renderHeader={renderHeader} renderFooter={renderFooter} isFullScreen={fullScreenApi.isFullScreen}>
+            {pageContent}
         </Page>
     );
 };

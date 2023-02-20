@@ -1,15 +1,15 @@
 export function getCookie(name: string) {
-    let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+    let matches = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-  // options - (expires, path, domain, secure)
+// options - (expires, path, domain, secure)
 export function setCookie(name: string, value: string, options?: any) {
     options = options || {};
 
     let expires = options.expires;
 
-    if (typeof expires == "number" && expires) {
+    if (typeof expires == 'number' && expires) {
         let d = new Date();
         d.setTime(d.getTime() + expires * 1000);
         expires = options.expires = d;
@@ -20,13 +20,13 @@ export function setCookie(name: string, value: string, options?: any) {
 
     value = encodeURIComponent(value);
 
-    let updatedCookie = name + "=" + value;
+    let updatedCookie = name + '=' + value;
 
     for (let propName in options) {
-        updatedCookie += "; " + propName;
+        updatedCookie += '; ' + propName;
         let propValue = options[propName];
         if (propValue !== true) {
-            updatedCookie += "=" + propValue;
+            updatedCookie += '=' + propValue;
         }
     }
 
@@ -34,5 +34,5 @@ export function setCookie(name: string, value: string, options?: any) {
 }
 
 export function deleteCookie(name: string) {
-    setCookie(name, "", { expires: -1 });
+    setCookie(name, '', { expires: -1 });
 }

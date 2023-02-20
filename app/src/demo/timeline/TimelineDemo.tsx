@@ -6,7 +6,7 @@ import { Timeline } from './Timeline';
 export class TimelineDemo extends React.Component<void> {
     public render() {
         return (
-            <div id="root" className={ css.root }>
+            <div id="root" className={css.root}>
                 <Timeline />
             </div>
         );

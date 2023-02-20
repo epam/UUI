@@ -31,7 +31,7 @@ module.exports = {
 function uuiTsRules() {
     return {
         // err
-        '@typescript-eslint/no-unused-expressions': [2, { allowShortCircuit: true }]
+        '@typescript-eslint/no-unused-expressions': [2, { allowShortCircuit: true }],
     };
 }
 

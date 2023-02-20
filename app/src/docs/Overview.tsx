@@ -7,7 +7,7 @@ export class OverviewDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='overview' />
+                <EditableDocContent fileName="overview" />
             </>
         );
     }

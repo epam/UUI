@@ -1,7 +1,7 @@
 import flatten from 'lodash.flatten';
 import Html from 'slate-html-serializer';
-import { Editor } from "slate-react";
-import { Block, Text as SlateText, Value } from "slate";
+import { Editor } from 'slate-react';
+import { Block, Text as SlateText, Value } from 'slate';
 
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -34,11 +34,12 @@ export function getMarkDeserializer(marks: Record<string, string>) {
 export function getSerializer(plugins: any) {
     let rules: any = [];
     flatten(plugins).map((plugin: any) => {
-        plugin.serializers && plugin.serializers.map((serializer: any) => {
-            rules.push({
-                deserialize: serializer,
+        plugin.serializers &&
+            plugin.serializers.map((serializer: any) => {
+                rules.push({
+                    deserialize: serializer,
+                });
             });
-        });
     });
     return new Html({ rules: rules });
 }

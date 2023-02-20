@@ -14,12 +14,9 @@ export class PaginatorDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='paginator-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/paginator/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="paginator-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/paginator/Basic.example.tsx" />
             </>
         );
     }

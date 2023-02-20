@@ -1,11 +1,8 @@
-import {
-    DataRowProps, SortingOption, IEditable, DataSourceState,
-    DataSourceListProps, IDataSourceView, BaseListViewProps,
-} from "../../../types";
+import { DataRowProps, SortingOption, IEditable, DataSourceState, DataSourceListProps, IDataSourceView, BaseListViewProps } from '../../../types';
 import { getSearchFilter } from '../../querying';
 import { BaseListView } from './BaseListView';
 import isEqual from 'lodash.isequal';
-import { Tree } from "./Tree";
+import { Tree } from './Tree';
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     items?: TItem[] | Tree<TItem, TId>;
@@ -17,10 +14,7 @@ export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewPro
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     props: ArrayListViewProps<TItem, TId, TFilter>;
 
-    constructor(
-        editable: IEditable<DataSourceState<TFilter, TId>>,
-        props: ArrayListViewProps<TItem, TId, TFilter>,
-    ) {
+    constructor(editable: IEditable<DataSourceState<TFilter, TId>>, props: ArrayListViewProps<TItem, TId, TFilter>) {
         super(editable, props);
         this.props = props;
         this.update(editable.value, props);
@@ -33,7 +27,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         const prevTree = this.tree;
 
-        if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
+        if (this.props.items) {
+            // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
             this.tree = Tree.create(this.props, this.props.items);
         }
 
@@ -48,7 +43,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     private isCacheIsOutdated(newValue: DataSourceState, prevValue: DataSourceState) {
-        if (newValue.search !== prevValue.search ||
+        if (
+            newValue.search !== prevValue.search ||
             !isEqual(newValue.checked, prevValue.checked) ||
             !isEqual(newValue.sorting, prevValue.sorting) ||
             newValue.selectedId !== prevValue.selectedId ||
@@ -63,14 +59,14 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     public getById = (id: TId, index: number) => {
         const item = this.tree.getById(id);
         return this.getRowProps(item, index);
-    }
+    };
 
     private updateFocusedItem = () => {
         this.rows.forEach(row => {
             row.isFocused = this.value.focusedIndex === row.index;
             return row;
         });
-    }
+    };
 
     private updateNodes() {
         const applySearch = this.buildSearchFilter(this.value);
@@ -96,7 +92,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                 const item = items[n];
                 const childrenItems = this.tree.getChildren(item);
                 const rowProps = this.getRowProps(item, currentIndex);
-                rowProps.isLastChild = n === (items.length - 1);
+                rowProps.isLastChild = n === items.length - 1;
                 let children = empty;
                 const isPassedSearch = applySearch ? applySearch(item) : true;
                 const isPassedFilter = applyFilter ? applyFilter(item) : true;
@@ -148,7 +144,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                     rows.push(rowProps);
                 }
 
-
                 if (!isFolded && children) {
                     rows = rows.concat(children.rows);
                 }
@@ -161,7 +156,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         const all = getNodesRec(
             this.tree.getRootItems(),
-            this.tree.isFlatList() ? 0 : 1, // If the list is flat (not a tree), we don't need a space to place folding icons.
+            this.tree.isFlatList() ? 0 : 1 // If the list is flat (not a tree), we don't need a space to place folding icons.
         );
 
         this.rows = all.rows;
@@ -188,7 +183,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                 const searchFilter = getSearchFilter(value.search);
                 return (i: TItem) => searchFilter(this.props.getSearchFields(i));
             } else {
-                console.warn("[ArrayDataSource] Search value is set, but props.getSearchField is not specified. Nothing to search on.");
+                console.warn('[ArrayDataSource] Search value is set, but props.getSearchField is not specified. Nothing to search on.');
                 return null;
             }
         } else {
@@ -197,15 +192,16 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     private buildSorter(sortBy?: (item: TItem, sorting: SortingOption) => any) {
-        const compareScalars = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
+        const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
 
         const comparers: ((a: TItem, b: TItem) => number)[] = [];
 
-        this.value.sorting && this.value.sorting.forEach(sorting => {
-            const sortByFn = sortBy || ((i: TItem) => i[sorting.field as keyof TItem] || '');
-            const sign = sorting.direction === 'desc' ? -1 : 1;
-            comparers.push((a, b) => sign * compareScalars(sortByFn(a, sorting) + '', sortByFn(b, sorting) + ''));
-        });
+        this.value.sorting &&
+            this.value.sorting.forEach(sorting => {
+                const sortByFn = sortBy || ((i: TItem) => i[sorting.field as keyof TItem] || '');
+                const sign = sorting.direction === 'desc' ? -1 : 1;
+                comparers.push((a, b) => sign * compareScalars(sortByFn(a, sorting) + '', sortByFn(b, sorting) + ''));
+            });
 
         return (items: TItem[]) => {
             if (comparers.length == 0) {
@@ -231,12 +227,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             items = [...items];
             items.sort(comparer);
             return items;
-        }
+        };
     }
 
     public getVisibleRows = () => {
         return this.rows.slice(this.value.topIndex, this.value.topIndex + this.value.visibleCount);
-    }
+    };
 
     public getListProps = (): DataSourceListProps => {
         return {
@@ -246,25 +242,20 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             totalCount: this.tree.getTotalRecursiveCount(),
             selectAll: this.selectAll,
         };
-    }
+    };
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
-        let checked = this.value && this.value.checked || [];
+        let checked = (this.value && this.value.checked) || [];
         let isChecked = !rowProps.isChecked;
 
-        checked = this.tree.cascadeSelection(
-            checked,
-            rowProps.id,
-            isChecked,
-            {
-                cascade: this.props.cascadeSelection,
-                isSelectable: (item: TItem) => {
-                    const { isCheckable } = this.getRowProps(item, null);
-                    return isCheckable;
-                }
-            }
-        );
+        checked = this.tree.cascadeSelection(checked, rowProps.id, isChecked, {
+            cascade: this.props.cascadeSelection,
+            isSelectable: (item: TItem) => {
+                const { isCheckable } = this.getRowProps(item, null);
+                return isCheckable;
+            },
+        });
 
         this.handleCheckedChange(checked);
-    }
+    };
 }

@@ -1,5 +1,5 @@
-import { IHasRawProps } from "../../props";
-import { BaseRangeDatePickerProps } from "./BaseRangeDatePicker";
+import { IHasRawProps } from '../../props';
+import { BaseRangeDatePickerProps } from './BaseRangeDatePicker';
 
 export type RangeDatePickerInputType = 'from' | 'to';
 

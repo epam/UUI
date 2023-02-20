@@ -15,8 +15,8 @@ declare module '*.svg' {
     export default src;
 }
 
-declare module "jsurl";
-declare module "query-string";
+declare module 'jsurl';
+declare module 'query-string';
 declare module 'draft-js-plugins-editor';
 declare module 'draft-js-clear-formatting';
 declare module 'draft-convert';

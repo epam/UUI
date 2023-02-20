@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from "./Spinner";
+import { Spinner } from './Spinner';
 
 interface EmbeddedAppState {
     isLoading: boolean;
@@ -40,7 +40,7 @@ export class EmbeddedWidget<TProps = any> extends React.Component<EmbeddedAppPro
         return new Promise<void>((resolve, reject) => {
             const linkNode = document.createElement('link');
             linkNode.setAttribute('href', href);
-            linkNode.setAttribute('rel', "stylesheet");
+            linkNode.setAttribute('rel', 'stylesheet');
             document.head.appendChild(linkNode);
             linkNode.onload = () => resolve();
             linkNode.onerror = () => reject();
@@ -76,8 +76,6 @@ export class EmbeddedWidget<TProps = any> extends React.Component<EmbeddedAppPro
             return <Spinner />;
         }
 
-        return (
-            <div ref={ node => this.widgetNode = node } />
-        );
+        return <div ref={node => (this.widgetNode = node)} />;
     }
 }

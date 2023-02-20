@@ -1,4 +1,14 @@
-import { BoldButton, ItalicButton, UnderlineButton, HeadlineOneButton, UnorderedListButton, OrderedListButton, UndoButton, RedoButton, ClearFormatButton } from './CommonButtons';
+import {
+    BoldButton,
+    ItalicButton,
+    UnderlineButton,
+    HeadlineOneButton,
+    UnorderedListButton,
+    OrderedListButton,
+    UndoButton,
+    RedoButton,
+    ClearFormatButton,
+} from './CommonButtons';
 import { LinkButton } from './LinkButton';
 import { HeaderDropDownButton } from './HeaderDropdownButton';
 import { ImageButton } from './ImageButton';
@@ -9,17 +19,17 @@ export * from './CommonButtons';
 export * from './LinkButton';
 
 export const buttonsMap: Record<ToolbarButton, any> = {
-    'bold': BoldButton,
-    'italic': ItalicButton,
-    'underline': UnderlineButton,
-    'header': HeadlineOneButton,
+    bold: BoldButton,
+    italic: ItalicButton,
+    underline: UnderlineButton,
+    header: HeadlineOneButton,
     'unordered-list': UnorderedListButton,
     'ordered-list': OrderedListButton,
-    'link': LinkButton,
-    'image': ImageButton,
-    'undo': UndoButton,
-    'redo': RedoButton,
-    'separator': Separator,
+    link: LinkButton,
+    image: ImageButton,
+    undo: UndoButton,
+    redo: RedoButton,
+    separator: Separator,
     'clear-format': ClearFormatButton,
     'header-dropdown': HeaderDropDownButton,
 };

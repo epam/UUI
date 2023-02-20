@@ -1,7 +1,7 @@
 import React from 'react';
 import { PickerBase, PickerBaseState } from './PickerBase';
 import { UuiContexts, DataRowProps, UuiContext, PickerBaseProps } from '@epam/uui-core';
-import { i18n } from "../i18n";
+import { i18n } from '../i18n';
 
 export type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
     /**
@@ -39,9 +39,14 @@ interface LastUsedRec<TId> {
     selectionTime: number;
 }
 
-export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerListBaseProps<TItem, TId> & TProps, PickerListState<TId>> {
+export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<
+    TItem,
+    TId,
+    PickerListBaseProps<TItem, TId> & TProps,
+    PickerListState<TId>
+> {
     static contextType = UuiContext;
-    sessionStartTime = (new Date()).getTime();
+    sessionStartTime = new Date().getTime();
     context: UuiContexts;
     state: PickerListState<TId> = {
         dataSourceState: { focusedIndex: 0, topIndex: 0, visibleCount: this.getMaxDefaultItems() },
@@ -86,10 +91,7 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
 
         let visibleIds: TId[] = this.getSelectedIdsArray(this.props.value).slice(0, this.getMaxTotalItems());
 
-        visibleIds = this.addDistinct(visibleIds, [
-            ...lastUsedUds,
-            ...(this.props.defaultIds || []),
-        ], this.getMaxDefaultItems());
+        visibleIds = this.addDistinct(visibleIds, [...lastUsedUds, ...(this.props.defaultIds || [])], this.getMaxDefaultItems());
 
         return visibleIds;
     }
@@ -109,9 +111,9 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
 
     addDistinct(to: TId[], add: TId[], maxItems: number) {
         let added: Record<string, boolean> = {};
-        to.forEach(id => added[JSON.stringify(id)] = true);
+        to.forEach(id => (added[JSON.stringify(id)] = true));
         let result = [...to];
-        for (let n = 0; n < add.length && (result.length < maxItems); n++) {
+        for (let n = 0; n < add.length && result.length < maxItems; n++) {
             let id = add[n];
             let key = JSON.stringify(id);
             if (!added[key]) {
@@ -125,7 +127,7 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
     appendLastSelected(ids: TId[]) {
         if (this.props.settingsKey) {
             let lastUsedIds = this.context.uuiUserSettings.get(this.getSettingsKey(), [] as LastUsedRec<TId>[]);
-            let selectionTime = (new Date()).getTime();
+            let selectionTime = new Date().getTime();
             lastUsedIds = [
                 ...ids.map(id => ({ id, selectionTime, sessionStartTime: this.sessionStartTime } as LastUsedRec<TId>)).reverse(),
                 ...lastUsedIds,
@@ -145,7 +147,7 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
 
         const sortBy = this.props.sortBy || ((i: TItem) => i[sorting.field as keyof TItem]);
         const sign = sorting.direction === 'desc' ? -1 : 1;
-        const stringComparer = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
+        const stringComparer = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
         const comparer = (a: DataRowProps<TItem, TId>, b: DataRowProps<TItem, TId>) => {
             const loadingComparison = (b.isLoading ? 0 : 1) - (a.isLoading ? 0 : 1);
             if (loadingComparison != 0 || (a.isLoading && b.isLoading)) {

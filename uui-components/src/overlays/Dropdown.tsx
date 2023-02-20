@@ -77,22 +77,22 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         if (opened) {
             this.lastOpenedMs = new Date().getTime();
         }
-    }
+    };
 
     isOpened = () => {
         return this.props.value !== undefined ? this.props.value : this.state.opened;
-    }
+    };
 
     private handleTargetClick = (e: React.SyntheticEvent<HTMLElement>) => {
         if (!this.props.isNotUnfoldable && !(e && isClickableChildClicked(e))) {
             const currentValue = this.isOpened();
-            const newValue = (this.props.closeOnTargetClick === false) ? true : !currentValue;
+            const newValue = this.props.closeOnTargetClick === false ? true : !currentValue;
 
             if (currentValue !== newValue) {
                 this.handleOpenedChange(newValue);
             }
         }
-    }
+    };
 
     private handleMouseEnter = (e: Event) => {
         this.clearCloseDropdownTimer();
@@ -101,26 +101,32 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         } else {
             this.handleOpenedChange(true);
         }
-    }
+    };
 
     private handleMouseLeave = (e: MouseEvent) => {
         this.clearOpenDropdownTimer();
 
-        if (this.props.closeOnMouseLeave !== 'boundary') { // For boundary mode we have separate logic on onMouseMove handler
+        if (this.props.closeOnMouseLeave !== 'boundary') {
+            // For boundary mode we have separate logic on onMouseMove handler
             if (this.props.closeDelay) {
                 this.isOpened() && this.setCloseDropdownTimer(this.props.closeDelay);
             } else {
                 this.handleOpenedChange(false);
             }
         }
-    }
+    };
 
     isClientInArea(e: MouseEvent) {
         const areaPadding = 30;
         const { y, x, height, width } = this.state.bodyBoundingRect;
 
         if (y && x && width && height) {
-            return x - areaPadding <= e.clientX && e.clientX <= x + areaPadding + width && y - areaPadding <= e.clientY && e.clientY <= y + height + areaPadding;
+            return (
+                x - areaPadding <= e.clientX &&
+                e.clientX <= x + areaPadding + width &&
+                y - areaPadding <= e.clientY &&
+                e.clientY <= y + height + areaPadding
+            );
         }
     }
 
@@ -153,7 +159,8 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private handleMouseMove = (e: MouseEvent) => {
-        if (this.isInteractedOutside(e) && !this.isClientInArea(e)) { // User leave boundary area, close dropdown immediately or with this.props.closeDelay
+        if (this.isInteractedOutside(e) && !this.isClientInArea(e)) {
+            // User leave boundary area, close dropdown immediately or with this.props.closeDelay
             this.clearCloseDropdownTimer();
             this.clearOpenDropdownTimer();
 
@@ -162,21 +169,23 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             } else {
                 this.handleOpenedChange(false);
             }
-        } else if (this.isInteractedOutside(e) && !this.closeDropdownTimerId) { // User cursor in boundary area, but not inside toggler or body
+        } else if (this.isInteractedOutside(e) && !this.closeDropdownTimerId) {
+            // User cursor in boundary area, but not inside toggler or body
             this.setCloseDropdownTimer(this.props.closeDelay || 1500);
-        } else if (!this.isInteractedOutside(e) && this.closeDropdownTimerId) { // User returned to the toggler or body area, we need to clear close timer
+        } else if (!this.isInteractedOutside(e) && this.closeDropdownTimerId) {
+            // User returned to the toggler or body area, we need to clear close timer
             this.clearCloseDropdownTimer();
         }
-    }
+    };
 
     private onClose = () => {
         if (this.props.onClose) this.props.onClose();
         else this.handleOpenedChange(false);
-    }
+    };
 
     private renderTarget(targetProps: ReferenceChildrenProps) {
         const { openOnClick, openOnHover } = this.props;
-        const handleTargetClick =  (openOnClick || (!openOnClick && !openOnHover)) ? this.handleTargetClick : undefined;
+        const handleTargetClick = openOnClick || (!openOnClick && !openOnHover) ? this.handleTargetClick : undefined;
         const innerRef = (node: HTMLElement | null) => {
             if (!node) return;
             this.targetNode = node;
@@ -189,7 +198,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             isDropdown: true,
             ref: innerRef,
             toggleDropdownOpening: this.handleOpenedChange,
-            isInteractedOutside: (e) => isInteractedOutsideDropdown(e, [this.bodyNode, this.targetNode]),
+            isInteractedOutside: e => isInteractedOutsideDropdown(e, [this.bodyNode, this.targetNode]),
         });
     }
 
@@ -200,7 +209,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             if (this.bodyNode && this.props.closeOnMouseLeave === 'boundary') {
                 const { x, y, height, width } = this.bodyNode.getBoundingClientRect();
                 if (x && y && !this.state.bodyBoundingRect.y && !this.state.bodyBoundingRect.x) {
-                    this.setState({ bodyBoundingRect : { y, height, width, x } });
+                    this.setState({ bodyBoundingRect: { y, height, width, x } });
                 }
             }
         };
@@ -215,14 +224,14 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         return (
             <FreeFocusInside>
                 <div
-                    className='uui-popper'
-                    aria-hidden={ !this.isOpened() }
-                    aria-expanded={ this.isOpened() }
-                    ref={ setRef }
-                    style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
-                    data-placement={ placement }
+                    className="uui-popper"
+                    aria-hidden={!this.isOpened()}
+                    aria-expanded={this.isOpened()}
+                    ref={setRef}
+                    style={{ ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex }}
+                    data-placement={placement}
                 >
-                    { this.props.renderBody({
+                    {this.props.renderBody({
                         onClose: this.onClose,
                         togglerWidth: this.togglerWidth,
                         togglerHeight: this.togglerHeight,
@@ -230,23 +239,22 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         isOpen: this.isOpened(),
                         arrowProps: arrowProps,
                         placement: placement,
-                    }) }
+                    })}
                 </div>
-
             </FreeFocusInside>
         );
-    }
+    };
 
     private isInteractedOutside = (e: Event) => {
         if (!this.isOpened()) return false;
         return isInteractedOutsideDropdown(e, [this.bodyNode, this.targetNode]);
-    }
+    };
 
     private clickOutsideHandler = (e: Event) => {
         if (this.isInteractedOutside(e)) {
             this.handleOpenedChange(false);
         }
-    }
+    };
 
     private updateTogglerSize() {
         if (this.targetNode) {
@@ -278,20 +286,18 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
         return (
             <Manager>
-                <Reference>
-                    { targetProps => this.renderTarget(targetProps) }
-                </Reference>
-                { shouldShowBody && (
-                    <Portal target={ this.props.portalTarget }>
+                <Reference>{targetProps => this.renderTarget(targetProps)}</Reference>
+                {shouldShowBody && (
+                    <Portal target={this.props.portalTarget}>
                         <Popper
-                            placement={ this.props.placement || 'bottom-start' }
-                            strategy={ 'fixed' }
-                            modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }
+                            placement={this.props.placement || 'bottom-start'}
+                            strategy={'fixed'}
+                            modifiers={[...defaultModifiers, ...(this.props.modifiers || [])]}
                         >
-                            { this.renderDropdownBody }
+                            {this.renderDropdownBody}
                         </Popper>
                     </Portal>
-                ) }
+                )}
             </Manager>
         );
     }

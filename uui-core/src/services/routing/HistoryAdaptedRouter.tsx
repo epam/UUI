@@ -1,4 +1,4 @@
-import { IRouterContext, Link } from "../../types";
+import { IRouterContext, Link } from '../../types';
 import { queryToSearch, searchToQuery } from '../../helpers';
 
 export interface IHistory4 {
@@ -11,8 +11,7 @@ export interface IHistory4 {
 }
 
 export class HistoryAdaptedRouter implements IRouterContext {
-    constructor(private history: IHistory4) {
-    }
+    constructor(private history: IHistory4) {}
 
     public getCurrentLink(): Link {
         return HistoryAdaptedRouter.searchToQuery(this.history.location);
@@ -40,7 +39,7 @@ export class HistoryAdaptedRouter implements IRouterContext {
     }
 
     public block(listener: (link: Link) => void) {
-        return this.history.block((location) => {
+        return this.history.block(location => {
             listener(location);
             return false;
         });

@@ -9,11 +9,7 @@ export interface RadioInputMods {
 }
 
 function applyRadioInputMods(mods: RadioInputMods & RadioInputProps) {
-    return [
-        'radio-input-vars',
-        css.root,
-        css['size-' + (mods.size || '18')],
-    ];
+    return ['radio-input-vars', css.root, css['size-' + (mods.size || '18')]];
 }
 
 export const RadioInput = withMods<RadioInputProps, RadioInputMods>(uuiRadioInput, applyRadioInputMods, () => ({ icon: RadioPoint }));

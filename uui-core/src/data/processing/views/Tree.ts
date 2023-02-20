@@ -1,5 +1,5 @@
-import { DataRowPathItem, DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../types";
-import { LazyListViewProps } from "./LazyListView";
+import { DataRowPathItem, DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../../../types';
+import { LazyListViewProps } from './LazyListView';
 import { CompositeKeysMap } from './CompositeKeysMap';
 
 export interface TreeParams<TItem, TId> {
@@ -8,11 +8,8 @@ export interface TreeParams<TItem, TId> {
     complexIds?: boolean;
 }
 
-export interface LoadTreeOptions<TItem, TId, TFilter> extends
-    Pick<
-        LazyListViewProps<TItem, TId, TFilter>,
-        'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'
-    > {
+export interface LoadTreeOptions<TItem, TId, TFilter>
+    extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'> {
     loadAllChildren?(id: TId): boolean;
     isFolded?: (item: TItem) => boolean;
 }
@@ -46,12 +43,10 @@ export class Tree<TItem, TId> {
         private params: TreeParams<TItem, TId>,
         private readonly byId: IMap<TId, TItem>,
         private readonly byParentId: IMap<TId, TId[]>,
-        private readonly nodeInfoById: IMap<TId, TreeNodeInfo>,
+        private readonly nodeInfoById: IMap<TId, TreeNodeInfo>
     ) {
         this.getId = params.getId;
-        this.getParentId = params.getParentId
-            ? ((item: TItem) => (params.getParentId(item) ?? undefined))
-            : () => undefined;
+        this.getParentId = params.getParentId ? (item: TItem) => params.getParentId(item) ?? undefined : () => undefined;
     }
 
     public static blank<TItem, TId>(params: TreeParams<TItem, TId>) {
@@ -59,7 +54,7 @@ export class Tree<TItem, TId> {
             params,
             newMap(params),
             newMap(params), // add empty children list for root to avoid corner-cases
-            newMap(params),
+            newMap(params)
         );
     }
 
@@ -80,7 +75,7 @@ export class Tree<TItem, TId> {
             this.params,
             this.byId,
             this.newMap(), // add empty children list for root to avoid corner-cases
-            this.newMap(),
+            this.newMap()
         );
     }
 
@@ -135,21 +130,21 @@ export class Tree<TItem, TId> {
             if (!item) {
                 break;
             }
-            id = this.getParentId(item)
+            id = this.getParentId(item);
             if (!id) {
                 break;
             }
             parentIds.unshift(id);
-        };
+        }
         return parentIds;
     }
 
     public forEach(
         action: (item: TItem, id: TId, parentId: TId) => void,
         options?: {
-            direction?: 'bottom-up' | 'top-down',
-            parentId?: TId,
-            includeParent?: boolean,
+            direction?: 'bottom-up' | 'top-down';
+            parentId?: TId;
+            includeParent?: boolean;
         }
     ) {
         options = { direction: 'top-down', parentId: undefined, ...options };
@@ -163,7 +158,7 @@ export class Tree<TItem, TId> {
                 const parentId = item ? this.getParentId(item) : undefined;
                 walkChildrenRec(item, id, parentId);
             });
-        }
+        };
 
         const walkChildrenRec = (item: TItem, id: TId, parentId: TId) => {
             if (options.direction === 'top-down') {
@@ -183,32 +178,32 @@ export class Tree<TItem, TId> {
         }
     }
 
-    public computeSubtotals<TSubtotals>(
-        get: (item: TItem, hasChildren: boolean) => TSubtotals,
-        add: (a: TSubtotals, b: TSubtotals) => TSubtotals,
-    ) {
+    public computeSubtotals<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals) {
         const subtotalsMap = this.newMap<TId | undefined, TSubtotals>();
 
-        this.forEach((item, id, parentId) => {
-            let itemSubtotals = get(item, this.byParentId.has(id));
+        this.forEach(
+            (item, id, parentId) => {
+                let itemSubtotals = get(item, this.byParentId.has(id));
 
-            // add already computed children subtotals
-            if (subtotalsMap.has(id)) {
-                itemSubtotals = add(itemSubtotals, subtotalsMap.get(id));
-            }
+                // add already computed children subtotals
+                if (subtotalsMap.has(id)) {
+                    itemSubtotals = add(itemSubtotals, subtotalsMap.get(id));
+                }
 
-            // store
-            subtotalsMap.set(id, itemSubtotals);
+                // store
+                subtotalsMap.set(id, itemSubtotals);
 
-            // add value to parent
-            let parentSubtotals: TSubtotals;
-            if (!subtotalsMap.has(parentId)) {
-                parentSubtotals = itemSubtotals;
-            } else {
-                parentSubtotals = add(itemSubtotals, subtotalsMap.get(parentId));
-            }
-            subtotalsMap.set(parentId, parentSubtotals);
-        }, { direction: 'bottom-up' })
+                // add value to parent
+                let parentSubtotals: TSubtotals;
+                if (!subtotalsMap.has(parentId)) {
+                    parentSubtotals = itemSubtotals;
+                } else {
+                    parentSubtotals = add(itemSubtotals, subtotalsMap.get(parentId));
+                }
+                subtotalsMap.set(parentId, parentSubtotals);
+            },
+            { direction: 'bottom-up' }
+        );
         return subtotalsMap;
     }
 
@@ -224,7 +219,7 @@ export class Tree<TItem, TId> {
         const newById = this.cloneMap(this.byId);
         const newByParentId = this.cloneMap(this.byParentId); // shallow clone, still need to copy arrays inside!
 
-        itemsToAdd.forEach((item) => {
+        itemsToAdd.forEach(item => {
             const id = this.getId(item);
             const existingItem = this.byId.get(id);
             if (!existingItem || existingItem !== item) {
@@ -239,7 +234,8 @@ export class Tree<TItem, TId> {
                     if (!list) {
                         list = [];
                         newByParentId.set(parentId, list);
-                    } else if (list === this.byParentId.get(parentId)) { // need to create shallow copy
+                    } else if (list === this.byParentId.get(parentId)) {
+                        // need to create shallow copy
                         list = [...list];
                         newByParentId.set(parentId, list);
                     }
@@ -255,12 +251,7 @@ export class Tree<TItem, TId> {
             newNodeInfoById.set(parentId, { count: ids.length });
         }
 
-        return new Tree(
-            this.params,
-            newById,
-            newByParentId,
-            newNodeInfoById,
-        );
+        return new Tree(this.params, newById, newByParentId, newNodeInfoById);
     }
 
     static truePredicate = () => true;
@@ -270,8 +261,8 @@ export class Tree<TItem, TId> {
         selectedId: TId,
         isSelected: boolean,
         options: {
-            isSelectable: (item: TItem) => boolean,
-            cascade: boolean,
+            isSelectable: (item: TItem) => boolean;
+            cascade: boolean;
         }
     ) {
         let selectedIdsMap = this.newMap<TId, boolean>();
@@ -280,11 +271,14 @@ export class Tree<TItem, TId> {
         options = { isSelectable: Tree.truePredicate, cascade: true, ...options };
 
         const forEachChildren = (action: (id: TId) => void) => {
-            this.forEach((item, id) => {
-                if (options.isSelectable(item)) {
-                    action(id);
-                }
-            }, { parentId: selectedId });
+            this.forEach(
+                (item, id) => {
+                    if (options.isSelectable(item)) {
+                        action(id);
+                    }
+                },
+                { parentId: selectedId }
+            );
         };
 
         if (isSelected) {
@@ -297,13 +291,15 @@ export class Tree<TItem, TId> {
                 forEachChildren(id => selectedIdsMap.set(id, true));
 
                 // check parents if all children is checked
-                this.getParentIdsRecursive(selectedId).reverse().forEach(parentId => {
-                    const childrenIds = this.getChildrenIdsByParentId(parentId);
+                this.getParentIdsRecursive(selectedId)
+                    .reverse()
+                    .forEach(parentId => {
+                        const childrenIds = this.getChildrenIdsByParentId(parentId);
 
-                    if (childrenIds && childrenIds.every(childId => selectedIdsMap.has(childId))) {
-                        selectedIdsMap.set(parentId, true);
-                    }
-                });
+                        if (childrenIds && childrenIds.every(childId => selectedIdsMap.has(childId))) {
+                            selectedIdsMap.set(parentId, true);
+                        }
+                    });
             }
         } else {
             if (selectedId != null) {
@@ -326,19 +322,13 @@ export class Tree<TItem, TId> {
         return result;
     }
 
-    public async load<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        value: Readonly<DataSourceState>,
-    ) {
+    public async load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>) {
         let tree = await this.loadMissing(options, value);
         tree = await tree.loadMissingIdsAndParents(options, value.checked);
         return tree;
     }
 
-    public async loadMissing<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        value: Readonly<DataSourceState>,
-    ) {
+    public async loadMissing<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>) {
         const requiredRowsCount = value.topIndex + value.visibleCount;
 
         let byId: IMap<TId, TItem> = this.byId;
@@ -347,12 +337,7 @@ export class Tree<TItem, TId> {
 
         const flatten = value.search && options.flattenSearchResults;
 
-        const loadRecursive = async (
-            parentId: TId,
-            parent: TItem,
-            parentLoadAll: boolean,
-            remainingRowsCount: number,
-        ) => {
+        const loadRecursive = async (parentId: TId, parent: TItem, parentLoadAll: boolean, remainingRowsCount: number) => {
             let recursiveLoadedCount = 0;
             const currentIds = byParentId.get(parentId);
             const currentNodeInfo = this.nodeInfoById.get(parentId);
@@ -364,13 +349,13 @@ export class Tree<TItem, TId> {
                 parent,
                 value,
                 remainingRowsCount,
-                parentLoadAll,
+                parentLoadAll
             );
 
             if (ids != currentIds || nodeInfo != currentNodeInfo) {
-                byParentId = (byParentId == this.byParentId) ? this.cloneMap(byParentId) : byParentId;
+                byParentId = byParentId == this.byParentId ? this.cloneMap(byParentId) : byParentId;
                 byParentId.set(parentId, ids);
-                nodeInfoById = (nodeInfoById == this.nodeInfoById) ? this.cloneMap(nodeInfoById) : nodeInfoById;
+                nodeInfoById = nodeInfoById == this.nodeInfoById ? this.cloneMap(nodeInfoById) : nodeInfoById;
                 nodeInfoById.set(parentId, nodeInfo);
             }
 
@@ -378,7 +363,7 @@ export class Tree<TItem, TId> {
 
             if (loadedItems.length > 0) {
                 // Clone the map if it's not cloned yet
-                byId = (byId == this.byId) ? this.cloneMap(byId) : byId;
+                byId = byId == this.byId ? this.cloneMap(byId) : byId;
 
                 loadedItems.forEach(item => {
                     const id = this.getId(item);
@@ -396,9 +381,11 @@ export class Tree<TItem, TId> {
                     let isFolded = false;
                     let hasChildren = false;
 
-                    if (options.getChildCount) { // not a root node
+                    if (options.getChildCount) {
+                        // not a root node
                         let childrenCount = options.getChildCount(item);
-                        if (childrenCount) { // foldable
+                        if (childrenCount) {
+                            // foldable
                             isFolded = options.isFolded(item);
                             hasChildren = true;
                         }
@@ -430,17 +417,12 @@ export class Tree<TItem, TId> {
             }
 
             return recursiveLoadedCount;
-        }
+        };
 
         await loadRecursive(undefined, undefined, options?.loadAllChildren?.(undefined), requiredRowsCount);
 
         if (byId !== this.byId || byParentId !== this.byParentId || nodeInfoById !== this.nodeInfoById) {
-            return new Tree(
-                this.params,
-                byId,
-                byParentId,
-                nodeInfoById,
-            );
+            return new Tree(this.params, byId, byParentId, nodeInfoById);
         } else {
             return this;
         }
@@ -454,7 +436,7 @@ export class Tree<TItem, TId> {
         parent: TItem,
         value: Readonly<DataSourceState>,
         requiredRowsCount: number,
-        loadAll: boolean,
+        loadAll: boolean
     ) {
         let ids = inputIds || [];
         let nodeInfo = inputNodeInfo || {};
@@ -469,7 +451,7 @@ export class Tree<TItem, TId> {
 
         let missingCount = requiredRowsCount - ids.length;
 
-        let availableCount = nodeInfo.count != null ? (nodeInfo.count - ids.length) : missingCount;
+        let availableCount = nodeInfo.count != null ? nodeInfo.count - ids.length : missingCount;
 
         const range: LazyDataSourceApiRequestRange = { from: ids.length };
 
@@ -477,7 +459,8 @@ export class Tree<TItem, TId> {
             range.count = missingCount;
         }
 
-        if (missingCount > 0 && availableCount > 0) { // Need to load additional items in the current layer
+        if (missingCount > 0 && availableCount > 0) {
+            // Need to load additional items in the current layer
             let requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
 
             if (!flatten) {
@@ -491,16 +474,19 @@ export class Tree<TItem, TId> {
                 }
             }
 
-            const response = await options.api({
-                sorting: value.sorting,
-                search: value.search,
-                filter: options.filter,
-                range,
-                page: value.page,
-                pageSize: value.pageSize,
-            }, requestContext);
+            const response = await options.api(
+                {
+                    sorting: value.sorting,
+                    search: value.search,
+                    filter: options.filter,
+                    range,
+                    page: value.page,
+                    pageSize: value.pageSize,
+                },
+                requestContext
+            );
 
-            const from = (response.from == null) ? range.from : response.from;
+            const from = response.from == null ? range.from : response.from;
 
             if (response.items.length) {
                 ids = [...ids];
@@ -529,13 +515,13 @@ export class Tree<TItem, TId> {
             ids,
             nodeInfo,
             loadedItems,
-        }
+        };
     }
 
     public getParents(id: TId) {
         const parentIds = this.getParentIdsRecursive(id);
         const parents: TItem[] = [];
-        parentIds.forEach((parentId) => {
+        parentIds.forEach(parentId => {
             if (this.byId.has(parentId)) {
                 parents.push(this.byId.get(parentId));
             }
@@ -547,7 +533,7 @@ export class Tree<TItem, TId> {
     public getPathById(id: TId): DataRowPathItem<TId, TItem>[] {
         const foundParents = this.getParents(id);
         const path: DataRowPathItem<TId, TItem>[] = [];
-        foundParents.forEach((parent) => {
+        foundParents.forEach(parent => {
             const pathItem: DataRowPathItem<TId, TItem> = this.getPathItem(parent);
             path.push(pathItem);
         });
@@ -562,9 +548,7 @@ export class Tree<TItem, TId> {
         const nodeInfo = this.getNodeInfo(parentId);
         const lastId = ids[ids.length - 1];
 
-        const isLastChild =
-            lastId !== undefined && lastId === id
-            && nodeInfo.count === ids.length;
+        const isLastChild = lastId !== undefined && lastId === id && nodeInfo.count === ids.length;
 
         return {
             id: this.getId(item),
@@ -573,10 +557,7 @@ export class Tree<TItem, TId> {
         };
     }
 
-    private async loadMissingIdsAndParents<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        idsToLoad: TId[],
-    ): Promise<Tree<TItem, TId>> {
+    private async loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<Tree<TItem, TId>> {
         let byId = this.byId;
         let iteration = 0;
         while (true) {
@@ -587,7 +568,7 @@ export class Tree<TItem, TId> {
                     if (!byId.has(id)) {
                         missingIds.add(id);
                     }
-                })
+                });
             }
 
             if (this.params.getParentId) {
@@ -609,28 +590,25 @@ export class Tree<TItem, TId> {
                 }
 
                 // Clone before first update
-                byId = (byId == this.byId) ? this.cloneMap(byId) : byId;
+                byId = byId == this.byId ? this.cloneMap(byId) : byId;
 
                 response.items.forEach(item => {
                     byId.set(this.getId(item), item);
-                })
+                });
             }
             iteration++;
 
             if (iteration > 1000) {
-                throw new Error('LazyTree: More than 1000 iterations are made to load required items and their parents by ID. Check your api implementation');
+                throw new Error(
+                    'LazyTree: More than 1000 iterations are made to load required items and their parents by ID. Check your api implementation'
+                );
             }
         }
 
         if (byId == this.byId) {
             return this;
         } else {
-            return new Tree(
-                this.params,
-                byId,
-                this.byParentId,
-                this.nodeInfoById,
-            )
+            return new Tree(this.params, byId, this.byParentId, this.nodeInfoById);
         }
     }
 

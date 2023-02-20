@@ -1,13 +1,13 @@
-import { ICanBeInvalid } from "../../../types";
-import { mergeValidation } from "../mergeValidation";
+import { ICanBeInvalid } from '../../../types';
+import { mergeValidation } from '../mergeValidation';
 
 describe('mergeValidation', () => {
     let clientValidation: ICanBeInvalid;
     let serverValidation: ICanBeInvalid;
 
     it('should be valid', () => {
-        clientValidation = {isInvalid: false};
-        serverValidation = {isInvalid: false};
+        clientValidation = { isInvalid: false };
+        serverValidation = { isInvalid: false };
 
         const result = mergeValidation(clientValidation, serverValidation);
         expect(result).toStrictEqual(clientValidation);
@@ -19,24 +19,24 @@ describe('mergeValidation', () => {
             validationProps: {
                 name: {
                     isInvalid: true,
-                    validationMessage: "User already exists",
+                    validationMessage: 'User already exists',
                 },
             },
         };
-        serverValidation = {isInvalid: false};
+        serverValidation = { isInvalid: false };
 
         const result = mergeValidation(clientValidation, serverValidation);
         expect(result).toStrictEqual(clientValidation);
     });
 
     it('should the same as serverValidation', () => {
-        clientValidation = {isInvalid: false};
+        clientValidation = { isInvalid: false };
         serverValidation = {
             isInvalid: true,
             validationProps: {
                 name: {
                     isInvalid: true,
-                    validationMessage: "User already exists",
+                    validationMessage: 'User already exists',
                 },
             },
         };
@@ -51,7 +51,7 @@ describe('mergeValidation', () => {
             validationProps: {
                 age: {
                     isInvalid: true,
-                    validationMessage: "Wrong age",
+                    validationMessage: 'Wrong age',
                 },
             },
         };
@@ -60,14 +60,14 @@ describe('mergeValidation', () => {
             validationProps: {
                 name: {
                     isInvalid: true,
-                    validationMessage: "User already exists",
+                    validationMessage: 'User already exists',
                 },
                 nested: {
                     isInvalid: true,
                     validationProps: {
                         deep: {
                             isInvalid: true,
-                            validationMessage: "Deep message",
+                            validationMessage: 'Deep message',
                         },
                     },
                 },
@@ -80,32 +80,32 @@ describe('mergeValidation', () => {
             validationProps: {
                 name: {
                     isInvalid: true,
-                    validationMessage: "User already exists",
+                    validationMessage: 'User already exists',
                 },
                 age: {
                     isInvalid: true,
-                    validationMessage: "Wrong age",
+                    validationMessage: 'Wrong age',
                 },
                 nested: {
                     isInvalid: true,
                     validationProps: {
                         deep: {
                             isInvalid: true,
-                            validationMessage: "Deep message",
+                            validationMessage: 'Deep message',
                         },
                     },
                 },
             },
         });
     });
-    
+
     it('should prefer clientValidation on collision', () => {
         clientValidation = {
             isInvalid: true,
             validationProps: {
                 name: {
                     isInvalid: true,
-                    validationMessage: "Wrong name",
+                    validationMessage: 'Wrong name',
                 },
             },
         };
@@ -114,7 +114,7 @@ describe('mergeValidation', () => {
             validationProps: {
                 name: {
                     isInvalid: true,
-                    validationMessage: "User already exists",
+                    validationMessage: 'User already exists',
                 },
             },
         };

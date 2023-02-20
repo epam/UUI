@@ -29,7 +29,8 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
 
         this.ghostOffsetX = offset.left - mouseCoords.mouseDownPageX - parseInt(getComputedStyle(node, null).marginLeft, 10);
         this.ghostOffsetY = offset.top - mouseCoords.mouseDownPageY - parseInt(getComputedStyle(node, null).marginTop, 10);
-        this.ghostWidth = node.offsetWidth + parseInt(getComputedStyle(node, null).marginLeft, 10) + parseInt(getComputedStyle(node, null).marginRight, 10);
+        this.ghostWidth =
+            node.offsetWidth + parseInt(getComputedStyle(node, null).marginLeft, 10) + parseInt(getComputedStyle(node, null).marginRight, 10);
 
         this.dragData = data;
         this.renderGhostCallback = renderGhost;
@@ -54,7 +55,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     }
 
     public endDrag() {
-        new Promise<void>((res) => {
+        new Promise<void>(res => {
             this.update({ isDragging: false });
             res();
         }).then(() => {
@@ -62,7 +63,6 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             this.dragData = null;
             this.isDragging = false;
         });
-
     }
 
     xScrollNode: HTMLElement = null;
@@ -73,11 +73,11 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             this.xScrollNode = getScrollParent(e.target as HTMLElement, 'x');
             this.yScrollNode = getScrollParent(e.target as HTMLElement, 'y');
         }
-    }
+    };
 
     private windowPointerUpHandler = (e: PointerEvent) => {
         this.isDragging && this.endDrag();
-    }
+    };
 
     private getScrollStep(nodeSize: number, nodeOffset: number, nodeScroll: number, mousePageCoord: number, mouseDelta: number) {
         const now = new Date().getTime();
@@ -99,7 +99,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         }
 
         if (scrollDir != 0) {
-            const step = (now - this.lastScrollTime) / 1000 * maxScrollSpeed * scrollDir;
+            const step = ((now - this.lastScrollTime) / 1000) * maxScrollSpeed * scrollDir;
             return nodeScroll + step;
         }
     }
@@ -113,7 +113,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
                 getOffset(this.xScrollNode).left,
                 this.xScrollNode.scrollLeft,
                 mouseCoords.mousePageX,
-                mouseCoords.mouseDxSmooth,
+                mouseCoords.mouseDxSmooth
             );
 
             if (scrollX !== undefined && scrollX !== 0) {
@@ -127,7 +127,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
                 getOffset(this.yScrollNode).top,
                 this.yScrollNode.scrollTop,
                 mouseCoords.mousePageY,
-                mouseCoords.mouseDySmooth,
+                mouseCoords.mouseDySmooth
             );
 
             if (scrollY !== undefined && scrollY !== 0) {

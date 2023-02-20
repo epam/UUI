@@ -1,4 +1,4 @@
-const defaultExportProxy = new Proxy( {}, { get: (_target, key) => key });
+const defaultExportProxy = new Proxy({}, { get: (_target, key) => key });
 
 module.exports = new Proxy(
     {},
@@ -12,5 +12,5 @@ module.exports = new Proxy(
             }
             return key;
         },
-    },
+    }
 );

@@ -1,8 +1,10 @@
-const path = require("path");
+const path = require('path');
 
-module.exports = { getSourceMapTransform }
+module.exports = { getSourceMapTransform };
 
-function forwardSlashes(pathStr) { return pathStr.replace(/\\/g, '/'); }
+function forwardSlashes(pathStr) {
+    return pathStr.replace(/\\/g, '/');
+}
 
 /**
  * It's needed to fix sources location path in "build/index.js.map" and "build/styles.css.map".
@@ -10,11 +12,11 @@ function forwardSlashes(pathStr) { return pathStr.replace(/\\/g, '/'); }
 function getSourceMapTransform({ type, moduleName, moduleFolderName }) {
     return function sourcemapPathTransform(relativeSourcePathParam) {
         const relativeSourcePath = forwardSlashes(relativeSourcePathParam);
-        const PROTOCOL = 'rollup://' // decide what protocol we need to use here "webpack://" or "rollup://" or anything else?
+        const PROTOCOL = 'rollup://'; // decide what protocol we need to use here "webpack://" or "rollup://" or anything else?
         const BASE_MODULE_PREFIX = `${PROTOCOL}${moduleName}/`;
         const PREFIX = `${BASE_MODULE_PREFIX}./`;
         switch (type) {
-            case "css": {
+            case 'css': {
                 /**
                  * It is generated relative to ./build folder of the module.
                  * Known use cases, and how it will be transformed:
@@ -26,7 +28,7 @@ function getSourceMapTransform({ type, moduleName, moduleFolderName }) {
                 }
                 return PREFIX + forwardSlashes(path.join('./build', relativeSourcePath));
             }
-            case "js": {
+            case 'js': {
                 /**
                  * It's relative to ./build folder, but it's not consistent where it starts. Known cases:
                  * - start from module root ("../src/icons/bold.svg")
@@ -46,8 +48,8 @@ function getSourceMapTransform({ type, moduleName, moduleFolderName }) {
                 }
             }
             default: {
-                throw new Error(`Unknown type=${type}`)
+                throw new Error(`Unknown type=${type}`);
             }
         }
-    }
+    };
 }

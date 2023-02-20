@@ -8,7 +8,7 @@ export class DemoDbRef extends DbRef<DemoDbTables, DemoDb> {
     }
 
     protected savePatch(patch: DbPatch<DemoDbTables>): Promise<DbSaveResponse<DemoDbTables>> {
-        console.log("DemoDbRef - savePatch", patch);
+        console.log('DemoDbRef - savePatch', patch);
         return Promise.resolve({ submit: {} });
     }
 

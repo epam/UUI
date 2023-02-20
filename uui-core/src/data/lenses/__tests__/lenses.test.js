@@ -1,5 +1,5 @@
-const { Lens } = require("../index");
-const { LensBuilder } = require("../LensBuilder");
+const { Lens } = require('../index');
+const { LensBuilder } = require('../LensBuilder');
 
 describe('lenses', () => {
     it('prop().get() for scalar', () => {
@@ -17,7 +17,7 @@ describe('lenses', () => {
         expect(lens.prop('obj').prop('name').get()).not.toBeDefined();
     });
     it('prop().index() on array', () => {
-        var lens = Lens.onEditable({ value: ["test"] });
+        var lens = Lens.onEditable({ value: ['test'] });
         expect(lens.index(0).get()).toBe('test');
         expect(lens.index(1).get()).not.toBeDefined();
     });

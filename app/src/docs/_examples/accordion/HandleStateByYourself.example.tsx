@@ -6,9 +6,9 @@ export default function HandleStateByYourselfExample() {
     const [value, onValueChange] = useState<boolean>(true);
 
     return (
-        <FlexCell width='100%'>
-            <Accordion title='Accordion title' mode='block' value={ value } onValueChange={ onValueChange } >
-                { demoData.loremIpsum }
+        <FlexCell width="100%">
+            <Accordion title="Accordion title" mode="block" value={value} onValueChange={onValueChange}>
+                {demoData.loremIpsum}
             </Accordion>
         </FlexCell>
     );

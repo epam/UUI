@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import dayjs from 'dayjs';
 import renderer from 'react-test-renderer';
 import { PickerBodyValue, RangeDatePickerValue } from '@epam/uui-components';
@@ -15,13 +15,7 @@ describe('RangeDatePickerBody', () => {
     };
 
     it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<RangeDatePickerBody
-                value={ value }
-                focusPart='from'
-                onValueChange={ jest.fn() }
-            />)
-            .toJSON();
+        const tree = renderer.create(<RangeDatePickerBody value={value} focusPart="from" onValueChange={jest.fn()} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

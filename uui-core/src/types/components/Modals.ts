@@ -1,9 +1,14 @@
-import * as React from "react";
+import * as React from 'react';
 import { IHasChildren, IHasCX, IHasRawProps, IModal, VPanelProps, IHasForwardedRef } from '../props';
 
 export interface ModalWindowProps extends VPanelProps, IHasForwardedRef<HTMLDivElement> {}
 
-export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface ModalBlockerProps
+    extends IModal<any>,
+        IHasCX,
+        IHasChildren,
+        IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
+        IHasForwardedRef<HTMLDivElement> {
     disableFocusLock?: boolean;
     disableCloseByEsc?: boolean;
     disallowClickOutside?: boolean;

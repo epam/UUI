@@ -22,7 +22,6 @@ export class MergeCellBar extends React.Component<MergeCellBarProps, any> {
     tableBar: HTMLElement;
     private layer: LayoutLayer = null;
 
-
     constructor(props: MergeCellBarProps, context: UuiContexts) {
         super(props);
         this.layer = context.uuiLayout && context.uuiLayout.getLayer();
@@ -60,7 +59,10 @@ export class MergeCellBar extends React.Component<MergeCellBarProps, any> {
 
     isSomeMerged(cells: any) {
         return cells.some((item: any) => {
-            return (this.props.editor.value.document.getParent(item.key) as any).data.get('colSpan') > 1 || (this.props.editor.value.document.getParent(item.key) as any).data.get('rowSpan') > 1;
+            return (
+                (this.props.editor.value.document.getParent(item.key) as any).data.get('colSpan') > 1 ||
+                (this.props.editor.value.document.getParent(item.key) as any).data.get('rowSpan') > 1
+            );
         });
     }
 
@@ -71,16 +73,46 @@ export class MergeCellBar extends React.Component<MergeCellBarProps, any> {
 
         return (
             <Portal>
-                { this.props.selectedCells && this.props.selectedCells.length > 1 && <Popper referenceElement={ this.virtualReferenceElement() } placement='top' modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }>
-                    { (props) => {
-                        return (
-                            <div ref={ (node) => { this.tableBar = node; (props.ref as React.RefCallback<any>)(node); } } onMouseDown={ (e: any) => e.preventDefault() } className={ cx(css.container, 'merge-cells-bar') } style={ { ...props.style, zIndex: this.layer.zIndex } } >
-                                <ToolbarButton isActive={ false } icon={ MergeIcon } onClick={ () => { (this.props.editor as any).mergeCells(this.props, this.props.selectedCells); this.props.clearSelection(); } } />
-                                { this.isSomeMerged(this.props.selectedCells) && <ToolbarButton isActive={ false } icon={ UnmergeIcon } onClick={ () => { (this.props.editor as any).unmergeCells(this.props, this.props.selectedCells); this.props.clearSelection(); } } /> }
-                            </div>
-                        );
-                    } }
-                </Popper> }
+                {this.props.selectedCells && this.props.selectedCells.length > 1 && (
+                    <Popper
+                        referenceElement={this.virtualReferenceElement()}
+                        placement="top"
+                        modifiers={[{ name: 'offset', options: { offset: [0, 12] } }]}
+                    >
+                        {props => {
+                            return (
+                                <div
+                                    ref={node => {
+                                        this.tableBar = node;
+                                        (props.ref as React.RefCallback<any>)(node);
+                                    }}
+                                    onMouseDown={(e: any) => e.preventDefault()}
+                                    className={cx(css.container, 'merge-cells-bar')}
+                                    style={{ ...props.style, zIndex: this.layer.zIndex }}
+                                >
+                                    <ToolbarButton
+                                        isActive={false}
+                                        icon={MergeIcon}
+                                        onClick={() => {
+                                            (this.props.editor as any).mergeCells(this.props, this.props.selectedCells);
+                                            this.props.clearSelection();
+                                        }}
+                                    />
+                                    {this.isSomeMerged(this.props.selectedCells) && (
+                                        <ToolbarButton
+                                            isActive={false}
+                                            icon={UnmergeIcon}
+                                            onClick={() => {
+                                                (this.props.editor as any).unmergeCells(this.props, this.props.selectedCells);
+                                                this.props.clearSelection();
+                                            }}
+                                        />
+                                    )}
+                                </div>
+                            );
+                        }}
+                    </Popper>
+                )}
             </Portal>
         );
     }

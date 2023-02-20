@@ -12,7 +12,7 @@ export const welcomeAnalyticsEvents = {
         prm_link: link,
     }),
     trusted: (product: string) => ({
-        name: "welcome_trusted_event",
+        name: 'welcome_trusted_event',
         prm_product: product,
     }),
     askDeveloper: (direction: string) => ({

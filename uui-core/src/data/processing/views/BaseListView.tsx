@@ -1,5 +1,15 @@
-import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView, DataRowPathItem } from "../../../types";
-import { Tree } from "./Tree";
+import {
+    BaseListViewProps,
+    DataRowProps,
+    ICheckable,
+    IEditable,
+    SortingOption,
+    DataSourceState,
+    DataSourceListProps,
+    IDataSourceView,
+    DataRowPathItem,
+} from '../../../types';
+import { Tree } from './Tree';
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     protected tree: Tree<TItem, TId>;
@@ -47,7 +57,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected handleCheckedChange(checked: TId[]) {
-        this.onValueChange({ ...this.value, checked })
+        this.onValueChange({ ...this.value, checked });
     }
 
     protected idToKey(id: TId) {
@@ -69,10 +79,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             return this.value.checked.map((id, n) => this.getById(id, n));
         }
         return [];
-    }
+    };
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
-        let checked = this.value && this.value.checked || [];
+        let checked = (this.value && this.value.checked) || [];
         if (rowProps.isChecked) {
             checked = checked.filter(id => id !== rowProps.id);
             this.handleCheckedChange(checked);
@@ -80,7 +90,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             checked = [...checked, rowProps.id];
             this.handleCheckedChange(checked);
         }
-    }
+    };
 
     protected isSelectAllEnabled() {
         return this.props.selectAll == undefined ? true : this.props.selectAll;
@@ -91,7 +101,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             ...this.value,
             selectedId: rowProps.id,
         });
-    }
+    };
 
     protected handleOnFocus = (focusIndex: number) => {
         if (this.onValueChange) {
@@ -100,7 +110,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 focusedIndex: focusIndex,
             });
         }
-    }
+    };
 
     protected handleOnFold = (rowProps: DataRowProps<TItem, TId>) => {
         if (this.onValueChange) {
@@ -109,7 +119,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 folded: this.setObjectFlag(this.value && this.value.folded, rowProps.rowKey, !rowProps.isFolded),
             });
         }
-    }
+    };
 
     protected handleSort = (sorting: SortingOption) => {
         if (this.onValueChange) {
@@ -118,7 +128,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 sorting: [sorting],
             });
         }
-    }
+    };
 
     protected isFolded(item: TItem) {
         const folded = this.value.folded || {};

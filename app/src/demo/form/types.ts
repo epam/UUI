@@ -44,7 +44,7 @@ export interface PersonLanguageInfo {
 
 export interface PersonTravelVisa {
     country?: string;
-    term?: { from: string, to: string };
+    term?: { from: string; to: string };
 }
 
 export interface PersonTravelVisas {

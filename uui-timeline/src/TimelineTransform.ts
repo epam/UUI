@@ -57,7 +57,7 @@ export class TimelineTransform {
 
     isVisible(date: Date): boolean {
         let ms = date.getTime();
-        return (this.leftMs <= ms) || (ms <= this.rightMs);
+        return this.leftMs <= ms || ms <= this.rightMs;
     }
 
     isHoliday(date: Date): boolean {
@@ -82,7 +82,7 @@ export class TimelineTransform {
             leftTrimmed: this.getX(leftBorder, 'left'),
             rightTrimmed: this.getX(rightBorder, 'right'),
             widthTrimmed: 0,
-            isVisible: (leftBorder.getTime() < this.rightMs) && (rightBorder.getTime() > this.leftMs),
+            isVisible: leftBorder.getTime() < this.rightMs && rightBorder.getTime() > this.leftMs,
         };
 
         result.width = result.right - result.left;
@@ -91,11 +91,7 @@ export class TimelineTransform {
         return result;
     }
 
-    getScaleBars(
-        alignStartDate: (nonAligned: Date) => Date,
-        getNthDate: (baseDate: Date, n: number) => Date,
-        keyPrefix: string,
-    ) {
+    getScaleBars(alignStartDate: (nonAligned: Date) => Date, getNthDate: (baseDate: Date, n: number) => Date, keyPrefix: string) {
         let fromDate = new Date(this.leftMs);
         let toDate = new Date(this.rightMs);
         const baseDate = alignStartDate(fromDate);
@@ -129,7 +125,7 @@ export class TimelineTransform {
         return this.getScaleBars(
             baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), 1),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth() + n),
-            "M",
+            'M'
         );
     }
 
@@ -137,7 +133,7 @@ export class TimelineTransform {
         return this.getScaleBars(
             baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate() - baseDate.getDay() + 1),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate() + n * 7),
-            "W",
+            'W'
         );
     }
 
@@ -145,7 +141,7 @@ export class TimelineTransform {
         return this.getScaleBars(
             baseDate => new Date(baseDate.getFullYear(), 0, 1),
             (baseDate, n) => new Date(baseDate.getFullYear() + n, 0, 1),
-            "Y",
+            'Y'
         );
     }
 
@@ -153,7 +149,7 @@ export class TimelineTransform {
         return this.getScaleBars(
             baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate()),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate() + n * 1),
-            "D",
+            'D'
         );
     }
 
@@ -161,23 +157,25 @@ export class TimelineTransform {
         return this.getScaleBars(
             baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours()),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours() + n * 1),
-            "H",
+            'H'
         );
     }
 
     public getVisibleQuoterHours() {
         return this.getScaleBars(
             baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours()),
-            (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes() + n * 15),
-            "Q",
+            (baseDate, n) =>
+                new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes() + n * 15),
+            'Q'
         );
     }
 
     public getVisibleMinutes() {
         return this.getScaleBars(
             baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes()),
-            (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes() + n),
-            "m",
+            (baseDate, n) =>
+                new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes() + n),
+            'm'
         );
     }
 
@@ -199,5 +197,4 @@ export class TimelineTransform {
     public getScaleVisibility(minPxPerDay: number, maxPxPerDay: number) {
         return this.controller.getScaleVisibility(minPxPerDay, maxPxPerDay);
     }
-
 }

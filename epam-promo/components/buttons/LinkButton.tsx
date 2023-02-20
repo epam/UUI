@@ -14,15 +14,10 @@ export interface LinkButtonMods {
 }
 
 function applyLinkButtonMods(mods: LinkButtonMods & ButtonProps) {
-    return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        styles['linkButton-color-' + (mods.color || 'blue')],
-        ...getIconClass(mods),
-    ];
+    return [css.root, css['size-' + (mods.size || defaultSize)], styles['linkButton-color-' + (mods.color || 'blue')], ...getIconClass(mods)];
 }
 
-export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, (props) => ({
+export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, props => ({
     dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
     clearIcon: systemIcons[props.size || defaultSize].clear,
 }));

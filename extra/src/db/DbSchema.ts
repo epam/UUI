@@ -9,7 +9,7 @@ export class DbSchema<T> {
     private dbProto: any = {};
     private blankState: DbState = null;
 
-    private reducerToMethod(fn: Function) {        
+    private reducerToMethod(fn: Function) {
         const proto = this.dbProto;
         return function (this: any) {
             const newState = fn.apply(null, arguments).call(null, this.state);
@@ -43,8 +43,7 @@ export class DbSchema<T> {
         const db = Object.create(this.dbProto);
         db.state = this.blankState;
 
-        Object.keys(this.entitySchemas).forEach(entityName => {
-        });
+        Object.keys(this.entitySchemas).forEach(entityName => {});
 
         return db;
     }
@@ -70,7 +69,7 @@ export class DbEntitySchema<T> {
     public keyFields: DbFieldSchemaRec<T>[];
 
     constructor(public fields: DbEntityFieldsSchema<T>) {
-        this.fieldsList = objectKeys(fields).map(name => ({ name, ...fields[name] as any}));
+        this.fieldsList = objectKeys(fields).map(name => ({ name, ...(fields[name] as any) }));
         this.fkFields = this.fieldsList.filter(f => f.fk);
         this.pkFields = this.fieldsList.filter(f => f.pk);
         this.keyFields = this.fieldsList.filter(f => f.pk || f.fk);

@@ -1,6 +1,6 @@
 import { ListApiCache, ListApiSettings } from '../ListApiCache';
 import { LazyDataSourceApiRequest, LazyDataSourceApiResponse } from '../../../types';
-import { delay } from "@epam/test-utils";
+import { delay } from '@epam/test-utils';
 
 interface TestItem {
     id: number;
@@ -30,7 +30,6 @@ const testApi = (r: LazyDataSourceApiRequest<TestItem, number, TestFilter>) => {
 
     return Promise.resolve<LazyDataSourceApiResponse<TestItem>>({ items });
 };
-
 
 describe('ListApiCache', () => {
     const apiFn = jest.fn(testApi);

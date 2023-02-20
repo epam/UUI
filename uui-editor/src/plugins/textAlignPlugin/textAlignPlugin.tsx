@@ -1,8 +1,8 @@
-import { RenderBlockProps, Editor } from "slate-react";
-import { Editor as CoreEditor } from "slate";
+import { RenderBlockProps, Editor } from 'slate-react';
+import { Editor as CoreEditor } from 'slate';
 import css from './textAlign.scss';
-import * as React from "react";
-import { ToolbarButton } from "../../implementation/ToolbarButton";
+import * as React from 'react';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ReactComponent as AlignLeft } from '../../icons/align-left.svg';
 import { ReactComponent as AlignCenter } from '../../icons/align-center.svg';
 import { ReactComponent as AlignRight } from '../../icons/align-right.svg';
@@ -13,11 +13,23 @@ export const textAlignPlugin = () => {
     const renderBlock = (props: RenderBlockProps, editor: CoreEditor, next: () => any) => {
         switch (props.node.type) {
             case 'uui-richTextEditor-align-text-left':
-                return <div { ...props.attributes } className={ css.alignLeft }>{ props.children }</div>;
+                return (
+                    <div {...props.attributes} className={css.alignLeft}>
+                        {props.children}
+                    </div>
+                );
             case 'uui-richTextEditor-align-text-center':
-                return <div { ...props.attributes } className={ css.alignCenter }>{ props.children }</div>;
+                return (
+                    <div {...props.attributes} className={css.alignCenter}>
+                        {props.children}
+                    </div>
+                );
             case 'uui-richTextEditor-align-text-right':
-                return <div { ...props.attributes } className={ css.alignRight }>{ props.children }</div>;
+                return (
+                    <div {...props.attributes} className={css.alignRight}>
+                        {props.children}
+                    </div>
+                );
             default:
                 return next();
         }
@@ -66,28 +78,34 @@ const isAlignActive = (alignType: string, editor: Editor) => {
 };
 
 const leftAlignButton = (props: { editor: any }) => {
-    return <ToolbarButton
-                isActive={ isAlignActive('uui-richTextEditor-align-text-left', props.editor) }
-                icon={ AlignLeft }
-                iconColor={ 'red' }
-                onClick={ () => toggleAlign(props, 'uui-richTextEditor-align-text-left') }
-            />;
+    return (
+        <ToolbarButton
+            isActive={isAlignActive('uui-richTextEditor-align-text-left', props.editor)}
+            icon={AlignLeft}
+            iconColor={'red'}
+            onClick={() => toggleAlign(props, 'uui-richTextEditor-align-text-left')}
+        />
+    );
 };
 
 const rightAlignButton = (props: { editor: any }) => {
-    return <ToolbarButton
-                isActive={ isAlignActive('uui-richTextEditor-align-text-right', props.editor) }
-                icon={ AlignRight }
-                iconColor={ 'red' }
-                onClick={ () => toggleAlign(props, 'uui-richTextEditor-align-text-right') }
-            />;
+    return (
+        <ToolbarButton
+            isActive={isAlignActive('uui-richTextEditor-align-text-right', props.editor)}
+            icon={AlignRight}
+            iconColor={'red'}
+            onClick={() => toggleAlign(props, 'uui-richTextEditor-align-text-right')}
+        />
+    );
 };
 
 const centerAlignButton = (props: { editor: any }) => {
-    return <ToolbarButton
-                isActive={ isAlignActive('uui-richTextEditor-align-text-center', props.editor) }
-                icon={ AlignCenter }
-                iconColor={ 'red' }
-                onClick={ () => toggleAlign(props, 'uui-richTextEditor-align-text-center') }
-            />;
+    return (
+        <ToolbarButton
+            isActive={isAlignActive('uui-richTextEditor-align-text-center', props.editor)}
+            icon={AlignCenter}
+            iconColor={'red'}
+            onClick={() => toggleAlign(props, 'uui-richTextEditor-align-text-center')}
+        />
+    );
 };

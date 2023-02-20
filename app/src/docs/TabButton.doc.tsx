@@ -10,16 +10,13 @@ export class TabButtonDoc extends BaseDocsBlock {
             [UUI4]: './app/src/docs/_props/epam-promo/components/buttons/tabButton.props.ts',
         };
     }
-    
+
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='tab-button-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/tabButton/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="tab-button-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/tabButton/Basic.example.tsx" />
             </>
         );
     }

@@ -10,13 +10,10 @@ import css from './DataTableRow.scss';
 // As we need our mods to style the cell properly, we extract them from DataTableCellProps.rowProps, which is a hack, but it's reliable enough.
 export const renderCell = (props: DataTableCellProps) => {
     const mods = props.rowProps as DataTableRowMods & DataTableRowProps;
-    return <DataTableCell
-        size={ mods.size }
-        { ...props }
-    />;
+    return <DataTableCell size={mods.size} {...props} />;
 };
 
-export const renderDropMarkers = (props: DndActorRenderParams) => <DropMarker { ...props } enableBlocker={ true } />;
+export const renderDropMarkers = (props: DndActorRenderParams) => <DropMarker {...props} enableBlocker={true} />;
 
 export const propsMods = { renderCell, renderDropMarkers };
 
@@ -28,5 +25,5 @@ export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
         css['size-' + (mods.size || '30')],
         css['background-' + (mods.background || 'white')],
     ],
-    () => propsMods,
+    () => propsMods
 );

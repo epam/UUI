@@ -23,12 +23,11 @@ b.suite(
     }),
 
     b.add('I.Map.get(id)', () => {
-
         const map = I.Map(test100KPersons.map(p => [p.id, p]));
         return () => map.get(5);
     }),
 
     b.cycle(),
     b.complete(),
-    b.save({ file: 'pkLookup', version: '1.0.0' }),
+    b.save({ file: 'pkLookup', version: '1.0.0' })
 );

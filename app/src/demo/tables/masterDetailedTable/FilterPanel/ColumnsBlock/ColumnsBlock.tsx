@@ -12,9 +12,12 @@ interface IColumnsBlockProps {
 
 const ColumnsBlock: React.FC<IColumnsBlockProps> = ({ columnsConfig, onColumnsConfigChange, columns }) => {
     const items = useMemo(() => {
-        const sortedColumns = sortBy(columns.filter(column => !!column.caption), i => {
-            columnsConfig[i.key]?.order;
-        });
+        const sortedColumns = sortBy(
+            columns.filter(column => !!column.caption),
+            i => {
+                columnsConfig[i.key]?.order;
+            }
+        );
 
         return sortedColumns.map(column => ({
             key: column.key,
@@ -25,15 +28,10 @@ const ColumnsBlock: React.FC<IColumnsBlockProps> = ({ columnsConfig, onColumnsCo
     }, [columns, columnsConfig]);
 
     return (
-        <Accordion title='Columns' mode='inline' padding='18'>
-            { items.map(item => (
-                <Column
-                    value={ columnsConfig }
-                    onValueChange={ onColumnsConfigChange }
-                    columnInfo={ item }
-                    key={ item.key }
-                />
-            )) } 
+        <Accordion title="Columns" mode="inline" padding="18">
+            {items.map(item => (
+                <Column value={columnsConfig} onValueChange={onColumnsConfigChange} columnInfo={item} key={item.key} />
+            ))}
         </Accordion>
     );
 };

@@ -13,8 +13,8 @@ declare module '*.svg' {
     export default src;
 }
 
-declare module "react-imask" {
-    import IMask from "imask";
+declare module 'react-imask' {
+    import IMask from 'imask';
 
     /**
      * The props accepted by react-imask, based
@@ -34,9 +34,7 @@ declare module "react-imask" {
      * with 'IMask' props
      * @param Component Any React Component
      */
-    export function IMaskMixin<T, D>(
-        Component: React.ComponentType<{ inputRef: React.Ref<D> } & T>,
-    ): React.ComponentType<T & IMaskInputProps>;
+    export function IMaskMixin<T, D>(Component: React.ComponentType<{ inputRef: React.Ref<D> } & T>): React.ComponentType<T & IMaskInputProps>;
 
     /**
      * A basic IMask React Input
@@ -44,9 +42,9 @@ declare module "react-imask" {
     export const IMaskInput: React.ComponentType<IMaskInputProps>;
 }
 
-declare module "tether-tooltip";
-declare module "jsurl";
-declare module "inline-style-transformer";
+declare module 'tether-tooltip';
+declare module 'jsurl';
+declare module 'inline-style-transformer';
 declare module 'draft-js-plugins-editor';
 declare module 'draft-js-clear-formatting';
 declare module 'draft-convert';
@@ -67,4 +65,3 @@ declare module 'react-breakpoints';
 declare module 'react-broadcast';
 declare module '@braintree/sanitize-url';
 declare module 'htmlclean';
-

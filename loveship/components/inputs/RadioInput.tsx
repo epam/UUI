@@ -12,12 +12,7 @@ export interface RadioInputMods {
 }
 
 function applyRadioInputMods(mods: RadioInputMods & RadioInputProps) {
-    return [
-        css.root,
-        css['size-' + (mods.size || '18')],
-        styles['color-' + (mods.color || 'sky')],
-        css['theme-' + (mods.theme || 'light')],
-    ];
+    return [css.root, css['size-' + (mods.size || '18')], styles['color-' + (mods.color || 'sky')], css['theme-' + (mods.theme || 'light')]];
 }
 
 export const RadioInput = withMods<RadioInputProps, RadioInputMods>(uuiRadioInput, applyRadioInputMods, () => ({ icon: RadioPoint }));

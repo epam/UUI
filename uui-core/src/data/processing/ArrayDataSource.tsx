@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types';
 import { BaseDataSource } from './BaseDataSource';
-import { ArrayListView, ArrayListViewProps,  } from './views';
+import { ArrayListView, ArrayListViewProps } from './views';
 import { Tree } from './views/Tree';
 
 export type ArrayDataSourceProps<TItem, TId, TFilter> = ArrayListViewProps<TItem, TId, TFilter> & {
@@ -22,7 +22,8 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         if (this.props.items instanceof Tree) {
             this.tree = this.props.items;
         } else {
-            this.tree = Tree.create({
+            this.tree = Tree.create(
+                {
                     ...this.props,
                     // These defaults are added for compatibility reasons.
                     // We'll require getId and getParentId callbacks in other APIs, including the views.
@@ -36,11 +37,11 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
 
     public getById = (id: TId) => {
         return this.tree.getById(id);
-    }
+    };
 
     private defaultGetParentId = (item: TItem) => {
-        return (item as any) ['parentId'];
-    }
+        return (item as any)['parentId'];
+    };
 
     setItem(item: TItem): void {
         // TODO
@@ -49,7 +50,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     getView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
+        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>
     ): IDataSourceView<TItem, TId, TFilter> {
         const view = this.views.get(onValueChange) as ArrayListView<TItem, TId, TFilter>;
         const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
