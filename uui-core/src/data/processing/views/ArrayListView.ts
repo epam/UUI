@@ -22,7 +22,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     searchTree: Tree<TItem, TId>;
     filteredTree: Tree<TItem, TId>;
     sortedTree: Tree<TItem, TId>;
-    protected items: TItem[];
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
