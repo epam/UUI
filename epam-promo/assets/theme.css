@@ -542,6 +542,9 @@
     --uui-notification-card-border-width: 1px;
     --uui-notification-card-border-top-width: 6px;
     --uui-notification-card-shadow: unset;
+
+    /* Alert */
+    --uui-alert-border-radius: var(--uui-border-radius);
 }
 
 /* modification of the states of table components */
@@ -857,28 +860,32 @@
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
-.uui-theme-promo.alert-error {
+.uui-theme-promo.alert-error,
+.uui-theme-promo.alert-red {
     --uui-alert-text: var(--uui-text-primary);
     --uui-alert-bg: var(--uui-error-lightest);
     --uui-alert-border: var(--uui-negative);
     --uui-alert-icon: var(--uui-negative);
 }
 
-.uui-theme-promo.alert-warning {
+.uui-theme-promo.alert-warning,
+.uui-theme-promo.alert-amber {
     --uui-alert-text: var(--uui-text-primary);
     --uui-alert-bg: var(--uui-warning-lightest);
     --uui-alert-border: var(--amber);
     --uui-alert-icon: var(--amber);
 }
 
-.uui-theme-promo.alert-success {
+.uui-theme-promo.alert-success,
+.uui-theme-promo.alert-green {
     --uui-alert-text: var(--uui-text-primary);
     --uui-alert-bg: var(--uui-success-lightest);
     --uui-alert-border: var(--uui-accent);
     --uui-alert-icon: var(--uui-accent);
 }
 
-.uui-theme-promo.alert-info {
+.uui-theme-promo.alert-info,
+.uui-theme-promo.alert-blue {
     --uui-alert-text: var(--uui-text-primary);
     --uui-alert-bg: var(--uui-info-lightest);
     --uui-alert-border: var(--uui-primary);

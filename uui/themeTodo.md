@@ -30,6 +30,7 @@
 - [ ] подумать нужен ли нам Text компонент в UUI
 - [ ] UuiTextPlaceholder подумать нужны ли нам в UUI все цвета (вся палитра) в loveship и gray10 в promo. Сейчас оставили только один стандартный gray40.
 - [ ] NotificationCard: we need to remove the semantic varieties of notificationCards from skins and re-export them from uui when we get rid of hanging the theme directly in skins
+- [ ] Alert: we need to remove the semantic varieties of Alert from skins and re-export them from uui when we get rid of hanging the theme directly in skins
 
 # TODO for UUI package
 ### Panel

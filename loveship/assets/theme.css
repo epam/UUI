@@ -611,6 +611,9 @@
     --uui-notification-card-border-width: 0;
     --uui-notification-card-border-top-width: 6px;
     --uui-notification-card-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+
+    /* Alert */
+    --uui-alert-border-radius: 6px;
 }
 
 /* modification of the states of table components */
@@ -878,30 +881,34 @@
     --orange-50: #991900;
 }
 
-.uui-theme-loveship.alert-error {
+.uui-theme-loveship.alert-error,
+.uui-theme-loveship.alert-fire {
     --uui-alert-text: var(--uui-text-primary);
-    --uui-alert-bg: #FFF5F5;
+    --uui-alert-bg: #F5E5E9;
     --uui-alert-border: var(--uui-error);
     --uui-alert-icon: var(--uui-error);
 }
 
-.uui-theme-loveship.alert-warning {
+.uui-theme-loveship.alert-warning,
+.uui-theme-loveship.alert-sun {
     --uui-alert-text: var(--uui-text-primary);
-    --uui-alert-bg: #FFFAF0;
+    --uui-alert-bg: #F6EEE1;
     --uui-alert-border: var(--uui-warning);
     --uui-alert-icon: var(--uui-warning);
 }
 
-.uui-theme-loveship.alert-success {
+.uui-theme-loveship.alert-success,
+.uui-theme-loveship.alert-grass {
     --uui-alert-text: var(--uui-text-primary);
-    --uui-alert-bg: #F6FFE5;
+    --uui-alert-bg: #E7EEE1;
     --uui-alert-border: var(--uui-success);
     --uui-alert-icon: var(--uui-success);
 }
 
-.uui-theme-loveship.alert-info {
+.uui-theme-loveship.alert-info,
+.uui-theme-loveship.alert-sky {
     --uui-alert-text: var(--uui-text-primary);
-    --uui-alert-bg: #E1F4FA;
+    --uui-alert-bg: #DCEDF6;
     --uui-alert-border: var(--uui-info);
     --uui-alert-icon: var(--uui-info);
 }
