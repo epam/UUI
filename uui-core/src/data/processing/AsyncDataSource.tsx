@@ -1,9 +1,9 @@
 import { ArrayDataSource, ArrayDataSourceProps } from "./ArrayDataSource";
-import { ArrayListViewProps } from './views/ArrayListView';
+import { BaseArrayListViewProps } from './views/ArrayListView';
 import { LoadingListView } from './views/LoadingListView';
 import { DataSourceState, IDataSourceView } from "../../types";
 
-export interface AsyncDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {
+export interface AsyncDataSourceProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
     api(): Promise<TItem[]>;
 }
 
@@ -20,8 +20,8 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
 
     public setProps(newProps: ArrayDataSourceProps<TItem, TId, TFilter>) {
         const props = { ...newProps };
-         // We'll receive items=null on updates (because we inherit ArrayDataSource, but nobody would actually pass items there - they are expected to come from API)
-         // so this tweak is required to not reset items on any update
+        // We'll receive items=null on updates (because we inherit ArrayDataSource, but nobody would actually pass items there - they are expected to come from API)
+        // so this tweak is required to not reset items on any update
         props.items = newProps.items || this.props.items;
         super.setProps(props);
     }
@@ -56,7 +56,11 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         this.recreateViews();
     }
 
-    getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: ArrayListViewProps<TItem, TId, TFilter>): IDataSourceView<TItem, TId, TFilter> {
+    getView(
+        value: DataSourceState<any, TId>,
+        onValueChange: (val: DataSourceState<any, TId>) => any,
+        options?: Partial<BaseArrayListViewProps<TItem, TId, TFilter>>,
+    ): IDataSourceView<TItem, TId, TFilter> {
         if (!this.isLoaded) {
             this.load();
             const view = this.views.get(onValueChange) as LoadingListView<TId>;
