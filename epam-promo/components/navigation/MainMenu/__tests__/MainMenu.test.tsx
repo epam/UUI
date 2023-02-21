@@ -1,9 +1,9 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { MainMenu } from '../MainMenu';
 import { MainMenuButton } from '../MainMenuButton';
 import { BurgerButton } from '../Burger';
 import ReactDOM from "react-dom";
+import { renderWithContextAsync } from '@epam/test-utils';
 
 describe('MainMenu', () => {
     const oldPortal = ReactDOM.createPortal;
@@ -16,18 +16,16 @@ describe('MainMenu', () => {
         ReactDOM.createPortal = oldPortal;
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<MainMenu>
+    it('should be rendered correctly', async() => {
+        const tree = await renderWithContextAsync(<MainMenu>
                 <MainMenuButton />
-            </MainMenu>)
-            .toJSON();
+            </MainMenu>);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<MainMenu
+    it('should be rendered correctly', async () => {
+        const tree = await renderWithContextAsync(
+            <MainMenu
                 renderBurger={ () => <BurgerButton /> }
                 logoLink={ { pathname: '/' } }
                 appLogoUrl=''
@@ -37,8 +35,8 @@ describe('MainMenu', () => {
                 tooltipTechInfo='Tech Info'
             >
                 <MainMenuButton />
-            </MainMenu>)
-            .toJSON();
+            </MainMenu>);
+
         expect(tree).toMatchSnapshot();
     });
 });

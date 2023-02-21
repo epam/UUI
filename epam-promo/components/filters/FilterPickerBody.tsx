@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceListProps, IDisableable, IDropdownToggler, IEditable, isMobile, uuiMarkers } from '@epam/uui-core';
-import { DropdownBodyProps, PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
+import { DataRowProps, DataSourceListProps, DropdownBodyProps, IDisableable, IDropdownToggler, IEditable, isMobile, uuiMarkers } from '@epam/uui-core';
+import { PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper, FlexRow, FlexCell, LinkButton, i18n } from '../../index';
 import cx from "classnames";
 import css from "./FilterPickerBody.scss";
@@ -32,7 +32,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
             rowProps.onSelect = this.onSelect;
         }
 
-        return this.props.renderRow ? this.props.renderRow(rowProps) : (
+        return this.props.renderRow ? this.props.renderRow(rowProps, this.state.dataSourceState) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
@@ -44,9 +44,9 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
         );
     }
 
-    renderFooter = (isSelectAll: (IEditable<boolean> & IDisableable & {indeterminate?: boolean}) | undefined) => {
+    renderFooter = (isSelectAll: (IEditable<boolean> & IDisableable & { indeterminate?: boolean }) | undefined) => {
         if (isSelectAll) {
-            return <DataPickerFooter { ...this.getFooterProps() } hideShowOnlySelected={ this.isSingleSelect() } size="36"/>;
+            return <DataPickerFooter { ...this.getFooterProps() } hideShowOnlySelected={ this.isSingleSelect() } size="36" />;
         }
 
         const { clearSelection, view } = this.getFooterProps();

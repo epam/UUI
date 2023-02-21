@@ -38,6 +38,10 @@ export class TooltipDoc extends BaseDocsBlock {
 
                 { this.renderSectionTitle('Examples') }
                 <DocExample
+                    title='Tooltip with delay'
+                    path='./_examples/tooltip/Delay.example.tsx'
+                />
+                <DocExample
                     title='Tooltip with icon'
                     path='./_examples/tooltip/WithIcon.example.tsx'
                 />

@@ -15,7 +15,6 @@
 
     border-right-style: solid;
 
-
     border-top-style: none;
     border-bottom-style: none;
 
@@ -66,4 +65,9 @@
         visibility: visible;
         border-color: var(--uui-dt-cell-editor-focus-border-color);
     }
+}
+
+.content-wrapper {
+    display: flex;
+    flex-grow: 1;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dropdown, DropdownMenuButton, FlexRow, LinkButton, Panel, Text } from '@epam/promo';
-import { DropdownBodyProps } from '@epam/uui-components';
+import { DropdownBodyProps } from '@epam/uui-core';
 import { IDropdownToggler } from '@epam/uui';
 
 const dropdownMenuItems = [

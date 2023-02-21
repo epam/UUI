@@ -3,11 +3,13 @@ import { IDropdownToggler, INotification, useUuiContext } from '@epam/uui-core';
 import { Badge, Button, Dropdown, FlexCell, FlexRow, LinkButton, NotificationCard, Panel, Text, Tooltip } from '@epam/uui';
 import { MultiSwitch } from '@epam/promo';
 import { BasicModalExample } from '../Modal';
+import { TApi } from "../../helpers/apiDefinition";
+import { AppContextType } from "../../helpers/appContext";
 
 export const ButtonExample = () => {
     const [isDisabled, setIsDisabled] = useState(false);
     const [isReadOnly, setIsReadOnly] = useState(false);
-    const svc = useUuiContext();
+    const svc = useUuiContext<TApi, AppContextType>();
 
     const handleSuccess = () => {
         console.log('Success Click');

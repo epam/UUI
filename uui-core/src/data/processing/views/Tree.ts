@@ -1,4 +1,4 @@
-import { DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../types";
+import { DataRowPathItem, DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../types";
 import { LazyListViewProps } from "./LazyListView";
 import { CompositeKeysMap } from './CompositeKeysMap';
 
@@ -249,7 +249,6 @@ export class Tree<TItem, TId> {
                 }
             }
         });
-
         const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
 
         for (let [parentId, ids] of newByParentId) {
@@ -535,13 +534,43 @@ export class Tree<TItem, TId> {
 
     public getParents(id: TId) {
         const parentIds = this.getParentIdsRecursive(id);
-        const parents = parentIds.reduce<TItem[]>((acc, parentId) => {
-            if (!this.byId.has(parentId)) {
-                return acc;
+        const parents: TItem[] = [];
+        parentIds.forEach((parentId) => {
+            if (this.byId.has(parentId)) {
+                parents.push(this.byId.get(parentId));
             }
-            return [...acc, this.byId.get(parentId)];
-        }, []);
+        });
+
         return parents;
+    }
+
+    public getPathById(id: TId): DataRowPathItem<TId, TItem>[] {
+        const foundParents = this.getParents(id);
+        const path: DataRowPathItem<TId, TItem>[] = [];
+        foundParents.forEach((parent) => {
+            const pathItem: DataRowPathItem<TId, TItem> = this.getPathItem(parent);
+            path.push(pathItem);
+        });
+        return path;
+    }
+
+    public getPathItem(item: TItem): DataRowPathItem<TId, TItem> {
+        const parentId = this.getParentId?.(item);
+        const id = this.getId?.(item);
+
+        const ids = this.getChildrenIdsByParentId(parentId);
+        const nodeInfo = this.getNodeInfo(parentId);
+        const lastId = ids[ids.length - 1];
+
+        const isLastChild =
+            lastId !== undefined && lastId === id
+            && nodeInfo.count === ids.length;
+
+        return {
+            id: this.getId(item),
+            value: item,
+            isLastChild,
+        };
     }
 
     private async loadMissingIdsAndParents<TFilter>(

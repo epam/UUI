@@ -13,7 +13,7 @@ import { i18n } from '../../i18n';
 
 export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     renderRow(rowProps: DataRowProps<TItem, TId>) {
-        return this.props.renderRow ? this.props.renderRow(rowProps) : (
+        return this.props.renderRow ? this.props.renderRow(rowProps, this.state.dataSourceState) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
@@ -51,7 +51,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
         return (
             <ModalBlocker { ...this.props } >
                 <ModalWindow width={ 600 } height={ 700 }>
-                    <ModalHeader borderBottom title={ this.props.caption || i18n.pickerModal.headerTitle } onClose={ () => this.props.abort()  } />
+                    <ModalHeader borderBottom title={ this.props.caption || i18n.pickerModal.headerTitle } onClose={ () => this.props.abort() } />
                     <FlexCell cx={ css.subHeaderWrapper }>
                         <FlexRow vPadding='24'>
                             <SearchInput
