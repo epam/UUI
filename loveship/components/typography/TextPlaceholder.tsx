@@ -26,6 +26,7 @@ export const TextPlaceholder = React.forwardRef<HTMLDivElement, TextPlaceholderP
         <div ref={ ref } aria-busy={ true } className={ css.container } { ...props.rawProps }>
             { text.map((it, index) => (
                 <span
+                    suppressHydrationWarning={ true }
                     key={ index }
                     dangerouslySetInnerHTML={ { __html: it } }
                     className={ cx([

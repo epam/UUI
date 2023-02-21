@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
-import { DropdownProps, Dropdown } from '@epam/uui-components';
+import { Dropdown } from '@epam/uui-components';
+import { DropdownProps } from '@epam/uui-core';
 import { Button, Panel, FlexRow, Text } from '@epam/promo';
 import { DefaultContext } from '../../docs';
 
@@ -59,6 +60,8 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', compon
         examples: [500, 1000, 1500, 2000],
         defaultValue: 0,
     })
+    .prop('onValueChange', { examples: ctx => [{ value: ctx.getChangeHandler('onValueChange'), name: '(newValue) => { ... }' }] })
+    .prop('value', { examples: [true, false] })
     .withContexts(DefaultContext);
 
 export default dropdownMenuDoc;

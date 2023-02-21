@@ -16,7 +16,7 @@ const pickerHeight = 300;
 export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, PickerFilterProps<TItem, TId>, PickerFilterState> {
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
-        return this.props.renderRow ? this.props.renderRow(rowProps) : (
+        return this.props.renderRow ? this.props.renderRow(rowProps, this.state.dataSourceState) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
@@ -25,7 +25,7 @@ export class ColumnPickerFilter<TItem, TId> extends PickerBase<TItem, TId, Picke
                 renderItem={ i => (
                     <Text size={ this.props.size || '30' }>
                         { rowProps.isLoading
-                            ? <TextPlaceholder wordsCount={ 2 }/>
+                            ? <TextPlaceholder wordsCount={ 2 } />
                             : this.getName(i) }
                     </Text>
                 ) }

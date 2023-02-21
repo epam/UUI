@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Badge, Dropdown, DropdownMenuButton, FlexCell, FlexRow, Panel, Text } from '@epam/promo';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
-import { DropdownBodyProps } from '@epam/uui-components';
+import { DropdownBodyProps } from '@epam/uui-core';
 import css from './DropdownExample.scss';
 
 const dropdownMenuItems = [
