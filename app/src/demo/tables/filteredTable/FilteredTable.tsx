@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import css from './FilteredTable.scss';
 import { DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text } from '@epam/promo';
 import { getFilters } from './filters';
-import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset, DataQueryFilter } from "@epam/uui-core";
+import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset, DataQueryFilter, useList } from "@epam/uui-core";
 import { FilteredTableFooter } from "./FilteredTableFooter";
 import { Person } from '@epam/uui-docs';
 import { personColumns } from './columns';
@@ -61,21 +61,31 @@ export const FilteredTable: React.FC = () => {
         return result;
     }, [tableStateApi.tableState.page, tableStateApi.tableState.pageSize]);
 
-    const dataSource = useLazyDataSource<Person, number, Person>({
+    // const dataSource = useLazyDataSource<Person, number, Person>({
+    //     api: api,
+    //     selectAll: false,
+    // }, []);
+
+    // const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
+    //     rowOptions: {
+    //         isSelectable: true,
+    //     },
+    // });
+    const { view } = useList({
+        value: tableStateApi.tableState,
+        onValueChange: tableStateApi.setTableState,
+        type: 'lazy',
         api: api,
         selectAll: false,
-    }, []);
-
-    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
         rowOptions: {
             isSelectable: true,
         },
-    });
-
+        loadData: true,
+    }, []);
+    console.log('view', view);
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({ ...tableStateApi.tableState, search: val });
 
     const { setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi } = tableStateApi;
-
 
     return (
         <div className={ css.container }>
