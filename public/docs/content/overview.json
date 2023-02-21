@@ -199,7 +199,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI started somewhere in 2013. We were building an app for EPAM, and we fell in love with the newly born React and TypeScript. We were among the first production users. There were no UI libraries these days, so we built our own sets of components.",
+            "text": "UUI started somewhere in 2013. We were building an app for EPAM and fell in love with the newly born React and TypeScript. We were among the first production users. Back in those days, there were no UI libraries, so we built our own components.",
             "marks": []
           }
         ]
@@ -211,7 +211,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Component sets from those early days were growing, traveling via tens of projects. We tried different approaches, picking the best fit. At some point in 2016, we extracted them into a separate GIT repo. Later, we almost completely re-visited all the shortcomings and mistakes we've done. Twice. We changed the look and feel, three times.",
+            "text": "The component sets from those early days were growing, traveling via tons of of projects. We tried different approaches, picking the best fit. Finally, at some point in 2016, we extracted them into a separate Git repo. Later, we wholly revisited almost all our shortcomings and mistakes. Twice. We changed the look and feel several times.",
             "marks": []
           }
         ]
@@ -223,7 +223,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The current code base is the result of 7 years of evolution, each piece has been rewritten from scratch 3-4 times. The team behind UUI built 3 comprehensive UI/UX Design Systems, and 10 applications.",
+            "text": "The current code base results from years of evolution - each piece rewritten from scratch 3-4 times. The team behind UUI built three comprehensive UI/UX Design Systems and tens applications.",
             "marks": []
           }
         ]
@@ -235,7 +235,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "At the start of 2020 we found ourselves as library used by almost 20 EPAM production projects. With all technical chooses settled, we praised backward-compatibility, and focused more on completeness of the solution, and helping existing projects. At the end of 2020, we are in the process to Open-Source UUI.",
+            "text": "At the beginning of 2020, the library was used by almost 20 EPAM production projects. So we praised backward compatibility and focused more on the solution completeness and existing projects’ maintenance. At the end of 2020, we open-sourced UUI.",
             "marks": []
           }
         ]
@@ -247,7 +247,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI's value is not in lines of code, it's in the 7 years of experience that led to them.",
+            "text": "UUI's value is not in lines of code. It is in years of experience that led to them.",
             "marks": []
           }
         ]
@@ -259,7 +259,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Along the way, we watched the evolving UI frameworks (Material UI, Ant Design, and similar) making great progress getting more stable and mature. But we were always a bit ahead in many aspects, and UUI match our needs better. ",
+            "text": "We watched other evolving UI frameworks (Material UI, Ant Design, and similar) progress to become more stable and mature. Whereas we were always ahead in many aspects, and UUI matches our needs better.",
             "marks": []
           }
         ]
@@ -283,7 +283,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI is designed to build apps for our Employees. These apps are balancing between complexity of processes and striving to make UX better. In our apps, there is a lot of user interaction. For us, users are not merely observers, they are the ones who needs to get enough insight to make confident decisions. And to implement this decision without any ceremony.",
+            "text": "Our focus is modern business applications. In our applications, users discover data, get context-aware information, and make decisions. Therefore, we put a lot of effort into UX design and custom solutions.",
             "marks": []
           }
         ]
@@ -295,7 +295,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "There are lots of apps that don't work this way. Instagram, Twitter, news sites - are intended to consume content, not for interaction.",
+            "text": "Most apps also have many admin/back-office screens, which we build on top of usual UI/UX approaches – like Tables and Forms. UUI puts a lot of effort into accelerating the creation of such screens.",
             "marks": []
           }
         ]
@@ -307,7 +307,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "There's also an opposite end we never touch - a system of tables and forms. None of EPAM apps looks like that.",
+            "text": "Besides similar solutions, UUI doesn't limit itself to a components-only library. We can make API calls (with error handling and retries), attach Google Analytics easily, and handle forms and validation. For sure, all this can be obtained from 3rd-party libraries. However, the 3rd-party solution needs efforts to choose and integrate and would never work seamlessly.",
             "marks": []
           }
         ]
@@ -319,20 +319,110 @@
         "nodes": [
           {
             "object": "text",
-            "text": "So UUI is the best fit for apps that enable end-user interactions, exploration, and change. Think of Trello as a good example.  UUI fits great for issue trackers, HRMS, MDM, ERP, and CMS systems.",
+            "text": "UUI's strong points are:",
             "marks": []
           }
         ]
       },
       {
         "object": "block",
-        "type": "paragraph",
+        "type": "unordered-list",
         "data": {},
         "nodes": [
           {
-            "object": "text",
-            "text": "Probably, UUI is not the best fit for landing pages and news sites. However, we have such cases, and UUI works in these scenarios as well.",
-            "marks": []
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "CRUD-heavy applications. UUI has complete components to build data input (Forms) and Data-Discovery (Filtering, Lists, Tables) screens. This also includes state-management primitives",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "WYSIWYG editing experiences – we have a full-featured rich-text editor, built-in drag-n-drop support, an inline mode for input components",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Sharing common patterns. We help developers to build whole screens – with examples, high-level components, consulting, and teaching.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "UUI components can be perfectly fit into a completely custom layout",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "\"Skins.\" UUI is designed to support building-derived libraries with brand-styled components on top of it. This allows deep customization, including component layout changes, custom palettes, and size sets. Two existing 'skins' UUI has built this way.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
