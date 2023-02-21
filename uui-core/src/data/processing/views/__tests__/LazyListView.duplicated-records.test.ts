@@ -255,8 +255,8 @@ describe('LazyListView with tree table', () => {
         view = ds.getView(value, onValueChanged, {});
 
         expectViewToLookLike(view, [
-            { id: 122, depth: 2, indent: 3, isFoldable: false },
-            { isLoading: true, depth: 2, indent: 3 },
+            { id: 122, depth: 2, isFoldable: false },
+            { isLoading: true, depth: 2 },
             { id: 200, depth: 0, indent: 1 },
             { id: 300, depth: 0, indent: 1 },
         ]);
