@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Use alerts when you need to inform users about the result of their action or place inline notifications for the user. Often used inside page content. For overlay notification use ",
+            "text": "Use alerts when you need to inform users about the result of their action or place inline notifications for the user. Often used inside page content. For overlay notifications, we recommend using the ",
             "marks": []
           },
           {
