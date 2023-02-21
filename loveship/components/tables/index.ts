@@ -5,4 +5,3 @@ export * from './DataTableHeaderCell';
 export * from './DataTable';
 export * from './types';
 export * from './columnsConfigurationModal/ColumnsConfigurationModal';
-export * from './ColumnPickerFilter';
