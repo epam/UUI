@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput } from '@epam/loveship';
-import { PersonsTable } from './PersonsTable';
+import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow } from '@epam/loveship';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui-core';
+import { DataSourceState, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens, DataColumnProps } from '@epam/uui-core';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
+import { getColumns } from "./columns";
+import { getFilters } from "./filters";
+import cx from "classnames";
 import css from './PersonsTableDemo.scss';
 
 interface PersonsTableState extends DataSourceState {
@@ -29,6 +31,8 @@ const formatCurrency = (value: number) => {
 };
 
 export const PersonsTableDemo = () => {
+    const { personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
+
     const [summary, setSummary] = React.useState<PersonsSummary & Pick<PersonsApiResponse, 'totalCount'>>({
         totalCount: undefined,
         totalSalary: '',
@@ -169,7 +173,7 @@ export const PersonsTableDemo = () => {
     });
 
     return (
-        <div className={ css.container }>
+        <div className={ cx(css.container, 'uui-theme-loveship') }>
             <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
                 <FlexCell width={ 200 }>
                     <SearchInput { ...lens.prop('search').toProps() } size='30' />
@@ -198,11 +202,20 @@ export const PersonsTableDemo = () => {
                     <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
                 </FlexCell>
             </FlexRow>
-            <PersonsTable
+            <DataTable
+                getRows={ personsDataView.getVisibleRows }
+                columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, any>[] }
                 value={ value }
                 onValueChange={ onValueChange }
-                summary={ summary }
-                view={ personsDataView }
+                filters={ getFilters() }
+            />
+            <DataTableRow
+                columns={ summaryColumns }
+                cx={ css.stickyFooter }
+                id="footer"
+                rowKey="footer"
+                index={ 100500 }
+                value={ summary }
             />
         </div>
     );
