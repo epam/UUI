@@ -19,7 +19,6 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
     }
 
     public load() {
-
         if (this.isLoaded || this.isLoading) {
             return;
         }
