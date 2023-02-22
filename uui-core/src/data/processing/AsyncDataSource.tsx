@@ -53,7 +53,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         if (view) {
             view.update(value, viewProps);
             if (!view.isLoaded) {
-                view.load();
+                view.loadData();
             }
             return view;
         } else {

@@ -18,7 +18,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         this.update(editable.value, props);
     }
 
-    public load() {
+    public loadData() {
         if (this.isLoaded || this.isLoading) {
             return;
         }
