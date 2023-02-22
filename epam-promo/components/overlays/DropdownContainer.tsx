@@ -9,7 +9,6 @@ export
 
 function applyDropdownContainerMods(mods: DropdownContainerMods) {
     return [
-        'uui-theme-promo',
         `dropdown-container-${(mods.color || 'white')}`,
     ];
 }
