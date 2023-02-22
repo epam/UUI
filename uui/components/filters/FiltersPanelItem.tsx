@@ -55,11 +55,15 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     const changePredicate = (val: FilterPredicateName) => {
         const isInRange = (p: FilterPredicateName) => p === 'inRange' || p === 'notInRange';
         if (props.type === 'numeric') {
+            let predicateValue = {
+                [props.field]: { [val]: getValue() },
+            };
             if (isInRange(val) && !isInRange(predicate as FilterPredicateName)) {// from simple predicate -> to Range
-                props.onValueChange({ [props.field]: { [val]: { from: null, to: null } } });
+                predicateValue = { [props.field]: { [val]: { from: null, to: null } } };
             } else if (!isInRange(val) && isInRange(predicate as FilterPredicateName)) {// from Range -> to simple predicate
-                props.onValueChange({ [props.field]: { [val]: null } });
+                predicateValue = { [props.field]: { [val]: null } };
             }
+            props.onValueChange(predicateValue);
         } else {
             props.onValueChange({ [props.field]: { [val]: getValue() } });
         }
