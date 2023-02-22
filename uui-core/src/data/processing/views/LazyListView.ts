@@ -64,7 +64,7 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      * This options is added for the purpose of supporting legacy behavior with fetching data on `getVisibleRows`
      * not to break own implementations of users.
      */
-    loadDataOnGetVisualRows?: boolean;
+    legacyLoadDataBehavior?: boolean;
 }
 
 interface LoadResult<TItem, TId, TFilter> {
@@ -83,10 +83,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
-        { loadDataOnGetVisualRows = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
+        { legacyLoadDataBehavior = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
         cache?: ListApiCache<TItem, TId, TFilter>,
     ) {
-        const newProps = { loadDataOnGetVisualRows, ...props };
+        const newProps = { legacyLoadDataBehavior, ...props };
         super(editable, newProps);
         this.props = this.applyDefaultsToProps(newProps);
         this.tree = Tree.blank<TItem, TId>(newProps);
@@ -127,7 +127,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         this.props = {
             ...props,
-            loadDataOnGetVisualRows: props.loadDataOnGetVisualRows ?? this.props.loadDataOnGetVisualRows,
+            legacyLoadDataBehavior: props.legacyLoadDataBehavior ?? this.props.legacyLoadDataBehavior,
         };
 
         this.updateRowOptions();
@@ -334,7 +334,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     public getVisibleRows = () => {
-        if (this.props.loadDataOnGetVisualRows) {
+        if (this.props.legacyLoadDataBehavior) {
             this.loadData();
         }
 
@@ -366,7 +366,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     public getListProps = (): DataSourceListProps => {
-        if (this.props.loadDataOnGetVisualRows) {
+        if (this.props.legacyLoadDataBehavior) {
             this.loadData();
         }
 

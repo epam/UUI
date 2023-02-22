@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useView } from "./useView";
-import { ListViewHookProps, ListViewProps, UseListProps } from "./types";
-import { createListView, isLazyListViewProps, updateView } from "./helpers";
+import { ListViewProps, ListViewPropsWithDefaults, UseListProps } from "./types";
+import { createView, isLazyListViewProps, updateView } from "./helpers";
 import { DataSourceState } from "../../../types";
 import isEqual from "lodash.isequal";
 
-export function useList<TId, TItem, TFilter>(
+export function useList<TItem, TId, TFilter>(
     { value, onValueChange, loadData, ...props }: UseListProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
@@ -23,24 +23,26 @@ export function useList<TId, TItem, TFilter>(
 
     const defaultGetParentId = (item: TItem): TId => (item as any)['parentId'];
 
-    const mergePropsWithDefaults = (props: ListViewHookProps<TItem, TId, TFilter>): ListViewProps<TItem, TId, TFilter> => {
-        const viewProps = {
+    const mergePropsWithDefaults = (props: ListViewProps<TItem, TId, TFilter>): ListViewPropsWithDefaults<TItem, TId, TFilter> => {
+        const viewProps: ListViewPropsWithDefaults<TItem, TId, TFilter> = {
             ...props,
             getId: props.getId ?? getId,
             getParentId: props.getParentId ?? defaultGetParentId,
         };
-        if (isLazyListViewProps(props)) {
+        if (isLazyListViewProps(viewProps)) {
             return {
                 ...viewProps,
-                loadDataOnGetVisualRows: props.loadDataOnGetVisualRows ?? false,
+                legacyLoadDataBehavior: viewProps.legacyLoadDataBehavior ?? false,
             };
         }
+
         return viewProps;
     };
 
     const viewProps = mergePropsWithDefaults(props);
+
     const view = useView(
-        () => createListView({ value, onValueChange }, viewProps),
+        () => createView({ value, onValueChange }, viewProps),
         deps,
     );
 
@@ -55,10 +57,17 @@ export function useList<TId, TItem, TFilter>(
 
     const rows = useMemo(() => view.getVisibleRows(), [view, value]);
     const listProps = useMemo(() => view.getListProps(), [view, value]);
-    const selectedRows = useMemo(() => view.getSelectedRows(), [view, value]);
+
+    const getSelectedRows = view.getSelectedRows;
 
     return useMemo(
-        () => ({ view, rows, selectedRows, ...listProps }),
-        [view, rows, selectedRows, listProps],
+        () => ({
+            rows,
+            listProps,
+            getSelectedRows: view.getSelectedRows,
+            selectAll: view.selectAll,
+            getById: view.getById,
+        }),
+        [view, rows, getSelectedRows, listProps],
     );
 }
