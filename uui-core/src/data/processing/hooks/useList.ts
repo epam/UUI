@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useView } from "./useView";
 import { ListViewHookProps, ListViewProps, UseListProps } from "./types";
-import { createListView, updateView } from "./helpers";
+import { createListView, isLazyListViewProps, updateView } from "./helpers";
+import { DataSourceState } from "../../../types";
+import isEqual from "lodash.isequal";
 
 export function useList<TId, TItem, TFilter>(
     { value, onValueChange, loadData, ...props }: UseListProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
     const loadDataRef = useRef(false);
-    const valueRef = useRef(value);
+    const valueRef = useRef<DataSourceState<TFilter, TId>>(value);
 
     const getId = (item: TItem & { id?: TId }) => {
         if (item == null) return null;
@@ -21,18 +23,30 @@ export function useList<TId, TItem, TFilter>(
 
     const defaultGetParentId = (item: TItem): TId => (item as any)['parentId'];
 
-    const mergePropsWithDefault = (props: ListViewHookProps<TItem, TId, TFilter>): ListViewProps<TItem, TId, TFilter> =>
-        ({ ...props, getId: props.getId ?? getId, getParentId: props.getParentId ?? defaultGetParentId });
+    const mergePropsWithDefault = (props: ListViewHookProps<TItem, TId, TFilter>): ListViewProps<TItem, TId, TFilter> => {
+        const viewProps = {
+            ...props,
+            getId: props.getId ?? getId,
+            getParentId: props.getParentId ?? defaultGetParentId,
+        };
+        if (isLazyListViewProps(props)) {
+            return {
+                ...viewProps,
+                loadDataOnGetVisualRows: props.loadDataOnGetVisualRows ?? false,
+            };
+        }
+        return viewProps;
+    };
 
-    const viewProps = useMemo(() => mergePropsWithDefault(props), []);
-
+    const viewProps = mergePropsWithDefault(props);
     const view = useView(
         () => createListView({ value, onValueChange }, viewProps),
         deps,
     );
 
     useEffect(() => {
-        if (loadDataRef.current !== loadData && loadData || valueRef.current !== value) {
+        const isLoadUpdated = loadDataRef.current !== loadData && loadData;
+        if (isLoadUpdated || (loadData && !isEqual(valueRef.current, value))) {
             updateView(view, value, viewProps);
         }
         loadDataRef.current = loadData;

@@ -61,28 +61,16 @@ export const FilteredTable: React.FC = () => {
         return result;
     }, [tableStateApi.tableState.page, tableStateApi.tableState.pageSize]);
 
-    // const dataSource = useLazyDataSource<Person, number, Person>({
-    //     api: api,
-    //     selectAll: false,
-    // }, []);
-
-    // const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
-    //     rowOptions: {
-    //         isSelectable: true,
-    //     },
-    // });
-    const { view } = useList({
-        value: tableStateApi.tableState,
-        onValueChange: tableStateApi.setTableState,
+    const { view, rows, selectedRows, ...listProps } = useList({
         type: 'lazy',
         api: api,
+        value: tableStateApi.tableState,
+        onValueChange: tableStateApi.setTableState,
         selectAll: false,
-        rowOptions: {
-            isSelectable: true,
-        },
+        rowOptions: { isSelectable: true },
         loadData: true,
     }, []);
-    console.log('view', view);
+
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({ ...tableStateApi.tableState, search: val });
 
     const { setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi } = tableStateApi;
@@ -119,7 +107,7 @@ export const FilteredTable: React.FC = () => {
                 showColumnsConfig={ true }
                 allowColumnsResizing={ true }
                 allowColumnsReordering={ true }
-                { ...view.getListProps() }
+                { ...listProps }
             />
             <FilteredTableFooter
                 tableState={ tableStateApi.tableState }
