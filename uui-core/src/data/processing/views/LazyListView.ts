@@ -61,8 +61,9 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
     flattenSearchResults?: boolean;
 
     /**
-     * This options is added for the purpose of supporting legacy behavior with fetching data on `getVisibleRows`
-     * not to break own implementations of users.
+     * This options is added for the purpose of supporting legacy behavior of fetching data
+     * on `getVisibleRows` and `getListProps`, not to break users' own implementation of datasources.
+     * @default true
      */
     legacyLoadDataBehavior?: boolean;
 }
