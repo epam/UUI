@@ -133,7 +133,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.updateRowOptions();
     }
 
-    public load(): void {
+    public loadData(): void {
         if (!this.isUpdatePending) {
             return;
         }
@@ -335,7 +335,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public getVisibleRows = () => {
         if (this.props.loadDataOnGetVisualRows) {
-            this.load();
+            this.loadData();
         }
 
         const from = this.value.topIndex;
@@ -367,7 +367,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public getListProps = (): DataSourceListProps => {
         if (this.props.loadDataOnGetVisualRows) {
-            this.load();
+            this.loadData();
         }
 
         let rowsCount: number;

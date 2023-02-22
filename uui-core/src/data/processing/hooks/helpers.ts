@@ -40,5 +40,5 @@ export const updateView = <TId, TItem, TFilter>(
         view.update(value, props);
     }
 
-    view.load();
+    view.loadData();
 };

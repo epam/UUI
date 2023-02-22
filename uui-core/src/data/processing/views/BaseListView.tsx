@@ -398,8 +398,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         hasMoreRows: parentStats.hasMoreRows || childStats.hasMoreRows,
     })
 
-    public load() {}
-
     protected canBeSelected = (row: DataRowProps<TItem, TId>) =>
         row.checkbox && row.checkbox.isVisible && !row.checkbox.isDisabled
 
@@ -433,4 +431,5 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected abstract getChildCount(item: TItem): number | undefined;
     protected isFlattenSearch = () => false;
     protected isPartialLoad = () => false;
+    public loadData() {}
 }
