@@ -461,8 +461,8 @@
     --uui-switch-toggler-border-checked-disabled: var(--uui-control-bg-checked-disabled);
 
     /* DropdownContainer */
+    --uui-dropdown-container-border-radius: 0;
     --uui-dropdown-container-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
-    --uui-dropdown-container-scrollbar-thumb: var(--uui-scroll);
 
     /* MainMenu */
     --uui-main-menu-bg: var(--gray80);
@@ -991,5 +991,13 @@
     :global(.uui-font-promo),
     :global(.uui-font-museo-slab) {
         --uui-font: var(--font-promo);
+    }
+
+    :global(.dropdown-container-white) {
+        --uui-dropdown-container-bg: var(--white);
+    }
+
+    :global(.dropdown-container-gray70) {
+        --uui-dropdown-container-bg: var(--gray70);
     }
 }
