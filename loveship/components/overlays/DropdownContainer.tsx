@@ -7,7 +7,6 @@ export interface DropdownContainerMods {
 
 function applyDropdownContainerMods(mods: DropdownContainerMods) {
     return [
-        'uui-theme-loveship',
         `dropdown-container-${mods.color || 'white'}`,
     ];
 }
