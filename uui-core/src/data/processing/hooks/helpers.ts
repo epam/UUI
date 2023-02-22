@@ -1,19 +1,18 @@
 import { ArrayListView, AsyncListView, AsyncListViewProps, LazyListView } from "../views";
 import { DataSourceState, IEditable } from "../../../types";
-import { ListView, ListViewHookProps, UseLazyListProps } from "./types";
+import { AsyncListProps, LazyListProps, ListView, ListViewProps, ListViewPropsWithDefaults } from "./types";
 
 export const isLazyListViewProps = <TId, TItem, TFilter>(
-    props: ListViewHookProps<TItem, TId, TFilter>,
-): props is UseLazyListProps<TItem, TId, TFilter> =>
-    'api' in props && (props as UseLazyListProps<TItem, TId, TFilter>).type === 'lazy';
+    props: ListViewProps<TItem, TId, TFilter>,
+): props is LazyListProps<TItem, TId, TFilter> => props.type === 'lazy';
 
 export const isAsyncListViewProps = <TId, TItem, TFilter>(
-    props: ListViewHookProps<TItem, TId, TFilter>,
-): props is AsyncListViewProps<TItem, TId, TFilter> => 'api' in props;
+    props: ListViewProps<TItem, TId, TFilter>,
+): props is AsyncListProps<TItem, TId, TFilter> => props.type === 'async';
 
-export const createListView = <TId, TItem, TFilter>(
+export const createView = <TId, TItem, TFilter>(
     editable: IEditable<DataSourceState<TFilter, TId>>,
-    props: ListViewHookProps<TItem, TId, TFilter>,
+    props: ListViewPropsWithDefaults<TItem, TId, TFilter>,
 ) => {
     if (isLazyListViewProps(props)) {
         const { type, ...viewProps } = props;
@@ -30,7 +29,7 @@ export const createListView = <TId, TItem, TFilter>(
 export const updateView = <TId, TItem, TFilter>(
     view: ListView<TItem, TId, TFilter>,
     value: DataSourceState<TFilter, TId>,
-    props: ListViewHookProps<TItem, TId, TFilter>,
+    props: ListViewPropsWithDefaults<TItem, TId, TFilter>,
 ) => {
     if (isLazyListViewProps(props) && view instanceof LazyListView) {
         const { type, ...viewProps } = props;
