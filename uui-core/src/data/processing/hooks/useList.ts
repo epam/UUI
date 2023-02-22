@@ -23,7 +23,7 @@ export function useList<TId, TItem, TFilter>(
 
     const defaultGetParentId = (item: TItem): TId => (item as any)['parentId'];
 
-    const mergePropsWithDefault = (props: ListViewHookProps<TItem, TId, TFilter>): ListViewProps<TItem, TId, TFilter> => {
+    const mergePropsWithDefaults = (props: ListViewHookProps<TItem, TId, TFilter>): ListViewProps<TItem, TId, TFilter> => {
         const viewProps = {
             ...props,
             getId: props.getId ?? getId,
@@ -38,7 +38,7 @@ export function useList<TId, TItem, TFilter>(
         return viewProps;
     };
 
-    const viewProps = mergePropsWithDefault(props);
+    const viewProps = mergePropsWithDefaults(props);
     const view = useView(
         () => createListView({ value, onValueChange }, viewProps),
         deps,
