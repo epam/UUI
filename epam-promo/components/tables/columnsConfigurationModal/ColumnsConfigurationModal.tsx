@@ -9,11 +9,10 @@ import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-up
 //
 import {
     FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, Dropdown, Badge,
-    DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Text, Tooltip,
-} from "../../../.";
+    DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Text, Tooltip, SearchInput,
+} from "../../../components";
 import { i18n } from '../../../i18n';
 import { ColumnRow } from "./ColumnRow";
-import { SearchInput } from "@epam/uui";
 
 const i18nLocal = i18n.tables.columnsConfigurationModal;
 
