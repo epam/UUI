@@ -41,6 +41,7 @@ export const ProductsTableDemo: React.FC = (props) => {
     });
 
     const [tableState, setTableState] = React.useState({});
+
     const { rows, listProps } = useList({
         type: 'lazy',
         api: svc.api.demo.products,

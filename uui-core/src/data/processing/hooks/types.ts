@@ -27,5 +27,10 @@ export type ListViewPropsWithDefaults<TItem, TId, TFilter> = (
 };
 
 export type UseListProps<TItem, TId, TFilter> = ListViewProps<TItem, TId, TFilter> & IEditable<DataSourceState<TFilter, TId>> & {
+    /**
+     * If data loading has to be postponed, this flag has to be set to false.
+     * Changing the flag to `true` will trigger data loading.
+     * @default true
+     */
     loadData?: boolean;
 };
