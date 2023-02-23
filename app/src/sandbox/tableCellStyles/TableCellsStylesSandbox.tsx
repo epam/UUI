@@ -108,7 +108,7 @@ export default function TableCellsStylesSandbox() {
     const SkinDataTableCell = skin.DataTableCell as React.FC<DataTableCellProps & { background: any }>;
 
     // Use form to manage state of the editable table
-    const { lens, validate, save, validationProps } = useForm<FormState>({
+    const { lens, save } = useForm<FormState>({
         value: { items },
         onSave: () => Promise.resolve(),
         getMetadata: () => metadata,
