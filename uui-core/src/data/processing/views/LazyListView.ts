@@ -194,8 +194,17 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         });
     }
 
-    public reload() {
-        this.tree = null;
+    private initCache() {
+        this.cache = new ListApiCache({
+            api: this.props.api,
+            getId: this.props.getId,
+            onUpdate: () => this._forceUpdate(),
+        });
+    }
+
+    public reload = () => {
+        this.tree = Tree.blank(this.props);
+        this.initCache();
         this.update(this.value, this.props);
         this._forceUpdate();
     }

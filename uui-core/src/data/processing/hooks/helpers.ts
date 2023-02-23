@@ -44,3 +44,32 @@ export const updateView = <TId, TItem, TFilter>(
         view.update(value, viewProps);
     }
 };
+
+export const mergePropsWithDefaults = <TItem, TId, TFilter>(
+    props: ListViewProps<TItem, TId, TFilter>,
+): ListViewPropsWithDefaults<TItem, TId, TFilter> => {
+    const getId = (item: TItem & { id?: TId }) => {
+        if (item == null) return null;
+        const id = props.getId?.(item) || item.id;
+        if (id == null) {
+            throw new Error(`Item ID not found. Check 'getId' prop value. Item: ${ JSON.stringify(item) }`);
+        }
+        return id;
+    };
+
+    const defaultGetParentId = (item: TItem): TId => (item as any)['parentId'];
+
+    const viewProps: ListViewPropsWithDefaults<TItem, TId, TFilter> = {
+        ...props,
+        getId: props.getId ?? getId,
+        getParentId: props.getParentId ?? defaultGetParentId,
+    };
+    if (isLazyListViewProps(viewProps)) {
+        return {
+            ...viewProps,
+            legacyLoadDataBehavior: viewProps.legacyLoadDataBehavior ?? false,
+        };
+    }
+
+    return viewProps;
+};
