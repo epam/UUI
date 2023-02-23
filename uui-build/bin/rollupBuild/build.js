@@ -1,10 +1,18 @@
+const { getCliArgValue, hasCliArg } = require("../../utils/cmdUtils");
+
 function main() {
     const spawn = require("cross-spawn");
     const args = [
         '-c', require.resolve('./rollup.config.js'),
     ];
-    if (process.argv.includes("--watch")) {
+    if (hasCliArg("--watch")) {
         args.push('--watch')
+    }
+
+    const rootRelativePathArgName = "--monorepo-root-relative-path";
+    const rootRelativePathArgValue = getCliArgValue(rootRelativePathArgName);
+    if (rootRelativePathArgValue) {
+        args.push(rootRelativePathArgName, rootRelativePathArgValue)
     }
     spawn.sync("rollup", args, { encoding: "utf8", stdio: "inherit" });
 }
