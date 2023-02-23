@@ -81,6 +81,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private isUpdatePending = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
+    private reloading: boolean = false;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
@@ -148,12 +149,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         let completeReset = false;
         if (prevValue == null
             || prevProps == null
-            || this.tree.isEqual(Tree.blank(this.props))
+            || this.reloading
             || this.shouldRebuildTree(this.value, prevValue)
             || !isEqual(this.props.filter, prevProps.filter)
         ) {
             this.tree = this.tree.clearStructure();
             completeReset = true;
+            this.reloading = false;
         }
 
         let isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
@@ -203,6 +205,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public reload = () => {
         this.tree = Tree.blank(this.props);
+        this.reloading = true;
         this.initCache();
         this.update(this.value, this.props);
         this._forceUpdate();
