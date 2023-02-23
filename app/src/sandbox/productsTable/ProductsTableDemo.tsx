@@ -48,7 +48,6 @@ export const ProductsTableDemo: React.FC = (props) => {
         getRowOptions: product => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),
         value: tableState,
         onValueChange: setTableState,
-        loadData: true,
     }, []);
 
     return <Panel style={ { width: '100%' } }>
