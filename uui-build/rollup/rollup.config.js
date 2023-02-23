@@ -21,7 +21,7 @@ const BUILD_OUTPUT_DIR = "build";
 
 module.exports = { createRollupConfigForModule };
 
-const monoRepoRootRelativePath = getCliArgValue("--monorepo-root-relative-path") || '..'
+const monoRepoRootRelativePath = getCliArgValue("--configMonorepoRootRelative") || '..'
 
 /**
  * Creates rollup config for the module.

@@ -9,7 +9,7 @@ function main() {
         args.push('--watch')
     }
 
-    const rootRelativePathArgName = "--monorepo-root-relative-path";
+    const rootRelativePathArgName = "--configMonorepoRootRelative";
     const rootRelativePathArgValue = getCliArgValue(rootRelativePathArgName);
     if (rootRelativePathArgValue) {
         args.push(rootRelativePathArgName, rootRelativePathArgValue)
