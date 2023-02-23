@@ -7,9 +7,9 @@ import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
 import { ModalBlocker, ModalWindow, ModalHeader, ModalFooter } from '../overlays';
 import { LinkButton, Button } from '../buttons';
 import { SearchInput } from "@epam/uui";
-import { Switch } from "../.";
 import { DataPickerRow } from './DataPickerRow';
-import { Text, TextPlaceholder } from '../.';
+import { Text } from '../typography';
+import { TextPlaceholder, Switch } from '../../components';
 import { i18n } from "../../i18n";
 import { ReactComponent as SearchIcon } from '../../icons/search-with-background.svg';
 

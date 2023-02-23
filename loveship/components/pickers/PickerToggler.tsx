@@ -3,7 +3,7 @@ import * as types from '../types';
 import colorStyle from '../../assets/styles/scss/loveship-color-vars.scss';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
-import { TextPlaceholder } from '../.';
+import { TextPlaceholder } from '../../components';
 import { systemIcons } from '../icons/icons';
 import { Tag } from '../widgets';
 import { TagSize } from '@epam/uui';

@@ -13,7 +13,8 @@ export * from './tables';
 export * from './datePickers';
 export * from './forms';
 export * from './dev';
-export {
-    FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder,
-} from "@epam/uui";
 export { UploadFileToggler } from '@epam/uui-components';
+export {
+    FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder
+} from "@epam/uui";
+export type { NumericInputMods } from "@epam/uui";

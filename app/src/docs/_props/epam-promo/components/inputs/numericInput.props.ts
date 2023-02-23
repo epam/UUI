@@ -1,7 +1,6 @@
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { NumericInputProps } from '@epam/uui-components';
-import { NumericInput } from '@epam/promo';
-import { NumericInputMods } from '@epam/uui';
+import { NumericInput, NumericInputMods } from '@epam/promo';
 import { DefaultContext, FormContext, iEditable, iHasPlaceholder, isDisabledDoc, sizeDoc, TableContext } from '../../docs';
 
 const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ name: 'NumericInput', component: NumericInput })

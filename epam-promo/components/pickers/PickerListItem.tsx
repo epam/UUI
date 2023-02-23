@@ -2,7 +2,7 @@ import React from "react";
 import css from "./PickerListItem.scss";
 import { DataRowProps } from "@epam/uui-core";
 import { Checkbox, RadioInput } from "../inputs";
-import { TextPlaceholder } from "../.";
+import { TextPlaceholder } from "../../components";
 
 export interface PickerListItemProps<TItem, TId> extends DataRowProps<TItem, TId> {
     getName(item: TItem): string;

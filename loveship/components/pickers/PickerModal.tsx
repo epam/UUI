@@ -4,10 +4,11 @@ import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard } from '@ep
 import { DataPickerBody } from './DataPickerBody';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
 import { ModalBlocker, ModalWindow, ModalHeader } from '../overlays';
-import { Switch, SearchInput } from '../.';
+import { SearchInput } from '../inputs';
+import { Switch, TextPlaceholder } from '../../components';
+import { Text } from '../typography';
 import { LinkButton, Button } from '../buttons';
 import { DataPickerRow } from './DataPickerRow';
-import { Text, TextPlaceholder } from '../.';
 import { i18n } from "../../i18n";
 import css from './PickerModal.scss';
 

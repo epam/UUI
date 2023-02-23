@@ -1,7 +1,6 @@
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { RadioInputProps } from '@epam/uui-components';
-import { RadioInput } from '@epam/promo';
-import { RadioInputMods } from '@epam/uui';
+import { RadioInput, RadioInputMods } from '@epam/promo';
 import { isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable } from '../../docs';
 import { DefaultContext, FormContext } from '../../docs';
 
