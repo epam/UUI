@@ -32,7 +32,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         });
     }
 
-    public reload() {
+    public reload = () => {
         this.isLoading = false;
         this.isLoaded = false;
         super.reload();

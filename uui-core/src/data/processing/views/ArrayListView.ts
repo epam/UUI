@@ -60,7 +60,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.updateRowOptions();
     }
 
-    public reload() {
+    public reload = () => {
         this.update(this.editable.value, { ...this.props, items: [] });
         this._forceUpdate();
     }
