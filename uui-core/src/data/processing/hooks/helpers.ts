@@ -38,6 +38,4 @@ export const updateView = <TId, TItem, TFilter>(
     if ((isAsyncListViewProps(props) && view instanceof AsyncListView) || view instanceof ArrayListView) {
         view.update(value, props);
     }
-
-    view.loadData();
 };
