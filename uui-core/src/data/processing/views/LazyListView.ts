@@ -197,6 +197,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public reload() {
         this.tree = null;
         this.update(this.value, this.props);
+        this._forceUpdate();
     }
 
     public getById = (id: TId, index: number) => {

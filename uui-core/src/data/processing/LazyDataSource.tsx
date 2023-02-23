@@ -37,8 +37,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
 
     public clearCache() {
         this.initCache();
-        this.views.forEach((view: any) => view.reload());
-        this.updateViews();
+        this.views.forEach((view) => view.reload());
     }
 
     public getView = <TState extends DataSourceState<any, TId>>(

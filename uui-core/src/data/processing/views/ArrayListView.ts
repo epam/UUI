@@ -24,7 +24,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     sortedTree: Tree<TItem, TId>;
 
     constructor(
-        editable: IEditable<DataSourceState<TFilter, TId>>,
+        protected editable: IEditable<DataSourceState<TFilter, TId>>,
         props: ArrayListViewProps<TItem, TId, TFilter>,
     ) {
         super(editable, props);
@@ -58,6 +58,11 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             }
         }
         this.updateRowOptions();
+    }
+
+    public reload() {
+        this.update(this.editable.value, { ...this.props, items: [] });
+        this._forceUpdate();
     }
 
     private isCacheIsOutdated(newValue: DataSourceState<TFilter, TId>, prevValue: DataSourceState<TFilter, TId>) {
