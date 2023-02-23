@@ -5,7 +5,7 @@ import { RangeDatePicker as UuiRangeDatePicker, RangeDatePickerProps } from '@ep
 export const RangeDatePicker = withMods<RangeDatePickerProps>(
     UuiRangeDatePicker, () => {},
     (props) => ({
-        inputCx: [props.inputCx, 'uui-theme-promo'],
-        bodyCx: [props.bodyCx, 'uui-theme-promo'],
+        inputCx: [props.inputCx],
+        bodyCx: [props.bodyCx],
     }),
 );

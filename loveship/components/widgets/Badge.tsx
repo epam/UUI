@@ -14,7 +14,6 @@ export interface BadgeMods {
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
-        'uui-theme-loveship',
         css['style-' + (mods.shape || 'square')],
         css['fill-' + (mods.fill || 'solid')],
         css['size-' + (mods.size || defaultSize)],

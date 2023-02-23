@@ -8,10 +8,4 @@ export interface LinkButtonMods extends TextSettings {
     font?: types.FontStyle;
 }
 
-function applyLinkButtonMods() {
-    return [
-        'uui-theme-loveship',
-    ];
-}
-
-export const LinkButton = withMods<LinkButtonProps, LinkButtonMods>(UuiLinkButton, applyLinkButtonMods);
+export const LinkButton = withMods<LinkButtonProps, LinkButtonMods>(UuiLinkButton, () => {});

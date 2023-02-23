@@ -3,7 +3,7 @@ import { PickerInputBaseProps } from '@epam/uui-components';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInput, PickerInputProps } from '@epam/promo';
 import { Button, LinkButton } from '@epam/promo';
-import { SearchInput } from '@epam/promo';
+import { SearchInput } from '@epam/uui';
 import { iconDoc, iconOptionsDoc, iEditable, isDisabledDoc } from '../../docs';
 import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext } from '../../docs';
 import { pickerBaseOptionsDoc } from './common';

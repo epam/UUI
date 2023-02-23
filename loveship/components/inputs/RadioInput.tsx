@@ -11,7 +11,6 @@ export interface RadioInputProps extends  RadioInputMods, UuiRadioInputProps {}
 
 function applyRadioInputMods(mods: RadioInputProps) {
     return [
-        'uui-theme-loveship',
         mods.theme === 'dark' && css.themeDark,
     ];
 }

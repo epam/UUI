@@ -8,11 +8,12 @@ import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 //
 import {
-    FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, SearchInput, Dropdown, Badge,
+    FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, Dropdown, Badge,
     DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Text, Tooltip,
 } from "../../../.";
 import { i18n } from '../../../i18n';
 import { ColumnRow } from "./ColumnRow";
+import { SearchInput } from "@epam/uui";
 
 const i18nLocal = i18n.tables.columnsConfigurationModal;
 

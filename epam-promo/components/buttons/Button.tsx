@@ -19,13 +19,11 @@ const mapFillToMod: Record<FillStyle, ButtonMode> = {
     none: 'none',
 };
 
-export const applyButtonMods = () => ['uui-theme-promo'];
-
 export type ButtonProps = Omit<UuiButtonProps, "color"> & ButtonMods;
 
 export const Button = withMods<Omit<UuiButtonProps, "color">, ButtonMods>(
     uuiButton,
-    applyButtonMods,
+    () => {},
     (props) => ({
         mode: mapFillToMod[props.fill] || mapFillToMod.solid,
     }),

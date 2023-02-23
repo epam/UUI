@@ -11,7 +11,6 @@ export interface TagMods extends UuiTagMods {
 
 export function applyTagMods(mods: TagMods) {
     return [
-        'uui-theme-loveship',
         css.root,
         css['fill-' + (mods.fill || 'solid')],
     ];

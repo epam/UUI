@@ -14,7 +14,6 @@ export interface TextInputMods extends types.IHasEditMode {
 
 export function applyTextInputMods(mods: TextInputMods) {
     return [
-        'uui-theme-loveship',
         css['size-' + (mods.size || defaultSize)],
     ];
 }
