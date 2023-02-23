@@ -43,31 +43,29 @@ export function useList<TItem, TId, TFilter>(
 
     const view = useView(
         () => createView({ value, onValueChange }, viewProps),
+        (current) => updateView(current, value, viewProps),
         deps,
     );
 
     useEffect(() => {
         const isLoadUpdated = loadDataRef.current !== loadData && loadData;
         if (isLoadUpdated || (loadData && !isEqual(valueRef.current, value))) {
-            updateView(view, value, viewProps);
+            view.loadData();
         }
+
         loadDataRef.current = loadData;
         valueRef.current = value;
     }, [loadData, view, value]);
 
-    const rows = useMemo(() => view.getVisibleRows(), [view, value]);
+
+    const rows = view.getVisibleRows();
     const listProps = useMemo(() => view.getListProps(), [view, value]);
 
-    const getSelectedRows = view.getSelectedRows;
-
-    return useMemo(
-        () => ({
-            rows,
-            listProps,
-            getSelectedRows: view.getSelectedRows,
-            selectAll: view.selectAll,
-            getById: view.getById,
-        }),
-        [view, rows, getSelectedRows, listProps],
-    );
+    return {
+        rows,
+        listProps,
+        getSelectedRows: view.getSelectedRows,
+        selectAll: view.selectAll,
+        getById: view.getById,
+    };
 }
