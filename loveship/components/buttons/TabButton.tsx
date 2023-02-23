@@ -8,7 +8,6 @@ export interface TabButtonMods extends UuiTabButtonProps {
 
 function applyTabButtonMods(mods: TabButtonMods & UuiTabButtonProps) {
     return [
-        'uui-theme-loveship',
         mods.theme === 'dark' && css.themeDark,
     ];
 }

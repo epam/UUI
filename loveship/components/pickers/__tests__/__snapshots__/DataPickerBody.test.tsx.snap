@@ -25,7 +25,7 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
     }
   >
     <div
-      className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
+      className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 container"
     >
       No Results found
     </div>
@@ -58,7 +58,7 @@ exports[`DataPickerBody should be rendered correctly with empty rows 1`] = `
     }
   >
     <div
-      className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship container"
+      className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 container"
     >
       No Results found
     </div>
@@ -85,7 +85,7 @@ Array [
       }
     >
       <div
-        className="container uui-input-box -clickable root size-24 mode-form uui-theme-loveship size-24 search"
+        className="container uui-input-box -clickable root size-24 mode-form size-24 search"
         onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}

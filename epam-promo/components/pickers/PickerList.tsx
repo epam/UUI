@@ -10,7 +10,7 @@ import {
 } from "@epam/uui-core";
 import { Text } from "../typography";
 import { TextSize, SizeMod } from "../types";
-import { LinkButton } from "../buttons";
+import { LinkButton } from "../.";
 import { PickerListItem } from "./PickerListItem";
 import { PickerModal } from "./PickerModal";
 

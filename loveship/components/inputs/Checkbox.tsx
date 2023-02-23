@@ -1,4 +1,3 @@
-import * as types from '../types';
 import { Checkbox as uuiCheckbox, CheckboxProps, CheckboxMods as UuiCheckboxMods } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 import css from './Checkbox.scss';
@@ -11,7 +10,6 @@ export interface CheckboxMods extends UuiCheckboxMods {
 
 export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
     return [
-        'uui-theme-loveship',
         mods.theme === 'dark' && css['theme-dark'],
     ];
 }

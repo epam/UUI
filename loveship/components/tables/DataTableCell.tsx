@@ -2,7 +2,7 @@ import React from 'react';
 import { uuiMarkers, DataTableCellProps } from '@epam/uui-core';
 import { IconContainer, DragHandle, DataTableCell as UuiDataTableCell } from '@epam/uui-components';
 import { Checkbox } from '../inputs';
-import { TextPlaceholder, Text } from '../typography';
+import { TextPlaceholder, Text } from '../.';
 import { Tooltip } from '../overlays';
 import { DataTableCellMods } from './types';
 

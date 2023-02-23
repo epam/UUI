@@ -1,7 +1,7 @@
 import React from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { RadioInput, Checkbox } from '../inputs';
-import { TextPlaceholder } from '../typography';
+import { TextPlaceholder } from '../.';
 import css from './PickerListItem.scss';
 import { Theme } from '../types';
 

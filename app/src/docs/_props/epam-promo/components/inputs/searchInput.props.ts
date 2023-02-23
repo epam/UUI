@@ -1,5 +1,5 @@
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { SearchInput } from '@epam/promo';
+import { SearchInput } from '@epam/uui';
 import {
     iEditable, sizeDoc, iHasPlaceholder, onClickDoc, isDisabledDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc,
     DefaultContext, FormContext, ResizableContext, TableContext,

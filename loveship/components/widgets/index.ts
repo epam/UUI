@@ -7,7 +7,6 @@ export * from './EmbeddedWidget';
 export * from './PageButton';
 export * from './Paginator';
 export * from './Spinner';
-export * from './UploadFileToggler';
 export * from './Tag';
 export * from './ProgressBar';
 export * from './IndicatorBar';

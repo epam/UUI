@@ -11,18 +11,12 @@ export interface AlertMods {
     color?: EpamPrimaryColor;
 }
 
-function applyAlertdMods() {
-    return [
-        'uui-theme-promo',
-    ];
-}
-
 export interface AlertProps extends Omit<uuiAlertProps, 'color'>, AlertMods {}
 
 
 export const Alert = withMods<Omit<uuiAlertProps, 'color'>, AlertMods>(
     uuiAlert,
-    applyAlertdMods,
+    () => {},
     (props) => ({
         ...props,
         color: props.color ?? 'blue',

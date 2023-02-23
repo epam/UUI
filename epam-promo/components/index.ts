@@ -13,4 +13,7 @@ export * from './tables';
 export * from './dnd';
 export * from './fileUpload';
 export * from './errors';
-export { FiltersPanel, PresetsPanel, defaultPredicates } from "@epam/uui";
+export {
+    FiltersPanel, PresetsPanel, defaultPredicates, TabButton, VerticalTabButton, Calendar, NumericInput,
+    Switch, TextArea, Dropdown, TextPlaceholder, Tag,
+} from "@epam/uui";

@@ -13,13 +13,11 @@ const colorToMod: Record<MultiSwitchColor, UuiMultiSwitchColor> = {
     'night600': 'secondary',
 };
 
-const applyMultiSwitchMods = () => ['uui-theme-loveship'];
-
 export type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;
 
 export const MultiSwitch = withMods<UuiMultiSwitchProps<any>, MultiSwitchMods>(
     UuiMultiSwitch,
-    applyMultiSwitchMods,
+    () => {},
     (props) => ({
         color: colorToMod[props.color ?? 'sky'],
     }),

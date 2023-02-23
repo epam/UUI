@@ -5,7 +5,6 @@ import css from "./VerticalTabButton.scss";
 
 function applyVerticalTabButtonMods() {
     return [
-        'uui-theme-loveship',
         css.root,
     ];
 }

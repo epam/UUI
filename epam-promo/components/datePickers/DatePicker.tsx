@@ -5,7 +5,7 @@ import { DatePicker as UuiDatePicker, DatePickerProps } from '@epam/uui';
 export const DatePicker = withMods<DatePickerProps>(
     UuiDatePicker, () => {},
     (props) => ({
-        inputCx: [props.inputCx, 'uui-theme-promo'],
-        bodyCx: [props.bodyCx, 'uui-theme-promo'],
+        inputCx: [props.inputCx],
+        bodyCx: [props.bodyCx],
     }),
 );

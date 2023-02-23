@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataRowProps, Icon } from '@epam/uui-core';
 import { AvatarProps, IconContainer } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout/FlexItems';
-import { Text, TextPlaceholder } from '../typography';
+import { Text, TextPlaceholder } from '../.';
 import { Avatar } from '../widgets';
 import { SizeMod } from '../types';
 import css from './PickerItem.scss';
