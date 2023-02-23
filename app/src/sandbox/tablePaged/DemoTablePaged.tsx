@@ -45,10 +45,6 @@ export const DemoTablePaged: React.FC = () => {
         applyFilter();
     }, []);
 
-    const dataSource = useLazyDataSource({
-        api,
-    }, [api]);
-
     const rowOptions: DataRowOptions<Person, number> = {
         checkbox: { isVisible: true },
         isSelectable: true,
@@ -61,11 +57,6 @@ export const DemoTablePaged: React.FC = () => {
         ...tableState,
         filter: appliedFilter,
     }), [tableState, appliedFilter]);
-
-    const personsDataView = dataSource.useView(viewTableState, setTableState, {
-        rowOptions,
-        isFoldedByDefault: () => true,
-    });
 
     const { rows, listProps } = useList({
         type: 'lazy',
