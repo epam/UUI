@@ -24,12 +24,8 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         super.setProps(props);
     }
 
-    isLoading: boolean = false;
-    isLoaded: boolean = false;
-
     reload() {
-        this.isLoading = false;
-        this.isLoaded = false;
+        this.views.forEach((view) => view.reload());
         this.setProps({ ...this.props, items: [] });
     }
 

@@ -432,4 +432,5 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected isFlattenSearch = () => false;
     protected isPartialLoad = () => false;
     public loadData() {}
+    public abstract reload(): void;
 }

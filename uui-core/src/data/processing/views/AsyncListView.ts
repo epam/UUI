@@ -32,6 +32,12 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         });
     }
 
+    public reload() {
+        this.isLoading = false;
+        this.isLoaded = false;
+        super.reload();
+    }
+
     public getVisibleRows = () => {
         const from = this.value.topIndex;
         const count = this.value.visibleCount;
