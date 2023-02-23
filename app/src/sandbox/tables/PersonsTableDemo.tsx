@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button } from '@epam/loveship';
 import { PersonsTable } from './PersonsTable';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
+import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens, LazyDataSourceApi } from '@epam/uui';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
 import css from './PersonsTableDemo.scss';
@@ -53,86 +53,88 @@ export const PersonsTableDemo = () => {
 
     const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
-    const { rows, listProps, selectAll, reload } = useList<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
-        type: 'lazy',
-        value,
-        onValueChange,
-        async api(request, ctx) {
-            const { ids, filter: requestFilter, ...rq } = request;
+    const api: LazyDataSourceApi<PersonTableRecord, PersonTableRecordId, PersonTableFilter> = async (request, ctx) => {
+        const { ids, filter: requestFilter, ...rq } = request;
 
-            if (ids != null) {
-                const idsByType: Record<PersonTableRecordType, (string | number)[]> = {} as any;
-                ids.forEach(([type, id]) => {
-                    idsByType[type] = idsByType[type] || [];
-                    idsByType[type].push(id);
-                });
+        if (ids != null) {
+            const idsByType: Record<PersonTableRecordType, (string | number)[]> = {} as any;
+            ids.forEach(([type, id]) => {
+                idsByType[type] = idsByType[type] || [];
+                idsByType[type].push(id);
+            });
 
-                const typesToLoad = Object.keys(idsByType) as PersonTableRecordType[];
-                const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
+            const typesToLoad = Object.keys(idsByType) as PersonTableRecordType[];
+            const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
 
-                const promises = typesToLoad.map(async type => {
-                    const idsRequest: LazyDataSourceApiRequest<any, any, any> = { ids: idsByType[type] };
-                    const api = (type === 'Person') ? svc.api.demo.persons
-                        : (type == 'PersonGroup') ? svc.api.demo.personGroups
-                            : (type == 'Location') ? svc.api.demo.locations : null;
+            const promises = typesToLoad.map(async type => {
+                const idsRequest: LazyDataSourceApiRequest<any, any, any> = { ids: idsByType[type] };
+                const api = (type === 'Person') ? svc.api.demo.persons
+                    : (type == 'PersonGroup') ? svc.api.demo.personGroups
+                        : (type == 'Location') ? svc.api.demo.locations : null;
 
-                    const apiResponse = await api(idsRequest);
-                    response.items = [...response.items, ...apiResponse.items];
-                });
+                const apiResponse = await api(idsRequest);
+                response.items = [...response.items, ...apiResponse.items];
+            });
 
-                await Promise.all(promises);
-                return response;
-            }
+            await Promise.all(promises);
+            return response;
+        }
 
-            const { groupBy, ...filter } = requestFilter || {};
+        const { groupBy, ...filter } = requestFilter || {};
 
-            const updateSummary = (response: PersonsApiResponse) => {
-                const { summary, totalCount } = response;
-                const totalSalary = formatCurrency(Number(summary.totalSalary));
-                setSummary({ totalCount, totalSalary });
-            };
+        const updateSummary = (response: PersonsApiResponse) => {
+            const { summary, totalCount } = response;
+            const totalSalary = formatCurrency(Number(summary.totalSalary));
+            setSummary({ totalCount, totalSalary });
+        };
 
-            const getPersons = async (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
-                if (groupBy && !ctx.parent) {
-                    const res = await svc.api.demo.personGroups({
-                        ...rq,
-                        filter: { groupBy },
-                        search: null,
-                        itemsRequest: { filter, search: rq.search },
-                        ids,
-                    } as any);
-                    updateSummary(res as PersonsApiResponse);
-                    return res;
-                } else {
-                    const res1 = await svc.api.demo.persons(rq);
-                    updateSummary(res1 as PersonsApiResponse);
-                    return res1;
-                }
-            };
-
-            if (request.search) {
-                return getPersons({ ...rq, filter });
-            } else if (groupBy == 'location') {
-                if (!ctx.parent) {
-                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true } } });
-                } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
-                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id } });
-                } else {
-                    return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id } });
-                }
-            } else if (groupBy && !ctx.parent) {
-                return getPersons({
+        const getPersons = async (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
+            if (groupBy && !ctx.parent) {
+                const res = await svc.api.demo.personGroups({
                     ...rq,
                     filter: { groupBy },
                     search: null,
                     itemsRequest: { filter, search: rq.search },
                     ids,
                 } as any);
+                updateSummary(res as PersonsApiResponse);
+                return res;
             } else {
-                const parentFilter = ctx.parent && { [`${ groupBy }Id`]: ctx.parent.id };
-                return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
+                const res1 = await svc.api.demo.persons(rq);
+                updateSummary(res1 as PersonsApiResponse);
+                return res1;
             }
-        },
+        };
+
+        if (request.search) {
+            return getPersons({ ...rq, filter });
+        } else if (groupBy == 'location') {
+            if (!ctx.parent) {
+                return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true } } });
+            } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
+                return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id } });
+            } else {
+                return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id } });
+            }
+        } else if (groupBy && !ctx.parent) {
+            return getPersons({
+                ...rq,
+                filter: { groupBy },
+                search: null,
+                itemsRequest: { filter, search: rq.search },
+                ids,
+            } as any);
+        } else {
+            const parentFilter = ctx.parent && { [`${ groupBy }Id`]: ctx.parent.id };
+            return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
+        }
+    };
+
+    const { rows, listProps, selectAll, reload } = useList<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
+        type: 'lazy',
+        value,
+        onValueChange,
+        api,
         getId: i => [i.__typename, i.id],
         complexIds: true,
         getParentId: i => {
