@@ -2,6 +2,7 @@ import { DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceA
 import { LazyListViewProps } from "./LazyListView";
 import { CompositeKeysMap } from './CompositeKeysMap';
 import { getSearchFilter } from "../../querying";
+import isEqual from "lodash.isequal";
 
 export interface TreeParams<TItem, TId> {
     getId?(item: TItem): TId;
@@ -88,6 +89,9 @@ export class Tree<TItem, TId> {
             //     && this.props.items.every((value, index) => value === this.tree.getById(this.props.getId(value)));
             return Tree.blank(params).append(items);
         }
+    }
+    public isEqual<TItem, TId>(tree: Tree<TItem, TId>) {
+        return isEqual(this.byId, tree.byId) && isEqual(this.byParentId, tree.byParentId);
     }
 
     public clearStructure() {

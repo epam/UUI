@@ -146,14 +146,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = false;
 
         let completeReset = false;
-
         if (prevValue == null
             || prevProps == null
-            || this.tree == null
+            || this.tree.isEqual(Tree.blank(this.props))
             || this.shouldRebuildTree(this.value, prevValue)
             || !isEqual(this.props.filter, prevProps.filter)
         ) {
-            this.tree = this.tree ? this.tree.clearStructure() : Tree.blank<TItem, TId>(this.props);
+            this.tree = this.tree.clearStructure();
             completeReset = true;
         }
 
