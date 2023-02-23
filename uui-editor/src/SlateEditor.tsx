@@ -18,7 +18,15 @@ import {
     createParagraphPlugin,
     createExitBreakPlugin,
     PlateProvider,
+    createDeserializeDocxPlugin,
+    ELEMENT_HR,
+    createAutoformatPlugin,
+    setNodes,
+    insertNodes,
+    ELEMENT_DEFAULT,
 } from '@udecode/plate';
+
+import { createJuicePlugin } from '@udecode/plate-juice';
 
 import {
     ToolbarButtons,
@@ -38,6 +46,8 @@ export const defaultPlugins: any = [
     createSoftBreakPlugin(),
     createExitBreakPlugin(),
     createParagraphPlugin(),
+    createDeserializeDocxPlugin(),
+    createJuicePlugin(),
 ];
 
 export const basePlugins: any = [
