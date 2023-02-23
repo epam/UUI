@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button } from '@epam/loveship';
 import { PersonsTable } from './PersonsTable';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, IEditable, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
+import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
 import css from './PersonsTableDemo.scss';
@@ -53,7 +53,10 @@ export const PersonsTableDemo = () => {
 
     const lens = Lens.onEditable<DataSourceState>({ value, onValueChange });
 
-    const dataSource = useLazyDataSource<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
+    const { rows, listProps, selectAll, reload } = useList<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
+        type: 'lazy',
+        value,
+        onValueChange,
         async api(request, ctx) {
             const { ids, filter: requestFilter, ...rq } = request;
 
@@ -62,7 +65,7 @@ export const PersonsTableDemo = () => {
                 ids.forEach(([type, id]) => {
                     idsByType[type] = idsByType[type] || [];
                     idsByType[type].push(id);
-                })
+                });
 
                 const typesToLoad = Object.keys(idsByType) as PersonTableRecordType[];
                 const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
@@ -71,10 +74,10 @@ export const PersonsTableDemo = () => {
                     const idsRequest: LazyDataSourceApiRequest<any, any, any> = { ids: idsByType[type] };
                     const api = (type === 'Person') ? svc.api.demo.persons
                         : (type == 'PersonGroup') ? svc.api.demo.personGroups
-                        : (type == 'Location') ? svc.api.demo.locations : null;
+                            : (type == 'Location') ? svc.api.demo.locations : null;
 
                     const apiResponse = await api(idsRequest);
-                    response.items = [ ...response.items, ...apiResponse.items ];
+                    response.items = [...response.items, ...apiResponse.items];
                 });
 
                 await Promise.all(promises);
@@ -101,9 +104,9 @@ export const PersonsTableDemo = () => {
                     updateSummary(res as PersonsApiResponse);
                     return res;
                 } else {
-                    const res_1 = await svc.api.demo.persons(rq);
-                    updateSummary(res_1 as PersonsApiResponse);
-                    return res_1;
+                    const res1 = await svc.api.demo.persons(rq);
+                    updateSummary(res1 as PersonsApiResponse);
+                    return res1;
                 }
             };
 
@@ -111,11 +114,11 @@ export const PersonsTableDemo = () => {
                 return getPersons({ ...rq, filter });
             } else if (groupBy == 'location') {
                 if (!ctx.parent) {
-                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true }} });
+                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: { isNull: true } } });
                 } else if (ctx.parent.__typename === 'Location' && ctx.parent.type !== 'city') {
-                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id }  });
+                    return svc.api.demo.locations({ range: rq.range, filter: { parentId: ctx.parent.id } });
                 } else {
-                    return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id }  });
+                    return getPersons({ range: rq.range, filter: { locationId: ctx.parent.id } });
                 }
             } else if (groupBy && !ctx.parent) {
                 return getPersons({
@@ -126,7 +129,7 @@ export const PersonsTableDemo = () => {
                     ids,
                 } as any);
             } else {
-                const parentFilter = ctx.parent && { [`${groupBy}Id`]: ctx.parent.id };
+                const parentFilter = ctx.parent && { [`${ groupBy }Id`]: ctx.parent.id };
                 return getPersons({ ...rq, filter: { ...filter, ...parentFilter } });
             }
         },
@@ -154,19 +157,16 @@ export const PersonsTableDemo = () => {
         },
         getChildCount: item =>
             item.__typename === 'PersonGroup'
-            ? item.count
-            : item.__typename === 'Location' ? item.type == 'city'
-                ? 1
-                : 10
-            : null,
+                ? item.count
+                : item.__typename === 'Location' ? item.type == 'city'
+                    ? 1
+                    : 10
+                    : null,
         fetchStrategy: value.filter?.groupBy == 'location' ? 'sequential' : 'parallel',
-    }, [value.filter?.groupBy]);
-
-    const personsDataView = dataSource.useView(value, onValueChange, {
         rowOptions: { checkbox: { isVisible: true } },
         isFoldedByDefault: () => value.isFolded,
         cascadeSelection: true,
-    });
+    }, [value.filter?.groupBy]);
 
     return (
         <div className={ css.container }>
@@ -195,14 +195,16 @@ export const PersonsTableDemo = () => {
                     />
                 </FlexCell>
                 <FlexCell width='auto'>
-                    <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
+                    <Button caption="Reload" onClick={ () => reload() } size='30' />
                 </FlexCell>
             </FlexRow>
             <PersonsTable
                 value={ value }
                 onValueChange={ onValueChange }
                 summary={ summary }
-                view={ personsDataView }
+                rows={ rows }
+                listProps={ listProps }
+                selectAll={ selectAll }
             />
         </div>
     );

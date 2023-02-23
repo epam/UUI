@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { VirtualList, DataTableHeaderRow, DataTableRow, ColumnsConfigurationModal } from '@epam/loveship';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId } from './types';
-import { IEditable, DataQueryFilter, IDataSourceView, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig, DataTableState, DataTableRowProps } from '@epam/uui';
+import { PersonTableRecord, PersonTableRecordId } from './types';
+import {
+    IEditable, cx, uuiScrollShadows, useUuiContext, UuiContexts, ColumnsConfig, useColumnsConfig,
+    DataTableState, DataTableRowProps, DataRowProps, DataSourceListProps, ICheckable,
+} from '@epam/uui';
 import { getColumns } from './columns';
 import type { VirtualListRenderRowsParams } from '@epam/uui-components';
 import type { PersonsSummary } from './PersonsTableDemo';
@@ -9,7 +12,9 @@ import type { TApi } from '../../data';
 import css from './PersonsTable.scss';
 
 export interface PersonsTableProps extends IEditable<DataTableState> {
-    view: IDataSourceView<PersonTableRecord, PersonTableRecordId, DataQueryFilter<PersonTableFilter>>;
+    rows: DataRowProps<PersonTableRecord, PersonTableRecordId>[];
+    listProps: DataSourceListProps;
+    selectAll?: ICheckable;
     summary: PersonsSummary;
 }
 
@@ -18,7 +23,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
     const { groupColumns, personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
     const { columns: personColumnsSync, config, defaultConfig } = useColumnsConfig(personColumns, props.value?.columnsConfig);
     const { columns: summaryColumnsSync } = useColumnsConfig(summaryColumns, props.value?.columnsConfig);
-    const { exactRowsCount, totalCount } = props.view.getListProps();
+    const { exactRowsCount, totalCount } = props.listProps;
 
     const renderRow = (props: DataTableRowProps<PersonTableRecord, PersonTableRecordId>) => {
         const isGroup = !props.isLoading && props.value?.__typename !== 'Person';
@@ -32,7 +37,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
     };
 
     const getRows = () => {
-        return props.view.getVisibleRows().map(row => renderRow({ ...row, columns: personColumns }));
+        return props.rows.map(row => renderRow({ ...row, columns: personColumns }));
     };
 
     const onConfigurationButtonClick = () => {
@@ -55,7 +60,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
                     columns={ personColumnsSync }
                     textCase='upper'
                     onConfigButtonClick={ onConfigurationButtonClick }
-                    selectAll={ props.view.selectAll }
+                    selectAll={ props.selectAll }
                     allowColumnsReordering
                     allowColumnsResizing
                     value={ props.value }
@@ -65,7 +70,7 @@ export const PersonsTable = (props: PersonsTableProps) => {
                     [uuiScrollShadows.topVisible]: scrollShadows.vertical,
                 }) } />
             </div>
-            { props.view.getListProps().exactRowsCount !== 0 && (
+            { props.listProps.exactRowsCount !== 0 && (
                 <div className={ css.listContainer } style={ { minHeight: `${ estimatedHeight }px` } }>
                     <div
                         ref={ listContainerRef }
