@@ -2,10 +2,10 @@ import React from 'react';
 
 import {
     BlockToolbarButton,
-    createHorizontalRulePlugin,
     getPluginType,
     isMarkActive,
     PlateEditor,
+    createPluginFactory,
 } from '@udecode/plate';
 
 import { isPluginActive, isTextSelected } from '../../../helpers';
@@ -19,12 +19,23 @@ import { Separator } from './Separator';
 const KEY = 'separatorBLock';
 const noop = () => {};
 
-export const separatorPlugin = () => createHorizontalRulePlugin({
-    key: KEY,
-    isVoid: true,
-    isElement: true,
-    component: Separator,
-});
+export const separatorPlugin = () => {
+    const createSeparatorPlugin = createPluginFactory({
+        key: KEY,
+        isElement: true,
+        isVoid: true,
+        component: Separator,
+        deserializeHtml: {
+            rules: [
+                {
+                    validNodeName: 'HR',
+                },
+            ],
+        },
+    });
+
+    return createSeparatorPlugin();
+};
 
 interface ToolbarButton {
     editor: PlateEditor;

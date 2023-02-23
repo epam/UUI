@@ -1,5 +1,9 @@
-.link :hover {
-    cursor: pointer;
+.link {
+    text-decoration: underline !important;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .input-wrapper {
