@@ -2,7 +2,7 @@
 
 exports[`Alert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-blue root uui-theme-promo"
+  className="alertWrapper alert-blue root"
   role="alert"
 >
   <div
@@ -17,7 +17,7 @@ exports[`Alert should be rendered correctly 1`] = `
 
 exports[`Alert should be rendered correctly 2`] = `
 <div
-  className="alertWrapper alert-amber root uui-theme-promo"
+  className="alertWrapper alert-amber root"
   role="alert"
 >
   <div
@@ -76,7 +76,7 @@ exports[`Alert should be rendered correctly 2`] = `
 
 exports[`ErrorAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-red root uui-theme-promo"
+  className="alertWrapper alert-red root"
   role="alert"
 >
   <div
@@ -103,7 +103,7 @@ exports[`ErrorAlert should be rendered correctly 1`] = `
 
 exports[`HintAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-blue root uui-theme-promo"
+  className="alertWrapper alert-blue root"
   role="alert"
 >
   <div
@@ -130,7 +130,7 @@ exports[`HintAlert should be rendered correctly 1`] = `
 
 exports[`SuccessAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-green root uui-theme-promo"
+  className="alertWrapper alert-green root"
   role="alert"
 >
   <div
@@ -157,7 +157,7 @@ exports[`SuccessAlert should be rendered correctly 1`] = `
 
 exports[`WarningAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper alert-amber root uui-theme-promo"
+  className="alertWrapper alert-amber root"
   role="alert"
 >
   <div

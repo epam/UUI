@@ -25,7 +25,7 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
     }
   >
     <div
-      className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 uui-theme-promo container"
+      className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
     >
       No records found
     </div>
@@ -52,7 +52,7 @@ Array [
       }
     >
       <div
-        className="container uui-input-box -clickable root size-48 mode-form uui-theme-promo search"
+        className="container uui-input-box -clickable root size-48 mode-form search"
         onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}

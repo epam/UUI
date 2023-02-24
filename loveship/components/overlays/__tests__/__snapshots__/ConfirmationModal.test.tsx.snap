@@ -48,7 +48,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="uui-font-sans-semibold uui-text-night700 root line-height-24 font-size-18 v-padding-12 uui-theme-loveship container"
+          className="uui-font-sans-semibold uui-text-night700 root line-height-24 font-size-18 v-padding-12 container"
         >
           Title
         </div>
@@ -69,7 +69,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-night600 root uui-theme-loveship"
+            className="container uui-button-box uui-enabled -clickable icon-button-night600 root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -164,7 +164,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-night400 root size-36 mode-solid uui-theme-loveship size-36 style-square"
+          className="container uui-button-box uui-enabled -clickable button-night400 root size-36 mode-solid size-36 style-square"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -176,7 +176,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-grass root size-36 mode-solid uui-theme-loveship size-36 style-square"
+          className="container uui-button-box uui-enabled -clickable button-grass root size-36 mode-solid size-36 style-square"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -256,7 +256,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
         }
       >
         <div
-          className="uui-font-sans-semibold uui-text-night700 root line-height-24 font-size-18 v-padding-12 uui-theme-loveship container"
+          className="uui-font-sans-semibold uui-text-night700 root line-height-24 font-size-18 v-padding-12 container"
         >
           Title
         </div>
@@ -277,7 +277,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-night600 root uui-theme-loveship"
+            className="container uui-button-box uui-enabled -clickable icon-button-night600 root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -380,7 +380,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-grass root size-36 mode-solid uui-theme-loveship size-36 style-square"
+          className="container uui-button-box uui-enabled -clickable button-grass root size-36 mode-solid size-36 style-square"
           onClick={[Function]}
           tabIndex={0}
           type="button"

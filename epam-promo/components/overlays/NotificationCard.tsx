@@ -15,18 +15,12 @@ export interface NotificationCardMods {
     color: EpamPrimaryColor | 'gray60';
 }
 
-function applyNotificationCardMods() {
-    return [
-        'uui-theme-promo',
-    ];
-}
-
 export interface NotificationCardProps extends Omit<uuiNotificationCardProps, 'color' >, NotificationCardMods {}
 
 
 export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color' >, NotificationCardMods>(
     uuiNotificationCard,
-    applyNotificationCardMods,
+    () => {},
     (props) => ({
         ...props,
         color: props.color ?? 'gray60',

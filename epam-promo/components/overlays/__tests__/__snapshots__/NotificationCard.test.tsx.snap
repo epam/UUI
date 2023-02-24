@@ -5,7 +5,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
   className="notificationWrapper clearButton"
 >
   <button
-    className="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon uui-theme-promo"
+    className="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -21,7 +21,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 
 exports[`ErrorNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-red root uui-theme-promo"
+  className="notification-card-red root"
   role="alert"
 >
   <div
@@ -67,7 +67,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
 
 exports[`HintNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-blue root uui-theme-promo"
+  className="notification-card-blue root"
   role="alert"
 >
   <div
@@ -113,7 +113,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
 
 exports[`NotificationCard should be rendered correctly 1`] = `
 <div
-  className="notification-card-red root uui-theme-promo"
+  className="notification-card-red root"
   role="alert"
 >
   <div
@@ -147,7 +147,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
 
 exports[`NotificationCard should be rendered correctly 2`] = `
 <div
-  className="notification-card-red root uui-theme-promo"
+  className="notification-card-red root"
   role="alert"
 >
   <div
@@ -193,7 +193,7 @@ exports[`NotificationCard should be rendered correctly 2`] = `
 
 exports[`SuccessNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-green root uui-theme-promo"
+  className="notification-card-green root"
   role="alert"
 >
   <div
@@ -239,7 +239,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
 
 exports[`WarningNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-amber root uui-theme-promo"
+  className="notification-card-amber root"
   role="alert"
 >
   <div

@@ -5,7 +5,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
   className="notificationWrapper clearButton"
 >
   <button
-    className="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon uui-theme-loveship"
+    className="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -21,7 +21,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 
 exports[`ErrorNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-fire root uui-theme-loveship"
+  className="notification-card-fire root"
   role="alert"
 >
   <div
@@ -67,7 +67,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
 
 exports[`HintNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-sky root uui-theme-loveship"
+  className="notification-card-sky root"
   role="alert"
 >
   <div
@@ -113,7 +113,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
 
 exports[`NotificationCard should be rendered correctly 1`] = `
 <div
-  className="notification-card-sun root uui-theme-loveship"
+  className="notification-card-sun root"
   role="alert"
 >
   <div
@@ -159,7 +159,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
 
 exports[`NotificationCard should be rendered correctly with icon 1`] = `
 <div
-  className="notification-card-sun root uui-theme-loveship"
+  className="notification-card-sun root"
   role="alert"
 >
   <div
@@ -205,7 +205,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
 
 exports[`SuccessNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-grass root uui-theme-loveship"
+  className="notification-card-grass root"
   role="alert"
 >
   <div
@@ -251,7 +251,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
 
 exports[`WarningNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-sun root uui-theme-loveship"
+  className="notification-card-sun root"
   role="alert"
 >
   <div

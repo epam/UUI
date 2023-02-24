@@ -5,7 +5,7 @@ exports[`PickerListItem should render with all new props 1`] = `
   className="row"
 >
   <label
-    className="container uui-disabled root size-18 uui-theme-loveship"
+    className="container uui-disabled root size-18"
   >
     <div
       className="uui-radioinput"
@@ -28,7 +28,7 @@ exports[`PickerListItem should render with default props 1`] = `
   className="row"
 >
   <label
-    className="container uui-disabled root size-18 uui-theme-loveship"
+    className="container uui-disabled root size-18"
   >
     <div
       className="uui-radioinput"

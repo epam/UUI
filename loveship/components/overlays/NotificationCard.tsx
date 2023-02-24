@@ -15,18 +15,12 @@ export interface NotificationCardMods {
     color: EpamPrimaryColor | 'night600';
 }
 
-function applyNotificationCardMods() {
-    return [
-        'uui-theme-loveship',
-    ];
-}
-
 export interface NotificationCardProps extends Omit<uuiNotificationCardProps, 'color' >, NotificationCardMods {}
 
 
 export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color' >, NotificationCardMods>(
     uuiNotificationCard,
-    applyNotificationCardMods,
+    () => {},
     (props) => ({
         ...props,
         color: props.color ?? 'night600',

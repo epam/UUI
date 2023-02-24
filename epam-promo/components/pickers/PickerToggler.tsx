@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
-import { TextPlaceholder } from '../typography';
+import { TextPlaceholder, Tag } from '@epam/uui';
 import { systemIcons } from '../../icons/icons';
-import { Tag } from '../widgets';
 import * as types from '../types';
 import css from './PickerToggler.scss';
 

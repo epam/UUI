@@ -6,10 +6,4 @@ export interface LinkButtonMods {
     color?: types.EpamPrimaryColor;
 }
 
-function applyLinkButtonMods() {
-    return [
-        'uui-theme-promo',
-    ];
-}
-
-export const LinkButton = withMods<LinkButtonProps, LinkButtonMods>(UuiLinkButton, applyLinkButtonMods);
+export const LinkButton = withMods<LinkButtonProps, LinkButtonMods>(UuiLinkButton, () => {});
