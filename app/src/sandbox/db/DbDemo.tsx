@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataSourceState, LazyDataSource, LazyDataSourceApi, DataQueryFilter, Lens, useList } from '@epam/uui';
+import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useList } from '@epam/uui';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
 import { FlexRow, FlexCell, SearchInput, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text } from '@epam/loveship';
