@@ -98,7 +98,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
           className="iconWrapper"
         >
           <div
-            className="container uui-icon uui-enabled root icon-container-color-blue"
+            className="container uui-icon uui-enabled icon-container-color-blue root"
             style={Object {}}
           >
             <svg

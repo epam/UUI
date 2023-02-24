@@ -76,7 +76,7 @@ export const SkillsBatteryPopover = (props: ISkillsBatteryProps) => {
             <SmallBattery rating={ level }/>
             <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">{ props.data?.caption }</Text>
             { Object.entries(props?.data.options).map((val) => (
-                <IconContainer cx={ css.infoItem } icon={ val[1].icon } color={ val[1].activeColor }/>
+                <IconContainer cx={ css.infoItem } icon={ val[1].icon } style={ {fill: val[1].activeColor} }/>
             )) }
         </FlexRow>
     ));
