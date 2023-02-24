@@ -61,8 +61,8 @@ export const DbDemoImpl = () => {
 
     const { rows, listProps, reload } = useList({
         type: 'lazy',
-        value,
-        onValueChange,
+        state: value,
+        setState: onValueChange,
         api,
         getChildCount: (item: PersonTableRecord) => item.__typename === 'PersonGroup' ? item.count : null,
         getRowOptions: p => ({ checkbox: { isVisible: true } }),

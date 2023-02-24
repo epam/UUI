@@ -132,8 +132,8 @@ export const PersonsTableDemo = () => {
 
     const { rows, listProps, selectAll, reload } = useList<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
         type: 'lazy',
-        value,
-        onValueChange,
+        state: value,
+        setState: onValueChange,
         api,
         getId: i => [i.__typename, i.id],
         complexIds: true,
