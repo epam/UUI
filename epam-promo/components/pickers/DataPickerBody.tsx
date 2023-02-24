@@ -32,7 +32,6 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     render() {
         const searchSize = isMobile() ? '48' : (this.props.searchSize || '36');
         const searchClass = cx(css.searchWrapper, css[`search-size-${ searchSize }`]);
-
         return <>
             { this.showSearch() && (
                 <div key='search' className={ searchClass }>
