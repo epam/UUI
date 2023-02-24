@@ -1,5 +1,4 @@
 export * from './Tooltip';
-export * from './Dropdown';
 export * from './DropdownContainer';
 export * from './Modals';
 export * from './DropdownMenu';

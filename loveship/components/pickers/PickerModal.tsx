@@ -2,12 +2,13 @@ import * as React from 'react';
 import { DataRowProps, Lens } from '@epam/uui-core';
 import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
-import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
+import { FlexRow, FlexCell, FlexSpacer } from '../layout';
 import { ModalBlocker, ModalWindow, ModalHeader } from '../overlays';
-import { Switch, SearchInput } from '../inputs';
+import { SearchInput } from '../inputs';
+import { Switch, TextPlaceholder } from '@epam/uui';
+import { Text } from '../typography';
 import { LinkButton, Button } from '../buttons';
 import { DataPickerRow } from './DataPickerRow';
-import { Text, TextPlaceholder } from '../typography';
 import { i18n } from "../../i18n";
 import css from './PickerModal.scss';
 

@@ -7,15 +7,11 @@ export interface TextMods {
     font?: types.FontStyle;
 }
 
-const applyTextMods = () => [
-    'uui-theme-loveship',
-];
-
 export type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;
 
 export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
     UuiText,
-    applyTextMods,
+    () => {},
     (props) => ({
         color: props.color ?? 'night700',
         font: props.font ?? 'sans',

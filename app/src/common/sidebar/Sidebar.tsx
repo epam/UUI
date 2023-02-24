@@ -23,7 +23,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
         const { parentId } = props.items.find(i => i.id == props.value);
         if (parentId != null) {
             const parentKey = JSON.stringify(parentId);
-            setValue((value) => ({...value, folded: { ...value.folded, [ parentKey ]: false } }));
+            setValue((value) => ({...value, folded: { ...value.folded, [parentKey]: false } }));
         }
     }, [props.value]);
 
@@ -38,7 +38,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
             <SearchInput
                 cx={ css.search }
                 value={ value.search }
-                onValueChange={ (search) => setValue(v => ({ ...v, search }))}
+                onValueChange={ (search) => setValue(v => ({ ...v, search })) }
                 autoFocus
                 placeholder='Search'
                 getValueChangeAnalyticsEvent={ value => analyticsEvents.document.search(value) }

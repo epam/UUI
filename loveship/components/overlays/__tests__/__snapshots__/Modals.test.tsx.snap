@@ -128,7 +128,7 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
         }
       >
         <div
-          className="uui-font-sans-semibold uui-text-night700 root line-height-24 font-size-18 v-padding-12 uui-theme-loveship container"
+          className="uui-font-sans-semibold uui-text-night700 root line-height-24 font-size-18 v-padding-12 container"
         >
           Test header
         </div>
@@ -149,7 +149,7 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-night600 root uui-theme-loveship"
+            className="container uui-button-box uui-enabled -clickable icon-button-night600 root"
             onClick={[Function]}
             tabIndex={0}
             type="button"

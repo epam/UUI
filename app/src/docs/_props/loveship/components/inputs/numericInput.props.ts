@@ -1,6 +1,7 @@
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { NumericInputProps } from '@epam/uui-components';
-import { NumericInput, NumericInputMods } from '@epam/loveship';
+import { NumericInput } from '@epam/loveship';
+import { NumericInputMods } from '@epam/uui';
 import { iEditable, sizeDoc, textSettingsDoc, isDisabledDoc, iHasPlaceholder, modeDoc, TableContext } from '../../docs';
 import { FormContext, ResizableContext, DefaultContext } from '../../docs';
 

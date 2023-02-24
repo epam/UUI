@@ -3,7 +3,8 @@ import { DropdownMenuButton } from '../overlays';
 import { DataRowProps, getCookie, setCookie, LazyDataSourceApi, LazyDataSource } from '@epam/uui-core';
 import { PickerInput, DataPickerRow } from '../pickers';
 import { Avatar } from '@epam/uui-components';
-import { Text, TextPlaceholder } from '../typography';
+import { Text } from '../typography';
+import { TextPlaceholder } from '@epam/uui';
 import css from './MakeMeItem.scss';
 
 export interface MakeMeUser {

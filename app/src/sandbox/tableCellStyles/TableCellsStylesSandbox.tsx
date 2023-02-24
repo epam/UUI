@@ -111,7 +111,7 @@ export default function TableCellsStylesSandbox() {
     const skin: (typeof promo | typeof loveship | typeof uui) = skins[skinName];
 
     // These component types doesn't merge correctly/acceptably between skins
-    const SkinDatePicker = skin.DatePicker as ForwardRefExoticComponent<DatePickerProps & RefAttributes<any>>;
+    const SkinDatePicker = skin.DatePicker as unknown as ForwardRefExoticComponent<DatePickerProps & RefAttributes<any>>;
     const SkinPickerInput = skin.PickerInput as React.ComponentClass<PickerInputBaseProps<any, any>>;
     const SkinDataTableCell = skin.DataTableCell as React.FC<DataTableCellProps & { background: any }>;
 

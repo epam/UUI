@@ -1,3 +1,1 @@
-export * from './DatePicker';
-export * from './RangeDatePicker';
-export * from './Calendar';
+export { DatePicker, RangeDatePicker } from '@epam/uui';

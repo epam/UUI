@@ -48,7 +48,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-18 v-padding-12 uui-theme-promo container"
+          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-18 v-padding-12 container"
         >
           Test
         </div>
@@ -69,7 +69,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo"
+            className="container uui-button-box uui-enabled -clickable icon-button-gray60 root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -164,7 +164,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-gray50 root size-36 mode-outline uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-gray50 root size-36 mode-outline"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -176,7 +176,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-green root size-36 mode-solid uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-green root size-36 mode-solid"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -256,7 +256,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-18 v-padding-12 uui-theme-promo container"
+          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-18 v-padding-12 container"
         >
           Test
         </div>
@@ -277,7 +277,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-gray60 root uui-theme-promo"
+            className="container uui-button-box uui-enabled -clickable icon-button-gray60 root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -380,7 +380,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-gray50 root size-36 mode-outline uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-gray50 root size-36 mode-outline"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -392,7 +392,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-green root size-36 mode-solid uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable button-green root size-36 mode-solid"
           onClick={[Function]}
           tabIndex={0}
           type="button"

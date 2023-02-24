@@ -82,12 +82,12 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="iconCell uui-table-header-caption"
               >
                 <div
-                  className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship caption font-size-14 container"
+                  className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
                 >
                   ID
                 </div>
                 <button
-                  className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon"
+                  className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon icon sortIcon"
                   onClick={[Function]}
                   tabIndex={-1}
                   type="button"
@@ -141,12 +141,12 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="iconCell uui-table-header-caption"
               >
                 <div
-                  className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship caption font-size-14 container"
+                  className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
                 >
                   name
                 </div>
                 <button
-                  className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon"
+                  className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon icon sortIcon"
                   onClick={[Function]}
                   tabIndex={-1}
                   type="button"
@@ -186,12 +186,12 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="iconCell uui-table-header-caption"
               >
                 <div
-                  className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship caption font-size-14 container"
+                  className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
                 >
                   Level
                 </div>
                 <button
-                  className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon"
+                  className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon icon sortIcon"
                   onClick={[Function]}
                   tabIndex={-1}
                   type="button"
@@ -231,12 +231,12 @@ exports[`DataTable should be rendered correctly 1`] = `
                 className="iconCell uui-table-header-caption"
               >
                 <div
-                  className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 uui-theme-loveship caption font-size-14 container"
+                  className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 caption font-size-14 container"
                 >
                   DATE
                 </div>
                 <button
-                  className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon uui-theme-loveship icon sortIcon"
+                  className="container uui-button-box uui-enabled root size-24 uui-has-left-icon uui-no-right-icon icon sortIcon"
                   onClick={[Function]}
                   tabIndex={-1}
                   type="button"

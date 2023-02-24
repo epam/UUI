@@ -1,10 +1,6 @@
-export * from './Checkbox';
+export { Checkbox } from '@epam/uui';
 export * from './MultiSwitch';
-export * from './NumericInput';
-export * from './RadioInput';
 export * from './Rating';
-export * from './Switch';
-export * from './TextArea';
 export * from './TextInput';
 export * from './TimePicker';
 export * from './Slider';

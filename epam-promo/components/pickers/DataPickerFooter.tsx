@@ -1,9 +1,9 @@
 import React, { PropsWithChildren } from 'react';
 import { isMobile, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
-import { Switch } from '../inputs';
-import { FlexCell, FlexRow, FlexSpacer } from '../layout';
 import { LinkButton } from '../buttons';
+import { Switch } from '@epam/uui';
+import { FlexCell, FlexRow, FlexSpacer } from '../layout';
 import { SizeMod } from '../types';
 
 type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> & SizeMod & {
