@@ -4,10 +4,10 @@ import * as promo from "@epam/promo";
 import * as loveship from "@epam/loveship";
 import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource } from '@epam/uui';
 import { PickerInputBaseProps } from '@epam/uui-components';
-import { BaseDatePickerProps, DataTableCellProps, RenderCellProps } from '@epam/uui-core';
+import { BaseDatePickerProps, DataTableCellProps, RenderCellProps, useList } from '@epam/uui-core';
 
 // Defined interface describe data for each row
-interface Item  {
+interface Item {
     id: number;
     text?: string;
     number?: number;
@@ -16,7 +16,7 @@ interface Item  {
     date?: string;
     textArea?: string;
     bool?: boolean;
-    meta?: IDisableable | ICanBeReadonly,
+    meta?: IDisableable | ICanBeReadonly;
     altBackground?: boolean;
     cellBackground?: boolean;
 }
@@ -25,11 +25,11 @@ const defaultItem: Partial<Item> = {
     text: 'Text Input',
     number: 1234567.89,
     selectedId: 1,
-    selectedIds: [1,2],
+    selectedIds: [1, 2],
     textArea: 'Text Area',
     date: '2020-09-03',
     bool: true,
-}
+};
 
 let id = 1;
 
@@ -55,7 +55,7 @@ const items: Item[] = [
     { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
     { id: id++, ...defaultItem, meta: { isReadonly: true } },
     { id: id++, ...defaultItem, meta: { isDisabled: true } },
-]
+];
 
 interface FormState {
     items: Item[];
@@ -70,7 +70,7 @@ const pickerItems = [
     { id: 6, name: 'Yellow' },
     { id: 7, name: 'White' },
     { id: 8, name: 'Black' },
-]
+];
 
 const metadata: Metadata<FormState> = {
     props: {
@@ -87,14 +87,14 @@ const metadata: Metadata<FormState> = {
                 },
                 isDisabled: true,
             },
-        }
-    }
-}
+        },
+    },
+};
 
 const skinMods = {
     'promo': { altBackground: 'gray5', cellColors: ['gray5', 'red', 'blue', 'green', 'amber'] },
     'loveship': { altBackground: 'night50', cellColors: ['night50', 'fire', 'sky', 'grass', 'sun'] },
-}
+};
 
 type SkinName = keyof typeof skinMods;
 
@@ -108,7 +108,7 @@ export default function TableCellsStylesSandbox() {
     const SkinDataTableCell = skin.DataTableCell as React.FC<DataTableCellProps & { background: any }>;
 
     // Use form to manage state of the editable table
-    const { lens, validate, save, validationProps } = useForm<FormState>({
+    const { lens, save } = useForm<FormState>({
         value: { items },
         onSave: () => Promise.resolve(),
         getMetadata: () => metadata,
@@ -117,7 +117,7 @@ export default function TableCellsStylesSandbox() {
     // Trigger save, to force validation to show invalid cell states.
     useEffect(() => save(), []);
 
-     // Use state to hold DataTable state - current sorting, filtering, etc.
+    // Use state to hold DataTable state - current sorting, filtering, etc.
     const [tableState, setTableState] = useState({});
 
     const pickerDataSource = useArrayDataSource({ items: pickerItems }, []);
@@ -135,9 +135,9 @@ export default function TableCellsStylesSandbox() {
             caption: 'Row Type',
             render: (item, row) => <skin.Text>{
                 Object.entries({ ...item.meta, rowBG: item.altBackground, cellBG: item.cellBackground, isInvalid: row.isInvalid })
-                .filter(([key, value]) => !!value)
-                .map(e => e[0])
-                .join(', ')
+                    .filter(([key, value]) => !!value)
+                    .map(e => e[0])
+                    .join(', ')
             }</skin.Text>,
             isSortable: true,
             isAlwaysVisible: true,
@@ -161,7 +161,7 @@ export default function TableCellsStylesSandbox() {
             caption: 'Number',
             renderCell: (props) => <SkinDataTableCell
                 { ...props.rowLens.prop('number').toProps() }
-                renderEditor={ props => <skin.NumericInput { ...props } formatOptions={{ minimumFractionDigits: 2 }} /> }
+                renderEditor={ props => <skin.NumericInput { ...props } formatOptions={ { minimumFractionDigits: 2 } } /> }
                 { ...props }
                 background={ getCellBackground(props) }
             />,
@@ -231,21 +231,20 @@ export default function TableCellsStylesSandbox() {
         },
     ] as DataColumnProps<Item>[], [skinName]);
 
-    // Create data-source and view to supply filtered/sorted data to the table in form of DataTableRows.
-
-    const dataSource = useArrayDataSource<Item, number, unknown>({
+    const { rows, listProps } = useList({
+        type: 'array',
+        listState: tableState,
+        setListState: setTableState,
         items,
-    }, []);
-
-    const view = dataSource.useView(tableState, setTableState, {
+        getId: ({ id }) => id,
         getRowOptions: (item: Item, index: number) => ({
             ...lens.prop('items').index(index).toProps(),
-        })
-    });
+        }),
+    }, []);
 
     const renderRow = useCallback((props: DataTableRowProps<Item, number>) => {
         return <skin.DataTableRow
-            { ...props}
+            { ...props }
             background={ (props.value.altBackground && skinMods[skinName].altBackground) as any }
         />;
     }, []);
@@ -257,16 +256,16 @@ export default function TableCellsStylesSandbox() {
                 <skin.MultiSwitch
                     value={ skinName }
                     onValueChange={ setSkinName }
-                    items={[
+                    items={ [
                         { id: 'loveship' as SkinName, caption: 'Loveship' },
-                        { id: 'promo' as SkinName, caption: 'Promo' }
-                    ]}
+                        { id: 'promo' as SkinName, caption: 'Promo' },
+                    ] }
                 />
             </skin.FlexCell>
         </skin.FlexRow>
         <skin.DataTable
-            { ...view.getListProps() }
-            getRows={ view.getVisibleRows }
+            { ...listProps }
+            getRows={ () => rows }
             value={ tableState }
             onValueChange={ setTableState }
             columns={ columns }

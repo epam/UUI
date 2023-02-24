@@ -247,7 +247,9 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     getListProps(): DataSourceListProps;
     getVisibleRows(): DataRowProps<TItem, TId>[];
     getSelectedRows(): DataRowProps<TItem, TId>[];
+    reload(): void;
     destroy(): void;
+    loadData(): void;
     _forceUpdate(): void;
     selectAll?: ICheckable;
 };

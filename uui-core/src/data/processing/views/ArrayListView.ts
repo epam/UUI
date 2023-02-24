@@ -1,4 +1,3 @@
-import isEqual from "lodash.isequal";
 import {
     DataRowProps, SortingOption, IEditable, DataSourceState,
     DataSourceListProps, IDataSourceView, BaseListViewProps,
@@ -6,15 +5,18 @@ import {
 import { BaseListView } from './BaseListView';
 import { Tree } from "./Tree";
 
-export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
-    items?: TItem[] | Tree<TItem, TId>;
+export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
 }
 
+export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
+    items?: TItem[] | Tree<TItem, TId>;
+}
+
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
-    props: ArrayListViewProps<TItem, TId, TFilter>;
+    protected props: ArrayListViewProps<TItem, TId, TFilter>;
 
     originalTree: Tree<TItem, TId>;
     searchTree: Tree<TItem, TId>;
@@ -22,24 +24,26 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     sortedTree: Tree<TItem, TId>;
 
     constructor(
-        editable: IEditable<DataSourceState<TFilter, TId>>,
+        protected editable: IEditable<DataSourceState<TFilter, TId>>,
         props: ArrayListViewProps<TItem, TId, TFilter>,
     ) {
         super(editable, props);
         this.props = props;
+        this.tree = Tree.blank(props);
         this.update(editable.value, props);
     }
 
     public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
         const currentValue = { ...this.value };
         this.value = newValue;
-        this.props = newProps;
+        const prevItems = this.props.items;
+        const newItems = newProps.items || this.props.items;
+        this.props = { ...newProps, items: newItems };
 
         const prevTree = this.tree;
-
         if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
-            this.originalTree = Tree.create(this.props, this.props.items);
-            if (!this.tree) {
+            if (prevItems !== newItems || !this.originalTree) {
+                this.originalTree = Tree.create(this.props, this.props.items);
                 this.tree = this.originalTree;
             }
         }
@@ -54,6 +58,11 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             }
         }
         this.updateRowOptions();
+    }
+
+    public reload = () => {
+        this.update(this.editable.value, { ...this.props, items: [] });
+        this._forceUpdate();
     }
 
     private isCacheIsOutdated(newValue: DataSourceState<TFilter, TId>, prevValue: DataSourceState<TFilter, TId>) {
