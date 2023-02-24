@@ -233,8 +233,8 @@ export default function TableCellsStylesSandbox() {
 
     const { rows, listProps } = useList({
         type: 'array',
-        value: tableState,
-        onValueChange: setTableState,
+        state: tableState,
+        setState: setTableState,
         items,
         getRowOptions: (item: Item, index: number) => ({
             ...lens.prop('items').index(index).toProps(),

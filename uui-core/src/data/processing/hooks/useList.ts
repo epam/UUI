@@ -6,32 +6,32 @@ import { createView, updateView, mergePropsWithDefaults } from "./helpers";
 import { DataSourceState } from "../../../types";
 
 export function useList<TItem, TId, TFilter>(
-    { value, onValueChange, loadData = true, ...props }: UseListProps<TItem, TId, TFilter>,
+    { state, setState, loadData = true, ...props }: UseListProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
     const loadDataRef = useRef(false);
-    const valueRef = useRef<DataSourceState<TFilter, TId>>(value);
+    const stateRef = useRef<DataSourceState<TFilter, TId>>(state);
 
     const viewProps = mergePropsWithDefaults(props);
 
     const view = useView(
-        () => createView({ value, onValueChange }, viewProps),
-        (current) => updateView(current, value, viewProps),
+        () => createView({ value: state, onValueChange: setState }, viewProps),
+        (current) => updateView(current, state, viewProps),
         deps,
     );
 
     useEffect(() => {
         loadDataRef.current = loadData;
-        valueRef.current = value;
-    }, [loadData, view, value]);
+        stateRef.current = state;
+    }, [loadData, view, state]);
 
     const isLoadUpdated = loadDataRef.current !== loadData && loadData;
-    if (isLoadUpdated || (loadData && !isEqual(valueRef.current, value))) {
+    if (isLoadUpdated || (loadData && !isEqual(stateRef.current, state))) {
         view.loadData();
     }
 
     const rows = view.getVisibleRows();
-    const listProps = useMemo(() => view.getListProps(), [view, value]);
+    const listProps = useMemo(() => view.getListProps(), [view, state]);
 
     return {
         rows,

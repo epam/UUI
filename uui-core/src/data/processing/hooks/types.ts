@@ -1,5 +1,5 @@
 import { ArrayListView, ArrayListViewProps, AsyncListView, AsyncListViewProps, LazyListView, LazyListViewProps } from "../views";
-import { DataSourceState, IEditable } from "../../../types";
+import { DataSourceState } from "../../../types";
 
 export type ListView<TItem, TId, TFilter> =
     | ArrayListView<TItem, TId, TFilter>
@@ -26,7 +26,12 @@ export type ListViewPropsWithDefaults<TItem, TId, TFilter> = (
     getParentId: Exclude<ListViewProps<TItem, TId, TFilter>['getParentId'], undefined>;
 };
 
-export type UseListProps<TItem, TId, TFilter> = ListViewProps<TItem, TId, TFilter> & IEditable<DataSourceState<TFilter, TId>> & {
+interface ListState<TId, TFilter> {
+    state: DataSourceState<TFilter, TId>;
+    setState: (state: DataSourceState<TFilter, TId>) => void;
+}
+
+export type UseListProps<TItem, TId, TFilter> = ListViewProps<TItem, TId, TFilter> & ListState<TId, TFilter> & {
     /**
      * If data loading has to be postponed, this flag has to be set to false.
      * Changing the flag to `true` will trigger data loading.

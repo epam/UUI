@@ -71,8 +71,8 @@ export const ProjectDemo = () => {
 
     const { rows, listProps } = useList({
         type: 'array',
-        value: tableState,
-        onValueChange: setTableState,
+        state: tableState,
+        setState: setTableState,
         items: Object.values(value.items),
         getId: i => i.id,
         getParentId: i => i.parentId,

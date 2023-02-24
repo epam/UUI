@@ -47,8 +47,8 @@ export const ProductsTableDemo: React.FC = (props) => {
         api: svc.api.demo.products,
         getId: i => i.ProductID,
         getRowOptions: product => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),
-        value: tableState,
-        onValueChange: setTableState,
+        state: tableState,
+        setState: setTableState,
     }, []);
 
     return <Panel style={ { width: '100%' } }>

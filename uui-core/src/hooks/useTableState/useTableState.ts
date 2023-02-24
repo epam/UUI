@@ -169,7 +169,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
             || !isEqual(preset?.columnsConfig, tableStateValue.columnsConfig)
             || !isEqual(preset?.sorting, tableStateValue.sorting)
             || !isEqual(preset?.viewState, tableStateValue.viewState);
-    }, [tableStateValue.columnsConfig,  tableStateValue.filter, tableStateValue.sorting, tableStateValue.viewState]);
+    }, [tableStateValue.columnsConfig, tableStateValue.filter, tableStateValue.sorting, tableStateValue.viewState]);
 
     const duplicatePreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
         const newPreset: ITablePreset<TFilter, TViewState> = {
