@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef } from "react";
 import isEqual from "lodash.isequal";
 import { useView } from "./useView";
-import { UseListProps } from "./types";
-import { createView, updateView, mergePropsWithDefaults } from "./helpers";
+import { UnboxListProps, UseListProps } from "./types";
+import { createView, mergePropsWithDefaults } from "./helpers";
 import { DataSourceState } from "../../../types";
 
 export function useList<TItem, TId, TFilter>(
@@ -14,9 +14,11 @@ export function useList<TItem, TId, TFilter>(
 
     const viewProps = mergePropsWithDefaults(props);
 
-    const view = useView(
+    const view = useView<TItem, TId, TFilter, UnboxListProps<typeof props>>(
         () => createView({ value: state, onValueChange: setState }, viewProps),
-        (current) => updateView(current, state, viewProps),
+        (current) => {
+            current.update(state, props);
+        },
         deps,
     );
 

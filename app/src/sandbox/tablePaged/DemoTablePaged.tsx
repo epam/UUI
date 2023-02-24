@@ -64,6 +64,7 @@ export const DemoTablePaged: React.FC = () => {
         setState: setTableState,
         api,
         rowOptions,
+        getId: ({ id }) => id,
         isFoldedByDefault: () => true,
     }, [api]);
 

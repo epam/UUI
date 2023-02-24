@@ -236,6 +236,7 @@ export default function TableCellsStylesSandbox() {
         state: tableState,
         setState: setTableState,
         items,
+        getId: ({ id }) => id,
         getRowOptions: (item: Item, index: number) => ({
             ...lens.prop('items').index(index).toProps(),
         }),
