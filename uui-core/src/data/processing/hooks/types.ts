@@ -27,8 +27,8 @@ export interface IView<
 }
 
 interface ListState<TId, TFilter> {
-    state: DataSourceState<TFilter, TId>;
-    setState: (state: DataSourceState<TFilter, TId>) => void;
+    listState: DataSourceState<TFilter, TId>;
+    setListState: (listState: DataSourceState<TFilter, TId>) => void;
 }
 
 type ListProps<TItem, TId, TFilter> = Exclude<ListViewProps<TItem, TId, TFilter>, 'getId'> & {

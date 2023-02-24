@@ -61,8 +61,8 @@ export const DbDemoImpl = () => {
 
     const { rows, listProps, reload } = useList({
         type: 'lazy',
-        state: value,
-        setState: onValueChange,
+        listState: value,
+        setListState: onValueChange,
         api,
         getId: ({ id }) => id,
         getChildCount: (item: PersonTableRecord) => item.__typename === 'PersonGroup' ? item.count : null,
