@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "A PresetsPanel component allows you to save your current filtration to the particular preset and manage it. PresetsPanel works along with ",
+            "text": "PresetsPanel component allows you to save your current filtration to the particular preset and manage it. PresetsPanel works along with ",
             "marks": []
           },
           {

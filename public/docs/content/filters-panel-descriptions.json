@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "A FiltersPanel component allows you to manage filtration based on filters config metadata. To use it, provide your filters config object, and you will get a prebuilt filters panel with the following functionality:",
+            "text": "FiltersPanel component allows you to manage filtration based on filters config metadata. To use it, provide your filters config object, and you will get a prebuilt filters panel with the following functionality:",
             "marks": []
           }
         ]

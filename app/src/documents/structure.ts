@@ -85,7 +85,7 @@ const componentsStructure = sortBy([
     { id: 'progressBar', name: 'Progress Bar', component: ProgressBarDoc, parentId: 'components' },
     { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDoc, parentId: 'components' },
     { id: 'dropdownContainer', name: 'Dropdown Container', component: DropdownContainerDoc, parentId: 'components' },
-], (item) => item.order || item.name);
+], (item) => item.order ? item.order + item.name : item.name);
 
 export const items: DocItem[] = [
     { id: 'gettingStarted', name: 'Getting Started', component: GettingStartedDoc },
