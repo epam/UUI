@@ -10,11 +10,10 @@ export * from './widgets';
 export * from './app';
 export * from './dnd';
 export * from './tables';
-export * from './datePickers';
 export * from './forms';
 export * from './dev';
 export { UploadFileToggler } from '@epam/uui-components';
 export {
-    FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder
+    FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder,
+    RangeDatePicker, DatePicker,
 } from "@epam/uui";
-export type { NumericInputMods } from "@epam/uui";

@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import cx from 'classnames';
 import { isMobile, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
-import { Switch } from '../../components';
+import { Switch } from '@epam/uui';
 import { FlexCell, FlexRow, FlexSpacer } from '../layout';
 import { LinkButton } from '../buttons';
 import { SizeMod } from '../types';

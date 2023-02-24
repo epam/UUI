@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FlexCell, SearchInput } from '@epam/promo';
+import { FlexCell } from '@epam/promo';
+import { SearchInput } from '@epam/uui';
 import css from './DebounceExample.scss';
 
 export default function DebounceSearchInputExample() {

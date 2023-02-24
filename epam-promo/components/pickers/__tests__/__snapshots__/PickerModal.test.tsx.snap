@@ -1831,7 +1831,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         }
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon uui-theme-promo"
+          className="container uui-button-box uui-enabled -clickable root size-36 uui-no-left-icon uui-no-right-icon"
           onClick={[Function]}
           tabIndex={0}
           type="button"
