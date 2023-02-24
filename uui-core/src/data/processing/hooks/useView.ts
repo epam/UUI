@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
-import { ListView } from "./types";
+import { IView, ListViewProps } from "./types";
 
-export function useView<TItem, TId, TFilter>(
-    create: () => ListView<TItem, TId, TFilter>,
-    update: (instance: ListView<TItem, TId, TFilter>) => void,
+export function useView<TItem, TId, TFilter, Props extends ListViewProps<TItem, TId, TFilter>>(
+    create: () => IView<TItem, TId, TFilter, Props>,
+    update: (instance: IView<TItem, TId, TFilter, Props>) => void,
     deps: any[],
-) {
-    const viewRef = useRef<ListView<TItem, TId, TFilter>>(null);
+): IView<TItem, TId, TFilter, Props> {
+    const viewRef = useRef<IView<TItem, TId, TFilter, Props>>(null);
     const prevDeps = useRef(deps);
 
     const isDepsChanged = (prevDeps.current.length != deps.length)

@@ -1,75 +1,42 @@
 import { ArrayListView, AsyncListView, LazyListView } from "../views";
 import { DataSourceState, IEditable } from "../../../types";
-import { AsyncListProps, LazyListProps, ListView, ListViewProps, ListViewPropsWithDefaults } from "./types";
+import { AsyncListProps, IView, LazyListProps, ListViewProps } from "./types";
 
-export const isLazyListViewProps = <TId, TItem, TFilter>(props: ListViewProps<TItem, TId, TFilter>):
+export const isLazyListViewProps = <TItem, TId, TFilter>(props: ListViewProps<TItem, TId, TFilter>):
     props is LazyListProps<TItem, TId, TFilter> =>
     props.type === 'lazy';
 
-export const isAsyncListViewProps = <TId, TItem, TFilter>(props: ListViewProps<TItem, TId, TFilter>):
+export const isAsyncListViewProps = <TItem, TId, TFilter>(props: ListViewProps<TItem, TId, TFilter>):
     props is AsyncListProps<TItem, TId, TFilter> =>
     props.type === 'async';
 
-export const createView = <TId, TItem, TFilter>(
+export const createView = <TItem, TId, TFilter, Props extends ListViewProps<TItem, TId, TFilter>>(
     editable: IEditable<DataSourceState<TFilter, TId>>,
-    props: ListViewPropsWithDefaults<TItem, TId, TFilter>,
-) => {
+    props: Props,
+): IView<TItem, TId, TFilter, Props> => {
     if (isLazyListViewProps(props)) {
         const { type, ...viewProps } = props;
-        return new LazyListView(editable, viewProps);
+        return new LazyListView(editable, viewProps) as IView<TItem, TId, TFilter, Props>;
     }
 
     if (isAsyncListViewProps(props)) {
-        return new AsyncListView(editable, props);
-    }
-
-    return new ArrayListView(editable, props);
-};
-
-export const updateView = <TId, TItem, TFilter>(
-    view: ListView<TItem, TId, TFilter>,
-    value: DataSourceState<TFilter, TId>,
-    props: ListViewPropsWithDefaults<TItem, TId, TFilter>,
-) => {
-    if (isLazyListViewProps(props) && view instanceof LazyListView) {
         const { type, ...viewProps } = props;
-        view.update(value, viewProps);
+        return new AsyncListView(editable, viewProps);
     }
 
-    if (
-        (isAsyncListViewProps(props) && view instanceof AsyncListView)
-        || view instanceof ArrayListView
-    ) {
-        const { type, ...viewProps } = props;
-        view.update(value, viewProps);
-    }
+    const { type, ...viewProps } = props;
+    return new ArrayListView(editable, viewProps);
 };
 
 export const mergePropsWithDefaults = <TItem, TId, TFilter>(
     props: ListViewProps<TItem, TId, TFilter>,
-): ListViewPropsWithDefaults<TItem, TId, TFilter> => {
-    const getId = (item: TItem & { id?: TId }) => {
-        if (item == null) return null;
-        const id = props.getId?.(item) || item.id;
-        if (id == null) {
-            throw new Error(`Item ID not found. Check 'getId' prop value. Item: ${ JSON.stringify(item) }`);
-        }
-        return id;
-    };
-
-    const defaultGetParentId = (item: TItem): TId => (item as any)['parentId'];
-
-    const viewProps: ListViewPropsWithDefaults<TItem, TId, TFilter> = {
-        ...props,
-        getId: props.getId ?? getId,
-        getParentId: props.getParentId ?? defaultGetParentId,
-    };
-    if (isLazyListViewProps(viewProps)) {
+): ListViewProps<TItem, TId, TFilter> => {
+    if (isLazyListViewProps(props)) {
         return {
-            ...viewProps,
-            legacyLoadDataBehavior: viewProps.legacyLoadDataBehavior ?? false,
+            ...props,
+            legacyLoadDataBehavior: props.legacyLoadDataBehavior ?? false,
         };
     }
 
-    return viewProps;
+    return props;
 };

@@ -64,6 +64,7 @@ export const DbDemoImpl = () => {
         state: value,
         setState: onValueChange,
         api,
+        getId: ({ id }) => id,
         getChildCount: (item: PersonTableRecord) => item.__typename === 'PersonGroup' ? item.count : null,
         getRowOptions: p => ({ checkbox: { isVisible: true } }),
         isFoldedByDefault: () => false,
