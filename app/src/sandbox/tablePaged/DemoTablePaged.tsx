@@ -60,8 +60,8 @@ export const DemoTablePaged: React.FC = () => {
 
     const { rows, listProps } = useList({
         type: 'lazy',
-        state: viewTableState,
-        setState: setTableState,
+        listState: tableState,
+        setListState: setTableState,
         api,
         rowOptions,
         getId: ({ id }) => id,
