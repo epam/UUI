@@ -1,16 +1,16 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import isEqual from "lodash.isequal";
 import { useView } from "./useView";
 import { UnboxListProps, UseListProps } from "./types";
 import { createView, mergePropsWithDefaults } from "./helpers";
-import { DataSourceState } from "../../../types";
+import { usePrevious } from "../../../../src/hooks";
 
 export function useList<TItem, TId, TFilter>(
     { listState, setListState, loadData = true, ...props }: UseListProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
-    const loadDataRef = useRef(false);
-    const stateRef = useRef<DataSourceState<TFilter, TId>>(listState);
+    const prevLoadData = usePrevious(false);
+    const prevListState = usePrevious(listState);
 
     const viewProps = mergePropsWithDefaults(props);
 
@@ -22,13 +22,8 @@ export function useList<TItem, TId, TFilter>(
         deps,
     );
 
-    useEffect(() => {
-        loadDataRef.current = loadData;
-        stateRef.current = listState;
-    }, [loadData, view, listState]);
-
-    const isLoadUpdated = loadDataRef.current !== loadData && loadData;
-    if (isLoadUpdated || (loadData && !isEqual(stateRef.current, listState))) {
+    const isLoadUpdated = prevLoadData !== loadData && loadData;
+    if (isLoadUpdated || (loadData && !isEqual(prevListState, listState))) {
         view.loadData();
     }
 
