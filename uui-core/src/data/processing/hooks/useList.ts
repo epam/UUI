@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import isEqual from "lodash.isequal";
 import { useView } from "./useView";
 import { UnboxListProps, UseListProps } from "./types";
 import { createView, mergePropsWithDefaults } from "./helpers";
@@ -23,7 +22,7 @@ export function useList<TItem, TId, TFilter>(
     );
 
     const isLoadUpdated = prevLoadData !== loadData && loadData;
-    if (isLoadUpdated || (loadData && !isEqual(prevListState, listState))) {
+    if (isLoadUpdated || (loadData && prevListState !== listState)) {
         view.loadData();
     }
 
