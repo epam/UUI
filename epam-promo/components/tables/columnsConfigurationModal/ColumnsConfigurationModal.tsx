@@ -8,9 +8,10 @@ import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation
 import { ReactComponent as ResetIcon } from '@epam/assets/icons/common/action-update-18.svg';
 //
 import {
-    FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, Dropdown, Badge,
-    DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Text, Tooltip, SearchInput,
+    FlexRow, FlexSpacer, Panel, ScrollBars, Button, LinkButton, Badge,
+    DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Text, Tooltip,
 } from "../../../components";
+import { SearchInput, Dropdown } from "@epam/uui";
 import { i18n } from '../../../i18n';
 import { ColumnRow } from "./ColumnRow";
 

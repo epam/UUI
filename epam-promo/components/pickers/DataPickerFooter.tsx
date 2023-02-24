@@ -1,7 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import { isMobile, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
-import { Switch, LinkButton } from '../../components';
+import { LinkButton } from '../buttons';
+import { Switch } from '@epam/uui';
 import { FlexCell, FlexRow, FlexSpacer } from '../layout';
 import { SizeMod } from '../types';
 

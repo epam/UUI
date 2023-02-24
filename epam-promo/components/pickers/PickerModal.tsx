@@ -3,13 +3,12 @@ import css from './PickerModal.scss';
 import { DataRowProps, Lens } from '@epam/uui-core';
 import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard, IconContainer } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
-import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
+import { FlexRow, FlexCell, FlexSpacer } from '../layout';
 import { ModalBlocker, ModalWindow, ModalHeader, ModalFooter } from '../overlays';
 import { LinkButton, Button } from '../buttons';
-import { SearchInput } from "@epam/uui";
+import { SearchInput, TextPlaceholder, Switch } from "@epam/uui";
 import { DataPickerRow } from './DataPickerRow';
 import { Text } from '../typography';
-import { TextPlaceholder, Switch } from '../../components';
 import { i18n } from "../../i18n";
 import { ReactComponent as SearchIcon } from '../../icons/search-with-background.svg';
 

@@ -1,6 +1,6 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { CheckboxProps } from '@epam/uui-components';
-import { Checkbox, CheckboxMods } from '@epam/promo';
+import { Checkbox, CheckboxMods } from '@epam/uui';
 import { isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable, DefaultContext, FormContext, TableContext } from '../../docs';
 
 const CheckboxDoc = new DocBuilder<CheckboxProps & CheckboxMods>({ name: 'Checkbox', component: Checkbox })

@@ -4,7 +4,7 @@ import { DataRowProps, getCookie, setCookie, LazyDataSourceApi, LazyDataSource }
 import { PickerInput, DataPickerRow } from '../pickers';
 import { Avatar } from '@epam/uui-components';
 import { Text } from '../typography';
-import { TextPlaceholder } from '../../components';
+import { TextPlaceholder } from '@epam/uui';
 import css from './MakeMeItem.scss';
 
 export interface MakeMeUser {
