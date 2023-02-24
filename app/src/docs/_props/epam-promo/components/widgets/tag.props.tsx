@@ -1,4 +1,4 @@
-import { Tag, TagMods } from '@epam/uui';
+import { Tag, TagMods } from '@epam/promo';
 import { basicPickerTogglerDoc, DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import { FormContext, ResizableContext, DefaultContext } from '../../docs';
