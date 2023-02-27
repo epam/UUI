@@ -17,6 +17,3 @@ export {
     FiltersPanel, PresetsPanel, defaultPredicates, TabButton, VerticalTabButton, Calendar, NumericInput,
     Switch, TextArea, Dropdown, TextPlaceholder, Tag, RadioInput,
 } from "@epam/uui";
-
-export type { TabButtonMods, NumericInputMods, RadioInputMods, TagMods } from "@epam/uui";
-
