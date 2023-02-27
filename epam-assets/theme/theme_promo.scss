@@ -920,28 +920,38 @@
         --uui-informer-border-radius: 50px;
     }
 
-    :global(.icon-container-color-info) {
+    :global(.icon-container-color-info),
+    :global(.icon-container-color-blue) {
         --uui-icon-container-fill: var(--uui-info);
     }
 
-    :global(.icon-container-color-success) {
+    :global(.icon-container-color-success),
+    :global(.icon-container-color-green) {
         --uui-icon-container-fill: var(--uui-success);
     }
 
-    :global(.icon-container-color-warning) {
+    :global(.icon-container-color-warning),
+    :global(.icon-container-color-amber) {
         --uui-icon-container-fill: var(--uui-warning);
     }
 
-    :global(.icon-container-color-error) {
+    :global(.icon-container-color-error),
+    :global(.icon-container-color-red) {
         --uui-icon-container-fill: var(--uui-error);
     }
 
-    :global(.icon-container-color-default) {
+    :global(.icon-container-color-default),
+    :global(.icon-container-color-gray60) {
         --uui-icon-container-fill: var(--uui-icon);
     }
 
-    :global(.icon-container-color-secondary) {
+    :global(.icon-container-color-secondary),
+    :global(.icon-container-color-gray50) {
         --uui-icon-container-fill: var(--uui-secondary);
+    }
+
+    :global(.icon-container-color-gray30) {
+        --uui-icon-container-fill: var(--uui-secondary-light);
     }
 
     :global(.uui-text-brand),

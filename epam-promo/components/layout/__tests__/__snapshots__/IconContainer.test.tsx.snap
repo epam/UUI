@@ -2,7 +2,7 @@
 
 exports[`IconContainer should be rendered correctly 1`] = `
 <div
-  className="container uui-icon uui-enabled root icon-container-color-gray60"
+  className="container uui-icon uui-enabled icon-container-color-default root"
   style={Object {}}
 >
   <svg
@@ -13,7 +13,7 @@ exports[`IconContainer should be rendered correctly 1`] = `
 
 exports[`IconContainer should be rendered correctly with props 1`] = `
 <div
-  className="container uui-icon uui-enabled -clickable root icon-container-color-blue"
+  className="container uui-icon uui-enabled -clickable icon-container-color-blue root"
   onClick={[Function]}
   style={Object {}}
   tabIndex={0}
