@@ -1,18 +1,13 @@
-import { IconContainer as uuiIconContainer, ControlIconProps } from '@epam/uui-components';
+import { IconContainer as uuiIconContainer } from '@epam/uui';
+import { ControlIconProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
-import { ColorMod } from "../types";
-import css from './IconContainer.scss';
-import styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import { EpamPrimaryColor } from '../types';
 
-export interface IconContainerMods extends ColorMod {
+export interface IconContainerMods {
+    color?: EpamPrimaryColor | 'night400' | 'night500' | 'night600';
 }
 
-export function applyIconContainerMods(mods: IconContainerMods) {
-    return [
-        css.root,
-        styles['color-' + (mods.color || 'night600')],
-    ];
-}
+export function applyIconContainerMods(mods: IconContainerMods) {}
 
 export const IconContainer = withMods<ControlIconProps, IconContainerMods>(
     uuiIconContainer,

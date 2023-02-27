@@ -1184,28 +1184,38 @@
         --uui-informer-border-radius: 50px;
     }
 
-    :global(.icon-container-color-info) {
+    :global(.icon-container-color-info),
+    :global(.icon-container-color-sky) {
         --uui-icon-container-fill: var(--uui-info);
     }
 
-    :global(.icon-container-color-success) {
+    :global(.icon-container-color-success),
+    :global(.icon-container-color-grass) {
         --uui-icon-container-fill: var(--uui-success);
     }
 
-    :global(.icon-container-color-warning) {
+    :global(.icon-container-color-warning),
+    :global(.icon-container-color-sun) {
         --uui-icon-container-fill: var(--uui-warning);
     }
 
-    :global(.icon-container-color-error) {
+    :global(.icon-container-color-error),
+    :global(.icon-container-color-fire) {
         --uui-icon-container-fill: var(--uui-error);
     }
 
-    :global(.icon-container-color-default) {
+    :global(.icon-container-color-default),
+    :global(.icon-container-color-night600) {
         --uui-icon-container-fill: var(--uui-icon);
     }
 
-    :global(.icon-container-color-secondary) {
+    :global(.icon-container-color-secondary),
+    :global(.icon-container-color-night500) {
         --uui-icon-container-fill: var(--uui-secondary);
+    }
+
+    :global(.icon-container-color-night400) {
+        --uui-icon-container-fill: var(--uui-secondary-disabled);
     }
 
     :global(.uui-text-brand),
