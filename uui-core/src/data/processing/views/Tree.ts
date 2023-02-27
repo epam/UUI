@@ -132,7 +132,7 @@ export class Tree<TItem, TId> {
 
     public getTotalRecursiveCount() {
         let count = 0;
-        for (var [id, info] of this.nodeInfoById) {
+        for (const [id, info] of this.nodeInfoById) {
             if (info.count == null) {
                 // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
                 // return;
@@ -150,12 +150,12 @@ export class Tree<TItem, TId> {
             if (!item) {
                 break;
             }
-            id = this.getParentId(item)
+            id = this.getParentId(item);
             if (!id) {
                 break;
             }
             parentIds.unshift(id);
-        };
+        }
         return parentIds;
     }
 
@@ -165,7 +165,7 @@ export class Tree<TItem, TId> {
             direction?: 'bottom-up' | 'top-down',
             parentId?: TId,
             includeParent?: boolean,
-        }
+        },
     ) {
         options = { direction: 'top-down', parentId: undefined, ...options };
         if (options.includeParent == null) {
@@ -178,7 +178,7 @@ export class Tree<TItem, TId> {
                 const parentId = item ? this.getParentId(item) : undefined;
                 walkChildrenRec(item, id, parentId);
             });
-        }
+        };
 
         const walkChildrenRec = (item: TItem, id: TId, parentId: TId) => {
             if (options.direction === 'top-down') {
@@ -223,7 +223,7 @@ export class Tree<TItem, TId> {
                 parentSubtotals = add(itemSubtotals, subtotalsMap.get(parentId));
             }
             subtotalsMap.set(parentId, parentSubtotals);
-        }, { direction: 'bottom-up' })
+        }, { direction: 'bottom-up' });
         return subtotalsMap;
     }
 
@@ -287,7 +287,7 @@ export class Tree<TItem, TId> {
         options: {
             isSelectable: (item: TItem) => boolean,
             cascade: boolean,
-        }
+        },
     ) {
         let selectedIdsMap = this.newMap<TId, boolean>();
         currentSelection.forEach(id => selectedIdsMap.set(id, true));
@@ -333,7 +333,7 @@ export class Tree<TItem, TId> {
         }
 
         const result = [];
-        for (var [id, value] of selectedIdsMap) {
+        for (const [id, value] of selectedIdsMap) {
             value && result.push(id);
         }
 
@@ -444,7 +444,7 @@ export class Tree<TItem, TId> {
             }
 
             return recursiveLoadedCount;
-        }
+        };
 
         await loadRecursive(undefined, undefined, options?.loadAllChildren?.(undefined), requiredRowsCount);
 
@@ -543,7 +543,7 @@ export class Tree<TItem, TId> {
             ids,
             nodeInfo,
             loadedItems,
-        }
+        };
     }
 
     public getParents(id: TId) {
@@ -601,7 +601,7 @@ export class Tree<TItem, TId> {
                     if (!byId.has(id)) {
                         missingIds.add(id);
                     }
-                })
+                });
             }
 
             if (this.params.getParentId) {
@@ -627,7 +627,7 @@ export class Tree<TItem, TId> {
 
                 response.items.forEach(item => {
                     byId.set(this.getId(item), item);
-                })
+                });
             }
             iteration++;
 
@@ -644,7 +644,7 @@ export class Tree<TItem, TId> {
                 byId,
                 this.byParentId,
                 this.nodeInfoById,
-            )
+            );
         }
     }
 
