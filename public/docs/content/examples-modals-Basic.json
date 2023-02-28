@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic usage example with ModalContext api",
+            "text": "Basic usage example with a ModalContext api.",
             "marks": []
           }
         ]

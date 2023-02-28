@@ -69,6 +69,18 @@
             "marks": []
           }
         ]
+      },
+      {
+        "object": "block",
+        "type": "note-error",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Pay attention that you use the same version of dayjs as UUI. Otherwise localization won't work.",
+            "marks": []
+          }
+        ]
       }
     ]
   }
