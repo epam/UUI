@@ -472,7 +472,6 @@
 
     /* Panel */
     --uui-panel-border-radius: var(--uui-border-radius);
-    --uui-panel-bg: var(--uui-surface);
     --uui-panel-shadow: var(--uui-shadow);
 
     /* Modals */
@@ -1275,5 +1274,13 @@
 
     :global(.dropdown-container-night700) {
         --uui-dropdown-container-bg: var(--night700);
+    }
+
+    :global(.panel-white) {
+        --uui-panel-bg: var(--uui-surface);
+    }
+
+    :global(.panel-night50) {
+        --uui-panel-bg: var(--night50);
     }
 }
