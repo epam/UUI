@@ -17,7 +17,7 @@ import { ReactComponent as AttachIcon } from '../../../icons/attach-file.svg';
 
 import { withFileUpload } from './withFileUpload';
 
-const KEY = 'fileUpload';
+const KEY = 'insertData';
 
 export interface UploadFileOptions {
     uploadFile(file: File, onProgress: (progress: any) => any): any;
