@@ -32,7 +32,6 @@ export const imagePlugin = () => {
         type: 'image',
         isElement: true,
         isVoid: true,
-        withOverrides: withImageUpload,
         component: Image,
         handlers: {
             onKeyDown: (editor) => (e) => {
@@ -82,7 +81,8 @@ export const ImageButton = ({
         const text = { text: '' };
         const image: TImageElement = {
             align: 'left',
-            type: getPluginType(editor, KEY),
+            key: 'insertData',
+            type: 'insertData',
             url: url as any,
             children: [text],
         };
@@ -102,6 +102,7 @@ export const ImageButton = ({
                 event.preventDefault();
                 context.uuiModals.show<string>(modalProps => (
                     <AddImageModal
+                        editor={ editor }
                         focusEditor={ () => focusEditor(editor) }
                         insertImage={ handleImageInsert }
                         { ...modalProps }

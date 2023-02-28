@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { UploadFileToggler, FlexSpacer } from '@epam/uui-components';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
+import { insertData, PlateEditor } from '@udecode/plate';
+
 import css from './AddImageModal.scss';
 
 const {
@@ -17,6 +19,7 @@ const {
 interface AddImageModalProps extends IModal<any> {
     insertImage: (imageURL: string) => void;
     focusEditor: () => void;
+    editor: PlateEditor;
 }
 
 export function AddImageModal(props: AddImageModalProps): JSX.Element {
@@ -47,17 +50,18 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                     <Button type='cancel' caption='Cancel' onClick={ abort } />
                     <Button type='success' caption='Ok' isDisabled={ !imageURL } onClick={ () => {
                         focusEditor();
-                        props.insertImage(prependHttp(imageURL, { https: true }));
+                        if (files) {
+                            const dataTransfer = new DataTransfer();
+
+                            files.map((file: File) => {
+                                dataTransfer.items.add(file);
+                            });
+
+                            insertData(props.editor, dataTransfer);
+                        } else {
+                            props.insertImage(prependHttp(imageURL, { https: true }));
+                        }
                         props.success(true);
-                        //focusEditor();
-                        // if (this.state.files) {
-                        //     this.state.files.map((file: File) => {
-                        //         (this.props.editor as any).handleUploadFile(file);
-                        //     });
-                        // } else {
-                        //     this.props.editor.insertBlock({ data: { src: prependHttp(this.state.imageURL, { https: true }) }, type: 'image' });
-                        // }
-                        // this.props.success(true);
                     } }
                     />
                 </ModalFooter>

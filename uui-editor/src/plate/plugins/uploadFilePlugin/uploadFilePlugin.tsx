@@ -5,6 +5,7 @@ import {
     ToolbarButton as PlateToolbarButton,
     getPreventDefaultHandler,
     createPluginFactory,
+    createInsertDataPlugin,
     PlateEditor,
 } from "@udecode/plate";
 
@@ -22,17 +23,10 @@ export interface UploadFileOptions {
     uploadFile(file: File, onProgress: (progress: any) => any): any;
 }
 
-export const uploadFilePlugin = (options: UploadFileOptions) => {
-    const createUploadFilePlugin = createPluginFactory({
-        key: KEY,
-        isElement: true,
-        isVoid: true,
-        options,
-        withOverrides: withFileUpload,
-    });
-
-    return createUploadFilePlugin();
-};
+export const uploadFilePlugin = (options: UploadFileOptions) => createInsertDataPlugin({
+    options,
+    withOverrides: withFileUpload,
+});
 
 interface IUploadFileButton {
     editor: PlateEditor;
