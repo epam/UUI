@@ -50,7 +50,8 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                     <Button type='cancel' caption='Cancel' onClick={ abort } />
                     <Button type='success' caption='Ok' isDisabled={ !imageURL } onClick={ () => {
                         focusEditor();
-                        if (files) {
+
+                        if (files && files.length) {
                             const dataTransfer = new DataTransfer();
 
                             files.map((file: File) => {

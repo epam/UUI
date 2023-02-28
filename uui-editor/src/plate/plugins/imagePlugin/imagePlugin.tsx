@@ -79,10 +79,10 @@ export const ImageButton = ({
 
     const handleImageInsert = (url: string) => {
         const text = { text: '' };
+        
         const image: TImageElement = {
             align: 'left',
-            key: 'insertData',
-            type: 'insertData',
+            type: getPluginType(editor, KEY),
             url: url as any,
             children: [text],
         };
