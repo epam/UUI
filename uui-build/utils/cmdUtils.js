@@ -1,22 +1,22 @@
-const child_process = require('child_process')
+const child_process = require('child_process');
 
 async function runCliCommand(cwd, command) {
-  await new Promise((resolve, reject) => {
-    child_process.exec(
-      command,
-      {
-        cwd,
-      },
-      (error, stdout, stderr) => {
-        if (error) {
-          console.log(stdout);
-          console.error(stderr);
-          reject(`${command} error: ${error}`);
-        }
-        resolve();
-      }
-    );
-  });
+    await new Promise((resolve, reject) => {
+        child_process.exec(
+            command,
+            {
+                cwd,
+            },
+            (error, stdout, stderr) => {
+                if (error) {
+                    console.error(stdout);
+                    console.error(stderr);
+                    reject(new Error(`${command} error: ${error}`));
+                }
+                resolve();
+            },
+        );
+    });
 }
 
 function hasCliArg(argName) {
@@ -33,5 +33,5 @@ function getCliArgValue(argName) {
 module.exports = {
     runCliCommand,
     hasCliArg,
-    getCliArgValue
-}
+    getCliArgValue,
+};

@@ -57,8 +57,15 @@ jobs:
           yarn build
           yarn generate-components-api
           cd server && yarn
+
       - name: test
         run: yarn test
+
+      - name: eslint
+        run: yarn eslint
+
+      - name: stylelint
+        run: yarn stylelint
 
   docker:
     needs: build-and-test

@@ -13,14 +13,12 @@ export function createStore<TState, TActions>(initialState: TState, reducers: Re
 
     function dispatch(action: Action<any>) {
         let reducer = (reducers as any)[action.name as any];
-        // tslint:disable-next-line:no-console
         console.log(`Dispatching ${action.name}. Payload: ${JSON.stringify(action.payload)}`);
         let newState = reducer(action.payload)(state);
-        // tslint:disable-next-line:no-console
         console.log(`State changed: ${JSON.stringify(state)} => ${JSON.stringify(newState)}`);
         state = newState;
     }
-   
+
     function wrapDispatch<TPayload>(name: string) {
         return function (payload: TPayload) {
             dispatch({ name, payload });

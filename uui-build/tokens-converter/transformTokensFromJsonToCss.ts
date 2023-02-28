@@ -6,6 +6,7 @@ import { CoreTokens, PaletteToken, ThemesObject, TokenObject, TokensObject, UuiC
 import { checkTokens } from './checkTokens';
 import { defaultTokens } from './defaults';
 import defaultsDeep from 'lodash.defaultsdeep';
+import { getAllMonorepoPackages } from './../utils/monorepoUtils';
 
 const ignoreDirList = ['public', 'build', 'node_modules'];
 
@@ -102,7 +103,8 @@ export const transformTokensFromJsonToCss = async function () {
         });
     }
 
-    const tokensFiles = await getFilesWithTokens(resolve(await realpath(process.cwd()), 'app'));
+    const appRootDir = getAllMonorepoPackages()['@epam/app'].moduleRootDir;
+    const tokensFiles = await getFilesWithTokens(appRootDir);
 
     tokensFiles.map(async filePath => {
         const pathObj: ParsedPath = parse(filePath);

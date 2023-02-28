@@ -1,4 +1,5 @@
 module.exports = {
+    collectCoverage: false,
     "collectCoverageFrom": [
         "**/*.{ts,tsx}",
         "!src/**/*.d.ts",
@@ -12,7 +13,7 @@ module.exports = {
         "react-app-polyfill/jsdom",
         // "<rootDir>/test-utils/helpers.tsx"
     ],
-    "setupFilesAfterEnv": ["./setupTests.js"],
+    "setupFilesAfterEnv": ["./uui-build/jest/setupTests.js"],
     "testMatch": [
       '<rootDir>/**/*.{spec,test}.{js,jsx,ts,tsx}',
     ],

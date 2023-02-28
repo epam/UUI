@@ -45,7 +45,6 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                         </Panel>,
                     { position: 'bot-right' },
                 ).catch(() => null);
-                // tslint:disable-next-line:no-console
                 console.log(`${name} (`, args, ')');
             };
             callback.displayName = `callback`;
