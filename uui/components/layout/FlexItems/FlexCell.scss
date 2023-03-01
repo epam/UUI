@@ -1,4 +1,4 @@
-@use  '../../../assets/styles/index' as *;;
+@use  '../../../assets/styles/index' as *;
 
 .flexCell {
     @include overflow-ellipsis();

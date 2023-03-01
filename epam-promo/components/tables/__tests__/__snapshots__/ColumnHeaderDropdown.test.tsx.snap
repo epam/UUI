@@ -40,7 +40,7 @@ Array [
       }
     >
       <div
-        className="root shadow background-white panel container"
+        className="uui-panel root shadow panel-white panel container"
         style={
           Object {
             "width": undefined,
