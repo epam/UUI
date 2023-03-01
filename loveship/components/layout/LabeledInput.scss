@@ -2,7 +2,6 @@
 
 .root {
     width: 100%;
-    user-select: none;
 
     :global(.uui-label) {
         @include overflow-ellipsis();
