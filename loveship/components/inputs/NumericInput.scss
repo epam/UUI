@@ -19,6 +19,7 @@
 
         :global(.uui-numeric-input-up-button) {
             transform: rotate(180deg);
+            user-select: none;
         }
 
         :global(.uui-numeric-input-button-group) {

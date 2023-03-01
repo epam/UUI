@@ -14,6 +14,7 @@
 
         :global(.uui-numeric-input-up-button) {
             transform: rotate(180deg);
+            user-select: none;
 
             &:hover {
                 svg {
@@ -23,6 +24,8 @@
         }
 
         :global(.uui-numeric-input-down-button) {
+            user-select: none;
+
             &:hover {
                 svg {
                     fill: var(--icon-color-hovered);
