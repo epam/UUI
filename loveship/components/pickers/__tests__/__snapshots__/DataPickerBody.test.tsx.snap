@@ -2,7 +2,7 @@
 
 exports[`DataPickerBody should be rendered correctly 1`] = `
 <div
-  className="root size-36 background-white spacing-6 body container align-items-center"
+  className="root size-36 flex-row-white body container align-items-center"
   style={
     Object {
       "columnGap": undefined,
@@ -35,7 +35,7 @@ exports[`DataPickerBody should be rendered correctly 1`] = `
 
 exports[`DataPickerBody should be rendered correctly with empty rows 1`] = `
 <div
-  className="root size-36 background-white spacing-6 body container align-items-center"
+  className="root size-36 flex-row-white body container align-items-center"
   style={
     Object {
       "columnGap": undefined,
@@ -113,7 +113,7 @@ Array [
     </div>
   </div>,
   <div
-    className="root size-36 background-white spacing-6 body container align-items-center"
+    className="root size-36 flex-row-white body container align-items-center"
     style={
       Object {
         "columnGap": undefined,

@@ -2,7 +2,7 @@
 
 exports[`FlexRow should be rendered correctly 1`] = `
 <div
-  className="root size-36 background-none container align-items-center"
+  className="root size-36 flex-row-none container align-items-center"
   style={
     Object {
       "columnGap": undefined,
@@ -14,7 +14,7 @@ exports[`FlexRow should be rendered correctly 1`] = `
 
 exports[`FlexRow should be rendered correctly with props 1`] = `
 <div
-  className="root size-24 background-gray5 padding-12 vPadding-12 margin-12 topShadow border-bottom-gray40 spacing-12 container -clickable align-items-top"
+  className="root size-24 padding-12 vPadding-12 margin-12 topShadow flex-row-border-bottom-gray40 spacing-12 flex-row-gray5 container -clickable align-items-top"
   onClick={[Function]}
   style={
     Object {
