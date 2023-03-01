@@ -39,7 +39,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       role="modal"
     >
       <div
-        className="root size-36 padding-24 vPadding-12 flex-row-none modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 spacing-6 flex-row-none modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -546,7 +546,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
       role="modal"
     >
       <div
-        className="root size-36 padding-24 vPadding-12 flex-row-none modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 spacing-6 flex-row-none modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
