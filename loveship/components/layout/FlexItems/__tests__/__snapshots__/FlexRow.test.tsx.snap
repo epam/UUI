@@ -2,7 +2,7 @@
 
 exports[`FlexRow should be rendered correctly 1`] = `
 <div
-  className="root size-36 flex-row-none container align-items-center"
+  className="root size-36 spacing-6 flex-row-none container align-items-center"
   style={
     Object {
       "columnGap": undefined,
