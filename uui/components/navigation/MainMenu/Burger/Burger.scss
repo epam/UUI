@@ -21,11 +21,11 @@
         fill: var(--uui-burger_icon);
 
         &:hover {
-            background-color: var(--uui-burger_menu-bg);
+            background-color: var(--uui-burger_menu-bg-hover);
         }
 
         &:active {
-            background-color: var(--uui-burge_menu-bg);
+            background-color: var(--uui-burger_menu-bg-hover);
         }
 
         :global(.uui-icon) svg {

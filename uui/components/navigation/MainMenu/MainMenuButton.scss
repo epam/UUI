@@ -2,8 +2,8 @@
 
 .root {
     flex-shrink: 0;
-    color: var(--uui-caption);
-    fill: var(--uui-caption);
+    color: var(--uui-main_menu-text);
+    fill: var(--uui-main_menu-icon);
 
     :global(.uui-caption), :global(.uui-input) {
         padding: 22px 6px;
@@ -40,15 +40,15 @@
     &:global(.-clickable) {
         &:hover, &:focus {
             background-color: var(--uui-main_menu-hover);
-            color: var(--uui-caption);
-            fill: var(--uui-caption);
+            color: var(--uui-main_menu-text);
+           fill: var(--uui-main_menu-icon-hover);
         }
     }
 
     &:global(.uui-active) {
         background-color: var(--uui-main_menu-hover);
         border-bottom: 3px solid var(--uui-main_menu-border-active);
-        color: var(--uui-caption);
-        fill: var(--uui-caption);
+        color: var(--uui-main_menu-text);
+        fill: var(--uui-main_menu-icon-active);
     }
 }
