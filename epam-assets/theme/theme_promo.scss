@@ -403,7 +403,6 @@
 
     /* Panel */
     --uui-panel-border-radius: var(--uui-border-radius);
-    --uui-panel-bg: var(--uui-surface);
     --uui-panel-shadow: var(--uui-shadow);
 
     /* Modals */
@@ -1010,5 +1009,13 @@
 
     :global(.dropdown-container-gray70) {
         --uui-dropdown-container-bg: var(--gray70);
+    }
+
+    :global(.panel-white) {
+        --uui-panel-bg: var(--uui-surface);
+    }
+
+    :global(.panel-gray90) {
+        --uui-panel-bg: var(--uui-surface-inverted);
     }
 }

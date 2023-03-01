@@ -331,7 +331,7 @@ exports[`ConfirmationModal should be rendered correctly with extra props 1`] = `
           }
         >
           <div
-            className="root margin-24 container"
+            className="uui-panel root margin-24 container"
           >
             <div>
               content
