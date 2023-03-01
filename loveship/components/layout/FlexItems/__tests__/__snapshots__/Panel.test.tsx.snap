@@ -2,13 +2,13 @@
 
 exports[`Panel should be rendered correctly 1`] = `
 <div
-  className="root container"
+  className="uui-panel root container"
 />
 `;
 
 exports[`Panel should be rendered correctly with props 1`] = `
 <div
-  className="root shadow margin-24 background-night50 container -clickable"
+  className="uui-panel root shadow margin-24 panel-night50 container -clickable"
   onClick={[Function]}
 />
 `;
