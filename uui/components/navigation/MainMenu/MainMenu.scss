@@ -3,8 +3,8 @@
     min-height: 60px;
     min-width: 360px;
     background-color: var(--uui-main_menu-bg);
-    color: var(--uui-caption);
-    fill: var(--uui-caption);
+    color: var(--uui-main_menu-text);
+    fill: var(--uui-main_menu-icon);
 
     :global(.uui-mainmenu-server-badge) {
         position: absolute;
@@ -14,25 +14,11 @@
 
     :global(.uui-mainmenu-server-badge-label) {
         padding: 0 5px;
-        border: 2px solid var(--uui-caption);
+        border: 2px solid var(--uui-main_menu-border-light);
         border-radius: 5px 5px 0 0;
         border-bottom: 0;
         font-family: var(--font-semibold);
         font-size: 9px;
         text-transform: uppercase;
-    }
-
-    &:global(.uui-mainmenu-transparent) {
-        background-color: transparent;
-
-        :global(#global_menu_toggle), :global(.uui-burger_menu) {
-            background-color: transparent;
-
-            &:hover, &:active {
-                background-color: transparent;
-                color: var(--uui-main_menu-transparent);
-                fill: var(--uui-main_menu-transparent);
-            }
-        }
     }
 }

@@ -11,7 +11,7 @@
     transition: background-color 0.3s ease-out, flex-basis 0.3s ease-in-out;
 
     :global(.uui-input) {
-        color: var(--uui-caption);
+        color: var(--uui-main_menu-text);
         font-family: var(--font-regular);
 
         &::placeholder {

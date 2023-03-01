@@ -181,6 +181,8 @@
     --uui-text-disabled: var(--gray50);
     --uui-text-contrast: var(--gray5);
 
+    --uui-caption: var(--white);
+
     --uui-control-rest: var(--uui-primary);
     --uui-control-hover: var(--uui-primary-dark);
     --uui-control-active: var(--uui-primary-darkest);
@@ -466,27 +468,31 @@
     --uui-dropdown-container-bg: var(--white);
 
     /* MainMenu */
+    --uui-main_menu-text: var(--white);
     --uui-main_menu-bg: var(--gray80);
+    --uui-main_menu-bg-hover: var(--gray80);
     --uui-main_menu-active: var(--gray90);
     --uui-main_menu-hover: var(--gray90);
     --uui-main_menu-border-active: var(--uui-primary);
-    --uui-caption: var(--white);
+    --uui-main_menu-border-light: var(--white);
+
     --uui-main_menu-dropdown-bg: var(--gray90);
     --uui-main_menu-dropdown-hover: var(--uui-primary);
+
     --uui-main_menu-search-bg: var(--gray70);
     --uui-main_menu-search-border: var(--gray70);
     --uui-main_menu-search-placeholder: var(--uui-text-disabled);
     --uui-main_menu-search-text: var(--uui-contrast);
     --uui-main_menu-search-icon: var(--uui-icon-disabled);
+
     --uui-main_menu-icon: var(--white);
     --uui-main_menu-icon-hover: var(--white);
     --uui-main_menu-icon-active: var(--white);
-    --uui-main_menu-transparent: var(--uui-primary-dark);
 
     /* BurgerMenu */
     --uui-burger_menu-bg: var(--gray90);
     --uui-burger_menu-bg-hover: var(--uui-primary-dark);
-    --uui-burger_menu-caption: var(--uui-contrast);//--white
+    --uui-burger_menu-caption: var(--uui-contrast);
     --uui-burger_menu-caption-hover: var(--uui-primary);
     --uui-burger_menu-overlay: var(--uui-overlay);
     --uui-burger_icon: var(--white);
