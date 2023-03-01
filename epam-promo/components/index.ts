@@ -15,5 +15,5 @@ export * from './fileUpload';
 export * from './errors';
 export {
     FiltersPanel, PresetsPanel, defaultPredicates, TabButton, VerticalTabButton, Calendar, NumericInput,
-    Switch, TextArea, Dropdown, TextPlaceholder, Tag, RadioInput,
+    Switch, TextArea, Dropdown, TextPlaceholder, Tag, RadioInput, IconContainer,
 } from "@epam/uui";
