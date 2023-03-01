@@ -113,7 +113,7 @@ export default function BasicDropdownExample() {
 
                         <FlexCell width="100%">
                             <FlexRow spacing="6" alignItems="center">
-                                <IconContainer icon={ phoneIcon } color="gray50"/>
+                                <IconContainer icon={ phoneIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {/*redirect implementation*/
                                     } }
@@ -122,7 +122,7 @@ export default function BasicDropdownExample() {
                                     caption="+3809324353424"/>
                             </FlexRow>
                             <FlexRow spacing="6" alignItems="center">
-                                <IconContainer icon={ chatIcon } color="gray50"/>
+                                <IconContainer icon={ chatIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {/*redirect implementation*/
                                     } }
@@ -132,7 +132,7 @@ export default function BasicDropdownExample() {
                                 />
                             </FlexRow>
                             <FlexRow spacing="6" alignItems="center">
-                                <IconContainer icon={ mailIcon } color="gray50"/>
+                                <IconContainer icon={ mailIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {/*redirect implementation*/
                                     } }
@@ -142,7 +142,7 @@ export default function BasicDropdownExample() {
                                 />
                             </FlexRow>
                             <FlexRow spacing="6" alignItems="bottom">
-                                <IconContainer icon={ inIcon } color="gray50"/>
+                                <IconContainer icon={ inIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {/*redirect implementation*/
                                     } }
@@ -152,7 +152,7 @@ export default function BasicDropdownExample() {
                                 />
                             </FlexRow>
                             <FlexRow spacing="6" alignItems="center">
-                                <IconContainer icon={ geoIcon } color="gray50"/>
+                                <IconContainer icon={ geoIcon } cx={ css.iconGray50 } />
                                 <Text fontSize="14" lineHeight="18" color="gray80" cx={ css.text }>Gratkorn, Austria
                                     UTC+01:00 | 16:54</Text>
                             </FlexRow>
