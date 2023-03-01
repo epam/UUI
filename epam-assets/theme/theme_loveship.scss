@@ -626,6 +626,9 @@
     /* Alert */
     --uui-alert-border-radius: 6px;
 
+    /* FlexRow vars */
+    --uui-flex-row-bg-hover: var(--night50);
+
     /* modification of the states of table components */
 
     :global(.uui-dt-cell-border) {
@@ -1275,5 +1278,26 @@
 
     :global(.dropdown-container-night700) {
         --uui-dropdown-container-bg: var(--night700);
+    }
+
+    :global(.flex-row-white) {
+        --uui-flex-row-bg: var(--uui-surface);
+    }
+
+    :global(.flex-row-night50) {
+        --uui-flex-row-bg: var(--night50);
+    }
+
+    :global(.flex-row-night100) {
+        --uui-flex-row-bg: var(--night100);
+    }
+
+    :global(.flex-row-none) {
+        --uui-flex-row-bg: transparent;
+    }
+
+    :global(.flex-row-border-bottom-default),
+    :global(.flex-row-border-bottom-night400) {
+        --uui-flex-row-border-bottom: 1px solid var(--night400);
     }
 }

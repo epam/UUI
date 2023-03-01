@@ -15,7 +15,7 @@ exports[`FileCard should be rendered correctly 1`] = `
   }
 >
   <div
-    className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+    className="root size-36 spacing-6 flex-row-none fileCardRow container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -108,7 +108,7 @@ exports[`FileCard should be rendered correctly 2`] = `
   }
 >
   <div
-    className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+    className="root size-36 spacing-6 flex-row-none fileCardRow container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -201,7 +201,7 @@ exports[`FileCard should be rendered correctly 3`] = `
   }
 >
   <div
-    className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+    className="root size-36 spacing-6 flex-row-none fileCardRow container align-items-top"
     style={
       Object {
         "columnGap": undefined,

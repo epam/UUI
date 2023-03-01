@@ -557,6 +557,9 @@
     --uui-filters-toggler-label: var(--uui-text-secondary);
     --uui-filters-toggler-icon: var(--uui-text-input-icon-clickable);
 
+    /* FlexRow vars */
+    --uui-flex-row-bg-hover: var(--gray5);
+
     /* modification of the states of table components */
 
     :global(.uui-dt-cell-border) {
@@ -1010,5 +1013,22 @@
 
     :global(.dropdown-container-gray70) {
         --uui-dropdown-container-bg: var(--gray70);
+    }
+
+    :global(.flex-row-white) {
+        --uui-flex-row-bg: var(--uui-surface);
+    }
+
+    :global(.flex-row-gray5) {
+        --uui-flex-row-bg: var(--gray5);
+    }
+
+    :global(.flex-row-none) {
+        --uui-flex-row-bg: transparent;
+    }
+
+    :global(.flex-row-border-bottom-default),
+    :global(.flex-row-border-bottom-gray40) {
+        --uui-flex-row-border-bottom: 1px solid var(--gray40);
     }
 }
