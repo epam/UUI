@@ -48,19 +48,18 @@ export default function BasicExample() {
                     formatOptions={ { style: "currency", currency: "USD", currencyDisplay: "name" } }
                 />
             </LabeledInput>
-            <LabeledInput label='Units (meters)'>
-                <NumericInput
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    formatOptions={ { style: "unit", unit: "meter" } }
-                />
-            </LabeledInput>
             <LabeledInput label='Custom formatting (readonly mode only)'>
                 <NumericInput
                     value={ value }
                     onValueChange={ onValueChange }
                     formatValue={ (value) => { return 'USD ' + value } }
-                    isReadonly
+                />
+            </LabeledInput>
+            <LabeledInput label='Units (meters)'>
+                <NumericInput
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    formatOptions={ { style: "unit", unit: "meter" } }
                 />
             </LabeledInput>
         </FlexCell>
