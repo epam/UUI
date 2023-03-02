@@ -1,3 +1,3 @@
-import { FlexSpacer as uuiFlexSpacer } from '@epam/uui-components';
+import { FlexSpacer as uuiFlexSpacer } from '@epam/uui';
 
 export const FlexSpacer = uuiFlexSpacer;
