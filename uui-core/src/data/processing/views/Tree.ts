@@ -1,7 +1,7 @@
 import { DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange, SortingOption, DataRowPathItem } from "../../../types";
 import { LazyListViewProps } from "./LazyListView";
-import { CompositeKeysMap } from './CompositeKeysMap';
 import { getSearchFilter } from "../../querying";
+import { deleteFromList, newMap, patchList } from "./treeHelpers";
 
 export interface TreeParams<TItem, TId> {
     getId?(item: TItem): TId;
@@ -46,14 +46,6 @@ interface ApplySortOptions<TItem, TId, TFilter> {
 //     flattenSearchResults?: boolean;
 // }
 
-function newMap<TKey, TValue>(params: TreeParams<any, any>) {
-    if (params.complexIds) {
-        return new CompositeKeysMap<TKey, TValue>();
-    } else {
-        return new Map<TKey, TValue>();
-    }
-}
-
 export class Tree<TItem, TId> {
     private getId: (item: TItem) => TId;
     private getParentId: (item: TItem) => TId;
@@ -86,7 +78,7 @@ export class Tree<TItem, TId> {
             // TBD: restore this optimization if needed. TBD: compare node index to detect when items are moved without changing
             // const isItemsEqual = (this.props.items.length === this.tree.getTotalRecursiveCount())
             //     && this.props.items.every((value, index) => value === this.tree.getById(this.props.getId(value)));
-            return Tree.blank(params).append(items);
+            return Tree.blank(params).patch(items);
         }
     }
 
@@ -231,39 +223,58 @@ export class Tree<TItem, TId> {
         return this.byParentId.size <= 1;
     }
 
-    public append(itemsToAdd: TItem[]) {
-        if (!itemsToAdd || itemsToAdd.length === 0) {
+    public patch(
+        items: TItem[],
+        isDeletedProp?: keyof TItem,
+        comparator?: (newItem: TItem, existingItem: TItem) => number,
+    ) {
+        if (!items || items.length === 0) {
             return this;
         }
 
         const newById = this.cloneMap(this.byId);
         const newByParentId = this.cloneMap(this.byParentId); // shallow clone, still need to copy arrays inside!
 
-        itemsToAdd.forEach((item) => {
+        let isPatched = false;
+        items.forEach((item) => {
             const id = this.getId(item);
             const existingItem = this.byId.get(id);
+            const parentId = this.getParentId(item);
+            let list = [...(newByParentId.get(parentId) ?? [])];
+
+            if (isDeletedProp && item[isDeletedProp]) {
+                newByParentId.set(parentId, deleteFromList(id, list));
+                newByParentId.delete(id);
+                newById.delete(id);
+                isPatched = true;
+                return;
+            }
+
             if (!existingItem || existingItem !== item) {
                 const id = this.getId(item);
                 newById.set(id, item);
 
-                const parentId = this.getParentId(item);
                 const existingItemParentId = existingItem ? this.getParentId(existingItem) : undefined;
-
                 if (!existingItem || parentId != existingItemParentId) {
-                    let list = newByParentId.get(parentId);
-                    if (!list) {
-                        list = [];
-                        newByParentId.set(parentId, list);
-                    } else if (list === this.byParentId.get(parentId)) { // need to create shallow copy
-                        list = [...list];
-                        newByParentId.set(parentId, list);
-                    }
-                    list.push(id);
-
-                    // TBD: remove item from existing list (if we'll use this method to mutate existing list)
+                    newByParentId.set(
+                        parentId,
+                        patchList(
+                            list,
+                            { getId: this.getId, getParentId: this.getParentId },
+                            { existingItem, newItem: item },
+                            { byId: this.byId, byParentId: this.byParentId },
+                            comparator,
+                        ),
+                    );
                 }
+                isPatched = true;
             }
         });
+
+        if (!isPatched) {
+            return this;
+        }
+
         const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
 
         for (let [parentId, ids] of newByParentId) {
