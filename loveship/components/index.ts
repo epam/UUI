@@ -16,5 +16,5 @@ export { UploadFileToggler } from '@epam/uui-components';
 export {
     FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder,
     RangeDatePicker, DatePicker, MainMenu, GlobalMenu, Burger, BurgerButton, MainMenuAvatar, MainMenuSearch, MainMenuIcon,
-    MainMenuDropdown, MainMenuButton,
+    MainMenuDropdown, MainMenuButton, IconContainer,
 } from "@epam/uui";
