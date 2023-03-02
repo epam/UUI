@@ -24,35 +24,43 @@ export default function BasicExample() {
                 <NumericInput
                     value={ value }
                     onValueChange={ onValueChange }
-                    formatOptions={{ maximumFractionDigits: 0 }}
+                    formatOptions={ { maximumFractionDigits: 0 } }
                 />
             </LabeledInput>
             <LabeledInput label='Max 2 fractional digits'>
                 <NumericInput
                     value={ value }
                     onValueChange={ onValueChange }
-                    formatOptions={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+                    formatOptions={ { minimumFractionDigits: 2, maximumFractionDigits: 2 } }
                 />
             </LabeledInput>
             <LabeledInput label='Exactly 2 fractional digits'>
                 <NumericInput
                     value={ value }
                     onValueChange={ onValueChange }
-                    formatOptions={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+                    formatOptions={ { minimumFractionDigits: 2, maximumFractionDigits: 2 } }
                 />
             </LabeledInput>
             <LabeledInput label='Currency'>
                 <NumericInput
                     value={ value }
                     onValueChange={ onValueChange }
-                    formatOptions={{ style: "currency", currency: "USD", currencyDisplay: "name" }}
+                    formatOptions={ { style: "currency", currency: "USD", currencyDisplay: "name" } }
                 />
             </LabeledInput>
             <LabeledInput label='Units (meters)'>
                 <NumericInput
                     value={ value }
                     onValueChange={ onValueChange }
-                    formatOptions={{ style: "unit", unit: "meter" }}
+                    formatOptions={ { style: "unit", unit: "meter" } }
+                />
+            </LabeledInput>
+            <LabeledInput label='Custom formatting (readonly mode only)'>
+                <NumericInput
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    formatValue={ (value) => { return 'USD ' + value } }
+                    isReadonly
                 />
             </LabeledInput>
         </FlexCell>
