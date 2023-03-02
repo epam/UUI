@@ -50,7 +50,7 @@ export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, 
     /**
      * A function to convert current input value to displayed text.
      * Overrides standard Intl-based formatting. If passed, formatOptions prop is ignored.
-     * Note, that formatting is used only in read-mode, when input is out of focus.
+     * Note, that formatting is used when input is out of focus.
      */
     formatValue?(value: number): string;
 }
@@ -84,13 +84,16 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         let newValue = event.target.value === "" ? null : +event.target.value;
-        const fractionDigits = getFractionDigits(formatOptions);
 
-        if (newValue !== null) {
-            newValue = toFixedWithoutRoundingUp(newValue, fractionDigits);
-        }
-        if (formatter) {
-            newValue = formatter(newValue);
+        // skip Intl-based formatting when custom formatter applied
+        if (!formatValue) {
+            const fractionDigits = getFractionDigits(formatOptions);
+            if (newValue !== null) {
+                newValue = toFixedWithoutRoundingUp(newValue, fractionDigits);
+            }
+            if (formatter) {
+                newValue = formatter(newValue);
+            }
         }
 
         props.onValueChange(newValue);
@@ -158,7 +161,8 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const placeholderValue = React.useMemo(() => {
         if (!value && value !== 0) return props.placeholder || "0";
-        if (props.isReadonly && !!formatValue) return formatValue(value);
+        if (formatValue) return formatValue(value);
+
         return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
     }, [props.placeholder, props.value, props.formatOptions, props.disableLocaleFormatting]);
 
