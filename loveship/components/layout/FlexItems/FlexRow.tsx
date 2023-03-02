@@ -4,7 +4,7 @@ import { FlexRow as uuiFlexRow, RowMods as uuiRowMods } from '@epam/uui';
 
 export interface RowMods extends Omit<uuiRowMods, 'borderBottom' | 'spacing'>, types.RowSizeMod {
     background?: 'white' | 'night50' | 'night100' | 'none';
-    borderBottom?: boolean | 'night50' | 'night400' | 'night700' | 'night300';
+    borderBottom?: boolean | 'night400';
     spacing?: '6' | '12' | '18' | null;
     type?: 'form' | 'panel';
 }

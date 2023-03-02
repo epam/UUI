@@ -33,7 +33,7 @@ export const skinContext: ISkin = {
     ModalWindow: skinComponent(ModalWindow),
     ModalBlocker: skinComponent(ModalBlocker, props => ({ blockerShadow: "dark" as const, ...props})),
     ModalFooter: skinComponent(ModalFooter),
-    ModalHeader: skinComponent(ModalHeader, props => ({ borderBottom: "night50" as const, ...props })),
+    ModalHeader: skinComponent(ModalHeader, props => ({ borderBottom: "night400" as const, ...props })),
     LabeledInput: skinComponent(LabeledInput, props => ({ size: '36' as const, ...props })),
     DatePicker: skinComponent(DatePicker),
     RangeDatePicker: skinComponent(RangeDatePicker),
