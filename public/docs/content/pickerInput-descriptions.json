@@ -246,7 +246,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Opening body in dropdown or in ",
+                    "text": "Opening body in dropdown or ",
                     "marks": []
                   },
                   {
@@ -322,7 +322,7 @@
                   },
                   {
                     "object": "text",
-                    "text": ", footer customizations.",
+                    "text": ", and footer customizations.",
                     "marks": []
                   }
                 ]
@@ -341,7 +341,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Picker body opening depends on entered amount of symbols in search.",
+                    "text": "Picker body opening depends on the entered amount of symbols in the search.",
                     "marks": []
                   }
                 ]

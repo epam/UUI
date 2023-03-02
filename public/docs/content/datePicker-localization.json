@@ -77,7 +77,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Pay attention that you use the same version of dayjs as UUI. Otherwise localization won't work.",
+            "text": "Ensure that you use the same version of dayjs as in UUI packages. Otherwise localization won't work.",
             "marks": []
           }
         ]
