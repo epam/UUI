@@ -46,6 +46,13 @@ export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, 
      * [Obsolete]: Please rework this to change value in lens.onChange or onValueChange instead
      */
     formatter?(value: number): number;
+
+    /**
+     * A function to convert current input value to displayed text.
+     * Overrides standard Intl-based formatting. If passed, formatOptions prop is ignored.
+     * Note, that formatting is used only in read-mode, when input is out of focus.
+     */
+    formatValue?(value: number): string;
 }
 
 export const uuiNumericInput = {
@@ -61,7 +68,7 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
 };
 
 export const NumericInput = (props: NumericInputProps) => {
-    let { value, min, max, step, formatter, formatOptions } = props;
+    let { value, min, max, step, formatter, formatValue, formatOptions } = props;
 
     if (value != null) {
         value = +value;
@@ -151,6 +158,7 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const placeholderValue = React.useMemo(() => {
         if (!value && value !== 0) return props.placeholder || "0";
+        if (props.isReadonly && !!formatValue) return formatValue(value);
         return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
     }, [props.placeholder, props.value, props.formatOptions, props.disableLocaleFormatting]);
 
