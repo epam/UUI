@@ -41,12 +41,6 @@ export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, 
     /** Number formatting options. See #{link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat} */
     formatOptions?: Intl.NumberFormatOptions;
 
-    // Obsolete! Made obsolete at 25-May-2022. TBD: Remove in next releases
-    /**
-     * [Obsolete]: Please rework this to change value in lens.onChange or onValueChange instead
-     */
-    formatter?(value: number): number;
-
     /**
      * A function to convert current input value to displayed text.
      * Overrides standard Intl-based formatting. If passed, formatOptions prop is ignored.
@@ -68,7 +62,7 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
 };
 
 export const NumericInput = (props: NumericInputProps) => {
-    let { value, min, max, step, formatter, formatValue, formatOptions } = props;
+    let { value, min, max, step, formatValue, formatOptions } = props;
 
     if (value != null) {
         value = +value;
@@ -85,15 +79,9 @@ export const NumericInput = (props: NumericInputProps) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         let newValue = event.target.value === "" ? null : +event.target.value;
 
-        // skip Intl-based formatting when custom formatter applied
-        if (!formatValue) {
-            const fractionDigits = getFractionDigits(formatOptions);
-            if (newValue !== null) {
-                newValue = toFixedWithoutRoundingUp(newValue, fractionDigits);
-            }
-            if (formatter) {
-                newValue = formatter(newValue);
-            }
+        const fractionDigits = getFractionDigits(formatOptions);
+        if (newValue !== null) {
+            newValue = toFixedWithoutRoundingUp(newValue, fractionDigits);
         }
 
         props.onValueChange(newValue);
