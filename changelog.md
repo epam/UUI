@@ -1,3 +1,11 @@
+# 4.xx.x - xx.xx.2023
+
+What's Fixed
+- [Typography] Links now underlined in typography
+- [NumericInput] Label text highlighting prevented on clicking up/down arrow buttons
+- [NumericInput] `formatter` prop replaced with custom `formatValue` function which converts given input into text instead of number
+- [ButtonBase] `disabled` attribute applied according to buttons state
+
 # 4.10.0 - 06.02.2023
 
 **What's New**

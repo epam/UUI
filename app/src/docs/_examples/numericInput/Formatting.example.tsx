@@ -52,6 +52,7 @@ export default function BasicExample() {
                 <NumericInput
                     value={ value }
                     onValueChange={ onValueChange }
+                    formatOptions={ { maximumFractionDigits: 2 } }
                     formatValue={ (value) => { return 'USD ' + value } }
                 />
             </LabeledInput>
