@@ -31,7 +31,7 @@ export default function BasicExample() {
                 <NumericInput
                     value={ value }
                     onValueChange={ onValueChange }
-                    formatOptions={ { minimumFractionDigits: 2, maximumFractionDigits: 2 } }
+                    formatOptions={ { maximumFractionDigits: 2 } }
                 />
             </LabeledInput>
             <LabeledInput label='Exactly 2 fractional digits'>
@@ -48,7 +48,7 @@ export default function BasicExample() {
                     formatOptions={ { style: "currency", currency: "USD", currencyDisplay: "name" } }
                 />
             </LabeledInput>
-            <LabeledInput label='Custom formatting (readonly mode only)'>
+            <LabeledInput label='Custom formatting with max 2 fraction digits'>
                 <NumericInput
                     value={ value }
                     onValueChange={ onValueChange }
