@@ -43,7 +43,8 @@ export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, 
 
     /**
      * A function to convert current input value to displayed text.
-     * Overrides standard Intl-based formatting. If passed, formatOptions prop is ignored.
+     * Overrides standard Intl-based formatting.
+     * If passed, only maximumFractionDigits considered from formatOptions when both properties provided.
      * Note, that formatting is used when input is out of focus.
      */
     formatValue?(value: number): string;
