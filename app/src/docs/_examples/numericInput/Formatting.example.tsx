@@ -27,6 +27,13 @@ export default function BasicExample() {
                     formatOptions={ { maximumFractionDigits: 0 } }
                 />
             </LabeledInput>
+            <LabeledInput label='Min 2 fractional digits'>
+                <NumericInput
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    formatOptions={ { minimumFractionDigits: 2 } }
+                />
+            </LabeledInput>
             <LabeledInput label='Max 2 fractional digits'>
                 <NumericInput
                     value={ value }
