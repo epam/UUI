@@ -103,6 +103,38 @@ describe('Tree - patch', () => {
         expect(patchedTree['byId'].get(320)).toEqual(patchedItem);
     });
 
+    it('should move item to the other parent', () => {
+        const patchedItem = { id: 320, parentId: 200, name: 'new name' };
+        const patchedTree = tree.patch([patchedItem], 'isDeleted');
+        expect(patchedTree['byId'].has(320)).toBeTruthy();
+        expect(patchedTree['byParentId'].has(200)).toBeTruthy();
+        expect(patchedTree['byParentId'].get(200)).toEqual([320]);
+        expect(patchedTree['byParentId'].get(300)).toEqual([
+            310, 330, 340, 350,
+        ]);
+        expect(patchedTree === tree).toBeFalsy();
+        expect(patchedTree['byId'].get(320)).toEqual(patchedItem);
+    });
+
+    it('should move item to the other parent into exact place', () => {
+        const patchedItem = { id: 320, parentId: 100, name: 'new name' };
+        const patchedTree = tree.patch(
+            [patchedItem],
+            'isDeleted',
+            (_, { id: existingId }) => (existingId < 120) ? 1 : -1,
+        );
+        expect(patchedTree['byId'].has(320)).toBeTruthy();
+        expect(patchedTree['byParentId'].has(100)).toBeTruthy();
+        expect(patchedTree['byParentId'].get(100)).toEqual([
+            110, 320, 120,
+        ]);
+        expect(patchedTree['byParentId'].get(300)).toEqual([
+            310, 330, 340, 350,
+        ]);
+        expect(patchedTree === tree).toBeFalsy();
+        expect(patchedTree['byId'].get(320)).toEqual(patchedItem);
+    });
+
     it('should add item to the top level', () => {
         const newItem = { id: 400, name: 'some new item' };
         const patchedTree = tree.patch([newItem], 'isDeleted');

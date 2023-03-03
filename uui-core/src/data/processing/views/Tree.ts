@@ -266,6 +266,11 @@ export class Tree<TItem, TId> {
                             comparator,
                         ),
                     );
+
+                    if (existingItemParentId !== parentId) {
+                        const prevParentChildren = this.byParentId.get(existingItemParentId);
+                        newByParentId.set(existingItemParentId, deleteFromList(id, prevParentChildren));
+                    }
                 }
                 isPatched = true;
             }
