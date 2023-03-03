@@ -59,11 +59,13 @@ export const patchList = <TItem, TId>(
 ) => {
     const id = getId(newItem);
     const parentId = getParentId(newItem);
+    const prevParentId = existingItem ? getParentId(existingItem) : undefined;
+
     if (!list || list === byParentId.get(parentId)) {
         list = list ? [...list] : [];
     }
 
-    if (!existingItem && comparator) {
+    if ((!existingItem || (existingItem && parentId !== prevParentId)) && comparator) {
         return pasteNewItemIntoList(id, newItem, byId, list, comparator);
     }
 
