@@ -92,7 +92,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
             >
                 <MobileDropdownWrapper
                     title={ this.props.entityName }
-                    close={ () => this.toggleBodyOpening(false) }
+                    close={ this.props?.onClose }
                 >
 
                     <DataPickerBody

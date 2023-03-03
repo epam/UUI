@@ -39,6 +39,9 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         }
     }, [props.value]);
 
+    const closeDropdown = () => {
+        isOpenChange(false);
+    };
 
     const onValueChange = useCallback((value: any) => {
         if (props.predicates) {
@@ -95,7 +98,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         <DropdownContainer>
             <Panel>
                 { renderHeader() }
-                { <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange }/> }
+                { <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } onClose={ closeDropdown }/> }
             </Panel>
         </DropdownContainer>
     );
