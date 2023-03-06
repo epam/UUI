@@ -90,7 +90,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                     }
 
                     if (prop.type === 'string') {
-                        this.state.inputValues[prop.name] = defaultExample?.value || '';
+                        this.state.inputValues[prop.name] = defaultExample?.value;
                     }
                 });
                 this.initialProps = this.state.selectedPropsIds;
