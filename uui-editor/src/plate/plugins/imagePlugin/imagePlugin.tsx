@@ -11,7 +11,6 @@ import {
     ToolbarButton as PlateToolbarButton,
     TImageElement,
     insertNodes,
-    withImageUpload,
 } from '@udecode/plate';
 
 import { isPluginActive, isTextSelected } from '../../../helpers';
@@ -79,7 +78,7 @@ export const ImageButton = ({
 
     const handleImageInsert = (url: string) => {
         const text = { text: '' };
-        
+
         const image: TImageElement = {
             align: 'left',
             type: getPluginType(editor, KEY),

@@ -23,14 +23,11 @@ const { FlexRow, Spinner } = uuiSkin;
 
 export const Image = (props: any) => {
     const ref = useRef(null);
-    const { editor, element, children } = props;
+    const { editor, element } = props;
 
     if (element.type === 'loader') {
         return (
-            <>
-                <Spinner { ...props } cx={ css.spinner }/>
-                { children }
-            </>
+            <Spinner { ...props } cx={ css.spinner }/>
         );
     }
 
