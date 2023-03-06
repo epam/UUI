@@ -1,4 +1,4 @@
-import { IMap } from "../../../types";
+import { IMap } from "../../../../types";
 import { CompositeKeysMap } from "./CompositeKeysMap";
 
 export interface TreeParams<TItem, TId> {
