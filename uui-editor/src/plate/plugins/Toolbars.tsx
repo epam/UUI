@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-    isEditorFocused,
     useEventPlateId,
     usePlateEditorState,
     usePlateEditorRef,
@@ -77,11 +76,6 @@ const BlockToolbarButtons = () => {
 
 export const ToolbarButtons = () => {
     const editor = usePlateEditorState(useEventPlateId());
-    const isActive = isEditorFocused(editor);
-
-    if (!isActive) {
-        return null;
-    }
 
     return (
         <Sidebar isReadonly={ false } >
