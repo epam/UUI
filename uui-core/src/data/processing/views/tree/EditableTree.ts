@@ -1,6 +1,5 @@
 import { BaseTree } from "./BaseTree";
 import { ITree, TreeNodeInfo } from "./ITree";
-import { deleteFromList, patchList } from "./treeHelpers";
 import { Tree } from "./Tree";
 
 export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
@@ -21,10 +20,10 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             const id = this.getId(item);
             const existingItem = this.byId.get(id);
             const parentId = this.getParentId(item);
-            let list = [...(newByParentId.get(parentId) ?? [])];
+            const children = [...(newByParentId.get(parentId) ?? [])];
 
             if (isDeletedProp && item[isDeletedProp]) {
-                newByParentId.set(parentId, deleteFromList(id, list));
+                newByParentId.set(parentId, this.deleteFromChildren(id, children));
                 newByParentId.delete(id);
                 newById.delete(id);
                 isPatched = true;
@@ -39,18 +38,12 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
                 if (!existingItem || parentId != existingItemParentId) {
                     newByParentId.set(
                         parentId,
-                        patchList(
-                            list,
-                            { getId: this.getId, getParentId: this.getParentId },
-                            { existingItem, newItem: item },
-                            { byId: this.byId, byParentId: this.byParentId },
-                            comparator,
-                        ),
+                        this.patchChildren(children, { existingItem, newItem: item }, comparator),
                     );
 
                     if (existingItem && existingItemParentId !== parentId) {
                         const prevParentChildren = this.byParentId.get(existingItemParentId) ?? [];
-                        newByParentId.set(existingItemParentId, deleteFromList(id, prevParentChildren));
+                        newByParentId.set(existingItemParentId, this.deleteFromChildren(id, prevParentChildren));
                     }
                 }
                 isPatched = true;
@@ -134,4 +127,59 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
 
         return result;
     }
+
+    private deleteFromChildren<TId>(id: TId, children: TId[]) {
+        const foundIndex = children.findIndex((childId) => childId === id);
+        if (foundIndex !== -1) {
+            children.splice(foundIndex, 1);
+        }
+
+        return children;
+    }
+
+    private patchChildren(
+        children: TId[] | undefined,
+        { existingItem, newItem }: { existingItem: TItem | undefined, newItem: TItem },
+        comparator: (newItem: TItem, existingItem: TItem) => number,
+    ) {
+        const id = this.getId(newItem);
+        const parentId = this.getParentId(newItem);
+        const prevParentId = existingItem ? this.getParentId(existingItem) : undefined;
+
+        if (!children || children === this.byParentId.get(parentId)) {
+            children = children ? [...children] : [];
+        }
+
+        if ((!existingItem || (existingItem && parentId !== prevParentId)) && comparator) {
+            return this.pasteItemIntoChildrenList(newItem, children, comparator);
+        }
+
+        return [...children, id];
+    }
+
+    private pasteItemIntoChildrenList(
+        item: TItem,
+        children: TId[],
+        comparator: (newItem: TItem, existingItem: TItem) => number,
+    ) {
+        const id = this.getId(item);
+        const childrenWithNewItem: TId[] = [];
+        children.forEach((itemId) => {
+            const comparisonResult = comparator(item, this.byId.get(itemId));
+            if (comparisonResult === 1) {
+                const foundIndex = childrenWithNewItem.findIndex((itemId) => itemId === id);
+                if (foundIndex !== -1) {
+                    childrenWithNewItem.splice(foundIndex, 1);
+                }
+
+                childrenWithNewItem.push(itemId, id);
+            } else {
+                const foundIndex = childrenWithNewItem.findIndex((childId) => childId === id);
+                childrenWithNewItem.push(...(foundIndex === -1 ? [id, itemId] : [itemId]));
+            }
+        });
+
+        return childrenWithNewItem;
+    }
+
 }

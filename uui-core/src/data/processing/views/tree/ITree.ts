@@ -1,7 +1,6 @@
 import { DataSourceState, SortingOption, DataRowPathItem } from "../../../../types";
 import { LazyListViewProps } from "../LazyListView";
 import { CompositeKeysMap } from "./CompositeKeysMap";
-import { Tree } from "./Tree";
 
 export interface ApplyFilterOptions<TItem, TId, TFilter> {
     filter: DataSourceState<TFilter, TId>['filter'];
