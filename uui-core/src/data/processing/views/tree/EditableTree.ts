@@ -20,9 +20,9 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             const id = this.getId(item);
             const existingItem = this.byId.get(id);
             const parentId = this.getParentId(item);
-            const children = [...(newByParentId.get(parentId) ?? [])];
 
             if (isDeletedProp && item[isDeletedProp]) {
+                const children = [...(newByParentId.get(parentId) ?? [])];
                 newByParentId.set(parentId, this.deleteFromChildren(id, children));
                 newByParentId.delete(id);
                 newById.delete(id);
@@ -36,6 +36,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
 
                 const existingItemParentId = existingItem ? this.getParentId(existingItem) : undefined;
                 if (!existingItem || parentId != existingItemParentId) {
+                    const children = [...(newByParentId.get(parentId) ?? [])];
                     newByParentId.set(
                         parentId,
                         this.patchChildren(children, { existingItem, newItem: item }, comparator),
