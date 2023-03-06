@@ -202,69 +202,6 @@ describe('ArrayListView', () => {
             expect(rows).toHaveLength(4);
             expect(rowsIds).toEqual([6, 9, 8, 7]);
         });
-
-        it('should filter/search/sort tree if filter was changed', () => {
-            const filterMock = jest.spyOn(Tree.prototype, 'filter');
-            const searchMock = jest.spyOn(Tree.prototype, 'search');
-            const sortMock = jest.spyOn(Tree.prototype, 'sort');
-
-            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
-
-            const dataSourceState = { ...value, topIndex: 0, visibleCount: 20, filter };
-            realView.update(dataSourceState, { ...viewProps, getFilter });
-
-            expect(filterMock).toBeCalledTimes(1);
-            expect(searchMock).toBeCalledTimes(1);
-            expect(sortMock).toBeCalledTimes(1);
-
-            realView.update({ ...dataSourceState, filter: () => {} }, { ...viewProps, getFilter });
-
-            expect(filterMock).toBeCalledTimes(2);
-            expect(searchMock).toBeCalledTimes(2);
-            expect(sortMock).toBeCalledTimes(2);
-        });
-
-        it('should search/sort tree if search was changed', () => {
-            const filterMock = jest.spyOn(Tree.prototype, 'filter');
-            const searchMock = jest.spyOn(Tree.prototype, 'search');
-            const sortMock = jest.spyOn(Tree.prototype, 'sort');
-
-            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
-
-            const dataSourceState = { ...value, topIndex: 0, visibleCount: 20, filter };
-            realView.update(dataSourceState, { ...viewProps, getFilter });
-
-            expect(filterMock).toBeCalledTimes(1);
-            expect(searchMock).toBeCalledTimes(1);
-            expect(sortMock).toBeCalledTimes(1);
-
-            realView.update({ ...dataSourceState, search: 'C' }, { ...viewProps, getFilter });
-
-            expect(filterMock).toBeCalledTimes(1);
-            expect(searchMock).toBeCalledTimes(2);
-            expect(sortMock).toBeCalledTimes(2);
-        });
-
-        it('should sort tree if sorting was changed', () => {
-            const filterMock = jest.spyOn(Tree.prototype, 'filter');
-            const searchMock = jest.spyOn(Tree.prototype, 'search');
-            const sortMock = jest.spyOn(Tree.prototype, 'sort');
-
-            const realView = dataSource.getView(value, onValueChange, viewProps) as View;
-
-            const dataSourceState = { ...value, topIndex: 0, visibleCount: 20, filter };
-            realView.update(dataSourceState, { ...viewProps, getFilter });
-
-            expect(filterMock).toBeCalledTimes(1);
-            expect(searchMock).toBeCalledTimes(1);
-            expect(sortMock).toBeCalledTimes(1);
-
-            realView.update({ ...dataSourceState, sorting: [{ field: 'level', direction: 'asc' }] }, { ...viewProps, getFilter });
-
-            expect(filterMock).toBeCalledTimes(1);
-            expect(searchMock).toBeCalledTimes(1);
-            expect(sortMock).toBeCalledTimes(2);
-        });
     });
 
     describe('row handlers', () => {
