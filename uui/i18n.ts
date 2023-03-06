@@ -90,4 +90,8 @@ export const i18n = {
     presetPanel: {
         addCaption: 'Add Preset',
     },
+    confirmationModal: {
+        discardButton: 'Discard',
+        saveButton: 'Save',
+    },
 };
