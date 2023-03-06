@@ -1,6 +1,6 @@
 import { DataSourceState, LazyDataSourceApi, DataQueryFilter } from "../../../../types";
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { LoadTreeOptions, Tree } from '../Tree';
+import { ITree, LoadTreeOptions, Tree } from '../tree';
 
 interface TestItem {
     id: number;
@@ -61,7 +61,7 @@ describe('Tree - patch', () => {
     };
 
     let value: DataSourceState = { topIndex: 0, visibleCount: 100 };
-    let tree: Tree<TestItem, number>;
+    let tree: ITree<TestItem, number>;
 
     beforeEach(async () => {
         tree = await blankTree.load({ ...loadParams, isFolded: i => false }, value);
@@ -109,6 +109,24 @@ describe('Tree - patch', () => {
         expect(patchedTree['byId'].has(320)).toBeTruthy();
         expect(patchedTree['byParentId'].has(200)).toBeTruthy();
         expect(patchedTree['byParentId'].get(200)).toEqual([320]);
+        expect(patchedTree['byParentId'].get(300)).toEqual([
+            310, 330, 340, 350,
+        ]);
+        expect(patchedTree === tree).toBeFalsy();
+        expect(patchedTree['byId'].get(320)).toEqual(patchedItem);
+    });
+
+    it('should put item to the beginning of the list if comparator was not provided', () => {
+        const patchedItem = { id: 320, parentId: 100, name: 'new name' };
+        const patchedTree = tree.patch(
+            [patchedItem],
+            'isDeleted',
+        );
+        expect(patchedTree['byId'].has(320)).toBeTruthy();
+        expect(patchedTree['byParentId'].has(100)).toBeTruthy();
+        expect(patchedTree['byParentId'].get(100)).toEqual([
+            320, 110, 120,
+        ]);
         expect(patchedTree['byParentId'].get(300)).toEqual([
             310, 330, 340, 350,
         ]);

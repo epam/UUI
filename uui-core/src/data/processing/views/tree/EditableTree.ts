@@ -1,12 +1,12 @@
 import { BaseTree } from "./BaseTree";
-import { ITree, TreeNodeInfo } from "./ITree";
+import { ItemsComparator, ITree, TreeNodeInfo } from "./ITree";
 import { Tree } from "./Tree";
 
 export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
     public patch(
         items: TItem[],
         isDeletedProp?: keyof TItem,
-        comparator?: (newItem: TItem, existingItem: TItem) => number,
+        comparator: ItemsComparator<TItem> = () => -1,
     ): ITree<TItem, TId> {
         if (!items || items.length === 0) {
             return this;
@@ -141,7 +141,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
     private patchChildren(
         children: TId[] | undefined,
         { existingItem, newItem }: { existingItem: TItem | undefined, newItem: TItem },
-        comparator: (newItem: TItem, existingItem: TItem) => number,
+        comparator: ItemsComparator<TItem>,
     ) {
         const id = this.getId(newItem);
         const parentId = this.getParentId(newItem);
@@ -161,14 +161,17 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
     private pasteItemIntoChildrenList(
         item: TItem,
         children: TId[],
-        comparator: (newItem: TItem, existingItem: TItem) => number,
+        comparator: ItemsComparator<TItem>,
     ) {
         const id = this.getId(item);
+        if (!children.length) {
+            return [id];
+        }
+
         const childrenWithNewItem: TId[] = [];
         children.forEach((itemId) => {
             const comparisonResult = comparator(item, this.byId.get(itemId));
             const foundIndex = childrenWithNewItem.findIndex((itemId) => itemId === id);
-
             if (comparisonResult === 1) {
                 if (foundIndex !== -1) {
                     childrenWithNewItem.splice(foundIndex, 1);

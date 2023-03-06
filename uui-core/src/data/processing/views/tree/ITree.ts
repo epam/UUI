@@ -36,6 +36,8 @@ export interface TreeParams<TItem, TId> {
     complexIds?: boolean;
 }
 
+export type ItemsComparator<TItem> = (newItem: TItem, existingItem: TItem) => number;
+
 export interface ITree<TItem, TId> {
     clearStructure(): ITree<TItem, TId>;
     getRootIds(): TId[];
@@ -54,7 +56,7 @@ export interface ITree<TItem, TId> {
     patch(
         items: TItem[],
         isDeletedProp?: keyof TItem,
-        comparator?: (newItem: TItem, existingItem: TItem) => number,
+        comparator?: ItemsComparator<TItem>,
     ): ITree<TItem, TId>;
     cascadeSelection(
         currentSelection: TId[],
