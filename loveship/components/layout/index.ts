@@ -8,4 +8,3 @@ export * from './CheckboxGroup';
 export * from './Blocker';
 export * from './ScrollBars';
 export * from './VirtualList';
-export * from './IconContainer';

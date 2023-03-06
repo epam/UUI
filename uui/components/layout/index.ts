@@ -1,7 +1,7 @@
 export * from './Accordion';
 export * from './ControlGroup';
 export * from './FlexItems';
-export * from './IconContainer';
+export { IconContainer } from '@epam/uui-components';
 export * from './LabeledInput';
 export * from './RadioGroup';
 export * from './ScrollBars';
