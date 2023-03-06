@@ -116,11 +116,12 @@ describe('Tree - patch', () => {
         expect(patchedTree['byId'].get(320)).toEqual(patchedItem);
     });
 
-    it('should put item to the beginning of the list if comparator was not provided', () => {
+    it('should put item to the beginning of the list if comparator returns -1', () => {
         const patchedItem = { id: 320, parentId: 100, name: 'new name' };
         const patchedTree = tree.patch(
             [patchedItem],
             'isDeleted',
+            () => -1,
         );
         expect(patchedTree['byId'].has(320)).toBeTruthy();
         expect(patchedTree['byParentId'].has(100)).toBeTruthy();

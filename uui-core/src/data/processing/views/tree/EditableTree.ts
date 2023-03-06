@@ -6,7 +6,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
     public patch(
         items: TItem[],
         isDeletedProp?: keyof TItem,
-        comparator: ItemsComparator<TItem> = () => -1,
+        comparator?: ItemsComparator<TItem>,
     ): ITree<TItem, TId> {
         if (!items || items.length === 0) {
             return this;
