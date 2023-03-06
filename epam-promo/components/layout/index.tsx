@@ -4,7 +4,6 @@ export * from './CheckboxGroup';
 export * from './ControlGroup';
 export * from './ControlWrapper';
 export * from './FlexItems';
-export * from './IconContainer';
 export * from './LabeledInput';
 export * from './RadioGroup';
 export * from './ScrollBars';
