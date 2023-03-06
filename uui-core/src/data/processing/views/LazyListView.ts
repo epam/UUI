@@ -5,7 +5,7 @@ import {
 import isEqual from 'lodash.isequal';
 import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
-import { Tree, LoadTreeOptions } from './Tree';
+import { Tree, LoadTreeOptions, ITree } from './tree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
@@ -71,7 +71,7 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
 interface LoadResult<TItem, TId, TFilter> {
     isUpdated: boolean;
     isOutdated: boolean;
-    tree: Tree<TItem, TId>;
+    tree: ITree<TItem, TId>;
 }
 
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {

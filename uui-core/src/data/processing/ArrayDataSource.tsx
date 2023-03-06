@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps } from './views';
-import { Tree } from './views/Tree';
+import { ITree, Tree } from './views/tree';
 
 export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {}
 
 export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: ArrayDataSourceProps<TItem, TId, TFilter>;
-    tree: Tree<TItem, TId>;
+    tree: ITree<TItem, TId>;
 
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         super(props);
