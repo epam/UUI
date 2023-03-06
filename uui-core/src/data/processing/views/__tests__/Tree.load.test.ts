@@ -1,6 +1,6 @@
 import { DataSourceState, LazyDataSourceApi, DataQueryFilter } from "../../../../types";
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { LoadTreeOptions, Tree, TreeNodeInfo, TreeParams } from '../Tree';
+import { LoadTreeOptions, Tree, TreeNodeInfo } from '../tree';
 
 interface TestItem {
     id: number;

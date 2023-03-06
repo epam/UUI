@@ -1,5 +1,5 @@
 import { SortingOption } from "../../../../types";
-import { Tree } from "../Tree";
+import { Tree } from "../tree";
 
 interface TestItem {
     id: number;

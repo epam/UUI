@@ -1,7 +1,6 @@
 import { ArrayListView, ArrayListViewProps } from '../ArrayListView';
 import { ArrayDataSource } from '../../ArrayDataSource';
-import { DataQueryFilter, DataSourceState, SortDirection, SortingOption } from "../../../../types";
-import { Tree } from '../Tree';
+import { DataSourceState, SortDirection } from "../../../../types";
 
 interface TItem {
     id: number;
