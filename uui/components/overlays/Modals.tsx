@@ -8,6 +8,7 @@ import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg
 import css from './Modals.scss';
 
 export interface ModalBlockerMods {
+    /** by default: true */
     overlay?: boolean;
 }
 
