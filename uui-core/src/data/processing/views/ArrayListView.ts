@@ -3,7 +3,7 @@ import {
     DataSourceListProps, IDataSourceView, BaseListViewProps,
 } from "../../../types";
 import { BaseListView } from './BaseListView';
-import { ITree, Tree } from "./tree";
+import { ItemsComparator, ITree, Tree } from "./tree";
 
 export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     getSearchFields?(item: TItem): string[];
@@ -58,6 +58,19 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             }
         }
         this.updateRowOptions();
+    }
+
+    public patch(
+        items: TItem[],
+        isDeletedProp?: keyof TItem,
+        comparator?: ItemsComparator<TItem>,
+    ) {
+        super.patch(items, isDeletedProp, comparator ?? (() => -1));
+
+        this.originalTree = this.tree;
+        this.filteredTree = this.tree;
+        this.searchTree = this.tree;
+        this.sortedTree = this.tree;
     }
 
     public reload = () => {

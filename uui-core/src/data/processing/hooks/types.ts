@@ -1,4 +1,4 @@
-import { ArrayListViewProps, AsyncListViewProps, LazyListViewProps } from "../views";
+import { ArrayListViewProps, AsyncListViewProps, ItemsComparator, ITree, LazyListViewProps } from "../views";
 import { DataSourceState, IDataSourceView } from "../../../types";
 
 export type PropsWithType<Props, Type extends string> = Props & { type: Type };
@@ -24,6 +24,7 @@ export interface IView<
     TItem, TId, TFilter, Props extends ListViewProps<TItem, TId, TFilter>
 > extends IDataSourceView<TItem, TId, TFilter> {
     update(newValue: DataSourceState<TFilter, TId>, props: Props): void;
+    patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: ItemsComparator<TItem>): void;
 }
 
 interface ListState<TId, TFilter> {
@@ -42,4 +43,8 @@ export type UseListProps<TItem, TId, TFilter> = ListProps<TItem, TId, TFilter> &
      * @default true
      */
     loadData?: boolean;
+
+    patch?: TItem[],
+    isDeletedProp?: keyof TItem,
+    comparator?: ItemsComparator<TItem>,
 };

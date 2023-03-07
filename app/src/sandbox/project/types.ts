@@ -9,6 +9,7 @@ export interface Task {
     complete?: number;
     description?: string;
     order?: string;
+    isDeleted?: boolean;
 }
 
 export interface Resource {
