@@ -3,7 +3,7 @@ import {
     BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
     IDataSourceView, DataRowPathItem,
 } from "../../../types";
-import { ITree } from "./tree/ITree";
+import { ItemsComparator, ITree } from "./tree/ITree";
 
 interface NodeStats {
     isSomeCheckable: boolean;
@@ -33,6 +33,17 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     public destroy() {
         this.isDestroyed = true;
+    }
+
+
+    public patch(
+        items: TItem[],
+        isDeletedProp?: keyof TItem,
+        comparator?: ItemsComparator<TItem>,
+    ) {
+        this.tree = this.tree.patch(items, isDeletedProp, comparator ?? (() => -1));
+        this.updateCheckedLookup(this.value.checked);
+        this.rebuildRows();
     }
 
     protected constructor(editable: IEditable<DataSourceState<TFilter, TId>>, protected props: BaseListViewProps<TItem, TId, TFilter>) {
