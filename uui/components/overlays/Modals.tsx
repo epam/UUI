@@ -7,16 +7,9 @@ import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
 import css from './Modals.scss';
 
-export interface ModalBlockerMods {
-    /** by default: true */
-    overlay?: boolean;
-}
-
-export const ModalBlocker = withMods<ModalBlockerProps, ModalBlockerMods>(
-    uuiModalBlocker,
-    ({ overlay = true}) => [
+export const ModalBlocker = withMods<ModalBlockerProps>(uuiModalBlocker,
+    () => [
         css.modalBlocker,
-        overlay && css['blocker-overlay'],
     ]);
 
 export interface ModalWindowMods {
