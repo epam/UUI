@@ -1,4 +1,3 @@
-export * from './Accordion';
 export * from './FlexItems';
 export * from './LabeledInput';
 export * from './RadioGroup';
