@@ -4,6 +4,7 @@ import {
     useEventPlateId,
     usePlateEditorState,
     usePlateEditorRef,
+    isEditorFocused,
 } from '@udecode/plate';
 
 import { BoldButton, ItalicButton, UnderlineButton } from './baseMarksPlugin/baseMarksPlugin';
@@ -76,6 +77,11 @@ const BlockToolbarButtons = () => {
 
 export const ToolbarButtons = () => {
     const editor = usePlateEditorState(useEventPlateId());
+    const isActive = isEditorFocused(editor);
+
+    if (!isActive) {
+        return null;
+    }
 
     return (
         <Sidebar isReadonly={ false } >
