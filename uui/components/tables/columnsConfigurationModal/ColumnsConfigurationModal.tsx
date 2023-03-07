@@ -84,7 +84,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
     const applyButton = <Button caption={ i18nLocal.applyButton } isDisabled={ noVisibleColumns } color="accent" onClick={ apply } />;
 
     return (
-        <ModalBlocker overlay { ...modalProps }>
+        <ModalBlocker { ...modalProps }>
             <ModalWindow height={ 700 }>
                 <ModalHeader title={ i18nLocal.configureColumnsTitle } onClose={ close } />
                 <FlexRow padding="24" borderBottom={ true } spacing="12" cx={ styles.searchArea }>
