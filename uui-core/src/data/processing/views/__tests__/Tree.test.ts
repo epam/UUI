@@ -1,5 +1,5 @@
 import { SortingOption } from "../../../../types";
-import { Tree } from "../Tree";
+import { Tree } from "../tree";
 
 interface TestItem {
     id: number;
@@ -23,7 +23,7 @@ const testData: TestItem[] = [
 
 const blankTree = Tree.blank<TestItem, number>({ getId: i => i.id, getParentId: i => i.parentId });
 
-const testTree = blankTree.append(testData);
+const testTree = blankTree.patch(testData);
 
 //const treeWithValues = testTree.
 
@@ -85,19 +85,19 @@ describe('Tree', () => {
 
     describe('append', () => {
         it('can append new root item by id', () => {
-            const newTree = testTree.append([{ id: 400 }]);
+            const newTree = testTree.patch([{ id: 400 }]);
             expect(newTree.getById(400)).toEqual({ id: 400 });
             expect(newTree.getRootItems().map(n => n.id)).toEqual([100, 200, 300, 400]);
         })
 
         it('can append new child item by id', () => {
-            const newTree = testTree.append([{ id: 130, parentId: 100 }]);
+            const newTree = testTree.patch([{ id: 130, parentId: 100 }]);
             expect(newTree.getById(130)).toEqual({ id: 130, parentId: 100 });
             expect(newTree.getChildrenByParentId(100).map(n => n.id)).toEqual([110, 120, 130]);
         })
 
         it('can move node to a new parent', () => {
-            const newTree = testTree.append([{ id: 110, parentId: 100 }]);
+            const newTree = testTree.patch([{ id: 110, parentId: 100 }]);
             // TBD
             // expect(newTree.getNodeById(130)).toEqual(
             //     { id: 130, key: '130', parentId: 100, index: 2, item: { id: 130, parentId: 100 }}

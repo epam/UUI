@@ -3,7 +3,7 @@ import {
     DataSourceListProps, IDataSourceView, BaseListViewProps,
 } from "../../../types";
 import { BaseListView } from './BaseListView';
-import { Tree } from "./Tree";
+import { ITree, Tree } from "./tree";
 
 export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     getSearchFields?(item: TItem): string[];
@@ -12,16 +12,16 @@ export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListVie
 }
 
 export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
-    items?: TItem[] | Tree<TItem, TId>;
+    items?: TItem[] | ITree<TItem, TId>;
 }
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     protected props: ArrayListViewProps<TItem, TId, TFilter>;
 
-    originalTree: Tree<TItem, TId>;
-    searchTree: Tree<TItem, TId>;
-    filteredTree: Tree<TItem, TId>;
-    sortedTree: Tree<TItem, TId>;
+    originalTree: ITree<TItem, TId>;
+    searchTree: ITree<TItem, TId>;
+    filteredTree: ITree<TItem, TId>;
+    sortedTree: ITree<TItem, TId>;
 
     constructor(
         protected editable: IEditable<DataSourceState<TFilter, TId>>,
