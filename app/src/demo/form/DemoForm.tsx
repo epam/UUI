@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext, cx } from '@epam/uui-core';
+import { useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext } from '@epam/uui-core';
 import { demoData, Country } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import {
