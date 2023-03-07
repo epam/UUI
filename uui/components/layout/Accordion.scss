@@ -46,12 +46,12 @@
             background: var(--uui-accordion-bg);
             box-shadow: var(--uui-accordion-shadow);
             border-top: 1px solid var(--uui-accordion-border);
-            border-radius: var(--uui-accordion_body-border-radius);
+            border-radius: 0 0 var(--uui-accordion-border-radius) var(--uui-accordion-border-radius);
         }
 
         &:global(.uui-opened) {
             :global(.uui-accordion-toggler) {
-                border-radius: var(--uui-accordion_toggler-border-radius);
+                border-radius: var(--uui-accordion-border-radius) var(--uui-accordion-border-radius) 0 0;
                 box-shadow: var(--uui-accordion-shadow);
 
                 &:hover, &:focus {
