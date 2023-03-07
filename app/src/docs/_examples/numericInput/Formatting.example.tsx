@@ -1,75 +1,93 @@
-import React, { useState } from 'react';
-import { FlexCell, LabeledInput, NumericInput } from '@epam/promo';
-import css from './BasicExample.scss';
+import React, { useState } from "react";
+import { FlexCell, LabeledInput, NumericInput } from "@epam/promo";
+import css from "./BasicExample.scss";
 
-export default function BasicExample() {
-    const [value, onValueChange] = useState(1005001.23);
+const NumericExample = ({
+    label,
+    initialValue,
+    disableLocaleFormatting,
+    formatOptions,
+    formatValue,
+}: {
+    label: string;
+    initialValue?: number,
+    disableLocaleFormatting?: boolean;
+    formatOptions?: Intl.NumberFormatOptions;
+    formatValue?(value: number): string;
+}) => {
+    const [value, onValueChange] = useState(initialValue || 1005001.23);
 
     return (
-        <FlexCell width='auto' cx={ css.container } >
-            <LabeledInput label='Default locale formatting'>
-                <NumericInput
-                    value={ value }
-                    onValueChange={ onValueChange }
-                />
-            </LabeledInput>
-            <LabeledInput label='With disableLocaleFormatting'>
-                <NumericInput
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    disableLocaleFormatting={ true }
-                />
-            </LabeledInput>
-            <LabeledInput label='No fraction digits'>
-                <NumericInput
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    formatOptions={ { maximumFractionDigits: 0 } }
-                />
-            </LabeledInput>
-            <LabeledInput label='Min 2 fractional digits'>
-                <NumericInput
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    formatOptions={ { minimumFractionDigits: 2 } }
-                />
-            </LabeledInput>
-            <LabeledInput label='Max 2 fractional digits'>
-                <NumericInput
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    formatOptions={ { maximumFractionDigits: 2 } }
-                />
-            </LabeledInput>
-            <LabeledInput label='Exactly 2 fractional digits'>
-                <NumericInput
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    formatOptions={ { minimumFractionDigits: 2, maximumFractionDigits: 2 } }
-                />
-            </LabeledInput>
-            <LabeledInput label='Currency'>
-                <NumericInput
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    formatOptions={ { style: "currency", currency: "USD", currencyDisplay: "name" } }
-                />
-            </LabeledInput>
-            <LabeledInput label='Custom formatting with max 2 fraction digits'>
-                <NumericInput
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    formatOptions={ { maximumFractionDigits: 2 } }
-                    formatValue={ (value) => { return 'USD ' + value } }
-                />
-            </LabeledInput>
-            <LabeledInput label='Units (meters)'>
-                <NumericInput
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    formatOptions={ { style: "unit", unit: "meter" } }
-                />
-            </LabeledInput>
+        <LabeledInput label={ label }>
+            <NumericInput
+                value={ value }
+                onValueChange={ onValueChange }
+                disableLocaleFormatting={ disableLocaleFormatting }
+                formatOptions={ formatOptions }
+                formatValue={ formatValue }
+            />
+        </LabeledInput>
+    );
+};
+
+export default function BasicExample() {
+    return (
+        <FlexCell width="auto" cx={ css.container }>
+            <NumericExample
+                key="n1"
+                initialValue={ 1005001 }
+                label="Default locale formatting"
+            />
+            <NumericExample
+                key="n2"
+                initialValue={ 1005001 }
+                label="With disableLocaleFormatting"
+                disableLocaleFormatting={ true }
+            />
+            <NumericExample
+                key="n3"
+                initialValue={ 1005001 }
+                label="No fraction digits"
+                formatOptions={ { maximumFractionDigits: 0 } }
+            />
+            <NumericExample
+                key="n4"
+                label="Min 2 fractional digits"
+                formatOptions={ { minimumFractionDigits: 2 } }
+            />
+            <NumericExample
+                key="n5"
+                label="Max 2 fractional digits"
+                formatOptions={ { maximumFractionDigits: 2 } }
+            />
+            <NumericExample
+                key="n6"
+                label="Exactly 2 fractional digits"
+                formatOptions={ {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                } }
+            />
+            <NumericExample
+                key="n7"
+                label="Currency"
+                formatOptions={ {
+                    style: "currency",
+                    currency: "USD",
+                    currencyDisplay: "name",
+                } }
+            />
+            <NumericExample
+                key="n8"
+                label="Custom formatting with max 2 fraction digits"
+                formatOptions={ { maximumFractionDigits: 2 } }
+                formatValue={ (value) => "USD " + value }
+            />
+            <NumericExample
+                key="n9"
+                label="Units (meters)"
+                formatOptions={ { style: "unit", unit: "meter" } }
+            />
         </FlexCell>
     );
 }
