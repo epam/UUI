@@ -1,4 +1,3 @@
-export * from './Accordion';
 export * from './Blocker';
 export * from './CheckboxGroup';
 export * from './ControlGroup';
