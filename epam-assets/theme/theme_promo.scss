@@ -429,6 +429,9 @@
     /* Accordion */
     --uui-accordion-bg: var(--uui-surface);
     --uui-accordion-border: var(--uui-divider);
+    --uui-accordion-border-radius: 0px;
+    --uui-accordion_body-border-radius: 0px;
+    --uui-accordion_toggler-border-radius: 0px;
     --uui-accordion-text: var(--uui-text-primary);
     --uui-accordion-text-disabled: var(--uui-text-disabled);
     --uui-accordion-icon: var(--uui-icon);

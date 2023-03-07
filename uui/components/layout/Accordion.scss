@@ -13,6 +13,8 @@
     }
 
     &.mode-block {
+        border-radius: var(--uui-accordion-border-radius);
+
         :global(.uui-accordion-toggler) {
             background: var(--uui-accordion-bg);
             box-shadow: var(--uui-accordion-shadow);
@@ -20,6 +22,7 @@
             line-height: 24px;
             font-size: 18px;
             padding: 0 18px;
+            border-radius: var(--uui-accordion-border-radius);
 
             :global(.uui-accordion-toggle-container) {
                 min-height: 48px;
@@ -43,10 +46,14 @@
             background: var(--uui-accordion-bg);
             box-shadow: var(--uui-accordion-shadow);
             border-top: 1px solid var(--uui-accordion-border);
+            border-radius: var(--uui-accordion_body-border-radius);
         }
 
         &:global(.uui-opened) {
             :global(.uui-accordion-toggler) {
+                border-radius: var(--uui-accordion_toggler-border-radius);
+                box-shadow: var(--uui-accordion-shadow);
+
                 &:hover, &:focus {
                     border-color: var(--uui-accordion-border);
                 }
