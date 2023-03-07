@@ -55,7 +55,7 @@ export const basePlugins: any = [
     ...defaultPlugins,
 ];
 
-interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<HTMLDivElement>  {
+interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<HTMLDivElement> {
     isReadonly?: boolean;
     plugins?: any[];
     autoFocus?: boolean;
@@ -77,8 +77,7 @@ const Editor = ({ initialValue, ...props }: any) => {
         if (initialValue) {
             editor.children = initialValue;
         }
-    },
-    [editor, initialValue, forceUpdate]);
+    }, [editor, initialValue, forceUpdate]);
 
     const renderEditor = () => (
         <DndProvider backend={ HTML5Backend }>
@@ -89,13 +88,13 @@ const Editor = ({ initialValue, ...props }: any) => {
 
             </Plate>
             <MarkBalloonToolbar />
-            <Toolbar style={ {
+            { isFocused && <Toolbar style={ {
                 position: 'sticky',
                 bottom: 12,
                 display: 'flex',
             } }>
                 <ToolbarButtons />
-            </Toolbar>
+            </Toolbar> }
         </DndProvider>
     );
 
@@ -182,6 +181,6 @@ export function SlateEditor(props: SlateEditorProps) {
                 plugins={ plugins }
                 { ...props }
             />
-    </PlateProvider>
+        </PlateProvider>
     );
 }
