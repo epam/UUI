@@ -1,6 +1,5 @@
 import { BaseTree } from "./BaseTree";
 import { ItemsComparator, ITree, TreeNodeInfo } from "./ITree";
-import { Tree } from "./Tree";
 
 export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
     public patch(
