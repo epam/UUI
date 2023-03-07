@@ -3,10 +3,30 @@ import { useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource,
 import { demoData, Country } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import {
-    FlexCell, FlexRow, FlexSpacer, LabeledInput, Panel, PickerInput, RichTextView, SuccessNotification, ErrorNotification, Text,
-    TextInput, DatePicker, Tooltip, IconContainer, Switch, Button, IconButton, NumericInput, RangeDatePicker,
-    MultiSwitch, DropSpot, FileCard,
+    FlexCell,
+    FlexRow,
+    FlexSpacer,
+    LabeledInput,
+    Panel,
+    PickerInput,
+    RichTextView,
+    SuccessNotification,
+    ErrorNotification,
+    Text,
+    TextInput,
+    DatePicker,
+    Tooltip,
+    IconContainer,
+    Switch,
+    Button,
+    IconButton,
+    NumericInput,
+    RangeDatePicker,
+    MultiSwitch,
+    DropSpot,
+    FileCard,
     useForm,
+    Accordion,
 } from '@epam/promo';
 import type { PersonDetails, Attachment, PersonLanguageInfo, PersonTravelVisa } from './types';
 import { personDetailsSchema } from './validationShema';
@@ -15,7 +35,7 @@ import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notificati
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as ClearIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import css from './DemoForm.scss';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 
 const tShirtSizes = [
@@ -64,6 +84,12 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
     const citiesDataSource = useLazyDataSource({
         api: svc.api.demo.cities,
     }, []);
+
+    useEffect(() => {
+        console.log('mount');
+
+        return () => console.log('unmount');
+    });
 
     return (
         <>
@@ -503,7 +529,9 @@ export function DemoForm() {
             <Panel cx={ css.formPanel } background='white' shadow>
                 <FlexCell width='100%'>
                     <PersonalInfo lens={ lens.prop('personalInfo') } />
-                    <Location lens={ lens.prop('location') } countriesDS={ countriesDS } />
+                    <Accordion title='Destroy example'>
+                        <Location lens={ lens.prop('location') } countriesDS={ countriesDS } />
+                    </Accordion>
                     <PrimaryInfo lens={ lens.prop('primaryInfo') } />
                     <Education lens={ lens.prop('education') } />
                     <Languages lens={ lens.prop('languageInfo').default([emptyInfo.language]) } />

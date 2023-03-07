@@ -18,8 +18,8 @@ export const defaultData: PersonDetails = {
         birthdayDate: null,
     },
     location: {
-        city: null,
-        country: null,
+        city: "AL",
+        country: "1148311",
     },
 };
 
