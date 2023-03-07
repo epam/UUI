@@ -28,12 +28,25 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     public clearStructure(): ITree<TItem, TId> {
-        return new (this.constructor as any)(
+        return this.newInstance(
             this.params,
             this.byId,
             this.newMap(), // add empty children list for root to avoid corner-cases
             this.newMap(),
-        ) as ITree<TItem, TId>;
+        );
+    }
+
+    protected newInstance(
+        params: TreeParams<TItem, TId>,
+        byId: IMap<TId, TItem>,
+        byParentId: IMap<TId, TId[]>,
+        nodeInfoById: IMap<TId, TreeNodeInfo>,
+    ): ITree<TItem, TId> {
+        if (byId === this.byId && byParentId === this.byParentId && nodeInfoById === this.nodeInfoById) {
+            return this;
+        }
+
+        return new (this.constructor as any)(params, byId, byParentId, nodeInfoById) as ITree<TItem, TId>;
     }
 
     public getRootIds(): TId[] {

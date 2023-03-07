@@ -61,12 +61,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             newNodeInfoById.set(parentId, { count: ids.length });
         }
 
-        return new (this.constructor as any)(
-            this.params,
-            newById,
-            newByParentId,
-            newNodeInfoById,
-        ) as Tree<TItem, TId>;
+        return this.newInstance(this.params, newById, newByParentId, newNodeInfoById);
     }
 
     public cascadeSelection(
