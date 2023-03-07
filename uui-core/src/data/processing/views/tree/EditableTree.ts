@@ -168,22 +168,26 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             return [id];
         }
 
-        const childrenWithNewItem: TId[] = [];
-        children.forEach((itemId) => {
+        let greaterPosition = -1;
+        let equalPosition = -1;
+        children.forEach((itemId, index) => {
             const comparisonResult = comparator(item, this.byId.get(itemId));
-            const foundIndex = childrenWithNewItem.findIndex((itemId) => itemId === id);
-            if (comparisonResult === 1) {
-                if (foundIndex !== -1) {
-                    childrenWithNewItem.splice(foundIndex, 1);
-                }
-
-                childrenWithNewItem.push(itemId, id);
-            } else {
-                childrenWithNewItem.push(...(foundIndex === -1 ? [id, itemId] : [itemId]));
+            if (comparisonResult > 0) {
+                greaterPosition = index + 1;
+            }
+            if (comparisonResult === 0) {
+                equalPosition = index;
             }
         });
 
-        return childrenWithNewItem;
+        const position = greaterPosition !== -1
+            ? greaterPosition
+            : equalPosition !== -1
+                ? equalPosition
+                : 0;
+
+        children.splice(position, 0, id);
+        return children;
     }
 
 }
