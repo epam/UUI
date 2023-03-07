@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The default language of UUI is English. Even though in mostly cases texts provides by UUI user, we have a little bit built-in texts in our components, for example — 'Select All' button caption in PickerInput.",
+            "text": "The default language of UUI is English. In most cases, texts are provided by UUI users. However some components have built-in texts, such as the 'Select All' button caption in PickerInput footer. For this case we have an Internationalization approach.",
             "marks": []
           }
         ]
@@ -23,44 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "All this texts placed in ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "i18n",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " variable in ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "each",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " package, so to rewrite this text on another language, you need to import the i18n object into your project and update this object with texts on the expected language.",
+            "text": "In each UUI package there is an i18n variable, which contains all built-in texts from this package. Thus to translate it, you need to import the i18n object into your project and update this object with texts in the desired language.",
             "marks": []
           }
         ]
@@ -72,7 +35,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "import { i18n } from '@epam/promo'\n\ni18n.pickerInput = {\n  showOnlySelectedLabel: 'Показать только выбранные',\n  clearSelectionButton: 'Очистить все',\n  selectAllButton: 'Выбрать все',\n};",
+            "text": "import { i18n } from '@epam/promo'\n\ni18n.pickerInput = {\n  showOnlySelectedLabel: 'translated text for this case',\n  clearSelectionButton: 'translated text for this case',\n  selectAllButton: 'translated text for this case',\n};",
             "marks": []
           }
         ]
