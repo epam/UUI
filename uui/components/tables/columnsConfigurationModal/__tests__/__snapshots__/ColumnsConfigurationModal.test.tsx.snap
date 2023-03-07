@@ -2,7 +2,7 @@
 
 exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
 <div
-  className="container modalBlocker blocker-overlay"
+  className="container modalBlocker"
   style={
     Object {
       "zIndex": 1,
@@ -516,7 +516,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
 
 exports[`ColumnsConfigurationModal should disable Apply button if all columns are hidden 1`] = `
 <div
-  className="container modalBlocker blocker-overlay"
+  className="container modalBlocker"
   style={
     Object {
       "zIndex": 1,
