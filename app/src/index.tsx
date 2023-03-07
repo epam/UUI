@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui-core';
@@ -46,11 +46,5 @@ export class UuiEnhancedApp extends React.Component {
     }
 }
 
-render(
-    <React.StrictMode>
-        <Router history={ history }>
-            <UuiEnhancedApp />
-        </Router>
-    </React.StrictMode>,
-    document.getElementById('root'),
-);
+createRoot(document.getElementById('root'))
+    .render(<React.StrictMode><Router history={ history }><UuiEnhancedApp /></Router></React.StrictMode>);
