@@ -7,14 +7,10 @@ import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
 import css from './Modals.scss';
 
-export interface ModalBlockerMods {
-    overlay?: boolean;
-}
-
-export const ModalBlocker = withMods<ModalBlockerProps, ModalBlockerMods>(uuiModalBlocker, mods => [
-    css.modalBlocker,
-    mods.overlay && css['blocker-overlay'],
-]);
+export const ModalBlocker = withMods<ModalBlockerProps>(uuiModalBlocker,
+    () => [
+        css.modalBlocker,
+    ]);
 
 export interface ModalWindowMods {
     width?: number;
@@ -28,7 +24,7 @@ export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(
     { rawProps: {
         style: {
             width: `${ props.width || 480 }px`,
-            height: props.height ? `${ props.height }px` : '',
+            height: props.height ? `${ props.height }px` : 'auto',
         },
     },
     }),

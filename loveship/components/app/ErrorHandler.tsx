@@ -3,7 +3,8 @@ import { ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecov
     ApiRecoveryReason, ApiCallErrorType } from '@epam/uui-core';
 import { ModalBlocker, ModalHeader, ModalWindow, SnackbarCard } from '../overlays';
 import { FlexCell, FlexRow } from '../layout';
-import { RichTextView, Text } from '../typography';
+import { Text } from '../typography';
+import { RichTextView } from '@epam/uui';
 import { Spinner } from '../widgets';
 import { ErrorCatch } from '@epam/uui-components';
 import { ErrorPage } from './ErrorPage';
