@@ -40,4 +40,6 @@
 - [ ] discuss background props
 ### PickerInput
 - [ ] DataPickerBody renderNotFound promo has been modified with different logic than loveship
+### MainMenu
+- [ ] Discuss mainMenu tokens, from whom should we inherit menu tokens?
 
