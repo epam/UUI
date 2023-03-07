@@ -96,7 +96,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const renderBody = (dropdownProps: DropdownBodyProps) => (
         <DropdownContainer>
-            <Panel>
+            <Panel cx={ css.panel }>
                 { renderHeader() }
                 { <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } onClose={ closeDropdown }/> }
             </Panel>
