@@ -65,15 +65,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
         if (byId == this.byId) {
             return this;
         } else {
-            return Reflect.construct(
-                this.constructor,
-                [
-                    this.params,
-                    byId,
-                    this.byParentId,
-                    this.nodeInfoById,
-                ],
-            ) as ITree<TItem, TId>;
+            return this.newInstance(this.params, byId, this.byParentId, this.nodeInfoById);
         }
     }
 
@@ -176,19 +168,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
         await loadRecursive(undefined, undefined, options?.loadAllChildren?.(undefined), requiredRowsCount);
 
-        if (byId !== this.byId || byParentId !== this.byParentId || nodeInfoById !== this.nodeInfoById) {
-            return Reflect.construct(
-                this.constructor,
-                [
-                    this.params,
-                    byId,
-                    byParentId,
-                    nodeInfoById,
-                ],
-            ) as ITree<TItem, TId>;
-        } else {
-            return this;
-        }
+        return this.newInstance(this.params, byId, byParentId, nodeInfoById);
     }
 
     private async loadItems<TFilter>(
