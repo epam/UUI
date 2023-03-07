@@ -41,11 +41,13 @@ export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, 
     /** Number formatting options. See #{link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat} */
     formatOptions?: Intl.NumberFormatOptions;
 
-    // Obsolete! Made obsolete at 25-May-2022. TBD: Remove in next releases
     /**
-     * [Obsolete]: Please rework this to change value in lens.onChange or onValueChange instead
+     * A function to convert current input value to displayed text.
+     * Overrides standard Intl-based formatting.
+     * If passed, only maximumFractionDigits considered from formatOptions when both properties provided.
+     * Note, that formatting is used when input is out of focus.
      */
-    formatter?(value: number): number;
+    formatValue?(value: number): string;
 }
 
 export const uuiNumericInput = {
@@ -61,7 +63,7 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
 };
 
 export const NumericInput = (props: NumericInputProps) => {
-    let { value, min, max, step, formatter, formatOptions } = props;
+    let { value, min, max, step, formatValue, formatOptions } = props;
 
     if (value != null) {
         value = +value;
@@ -77,13 +79,10 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         let newValue = event.target.value === "" ? null : +event.target.value;
-        const fractionDigits = getFractionDigits(formatOptions);
 
+        const fractionDigits = getFractionDigits(formatOptions);
         if (newValue !== null) {
             newValue = toFixedWithoutRoundingUp(newValue, fractionDigits);
-        }
-        if (formatter) {
-            newValue = formatter(newValue);
         }
 
         props.onValueChange(newValue);
@@ -151,6 +150,8 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const placeholderValue = React.useMemo(() => {
         if (!value && value !== 0) return props.placeholder || "0";
+        if (formatValue) return formatValue(value);
+
         return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
     }, [props.placeholder, props.value, props.formatOptions, props.disableLocaleFormatting]);
 
