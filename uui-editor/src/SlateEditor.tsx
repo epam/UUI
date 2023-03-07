@@ -10,7 +10,6 @@ import {
     createPlugins,
     createPlateUI,
     usePlateEditorState,
-    isEditorFocused,
     TRenderElementProps,
     TEditableProps,
     Toolbar,
@@ -19,11 +18,7 @@ import {
     createExitBreakPlugin,
     PlateProvider,
     createDeserializeDocxPlugin,
-    ELEMENT_HR,
-    createAutoformatPlugin,
-    setNodes,
-    insertNodes,
-    ELEMENT_DEFAULT,
+    useEventEditorSelectors,
 } from '@udecode/plate';
 
 import { createJuicePlugin } from '@udecode/plate-juice';
@@ -71,7 +66,9 @@ interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<H
 const Editor = ({ initialValue, ...props }: any) => {
     const editor = usePlateEditorState();
     const forceUpdate = useForceUpdate();
-    const isFocused = isEditorFocused(editor);
+
+    const focusedEditorId = useEventEditorSelectors.focus();
+    const isFocused = editor.id === focusedEditorId;
 
     useEffect(() => {
         if (initialValue) {
