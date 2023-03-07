@@ -135,6 +135,46 @@ describe('Tree - patch', () => {
         expect(patchedTree['byId'].get(320)).toEqual(patchedItem);
     });
 
+    it('should put items in the right order if comparator returns -1', () => {
+        const patchedItem1 = { id: 130, parentId: 100, name: 'new name' };
+        const patchedItem2 = { id: 140, parentId: 100, name: 'new name 1' };
+        const patchedTree = tree.patch(
+            [patchedItem1, patchedItem2],
+            'isDeleted',
+            () => -1,
+        );
+
+        expect(patchedTree['byId'].has(130)).toBeTruthy();
+        expect(patchedTree['byId'].has(140)).toBeTruthy();
+        expect(patchedTree['byParentId'].has(100)).toBeTruthy();
+        expect(patchedTree['byParentId'].get(100)).toEqual([
+            140, 130, 110, 120,
+        ]);
+        expect(patchedTree === tree).toBeFalsy();
+        expect(patchedTree['byId'].get(130)).toEqual(patchedItem1);
+        expect(patchedTree['byId'].get(140)).toEqual(patchedItem2);
+    });
+
+    it('should put items in the right order if comparator returns 1', () => {
+        const patchedItem1 = { id: 130, parentId: 100, name: 'new name' };
+        const patchedItem2 = { id: 140, parentId: 100, name: 'new name 1' };
+        const patchedTree = tree.patch(
+            [patchedItem1, patchedItem2],
+            'isDeleted',
+            () => 1,
+        );
+
+        expect(patchedTree['byId'].has(130)).toBeTruthy();
+        expect(patchedTree['byId'].has(140)).toBeTruthy();
+        expect(patchedTree['byParentId'].has(100)).toBeTruthy();
+        expect(patchedTree['byParentId'].get(100)).toEqual([
+            110, 120, 130, 140,
+        ]);
+        expect(patchedTree === tree).toBeFalsy();
+        expect(patchedTree['byId'].get(130)).toEqual(patchedItem1);
+        expect(patchedTree['byId'].get(140)).toEqual(patchedItem2);
+    });
+
     it('should move item to the other parent into exact place', () => {
         const patchedItem = { id: 320, parentId: 100, name: 'new name' };
         const patchedTree = tree.patch(
