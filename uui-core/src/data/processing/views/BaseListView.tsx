@@ -3,7 +3,7 @@ import {
     BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
     IDataSourceView, DataRowPathItem,
 } from "../../../types";
-import { Tree } from "./Tree";
+import { ITree } from "./tree/ITree";
 
 interface NodeStats {
     isSomeCheckable: boolean;
@@ -14,7 +14,7 @@ interface NodeStats {
 }
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
-    protected tree: Tree<TItem, TId>;
+    protected tree: ITree<TItem, TId>;
     protected rows: DataRowProps<TItem, TId>[] = [];
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
