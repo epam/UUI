@@ -15,6 +15,6 @@ export * from './errors';
 export {
     FiltersPanel, PresetsPanel, defaultPredicates, TabButton, VerticalTabButton, Calendar, NumericInput,
     Switch, TextArea, Dropdown, TextPlaceholder, Tag, RadioInput, MainMenu, GlobalMenu, Burger, BurgerButton,
-    BurgerSearch, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton, RichTextView,
-    Form, useForm, IconContainer,
+    BurgerSearch, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton, IconContainer,
+    Accordion, RichTextView, Form, useForm,
 } from "@epam/uui";
