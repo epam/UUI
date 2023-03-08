@@ -1,6 +1,8 @@
 import { useRef, useEffect, useMemo, useCallback } from 'react';
-import { mergeValidation, useForceUpdate, UuiContexts, validate as uuiValidate,
-    validateServerErrorState, ICanBeInvalid } from '../../../index';
+import {
+    mergeValidation, useForceUpdate, UuiContexts, validate as uuiValidate,
+    validateServerErrorState, ICanBeInvalid
+} from '../../../index';
 import { useUuiContext } from '../../../index';
 import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';

@@ -1,5 +1,5 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Metadata, useList, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
@@ -30,6 +30,8 @@ let savedValue: FormState = { items: {} };
 
 export const ProductsTableDemo: React.FC = (props) => {
     const svc = useUuiContext<TApi, UuiContexts>();
+    // const [patch, setPatch] = useState<Product[]>([]);
+    const lastPatchIdRef = useRef(-1);
 
     const { lens, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
@@ -40,11 +42,23 @@ export const ProductsTableDemo: React.FC = (props) => {
         getMetadata: () => metadata,
     });
 
+    const addNewRow = () => {
+        --lastPatchIdRef.current;
+        const newValue = { ProductID: lastPatchIdRef.current } as Product;
+
+        const items = lens.prop('items').get();
+        lens.prop('items').set({ ...items, [lastPatchIdRef.current]: newValue });
+    };
+
     const [tableState, setTableState] = React.useState({});
 
     const { rows, listProps } = useList({
         type: 'lazy',
         api: svc.api.demo.products,
+
+        patch: Object.values(lens.prop('items').get()),
+        isDeletedProp: 'IsDeleted',
+
         getId: i => i.ProductID,
         getRowOptions: product => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),
         listState: tableState,
@@ -52,6 +66,11 @@ export const ProductsTableDemo: React.FC = (props) => {
     }, []);
 
     return <Panel style={ { width: '100%' } }>
+        <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
+            <FlexCell width='auto'>
+                <Button caption="Add row" onClick={ () => addNewRow() } size='30' />
+            </FlexCell>
+        </FlexRow>
         <DataTable
             headerTextCase='upper'
             getRows={ () => rows }

@@ -1,4 +1,4 @@
-import {FileUploadResponse, TimePickerValue} from "@epam/uui-core";
+import { FileUploadResponse, TimePickerValue } from "@epam/uui-core";
 
 export interface Person {
     __typename: "Person";
@@ -115,6 +115,7 @@ export interface Product {
     SellStartDate: string;
     DiscontinuedDate?: string;
     ModifiedDate: string;
+    IsDeleted?: boolean;
 }
 
 export interface SalesPerson {
@@ -263,6 +264,6 @@ export interface PersonDetails {
     numberValue?: number;
     timeValue?: TimePickerValue;
     rating?: number;
-    attachments?: ({progress?: number} & FileUploadResponse)[];
+    attachments?: ({ progress?: number } & FileUploadResponse)[];
 
 }

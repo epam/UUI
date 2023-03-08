@@ -74,10 +74,6 @@ export const ProjectDemo = () => {
         listState: tableState,
         setListState: setTableState,
         items: Object.values(value.items),
-
-        patch: Object.values(value.items),
-        isDeletedProp: 'isDeleted',
-
         getId: i => i.id,
         getParentId: i => i.parentId,
         getRowOptions: (task) => ({

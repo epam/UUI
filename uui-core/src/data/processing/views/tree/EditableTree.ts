@@ -55,9 +55,13 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         }
 
         const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
-
         for (let [parentId, ids] of newByParentId) {
-            newNodeInfoById.set(parentId, { count: ids.length });
+            const prevNodeInfo = this.nodeInfoById.get(parentId);
+            // for lazy loaded data, count should be undefined
+            newNodeInfoById.set(
+                parentId,
+                (!prevNodeInfo || prevNodeInfo.count != null) ? { count: ids.length } : { count: undefined },
+            );
         }
 
         return this.newInstance(this.params, newById, newByParentId, newNodeInfoById);
