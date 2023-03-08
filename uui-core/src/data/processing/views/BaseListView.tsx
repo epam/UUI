@@ -14,6 +14,7 @@ interface NodeStats {
 }
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
+    protected originalTree: ITree<TItem, TId>;
     protected tree: ITree<TItem, TId>;
     protected rows: DataRowProps<TItem, TId>[] = [];
     public value: DataSourceState<TFilter, TId> = {};
@@ -41,7 +42,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         isDeletedProp?: keyof TItem,
         comparator?: ItemsComparator<TItem>,
     ) {
-        this.tree = this.tree.patch(items, isDeletedProp, comparator ?? (() => -1));
+        this.tree = this.originalTree.patch(items, isDeletedProp, comparator ?? (() => -1));
         this.updateCheckedLookup(this.value.checked);
         this.rebuildRows();
     }

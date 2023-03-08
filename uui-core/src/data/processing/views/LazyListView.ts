@@ -91,7 +91,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const newProps = { legacyLoadDataBehavior, ...props };
         super(editable, newProps);
         this.props = this.applyDefaultsToProps(newProps);
-        this.tree = Tree.blank<TItem, TId>(newProps);
+        this.originalTree = Tree.blank<TItem, TId>(newProps);
+        this.tree = this.originalTree;
+
         this.cache = cache;
         if (!this.cache) {
             this.cache = new ListApiCache({
@@ -153,7 +155,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || this.shouldRebuildTree(this.value, prevValue)
             || !isEqual(this.props.filter, prevProps.filter)
         ) {
-            this.tree = this.tree.clearStructure();
+            this.originalTree = this.originalTree.clearStructure();
+            this.tree = this.originalTree;
             completeReset = true;
             this.reloading = false;
         }
@@ -204,7 +207,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     public reload = () => {
-        this.tree = Tree.blank(this.props);
+        this.originalTree = Tree.blank(this.props);
+        this.tree = this.originalTree;
         this.reloading = true;
         this.initCache();
         this.update(this.value, this.props);
@@ -272,10 +276,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId, TFilter>> {
-        const loadingTree = this.tree;
+        const loadingTree = this.originalTree;
 
         try {
-            const newTreePromise = this.tree.load(
+            const newTreePromise = this.originalTree.load(
                 {
                     ...this.props,
                     ...options,
@@ -290,11 +294,12 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             // If this.tree is changed during this load, than there was reset occurred (new value arrived)
             // We need to tell caller to reject this result
-            const isOutdated = this.tree != loadingTree;
-            const isUpdated = this.tree !== newTree;
+            const isOutdated = this.originalTree != loadingTree;
+            const isUpdated = this.originalTree !== newTree;
 
             if (!isOutdated) {
-                this.tree = newTree;
+                this.originalTree = newTree;
+                this.tree = this.originalTree;
             }
 
             return { isUpdated, isOutdated, tree: newTree };
@@ -320,7 +325,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private async updateChecked(isChecked: boolean, isRoot: boolean, checkedId?: TId) {
         let checked = this.value && this.value.checked || [];
 
-        let tree = this.tree;
+        let tree = this.originalTree;
 
         if (this.props.cascadeSelection || isRoot) {
             let result = await this.loadMissing(

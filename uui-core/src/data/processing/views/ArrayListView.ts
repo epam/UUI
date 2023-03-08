@@ -60,19 +60,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.updateRowOptions();
     }
 
-    public patch(
-        items: TItem[],
-        isDeletedProp?: keyof TItem,
-        comparator?: ItemsComparator<TItem>,
-    ) {
-        super.patch(items, isDeletedProp, comparator ?? (() => -1));
-
-        this.originalTree = this.tree;
-        this.filteredTree = this.tree;
-        this.searchTree = this.tree;
-        this.sortedTree = this.tree;
-    }
-
     public reload = () => {
         this.update(this.editable.value, { ...this.props, items: [] });
         this._forceUpdate();

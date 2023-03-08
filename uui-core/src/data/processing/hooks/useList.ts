@@ -27,7 +27,7 @@ export function useList<TItem, TId, TFilter>(
         view.loadData();
     }
 
-    if (patch && patch.length && prevPatch !== patch) {
+    if (patch && prevPatch !== patch) {
         view.patch(patch, isDeletedProp, comparator);
     }
 
