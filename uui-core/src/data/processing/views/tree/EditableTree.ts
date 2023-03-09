@@ -58,9 +58,10 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         for (let [parentId, ids] of newByParentId) {
             const prevNodeInfo = this.nodeInfoById.get(parentId);
             // for lazy loaded data, count should be undefined
+            // and on patch with new items (not on init) previous configuration should not be overridden
             newNodeInfoById.set(
                 parentId,
-                (!prevNodeInfo || prevNodeInfo.count != null) ? { count: ids.length } : { count: undefined },
+                (!prevNodeInfo || prevNodeInfo.count != null) && !comparator ? { count: ids.length } : { count: undefined },
             );
         }
 
