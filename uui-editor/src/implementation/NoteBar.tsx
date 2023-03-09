@@ -38,7 +38,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
     return (
         <FlexRow rawProps={ { style: { background: '#303240' } } }>
             <PlateToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
                 icon={ <ToolbarButton
                     onClick={ noop }
                     icon={ ClearIcon }
@@ -47,7 +47,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
                 onMouseDown={ clearBlock }
             />
             <PlateToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-quote' }
                     onClick={ noop }
@@ -57,7 +57,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
                 onMouseDown={ () => toggleBlock('note-quote') }
             />
             <PlateToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-error' }
                     onClick={ noop }
@@ -67,7 +67,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
                 onMouseDown={ () => toggleBlock('note-error') }
             />
             <PlateToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-warning' }
                     onClick={ noop }
@@ -77,7 +77,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
                 onMouseDown={ () => toggleBlock('note-warning') }
             />
             <PlateToolbarButton
-                styles={ { root: {width: 'auto', cursor: 'pointer' }} }
+                styles={ { root: { width: 'auto', cursor: 'pointer', minHeight: 42, padding: 0 } } }
                 icon={ <ToolbarButton
                     isActive={ type === 'note-link' }
                     onClick={ noop }

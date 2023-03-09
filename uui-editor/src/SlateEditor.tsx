@@ -10,7 +10,6 @@ import {
     createPlugins,
     createPlateUI,
     usePlateEditorState,
-    isEditorFocused,
     TRenderElementProps,
     TEditableProps,
     Toolbar,
@@ -19,11 +18,7 @@ import {
     createExitBreakPlugin,
     PlateProvider,
     createDeserializeDocxPlugin,
-    ELEMENT_HR,
-    createAutoformatPlugin,
-    setNodes,
-    insertNodes,
-    ELEMENT_DEFAULT,
+    useEventEditorSelectors,
 } from '@udecode/plate';
 
 import { createJuicePlugin } from '@udecode/plate-juice';
@@ -55,7 +50,7 @@ export const basePlugins: any = [
     ...defaultPlugins,
 ];
 
-interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<HTMLDivElement>  {
+interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<HTMLDivElement> {
     isReadonly?: boolean;
     plugins?: any[];
     autoFocus?: boolean;
@@ -71,14 +66,15 @@ interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<H
 const Editor = ({ initialValue, ...props }: any) => {
     const editor = usePlateEditorState();
     const forceUpdate = useForceUpdate();
-    const isFocused = isEditorFocused(editor);
+
+    const focusedEditorId = useEventEditorSelectors.focus();
+    const isFocused = editor.id === focusedEditorId;
 
     useEffect(() => {
         if (initialValue) {
             editor.children = initialValue;
         }
-    },
-    [editor, initialValue, forceUpdate]);
+    }, [editor, initialValue, forceUpdate]);
 
     const renderEditor = () => (
         <DndProvider backend={ HTML5Backend }>
@@ -88,14 +84,18 @@ const Editor = ({ initialValue, ...props }: any) => {
             >
 
             </Plate>
-            <MarkBalloonToolbar />
-            <Toolbar style={ {
-                position: 'sticky',
-                bottom: 12,
-                display: 'flex',
-            } }>
-                <ToolbarButtons />
-            </Toolbar>
+            { isFocused &&
+                <>
+                    <MarkBalloonToolbar />
+                    <Toolbar style={ {
+                        position: 'sticky',
+                        bottom: 12,
+                        display: 'flex',
+                        minHeight: 0,
+                    } }>
+                        <ToolbarButtons />
+                    </Toolbar>
+                </> }
         </DndProvider>
     );
 
@@ -182,6 +182,6 @@ export function SlateEditor(props: SlateEditorProps) {
                 plugins={ plugins }
                 { ...props }
             />
-    </PlateProvider>
+        </PlateProvider>
     );
 }

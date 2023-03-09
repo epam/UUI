@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {
-    isEditorFocused,
     useEventPlateId,
     usePlateEditorState,
     usePlateEditorRef,
+    isEditorFocused,
 } from '@udecode/plate';
 
 import { BoldButton, ItalicButton, UnderlineButton } from './baseMarksPlugin/baseMarksPlugin';
