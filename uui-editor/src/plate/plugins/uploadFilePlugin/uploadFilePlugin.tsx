@@ -6,7 +6,7 @@ import {
     getPreventDefaultHandler,
     createPluginFactory,
     createInsertDataPlugin,
-    PlateEditor,
+    PlateEditor, insertData,
 } from "@udecode/plate";
 
 import { isPluginActive, isTextSelected } from '../../../helpers';
@@ -55,7 +55,14 @@ export const UploadFileButton = ({ editor }: IUploadFileButton): any => {
                 />
             ) }
             onFilesAdded={ (files) =>
-                (editor as any).insertData({ getData: () => 'files', files })
+            {
+                const dataTransfer = new DataTransfer();
+
+                files.map((file: File) => {
+                    dataTransfer.items.add(file);
+                });
+                insertData(editor, dataTransfer);
+            }
             }
         />
     );
