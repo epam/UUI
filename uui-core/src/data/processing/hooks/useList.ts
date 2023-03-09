@@ -17,6 +17,10 @@ export function useList<TItem, TId, TFilter>(
     const view = useView<TItem, TId, TFilter, UnboxListProps<typeof props>>(
         () => createView({ value: listState, onValueChange: setListState }, viewProps),
         (current) => {
+            if (patch && prevPatch !== patch) {
+                current.patch(patch, isDeletedProp, comparator);
+            }
+
             current.update(listState, props);
         },
         deps,
@@ -25,10 +29,6 @@ export function useList<TItem, TId, TFilter>(
     const isLoadUpdated = prevLoadData !== loadData && loadData;
     if (isLoadUpdated || (loadData && prevListState !== listState)) {
         view.loadData();
-    }
-
-    if (patch && prevPatch !== patch) {
-        view.patch(patch, isDeletedProp, comparator);
     }
 
     const rows = view.getVisibleRows();

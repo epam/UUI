@@ -43,8 +43,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         comparator?: ItemsComparator<TItem>,
     ) {
         this.tree = this.originalTree.patch(items, isDeletedProp, comparator ?? (() => -1));
-        this.updateCheckedLookup(this.value.checked);
-        this.rebuildRows();
     }
 
     protected constructor(editable: IEditable<DataSourceState<TFilter, TId>>, protected props: BaseListViewProps<TItem, TId, TFilter>) {
