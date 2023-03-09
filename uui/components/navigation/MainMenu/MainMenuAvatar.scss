@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 60px;
+    padding-left: 18px;
+    padding-right: 6px;
+
+    :global(.uui-caption), :global(.uui-input) {
+        padding-top: 21px;
+        padding-bottom: 21px;
+        min-width: 60px;
+        line-height: 18px;
+        font-size: 18px;
+    }
+}
+
+.dropdown {
+    cursor: pointer;
+
+    &:hover {
+        background: var(--uui-main_menu-dropdown-bg);
+    }
+
+    &:active {
+        background-color: var(--uui-main_menu-dropdown-bg);
+    }
+}
+
+.open {
+    background: var(--uui-main_menu-dropdown-bg);
+}
