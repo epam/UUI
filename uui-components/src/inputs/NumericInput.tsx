@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement,
     CX, ICanBeReadonly, IAnalyticableOnChange, IHasForwardedRef, ICanFocus, uuiMarkers, getMinMaxValidatedValue, getSeparatedValue, useUuiContext,
-    toFixedWithoutRoundingUp, i18n,
+    i18n,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './NumericInput.scss';
@@ -79,10 +79,9 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         let newValue = event.target.value === "" ? null : +event.target.value;
-
         const fractionDigits = getFractionDigits(formatOptions);
         if (newValue !== null) {
-            newValue = toFixedWithoutRoundingUp(newValue, fractionDigits);
+            newValue = +newValue.toFixed(fractionDigits);
         }
 
         props.onValueChange(newValue);
