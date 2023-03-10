@@ -1,10 +1,17 @@
-# 4.xx.x - xx.xx.2023
+# 4.10.1 - 10.03.2023
+
+**What's New**
+* Exposed our Rollup build toolchain from epam/uui-build package to be able to build and publish your own packages.
 
 What's Fixed
-- [Typography] Links now underlined in typography
-- [NumericInput] Label text highlighting prevented on clicking up/down arrow buttons
-- [NumericInput] `formatter` prop replaced with custom `formatValue` function which converts given input into text instead of number
-- [ButtonBase] `disabled` attribute applied according to buttons state
+* [Typography]: links now underlined
+* [NumericInput]: prevented text selection by arrows click
+* [NumericInput]: `formatter` prop replaced with custom `formatValue` function which converts given input into text instead of number
+* [ButtonBase]: set `disabled` attribute for disabled buttons
+* [NumericInput]: improved work with floating numbers
+* [FilterPanel]: fixed predicate value change
+* [FilterPanel]: fixed range date picker date selection
+* [PickerList]: fixed default sorting
 
 # 4.10.0 - 06.02.2023
 
