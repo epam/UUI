@@ -16,6 +16,7 @@ interface NodeStats {
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     protected originalTree: ITree<TItem, TId>;
     protected tree: ITree<TItem, TId>;
+
     protected rows: DataRowProps<TItem, TId>[] = [];
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
@@ -23,6 +24,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     public selectAll?: ICheckable;
     protected isDestroyed = false;
     protected hasMoreRows = false;
+    protected patchComparator: ItemsComparator<TItem>;
 
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
@@ -36,16 +38,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.isDestroyed = true;
     }
 
-
-    public patch(
-        items: TItem[],
-        isDeletedProp?: keyof TItem,
-        comparator?: ItemsComparator<TItem>,
+    protected constructor(
+        editable: IEditable<DataSourceState<TFilter, TId>>,
+        protected props: BaseListViewProps<TItem, TId, TFilter>,
     ) {
-        this.tree = this.originalTree.patch(items, isDeletedProp, comparator ?? (() => -1));
-    }
-
-    protected constructor(editable: IEditable<DataSourceState<TFilter, TId>>, protected props: BaseListViewProps<TItem, TId, TFilter>) {
         this.onValueChange = editable.onValueChange;
         this.value = editable.value;
         this.updateCheckedLookup(this.value && this.value.checked);
@@ -107,6 +103,15 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     protected isSelectAllEnabled() {
         return this.props.selectAll == undefined ? true : this.props.selectAll;
+    }
+
+    protected isPatchUpdated(
+        prevProps: BaseListViewProps<TItem, TId, TFilter>,
+        newProps: BaseListViewProps<TItem, TId, TFilter>,
+    ) {
+        return newProps.patch !== prevProps.patch
+            || newProps.comparator !== prevProps.comparator
+            || newProps.isDeletedProp !== prevProps.isDeletedProp;
     }
 
     protected handleOnSelect = (rowProps: DataRowProps<TItem, TId>) => {

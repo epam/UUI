@@ -40,9 +40,9 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
     }
 
 
-    private buildSorter<TFilter>({ sorting, sortBy }: ApplySortOptions<TItem, TId, TFilter>) {
+    private buildSorter<TFilter>({ sorting, sortBy, comparators = [] }: ApplySortOptions<TItem, TId, TFilter>) {
         const compareScalars = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
-        const comparers: ((a: TItem, b: TItem) => number)[] = [];
+        const comparers: ((a: TItem, b: TItem) => number)[] = [...comparators];
 
         if (sorting) {
             sorting.forEach(sortingOption => {
@@ -64,6 +64,8 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
                 for (let n = 0; n < comparers.length; n++) {
                     const comparer = comparers[n];
                     const result = comparer(a, b);
+                    // console.log('comparer', comparer);
+                    console.log('a, b', a.id, b.id, result);
                     if (result != 0) {
                         return result;
                     }

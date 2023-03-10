@@ -121,6 +121,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public update(newValue: DataSourceState<TFilter, TId>, props: LazyListViewProps<TItem, TId, TFilter>): void {
         this.isUpdatePending = true;
 
+        if (this.isPatchUpdated(this.props, props)) {
+            this.tree = this.originalTree.patch(props.patch, props.isDeletedProp, props.comparator);
+        }
+
         if (!isEqual(newValue?.checked, this.value?.checked)) {
             this.updateCheckedLookup(newValue.checked);
         }

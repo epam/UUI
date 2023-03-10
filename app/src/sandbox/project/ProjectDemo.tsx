@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
 import React, { useCallback, useMemo } from 'react';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, memorizedComparator, Metadata, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -31,6 +31,11 @@ let lastId = -1;
 let savedValue: FormState = { items: getDemoTasks() };
 
 export const ProjectDemo = () => {
+    const memoComparator = useMemo(() => memorizedComparator<Task, number>(
+        () => -1,
+        i => i.id,
+    ), []);
+
     const { lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
@@ -59,7 +64,9 @@ export const ProjectDemo = () => {
             relativeTask?.order,
         );
 
-        onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
+        // onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
+        const items = lens.prop('items').get();
+        lens.prop('items').set({ ...items, [task.id]: task });
     };
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true }), []);
@@ -69,11 +76,17 @@ export const ProjectDemo = () => {
     //const { tableState, setTableState } = useTableState<any>({ columns });
     const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
+    console.log('updated', Object.values(value.items));
     const { rows, listProps } = useList({
         type: 'array',
         listState: tableState,
         setListState: setTableState,
         items: Object.values(value.items),
+
+        patch: Object.values(value.items),
+        isDeletedProp: 'isDeleted',
+        comparator: memoComparator,
+
         getId: i => i.id,
         getParentId: i => i.parentId,
         getRowOptions: (task) => ({
