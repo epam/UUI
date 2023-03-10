@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 
 import {
     createTablePlugin,
@@ -26,13 +26,14 @@ import {
     getBlockAbove,
     selectEditor,
     getStartPoint,
+    useTableColSizes,
 } from "@udecode/plate";
 
 import { TableHeaderCell } from "./TableHeaderCell";
 import { TableRow } from "./TableRow";
 import { TableCell } from "./TableCell";
 import cx from "classnames";
-import css from "../imagePlugin/ImageBlock.scss";
+import imageBlockCss from "../imagePlugin/ImageBlock.scss";
 import { ToolbarButton } from "../../../implementation/ToolbarButton";
 import { ReactComponent as InsertColumnBefore } from "../../icons/table-add-column-left.svg";
 import { ReactComponent as InsertColumnAfter } from "../../../icons/table-add-column-right.svg";
@@ -48,6 +49,8 @@ import { isPluginActive, isTextSelected } from "../../../helpers";
 import { Toolbar } from '../../../implementation/Toolbar';
 
 import tableCSS from './Table.scss';
+
+const DEFAULT_COL_WIDTH = 200;
 
 const Table = (props: any) => {
     const editor = usePlateEditorState();
@@ -163,7 +166,7 @@ const Table = (props: any) => {
 
     const renderMergeToolbar = useCallback(() => {
         return (
-            <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
+            <div className={ cx(imageBlockCss.imageToolbar, 'slate-prevent-blur') }>
                 <ToolbarButton
                     onClick={ mergeCells }
                     icon={ TableMerge }
@@ -174,7 +177,7 @@ const Table = (props: any) => {
 
     const renderToolbar = useCallback(() => {
         return (
-            <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
+            <div className={ cx(imageBlockCss.imageToolbar, 'slate-prevent-blur') }>
                 <ToolbarButton
                     onClick={ () => insertTableColumn(editor, { at: cellPath }) }
                     icon={ InsertColumnBefore }
@@ -214,14 +217,22 @@ const Table = (props: any) => {
         );
     }, [element, cellPath, rowPath, cellEntries]);
 
+    const colSizesRef = useRef(data.cellSizes);
+    const updatedColSizes = useTableColSizes(
+        colSizesRef.current ? { ...props.element, colSizes: colSizesRef.current } : props.element
+    );
+    colSizesRef.current = updatedColSizes;
+
+    const tableWidth = colSizesRef.current.reduce((acc: number, cur: number) => acc + cur, 0);
     return (
-        <div className={ cx(css.wrapper, tableCSS.tableWrapper) }>
+        <div className={ cx(tableCSS.tableWrapper) }>
             <TableElement
                 { ...props }
+                styles={ { root: { width: tableWidth } } }
                 className={ tableCSS.table }
                 element={ {
                     ...element,
-                    ...(data?.cellSizes ? { colSizes: data?.cellSizes } : {}),
+                    colSizes: colSizesRef.current
                 } }
             />
             { !!cellEntries?.length && <Toolbar
@@ -281,6 +292,7 @@ const createInitialTable = (editor: PlateEditor) => {
     return {
         type: getPluginType(editor, ELEMENT_TABLE),
         children: rows,
+        data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
     };
 }
 
