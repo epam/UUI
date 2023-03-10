@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ControlGroup should be rendered correctly 1`] = `
+<div
+  className="container root"
+  role="group"
+>
+  <button
+    className="container uui-button-box uui-enabled button-primary root size-36 mode-solid"
+    onClick={[Function]}
+    tabIndex={-1}
+    type="button"
+  >
+    <div
+      className="uui-caption"
+    >
+      On
+    </div>
+  </button>
+  <button
+    className="container uui-button-box uui-enabled button-primary root size-36 mode-solid"
+    onClick={[Function]}
+    tabIndex={-1}
+    type="button"
+  >
+    <div
+      className="uui-caption"
+    >
+      Off
+    </div>
+  </button>
+</div>
+`;
