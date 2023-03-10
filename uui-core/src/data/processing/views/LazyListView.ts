@@ -281,7 +281,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         } catch (e) {
             // TBD - correct error handling
-            console.log("LazyListView: Error while loading items");
+            console.error("LazyListView: Error while loading items.", e);
             return { isUpdated: false, isOutdated: false, tree: loadingTree };
         }
     }
@@ -312,6 +312,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             const nodeInfo = this.tree.getNodeInfo(parentId);
 
             const ids = this.tree.getChildrenIdsByParentId(parentId);
+            if (ids.includes(parentId)) {
+                throw new Error(`LazyListView: element with parentId = ${ parentId } was specified as its own child. Possibly, you API is requesting wrong data.`);
+            }
+
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);

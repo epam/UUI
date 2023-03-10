@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "12 placement options available, you can configure it by ",
+            "text": "There are 12 placement options available. You can configure it by the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop. If tooltip cannot be shown based on available space on needed direction (browser window ends physically), it should be shown directed to free space.",
+            "text": " prop. If tooltip cannot be shown based on available space in the needed direction (the browser window ends physically), it should be shown directed to free space.",
             "marks": []
           }
         ]

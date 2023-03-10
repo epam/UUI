@@ -1,17 +1,17 @@
 import React, { useMemo, useState } from "react";
 import { demoData } from "@epam/uui-docs";
-import { ArrayDataSource } from "@epam/uui";
+import { useArrayDataSource } from "@epam/uui";
 import {PickerInput, MultiSwitch, FlexRow, FlexCell} from "@epam/promo";
 
 const fullLevelsList = demoData.languageLevels;
 const shortLevelsList = demoData.languageLevels.slice(5);
 
 export default function LanguageLevelsArraySinglePicker() {
-    const [pickerValue, setPickerValue] = useState<string>(null);
-    const [items, setItems] = useState([]);
+    const [pickerValue, setPickerValue] = useState<string>();
+    const [items, setItems] = useState(fullLevelsList);
 
     // Memoization, because DataSource should not be recreated on each call.
-    const languageLevelsDataSource = useMemo(() => new ArrayDataSource({ items }), [items]);
+    const languageLevelsDataSource = useArrayDataSource({ items }, [items]);
 
     return (
         <FlexCell width={ 300 }>
@@ -21,15 +21,16 @@ export default function LanguageLevelsArraySinglePicker() {
                     value={ items }
                     onValueChange={ setItems }
                     items={ [
-                    {
-                        id: fullLevelsList,
-                        caption: 'Full levels list',
-                    },
-                    {
-                        id: shortLevelsList,
-                        caption: 'Short levels list',
-                    },
-                ] } />
+                        {
+                            id: fullLevelsList,
+                            caption: 'Full levels list',
+                        },
+                        {
+                            id: shortLevelsList,
+                            caption: 'Short levels list',
+                        },
+                    ] }
+                />
             </FlexRow>
 
             <PickerInput
