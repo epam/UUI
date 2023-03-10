@@ -12,6 +12,7 @@ What's Fixed
 * [FilterPanel]: fixed predicate value change
 * [FilterPanel]: fixed range date picker date selection
 * [PickerList]: fixed default sorting
+* [DataTable]: fixed first column content alignment 
 
 # 4.10.0 - 06.02.2023
 
