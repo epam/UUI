@@ -21,7 +21,6 @@ import {
     insertElements,
     insertNodes,
     withoutNormalizing,
-    Value,
     getPluginType,
     someNode,
     getBlockAbove,
@@ -253,11 +252,7 @@ export const tablePlugin = () => createTablePlugin({
     },
 });
 
-interface ITableButton {
-    editor: PlateEditor;
-}
-
-const createEmptyTable = (editor: PlateEditor) => {
+const createInitialTable = (editor: PlateEditor) => {
     const rows = [
         {
             type: getPluginType(editor, ELEMENT_TR),
@@ -289,40 +284,39 @@ const createEmptyTable = (editor: PlateEditor) => {
     };
 }
 
-const createTableStructure = (editor: PlateEditor) => {
-    if (
-        !someNode(editor, {
+const selectFirstCell = (editor: PlateEditor) => {
+    if (editor.selection) {
+        const tableEntry = getBlockAbove(editor, {
             match: { type: getPluginType(editor, ELEMENT_TABLE) },
-        })
-    ) {
-        insertNodes(editor, createEmptyTable(editor));
+        });
+        if (!tableEntry) return;
 
-        if (editor.selection) {
-            const tableEntry = getBlockAbove(editor, {
-                match: { type: getPluginType(editor, ELEMENT_TABLE) },
-            });
-            console.log('tableEntry', tableEntry);
-            if (!tableEntry) return;
-
-            selectEditor(editor, { at: getStartPoint(editor, tableEntry[1]) });
-        }
+        selectEditor(editor, { at: getStartPoint(editor, tableEntry[1]) });
     }
 }
 
-export const TableButton = ({
-    editor,
-}: ITableButton) => {
-
+export const TableButton = ({ editor, }: { editor: PlateEditor; }) => {
     if (!isPluginActive(ELEMENT_TABLE)) return null;
+
+    const onCreateTable = async () => {
+        if (!editor) return;
+
+        withoutNormalizing(editor, () => {
+            const isCurrentTableSelection = !!someNode(editor, {
+                match: { type: getPluginType(editor, ELEMENT_TABLE) },
+            });
+
+            if (!isCurrentTableSelection) {
+                insertNodes(editor, createInitialTable(editor));
+                setTimeout(() => selectFirstCell(editor), 0);
+            }
+        });
+    }
 
     return (
         <PlateToolbarButton
             styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
-            onMouseDown={ async () => {
-                if (!editor) return;
-
-                withoutNormalizing(editor, () => createTableStructure(editor));
-            } }
+            onMouseDown={ onCreateTable }
             icon={ <ToolbarButton
                 isDisabled={ isTextSelected(editor, true) }
                 onClick={ () => {} }
