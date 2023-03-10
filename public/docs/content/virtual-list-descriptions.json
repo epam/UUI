@@ -11,8 +11,28 @@
         "nodes": [
           {
             "object": "text",
-            "text": "VirtualList provides a scrollable container, which only renders a visible part of a list of components. It automatically measures the height of items to detect the position of visible portion and adjust scroll values and container height.",
-            "marks": []
+            "text": "VirtualList provides a scrollable container, which only renders a visible part of a list of components. It automatically measures the height of items to detect the position of the visible portion and adjusts scroll values and container height.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
           }
         ]
       },
