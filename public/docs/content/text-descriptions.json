@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This is a component for displaying single line text with various configurations. Because it has a common set of sizes as in our other components(e.g., TextInput, Button), it can be used to place text on the same baseline with component.",
+            "text": "The Text component displays a single-line text with various configurations. Due to its standard set of sizes like in our other components(e.g., TextInput, Button), use it to place text on the same baseline with a component.",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For multiline text it's better to use ",
+            "text": "For multiline text, it's better to use ",
             "marks": []
           },
           {

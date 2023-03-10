@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The default language of UUI is English. In most cases, texts are provided by UUI users. However some components have built-in texts, such as the 'Select All' button caption in PickerInput footer. For this case we have an Internationalization approach.",
+            "text": "The default language of UUI is English. Therefore, in most cases, texts are provided by UUI users. However, some components have built-in texts, such as the 'Select All' button caption in the PickerInput footer. For this case, we have an Internationalization approach.",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In each UUI package there is an i18n variable, which contains all built-in texts from this package. Thus to translate it, you need to import the i18n object into your project and update this object with texts in the desired language.",
+            "text": "Each UUI package has an i18n variable, which contains all built-in texts from this package. Thus to translate it, you need to import the i18n object into your project and update this object with texts in the desired language.",
             "marks": []
           }
         ]
