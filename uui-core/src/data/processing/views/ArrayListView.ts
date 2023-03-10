@@ -108,8 +108,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         let patchTreeIsUpdated = false;
         if (this.isPatchUpdated(prevProps, newProps) || !this.patchedTree || searchTreeIsUpdated) {
             this.patchedTree = this.searchTree.patch(newProps.patch, newProps.isDeletedProp, newProps.comparator);
-            console.log('this.patchedTree', this.patchedTree);
-
             patchTreeIsUpdated = true;
         }
 
