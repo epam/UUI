@@ -1,7 +1,7 @@
 # 4.10.1 - 10.03.2023
 
 **What's New**
-* Exposed our Rollup build toolchain from epam/uui-build package that you be able to build and publish your own packages.
+* Exposed our Rollup build toolchain from @epam/uui-build package that you be able to build and publish your own packages.
 
 What's Fixed
 * [Typography]: links now underlined
