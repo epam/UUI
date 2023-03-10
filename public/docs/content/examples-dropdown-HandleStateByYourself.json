@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can handle open/close dropdown state by yourself, by providing ",
+            "text": "You can handle the open/close dropdown state by providing an ",
             "marks": []
           },
           {
@@ -59,7 +59,7 @@
           },
           {
             "object": "text",
-            "text": " props. By default, dropdown encapsulate this state management.",
+            "text": " props. By default, the dropdown encapsulates this state management.",
             "marks": []
           }
         ]

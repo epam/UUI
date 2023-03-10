@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can configure how much tags should be shown in picker toggler via ",
+            "text": "You can configure how many tags should be shown in the picker toggler via the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop, if you have more items than maxItem number, they will be wrapped into one tag.",
+            "text": " prop; if you have more items than the maxItem number, they will be wrapped into one tag.",
             "marks": []
           }
         ]
@@ -39,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By default pickerInput wraps tags to a new line, you can change this behavior via ",
+            "text": "By default, PickerInput wraps tags in a new line. You can change this behavior via the ",
             "marks": []
           },
           {
@@ -67,7 +67,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If you want autocomplete behavior, when dropdown opened after you type some number of symbols - use ",
+            "text": "If you prefer the autocomplete behavior — when the dropdown opens after you type some number of symbols - use  ",
             "marks": []
           },
           {
@@ -111,7 +111,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "At last, you can define you own toggler components via ",
+            "text": "At last, you can define your own toggler components via the ",
             "marks": []
           },
           {
