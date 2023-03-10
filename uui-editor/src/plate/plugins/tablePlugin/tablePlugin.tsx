@@ -218,9 +218,7 @@ const Table = (props: any) => {
     }, [element, cellPath, rowPath, cellEntries]);
 
     const colSizesRef = useRef(data.cellSizes);
-    colSizesRef.current = useTableColSizes(
-        colSizesRef.current ? { ...props.element, colSizes: colSizesRef.current } : props.element
-    );
+    colSizesRef.current = useTableColSizes({ ...props.element, colSizes: colSizesRef.current });
 
     const tableWidth = colSizesRef.current.reduce((acc: number, cur: number) => acc + cur, 0);
     return (
