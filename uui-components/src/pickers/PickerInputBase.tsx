@@ -5,6 +5,7 @@ import { DropdownBodyProps, DropdownState, UuiContexts, UuiContext, IHasPlacehol
 import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps, dataSourceStateToValue, applyValueToDataSourceState } from './index';
 import { Dropdown } from '../overlays';
 import { i18n } from '../i18n';
+import ReactDOM from 'react-dom';
 
 export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {
     /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */
@@ -137,18 +138,19 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (isMobile()) {
             document.body.style.overflow = opened ? 'hidden' : '';
         }
-
-        this.setState({
-            dataSourceState: {
-                ...this.state.dataSourceState,
-                topIndex: 0,
-                visibleCount: initialRowsVisible,
-                focusedIndex: 0,
-                search: '',
-            },
-            isSearchChanged: false,
-            opened,
-        });
+        ReactDOM.flushSync(() => {
+            this.setState({
+                dataSourceState: {
+                    ...this.state.dataSourceState,
+                    topIndex: 0,
+                    visibleCount: initialRowsVisible,
+                    focusedIndex: 0,
+                    search: '',
+                },
+                isSearchChanged: false,
+                opened,
+            });
+        })
     }
 
     onSelect = (row: DataRowProps<TItem, TId>) => {
@@ -297,29 +299,33 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (this.props.minCharsToSearch) {
             isOpen = value.length >= this.props.minCharsToSearch;
         }
-        this.setState({
-            ...this.state,
-            dataSourceState: {
-                ...this.state.dataSourceState,
-                focusedIndex: -1,
-                search: value,
-            },
-            opened: isOpen,
-            isSearchChanged: true,
+        ReactDOM.flushSync(() => {
+            this.setState({
+                ...this.state,
+                dataSourceState: {
+                    ...this.state.dataSourceState,
+                    focusedIndex: -1,
+                    search: value,
+                },
+                opened: isOpen,
+                isSearchChanged: true,
+            });
+
         });
     }
 
     handleBlur = (e: React.FocusEvent<HTMLElement>) => {
-        this.setState({
-            ...this.state,
-            dataSourceState: {
-                ...this.state.dataSourceState,
-                search: '',
-            },
-            isSearchChanged: false,
-            opened: false,
+        ReactDOM.flushSync(() => {
+            this.setState({
+                ...this.state,
+                dataSourceState: {
+                    ...this.state.dataSourceState,
+                    search: '',
+                },
+                isSearchChanged: false,
+                opened: false,
+            });
         });
-
         this.props.onBlur && this.props.onBlur(e);
     }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts, DataRowProps } from "@epam/uui-core";
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
+import ReactDOM from 'react-dom';
 
 export interface PickerBaseState {
     dataSourceState: DataSourceState;
@@ -26,10 +27,14 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         const isSearchingStarted = !prevState.dataSourceState.search && search;
         const isSwitchIsBeingTurnedOn = !prevState.showSelected && this.state.showSelected;
         if (isSearchingStarted && prevState.showSelected) {
-            this.setState(state => ({ ...state, showSelected: false }));
+            ReactDOM.flushSync(() => {
+                this.setState(state => ({ ...state, showSelected: false }));
+            });
         }
         if (search && isSwitchIsBeingTurnedOn) {
-            this.setState(state => ({ ...state, dataSourceState: { ...state.dataSourceState, search: '' } }));
+            ReactDOM.flushSync(() => {
+                this.setState(state => ({ ...state, dataSourceState: { ...state.dataSourceState, search: '' } }));
+            });
         }
         if (this.props.dataSource !== prevProps.dataSource) {
             prevProps.dataSource.unsubscribeView(this.handleDataSourceValueChange);
@@ -100,7 +105,10 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             showSelected = false;
         }
 
-        this.setState(s => ({ ...s, showSelected, dataSourceState: newDataSourceState }));
+        ReactDOM.flushSync(() => {
+            this.setState(s => ({ ...s, showSelected, dataSourceState: newDataSourceState }));
+        });
+
         let newValue = dataSourceStateToValue(this.props, newDataSourceState, this.props.dataSource);
 
         if (!isEqual(this.props.value, newValue)) {
@@ -181,10 +189,10 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             view: this.getView(),
             showSelected: {
                 value: this.state.showSelected,
-                onValueChange: (nV: boolean) => this.setState({
+                onValueChange: (nV: boolean) => ReactDOM.flushSync(() => this.setState({
                     showSelected: nV,
                     dataSourceState: { ...this.state.dataSourceState },
-                }),
+                })),
             },
             clearSelection: this.clearSelection,
         };
