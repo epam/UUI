@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
+import { render } from 'react-dom';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui-core';
@@ -30,7 +31,7 @@ export class UuiEnhancedApp extends React.Component {
             <ContextProvider<TApi, UuiContexts>
                 apiDefinition={ (processRequest) =>
                     getApi((url: string, method: string, data?: any, options?: ApiCallOptions) =>
-                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options  }))
+                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options }))
                 }
                 onInitCompleted={ (context) => this.onInitCompleted(context, ampCode) }
                 history={ history }
@@ -47,4 +48,9 @@ export class UuiEnhancedApp extends React.Component {
 }
 
 createRoot(document.getElementById('root'))
-    .render(<React.StrictMode><Router history={ history }><UuiEnhancedApp /></Router></React.StrictMode>);
+    .render(
+        <React.StrictMode>
+            <Router history={ history }><UuiEnhancedApp /></Router>
+        </React.StrictMode>,
+    );
+
