@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To prevent modal closing on click outside modal - pass ",
+            "text": "To prevent modal closing on click outside a modal, pass the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop to ModalBlocker;",
+            "text": " prop to ModalBlocker.",
             "marks": []
           }
         ]
@@ -39,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To remove cross icon in modal header, do not pass ",
+            "text": "To remove a cross icon in the modal header, do not pass the ",
             "marks": []
           },
           {
@@ -83,7 +83,7 @@
           },
           {
             "object": "text",
-            "text": " button - pass ",
+            "text": " button, pass the ",
             "marks": []
           },
           {

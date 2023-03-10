@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This example shows a common case of using ",
+            "text": "This example shows a typical case of using ",
             "marks": []
           },
           {
@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": " and ",
+            "text": " and a ",
             "marks": []
           },
           {

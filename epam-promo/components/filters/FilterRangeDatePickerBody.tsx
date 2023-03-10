@@ -1,5 +1,4 @@
 import * as React from 'react';
-import dayjs from "dayjs";
 import { BaseRangeDatePickerProps, IDropdownBodyProps, RangeDatePickerInputType, uuiMod } from "@epam/uui-core";
 import { BaseRangeDatePicker } from '@epam/uui-components';
 import { FlexRow, i18n, RangeDatePickerBody, TextInput, LinkButton, FlexSpacer, FlexCell } from '../../index';
@@ -24,7 +23,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                         onValueChange={ this.onRangeChange }
                         filter={ this.props.filter }
                         focusPart={ this.state.inFocus }
-                        changeIsOpen={ this.props.onClose }
+                        changeIsOpen={ this.toggleOpening }
                     />
                 </FlexRow>
                 <FlexCell alignSelf="stretch">

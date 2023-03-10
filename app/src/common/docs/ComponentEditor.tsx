@@ -52,7 +52,11 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
             return callback;
         },
         getChangeHandler: (name) => {
-            const cb: any = (newValue: string) => this.setState({ ...this.state, inputValues: { ...this.state.inputValues, value: newValue } });
+            const cb: any = (newValue: string) => this.setState({
+                ...this.state,
+                inputValues: { ...this.state.inputValues, value: newValue },
+                selectedPropsIds: { ...this.state.selectedPropsIds, value: newValue }
+            });
             cb.displayName = "(newValue) => { ... }";
             return cb;
         },
@@ -86,7 +90,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                     }
 
                     if (prop.type === 'string') {
-                        this.state.inputValues[prop.name] = defaultExample?.value || '';
+                        this.state.inputValues[prop.name] = defaultExample?.value;
                     }
                 });
                 this.initialProps = this.state.selectedPropsIds;

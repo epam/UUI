@@ -11,8 +11,118 @@
         "nodes": [
           {
             "object": "text",
-            "text": "A basic example of IndeterminateBar in 3 different sizes.",
+            "text": "Here is a",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
             "marks": []
+          },
+          {
+            "object": "text",
+            "text": "basic example of IndeterminateBar in",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "three",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "different sizes.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
           }
         ]
       }

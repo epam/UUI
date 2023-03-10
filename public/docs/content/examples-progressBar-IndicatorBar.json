@@ -11,20 +11,108 @@
         "nodes": [
           {
             "object": "text",
-            "text": "An example of determinate IndicatorBar. If no progress is set - IndicatorBar will be animated as indeterminate.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+            "text": "Below is a",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
           {
             "object": "text",
-            "text": "IndicatorBar has a fixed height of 2px.",
+            "text": "n example of determinate IndicatorBar. If no progress is set",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ",",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
             "marks": []
+          },
+          {
+            "object": "text",
+            "text": "IndicatorBar will be animated as indeterminate.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
           }
         ]
       }

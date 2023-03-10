@@ -14,9 +14,9 @@ export const FlexRow = React.forwardRef<HTMLDivElement, FlexRowProps>((props, re
         ) }
         { ...props.rawProps }
         style={ {
+            columnGap: props.columnGap && `${props.columnGap}px`,
+            rowGap: props.rowGap && `${props.rowGap}px`,
             ...props.rawProps?.style,
-            columnGap: props.columnGap ? `${props.columnGap}px` : undefined,
-            rowGap: props.rowGap ? `${props.rowGap}px` : undefined,
         } }
     >
         { props.children }

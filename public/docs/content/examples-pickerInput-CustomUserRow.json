@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By default we are rendering ",
+            "text": "By default, we render the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " field in picker row. But you can define your own ",
+            "text": " field in a picker row. But you can define your own ",
             "marks": []
           },
           {
@@ -43,7 +43,19 @@
           },
           {
             "object": "text",
-            "text": " method, which is suitable for your case. In this example, we show how to render custom user row for each person.",
+            "text": " method, which is suitable for your case. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "In this example, we show how to render a custom user row for each person.",
             "marks": []
           }
         ]
