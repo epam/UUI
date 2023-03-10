@@ -21,6 +21,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     originalTree: ITree<TItem, TId>;
     searchTree: ITree<TItem, TId>;
     filteredTree: ITree<TItem, TId>;
+    patchedTree: ITree<TItem, TId>;
     sortedTree: ITree<TItem, TId>;
 
     constructor(
@@ -38,18 +39,20 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.value = newValue;
         const prevItems = this.props.items;
         const newItems = newProps.items || this.props.items;
+        const prevProps = { ...this.props };
         this.props = { ...newProps, items: newItems };
 
         const prevTree = this.tree;
         if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
             if (prevItems !== newItems || !this.originalTree) {
                 this.originalTree = Tree.create(this.props, this.props.items);
+                this.patchedTree = this.originalTree;
                 this.tree = this.originalTree;
             }
         }
 
-        if (prevTree != this.tree || this.isCacheIsOutdated(newValue, currentValue)) {
-            this.updateTree(currentValue, newValue);
+        if (prevTree != this.tree || this.isCacheIsOutdated(newValue, this.value) || this.isPatchUpdated(prevProps, newProps)) {
+            this.updateTree(currentValue, newValue, prevProps, newProps);
             this.updateCheckedLookup(this.value.checked);
             this.rebuildRows();
         } else {
@@ -81,9 +84,14 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         });
     }
 
-    private updateTree(prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) {
+    private updateTree(
+        prevValue: DataSourceState<TFilter, TId>,
+        newValue: DataSourceState<TFilter, TId>,
+        prevProps: ArrayListViewProps<TItem, TId, TFilter>,
+        newProps: ArrayListViewProps<TItem, TId, TFilter>,
+    ) {
         const { filter, search, sorting } = newValue;
-        const { getSearchFields, getFilter, sortBy } = this.props;
+        const { getSearchFields, getFilter, sortBy } = newProps;
 
         let filterTreeIsUpdated = false;
         if (this.filterWasChanged(prevValue, newValue) || !this.filteredTree) {
@@ -97,8 +105,20 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             searchTreeIsUpdated = true;
         }
 
-        if (this.sortingWasChanged(prevValue, newValue) || !this.sortedTree || searchTreeIsUpdated) {
-            this.sortedTree = this.searchTree.sort({ sorting, sortBy });
+        let patchTreeIsUpdated = false;
+        if (this.isPatchUpdated(prevProps, newProps) || !this.patchedTree || searchTreeIsUpdated) {
+            this.patchedTree = this.searchTree.patch(newProps.patch, newProps.isDeletedProp, newProps.comparator);
+            console.log('this.patchedTree', this.patchedTree);
+
+            patchTreeIsUpdated = true;
+        }
+
+        if (this.sortingWasChanged(prevValue, newValue) || !this.sortedTree || patchTreeIsUpdated) {
+            this.sortedTree = this.patchedTree.sort({
+                sorting,
+                sortBy,
+                comparators: newProps.comparator ? [newProps.comparator] : [],
+            });
         }
 
         this.tree = this.sortedTree;

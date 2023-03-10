@@ -5,22 +5,17 @@ import { createView, mergePropsWithDefaults } from "./helpers";
 import { usePrevious } from "../../../../src/hooks";
 
 export function useList<TItem, TId, TFilter>(
-    { listState, setListState, loadData = true, patch, isDeletedProp, comparator, ...props }: UseListProps<TItem, TId, TFilter>,
+    { listState, setListState, loadData = true, ...props }: UseListProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
     const prevLoadData = usePrevious(false);
     const prevListState = usePrevious(listState);
-    const prevPatch = usePrevious(patch);
 
     const viewProps = mergePropsWithDefaults(props);
 
     const view = useView<TItem, TId, TFilter, UnboxListProps<typeof props>>(
         () => createView({ value: listState, onValueChange: setListState }, viewProps),
         (current) => {
-            if (patch && prevPatch !== patch) {
-                current.patch(patch, isDeletedProp, comparator);
-            }
-
             current.update(listState, props);
         },
         deps,

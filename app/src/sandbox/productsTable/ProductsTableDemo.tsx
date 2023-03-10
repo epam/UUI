@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
-import React, { useRef, useState } from 'react';
-import { Metadata, useList, useUuiContext, UuiContexts } from '@epam/uui-core';
+import React, { useMemo, useRef, useState } from 'react';
+import { memorizedComparator, Metadata, useList, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
@@ -33,6 +33,11 @@ export const ProductsTableDemo: React.FC = (props) => {
     // const [patch, setPatch] = useState<Product[]>([]);
     const lastPatchIdRef = useRef(-1);
 
+    const memoComparator = useMemo(() => memorizedComparator<Product, number>(
+        () => -1,
+        i => i.ProductID,
+    ), []);
+
     const { lens, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
@@ -58,6 +63,7 @@ export const ProductsTableDemo: React.FC = (props) => {
 
         patch: Object.values(lens.prop('items').get()),
         isDeletedProp: 'IsDeleted',
+        comparator: memoComparator,
 
         getId: i => i.ProductID,
         getRowOptions: product => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),

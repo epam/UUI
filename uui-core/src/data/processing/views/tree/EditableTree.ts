@@ -170,7 +170,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         let greaterPosition = -1;
         let equalPosition = -1;
         children.forEach((itemId, index) => {
-            const comparisonResult = comparator(item, this.byId.get(itemId));
+            const comparisonResult = comparator(item, this.byId.get(itemId), true);
             if (comparisonResult > 0) {
                 greaterPosition = index + 1;
             }
