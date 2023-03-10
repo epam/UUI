@@ -85,19 +85,13 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
         api: svc.api.demo.cities,
     }, []);
 
-    useEffect(() => {
-        console.log('mount');
-
-        return () => console.log('unmount');
-    });
-
     return (
         <>
             <RichTextView><h3>Location</h3></RichTextView>
 
             <FlexRow vPadding='12' alignItems='top' cx={ css.sectionRow }>
                 <FlexCell minWidth={ 200 } grow={ 1 }>
-                    <LabeledInput  htmlFor="country" label='Country' { ...lens.prop('country').toProps() }>
+                    <LabeledInput htmlFor="country" label='Country' { ...lens.prop('country').toProps() }>
                         <PickerInput
                             { ...lens.prop('country').toProps() }
                             dataSource={ countriesDS }
@@ -127,7 +121,7 @@ const Location = ({ lens, countriesDS }: { lens: ILens<PersonDetails['location']
     );
 };
 
-const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) =>  (
+const PrimaryInfo = ({ lens }: { lens: ILens<PersonDetails['primaryInfo']> }) => (
     <>
         <FlexRow>
             <RichTextView><h3>Primary Info</h3></RichTextView>
@@ -321,38 +315,38 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => 
                 return (
                     <FlexRow key={ index } vPadding='12' spacing='18' alignItems='top'>
                         <FlexCell width={ 186 } >
-                            <LabeledInput htmlFor={ `language-${index}` } label='Language' { ...lensItem.prop('language').toProps() } >
+                            <LabeledInput htmlFor={ `language-${ index }` } label='Language' { ...lensItem.prop('language').toProps() } >
                                 <PickerInput
                                     { ...lensItem.prop('language').toProps() }
                                     dataSource={ languageDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    rawProps={ { input: { id: `language-${index}` } } }
+                                    rawProps={ { input: { id: `language-${ index }` } } }
                                     placeholder='Select Language'
                                 />
                             </LabeledInput>
                         </FlexCell>
                         <FlexCell width={ 120 }>
-                            <LabeledInput htmlFor={ `speakingLevel-${index}` } label='Speaking' { ...lensItem.prop('speakingLevel').toProps() } >
+                            <LabeledInput htmlFor={ `speakingLevel-${ index }` } label='Speaking' { ...lensItem.prop('speakingLevel').toProps() } >
                                 <PickerInput
                                     { ...lensItem.prop('speakingLevel').toProps() }
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    rawProps={ { input: { id:`speakingLevel-${index}`} } }
+                                    rawProps={ { input: { id: `speakingLevel-${ index }` } } }
                                     placeholder='Select Level'
                                     getName={ item => item.level }
                                 />
                             </LabeledInput>
                         </FlexCell>
                         <FlexCell width={ 120 }>
-                            <LabeledInput htmlFor={ `writingLevel-${index}` } label='Writing' { ...lensItem.prop('writingLevel').toProps() } >
+                            <LabeledInput htmlFor={ `writingLevel-${ index }` } label='Writing' { ...lensItem.prop('writingLevel').toProps() } >
                                 <PickerInput
                                     { ...lensItem.prop('writingLevel').toProps() }
                                     dataSource={ languageLevelsDataSource }
                                     selectionMode='single'
                                     valueType='id'
-                                    rawProps={ { input: { id: `writingLevel-${index}`} } }
+                                    rawProps={ { input: { id: `writingLevel-${ index }` } } }
                                     placeholder='Select Level'
                                     getName={ item => item.level }
                                 />
@@ -360,10 +354,10 @@ const Languages = ({ lens }: { lens: ILens<PersonDetails['languageInfo']> }) => 
                         </FlexCell>
                         <FlexRow size='48' alignItems='bottom' cx={ css.clearButtonWrapper }>
                             { isClearable && (
-                              <IconButton
-                                icon={ ClearIcon }
-                                onClick={ () => removeLensItemHandler<PersonLanguageInfo>(lens, index) }
-                              />
+                                <IconButton
+                                    icon={ ClearIcon }
+                                    onClick={ () => removeLensItemHandler<PersonLanguageInfo>(lens, index) }
+                                />
                             ) }
                         </FlexRow>
                     </FlexRow>
@@ -435,13 +429,13 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                 return (
                     <FlexRow key={ index } vPadding='12' spacing='18' alignItems='top' >
                         <FlexCell width={ 324 }>
-                            <LabeledInput htmlFor={ `travelVisasCountry-${index}` } label='Country' { ...visasLens.index(index).prop('country').toProps() } >
+                            <LabeledInput htmlFor={ `travelVisasCountry-${ index }` } label='Country' { ...visasLens.index(index).prop('country').toProps() } >
                                 <PickerInput
                                     { ...visasLens.index(index).prop('country').toProps() }
                                     dataSource={ countriesDS }
                                     selectionMode='single'
                                     valueType='id'
-                                    rawProps={ { input: { id: `travelVisasCountry-${index}` } } }
+                                    rawProps={ { input: { id: `travelVisasCountry-${ index }` } } }
                                     placeholder='Select Country'
                                 />
                             </LabeledInput>
@@ -458,7 +452,7 @@ const Visas = ({ lens, countriesDS }: { lens: ILens<PersonDetails['travelVisas']
                 );
             }) }
             <FlexRow vPadding='12'>
-                <Button onClick={ () => addLensItemHandler<PersonTravelVisa>(visasLens, emptyInfo.visa) }  caption='Add One More' icon={ AddIcon } fill='none' />
+                <Button onClick={ () => addLensItemHandler<PersonTravelVisa>(visasLens, emptyInfo.visa) } caption='Add One More' icon={ AddIcon } fill='none' />
             </FlexRow>
             <FlexRow vPadding='12' spacing='18' >
                 <FlexCell width='100%'>
