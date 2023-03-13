@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "A powerful content editor, styled to match UI, and extensible to host any React component.",
+            "text": "Rich Text Editor is a powerful content editor, styled to match UI, and extensible to host any React component.",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Based on Slate.JS, which is the framework to build such editors. Read more on ",
+            "text": "Rich Text Editor is based on Slate.JS — the framework to build such editors. Read more on ",
             "marks": []
           },
           {
@@ -54,7 +54,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI RichTextEditor is built on top of Slate to bring UUI styles, add our extensions, panels to interact with, and to wrap this with convenient API.",
+            "text": "UUI RichTextEditor is built on top of Slate to bring UUI styles, add our extensions, panels to interact with, and to wrap them with convenient API.",
             "marks": []
           }
         ]
@@ -66,7 +66,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This component does't have dependencies on skin packages and uses skinManager approach to get components from your app skin. So it's required to pass ",
+            "text": "This component doesn't have dependencies on skin packages and uses a skinManager approach to get components from your app skin. So it's required to pass the ",
             "marks": []
           },
           {
@@ -101,7 +101,7 @@
           },
           {
             "object": "text",
-            "text": ". You can import skinContext object from your skin package.\n\nAlso it required to import css from editor package, please add the following code into you app entry file: \n",
+            "text": ". You can import skinContext object from your skin package.\n\nAlso, it's required to import CCS from the editor package. Please add the following code to your app entry file: \n",
             "marks": []
           },
           {
@@ -124,7 +124,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Slate works with it's own JSON-based content format. That's allows it to be robust and flexible, but apps need to carefully consider that before using it.",
+            "text": "Slate works with its own JSON-based content format. That allows it to be robust and flexible, but apps need to carefully consider that before using it.",
             "marks": []
           }
         ]
@@ -136,7 +136,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "When you manipulate with server-side use ",
+            "text": "When you manipulate with the server-side use ",
             "marks": []
           },
           {
@@ -184,7 +184,7 @@
           },
           {
             "object": "text",
-            "text": " package, to convert slate state to JSON model and vice versa.",
+            "text": " package, to convert the slate state to a JSON model and vice versa.",
             "marks": []
           }
         ]

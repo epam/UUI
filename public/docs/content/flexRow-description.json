@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Flexbox container with items arranged along the horizontal axis from left to right. It's a horizontal FlexBox container.",
+            "text": "FlexRow is a FlexBox container with items arranged along the horizontal axis from left to right. It's a horizontal FlexBox container.",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Using props you can set:",
+            "text": "You can set:",
             "marks": []
           }
         ]
@@ -130,7 +130,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "sets size for component",
+                            "text": "sets the size for a component",
                             "marks": []
                           }
                         ]
@@ -181,7 +181,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "adds the margin area around component",
+                            "text": "adds the margin area around a component",
                             "marks": []
                           }
                         ]
@@ -334,7 +334,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "sets the padding between children inside the component",
+                            "text": "sets the padding between the children inside the component",
                             "marks": []
                           }
                         ]
@@ -386,57 +386,6 @@
                           {
                             "object": "text",
                             "text": "sets the align-self value on all direct children as a group",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "rawProps",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-code",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "sets  React.HTMLAttributes<HTMLDivElement>",
                             "marks": []
                           }
                         ]
@@ -538,7 +487,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "turns on/turns off component's bottom border",
+                            "text": "turns on/off component's bottom border",
                             "marks": []
                           }
                         ]
@@ -589,109 +538,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "turns on/turns off shadow",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "cx",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-code",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "sets a custom style class",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "onClick",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-code",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "sets the click event handler",
+                            "text": "turns on/off shadows",
                             "marks": []
                           }
                         ]
@@ -742,7 +589,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "sets column gap between children inside the component",
+                            "text": "sets the column gap between the children inside the a component",
                             "marks": []
                           }
                         ]
@@ -793,7 +640,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "sets gap between row if the row has a wrap on net line",
+                            "text": "sets the gap between rows if the row has a wrap on net line",
                             "marks": []
                           }
                         ]

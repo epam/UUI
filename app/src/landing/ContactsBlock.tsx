@@ -7,7 +7,7 @@ import css from './ContactsBlock.scss';
 import { ReactComponent as MailIcon } from '../icons/outlook-90.svg';
 import { ReactComponent as GitIcon } from '../icons/github-90.svg';
 
-const EMAIL = 'SupportEPM-UUI@epam.com';
+const EMAIL = 'AskUUI@epam.com';
 const GIT_LINK = 'https://github.com/epam/UUI/issues';
 
 export class ContactsBlock extends React.Component {

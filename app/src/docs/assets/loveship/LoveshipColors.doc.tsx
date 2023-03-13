@@ -263,7 +263,8 @@ export class LoveshipColorsDoc extends React.Component {
                     })
                     }
                 </FlexRow>
-                <p>These colors are used for borders, separators, icons, text and backgrounds. Each grayscale has its own specific purpose. Please do not change the purpose of the shades.</p>
+                <p>These colors are used for borders, separators, icons, text, and backgrounds.
+                    Each grayscale has its specific purpose. Please do not change the purpose of the shades.</p>
             </RichTextView>
         );
     }
