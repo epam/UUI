@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "FiltersPanel component allows you to manage your filtration based on filters config metadata. To use it, just provide your filters config object and you will get prebuilt filters panel with the following functionality:",
+            "text": "FiltersPanel component allows you to manage filtration based on filters config metadata. To use it, provide your filters config object, and you will get a prebuilt filters panel with the following functionality:",
             "marks": []
           }
         ]
@@ -33,7 +33,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Support different types of filters: multi/single pickers, date and range date pickers, numeric filters",
+                    "text": "Support of different types of filters: multi/single pickers, date and date range pickers, numeric filters.",
                     "marks": []
                   }
                 ]
@@ -52,7 +52,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Show/hide filter visibility",
+                    "text": "Showing/hiding filter visibility.",
                     "marks": []
                   }
                 ]
@@ -71,7 +71,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Always visible filters",
+                    "text": "Always visible filters.",
                     "marks": []
                   }
                 ]
@@ -90,7 +90,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Predicates for each filter",
+                    "text": "Predicates for each filter.",
                     "marks": []
                   }
                 ]
@@ -125,24 +125,12 @@
                   },
                   {
                     "object": "text",
-                    "text": ", so you can store it into URL or send to the server",
+                    "text": ", so you can store it into URL or send it to the server.",
                     "marks": []
                   }
                 ]
               }
             ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "list-item-child",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
           }
         ]
       }

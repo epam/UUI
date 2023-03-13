@@ -11,23 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Button can contain",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-superscript",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "an ",
+            "text": "Button components can contain an icon. It can be done by setting the ",
             "marks": []
           },
           {
@@ -43,23 +27,7 @@
           },
           {
             "object": "text",
-            "text": " , you can provide your icon via ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "icon",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop. ",
+            "text": " prop. ",
             "marks": []
           }
         ]
@@ -71,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Also, you can specify icon position by passing ",
+            "text": "You can specify the icon position by passing ",
             "marks": []
           },
           {
@@ -88,6 +56,18 @@
           {
             "object": "text",
             "text": " prop.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
             "marks": []
           }
         ]

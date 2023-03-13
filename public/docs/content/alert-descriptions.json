@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Alert is a simple interactive text informational message.",
+            "text": "An alert is a simple interactive informational text message.",
             "marks": []
           }
         ]
@@ -23,7 +23,26 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Use alerts when you need to inform users about the result of their action or place inline notifications for the user.",
+            "text": "Use alerts when you need to inform users about the result of their action or place inline notifications for the user. Place alert into (inside) page content. For overlay notifications, we recommend using the ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://uui.epam.com/documents?id=notificationCard&mode=doc&skin=UUI4_promo&category=components"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "NotificationCard",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " component.",
             "marks": []
           }
         ]

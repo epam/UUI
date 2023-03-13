@@ -22,7 +22,19 @@
           },
           {
             "object": "text",
-            "text": " allows to load hierarchical data lazily. it's required to pass ",
+            "text": " allows you to load hierarchical data lazily. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Note that It's required to pass the ",
             "marks": []
           },
           {
@@ -38,7 +50,7 @@
           },
           {
             "object": "text",
-            "text": " callback to the ",
+            "text": " callback to ",
             "marks": []
           },
           {
@@ -54,7 +66,7 @@
           },
           {
             "object": "text",
-            "text": " for lazy loading in tree lists",
+            "text": " for lazy loading in tree lists.",
             "marks": []
           }
         ]
