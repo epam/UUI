@@ -132,7 +132,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         let { historyIndex, formHistory, isChanged } = currentState;
         if (options.addCheckpoint) {
             historyIndex++;
-            isChanged = !isEqual(props.value, newForm);
+            isChanged = !isEqual(initialForm.current, newForm);
         }
         formHistory = formHistory.slice(0, historyIndex).concat(newForm);
 

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For a simple case, you need to provide toggler component via ",
+            "text": "For a simple case, you need to provide a toggler via the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop and dropdown body content via ",
+            "text": " prop and dropdown body content via the ",
             "marks": []
           },
           {

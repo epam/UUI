@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Table example, where data is loading using ArrayDataSource -  just getting items from array.",
+            "text": "Table example where data is loaded using ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ArrayDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " -  just getting items from an array.",
             "marks": []
           }
         ]

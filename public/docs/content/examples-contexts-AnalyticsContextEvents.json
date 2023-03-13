@@ -66,7 +66,7 @@
                           },
                           {
                             "object": "text",
-                            "text": " - triggers when user click on component.\n",
+                            "text": " - triggers when the user clicks on a component.\n",
                             "marks": []
                           }
                         ]
@@ -96,7 +96,7 @@
                           },
                           {
                             "object": "text",
-                            "text": " - triggers when component value changed. Function takes ",
+                            "text": " - triggers when component value changes. The function takes ",
                             "marks": []
                           },
                           {
@@ -128,7 +128,7 @@
                           },
                           {
                             "object": "text",
-                            "text": " args and returns event.\n",
+                            "text": " args and returns an event.\n",
                             "marks": []
                           }
                         ]
@@ -151,7 +151,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Send event directly by invoking ",
+                    "text": "Send event directly by invoking the ",
                     "marks": []
                   },
                   {
@@ -167,7 +167,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " method from AnalyticsContext\n",
+                    "text": " method from AnalyticsContext",
                     "marks": []
                   }
                 ]

@@ -4,7 +4,7 @@ import { DropdownBodyProps } from '@epam/uui-core';
 import { IDropdownToggler } from '@epam/uui';
 
 const dropdownMenuItems = [
-    { id: 1, caption: 'Relevancy'},
+    { id: 1, caption: 'Relevance'},
     { id: 2, caption: 'Price'},
     { id: 3, caption: 'Size'},
 ];
