@@ -589,6 +589,10 @@
     /* Spinner */
     --uui-spinner: var(--uui-primary);
 
+    /* Blocker */
+    --uui-blocker-bg: var(--uui-background);
+    --uui-blocker-bg-with-opacity: #F5F6FA80;
+
     /* modification of the states of table components */
 
     :global(.uui-dt-cell-border) {
