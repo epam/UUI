@@ -5,7 +5,7 @@ import {
 import isEqual from 'lodash.isequal';
 import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
-import { Tree, LoadTreeOptions, ITree } from './tree';
+import { Tree, LoadTreeOptions, ITree } from './tree/index';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
