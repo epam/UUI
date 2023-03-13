@@ -225,7 +225,7 @@ const Table = (props: any) => {
         <div className={ cx(tableCSS.tableWrapper) }>
             <TableElement
                 { ...props }
-                styles={ { root: { width: tableWidth, "& > div": { visibility: 'hidden' } } } }
+                styles={ { root: { width: tableWidth } } }
                 className={ tableCSS.table }
                 element={ {
                     ...element,

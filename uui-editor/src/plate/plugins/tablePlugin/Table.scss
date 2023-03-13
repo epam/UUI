@@ -5,6 +5,11 @@ table {
     position: relative;
     border-collapse: collapse;
     table-layout: fixed;
+
+    // hide remove button
+    & > div {
+        visibility: hidden;
+    }
 }
 
 .table-wrapper {
