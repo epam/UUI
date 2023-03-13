@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can disable for selection some days via ",
+            "text": "You can disable selection for some days via ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop. This callback invoked for each day in picker, return ",
+            "text": " prop. This callback is invoked for each day in the picker, return ",
             "marks": []
           },
           {
@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": " if you want to disable  a day.",
+            "text": " if you want to disable a day.",
             "marks": []
           }
         ]
