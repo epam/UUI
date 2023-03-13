@@ -27,7 +27,26 @@
           },
           {
             "object": "text",
-            "text": " to show formatted numbers according to system locale. You can override the locale value by setting the i18n.locale global variable.",
+            "text": " to show formatted numbers according to a system locale. You can override the locale value by setting the ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://uui.epam.com/documents?id=localization&mode=doc&skin=UUI4_promo&category=advanced"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "i18n",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".locale global variable.",
             "marks": []
           }
         ]
@@ -39,7 +58,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can control formatting options by passing ",
+            "text": "You can control formatting options by passing the ",
             "marks": []
           },
           {
@@ -55,7 +74,7 @@
           },
           {
             "object": "text",
-            "text": " prop, see ",
+            "text": " prop; see ",
             "marks": []
           },
           {
@@ -87,7 +106,7 @@
           },
           {
             "object": "text",
-            "text": "for more details. These options also controls what values can be entered into the NumericInput (e.g. maxFractionalDigits).",
+            "text": "for more details. These options also control what values can be entered into the NumericInput (e.g., maxFractionalDigits).",
             "marks": []
           }
         ]
@@ -99,7 +118,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To disable this behavior  set  ",
+            "text": "To disable this behavior, set ",
             "marks": []
           },
           {
@@ -115,7 +134,7 @@
           },
           {
             "object": "text",
-            "text": " - this will switch formatting back to Number.toString() behavior.",
+            "text": ". This will switch formatting back to the Number.toString() behavior.",
             "marks": []
           }
         ]
@@ -127,7 +146,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Note, that value is rounded and trimmed to min/max only on blur, so you can temporarily get out-of-range values via onValueChange while the input is being edited.",
+            "text": "Note that value is rounded and trimmed to min/max only on blur, so you can temporarily get out-of-range values via onValueChange while the input is being edited.",
             "marks": []
           }
         ]

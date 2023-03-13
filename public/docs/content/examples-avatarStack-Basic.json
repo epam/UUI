@@ -11,7 +11,39 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic AvatarStack usage.\nProp ",
+            "text": "Basic AvatarStack usage.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#0e101a",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The ",
             "marks": []
           },
           {
@@ -27,7 +59,7 @@
           },
           {
             "object": "text",
-            "text": " allows you to specify the number of avatars in the stack.",
+            "text": " props allow you to specify the number of avatars in the stack.",
             "marks": []
           }
         ]

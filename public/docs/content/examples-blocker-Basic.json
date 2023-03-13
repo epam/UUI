@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this example we show a common case, when you need to block the form during the loading.",
+            "text": "This example shows a typical case when you must block the form during loading.",
             "marks": []
           }
         ]
@@ -23,7 +23,35 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Additionally if you need to secure access to controls covered by the Blocker component, you can pass the ",
+            "text": "Note! It's expected to place the Blocker into a 'position: relative' context.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Additionally, if you need to disable access to controls covered by the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Blocker",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " component, you can pass the ",
             "marks": []
           },
           {
@@ -56,6 +84,18 @@
           {
             "object": "text",
             "text": " prop of each control.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
             "marks": []
           }
         ]

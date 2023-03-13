@@ -13,6 +13,7 @@ exports[`Button should be rendered correctly with props 1`] = `
 <button
   aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable root size-36 color-sun fill-white style-square"
+  disabled={false}
   onClick={[Function]}
   tabIndex={0}
   type="button"
