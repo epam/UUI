@@ -5,7 +5,8 @@ export function useArrayDataSource<TItem, TId, TFilter>(props: ArrayDataSourcePr
     return useMemoWithDestructor(
         () => new ArrayDataSource({ ...props }),
         (dataSource) => dataSource.setProps(props),
+        (dataSource) => dataSource.enable(),
         (dataSource) => dataSource.destroy(),
-        deps
+        deps,
     );
 }

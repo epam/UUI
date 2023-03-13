@@ -65,9 +65,14 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     useView<TState extends DataSourceState<any, TId>>(
         value: TState,
         onValueChange: (value: TState) => any,
-        props?: Partial<LazyListViewProps<TItem, TId, TFilter>>
+        props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
     ): LazyListView<TItem, TId, TFilter> {
-        useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
+        useEffect(() => {
+            const view = this.getView(value, onValueChange, props);
+            view?.enable();
+
+            return () => this.unsubscribeView(onValueChange);
+        }, [this]);
 
         return this.getView(value, onValueChange, props);
     }

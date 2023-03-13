@@ -1,6 +1,12 @@
 import { useEffect, useRef } from 'react';
 
-export function useMemoWithDestructor<T>(create: () => T, update: (instance: T) => void, destroy: (value: T) => any, deps: any[]) {
+export function useMemoWithDestructor<T>(
+    create: () => T,
+    update: (instance: T) => void,
+    enable: (value: T) => void,
+    destroy: (value: T) => any,
+    deps: any[],
+) {
     const ref = useRef<T>();
     const prevDeps = useRef(deps);
 
@@ -17,6 +23,7 @@ export function useMemoWithDestructor<T>(create: () => T, update: (instance: T) 
     const current = ref.current;
 
     useEffect(() => {
+        current && enable(current);
         // Value here is memoized in closure at the time of its creation.
         // So we are not destroying the value we just created above.
         return () => current && destroy(current);

@@ -26,12 +26,16 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     public abstract setProps(newProps: BaseListViewProps<TItem, TId, TFilter>): void;
 
     public unsubscribeView(onValueChange: (val: any) => void) {
-        this.views.delete(onValueChange);
+        const view = this.views.get(onValueChange);
+        view?.destroy();
     }
 
     public destroy() {
         this.views.forEach(view => view.destroy());
-        this.views.clear();
+    }
+
+    public enable() {
+        this.views.forEach(view => view.enable());
     }
 
     public getId = (item: TItem & { id?: TId }) => {
