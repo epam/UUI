@@ -3,8 +3,6 @@ import { UploadFileToggler} from '@epam/uui-components';
 
 import {
     ToolbarButton as PlateToolbarButton,
-    getPreventDefaultHandler,
-    createPluginFactory,
     createInsertDataPlugin,
     PlateEditor, insertData,
 } from "@udecode/plate";
@@ -42,13 +40,10 @@ export const UploadFileButton = ({ editor }: IUploadFileButton): any => {
                 <PlateToolbarButton
                     styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                     active={ true }
-                    onMouseDown={
-                        editor
-                            ? getPreventDefaultHandler()
-                            : undefined
-                    }
+                    onMouseDown={(e) => console.log(e)}
+                    actionHandler='onMouseDown'
                     icon={ <ToolbarButton
-                        { ...props }
+                        //{ ...props }
                         icon={ AttachIcon }
                         isDisabled={ isTextSelected(editor, true) }
                     /> }

@@ -4,8 +4,9 @@ import {
     PlateEditor,
     insertElements,
     WithPlatePlugin,
-    insertEmptyElement,
+    insertEmptyElement, insertNode,
 } from '@udecode/plate';
+import { useRef } from "react";
 
 export const withFileUpload = <
     V extends Value = Value,
@@ -20,14 +21,14 @@ export const withFileUpload = <
     const { insertData, deleteBackward } = editor;
 
     editor.insertData = async (dataTransfer) => {
-
         const { files } = dataTransfer;
 
         if (files && files.length > 0) {
-            focusEditor(editor);
+
             for (const file of files) {
-                // Temp close
-                //insertEmptyElement(editor, 'loader');
+                insertEmptyElement(editor, 'loader');
+                const currentSelection = { ...editor.selection };
+                const prevSelection = { ...editor.prevSelection };
                 const [mime] = file.type.split('/');
 
                 const uploadedFile = uploadFile
@@ -42,13 +43,16 @@ export const withFileUpload = <
                         ...uploadedFile,
                     },
                 };
-                // Temp close
-                //deleteBackward('block');
+
+                editor.selection = currentSelection;
+                editor.prevSelection = prevSelection;
+                deleteBackward('block');
 
                 insertElements(editor, {
                     ...result,
                     children: [{ text: '' }],
                 });
+                insertEmptyElement(editor, 'paragraph');
             }
         } else {
             insertData(dataTransfer);

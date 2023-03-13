@@ -6,7 +6,7 @@ import {
     ELEMENT_TD,
     ELEMENT_TH,
     ELEMENT_TR,
-    TableElement,
+    PlateTableElement,
     usePlateEditorState,
     insertTableColumn,
     insertTableRow,
@@ -214,7 +214,7 @@ const Table = (props: any) => {
 
     return (
         <div className={ cx(css.wrapper, tableCSS.tableWrapper) }>
-            <TableElement
+            <PlateTableElement
                 { ...props }
                 className={ tableCSS.table }
                 element={ {
@@ -230,31 +230,31 @@ const Table = (props: any) => {
             /> }
         </div>
     );
-    return (
-        <Dropdown
-            renderTarget={ (innerProps: any) => (
-                <div ref={ innerProps.ref } className={ cx(css.wrapper, tableCSS.tableWrapper) }>
-                    <TableElement
-                        { ...props }
-                        className={ tableCSS.table }
-                        element={ {
-                            ...element,
-                            ...(data?.cellSizes ? { colSizes: data?.cellSizes } : {}),
-                        } }
-                    />
-                </div>
-            ) }
-            renderBody={ () =>  <FlexRow cx={ css.imageToolbarWrapper }>
-                <Toolbar
-                    children={ cellEntries && cellEntries.length > 1 ? renderMergeToolbar() : renderToolbar() }
-                    editor={ editor }
-                    isImage={ false }
-                />
-            </FlexRow> }
-            value={ !!cellEntries?.length }
-            placement='bottom'
-        />
-    );
+    // return (
+    //     <Dropdown
+    //         renderTarget={ (innerProps: any) => (
+    //             <div ref={ innerProps.ref } className={ cx(css.wrapper, tableCSS.tableWrapper) }>
+    //                 <PlateTableElement
+    //                     { ...props }
+    //                     className={ tableCSS.table }
+    //                     element={ {
+    //                         ...element,
+    //                         ...(data?.cellSizes ? { colSizes: data?.cellSizes } : {}),
+    //                     } }
+    //                 />
+    //             </div>
+    //         ) }
+    //         renderBody={ () =>  <FlexRow cx={ css.imageToolbarWrapper }>
+    //             <Toolbar
+    //                 children={ cellEntries && cellEntries.length > 1 ? renderMergeToolbar() : renderToolbar() }
+    //                 editor={ editor }
+    //                 isImage={ false }
+    //             />
+    //         </FlexRow> }
+    //         value={ !!cellEntries?.length }
+    //         placement='bottom'
+    //     />
+    // );
 };
 
 
