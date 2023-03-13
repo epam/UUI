@@ -3,7 +3,7 @@ import {
     DataSourceListProps, IDataSourceView, BaseListViewProps,
 } from "../../../types";
 import { BaseListView } from './BaseListView';
-import { ITree, Tree } from "./tree";
+import { ITree, Tree } from "./tree/index";
 
 export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     getSearchFields?(item: TItem): string[];

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps } from './views';
-import { ITree, Tree } from './views/tree';
+import { ITree, Tree } from './views/tree/index';
 
 export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {}
 
