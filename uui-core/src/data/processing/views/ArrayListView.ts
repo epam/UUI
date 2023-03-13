@@ -29,6 +29,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     ) {
         super(editable, props);
         this.props = props;
+        this.originalTree = Tree.blank(props);
         this.tree = Tree.blank(props);
         this.update(editable.value, props);
     }
