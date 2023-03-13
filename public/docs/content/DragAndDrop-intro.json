@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI provide powerful mechanism for building reordered lists (vertical, horizontal, movement between lists, nested lists and so on). ",
+            "text": "UUI provides a powerful mechanism for building reordered lists (vertical, horizontal, movement between lists, nested lists, etc.). ",
             "marks": []
           }
         ]
@@ -54,88 +54,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Note:",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " Make sure you",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": " pass a correct ref to the root node in the ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#24292e",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "render  ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#24292e",
-                    "": null
-                  }
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "prop callback",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#24292e",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "note-warning",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "You need to wrap you application into UUI ",
+            "text": "You must wrap your application into UUI ",
             "marks": []
           },
           {
