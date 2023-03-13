@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
 import React, { useCallback, useMemo } from 'react';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, memorizedComparator, Metadata, useList } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList, useMemoComparator, useUpdatableDep } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -31,16 +31,19 @@ let lastId = -1;
 let savedValue: FormState = { items: getDemoTasks() };
 
 export const ProjectDemo = () => {
-    const memoComparator = useMemo(() => memorizedComparator<Task, number>(
-        () => -1,
-        i => i.id,
-    ), []);
+    const [comparatorDep, updateComparatorDep] = useUpdatableDep();
+
+    const memoComparator = useMemoComparator<Task, number>({
+        comparator: () => -1,
+        getId: i => i.id,
+    }, [comparatorDep]);
 
     const { lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
             savedValue = value;
+            updateComparatorDep();
         },
         getMetadata: () => metadata,
     });
@@ -76,16 +79,15 @@ export const ProjectDemo = () => {
     //const { tableState, setTableState } = useTableState<any>({ columns });
     const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
-    console.log('updated', Object.values(value.items));
     const { rows, listProps } = useList({
         type: 'array',
         listState: tableState,
         setListState: setTableState,
-        items: Object.values(value.items),
+        items: Object.values(savedValue.items),
 
         patch: Object.values(value.items),
         isDeletedProp: 'isDeleted',
-        comparator: memoComparator,
+        patchComparator: memoComparator,
 
         getId: i => i.id,
         getParentId: i => i.parentId,

@@ -107,7 +107,14 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         let patchTreeIsUpdated = false;
         if (this.isPatchUpdated(prevProps, newProps) || !this.patchedTree || searchTreeIsUpdated) {
-            this.patchedTree = this.searchTree.patch(newProps.patch, newProps.isDeletedProp, newProps.comparator);
+            this.patchedTree = this.searchTree.patch(newProps.patch, newProps.isDeletedProp, newProps.patchComparator);
+
+            // this is very strange. to avoid this code, we should patch twice, what is wrong, or exclude
+            // patch items from the filtering/search input.
+            this.originalTree = this.patchedTree;
+            this.filteredTree = this.patchedTree;
+            this.searchTree = this.patchedTree;
+
             patchTreeIsUpdated = true;
         }
 
@@ -115,7 +122,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             this.sortedTree = this.patchedTree.sort({
                 sorting,
                 sortBy,
-                comparators: newProps.comparator ? [newProps.comparator] : [],
+                comparators: newProps.patchComparator ? [newProps.patchComparator] : [],
             });
         }
 

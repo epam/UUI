@@ -110,7 +110,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         newProps: BaseListViewProps<TItem, TId, TFilter>,
     ) {
         return newProps.patch !== prevProps.patch
-            || newProps.comparator !== prevProps.comparator
+            || newProps.patchComparator !== prevProps.patchComparator
             || newProps.isDeletedProp !== prevProps.isDeletedProp;
     }
 
