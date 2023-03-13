@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { Fragment, useCallback, useMemo, useRef } from 'react';
 
 import {
     createTablePlugin,
@@ -33,7 +33,6 @@ import { TableHeaderCell } from "./TableHeaderCell";
 import { TableRow } from "./TableRow";
 import { TableCell } from "./TableCell";
 import cx from "classnames";
-import imageBlockCss from "../imagePlugin/ImageBlock.scss";
 import { ToolbarButton } from "../../../implementation/ToolbarButton";
 import { ReactComponent as InsertColumnBefore } from "../../icons/table-add-column-left.svg";
 import { ReactComponent as InsertColumnAfter } from "../../../icons/table-add-column-right.svg";
@@ -166,18 +165,16 @@ const Table = (props: any) => {
 
     const renderMergeToolbar = useCallback(() => {
         return (
-            <div className={ cx(imageBlockCss.imageToolbar, 'slate-prevent-blur') }>
-                <ToolbarButton
-                    onClick={ mergeCells }
-                    icon={ TableMerge }
-                />
-            </div>
+            <ToolbarButton
+                onClick={ mergeCells }
+                icon={ TableMerge }
+            />
         );
     }, [cellEntries]);
 
     const renderToolbar = useCallback(() => {
         return (
-            <div className={ cx(imageBlockCss.imageToolbar, 'slate-prevent-blur') }>
+            <Fragment>
                 <ToolbarButton
                     onClick={ () => insertTableColumn(editor, { at: cellPath }) }
                     icon={ InsertColumnBefore }
@@ -213,7 +210,7 @@ const Table = (props: any) => {
                         icon={ UnmergeCellsIcon }
                     />
                 }
-            </div>
+            </Fragment>
         );
     }, [element, cellPath, rowPath, cellEntries]);
 
