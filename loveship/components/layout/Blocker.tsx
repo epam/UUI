@@ -8,5 +8,5 @@ import * as types from '../types';
 export interface BlockerMods extends types.ColorMod { }
 
 export const Blocker = withMods<BlockerProps, BlockerMods>(uuiBlocker, () => [css.root],
-    (cmpProps) => ({ renderSpinner: cmpProps.renderSpinner || ((props: BlockerMods) => <Spinner color={ props.color }/>) })
+    (cmpProps) => ({ renderSpinner: cmpProps.renderSpinner || (() => <Spinner />) }),
 );

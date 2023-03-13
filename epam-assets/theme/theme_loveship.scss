@@ -655,6 +655,9 @@
     /* Alert */
     --uui-alert-border-radius: 6px;
 
+    /* Spinner */
+    --uui-spinner: var(--uui-primary);
+
     /* modification of the states of table components */
 
     :global(.uui-dt-cell-border) {

@@ -586,6 +586,9 @@
     --uui-filters-toggler-label: var(--uui-text-secondary);
     --uui-filters-toggler-icon: var(--uui-text-input-icon-clickable);
 
+    /* Spinner */
+    --uui-spinner: var(--uui-primary);
+
     /* modification of the states of table components */
 
     :global(.uui-dt-cell-border) {
