@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Dropdown has may ways for customisation open/close logic:",
+            "text": "Dropdown has may ways to customization open/close logic:",
             "marks": []
           }
         ]
@@ -77,7 +77,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "toggler - means  that dropdown will be closed when muse leave target component, in our case - Button",
+                            "text": "toggler — means that the dropdown will be closed when a mouse leaves the target component, in our case - Button",
                             "marks": []
                           }
                         ]
@@ -96,7 +96,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "boundary - will not to close dropdown when mouse on target or in 30px around target area",
+                            "text": "boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
                             "marks": []
                           }
                         ]
@@ -115,7 +115,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "false - will not close dropdown by mouse move event",
+                            "text": "false — will not close dropdown by mouse move event",
                             "marks": []
                           }
                         ]
@@ -154,7 +154,39 @@
                       },
                       {
                         "object": "text",
-                        "text": " - by default it's true. When false - don't close dropdown by click outside body.",
+                        "text": " - by default, it's ",
+                        "marks": []
+                      },
+                      {
+                        "object": "text",
+                        "text": "true",
+                        "marks": [
+                          {
+                            "object": "mark",
+                            "type": "uui-richTextEditor-code",
+                            "data": {}
+                          }
+                        ]
+                      },
+                      {
+                        "object": "text",
+                        "text": ". When ",
+                        "marks": []
+                      },
+                      {
+                        "object": "text",
+                        "text": "false",
+                        "marks": [
+                          {
+                            "object": "mark",
+                            "type": "uui-richTextEditor-code",
+                            "data": {}
+                          }
+                        ]
+                      },
+                      {
+                        "object": "text",
+                        "text": " , don't close the dropdown by click outside the body.",
                         "marks": []
                       }
                     ]
@@ -191,7 +223,39 @@
                       },
                       {
                         "object": "text",
-                        "text": " - by default it's true. When false - don't close dropdown by click on target component.",
+                        "text": " - by default, it's ",
+                        "marks": []
+                      },
+                      {
+                        "object": "text",
+                        "text": "true",
+                        "marks": [
+                          {
+                            "object": "mark",
+                            "type": "uui-richTextEditor-code",
+                            "data": {}
+                          }
+                        ]
+                      },
+                      {
+                        "object": "text",
+                        "text": ". When ",
+                        "marks": []
+                      },
+                      {
+                        "object": "text",
+                        "text": "false",
+                        "marks": [
+                          {
+                            "object": "mark",
+                            "type": "uui-richTextEditor-code",
+                            "data": {}
+                          }
+                        ]
+                      },
+                      {
+                        "object": "text",
+                        "text": ", don't close the dropdown by click on target component.",
                         "marks": []
                       }
                     ]
