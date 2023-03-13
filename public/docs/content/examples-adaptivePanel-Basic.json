@@ -27,7 +27,19 @@
           },
           {
             "object": "text",
-            "text": " prop, all items will be rendered according to order in this array. For each item, you need to provide: ",
+            "text": " prop, all items will be rendered according to the order in this array. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For each item, you need to provide: ",
             "marks": []
           }
         ]
@@ -90,7 +102,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " -  your render function; it renders items inside the panel and measures width. Pay attention that we can't measure item margins, so if you need to have margin, make a wrapper and add margins inside;",
+                    "text": " -  your render function; it renders items inside the panel and measures their width. Pay attention that we can't measure item margins. If you need to have margins, please make a wrapper and add margins inside;",
                     "marks": []
                   }
                 ]
@@ -120,7 +132,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " - item collapsed priority; An item with lower priority will be hidden first, and so on. If several items have the same priority, both of them will be hidden;",
+                    "text": " - item collapsed priority. An item with lower priority will be hidden first, and so on. If several items have the same priority, all of them will be hidden;",
                     "marks": []
                   }
                 ]
@@ -150,7 +162,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " - if provided, this item will be shown only when some items are hidden; for example, you can use it to render dropdown with hidden items. You can provide more than one ",
+                    "text": " - if provided, this item will only be shown when some items are hidden; for example, you can use it to render dropdowns with hidden items. You can provide more than one ",
                     "marks": []
                   },
                   {
@@ -166,39 +178,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " item, but only one will be shown. Which ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "collapsedContainer",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " to display is calculated by such a rule: use ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "collapsedContainer",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " with minimal priority, but this priority can't be less than the last hidden items priority.",
+                    "text": " item, but will be shown only those which has minimal priority, but this priority can't be less than the last hidden item’s priority.",
                     "marks": []
                   }
                 ]
@@ -230,7 +210,7 @@
           },
           {
             "object": "text",
-            "text": " to add any of your fields into the adaptive item config. For example, it can be helpful if you need a different render for hidden items inside collapsedContainer, and you can use these fields for it.",
+            "text": " to add any of your properties to the adaptive item config. For example, if you need a different rendering for hidden items inside collapsedContainer, you can use these props.",
             "marks": []
           }
         ]

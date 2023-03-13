@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from '@epam/promo';
 import * as promo from "@epam/promo";
 import * as loveship from "@epam/loveship";
-import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource } from '@epam/uui';
+import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource, Text } from '@epam/uui';
 import { PickerInputBaseProps } from '@epam/uui-components';
 import { BaseDatePickerProps, DataTableCellProps, RenderCellProps, useList } from '@epam/uui-core';
 
@@ -147,12 +147,13 @@ export default function TableCellsStylesSandbox() {
         {
             key: 'text',
             caption: 'Text',
-            renderCell: (props) => <SkinDataTableCell
-                { ...props.rowLens.prop('text').toProps() }
-                renderEditor={ props => <skin.TextInput { ...props } /> }
-                { ...props }
-                background={ getCellBackground(props) }
-            />,
+            // renderCell: (props) => <SkinDataTableCell
+            //     { ...props.rowLens.prop('text').toProps() }
+            //     renderEditor={ props => <skin.TextInput { ...props } /> }
+            //     { ...props }
+            //     background={ getCellBackground(props) }
+            // />,
+            render: () => <Text>123123</Text>,
             isSortable: true,
             width: 120,
         },

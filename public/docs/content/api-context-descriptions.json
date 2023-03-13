@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "ApiContext along with ErrorHandler component provides solution to deal with various errors which can be occurred during API calls. The following cases are handled:",
+            "text": "ApiContext, along with the ErrorHandler component, provides a solution to deal with various errors which can be occurred during API calls. The following cases are handled:",
             "marks": []
           }
         ]
@@ -33,7 +33,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "403, 404, 500 or other error status is returned from the server. ErrorContext replaces their children with appropriate error screen.",
+                    "text": "403, 404, 500, or other error status is returned from the server. ErrorContext replaces their children with an appropriate error screen.",
                     "marks": []
                   }
                 ]
@@ -52,7 +52,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Network and server failures. APIContext will start pinging /auth/ping endpoint until get OK. Then it will retry failed requests. Splash screen will be shown until network connection is recovered.",
+                    "text": "Network and server failures. APIContext will start pinging /auth/ping endpoint until it gets OK. Then it will retry failed requests. A splash screen will be shown until a network connection is recovered.",
                     "marks": []
                   }
                 ]
@@ -116,26 +116,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "API). ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": null
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
+                    "text": "API).   ",
                     "marks": []
                   }
                 ]
@@ -154,7 +135,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Authentication lost scenario. The server is required to return 401 with the custom 'x-session-lost: true' header if auth cookie is not found or invalid during XHR call. This is required because ordinary login redirect responses can't be detected from JS during XHR calls. ApiContext will open /auth/login page in such case. The page should process the usual login process before opening. After auth process is finished, the page is opening and and script inside it should send Cross Window Message to the app.\nUpon receiving the message, failed requests are retried. Splash screen will be shown until the problem is recovered.",
+                    "text": "Authentication lost scenario. The server is required to return 401 with the custom 'x-session-lost: true' header if auth cookie is not found or is invalid during the XHR call. This is required because ordinary login redirect responses can't be detected from JS during XHR calls. ApiContext will open /auth/login page in such case. The page should process the usual login process before opening. After the auth process, the page opens, and the script inside it should send Cross Window Message to the app. Upon receiving the message, failed requests are retried. A splash screen will be shown until the problem is recovered.",
                     "marks": []
                   }
                 ]
@@ -173,7 +154,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "In all cases, error is logged via AnalyticsContext.",
+                    "text": "In all cases, an error is logged via AnalyticsContext.",
                     "marks": []
                   }
                 ]
@@ -189,7 +170,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "On navigation (e.g. clicking a main menu item), and errors are discarded, and all pending API calls are cancelled. Also, we close all modal windows on any JS/API error. ",
+            "text": "Errors are discarded on navigation (e.g., clicking a main menu item), and all pending API calls are canceled. Also, we close all modal windows on any JS/API error. ",
             "marks": []
           }
         ]

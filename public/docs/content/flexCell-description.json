@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Flex child container which accept flex related properties.",
+            "text": "FlexCell is a Flex child container which accepts Flex related properties.",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Using props you can set:",
+            "text": "Props you can set:",
             "marks": []
           }
         ]
@@ -130,7 +130,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "sets the width of a flex item",
+                            "text": "sets the width of a Flex item",
                             "marks": []
                           }
                         ]
@@ -385,7 +385,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "it aligns the item on the cross axis",
+                            "text": " aligns an item on the cross axis",
                             "marks": []
                           }
                         ]
@@ -436,109 +436,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "sets the horizontal alignment of text in an element",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "cx",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-code",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "sets a custom style class",
-                            "marks": []
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "object": "block",
-                "type": "table_row",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "onClick",
-                            "marks": [
-                              {
-                                "object": "mark",
-                                "type": "uui-richTextEditor-code",
-                                "data": {}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "object": "block",
-                    "type": "table_cell",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "block",
-                        "type": "paragraph",
-                        "data": {},
-                        "nodes": [
-                          {
-                            "object": "text",
-                            "text": "sets the click event handler",
+                            "text": "sets the horizontal alignment of the text in an element",
                             "marks": []
                           }
                         ]

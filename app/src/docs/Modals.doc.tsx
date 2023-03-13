@@ -20,7 +20,7 @@ export class ModalsDoc extends BaseDocsBlock {
                 />
 
                 <DocExample
-                    title='Disable close on click outside modal and modal header cross disabling'
+                    title='Disabling close on click outside modal and modal header cross'
                     path='./_examples/modals/DisableClickOutsideAndCross.example.tsx'
                 />
             </>
