@@ -13,7 +13,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
   }
 >
   <div
-    className="uui-table-cell cell cell size-36 padding-12 padding-left-12 align-widgets-top"
+    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
     role="cell"
     style={
       Object {
@@ -49,7 +49,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
+exports[`DataPickerRow should be rendered correctly 2`] = `
 <div
   aria-posinset={2}
   aria-selected={true}
@@ -64,7 +64,7 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
   }
 >
   <div
-    className="uui-table-cell cell cell size-48 padding-24 padding-left-24 align-widgets-top"
+    className="uui-table-cell cell data-table-cell cell size-48 padding-24 padding-left-24 align-widgets-top"
     role="cell"
     style={
       Object {
@@ -98,7 +98,7 @@ exports[`DataPickerRow should be rendered correctly with extra props 1`] = `
           className="iconWrapper"
         >
           <div
-            className="container uui-icon uui-enabled iconSky"
+            className="container uui-icon uui-enabled iconInfo"
             style={Object {}}
           >
             <svg

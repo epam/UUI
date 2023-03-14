@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Picker Input is used when you need to select some value(s) from list. It's used DataSource approach.",
+            "text": "Picker Input is used when you need to select some value(s) from a list. It's used DataSource approach.",
             "marks": []
           }
         ]

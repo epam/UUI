@@ -2,7 +2,7 @@
 
 exports[`PickerModal should be rendered correctly 1`] = `
 <div
-  className="container modalBlocker shadow-dark"
+  className="container modalBlocker"
   style={
     Object {
       "zIndex": 1,
@@ -35,11 +35,17 @@ exports[`PickerModal should be rendered correctly 1`] = `
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal width-600 height-700 container"
+      className="uui-modal-window modal container"
       role="modal"
+      style={
+        Object {
+          "height": "700px",
+          "width": "600px",
+        }
+      }
     >
       <div
-        className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -48,7 +54,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
         >
           Please select
         </div>
@@ -56,7 +62,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <div
-          className=""
+          className="flexCell"
           style={
             Object {
               "alignSelf": undefined,
@@ -69,7 +75,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-gray60 root"
+            className="container uui-button-box uui-enabled -clickable icon-button-default root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -86,7 +92,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="subHeaderWrapper"
+        className="flexCell subHeaderWrapper"
         style={
           Object {
             "alignSelf": undefined,
@@ -99,7 +105,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root size-36 background-none vPadding-24 container align-items-center"
+          className="root size-36 vPadding-24 container align-items-center"
           style={
             Object {
               "columnGap": undefined,
@@ -137,7 +143,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 background-white body editMode-modal container align-items-center"
+        className="root size-36 body modal undefined container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -147,8 +153,8 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root scrollContainer root"
-          cx="scrollContainer root"
+          className="root scrollContainer"
+          cx="scrollContainer"
           style={
             Object {
               "display": "flex",
@@ -207,7 +213,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -234,7 +240,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -257,7 +263,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -284,7 +290,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -307,7 +313,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -334,7 +340,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -357,7 +363,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -384,7 +390,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -407,7 +413,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -434,7 +440,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -457,7 +463,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -484,7 +490,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -507,7 +513,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -534,7 +540,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -557,7 +563,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -584,7 +590,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -607,7 +613,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -634,7 +640,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -657,7 +663,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -684,7 +690,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -707,7 +713,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -734,7 +740,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         />
                         <div
                           className="flexSpacer"
@@ -777,7 +783,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+        className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -789,7 +795,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-gray50 root size-36 mode-outline"
+          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -801,7 +807,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-green root size-36 mode-solid"
+          className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -835,7 +841,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
 
 exports[`PickerModal should be rendered correctly 2`] = `
 <div
-  className="container modalBlocker shadow-dark"
+  className="container modalBlocker"
   style={
     Object {
       "zIndex": 1,
@@ -868,11 +874,17 @@ exports[`PickerModal should be rendered correctly 2`] = `
   >
     <div
       aria-modal={true}
-      className="uui-modal-window modal width-600 height-700 container"
+      className="uui-modal-window modal container"
       role="modal"
+      style={
+        Object {
+          "height": "700px",
+          "width": "600px",
+        }
+      }
     >
       <div
-        className="root size-36 background-none padding-24 vPadding-12 border-bottom-gray40 spacing-12 modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -881,7 +893,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="uui-font-sans-semibold uui-text-gray80 root line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
         >
           Please select
         </div>
@@ -889,7 +901,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <div
-          className=""
+          className="flexCell"
           style={
             Object {
               "alignSelf": undefined,
@@ -902,7 +914,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable icon-button-gray60 root"
+            className="container uui-button-box uui-enabled -clickable icon-button-default root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -919,7 +931,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         </div>
       </div>
       <div
-        className="subHeaderWrapper"
+        className="flexCell subHeaderWrapper"
         style={
           Object {
             "alignSelf": undefined,
@@ -932,7 +944,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="root size-36 background-none vPadding-24 container align-items-center"
+          className="root size-36 vPadding-24 container align-items-center"
           style={
             Object {
               "columnGap": undefined,
@@ -995,7 +1007,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         </label>
       </div>
       <div
-        className="root size-36 background-white body editMode-modal container align-items-center"
+        className="root size-36 body modal undefined container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -1005,8 +1017,8 @@ exports[`PickerModal should be rendered correctly 2`] = `
         }
       >
         <div
-          className="root scrollContainer root"
-          cx="scrollContainer root"
+          className="root scrollContainer"
+          cx="scrollContainer"
           style={
             Object {
               "display": "flex",
@@ -1065,7 +1077,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1107,7 +1119,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           C2
                         </div>
@@ -1132,7 +1144,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1174,7 +1186,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           C1+
                         </div>
@@ -1199,7 +1211,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1241,7 +1253,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           C1
                         </div>
@@ -1266,7 +1278,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1308,7 +1320,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           B2+
                         </div>
@@ -1333,7 +1345,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1375,7 +1387,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           B2
                         </div>
@@ -1400,7 +1412,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1442,7 +1454,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           B1+
                         </div>
@@ -1467,7 +1479,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1509,7 +1521,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           B1
                         </div>
@@ -1534,7 +1546,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1576,7 +1588,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           A2+
                         </div>
@@ -1601,7 +1613,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1643,7 +1655,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           A2
                         </div>
@@ -1668,7 +1680,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1710,7 +1722,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           A1+
                         </div>
@@ -1735,7 +1747,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                   }
                 >
                   <div
-                    className="uui-table-cell cell cell size-36 padding-24 padding-left-24 align-widgets-top"
+                    className="uui-table-cell cell data-table-cell cell size-36 padding-24 padding-left-24 align-widgets-top"
                     role="cell"
                     style={
                       Object {
@@ -1777,7 +1789,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
                         className="renderItem"
                       >
                         <div
-                          className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-9 container"
+                          className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
                         >
                           A1
                         </div>
@@ -1822,7 +1834,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         </div>
       </div>
       <div
-        className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+        className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -1846,7 +1858,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <button
-          className="container uui-button-box uui-enabled -clickable button-gray50 root size-36 mode-outline"
+          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -1858,7 +1870,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           </div>
         </button>
         <button
-          className="container uui-button-box uui-enabled -clickable button-green root size-36 mode-solid"
+          className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
           onClick={[Function]}
           tabIndex={0}
           type="button"

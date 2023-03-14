@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can provide metadata options for each row in pickerInput via ",
+            "text": "You can provide metadata options for each row in PickerInput via ",
             "marks": []
           },
           {
@@ -59,7 +59,7 @@
           },
           {
             "object": "text",
-            "text": ". For more options look to the ",
+            "text": ". For more options, look to the ",
             "marks": []
           },
           {

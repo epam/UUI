@@ -23,10 +23,18 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('DataPickerBody', () => {
+    const rows = mockDataSource.getView({}, () => {}).getVisibleRows();
     const requiredProps: DataPickerBodyProps = {
         value: null,
         onValueChange: jest.fn(),
-        rows: mockDataSource.props.items,
+        rows: rows.map((props) =>
+            <DataPickerRow
+                key={ props.id }
+                renderItem={ (item: string) => <div>{ item }</div> }
+                id={ props.id }
+                rowKey={ props.rowKey }
+                index={ props.id }
+            />),
         search: {
             value: null,
             onValueChange: jest.fn(),
@@ -58,12 +66,12 @@ describe('DataPickerBody', () => {
                 maxHeight={ 800 }
                 searchSize="48"
                 rows={
-                    mockDataSource.props.items.map((props) =>
+                    rows.map((props) =>
                         <DataPickerRow
                             key={ props.id }
-                            renderItem={ item => <div>{ item }</div> }
+                            renderItem={ (item: string) => <div>{ item }</div> }
                             id={ props.id }
-                            rowKey={ props.level }
+                            rowKey={ props.rowKey }
                             index={ props.id }
                         />)
                 }

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In some specific cases you may need to provide your own  ",
+            "text": "In some specific cases, you may need to provide your own  ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop to the PickerInput to render a dropdown outside of the parent component DOM node.",
+            "text": " prop to the PickerInput to render a dropdown outside the parent component DOM node.",
             "marks": []
           }
         ]
@@ -67,7 +67,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Also you can provide ",
+            "text": "Also, you can provide ",
             "marks": []
           },
           {

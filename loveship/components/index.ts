@@ -5,7 +5,6 @@ export * from './types';
 export * from './overlays';
 export * from './navigation';
 export * from './inputs';
-export * from './pickers';
 export * from './widgets';
 export * from './app';
 export * from './dnd';
@@ -15,5 +14,6 @@ export { UploadFileToggler } from '@epam/uui-components';
 export {
     FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder,
     RangeDatePicker, DatePicker, MainMenu, GlobalMenu, Burger, BurgerButton, MainMenuAvatar, MainMenuSearch, MainMenuIcon,
-    MainMenuDropdown, MainMenuButton, IconContainer, Accordion, RichTextView, Form, useForm,
+    MainMenuDropdown, MainMenuButton, IconContainer, Accordion, RichTextView, Form, useForm, PickerInput, PickerItem,
+    DataPickerRow, PickerToggler, PickerList,
 } from "@epam/uui";

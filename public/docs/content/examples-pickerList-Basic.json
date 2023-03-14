@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can configure how much items will be shown initially, when nothing is selected via ",
+            "text": "You can configure how many items will be shown initially, when nothing is selected via ",
             "marks": []
           },
           {

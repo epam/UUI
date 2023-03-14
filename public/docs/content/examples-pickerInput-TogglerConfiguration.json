@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can configure how much tags should be shown in picker toggler via ",
+            "text": "You can configure how many tags should be shown in picker toggler via ",
             "marks": []
           },
           {
@@ -39,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By default pickerInput wraps tags to a new line, you can change this behavior via ",
+            "text": "By default, PickerInput wraps tags to a new line, you can change this behavior via ",
             "marks": []
           },
           {
@@ -111,7 +111,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "At last, you can define you own toggler components via ",
+            "text": "At last, you can define your own toggler components via ",
             "marks": []
           },
           {

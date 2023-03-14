@@ -22,7 +22,7 @@
           },
           {
             "object": "text",
-            "text": " props is defined where to place  Search input. By default is ",
+            "text": " props is defined where to place  SearchInput. By default, is ",
             "marks": []
           },
           {
@@ -38,7 +38,7 @@
           },
           {
             "object": "text",
-            "text": "  for multi picker and ",
+            "text": " for multi picker and ",
             "marks": []
           },
           {
@@ -54,7 +54,7 @@
           },
           {
             "object": "text",
-            "text": "  for single picker.",
+            "text": " for single picker.",
             "marks": []
           }
         ]
