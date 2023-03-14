@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui';
@@ -12,6 +12,7 @@ import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import './index.scss';
 import './themes/index.css';
+import { render } from 'react-dom';
 
 const history = createBrowserHistory();
 
@@ -31,7 +32,7 @@ export class UuiEnhancedApp extends React.Component {
             <ContextProvider<TApi, UuiContexts>
                 apiDefinition={ (processRequest) =>
                     getApi((url: string, method: string, data?: any, options?: ApiCallOptions) =>
-                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options  }))
+                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options }))
                 }
                 onInitCompleted={ (context) => this.onInitCompleted(context, ampCode) }
                 history={ history }
@@ -47,11 +48,11 @@ export class UuiEnhancedApp extends React.Component {
     }
 }
 
-render(
-    <React.StrictMode>
-        <Router history={ history }>
-            <UuiEnhancedApp />
-        </Router>
-    </React.StrictMode>,
-    document.getElementById('root'),
-);
+createRoot(document.getElementById('root'))
+    .render(
+        <React.StrictMode>
+            <Router history={ history }>
+                <UuiEnhancedApp />
+            </Router>
+        </React.StrictMode>
+    );
