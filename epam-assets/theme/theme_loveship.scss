@@ -301,7 +301,9 @@
     --uui-scroll: var(--night600);
     --uui-surface-inverted-light: var(--night800);
     --uui-btn-disabled: var(--gray50);
-    --uui-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
+    --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
+    --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0px 6px rgba(29, 30, 38, 0.05);
+    --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
     --uui-surface-dark: var(--gray90);
 
     /*  TextInput vars  */
@@ -428,10 +430,13 @@
     --uui-scroll-bars-bg-active: var(--gray60);
 
     /* Tooltip vars */
-    /* noinspection CssInvalidFunction */
-    --uui-tooltip-shadow: var(--uui-shadow, 0 1px 4px 0 rgba(44, 47, 60, 0.05), 0 2px 18px 0 rgba(44, 47, 60, 0.03)); /* WebStorm Bag Report https://youtrack.jetbrains.com/issue/WEB-54442 */
+    --uui-tooltip-shadow: var(--uui-shadow-level-2, 0 2px 18px 0 rgba(44, 47, 60, 0.30), 0 1px 4px 0 rgba(44, 47, 60, 0.50)); /* WebStorm Bag Report https://youtrack.jetbrains.com/issue/WEB-54442 */
     --uui-tooltip-arrow-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     --uui-tooltip-border-radius: var(--uui-border-radius);
+
+    /* PickerInput vars */
+    --uui-picker_input-bg: var(--uui-surface);
+
 
     /* PickerToggler vars */
     --uui-picker-toggler-bg: var(--uui-control-bg);
@@ -474,12 +479,12 @@
 
     /* Panel */
     --uui-panel-border-radius: var(--uui-border-radius);
-    --uui-panel-shadow: var(--uui-shadow);
+    --uui-panel-shadow: var(--uui-shadow-level-1);
 
     /* Modals */
     --uui-modals-border-radius: var(--uui-border-radius);
     --uui-modals-overlay: rgba(29, 30, 38, 0.8);
-    --uui-modals-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
+    --uui-modals-shadow: var(--uui-shadow-level-3);
     --uui-modals-bg: var(--uui-surface);
 
     /*    TextPlaceholder   */
@@ -504,8 +509,8 @@
     --uui-accordion-icon: var(--uui-icon);
     --uui-accordion-icon-disabled: var(--uui-text-input-icon-disabled);
     --uui-accordion-focus: var(--uui-primary);
-    --uui-accordion-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
-    --uui-accordion-shadow-hovered: 0 6px 12px 0 rgba(29, 30, 38, 0.10), 0 3px 6px 0 rgba(29, 30, 38, 0.10);
+    --uui-accordion-shadow: var(--uui-shadow-level-1);
+    --uui-accordion-shadow-hovered: var(--uui-shadow-level-2);
 
     /* Switch */
     --uui-switch-bg: var(--night400);
@@ -533,7 +538,7 @@
 
     /* DropdownContainer */
     --uui-dropdown-container-border-radius: 6px;
-    --uui-dropdown-container-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1);
+    --uui-dropdown-container-shadow: var(--uui-shadow-level-2);
     --uui-dropdown-container-bg: var(--white);
 
     /* MainMenu */
@@ -631,7 +636,7 @@
     --uui-search-input-border-radius: var(--uui-border-radius);
 
     /* Popover */
-    --uui-popover-shadow: 0 5px 18px 0 rgba(29, 30, 38, 0.1), 0 3px 12px 0 rgba(29, 30, 38, 0.1);
+    --uui-popover-shadow: var(--uui-shadow-level-2);
 
     /* Footer */
     --uui-footer-bg: var(--night800);
@@ -650,10 +655,14 @@
     --uui-notification-card-border-radius: var(--uui-border-radius);
     --uui-notification-card-border-width: 0;
     --uui-notification-card-border-top-width: 6px;
-    --uui-notification-card-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    --uui-notification-card-shadow: var(--uui-shadow-level-2); //TODO: may change in the future
 
     /* Alert */
     --uui-alert-border-radius: 6px;
+
+    /* Panel */
+
+    --uui-panel-bg: var(--uui-surface);
 
     /* modification of the states of table components */
 

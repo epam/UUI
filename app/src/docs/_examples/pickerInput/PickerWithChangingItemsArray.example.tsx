@@ -5,6 +5,16 @@ import {PickerInput, MultiSwitch, FlexRow, FlexCell} from "@epam/promo";
 
 const fullLevelsList = demoData.languageLevels;
 const shortLevelsList = demoData.languageLevels.slice(5);
+const multiSwitchItems = [
+    {
+        id: fullLevelsList,
+        caption: 'Full levels list',
+    },
+    {
+        id: shortLevelsList,
+        caption: 'Short levels list',
+    },
+];
 
 export default function LanguageLevelsArraySinglePicker() {
     const [pickerValue, setPickerValue] = useState<string>(null);
@@ -20,16 +30,8 @@ export default function LanguageLevelsArraySinglePicker() {
                     size='24'
                     value={ items }
                     onValueChange={ setItems }
-                    items={ [
-                    {
-                        id: fullLevelsList,
-                        caption: 'Full levels list',
-                    },
-                    {
-                        id: shortLevelsList,
-                        caption: 'Short levels list',
-                    },
-                ] } />
+                    items={ multiSwitchItems }
+                />
             </FlexRow>
 
             <PickerInput

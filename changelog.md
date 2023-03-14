@@ -1,3 +1,8 @@
+# 4.??.? - ??.??.2023
+
+**What’s Fixed**
+* [PickerList]: fix `isDisabled` prop
+
 # 4.10.0 - 06.02.2023
 
 **What's New**
