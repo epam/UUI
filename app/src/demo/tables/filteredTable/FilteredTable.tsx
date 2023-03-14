@@ -61,7 +61,7 @@ export const FilteredTable: React.FC = () => {
         return result;
     }, [tableStateApi.tableState.page, tableStateApi.tableState.pageSize]);
 
-    const dataSource = useLazyDataSource<Person, number, Person>({
+    const dataSource = useLazyDataSource<Person, number, DataQueryFilter<Person>>({
         api: api,
         selectAll: false,
     }, []);
