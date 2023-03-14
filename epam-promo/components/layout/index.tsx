@@ -1,5 +1,4 @@
 export * from './Blocker';
-export * from './ControlGroup';
 export * from './ControlWrapper';
 export * from './FlexItems';
 export * from './LabeledInput';
