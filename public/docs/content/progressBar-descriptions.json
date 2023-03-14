@@ -11,35 +11,104 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Progress bar display progress by animating an indicator along the length of a fixed, visible track. The behavior of the indicator is dependent on whether the progress of a process is known.",
+            "text": "A p",
             "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
                   "style": {
-                    "color": "rgb(48, 50, 64)",
-                    "font-family": "\"Sans Regular\", Arial, sans-serif",
-                    "font-size": "16px",
-                    "font-style": "normal",
-                    "font-variant-ligatures": "normal",
-                    "font-variant-caps": "normal",
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
                     "font-weight": "400",
-                    "letter-spacing": "normal",
-                    "orphans": "2",
-                    "text-align": "start",
-                    "text-indent": "0px",
-                    "text-transform": "none",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
                     "white-space": "pre-wrap",
-                    "widows": "2",
-                    "word-spacing": "0px",
-                    "-webkit-text-stroke-width": "0px",
-                    "background-color": "rgb(245, 246, 250)",
-                    "text-decoration-thickness": "initial",
-                    "text-decoration-style": "initial",
-                    "text-decoration-color": "initial",
-                    "display": "inline !important",
-                    "float": "none"
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "rogress bar display",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "s",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "progress by animating an indicator along the length of a fixed, visible track. The behavior of the indicator is dependent on whether the progress of a process is known.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
                   }
                 }
               }
@@ -54,34 +123,55 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The progress bar supports both determinate and indeterminate operations.",
+            "text": "Progress bars support",
             "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
-              },
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "both determinate and indeterminate operations.",
+            "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
               }
             ]
@@ -111,28 +201,19 @@
                         "object": "mark",
                         "type": "uui-richTextEditor-span-mark",
                         "data": {
-                          "style": {}
-                        }
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
+                          "style": {
+                            "font-size": "12pt",
+                            "font-family": null,
+                            "color": "#303240",
+                            "background-color": null,
+                            "font-weight": "400",
+                            "font-style": null,
+                            "font-variant": "normal",
+                            "text-decoration": "none",
+                            "vertical-align": "baseline",
+                            "white-space": "pre-wrap",
+                            "": null
+                          }
                         }
                       }
                     ]
@@ -159,28 +240,19 @@
                         "object": "mark",
                         "type": "uui-richTextEditor-span-mark",
                         "data": {
-                          "style": {}
-                        }
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
+                          "style": {
+                            "font-size": "12pt",
+                            "font-family": null,
+                            "color": "#303240",
+                            "background-color": null,
+                            "font-weight": "400",
+                            "font-style": null,
+                            "font-variant": "normal",
+                            "text-decoration": "none",
+                            "vertical-align": "baseline",
+                            "white-space": "pre-wrap",
+                            "": null
+                          }
                         }
                       }
                     ]
@@ -198,81 +270,135 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If the progress is known please use the ProgressBar component. O",
+            "text": "If the progress is known",
             "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
               }
             ]
           },
           {
             "object": "text",
-            "text": "therwise",
+            "text": ",",
             "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
               }
             ]
           },
           {
             "object": "text",
-            "text": " use the IndeterminateBar component.",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "please use the ProgressBar component. Otherwise",
             "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
-              },
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ",",
+            "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
-              },
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "use the IndeterminateBar component.",
+            "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
               }
             ]
@@ -286,34 +412,110 @@
         "nodes": [
           {
             "object": "text",
-            "text": "IndicatorBar component used to show page loading. It can be determinate or indeterminate.",
+            "text": "The I",
             "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
-              },
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "ndicatorBar component",
+            "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
-              },
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "is",
+            "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
-              },
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "used to show page loading. It can be determinate or indeterminate.",
+            "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-span-mark",
                 "data": {
-                  "style": {}
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
                 }
               }
             ]

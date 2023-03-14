@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In case when you need to use your custom header content, you can provide the ",
+            "text": "In case you need to use your custom header content, you can provide the ",
             "marks": []
           },
           {

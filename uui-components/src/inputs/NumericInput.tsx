@@ -1,11 +1,10 @@
 import * as React from 'react';
 import {
     IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement,
-    CX, ICanBeReadonly, IAnalyticableOnChange, IHasForwardedRef, ICanFocus, uuiMarkers, getMinMaxValidatedValue, getSeparatedValue,
-    useUuiContext, toFixedWithoutRoundingUp,
+    CX, ICanBeReadonly, IAnalyticableOnChange, IHasForwardedRef, ICanFocus, uuiMarkers, getMinMaxValidatedValue, getSeparatedValue, useUuiContext,
+    i18n,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import { i18n } from "../i18n";
 import css from './NumericInput.scss';
 
 export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, IClickable, IDisableable, IEditable<number | null>, IHasPlaceholder, ICanBeReadonly, IAnalyticableOnChange<number>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
@@ -42,11 +41,13 @@ export interface NumericInputProps extends ICanFocus<HTMLInputElement>, IHasCX, 
     /** Number formatting options. See #{link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat} */
     formatOptions?: Intl.NumberFormatOptions;
 
-    // Obsolete! Made obsolete at 25-May-2022. TBD: Remove in next releases
     /**
-     * [Obsolete]: Please rework this to change value in lens.onChange or onValueChange instead
+     * A function to convert current input value to displayed text.
+     * Overrides standard Intl-based formatting.
+     * If passed, only maximumFractionDigits considered from formatOptions when both properties provided.
+     * Note, that formatting is used when input is out of focus.
      */
-    formatter?(value: number): number;
+    formatValue?(value: number): string;
 }
 
 export const uuiNumericInput = {
@@ -57,12 +58,12 @@ export const uuiNumericInput = {
 } as const;
 
 const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
-    const { maximumFractionDigits } = new Intl.NumberFormat(i18n.numericInput.locale, formatOptions).resolvedOptions();
+    const { maximumFractionDigits } = new Intl.NumberFormat(i18n.locale, formatOptions).resolvedOptions();
     return maximumFractionDigits;
 };
 
 export const NumericInput = (props: NumericInputProps) => {
-    let { value, min, max, step, formatter, formatOptions } = props;
+    let { value, min, max, step, formatValue, formatOptions } = props;
 
     if (value != null) {
         value = +value;
@@ -79,12 +80,8 @@ export const NumericInput = (props: NumericInputProps) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         let newValue = event.target.value === "" ? null : +event.target.value;
         const fractionDigits = getFractionDigits(formatOptions);
-
         if (newValue !== null) {
-            newValue = toFixedWithoutRoundingUp(newValue, fractionDigits);
-        }
-        if (formatter) {
-            newValue = formatter(newValue);
+            newValue = +newValue.toFixed(fractionDigits);
         }
 
         props.onValueChange(newValue);
@@ -152,7 +149,9 @@ export const NumericInput = (props: NumericInputProps) => {
 
     const placeholderValue = React.useMemo(() => {
         if (!value && value !== 0) return props.placeholder || "0";
-        return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.numericInput.locale);
+        if (formatValue) return formatValue(value);
+
+        return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
     }, [props.placeholder, props.value, props.formatOptions, props.disableLocaleFormatting]);
 
     const showArrows = !props.disableArrows && !props.isReadonly && !props.isDisabled;

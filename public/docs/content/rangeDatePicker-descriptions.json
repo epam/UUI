@@ -106,7 +106,7 @@
           },
           {
             "object": "text",
-            "text": " and other.",
+            "text": " and others.",
             "marks": []
           }
         ]
@@ -118,7 +118,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It also extends base functionality from ",
+            "text": "It also extends the base functionality from ",
             "marks": []
           },
           {

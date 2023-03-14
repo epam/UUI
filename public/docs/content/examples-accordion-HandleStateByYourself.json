@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can handle the open/close Accordion state by yourself by providing an ",
+            "text": "You can handle the open/close Accordion state on your own by providing an ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " interface, which includes ",
+            "text": " interface, which includes a ",
             "marks": []
           },
           {

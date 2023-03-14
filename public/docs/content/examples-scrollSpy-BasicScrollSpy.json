@@ -11,8 +11,148 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The most common Scroll Spy usage is a reader. For Scroll Spy to recognize blocks correctly you may need to take 4 simple steps:",
+            "text": "The most common Scroll Spy usage is a sidebar navigation. ",
             "marks": []
+          },
+          {
+            "object": "text",
+            "text": "For a ScrollSpy to recognize blocks correctly",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ",",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "you may need to take",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "four",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "simple steps:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
           }
         ]
       },
@@ -33,7 +173,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Provide a ref on a wrapper to a node element via ",
+                    "text": "Provide a ref on a wrapper node via ",
                     "marks": []
                   },
                   {
@@ -42,7 +182,7 @@
                     "marks": [
                       {
                         "object": "mark",
-                        "type": "uui-richTextEditor-italic",
+                        "type": "uui-richTextEditor-code",
                         "data": {}
                       }
                     ]
@@ -68,12 +208,23 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Provide a full array of ids to a components' options via ",
+                    "text": "Provide an array of ids via ",
                     "marks": []
                   },
                   {
                     "object": "text",
-                    "text": "elements ",
+                    "text": "elements",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
                     "marks": [
                       {
                         "object": "mark",
@@ -103,23 +254,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Map ids to links ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "href ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-italic",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "properties, starting with #. ",
+                    "text": "Add anchors with appropriate ids for navigation links. ",
                     "marks": []
                   }
                 ]
@@ -147,14 +282,14 @@
                     "marks": [
                       {
                         "object": "mark",
-                        "type": "uui-richTextEditor-italic",
+                        "type": "uui-richTextEditor-code",
                         "data": {}
                       }
                     ]
                   },
                   {
                     "object": "text",
-                    "text": " attribute for elements, which will be treated as anchors. E.g. By pressing on a navigation element on the example below, the page is scrolled to provided anchor.",
+                    "text": " attribute to the elements which will be treated as anchors. E.g., by pressing on a navigation link on the example below, the page is scrolled to the provided anchor.",
                     "marks": []
                   }
                 ]
@@ -170,12 +305,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The output of the component (either hook or higher-order-component) is a ",
+            "text": "The output of the component (either a hook or a higher-order component) is a ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "currentActive ",
+            "text": "currentActive",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
             "marks": [
               {
                 "object": "mark",
@@ -186,12 +332,28 @@
           },
           {
             "object": "text",
-            "text": "element id, function to manually scroll to element ",
+            "text": "element id. The ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "scrollToElement, ",
+            "text": "scrollToElement",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " function to manually scroll to element ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": ", ",
             "marks": [
               {
                 "object": "mark",
@@ -202,7 +364,7 @@
           },
           {
             "object": "text",
-            "text": "where you can provide a desired id and get navigated there (or to the root of the wrapper when not provided). ",
+            "text": "where you can provide a desired id and get navigated there(or to the root of the wrapper when not provided). ",
             "marks": []
           }
         ]

@@ -1,6 +1,9 @@
 {
   "name": "@epam/uui-build",
   "version": "4.11.0-alpha.0",
+  "bin": {
+    "epam-uui-build": "./bin/cli.js"
+  },
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api": "ts-node getComponentsPropsSet.ts",
