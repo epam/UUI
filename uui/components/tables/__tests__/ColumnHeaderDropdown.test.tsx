@@ -10,7 +10,7 @@ jest.mock('react-dom', () => ({
 describe('ColumnHeaderDropdown', () => {
     beforeEach(() => {
         jest.spyOn(window, "window", "get")
-            .mockImplementation(() => windowMock);
+            .mockImplementation(() => windowMock as any);
     });
 
     afterEach(() => {

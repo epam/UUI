@@ -1,25 +1,25 @@
 import React from 'react';
-import { Accordion } from '../Accordion';
+import { IconButton } from '../IconButton';
 import renderer from 'react-test-renderer';
-import { systemIcons } from "../../../icons/icons";
+import { ReactComponent as CalendarIcon } from "../../../icons/calendar-18.svg";
 
-describe('Accordion', () => {
+describe('IconButton', () => {
     it('should be rendered correctly', () => {
+
         const tree = renderer
-            .create(<Accordion
-                title='Test title'
-            />)
+            .create(<IconButton />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly with props', () => {
         const tree = renderer
-            .create(<Accordion
-                title='Test title'
-                mode='inline'
-                dropdownIcon={ systemIcons['60'].foldingArrow }
-                padding='18'
+            .create(<IconButton
+                color='info'
+                onClick={ jest.fn }
+                icon={ CalendarIcon }
+                isDisabled={ false }
+
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();

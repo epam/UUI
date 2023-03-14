@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextPlaceholder should be rendered correctly 1`] = `
+<div
+  aria-busy={true}
+  className="container"
+>
+  <span
+    className="loadingWord animatedLoading"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`TextPlaceholder should be rendered correctly 2`] = `
+<div
+  aria-busy={true}
+  className="container"
+>
+  <span
+    className="loadingWord"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+  <span
+    className="loadingWord"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+  <span
+    className="loadingWord"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+  <span
+    className="loadingWord"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+  <span
+    className="loadingWord"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+      }
+    }
+  />
+</div>
+`;

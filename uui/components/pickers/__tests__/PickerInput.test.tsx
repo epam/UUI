@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ArrayDataSource } from '@epam/uui-core';
 import { renderWithContextAsync, windowMock } from "@epam/test-utils";
-import { PickerInput } from '../';
+import { PickerInput } from '../PickerInput';
 
 const languageLevels = [
     { "id": 2, "level": "A1" },
@@ -67,7 +67,7 @@ describe('PickerInput', () => {
                 minBodyWidth={ 900 }
                 renderNotFound={ ({ search, onClose = jest.fn }) => <div
                     onClick={ onClose }>{ `No found ${ search }` }</div> }
-                renderFooter={ props => (<div onClick={ props.clearSelection }></div>) }
+                renderFooter={ props => <div>{ props as unknown as ReactNode }</div> }
                 cascadeSelection
                 dropdownHeight={ 48 }
                 minCharsToSearch={ 4 }
@@ -76,5 +76,4 @@ describe('PickerInput', () => {
         expect(tree).toMatchSnapshot();
     });
 });
-
 
