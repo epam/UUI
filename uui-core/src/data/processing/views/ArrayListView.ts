@@ -46,13 +46,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
             if (prevItems !== newItems || !this.originalTree) {
                 this.originalTree = Tree.create(this.props, this.props.items);
-                this.patchedTree = this.originalTree;
                 this.tree = this.originalTree;
             }
         }
 
-        if (prevTree != this.tree || this.isCacheIsOutdated(newValue, this.value) || this.isPatchUpdated(prevProps, newProps)) {
-            this.updateTree(currentValue, newValue, prevProps, newProps);
+        if (prevTree != this.tree || this.isCacheIsOutdated(newValue, this.value)) {
+            this.updateTree(currentValue, newValue, newProps);
             this.updateCheckedLookup(this.value.checked);
             this.rebuildRows();
         } else {
@@ -87,7 +86,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     private updateTree(
         prevValue: DataSourceState<TFilter, TId>,
         newValue: DataSourceState<TFilter, TId>,
-        prevProps: ArrayListViewProps<TItem, TId, TFilter>,
         newProps: ArrayListViewProps<TItem, TId, TFilter>,
     ) {
         const { filter, search, sorting } = newValue;
@@ -105,25 +103,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             searchTreeIsUpdated = true;
         }
 
-        let patchTreeIsUpdated = false;
-        if (this.isPatchUpdated(prevProps, newProps) || !this.patchedTree || searchTreeIsUpdated) {
-            this.patchedTree = this.searchTree.patch(newProps.patch, newProps.isDeletedProp, newProps.patchComparator);
-
-            // this is very strange. to avoid this code, we should patch twice, what is wrong, or exclude
-            // patch items from the filtering/search input.
-            this.originalTree = this.patchedTree;
-            this.filteredTree = this.patchedTree;
-            this.searchTree = this.patchedTree;
-
-            patchTreeIsUpdated = true;
-        }
-
-        if (this.sortingWasChanged(prevValue, newValue) || !this.sortedTree || patchTreeIsUpdated) {
-            this.sortedTree = this.patchedTree.sort({
-                sorting,
-                sortBy,
-                comparators: newProps.patchComparator ? [newProps.patchComparator] : [],
-            });
+        if (this.sortingWasChanged(prevValue, newValue) || !this.sortedTree || searchTreeIsUpdated) {
+            this.sortedTree = this.searchTree.sort({ sorting, sortBy });
         }
 
         this.tree = this.sortedTree;
