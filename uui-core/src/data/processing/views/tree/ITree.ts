@@ -15,7 +15,6 @@ export interface ApplySearchOptions<TItem, TId, TFilter> {
 export interface ApplySortOptions<TItem, TId, TFilter> {
     sorting: DataSourceState<TFilter, TId>['sorting'];
     sortBy?(item: TItem, sorting: SortingOption): any;
-    comparators?: ItemsComparator<TItem>[];
 }
 
 export interface TreeNodeInfo {
