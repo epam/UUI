@@ -8,7 +8,7 @@ import css from './Table.scss';
 export function TableRow(props: any) {
 
     const isHeaderRow = () => {
-        return true; //this.props.node.nodes.toArray()[0].type === 'table_header_cell';
+        return props.element.children[0]?.type === 'th';
     };
 
     const { attributes, children } = props;
