@@ -10,7 +10,6 @@ import {
     ELEMENT_H5,
     ELEMENT_H6,
     PlateEditor,
-    getPreventDefaultHandler,
 } from "@udecode/plate";
 import { Dropdown } from '@epam/uui-components';
 import { isPluginActive } from "../../../helpers";
@@ -61,7 +60,7 @@ export const HeaderButton = ({ editor }: IToolbarButton): any => {
                     active={ true }
                     onMouseDown={
                         editor
-                            ? getPreventDefaultHandler()
+                            ? (e) => e.preventDefault()
                             : undefined
                     }
                     icon={ <ToolbarButton

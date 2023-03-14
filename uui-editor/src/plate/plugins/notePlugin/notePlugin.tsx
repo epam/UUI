@@ -4,7 +4,6 @@ import { Dropdown } from '@epam/uui-components';
 import {
     createPluginFactory,
     getBlockAbove,
-    getPreventDefaultHandler,
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
 } from '@udecode/plate';
@@ -86,7 +85,7 @@ export const NoteButton = ({ editor }: IToolbarNote) => {
                     active={ true }
                     onMouseDown={
                         editor
-                            ? getPreventDefaultHandler()
+                            ? (e) => e.preventDefault()
                             : undefined
                     }
                     icon={ <ToolbarButton

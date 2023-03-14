@@ -4,7 +4,6 @@ import { UploadFileToggler } from '@epam/uui-components';
 import {
     createPluginFactory,
     getBlockAbove,
-    getPreventDefaultHandler,
     insertEmptyElement,
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
@@ -61,7 +60,7 @@ export const IframeButton = ({ editor }: IIframeButton) => {
                     active={ true }
                     onMouseDown={
                         editor
-                            ? getPreventDefaultHandler()
+                            ? (e) => e.preventDefault()
                             : undefined
                     }
                     icon={ <ToolbarButton

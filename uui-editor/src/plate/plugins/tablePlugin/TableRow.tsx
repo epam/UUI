@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 
-import { TableRowElement } from '@udecode/plate';
+import { PlateTableRowElement } from '@udecode/plate';
 
 import css from './Table.scss';
 
@@ -12,5 +12,11 @@ export function TableRow(props: any) {
     };
 
     const { attributes, children } = props;
-    return <TableRowElement { ...props } className={ cx(css.row, isHeaderRow() && css.headerRow) }>{ children }</TableRowElement>;
+    return <PlateTableRowElement
+        { ...attributes }
+        { ...props }
+        className={ cx(css.row, isHeaderRow() && css.headerRow) }
+    >
+        { children }
+    </PlateTableRowElement>;
 }

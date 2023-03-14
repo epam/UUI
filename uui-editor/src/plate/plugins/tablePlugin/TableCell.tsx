@@ -1,7 +1,7 @@
 import * as React from 'react';
 import css from './Table.scss';
 
-import { TableCellElement, useTableStore, useTableColSizes } from '@udecode/plate';
+import { PlateTableCellElement, useTableStore, useTableColSizes } from '@udecode/plate';
 
 export function TableCell(props: any) {
     const { attributes, element } = props;
@@ -18,7 +18,7 @@ export function TableCell(props: any) {
     };
 
     return (
-        <TableCellElement
+        <PlateTableCellElement
             { ...props }
             className={ css.cell }
             { ...attributes }

@@ -4,7 +4,6 @@ import { Dropdown } from '@epam/uui-components';
 import {
     createPluginFactory,
     getPluginOptions,
-    getPreventDefaultHandler,
     PlateEditor,
     insertElements,
     ToolbarButton as PlateToolbarButton,
@@ -82,7 +81,7 @@ export const PlaceholderButton = ({ editor }: IPlaceholderButton): any => {
                     active={ true }
                     onMouseDown={
                         editor
-                            ? getPreventDefaultHandler()
+                            ? (e) => e.preventDefault()
                             : undefined
                     }
                     icon={ <ToolbarButton

@@ -41,8 +41,8 @@ export const defaultPlugins: any = [
     createSoftBreakPlugin(),
     createExitBreakPlugin(),
     createParagraphPlugin(),
-    createDeserializeDocxPlugin(),
-    createJuicePlugin(),
+    //createDeserializeDocxPlugin(),
+    //createJuicePlugin(),
 ];
 
 export const basePlugins: any = [
