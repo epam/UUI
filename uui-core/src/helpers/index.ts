@@ -25,3 +25,4 @@ export * from './ssr';
 export * from './batch';
 export * from './queryToSearch';
 export * from './searchToQuery';
+export * from './memoComparator';
