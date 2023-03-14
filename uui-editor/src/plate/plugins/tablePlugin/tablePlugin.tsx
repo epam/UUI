@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMemo, useRef } from 'react';
+import React, { Fragment, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import {
     createTablePlugin,
@@ -6,7 +6,7 @@ import {
     ELEMENT_TD,
     ELEMENT_TH,
     ELEMENT_TR,
-    TableElement,
+    PlateTableElement,
     usePlateEditorState,
     insertTableColumn,
     insertTableRow,
@@ -214,20 +214,16 @@ const Table = (props: any) => {
         );
     }, [element, cellPath, rowPath, cellEntries]);
 
-    const colSizesRef = useRef(data.cellSizes);
-    colSizesRef.current = useTableColSizes({ ...props.element, colSizes: colSizesRef.current });
-
-    const tableWidth = colSizesRef.current.reduce((acc: number, cur: number) => acc + cur, 0);
+    const initialColSizes = useRef(data.cellSizes);
+    element.colSizes = useTableColSizes(
+        element.colSizes ? element : { ...props.element, colSizes: initialColSizes.current }
+    );
     return (
         <div className={ cx(tableCSS.tableWrapper) }>
-            <TableElement
+            <PlateTableElement
                 { ...props }
-                styles={ { root: { width: tableWidth } } }
                 className={ tableCSS.table }
-                element={ {
-                    ...element,
-                    colSizes: colSizesRef.current
-                } }
+                element={ element }
             />
             { !!cellEntries?.length && <Toolbar
                 placement='bottom'

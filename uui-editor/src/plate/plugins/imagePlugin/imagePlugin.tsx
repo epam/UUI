@@ -99,6 +99,7 @@ export const ImageButton = ({
                 if (!editor) return;
 
                 event.preventDefault();
+                focusEditor(editor);
                 context.uuiModals.show<string>(modalProps => (
                     <AddImageModal
                         editor={ editor }

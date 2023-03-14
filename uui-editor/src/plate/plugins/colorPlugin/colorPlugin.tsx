@@ -3,7 +3,6 @@ import { Dropdown } from '@epam/uui-components';
 
 import {
     ToolbarButton as PlateToolbarButton,
-    getPreventDefaultHandler,
     createFontColorPlugin,
     getPluginType,
     PlateEditor,
@@ -53,7 +52,7 @@ export const ColorButton = ({ editor }: IToolbarButton) => {
                     active={ true }
                     onMouseDown={
                         editor
-                            ? getPreventDefaultHandler()
+                            ? (e) => e.preventDefault()
                             : undefined
                     }
                     icon={ <ToolbarButton
