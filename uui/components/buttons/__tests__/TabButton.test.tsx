@@ -1,25 +1,25 @@
 import React from 'react';
-import { Accordion } from '../Accordion';
+import { TabButton } from '../TabButton';
 import renderer from 'react-test-renderer';
-import { systemIcons } from "../../../icons/icons";
+import { ReactComponent as calendarIcon } from '../../../icons/calendar-18.svg';
 
-describe('Accordion', () => {
+describe('TabButton', () => {
     it('should be rendered correctly', () => {
+
         const tree = renderer
-            .create(<Accordion
-                title='Test title'
-            />)
+            .create(<TabButton/>)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly with props', () => {
+
         const tree = renderer
-            .create(<Accordion
-                title='Test title'
-                mode='inline'
-                dropdownIcon={ systemIcons['60'].foldingArrow }
-                padding='18'
+            .create(<TabButton
+                onClick={ jest.fn }
+                icon={ calendarIcon }
+                isDisabled={ false }
+                withNotify={ true }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();

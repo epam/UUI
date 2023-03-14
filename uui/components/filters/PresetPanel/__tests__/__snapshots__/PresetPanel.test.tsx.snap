@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PresetsPanel should render correctly 1`] = `
+<div
+  className="flexCell"
+  style={
+    Object {
+      "alignSelf": undefined,
+      "flexBasis": "0",
+      "flexGrow": 1,
+      "flexShrink": undefined,
+      "minWidth": "310px",
+      "textAlign": undefined,
+    }
+  }
+>
+  <div
+    className="root spacing-12 presetsWrapper container align-items-center"
+    style={
+      Object {
+        "columnGap": undefined,
+        "rowGap": undefined,
+      }
+    }
+  >
+    <div
+      className="mainWrapper"
+    >
+      <div
+        className="container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
+      >
+        <div
+          className="root size-36 container align-items-center"
+          style={
+            Object {
+              "columnGap": undefined,
+              "rowGap": undefined,
+            }
+          }
+        >
+          <div
+            className="divider"
+          />
+          <button
+            className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost"
+            onClick={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <div
+              className="uui-caption"
+            >
+               more
+            </div>
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+              />
+            </div>
+          </button>
+        </div>
+        <div
+          className="addPresetContainer"
+        >
+          <button
+            className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-ghost"
+            onClick={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+              />
+            </div>
+            <div
+              className="uui-caption"
+            >
+              Add Preset
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

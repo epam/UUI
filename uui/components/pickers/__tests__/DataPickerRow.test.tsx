@@ -8,7 +8,7 @@ describe('DataPickerRow', () => {
             .create(<DataPickerRow
                 id='test'
                 index={ 1 }
-                renderItem={ item => <div>{ item }</div> }
+                renderItem={ (item: React.ReactNode) => <div>{ item }</div> }
                 rowKey='test'
             />)
             .toJSON();
@@ -20,7 +20,7 @@ describe('DataPickerRow', () => {
             .create(<DataPickerRow
                 id='test'
                 index={ 1 }
-                renderItem={ item => <div>{ item }</div> }
+                renderItem={ (item: React.ReactNode) => <div>{ item }</div> }
                 rowKey='test'
                 borderBottom='gray20'
                 padding='24'
@@ -42,5 +42,4 @@ describe('DataPickerRow', () => {
         expect(tree).toMatchSnapshot();
     });
 });
-
 
