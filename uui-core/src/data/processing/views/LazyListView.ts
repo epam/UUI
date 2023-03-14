@@ -3,9 +3,10 @@ import {
     LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps,
 } from "../../../types";
 import isEqual from 'lodash.isequal';
+import { memoComparator } from '../../../helpers';
 import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
-import { Tree, LoadTreeOptions, ITree } from './tree';
+import { Tree, LoadTreeOptions, ITree, ItemsComparator } from './tree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
@@ -78,10 +79,12 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
     private cache: ListApiCache<TItem, TId, TFilter>;
+    private memoPatchComparator: ItemsComparator<TItem>;
     private isUpdatePending = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
     private reloading: boolean = false;
+    private defaultPatchComparator = () => -1;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
@@ -102,6 +105,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 onUpdate: () => this._forceUpdate(),
             });
         }
+
         this.update(editable.value, this.props);
     }
 
@@ -122,7 +126,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = true;
 
         if (this.isPatchUpdated(this.props, props)) {
-            this.tree = this.originalTree.patch(props.patch, props.isDeletedProp, props.patchComparator);
+            if (this.props.patch !== props.patch && !props.patch?.length) {
+                this.memoPatchComparator = memoComparator(
+                    this.props.patchComparator ?? this.defaultPatchComparator,
+                    props.getId,
+                );
+            }
+            this.tree = this.originalTree.patch(props.patch, props.isDeletedProp, this.memoPatchComparator);
         }
 
         if (!isEqual(newValue?.checked, this.value?.checked)) {
