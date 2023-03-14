@@ -3,7 +3,7 @@ import {
     DataSourceListProps, IDataSourceView, BaseListViewProps,
 } from "../../../types";
 import { BaseListView } from './BaseListView';
-import { ItemsComparator, ITree, Tree } from "./tree";
+import { ITree, Tree } from "./tree";
 
 export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     getSearchFields?(item: TItem): string[];
@@ -21,7 +21,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     originalTree: ITree<TItem, TId>;
     searchTree: ITree<TItem, TId>;
     filteredTree: ITree<TItem, TId>;
-    patchedTree: ITree<TItem, TId>;
     sortedTree: ITree<TItem, TId>;
 
     constructor(
@@ -50,8 +49,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             }
         }
 
-        if (prevTree != this.tree || this.isCacheIsOutdated(newValue, this.value)) {
-            this.updateTree(currentValue, newValue, newProps);
+        if (prevTree != this.tree || this.isCacheIsOutdated(newValue, currentValue)) {
+            this.updateTree(currentValue, newValue);
             this.updateCheckedLookup(this.value.checked);
             this.rebuildRows();
         } else {
@@ -83,13 +82,9 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         });
     }
 
-    private updateTree(
-        prevValue: DataSourceState<TFilter, TId>,
-        newValue: DataSourceState<TFilter, TId>,
-        newProps: ArrayListViewProps<TItem, TId, TFilter>,
-    ) {
+    private updateTree(prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) {
         const { filter, search, sorting } = newValue;
-        const { getSearchFields, getFilter, sortBy } = newProps;
+        const { getSearchFields, getFilter, sortBy } = this.props;
 
         let filterTreeIsUpdated = false;
         if (this.filterWasChanged(prevValue, newValue) || !this.filteredTree) {
