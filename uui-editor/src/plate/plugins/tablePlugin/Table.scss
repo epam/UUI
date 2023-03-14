@@ -1,7 +1,14 @@
 @use '~@epam/assets/scss/index' as *;
 @use '~@epam/assets/scss/promo/colors' as *;
 
-table {
+.table-wrapper {
+    display: flex;
+    max-width: 100%;
+    overflow-y: hidden;
+    padding-bottom: 1px;
+}
+
+.table {
     position: relative;
 
     // hide remove button
@@ -10,17 +17,13 @@ table {
     }
 }
 
-.table-wrapper {
-    display: flex;
-    max-width: 100%;
-    overflow-y: hidden;
-    padding-bottom: 1px;
+.header-row {
+    background-color: $gray5;
 }
 
 .row {
     width: 100%;
     position: relative;
-    height: 42px;
 
     .resizing-border {
         height: 100%;
@@ -36,40 +39,32 @@ table {
     }
 }
 
+.header-cell {
+    padding: 1px;
+
+    p {
+        text-align: left;
+        font-family: $font-sans-semibold;
+    }
+}
+
 .cell {
     border: 1px solid $gray30;
     position: relative;
-    vertical-align: baseline;
 
-    //&:first-child {
-    //    width: 50px;
-    //}
+    div {
+        padding: 0;
+    }
+
+    p {
+        vertical-align: baseline;
+        margin: 0;
+        padding: 6px 24px;
+    }
 }
 
 .tablebar {
     position: absolute;
     top: -28px;
     left: -18px;
-}
-
-.table-body {
-    p {
-        padding: 6px 24px;
-        margin: 0;
-    }
-
-    th {
-        font-family: $font-sans-semibold;
-        text-align: left;
-
-        p {
-            padding: 6px 24px;
-            margin: 0;
-            font-family: $font-sans-semibold;
-        }
-    }
-}
-
-.header-row {
-    background: $gray5;
 }
