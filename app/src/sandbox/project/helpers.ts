@@ -1,4 +1,5 @@
-import { getOrderBetween, maxOrderStr, minOrderStr } from "@epam/uui-core";
+import { DropPosition, getOrderBetween, maxOrderStr, minOrderStr } from "@epam/uui-core";
+import { Task } from "./types";
 
 /**
  * Finds a string, which is placed alphabetically in desired position of the list.
@@ -19,7 +20,7 @@ export function getInsertionOrder(existingOrders: string[], position: 'before' |
         }
     }
 
-    if (position == 'before') {
+    if (position === 'before') {
         let maxOrder = minOrderStr;
         existingOrders.forEach(order => {
             if (order < relativeTo && order > maxOrder) {
@@ -37,3 +38,31 @@ export function getInsertionOrder(existingOrders: string[], position: 'before' |
         return getOrderBetween(relativeTo, minOrder);
     }
 }
+
+let lastId = -1;
+
+export function insertOrMoveTask(
+    items: Record<number, Task>,
+    position: DropPosition,
+    relativeTask: Task | null = null,
+    existingTask: Task | null = null
+) {
+    const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
+
+    if (position === 'inside') {
+        task.parentId = relativeTask.id;
+        relativeTask = null; // just insert as the first child
+    }
+
+    if (relativeTask) {
+        task.parentId = relativeTask.parentId;
+    }
+
+    task.order = getInsertionOrder(
+        Object.values(items).filter(i => i.parentId === task.parentId).map(i => i.order),
+        position === 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
+        relativeTask?.order,
+    );
+
+    return { ...items, [task.id]: task };
+};
