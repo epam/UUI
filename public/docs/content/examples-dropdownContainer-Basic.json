@@ -11,12 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": " ",
+            "text": "DropdownContainer is a wrapper for your content provided as a ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "DropdownContainer",
+            "text": "children",
             "marks": [
               {
                 "object": "mark",
@@ -27,7 +27,19 @@
           },
           {
             "object": "text",
-            "text": " it's a wrapper for your content that are provided as a children. You can configure vertical and horizontal paddings in container via ",
+            "text": ". ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "You can configure vertical and horizontal paddings in the container via ",
             "marks": []
           },
           {
@@ -59,7 +71,7 @@
           },
           {
             "object": "text",
-            "text": " props. Also you can enable arrow tip by providing ",
+            "text": " props. Also, you can enable the arrow tip by providing ",
             "marks": []
           },
           {
@@ -75,7 +87,7 @@
           },
           {
             "object": "text",
-            "text": " prop",
+            "text": " prop.",
             "marks": []
           }
         ]
@@ -98,7 +110,7 @@
           },
           {
             "object": "text",
-            "text": " Also you can select a ",
+            "text": " You can also select a ",
             "marks": []
           },
           {
@@ -114,7 +126,7 @@
           },
           {
             "object": "text",
-            "text": " for arrow and add offset with ",
+            "text": " for the arrow and add offset with ",
             "marks": []
           },
           {
@@ -130,17 +142,20 @@
           },
           {
             "object": "text",
-            "text": " in ",
+            "text": " in the ",
             "marks": []
           },
           {
-            "object": "text",
-            "text": "Dropdown",
-            "marks": [
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://uui.epam.com/documents?id=dropdown&mode=doc&skin=UUI4_promo&category=components"
+            },
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "object": "text",
+                "text": "Dropdown",
+                "marks": []
               }
             ]
           },

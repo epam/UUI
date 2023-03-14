@@ -1,1 +1,21 @@
-{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"TextInput is UI element intended to give user an ability to input text information in one-line manner.","marks":[]}]}]}}
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "TextInput is a UI element intended to give user an ability to input text information in one-line manner.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

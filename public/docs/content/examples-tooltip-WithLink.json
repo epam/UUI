@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Link also can be added as an exceptional case",
+            "text": "Links can also be added for an exceptional case.",
             "marks": []
           }
         ]

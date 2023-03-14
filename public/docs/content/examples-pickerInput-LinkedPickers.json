@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If you have a case, when the result of one picker depends on the second's picker value, then use ",
+            "text": "If you have a case where the result of one picker depends on the second picker's value, use the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop, which should be sent to the server, in case of Async and LazyDataSource. ",
+            "text": " prop, which will filter our list according to this value.",
             "marks": []
           }
         ]
@@ -39,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If you use ArrayDataSource, you need to filter your items array by yourself and create DataSource one more time with new items. Look on the ",
+            "text": "If you use ArrayDataSource, you need to filter your items array by yourself and create DataSource one more time with new items. See the ",
             "marks": []
           },
           {

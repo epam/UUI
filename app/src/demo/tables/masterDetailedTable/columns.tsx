@@ -14,7 +14,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         fix: 'left',
         isSortable: true,
         justifyContent: 'space-between',
-        textAlign: 'right',
         isAlwaysVisible: true,
     },
     {
