@@ -11,28 +11,20 @@
         "nodes": [
           {
             "object": "text",
-            "text": "DropdownContainer",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " component is used as a wrapper over the content in ",
+            "text": "DropdownContainer component is used as a wrapper over the content in the ",
             "marks": []
           },
           {
-            "object": "text",
-            "text": "Dropdown",
-            "marks": [
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://uui.epam.com/documents?id=dropdown&mode=doc&skin=UUI4_promo&category=components"
+            },
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "object": "text",
+                "text": "Dropdown",
+                "marks": []
               }
             ]
           },

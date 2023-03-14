@@ -13,9 +13,6 @@ on:
       image-name:
         required: true
         type: string
-      common-helmchart-ver:
-        required: true
-        type: string
     secrets:
       REGISTRY_URL:
         required: true
@@ -24,6 +21,8 @@ on:
       REGISTRY_PASSWORD:
         required: true
       COMMON_HELMCHART_NAME:
+        required: true
+      COMMON_HELMCHART_VERSION:
         required: true
       APP_NAME_BASE:
         required: true
@@ -119,7 +118,7 @@ jobs:
       ACTIONS_STEP_DEBUG: true
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
       VALUES_FILE: ${{ inputs.values-file }}
-      COMMON_HELMCHART_VER: ${{ inputs.common-helmchart-ver }}
+      COMMON_HELMCHART_VER: ${{ secrets.COMMON_HELMCHART_VERSION }}
 
     steps:
       - uses: actions/checkout@v2

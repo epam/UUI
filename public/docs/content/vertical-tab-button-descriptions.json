@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "VerticalTabButton is used in vertical Tabs menu. It extends all behavior from basic ",
+            "text": "VerticalTabButton is used in the vertical tabs menu. It extends all behavior from basic ",
             "marks": []
           },
           {

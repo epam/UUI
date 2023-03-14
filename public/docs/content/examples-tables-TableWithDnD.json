@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI tables have row Drag&Drop functionality. ",
+            "text": "UUI tables have row Drag & Drop(Dnd) functionality. ",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To turn on rows DnD — pass ",
+            "text": "To turn on row DnD — pass ",
             "marks": []
           },
           {
@@ -39,7 +39,7 @@
           },
           {
             "object": "text",
-            "text": " params to ",
+            "text": " param to ",
             "marks": []
           },
           {
@@ -67,7 +67,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can find simplest DnD state management example below. Notice that in real word this logic may be more complicated, and you can write this logic in more optimized way.",
+            "text": "You can find the simplest DnD state management example below.",
             "marks": []
           }
         ]

@@ -11,14 +11,124 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Scroll Spy is a UI element, which helps to define and control anchors on your page. Some common cases, where scroll spy can be applied.",
+            "text": "Scroll Spy is a UI element helping to define and control anchors on your page. ",
             "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Some common cases where",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "a",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "scroll spy can be applied",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ":",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
           }
         ]
       },
       {
         "object": "block",
-        "type": "ordered-list",
+        "type": "unordered-list",
         "data": {},
         "nodes": [
           {
@@ -52,7 +162,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Pages that preserve last viewed place and recover it, when user returns to the page.",
+                    "text": "Pages that preserve the last viewed place and recover it when the user returns to the page.",
                     "marks": []
                   }
                 ]
@@ -71,7 +181,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Reader with a side-menu, showing currently viewed chapter.",
+                    "text": "Sidebar navigation, showing currently viewed section.",
                     "marks": []
                   }
                 ]
