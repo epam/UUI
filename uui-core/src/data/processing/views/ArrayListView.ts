@@ -23,6 +23,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     filteredTree: ITree<TItem, TId>;
     sortedTree: ITree<TItem, TId>;
 
+    private refreshCache: boolean = false;
+
     constructor(
         protected editable: IEditable<DataSourceState<TFilter, TId>>,
         props: ArrayListViewProps<TItem, TId, TFilter>,
@@ -38,7 +40,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.value = newValue;
         const prevItems = this.props.items;
         const newItems = newProps.items || this.props.items;
-        const prevProps = { ...this.props };
         this.props = { ...newProps, items: newItems };
 
         const prevTree = this.tree;
@@ -46,6 +47,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             if (prevItems !== newItems || !this.originalTree) {
                 this.originalTree = Tree.create(this.props, this.props.items);
                 this.tree = this.originalTree;
+                this.refreshCache = true;
             }
         }
 
@@ -87,9 +89,10 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const { getSearchFields, getFilter, sortBy } = this.props;
 
         let filterTreeIsUpdated = false;
-        if (this.filterWasChanged(prevValue, newValue) || !this.filteredTree) {
+        if (this.filterWasChanged(prevValue, newValue) || !this.filteredTree || this.refreshCache) {
             this.filteredTree = this.originalTree.filter({ filter, getFilter });
             filterTreeIsUpdated = true;
+            this.refreshCache = false;
         }
 
         let searchTreeIsUpdated = false;
