@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Left and right icon positions depends on action and context.  Use ",
+            "text": "Use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "icon",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop to provide an icon and ",
             "marks": []
           },
           {
@@ -27,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": "  prop with an appropriate value.",
+            "text": " prop to configure position of the icon.",
             "marks": []
           }
         ]

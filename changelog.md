@@ -1,7 +1,26 @@
-# 4.??.? - ??.??.2023
+# 4.xx.xx - xx.xx.2023
 
-**What’s Fixed**
+**What's New**
+
+**What's Fixed**
+* [Form]: fixed isChanged calculation, for already saved and then changed form
 * [PickerList]: fix `isDisabled` prop
+
+# 4.10.1 - 10.03.2023
+
+**What's New**
+* Exposed our Rollup build toolchain from @epam/uui-build package that you be able to build and publish your own packages.
+
+**What's Fixed**
+* [Typography]: links now underlined
+* [NumericInput]: prevented text selection by arrows click
+* [NumericInput]: `formatter` prop replaced with custom `formatValue` function which converts given input into text instead of number
+* [ButtonBase]: set `disabled` attribute for disabled buttons
+* [NumericInput]: improved work with floating numbers
+* [FilterPanel]: fixed predicate value change
+* [FilterPanel]: fixed range date picker date selection
+* [PickerList]: fixed default sorting
+* [DataTable]: fixed first column content alignment 
 
 # 4.10.0 - 06.02.2023
 

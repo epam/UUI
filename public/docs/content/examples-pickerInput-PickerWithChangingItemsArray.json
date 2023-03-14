@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If you need to dynamically change PickerInput items, just create new ",
+            "text": "If you need to dynamically change PickerInput items, just re-create ",
             "marks": []
           },
           {
@@ -39,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Pay attention, that you don't create new dataSource on each render, it will cause performance issues. To solve it, user memo hooks or memoization libraries.",
+            "text": "Pay attention that you don't create new dataSource on each render; it will cause performance issues. To solve it, use memo hooks or memoization libraries.",
             "marks": []
           }
         ]
