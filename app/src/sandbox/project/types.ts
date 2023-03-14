@@ -1,3 +1,5 @@
+import { DropPosition } from "uui-core";
+
 export interface Task {
     id: number;
     parentId?: number;
@@ -19,7 +21,7 @@ export interface Resource {
 }
 
 export interface InsertTaskCallback {
-    (task: Partial<Task>): void;
+    (position: DropPosition, relativeTask: Task | null): void;
 }
 
 export interface DeleteTaskCallback {
