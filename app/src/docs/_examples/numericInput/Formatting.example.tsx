@@ -1,87 +1,72 @@
-import React, { useState } from "react";
-import { FlexCell, LabeledInput, NumericInput } from "@epam/promo";
-import css from "./BasicExample.scss";
+import React, { useState } from 'react';
+import { FlexCell, LabeledInput, NumericInput } from '@epam/promo';
+import css from './BasicExample.scss';
 
 export default function BasicExample() {
-    const [n1, setN1] = useState(1005001);
-    const [n2, setN2] = useState(1005001);
-    const [n3, setN3] = useState(1005001);
-    const [n4, setN4] = useState(1005001.23);
-    const [n5, setN5] = useState(1005001.23);
-    const [n6, setN6] = useState(1005001.23);
-    const [n7, setN7] = useState(1005001.23);
-    const [n8, setN8] = useState(1005001.23);
-    const [n9, setN9] = useState(1005001.23);
+    const [value, onValueChange] = useState(100500.123);
 
     return (
-        <FlexCell width="auto" cx={ css.container }>
-            <LabeledInput label="Default locale formatting">
+        <FlexCell width='auto' cx={ css.container } >
+            <LabeledInput label='Default locale formatting'>
                 <NumericInput
-                    value={ n1 }
-                    onValueChange={ (v) => setN1(v) }
+                    value={ value }
+                    onValueChange={ onValueChange }
                 />
             </LabeledInput>
-            <LabeledInput label="With disableLocaleFormatting">
+            <LabeledInput label='With disableLocaleFormatting'>
                 <NumericInput
-                    value={ n2 }
-                    onValueChange={ (v) => setN2(v) }
-                    disableLocaleFormatting
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    disableLocaleFormatting={ true }
                 />
             </LabeledInput>
-            <LabeledInput label="No fraction digits">
+            <LabeledInput label='No fraction digits'>
                 <NumericInput
-                    value={ n3 }
-                    onValueChange={ (v) => setN3(v) }
+                    value={ value }
+                    onValueChange={ onValueChange }
                     formatOptions={ { maximumFractionDigits: 0 } }
                 />
             </LabeledInput>
-            <LabeledInput label="Min 2 fractional digits">
+            <LabeledInput label='Min 2 fractional digits'>
                 <NumericInput
-                    value={ n4 }
-                    onValueChange={ (v) => setN4(v) }
+                    value={ value }
+                    onValueChange={ onValueChange }
                     formatOptions={ { minimumFractionDigits: 2 } }
                 />
             </LabeledInput>
-            <LabeledInput label="Max 2 fractional digits">
+            <LabeledInput label='Max 2 fractional digits'>
                 <NumericInput
-                    value={ n5 }
-                    onValueChange={ (v) => setN5(v) }
+                    value={ value }
+                    onValueChange={ onValueChange }
                     formatOptions={ { maximumFractionDigits: 2 } }
                 />
             </LabeledInput>
-            <LabeledInput label="Exactly 2 fractional digits">
+            <LabeledInput label='Exactly 2 fractional digits'>
                 <NumericInput
-                    value={ n6 }
-                    onValueChange={ (v) => setN6(v) }
-                    formatOptions={ {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                    } }
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    formatOptions={ { minimumFractionDigits: 2, maximumFractionDigits: 2 } }
                 />
             </LabeledInput>
-            <LabeledInput label="Currency">
+            <LabeledInput label='Currency'>
                 <NumericInput
-                    value={ n7 }
-                    onValueChange={ (v) => setN7(v) }
-                    formatOptions={ {
-                        style: "currency",
-                        currency: "USD",
-                        currencyDisplay: "name",
-                    } }
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    formatOptions={ { style: "currency", currency: "USD", currencyDisplay: "name" } }
                 />
             </LabeledInput>
-            <LabeledInput label="Custom formatting with max 2 fraction digits">
+            <LabeledInput label='Custom formatting with max 2 fraction digits'>
                 <NumericInput
-                    value={ n8 }
-                    onValueChange={ (v) => setN8(v) }
+                    value={ value }
+                    onValueChange={ onValueChange }
                     formatOptions={ { maximumFractionDigits: 2 } }
-                    formatValue={ (value) => "USD " + value }
+                    formatValue={ (value) => { return 'USD ' + value } }
                 />
             </LabeledInput>
-            <LabeledInput label="Units (meters)">
+            <LabeledInput label='Units (meters)'>
                 <NumericInput
-                    value={ n9 }
-                    onValueChange={ (v) => setN9(v) }
+                    value={ value }
+                    onValueChange={ onValueChange }
                     formatOptions={ { style: "unit", unit: "meter" } }
                 />
             </LabeledInput>
