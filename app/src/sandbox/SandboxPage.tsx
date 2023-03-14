@@ -6,6 +6,7 @@ import { getQuery } from '../helpers';
 import { ComplexForm } from './forms/ComplexForm';
 import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
+import { CitiesTableDemo } from './cities';
 import { DemoTablePaged } from './tablePaged';
 import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
@@ -26,6 +27,7 @@ export const SandboxPage = () => {
         { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
         { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
         { id: 'projectDemo', name: 'Project Table', component: ProjectDemo },
+        { id: 'citiesDemo', name: 'Cities Table', component: CitiesTableDemo },
         { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
         { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
         { id: 'responsive', name: 'Responsive', component: Responsive },
