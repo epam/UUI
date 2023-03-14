@@ -105,15 +105,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return this.props.selectAll == undefined ? true : this.props.selectAll;
     }
 
-    protected isPatchUpdated(
-        prevProps: BaseListViewProps<TItem, TId, TFilter>,
-        newProps: BaseListViewProps<TItem, TId, TFilter>,
-    ) {
-        return newProps.patch !== prevProps.patch
-            || newProps.patchComparator !== prevProps.patchComparator
-            || newProps.isDeletedProp !== prevProps.isDeletedProp;
-    }
-
     protected handleOnSelect = (rowProps: DataRowProps<TItem, TId>) => {
         this.onValueChange({
             ...this.value,

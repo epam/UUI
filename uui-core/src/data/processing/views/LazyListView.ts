@@ -442,6 +442,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         };
     }
 
+    protected isPatchUpdated(
+        prevProps: LazyListViewProps<TItem, TId, TFilter>,
+        newProps: LazyListViewProps<TItem, TId, TFilter>,
+    ) {
+        return newProps.patch !== prevProps.patch
+            || newProps.patchComparator !== prevProps.patchComparator
+            || newProps.isDeletedProp !== prevProps.isDeletedProp;
+    }
+
     protected getChildCount = (item: TItem): number | undefined => {
         return this.props.getChildCount?.(item);
     }
