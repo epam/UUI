@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BaseListViewProps, DataSourceState, IDataSource, IDataSourceView } from "../../types";
 
 export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
@@ -8,14 +9,9 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
 
     abstract getById(id: TId): TItem;
     abstract setItem(item: TItem): void;
-    abstract getView(
-        value: DataSourceState<TFilter, TId>,
-        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<BaseListViewProps<TItem, TId, TFilter>>,
-    ): IDataSourceView<TItem, TId, TFilter>;
-    abstract useView(
-        value: DataSourceState<TFilter, TId>,
-        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
+    abstract getView<TState extends DataSourceState<TFilter, TId>>(
+        value: TState,
+        onValueChange: (val: TState) => void,
         options?: Partial<BaseListViewProps<TItem, TId, TFilter>>,
     ): IDataSourceView<TItem, TId, TFilter>;
 
@@ -48,5 +44,23 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
         }
 
         return id;
+    }
+
+    useView<
+        TState extends DataSourceState<TFilter, TId>,
+        TViewProps extends BaseListViewProps<TItem, TId, TFilter>,
+        >(
+            value: TState,
+            onValueChange: (val: TState) => void,
+            options?: Partial<TViewProps>,
+    ): IDataSourceView<TItem, TId, TFilter> {
+        useEffect(() => {
+            const view = this.getView(value, onValueChange, options);
+            view?.enable();
+
+            return () => this.unsubscribeView(onValueChange);
+        }, [this]);
+
+        return this.getView(value, onValueChange, options);
     }
 }

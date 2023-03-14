@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps } from './views';
@@ -44,9 +43,9 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         // TODO
     }
 
-    getView(
-        value: DataSourceState<TFilter, TId>,
-        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
+    getView<TState extends DataSourceState<TFilter, TId>>(
+        value: TState,
+        onValueChange: (val: TState) => void,
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
     ): IDataSourceView<TItem, TId, TFilter> {
         const view = this.views.get(onValueChange) as ArrayListView<TItem, TId, TFilter>;
@@ -70,13 +69,11 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         }
     }
 
-    useView(
-        value: DataSourceState<TFilter, TId>,
-        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
+    useView<TState extends DataSourceState<TFilter, TId>>(
+        value: TState,
+        onValueChange: (val: TState) => void,
         options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
-    ): IDataSourceView<TItem, TId, TFilter> {
-        useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
-
-        return this.getView(value, onValueChange, options);
+    ) {
+        return super.useView(value, onValueChange, options);
     }
 }

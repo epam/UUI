@@ -29,9 +29,9 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         this.setProps({ ...this.props, items: [] });
     }
 
-    getView(
-        value: DataSourceState<any, TId>,
-        onValueChange: (val: DataSourceState<any, TId>) => any,
+    getView<TState extends DataSourceState<TFilter, TId>>(
+        value: TState,
+        onValueChange: (val: TState) => any,
         options?: Partial<BaseArrayListViewProps<TItem, TId, TFilter>>,
     ): IDataSourceView<TItem, TId, TFilter> {
         const view = this.views.get(onValueChange) as AsyncListView<TItem, TId, TFilter>;
@@ -57,5 +57,13 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             this.views.set(onValueChange, newView);
             return newView;
         }
+    }
+
+    useView<TState extends DataSourceState<TFilter, TId>>(
+        value: TState,
+        onValueChange: (val: TState) => void,
+        options?: Partial<AsyncListViewProps<TItem, TId, TFilter>>,
+    ) {
+        return super.useView(value, onValueChange, options);
     }
 }
