@@ -67,6 +67,10 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      * @default true
      */
     legacyLoadDataBehavior?: boolean;
+
+    patch?: TItem[];
+    isDeletedProp?: keyof TItem;
+    patchComparator?: ItemsComparator<TItem>;
 }
 
 interface LoadResult<TItem, TId, TFilter> {

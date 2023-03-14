@@ -2,7 +2,6 @@ import { SortingOption } from "./dataQuery";
 import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from "./props";
 import { IDndActor } from './dnd';
 import { Link } from './objects';
-import { ItemsComparator } from "../data";
 
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState {
@@ -241,10 +240,6 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * Enables or disables "select all" checkbox. Default is true.
      */
     selectAll?: true | false;
-
-    patch?: TItem[];
-    isDeletedProp?: keyof TItem;
-    patchComparator?: ItemsComparator<TItem>;
 }
 
 export type IDataSourceView<TItem, TId, TFilter> = {
