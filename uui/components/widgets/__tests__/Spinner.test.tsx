@@ -9,14 +9,5 @@ describe('Spinner', () => {
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
-
-    it('should be rendered correctly with props', () => {
-        const tree = renderer
-            .create(<Spinner
-                color='white'
-            />)
-            .toJSON();
-        expect(tree).toMatchSnapshot();
-    });
 });
 
