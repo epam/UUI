@@ -6,3 +6,4 @@ export * from './LabeledInput';
 export * from './RadioGroup';
 export * from './ScrollBars';
 export * from './VirtualList';
+export * from './CheckboxGroup';
