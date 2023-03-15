@@ -16,5 +16,5 @@ export {
     FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder,
     RangeDatePicker, DatePicker, MainMenu, GlobalMenu, Burger, BurgerButton, MainMenuAvatar, MainMenuSearch, MainMenuIcon,
     MainMenuDropdown, MainMenuButton, IconContainer, Accordion, RichTextView, Form, useForm, Blocker, CheckboxGroup,
-    ControlGroup, ConfirmationModal,
+    ControlGroup, ConfirmationModal, RadioGroup,
 } from "@epam/uui";
