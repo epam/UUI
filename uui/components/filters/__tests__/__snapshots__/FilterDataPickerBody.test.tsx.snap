@@ -3,7 +3,7 @@
 exports[`FilterDataPickerBody should render correctly 1`] = `
 Array [
   <div
-    className="root size-36 border-bottom container align-items-center"
+    className="root size-36 border-bottom flex-row-border-bottom-default container align-items-center"
     style={
       Object {
         "columnGap": undefined,

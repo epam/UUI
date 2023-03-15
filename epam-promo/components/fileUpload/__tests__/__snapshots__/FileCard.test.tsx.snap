@@ -2,7 +2,7 @@
 
 exports[`FileCard should be rendered correctly 1`] = `
 <div
-  className="fileCardWrapper uui-loading"
+  className="flexCell fileCardWrapper uui-loading"
   style={
     Object {
       "alignSelf": undefined,
@@ -34,7 +34,7 @@ exports[`FileCard should be rendered correctly 1`] = `
       />
     </div>
     <div
-      className=""
+      className="flexCell"
       style={
         Object {
           "alignSelf": undefined,
@@ -95,7 +95,7 @@ exports[`FileCard should be rendered correctly 1`] = `
 
 exports[`FileCard should be rendered correctly 2`] = `
 <div
-  className="fileCardWrapper uui-loading"
+  className="flexCell fileCardWrapper uui-loading"
   style={
     Object {
       "alignSelf": undefined,
@@ -127,7 +127,7 @@ exports[`FileCard should be rendered correctly 2`] = `
       />
     </div>
     <div
-      className=""
+      className="flexCell"
       style={
         Object {
           "alignSelf": undefined,
@@ -188,7 +188,7 @@ exports[`FileCard should be rendered correctly 2`] = `
 
 exports[`FileCard should be rendered correctly 3`] = `
 <div
-  className="fileCardWrapper"
+  className="flexCell fileCardWrapper"
   style={
     Object {
       "alignSelf": undefined,
@@ -220,7 +220,7 @@ exports[`FileCard should be rendered correctly 3`] = `
       />
     </div>
     <div
-      className=""
+      className="flexCell"
       style={
         Object {
           "alignSelf": undefined,

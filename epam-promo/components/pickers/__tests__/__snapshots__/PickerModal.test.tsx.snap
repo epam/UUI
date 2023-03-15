@@ -39,7 +39,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       role="modal"
     >
       <div
-        className="root size-36 padding-24 vPadding-12 flex-row-border-bottom-gray40 spacing-12 flex-row-none modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 border-bottom flex-row-border-bottom-gray40 spacing-12 flex-row-none modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -56,7 +56,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <div
-          className=""
+          className="flexCell"
           style={
             Object {
               "alignSelf": undefined,
@@ -86,7 +86,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="subHeaderWrapper"
+        className="flexCell subHeaderWrapper"
         style={
           Object {
             "alignSelf": undefined,
@@ -872,7 +872,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
       role="modal"
     >
       <div
-        className="root size-36 padding-24 vPadding-12 flex-row-border-bottom-gray40 spacing-12 flex-row-none modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 border-bottom flex-row-border-bottom-gray40 spacing-12 flex-row-none modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -889,7 +889,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <div
-          className=""
+          className="flexCell"
           style={
             Object {
               "alignSelf": undefined,
@@ -919,7 +919,7 @@ exports[`PickerModal should be rendered correctly 2`] = `
         </div>
       </div>
       <div
-        className="subHeaderWrapper"
+        className="flexCell subHeaderWrapper"
         style={
           Object {
             "alignSelf": undefined,
