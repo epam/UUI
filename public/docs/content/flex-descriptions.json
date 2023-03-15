@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "We provide a set of components, to simplify building layouts. They are basically short-cuts for FlexBox elements, with some convenience styling props on top:",
+            "text": "We provide a set of components to simplify building layouts. They are basically shortcuts for FlexBox elements, with more convenient styling props on top:",
             "marks": []
           }
         ]
@@ -106,7 +106,19 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By using these components you can implements most commonly and simple cases, if you need more — just use simple html with css.",
+            "text": "By using these components, you can implement the most common and easy cases; if you need more — just use simple HTML with CSS.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
             "marks": []
           }
         ]

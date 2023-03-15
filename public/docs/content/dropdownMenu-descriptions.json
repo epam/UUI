@@ -23,7 +23,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can use DropdownMenuButton from UUI or your custom component as a menu item.\r",
+            "text": "You can use UUI ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DropdownMenuButton",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " or your custom component as a menu item. ",
             "marks": []
           }
         ]
@@ -35,7 +51,35 @@
         "nodes": [
           {
             "object": "text",
-            "text": "With DropdownMenuButton you can: ",
+            "text": "\r",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "With the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DropdownMenuButton",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", you can: ",
             "marks": []
           }
         ]
@@ -57,7 +101,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "render menu item with an icon in the left or right position ('left' as default).",
+                    "text": "render a menu item with an icon in the left or right position ('left' as default).",
                     "marks": []
                   }
                 ]
@@ -76,7 +120,23 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "highlight menu item as selected passing 'isActive' prop.",
+                    "text": "highlight a menu item as selected passing the ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "isActive",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " prop.",
                     "marks": []
                   }
                 ]
@@ -95,7 +155,23 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "check menu item as checked passing 'isChecked' prop.\r",
+                    "text": "mark a menu item as checked passing the ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "isChecked",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " prop.\r",
                     "marks": []
                   }
                 ]
@@ -111,50 +187,115 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By MenuSplitter you can divide menu item groups. And set a header for a group with MenuHeader.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "With DropdownMenuSwitchButton you can render a menu item with a switch. 'isSelected' prop is used as switch value, and 'onValueChange' callback prop is used to change switch value. DropdownMenuSwitchButton can also receive an icon.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Pay attention that DropdownMenu is passed as 'renderBody' Dropdown prop, so you should wrap your app into the ",
+            "text": "By ",
             "marks": []
           },
           {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
-            },
-            "nodes": [
+            "object": "text",
+            "text": "MenuSplitter",
+            "marks": [
               {
-                "object": "text",
-                "text": "ContextProvider",
-                "marks": []
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": " component because it is necessary for correct dropdown component work.",
+            "text": ", you can divide menu item groups. ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "MenuHeader",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " sets a header for a group.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "With ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DropdownMenuSwitchButton",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", you can render a menu item with a switch. The ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isSelected",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop is used as the switch value, and the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "onValueChange",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " callback prop is used to change the switch value. ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DropdownMenuSwitchButton",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " can also receive an icon.",
             "marks": []
           }
         ]

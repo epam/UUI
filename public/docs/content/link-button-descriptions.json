@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Link Button component used to make a redirect or call some action on click.",
+            "text": "The LinkButton component is used to make a redirect or call some action on click.",
             "marks": []
           }
         ]
