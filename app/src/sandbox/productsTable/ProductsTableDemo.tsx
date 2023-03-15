@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
 import React, { useRef } from 'react';
-import { Metadata, useList, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { Metadata, useList, usePrevious, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
@@ -30,8 +30,8 @@ let savedValue: FormState = { items: {} };
 
 export const ProductsTableDemo: React.FC = (props) => {
     const svc = useUuiContext<TApi, UuiContexts>();
-    // const [patch, setPatch] = useState<Product[]>([]);
-    const lastPatchIdRef = useRef(-1);
+    const lastPatchIdRef = useRef(0);
+    let lastId = lastPatchIdRef.current;
 
     const { lens, save, value, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
@@ -43,13 +43,13 @@ export const ProductsTableDemo: React.FC = (props) => {
         getMetadata: () => metadata,
     });
 
-    const addNewRow = () => {
-        --lastPatchIdRef.current;
-        const newValue = { ProductID: lastPatchIdRef.current } as Product;
+    const prevValue = usePrevious(value);
 
-        const items = lens.prop('items').get();
-        lens.prop('items').set({ ...items, [lastPatchIdRef.current]: newValue });
-    };
+    if (value !== prevValue) {
+        const ids = Object.values(value.items).map(({ ProductID }) => ProductID);
+        lastPatchIdRef.current = Math.min(...ids, lastPatchIdRef.current);
+        lastId = lastPatchIdRef.current;
+    }
 
     const [tableState, setTableState] = React.useState({});
 
@@ -57,7 +57,10 @@ export const ProductsTableDemo: React.FC = (props) => {
         type: 'lazy',
         api: svc.api.demo.products,
 
-        patch: Object.values(lens.prop('items').get()),
+        patch: [
+            ...Object.values(lens.prop('items').get()),
+            { ProductID: lastId - 1 } as Product,
+        ],
         isDeletedProp: 'IsDeleted',
 
         getId: i => i.ProductID,
@@ -67,11 +70,6 @@ export const ProductsTableDemo: React.FC = (props) => {
     }, []);
 
     return <Panel style={ { width: '100%' } }>
-        <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
-            <FlexCell width='auto'>
-                <Button caption="Add row" onClick={ () => addNewRow() } size='30' />
-            </FlexCell>
-        </FlexRow>
         <DataTable
             headerTextCase='upper'
             getRows={ () => rows }
