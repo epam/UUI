@@ -4,9 +4,8 @@ import {
     PlateEditor,
     insertElements,
     WithPlatePlugin,
-    insertEmptyElement, insertNode,
+    insertEmptyElement,
 } from '@udecode/plate';
-import { useRef } from "react";
 
 export const withFileUpload = <
     V extends Value = Value,
@@ -46,6 +45,7 @@ export const withFileUpload = <
 
                 editor.selection = currentSelection;
                 editor.prevSelection = prevSelection;
+
                 deleteBackward('block');
 
                 insertElements(editor, {
@@ -53,6 +53,7 @@ export const withFileUpload = <
                     children: [{ text: '' }],
                 });
                 insertEmptyElement(editor, 'paragraph');
+                focusEditor(editor);
             }
         } else {
             insertData(dataTransfer);
