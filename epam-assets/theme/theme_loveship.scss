@@ -654,9 +654,6 @@
     /* Alert */
     --uui-alert-border-radius: 6px;
 
-    /* FlexRow vars */
-    --uui-flex-row-bg-hover: var(--night50);
-
     /* modification of the states of table components */
 
     :global(.uui-dt-cell-border) {
@@ -1327,6 +1324,8 @@
     :global(.flex-row-border-bottom-default),
     :global(.flex-row-border-bottom-night400) {
         --uui-flex-row-border-bottom: 1px solid var(--night400);
+    }
+
     :global(.panel-white) {
         --uui-panel-bg: var(--uui-surface);
     }
