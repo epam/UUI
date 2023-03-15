@@ -1,29 +1,23 @@
 import * as React from 'react';
 import css from './Table.scss';
 import cx from 'classnames';
+import { PlateTableCellElement } from '@udecode/plate';
 
 export function TableHeaderCell(props: any) {
+    const { attributes, node, element } = props;
 
-    const { attributes, children, node } = props;
+    const cellStyles = { backgroundColor: 'inherit' }
 
-    // if (!this.props.editor) {
-    //     return null;
-    // }
-
-    let isCellFocused = false; //selectedCells.includes(props.node.nodes.toArray()[0]) && selectedCells.length > 1;
-    let cellStyles = {
-        height: node?.data?.get('rowSpan') ?  `${24 * node.data.get('rowSpan')}px` : null,
-        background: isCellFocused ? '#B3D7FF' : null,
-    };
-
-    return <th
-        className={ cx(css.cell, css.tableHeader) }
+    return <PlateTableCellElement
+        { ...props }
+        { ...attributes }
         colSpan={ node?.data?.get('colSpan') || 1 }
         rowSpan={ node?.data?.get('rowSpan') || 1 }
-        { ...attributes }
-        style={ node?.data?.get('style') === 'none' ? { display: 'none' } : cellStyles }
-    >
-        { children }
-        <div className={ cx(css.resizingBorder, 'uui-richTextEditor-resize-border') } />
-    </th>;
+        nodeProps={ {
+            colSpan: element?.data?.colSpan || 1,
+            rowSpan: element?.data?.rowSpan || 1,
+        } }
+        className={ cx(css.cell, css.headerCell) }
+        style={ element?.data?.style === 'none' ? { display: 'none' } : cellStyles }
+    />
 }
