@@ -48,7 +48,7 @@ Array [
         }
       >
         <div
-          className="sortingPanelContainer"
+          className="flexCell sortingPanelContainer"
           style={
             Object {
               "alignSelf": undefined,
