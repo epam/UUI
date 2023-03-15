@@ -1,0 +1,45 @@
+name: track_bundle_size
+on:
+    pull_request_target:
+        branches:
+            - develop
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.base_ref }}-${{ github.head_ref }}
+    cancel-in-progress: true
+
+jobs:
+    track-bundle-size:
+        runs-on: ubuntu-latest
+        container: node:16
+
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.base_ref }}
+                  path: target-branch
+            - uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.head_ref }}
+                  path: source-branch
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: '16.x'
+            - uses: actions/cache@v2
+              with:
+                  path: |
+                      node_modules
+                      ./*/node_modules
+                  key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: v1-npm-deps-
+            - name: track-bundle-size-source
+              working-directory: source-branch
+              run: |
+                  yarn
+                  yarn collect-bundle-stats
+            - name: track-bundle-size-target
+              working-directory: target-branch
+              run: |
+                  yarn
+                  yarn collect-bundle-stats
+                  yarn compare-bundle-stats --before ./.reports/collect-bundle-stats.json --after ../source-branch/.reports/collect-bundle-stats.json
