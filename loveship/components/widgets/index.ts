@@ -6,7 +6,7 @@ export * from './Carousel';
 export * from './EmbeddedWidget';
 export * from './PageButton';
 export * from './Paginator';
-export * from './Spinner';
+export { Spinner } from '@epam/uui';
 export * from './Tag';
 export * from './ProgressBar';
 export * from './IndicatorBar';

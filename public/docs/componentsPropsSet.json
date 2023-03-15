@@ -5145,11 +5145,6 @@
     ],
     "/app/src/docs/_props/epam-promo/components/widgets/spinner.props.tsx": [
       {
-        "name": "color",
-        "value": "white | blue | gray50",
-        "comment": null
-      },
-      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
