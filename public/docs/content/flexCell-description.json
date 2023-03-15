@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Flex child container which accept flex related properties.",
+            "text": "FlexCell is a Flex child container which accepts Flex related properties.",
             "marks": []
           }
         ]

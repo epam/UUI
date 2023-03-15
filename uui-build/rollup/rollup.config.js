@@ -1,3 +1,4 @@
+const {getCliArgValue} = require("../utils/cmdUtils")
 const path = require("path");
 const typescript = require("@rollup/plugin-typescript");
 const svgr = require("@svgr/rollup");
@@ -19,6 +20,8 @@ const EXTRACTED_CSS_FILE_NAME = "styles.css";
 const BUILD_OUTPUT_DIR = "build";
 
 module.exports = { createRollupConfigForModule };
+
+const monoRepoRootRelativePath = getCliArgValue("--configMonorepoRootRelative") || '..'
 
 /**
  * Creates rollup config for the module.
@@ -68,7 +71,7 @@ async function createRollupConfigForModule(options) {
             }),
             nodeResolve({
                 // https://www.npmjs.com/package/@rollup/plugin-node-resolve
-                jail: path.resolve(moduleRootDir, ".."),
+                jail: path.resolve(moduleRootDir, monoRepoRootRelativePath),
                 preferBuiltins: false,
             }),
             commonjs(), // it's needed to import commonjs-only modules without "default" export (the only known example: "draft-js")

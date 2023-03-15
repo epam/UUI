@@ -68,7 +68,7 @@ export class DndSection extends React.Component<DndSectionProps> {
                                 <Text color='gray60' >{ item.deadline }</Text>
                             </FlexRow>
                             <Badge fill='semitransparent' size='24' color={ item.status === 'Green' ? 'green' : 'amber' } caption={ `${ item.status } Status` } />
-                            <IconContainer icon={ DownIcon } rotate={ item.isFolded ? '180' : '0' } color='gray60' />
+                            <IconContainer icon={ DownIcon } rotate={ item.isFolded ? '180' : '0' } cx={ css.iconGray60 } />
                         </FlexRow>
                         { item.isFolded && <>
                             <div className={ css.descriptionSection } >

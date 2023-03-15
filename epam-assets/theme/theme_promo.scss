@@ -429,6 +429,7 @@
     /* Accordion */
     --uui-accordion-bg: var(--uui-surface);
     --uui-accordion-border: var(--uui-divider);
+    --uui-accordion-border-radius: 0px;
     --uui-accordion-text: var(--uui-text-primary);
     --uui-accordion-text-disabled: var(--uui-text-disabled);
     --uui-accordion-icon: var(--uui-icon);
@@ -584,6 +585,13 @@
     --uui-filters-toggler-text: var(--uui-text-brand);
     --uui-filters-toggler-label: var(--uui-text-secondary);
     --uui-filters-toggler-icon: var(--uui-text-input-icon-clickable);
+
+    /* Spinner */
+    --uui-spinner: var(--uui-primary);
+
+    /* Blocker */
+    --uui-blocker-bg: var(--uui-background);
+    --uui-blocker-bg-with-opacity: #F5F6FA80;
 
     /* modification of the states of table components */
 

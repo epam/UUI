@@ -3,7 +3,7 @@ import { IModal, useUuiContext } from '@epam/uui-core';
 import { demoData } from '@epam/uui-docs';
 import {
     ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpacer, Panel, ScrollBars, Text, Button,
-    SuccessNotification, RichTextView, WarningNotification,
+    SuccessNotification, WarningNotification,
 } from '@epam/promo';
 
 export default function BasicModalExampleToggler() {

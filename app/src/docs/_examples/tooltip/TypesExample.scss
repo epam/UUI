@@ -15,6 +15,11 @@
     max-width: 600px
   };
 
+  .icon{
+    height: 18px;
+    align-self: center;
+  }
+
   .text{
     padding: 0;
   }
@@ -25,4 +30,8 @@
     font-weight: 600;
     text-transform: uppercase;
   }
+}
+
+.icon-blue {
+    fill: var(--uui-primary);
 }

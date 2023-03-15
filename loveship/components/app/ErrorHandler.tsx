@@ -3,7 +3,8 @@ import { ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecov
     ApiRecoveryReason, ApiCallErrorType } from '@epam/uui-core';
 import { ModalBlocker, ModalHeader, ModalWindow, SnackbarCard } from '../overlays';
 import { FlexCell, FlexRow } from '../layout';
-import { RichTextView, Text } from '../typography';
+import { Text } from '../typography';
+import { RichTextView } from '@epam/uui';
 import { Spinner } from '../widgets';
 import { ErrorCatch } from '@epam/uui-components';
 import { ErrorPage } from './ErrorPage';
@@ -115,7 +116,7 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
             <ModalBlocker cx={ css.modalBlocker } blockerShadow='dark' key='auth-lost' isActive={ true } zIndex={ 100500 } success={ () => { } } abort={ () => { } }>
                 <ModalWindow>
                     <ModalHeader borderBottom title={ errorInfo.title } />
-                    <Spinner cx={ css.recoverySpinner } color='fire' />
+                    <Spinner cx={ css.recoverySpinner } />
                     <FlexRow padding='24' cx={ css.recoveryMessage }>
                         <FlexCell grow={ 1 }>
                             <RichTextView>{ errorInfo.subtitle }</RichTextView>
