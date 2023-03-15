@@ -11,9 +11,3 @@
         padding-left: 24px;
     }
 }
-
-.panel {
-    @media screen and (max-width: 720px) {
-        height: var(--app-mobile-height);
-    }
-}
