@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic tooltip types: Default, Compact and Infotip. Each type can be shown using any trigger component. Use general rules described below",
+            "text": "Basic tooltip types are Compact , Default and Infotip. Each type can be shown using any trigger component. General rules are described below.",
             "marks": []
           }
         ]

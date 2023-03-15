@@ -19,6 +19,19 @@ async function runCliCommand(cwd, command) {
   });
 }
 
+function hasCliArg(argName) {
+    return process.argv.includes(argName);
+}
+
+function getCliArgValue(argName) {
+    const i = process.argv.indexOf(argName);
+    if (i !== -1) {
+        return process.argv[i + 1];
+    }
+}
+
 module.exports = {
-  runCliCommand
+    runCliCommand,
+    hasCliArg,
+    getCliArgValue
 }
