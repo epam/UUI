@@ -1,1 +1,52 @@
-{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"Component for displaying text with skin specific configurations","marks":[]}]}]}}
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "The Text component displays a single-line text with various configurations. Due to its standard set of sizes like in our other components(e.g., TextInput, Button), use it to place text on the same baseline with a component.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For multiline text, it's better to use ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://uui.epam.com/documents?id=richTextView&mode=doc&skin=UUI4_promo&category=components"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "RichTextView",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " component.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
