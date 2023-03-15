@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FlexRow, RowMods, Button, Text, LabeledInput, ControlWrapper, CheckboxGroup, TextInput, FlexCell } from '@epam/promo';
+import { FlexRow, RowMods, Button, Text, TextInput, FlexCell } from '@epam/promo';
 import { FlexRowProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext, onClickDoc } from '../../../docs';
@@ -27,39 +27,6 @@ const flexRowDoc = new DocBuilder<FlexRowProps & RowMods>({ name: 'FlexRow', com
                         </FlexCell>
                         <FlexCell grow={ 1 }>
                             <Button color='green' caption='Submit'/>
-                        </FlexCell>
-                    </React.Fragment>,
-                isDefault: true,
-            },
-            {
-                name: 'Text, Button, CheckboxGroup',
-                value:
-                    <React.Fragment>
-                        <FlexCell grow={ 1 }>
-                            <LabeledInput size='36' label='Name'>
-                                <Text>Rebecca</Text>
-                            </LabeledInput>
-                        </FlexCell>
-                        <FlexCell grow={ 1 }>
-                            <LabeledInput size='36' label='Help'>
-                                <Button caption='Help'/>
-                            </LabeledInput>
-                        </FlexCell>
-                        <FlexCell grow={ 1 }>
-                            <LabeledInput size='36' label='Checkbox group'>
-                                <ControlWrapper size='36'>
-                                    <CheckboxGroup
-                                        onValueChange={ null }
-                                        items={ [
-                                            { name: 'Calamari Cruiser', id: 1 },
-                                            { name: 'Scimitar', id: 2 },
-                                            { name: 'Droid control ship', id: 3 },
-                                            { name: 'T-70 X-wing fighter', id: 4 },
-                                        ] }
-                                        value={ [1] }
-                                    />
-                                </ControlWrapper>
-                            </LabeledInput>
                         </FlexCell>
                     </React.Fragment>,
                 isDefault: true,
