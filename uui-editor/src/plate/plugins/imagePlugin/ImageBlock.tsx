@@ -27,7 +27,10 @@ export const Image = (props: any) => {
 
     if (element.type === 'loader') {
         return (
-            <Spinner { ...props } cx={ css.spinner }/>
+            <>
+                <Spinner { ...props } cx={ css.spinner } />
+                {props.children}
+            </>
         );
     }
 
