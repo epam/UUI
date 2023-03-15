@@ -3,7 +3,6 @@ export * from './buttons';
 export * from './overlays';
 export * from './inputs';
 export * from './layout';
-export * from './navigation';
 export * from './pickers';
 export * from './types';
 export * from './typography';
@@ -16,5 +15,5 @@ export {
     FiltersPanel, PresetsPanel, defaultPredicates, TabButton, VerticalTabButton, Calendar, NumericInput,
     Switch, TextArea, Dropdown, TextPlaceholder, Tag, RadioInput, MainMenu, GlobalMenu, Burger, BurgerButton,
     BurgerSearch, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton, IconContainer,
-    Accordion, RichTextView, Form, useForm, RadioGroup, Blocker, CheckboxGroup, ControlGroup,
+    Accordion, RichTextView, Form, useForm, Blocker, CheckboxGroup, ControlGroup, Anchor, RadioGroup,
 } from "@epam/uui";
