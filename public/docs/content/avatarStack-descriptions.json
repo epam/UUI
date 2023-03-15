@@ -11,12 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "A component that pushes avatars onto a stack and can add an overflow of type ",
+            "text": "An ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "+n",
+            "text": "AvatarStack",
             "marks": [
               {
                 "object": "mark",
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": ".",
+            "text": " is a component that pushes avatars onto a stack and can add an overflow of type +n.",
             "marks": []
           }
         ]

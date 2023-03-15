@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "An alternative example using UuiContext with hook ",
+            "text": "An alternative example using UUI services with hook ",
             "marks": []
           },
           {
@@ -84,7 +84,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "With hook  ",
+                    "text": "With a hook  ",
                     "marks": []
                   },
                   {
@@ -100,7 +100,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "  get object with context services and then just pass it as value like in an example.",
+                    "text": " gets an object with context services and then passes it as value, like in an example.",
                     "marks": []
                   }
                 ]

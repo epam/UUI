@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Panel can be used to display content in vertical layout. It's a vertical FlexBox container.",
+            "text": "Panel can be used to display content in a vertical layout. It's a vertical FlexBox container.",
             "marks": []
           }
         ]

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In addition to simple text, you can pass react component directly to content prop or can provide ",
+            "text": "In addition to simple text, you can pass React components directly to the content prop or can provide the ",
             "marks": []
           },
           {

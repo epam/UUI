@@ -25,7 +25,7 @@ export const ThemeDemo = () => {
         api: () => svc.api.demo.countries({}).then((r: any) => r.items),
     }, []);
 
-    const showModal = () => svc.uuiModals.show(props => <ModalBlocker overlay { ...props }>
+    const showModal = () => svc.uuiModals.show(props => <ModalBlocker { ...props }>
         <ModalWindow width={ 360 } height={ 200 }>
             <ModalHeader title="Simple modal example " onClose={ () => props.abort() } />
             <ScrollBars>

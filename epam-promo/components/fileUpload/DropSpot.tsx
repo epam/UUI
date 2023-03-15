@@ -20,7 +20,7 @@ export class DropSpot extends React.Component<DropSpotProps> {
             <div className={ cx(css.root, this.props.cx, props.isDragStart && css.dropStart, props.isDraggingOver && css.dropOver) } { ...this.props.rawProps }>
                 <div { ...props.eventHandlers } className={ css.dropArea } >
                     <FlexRow size='24' spacing='6' >
-                        <IconContainer color='blue' icon={ ShapeIcon } />
+                        <IconContainer icon={ ShapeIcon } cx={ css.iconBlue } />
                         <Text lineHeight='24' size='24' fontSize='14' font='sans-semibold'> { i18n.fileUpload.labelStart } </Text>
                         <UploadFileToggler
                             onFilesAdded={ this.props.onUploadFiles }

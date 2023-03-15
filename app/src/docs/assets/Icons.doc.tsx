@@ -215,7 +215,7 @@ export class IconsDoc extends React.Component {
         return (
             <FlexCell minWidth={ 60 } cx={ css.warningWrapper } >
                 <Tooltip placement='top-end' content="We don't recommend this combination of sizes">
-                    <IconContainer icon={ WarningIcon } color='red' cx={ css.warningIcon } />
+                    <IconContainer icon={ WarningIcon } cx={ [css.warningIcon, css.iconRed] } />
                 </Tooltip>
             </FlexCell>
         );

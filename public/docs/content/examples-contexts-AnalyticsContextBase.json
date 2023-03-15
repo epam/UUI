@@ -11,14 +11,14 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For turn on analytics, you need to wrap your application into UUI ",
+            "text": "For turn-on analytics, you must wrap your application into UUI ",
             "marks": []
           },
           {
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
+              "url": "https://uui.epam.com/documents?category=contexts&id=contextProvider"
             },
             "nodes": [
               {
@@ -37,31 +37,12 @@
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/documents?category=contexts&id=contextProvider"
+              "url": "https://uui.epam.com/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
             },
             "nodes": [
               {
                 "object": "text",
-                "text": "",
-                "marks": []
-              },
-              {
-                "object": "inline",
-                "type": "link",
-                "data": {
-                  "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "ContextProvider",
-                    "marks": []
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "",
+                "text": "ContextProvider",
                 "marks": []
               }
             ]
@@ -84,7 +65,7 @@
           },
           {
             "object": "text",
-            "text": " prop for google analytics support. \nOr implement your own ",
+            "text": " prop for google analytics support. Or implement your own ",
             "marks": []
           },
           {
@@ -100,7 +81,7 @@
           },
           {
             "object": "text",
-            "text": " and add it to the analytic context. ",
+            "text": " and add it to the analytic Context. ",
             "marks": []
           }
         ]
@@ -112,7 +93,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It this example we shows how to create listener for ",
+            "text": "In this example, we show how to create a listener for ",
             "marks": []
           },
           {

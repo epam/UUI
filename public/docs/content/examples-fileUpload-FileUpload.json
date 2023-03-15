@@ -22,7 +22,7 @@
           },
           {
             "object": "text",
-            "text": "  provide you drop zone and standart browser file upload dialog.",
+            "text": "  provides you with drop zone and default browser file upload dialog.",
             "marks": []
           }
         ]
@@ -45,7 +45,7 @@
           },
           {
             "object": "text",
-            "text": "  component is used to displaying uploaded files.",
+            "text": "  component is used to display uploaded files.",
             "marks": []
           }
         ]

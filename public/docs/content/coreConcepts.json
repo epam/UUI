@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI is split into a separate packages, to support \"pay for what you use\" approach.",
+            "text": "UUI is split into separate packages to support the pay-for-what-you-use approach.",
             "marks": []
           }
         ]
@@ -90,7 +90,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "— Core of UUI components. Set of basic non-styled components with business logic and global css classes. Generally you don't need to use components from this package, if the same component exist in skin specific package",
+                    "text": "— core of UUI components. They represent a set of essential non-styled components with business logic and global CSS classes. Generally, you don't need to use components from this package if the same component exists in a skin-specific package",
                     "marks": []
                   }
                 ]
@@ -186,7 +186,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " — contains icons set, fonts, scss/less global variables and common mixins",
+                    "text": " — icons set, fonts, scss/less global variables, and common mixins",
                     "marks": []
                   }
                 ]
@@ -320,7 +320,7 @@
           },
           {
             "object": "text",
-            "text": " Please, use all UUI packages with ",
+            "text": " Please use all UUI packages with ",
             "marks": []
           },
           {
@@ -336,12 +336,12 @@
           },
           {
             "object": "text",
-            "text": " to prevent unused packages installation.",
+            "text": " to prevent the installation of unused packages.",
             "marks": []
           },
           {
             "object": "text",
-            "text": " \n",
+            "text": "\n",
             "marks": [
               {
                 "object": "mark",
@@ -352,7 +352,7 @@
           },
           {
             "object": "text",
-            "text": "For example, if you use @epam/loveship: 3.40.0 version, all other UUI packages should be also 3.40.0 version.",
+            "text": "For example, if you use @epam/loveship: 4.0.0 version, all other UUI packages should be also 4.0.0 version.",
             "marks": []
           }
         ]
@@ -388,7 +388,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For example, every component that can be clicked, would got the same IClickable interface. This is done to:",
+            "text": "For example, every component that can be clicked would get the same ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "IClickable",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " interface. This is done to:",
             "marks": []
           }
         ]
@@ -410,7 +426,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Let developers learn less. Similarly behaving components have similar APIs",
+                    "text": "let developers learn less. Similarly behaving components have similar APIs.",
                     "marks": []
                   }
                 ]
@@ -429,7 +445,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Enforce API consistency",
+                    "text": "enforce API consistency.",
                     "marks": []
                   }
                 ]
@@ -448,7 +464,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Composability. If a component needs some other component to plug into, it can require it like \"I need something IClickable\" ",
+                    "text": "composability. If a component needs another component to plug into, it can request it with something like \"I need something IClickable.\" ",
                     "marks": []
                   }
                 ]
@@ -571,7 +587,27 @@
               },
               {
                 "object": "text",
-                "text": "} \"",
+                "text": "} ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "— ",
+                "marks": []
+              },
+              {
+                "object": "text",
+                "text": "\"",
                 "marks": [
                   {
                     "object": "mark",
@@ -605,7 +641,7 @@
               },
               {
                 "object": "text",
-                "text": "library. Most components implements this interface. This allows to put CSS classes on a component. Cx can be an object or array, and all it's non-falsy values would be putas classes on the root of the component. Example: <Button cx={[ 'red', isActive && 'big ]} />",
+                "text": "library. Most components implement this interface. This allows to put CSS classes to a component.CX can be an object or array, and all its non-falsy values would be put classes on the root of the component. Example: <Button cx={[ 'red', isActive && 'big ]} />",
                 "marks": []
               }
             ]
@@ -872,7 +908,7 @@
               },
               {
                 "object": "text",
-                "text": "} - ",
+                "text": "} ",
                 "marks": [
                   {
                     "object": "mark",
@@ -887,7 +923,27 @@
               },
               {
                 "object": "text",
-                "text": "component, which allows user to change some value inside it. TextInput is a basic example. However, it's used way wider. For example, a DataTable component is build the way that it changes DataTableState - which sorting is chosen, which columns are visible. In other words, that's the way we make all components ",
+                "text": "—",
+                "marks": []
+              },
+              {
+                "object": "text",
+                "text": " ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#000000"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "used for components, which allows user to change some value inside it. TextInput is a basic example. In other words, that's how we make all components ",
                 "marks": []
               },
               {
@@ -1205,22 +1261,7 @@
           },
           {
             "object": "text",
-            "text": "- ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "color": "#000000"
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "a control, which can perform a redirect. SPA links are tricky - you can click them and get a virtual redirect, you can click them with the right mouse button, and pick 'Open in new window'. Links can be 'visited' or not. Components with this interface handles such cases.",
+            "text": "— used for controls, which can perform a redirect. SPA links are tricky - you can click them and get a virtual redirect, or you can click them with the right mouse button and pick 'Open in a new window.' Links can be 'visited' or not. Components with this interface handle such cases.",
             "marks": []
           }
         ]
@@ -1232,7 +1273,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "We use interfaces for other parts, to allow to plug-in your implementations, and build consistent APIs.",
+            "text": "This is just a few examples of our core interfaces, which will help you to understand our approach which helps us to build consistent APIs. We use much more interfaces for different cases, just jump into any component typo to see them.",
             "marks": []
           }
         ]
@@ -1256,7 +1297,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI have various services, which helps your app to handle routine tasks. They are implemented as a singleton classes, which are accessible via React Contexts.",
+            "text": "UUI has various services which help your app handle routine tasks. They are implemented as singleton classes accessible via React Contexts.",
             "marks": []
           }
         ]
@@ -1268,43 +1309,38 @@
         "nodes": [
           {
             "object": "text",
-            "text": "We usually make them available as a global module in our apps, as in our application template. So you can access a service in your app with:",
+            "text": "We usually make them available as a global module in our apps (see our application ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://github.com/epam/UUI/blob/main/templates/uui-cra-template/template/src/index.tsx#L19"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "template",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "). So you can access a service in your app with the following:",
             "marks": []
           }
         ]
       },
       {
         "object": "block",
-        "type": "paragraph",
+        "type": "note-quote",
         "data": {},
         "nodes": [
           {
             "object": "text",
-            "text": "import { svc } from '../../services';",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "...",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "svc.uuiModals.showModal(...)",
+            "text": "import { svc } from '../../services';\n...\nsvc.uuiModals.showModal(...)",
             "marks": []
           }
         ]
@@ -1323,7 +1359,7 @@
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
+              "url": "https://uui.epam.com/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
             },
             "nodes": [
               {
@@ -1335,19 +1371,19 @@
           },
           {
             "object": "text",
-            "text": " all services, and bring them to React Context, with the ContextProvider component. It's required to be one of the root components of the application, an usually initialized at index.ts file.",
+            "text": " all services and bring them to React Context with the ContextProvider component. It's necessary to be one of the app’s root components - usually initialised in the index.ts file.",
             "marks": []
           }
         ]
       },
       {
         "object": "block",
-        "type": "paragraph",
+        "type": "list-item-child",
         "data": {},
         "nodes": [
           {
             "object": "text",
-            "text": "There are following contexts/services exist in UUI:",
+            "text": "The following contexts/services exist in UUI:",
             "marks": []
           }
         ]
@@ -1369,7 +1405,26 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "AnalyticsContext / svc.uuiAnalytics - Web Analytics abstraction. ",
+                    "text": "",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "AnalyticsContext",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " / svc.uuiAnalytics — Web Analytics abstraction. ",
                     "marks": []
                   }
                 ]
@@ -1388,7 +1443,26 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "ApiContext / svc.uuiApi - makes API calls gently - handling common HTTP errors, can re-login user if session is lost w/o loosing his work",
+                    "text": "",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://uui.epam.com/documents?id=apiContext&mode=doc&skin=UUI4_promo&category=contexts"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "ApiContext",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " / svc.uuiApi — makes API calls gently, handling common HTTP errors, can re-login user if session is lost w/o loosing his work.",
                     "marks": []
                   }
                 ]
@@ -1407,7 +1481,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "DndContext / svc.uuiDnd - handles Drag-n-drop operations. See ",
+                    "text": "DndContext / svc.uuiDnd — handles Drag-n-drop operations. See ",
                     "marks": []
                   },
                   {
@@ -1419,33 +1493,52 @@
                     "nodes": [
                       {
                         "object": "text",
-                        "text": "demo ",
+                        "text": "demo",
                         "marks": []
                       }
                     ]
                   },
                   {
                     "object": "text",
+                    "text": ".",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
                     "text": "",
                     "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://uui.epam.com/documents?id=apiContext&mode=doc&skin=UUI4_promo&category=contexts"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "ErrorContext",
+                        "marks": []
+                      }
+                    ]
+                  },
                   {
                     "object": "text",
-                    "text": "ErrorContext / svc.uuiError - handles React crashes with spash-screen errors. ApiContext uses it to show HTTP errors.",
+                    "text": " / svc.uuiError — handles JS crashes with splash screen errors. ApiContext uses it to show HTTP errors.",
                     "marks": []
                   }
                 ]
@@ -1464,7 +1557,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "LayoutContext / svc.uuiLayout - tracks z-indexes for modal windows",
+                    "text": "LayoutContext / svc.uuiLayout — tracks z-indexes for overlays, like modals and dropdowns.",
                     "marks": []
                   }
                 ]
@@ -1483,7 +1576,26 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "LockContext / svc.uuiLocks - allow to 'lock' user into a certain state, usually used to keep user from losing unsaved data ",
+                    "text": "",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://uui.epam.com/documents?id=lockContextDoc&mode=doc&skin=UUI4_promo&category=contexts"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "LockContext",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " / svc.uuiLocks — allows you to 'lock' a user into a specific state, usually used to keep the user from losing unsaved data.",
                     "marks": []
                   }
                 ]
@@ -1502,7 +1614,26 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "ModalContext / svc.uuiModals - handles showing modal dialogs out of primary rendering tree, and stacking them correctly",
+                    "text": "",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://uui.epam.com/documents?id=modalContext&mode=doc&skin=UUI4_promo&category=contexts"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "ModalContext",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " / svc.uuiModals —  handles showing modal dialogs out of the primary rendering tree and stacking them correctly.",
                     "marks": []
                   }
                 ]
@@ -1521,7 +1652,26 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "NotificationContext / svc.uuiNotifications- allows to show temporary floating messages",
+                    "text": "",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://uui.epam.com/documents?id=notificationContextDoc&mode=doc&skin=UUI4_promo&category=contexts"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "NotificationContext",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " / svc.uuiNotifications — allows showing temporary floating messages.",
                     "marks": []
                   }
                 ]
@@ -1540,7 +1690,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "UserSettingsContext / svc.uuiUserSettings - an abstraction layer to save temporary user settings. Like visible columns in a table. Defaults to LocalStore, but this can be changed by application.",
+                    "text": "UserSettingsContext / svc.uuiUserSettings — an abstraction layer to save temporary user settings, like visible columns in a table. Defaults to Local Storage, but the application can change this.",
                     "marks": []
                   }
                 ]
@@ -1568,7 +1718,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI contains several tools to cover common state management and data-manipulation patterns. This includes ",
+            "text": "UUI contains several tools to cover common state management and data manipulation patterns. They include: ",
             "marks": []
           }
         ]
@@ -1590,7 +1740,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "DataSources subsystem - an abstraction to stream data into list/tree components, like Pickers and DataTable. ",
+                    "text": "DataSources subsystem - an abstraction to stream data into list/tree components, like Pickers and DataTable. ",
                     "marks": []
                   }
                 ]
@@ -1609,114 +1759,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Forms and Lenses - a set of helpers to streamline development of Forms, and other interfaces with load-edit-save flow.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Helpers",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI contains some light-weight helpers. Notable mentions:",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "mouseCoords - to get X and Y of user's mouse pointer",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "windowSize - width and height of users' window",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "getScrollBarSize - to get user's brower's scrollbar size",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "getCookie/deleteCookie ",
+                    "text": "Forms and Lenses - a set of helpers to streamline the development of Forms and other interfaces with the load-edit-save flow.",
                     "marks": []
                   }
                 ]
@@ -1744,7 +1787,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Usually, UI libraries use a common approach to use parameterized CSS pre-processor: you can tweak colors, some sizes, and that's it. The result of such skinization, usually looks like re-colored Material UI or Bootstrap. It's a poor man branding.",
+            "text": "Usually, UI libraries use a common approach to parameterized CSS pre-processor: you can tweak colors and some sizes, and that's it. The result of such skinization usually looks like just a recolored Material UI or Bootstrap.",
             "marks": []
           }
         ]
@@ -1756,7 +1799,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "At EPAM, we can't afford limiting our UI to just re-coloring existing library. We want to be able to create first-class visual look, communicating our brand and voice with no compromises . To allow that, we can't limit our designers to some other's choice - we need them to be able to tweak everything. At the other hand, as engineers, we know that brand is changing, and we want to re-use as much as possible.",
+            "text": "At EPAM, we can't afford to limit our UI to the mere existing library’s recoloring. We want to create a first-class visual look, communicating our brand and voice without compromises. To allow that, we can't limit our designers to someone else's choice - we need them to be able to tweak everything. Conversely, as engineers, we know that the brand is changing, and we want to reuse libraries as much as possible.",
             "marks": []
           }
         ]
@@ -1768,7 +1811,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "That's why, in UUI, we picked a very different approach to customization. We have the @epam/uui-components package, which contains components with no styling, just behavior and minor CSS which which is must. Then, we create a 'skin' package, which contains derived components, which wraps components from @epam/uui-components, to add your it's own Design System on top. Everything - from the grid step, via typography, icon set, colors - are baked into skin, not the core. Everything in uui-components doesn't dictates anything about visuals, and is tweakable as possible.",
+            "text": "That's why, in UUI, we picked a very different approach to customization. First, we have the @epam/uui-components package containing components with no styling, just behavior, and minor CSS, which is a must. Then, we create a 'skin' package containing derived components. It wraps components from @epam/uui-components to add your Design System. Everything - from the grid step via typography, icon set, and colors - is baked into the skin, not the core. Nothing in UUI components dictates visuals. They are as tweakable as possible.",
             "marks": []
           }
         ]
@@ -1780,56 +1823,49 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This allows us to build a first-class branded component libraries, without common limitations. For example:",
+            "text": "This allows us to build first-class branded component libraries without common limitations. For example:",
             "marks": []
           }
         ]
       },
       {
         "object": "block",
-        "type": "paragraph",
+        "type": "unordered-list",
         "data": {},
         "nodes": [
           {
             "object": "block",
-            "type": "unordered-list",
+            "type": "list-item",
             "data": {},
             "nodes": [
               {
                 "object": "block",
-                "type": "list-item",
+                "type": "list-item-child",
                 "data": {},
                 "nodes": [
                   {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "a skin you can define its own set of colors. Instead of just pre-defined success/warning/error semantic colors, we can just use brand-named set of colors, and add a custom components variations",
-                        "marks": []
-                      }
-                    ]
+                    "object": "text",
+                    "text": "skin can define its own set of colors. Instead of just pre-defined success/warning/error semantic colors, we can use a brand-named set of colors and add custom component variations.",
+                    "marks": []
                   }
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
               {
                 "object": "block",
-                "type": "list-item",
+                "type": "list-item-child",
                 "data": {},
                 "nodes": [
                   {
-                    "object": "block",
-                    "type": "list-item-child",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "a skin, being a component library, can define a custom, brand-specific components, which doesn't exists in the base library",
-                        "marks": []
-                      }
-                    ]
+                    "object": "text",
+                    "text": "skin, being a component library, can define custom, brand-specific components which don't exist in the base library.",
+                    "marks": []
                   }
                 ]
               }
@@ -1844,7 +1880,19 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This approach is re-usable for everyone. One can build a first-class UI library on top of almost any UI Guidelines, not limiting your design team with some technical restrictions. And you can still re-use years or work.",
+            "text": "This approach may serve everyone. One can build a first-class UI library on top of almost any UI Guidelines, not limiting design teams with some technical restrictions. And you can still reuse years of work.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
             "marks": []
           }
         ]

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI4 } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3 } from '../common';
 
 export class AnchorDoc extends BaseDocsBlock {
     title = 'Anchor';
@@ -7,6 +7,7 @@ export class AnchorDoc extends BaseDocsBlock {
     getPropsDocPath() {
         return {
             [UUI4]: './app/src/docs/_props/epam-promo/components/navigation/anchor.props.tsx',
+            [UUI3]: './app/src/docs/_props/loveship/components/navigation/anchor.props.tsx',
         };
     }
 

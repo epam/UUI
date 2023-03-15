@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can use ",
+            "text": "You can use the ",
             "marks": []
           },
           {
@@ -27,7 +27,37 @@
           },
           {
             "object": "text",
-            "text": " prop for configuring tooltip content background color. Basically, 3 tooltip variants distinguish: Contrast, Default, Critical. Each variant can be applied to any type of a tooltip.",
+            "text": " prop for configuring the tooltip content background color. Basically, three tooltip variants are ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "distinguished —",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Contrast, Default, Critical. Each variant can be applied to any type of a tooltip.",
             "marks": []
           }
         ]
