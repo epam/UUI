@@ -11,7 +11,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This example shows how to build a simplistic to-do list on top of UUI tables. The demo shows how to make cells editable, use useForm to manage state and validation, implement adding new rows, conditionally highlight cells and rows.",
+            "text": "This example shows how to build a simplistic to-do list on top of UUI tables. The demo shows how to make cells editable, use ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "useForm",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " to manage state and validation, implement adding new rows, and conditionally highlight cells and rows.",
             "marks": []
           }
         ]

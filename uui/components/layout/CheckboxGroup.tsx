@@ -3,6 +3,8 @@ import { CheckboxGroup as uuiCheckboxGroup, CheckboxGroupProps } from '@epam/uui
 import { Checkbox } from '../inputs';
 import css from './CheckboxGroup.scss';
 
-export const CheckboxGroup = withMods<CheckboxGroupProps<any>>(uuiCheckboxGroup, () => [css.root],
-    () => ({ CheckboxInput: Checkbox })
+export const CheckboxGroup = withMods<CheckboxGroupProps<any>>(
+    uuiCheckboxGroup,
+    () => [css.root],
+    () => ({ CheckboxInput: Checkbox }),
 );

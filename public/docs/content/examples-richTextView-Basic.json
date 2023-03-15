@@ -11,24 +11,113 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic example of using text with ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "html",
+            "text": "Below is a b",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
               }
             ]
           },
           {
             "object": "text",
-            "text": " markup.",
+            "text": "asic example of using text with",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
             "marks": []
+          },
+          {
+            "object": "text",
+            "text": "HTML",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "markup.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
           }
         ]
       },
@@ -55,7 +144,7 @@
           },
           {
             "object": "text",
-            "text": " size values to configure paragraph text size and scale or to reduce other elements according to it.",
+            "text": " size values to configure the paragraph text size and scale or to reduce other elements according to it.",
             "marks": []
           }
         ]

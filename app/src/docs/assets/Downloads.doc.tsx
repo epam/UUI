@@ -171,9 +171,9 @@ export class DownloadsDoc extends BaseDocsBlock {
                         <RichTextView size='16' >
                             <h2>Design Libraries</h2>
                             <p>
-                                For full-scale work with design documents you need to install the component library.
-                                Here you will find detailed instructions on how to install the library,
-                                additional files and answers to frequent questions.
+                                You need to install the component library for full-scale work with design documents.
+                                You will find detailed instructions on installing the library, additional files,
+                                and answers to frequent questions here.
                             </p>
                         </RichTextView>
                         <FlexRow cx={ css.libraryBlock } >
