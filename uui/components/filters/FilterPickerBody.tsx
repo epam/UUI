@@ -90,22 +90,17 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
                 rawProps={ { tabIndex: -1 } }
                 cx={ [uuiMarkers.lockFocus] }
             >
-                <MobileDropdownWrapper
-                    title={ this.props.entityName }
-                    close={ this.props?.onClose }
-                >
 
-                    <DataPickerBody
-                        { ...props }
-                        selectionMode={ this.props.selectionMode }
-                        rows={ renderedDataRows }
-                        maxHeight={ maxHeight }
-                        searchSize="36"
-                        editMode="dropdown"
-                        showSearch={ true }
-                    />
-                    { this.renderFooter(props.selectAll) }
-                </MobileDropdownWrapper>
+                <DataPickerBody
+                    { ...props }
+                    selectionMode={ this.props.selectionMode }
+                    rows={ renderedDataRows }
+                    maxHeight={ maxHeight }
+                    searchSize="36"
+                    editMode="dropdown"
+                    showSearch={ true }
+                />
+                { this.renderFooter(props.selectAll) }
             </Panel>
         );
     }
