@@ -1,5 +1,3 @@
-@use '../../assets/styles/scss/index'  as *;
-
 @keyframes uui-spinner {
     0% { transform: translateY(0); }
     66% { transform: translateY(15px); }
@@ -18,7 +16,6 @@
         :global(.uui-spinner-dot) {
             width: 10px;
             height: 10px;
-            opacity: 0.5;
             margin: 0 3px;
             border-radius: 100%;
             animation: uui-spinner 0.8s infinite ease-in-out both;
@@ -34,6 +31,6 @@
     }
 
     :global(.uui-spinner-dot) {
-        background-color: var(--uui-color-700);
+        background-color: var( --uui-spinner);
     }
 }

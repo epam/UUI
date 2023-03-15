@@ -14,6 +14,7 @@ exports[`TabButton should be rendered correctly with props 1`] = `
 <button
   aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable root size-48 uui-has-left-icon uui-no-right-icon"
+  disabled={false}
   onClick={[Function]}
   role="tab"
   tabIndex={0}
