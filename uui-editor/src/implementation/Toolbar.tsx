@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
 import { usePlateEditorState, isEditorFocused, getSelectionBoundingClientRect } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
+import cx from "classnames";
 
 import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.scss';
@@ -40,10 +41,10 @@ export function Toolbar(props: ToolbarProps): any {
                     placement={ props.placement || 'top' }
                     modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
                 >
-                    { popperProps =>  (
+                    { popperProps => (
                         <div
                             onMouseDown={ e => e.preventDefault() }
-                            className={ css.container }
+                            className={ cx(css.container, 'slate-prevent-blur') }
                             style={ { ...popperProps.style, zIndex: 10 } }
                             ref={ node => {
                                 ref.current = node;
