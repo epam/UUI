@@ -4,7 +4,7 @@ import { UploadFileToggler} from '@epam/uui-components';
 import {
     ToolbarButton as PlateToolbarButton,
     createInsertDataPlugin,
-    PlateEditor, insertData,
+    PlateEditor, insertData, focusEditor,
 } from "@udecode/plate";
 
 import { isPluginActive, isTextSelected } from '../../../helpers';
@@ -34,31 +34,39 @@ export const UploadFileButton = ({ editor }: IUploadFileButton): any => {
 
     if (!isPluginActive(KEY)) return null;
 
+
     return (
         <UploadFileToggler
             render={ (props) => (
                 <PlateToolbarButton
                     styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
                     active={ true }
-                    onMouseDown={(e) => console.log(e)}
-                    actionHandler='onMouseDown'
+                    onMouseDown={ (e) => {
+                        e.preventDefault();
+                        focusEditor(editor);
+                    } }
                     icon={ <ToolbarButton
-                        //{ ...props }
+                        { ...props }
+                        onClick={ () => {
+                            focusEditor(editor);
+                            props.onClick();
+                            focusEditor(editor);
+                        } }
                         icon={ AttachIcon }
                         isDisabled={ isTextSelected(editor, true) }
                     /> }
                 />
             ) }
-            onFilesAdded={ (files) =>
-            {
+            onFilesAdded={ (files) => {
                 const dataTransfer = new DataTransfer();
 
+                dataTransfer.setData('type', 'attachment');
                 files.map((file: File) => {
                     dataTransfer.items.add(file);
                 });
+
                 insertData(editor, dataTransfer);
-            }
-            }
+            }}
         />
     );
 };

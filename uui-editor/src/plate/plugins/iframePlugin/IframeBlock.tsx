@@ -13,7 +13,7 @@ export function IframeBlock(props: any) {
     const { attributes, children, element } = props;
     const isSelected = useSelected();
 
-    const src = element.data.src;
+    const src = element.data.src || element.src;
     const isPdf = element.data.extension === 'pdf';
     const style = element.data.style;
 
