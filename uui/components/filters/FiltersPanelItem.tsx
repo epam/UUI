@@ -1,7 +1,7 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect, useMemo } from "react";
 import dayjs from "dayjs";
 import cx from "classnames";
-import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue } from "@epam/uui-core";
+import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, useForceUpdate, FilterPredicateName, getSeparatedValue, mobilePopperModifier } from "@epam/uui-core";
 import { Dropdown } from "@epam/uui-components";
 import { i18n } from "../../i18n";
 import { FilterPanelItemToggler } from "./FilterPanelItemToggler";
@@ -13,6 +13,9 @@ import { FilterItemBody } from "./FilterItemBody";
 import { DropdownContainer } from "../overlays";
 import { ReactComponent as RemoveIcon } from "@epam/assets/icons/common/action-deleteforever-12.svg";
 import css from "./FiltersPanelItem.scss";
+import { MobileDropdownWrapper } from "../pickers";
+import { Modifier } from "react-popper";
+
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> & {
     autoFocus?: boolean;
@@ -20,6 +23,32 @@ export type FiltersToolbarItemProps = TableFiltersConfig<any> & IEditable<any> &
 };
 
 const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
+    const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
+    const isMobileScreen = isMobile();
+
+    const popperModifiers: Modifier<any>[] = useMemo(() => {
+        const modifiers: Modifier<any>[] = [
+            {
+                name: 'offset',
+                options: { offset: (isPickersType && isMobileScreen) ? [0, 0] : [0, 6] },
+            },
+        ];
+
+        if (isPickersType && isMobileScreen) {
+            modifiers.push({
+                name: 'resetTransform',
+                enabled: true,
+                phase: 'beforeWrite',
+                requires: ['computeStyles'],
+                fn: ({ state }) => {
+                    state.styles.popper.transform = '';
+                },
+            });
+        }
+
+        return modifiers;
+    }, [isPickersType]);
+
 
     const getDefaultPredicate = () => {
         if (!props.predicates) {
@@ -38,7 +67,6 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             setPredicate(Object.keys(props.value || {})[0]);
         }
     }, [props.value]);
-
 
     const onValueChange = useCallback((value: any) => {
         if (props.predicates) {
@@ -92,10 +120,23 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     );
 
     const renderBody = (dropdownProps: DropdownBodyProps) => (
-        <DropdownContainer>
-            <Panel>
-                { renderHeader() }
-                { <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange }/> }
+        <DropdownContainer { ...dropdownProps }>
+            <Panel cx={ css.panel }>
+                <>
+                    {
+                        isPickersType ? (
+                            <MobileDropdownWrapper close={ () =>  isOpenChange(false) }>
+                                { renderHeader() }
+                                { <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } /> }
+                            </MobileDropdownWrapper>
+                        ) : (
+                            <>
+                                { renderHeader() }
+                                { <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } /> }
+                            </>
+                        )
+                    }
+                </>
             </Panel>
         </DropdownContainer>
     );
@@ -175,7 +216,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
             closeBodyOnTogglerHidden={ !isMobile() }
             value={ isOpen }
             onValueChange={ isOpenChange }
-            modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
+            modifiers={ popperModifiers }
         />
     );
 };
