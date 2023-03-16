@@ -593,6 +593,9 @@
     --uui-blocker-bg: var(--uui-background);
     --uui-blocker-bg-with-opacity: #F5F6FA80;
 
+    /* FlexRow */
+    --uui-flex-row-border-bottom: 1px solid var(--uui-divider);
+
     /* modification of the states of table components */
 
     :global(.uui-dt-cell-border) {
@@ -1058,11 +1061,6 @@
 
     :global(.flex-row-none) {
         --uui-flex-row-bg: transparent;
-    }
-
-    :global(.flex-row-border-bottom-default),
-    :global(.flex-row-border-bottom-gray40) {
-        --uui-flex-row-border-bottom: 1px solid var(--gray40);
     }
 
     :global(.panel-white) {

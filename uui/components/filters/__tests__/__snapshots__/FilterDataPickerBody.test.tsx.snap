@@ -3,7 +3,7 @@
 exports[`FilterDataPickerBody should render correctly 1`] = `
 Array [
   <div
-    className="root size-36 border-bottom flex-row-border-bottom-default container align-items-center"
+    className="root size-36 borderBottom container align-items-center"
     style={
       Object {
         "columnGap": undefined,
@@ -331,7 +331,7 @@ Array [
                   tabIndex={0}
                 >
                   <div
-                    className="uui-calendar-clickable-day -clickable uui-calendar-current-day uui-calendar-day-wrapper"
+                    className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                     onClick={[Function]}
                   >
                     <div
@@ -361,7 +361,7 @@ Array [
                   tabIndex={0}
                 >
                   <div
-                    className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                    className="uui-calendar-clickable-day -clickable uui-calendar-current-day uui-calendar-day-wrapper"
                     onClick={[Function]}
                   >
                     <div

@@ -24,7 +24,7 @@ export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, props => {
         props.vPadding && css['vPadding-' + props.vPadding],
         props.margin && css['margin-' + props.margin],
         props.topShadow && css.topShadow,
-        props.borderBottom && (cx(css['border-bottom'], (props.borderBottom === true ? 'flex-row-border-bottom-default' : `flex-row-border-bottom-${props.borderBottom}`))),
+        props.borderBottom && css.borderBottom,
         props.spacing && css['spacing-' + props.spacing],
     ];
 });
