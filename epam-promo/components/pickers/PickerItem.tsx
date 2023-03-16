@@ -3,8 +3,7 @@ import { DataRowProps, Icon } from '@epam/uui-core';
 import { AvatarProps, IconContainer } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { Text } from '../typography';
-import { TextPlaceholder } from '@epam/uui';
-import { Avatar } from '../widgets';
+import { TextPlaceholder, Avatar } from '@epam/uui';
 import { SizeMod } from '../types';
 import css from './PickerItem.scss';
 

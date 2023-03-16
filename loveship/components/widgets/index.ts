@@ -1,6 +1,4 @@
-export * from './Avatar';
 export * from './AvatarRow';
-export * from './AvatarStack';
 export * from './Badge';
 export * from './Carousel';
 export * from './EmbeddedWidget';
