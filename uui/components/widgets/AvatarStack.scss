@@ -1,6 +1,3 @@
-@use  '../../assets/styles/scss/loveship-colors' as *;
-@use '../../assets/styles/scss/fonts' as *;
-
 .root {
     :global(.avatars) {
         padding-right: 12px;
@@ -12,10 +9,10 @@
     }
 
     :global(.avatarsCount) {
+        color: var(--uui-text-primary);
         margin-left: 3px;
         line-height: 1;
+        font-family: var(--font-semibold);
         font-size: 14px;
-        color: $night700;
-        font-family: $font-sans-semibold;
     }
 }

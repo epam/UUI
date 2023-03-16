@@ -1,4 +1,3 @@
-export * from './AvatarStack';
 export * from './Badge';
 export * from './Paginator';
 export * from './PageButton';
