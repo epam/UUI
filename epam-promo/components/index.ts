@@ -16,5 +16,5 @@ export {
     Switch, TextArea, Dropdown, TextPlaceholder, Tag, RadioInput, MainMenu, GlobalMenu, Burger, BurgerButton,
     BurgerSearch, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton, IconContainer,
     Accordion, RichTextView, Form, useForm, Blocker, CheckboxGroup, ControlGroup, ConfirmationModal, RadioGroup,
-    Anchor,
+    Anchor, Avatar, AvatarStack,
 } from "@epam/uui";
