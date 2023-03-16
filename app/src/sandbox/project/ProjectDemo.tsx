@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
-import React, { useCallback, useMemo } from 'react';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, IEditable, ITree, Metadata, useList, usePrevious, useTree } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -9,9 +9,11 @@ import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
 import { getInsertionOrder } from './helpers';
+import isEqual from 'lodash.isequal';
 
 interface FormState {
     items: Record<number, Task>;
+    tree?: ITree<Task, number>;
 }
 
 const metadata: Metadata<FormState> = {
@@ -31,13 +33,21 @@ let lastId = -1;
 let savedValue: FormState = { items: getDemoTasks() };
 
 export const ProjectDemo = () => {
+    const getId = useCallback((i: Task) => i.id, []);
+    const getParentId = useCallback((i: Task) => i.parentId, []);
+
     const { lens, value, onValueChange, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
-        value: savedValue,
+        value: { items: savedValue.items },
         onSave: async (value) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
             savedValue = value;
         },
         getMetadata: () => metadata,
+    });
+
+    const tree = useTree({
+        items: Object.values(value.items),
+        params: { getId, getParentId },
     });
 
     // Insert new/exiting top/bottom or above/below relative to other task
@@ -74,8 +84,9 @@ export const ProjectDemo = () => {
         listState: tableState,
         setListState: setTableState,
         items: Object.values(value.items),
-        getId: i => i.id,
-        getParentId: i => i.parentId,
+        tree,
+        getId,
+        getParentId,
         getRowOptions: (task) => ({
             ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
             //checkbox: { isVisible: true },
