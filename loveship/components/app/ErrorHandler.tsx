@@ -116,7 +116,7 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
             <ModalBlocker cx={ css.modalBlocker } blockerShadow='dark' key='auth-lost' isActive={ true } zIndex={ 100500 } success={ () => { } } abort={ () => { } }>
                 <ModalWindow>
                     <ModalHeader borderBottom title={ errorInfo.title } />
-                    <Spinner cx={ css.recoverySpinner } color='fire' />
+                    <Spinner cx={ css.recoverySpinner } />
                     <FlexRow padding='24' cx={ css.recoveryMessage }>
                         <FlexCell grow={ 1 }>
                             <RichTextView>{ errorInfo.subtitle }</RichTextView>
