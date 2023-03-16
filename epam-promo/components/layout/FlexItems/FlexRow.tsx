@@ -10,7 +10,7 @@ export const FlexRow = withMods<FlexRowProps, RowMods>(
     uuiFlexRow,
     (props) => {
         return [
-            `flex-row-${(props.background || 'none')}`,
+            `flex-row-background-${(props.background || 'none')}`,
         ];
     },
 );
