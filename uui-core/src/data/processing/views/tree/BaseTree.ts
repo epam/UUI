@@ -1,7 +1,9 @@
+import isEqual from "lodash.isequal";
 import { DataSourceState, IMap, DataRowPathItem } from "../../../../types";
 import { CompositeKeysMap } from "./CompositeKeysMap";
 import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo } from "./ITree";
 import { TreeParams } from "./ITree";
+import { Tree } from "./Tree";
 
 export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
     if (params.complexIds) {
@@ -230,6 +232,15 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     protected static truePredicate = () => true;
+
+    public static areEqual<TItem, TId>(tree1: ITree<TItem, TId>, tree2: ITree<TItem, TId>) {
+        if (tree1 instanceof Tree && tree2 instanceof Tree) {
+            return isEqual(tree1.nodeInfoById, tree2.nodeInfoById)
+                && isEqual(tree1.byId, tree2.byId)
+                && isEqual(tree1.byParentId, tree2.byParentId);
+        }
+        return isEqual(tree1, tree2);
+    }
 
     public static blank<TItem, TId>(params: TreeParams<TItem, TId>) {
         return new (this as any)(

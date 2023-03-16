@@ -23,13 +23,15 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     filteredTree: ITree<TItem, TId>;
     sortedTree: ITree<TItem, TId>;
 
+    private refreshCache: boolean = false;
+
     constructor(
         protected editable: IEditable<DataSourceState<TFilter, TId>>,
         props: ArrayListViewProps<TItem, TId, TFilter>,
     ) {
         super(editable, props);
         this.props = props;
-        this.tree = Tree.blank(props);
+        this.tree = props.tree ? props.tree.value : Tree.blank(props);
         this.update(editable.value, props);
     }
 
@@ -42,9 +44,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         const prevTree = this.tree;
         if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
-            if (prevItems !== newItems || !this.originalTree) {
-                this.originalTree = Tree.create(this.props, this.props.items);
+            if (prevItems !== newItems || !this.originalTree || this.props.tree?.value !== newProps.tree?.value) {
+                const tree = this.props.tree ? this.props.tree.value : null;
+                // TODO: add merge method to Tree and remove `as TItem[]` statement...
+                this.originalTree = tree ? tree.patch(this.props.items as TItem[]) : Tree.create(this.props, this.props.items);
                 this.tree = this.originalTree;
+                this.refreshCache = true;
             }
         }
 
@@ -85,10 +90,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const { filter, search, sorting } = newValue;
         const { getSearchFields, getFilter, sortBy } = this.props;
 
+        const prevTree = this.tree;
         let filterTreeIsUpdated = false;
-        if (this.filterWasChanged(prevValue, newValue) || !this.filteredTree) {
+        if (this.filterWasChanged(prevValue, newValue) || !this.filteredTree || this.refreshCache) {
             this.filteredTree = this.originalTree.filter({ filter, getFilter });
             filterTreeIsUpdated = true;
+            this.refreshCache = false;
         }
 
         let searchTreeIsUpdated = false;
@@ -102,6 +109,10 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         }
 
         this.tree = this.sortedTree;
+
+        if (this.props.tree && !Tree.areEqual(this.props.tree.value, this.tree)) {
+            this.props.tree.onValueChange(this.tree);
+        }
     }
 
     public getVisibleRows = () => {
