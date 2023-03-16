@@ -14,7 +14,7 @@ export default function GetRowOptionsExample() {
     }, []);
 
     return (
-        <FlexCell width={ 600 }>
+        <FlexCell width={ 612 }>
             <FlexRow spacing='12' >
                 <PickerInput<Product, number>
                     dataSource={ productsDataSource }

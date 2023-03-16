@@ -1,7 +1,0 @@
-@use  '../../assets/styles/index' as *;
-
-.panel {
-    @media screen and (max-width: 720px) {
-        height: var(--app-mobile-height);
-    }
-}

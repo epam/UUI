@@ -27,7 +27,7 @@ export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(uuiModalW
     css['height-' + (mods.height || 'auto')],
 ]);
 
-export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {};
+export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {}
 
 export const ModalHeader = React.forwardRef<HTMLDivElement, ModalHeaderProps>((props, ref) => (
     <FlexRow
@@ -39,7 +39,7 @@ export const ModalHeader = React.forwardRef<HTMLDivElement, ModalHeaderProps>((p
         cx={ [css.modalHeader, props.cx] }
         rawProps={ props.rawProps }
     >
-        { props.title && <Text size='48' fontSize='18' font='sans-semibold'>{ props.title }</Text> }
+        { props.title && <Text color='night800' size='48' fontSize='18' font='sans-semibold'>{ props.title }</Text> }
         { props.children }
         <FlexSpacer />
         { props.onClose && <FlexCell shrink={ 0 } width='auto'><IconButton icon={ CrossIcon } onClick={ props.onClose } /></FlexCell> }

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { PickerInputBaseProps } from '@epam/uui-components';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { PickerInput, PickerInputProps, Button, LinkButton, FlexCell, Text, SearchInput } from '@epam/promo';
+import { PickerInputProps } from '@epam/uui';
+import { PickerInput, Button, LinkButton, FlexCell, Text, SearchInput } from '@epam/promo';
 import { iconDoc, iconOptionsDoc, iEditable, isDisabledDoc } from '../../docs';
 import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext } from '../../docs';
 import { pickerBaseOptionsDoc } from './common';
