@@ -2,9 +2,8 @@ import * as types from '../../types';
 import { cx, FlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow, RowMods as uuiRowMods } from '@epam/uui';
 
-export interface RowMods extends Omit<uuiRowMods, 'borderBottom' | 'spacing'>, types.RowSizeMod {
+export interface RowMods extends Omit<uuiRowMods, 'spacing'>, types.RowSizeMod {
     background?: 'white' | 'night50' | 'night100' | 'none';
-    borderBottom?: boolean | 'night400';
     spacing?: '6' | '12' | '18' | null;
     type?: 'form' | 'panel';
 }
@@ -34,7 +33,7 @@ export const FlexRow = withMods<FlexRowProps, RowMods>(
     uuiFlexRow,
     (props) => {
         return [
-            `flex-row-${(props.background || 'none')}`,
+            `flex-row-background-${(props.background || 'none')}`,
         ];
     },
     (props) => {
@@ -42,7 +41,6 @@ export const FlexRow = withMods<FlexRowProps, RowMods>(
         props = { ...defaults, ...props };
 
         return ({
-            borderBottom: props.borderBottom,
             spacing: props.spacing,
         } as FlexRowProps);
     },

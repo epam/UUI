@@ -12,9 +12,9 @@ interface DataPickerHeaderProps {
 
 const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = props => {
     const title = props.title ? props.title.charAt(0).toUpperCase() + props.title.slice(1) : "";
-    
+
     return (
-        <FlexRow alignItems="center" background="white" borderBottom="gray40" size="48" cx={ css.header }>
+        <FlexRow alignItems="center" background="white" borderBottom size="48" cx={ css.header }>
             <Text font="sans-semibold">{ title }</Text>
             <IconButton
                 icon={ CloseIcon }

@@ -39,7 +39,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       role="modal"
     >
       <div
-        className="root size-36 padding-24 vPadding-12 border-bottom flex-row-border-bottom-gray40 spacing-12 flex-row-white modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 borderBottom spacing-12 flex-row-white modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -247,7 +247,7 @@ exports[`ConfirmationModal should be rendered correctly 2`] = `
       role="modal"
     >
       <div
-        className="root size-36 padding-24 vPadding-12 border-bottom flex-row-border-bottom-gray40 spacing-12 flex-row-white modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 borderBottom spacing-12 flex-row-white modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,

@@ -39,7 +39,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       role="modal"
     >
       <div
-        className="root size-36 padding-24 vPadding-12 border-bottom flex-row-border-bottom-night400 spacing-6 flex-row-none modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 borderBottom spacing-6 flex-row-background-none modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -99,7 +99,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="root size-36 vPadding-24 spacing-6 flex-row-none container align-items-center"
+          className="root size-36 vPadding-24 spacing-6 flex-row-background-none container align-items-center"
           style={
             Object {
               "columnGap": undefined,
@@ -137,7 +137,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 spacing-6 flex-row-white body container align-items-center"
+        className="root size-36 spacing-6 flex-row-background-white body container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -747,7 +747,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 flex-row-none modalFooter container align-items-center"
+        className="root size-36 padding-24 vPadding-24 spacing-12 flex-row-background-none modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,

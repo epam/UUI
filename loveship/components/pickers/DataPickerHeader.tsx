@@ -15,9 +15,9 @@ const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = props => {
     if (!isMobile()) return null;
 
     const title = props.title ? props.title.charAt(0).toUpperCase() + props.title.slice(1) : "";
-    
+
     return (
-        <FlexRow alignItems="center" size="48" background="white" borderBottom="night400" cx={ css.header }>
+        <FlexRow alignItems="center" size="48" background="white" borderBottom cx={ css.header }>
             <Text font="sans-semibold">{ title }</Text>
             <IconButton
                 icon={ CloseIcon }
