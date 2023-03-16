@@ -84,18 +84,15 @@ const Editor = ({ initialValue, ...props }: any) => {
             >
 
             </Plate>
-            { isFocused &&
-                <>
-                    <MarkBalloonToolbar />
-                    <Toolbar style={ {
-                        position: 'sticky',
-                        bottom: 12,
-                        display: 'flex',
-                        minHeight: 0,
-                    } }>
-                        <ToolbarButtons />
-                    </Toolbar>
-                </> }
+            <MarkBalloonToolbar />
+            <Toolbar style={ {
+                position: 'sticky',
+                bottom: 12,
+                display: 'flex',
+                minHeight: 0,
+            } }>
+                <ToolbarButtons />
+            </Toolbar>
         </DndProvider>
     );
 

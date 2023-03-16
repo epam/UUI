@@ -50,9 +50,9 @@ export const withFileUpload = <
 
                 insertElements(editor, {
                     ...result,
+                    ...(dataTransfer.getData('type') === 'attachment' ? { type: 'attachment'} : {}),
                     children: [{ text: '' }],
                 });
-                insertEmptyElement(editor, 'paragraph');
                 focusEditor(editor);
             }
         } else {
