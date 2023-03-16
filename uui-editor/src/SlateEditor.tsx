@@ -63,7 +63,7 @@ interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<H
     scrollbars?: boolean;
 }
 
-const Editor = ({ initialValue, ...props }: any) => {
+const Editor = ({ initialValue, isReadonly: readOnly, ...props }: any) => {
     const editor = usePlateEditorState();
     const forceUpdate = useForceUpdate();
 
@@ -81,6 +81,7 @@ const Editor = ({ initialValue, ...props }: any) => {
             <Plate
                 { ...props }
                 id={ props.id }
+                readOnly={ readOnly }
             >
 
             </Plate>
@@ -145,6 +146,7 @@ export function SlateEditor(props: SlateEditorProps) {
     };
 
     const onChange = (value: any) => {
+        if (isReadonly) return;
         props?.onValueChange(value);
     };
 
@@ -169,6 +171,7 @@ export function SlateEditor(props: SlateEditorProps) {
             plugins={ plugins }
             initialValue={ value }
             id={ currentId.current }
+            readOnly={ props.isReadonly }
         >
             <Editor
                 onChange={ onChange }

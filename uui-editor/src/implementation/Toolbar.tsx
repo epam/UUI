@@ -45,7 +45,7 @@ export function Toolbar(props: ToolbarProps): any {
                         <div
                             onMouseDown={ e => e.preventDefault() }
                             className={ cx(css.container, 'slate-prevent-blur') }
-                            style={ { ...popperProps.style, zIndex: 10 } }
+                            style={ { ...popperProps.style, zIndex: 30 } }
                             ref={ node => {
                                 ref.current = node;
                                 (popperProps.ref as React.RefCallback<HTMLDivElement>)(node);

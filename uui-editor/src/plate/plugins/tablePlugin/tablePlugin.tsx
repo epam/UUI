@@ -218,10 +218,13 @@ const Table = (props: any) => {
     element.colSizes = useTableColSizes(
         element.colSizes ? element : { ...props.element, colSizes: initialColSizes.current }
     );
+
+    const tableWidth = element.colSizes.reduce((acc: number, cur: number) => acc + cur, 0);
     return (
         <div className={ cx(tableCSS.tableWrapper) }>
             <PlateTableElement
                 { ...props }
+                style={ { width: tableWidth } }
                 className={ tableCSS.table }
                 element={ element }
             />
