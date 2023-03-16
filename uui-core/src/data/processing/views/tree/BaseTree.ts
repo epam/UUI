@@ -203,7 +203,6 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         add: (a: TSubtotals, b: TSubtotals) => TSubtotals,
     ) {
         const subtotalsMap = this.newMap<TId | undefined, TSubtotals>();
-
         this.forEach((item, id, parentId) => {
             let itemSubtotals = get(item, this.byParentId.has(id));
 

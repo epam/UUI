@@ -1,6 +1,6 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
-import React, { useCallback, useEffect, useMemo } from 'react';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, IEditable, ITree, Metadata, useList, usePrevious, useTree } from '@epam/uui-core';
+import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, DataTableRow } from '@epam/promo';
+import React, { useCallback, useMemo } from 'react';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, ITree, Metadata, useList, useTree } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -9,7 +9,6 @@ import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
 import { getInsertionOrder } from './helpers';
-import isEqual from 'lodash.isequal';
 
 interface FormState {
     items: Record<number, Task>;
@@ -100,7 +99,20 @@ export const ProjectDemo = () => {
         }),
     }, []);
 
-    const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
+    const { taskColumns, summaryColumns } = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
+
+    const summary = useMemo(() => {
+        const totalEstimate = tree.value?.computeSubtotals(
+            (item) => item.parentId ? 0 : (item.estimate ?? 0),
+            (a, b) => a + b,
+        );
+        const totalCount = tree.value?.computeSubtotals(_ => 1, (a, b) => a + b);
+
+        return {
+            totalEstimate: totalEstimate?.get(undefined) ?? 0,
+            totalCount: totalCount?.get(undefined) ?? 0,
+        };
+    }, [tree.value]);
 
     return <Panel style={ { width: '100%' } }>
         <FlexRow spacing='12' margin='12'>
@@ -127,13 +139,21 @@ export const ProjectDemo = () => {
         <DataTable
             headerTextCase='upper'
             getRows={ () => rows }
-            columns={ columns }
+            columns={ taskColumns }
             value={ tableState }
             onValueChange={ setTableState }
             showColumnsConfig
             allowColumnsResizing
             allowColumnsReordering
             { ...listProps }
-        />
+        >
+            <DataTableRow
+                columns={ summaryColumns }
+                id="footer"
+                rowKey="footer"
+                index={ 100500 }
+                value={ summary }
+            />
+        </DataTable>
     </Panel>;
 };

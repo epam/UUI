@@ -11,6 +11,10 @@ export interface Task {
     order?: string;
 }
 
+export interface TasksSummary {
+    totalCount?: number;
+    totalEstimate?: number;
+}
 export interface Resource {
     id: number;
     name: string;
