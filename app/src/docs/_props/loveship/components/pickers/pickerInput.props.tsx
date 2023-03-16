@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInputBaseProps } from '@epam/uui-components';
-import { PickerInput, PickerInputProps } from '@epam/loveship';
+import { PickerInput } from '@epam/loveship';
+import { PickerInputProps } from '@epam/uui';
 import { Button, LinkButton } from '@epam/loveship';
 import { SearchInput, Switch } from '@epam/loveship';
 import { iEditable, sizeDoc, isDisabledDoc, modeDoc, iconDoc, iconOptionsDoc } from '../../docs';
@@ -22,8 +23,8 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('maxItems', { examples: [0, 1, 5, 10, 50, 100, 1000] })
     .prop('minCharsToSearch', { examples: [0, 1, 3, 5] })
-    .prop('prefix', { examples: [ { value: 'Prefix: ' } ] })
-    .prop('suffix', { examples: [ { value: 'Suffix' } ] })
+    .prop('prefix', { examples: [{ value: 'Prefix: ' }] })
+    .prop('suffix', { examples: [{ value: 'Suffix' }] })
     .prop('editMode', { examples: ['dropdown', 'modal'], isRequired: false, defaultValue: 'dropdown' })
     .prop('isInvalid', { examples: [true] })
     .prop('isSingleLine', { examples: [true] })

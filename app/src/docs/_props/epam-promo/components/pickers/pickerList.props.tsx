@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { PickerListBaseProps } from '@epam/uui-components';
 import { DocBuilder } from '@epam/uui-docs';
-import { PickerList } from '@epam/loveship';
+import { PickerList, LinkButton, Button, Text, FlexRow } from '@epam/promo';
 import { PickerListProps } from '@epam/uui';
 import { iEditable, isDisabledDoc } from '../../docs';
 import { DefaultContext, ResizableContext, FormContext } from '../../docs';
 import { pickerBaseOptionsDoc } from './common';
-import { LinkButton, Button } from '@epam/loveship';
-import { Text } from '@epam/loveship';
-import { FlexRow } from '@epam/loveship';
 
 const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseProps<any, any>>({ name: 'PickerList', component: PickerList })
     .implements([/*sizeDoc, */isDisabledDoc, iEditable, pickerBaseOptionsDoc /*iconDoc, , */])
@@ -33,7 +30,7 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
     .prop('renderModalToggler', {examples: [
         {
             name: 'Green Button',
-            value: props => <LinkButton color='grass' { ...props } />,
+            value: props => <LinkButton color='green' { ...props } />,
         },
     ]})
     .prop('disallowClickOutside', { examples: [true], defaultValue: false})

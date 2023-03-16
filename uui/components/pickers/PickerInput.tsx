@@ -11,7 +11,6 @@ import { DataPickerFooter } from './DataPickerFooter';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
 import css from './PickerInput.scss';
-import { DropdownContainer } from '../overlays';
 
 export type PickerInputProps = SizeMod & IHasEditMode & {};
 
@@ -98,38 +97,35 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : (this.props.minBodyWidth || pickerWidth);
 
         return (
-            <DropdownContainer>
-                <Panel
-                    shadow
-                    style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
-                    rawProps={ { tabIndex: -1 } }
-                    cx={ [css.panel, uuiMarkers.lockFocus] }
+            <Panel
+                style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
+                rawProps={ { tabIndex: -1 } }
+                cx={ [css.panel, uuiMarkers.lockFocus] }
+            >
+                <MobileDropdownWrapper
+                    title={ this.props.entityName }
+                    close={ () => {
+                        this.returnFocusToInput();
+                        this.toggleBodyOpening(false);
+                    } }
                 >
-                    <MobileDropdownWrapper
-                        title={ this.props.entityName }
-                        close={ () => {
-                            this.returnFocusToInput();
-                            this.toggleBodyOpening(false);
-                        } }
-                    >
-                        <DataPickerBody
-                            { ...props }
-                            rows={ renderedDataRows }
-                            maxHeight={ maxHeight }
-                            searchSize={ this.props.size }
-                            editMode='dropdown'
-                            selectionMode={ this.props.selectionMode }
-                            renderNotFound={ this.props.renderNotFound ?
-                                () => this.props.renderNotFound({
-                                    search: this.state.dataSourceState.search,
-                                    onClose: () => this.toggleBodyOpening(false),
-                                }) : undefined
-                        }
-                        />
-                        { !this.isSingleSelect() && this.renderFooter() }
-                    </MobileDropdownWrapper>
-                </Panel>
-            </DropdownContainer>
+                    <DataPickerBody
+                        { ...props }
+                        rows={ renderedDataRows }
+                        maxHeight={ maxHeight }
+                        searchSize={ this.props.size }
+                        editMode='dropdown'
+                        selectionMode={ this.props.selectionMode }
+                        renderNotFound={ this.props.renderNotFound ?
+                            () => this.props.renderNotFound({
+                                search: this.state.dataSourceState.search,
+                                onClose: () => this.toggleBodyOpening(false),
+                            }) : undefined
+                    }
+                    />
+                    { !this.isSingleSelect() && this.renderFooter() }
+                </MobileDropdownWrapper>
+            </Panel>
         );
     }
 }
