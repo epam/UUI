@@ -50,6 +50,7 @@ import { Toolbar } from '../../../implementation/Toolbar';
 import tableCSS from './Table.scss';
 
 const DEFAULT_COL_WIDTH = 200;
+const EMPTY_COL_WIDTH = 48;
 
 const Table = (props: any) => {
     const editor = usePlateEditorState();
@@ -214,10 +215,10 @@ const Table = (props: any) => {
         );
     }, [element, cellPath, rowPath, cellEntries]);
 
-    const initialColSizes = useRef(data.cellSizes);
-    element.colSizes = useTableColSizes(
-        element.colSizes ? element : { ...props.element, colSizes: initialColSizes.current }
-    );
+    const currentColSizes =
+        (element.colSizes ? element.colSizes : data.cellSizes)
+            .map((current: number) => current === 0 ? EMPTY_COL_WIDTH : current);
+    element.colSizes = useTableColSizes({ ...element, colSizes: currentColSizes });
 
     const tableWidth = element.colSizes.reduce((acc: number, cur: number) => acc + cur, 0);
     return (
