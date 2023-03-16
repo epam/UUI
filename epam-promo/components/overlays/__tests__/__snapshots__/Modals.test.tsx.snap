@@ -39,7 +39,7 @@ exports[`Modals should be rendered correctly 1`] = `
       role="modal"
     >
       <div
-        className="root size-36 padding-24 vPadding-12 spacing-12 flex-row-none modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 spacing-12 flex-row-background-none modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -48,7 +48,7 @@ exports[`Modals should be rendered correctly 1`] = `
         }
       />
       <div
-        className="root size-36 padding-24 vPadding-24 spacing-12 flex-row-none modalFooter container align-items-center"
+        className="root size-36 padding-24 vPadding-24 spacing-12 flex-row-background-none modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -115,7 +115,7 @@ exports[`Modals should be rendered correctly 2`] = `
       role="modal"
     >
       <div
-        className="root size-36 padding-6 vPadding-12 borderBottom spacing-12 flex-row-gray5 modalHeader container align-items-center"
+        className="root size-36 padding-6 vPadding-12 borderBottom spacing-12 flex-row-background-gray5 modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -162,7 +162,7 @@ exports[`Modals should be rendered correctly 2`] = `
         </div>
       </div>
       <div
-        className="root size-36 padding-18 vPadding-24 spacing-12 flex-row-white modalFooter container align-items-center"
+        className="root size-36 padding-18 vPadding-24 spacing-12 flex-row-background-white modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,

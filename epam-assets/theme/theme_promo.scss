@@ -1051,15 +1051,15 @@
         --uui-dropdown-container-bg: var(--gray70);
     }
 
-    :global(.flex-row-white) {
+    :global(.flex-row-background-white) {
         --uui-flex-row-bg: var(--uui-surface);
     }
 
-    :global(.flex-row-gray5) {
+    :global(.flex-row-background-gray5) {
         --uui-flex-row-bg: var(--gray5);
     }
 
-    :global(.flex-row-none) {
+    :global(.flex-row-background-none) {
         --uui-flex-row-bg: transparent;
     }
 
