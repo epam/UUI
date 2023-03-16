@@ -2,7 +2,7 @@ name: track_bundle_size
 on:
     pull_request_target:
         branches:
-            - develop
+            - feature/bundle-size-tracker-target
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.base_ref }}-${{ github.head_ref }}
@@ -32,14 +32,16 @@ jobs:
                       ./*/node_modules
                   key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: v1-npm-deps-
-            - name: track-bundle-size-source
+
+            - name: install-dependencies-parallel
+              working-directory: source-branch
+              run: (--cwd .; --cwd ../target-branch) | parallel -k yarn
+
+            - name: collect-stats-parallel
+              working-directory: source-branch
+              run: (--cwd .; --cwd ../target-branch collect-bundle-stats) | parallel -k yarn
+
+            - name: compare-stats
               working-directory: source-branch
               run: |
-                  yarn
-                  yarn collect-bundle-stats
-            - name: track-bundle-size-target
-              working-directory: target-branch
-              run: |
-                  yarn
-                  yarn collect-bundle-stats
                   yarn compare-bundle-stats --before ./.reports/collect-bundle-stats.json --after ../source-branch/.reports/collect-bundle-stats.json
