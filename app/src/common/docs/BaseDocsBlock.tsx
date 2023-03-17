@@ -178,7 +178,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     }
 
     renderDocTitle() {
-        return <h1 className={ css.title }>{ this.title }</h1>;
+        return <RichTextView><h1>{ this.title }</h1></RichTextView>;
     }
 
     renderDoc() {

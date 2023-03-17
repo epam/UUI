@@ -26,7 +26,7 @@ export default function LanguagesMultiPicker() {
     }, []);
 
     return (
-        <FlexCell width={ 600 }>
+        <FlexCell width={ 612 }>
             <FlexRow spacing='12' >
                 <PickerInput
                     dataSource={ dataSource }

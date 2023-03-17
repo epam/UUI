@@ -98,7 +98,6 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
         return (
             <Panel
-                shadow
                 style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
                 rawProps={ { tabIndex: -1 } }
                 cx={ [css.panel, uuiMarkers.lockFocus] }
