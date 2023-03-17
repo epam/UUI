@@ -28,9 +28,6 @@ export const commonControlColors: EpamColor[] = [...allEpamPrimaryColors, ...all
 export type FontStyle = 'sans' | 'sans-semibold' | 'sans-light' ;
 export const allFontStyles: FontStyle[] = ['sans', 'sans-semibold', 'sans-light'];
 
-export type Theme = 'light' | 'dark';
-export const allThemes: Theme[] = ['light', 'dark'];
-
 // Mod interfaces
 export interface ColorMod {
     /** Component color */
