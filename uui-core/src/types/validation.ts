@@ -1,11 +1,14 @@
-import { ICanBeReadonly, ICanBeRequired, IDisableable} from "./props";
+import { IMap } from "./objects";
+import { ICanBeReadonly, ICanBeRequired, IDisableable } from "./props";
 
-type ElementType<ArrayOrObject> =
-    ArrayOrObject extends readonly (infer ElementType)[]
+type ElementType<Store> =
+    Store extends readonly (infer ElementType)[]
     ? ElementType
-    : ArrayOrObject extends Record<any, (infer ValueType)>
-        ? ValueType
-        : never;
+    : Store extends IMap<any, infer MapElementType>
+    ? MapElementType
+    : Store extends Record<any, (infer ValueType)>
+    ? ValueType
+    : never;
 
 export interface Metadata<T> extends IDisableable, ICanBeReadonly, ICanBeRequired {
     props?: {

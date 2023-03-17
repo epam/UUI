@@ -1,4 +1,4 @@
-import { DropPosition, getOrderBetween, maxOrderStr, minOrderStr } from "@epam/uui-core";
+import { DropPosition, getOrderBetween, ITree, maxOrderStr, minOrderStr } from "@epam/uui-core";
 import { Task } from "./types";
 
 /**
@@ -42,10 +42,10 @@ export function getInsertionOrder(existingOrders: string[], position: 'before' |
 let lastId = -1;
 
 export function insertOrMoveTask(
-    items: Record<number, Task>,
+    items: ITree<Task, number>,
     position: DropPosition,
     relativeTask: Task | null = null,
-    existingTask: Task | null = null
+    existingTask: Task | null = null,
 ) {
     const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
 
@@ -64,5 +64,5 @@ export function insertOrMoveTask(
         relativeTask?.order,
     );
 
-    return { ...items, [task.id]: task };
-};
+    return items.patch([task]);
+}

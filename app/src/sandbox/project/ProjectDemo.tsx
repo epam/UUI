@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
 import React, { useCallback, useMemo } from 'react';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, ITree, Metadata, Tree, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -11,24 +11,36 @@ import { getColumns } from './columns';
 import { insertOrMoveTask } from './helpers';
 
 interface FormState {
-    items: Record<number, Task>;
+    items: ITree<Task, number>;
 }
 
 const metadata: Metadata<FormState> = {
     props: {
         items: {
-            all: {
-                props: {
-                    name: { isRequired: true },
+            props: {
+                byId: {
+                    all: {
+                        props: {
+                            name: {
+                                isReadonly: true,
+                            },
+                        },
+                    },
                 },
             },
         },
     },
 };
 
-let savedValue: FormState = { items: getDemoTasks() };
+let savedValue: FormState = {
+    items: Tree.create<Task, number>(
+        { getId: i => i.id, getParentId: i => i.parentId },
+        Object.values(getDemoTasks()),
+    ),
+};
 
 export const ProjectDemo = () => {
+
     const { lens, value, setValue, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
@@ -42,7 +54,7 @@ export const ProjectDemo = () => {
     const insertTask = (position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
         setValue(formState => ({
             ...formState,
-            items: insertOrMoveTask(formState.items, position, relativeTask, existingTask)
+            items: insertOrMoveTask(formState.items, position, relativeTask, existingTask),
         }));
     };
 
@@ -56,13 +68,12 @@ export const ProjectDemo = () => {
         type: 'array',
         listState: tableState,
         setListState: setTableState,
-        items: Object.values(value.items),
+        items: value.items,
 
         getId: i => i.id,
         getParentId: i => i.parentId,
         getRowOptions: (task) => ({
-            ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
-            //checkbox: { isVisible: true },
+            ...lens.prop('items').getById(task.id).toProps(),
             isSelectable: true,
             dnd: {
                 srcData: task,

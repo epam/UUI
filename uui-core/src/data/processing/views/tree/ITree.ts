@@ -1,4 +1,4 @@
-import { DataSourceState, SortingOption, DataRowPathItem } from "../../../../types";
+import { DataSourceState, SortingOption, DataRowPathItem, IMap } from "../../../../types";
 import { LazyListViewProps } from "../LazyListView";
 import { CompositeKeysMap } from "./CompositeKeysMap";
 
@@ -39,6 +39,7 @@ export interface TreeParams<TItem, TId> {
 export type ItemsComparator<TItem> = (existingItem: TItem, newItem: TItem, cacheIsAbsent?: boolean) => number;
 
 export interface ITree<TItem, TId> {
+    readonly byId: IMap<TId, TItem>;
     clearStructure(): ITree<TItem, TId>;
     getRootIds(): TId[];
     getRootItems(): TItem[];
