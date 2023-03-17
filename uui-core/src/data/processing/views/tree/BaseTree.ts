@@ -2,6 +2,7 @@ import { DataSourceState, IMap, DataRowPathItem } from "../../../../types";
 import { CompositeKeysMap } from "./CompositeKeysMap";
 import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo } from "./ITree";
 import { TreeParams } from "./ITree";
+import { Tree } from "./Tree";
 
 export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
     if (params.complexIds) {
@@ -17,7 +18,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     protected constructor(
         protected params: TreeParams<TItem, TId>,
-        protected readonly byId: IMap<TId, TItem>,
+        public readonly byId: IMap<TId, TItem>,
         protected readonly byParentId: IMap<TId, TId[]>,
         protected readonly nodeInfoById: IMap<TId, TreeNodeInfo>,
     ) {
@@ -241,7 +242,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     public static create<TItem, TId>(params: TreeParams<TItem, TId>, items: TItem[] | ITree<TItem, TId>): ITree<TItem, TId> {
-        if (items instanceof BaseTree) {
+        if (items instanceof Tree) {
             return items;
         } else {
             // TBD: restore this optimization if needed. TBD: compare node index to detect when items are moved without changing
