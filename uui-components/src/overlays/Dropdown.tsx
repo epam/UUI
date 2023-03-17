@@ -163,7 +163,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                 this.handleOpenedChange(false);
             }
         } else if (this.isInteractedOutside(e) && !this.closeDropdownTimerId) { // User cursor in boundary area, but not inside toggler or body
-            this.setCloseDropdownTimer(this.props.closeDelay || 1500);
+            this.setCloseDropdownTimer(this.props.closeDelay ?? 1500);
         } else if (!this.isInteractedOutside(e) && this.closeDropdownTimerId) { // User returned to the toggler or body area, we need to clear close timer
             this.clearCloseDropdownTimer();
         }
