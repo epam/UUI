@@ -157,7 +157,14 @@ jobs:
       - name: Packaging and Uploading Helm Chart
         run: |
           cd ./helmchart
-          export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MINOR.$GITVERSION_COMMITSSINCEVERSIONSOURCE"
+          # workaround to separate versioning modes for prod and non-prod
+          if [[ ${{ github.ref_name}} == "main" ]]; then
+            export helm_tag="$GITVERSION_SEMVER"
+          else
+            export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MINOR.$GITVERSION_COMMITSSINCEVERSIONSOURCE"
+          fi
+          echo "[INFO] ${helm_tag}..."
+
           echo "[INFO] Replace Helm Chart package version..."
           sed -i -e "s/version: ${COMMON_HELMCHART_VER}/version: ${helm_tag}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/Chart.yaml
           echo "[INFO] Changing Helm Chart package name..."
