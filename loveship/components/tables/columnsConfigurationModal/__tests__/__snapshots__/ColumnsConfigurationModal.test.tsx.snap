@@ -48,7 +48,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="uui-font-sans-semibold uui-text-night700 root line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-sans-semibold uui-text-night800 root line-height-24 font-size-18 v-padding-12 container"
         >
           Configure columns
         </div>
@@ -558,7 +558,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         }
       >
         <div
-          className="uui-font-sans-semibold uui-text-night700 root line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-sans-semibold uui-text-night800 root line-height-24 font-size-18 v-padding-12 container"
         >
           Configure columns
         </div>
