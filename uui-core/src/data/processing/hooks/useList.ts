@@ -4,8 +4,8 @@ import { UnboxListProps, UseListProps } from "./types";
 import { createView, mergePropsWithDefaults } from "./helpers";
 import { usePrevious } from "../../../../src/hooks";
 
-export function useList<TItem, TId, TFilter>(
-    { listState, setListState, loadData = true, ...props }: UseListProps<TItem, TId, TFilter>,
+export function useList<TItem, TId, TFilter, TSubtotals>(
+    { listState, setListState, loadData = true, ...props }: UseListProps<TItem, TId, TFilter, TSubtotals>,
     deps: any[],
 ) {
     const prevLoadData = usePrevious(false);

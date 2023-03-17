@@ -14,6 +14,10 @@ interface FormState {
     items: ITree<Task, number>;
 }
 
+interface TaskSubtotals {
+    totalEstimate: number;
+}
+
 const metadata: Metadata<FormState> = {
     props: {
         items: {
@@ -64,7 +68,7 @@ export const ProjectDemo = () => {
 
     const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
-    const { rows, listProps } = useList({
+    const { rows, listProps } = useList<Task, number, any, TaskSubtotals>({
         type: 'array',
         listState: tableState,
         setListState: setTableState,
@@ -82,6 +86,16 @@ export const ProjectDemo = () => {
                 onDrop: handleDrop,
             },
         }),
+
+        subtotals: {
+            shouldCompute: (parent: Task) => false,
+            schema: {
+                totalEstimate: {
+                    get: (item) => item.parentId ? 0 : (item.estimate ?? 0),
+                    compute: (a, b) => a + b,
+                },
+            },
+        },
     }, []);
 
     const columns = useMemo(() => getColumns({ insertTask, deleteTask: () => {} }), []);

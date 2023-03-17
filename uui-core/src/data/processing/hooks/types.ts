@@ -35,11 +35,26 @@ type ListProps<TItem, TId, TFilter> = Exclude<ListViewProps<TItem, TId, TFilter>
     getId: Exclude<ListViewProps<TItem, TId, TFilter>['getId'], undefined>;
 };
 
-export type UseListProps<TItem, TId, TFilter> = ListProps<TItem, TId, TFilter> & ListState<TId, TFilter> & {
+type SubtotalsSchema<TItem, TSubtotals> = {
+    [K in keyof TSubtotals]: {
+        get: (item: TItem, hasChildren: boolean) => TSubtotals[K],
+        compute: (a: TSubtotals[K], b: TSubtotals[K]) => TSubtotals[K],
+    }
+};
+
+type SubtotalsConfig<TItem, TSubtotals> = {
+    shouldCompute: (parent: TItem) => boolean;
+    schema: SubtotalsSchema<TItem, TSubtotals>;
+};
+
+
+export type UseListProps<TItem, TId, TFilter, TSubtotals = never> = ListProps<TItem, TId, TFilter> & ListState<TId, TFilter> & {
     /**
      * If data loading has to be postponed, this flag has to be set to false.
      * Changing the flag to `true` will trigger data loading.
      * @default true
      */
     loadData?: boolean;
+
+    subtotals?: SubtotalsConfig<TItem, TSubtotals>;
 };
