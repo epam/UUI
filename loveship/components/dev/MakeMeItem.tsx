@@ -1,7 +1,7 @@
 import React from 'react';
 import { DropdownMenuButton } from '../overlays';
 import { DataRowProps, getCookie, setCookie, LazyDataSourceApi, LazyDataSource } from '@epam/uui-core';
-import { PickerInput, DataPickerRow } from '../pickers';
+import { PickerInput, DataPickerRow } from '@epam/uui';
 import { Avatar } from '@epam/uui-components';
 import { Text } from '../typography';
 import { TextPlaceholder } from '@epam/uui';

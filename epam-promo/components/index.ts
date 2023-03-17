@@ -3,7 +3,6 @@ export * from './buttons';
 export * from './overlays';
 export * from './inputs';
 export * from './layout';
-export * from './pickers';
 export * from './types';
 export * from './typography';
 export * from './datePickers';
@@ -15,6 +14,6 @@ export {
     FiltersPanel, PresetsPanel, defaultPredicates, TabButton, VerticalTabButton, Calendar, NumericInput,
     Switch, TextArea, Dropdown, TextPlaceholder, Tag, RadioInput, MainMenu, GlobalMenu, Burger, BurgerButton,
     BurgerSearch, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton, IconContainer,
-    Accordion, RichTextView, Form, useForm, Blocker, CheckboxGroup, ControlGroup, ConfirmationModal, RadioGroup,
-    Anchor,
+    Accordion, RichTextView, Form, useForm, PickerInput, PickerItem, DataPickerRow, PickerToggler, PickerList,
+    Blocker, CheckboxGroup, ControlGroup, ConfirmationModal, RadioGroup, Anchor, Avatar, AvatarStack,
 } from "@epam/uui";
