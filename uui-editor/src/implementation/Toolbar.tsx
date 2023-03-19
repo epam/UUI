@@ -1,11 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Popper } from 'react-popper';
-import { usePlateEditorState, isEditorFocused, getSelectionBoundingClientRect } from '@udecode/plate';
+import { usePlateEditorState, isEditorFocused, getDefaultBoundingClientRect, ClientRectObject, PlateEditor, Rect } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
 import cx from "classnames";
 
 import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.scss';
+import { VirtualElement } from '@popperjs/core/lib/popper';
 
 interface ToolbarProps {
     editor: any;
@@ -16,19 +17,33 @@ interface ToolbarProps {
     placement?: 'top' | 'bottom' | 'right' | 'left' | 'auto';
 }
 
+export const getSelectionBoundingClientRect = (editor: PlateEditor): ClientRectObject => {
+    const domSelection = window.getSelection();
+
+    if (!domSelection || domSelection.rangeCount < 1) {
+        return getDefaultBoundingClientRect();
+    }
+
+    const domRange = domSelection.getRangeAt(0);
+
+    const clientRect = domRange.getBoundingClientRect();
+    if(clientRect.bottom === 0 && clientRect.right === 0) {
+        return domSelection.anchorNode.parentElement.getBoundingClientRect();
+    }
+
+    return clientRect;
+};
+
+
 export function Toolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
     const editor = usePlateEditorState();
     const inFocus = isEditorFocused(editor);
 
-    const virtualReferenceElement = () => {
+    const virtualReferenceElement = (): VirtualElement => {
         return {
-            clientWidth: getSelectionBoundingClientRect().width,
-            clientHeight: getSelectionBoundingClientRect().height,
             getBoundingClientRect(): any {
-                const native = window.getSelection();
-                const range = native?.getRangeAt(0);
-                return getSelectionBoundingClientRect();
+                return getSelectionBoundingClientRect(editor);
             },
         };
     };
