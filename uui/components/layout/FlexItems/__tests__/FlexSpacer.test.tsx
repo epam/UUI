@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexSpacer } from '../FlexSpacer';
+import { FlexSpacer } from '../';
 import renderer from 'react-test-renderer';
 
 describe('FlexSpacer', () => {
