@@ -43,7 +43,6 @@
     padding: 1px;
 
     p {
-        text-align: left;
         font-family: $font-sans-semibold;
     }
 }
@@ -51,15 +50,10 @@
 .cell {
     border: 1px solid $gray30;
     position: relative;
-    width: min-content;
 
     & > :first-child {
-        padding: 0.1rem;
-
-        & > p {
-            padding: 4px 24px;
-            margin: 0.2rem 0 0 0;
-            vertical-align: baseline;
-        }
+        // padding: 0; leads to bugs, see link below
+        // https://stackoverflow.com/questions/27829250/why-doesnt-a-childs-margin-affect-a-parents-height
+        padding: 6px 24px;
     }
 }
