@@ -67,7 +67,7 @@ export default function WithInnerScrollExample() {
                 mode='form'
                 placeholder='Add description'
                 minHeight={ 'none' }
-                fontSize='16'
+                fontSize='14'
                 scrollbars
             />
         </Panel>

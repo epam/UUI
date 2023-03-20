@@ -53,13 +53,13 @@
     position: relative;
     width: min-content;
 
-    div {
-        padding: 0;
-    }
+    & > :first-child {
+        padding: 0.1rem;
 
-    p {
-        vertical-align: baseline;
-        margin: 0;
-        padding: 6px 24px;
+        & > p {
+            padding: 4px 24px;
+            margin: 0.2rem 0 0 0;
+            vertical-align: baseline;
+        }
     }
 }
