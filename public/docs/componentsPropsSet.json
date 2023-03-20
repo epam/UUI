@@ -2440,7 +2440,7 @@
       },
       {
         "name": "columnGap",
-        "value": "24 | 36 | 18 | 6 | 12",
+        "value": "6 | 12 | 18 | 24 | 36",
         "comment": "<p>Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
       },
       {
@@ -2497,6 +2497,48 @@
         "name": "vPadding",
         "value": "24 | 36 | 48 | 18 | 12",
         "comment": null
+      }
+    ],
+    "/app/src/docs/_props/epam-promo/components/layout/FlexItems/flexCell.props.tsx": [
+      {
+        "name": "width",
+        "value": "100% | auto | number",
+        "comment": "<p>Flexbox flex-basis property [Flexbox Guide] <a href='https://css-tricks.com/snippets/css/a-guide-to-flexbox/'>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>"
+      },
+      {
+        "name": "minWidth",
+        "value": "number",
+        "comment": "<p>sets the minimum width of an element</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": null,
+        "comment": "<p>sets  React.HTMLAttributes<HTMLDivElement></p>"
+      },
+      {
+        "name": "grow",
+        "value": "number",
+        "comment": "<p>Flexbox flex-grow property [Flexbox Guide] <a href='https://css-tricks.com/snippets/css/a-guide-to-flexbox/'>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>"
+      },
+      {
+        "name": "shrink",
+        "value": "number",
+        "comment": "<p>Flexbox flex-shrink property [Flexbox Guide] <a href='https://css-tricks.com/snippets/css/a-guide-to-flexbox/'>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>"
+      },
+      {
+        "name": "alignSelf",
+        "value": null,
+        "comment": "<p>Aligns the item on the cross axis [Flexbox Guide] <a href='https://css-tricks.com/snippets/css/a-guide-to-flexbox/'>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>"
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
       }
     ],
     "/app/src/docs/_props/epam-promo/components/layout/FlexItems/panel.props.tsx": [
@@ -8247,6 +8289,48 @@
         "name": "vPadding",
         "value": "24 | 36 | 48 | 18 | 12",
         "comment": null
+      }
+    ],
+    "/app/src/docs/_props/loveship/components/layout/FlexItems/flexCell.props.tsx": [
+      {
+        "name": "width",
+        "value": "100% | auto | number",
+        "comment": "<p>Flexbox flex-basis property [Flexbox Guide] <a href='https://css-tricks.com/snippets/css/a-guide-to-flexbox/'>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>"
+      },
+      {
+        "name": "minWidth",
+        "value": "number",
+        "comment": "<p>sets the minimum width of an element</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": null,
+        "comment": "<p>sets  React.HTMLAttributes<HTMLDivElement></p>"
+      },
+      {
+        "name": "grow",
+        "value": "number",
+        "comment": "<p>Flexbox flex-grow property [Flexbox Guide] <a href='https://css-tricks.com/snippets/css/a-guide-to-flexbox/'>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>"
+      },
+      {
+        "name": "shrink",
+        "value": "number",
+        "comment": "<p>Flexbox flex-shrink property [Flexbox Guide] <a href='https://css-tricks.com/snippets/css/a-guide-to-flexbox/'>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>"
+      },
+      {
+        "name": "alignSelf",
+        "value": null,
+        "comment": "<p>Aligns the item on the cross axis [Flexbox Guide] <a href='https://css-tricks.com/snippets/css/a-guide-to-flexbox/'>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>"
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
       }
     ],
     "/app/src/docs/_props/loveship/components/layout/FlexItems/panel.props.tsx": [

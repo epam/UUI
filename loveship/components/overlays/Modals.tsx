@@ -35,7 +35,7 @@ export const ModalHeader = React.forwardRef<HTMLDivElement, ModalHeaderProps>((p
         padding={ props.padding || '24' }
         vPadding='12'
         ref={ ref }
-        borderBottom={ props.borderBottom ? 'night400' : undefined }
+        borderBottom={ props.borderBottom }
         cx={ [css.modalHeader, props.cx] }
         rawProps={ props.rawProps }
     >
