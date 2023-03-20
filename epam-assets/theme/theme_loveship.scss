@@ -671,6 +671,9 @@
     --uui-blocker-bg: var(--uui-background);
     --uui-blocker-bg-with-opacity: #F5F6FA80;
 
+    /* FlexRow */
+    --uui-flex-row-border-bottom: 1px solid var(--uui-divider);
+
     /* modification of the states of table components */
 
     :global(.uui-dt-cell-border) {
@@ -1320,6 +1323,22 @@
 
     :global(.dropdown-container-night700) {
         --uui-dropdown-container-bg: var(--night700);
+    }
+
+    :global(.flex-row-background-white) {
+        --uui-flex-row-bg: var(--uui-surface);
+    }
+
+    :global(.flex-row-background-night50) {
+        --uui-flex-row-bg: var(--night50);
+    }
+
+    :global(.flex-row-background-night100) {
+        --uui-flex-row-bg: var(--night100);
+    }
+
+    :global(.flex-row-background-none) {
+        --uui-flex-row-bg: transparent;
     }
 
     :global(.panel-white) {

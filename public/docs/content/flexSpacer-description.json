@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The FlexSpacer component fills space between Flex items. It is often used to position elements at the beginning and end of a line with space between them.",
+            "text": "Component will fill space between flex items. Often used to position elements at the beginning and end of a line with space between them.\nYou can also use FlexSpacer to press the block to the bottom of the container. See example below.",
             "marks": []
           }
         ]

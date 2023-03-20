@@ -1,5 +1,6 @@
 export * from './DefaultContext';
 export * from './ResizableContext';
+export * from './FlexRowContext';
 export * from './FormContext';
 export * from './ModalContext';
 export * from './DropdownMenuContext';

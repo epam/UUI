@@ -24,7 +24,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   >
     <div
       aria-sort="none"
-      className="-clickable cell size-24 padding-left-24 resizable"
+      className="flexCell -clickable cell size-24 padding-left-24 resizable"
       onClick={[Function]}
       onPointerEnter={[Function]}
       onPointerLeave={[Function]}
@@ -107,7 +107,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
   >
     <div
       aria-sort="ascending"
-      className="-clickable cell size-24 resizable draggable"
+      className="flexCell -clickable cell size-24 resizable draggable"
       onClick={[Function]}
       onPointerDown={[Function]}
       onPointerEnter={[Function]}
@@ -162,7 +162,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     </div>
     <div
       aria-sort="none"
-      className="-clickable cell size-24 resizable draggable"
+      className="flexCell -clickable cell size-24 resizable draggable"
       onClick={[Function]}
       onPointerDown={[Function]}
       onPointerEnter={[Function]}
@@ -217,7 +217,7 @@ exports[`DataTableHeaderRow should be rendered correctly with extra props 1`] = 
     </div>
     <div
       aria-sort="none"
-      className="-clickable cell size-24 padding-right-24 resizable draggable"
+      className="flexCell -clickable cell size-24 padding-right-24 resizable draggable"
       onClick={[Function]}
       onPointerDown={[Function]}
       onPointerEnter={[Function]}
@@ -298,7 +298,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   >
     <div
       aria-sort="none"
-      className="-clickable cell size-36 padding-left-24"
+      className="flexCell -clickable cell size-36 padding-left-24"
       onClick={[Function]}
       role="columnheader"
       style={
@@ -357,7 +357,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
   >
     <div
       aria-sort="ascending"
-      className="-clickable cell size-36"
+      className="flexCell -clickable cell size-36"
       onClick={[Function]}
       role="columnheader"
       style={
@@ -402,7 +402,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     </div>
     <div
       aria-sort="none"
-      className="-clickable cell size-36"
+      className="flexCell -clickable cell size-36"
       onClick={[Function]}
       role="columnheader"
       style={
@@ -447,7 +447,7 @@ exports[`DataTableHeaderRow should render with default props 1`] = `
     </div>
     <div
       aria-sort="none"
-      className="-clickable cell size-36 padding-right-24"
+      className="flexCell -clickable cell size-36 padding-right-24"
       onClick={[Function]}
       role="columnheader"
       style={

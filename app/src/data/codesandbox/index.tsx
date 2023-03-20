@@ -26,7 +26,7 @@ render(
         skinContext={ promoSkinContext }
     >
         <ErrorHandler>
-            <FlexRow vPadding='48' padding='24' borderBottom='gray40' alignItems='top' spacing='12'>
+            <FlexRow vPadding='48' padding='24' borderBottom alignItems='top' spacing='12'>
                 <Example />
             </FlexRow>
             <Snackbar />
