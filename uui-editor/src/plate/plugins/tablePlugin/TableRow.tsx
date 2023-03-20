@@ -5,13 +5,24 @@ import { PlateTableRowElement } from '@udecode/plate';
 
 import css from './Table.scss';
 
+const DEFAULT_HEADER_ROW_HEIGHT = 42;
+const DEFAULT_HEIGHT = 50;
+
 export function TableRow(props: any) {
+    const { attributes, children, element } = props;
 
     const isHeaderRow = () => {
-        return props.element.children[0]?.type === 'th';
+        return element.children[0]?.type === 'th';
     };
 
-    const { attributes, children } = props;
+    if (!element.size) {
+        if(isHeaderRow()) {
+            element.size = DEFAULT_HEADER_ROW_HEIGHT;
+        } else {
+            element.size = DEFAULT_HEIGHT;
+        }
+    }
+
     return <PlateTableRowElement
         { ...attributes }
         { ...props }
