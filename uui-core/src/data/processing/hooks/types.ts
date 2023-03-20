@@ -1,5 +1,6 @@
-import { ArrayListViewProps, AsyncListViewProps, ItemsComparator, ITree, LazyListViewProps } from "../views";
+import { ArrayListViewProps, AsyncListViewProps, LazyListViewProps } from "../views";
 import { DataSourceState, IDataSourceView } from "../../../types";
+import { SubtotalsConfig } from "../views/subtotals";
 
 export type PropsWithType<Props, Type extends string> = Props & { type: Type };
 
@@ -34,19 +35,6 @@ interface ListState<TId, TFilter> {
 type ListProps<TItem, TId, TFilter> = Exclude<ListViewProps<TItem, TId, TFilter>, 'getId'> & {
     getId: Exclude<ListViewProps<TItem, TId, TFilter>['getId'], undefined>;
 };
-
-type SubtotalsSchema<TItem, TSubtotals> = {
-    [K in keyof TSubtotals]: {
-        get: (item: TItem, hasChildren: boolean) => TSubtotals[K],
-        compute: (a: TSubtotals[K], b: TSubtotals[K]) => TSubtotals[K],
-    }
-};
-
-type SubtotalsConfig<TItem, TSubtotals> = {
-    shouldCompute: (parent: TItem) => boolean;
-    schema: SubtotalsSchema<TItem, TSubtotals>;
-};
-
 
 export type UseListProps<TItem, TId, TFilter, TSubtotals = never> = ListProps<TItem, TId, TFilter> & ListState<TId, TFilter> & {
     /**

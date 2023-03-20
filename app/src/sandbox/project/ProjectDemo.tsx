@@ -88,10 +88,10 @@ export const ProjectDemo = () => {
         }),
 
         subtotals: {
-            shouldCompute: (parent: Task) => false,
+            // shouldCompute: (parent: Task) => true,
             schema: {
                 totalEstimate: {
-                    get: (item) => item.parentId ? 0 : (item.estimate ?? 0),
+                    get: (item) => item.estimate ?? 0,
                     compute: (a, b) => a + b,
                 },
             },
