@@ -2,24 +2,24 @@ import { ArrayListView, AsyncListView, LazyListView } from "../views";
 import { DataSourceState, IEditable } from "../../../types";
 import { AsyncListProps, IView, LazyListProps, ListViewProps } from "./types";
 
-export const isLazyListViewProps = <TItem, TId, TFilter>(props: ListViewProps<TItem, TId, TFilter>):
+export const isLazyListViewProps = <TItem, TId, TFilter, TSubtotals = void>(props: ListViewProps<TItem, TId, TFilter, TSubtotals>):
     props is LazyListProps<TItem, TId, TFilter> =>
     props.type === 'lazy';
 
-export const isAsyncListViewProps = <TItem, TId, TFilter>(props: ListViewProps<TItem, TId, TFilter>):
+export const isAsyncListViewProps = <TItem, TId, TFilter, TSubtotals = void>(props: ListViewProps<TItem, TId, TFilter, TSubtotals>):
     props is AsyncListProps<TItem, TId, TFilter> =>
     props.type === 'async';
 
-export const createView = <TItem, TId, TFilter, Props extends ListViewProps<TItem, TId, TFilter>>(
+export const createView = <TItem, TId, TFilter, TSubtotals, Props extends ListViewProps<TItem, TId, TFilter, TSubtotals>>(
     editable: IEditable<DataSourceState<TFilter, TId>>,
     props: Props,
-): IView<TItem, TId, TFilter, Props> => {
-    if (isLazyListViewProps(props)) {
+): IView<TItem, TId, TFilter, TSubtotals, Props> => {
+    if (isLazyListViewProps<TItem, TId, TFilter, TSubtotals>(props)) {
         const { type, ...viewProps } = props;
-        return new LazyListView(editable, viewProps) as IView<TItem, TId, TFilter, Props>;
+        return new LazyListView(editable, viewProps) as IView<TItem, TId, TFilter, TSubtotals, Props>;
     }
 
-    if (isAsyncListViewProps(props)) {
+    if (isAsyncListViewProps<TItem, TId, TFilter, TSubtotals>(props)) {
         const { type, ...viewProps } = props;
         return new AsyncListView(editable, viewProps);
     }
@@ -28,9 +28,9 @@ export const createView = <TItem, TId, TFilter, Props extends ListViewProps<TIte
     return new ArrayListView(editable, viewProps);
 };
 
-export const mergePropsWithDefaults = <TItem, TId, TFilter>(
-    props: ListViewProps<TItem, TId, TFilter>,
-): ListViewProps<TItem, TId, TFilter> => {
+export const mergePropsWithDefaults = <TItem, TId, TFilter, TSubtotals = void>(
+    props: ListViewProps<TItem, TId, TFilter, TSubtotals>,
+): ListViewProps<TItem, TId, TFilter, TSubtotals> => {
     if (isLazyListViewProps(props)) {
         return {
             ...props,

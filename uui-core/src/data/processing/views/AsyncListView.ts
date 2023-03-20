@@ -1,17 +1,18 @@
 import { IEditable, DataSourceState, IDataSourceView } from "../../../types";
 import { ArrayListView, BaseArrayListViewProps } from "./ArrayListView";
 
-export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
+export interface AsyncListViewProps<TItem, TId, TFilter, TSubtotals = void> extends BaseArrayListViewProps<TItem, TId, TFilter, TSubtotals> {
     api(): Promise<TItem[]>;
 }
 
-export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
+export class AsyncListView<TItem, TId, TFilter = any, TSubtotals = void> extends ArrayListView<TItem, TId, TFilter, TSubtotals>
+    implements IDataSourceView<TItem, TId, TFilter, TSubtotals> {
     private isloading: boolean = false;
     private isloaded: boolean = false;
 
     constructor(
         protected editable: IEditable<DataSourceState<TFilter, TId>>,
-        protected props: AsyncListViewProps<TItem, TId, TFilter>,
+        protected props: AsyncListViewProps<TItem, TId, TFilter, TSubtotals>,
     ) {
         super(editable, props);
         this.props = props;

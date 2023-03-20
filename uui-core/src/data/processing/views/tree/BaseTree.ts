@@ -15,7 +15,7 @@ export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
     }
 }
 
-export abstract class BaseTree<TItem, TId, TSubtotals = unknown> implements ITree<TItem, TId, TSubtotals> {
+export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<TItem, TId, TSubtotals> {
     protected getId: (item: TItem) => TId;
     protected getParentId: (item: TItem) => TId;
 
@@ -258,7 +258,7 @@ export abstract class BaseTree<TItem, TId, TSubtotals = unknown> implements ITre
                 });
 
                 if (subtotalsRecord && typeof subtotalsRecord === 'object') {
-                    subtotalsByParents.set(parentId, createSubtotalRecord(parentId, subtotalsRecord as SubtotalsRecord<TSubtotals, TId>));
+                    subtotalsByParents.set(parentId, createSubtotalRecord(parentId, subtotalsRecord) as SubtotalsRecord<TSubtotals, TId>);
                 }
             }
         }
@@ -272,7 +272,7 @@ export abstract class BaseTree<TItem, TId, TSubtotals = unknown> implements ITre
 
     protected static truePredicate = () => true;
 
-    public static blank<TItem, TId, TSubtotals = never>(params: TreeParams<TItem, TId>) {
+    public static blank<TItem, TId, TSubtotals = void>(params: TreeParams<TItem, TId>) {
         return new (this as any)(
             params,
             newMap(params),
@@ -289,7 +289,7 @@ export abstract class BaseTree<TItem, TId, TSubtotals = unknown> implements ITre
         return this.subtotals?.has(parentId) ? this.subtotals.get(parentId) : undefined;
     }
 
-    public static create<TItem, TId, TSubtotals = never>(
+    public static create<TItem, TId, TSubtotals = void>(
         params: TreeParams<TItem, TId>,
         items: TItem[] | ITree<TItem, TId, TSubtotals>,
         subtotals?: IMap<TId, SubtotalsRecord<TSubtotals, TId>>,
