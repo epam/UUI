@@ -5,7 +5,7 @@ import { PlateTableRowElement } from '@udecode/plate';
 
 import css from './Table.scss';
 
-const DEFAULT_HEADER_ROW_HEIGHT = 42;
+const DEFAULT_HEADER_ROW_HEIGHT = 46;
 const DEFAULT_HEIGHT = 50;
 
 export function TableRow(props: any) {
