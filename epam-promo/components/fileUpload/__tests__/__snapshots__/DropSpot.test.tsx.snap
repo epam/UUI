@@ -12,7 +12,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
     onDrop={[Function]}
   >
     <div
-      className="root size-24 background-none spacing-6 container align-items-center"
+      className="root size-24 spacing-6 flex-row-background-none container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -78,7 +78,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
     onDrop={[Function]}
   >
     <div
-      className="root size-24 background-none spacing-6 container align-items-center"
+      className="root size-24 spacing-6 flex-row-background-none container align-items-center"
       style={
         Object {
           "columnGap": undefined,

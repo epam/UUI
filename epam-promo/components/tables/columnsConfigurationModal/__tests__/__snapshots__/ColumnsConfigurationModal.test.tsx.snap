@@ -39,7 +39,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       role="modal"
     >
       <div
-        className="root size-36 background-none padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 spacing-12 flex-row-background-none modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -56,7 +56,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           className="flexSpacer"
         />
         <div
-          className=""
+          className="flexCell"
           style={
             Object {
               "alignSelf": undefined,
@@ -86,7 +86,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 background-none padding-24 border-bottom-gray40 spacing-12 searchArea container align-items-center"
+        className="root size-36 padding-24 borderBottom spacing-12 flex-row-background-none searchArea container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -176,7 +176,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             }
           >
             <div
-              className="root size-24 background-none padding-24 spacing-6 groupTitle container align-items-center"
+              className="root size-24 padding-24 spacing-6 flex-row-background-none groupTitle container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -203,7 +203,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               </button>
             </div>
             <div
-              className="root size-30 background-none groupItems container align-items-center"
+              className="root size-30 flex-row-background-none groupItems container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -212,7 +212,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               }
             >
               <div
-                className="root size-30 background-none rowWrapper notPinned -draggable container align-items-center"
+                className="root size-30 flex-row-background-none rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -225,7 +225,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="root size-30 background-none spacing-6 title container align-items-center"
+                  className="root size-30 spacing-6 flex-row-background-none title container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -273,7 +273,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   className="flexSpacer"
                 />
                 <div
-                  className="root size-30 background-none pinIconButton container align-items-center"
+                  className="root size-30 flex-row-background-none pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -306,7 +306,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 </div>
               </div>
               <div
-                className="root size-30 background-none rowWrapper notPinned -draggable container align-items-center"
+                className="root size-30 flex-row-background-none rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -319,7 +319,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="root size-30 background-none spacing-6 title container align-items-center"
+                  className="root size-30 spacing-6 flex-row-background-none title container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -367,7 +367,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   className="flexSpacer"
                 />
                 <div
-                  className="root size-30 background-none pinIconButton container align-items-center"
+                  className="root size-30 flex-row-background-none pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -432,7 +432,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+        className="root size-36 padding-24 vPadding-24 spacing-12 flex-row-background-none modalFooter borderTop container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -549,7 +549,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
       role="modal"
     >
       <div
-        className="root size-36 background-none padding-24 vPadding-12 spacing-12 modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 spacing-12 flex-row-background-none modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -566,7 +566,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
           className="flexSpacer"
         />
         <div
-          className=""
+          className="flexCell"
           style={
             Object {
               "alignSelf": undefined,
@@ -596,7 +596,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </div>
       </div>
       <div
-        className="root size-36 background-none padding-24 border-bottom-gray40 spacing-12 searchArea container align-items-center"
+        className="root size-36 padding-24 borderBottom spacing-12 flex-row-background-none searchArea container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -686,7 +686,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
             }
           >
             <div
-              className="root size-24 background-none padding-24 spacing-6 groupTitle container align-items-center"
+              className="root size-24 padding-24 spacing-6 flex-row-background-none groupTitle container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -713,7 +713,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
               </button>
             </div>
             <div
-              className="root size-30 background-none groupItems container align-items-center"
+              className="root size-30 flex-row-background-none groupItems container align-items-center"
               style={
                 Object {
                   "columnGap": undefined,
@@ -722,7 +722,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
               }
             >
               <div
-                className="root size-30 background-none rowWrapper notPinned -draggable container align-items-center"
+                className="root size-30 flex-row-background-none rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -735,7 +735,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 }
               >
                 <div
-                  className="root size-30 background-none spacing-6 title container align-items-center"
+                  className="root size-30 spacing-6 flex-row-background-none title container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -774,7 +774,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   className="flexSpacer"
                 />
                 <div
-                  className="root size-30 background-none pinIconButton container align-items-center"
+                  className="root size-30 flex-row-background-none pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -807,7 +807,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 </div>
               </div>
               <div
-                className="root size-30 background-none rowWrapper notPinned -draggable container align-items-center"
+                className="root size-30 flex-row-background-none rowWrapper notPinned -draggable container align-items-center"
                 onPointerEnter={[Function]}
                 onPointerLeave={[Function]}
                 onPointerMove={[Function]}
@@ -820,7 +820,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                 }
               >
                 <div
-                  className="root size-30 background-none spacing-6 title container align-items-center"
+                  className="root size-30 spacing-6 flex-row-background-none title container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -859,7 +859,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                   className="flexSpacer"
                 />
                 <div
-                  className="root size-30 background-none pinIconButton container align-items-center"
+                  className="root size-30 flex-row-background-none pinIconButton container align-items-center"
                   style={
                     Object {
                       "columnGap": undefined,
@@ -924,7 +924,7 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         </div>
       </div>
       <div
-        className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter borderTop container align-items-center"
+        className="root size-36 padding-24 vPadding-24 spacing-12 flex-row-background-none modalFooter borderTop container align-items-center"
         style={
           Object {
             "columnGap": undefined,

@@ -196,7 +196,7 @@ export default function EditableTableExample() {
             />
         </FlexRow>
         {/* Render a panel with Save/Revert buttons to control the form */ }
-        <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom='gray40'>
+        <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom>
             <FlexCell width='auto'>
                 <Button caption='Add new' onClick={ handleNewItem } />
             </FlexCell>
