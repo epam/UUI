@@ -6,24 +6,24 @@ export type PropsWithType<Props, Type extends string> = Props & { type: Type };
 
 export type LazyListProps<TItem, TId, TFilter> = PropsWithType<LazyListViewProps<TItem, TId, TFilter>, 'lazy'>;
 export type AsyncListProps<TItem, TId, TFilter> = PropsWithType<AsyncListViewProps<TItem, TId, TFilter>, 'async'>;
-export type ArrayListProps<TItem, TId, TFilter> = PropsWithType<ArrayListViewProps<TItem, TId, TFilter>, 'array'>;
+export type ArrayListProps<TItem, TId, TFilter, TSubtotals = void> = PropsWithType<ArrayListViewProps<TItem, TId, TFilter, TSubtotals>, 'array'>;
 
-export type ListViewProps<TItem, TId, TFilter> =
+export type ListViewProps<TItem, TId, TFilter, TSubtotals = void> =
     | LazyListProps<TItem, TId, TFilter>
     | AsyncListProps<TItem, TId, TFilter>
-    | ArrayListProps<TItem, TId, TFilter>;
+    | ArrayListProps<TItem, TId, TFilter, TSubtotals>;
 
-export type UnboxListProps<T extends ListViewProps<any, any, any>> = T extends LazyListProps<infer TItem, infer TId, infer TFilter>
+export type UnboxListProps<T extends ListViewProps<any, any, any, any>> = T extends LazyListProps<infer TItem, infer TId, infer TFilter>
     ? LazyListProps<TItem, TId, TFilter>
     : T extends AsyncListProps<infer TItem, infer TId, infer TFilter>
     ? AsyncListProps<TItem, TId, TFilter>
-    : T extends ArrayListProps<infer TItem, infer TId, infer TFilter>
-    ? ArrayListProps<TItem, TId, TFilter>
+    : T extends ArrayListProps<infer TItem, infer TId, infer TFilter, infer TSubtotals>
+    ? ArrayListProps<TItem, TId, TFilter, TSubtotals>
     : never;
 
 export interface IView<
-    TItem, TId, TFilter, Props extends ListViewProps<TItem, TId, TFilter>
-> extends IDataSourceView<TItem, TId, TFilter> {
+    TItem, TId, TFilter, TSubtotals, Props extends ListViewProps<TItem, TId, TFilter, TSubtotals>
+> extends IDataSourceView<TItem, TId, TFilter, TSubtotals> {
     update(newValue: DataSourceState<TFilter, TId>, props: Props): void;
 }
 
@@ -32,11 +32,11 @@ interface ListState<TId, TFilter> {
     setListState: (listState: DataSourceState<TFilter, TId>) => void;
 }
 
-type ListProps<TItem, TId, TFilter> = Exclude<ListViewProps<TItem, TId, TFilter>, 'getId'> & {
-    getId: Exclude<ListViewProps<TItem, TId, TFilter>['getId'], undefined>;
+type ListProps<TItem, TId, TFilter, TSubtotals = void> = Exclude<ListViewProps<TItem, TId, TFilter, TSubtotals>, 'getId'> & {
+    getId: Exclude<ListViewProps<TItem, TId, TFilter, TSubtotals>['getId'], undefined>;
 };
 
-export type UseListProps<TItem, TId, TFilter, TSubtotals = never> = ListProps<TItem, TId, TFilter> & ListState<TId, TFilter> & {
+export type UseListProps<TItem, TId, TFilter, TSubtotals = void> = ListProps<TItem, TId, TFilter, TSubtotals> & ListState<TId, TFilter> & {
     /**
      * If data loading has to be postponed, this flag has to be set to false.
      * Changing the flag to `true` will trigger data loading.

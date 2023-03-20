@@ -181,7 +181,7 @@ export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId>
     onFocus?(focusedIndex: number): void;
 };
 
-export interface BaseListViewProps<TItem, TId, TFilter, TSubtotals = unknown> {
+export interface BaseListViewProps<TItem, TId, TFilter, TSubtotals = void> {
     /**
      * Should return unique ID of the TItem
      * If omitted, we assume that every TItem has and unique id in its 'id' field.
@@ -214,7 +214,7 @@ export interface BaseListViewProps<TItem, TId, TFilter, TSubtotals = unknown> {
      * Make sure all callbacks are properly memoized, as changing them will trigger re-renders or row, which would impact performance
      * @param item An item to get options for
      */
-    rowOptions?: DataRowOptions<TItem | TSubtotals, TId>;
+    rowOptions?: DataRowOptions<TItem, TId>;
 
     /**
      * For each row, specify if row is selectable, editable, checkable, draggable, clickable, have its own set of columns, and more.
@@ -224,7 +224,7 @@ export interface BaseListViewProps<TItem, TId, TFilter, TSubtotals = unknown> {
      * Make sure all callbacks are properly memoized, as changing them will trigger re-renders or row, which would impact performance
      * @param item An item to get options for
      */
-    getRowOptions?(item: TItem | TSubtotals, index: number): DataRowOptions<TItem | TSubtotals, TId>;
+    getRowOptions?(item: TItem, index: number): DataRowOptions<TItem, TId>;
 
     /**
      * Can be specified to unfold all or some items at start.
@@ -250,8 +250,8 @@ export type SubtotalsDataRowProps<TSubtotals extends {} | never, TId> = TSubtota
 export type IDataSourceView<TItem, TId, TFilter, TSubtotals = never> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
-    getVisibleRows(): Array<DataRowProps<TItem, TId> | SubtotalsDataRowProps<TSubtotals, TId>>;
-    getSelectedRows(): Array<DataRowProps<TItem, TId> | SubtotalsDataRowProps<TSubtotals, TId>>;
+    getVisibleRows(): DataRowProps<TItem, TId>[];
+    getSelectedRows(): DataRowProps<TItem, TId>[];
     reload(): void;
     destroy(): void;
     loadData(): void;

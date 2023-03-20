@@ -1,4 +1,5 @@
 import { DropPosition, getOrderBetween, ITree, maxOrderStr, minOrderStr } from "@epam/uui-core";
+import { TaskSubtotals } from "./ProjectDemo";
 import { Task } from "./types";
 
 /**
@@ -42,7 +43,7 @@ export function getInsertionOrder(existingOrders: string[], position: 'before' |
 let lastId = -1;
 
 export function insertOrMoveTask(
-    items: ITree<Task, number>,
+    items: ITree<Task, number, TaskSubtotals>,
     position: DropPosition,
     relativeTask: Task | null = null,
     existingTask: Task | null = null,

@@ -10,12 +10,13 @@ import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
 import { insertOrMoveTask } from './helpers';
 
-interface FormState {
-    items: ITree<Task, number>;
+
+export interface TaskSubtotals {
+    totalEstimate: number;
 }
 
-interface TaskSubtotals {
-    totalEstimate: number;
+interface FormState {
+    items: ITree<Task, number, TaskSubtotals>;
 }
 
 const metadata: Metadata<FormState> = {
@@ -37,7 +38,7 @@ const metadata: Metadata<FormState> = {
 };
 
 let savedValue: FormState = {
-    items: Tree.create<Task, number>(
+    items: Tree.create<Task, number, TaskSubtotals>(
         { getId: i => i.id, getParentId: i => i.parentId },
         Object.values(getDemoTasks()),
     ),

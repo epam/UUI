@@ -3,7 +3,7 @@ import {
     BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
     IDataSourceView, DataRowPathItem, SubtotalsDataRowProps,
 } from "../../../types";
-import { isSubtotalRecord, Subtotals } from "./subtotals";
+import { isSubtotalRecord, Subtotals, SubtotalsRecord } from "./subtotals";
 import { ItemsComparator, ITree } from "./tree/ITree";
 
 interface NodeStats {
@@ -14,11 +14,11 @@ interface NodeStats {
     hasMoreRows: boolean;
 }
 
-export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = never> implements IDataSourceView<TItem, TId, TFilter, TSubtotals> {
+export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> implements IDataSourceView<TItem, TId, TFilter, TSubtotals> {
     protected originalTree: ITree<TItem, TId, TSubtotals>;
     protected tree: ITree<TItem, TId, TSubtotals>;
 
-    protected rows: Array<DataRowProps<TItem, TId> | SubtotalsDataRowProps<TSubtotals, TId>> = [];
+    protected rows: Array<DataRowProps<TItem, TId>> = [];
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
@@ -41,7 +41,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = never> impl
 
     protected constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
-        protected props: BaseListViewProps<TItem, TId, TFilter>,
+        protected props: BaseListViewProps<TItem, TId, TFilter, TSubtotals>,
     ) {
         this.onValueChange = editable.onValueChange;
         this.value = editable.value;
@@ -196,11 +196,11 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = never> impl
             path,
         } as DataRowProps<Subtotals<TSubtotals, TId>, TId>;
 
-        this.applyRowOptions(rowProps);
+        this.applyRowOptions(rowProps as any); // TODO: fix
         return rowProps;
     }
 
-    protected applyRowOptions<TSubtotals>(row: DataRowProps<TItem | TSubtotals, TId>) {
+    protected applyRowOptions(row: DataRowProps<TItem, TId>) {
         const isLoading = row.value === undefined;
         const rowOptions = (this.props.getRowOptions && !isLoading)
             ? this.props.getRowOptions(row.value, row.index)
@@ -305,7 +305,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = never> impl
             }
 
             if (subtotalRecord) {
-                const subtotalRow = this.getSubtotalsRowProps(subtotalRecord, rows.length);
+                const subtotalRow = this.getSubtotalsRowProps(subtotalRecord as Subtotals<TSubtotals, TId>, rows.length);
                 rows.push(subtotalRow as SubtotalsDataRowProps<TSubtotals, TId>);
             }
 
@@ -355,7 +355,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = never> impl
             this.selectAll = null;
         }
 
-        this.rows = rows;
+        this.rows = rows as DataRowProps<TItem, TId>[]; // TODO: fix
         this.hasMoreRows = rootStats.hasMoreRows;
     }
 

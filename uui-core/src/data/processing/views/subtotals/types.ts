@@ -16,4 +16,4 @@ export type Subtotals<TSubtotals, TId> = TSubtotals & {
     isSubtotal: boolean;
 };
 
-export type SubtotalsRecord<TSubtotals, TId> = TSubtotals extends Record<infer _, infer _> ? Subtotals<TSubtotals, TId> : unknown;
+export type SubtotalsRecord<TSubtotals, TId> = TSubtotals extends Record<infer _, infer _> ? Subtotals<TSubtotals, TId> : void;

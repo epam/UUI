@@ -3,7 +3,7 @@ import { ITree } from '../processing';
 
 export type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? ElementType : never;
 export type TreeElement<TTree> = TTree extends ITree<infer TItem, infer TId> ? TItem : never;
-export type TreeId<TTree> = TTree extends ITree<infer TItem, infer TId> ? TId : never;
+export type TreeId<TTree> = TTree extends ITree<infer TItem, infer TId, infer TSubtotals> ? TId : never;
 
 export interface ILens<TFocused> {
     get(): TFocused;

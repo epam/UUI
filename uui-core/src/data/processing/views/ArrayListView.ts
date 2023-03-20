@@ -5,18 +5,18 @@ import {
 import { BaseListView } from './BaseListView';
 import { ITree, Tree } from "./tree";
 
-export interface BaseArrayListViewProps<TItem, TId, TFilter, TSubtotals = never> extends BaseListViewProps<TItem, TId, TFilter, TSubtotals> {
+export interface BaseArrayListViewProps<TItem, TId, TFilter, TSubtotals = void> extends BaseListViewProps<TItem, TId, TFilter, TSubtotals> {
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
 }
 
-export interface ArrayListViewProps<TItem, TId, TFilter, TSubtotals = never> extends BaseArrayListViewProps<TItem, TId, TFilter, TSubtotals> {
+export interface ArrayListViewProps<TItem, TId, TFilter, TSubtotals = void> extends BaseArrayListViewProps<TItem, TId, TFilter, TSubtotals> {
     items?: TItem[] | ITree<TItem, TId, TSubtotals>;
 }
 
-export class ArrayListView<TItem, TId, TFilter = any, TSubtotals = never>
-    extends BaseListView<TItem, TId, TFilter, TSubtotals> implements IDataSourceView<TItem, TId, TFilter> {
+export class ArrayListView<TItem, TId, TFilter = any, TSubtotals = void>
+    extends BaseListView<TItem, TId, TFilter, TSubtotals> implements IDataSourceView<TItem, TId, TFilter, TSubtotals> {
 
     protected props: ArrayListViewProps<TItem, TId, TFilter, TSubtotals>;
 
