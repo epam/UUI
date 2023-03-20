@@ -5,29 +5,31 @@ import {
 import { BaseListView } from './BaseListView';
 import { ITree, Tree } from "./tree";
 
-export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
+export interface BaseArrayListViewProps<TItem, TId, TFilter, TSubtotals = never> extends BaseListViewProps<TItem, TId, TFilter, TSubtotals> {
     getSearchFields?(item: TItem): string[];
     sortBy?(item: TItem, sorting: SortingOption): any;
     getFilter?(filter: TFilter): (item: TItem) => boolean;
 }
 
-export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
-    items?: TItem[] | ITree<TItem, TId>;
+export interface ArrayListViewProps<TItem, TId, TFilter, TSubtotals = never> extends BaseArrayListViewProps<TItem, TId, TFilter, TSubtotals> {
+    items?: TItem[] | ITree<TItem, TId, TSubtotals>;
 }
 
-export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
-    protected props: ArrayListViewProps<TItem, TId, TFilter>;
+export class ArrayListView<TItem, TId, TFilter = any, TSubtotals = never>
+    extends BaseListView<TItem, TId, TFilter, TSubtotals> implements IDataSourceView<TItem, TId, TFilter> {
 
-    originalTree: ITree<TItem, TId>;
-    searchTree: ITree<TItem, TId>;
-    filteredTree: ITree<TItem, TId>;
-    sortedTree: ITree<TItem, TId>;
+    protected props: ArrayListViewProps<TItem, TId, TFilter, TSubtotals>;
+
+    originalTree: ITree<TItem, TId, TSubtotals>;
+    searchTree: ITree<TItem, TId, TSubtotals>;
+    filteredTree: ITree<TItem, TId, TSubtotals>;
+    sortedTree: ITree<TItem, TId, TSubtotals>;
 
     private refreshCache: boolean = false;
 
     constructor(
         protected editable: IEditable<DataSourceState<TFilter, TId>>,
-        props: ArrayListViewProps<TItem, TId, TFilter>,
+        props: ArrayListViewProps<TItem, TId, TFilter, TSubtotals>,
     ) {
         super(editable, props);
         this.props = props;
@@ -35,7 +37,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.update(editable.value, props);
     }
 
-    public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter>) {
+    public update(newValue: DataSourceState<TFilter, TId>, newProps: ArrayListViewProps<TItem, TId, TFilter, TSubtotals>) {
         const currentValue = { ...this.value };
         this.value = newValue;
         const prevItems = this.props.items;
@@ -45,7 +47,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         const prevTree = this.tree;
         if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
             if (prevItems !== newItems || !this.originalTree) {
-                this.originalTree = Tree.create(this.props, this.props.items);
+                this.originalTree = Tree.create<TItem, TId, TSubtotals>(this.props, this.props.items);
                 this.tree = this.originalTree;
                 this.refreshCache = true;
             }

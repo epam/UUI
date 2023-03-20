@@ -3,15 +3,21 @@ import { useView } from "./useView";
 import { UnboxListProps, UseListProps } from "./types";
 import { createView, mergePropsWithDefaults } from "./helpers";
 import { usePrevious } from "../../../../src/hooks";
+import { ArrayListView, ArrayListViewProps, Tree } from "../views";
 
-export function useList<TItem, TId, TFilter, TSubtotals>(
-    { listState, setListState, loadData = true, ...props }: UseListProps<TItem, TId, TFilter, TSubtotals>,
+export function useList<TItem, TId, TFilter, TSubtotals = unknown>(
+    { listState, setListState, loadData = true, subtotals, ...props }: UseListProps<TItem, TId, TFilter, TSubtotals>,
     deps: any[],
 ) {
     const prevLoadData = usePrevious(false);
     const prevListState = usePrevious(listState);
 
-    const viewProps = mergePropsWithDefaults(props);
+    let viewProps = mergePropsWithDefaults(props);
+
+    if (props.type === 'array' && props.items instanceof Tree) {
+        const treeWithSubtotals = props.items.withSubtotals(subtotals);
+        viewProps = { ...viewProps, items: treeWithSubtotals } as ArrayListViewProps<TItem, TId, TFilter>;
+    }
 
     const view = useView<TItem, TId, TFilter, UnboxListProps<typeof props>>(
         () => createView({ value: listState, onValueChange: setListState }, viewProps),

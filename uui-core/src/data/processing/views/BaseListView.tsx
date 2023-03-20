@@ -1,8 +1,9 @@
 import isEqual from "lodash.isequal";
 import {
     BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
-    IDataSourceView, DataRowPathItem,
+    IDataSourceView, DataRowPathItem, SubtotalsDataRowProps,
 } from "../../../types";
+import { isSubtotalRecord, Subtotals } from "./subtotals";
 import { ItemsComparator, ITree } from "./tree/ITree";
 
 interface NodeStats {
@@ -13,11 +14,11 @@ interface NodeStats {
     hasMoreRows: boolean;
 }
 
-export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
-    protected originalTree: ITree<TItem, TId>;
-    protected tree: ITree<TItem, TId>;
+export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = never> implements IDataSourceView<TItem, TId, TFilter, TSubtotals> {
+    protected originalTree: ITree<TItem, TId, TSubtotals>;
+    protected tree: ITree<TItem, TId, TSubtotals>;
 
-    protected rows: DataRowProps<TItem, TId>[] = [];
+    protected rows: Array<DataRowProps<TItem, TId> | SubtotalsDataRowProps<TSubtotals, TId>> = [];
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
@@ -177,7 +178,29 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return rowProps;
     }
 
-    protected applyRowOptions(row: DataRowProps<TItem, TId>) {
+    protected getSubtotalsRowProps(subtotal: Subtotals<TSubtotals, TId>, index: number) {
+        const { id, parentId } = subtotal;
+        const key = id;
+        const pathToParent = this.tree.getPathById(parentId);
+        const item = this.tree.getById(parentId);
+        const pathItem = this.tree.getPathItem(item);
+        const path = [...pathToParent, pathItem];
+        const rowProps = {
+            id: id as TId, // TODO: fix
+            parentId,
+            key,
+            rowKey: key,
+            index,
+            value: subtotal,
+            depth: path.length,
+            path,
+        } as DataRowProps<Subtotals<TSubtotals, TId>, TId>;
+
+        this.applyRowOptions(rowProps);
+        return rowProps;
+    }
+
+    protected applyRowOptions<TSubtotals>(row: DataRowProps<TItem | TSubtotals, TId>) {
         const isLoading = row.value === undefined;
         const rowOptions = (this.props.getRowOptions && !isLoading)
             ? this.props.getRowOptions(row.value, row.index)
@@ -187,7 +210,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         if (rowOptions != null) {
             const rowValue = row.value;
             Object.assign(row, rowOptions);
-            row.value = rowOptions.value ?? rowValue;
+            row.value = (rowOptions.value as TItem) ?? rowValue; // TODO: fix
         }
         row.isFocused = this.value.focusedIndex === row.index;
         row.isChecked = !!this.checkedByKey[row.rowKey];
@@ -214,7 +237,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     // Extracts a flat list of currently visible rows from the tree
     protected rebuildRows() {
-        const rows: DataRowProps<TItem, TId>[] = [];
+        const rows: Array<DataRowProps<TItem, TId> | SubtotalsDataRowProps<TSubtotals, TId>> = [];
         let lastIndex = this.getLastRecordIndex();
 
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
@@ -231,6 +254,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             const nodeInfo = this.tree.getNodeInfo(parentId);
 
             const ids = this.tree.getChildrenIdsByParentId(parentId);
+            const subtotalRecord = this.tree.getSubtotalRecordByParentId(parentId);
+
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);
@@ -277,6 +302,11 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                         }
                     }
                 }
+            }
+
+            if (subtotalRecord) {
+                const subtotalRow = this.getSubtotalsRowProps(subtotalRecord, rows.length);
+                rows.push(subtotalRow as SubtotalsDataRowProps<TSubtotals, TId>);
             }
 
             const pathToParent = this.tree.getPathById(parentId);

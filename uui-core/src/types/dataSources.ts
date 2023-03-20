@@ -2,6 +2,7 @@ import { SortingOption } from "./dataQuery";
 import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from "./props";
 import { IDndActor } from './dnd';
 import { Link } from './objects';
+import { Subtotals } from "../data/processing/views/subtotals";
 
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState {
@@ -180,7 +181,7 @@ export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId>
     onFocus?(focusedIndex: number): void;
 };
 
-export interface BaseListViewProps<TItem, TId, TFilter> {
+export interface BaseListViewProps<TItem, TId, TFilter, TSubtotals = unknown> {
     /**
      * Should return unique ID of the TItem
      * If omitted, we assume that every TItem has and unique id in its 'id' field.
@@ -213,7 +214,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * Make sure all callbacks are properly memoized, as changing them will trigger re-renders or row, which would impact performance
      * @param item An item to get options for
      */
-    rowOptions?: DataRowOptions<TItem, TId>;
+    rowOptions?: DataRowOptions<TItem | TSubtotals, TId>;
 
     /**
      * For each row, specify if row is selectable, editable, checkable, draggable, clickable, have its own set of columns, and more.
@@ -223,7 +224,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
      * Make sure all callbacks are properly memoized, as changing them will trigger re-renders or row, which would impact performance
      * @param item An item to get options for
      */
-    getRowOptions?(item: TItem, index: number): DataRowOptions<TItem, TId>;
+    getRowOptions?(item: TItem | TSubtotals, index: number): DataRowOptions<TItem | TSubtotals, TId>;
 
     /**
      * Can be specified to unfold all or some items at start.
@@ -242,11 +243,15 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     selectAll?: true | false;
 }
 
-export type IDataSourceView<TItem, TId, TFilter> = {
+export type SubtotalsDataRowProps<TSubtotals extends {} | never, TId> = TSubtotals extends never
+    ? never
+    : DataRowProps<Subtotals<TSubtotals, TId>, TId>;
+
+export type IDataSourceView<TItem, TId, TFilter, TSubtotals = never> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
-    getVisibleRows(): DataRowProps<TItem, TId>[];
-    getSelectedRows(): DataRowProps<TItem, TId>[];
+    getVisibleRows(): Array<DataRowProps<TItem, TId> | SubtotalsDataRowProps<TSubtotals, TId>>;
+    getSelectedRows(): Array<DataRowProps<TItem, TId> | SubtotalsDataRowProps<TSubtotals, TId>>;
     reload(): void;
     destroy(): void;
     loadData(): void;
