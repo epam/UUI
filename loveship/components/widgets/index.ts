@@ -2,8 +2,6 @@ export * from './AvatarRow';
 export * from './Badge';
 export * from './Carousel';
 export * from './EmbeddedWidget';
-export * from './PageButton';
-export * from './Paginator';
 export { Spinner } from '@epam/uui';
 export * from './Tag';
 export * from './ProgressBar';

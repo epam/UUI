@@ -15,5 +15,5 @@ export {
     Switch, TextArea, Dropdown, TextPlaceholder, Tag, RadioInput, MainMenu, GlobalMenu, Burger, BurgerButton,
     BurgerSearch, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton, IconContainer,
     Accordion, RichTextView, Form, useForm, PickerInput, PickerItem, DataPickerRow, PickerToggler, PickerList,
-    Blocker, CheckboxGroup, ControlGroup, ConfirmationModal, RadioGroup, Anchor, Avatar, AvatarStack,
+    Blocker, CheckboxGroup, ControlGroup, ConfirmationModal, RadioGroup, Anchor, Avatar, AvatarStack, Paginator,
 } from "@epam/uui";
