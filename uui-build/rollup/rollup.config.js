@@ -56,13 +56,21 @@ async function createRollupConfigForModule(options) {
     // TODO: maybe we need to move it to plugin.
     await beforeRollupBuild({ moduleRootDir, packageJsonTransform, copyAsIs });
 
+
+    const getOutputParams = ({ file, format }) => {
+        return {
+            file, format, interop: "auto",
+            sourcemap: true, sourcemapPathTransform: jsSourceMapTransform,
+        };
+    }
+
     /** @type {import('rollup').RollupOptions} */
     const config = {
         input: indexFileRelativePath,
-        output: [{
-            file: `${outDir}/index.js`, format: "cjs", interop: "auto",
-            sourcemap: true, sourcemapPathTransform: jsSourceMapTransform,
-        }],
+        output: [
+            getOutputParams({ file: `${outDir}/index.js`, format: 'cjs' }),
+            getOutputParams({ file: `${outDir}/index.esm.js`, format: 'esm' }),
+        ],
         external: externalEffective,
         plugins: [
             replace({

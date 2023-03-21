@@ -14,6 +14,7 @@ module.exports = {
             if (content.exports?.['./styles.css']) {
                 content.exports['./styles.css'] = './styles.css';
             }
+            return content;
         };
         return await createRollupConfigForModule({ indexFileRelativePath, packageJsonTransform });
     }
