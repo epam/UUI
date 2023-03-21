@@ -18,11 +18,9 @@ interface TableSizesAndPositionMods {
 
 export interface DataTableRowMods extends TableSizesAndPositionMods {
     borderBottom?: any;
-    background?: string;
 }
 
 export interface DataTableCellMods extends TableSizesAndPositionMods {
-    background?: string;
     border?: boolean;
 }
 
@@ -33,5 +31,3 @@ export interface DataTableHeaderCellMods extends BaseRowMods {
 export interface DataTableHeaderRowMods extends BaseRowMods {
     textCase?: 'upper' | 'normal';
 }
-
-export interface ScrollRowMods extends BaseRowMods { }

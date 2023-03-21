@@ -7,7 +7,6 @@ export * from './navigation';
 export * from './types';
 export * from './typography';
 export * from './datePickers';
-export * from './tables';
 export * from './dnd';
 export * from './fileUpload';
 export * from './errors';
@@ -16,4 +15,5 @@ export {
     Switch, TextArea, Dropdown, TextPlaceholder, Tag, RadioInput, MainMenu, GlobalMenu, Burger, BurgerButton,
     BurgerSearch, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton, IconContainer,
     Accordion, RichTextView, Form, useForm, PickerInput, PickerItem, DataPickerRow, PickerToggler, PickerList,
+    DataTable, DataTableCell, DataTableRow, DataTableHeaderRow,
 } from "@epam/uui";

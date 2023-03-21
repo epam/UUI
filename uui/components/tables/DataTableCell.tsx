@@ -60,8 +60,6 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
 
     const isEditable = !!props.onValueChange;
 
-    props.border = props.border ?? (isEditable ? true : null);
-
     props.cx = [
         'data-table-cell',
         props.cx,
@@ -71,8 +69,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         props.isFirstColumn && css[`padding-left-${ props.padding || '24' }`],
         props.isLastColumn && css['padding-right-24'],
         css[`align-widgets-${ props.alignActions || 'top' }`],
-        props.background && `background-${props.background}`,
-        props.border && 'uui-dt-cell-border',
+        (props.border || isEditable) && 'uui-dt-vertical-cell-border',
     ];
 
     return <UuiDataTableCell { ...props } />;
