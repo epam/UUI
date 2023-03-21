@@ -22,7 +22,10 @@
     "generate-components-api": "cd uui-build && yarn generate-components-api",
     "transform-tokens": "tsc --esModuleInterop uui-build/tokens-converter/index.ts && node uui-build/tokens-converter",
     "release": "lerna publish --force-publish",
-    "build-modules": "lerna run build"
+    "build-modules": "lerna run build",
+    "build-modules-ignore-app": "lerna run --ignore @epam/app build",
+    "collect-bundle-stats": "yarn --cwd uui-build collect-bundle-stats",
+    "compare-bundle-stats": "yarn --cwd uui-build compare-bundle-stats"
   },
   "repository": {
     "type": "git",
