@@ -3,7 +3,6 @@ export * from './layout';
 export * from './typography';
 export * from './types';
 export * from './overlays';
-export * from './navigation';
 export * from './inputs';
 export * from './widgets';
 export * from './app';
@@ -14,5 +13,6 @@ export {
     FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder,
     RangeDatePicker, DatePicker, MainMenu, GlobalMenu, Burger, BurgerButton, MainMenuAvatar, MainMenuSearch, MainMenuIcon,
     MainMenuDropdown, MainMenuButton, IconContainer, Accordion, RichTextView, Form, useForm, PickerInput, PickerItem,
-    DataPickerRow, PickerToggler, PickerList, DataTable, DataTableCell, DataTableRow, DataTableHeaderRow,
+    DataPickerRow, PickerToggler, PickerList, Blocker, CheckboxGroup, ControlGroup, ConfirmationModal, RadioGroup,
+    Anchor, Avatar, AvatarStack, Paginator, DataTable, DataTableCell, DataTableRow, DataTableHeaderRow,
 } from "@epam/uui";

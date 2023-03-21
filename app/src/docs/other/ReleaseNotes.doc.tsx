@@ -76,7 +76,7 @@ export class ReleaseNotesDoc extends React.Component {
                 <div className={ css.title }>Release Notes</div>
 
                 <div className={ css.layout } >
-                    { isLoading ? <Spinner color='blue' /> : markdown.map((release: any, index: number) => this.renderReleaseRow(release, index)) }
+                    { isLoading ? <Spinner /> : markdown.map((release: any, index: number) => this.renderReleaseRow(release, index)) }
                 </div>
             </ContentSection>
         );
