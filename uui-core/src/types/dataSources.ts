@@ -32,12 +32,12 @@ export interface VirtualListState {
     focusedIndex?: number;
 }
 
-export interface IDataSource<TItem, TId, TFilter> {
+export interface IDataSource<TItem, TId, TFilter, TSubtotals = void> {
     getId(item: TItem): TId;
     getById(id: TId): TItem;
     setItem(item: TItem): void;
-    getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
-    useView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
+    getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter, TSubtotals>;
+    useView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter, TSubtotals>;
     unsubscribeView(onValueChange: (val: DataSourceState<any, TId>) => any): void;
 }
 
@@ -243,15 +243,19 @@ export interface BaseListViewProps<TItem, TId, TFilter, TSubtotals = void> {
     selectAll?: true | false;
 }
 
-export type SubtotalsDataRowProps<TSubtotals extends {} | never, TId> = TSubtotals extends never
-    ? never
+export type SubtotalsDataRowProps<TSubtotals extends {} | void, TId> = TSubtotals extends void
+    ? void
     : DataRowProps<Subtotals<TSubtotals, TId>, TId>;
 
-export type IDataSourceView<TItem, TId, TFilter, TSubtotals = never> = {
+export type RowProps<TItem, TId, TSubtotals> = SubtotalsDataRowProps<TSubtotals, TId> extends void
+    ? DataRowProps<TItem, TId>
+    : DataRowProps<TItem, TId> | Exclude<SubtotalsDataRowProps<TSubtotals, TId>, void>;
+
+export type IDataSourceView<TItem, TId, TFilter, TSubtotals = void> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
-    getVisibleRows(): DataRowProps<TItem, TId>[];
-    getSelectedRows(): DataRowProps<TItem, TId>[];
+    getVisibleRows(): RowProps<TItem, TId, TSubtotals>[];
+    getSelectedRows(): RowProps<TItem, TId, TSubtotals>[];
     reload(): void;
     destroy(): void;
     loadData(): void;

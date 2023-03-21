@@ -3,7 +3,7 @@ import { useView } from "./useView";
 import { ArrayListProps, UnboxListProps, UseListProps } from "./types";
 import { createView, mergePropsWithDefaults } from "./helpers";
 import { usePrevious } from "../../../../src/hooks";
-import { ArrayListView, ArrayListViewProps, ITree, Tree } from "../views";
+import { Tree } from "../views";
 
 export function useList<TItem, TId, TFilter, TSubtotals = void>(
     { listState, setListState, loadData = true, subtotals, ...props }: UseListProps<TItem, TId, TFilter, TSubtotals>,
