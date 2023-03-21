@@ -128,7 +128,7 @@ export function getColumns(columnsProps: ColumnsProps) {
         },
     ];
 
-    const subtotalsColumns: DataColumnProps<TaskSubtotals, number>[] = [
+    const subtotalsColumns: DataColumnProps<TaskSubtotals, string>[] = [
         {
             key: 'name',
             caption: 'Total count',

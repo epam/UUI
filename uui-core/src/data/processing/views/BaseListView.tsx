@@ -187,7 +187,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
         const pathItem = parentId ? this.tree.getPathItem(item) : undefined;
         const path = pathItem ? [...pathToParent, pathItem] : pathToParent;
         const rowProps = {
-            id: id as TId, // TODO: fix
+            id,
             parentId,
             key,
             rowKey: key,
@@ -199,7 +199,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
             isFoldable: false,
             isLastChild: false,
             ...options,
-        } as DataRowProps<Subtotals<TSubtotals, TId>, TId>;
+        } as DataRowProps<Subtotals<TSubtotals, TId>, string>;
 
         return rowProps;
     }
@@ -241,7 +241,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
 
     // Extracts a flat list of currently visible rows from the tree
     protected rebuildRows() {
-        const rows: Array<RowProps<TItem, TId, TSubtotals>> = [];
+        const rows: RowProps<TItem, TId, TSubtotals>[] = [];
         let lastIndex = this.getLastRecordIndex();
 
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
@@ -310,7 +310,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
             }
 
             if (subtotalRecord && !parentRow?.isFolded) {
-                const subtotalRow = this.getSubtotalsRowProps(subtotalRecord as Subtotals<TSubtotals, TId>, {
+                const subtotalRow = this.getSubtotalsRowProps(subtotalRecord, {
                     index: rows.length,
                     isFolded: parentRow?.isFolded ?? false,
                 });

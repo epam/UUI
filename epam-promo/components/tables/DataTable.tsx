@@ -18,7 +18,7 @@ import { i18n } from "../../i18n";
 export interface DataTableProps<TItem, TId, TSubtotals = void> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
     getRows(): RowProps<TItem, TId, TSubtotals>[];
     columns: DataColumnProps<TItem, TId>[];
-    subtotalsColumns?: Exclude<TSubtotals extends void ? void : DataColumnProps<Subtotals<TSubtotals, TId>, TId>, void>[];
+    subtotalsColumns?: Exclude<TSubtotals extends void ? void : DataColumnProps<TSubtotals, string>, void>[];
     renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
@@ -27,8 +27,8 @@ export interface DataTableProps<TItem, TId, TSubtotals = void> extends IEditable
 }
 
 const isSubtotalRow = <TItem, TId, TSubtotals = void>(
-    row: DataTableRowProps<TItem, TId> | DataTableRowProps<Subtotals<TSubtotals, TId>, TId>
-): row is DataTableRowProps<Subtotals<TSubtotals, TId>, TId> => {
+    row: DataTableRowProps<TItem, TId> | DataTableRowProps<Subtotals<TSubtotals, TId>, string>
+): row is DataTableRowProps<Subtotals<TSubtotals, TId>, string> => {
     return isSubtotalRecord<TItem, TId, TSubtotals>(row.value);
 };
 
@@ -37,7 +37,7 @@ export function DataTable<TItem, TId, TSubtotals = void>(props: React.PropsWithC
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
-    const renderRow = React.useCallback((rowProps: DataTableRowProps<TItem, TId> | DataTableRowProps<Subtotals<TSubtotals, TId>, TId>) => (
+    const renderRow = React.useCallback((rowProps: DataTableRowProps<TItem, TId> | DataTableRowProps<Subtotals<TSubtotals, TId>, string>) => (
         <DataTableRow
             key={ rowProps.rowKey }
             size={ props.size }
@@ -48,7 +48,7 @@ export function DataTable<TItem, TId, TSubtotals = void>(props: React.PropsWithC
 
     const rows = props.getRows().map(row => {
         if (isSubtotalRow<TItem, TId, TSubtotals>(row)) {
-            const subtotalRow: DataTableRowProps<Subtotals<TSubtotals, TId>, TId> = row;
+            const subtotalRow: DataTableRowProps<Subtotals<TSubtotals, TId>, string> = row;
             return renderRow({ ...subtotalRow, columns: props.subtotalsColumns ?? [] });
         }
 
