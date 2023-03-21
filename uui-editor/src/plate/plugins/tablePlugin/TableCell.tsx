@@ -10,16 +10,11 @@ export function TableCell(props: any) {
         return null;
     }
 
-    let cellStyles = {
-        height: element?.data?.rowSpan ?  `${24 * element?.data?.rowSpan}px` : null,
-    };
-
     return (
         <PlateTableCellElement
             { ...props }
             className={ css.cell }
             { ...attributes }
-            style={ element?.data?.style === 'none' ? { display: 'none' } : cellStyles }
             nodeProps={ {
                 colSpan: element?.data?.colSpan || 1,
                 rowSpan: element?.data?.rowSpan || 1,
