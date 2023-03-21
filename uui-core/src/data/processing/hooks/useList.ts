@@ -22,7 +22,7 @@ export function useList<TItem, TId, TFilter, TSubtotals = void>(
     const view = useView<TItem, TId, TFilter, TSubtotals, UnboxListProps<typeof props>>(
         () => createView({ value: listState, onValueChange: setListState }, viewProps),
         (current) => {
-            current.update(listState, props);
+            current.update(listState, viewProps);
         },
         deps,
     );

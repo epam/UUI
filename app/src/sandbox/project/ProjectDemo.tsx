@@ -99,7 +99,7 @@ export const ProjectDemo = () => {
         },
     }, []);
 
-    const columns = useMemo(() => getColumns({ insertTask, deleteTask: () => {} }), []);
+    const { columns, subtotalsColumns } = useMemo(() => getColumns({ insertTask, deleteTask: () => {} }), []);
 
     return <Panel style={ { width: '100%' } }>
         <FlexRow spacing='12' margin='12'>
@@ -123,10 +123,11 @@ export const ProjectDemo = () => {
                 <Button size='30' caption="Revert" onClick={ revert } isDisabled={ !isChanged } />
             </FlexCell>
         </FlexRow>
-        <DataTable
+        <DataTable<Task, number, TaskSubtotals>
             headerTextCase='upper'
             getRows={ () => rows }
             columns={ columns }
+            subtotalsColumns={ subtotalsColumns }
             value={ tableState }
             onValueChange={ setTableState }
             showColumnsConfig

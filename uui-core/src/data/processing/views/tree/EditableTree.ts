@@ -65,7 +65,7 @@ export abstract class EditableTree<TItem, TId, TSubtotals = void> extends BaseTr
             );
         }
 
-        return this.newInstance(this.params, newById, newByParentId, newNodeInfoById);
+        return this.newInstance(this.params, newById, newByParentId, newNodeInfoById, this.subtotals);
     }
 
     public cascadeSelection(
