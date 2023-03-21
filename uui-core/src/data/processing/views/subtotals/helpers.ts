@@ -1,6 +1,6 @@
 import { Subtotals } from "./types";
 
-export const isSubtotalRecord = <TItem extends {}, TSubtotals, TId>(
+export const isSubtotalRecord = <TItem extends {}, TId, TSubtotals>(
     record: TItem | Subtotals<TSubtotals, TId>,
 ): record is Subtotals<TSubtotals, TId> => {
     return 'isSubtotal' in record && record.isSubtotal;

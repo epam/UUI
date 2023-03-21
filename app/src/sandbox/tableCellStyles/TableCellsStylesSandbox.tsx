@@ -264,7 +264,7 @@ export default function TableCellsStylesSandbox() {
                 />
             </skin.FlexCell>
         </skin.FlexRow>
-        <skin.DataTable
+        <promo.DataTable
             { ...listProps }
             getRows={ () => rows }
             value={ tableState }

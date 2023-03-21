@@ -184,8 +184,8 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
         const key = id;
         const pathToParent = this.tree.getPathById(parentId);
         const item = this.tree.getById(parentId);
-        const pathItem = this.tree.getPathItem(item);
-        const path = [...pathToParent, pathItem];
+        const pathItem = parentId ? this.tree.getPathItem(item) : undefined;
+        const path = pathItem ? [...pathToParent, pathItem] : pathToParent;
         const rowProps = {
             id: id as TId, // TODO: fix
             parentId,

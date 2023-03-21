@@ -4,9 +4,9 @@ import {
     IconContainer
 } from '@epam/uui-components';
 import {
-    ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
+    ColumnsConfig, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
     DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
-    cx, TableFiltersConfig, DataTableRowProps
+    cx, TableFiltersConfig, DataTableRowProps, RowProps, Subtotals, isSubtotalRecord
 } from '@epam/uui-core';
 import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal } from './';
 import { VirtualList } from '../';
@@ -15,9 +15,10 @@ import { Text } from "../typography";
 import css from './DataTable.scss';
 import { i18n } from "../../i18n";
 
-export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
-    getRows(): DataRowProps<TItem, TId>[];
+export interface DataTableProps<TItem, TId, TSubtotals = void> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions {
+    getRows(): RowProps<TItem, TId, TSubtotals>[];
     columns: DataColumnProps<TItem, TId>[];
+    subtotalsColumns?: Exclude<TSubtotals extends void ? void : DataColumnProps<Subtotals<TSubtotals, TId>, TId>, void>[];
     renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
@@ -25,12 +26,18 @@ export interface DataTableProps<TItem, TId> extends IEditable<DataTableState>, D
     filters?: TableFiltersConfig<any>[];
 }
 
-export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
+const isSubtotalRow = <TItem, TId, TSubtotals = void>(
+    row: DataTableRowProps<TItem, TId> | DataTableRowProps<Subtotals<TSubtotals, TId>, TId>
+): row is DataTableRowProps<Subtotals<TSubtotals, TId>, TId> => {
+    return isSubtotalRecord<TItem, TId, TSubtotals>(row.value);
+};
+
+export function DataTable<TItem, TId, TSubtotals = void>(props: React.PropsWithChildren<DataTableProps<TItem, TId, TSubtotals> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
-    const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId>) => (
+    const renderRow = React.useCallback((rowProps: DataTableRowProps<TItem, TId> | DataTableRowProps<Subtotals<TSubtotals, TId>, TId>) => (
         <DataTableRow
             key={ rowProps.rowKey }
             size={ props.size }
@@ -39,7 +46,15 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         />
     ), [props.size, props.border]);
 
-    const rows = props.getRows().map(row => (props.renderRow || renderRow)({ ...row, columns }));
+    const rows = props.getRows().map(row => {
+        if (isSubtotalRow<TItem, TId, TSubtotals>(row)) {
+            const subtotalRow: DataTableRowProps<Subtotals<TSubtotals, TId>, TId> = row;
+            return renderRow({ ...subtotalRow, columns: props.subtotalsColumns ?? [] });
+        }
+
+        const dataRow = row as DataTableRowProps<TItem, TId>;
+        return (props.renderRow || renderRow)({ ...dataRow, columns })
+    });
 
     const renderNoResultsBlock = React.useCallback(() => {
         return (

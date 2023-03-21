@@ -301,8 +301,8 @@ export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<T
             // const isItemsEqual = (this.props.items.length === this.tree.getTotalRecursiveCount())
             //     && this.props.items.every((value, index) => value === this.tree.getById(this.props.getId(value)));
             return this.blank<TItem, TId, TSubtotals>(params)
-                .setSubtotals(subtotals)
-                .patch(items as TItem[]);
+                .patch(items as TItem[])
+                .setSubtotals(subtotals);
         }
     }
 
