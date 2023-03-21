@@ -55,5 +55,9 @@
         // padding: 0; leads to bugs, see link below
         // https://stackoverflow.com/questions/27829250/why-doesnt-a-childs-margin-affect-a-parents-height
         padding: 6px 24px;
+
+        & > p {
+            padding: 0;
+        }
     }
 }
