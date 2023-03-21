@@ -147,7 +147,7 @@ export class ArrayListView<TItem, TId, TFilter = any, TSubtotals = void>
     }
 
     protected handleSelectAll = (checked: boolean) => {
-        const rowsToSelect = this.rows.filter(this.canBeSelected).map(({ id }) => id);
+        const rowsToSelect = this.rows.filter(this.canBeSelected).map(({ id }) => id) as TId[];
         this.handleCheckedChange(checked ? rowsToSelect : []);
     }
 

@@ -245,7 +245,7 @@ export interface BaseListViewProps<TItem, TId, TFilter, TSubtotals = void> {
 
 export type SubtotalsDataRowProps<TSubtotals extends {} | void, TId> = TSubtotals extends void
     ? void
-    : DataRowProps<Subtotals<TSubtotals, TId>, TId>;
+    : DataRowProps<Subtotals<TSubtotals, TId>, string>;
 
 export type RowProps<TItem, TId, TSubtotals> = SubtotalsDataRowProps<TSubtotals, TId> extends void
     ? DataRowProps<TItem, TId>
