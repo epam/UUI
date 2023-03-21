@@ -10,7 +10,7 @@ import { Tree, LoadTreeOptions, ITree, ItemsComparator } from './tree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
-export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
+export interface LazyListViewProps<TItem, TId, TFilter, TSubtotals = void> extends BaseListViewProps<TItem, TId, TFilter, TSubtotals> {
     /**
      * A function to retrieve the data, asynchronously.
      * This function usually performs a REST API call.
@@ -73,32 +73,34 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
     patchComparator?: ItemsComparator<TItem>;
 }
 
-interface LoadResult<TItem, TId, TFilter> {
+interface LoadResult<TItem, TId, TFilter, TSubtotals = void> {
     isUpdated: boolean;
     isOutdated: boolean;
-    tree: ITree<TItem, TId>;
+    tree: ITree<TItem, TId, TSubtotals>;
 }
 
-export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
-    public props: LazyListViewProps<TItem, TId, TFilter>;
+export class LazyListView<TItem, TId, TFilter = any, TSubtotals = void> extends BaseListView<TItem, TId, TFilter, TSubtotals>
+    implements IDataSourceView<TItem, TId, TFilter, TSubtotals> {
+
+    public props: LazyListViewProps<TItem, TId, TFilter, TSubtotals>;
     public value: DataSourceState<TFilter, TId> = null;
     private cache: ListApiCache<TItem, TId, TFilter>;
     private memoPatchComparator: ItemsComparator<TItem>;
     private isUpdatePending = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
-    private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
+    private loadedProps: LazyListViewProps<TItem, TId, TFilter, TSubtotals>;
     private reloading: boolean = false;
     private defaultPatchComparator = () => -1;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
-        { legacyLoadDataBehavior = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
+        { legacyLoadDataBehavior = true, ...props }: LazyListViewProps<TItem, TId, TFilter, TSubtotals>,
         cache?: ListApiCache<TItem, TId, TFilter>,
     ) {
         const newProps = { legacyLoadDataBehavior, ...props };
         super(editable, newProps);
         this.props = this.applyDefaultsToProps(newProps);
-        this.originalTree = Tree.blank<TItem, TId>(newProps);
+        this.originalTree = Tree.blank<TItem, TId, TSubtotals>(newProps);
         this.tree = this.originalTree;
 
         this.cache = cache;
@@ -115,7 +117,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     private defaultGetId = (i: any) => i.id;
 
-    protected applyDefaultsToProps(props: LazyListViewProps<TItem, TId, TFilter>): LazyListViewProps<TItem, TId, TFilter> {
+    protected applyDefaultsToProps(props: LazyListViewProps<TItem, TId, TFilter, TSubtotals>): LazyListViewProps<TItem, TId, TFilter, TSubtotals> {
         if ((props.cascadeSelection || props.flattenSearchResults) && !props.getParentId) {
             console.warn("LazyListView: getParentId prop is mandatory if cascadeSelection or flattenSearchResults are enabled");
         }
@@ -126,7 +128,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         };
     }
 
-    public update(newValue: DataSourceState<TFilter, TId>, props: LazyListViewProps<TItem, TId, TFilter>): void {
+    public update(newValue: DataSourceState<TFilter, TId>, props: LazyListViewProps<TItem, TId, TFilter, TSubtotals>): void {
         this.isUpdatePending = true;
 
         if ((this.props.patch !== props.patch && !props.patch?.length) || !this.memoPatchComparator) {
@@ -278,9 +280,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     // Loads node. Returns promise to a loaded node.
 
-    private inProgressPromise: Promise<LoadResult<TItem, TId, TFilter>> = null;
+    private inProgressPromise: Promise<LoadResult<TItem, TId, TFilter, TSubtotals>> = null;
 
-    private loadMissing(abortInProgress: boolean, options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId, TFilter>> {
+    private loadMissing(abortInProgress: boolean, options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId, TFilter, TSubtotals>> {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
 
         if (this.inProgressPromise === null || abortInProgress) {
@@ -292,7 +294,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         return this.inProgressPromise;
     }
 
-    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId, TFilter>> {
+    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId, TFilter, TSubtotals>> {
         const loadingTree = this.originalTree;
 
         try {
@@ -391,7 +393,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 const index = from + rows.length;
                 const row = this.getLoadingRow('_loading_' + index, index);
                 row.indent = lastRow.indent;
-                row.path = lastRow.path;
+                row.path = lastRow.path as DataRowProps<TItem, TId>['path'];
                 row.depth = lastRow.depth;
                 rows.push(row);
             }
@@ -442,8 +444,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     protected isPatchUpdated(
-        prevProps: LazyListViewProps<TItem, TId, TFilter>,
-        newProps: LazyListViewProps<TItem, TId, TFilter>,
+        prevProps: LazyListViewProps<TItem, TId, TFilter, TSubtotals>,
+        newProps: LazyListViewProps<TItem, TId, TFilter, TSubtotals>,
     ) {
         return newProps.patch !== prevProps.patch
             || newProps.patchComparator !== prevProps.patchComparator

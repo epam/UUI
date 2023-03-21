@@ -1,29 +1,29 @@
 import { BaseListViewProps, DataSourceState, IDataSource, IDataSourceView } from "../../types";
 
-export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
+export abstract class BaseDataSource<TItem, TId, TFilter = any, TSubtotals = void> implements IDataSource<TItem, TId, TFilter, TSubtotals> {
 
-    protected views = new Map<any, IDataSourceView<TItem, TId, TFilter>>();
+    protected views = new Map<any, IDataSourceView<TItem, TId, TFilter, TSubtotals>>();
 
-    constructor(public props: BaseListViewProps<TItem, TId, TFilter>) {}
+    constructor(public props: BaseListViewProps<TItem, TId, TFilter, TSubtotals>) {}
 
     abstract getById(id: TId): TItem;
     abstract setItem(item: TItem): void;
     abstract getView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<BaseListViewProps<TItem, TId, TFilter>>,
-    ): IDataSourceView<TItem, TId, TFilter>;
+        options?: Partial<BaseListViewProps<TItem, TId, TFilter, TSubtotals>>,
+    ): IDataSourceView<TItem, TId, TFilter, TSubtotals>;
     abstract useView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<BaseListViewProps<TItem, TId, TFilter>>,
-    ): IDataSourceView<TItem, TId, TFilter>;
+        options?: Partial<BaseListViewProps<TItem, TId, TFilter, TSubtotals>>,
+    ): IDataSourceView<TItem, TId, TFilter, TSubtotals>;
 
     protected updateViews = () => {
         this.views.forEach(view => view._forceUpdate());
     }
 
-    public abstract setProps(newProps: BaseListViewProps<TItem, TId, TFilter>): void;
+    public abstract setProps(newProps: BaseListViewProps<TItem, TId, TFilter, TSubtotals>): void;
 
     public unsubscribeView(onValueChange: (val: any) => void) {
         this.views.delete(onValueChange);

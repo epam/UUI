@@ -3,11 +3,11 @@ import { DataSourceState, IEditable } from "../../../types";
 import { AsyncListProps, IView, LazyListProps, ListViewProps } from "./types";
 
 export const isLazyListViewProps = <TItem, TId, TFilter, TSubtotals = void>(props: ListViewProps<TItem, TId, TFilter, TSubtotals>):
-    props is LazyListProps<TItem, TId, TFilter> =>
+    props is LazyListProps<TItem, TId, TFilter, TSubtotals> =>
     props.type === 'lazy';
 
 export const isAsyncListViewProps = <TItem, TId, TFilter, TSubtotals = void>(props: ListViewProps<TItem, TId, TFilter, TSubtotals>):
-    props is AsyncListProps<TItem, TId, TFilter> =>
+    props is AsyncListProps<TItem, TId, TFilter, TSubtotals> =>
     props.type === 'async';
 
 export const createView = <TItem, TId, TFilter, TSubtotals, Props extends ListViewProps<TItem, TId, TFilter, TSubtotals>>(
@@ -21,11 +21,11 @@ export const createView = <TItem, TId, TFilter, TSubtotals, Props extends ListVi
 
     if (isAsyncListViewProps<TItem, TId, TFilter, TSubtotals>(props)) {
         const { type, ...viewProps } = props;
-        return new AsyncListView(editable, viewProps);
+        return new AsyncListView<TItem, TId, TFilter, TSubtotals>(editable, viewProps);
     }
 
     const { type, ...viewProps } = props;
-    return new ArrayListView(editable, viewProps);
+    return new ArrayListView<TItem, TId, TFilter, TSubtotals>(editable, viewProps);
 };
 
 export const mergePropsWithDefaults = <TItem, TId, TFilter, TSubtotals = void>(

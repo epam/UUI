@@ -1,7 +1,7 @@
 import isEqual from "lodash.isequal";
 import {
     BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
-    IDataSourceView, DataRowPathItem, SubtotalsDataRowProps,
+    IDataSourceView, DataRowPathItem, SubtotalsDataRowProps, RowProps,
 } from "../../../types";
 import { isSubtotalRecord, Subtotals, SubtotalsRecord } from "./subtotals";
 import { ItemsComparator, ITree } from "./tree/ITree";
@@ -18,7 +18,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
     protected originalTree: ITree<TItem, TId, TSubtotals>;
     protected tree: ITree<TItem, TId, TSubtotals>;
 
-    protected rows: Array<DataRowProps<TItem, TId>> = [];
+    protected rows: RowProps<TItem, TId, TSubtotals>[] = [];
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
@@ -28,7 +28,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
     protected patchComparator: ItemsComparator<TItem>;
 
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
-    abstract getVisibleRows(): DataRowProps<TItem, TId>[];
+    abstract getVisibleRows(): RowProps<TItem, TId, TSubtotals>[];
     abstract getListProps(): DataSourceListProps;
 
     _forceUpdate() {
@@ -52,8 +52,8 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
         if (this.props.getRowOptions) {
             for (let n = 0; n < this.rows.length; n++) {
                 const row = this.rows[n];
-                if (!row.isLoading) {
-                    this.applyRowOptions(row);
+                if (!row.isLoading && !isSubtotalRecord<TItem, TId, TSubtotals>(row.value as Subtotals<TItem, TSubtotals>)) {
+                    this.applyRowOptions(row as DataRowProps<TItem, TId>);
                 }
             }
         }
@@ -179,6 +179,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
     }
 
     protected getSubtotalsRowProps(subtotal: Subtotals<TSubtotals, TId>, index: number) {
+        const rowOptions = this.props.rowOptions;
         const { id, parentId } = subtotal;
         const key = id;
         const pathToParent = this.tree.getPathById(parentId);
@@ -194,9 +195,9 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
             value: subtotal,
             depth: path.length,
             path,
+            checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
         } as DataRowProps<Subtotals<TSubtotals, TId>, TId>;
 
-        this.applyRowOptions(rowProps as any); // TODO: fix
         return rowProps;
     }
 
@@ -210,7 +211,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
         if (rowOptions != null) {
             const rowValue = row.value;
             Object.assign(row, rowOptions);
-            row.value = (rowOptions.value as TItem) ?? rowValue; // TODO: fix
+            row.value = (rowOptions.value) ?? rowValue;
         }
         row.isFocused = this.value.focusedIndex === row.index;
         row.isChecked = !!this.checkedByKey[row.rowKey];
@@ -237,7 +238,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
 
     // Extracts a flat list of currently visible rows from the tree
     protected rebuildRows() {
-        const rows: Array<DataRowProps<TItem, TId> | SubtotalsDataRowProps<TSubtotals, TId>> = [];
+        const rows: Array<RowProps<TItem, TId, TSubtotals>> = [];
         let lastIndex = this.getLastRecordIndex();
 
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
@@ -306,7 +307,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
 
             if (subtotalRecord) {
                 const subtotalRow = this.getSubtotalsRowProps(subtotalRecord as Subtotals<TSubtotals, TId>, rows.length);
-                rows.push(subtotalRow as SubtotalsDataRowProps<TSubtotals, TId>);
+                rows.push(subtotalRow as RowProps<TItem, TId, TSubtotals>);
             }
 
             const pathToParent = this.tree.getPathById(parentId);
@@ -355,7 +356,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
             this.selectAll = null;
         }
 
-        this.rows = rows as DataRowProps<TItem, TId>[]; // TODO: fix
+        this.rows = rows;
         this.hasMoreRows = rootStats.hasMoreRows;
     }
 
@@ -434,7 +435,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
         hasMoreRows: parentStats.hasMoreRows || childStats.hasMoreRows,
     })
 
-    protected canBeSelected = (row: DataRowProps<TItem, TId>) =>
+    protected canBeSelected = (row: RowProps<TItem, TId, TSubtotals>) =>
         row.checkbox && row.checkbox.isVisible && !row.checkbox.isDisabled
 
     protected getLastRecordIndex = () => this.value.topIndex + this.value.visibleCount;

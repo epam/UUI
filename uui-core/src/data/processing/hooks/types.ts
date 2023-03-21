@@ -4,19 +4,19 @@ import { SubtotalsConfig } from "../views/subtotals";
 
 export type PropsWithType<Props, Type extends string> = Props & { type: Type };
 
-export type LazyListProps<TItem, TId, TFilter> = PropsWithType<LazyListViewProps<TItem, TId, TFilter>, 'lazy'>;
-export type AsyncListProps<TItem, TId, TFilter> = PropsWithType<AsyncListViewProps<TItem, TId, TFilter>, 'async'>;
+export type LazyListProps<TItem, TId, TFilter, TSubtotals = void> = PropsWithType<LazyListViewProps<TItem, TId, TFilter, TSubtotals>, 'lazy'>;
+export type AsyncListProps<TItem, TId, TFilter, TSubtotals = void> = PropsWithType<AsyncListViewProps<TItem, TId, TFilter, TSubtotals>, 'async'>;
 export type ArrayListProps<TItem, TId, TFilter, TSubtotals = void> = PropsWithType<ArrayListViewProps<TItem, TId, TFilter, TSubtotals>, 'array'>;
 
 export type ListViewProps<TItem, TId, TFilter, TSubtotals = void> =
-    | LazyListProps<TItem, TId, TFilter>
-    | AsyncListProps<TItem, TId, TFilter>
+    | LazyListProps<TItem, TId, TFilter, TSubtotals>
+    | AsyncListProps<TItem, TId, TFilter, TSubtotals>
     | ArrayListProps<TItem, TId, TFilter, TSubtotals>;
 
-export type UnboxListProps<T extends ListViewProps<any, any, any, any>> = T extends LazyListProps<infer TItem, infer TId, infer TFilter>
-    ? LazyListProps<TItem, TId, TFilter>
-    : T extends AsyncListProps<infer TItem, infer TId, infer TFilter>
-    ? AsyncListProps<TItem, TId, TFilter>
+export type UnboxListProps<T extends ListViewProps<any, any, any, any>> = T extends LazyListProps<infer TItem, infer TId, infer TFilter, infer TSubtotals>
+    ? LazyListProps<TItem, TId, TFilter, TSubtotals>
+    : T extends AsyncListProps<infer TItem, infer TId, infer TFilter, infer TSubtotals>
+    ? AsyncListProps<TItem, TId, TFilter, TSubtotals>
     : T extends ArrayListProps<infer TItem, infer TId, infer TFilter, infer TSubtotals>
     ? ArrayListProps<TItem, TId, TFilter, TSubtotals>
     : never;
