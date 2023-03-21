@@ -109,9 +109,5 @@
     &.spacing-18 {
         @include items-spacing(18px);
     }
-
-    &.spacing-null {
-        @include items-spacing(null);
-    }
 }
 
