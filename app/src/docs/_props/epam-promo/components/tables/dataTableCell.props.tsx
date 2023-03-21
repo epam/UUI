@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { DataTableCellProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
-import { DataTableCell } from '@epam/promo';
+import { Text, DataTableCell } from '@epam/promo';
 import { DefaultContext, ResizableContext, FormContext, TableContext } from '../../docs';
-import { Text, DataTableCellMods } from '@epam/promo';
+import { DataTableCellMods } from '@epam/uui';
 
 const DataTableCellDoc = new DocBuilder<DataTableCellProps & DataTableCellMods>({ name: 'DataTableCell', component: DataTableCell as any })
     .prop('column', {

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Location } from '@epam/uui-docs';
 import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
-import { Text, LinkButton, DataTable, DataTableMods, Panel } from '@epam/promo';
+import { Text, LinkButton, DataTable, Panel } from '@epam/promo';
+import { DataTableMods } from '@epam/uui';
 import css from './TablesExamples.scss';
 
 export default function TreeTableExample({ size }: DataTableMods) {
@@ -84,7 +85,7 @@ export default function TreeTableExample({ size }: DataTableMods) {
     });
 
     return (
-        <Panel shadow cx={ css.container } rawProps={ { role: 'treegrid' } }>
+        <Panel shadow cx={ css.container } rawProps={ { role: 'tree_grid' } }>
             <DataTable
                 getRows={ view.getVisibleRows }
                 { ...view.getListProps() }
@@ -93,7 +94,7 @@ export default function TreeTableExample({ size }: DataTableMods) {
                 columns={ locationColumns }
                 size={ size }
                 headerTextCase='upper'
-                border='none'
+                border={ false }
             />
         </Panel>
     );

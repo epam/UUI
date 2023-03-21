@@ -36,7 +36,7 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
                         { title && <Text size={ itemSize } cx={ css.text } color={ isDisabled ? 'disabled' : 'primary' }>
                             { isLoading ? <TextPlaceholder wordsCount={ 2 } /> : title }
                         </Text> }
-                        { subtitle && <Text size={ itemSize } color='disabled' cx={ css.text } >
+                        { subtitle && <Text size={ itemSize } color={ isDisabled ? 'disabled' : 'secondary' } cx={ css.text } >
                             { isLoading ? <TextPlaceholder wordsCount={ 2 } /> : subtitle }
                         </Text> }
                     </FlexCell>

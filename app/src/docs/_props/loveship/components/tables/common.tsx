@@ -9,7 +9,7 @@ import { ReactComponent as CalendarIcon } from '@epam/assets/icons/common/action
 import { ReactComponent as TickIcon } from '@epam/assets/icons/common/notification-done-18.svg';
 import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
 import { Person } from './TableContext';
-import { DataTableHeaderRowMods } from '@epam/loveship';
+import { DataTableHeaderRowMods } from '@epam/uui';
 
 const getRandomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 
