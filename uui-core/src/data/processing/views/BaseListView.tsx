@@ -178,7 +178,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
         return rowProps;
     }
 
-    protected getSubtotalsRowProps(subtotal: Subtotals<TSubtotals, TId>, index: number) {
+    protected getSubtotalsRowProps(subtotal: Subtotals<TSubtotals, TId>, options: { index: number, isFolded: boolean }) {
         const rowOptions = this.props.rowOptions;
         const { id, parentId } = subtotal;
         const key = id;
@@ -191,11 +191,14 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
             parentId,
             key,
             rowKey: key,
-            index,
             value: subtotal,
             depth: path.length,
+            indent: path.length + 1,
             path,
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
+            isFoldable: false,
+            isLastChild: false,
+            ...options,
         } as DataRowProps<Subtotals<TSubtotals, TId>, TId>;
 
         return rowProps;
@@ -256,6 +259,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
 
             const ids = this.tree.getChildrenIdsByParentId(parentId);
             const subtotalRecord = this.tree.getSubtotalRecordByParentId(parentId);
+            const parentRow = rows[rows.length - 1];
 
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
@@ -305,8 +309,11 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
                 }
             }
 
-            if (subtotalRecord) {
-                const subtotalRow = this.getSubtotalsRowProps(subtotalRecord as Subtotals<TSubtotals, TId>, rows.length);
+            if (subtotalRecord && !parentRow?.isFolded) {
+                const subtotalRow = this.getSubtotalsRowProps(subtotalRecord as Subtotals<TSubtotals, TId>, {
+                    index: rows.length,
+                    isFolded: parentRow?.isFolded ?? false,
+                });
                 rows.push(subtotalRow as RowProps<TItem, TId, TSubtotals>);
             }
 
