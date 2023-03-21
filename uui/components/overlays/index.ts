@@ -5,3 +5,4 @@ export * from './DropdownMenu';
 export * from './Modals';
 export * from './NotificationCard';
 export * from './Tooltip';
+export * from './ConfirmationModal';

@@ -571,6 +571,16 @@
 
     --uui-panel-bg: var(--uui-surface);
 
+    /* Spinner */
+    --uui-spinner: var(--uui-primary);
+
+    /* Blocker */
+    --uui-blocker-bg: var(--uui-background);
+    --uui-blocker-bg-with-opacity: #F5F6FA80;
+
+    /* FlexRow */
+    --uui-flex-row-border-bottom: 1px solid var(--uui-divider);
+
     /* DataTable vars */
     --uui-dt-border: var(--gray30);
 
@@ -1033,6 +1043,18 @@
 
     :global(.dropdown-container-gray70) {
         --uui-dropdown-container-bg: var(--gray70);
+    }
+
+    :global(.flex-row-background-white) {
+        --uui-flex-row-bg: var(--uui-surface);
+    }
+
+    :global(.flex-row-background-gray5) {
+        --uui-flex-row-bg: var(--gray5);
+    }
+
+    :global(.flex-row-background-none) {
+        --uui-flex-row-bg: transparent;
     }
 
     :global(.panel-white) {
