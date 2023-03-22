@@ -40,7 +40,6 @@ export interface TreeParams<TItem, TId> {
 export type ItemsComparator<TItem> = (existingItem: TItem, newItem: TItem, cacheIsAbsent?: boolean) => number;
 
 export interface ITree<TItem, TId, TSubtotals = void> {
-    readonly byId: IMap<TId, TItem>;
     clearStructure(): ITree<TItem, TId, TSubtotals>;
     getRootIds(): TId[];
     getRootItems(): TItem[];
@@ -104,4 +103,6 @@ export interface ITree<TItem, TId, TSubtotals = void> {
     filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId, TSubtotals>;
     search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId, TSubtotals>;
     sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>): ITree<TItem, TId, TSubtotals>;
+
+    [Symbol.iterator](): IterableIterator<[TId, TItem]>
 }

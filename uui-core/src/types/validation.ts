@@ -1,10 +1,11 @@
+import { ITree } from "../data";
 import { IMap } from "./objects";
 import { ICanBeReadonly, ICanBeRequired, IDisableable } from "./props";
 
 type ElementType<Store> =
     Store extends readonly (infer ElementType)[]
     ? ElementType
-    : Store extends IMap<any, infer MapElementType>
+    : Store extends ITree<infer MapElementType, infer TId, infer TSubtotals>
     ? MapElementType
     : Store extends Record<any, (infer ValueType)>
     ? ValueType

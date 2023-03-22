@@ -98,7 +98,7 @@ export function getById<TItem, TId>(id: TId): ILensImpl<ITree<TItem, TId>, TItem
         },
         getValidationState(big: ICanBeInvalid) {
             let validationStateProps = (big || blankValidationState).validationProps || {};
-            return validationStateProps.byId?.validationProps?.[id as string];
+            return validationStateProps[id as string];
         },
         getMetadata(big: Metadata<ITree<TItem, TId>>) {
             let metadata: Metadata<ITree<TItem, TId>> = big ?? { props: {} };
