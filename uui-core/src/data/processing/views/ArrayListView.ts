@@ -33,11 +33,7 @@ export class ArrayListView<TItem, TId, TFilter = any, TSubtotals = void>
     ) {
         super(editable, props);
         this.props = props;
-        if (props.items instanceof Tree) {
-            this.tree = Tree.create(props, props.items);
-        } else {
-            this.tree = Tree.blank(props);
-        }
+        this.tree = Tree.blank(props);
         this.update(editable.value, props);
     }
 
