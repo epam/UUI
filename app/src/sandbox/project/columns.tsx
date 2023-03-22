@@ -133,7 +133,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             key: 'name',
             caption: 'Total count',
             width: 400,
-            fix: 'left',
+            justifyContent: 'end',
             isSortable: true,
             render: () => <Text fontSize='14'>-</Text>,
         },
@@ -144,7 +144,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             info: "Estimate in man/days",
             width: 120,
             isSortable: true,
-            render: p => <Text font='sans-semibold' fontSize='14'>{ p.totalEstimate }</Text>,
+            render: p => <Text font='sans-semibold' fontSize='14'>Total estimate: { p.totalEstimate }</Text>,
         },
         {
             key: 'resource',

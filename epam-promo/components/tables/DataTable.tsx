@@ -20,6 +20,7 @@ export interface DataTableProps<TItem, TId, TSubtotals = void> extends IEditable
     columns: DataColumnProps<TItem, TId>[];
     subtotalsColumns?: Exclude<TSubtotals extends void ? void : DataColumnProps<TSubtotals, string>, void>[];
     renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
+    renderSubtotalsRow?(props: DataTableRowProps<Subtotals<TSubtotals, TId>, string>): React.ReactNode;
     renderNoResultsBlock?(): React.ReactNode;
     onScroll?(value: PositionValues): void;
     showColumnsConfig?: boolean;
@@ -35,7 +36,10 @@ const isSubtotalRow = <TItem, TId, TSubtotals = void>(
 export function DataTable<TItem, TId, TSubtotals = void>(props: React.PropsWithChildren<DataTableProps<TItem, TId, TSubtotals> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
+    const subtotalsColumnsWithFilters = useColumnsWithFilters(props.subtotalsColumns ?? [], props.filters);
+
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
+    const { columns: subtotalsColumns } = useColumnsConfig(subtotalsColumnsWithFilters, props.value?.columnsConfig);
 
     const renderRow = React.useCallback((rowProps: DataTableRowProps<TItem, TId> | DataTableRowProps<Subtotals<TSubtotals, TId>, string>) => (
         <DataTableRow
@@ -49,7 +53,7 @@ export function DataTable<TItem, TId, TSubtotals = void>(props: React.PropsWithC
     const rows = props.getRows().map(row => {
         if (isSubtotalRow<TItem, TId, TSubtotals>(row)) {
             const subtotalRow: DataTableRowProps<Subtotals<TSubtotals, TId>, string> = row;
-            return renderRow({ ...subtotalRow, columns: props.subtotalsColumns ?? [] });
+            return (props.renderSubtotalsRow ?? renderRow)({ ...subtotalRow, columns: subtotalsColumns ?? [] });
         }
 
         const dataRow = row as DataTableRowProps<TItem, TId>;

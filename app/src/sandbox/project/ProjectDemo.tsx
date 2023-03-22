@@ -1,4 +1,4 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
+import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, DataTableRow } from '@epam/promo';
 import React, { useCallback, useMemo } from 'react';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, ITree, Metadata, Tree, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
@@ -128,6 +128,10 @@ export const ProjectDemo = () => {
             getRows={ () => rows }
             columns={ columns }
             subtotalsColumns={ subtotalsColumns }
+            renderSubtotalsRow={ (props) => <DataTableRow
+                { ...props }
+                background={ 'gray5' }
+            /> }
             value={ tableState }
             onValueChange={ setTableState }
             showColumnsConfig
