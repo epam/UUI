@@ -9,8 +9,9 @@
     border: none;
     padding: 0;
 
-    &:hover {
+    &:focus, &:hover {
         background-color: var(--uui-main_menu-hover);
+        outline: none;
     }
 
     &:active {

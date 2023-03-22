@@ -17,6 +17,7 @@ export const MainMenuAvatar = React.forwardRef<HTMLDivElement, MainMenuAvatarPro
         className={ cx(css.container, props.isDropdown && css.dropdown, props.isOpen && css.open, props.onClick && uuiMarkers.clickable, props.cx) }
         onClick={ props.onClick }
         role={ props.onClick ? "button" : undefined }
+        tabIndex={ props.onClick  ? 0 : undefined }
     >
         <Avatar size='36' img={ props.avatarUrl } />
         { props.icon && <IconContainer icon={ props.icon } /> }
