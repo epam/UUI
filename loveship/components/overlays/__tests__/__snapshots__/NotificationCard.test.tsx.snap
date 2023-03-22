@@ -113,7 +113,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
 
 exports[`NotificationCard should be rendered correctly 1`] = `
 <div
-  className="notification-card-warning root"
+  className="notification-card-sun root"
   role="alert"
 >
   <div
@@ -159,7 +159,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
 
 exports[`NotificationCard should be rendered correctly with icon 1`] = `
 <div
-  className="notification-card-warning root"
+  className="notification-card-sun root"
   role="alert"
 >
   <div

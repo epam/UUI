@@ -7,14 +7,6 @@ export interface NotificationCardMods {
     color: EpamPrimaryColor | 'night600';
 }
 
-const mapColorToProps = {
-    sky: 'info',
-    grass: 'success',
-    sun: 'warning',
-    fire: 'error',
-    night600: 'night600',
-};
-
 export type NotificationCardProps = Omit<uuiNotificationCardProps, 'color'> & NotificationCardMods;
 
 export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color'>, NotificationCardMods>(
@@ -22,6 +14,6 @@ export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color'>
     () => {},
     (props) => ({
         ...props,
-        color: mapColorToProps[props.color ?? 'night600'],
+        color: props.color ?? 'night600',
     }),
 );
