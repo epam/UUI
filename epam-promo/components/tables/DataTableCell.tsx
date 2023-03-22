@@ -32,7 +32,7 @@ function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TI
                     <IconContainer
                         key='icon'
                         icon={ FoldingArrow }
-                        cx={ [css.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable] }
+                        cx={ [css.foldingArrow, css[`folding-arrow-${ additionalItemSize }`], uuiMarkers.clickable] }
                         rotate={ row.isFolded ? '90ccw' : '0' }
                         onClick={ () => row.onFold(row) }
                     />
@@ -69,7 +69,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         props.isFirstColumn && css[`padding-left-${ props.padding || '24' }`],
         props.isLastColumn && css['padding-right-24'],
         css[`align-widgets-${ props.alignActions || 'top' }`],
-        props.background && css[`background-${props.background}`],
+        props.background && css[`background-${ props.background }`],
         props.border && css['border-' + (props.border)],
     ];
 
