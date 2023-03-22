@@ -3,7 +3,7 @@ import css from "./SortingPanel.scss";
 import { ReactComponent as SortIcon } from '@epam/assets/icons/common/table-sort_asc-18.svg';
 import { ReactComponent as SortIconDesc } from '@epam/assets/icons/common/table-sort_desc-18.svg';
 import { SortDirection } from "@epam/uui-core";
-import { FlexCell } from "../../layout";
+import { FlexCell } from "@epam/uui";
 import { i18n } from "../../../i18n";
 import { DropdownMenuButton } from "../../overlays";
 

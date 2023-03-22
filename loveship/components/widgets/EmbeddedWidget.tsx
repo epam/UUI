@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from "../widgets";
+import { Spinner } from "@epam/uui";
 
 interface EmbeddedAppState {
     isLoading: boolean;
