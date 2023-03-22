@@ -27,7 +27,7 @@ const metadata: Metadata<FormState> = {
                     all: {
                         props: {
                             name: {
-                                isReadonly: true,
+                                isRequired: true,
                             },
                         },
                     },
