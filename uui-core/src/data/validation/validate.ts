@@ -9,7 +9,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
     const validateRec = <T>(value: T, path: T[], meta: Metadata<T>, initValue: T): ICanBeInvalid => {
         let itemResult: ICanBeInvalid = validateValue(value, path, meta, initValue);
         const validateItem = (key: string, meta: Metadata<any>) => {
-            const childValue = value && (value as any)[key];
+            const childValue = value && (value instanceof Map ? value.get(key) : (value as any)[key]);
             const newPath = [childValue, ...path];
             const initChildValue = initValue && (initValue as any)[key];
             const isChildChanged = childValue !== initChildValue;
@@ -40,8 +40,14 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
         }
 
         if (meta.all && value != null) {
-            for (let key in value) {
-                validateItem(key, meta.all);
+            if (value instanceof Map) {
+                for (let [key] of value) {
+                    validateItem(key, meta.all);
+                }
+            } else {
+                for (let key in value) {
+                    validateItem(key, meta.all);
+                }
             }
         }
         return itemResult;
