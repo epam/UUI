@@ -15,5 +15,6 @@ export {
     RangeDatePicker, DatePicker, MainMenu, GlobalMenu, Burger, BurgerButton, MainMenuAvatar, MainMenuSearch, MainMenuIcon,
     MainMenuDropdown, MainMenuButton, IconContainer, Accordion, RichTextView, Form, useForm, PickerInput, PickerItem,
     DataPickerRow, PickerToggler, PickerList, Blocker, CheckboxGroup, ControlGroup, ConfirmationModal, RadioGroup,
-    Anchor, Avatar, AvatarStack, Paginator,
+    Anchor, Avatar, AvatarStack, Paginator, WarningNotification, SuccessNotification, HintNotification, ErrorNotification,
+    ClearNotification,
 } from "@epam/uui";

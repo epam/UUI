@@ -21,7 +21,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
 
 exports[`ErrorNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-fire root"
+  className="notification-card-error root"
   role="alert"
 >
   <div
@@ -67,7 +67,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
 
 exports[`HintNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-sky root"
+  className="notification-card-info root"
   role="alert"
 >
   <div
@@ -113,7 +113,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
 
 exports[`NotificationCard should be rendered correctly 1`] = `
 <div
-  className="notification-card-sun root"
+  className="notification-card-warning root"
   role="alert"
 >
   <div
@@ -159,7 +159,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
 
 exports[`NotificationCard should be rendered correctly with icon 1`] = `
 <div
-  className="notification-card-sun root"
+  className="notification-card-warning root"
   role="alert"
 >
   <div
@@ -205,7 +205,7 @@ exports[`NotificationCard should be rendered correctly with icon 1`] = `
 
 exports[`SuccessNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-grass root"
+  className="notification-card-success root"
   role="alert"
 >
   <div
@@ -251,7 +251,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
 
 exports[`WarningNotification should be rendered correctly 1`] = `
 <div
-  className="notification-card-sun root"
+  className="notification-card-warning root"
   role="alert"
 >
   <div
