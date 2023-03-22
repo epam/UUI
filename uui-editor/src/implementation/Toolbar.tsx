@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
-import { usePlateEditorState, isEditorFocused, getDefaultBoundingClientRect, ClientRectObject, PlateEditor, Rect } from '@udecode/plate';
+import { usePlateEditorState, isEditorFocused, findNode, toDOMNode, getCellTypes } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
 import cx from "classnames";
+import { Range } from 'slate';
 
 import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.scss';
-import { VirtualElement } from '@popperjs/core/lib/popper';
+import type { VirtualElement } from '@popperjs/core/lib/popper';
 
 interface ToolbarProps {
     editor: any;
@@ -17,36 +18,22 @@ interface ToolbarProps {
     placement?: 'top' | 'bottom' | 'right' | 'left' | 'auto';
 }
 
-export const getSelectionBoundingClientRect = (editor: PlateEditor): ClientRectObject => {
-    const domSelection = window.getSelection();
-
-    if (!domSelection || domSelection.rangeCount < 1) {
-        return getDefaultBoundingClientRect();
-    }
-
-    const domRange = domSelection.getRangeAt(0);
-
-    const clientRect = domRange.getBoundingClientRect();
-    if(clientRect.bottom === 0 && clientRect.right === 0) {
-        return domSelection.anchorNode.parentElement.getBoundingClientRect();
-    }
-
-    return clientRect;
-};
-
-
 export function Toolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
     const editor = usePlateEditorState();
     const inFocus = isEditorFocused(editor);
 
-    const virtualReferenceElement = (): VirtualElement => {
-        return {
-            getBoundingClientRect(): any {
-                return getSelectionBoundingClientRect(editor);
-            },
-        };
-    };
+    const virtualReferenceElement = (): VirtualElement => ({
+        getBoundingClientRect(): DOMRect {
+            const [selectedNode] = findNode(editor, {
+                at: Range.start(editor.selection),
+                match: { type: getCellTypes(editor) },
+            });
+
+            const domNode = toDOMNode(editor, selectedNode);
+            return domNode.getBoundingClientRect();
+        },
+    });
 
     return (
         <Portal>
