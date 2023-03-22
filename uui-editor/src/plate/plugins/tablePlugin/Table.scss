@@ -43,7 +43,6 @@
     padding: 1px;
 
     p {
-        text-align: left;
         font-family: $font-sans-semibold;
     }
 }
@@ -52,13 +51,13 @@
     border: 1px solid $gray30;
     position: relative;
 
-    div {
-        padding: 0;
-    }
-
-    p {
-        vertical-align: baseline;
-        margin: 0;
+    & > :first-child {
+        // padding: 0; leads to bugs, see link below
+        // https://stackoverflow.com/questions/27829250/why-doesnt-a-childs-margin-affect-a-parents-height
         padding: 6px 24px;
+
+        & > p {
+            padding: 0;
+        }
     }
 }
