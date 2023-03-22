@@ -16,8 +16,9 @@
 
     &:global(.-clickable) {
         cursor: pointer;
-        &:hover {
+        &:focus, &:hover {
             background: var(--uui-main_menu-dropdown-bg);
+            outline: none;
         }
 
         &:active {
