@@ -4,7 +4,7 @@ import { DataTableHeaderCellProps, IDropdownToggler, cx, uuiMarkers, uuiDataTabl
 import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
 import { LinkButton } from '../buttons';
 import { Checkbox } from '../inputs';
-import { FlexCell } from '../layout';
+import { FlexCell } from '@epam/uui';
 import { Text } from '../typography';
 import { Tooltip } from '../overlays';
 import { DataTableHeaderCellMods } from './types';
