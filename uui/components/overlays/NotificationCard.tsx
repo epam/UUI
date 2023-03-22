@@ -43,14 +43,14 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
     return (
         <div
             role="alert"
-            className={ cx(`notification-card-${props.color}`, css.root, props.cx) }
+            className={ cx(`notification-card-${ props.color }`, css.root, props.cx) }
             ref={ notificationCardNode }
             { ...props.rawProps }
         >
             <div className={ css.mainPath }>
                 { props.icon && (
                     <div className={ css.iconWrapper }>
-                        <IconContainer icon={ props.icon } cx={ css.actionIcon } />
+                        <IconContainer icon={ props.icon } cx={ css.actionIcon }/>
                     </div>
                 ) }
                 <div className={ css.content }>
@@ -62,7 +62,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
                                 onClick={ action.action }
                                 key={ action.name }
                                 cx={ css.actionLink }
-                                size='36'
+                                size="36"
                                 rawProps={ action.rawProps }
                             />
                         )) }
@@ -70,12 +70,12 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
                 </div>
                 { props.onClose && (
                     <div className={ css.closeWrapper }>
-                            <IconButton
-                                icon={ CrossIcon }
-                                color={ 'default' }
-                                onClick={ props.onClose }
-                                cx={ css.closeIcon }
-                            />
+                        <IconButton
+                            icon={ CrossIcon }
+                            color={ 'default' }
+                            onClick={ props.onClose }
+                            cx={ css.closeIcon }
+                        />
                     </div>
                 ) }
             </div>
@@ -84,19 +84,19 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
 });
 
 export const WarningNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ WarningIcon } color='warning' { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ WarningIcon } color="warning" { ...props } ref={ ref } cx={ props.cx }/>
 ));
 
 export const SuccessNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ SuccessIcon } color='success' { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ SuccessIcon } color="success" { ...props } ref={ ref } cx={ props.cx }/>
 ));
 
 export const HintNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ HintIcon } color='info' { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ HintIcon } color="info" { ...props } ref={ ref } cx={ props.cx }/>
 ));
 
 export const ErrorNotification = React.forwardRef<HTMLDivElement, DefaultNotificationProps>((props, ref) => (
-    <NotificationCard icon={ ErrorIcon } color='error' { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ ErrorIcon } color="error" { ...props } ref={ ref } cx={ props.cx }/>
 ));
 
 export class ClearNotification extends React.Component<{}> {
@@ -105,8 +105,10 @@ export class ClearNotification extends React.Component<{}> {
 
     render() {
         return <div className={ cx(css.notificationWrapper, css.clearButton) }>
-            <LinkButton caption={ i18n.notificationCard.closeAllNotificationsButton }
-                onClick={ () => this.context.uuiNotifications.clearAll() } />
+            <LinkButton
+                caption={ i18n.notificationCard.closeAllNotificationsButton }
+                onClick={ () => this.context.uuiNotifications.clearAll() }
+            />
         </div>;
     }
 }
