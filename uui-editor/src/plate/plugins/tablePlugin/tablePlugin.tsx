@@ -12,7 +12,6 @@ import {
     insertTableRow,
     deleteTable,
     ToolbarButton as PlateToolbarButton,
-    deleteColumn,
     deleteRow,
     PlateEditor,
     getTableEntries,
@@ -48,6 +47,7 @@ import { isPluginActive, isTextSelected } from "../../../helpers";
 import { Toolbar } from '../../../implementation/Toolbar';
 
 import tableCSS from './Table.scss';
+import { deleteColumn } from './deleteColumn';
 
 const DEFAULT_COL_WIDTH = 200;
 const EMPTY_COL_WIDTH = 48;
