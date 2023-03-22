@@ -6,7 +6,8 @@ import { ReactComponent as SortIconDesc } from '../../icons/sort_desc-12.svg';
 import { ReactComponent as SortActive } from '../../icons/tick-24.svg';
 import { i18n } from "../../../i18n";
 import { LinkButton } from '../../buttons';
-import { FlexCell, FlexRow, FlexSpacer } from "../../layout";
+import { FlexRow } from "../../layout";
+import { FlexCell, FlexSpacer } from "@epam/uui";
 
 export interface SortingPanelProps {
     onSort(dir: SortDirection): void;
