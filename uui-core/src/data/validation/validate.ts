@@ -1,6 +1,7 @@
 import { ICanBeInvalid } from '../../types';
 import { i18n } from "../../i18n";
 import { Metadata } from "../../types";
+import { Tree } from '../processing';
 
 export type ValidationMode = "change" | "save";
 export const blankValidationState: ICanBeInvalid = {};
@@ -9,7 +10,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
     const validateRec = <T>(value: T, path: T[], meta: Metadata<T>, initValue: T): ICanBeInvalid => {
         let itemResult: ICanBeInvalid = validateValue(value, path, meta, initValue);
         const validateItem = (key: string, meta: Metadata<any>) => {
-            const childValue = value && (value instanceof Map ? value.get(key) : (value as any)[key]);
+            const childValue = value && (value instanceof Tree ? value.getById(key) : (value as any)[key]);
             const newPath = [childValue, ...path];
             const initChildValue = initValue && (initValue as any)[key];
             const isChildChanged = childValue !== initChildValue;
@@ -40,7 +41,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
         }
 
         if (meta.all && value != null) {
-            if (value instanceof Map) {
+            if (value instanceof Tree) {
                 for (let [key] of value) {
                     validateItem(key, meta.all);
                 }

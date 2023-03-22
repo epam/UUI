@@ -21,7 +21,7 @@ export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<T
 
     protected constructor(
         protected params: TreeParams<TItem, TId>,
-        public readonly byId: IMap<TId, TItem>,
+        protected readonly byId: IMap<TId, TItem>,
         protected readonly byParentId: IMap<TId, TId[]>,
         protected readonly nodeInfoById: IMap<TId, TreeNodeInfo>,
         protected readonly subtotals: IMap<TId, SubtotalsRecord<TSubtotals, TId>> | undefined,
@@ -340,4 +340,8 @@ export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<T
     abstract filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId, TSubtotals>;
     abstract search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId, TSubtotals>;
     abstract sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>): ITree<TItem, TId, TSubtotals>;
+
+    [Symbol.iterator]() {
+        return this.byId[Symbol.iterator]();
+    }
 }

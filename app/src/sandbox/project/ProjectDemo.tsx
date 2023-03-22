@@ -22,14 +22,10 @@ interface FormState {
 const metadata: Metadata<FormState> = {
     props: {
         items: {
-            props: {
-                byId: {
-                    all: {
-                        props: {
-                            name: {
-                                isRequired: true,
-                            },
-                        },
+            all: {
+                props: {
+                    name: {
+                        isRequired: true,
                     },
                 },
             },
