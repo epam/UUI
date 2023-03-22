@@ -28,7 +28,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             textAlign: 'right',
             caption: 'Estimate',
             info: "Estimate in man/days",
-            width: 120,
+            width: 150,
             isSortable: true,
             renderCell: (props) => <DataTableCell
                 { ...props.rowLens.prop('estimate').toProps() }
@@ -142,7 +142,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             textAlign: 'right',
             caption: 'Total estimate',
             info: "Estimate in man/days",
-            width: 120,
+            width: 150,
             isSortable: true,
             render: p => <Text font='sans-semibold' fontSize='14'>Total estimate: { p.totalEstimate }</Text>,
         },
