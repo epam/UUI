@@ -1,11 +1,13 @@
 import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
-import { usePlateEditorState, isEditorFocused, getSelectionBoundingClientRect } from '@udecode/plate';
+import { usePlateEditorState, isEditorFocused, findNode, toDOMNode, getCellTypes } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
 import cx from "classnames";
+import { Range } from 'slate';
 
 import { isImageSelected, isTextSelected } from '../helpers';
 import css from './Toolbar.scss';
+import type { VirtualElement } from '@popperjs/core/lib/popper';
 
 interface ToolbarProps {
     editor: any;
@@ -21,17 +23,17 @@ export function Toolbar(props: ToolbarProps): any {
     const editor = usePlateEditorState();
     const inFocus = isEditorFocused(editor);
 
-    const virtualReferenceElement = () => {
-        return {
-            clientWidth: getSelectionBoundingClientRect().width,
-            clientHeight: getSelectionBoundingClientRect().height,
-            getBoundingClientRect(): any {
-                const native = window.getSelection();
-                const range = native?.getRangeAt(0);
-                return getSelectionBoundingClientRect();
-            },
-        };
-    };
+    const virtualReferenceElement = (): VirtualElement => ({
+        getBoundingClientRect(): DOMRect {
+            const [selectedNode] = findNode(editor, {
+                at: Range.start(editor.selection),
+                match: { type: getCellTypes(editor) },
+            });
+
+            const domNode = toDOMNode(editor, selectedNode);
+            return domNode.getBoundingClientRect();
+        },
+    });
 
     return (
         <Portal>
