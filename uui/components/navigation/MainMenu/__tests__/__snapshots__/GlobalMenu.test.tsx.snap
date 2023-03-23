@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GlobalMenu should be rendered correctly 1`] = `
-<div
+<button
   className="globalMenuBtn"
   id="global_menu_toggle"
 >
@@ -13,5 +13,5 @@ exports[`GlobalMenu should be rendered correctly 1`] = `
       className=""
     />
   </div>
-</div>
+</button>
 `;

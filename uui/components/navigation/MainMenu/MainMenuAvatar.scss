@@ -5,6 +5,8 @@
     height: 60px;
     padding-left: 18px;
     padding-right: 6px;
+    background-color: transparent;
+    border: none;
 
     :global(.uui-caption), :global(.uui-input) {
         padding-top: 21px;
@@ -13,17 +15,17 @@
         line-height: 18px;
         font-size: 18px;
     }
-}
 
-.dropdown {
-    cursor: pointer;
+    &:global(.-clickable) {
+        cursor: pointer;
+        &:focus, &:hover {
+            background: var(--uui-main_menu-dropdown-bg);
+            outline: none;
+        }
 
-    &:hover {
-        background: var(--uui-main_menu-dropdown-bg);
-    }
-
-    &:active {
-        background-color: var(--uui-main_menu-dropdown-bg);
+        &:active {
+            background-color: var(--uui-main_menu-dropdown-bg);
+        }
     }
 }
 
