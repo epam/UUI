@@ -64,7 +64,6 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
                 for (let n = 0; n < comparers.length; n++) {
                     const comparer = comparers[n];
                     const result = comparer(a, b);
-                    // console.log('comparer', comparer);
                     if (result != 0) {
                         return result;
                     }
