@@ -1,6 +1,5 @@
-import { DataSourceState, SortingOption, DataRowPathItem, IMap } from "../../../../types";
+import { DataSourceState, SortingOption, DataRowPathItem } from "../../../../types";
 import { LazyListViewProps } from "../LazyListView";
-import { Subtotals, SubtotalsRecord } from "../subtotals";
 import { CompositeKeysMap } from "./CompositeKeysMap";
 
 export interface ApplyFilterOptions<TItem, TId, TFilter> {
@@ -38,6 +37,19 @@ export interface TreeParams<TItem, TId> {
 }
 
 export type ItemsComparator<TItem> = (existingItem: TItem, newItem: TItem, cacheIsAbsent?: boolean) => number;
+export type ComputedSubtotals<TId, TSubtotals> = CompositeKeysMap<TId, TSubtotals> | Map<TId, TSubtotals>;
+
+
+export interface ComputeSubtotals<TItem, TSubtotals> {
+    get: (item: TItem) => TSubtotals;
+    compute: (a: TSubtotals, b: TSubtotals) => TSubtotals;
+};
+
+export type IsSubtotalsRecord<TItem, TSubtotals> = {
+    isSubtotalsRecord?: (record: TItem | TSubtotals) => record is TSubtotals;
+}
+
+export type SubtotalsRecord<TSubtotals> = TSubtotals extends void ? never : TSubtotals;
 
 export interface ITree<TItem, TId, TSubtotals = void> {
     clearStructure(): ITree<TItem, TId, TSubtotals>;
@@ -53,8 +65,8 @@ export interface ITree<TItem, TId, TSubtotals = void> {
     getPathItem(item: TItem): DataRowPathItem<TId, TItem>;
     getNodeInfo(id: TId): TreeNodeInfo;
     isFlatList(): boolean;
-    setSubtotals(subtotals?: IMap<TId, SubtotalsRecord<TSubtotals, TId>>): ITree<TItem, TId, TSubtotals>;
-    getSubtotalRecordByParentId(parentId?: TId): SubtotalsRecord<TSubtotals, TId>;
+    setSubtotals(subtotals?: ComputedSubtotals<TId, TSubtotals>): ITree<TItem, TId, TSubtotals>;
+    getSubtotalRecordByParentId(parentId?: TId): SubtotalsRecord<TSubtotals>;
 
     patch(
         items: TItem[],
@@ -96,9 +108,9 @@ export interface ITree<TItem, TId, TSubtotals = void> {
         },
     ): void;
     computeSubtotals(
-        get: (item: TItem, hasChildren: boolean) => TSubtotals[keyof TSubtotals],
-        add: (a: TSubtotals[keyof TSubtotals], b: TSubtotals[keyof TSubtotals]) => TSubtotals[keyof TSubtotals],
-    ): CompositeKeysMap<TId, TSubtotals[keyof TSubtotals]> | Map<TId, TSubtotals[keyof TSubtotals]>;
+        get: (item: TItem, hasChildren: boolean) => TSubtotals,
+        add: (a: TSubtotals, b: TSubtotals) => TSubtotals,
+    ): ComputedSubtotals<TId, TSubtotals>;
 
     filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId, TSubtotals>;
     search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId, TSubtotals>;

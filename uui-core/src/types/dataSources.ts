@@ -2,7 +2,7 @@ import { SortingOption } from "./dataQuery";
 import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from "./props";
 import { IDndActor } from './dnd';
 import { Link } from './objects';
-import { Subtotals } from "../data/processing/views/subtotals";
+import { IsSubtotalsRecord } from "../data";
 
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState {
@@ -241,15 +241,17 @@ export interface BaseListViewProps<TItem, TId, TFilter, TSubtotals = void> {
      * Enables or disables "select all" checkbox. Default is true.
      */
     selectAll?: true | false;
+
+    isSubtotalsRecord?: IsSubtotalsRecord<TItem, TSubtotals>['isSubtotalsRecord'];
 }
 
-export type SubtotalsDataRowProps<TSubtotals extends {} | void, TId> = TSubtotals extends void
+export type SubtotalsDataRowProps<TSubtotals extends {} | void> = TSubtotals extends void
     ? void
-    : DataRowProps<Subtotals<TSubtotals, TId>, string>;
+    : DataRowProps<TSubtotals, string>;
 
-export type RowProps<TItem, TId, TSubtotals> = SubtotalsDataRowProps<TSubtotals, TId> extends void
+export type RowProps<TItem, TId, TSubtotals> = SubtotalsDataRowProps<TSubtotals> extends void
     ? DataRowProps<TItem, TId>
-    : DataRowProps<TItem, TId> | Exclude<SubtotalsDataRowProps<TSubtotals, TId>, void>;
+    : DataRowProps<TItem, TId> | Exclude<SubtotalsDataRowProps<TSubtotals>, void>;
 
 export type IDataSourceView<TItem, TId, TFilter, TSubtotals = void> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
