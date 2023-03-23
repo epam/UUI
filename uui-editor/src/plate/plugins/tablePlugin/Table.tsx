@@ -6,7 +6,8 @@ import {
     TableElementRootProps,
     TablePlugin,
 } from '@udecode/plate-table';
-import { getTableColumnCount, type TTableElement, useTableColSizes } from '@udecode/plate';
+import { getTableColumnCount, type TTableElement, useTableColSizes, useTableStore } from '@udecode/plate';
+import { cx } from '@epam/uui-core'
 
 import tableCSS from './Table.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
@@ -27,9 +28,11 @@ export const Table = (props: TableElementRootProps) => {
         ELEMENT_TABLE
     );
 
+    const isCellsSelected = !!useTableStore().get.selectedCells();
+
     const columnCount = getTableColumnCount(element);
     const getCurrentColSizes = () =>
-        (element.colSizes || (element as OldTableElement).data?.cellSizes || getDefaultColWidths(columnCount))
+        (element.colSizes || (element as OldTableElement).data?.cellSizes || getDefaultColWidths(columnCount));
 
     const currentColSizes =
         getCurrentColSizes()
@@ -43,7 +46,10 @@ export const Table = (props: TableElementRootProps) => {
             { ...rootProps }
             editor={ editor }
             element={ element }
-            className={ tableCSS.table }
+            className={ cx(
+                tableCSS.table,
+                isCellsSelected && tableCSS.cellsSelectionActive
+            ) }
             style={ { width: tableWidth } }
         >
             <TableElement.ColGroup>

@@ -68,3 +68,9 @@
         }
     }
 }
+
+.cells-selection-active {
+    *::selection {
+        background: none;
+    }
+}
