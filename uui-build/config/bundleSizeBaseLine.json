@@ -2,8 +2,8 @@
   "description": "Size is specified in Kb",
   "timestamp": "2023-03-23T09:58:55.027Z",
   "baseline": {
-    "templateApp": 1116.5,
-    "@epam/app": 6430.02,
+    "templateApp": 116.5,
+    "@epam/app": 430.02,
     "@epam/draft-rte": 102.56,
     "@epam/promo": 487.64,
     "@epam/uui-extra": 0.2,
