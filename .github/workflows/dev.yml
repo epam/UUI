@@ -25,3 +25,4 @@ jobs:
       values-file: values.dev.yaml
       # TODO: After migrating prod environment we can use the same image name for prod and non-prod
       image-name: ui-nonprod
+      git-version-mode: ''
