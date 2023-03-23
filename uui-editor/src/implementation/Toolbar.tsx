@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Popper } from 'react-popper';
-import { usePlateEditorState, isEditorFocused, findNode, toDOMNode, getCellTypes } from '@udecode/plate';
+import { usePlateEditorState, isEditorFocused, findNode, toDOMNode, getCellTypes, getSelectionBoundingClientRect } from '@udecode/plate';
 import { Portal } from '@epam/uui-components';
 import cx from "classnames";
 import { Range } from 'slate';
@@ -25,13 +25,17 @@ export function Toolbar(props: ToolbarProps): any {
 
     const virtualReferenceElement = (): VirtualElement => ({
         getBoundingClientRect(): DOMRect {
-            const [selectedNode] = findNode(editor, {
-                at: Range.start(editor.selection),
-                match: { type: getCellTypes(editor) },
-            });
+            if(props.isTable) {
+                const [selectedNode] = findNode(editor, {
+                    at: Range.start(editor.selection),
+                    match: { type: getCellTypes(editor) },
+                });
 
-            const domNode = toDOMNode(editor, selectedNode);
-            return domNode.getBoundingClientRect();
+                const domNode = toDOMNode(editor, selectedNode);
+                return domNode.getBoundingClientRect();
+            }
+
+            return getSelectionBoundingClientRect() as DOMRect;
         },
     });
 
@@ -47,7 +51,7 @@ export function Toolbar(props: ToolbarProps): any {
                         <div
                             onMouseDown={ e => e.preventDefault() }
                             className={ cx(css.container, 'slate-prevent-blur') }
-                            style={ { ...popperProps.style, zIndex: 30 } }
+                            style={ { ...popperProps.style, zIndex: 50 } }
                             ref={ node => {
                                 ref.current = node;
                                 (popperProps.ref as React.RefCallback<HTMLDivElement>)(node);

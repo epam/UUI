@@ -1,12 +1,10 @@
 import React, { Fragment, useCallback, useEffect, useMemo, useRef } from 'react';
-
 import {
     createTablePlugin,
     ELEMENT_TABLE,
     ELEMENT_TD,
     ELEMENT_TH,
     ELEMENT_TR,
-    PlateTableElement,
     usePlateEditorState,
     insertTableColumn,
     insertTableRow,
@@ -25,14 +23,9 @@ import {
     getBlockAbove,
     selectEditor,
     getStartPoint,
-    useTableColSizes,
 } from "@udecode/plate";
-
-import { TableHeaderCell } from "./TableHeaderCell";
-import { TableRow } from "./TableRow";
-import { TableCell } from "./TableCell";
 import cx from "classnames";
-import { ToolbarButton } from "../../../implementation/ToolbarButton";
+
 import { ReactComponent as InsertColumnBefore } from "../../icons/table-add-column-left.svg";
 import { ReactComponent as InsertColumnAfter } from "../../../icons/table-add-column-right.svg";
 import { ReactComponent as RemoveColumn } from "../../../icons/table-delete-column.svg";
@@ -44,20 +37,24 @@ import { ReactComponent as TableIcon } from "../../../icons/table-add.svg";
 import { ReactComponent as TableMerge } from "../../../icons/table-merge.svg";
 import { ReactComponent as UnmergeCellsIcon } from "../../../icons/table-un-merge.svg";
 import { isPluginActive, isTextSelected } from "../../../helpers";
+
+import { ToolbarButton } from "../../../implementation/ToolbarButton";
 import { Toolbar } from '../../../implementation/Toolbar';
+import { deleteColumn } from './deleteColumn';
+import { DEFAULT_COL_WIDTH } from './constants';
+
+import { Table } from './Table';
+import { TableHeaderCell } from "./TableHeaderCell";
+import { TableRow } from "./TableRow";
+import { TableCell } from "./TableCell";
 
 import tableCSS from './Table.scss';
-import { deleteColumn } from './deleteColumn';
 
-const DEFAULT_COL_WIDTH = 200;
-const EMPTY_COL_WIDTH = 48;
-
-const Table = (props: any) => {
+const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();
     const { cell, row } = getTableEntries(editor) || {};
 
     const { element } = props;
-    const { data } = element;
 
     const cellEntries = getTableGridAbove(editor, { format: 'cell' });
 
@@ -215,25 +212,14 @@ const Table = (props: any) => {
         );
     }, [element, cellPath, rowPath, cellEntries]);
 
-    const currentColSizes =
-        (element.colSizes ? element.colSizes : data.cellSizes)
-            .map((current: number) => current === 0 ? EMPTY_COL_WIDTH : current);
-    element.colSizes = useTableColSizes({ ...element, colSizes: currentColSizes });
-
-    const tableWidth = element.colSizes.reduce((acc: number, cur: number) => acc + cur, 0);
     return (
         <div className={ cx(tableCSS.tableWrapper) }>
-            <PlateTableElement
-                { ...props }
-                style={ { width: tableWidth } }
-                className={ tableCSS.table }
-                element={ element }
-            />
+            <Table { ...props } />
             { !!cellEntries?.length && <Toolbar
                 placement='bottom'
                 children={ cellEntries.length > 1 ? renderMergeToolbar() : renderToolbar() }
                 editor={ editor }
-                isTable={ !!cellEntries }
+                isTable
             /> }
         </div>
     );
@@ -243,7 +229,7 @@ const Table = (props: any) => {
 export const tablePlugin = () => createTablePlugin({
     overrideByKey: {
         [ELEMENT_TABLE]: {
-            component: Table,
+            component: TableRenderer,
         },
         [ELEMENT_TR]: {
             component: TableRow,
