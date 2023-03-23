@@ -8,7 +8,7 @@ import css from "./TablesExamples.scss";
 import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 import { ReactComponent as PencilIcon } from "@epam/assets/icons/common/content-edit-18.svg";
 
-export default function CitiesTable(props: unknown) {
+export default function CitiesTable() {
     const svc = useUuiContext();
     const [tableState, setTableState] = useState<DataSourceState>({});
 
@@ -105,7 +105,6 @@ export default function CitiesTable(props: unknown) {
                 getRows={ view.getVisibleRows }
                 headerTextCase='upper'
                 columns={ citiesColumns }
-                { ...(props as object) }
             />
         </Panel>
     );
