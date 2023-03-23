@@ -36,5 +36,5 @@ jobs:
             - name: Create comment
               uses: peter-evans/create-or-update-comment@v2
               with:
-                  issue-number: ${{context.issue.number}}
+                  issue-number: ${{ github.event.pull_request.number }}
                   body-file: ./source-branch/.reports/trackBundleSize.md
