@@ -11,13 +11,11 @@ export interface MainMenuAvatarProps extends IAdaptiveItem, IDropdownToggler, IH
     icon?: Icon;
 }
 
-export const MainMenuAvatar = React.forwardRef<HTMLDivElement, MainMenuAvatarProps>((props, ref) => (
-    <div
+export const MainMenuAvatar = React.forwardRef<HTMLButtonElement, MainMenuAvatarProps>((props, ref) => (
+    <button
         ref={ ref }
         className={ cx(css.container, props.isDropdown && css.dropdown, props.isOpen && css.open, props.onClick && uuiMarkers.clickable, props.cx) }
         onClick={ props.onClick }
-        role={ props.onClick ? "button" : undefined }
-        tabIndex={ props.onClick  ? 0 : undefined }
     >
         <Avatar size='36' img={ props.avatarUrl } />
         { props.icon && <IconContainer icon={ props.icon } /> }
@@ -26,5 +24,5 @@ export const MainMenuAvatar = React.forwardRef<HTMLDivElement, MainMenuAvatarPro
                 <IconContainer icon={ FoldingArrow } flipY={ props.isOpen } />
             </div>
         ) }
-    </div>
+    </button>
 ));
