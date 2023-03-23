@@ -5,9 +5,13 @@
     fill: var(--uui-main_menu-icon);
     flex-shrink: 0;
     cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
 
-    &:hover {
+    &:focus, &:hover {
         background-color: var(--uui-main_menu-hover);
+        outline: none;
     }
 
     &:active {
