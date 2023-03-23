@@ -40,6 +40,9 @@ let savedValue: FormState = {
     ),
 };
 
+const isSubtotalsRecord = (record: Task | TaskSubtotals): record is TaskSubtotals =>
+    'totalEstimate' in record;
+
 export const ProjectDemo = () => {
 
     const { lens, value, setValue, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
@@ -85,13 +88,9 @@ export const ProjectDemo = () => {
         }),
 
         subtotals: {
-            // shouldCompute: (parent: Task) => true,
-            schema: {
-                totalEstimate: {
-                    get: (item) => item.estimate ?? 0,
-                    compute: (a, b) => a + b,
-                },
-            },
+            get: (task) => ({ id: `subtotal-${ task.id }`, parentId: task.parentId, totalEstimate: task.estimate ?? 0, isSubtotal: true }),
+            compute: (prev, next) => ({ ...prev, totalEstimate: prev.totalEstimate + next.totalEstimate }),
+            isSubtotalsRecord,
         },
     }, []);
 
@@ -128,6 +127,7 @@ export const ProjectDemo = () => {
                 { ...props }
                 background={ 'gray5' }
             /> }
+            isSubtotalsRecord={ isSubtotalsRecord }
             value={ tableState }
             onValueChange={ setTableState }
             showColumnsConfig

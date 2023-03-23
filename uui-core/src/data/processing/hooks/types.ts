@@ -1,6 +1,5 @@
-import { ArrayListViewProps, AsyncListViewProps, LazyListViewProps } from "../views";
+import { ArrayListViewProps, AsyncListViewProps, ComputeSubtotals, IsSubtotalsRecord, LazyListViewProps } from "../views";
 import { DataSourceState, IDataSourceView } from "../../../types";
-import { SubtotalsConfig } from "../views/subtotals";
 
 export type PropsWithType<Props, Type extends string> = Props & { type: Type };
 
@@ -44,5 +43,5 @@ export type UseListProps<TItem, TId, TFilter, TSubtotals = void> = ListProps<TIt
      */
     loadData?: boolean;
 
-    subtotals?: SubtotalsConfig<TItem, TSubtotals>;
+    subtotals?: ComputeSubtotals<TItem, TSubtotals> & IsSubtotalsRecord<TItem, TSubtotals>;
 };

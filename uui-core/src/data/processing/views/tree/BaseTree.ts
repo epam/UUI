@@ -1,11 +1,10 @@
 import { DataSourceState, IMap, DataRowPathItem } from "../../../../types";
-import { createSubtotalRecord, SubtotalsConfig, SubtotalsRecord } from "../subtotals";
+import { SubtotalsRecord } from "./ITree";
 import { CompositeKeysMap } from "./CompositeKeysMap";
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo } from "./ITree";
+import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ComputeSubtotals, ComputedSubtotals, ITree, LoadTreeOptions, TreeNodeInfo } from "./ITree";
 import { TreeParams } from "./ITree";
 import { Tree } from "./Tree";
 
-type ComputedSubtotals<TId, TSubtotals> = CompositeKeysMap<TId, TSubtotals> | Map<TId, TSubtotals>;
 
 export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
     if (params.complexIds) {
@@ -24,7 +23,7 @@ export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<T
         protected readonly byId: IMap<TId, TItem>,
         protected readonly byParentId: IMap<TId, TId[]>,
         protected readonly nodeInfoById: IMap<TId, TreeNodeInfo>,
-        protected readonly subtotals: IMap<TId, SubtotalsRecord<TSubtotals, TId>> | undefined,
+        protected readonly subtotals: ComputedSubtotals<TId, SubtotalsRecord<TSubtotals>> | undefined,
     ) {
         this.getId = params.getId;
         this.getParentId = params.getParentId
@@ -46,7 +45,7 @@ export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<T
         byId: IMap<TId, TItem>,
         byParentId: IMap<TId, TId[]>,
         nodeInfoById: IMap<TId, TreeNodeInfo>,
-        subtotals?: IMap<TId, SubtotalsRecord<TSubtotals, TId>>,
+        subtotals?: ComputedSubtotals<TId, TSubtotals>,
     ): ITree<TItem, TId, TSubtotals> {
         if (
             byId === this.byId
@@ -210,10 +209,10 @@ export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<T
     }
 
     public computeSubtotals(
-        get: (item: TItem, hasChildren: boolean) => TSubtotals[keyof TSubtotals],
-        add: (a: TSubtotals[keyof TSubtotals], b: TSubtotals[keyof TSubtotals]) => TSubtotals[keyof TSubtotals],
-    ): ComputedSubtotals<TId, TSubtotals[keyof TSubtotals]> {
-        const subtotalsMap = this.newMap<TId | undefined, TSubtotals[keyof TSubtotals]>();
+        get: (item: TItem, hasChildren: boolean) => TSubtotals,
+        add: (a: TSubtotals, b: TSubtotals) => TSubtotals,
+    ): ComputedSubtotals<TId, TSubtotals> {
+        const subtotalsMap = this.newMap<TId | undefined, TSubtotals>();
 
         this.forEach((item, id, parentId) => {
             let itemSubtotals = get(item, this.byParentId.has(id));
@@ -227,7 +226,7 @@ export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<T
             subtotalsMap.set(id, itemSubtotals);
 
             // add value to parent
-            let parentSubtotals: TSubtotals[keyof TSubtotals];
+            let parentSubtotals: TSubtotals;
             if (!subtotalsMap.has(parentId)) {
                 parentSubtotals = itemSubtotals;
             } else {
@@ -239,31 +238,9 @@ export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<T
     }
 
 
-    public withSubtotals({ shouldCompute, schema }: SubtotalsConfig<TItem, TSubtotals>) {
-        const subtotalProps = Object.keys(schema) as Array<keyof TSubtotals>;
-        const computedSubtotals = {} as Record<keyof TSubtotals, ComputedSubtotals<TId, TSubtotals[keyof TSubtotals]>>;
-
-        subtotalProps.forEach((subtotalProp) => {
-            computedSubtotals[subtotalProp] = this.computeSubtotals(schema[subtotalProp].get, schema[subtotalProp].compute);
-        });
-
-        const subtotalsByParents = this.newMap<TId, SubtotalsRecord<TSubtotals, TId>>();
-
-        for (const [parentId] of this.byParentId) {
-            const parent = this.getById(parentId);
-            if (shouldCompute?.(parent) ?? true) {
-                const subtotalsRecord = {} as TSubtotals;
-                subtotalProps.forEach((subtotalProp) => {
-                    subtotalsRecord[subtotalProp] = computedSubtotals[subtotalProp].get(parentId);
-                });
-
-                if (subtotalsRecord && typeof subtotalsRecord === 'object') {
-                    subtotalsByParents.set(parentId, createSubtotalRecord(parentId, subtotalsRecord) as SubtotalsRecord<TSubtotals, TId>);
-                }
-            }
-        }
-
-        return this.newInstance(this.params, this.byId, this.byParentId, this.nodeInfoById, subtotalsByParents);
+    public withSubtotals(subtotals: ComputeSubtotals<TItem, TSubtotals>) {
+        const subtotalsRecord = this.computeSubtotals(subtotals.get, subtotals.compute);
+        return this.newInstance(this.params, this.byId, this.byParentId, this.nodeInfoById, subtotalsRecord);
     }
 
     protected cloneMap<TKey, TValue>(map: IMap<TKey, TValue>) {
@@ -281,18 +258,18 @@ export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<T
         ) as ITree<TItem, TId, TSubtotals>;
     }
 
-    public setSubtotals(subtotals?: IMap<TId, SubtotalsRecord<TSubtotals, TId>>) {
+    public setSubtotals(subtotals?: ComputedSubtotals<TId, TSubtotals>) {
         return this.newInstance(this.params, this.byId, this.byParentId, this.nodeInfoById, subtotals);
     }
 
     public getSubtotalRecordByParentId(parentId: TId) {
-        return this.subtotals?.has(parentId) ? this.subtotals.get(parentId) : undefined;
+        return this.subtotals?.get(parentId);
     }
 
     public static create<TItem, TId, TSubtotals = void>(
         params: TreeParams<TItem, TId>,
         items: TItem[] | ITree<TItem, TId, TSubtotals>,
-        subtotals?: IMap<TId, SubtotalsRecord<TSubtotals, TId>>,
+        subtotals?: ComputedSubtotals<TId, SubtotalsRecord<TSubtotals>>,
     ): ITree<TItem, TId, TSubtotals> {
         if (items instanceof Tree) {
             return items as ITree<TItem, TId, TSubtotals>;

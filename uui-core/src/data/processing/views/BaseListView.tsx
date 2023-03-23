@@ -1,9 +1,8 @@
 import isEqual from "lodash.isequal";
 import {
     BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
-    IDataSourceView, DataRowPathItem, SubtotalsDataRowProps, RowProps,
+    IDataSourceView, DataRowPathItem, RowProps,
 } from "../../../types";
-import { isSubtotalRecord, Subtotals, SubtotalsRecord } from "./subtotals";
 import { ItemsComparator, ITree } from "./tree/ITree";
 
 interface NodeStats {
@@ -52,7 +51,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
         if (this.props.getRowOptions) {
             for (let n = 0; n < this.rows.length; n++) {
                 const row = this.rows[n];
-                if (!row.isLoading && !isSubtotalRecord<TItem, TId, TSubtotals>(row.value as Subtotals<TItem, TSubtotals>)) {
+                if (!row.isLoading && !this.props.isSubtotalsRecord?.(row.value)) {
                     this.applyRowOptions(row as DataRowProps<TItem, TId>);
                 }
             }
@@ -178,9 +177,10 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
         return rowProps;
     }
 
-    protected getSubtotalsRowProps(subtotal: Subtotals<TSubtotals, TId>, options: { index: number, isFolded: boolean }) {
+    protected getSubtotalsRowProps(subtotal: TSubtotals, options: { index: number, isFolded: boolean }) {
         const rowOptions = this.props.rowOptions;
-        const { id, parentId } = subtotal;
+        const id = this.props.getId(subtotal as unknown as TItem);
+        const parentId = this.props.getParentId(subtotal as unknown as TItem);
         const key = id;
         const pathToParent = this.tree.getPathById(parentId);
         const item = this.tree.getById(parentId);
@@ -194,12 +194,12 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
             value: subtotal,
             depth: path.length,
             indent: path.length + 1,
-            path,
+            path: path as unknown as DataRowPathItem<TId, TSubtotals>[],
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
             isFoldable: false,
             isLastChild: false,
             ...options,
-        } as DataRowProps<Subtotals<TSubtotals, TId>, string>;
+        } as DataRowProps<TSubtotals, string>;
 
         return rowProps;
     }

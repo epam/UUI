@@ -16,7 +16,11 @@ export function useList<TItem, TId, TFilter, TSubtotals = void>(
 
     if (props.type === 'array' && props.items instanceof Tree) {
         const treeWithSubtotals = props.items.withSubtotals(subtotals);
-        viewProps = { ...viewProps, items: treeWithSubtotals } as ArrayListProps<TItem, TId, TFilter, TSubtotals>;
+        viewProps = {
+            ...viewProps,
+            items: treeWithSubtotals,
+            isSubtotalsRecord: subtotals.isSubtotalsRecord,
+        } as ArrayListProps<TItem, TId, TFilter, TSubtotals>;
     }
 
     const view = useView<TItem, TId, TFilter, TSubtotals, UnboxListProps<typeof props>>(
