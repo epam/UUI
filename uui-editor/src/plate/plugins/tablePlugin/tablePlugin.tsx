@@ -219,7 +219,7 @@ const TableRenderer = (props: any) => {
                 placement='bottom'
                 children={ cellEntries.length > 1 ? renderMergeToolbar() : renderToolbar() }
                 editor={ editor }
-                isTable={ !!cellEntries }
+                isTable
             /> }
         </div>
     );
