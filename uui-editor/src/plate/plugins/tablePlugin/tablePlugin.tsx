@@ -1,5 +1,4 @@
 import React, { Fragment, useCallback, useEffect, useMemo, useRef } from 'react';
-
 import {
     createTablePlugin,
     ELEMENT_TABLE,
@@ -24,14 +23,9 @@ import {
     getBlockAbove,
     selectEditor,
     getStartPoint,
-    useTableColSizes,
 } from "@udecode/plate";
-
-import { TableHeaderCell } from "./TableHeaderCell";
-import { TableRow } from "./TableRow";
-import { TableCell } from "./TableCell";
 import cx from "classnames";
-import { ToolbarButton } from "../../../implementation/ToolbarButton";
+
 import { ReactComponent as InsertColumnBefore } from "../../icons/table-add-column-left.svg";
 import { ReactComponent as InsertColumnAfter } from "../../../icons/table-add-column-right.svg";
 import { ReactComponent as RemoveColumn } from "../../../icons/table-delete-column.svg";
@@ -43,12 +37,18 @@ import { ReactComponent as TableIcon } from "../../../icons/table-add.svg";
 import { ReactComponent as TableMerge } from "../../../icons/table-merge.svg";
 import { ReactComponent as UnmergeCellsIcon } from "../../../icons/table-un-merge.svg";
 import { isPluginActive, isTextSelected } from "../../../helpers";
+
+import { ToolbarButton } from "../../../implementation/ToolbarButton";
 import { Toolbar } from '../../../implementation/Toolbar';
+import { deleteColumn } from './deleteColumn';
+import { DEFAULT_COL_WIDTH } from './constants';
+
+import { Table } from './Table';
+import { TableHeaderCell } from "./TableHeaderCell";
+import { TableRow } from "./TableRow";
+import { TableCell } from "./TableCell";
 
 import tableCSS from './Table.scss';
-import { deleteColumn } from './deleteColumn';
-import { Table } from './Table';
-import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
 
 const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();

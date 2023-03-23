@@ -6,7 +6,7 @@ import {
     TableElementRootProps,
     TablePlugin,
 } from '@udecode/plate-table';
-import { getTableColumnCount, PlateTablePopover, type TTableElement, useTableColSizes } from '@udecode/plate';
+import { getTableColumnCount, type TTableElement, useTableColSizes } from '@udecode/plate';
 
 import tableCSS from './Table.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
