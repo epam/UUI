@@ -90,6 +90,7 @@ const Editor = ({ initialValue, ...props }: any) => {
                 bottom: 12,
                 display: 'flex',
                 minHeight: 0,
+                zIndex: 50
             } }>
                 <ToolbarButtons />
             </Toolbar>
