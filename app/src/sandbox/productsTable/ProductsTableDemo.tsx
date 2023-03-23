@@ -59,6 +59,10 @@ export const ProductsTableDemo: React.FC = (props) => {
 
         patch: Object.values(lens.prop('items').get()),
         isDeletedProp: 'IsDeleted',
+        patchComparator: (a, b) => {
+            if ((a.Name?.length ?? 0) === (b.Name?.length ?? 0)) return 0;
+            return (a.Name?.length ?? 0) < (b.Name?.length ?? 0) ? -1 : 1;
+        },
 
         getId: i => i.ProductID,
         getRowOptions: product => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),

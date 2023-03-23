@@ -1,3 +1,4 @@
+import { IMap } from "../../../../types";
 import { BaseTree } from "./BaseTree";
 import { ItemsComparator, ITree, TreeNodeInfo } from "./ITree";
 
@@ -38,7 +39,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
                     const children = [...(newByParentId.get(parentId) ?? [])];
                     newByParentId.set(
                         parentId,
-                        this.patchChildren(children, { existingItem, newItem: item }, comparator),
+                        this.patchChildren(children, { existingItem, newItem: item }, comparator, newById),
                     );
 
                     if (existingItem && existingItemParentId !== parentId) {
@@ -141,6 +142,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         children: TId[] | undefined,
         { existingItem, newItem }: { existingItem: TItem | undefined, newItem: TItem },
         comparator: ItemsComparator<TItem>,
+        byId: IMap<TId, TItem>,
     ) {
         const id = this.getId(newItem);
         const parentId = this.getParentId(newItem);
@@ -151,7 +153,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         }
 
         if ((!existingItem || (existingItem && parentId !== prevParentId)) && comparator) {
-            return this.pasteItemIntoChildrenList(newItem, children, comparator);
+            return this.pasteItemIntoChildrenList(newItem, children, comparator, byId);
         }
 
         return [...children, id];
@@ -161,6 +163,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         item: TItem,
         children: TId[],
         comparator: ItemsComparator<TItem>,
+        byId: IMap<TId, TItem>,
     ) {
         const id = this.getId(item);
         if (!children.length) {
@@ -169,24 +172,23 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
 
         let greaterPosition = -1;
         let equalPosition = -1;
-        children.forEach((itemId, index) => {
-            const comparisonResult = comparator(this.byId.get(itemId), item, true);
+        let smallerPosition = -1;
+
+        for (let i in children) {
+            const index = Number(i);
+            const itemId = children[index];
+            const comparisonResult = comparator(item, byId.get(itemId), true);
+            if (comparisonResult <= 0) {
+                smallerPosition = index;
+                break;
+            }
             if (comparisonResult > 0) {
                 greaterPosition = index + 1;
             }
-            if (comparisonResult === 0) {
-                equalPosition = index;
-            }
-        });
+        };
 
-        const position = greaterPosition !== -1
-            ? greaterPosition
-            : equalPosition !== -1
-                ? equalPosition
-                : 0;
-
+        const [position = 0] = [smallerPosition, equalPosition, greaterPosition].filter((v) => v !== -1);
         children.splice(position, 0, id);
         return children;
     }
-
 }
