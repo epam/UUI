@@ -10,11 +10,18 @@
 
 .table {
     position: relative;
+    display: table;
+    table-layout: fixed;
+    height: 1px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1px;
+    margin-right: 0px;
+    border-collapse: collapse;
+}
 
-    // hide remove button
-    & > div {
-        visibility: hidden;
-    }
+.tbody {
+    min-width: 100%;
 }
 
 .header-row {
