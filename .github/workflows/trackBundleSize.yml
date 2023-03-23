@@ -34,8 +34,7 @@ jobs:
                   yarn
                   yarn track-bundle-size
             - name: Create comment
-              working-directory: source-branch
               uses: peter-evans/create-or-update-comment@v2
               with:
                   issue-number: ${{context.issue.number}}
-                  body-file: ./.reports/trackBundleSize.md
+                  body-file: ./source-branch/.reports/trackBundleSize.md
