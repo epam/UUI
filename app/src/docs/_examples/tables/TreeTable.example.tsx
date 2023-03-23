@@ -2,10 +2,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Location } from '@epam/uui-docs';
 import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { Text, LinkButton, DataTable, Panel } from '@epam/promo';
-import { DataTableMods } from '@epam/uui';
 import css from './TablesExamples.scss';
 
-export default function TreeTableExample({ size }: DataTableMods) {
+export default function TreeTableExample() {
     const svc = useUuiContext();
     const [tableState, setTableState] = useState<DataSourceState<Location, string>>({
         sorting: [{ field: 'name', direction: 'asc' }],
@@ -15,7 +14,7 @@ export default function TreeTableExample({ size }: DataTableMods) {
         {
             key: 'name',
             caption: 'NAME',
-            render: location => <Text size={ size }>{ location.name }</Text>,
+            render: location => <Text>{ location.name }</Text>,
             grow: 1,
             width: 336,
             isSortable: true,
@@ -24,14 +23,14 @@ export default function TreeTableExample({ size }: DataTableMods) {
         {
             key: 'country',
             caption: 'COUNTRY',
-            render: location => <Text size={ size }>{ location.countryName }</Text>,
+            render: location => <Text>{ location.countryName }</Text>,
             isSortable: true,
             width: 164,
         },
         {
             key: 'type',
             caption: 'TYPE',
-            render: location => (location.featureCode && <Text size={ size }>{ location.featureCode }</Text>),
+            render: location => (location.featureCode && <Text>{ location.featureCode }</Text>),
             isSortable: true,
             width: 84,
         },
@@ -40,7 +39,7 @@ export default function TreeTableExample({ size }: DataTableMods) {
             caption: 'LAT/LONG',
             render: location => location.lat && <LinkButton
                 caption={ `${ location.lat }/${ location.lon }` }
-                color='blue' size={ size }
+                color='blue'
                 href={ `https://www.google.com/maps/search/?api=1&query=${ location.lat },${ location.lon }` }
                 target='_blank'
             />,
@@ -50,7 +49,7 @@ export default function TreeTableExample({ size }: DataTableMods) {
         {
             key: 'population',
             caption: 'POPULATION',
-            render: location => <Text size={ size }>{ location.population }</Text>,
+            render: location => <Text>{ location.population }</Text>,
             isSortable: true,
             width: 130,
             textAlign: 'right',
@@ -92,7 +91,6 @@ export default function TreeTableExample({ size }: DataTableMods) {
                 value={ tableState }
                 onValueChange={ (newVal) => setTableState(newVal) }
                 columns={ locationColumns }
-                size={ size }
                 headerTextCase='upper'
                 border={ false }
             />

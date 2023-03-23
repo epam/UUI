@@ -47,7 +47,7 @@
     &.padding-right-24 { padding-right: 24px; }
 
     &:global(.uui-invalid) {
-        background-color: var(--uui-dt-cell-editor-bg-invalid);
+        background-color: var(--uui-dt-cell-bg-invalid);
     }
 }
 

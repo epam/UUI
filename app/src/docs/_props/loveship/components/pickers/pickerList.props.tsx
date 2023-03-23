@@ -33,7 +33,7 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
     .prop('renderModalToggler', {examples: [
         {
             name: 'Green Button',
-            value: props => <LinkButton color='grass' { ...props } />,
+            value: props => <LinkButton { ...props } />,
         },
     ]})
     .prop('disallowClickOutside', { examples: [true], defaultValue: false})
