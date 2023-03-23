@@ -15,4 +15,6 @@ export {
     MainMenuDropdown, MainMenuButton, IconContainer, Accordion, RichTextView, Form, useForm, PickerInput, PickerItem,
     DataPickerRow, PickerToggler, PickerList, Blocker, CheckboxGroup, ControlGroup, ConfirmationModal, RadioGroup,
     Anchor, Avatar, AvatarStack, Paginator, DataTable, DataTableCell, DataTableRow, DataTableHeaderRow,
+    WarningNotification, SuccessNotification, HintNotification, ErrorNotification, ClearNotification, FlexSpacer,
+    FlexCell, Spinner,
 } from "@epam/uui";
