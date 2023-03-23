@@ -8,8 +8,7 @@
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api": "ts-node getComponentsPropsSet.ts",
     "prepublish": "yarn build",
-    "collect-bundle-stats": "node scripts/collectBundleStats.js",
-    "compare-bundle-stats": "node scripts/compareBundleStats.js"
+    "track-bundle-size": "node scripts/trackBundleSize.js"
   },
   "dependencies": {
     "@lerna/package-graph": "6.4.0",

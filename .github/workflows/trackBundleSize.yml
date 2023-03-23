@@ -2,7 +2,7 @@ name: track_bundle_size
 on:
     pull_request_target:
         branches:
-            - develop
+            - feature/check_pr_workflow
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.base_ref }}-${{ github.head_ref }}
@@ -14,10 +14,6 @@ jobs:
         container: node:16
 
         steps:
-            - uses: actions/checkout@v2
-              with:
-                  ref: ${{ github.base_ref }}
-                  path: target-branch
             - uses: actions/checkout@v2
               with:
                   ref: ${{ github.head_ref }}
@@ -36,10 +32,10 @@ jobs:
               working-directory: source-branch
               run: |
                   yarn
-                  yarn collect-bundle-stats
-            - name: track-bundle-size-target
-              working-directory: target-branch
-              run: |
-                  yarn
-                  yarn collect-bundle-stats
-                  yarn compare-bundle-stats --before ./.reports/collect-bundle-stats.json --after ../source-branch/.reports/collect-bundle-stats.json
+                  yarn track-bundle-size
+            - name: Create comment
+              working-directory: source-branch
+              uses: peter-evans/create-or-update-comment@v2
+              with:
+                  issue-number: ${{context.issue.number}}
+                  body-file: ./.reports/trackBundleSize.md
