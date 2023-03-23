@@ -5,7 +5,6 @@ export * from './inputs';
 export * from './layout';
 export * from './types';
 export * from './typography';
-export * from './datePickers';
 export * from './dnd';
 export * from './fileUpload';
 export * from './errors';
@@ -15,5 +14,7 @@ export {
     BurgerSearch, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton, IconContainer,
     Accordion, RichTextView, Form, useForm, PickerInput, PickerItem, DataPickerRow, PickerToggler, PickerList,
     Blocker, CheckboxGroup, ControlGroup, ConfirmationModal, RadioGroup, Anchor, Avatar, AvatarStack, Paginator,
-    DataTable, DataTableCell, DataTableRow, DataTableHeaderRow,
+    DataTable, DataTableCell, DataTableRow, DataTableHeaderRow, WarningNotification, SuccessNotification,
+    HintNotification, ErrorNotification, ClearNotification, DatePicker, RangeDatePicker, Checkbox, FlexSpacer,
+    FlexCell, Spinner,
 } from "@epam/uui";

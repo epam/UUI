@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren } from '@epam/uui-core';
-import { ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView, Text, Spinner, ErrorNotification } from '../';
+import { ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView, Text, Spinner, ErrorNotification } from '../../components';
 import { ErrorCatch } from '@epam/uui-components';
 import { getErrorPageConfig, getRecoveryMessageConfig } from './config';
 import { ErrorPage } from './ErrorPage';
