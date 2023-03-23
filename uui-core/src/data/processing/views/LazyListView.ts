@@ -130,7 +130,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = true;
 
         if (this.isPatchUpdated(this.props, props)) {
-            if (this.props.patch !== props.patch && !props.patch?.length) {
+            if (this.props.patch !== props.patch && !props.patch?.length || !this.memoPatchComparator) {
                 this.memoPatchComparator = memoComparator(
                     this.props.patchComparator ?? this.defaultPatchComparator,
                     props.getId,
