@@ -6,7 +6,6 @@ import {
     ELEMENT_TD,
     ELEMENT_TH,
     ELEMENT_TR,
-    PlateTableElement,
     usePlateEditorState,
     insertTableColumn,
     insertTableRow,
@@ -48,16 +47,14 @@ import { Toolbar } from '../../../implementation/Toolbar';
 
 import tableCSS from './Table.scss';
 import { deleteColumn } from './deleteColumn';
+import { Table } from './Table';
+import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
 
-const DEFAULT_COL_WIDTH = 200;
-const EMPTY_COL_WIDTH = 48;
-
-const Table = (props: any) => {
+const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();
     const { cell, row } = getTableEntries(editor) || {};
 
     const { element } = props;
-    const { data } = element;
 
     const cellEntries = getTableGridAbove(editor, { format: 'cell' });
 
@@ -215,20 +212,9 @@ const Table = (props: any) => {
         );
     }, [element, cellPath, rowPath, cellEntries]);
 
-    const currentColSizes =
-        (element.colSizes ? element.colSizes : data.cellSizes)
-            .map((current: number) => current === 0 ? EMPTY_COL_WIDTH : current);
-    element.colSizes = useTableColSizes({ ...element, colSizes: currentColSizes });
-
-    const tableWidth = element.colSizes.reduce((acc: number, cur: number) => acc + cur, 0);
     return (
         <div className={ cx(tableCSS.tableWrapper) }>
-            <PlateTableElement
-                { ...props }
-                style={ { width: tableWidth } }
-                className={ tableCSS.table }
-                element={ element }
-            />
+            <Table { ...props } />
             { !!cellEntries?.length && <Toolbar
                 placement='bottom'
                 children={ cellEntries.length > 1 ? renderMergeToolbar() : renderToolbar() }
@@ -243,7 +229,7 @@ const Table = (props: any) => {
 export const tablePlugin = () => createTablePlugin({
     overrideByKey: {
         [ELEMENT_TABLE]: {
-            component: Table,
+            component: TableRenderer,
         },
         [ELEMENT_TR]: {
             component: TableRow,
