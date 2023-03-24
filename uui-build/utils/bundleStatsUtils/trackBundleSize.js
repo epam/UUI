@@ -3,13 +3,11 @@
  * The generated reports can be compared with each other in order to detect any regression in bundle size.
  */
 const { logger } = require('../loggerUtils.js');
-const { createFileSync, readJsonFileSync } = require('../fileUtils.js');
 const { isAllLocalDependenciesBuilt,
     getAllMonorepoPackages
 } = require('../monorepoUtils');
 const path = require('path');
 const fs = require('fs');
-const SourceMapExplorer = require('source-map-explorer');
 const { readPackageJsonContentSync } = require('../packageJsonUtils');
 const { runYarnScriptFromRootSync,
     runCmdFromRootSync,
@@ -17,15 +15,13 @@ const { runYarnScriptFromRootSync,
 } = require('../cmdUtils.js');
 const { uuiRoot } = require('../constants.js');
 const {
-    APP_TARGET_DIR,
-    BASE_LINE_PATH,
-    COLLECT_SIZE_GLOB,
     APP_TEMPLATE_DIR,
     TEMPLATE_APP_TARGET_DIR,
-    COMPARISON_THRESHOLD_PERCENTAGE,
-    TRACK_BUNDLE_SIZE_REPORT_MD,
 } = require('./bundleStatsConstants.js');
-const {isRollupModule} = require("../moduleBuildUtils");
+const {comparisonResultToMd} = require("./trackBundleSizeMdFormatter");
+const { compareBundleSizes } = require("./trackBundleSizeComparator");
+const {overrideBaseLineFileSync, getCurrentBaseLineSync, saveComparisonResultsMd} = require("./trackBundleSizeFileUtils");
+const {measureAllBundleSizes} = require("./trackBundleSizeMeasureUtils");
 
 
 const epamPrefix = '@epam/';
@@ -136,123 +132,19 @@ async function buildApp() {
     runCmdSync({ cmd, cwd, args });
 }
 
-
-function normalizeSizeNumber(num) {
-    return Number(Number(num).toFixed(2));
-}
-async function measureBundleSizeKBytes(globPattern) {
-    try {
-        const result = await SourceMapExplorer.explore(globPattern, { output: { format: 'json' }, noBorderChecks: true, gzip: false });
-        const bytes = result.bundles.reduce((acc, { totalBytes }) => {
-            return acc + totalBytes;
-        }, 0);
-        return normalizeSizeNumber(bytes / 1024);
-    } catch(err) {
-        console.error(err);
-        console.error('Unable to measure size of: ' + globPattern);
-        throw new Error(err);
-    }
-
-}
-
 async function compareWithBaseLine(params) {
     const { overrideBaseline } = params || {};
-    const app = await measureBundleSizeKBytes(path.resolve(uuiRoot,`${APP_TARGET_DIR}/${COLLECT_SIZE_GLOB.APP}`));
-    const templateApp = await measureBundleSizeKBytes(path.resolve(uuiRoot,`${TEMPLATE_APP_TARGET_DIR}/${COLLECT_SIZE_GLOB.APP}`));
-    const allLocalPackages = getAllMonorepoPackages();
-
-    const moduleBundleSizesPromises = Object.keys(allLocalPackages)
-        .filter((name) => {
-            return isRollupModule(allLocalPackages[name].moduleRootDir)
-        })
-        .map(name => {
-            return measureBundleSizeKBytes(`${allLocalPackages[name].moduleRootDir}/${COLLECT_SIZE_GLOB.MODULE}`)
-                .then(size => {
-                    return { name, size };
-                }).catch(console.error);
-        });
-
-    const moduleBundleSizes = await Promise.all(moduleBundleSizesPromises);
-    const moduleBundleSizesMap = moduleBundleSizes.reduce((acc, { name, size }) => {
-        acc[name] = size;
-        return acc;
-    }, {});
-
-    const timestamp = new Date().toISOString();
-    const nextBaseline = {
-        description: 'Size is specified in Kb',
-        timestamp,
-        baseline: {
-            templateApp,
-            ['@epam/app']: app,
-            ...moduleBundleSizesMap,
-        },
-    };
-    console.table(nextBaseline.baseline);
-    const pathResolved = path.resolve(uuiRoot, BASE_LINE_PATH);
+    const newSizes = await measureAllBundleSizes();
+    console.table(newSizes);
     if (overrideBaseline) {
-        createFileSync(pathResolved, JSON.stringify(nextBaseline, undefined, 2));
-        logger.info(`New baseline generated at: "${pathResolved}".`)
+        overrideBaseLineFileSync(newSizes);
     } else {
-        const prevBaseline = readJsonFileSync(pathResolved);
-        const comparisonResult = Object.keys(nextBaseline.baseline).reduce((acc, name) => {
-            const prevSize = prevBaseline.baseline[name];
-            const newSize = nextBaseline.baseline[name];
-            const pcNorm = COMPARISON_THRESHOLD_PERCENTAGE/100;
-            const threshold = [normalizeSizeNumber(prevSize * (1 - pcNorm)), normalizeSizeNumber(prevSize * (1 + pcNorm))];
-            const thresholdLabel = `${threshold[0]} - ${threshold[1]}`;
-            const diff = normalizeSizeNumber(newSize - prevSize);
-            const sign = diff > 0 ? '+' : '';
-            const diffLabel = `${sign}${diff}`;
-            const withinThreshold = newSize >= threshold[0] && newSize <= threshold[1];
-            acc[name] = {
-                prevSize,
-                newSize,
-                diffLabel,
-                withinThreshold,
-                thresholdLabel,
-                threshold,
-            };
-            return acc;
-        }, {});
-        const comparisonResultMd = formatMdTable(
-            comparisonResult,
-            ['prevSize', 'newSize', 'diffLabel', 'withinThreshold', 'thresholdLabel'],
-            (h) => {
-                if (h === 'diffLabel') {
-                    return 'diff';
-                }
-                if (h === 'thresholdLabel') {
-                    return `threshold (min - max)`;
-                }
-                return h;
-            },
-            (h, v) => {
-                if (h === 'withinThreshold') {
-                    return v ? ':ok:' : ':no_entry:';
-                }
-                return v;
-            },
-        );
+        const currentBaseLine = getCurrentBaseLineSync();
+        const baseLineSizes = currentBaseLine.sizes;
+        const comparisonResult = compareBundleSizes({ baseLineSizes, newSizes });
+        const comparisonResultMd = comparisonResultToMd({ comparisonResult, currentBaseLine });
         console.table(comparisonResult);
-        const crPathResolved = path.resolve(uuiRoot, TRACK_BUNDLE_SIZE_REPORT_MD);
-        createFileSync(crPathResolved, comparisonResultMd);
-        logger.info(`Comparison result generated at: "${crPathResolved}".`);
+        saveComparisonResultsMd(comparisonResultMd);
     }
 }
 
-
-function formatMdTable(obj, attrs, formatHeader = (h) => h, formatValue = (h, v) => v) {
-    const generatedBy = 'Generated by: track-bundle-size.'; // this text is used by "trackBundleSize.yml" GitHub workflow to replace outdated comment.
-    const description = `Bundle size diff (in kBytes). Not gzipped. Both CSS & JS included.<br>${generatedBy}<br>Generated at: ${new Date().toUTCString()}.\n\n`;
-    const header = '| module |' + attrs.map(formatHeader).join('|') + '|';
-    const headerSep = '|:-----:|' + attrs.map(() => ':-----:').join('|') + '|';
-    const rows = Object.keys(obj).reduce((acc, rowId) => {
-        const rowContent = attrs.map(a => {
-            return formatValue(a, obj[rowId][a]);
-        }).join('|');
-        acc.push(`|${rowId}|${rowContent}|`);
-        return acc;
-    }, []);
-    return `${description}\n${header}\n${headerSep}\n${rows.join('\n')}`;
-}
