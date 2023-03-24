@@ -7,9 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
-    types: [ closed ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -33,3 +30,4 @@ jobs:
       values-file: values.prod.yaml
       # TODO: After migrating prod environment we can use the same image name for prod and non-prod
       image-name: ui
+      git-version-mode: '/overrideconfig mode=Mainline'

@@ -1,3 +1,4 @@
+import { IMap } from "../../../../types";
 import { BaseTree } from "./BaseTree";
 import { ItemsComparator, ITree, TreeNodeInfo } from "./ITree";
 
@@ -38,7 +39,7 @@ export abstract class EditableTree<TItem, TId, TSubtotals = void> extends BaseTr
                     const children = [...(newByParentId.get(parentId) ?? [])];
                     newByParentId.set(
                         parentId,
-                        this.patchChildren(children, { existingItem, newItem: item }, comparator),
+                        this.patchChildren(children, { existingItem, newItem: item }, comparator, newById),
                     );
 
                     if (existingItem && existingItemParentId !== parentId) {
@@ -55,14 +56,19 @@ export abstract class EditableTree<TItem, TId, TSubtotals = void> extends BaseTr
         }
 
         const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
-        for (let [parentId, ids] of newByParentId) {
+        for (let [parentId, ids = []] of newByParentId) {
             const prevNodeInfo = this.nodeInfoById.get(parentId);
+
             // for lazy loaded data, count should be undefined
             // and on patch with new items (not on init) previous configuration should not be overridden
-            newNodeInfoById.set(
-                parentId,
-                (!prevNodeInfo || prevNodeInfo.count != null) && !comparator ? { count: ids.length } : { count: undefined },
-            );
+            let count = prevNodeInfo?.count;
+            if ((!prevNodeInfo || count !== undefined) && !comparator) {
+                const prevIds = this.byParentId.get(parentId) ?? [];
+                const delta = ids.length - prevIds.length;
+                count = (count ?? 0) + delta;
+            }
+
+            newNodeInfoById.set(parentId, { count });
         }
 
         return this.newInstance(this.params, newById, newByParentId, newNodeInfoById, this.subtotals);
@@ -141,6 +147,7 @@ export abstract class EditableTree<TItem, TId, TSubtotals = void> extends BaseTr
         children: TId[] | undefined,
         { existingItem, newItem }: { existingItem: TItem | undefined, newItem: TItem },
         comparator: ItemsComparator<TItem>,
+        byId: IMap<TId, TItem>,
     ) {
         const id = this.getId(newItem);
         const parentId = this.getParentId(newItem);
@@ -151,7 +158,7 @@ export abstract class EditableTree<TItem, TId, TSubtotals = void> extends BaseTr
         }
 
         if ((!existingItem || (existingItem && parentId !== prevParentId)) && comparator) {
-            return this.pasteItemIntoChildrenList(newItem, children, comparator);
+            return this.pasteItemIntoChildrenList(newItem, children, comparator, byId);
         }
 
         return [...children, id];
@@ -161,32 +168,17 @@ export abstract class EditableTree<TItem, TId, TSubtotals = void> extends BaseTr
         item: TItem,
         children: TId[],
         comparator: ItemsComparator<TItem>,
+        byId: IMap<TId, TItem>,
     ) {
         const id = this.getId(item);
         if (!children.length) {
             return [id];
         }
 
-        let greaterPosition = -1;
-        let equalPosition = -1;
-        children.forEach((itemId, index) => {
-            const comparisonResult = comparator(this.byId.get(itemId), item, true);
-            if (comparisonResult > 0) {
-                greaterPosition = index + 1;
-            }
-            if (comparisonResult === 0) {
-                equalPosition = index;
-            }
-        });
-
-        const position = greaterPosition !== -1
-            ? greaterPosition
-            : equalPosition !== -1
-                ? equalPosition
-                : 0;
+        const lessOrEqualPosition = children.findIndex((itemId) => comparator(item, byId.get(itemId), true) <= 0);
+        const position = lessOrEqualPosition === -1 ? children.length : lessOrEqualPosition;
 
         children.splice(position, 0, id);
         return children;
     }
-
 }

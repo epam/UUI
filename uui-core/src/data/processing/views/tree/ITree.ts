@@ -36,9 +36,8 @@ export interface TreeParams<TItem, TId> {
     complexIds?: boolean;
 }
 
-export type ItemsComparator<TItem> = (existingItem: TItem, newItem: TItem, cacheIsAbsent?: boolean) => number;
+export type ItemsComparator<TItem> = (newItem: TItem, existingItem: TItem, cacheIsAbsent?: boolean) => number;
 export type ComputedSubtotals<TId, TSubtotals> = CompositeKeysMap<TId, TSubtotals> | Map<TId, TSubtotals>;
-
 
 export interface ComputeSubtotals<TItem, TSubtotals> {
     get: (item: TItem) => TSubtotals;
