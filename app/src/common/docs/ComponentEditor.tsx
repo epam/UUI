@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArrayDataSource, cx, IHasCX, INotification } from "@epam/uui";
+import { ArrayDataSource, cx, IHasCX, INotification } from "@epam/uui-core";
 import { PropDoc, PropSamplesCreationContext, IComponentDocs, PropExample, DemoContext } from '@epam/uui-docs';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel,
     ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';
@@ -37,7 +37,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
     propSamplesCreationContext: PropSamplesCreationContext<any> = {
         getCallback: (name: string) => {
             const callback = (...args: any[]) => {
-                svc.uuiNotifications.show(props =>
+                svc.uuiNotifications.show(() =>
                         <Panel background='white' shadow={ true }>
                             <FlexRow padding='12' borderBottom={ true }>
                                 <pre>{ name }({ args.length } args)</pre>
@@ -51,11 +51,11 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
             callback.displayName = `callback`;
             return callback;
         },
-        getChangeHandler: (name) => {
+        getChangeHandler: () => {
             const cb: any = (newValue: string) => this.setState({
                 ...this.state,
                 inputValues: { ...this.state.inputValues, value: newValue },
-                selectedPropsIds: { ...this.state.selectedPropsIds, value: newValue }
+                selectedPropsIds: { ...this.state.selectedPropsIds, value: newValue },
             });
             cb.displayName = "(newValue) => { ... }";
             return cb;
@@ -242,7 +242,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                     { !prop.isRequired && <RadioInput
                         label={ prop.defaultValue == null ? 'none' : (prop.defaultValue + '') }
                         size='18'
-                        value={ this.state.selectedPropsIds[prop.name] ? false : true }
+                        value={ !this.state.selectedPropsIds[prop.name] }
                         onValueChange={ () => this.setState({ ...this.state, selectedPropsIds: { ...this.state.selectedPropsIds, [prop.name]: null } }) }
                     /> }
                 </FlexCell>
@@ -306,8 +306,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
         const props: string[] = [];
         let children: string = null;
         Object.keys(selectedProps).forEach(name => {
-            const selectedPropId = selectedProps[name];
-            const val = this.propExamples?.[name]?.find(example => example?.id === selectedPropId)?.value;
+            const val = selectedProps[name];
 
             if (val) {
                 if (name == 'children') {
@@ -353,18 +352,31 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
         svc.uuiNotifications.show((props: INotification) =>
             <NotificationCard { ...props } icon={ NotificationIcon } color='gray60' onClose={ null } >
                 <Text size='36' font='sans'>Code was copied to the clipboard</Text>
-            </NotificationCard>, { duration: 3 }).catch(() => null);
+            </NotificationCard>, { duration: 3 });
+    }
+
+    getTheme(route: string) {
+        const routeArray = route?.split('/');
+        const id = routeArray?.indexOf('_props');
+        if (!id) return '';
+        switch (routeArray[id + 1]) {
+            case 'uui': return 'uui-theme-promo';
+            case 'epam-promo': return 'uui-theme-promo';
+            case 'loveship': return 'uui-theme-loveship';
+            default: return '';
+        }
     }
 
     render() {
         const { title } = this.props;
         const { isLoading, docs } = this.state;
+        const currentTheme = this.getTheme(this.props.propsDocPath);
 
         return (
             <>
                 {
                     isLoading
-                    ? <Spinner color='blue' cx={ css.spinner } />
+                    ? <Spinner cx={ css.spinner } />
                     : <div className={ cx(css.root, this.props.cx) } >
                         <div className={ css.container } >
                             <FlexRow key='head' size='36' padding='12' borderBottom spacing='6' cx={ css.boxSizing } >
@@ -406,7 +418,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                             <FlexRow key='head' size='36' padding='12' spacing='6' borderBottom background='white' cx={ css.contextSettingRow } >
                                 { this.renderSettings(docs.contexts) }
                             </FlexRow>
-                            <div className={ css.demoContainer } >
+                            <div className={ cx(css.demoContainer, currentTheme) } >
                                 <ScrollBars >
                                     { this.renderDemo() }
                                 </ScrollBars>

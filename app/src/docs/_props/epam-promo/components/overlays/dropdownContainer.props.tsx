@@ -17,7 +17,15 @@ const dropdownContainerDoc = new DocBuilder({
         examples: ['white', { name: 'gray70', value: 'gray70' }],
     })
     .prop('children', {
-        examples: [{ value: <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, pariatur!</Text>, name: 'Basic' }],
+        examples: ctx => {
+            const color = ctx.getSelectedProps().color;
+            const textContent = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, pariatur!';
+
+            return [{
+                value: (color === 'white' || !color) ? <Text color="gray80">{ textContent }</Text> : <Text color="gray5">{ textContent }</Text>,
+                name: 'Basic',
+            }];
+        },
         isRequired: true,
     }).withContexts(DefaultContext);
 

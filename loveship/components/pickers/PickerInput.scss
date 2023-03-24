@@ -1,8 +1,0 @@
-@use '../../assets/styles/scss/index' as *;
-
-.panel {
-    @media screen and (max-width: 720px) {
-        height: var(--app-mobile-height);
-        border-radius: 0;
-    }
-}

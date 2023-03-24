@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
-import { Text,  DataTable, Panel, IconButton, DataTableMods } from '@epam/promo';
-import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { Text,  DataTable, Panel, IconButton } from '@epam/promo';
 import { City } from '@epam/uui-docs';
 import css from "./TablesExamples.scss";
 import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 
 const LOCAL_STORAGE_KEY = 'dataTable-columnsConfig-example-key';
 
-export default function ColumnsConfigurationDataTableExample(props: DataTableMods) {
+export default function ColumnsConfigurationDataTableExample() {
     const svc = useUuiContext();
     const [tableState, setTableState] = useState<DataTableState>({
         // Get columns config from localStorage
@@ -91,7 +91,6 @@ export default function ColumnsConfigurationDataTableExample(props: DataTableMod
                 allowColumnsReordering={ true }
                 allowColumnsResizing={ true }
                 { ...view.getListProps() }
-                { ...props }
             />
         </Panel>
     );

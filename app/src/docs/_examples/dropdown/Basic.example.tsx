@@ -1,8 +1,7 @@
 import React from 'react';
 import { Dropdown, FlexSpacer } from '@epam/uui-components';
-import { DropdownBodyProps } from '@epam/uui-core';
-import { Panel, Text, FlexRow, LinkButton, DropdownContainer, Badge, IconButton, FlexCell, IconContainer } from '@epam/promo';
-import { Avatar, IDropdownToggler } from '@epam/uui';
+import { Panel, Text, FlexRow, LinkButton, DropdownContainer, Badge, IconButton, FlexCell, IconContainer, Avatar } from '@epam/promo';
+import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import css from './BasicExample.scss';
 import { ReactComponent as pinIcon } from '@epam/assets/icons/common/action-pin_on-18.svg';
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
@@ -114,7 +113,7 @@ export default function BasicDropdownExample() {
 
                         <FlexCell width="100%">
                             <FlexRow spacing="6" alignItems="center">
-                                <IconContainer icon={ phoneIcon } color="gray50"/>
+                                <IconContainer icon={ phoneIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {/*redirect implementation*/
                                     } }
@@ -123,7 +122,7 @@ export default function BasicDropdownExample() {
                                     caption="+3809324353424"/>
                             </FlexRow>
                             <FlexRow spacing="6" alignItems="center">
-                                <IconContainer icon={ chatIcon } color="gray50"/>
+                                <IconContainer icon={ chatIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {/*redirect implementation*/
                                     } }
@@ -133,7 +132,7 @@ export default function BasicDropdownExample() {
                                 />
                             </FlexRow>
                             <FlexRow spacing="6" alignItems="center">
-                                <IconContainer icon={ mailIcon } color="gray50"/>
+                                <IconContainer icon={ mailIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {/*redirect implementation*/
                                     } }
@@ -143,7 +142,7 @@ export default function BasicDropdownExample() {
                                 />
                             </FlexRow>
                             <FlexRow spacing="6" alignItems="bottom">
-                                <IconContainer icon={ inIcon } color="gray50"/>
+                                <IconContainer icon={ inIcon } cx={ css.iconGray50 } />
                                 <LinkButton
                                     onClick={ () => {/*redirect implementation*/
                                     } }
@@ -153,7 +152,7 @@ export default function BasicDropdownExample() {
                                 />
                             </FlexRow>
                             <FlexRow spacing="6" alignItems="center">
-                                <IconContainer icon={ geoIcon } color="gray50"/>
+                                <IconContainer icon={ geoIcon } cx={ css.iconGray50 } />
                                 <Text fontSize="14" lineHeight="18" color="gray80" cx={ css.text }>Gratkorn, Austria
                                     UTC+01:00 | 16:54</Text>
                             </FlexRow>

@@ -9,7 +9,7 @@ import { ReactComponent as CalendarIcon } from '@epam/assets/icons/common/action
 import { ReactComponent as TickIcon } from '@epam/assets/icons/common/notification-done-18.svg';
 import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
 import { Person } from './TableContext';
-import { DataTableHeaderRowMods } from '@epam/loveship';
+import { DataTableHeaderRowMods } from '@epam/uui';
 
 const getRandomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -34,7 +34,7 @@ const UserColumns = [
     {
         key: 'inProgress',
         caption: 'IN PROGRESS',
-        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ CalendarIcon } size='30' color='night400' />,
+        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ CalendarIcon } size='30' />,
         grow: 1,
         width: 50,
         vPadding: '30',
@@ -43,7 +43,7 @@ const UserColumns = [
     {
         key: 'done',
         caption: 'DONE',
-        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ TickIcon } size='30' color='night400' />,
+        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ TickIcon } size='30' />,
         grow: 1,
         width: 50,
         vPadding: '30',
@@ -52,7 +52,7 @@ const UserColumns = [
     {
         key: 'edited',
         caption: 'EDITED',
-        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ PencilIcon } size='30' color='night400' />,
+        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ PencilIcon } size='30' />,
         grow: 1,
         width: 50,
         vPadding: '30',
@@ -140,7 +140,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
         {
             key: 'settings',
             caption: '',
-            render: (data: Person) => <LinkButton icon={ MoreIcon } size={ size } color='night700' />,
+            render: (data: Person) => <LinkButton icon={ MoreIcon } size={ size } />,
             width: 18,
             textAlign: 'center',
             alignSelf: 'center',

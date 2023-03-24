@@ -1,12 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
 import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
     Panel, PickerInput, TextArea, TextInput, useForm,
 } from '@epam/promo';
-import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui';
 import { FlexSpacer } from '@epam/uui-components';
 
 // Define interface describe data for each row
-interface ToDoItem  {
+interface ToDoItem {
     id: number;
     isDone?: boolean;
     name?: string;
@@ -22,7 +22,7 @@ const blankItem: Partial<ToDoItem> = {
     priority: null,
     comments: '',
     dueDate: '',
-}
+};
 
 // To store the last item id used
 let id = 1;
@@ -35,7 +35,7 @@ const demoItems: ToDoItem[] = [
     { ...blankItem, id: id++, name: 'Finalize the "Project" table demo', comments: 'We first need to build the add/remove rows helpers, and rows drag-n-drop' },
     { ...blankItem, id: id++, name: 'Complete cells replication' },
     { ...blankItem, id: id++, name: 'Better rows drag-n-drop support', comments: 'With state-management helpers, and tree/hierarchy support' },
-]
+];
 
 // Interface to hold form data. Here we'll only store items, so we might use ToDoItem[] as a state.
 // However, we'll have an object here to extend the form state if needed later.
@@ -49,7 +49,7 @@ const tags = [
     { id: 1, name: 'Normal' },
     { id: 2, name: 'High' },
     { id: 3, name: 'Critical' },
-]
+];
 
 // Define form metadata to validate form data
 const metadata: Metadata<FormState> = {
@@ -60,9 +60,9 @@ const metadata: Metadata<FormState> = {
                     name: { isRequired: true },
                 },
             },
-        }
-    }
-}
+        },
+    },
+};
 
 export default function EditableTableExample() {
     // Use form to manage state of the editable table
@@ -76,7 +76,7 @@ export default function EditableTableExample() {
     const handleNewItem = useCallback(() => {
         // We can manipulate form state directly with the setValue
         // - pretty much like we do with the setState of React.useState.
-        setValue((current) => ({ ...current, items: [ ...current.items, { ...blankItem, id: id++ }] }))
+        setValue((current) => ({ ...current, items: [...current.items, { ...blankItem, id: id++ }] }));
     }, []);
 
     // Use state to hold DataTable state - current sorting, filtering, etc.
@@ -126,10 +126,6 @@ export default function EditableTableExample() {
                 { ...props.rowLens.prop('dueDate').toProps() }
                 renderEditor={ props => <DatePicker { ...props } /> }
                 { ...props }
-                // Cells can be colored. Here we'll highlight the cell if due date is passed.
-                background={
-                    props.rowProps.value.dueDate && (new Date(props.rowProps.value.dueDate).getTime() < Date.now()) ? 'amber' : null
-                }
             />,
             width: 150,
         },
@@ -169,22 +165,21 @@ export default function EditableTableExample() {
     const view = dataSource.useView(tableState, setTableState, {
         getRowOptions: (item: ToDoItem, index: number) => ({
             ...lens.prop('items').index(index).toProps(),
-        })
+        }),
     });
 
     // Render row callback. In simple cases, you don't need, as default implementation would work ok.
     // Here we override it to change row background for 'isDone' items.
     const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => {
         return <DataTableRow
-            { ...props}
-            background={ props.value.isDone ? 'gray5' : 'white'}
+            { ...props }
         />;
     }, []);
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return <Panel shadow={ true }>
         <FlexRow>
-            {/* Render the data table */}
+            { /* Render the data table */ }
             <DataTable
                 { ...view.getListProps() }
                 getRows={ view.getVisibleRows }
@@ -195,17 +190,17 @@ export default function EditableTableExample() {
                 renderRow={ renderRow }
             />
         </FlexRow>
-        {/* Render a panel with Save/Revert buttons to control the form */}
-        <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom='gray40'>
+        {/* Render a panel with Save/Revert buttons to control the form */ }
+        <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom>
             <FlexCell width='auto'>
-                <Button caption='Add new' onClick={handleNewItem} />
+                <Button caption='Add new' onClick={ handleNewItem } />
             </FlexCell>
             <FlexSpacer />
             <FlexCell width='auto'>
-                <Button caption='Save' onClick={save} />
+                <Button caption='Save' onClick={ save } />
             </FlexCell>
             <FlexCell width='auto'>
-                <Button caption='Revert' onClick={revert} />
+                <Button caption='Revert' onClick={ revert } />
             </FlexCell>
         </FlexRow>
     </Panel>;

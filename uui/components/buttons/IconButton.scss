@@ -1,33 +1,27 @@
-@use  '../../assets/styles/index' as *;
-
 .root {
-    fill: var(--icon-button-icon-color);
+    fill: var(--uui-icon-btn);
 
     &:global(.-clickable) {
         &:hover, &:focus {
-            fill: var(--icon-button-icon-color-hover);
+            fill: var(--uui-icon-btn-hover);
         }
 
         &:active {
-            fill: var(--icon-button-icon-color-active);
+            fill: var(--uui-icon-btn-active);
         }
     }
 
     &:global(.uui-disabled) {
-        fill: var(--icon-button-icon-color-disabled);
+        fill: var(--uui-icon-btn-disabled);
 
         &:global(.-clickable) {
             &:hover, &:focus {
-                fill: var(--icon-button-icon-color-disabled);
+                fill: var(--uui-icon-btn-disabled);
             }
 
             &:active {
-                fill: var(--icon-button-icon-color-disabled);
+                fill: var(--uui-icon-btn-disabled);
             }
         }
-    }
-
-    &:global(.uui-invalid) {
-        fill: var(--icon-button-icon-color-invalid);
     }
 }

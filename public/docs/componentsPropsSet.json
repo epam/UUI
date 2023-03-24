@@ -19,7 +19,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
@@ -107,6 +107,11 @@
         "comment": "<p>Link object to redirect to for SPA-redirects</p>"
       },
       {
+        "name": "mode",
+        "value": "none | solid | outline | ghost",
+        "comment": null
+      },
+      {
         "name": "onClear",
         "value": "(e?: any) => void",
         "comment": null
@@ -161,7 +166,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
@@ -253,7 +258,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
@@ -366,11 +371,6 @@
         "comment": "<p>Component&#39;s ref</p>"
       },
       {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48",
-        "comment": null
-      },
-      {
         "name": "tabIndex",
         "value": "number",
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
@@ -405,7 +405,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "count",
@@ -557,7 +557,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "count",
@@ -692,7 +692,7 @@
     ],
     "/app/src/docs/_props/epam-promo/components/datePickers/datePicker.props.tsx": [
       {
-        "name": "cx",
+        "name": "bodyCx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
@@ -714,12 +714,17 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "iconPosition",
         "value": "left | right",
         "comment": null
+      },
+      {
+        "name": "inputCx",
+        "value": "any",
+        "comment": "<p>Styles for input and body components in DatePicker</p>"
       },
       {
         "name": "isDisabled",
@@ -748,17 +753,17 @@
       },
       {
         "name": "mode",
-        "value": "form | cell",
+        "value": "form | cell | inline",
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       },
       {
         "name": "onBlur",
-        "value": "(e?: React.FocusEvent<HTMLInputElement>) => void",
+        "value": "(e?: React.FocusEvent<HTMLInputElement, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -779,7 +784,7 @@
       {
         "name": "rawProps",
         "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; body?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; }",
-        "comment": "<p>HTML attributes to put on various elements of the component (input, body)</p>"
+        "comment": "<p>Attributes for HTML Element</p>"
       },
       {
         "name": "renderDay",
@@ -819,7 +824,7 @@
     ],
     "/app/src/docs/_props/epam-promo/components/datePickers/rangeDatePicker.props.tsx": [
       {
-        "name": "cx",
+        "name": "bodyCx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
@@ -846,7 +851,12 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "inputCx",
+        "value": "any",
+        "comment": "<p>Styles for input and body components in RangeDatePicker</p>"
       },
       {
         "name": "isDisabled",
@@ -875,12 +885,12 @@
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<HTMLInputElement>, inputType: \"from\" | \"to\") => void",
+        "value": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: \"from\" | \"to\") => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<HTMLInputElement>, inputType: \"from\" | \"to\") => void",
+        "value": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: \"from\" | \"to\") => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -896,12 +906,12 @@
       {
         "name": "presets",
         "value": "RangeDatePickerPresets",
-        "comment": "<p>Range presets (like &#39;this week&#39;, &#39;this month&#39;, etc.) to display at the right of the Picker&#39;s body.\nUUI provides defaults in the &#39;rangeDatePickerPresets&#39; exported variable - you can use it as is, or build on top of it (e.g. add your presets)</p>"
+        "comment": "<p>Range presets (like &#39;this week&#39;, &#39;this month&#39;, etc.) to display at the right of the Picker&#39;s body.\r\nUUI provides defaults in the &#39;rangeDatePickerPresets&#39; exported variable - you can use it as is, or build on top of it (e.g. add your presets)</p>"
       },
       {
         "name": "rawProps",
         "value": "{ from?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; to?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; body?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; }",
-        "comment": null
+        "comment": "<p>rawProps as HTML attributes</p>"
       },
       {
         "name": "renderDay",
@@ -953,7 +963,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -1007,12 +1017,12 @@
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -1039,11 +1049,6 @@
         "name": "tabIndex",
         "value": "number",
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
-      },
-      {
-        "name": "theme",
-        "value": "light | dark",
-        "comment": "<p>Set to &#39;dark&#39; to make component work on a dark background</p>"
       },
       {
         "name": "validationMessage",
@@ -1155,9 +1160,9 @@
         "comment": "<p>Number formatting options. See #{link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat}</p>"
       },
       {
-        "name": "formatter",
-        "value": "(value: number) => number",
-        "comment": "<p>[Obsolete]: Please rework this to change value in lens.onChange or onValueChange instead</p>"
+        "name": "formatValue",
+        "value": "(value: number) => string",
+        "comment": "<p>A function to convert current input value to displayed text.\r\nOverrides standard Intl-based formatting.\r\nIf passed, only maximumFractionDigits considered from formatOptions when both properties provided.\r\nNote, that formatting is used when input is out of focus.</p>"
       },
       {
         "name": "forwardedRef",
@@ -1167,7 +1172,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "id",
@@ -1211,12 +1216,12 @@
       },
       {
         "name": "mode",
-        "value": "form | cell",
+        "value": "form | cell | inline",
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
@@ -1226,7 +1231,7 @@
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -1289,7 +1294,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -1523,7 +1528,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -1592,7 +1597,7 @@
       },
       {
         "name": "mode",
-        "value": "form | cell",
+        "value": "form | cell | inline",
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       },
       {
@@ -1607,7 +1612,7 @@
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
@@ -1622,7 +1627,7 @@
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -1720,7 +1725,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "id",
@@ -1846,17 +1851,17 @@
       },
       {
         "name": "mode",
-        "value": "form | cell",
+        "value": "form | cell | inline",
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -1944,7 +1949,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -2013,7 +2018,7 @@
       },
       {
         "name": "mode",
-        "value": "form | cell",
+        "value": "form | cell | inline",
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       },
       {
@@ -2028,7 +2033,7 @@
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
@@ -2043,7 +2048,7 @@
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -2236,29 +2241,9 @@
         "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
       },
       {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
         "name": "mode",
         "value": "inline | block",
         "comment": "<p>&#39;block&#39; mode: render as separate panel (with padding, borders, shadows). &#39;inline&#39; mode - renders no outside panel, suitable for placing in a panel with other components</p>"
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
       },
       {
         "name": "padding",
@@ -2284,21 +2269,6 @@
         "name": "title",
         "value": "string | React.ReactElement<any, string | React.JSXElementConstructor<any>>",
         "comment": "<p>Accordion title</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
       }
     ],
     "/app/src/docs/_props/epam-promo/components/layout/blocker.props.ts": [
@@ -2432,10 +2402,122 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
+    "/app/src/docs/_props/epam-promo/components/layout/FlexItems/flexCell.props.tsx": [
+      {
+        "name": "alignSelf",
+        "value": "string",
+        "comment": "<p>Flexbox align-self property. Aligns items vertically for horizontal flexbox. [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-align-self)</p>"
+      },
+      {
+        "name": "background",
+        "value": "none | white | gray5",
+        "comment": null
+      },
+      {
+        "name": "borderBottom",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "columnGap",
+        "value": "6 | 12 | 18 | 24 | 36",
+        "comment": "<p>Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "grow",
+        "value": "number",
+        "comment": "<p>Flexbox flex-grow property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-grow)</p>"
+      },
+      {
+        "name": "key",
+        "value": "React.Key",
+        "comment": null
+      },
+      {
+        "name": "margin",
+        "value": "24 | 12",
+        "comment": null
+      },
+      {
+        "name": "minWidth",
+        "value": "number",
+        "comment": "<p>CSS min-width</p>"
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
+      },
+      {
+        "name": "padding",
+        "value": "24 | 18 | 6 | 12",
+        "comment": null
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "rowGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": "<p>Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
+      },
+      {
+        "name": "shrink",
+        "value": "number",
+        "comment": "<p>Flexbox shrink property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-shrink)</p>"
+      },
+      {
+        "name": "size",
+        "value": "24 | 30 | 36 | 42 | 48",
+        "comment": null
+      },
+      {
+        "name": "spacing",
+        "value": "18 | 6 | 12",
+        "comment": null
+      },
+      {
+        "name": "style",
+        "value": "React.CSSProperties",
+        "comment": "<p>Standard style attribute. Styles are added to element style, overriding supplied flex styles</p>"
+      },
+      {
+        "name": "textAlign",
+        "value": "left | right | center",
+        "comment": "<p>CSS text-align property</p>"
+      },
+      {
+        "name": "topShadow",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "vPadding",
+        "value": "24 | 36 | 48 | 18 | 12",
+        "comment": null
+      },
+      {
+        "name": "width",
+        "value": "auto | 100%",
+        "comment": "<p>CSS width. Set to &#39;auto&#39; to make FlexCell resize to it&#39;s content</p>"
+      }
+    ],
     "/app/src/docs/_props/epam-promo/components/layout/FlexItems/flexRow.props.tsx": [
       {
         "name": "alignItems",
-        "value": "top | bottom | center | stretch",
+        "value": "center | top | bottom | stretch",
         "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
       },
       {
@@ -2445,7 +2527,7 @@
       },
       {
         "name": "borderBottom",
-        "value": "gray40",
+        "value": "boolean",
         "comment": null
       },
       {
@@ -2528,7 +2610,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "cx",
@@ -2567,11 +2649,6 @@
       }
     ],
     "/app/src/docs/_props/epam-promo/components/layout/iconContainer.props.tsx": [
-      {
-        "name": "color",
-        "value": "white | blue | green | red | gray50 | amber | gray30 | gray60 | gray5 | gray10 | gray20 | gray40 | gray70 | gray80 | gray90 | cyan | orange | purple | violet",
-        "comment": "<p>Component&#39;s base color</p>"
-      },
       {
         "name": "cx",
         "value": "any",
@@ -2642,7 +2719,7 @@
       {
         "name": "htmlFor",
         "value": "string",
-        "comment": "<p>HTML &#39;for&#39; tag to bind the label to a component.\nCan be used when component can&#39;t be wrapped by the LabeledInput, e.g. when form is layed out as table with labels and inputs placed into different columns</p>"
+        "comment": "<p>HTML &#39;for&#39; tag to bind the label to a component.\r\nCan be used when component can&#39;t be wrapped by the LabeledInput, e.g. when form is layed out as table with labels and inputs placed into different columns</p>"
       },
       {
         "name": "info",
@@ -2791,7 +2868,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "cx",
@@ -3240,7 +3317,7 @@
       },
       {
         "name": "borderBottom",
-        "value": "gray40",
+        "value": "boolean",
         "comment": null
       },
       {
@@ -3312,7 +3389,7 @@
       },
       {
         "name": "borderBottom",
-        "value": "gray40",
+        "value": "boolean",
         "comment": null
       },
       {
@@ -3457,7 +3534,7 @@
       {
         "name": "closeBodyOnTogglerHidden",
         "value": "boolean",
-        "comment": ""
+        "comment": null
       },
       {
         "name": "closeDelay",
@@ -3467,7 +3544,7 @@
       {
         "name": "closeOnMouseLeave",
         "value": "toggler | boundary",
-        "comment": ""
+        "comment": null
       },
       {
         "name": "color",
@@ -3485,9 +3562,34 @@
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
+        "name": "isDisabled",
+        "value": "boolean",
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean",
+        "comment": "<p>True if component contains invalid input</p>"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean",
+        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean",
+        "comment": "<p>Marks that component&#39;s value is required</p>"
+      },
+      {
         "name": "maxWidth",
-        "value": "string",
+        "value": "number",
         "comment": "<p>Max width of tooltip</p>"
+      },
+      {
+        "name": "modifiers",
+        "value": "(Modifier<any, object>>)[]",
+        "comment": null
       },
       {
         "name": "offset",
@@ -3497,7 +3599,7 @@
       {
         "name": "onClose",
         "value": "() => void",
-        "comment": ""
+        "comment": null
       },
       {
         "name": "onValueChange",
@@ -3522,12 +3624,27 @@
       {
         "name": "renderContent",
         "value": "() => any",
-        "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\nThe function will only be called when content is shown, this can save performance.</p>"
+        "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\r\nThe function will only be called when content is shown, this can save performance.</p>"
+      },
+      {
+        "name": "trigger",
+        "value": "click | press | hover | manual",
+        "comment": "<p>Defines when to show the tooltip: &#39;hover&#39; - default and usual, &#39;press&#39; - only when mouse button is down, &#39;manual&#39; - visibility is controlled with isVisible prop</p>"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string",
+        "comment": "<p>Message describing why the value is invalid</p>"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }",
+        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
       },
       {
         "name": "value",
-        "value": "boolean",
-        "comment": "<p>Set the value for the tooltip if it is visible or not. Opening a tooltip manually.</p>"
+        "value": "T",
+        "comment": "<p>The current value of component</p>"
       }
     ],
     "/app/src/docs/_props/epam-promo/components/pickers/pickerInput.props.tsx": [
@@ -3609,7 +3726,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -3668,17 +3785,17 @@
       },
       {
         "name": "mode",
-        "value": "form | cell",
+        "value": "form | cell | inline",
         "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -3695,6 +3812,11 @@
         "name": "placeholder",
         "value": "any",
         "comment": "<p>Placeholder to display when empty</p>"
+      },
+      {
+        "name": "portalTarget",
+        "value": "HTMLElement",
+        "comment": null
       },
       {
         "name": "prefix",
@@ -3714,11 +3836,11 @@
       {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "renderRow",
-        "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
+        "value": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode",
         "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
@@ -3729,7 +3851,7 @@
       {
         "name": "searchPosition",
         "value": "none | input | body",
-        "comment": "<p>Defines where search field is:\n&#39;input&#39; - try to place search inside the toggler (default for single-select),\n&#39;body&#39; - put search inside the dropdown (default for multi-select)\n&#39;none&#39; - disables search completely</p>"
+        "comment": "<p>Defines where search field is:\r\n&#39;input&#39; - try to place search inside the toggler (default for single-select),\r\n&#39;body&#39; - put search inside the dropdown (default for multi-select)\r\n&#39;none&#39; - disables search completely</p>"
       },
       {
         "name": "selectionMode",
@@ -3777,17 +3899,7 @@
         "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       }
     ],
-    "/app/src/docs/_props/epam-promo/components/pickers/pickerModal.props.tsx": [
-      {
-        "name": "abort",
-        "value": "(result?: any) => void",
-        "comment": null
-      },
-      {
-        "name": "caption",
-        "value": "any",
-        "comment": "<p>Caption. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
-      },
+    "/app/src/docs/_props/epam-promo/components/pickers/pickerList.props.tsx": [
       {
         "name": "cascadeSelection",
         "value": "boolean",
@@ -3797,6 +3909,11 @@
         "name": "dataSource",
         "value": "IDataSource<TItem, TId, any>",
         "comment": "<p>Provides items to the Picker</p>"
+      },
+      {
+        "name": "defaultIds",
+        "value": "TId[]",
+        "comment": "<p>Ids of items to show first.\r\nIf not specified, top props.maxDefaultItems will be shown according to the DataSource sorting settings (default is 10)</p>"
       },
       {
         "name": "disallowClickOutside",
@@ -3839,14 +3956,14 @@
         "comment": "<p>Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field.</p>"
       },
       {
-        "name": "initialValue",
-        "value": "TId",
-        "comment": null
+        "name": "getValueChangeAnalyticsEvent",
+        "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
-        "name": "isActive",
+        "name": "isDisabled",
         "value": "boolean",
-        "comment": null
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
       },
       {
         "name": "isFoldedByDefault",
@@ -3854,9 +3971,44 @@
         "comment": "<p>You can return true for all, or some items to fold them.</p>"
       },
       {
-        "name": "key",
-        "value": "string",
+        "name": "isInvalid",
+        "value": "boolean",
+        "comment": "<p>True if component contains invalid input</p>"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean",
+        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean",
+        "comment": "<p>Marks that component&#39;s value is required</p>"
+      },
+      {
+        "name": "maxDefaultItems",
+        "value": "number",
+        "comment": "<p>Number of default items to show initially, when nothing is selected.\r\nDefault it 10 items</p>"
+      },
+      {
+        "name": "maxTotalItems",
+        "value": "number",
+        "comment": "<p>Maximum total number of items to show, including selected</p>"
+      },
+      {
+        "name": "noOptionsMessage",
+        "value": "React.ReactNode",
         "comment": null
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void",
+        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
+      },
+      {
+        "name": "placeholder",
+        "value": "any",
+        "comment": "<p>Placeholder to display when empty</p>"
       },
       {
         "name": "rawProps",
@@ -3874,18 +4026,33 @@
         "comment": null
       },
       {
+        "name": "renderModalToggler",
+        "value": "(props: DataRowProps<TItem, TId>[]) => React.ReactNode",
+        "comment": null
+      },
+      {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "renderRow",
-        "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
+        "value": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode",
         "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
         "name": "selectionMode",
         "value": "\"single\"",
+        "comment": "<p>&#39;single&#39; - only one item is selected. &#39;multi&#39; - multiple items are selected</p>"
+      },
+      {
+        "name": "settingsKey",
+        "value": "string",
+        "comment": "<p>If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key</p>"
+      },
+      {
+        "name": "size",
+        "value": "none | 24 | 30 | 36 | 42 | 48",
         "comment": null
       },
       {
@@ -3899,854 +4066,24 @@
         "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
-        "name": "success",
-        "value": "(result: TResult) => void",
-        "comment": null
+        "name": "validationMessage",
+        "value": "string",
+        "comment": "<p>Message describing why the value is invalid</p>"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }",
+        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
+      },
+      {
+        "name": "value",
+        "value": "T",
+        "comment": "<p>The current value of component</p>"
       },
       {
         "name": "valueType",
         "value": "\"id\"",
-        "comment": null
-      },
-      {
-        "name": "zIndex",
-        "value": "number",
-        "comment": null
-      }
-    ],
-    "/app/src/docs/_props/epam-promo/components/pickers/pickerToggler.props.tsx": [
-      {
-        "name": "autoFocus",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "cancelIcon",
-        "value": "Icon",
-        "comment": null
-      },
-      {
-        "name": "caption",
-        "value": "any",
-        "comment": "<p>Caption. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "disableClear",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "disableSearch",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "dropdownIcon",
-        "value": "Icon",
-        "comment": null
-      },
-      {
-        "name": "entityName",
-        "value": "string",
-        "comment": null
-      },
-      {
-        "name": "getName",
-        "value": "(item: TItem) => string",
-        "comment": null
-      },
-      {
-        "name": "icon",
-        "value": "Icon",
-        "comment": "<p>Icon can be an React element (usually an SVG element)</p>"
-      },
-      {
-        "name": "iconPosition",
-        "value": "left | right",
-        "comment": "<p>Position of the icon (left of right)</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disables component</p>"
-      },
-      {
-        "name": "isDropdown",
-        "value": "boolean",
-        "comment": "<p>Enabled dropdown mode - component can toggle dropdown</p>"
-      },
-      {
-        "name": "isInteractedOutside",
-        "value": "(event: Event) => boolean",
-        "comment": "<p>Called when component is interacted outside, to close the dropdown</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isOpen",
-        "value": "boolean",
-        "comment": "<p>When component acts as dropdown, indicate that dropdown is open</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "isSingleLine",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "maxItems",
-        "value": "number",
-        "comment": null
-      },
-      {
-        "name": "minCharsToSearch",
-        "value": "number",
-        "comment": null
-      },
-      {
-        "name": "mode",
-        "value": "form | cell",
-        "comment": "<p>Defines input mode: &#39;form&#39; is default and usual look, &#39;cell&#39; is for using components as table cells</p>"
-      },
-      {
-        "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
-        "comment": "<p>Called when component looses input focus</p>"
-      },
-      {
-        "name": "onClear",
-        "value": "(e?: any) => void",
-        "comment": null
-      },
-      {
-        "name": "onClick",
-        "value": "(e?: any) => void",
-        "comment": "<p>Called when component is clicked</p>"
-      },
-      {
-        "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
-        "comment": "<p>Called when component gets input focus</p>"
-      },
-      {
-        "name": "onIconClick",
-        "value": "() => void",
-        "comment": "<p>Click handler for the icon</p>"
-      },
-      {
-        "name": "onKeyDown",
-        "value": "(e: React.KeyboardEvent<HTMLElement>) => void",
-        "comment": null
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "pickerMode",
-        "value": "single | multi",
-        "comment": null
-      },
-      {
-        "name": "placeholder",
-        "value": "any",
-        "comment": "<p>Placeholder to display when empty</p>"
-      },
-      {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "ref",
-        "value": "React.Ref<any>",
-        "comment": "<p>Component&#39;s ref</p>"
-      },
-      {
-        "name": "renderItem",
-        "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "searchPosition",
-        "value": "none | input | body",
-        "comment": null
-      },
-      {
-        "name": "selection",
-        "value": "DataRowProps<TItem, TId>[]",
-        "comment": null
-      },
-      {
-        "name": "size",
-        "value": "24 | 30 | 36 | 42 | 48",
-        "comment": null
-      },
-      {
-        "name": "suffix",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "toggleDropdownOpening",
-        "value": "(value: boolean) => void",
-        "comment": "<p>Called when associated dropdown should open or close</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
-      }
-    ],
-    "/app/src/docs/_props/epam-promo/components/tables/dataTableCell.props.tsx": [
-      {
-        "name": "addons",
-        "value": "React.ReactNode",
-        "comment": "<p>Add-on controls to put before the cell content (folding arrow, checkbox, etc.)</p>"
-      },
-      {
-        "name": "alignActions",
-        "value": "top | center",
-        "comment": null
-      },
-      {
-        "name": "background",
-        "value": "blue | green | red | amber | gray5",
-        "comment": null
-      },
-      {
-        "name": "border",
-        "value": "\"gray30\"",
-        "comment": null
-      },
-      {
-        "name": "column",
-        "value": "DataColumnProps<TItem, TId, any>",
-        "comment": "<p>DataColumnProps object for the column the cell is at</p>"
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "index",
-        "value": "number",
-        "comment": "<p>Column index in table</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isFirstColumn",
-        "value": "boolean",
-        "comment": "<p>True if the cell is in the first column</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isLastColumn",
-        "value": "boolean",
-        "comment": "<p>True if the cell is in the last column</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "key",
-        "value": "string",
-        "comment": "<p>Key to use as component&#39;s key</p>"
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "padding",
-        "value": "24 | 0 | 12",
-        "comment": null
-      },
-      {
-        "name": "renderEditor",
-        "value": "(props: RenderEditorProps<TItem, TId, TCellValue>) => React.ReactNode",
-        "comment": "<p>If passed, the cell is rendered as editable - receives focus, show validation errors.\nAll necessary props for the editor are passed as argument:\n- props implements IEditable and can be passed directly to suitable component (like TextInput)\n- ICanFocus props are passed as well. Component should implement it so cell focus highlight works properly\n- mode=&#39;cell&#39; prop is passed to render UUI components in &#39;cell&#39; mode\n- rowProps is passed so you depend on additional info about the row itself</p>"
-      },
-      {
-        "name": "renderPlaceholder",
-        "value": "(cellProps: DataTableCellProps<TItem, TId, TCellValue>) => React.ReactNode",
-        "comment": "<p>Overrides default loading placeholder (&#39;skeleton&#39;) rendering</p>"
-      },
-      {
-        "name": "renderTooltip",
-        "value": "(props: TooltipCoreProps) => React.ReactElement<any, string | React.JSXElementConstructor<any>>",
-        "comment": "<p>Overrides default tooltip, used to show validation message if the cell is invalid</p>"
-      },
-      {
-        "name": "rowProps",
-        "value": "DataTableRowProps<TItem, TId>",
-        "comment": "<p>DataTableRowsProps object for the table row the cell is at</p>"
-      },
-      {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
-        "comment": null
-      },
-      {
-        "name": "tabIndex",
-        "value": "number",
-        "comment": "<p>HTML tabIndex attribute to set on the cell</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
-      }
-    ],
-    "/app/src/docs/_props/epam-promo/components/tables/dataTableHeaderCell.props.tsx": [
-      {
-        "name": "allowColumnsReordering",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "allowColumnsResizing",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "caption",
-        "value": "any",
-        "comment": "<p>Caption. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
-      },
-      {
-        "name": "column",
-        "value": "DataColumnProps<TItem, TId, any>",
-        "comment": null
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isDropdown",
-        "value": "boolean",
-        "comment": "<p>Enabled dropdown mode - component can toggle dropdown</p>"
-      },
-      {
-        "name": "isFilterActive",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "isFirstColumn",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "isInteractedOutside",
-        "value": "(event: Event) => boolean",
-        "comment": "<p>Called when component is interacted outside, to close the dropdown</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isLastColumn",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "isOpen",
-        "value": "boolean",
-        "comment": "<p>When component acts as dropdown, indicate that dropdown is open</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "key",
-        "value": "string",
-        "comment": null
-      },
-      {
-        "name": "onClick",
-        "value": "(e?: any) => void",
-        "comment": "<p>Called when component is clicked</p>"
-      },
-      {
-        "name": "onDrop",
-        "value": "(params: DataColumnProps<TItem, TId, any>>) => void",
-        "comment": null
-      },
-      {
-        "name": "onSort",
-        "value": "(dir: SortDirection) => void",
-        "comment": null
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "ref",
-        "value": "React.Ref<any>",
-        "comment": "<p>Component&#39;s ref</p>"
-      },
-      {
-        "name": "renderFilter",
-        "value": "(dropdownProps: IDropdownBodyProps) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "selectAll",
-        "value": "ICheckable",
-        "comment": null
-      },
-      {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
-        "comment": null
-      },
-      {
-        "name": "sortDirection",
-        "value": "desc | asc",
-        "comment": null
-      },
-      {
-        "name": "textCase",
-        "value": "normal | upper",
-        "comment": null
-      },
-      {
-        "name": "toggleDropdownOpening",
-        "value": "(value: boolean) => void",
-        "comment": "<p>Called when associated dropdown should open or close</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
-      }
-    ],
-    "/app/src/docs/_props/epam-promo/components/tables/dataTableHeaderRow.props.tsx": [
-      {
-        "name": "allowColumnsReordering",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "allowColumnsResizing",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "columns",
-        "value": "DataColumnProps<TItem, TId, any>[]",
-        "comment": null
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "onConfigButtonClick",
-        "value": "(params: DataTableConfigModalParams) => any",
-        "comment": null
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "renderCell",
-        "value": "(props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "renderConfigButton",
-        "value": "() => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "selectAll",
-        "value": "ICheckable",
-        "comment": null
-      },
-      {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
-        "comment": null
-      },
-      {
-        "name": "textCase",
-        "value": "normal | upper",
-        "comment": null
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
-      }
-    ],
-    "/app/src/docs/_props/epam-promo/components/tables/dataTableRow.props.tsx": [
-      {
-        "name": "alignActions",
-        "value": "top | center",
-        "comment": null
-      },
-      {
-        "name": "alignItems",
-        "value": "top | bottom | center | stretch",
-        "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
-      },
-      {
-        "name": "background",
-        "value": "white | gray5",
-        "comment": null
-      },
-      {
-        "name": "borderBottom",
-        "value": "none | gray30",
-        "comment": null
-      },
-      {
-        "name": "checkbox",
-        "value": "{ isVisible: boolean; } & ICanBeInvalid",
-        "comment": "<p>If row needs a checkbox, this field should be specified and it props can be configured here</p>"
-      },
-      {
-        "name": "children",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "columnGap",
-        "value": "24 | 36 | 18 | 6 | 12",
-        "comment": "<p>Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
-      },
-      {
-        "name": "columns",
-        "value": "DataColumnProps<TItem, TId, any>[]",
-        "comment": null
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "depth",
-        "value": "number",
-        "comment": "<p>Depth of the row in tree, 0 for the top-level</p>"
-      },
-      {
-        "name": "dnd",
-        "value": "IDndActor<any, any>",
-        "comment": "<p>Configures row drag-n-drop options - if it can be dragged, can rows can be dropped into it, etc.</p>"
-      },
-      {
-        "name": "id",
-        "value": "TId",
-        "comment": "<p>ID of the TItem rows displays</p>"
-      },
-      {
-        "name": "indent",
-        "value": "number",
-        "comment": "<p>Indent of the item, to show hierarchy.\nUnlike depth, it contains additional logic, to not add unnecessary indents:\nif all children of node has no children, all nodes would get the same indent as parent.</p>"
-      },
-      {
-        "name": "index",
-        "value": "number",
-        "comment": "<p>Index of the row, from the top of the list. This doesn&#39;t account any hierarchy.</p>"
-      },
-      {
-        "name": "isCheckable",
-        "value": "boolean",
-        "comment": "<p>True if row has checkbox and can be checkable</p>"
-      },
-      {
-        "name": "isChecked",
-        "value": "boolean",
-        "comment": "<p>True if row is checked with checkbox</p>"
-      },
-      {
-        "name": "isChildrenChecked",
-        "value": "boolean",
-        "comment": "<p>True if some of row&#39;s children are checked.\nUsed to show &#39;indefinite&#39; checkbox state, to show user that something inside is checked</p>"
-      },
-      {
-        "name": "isChildrenSelected",
-        "value": "boolean",
-        "comment": "<p>True if any of row&#39;s children is selected.</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isFocused",
-        "value": "boolean",
-        "comment": "<p>True if row is focused. Focus can be changed via keyboard arrow keys, or by hovering mouse on top of the row</p>"
-      },
-      {
-        "name": "isFoldable",
-        "value": "boolean",
-        "comment": "<p>True if row be folded or unfolded (usually because it contains children)</p>"
-      },
-      {
-        "name": "isFolded",
-        "value": "boolean",
-        "comment": "<p>True if row is currently folded</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isLastChild",
-        "value": "boolean",
-        "comment": "<p>True if row is the last child of his parent</p>"
-      },
-      {
-        "name": "isLoading",
-        "value": "boolean",
-        "comment": "<p>True if row is in loading state. &#39;value&#39; is empty in this case</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "isSelectable",
-        "value": "boolean",
-        "comment": "<p>True if row is selectable (for whole-row single-selection, multi-selection via checkbox are configured with the checkbox prop)</p>"
-      },
-      {
-        "name": "isSelected",
-        "value": "boolean",
-        "comment": "<p>True if row is selected (in single-select mode, or in case when interface use both single row selection and checkboxes)</p>"
-      },
-      {
-        "name": "key",
-        "value": "React.Key",
-        "comment": null
-      },
-      {
-        "name": "link",
-        "value": "Link",
-        "comment": "<p>Can be specified to make row act as a link (plain or SPA)</p>"
-      },
-      {
-        "name": "onCheck",
-        "value": "(rowProps: DataRowProps<TItem, TId>) => void",
-        "comment": "<p>Handles row checkbox change.\nWe demand to pass the row as well, to avoid creating closures for each row.</p>"
-      },
-      {
-        "name": "onClick",
-        "value": "(e?: any) => void",
-        "comment": "<p>Called when component is clicked\nRow click handler\nHandles row click.\nWe demand to pass the row as well, to avoid creating closures for each row.</p>"
-      },
-      {
-        "name": "onFocus",
-        "value": "(focusedIndex: number) => void",
-        "comment": "<p>Handles row focusing.</p>"
-      },
-      {
-        "name": "onFold",
-        "value": "(rowProps: DataRowProps<TItem, TId>) => void",
-        "comment": "<p>Handles row folding change.\nWe demand to pass the row as well, to avoid creating closures for each row.</p>"
-      },
-      {
-        "name": "onSelect",
-        "value": "(rowProps: DataRowProps<TItem, TId>) => void",
-        "comment": "<p>Handles row selection.\nWe demand to pass the row as well, to avoid creating closures for each row.</p>"
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "padding",
-        "value": "24 | 0 | 12",
-        "comment": null
-      },
-      {
-        "name": "parentId",
-        "value": "TId",
-        "comment": "<p>ID of the parent TItem</p>"
-      },
-      {
-        "name": "path",
-        "value": "DataRowPathItem<TId, TItem>[]",
-        "comment": "<p>Hierarchical path from the root node to the item (excluding the item itself)</p>"
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "renderCell",
-        "value": "(props: DataTableCellProps<TItem, TId, any>) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "renderDropMarkers",
-        "value": "(props: DndActorRenderParams) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "rowGap",
-        "value": "24 | 36 | 18 | 6 | 12",
-        "comment": "<p>Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
-      },
-      {
-        "name": "rowKey",
-        "value": "string",
-        "comment": "<p>Key to be used as component&#39;s key when rendering. Usually, it&#39;s stringified ID</p>"
-      },
-      {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
-        "comment": null
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component\nThe data item (TItem) row displays. Will be undefined if isLoading = true.</p>"
+        "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
       }
     ],
     "/app/src/docs/_props/epam-promo/components/typography/richTextView.props.tsx": [
@@ -4785,11 +4122,11 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
-        "value": "gray60 | gray5 | gray80 | gray90",
+        "value": "gray50 | gray60 | gray90 | gray5 | gray80",
         "comment": null
       },
       {
@@ -4803,19 +4140,9 @@
         "comment": null
       },
       {
-        "name": "fontSize",
-        "value": "24 | 18 | 10 | 12 | 14 | 16",
-        "comment": null
-      },
-      {
         "name": "forwardedRef",
         "value": "React.ForwardedRef<T>",
         "comment": "<p>this ref is passed to the underlying component</p>"
-      },
-      {
-        "name": "lineHeight",
-        "value": "24 | 30 | 18 | 12",
-        "comment": null
       },
       {
         "name": "onClick",
@@ -4826,23 +4153,23 @@
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 18",
-        "comment": null
       }
     ],
     "/app/src/docs/_props/epam-promo/components/typography/textPlaceholder.props.tsx": [
       {
-        "name": "color",
-        "value": "gray10 | gray40",
-        "comment": "<p>Placeholder&#39;s color</p>"
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
         "name": "isNotAnimated",
         "value": "boolean",
-        "comment": "<p>Disables animation</p>"
+        "comment": null
       },
       {
         "name": "rawProps",
@@ -4852,7 +4179,7 @@
       {
         "name": "wordsCount",
         "value": "number",
-        "comment": "<p>Number of fake &#39;words to show</p>"
+        "comment": null
       }
     ],
     "/app/src/docs/_props/epam-promo/components/widgets/avatar.props.tsx": [
@@ -4953,7 +4280,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
@@ -5095,7 +4422,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "isDisabled",
@@ -5160,11 +4487,6 @@
     ],
     "/app/src/docs/_props/epam-promo/components/widgets/spinner.props.tsx": [
       {
-        "name": "color",
-        "value": "white | blue | gray50",
-        "comment": null
-      },
-      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -5199,7 +4521,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "count",
@@ -5346,11 +4668,11 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
         "comment": "<p>Component color</p>"
       },
       {
@@ -5381,11 +4703,6 @@
       {
         "name": "fill",
         "value": "none | solid | white | light",
-        "comment": null
-      },
-      {
-        "name": "fontSize",
-        "value": "18 | 10 | 12 | 14 | 16",
         "comment": null
       },
       {
@@ -5432,11 +4749,6 @@
         "name": "isOpen",
         "value": "boolean",
         "comment": "<p>When component acts as dropdown, indicate that dropdown is open</p>"
-      },
-      {
-        "name": "lineHeight",
-        "value": "24 | 30 | 18 | 12",
-        "comment": null
       },
       {
         "name": "link",
@@ -5503,12 +4815,12 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
+        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "comment": null
       },
       {
         "name": "cx",
@@ -5595,11 +4907,11 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
         "comment": null
       },
       {
@@ -5723,11 +5035,6 @@
         "comment": "<p>Component&#39;s ref</p>"
       },
       {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48",
-        "comment": null
-      },
-      {
         "name": "tabIndex",
         "value": "number",
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
@@ -5762,7 +5069,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "count",
@@ -5919,7 +5226,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "count",
@@ -6116,9 +5423,9 @@
     ],
     "/app/src/docs/_props/loveship/components/datePickers/datePicker.props.tsx": [
       {
-        "name": "cx",
+        "name": "bodyCx",
         "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+        "comment": null
       },
       {
         "name": "disableClear",
@@ -6131,11 +5438,6 @@
         "comment": "<p>Filter selectable days. Days, for which this callback returns false - will be disabled</p>"
       },
       {
-        "name": "fontSize",
-        "value": "18 | 10 | 12 | 14 | 16",
-        "comment": null
-      },
-      {
         "name": "format",
         "value": "string",
         "comment": "<p>Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)</p>"
@@ -6143,12 +5445,17 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "iconPosition",
         "value": "left | right",
         "comment": null
+      },
+      {
+        "name": "inputCx",
+        "value": "any",
+        "comment": "<p>Styles for input and body components in DatePicker</p>"
       },
       {
         "name": "isDisabled",
@@ -6176,23 +5483,18 @@
         "comment": "<p>Marks that component&#39;s value is required</p>"
       },
       {
-        "name": "lineHeight",
-        "value": "24 | 30 | 18 | 12",
-        "comment": null
-      },
-      {
         "name": "mode",
-        "value": "none | form | inline | cell",
+        "value": "form | cell | inline",
         "comment": null
       },
       {
         "name": "onBlur",
-        "value": "(e?: React.FocusEvent<HTMLInputElement>) => void",
+        "value": "(e?: React.FocusEvent<HTMLInputElement, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -6213,7 +5515,7 @@
       {
         "name": "rawProps",
         "value": "{ input?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; body?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; }",
-        "comment": null
+        "comment": "<p>Attributes for HTML Element</p>"
       },
       {
         "name": "renderDay",
@@ -6223,11 +5525,11 @@
       {
         "name": "renderFooter",
         "value": "() => React.ReactNode",
-        "comment": null
+        "comment": "<p>render prop to add a custom footer inside the DatePicker dropdown body</p>"
       },
       {
         "name": "renderTarget",
-        "value": "(props: any) => React.ReactNode",
+        "value": "(props: IDropdownToggler) => React.ReactNode",
         "comment": "<p>Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach DatePicker to other components, e.g. Buttons</p>"
       },
       {
@@ -6253,9 +5555,9 @@
     ],
     "/app/src/docs/_props/loveship/components/datePickers/rangeDatePicker.props.tsx": [
       {
-        "name": "cx",
+        "name": "bodyCx",
         "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+        "comment": null
       },
       {
         "name": "disableClear",
@@ -6266,11 +5568,6 @@
         "name": "filter",
         "value": "(day: Dayjs) => boolean",
         "comment": "<p>Filter selectable days. Days, for which this callback returns false - will be disabled</p>"
-      },
-      {
-        "name": "fontSize",
-        "value": "18 | 10 | 12 | 14 | 16",
-        "comment": null
       },
       {
         "name": "format",
@@ -6285,7 +5582,12 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "inputCx",
+        "value": "any",
+        "comment": "<p>Styles for input and body components in RangeDatePicker</p>"
       },
       {
         "name": "isDisabled",
@@ -6313,23 +5615,13 @@
         "comment": "<p>Marks that component&#39;s value is required</p>"
       },
       {
-        "name": "lineHeight",
-        "value": "24 | 30 | 18 | 12",
-        "comment": null
-      },
-      {
-        "name": "mode",
-        "value": "none | form | inline | cell",
-        "comment": null
-      },
-      {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<HTMLInputElement>, inputType: \"from\" | \"to\") => void",
+        "value": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: \"from\" | \"to\") => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<HTMLInputElement>, inputType: \"from\" | \"to\") => void",
+        "value": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: \"from\" | \"to\") => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -6345,12 +5637,12 @@
       {
         "name": "presets",
         "value": "RangeDatePickerPresets",
-        "comment": "<p>Range presets (like &#39;this week&#39;, &#39;this month&#39;, etc.) to display at the right of the Picker&#39;s body.\nUUI provides defaults in the &#39;rangeDatePickerPresets&#39; exported variable - you can use it as is, or build on top of it (e.g. add your presets)</p>"
+        "comment": "<p>Range presets (like &#39;this week&#39;, &#39;this month&#39;, etc.) to display at the right of the Picker&#39;s body.\r\nUUI provides defaults in the &#39;rangeDatePickerPresets&#39; exported variable - you can use it as is, or build on top of it (e.g. add your presets)</p>"
       },
       {
         "name": "rawProps",
         "value": "{ from?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; to?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; body?: React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>; }",
-        "comment": null
+        "comment": "<p>rawProps as HTML attributes</p>"
       },
       {
         "name": "renderDay",
@@ -6390,11 +5682,6 @@
     ],
     "/app/src/docs/_props/loveship/components/inputs/checkbox.props.tsx": [
       {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
-      },
-      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -6407,7 +5694,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -6461,12 +5748,12 @@
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -6519,7 +5806,7 @@
       {
         "name": "color",
         "value": "sky | night600",
-        "comment": "<p>Component color</p>"
+        "comment": null
       },
       {
         "name": "isDisabled",
@@ -6604,19 +5891,14 @@
         "comment": "<p>Overrides the down/decrease icon</p>"
       },
       {
-        "name": "fontSize",
-        "value": "18 | 10 | 12 | 14 | 16",
-        "comment": null
-      },
-      {
         "name": "formatOptions",
         "value": "Intl.NumberFormatOptions",
         "comment": "<p>Number formatting options. See #{link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat}</p>"
       },
       {
-        "name": "formatter",
-        "value": "(value: number) => number",
-        "comment": "<p>[Obsolete]: Please rework this to change value in lens.onChange or onValueChange instead</p>"
+        "name": "formatValue",
+        "value": "(value: number) => string",
+        "comment": "<p>A function to convert current input value to displayed text.\r\nOverrides standard Intl-based formatting.\r\nIf passed, only maximumFractionDigits considered from formatOptions when both properties provided.\r\nNote, that formatting is used when input is out of focus.</p>"
       },
       {
         "name": "forwardedRef",
@@ -6626,7 +5908,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "id",
@@ -6659,11 +5941,6 @@
         "comment": "<p>Marks that component&#39;s value is required</p>"
       },
       {
-        "name": "lineHeight",
-        "value": "24 | 30 | 18 | 12",
-        "comment": null
-      },
-      {
         "name": "max",
         "value": "number",
         "comment": "<p>Maximum value (default is Number.MAX_SAFE_INTEGER)</p>"
@@ -6675,12 +5952,12 @@
       },
       {
         "name": "mode",
-        "value": "none | form | inline | cell",
+        "value": "form | cell | inline",
         "comment": null
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
@@ -6690,7 +5967,7 @@
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -6741,11 +6018,6 @@
     ],
     "/app/src/docs/_props/loveship/components/inputs/radioInput.props.tsx": [
       {
-        "name": "color",
-        "value": "ColorMod",
-        "comment": null
-      },
-      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -6758,7 +6030,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -6995,14 +6267,9 @@
         "comment": "<p>Overrides dropdown (chevron) icon</p>"
       },
       {
-        "name": "fontSize",
-        "value": "18 | 10 | 12 | 14 | 16",
-        "comment": null
-      },
-      {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -7065,18 +6332,13 @@
         "comment": "<p>Marks that component&#39;s value is required</p>"
       },
       {
-        "name": "lineHeight",
-        "value": "24 | 30 | 18 | 12",
-        "comment": null
-      },
-      {
         "name": "maxLength",
         "value": "number",
         "comment": "<p>Maximum input length in characters</p>"
       },
       {
         "name": "mode",
-        "value": "none | form | inline | cell",
+        "value": "form | cell | inline",
         "comment": null
       },
       {
@@ -7091,7 +6353,7 @@
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
@@ -7106,7 +6368,7 @@
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -7193,7 +6455,7 @@
     "/app/src/docs/_props/loveship/components/inputs/Slider/rangeSlider.props.ts": [
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
         "comment": "<p>Component color</p>"
       },
       {
@@ -7285,7 +6547,7 @@
     "/app/src/docs/_props/loveship/components/inputs/Slider/slider.props.ts": [
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
         "comment": "<p>Component color</p>"
       },
       {
@@ -7453,11 +6715,6 @@
     ],
     "/app/src/docs/_props/loveship/components/inputs/switch.props.ts": [
       {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
-      },
-      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -7470,7 +6727,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "id",
@@ -7523,11 +6780,6 @@
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
       },
       {
-        "name": "theme",
-        "value": "light | dark",
-        "comment": null
-      },
-      {
         "name": "validationMessage",
         "value": "string",
         "comment": "<p>Message describing why the value is invalid</p>"
@@ -7558,11 +6810,6 @@
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "fontSize",
-        "value": "18 | 10 | 12 | 14 | 16",
-        "comment": null
       },
       {
         "name": "forwardedRef",
@@ -7600,28 +6847,23 @@
         "comment": "<p>Marks that component&#39;s value is required</p>"
       },
       {
-        "name": "lineHeight",
-        "value": "24 | 30 | 18 | 12",
-        "comment": null
-      },
-      {
         "name": "maxLength",
         "value": "number",
         "comment": "<p>Maximum text length, in characters</p>"
       },
       {
         "name": "mode",
-        "value": "none | form | inline | cell",
+        "value": "form | cell | inline",
         "comment": null
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -7651,7 +6893,7 @@
       },
       {
         "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
+        "value": "none | 24 | 30 | 36 | 42 | 48",
         "comment": null
       },
       {
@@ -7707,14 +6949,9 @@
         "comment": "<p>Overrides dropdown (chevron) icon</p>"
       },
       {
-        "name": "fontSize",
-        "value": "18 | 10 | 12 | 14 | 16",
-        "comment": null
-      },
-      {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -7777,18 +7014,13 @@
         "comment": "<p>Marks that component&#39;s value is required</p>"
       },
       {
-        "name": "lineHeight",
-        "value": "24 | 30 | 18 | 12",
-        "comment": null
-      },
-      {
         "name": "maxLength",
         "value": "number",
         "comment": "<p>Maximum input length in characters</p>"
       },
       {
         "name": "mode",
-        "value": "none | form | inline | cell",
+        "value": "form | cell | inline",
         "comment": null
       },
       {
@@ -7803,7 +7035,7 @@
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
@@ -7818,7 +7050,7 @@
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -7940,7 +7172,7 @@
       },
       {
         "name": "mode",
-        "value": "none | form | inline | cell",
+        "value": "form | cell",
         "comment": null
       },
       {
@@ -8011,29 +7243,9 @@
         "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
       },
       {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
         "name": "mode",
         "value": "inline | block",
         "comment": null
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
       },
       {
         "name": "padding",
@@ -8059,21 +7271,6 @@
         "name": "title",
         "value": "string | React.ReactElement<any, string | React.JSXElementConstructor<any>>",
         "comment": "<p>Accordion title</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
       }
     ],
     "/app/src/docs/_props/loveship/components/layout/blocker.props.ts": [
@@ -8207,10 +7404,127 @@
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ],
+    "/app/src/docs/_props/loveship/components/layout/FlexItems/flexCell.props.tsx": [
+      {
+        "name": "alignSelf",
+        "value": "string",
+        "comment": "<p>Flexbox align-self property. Aligns items vertically for horizontal flexbox. [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-align-self)</p>"
+      },
+      {
+        "name": "background",
+        "value": "none | white | night50 | night100",
+        "comment": null
+      },
+      {
+        "name": "borderBottom",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "columnGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "grow",
+        "value": "number",
+        "comment": "<p>Flexbox flex-grow property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-grow)</p>"
+      },
+      {
+        "name": "key",
+        "value": "React.Key",
+        "comment": null
+      },
+      {
+        "name": "margin",
+        "value": "24 | 12",
+        "comment": null
+      },
+      {
+        "name": "minWidth",
+        "value": "number",
+        "comment": "<p>CSS min-width</p>"
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
+      },
+      {
+        "name": "padding",
+        "value": "24 | 18 | 6 | 12",
+        "comment": null
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "rowGap",
+        "value": "24 | 36 | 18 | 6 | 12",
+        "comment": null
+      },
+      {
+        "name": "shrink",
+        "value": "number",
+        "comment": "<p>Flexbox shrink property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-shrink)</p>"
+      },
+      {
+        "name": "size",
+        "value": "24 | 30 | 36 | 42 | 48",
+        "comment": null
+      },
+      {
+        "name": "spacing",
+        "value": "18 | 6 | 12",
+        "comment": null
+      },
+      {
+        "name": "style",
+        "value": "React.CSSProperties",
+        "comment": "<p>Standard style attribute. Styles are added to element style, overriding supplied flex styles</p>"
+      },
+      {
+        "name": "textAlign",
+        "value": "left | right | center",
+        "comment": "<p>CSS text-align property</p>"
+      },
+      {
+        "name": "topShadow",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "type",
+        "value": "form | panel",
+        "comment": null
+      },
+      {
+        "name": "vPadding",
+        "value": "24 | 36 | 48 | 18 | 12",
+        "comment": null
+      },
+      {
+        "name": "width",
+        "value": "auto | 100%",
+        "comment": "<p>CSS width. Set to &#39;auto&#39; to make FlexCell resize to it&#39;s content</p>"
+      }
+    ],
     "/app/src/docs/_props/loveship/components/layout/FlexItems/flexRow.props.tsx": [
       {
         "name": "alignItems",
-        "value": "top | bottom | center | stretch",
+        "value": "center | top | bottom | stretch",
         "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
       },
       {
@@ -8220,7 +7534,7 @@
       },
       {
         "name": "borderBottom",
-        "value": "night50 | night300 | night400 | night700",
+        "value": "boolean",
         "comment": null
       },
       {
@@ -8308,7 +7622,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "cx",
@@ -8347,11 +7661,6 @@
       }
     ],
     "/app/src/docs/_props/loveship/components/layout/iconContainer.props.tsx": [
-      {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
-      },
       {
         "name": "cx",
         "value": "any",
@@ -8410,11 +7719,6 @@
         "comment": null
       },
       {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
-      },
-      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -8427,7 +7731,7 @@
       {
         "name": "htmlFor",
         "value": "string",
-        "comment": "<p>HTML &#39;for&#39; tag to bind the label to a component.\nCan be used when component can&#39;t be wrapped by the LabeledInput, e.g. when form is layed out as table with labels and inputs placed into different columns</p>"
+        "comment": "<p>HTML &#39;for&#39; tag to bind the label to a component.\r\nCan be used when component can&#39;t be wrapped by the LabeledInput, e.g. when form is layed out as table with labels and inputs placed into different columns</p>"
       },
       {
         "name": "info",
@@ -8567,6 +7871,63 @@
         "comment": "<p>The current value of component</p>"
       }
     ],
+    "/app/src/docs/_props/loveship/components/navigation/anchor.props.tsx": [
+      {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "clickAnalyticsEvent",
+        "value": "{ [key: string]: any; name: string; }",
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>",
+        "comment": "<p>this ref is passed to the underlying component</p>"
+      },
+      {
+        "name": "href",
+        "value": "string",
+        "comment": "<p>Href (URL) to redirect to, for non-SPA redirects</p>"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean",
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "isLinkActive",
+        "value": "boolean",
+        "comment": "<p>Highlights component to show that link is active (browser is displaying the page to which link is pointing)</p>"
+      },
+      {
+        "name": "link",
+        "value": "Link",
+        "comment": "<p>Link object to redirect to for SPA-redirects</p>"
+      },
+      {
+        "name": "onClick",
+        "value": "(e?: any) => void",
+        "comment": "<p>Called when component is clicked</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "target",
+        "value": "\"_blank\"",
+        "comment": "<p>Controls where the link should be opened</p>"
+      }
+    ],
     "/app/src/docs/_props/loveship/components/navigation/mainMenu.props.tsx": [
       {
         "name": "alwaysShowBurger",
@@ -8693,7 +8054,7 @@
       {
         "name": "actions",
         "value": "notificationAction[]",
-        "comment": null
+        "comment": "<p>List of actions to display in the alert. Each action has name and &#39;action&#39; callback</p>"
       },
       {
         "name": "children",
@@ -8713,12 +8074,12 @@
       {
         "name": "icon",
         "value": "Icon",
-        "comment": null
+        "comment": "<p>An optional icon to show on the left of the alert</p>"
       },
       {
         "name": "onClose",
         "value": "() => void",
-        "comment": null
+        "comment": "<p>When specified, a close icon is rendered. onClose callback will be called on clicking the close icon</p>"
       },
       {
         "name": "rawProps",
@@ -9236,7 +8597,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
@@ -9382,7 +8743,7 @@
       },
       {
         "name": "borderBottom",
-        "value": "night50 | night300 | night400 | night700",
+        "value": "boolean",
         "comment": null
       },
       {
@@ -9459,7 +8820,7 @@
       },
       {
         "name": "borderBottom",
-        "value": "night50 | night300 | night400 | night700",
+        "value": "boolean",
         "comment": null
       },
       {
@@ -9551,7 +8912,7 @@
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "sky | grass | sun | fire | night600",
         "comment": null
       },
       {
@@ -9646,7 +9007,7 @@
       {
         "name": "boundaryElement",
         "value": "clippingParents",
-        "comment": "<p>See  <a href='https://popper.js.org/docs/v2/modifiers/prevent-overflow/'>Popper docs</a></p>"
+        "comment": null
       },
       {
         "name": "children",
@@ -9654,8 +9015,23 @@
         "comment": "<p>React Node(s) to show tooltip for</p>"
       },
       {
+        "name": "closeBodyOnTogglerHidden",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "closeDelay",
+        "value": "number",
+        "comment": null
+      },
+      {
+        "name": "closeOnMouseLeave",
+        "value": "toggler | boundary",
+        "comment": null
+      },
+      {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
         "comment": null
       },
       {
@@ -9669,14 +9045,34 @@
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
       },
       {
-        "name": "isVisible",
+        "name": "isDisabled",
         "value": "boolean",
-        "comment": "<p>Is tooltip visible (for trigger=&#39;manual&#39;)</p>"
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean",
+        "comment": "<p>True if component contains invalid input</p>"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean",
+        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean",
+        "comment": "<p>Marks that component&#39;s value is required</p>"
       },
       {
         "name": "maxWidth",
-        "value": "string",
+        "value": "number",
         "comment": "<p>Max width of tooltip</p>"
+      },
+      {
+        "name": "modifiers",
+        "value": "(Modifier<any, object>>)[]",
+        "comment": null
       },
       {
         "name": "offset",
@@ -9684,24 +9080,54 @@
         "comment": "<p>See <a href='https://popper.js.org/docs/v2/modifiers/offset/'>Popper docs</a></p>"
       },
       {
+        "name": "onClose",
+        "value": "() => void",
+        "comment": null
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void",
+        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
+      },
+      {
+        "name": "openDelay",
+        "value": "number",
+        "comment": "<p>Should we close dropdown on click on the Toggler, if it&#39;s already open? Default is true.</p>"
+      },
+      {
         "name": "placement",
         "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
-        "comment": "<p>Tooltip position relative to the wrapped content. See [Popper Docs](@link https://popper.js.org/)</p>"
+        "comment": null
       },
       {
         "name": "portalTarget",
         "value": "HTMLElement",
-        "comment": "<p>Overrides React Portal target to use</p>"
+        "comment": null
       },
       {
         "name": "renderContent",
         "value": "() => any",
-        "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\nThe function will only be called when content is shown, this can save performance.</p>"
+        "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\r\nThe function will only be called when content is shown, this can save performance.</p>"
       },
       {
         "name": "trigger",
-        "value": "manual | click | press | hover",
+        "value": "click | press | hover | manual",
         "comment": "<p>Defines when to show the tooltip: &#39;hover&#39; - default and usual, &#39;press&#39; - only when mouse button is down, &#39;manual&#39; - visibility is controlled with isVisible prop</p>"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string",
+        "comment": "<p>Message describing why the value is invalid</p>"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }",
+        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
+      },
+      {
+        "name": "value",
+        "value": "T",
+        "comment": "<p>The current value of component</p>"
       }
     ],
     "/app/src/docs/_props/loveship/components/pickers/pickerInput.props.tsx": [
@@ -9783,7 +9209,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -9842,17 +9268,17 @@
       },
       {
         "name": "mode",
-        "value": "none | form | inline | cell",
+        "value": "form | cell | inline",
         "comment": null
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -9869,6 +9295,11 @@
         "name": "placeholder",
         "value": "any",
         "comment": "<p>Placeholder to display when empty</p>"
+      },
+      {
+        "name": "portalTarget",
+        "value": "HTMLElement",
+        "comment": null
       },
       {
         "name": "prefix",
@@ -9888,11 +9319,11 @@
       {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "renderRow",
-        "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
+        "value": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode",
         "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
@@ -9903,7 +9334,7 @@
       {
         "name": "searchPosition",
         "value": "none | input | body",
-        "comment": "<p>Defines where search field is:\n&#39;input&#39; - try to place search inside the toggler (default for single-select),\n&#39;body&#39; - put search inside the dropdown (default for multi-select)\n&#39;none&#39; - disables search completely</p>"
+        "comment": "<p>Defines where search field is:\r\n&#39;input&#39; - try to place search inside the toggler (default for single-select),\r\n&#39;body&#39; - put search inside the dropdown (default for multi-select)\r\n&#39;none&#39; - disables search completely</p>"
       },
       {
         "name": "selectionMode",
@@ -9965,7 +9396,7 @@
       {
         "name": "defaultIds",
         "value": "TId[]",
-        "comment": "<p>Ids of items to show first.\nIf not specified, top props.maxDefaultItems will be shown according to the DataSource sorting settings (default is 10)</p>"
+        "comment": "<p>Ids of items to show first.\r\nIf not specified, top props.maxDefaultItems will be shown according to the DataSource sorting settings (default is 10)</p>"
       },
       {
         "name": "disallowClickOutside",
@@ -10010,7 +9441,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "isDisabled",
@@ -10040,7 +9471,7 @@
       {
         "name": "maxDefaultItems",
         "value": "number",
-        "comment": "<p>Number of default items to show initially, when nothing is selected.\nDefault it 10 items</p>"
+        "comment": "<p>Number of default items to show initially, when nothing is selected.\r\nDefault it 10 items</p>"
       },
       {
         "name": "maxTotalItems",
@@ -10085,11 +9516,11 @@
       {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "renderRow",
-        "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
+        "value": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode",
         "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
@@ -10118,11 +9549,6 @@
         "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
-        "name": "theme",
-        "value": "light | dark",
-        "comment": null
-      },
-      {
         "name": "validationMessage",
         "value": "string",
         "comment": "<p>Message describing why the value is invalid</p>"
@@ -10141,968 +9567,6 @@
         "name": "valueType",
         "value": "\"id\"",
         "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
-      }
-    ],
-    "/app/src/docs/_props/loveship/components/pickers/pickerModal.props.tsx": [
-      {
-        "name": "abort",
-        "value": "(result?: any) => void",
-        "comment": null
-      },
-      {
-        "name": "caption",
-        "value": "any",
-        "comment": "<p>Caption. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
-      },
-      {
-        "name": "cascadeSelection",
-        "value": "boolean",
-        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
-      },
-      {
-        "name": "dataSource",
-        "value": "IDataSource<TItem, TId, any>",
-        "comment": "<p>Provides items to the Picker</p>"
-      },
-      {
-        "name": "disallowClickOutside",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "emptyValue",
-        "value": "[]",
-        "comment": "<p>Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers</p>"
-      },
-      {
-        "name": "entityName",
-        "value": "string",
-        "comment": "<p>Name of the entity being selected. Affects wording like &quot;Please select [entity]&quot;</p>"
-      },
-      {
-        "name": "entityPluralName",
-        "value": "string",
-        "comment": "<p>Plural name of the entity being selected. Affects wording like &quot;X [entities] selected&quot;</p>"
-      },
-      {
-        "name": "filter",
-        "value": "any",
-        "comment": "<p>Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario.</p>"
-      },
-      {
-        "name": "getName",
-        "value": "(item: TItem) => string",
-        "comment": "<p>Gets entity display name. Default it item.name.</p>"
-      },
-      {
-        "name": "getRowOptions",
-        "value": "(item: TItem, index: number) => DataRowOptions<TItem, TId>",
-        "comment": "<p>Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks.</p>"
-      },
-      {
-        "name": "getSearchFields",
-        "value": "(item: TItem) => string[]",
-        "comment": "<p>Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field.</p>"
-      },
-      {
-        "name": "initialValue",
-        "value": "TId",
-        "comment": null
-      },
-      {
-        "name": "isActive",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "isFoldedByDefault",
-        "value": "(item: TItem) => boolean",
-        "comment": "<p>You can return true for all, or some items to fold them.</p>"
-      },
-      {
-        "name": "key",
-        "value": "string",
-        "comment": null
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "renderFilter",
-        "value": "(editableFilter: IEditable<any>) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "renderFooter",
-        "value": "(props: IModal<any>>) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "renderNotFound",
-        "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
-      },
-      {
-        "name": "renderRow",
-        "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
-        "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
-      },
-      {
-        "name": "selectionMode",
-        "value": "\"single\"",
-        "comment": null
-      },
-      {
-        "name": "sortBy",
-        "value": "(item: TItem, sorting: SortingOption<any>) => any",
-        "comment": "<p>Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource</p>"
-      },
-      {
-        "name": "sorting",
-        "value": "SortingOption<any>",
-        "comment": "<p>Defines sorting to pass to the DataSource</p>"
-      },
-      {
-        "name": "success",
-        "value": "(result: TResult) => void",
-        "comment": null
-      },
-      {
-        "name": "valueType",
-        "value": "\"id\"",
-        "comment": null
-      },
-      {
-        "name": "zIndex",
-        "value": "number",
-        "comment": null
-      }
-    ],
-    "/app/src/docs/_props/loveship/components/pickers/pickerToggler.props.tsx": [
-      {
-        "name": "autoFocus",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "cancelIcon",
-        "value": "Icon",
-        "comment": null
-      },
-      {
-        "name": "caption",
-        "value": "any",
-        "comment": "<p>Caption. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "disableClear",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "disableSearch",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "dropdownIcon",
-        "value": "Icon",
-        "comment": null
-      },
-      {
-        "name": "entityName",
-        "value": "string",
-        "comment": null
-      },
-      {
-        "name": "getName",
-        "value": "(item: TItem) => string",
-        "comment": null
-      },
-      {
-        "name": "icon",
-        "value": "Icon",
-        "comment": "<p>Icon can be an React element (usually an SVG element)</p>"
-      },
-      {
-        "name": "iconPosition",
-        "value": "left | right",
-        "comment": "<p>Position of the icon (left of right)</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disables component</p>"
-      },
-      {
-        "name": "isDropdown",
-        "value": "boolean",
-        "comment": "<p>Enabled dropdown mode - component can toggle dropdown</p>"
-      },
-      {
-        "name": "isInteractedOutside",
-        "value": "(event: Event) => boolean",
-        "comment": "<p>Called when component is interacted outside, to close the dropdown</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isOpen",
-        "value": "boolean",
-        "comment": "<p>When component acts as dropdown, indicate that dropdown is open</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "isSingleLine",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "maxItems",
-        "value": "number",
-        "comment": null
-      },
-      {
-        "name": "minCharsToSearch",
-        "value": "number",
-        "comment": null
-      },
-      {
-        "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
-        "comment": "<p>Called when component looses input focus</p>"
-      },
-      {
-        "name": "onClear",
-        "value": "(e?: any) => void",
-        "comment": null
-      },
-      {
-        "name": "onClick",
-        "value": "(e?: any) => void",
-        "comment": "<p>Called when component is clicked</p>"
-      },
-      {
-        "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
-        "comment": "<p>Called when component gets input focus</p>"
-      },
-      {
-        "name": "onIconClick",
-        "value": "() => void",
-        "comment": "<p>Click handler for the icon</p>"
-      },
-      {
-        "name": "onKeyDown",
-        "value": "(e: React.KeyboardEvent<HTMLElement>) => void",
-        "comment": null
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "pickerMode",
-        "value": "single | multi",
-        "comment": null
-      },
-      {
-        "name": "placeholder",
-        "value": "any",
-        "comment": "<p>Placeholder to display when empty</p>"
-      },
-      {
-        "name": "prefix",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "ref",
-        "value": "React.Ref<any>",
-        "comment": "<p>Component&#39;s ref</p>"
-      },
-      {
-        "name": "renderItem",
-        "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "searchPosition",
-        "value": "none | input | body",
-        "comment": null
-      },
-      {
-        "name": "selection",
-        "value": "DataRowProps<TItem, TId>[]",
-        "comment": null
-      },
-      {
-        "name": "suffix",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "toggleDropdownOpening",
-        "value": "(value: boolean) => void",
-        "comment": "<p>Called when associated dropdown should open or close</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
-      }
-    ],
-    "/app/src/docs/_props/loveship/components/tables/dataTableCell.props.tsx": [
-      {
-        "name": "addons",
-        "value": "React.ReactNode",
-        "comment": "<p>Add-on controls to put before the cell content (folding arrow, checkbox, etc.)</p>"
-      },
-      {
-        "name": "alignActions",
-        "value": "top | center",
-        "comment": null
-      },
-      {
-        "name": "background",
-        "value": "sky | grass | sun | fire | night50",
-        "comment": null
-      },
-      {
-        "name": "border",
-        "value": "\"night300\"",
-        "comment": null
-      },
-      {
-        "name": "column",
-        "value": "DataColumnProps<TItem, TId, any>",
-        "comment": "<p>DataColumnProps object for the column the cell is at</p>"
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "index",
-        "value": "number",
-        "comment": "<p>Column index in table</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isFirstColumn",
-        "value": "boolean",
-        "comment": "<p>True if the cell is in the first column</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isLastColumn",
-        "value": "boolean",
-        "comment": "<p>True if the cell is in the last column</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "key",
-        "value": "string",
-        "comment": "<p>Key to use as component&#39;s key</p>"
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "padding",
-        "value": "24 | 0 | 12",
-        "comment": null
-      },
-      {
-        "name": "renderEditor",
-        "value": "(props: RenderEditorProps<TItem, TId, TCellValue>) => React.ReactNode",
-        "comment": "<p>If passed, the cell is rendered as editable - receives focus, show validation errors.\nAll necessary props for the editor are passed as argument:\n- props implements IEditable and can be passed directly to suitable component (like TextInput)\n- ICanFocus props are passed as well. Component should implement it so cell focus highlight works properly\n- mode=&#39;cell&#39; prop is passed to render UUI components in &#39;cell&#39; mode\n- rowProps is passed so you depend on additional info about the row itself</p>"
-      },
-      {
-        "name": "renderPlaceholder",
-        "value": "(cellProps: DataTableCellProps<TItem, TId, TCellValue>) => React.ReactNode",
-        "comment": "<p>Overrides default loading placeholder (&#39;skeleton&#39;) rendering</p>"
-      },
-      {
-        "name": "renderTooltip",
-        "value": "(props: TooltipCoreProps) => React.ReactElement<any, string | React.JSXElementConstructor<any>>",
-        "comment": "<p>Overrides default tooltip, used to show validation message if the cell is invalid</p>"
-      },
-      {
-        "name": "rowProps",
-        "value": "DataTableRowProps<TItem, TId>",
-        "comment": "<p>DataTableRowsProps object for the table row the cell is at</p>"
-      },
-      {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
-        "comment": null
-      },
-      {
-        "name": "tabIndex",
-        "value": "number",
-        "comment": "<p>HTML tabIndex attribute to set on the cell</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
-      }
-    ],
-    "/app/src/docs/_props/loveship/components/tables/dataTableHeaderCell.props.tsx": [
-      {
-        "name": "allowColumnsReordering",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "allowColumnsResizing",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "caption",
-        "value": "any",
-        "comment": "<p>Caption. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
-      },
-      {
-        "name": "column",
-        "value": "DataColumnProps<TItem, TId, any>",
-        "comment": null
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isDropdown",
-        "value": "boolean",
-        "comment": "<p>Enabled dropdown mode - component can toggle dropdown</p>"
-      },
-      {
-        "name": "isFilterActive",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "isFirstColumn",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "isInteractedOutside",
-        "value": "(event: Event) => boolean",
-        "comment": "<p>Called when component is interacted outside, to close the dropdown</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isLastColumn",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "isOpen",
-        "value": "boolean",
-        "comment": "<p>When component acts as dropdown, indicate that dropdown is open</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "key",
-        "value": "string",
-        "comment": null
-      },
-      {
-        "name": "onClick",
-        "value": "(e?: any) => void",
-        "comment": "<p>Called when component is clicked</p>"
-      },
-      {
-        "name": "onDrop",
-        "value": "(params: DataColumnProps<TItem, TId, any>>) => void",
-        "comment": null
-      },
-      {
-        "name": "onSort",
-        "value": "(dir: SortDirection) => void",
-        "comment": null
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "ref",
-        "value": "React.Ref<any>",
-        "comment": "<p>Component&#39;s ref</p>"
-      },
-      {
-        "name": "renderFilter",
-        "value": "(dropdownProps: IDropdownBodyProps) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "selectAll",
-        "value": "ICheckable",
-        "comment": null
-      },
-      {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
-        "comment": null
-      },
-      {
-        "name": "sortDirection",
-        "value": "desc | asc",
-        "comment": null
-      },
-      {
-        "name": "textCase",
-        "value": "normal | upper",
-        "comment": null
-      },
-      {
-        "name": "toggleDropdownOpening",
-        "value": "(value: boolean) => void",
-        "comment": "<p>Called when associated dropdown should open or close</p>"
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
-      }
-    ],
-    "/app/src/docs/_props/loveship/components/tables/dataTableHeaderRow.props.tsx": [
-      {
-        "name": "allowColumnsReordering",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "allowColumnsResizing",
-        "value": "boolean",
-        "comment": null
-      },
-      {
-        "name": "columns",
-        "value": "DataColumnProps<TItem, TId, any>[]",
-        "comment": null
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "onConfigButtonClick",
-        "value": "(params: DataTableConfigModalParams) => any",
-        "comment": null
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "renderCell",
-        "value": "(props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "renderConfigButton",
-        "value": "() => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "selectAll",
-        "value": "ICheckable",
-        "comment": null
-      },
-      {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
-        "comment": null
-      },
-      {
-        "name": "textCase",
-        "value": "normal | upper",
-        "comment": null
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component</p>"
-      }
-    ],
-    "/app/src/docs/_props/loveship/components/tables/dataTableRow.props.tsx": [
-      {
-        "name": "alignActions",
-        "value": "top | center",
-        "comment": null
-      },
-      {
-        "name": "alignItems",
-        "value": "top | bottom | center | stretch",
-        "comment": "<p>Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)</p>"
-      },
-      {
-        "name": "background",
-        "value": "none | white | night50",
-        "comment": null
-      },
-      {
-        "name": "borderBottom",
-        "value": "none | night300",
-        "comment": null
-      },
-      {
-        "name": "checkbox",
-        "value": "{ isVisible: boolean; } & ICanBeInvalid",
-        "comment": "<p>If row needs a checkbox, this field should be specified and it props can be configured here</p>"
-      },
-      {
-        "name": "children",
-        "value": "React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "columnGap",
-        "value": "24 | 36 | 18 | 6 | 12",
-        "comment": "<p>Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
-      },
-      {
-        "name": "columns",
-        "value": "DataColumnProps<TItem, TId, any>[]",
-        "comment": null
-      },
-      {
-        "name": "cx",
-        "value": "any",
-        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
-      },
-      {
-        "name": "depth",
-        "value": "number",
-        "comment": "<p>Depth of the row in tree, 0 for the top-level</p>"
-      },
-      {
-        "name": "dnd",
-        "value": "IDndActor<any, any>",
-        "comment": "<p>Configures row drag-n-drop options - if it can be dragged, can rows can be dropped into it, etc.</p>"
-      },
-      {
-        "name": "id",
-        "value": "TId",
-        "comment": "<p>ID of the TItem rows displays</p>"
-      },
-      {
-        "name": "indent",
-        "value": "number",
-        "comment": "<p>Indent of the item, to show hierarchy.\nUnlike depth, it contains additional logic, to not add unnecessary indents:\nif all children of node has no children, all nodes would get the same indent as parent.</p>"
-      },
-      {
-        "name": "index",
-        "value": "number",
-        "comment": "<p>Index of the row, from the top of the list. This doesn&#39;t account any hierarchy.</p>"
-      },
-      {
-        "name": "isCheckable",
-        "value": "boolean",
-        "comment": "<p>True if row has checkbox and can be checkable</p>"
-      },
-      {
-        "name": "isChecked",
-        "value": "boolean",
-        "comment": "<p>True if row is checked with checkbox</p>"
-      },
-      {
-        "name": "isChildrenChecked",
-        "value": "boolean",
-        "comment": "<p>True if some of row&#39;s children are checked.\nUsed to show &#39;indefinite&#39; checkbox state, to show user that something inside is checked</p>"
-      },
-      {
-        "name": "isChildrenSelected",
-        "value": "boolean",
-        "comment": "<p>True if any of row&#39;s children is selected.</p>"
-      },
-      {
-        "name": "isDisabled",
-        "value": "boolean",
-        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
-      },
-      {
-        "name": "isFocused",
-        "value": "boolean",
-        "comment": "<p>True if row is focused. Focus can be changed via keyboard arrow keys, or by hovering mouse on top of the row</p>"
-      },
-      {
-        "name": "isFoldable",
-        "value": "boolean",
-        "comment": "<p>True if row be folded or unfolded (usually because it contains children)</p>"
-      },
-      {
-        "name": "isFolded",
-        "value": "boolean",
-        "comment": "<p>True if row is currently folded</p>"
-      },
-      {
-        "name": "isInvalid",
-        "value": "boolean",
-        "comment": "<p>True if component contains invalid input</p>"
-      },
-      {
-        "name": "isLastChild",
-        "value": "boolean",
-        "comment": "<p>True if row is the last child of his parent</p>"
-      },
-      {
-        "name": "isLoading",
-        "value": "boolean",
-        "comment": "<p>True if row is in loading state. &#39;value&#39; is empty in this case</p>"
-      },
-      {
-        "name": "isReadonly",
-        "value": "boolean",
-        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
-      },
-      {
-        "name": "isRequired",
-        "value": "boolean",
-        "comment": "<p>Marks that component&#39;s value is required</p>"
-      },
-      {
-        "name": "isSelectable",
-        "value": "boolean",
-        "comment": "<p>True if row is selectable (for whole-row single-selection, multi-selection via checkbox are configured with the checkbox prop)</p>"
-      },
-      {
-        "name": "isSelected",
-        "value": "boolean",
-        "comment": "<p>True if row is selected (in single-select mode, or in case when interface use both single row selection and checkboxes)</p>"
-      },
-      {
-        "name": "key",
-        "value": "React.Key",
-        "comment": null
-      },
-      {
-        "name": "link",
-        "value": "Link",
-        "comment": "<p>Can be specified to make row act as a link (plain or SPA)</p>"
-      },
-      {
-        "name": "onCheck",
-        "value": "(rowProps: DataRowProps<TItem, TId>) => void",
-        "comment": "<p>Handles row checkbox change.\nWe demand to pass the row as well, to avoid creating closures for each row.</p>"
-      },
-      {
-        "name": "onClick",
-        "value": "(e?: any) => void",
-        "comment": "<p>Called when component is clicked\nRow click handler\nHandles row click.\nWe demand to pass the row as well, to avoid creating closures for each row.</p>"
-      },
-      {
-        "name": "onFocus",
-        "value": "(focusedIndex: number) => void",
-        "comment": "<p>Handles row focusing.</p>"
-      },
-      {
-        "name": "onFold",
-        "value": "(rowProps: DataRowProps<TItem, TId>) => void",
-        "comment": "<p>Handles row folding change.\nWe demand to pass the row as well, to avoid creating closures for each row.</p>"
-      },
-      {
-        "name": "onSelect",
-        "value": "(rowProps: DataRowProps<TItem, TId>) => void",
-        "comment": "<p>Handles row selection.\nWe demand to pass the row as well, to avoid creating closures for each row.</p>"
-      },
-      {
-        "name": "onValueChange",
-        "value": "(newValue: T) => void",
-        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
-      },
-      {
-        "name": "padding",
-        "value": "24 | 0 | 12",
-        "comment": null
-      },
-      {
-        "name": "parentId",
-        "value": "TId",
-        "comment": "<p>ID of the parent TItem</p>"
-      },
-      {
-        "name": "path",
-        "value": "DataRowPathItem<TId, TItem>[]",
-        "comment": "<p>Hierarchical path from the root node to the item (excluding the item itself)</p>"
-      },
-      {
-        "name": "rawProps",
-        "value": "T & Record<`data-${string}`, string>",
-        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "renderCell",
-        "value": "(props: DataTableCellProps<TItem, TId, any>) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "renderDropMarkers",
-        "value": "(props: DndActorRenderParams) => React.ReactNode",
-        "comment": null
-      },
-      {
-        "name": "rowGap",
-        "value": "24 | 36 | 18 | 6 | 12",
-        "comment": "<p>Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)</p>"
-      },
-      {
-        "name": "rowKey",
-        "value": "string",
-        "comment": "<p>Key to be used as component&#39;s key when rendering. Usually, it&#39;s stringified ID</p>"
-      },
-      {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 60",
-        "comment": null
-      },
-      {
-        "name": "validationMessage",
-        "value": "string",
-        "comment": "<p>Message describing why the value is invalid</p>"
-      },
-      {
-        "name": "validationProps",
-        "value": "{ [key: string]: ICanBeInvalid; }",
-        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
-      },
-      {
-        "name": "value",
-        "value": "T",
-        "comment": "<p>The current value of component\nThe data item (TItem) row displays. Will be undefined if isLoading = true.</p>"
       }
     ],
     "/app/src/docs/_props/loveship/components/typography/richTextView.props.tsx": [
@@ -11130,11 +9594,6 @@
         "name": "size",
         "value": "12 | 14 | 16",
         "comment": null
-      },
-      {
-        "name": "theme",
-        "value": "light | dark",
-        "comment": null
       }
     ],
     "/app/src/docs/_props/loveship/components/typography/text.props.tsx": [
@@ -11146,11 +9605,11 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "night50 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
         "comment": null
       },
       {
@@ -11164,19 +9623,9 @@
         "comment": null
       },
       {
-        "name": "fontSize",
-        "value": "18 | 10 | 12 | 14 | 16",
-        "comment": null
-      },
-      {
         "name": "forwardedRef",
         "value": "React.ForwardedRef<T>",
         "comment": "<p>this ref is passed to the underlying component</p>"
-      },
-      {
-        "name": "lineHeight",
-        "value": "24 | 30 | 18 | 12",
-        "comment": null
       },
       {
         "name": "onClick",
@@ -11187,17 +9636,12 @@
         "name": "rawProps",
         "value": "T & Record<`data-${string}`, string>",
         "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
-      },
-      {
-        "name": "size",
-        "value": "none | 24 | 30 | 36 | 42 | 48 | 18",
-        "comment": null
       }
     ],
     "/app/src/docs/_props/loveship/components/typography/textPlaceholder.props.tsx": [
       {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "name": "children",
+        "value": "React.ReactNode",
         "comment": null
       },
       {
@@ -11319,12 +9763,12 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
+        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "comment": null
       },
       {
         "name": "count",
@@ -11354,7 +9798,7 @@
       {
         "name": "fill",
         "value": "none | solid | white | light | transparent | semitransparent",
-        "comment": "<p>Badge fill style</p>"
+        "comment": null
       },
       {
         "name": "forwardedRef",
@@ -11439,12 +9883,12 @@
       {
         "name": "shape",
         "value": "round | square",
-        "comment": "<p>Badge shape: square or round</p>"
+        "comment": null
       },
       {
         "name": "size",
         "value": "24 | 30 | 36 | 42 | 48 | 18 | 12",
-        "comment": "<p>Badge size</p>"
+        "comment": null
       },
       {
         "name": "tabIndex",
@@ -11470,7 +9914,7 @@
       },
       {
         "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
+        "value": "white | fuchsia | sky | grass | sun | fire | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
         "comment": null
       },
       {
@@ -11508,7 +9952,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "isDisabled",
@@ -11573,11 +10017,6 @@
     ],
     "/app/src/docs/_props/loveship/components/widgets/spinner.props.ts": [
       {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
-      },
-      {
         "name": "cx",
         "value": "any",
         "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
@@ -11612,12 +10051,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
-      },
-      {
-        "name": "color",
-        "value": "white | fuchsia | sky | grass | sun | fire | carbon | cobalt | lavanda | night50 | night100 | night200 | night300 | night400 | night500 | night600 | night700 | night800 | night900",
-        "comment": "<p>Component color</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "count",
@@ -11769,7 +10203,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "color",
@@ -11926,7 +10360,7 @@
       {
         "name": "clickAnalyticsEvent",
         "value": "{ [key: string]: any; name: string; }",
-        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>An analytics event to send (via AnalyticsContext) when component is clicked.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "count",
@@ -12068,7 +10502,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -12116,13 +10550,18 @@
         "comment": "<p>Label. Can be a string, or React.Elements. Certain components supports minimal markup (&lt;b&gt;,&lt;i&gt;,&lt;a&gt;) in captions.</p>"
       },
       {
+        "name": "mode",
+        "value": "form | cell",
+        "comment": null
+      },
+      {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -12149,11 +10588,6 @@
         "name": "tabIndex",
         "value": "number",
         "comment": "<p>Controls the order of keyboard navigation between components</p>"
-      },
-      {
-        "name": "theme",
-        "value": "light | dark",
-        "comment": null
       },
       {
         "name": "validationMessage",
@@ -12185,7 +10619,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -12277,7 +10711,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "id",
@@ -12384,7 +10818,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -12453,7 +10887,7 @@
       },
       {
         "name": "mode",
-        "value": "form | cell",
+        "value": "form | cell | inline",
         "comment": null
       },
       {
@@ -12468,7 +10902,7 @@
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
@@ -12483,7 +10917,7 @@
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -12550,6 +10984,170 @@
         "name": "type",
         "value": "string",
         "comment": "<p>Standard &#39;type&#39; attribute to put on the HTML input element (e.g. &#39;password&#39;)</p>"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string",
+        "comment": "<p>Message describing why the value is invalid</p>"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }",
+        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
+      },
+      {
+        "name": "value",
+        "value": "T",
+        "comment": "<p>The current value of component</p>"
+      }
+    ],
+    "/app/src/docs/_props/uui/components/layout/blocker.props.ts": [
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>",
+        "comment": "<p>this ref is passed to the underlying component</p>"
+      },
+      {
+        "name": "hideSpinner",
+        "value": "boolean",
+        "comment": "<p>Disables spinner animation display</p>"
+      },
+      {
+        "name": "isEnabled",
+        "value": "boolean",
+        "comment": "<p>Turns the blocker on or off</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "renderSpinner",
+        "value": "(props: any) => React.ReactNode",
+        "comment": "<p>Replaces default spinner</p>"
+      },
+      {
+        "name": "spacerHeight",
+        "value": "number",
+        "comment": "<p>Sets the minimal height in px, for cases when blocked content is empty</p>"
+      }
+    ],
+    "/app/src/docs/_props/uui/components/overlays/tooltip.props.tsx": [
+      {
+        "name": "boundaryElement",
+        "value": "clippingParents",
+        "comment": null
+      },
+      {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": "<p>React Node(s) to show tooltip for</p>"
+      },
+      {
+        "name": "closeBodyOnTogglerHidden",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "closeDelay",
+        "value": "number",
+        "comment": null
+      },
+      {
+        "name": "closeOnMouseLeave",
+        "value": "toggler | boundary",
+        "comment": null
+      },
+      {
+        "name": "color",
+        "value": "default | contrast | critical",
+        "comment": null
+      },
+      {
+        "name": "content",
+        "value": "any",
+        "comment": "<p>Content to show in the tooltip (ReactNode)</p>"
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean",
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean",
+        "comment": "<p>True if component contains invalid input</p>"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean",
+        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean",
+        "comment": "<p>Marks that component&#39;s value is required</p>"
+      },
+      {
+        "name": "maxWidth",
+        "value": "number",
+        "comment": "<p>Max width of tooltip</p>"
+      },
+      {
+        "name": "modifiers",
+        "value": "(Modifier<any, object>>)[]",
+        "comment": null
+      },
+      {
+        "name": "offset",
+        "value": "Offset",
+        "comment": "<p>See <a href='https://popper.js.org/docs/v2/modifiers/offset/'>Popper docs</a></p>"
+      },
+      {
+        "name": "onClose",
+        "value": "() => void",
+        "comment": null
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void",
+        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
+      },
+      {
+        "name": "openDelay",
+        "value": "number",
+        "comment": "<p>Should we close dropdown on click on the Toggler, if it&#39;s already open? Default is true.</p>"
+      },
+      {
+        "name": "placement",
+        "value": "left | right | auto | auto-start | auto-end | top | bottom | top-start | top-end | bottom-start | bottom-end | right-start | right-end | left-start | left-end",
+        "comment": null
+      },
+      {
+        "name": "portalTarget",
+        "value": "HTMLElement",
+        "comment": null
+      },
+      {
+        "name": "renderContent",
+        "value": "() => any",
+        "comment": "<p>Alternative to &#39;content&#39; prop, you can pass a render function.\r\nThe function will only be called when content is shown, this can save performance.</p>"
+      },
+      {
+        "name": "trigger",
+        "value": "click | press | hover | manual",
+        "comment": "<p>Defines when to show the tooltip: &#39;hover&#39; - default and usual, &#39;press&#39; - only when mouse button is down, &#39;manual&#39; - visibility is controlled with isVisible prop</p>"
       },
       {
         "name": "validationMessage",
@@ -12646,7 +11244,7 @@
       {
         "name": "getValueChangeAnalyticsEvent",
         "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
-        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
       },
       {
         "name": "icon",
@@ -12705,17 +11303,17 @@
       },
       {
         "name": "mode",
-        "value": "form | cell",
+        "value": "form | cell | inline",
         "comment": null
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -12732,6 +11330,11 @@
         "name": "placeholder",
         "value": "any",
         "comment": "<p>Placeholder to display when empty</p>"
+      },
+      {
+        "name": "portalTarget",
+        "value": "HTMLElement",
+        "comment": null
       },
       {
         "name": "prefix",
@@ -12751,11 +11354,11 @@
       {
         "name": "renderNotFound",
         "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
-        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
       },
       {
         "name": "renderRow",
-        "value": "(props: DataRowProps<TItem, TId>) => React.ReactNode",
+        "value": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode",
         "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
       },
       {
@@ -12766,7 +11369,7 @@
       {
         "name": "searchPosition",
         "value": "none | input | body",
-        "comment": "<p>Defines where search field is:\n&#39;input&#39; - try to place search inside the toggler (default for single-select),\n&#39;body&#39; - put search inside the dropdown (default for multi-select)\n&#39;none&#39; - disables search completely</p>"
+        "comment": "<p>Defines where search field is:\r\n&#39;input&#39; - try to place search inside the toggler (default for single-select),\r\n&#39;body&#39; - put search inside the dropdown (default for multi-select)\r\n&#39;none&#39; - disables search completely</p>"
       },
       {
         "name": "selectionMode",
@@ -12792,6 +11395,193 @@
         "name": "suffix",
         "value": "React.ReactNode",
         "comment": "<p>Suffix text to add to the input</p>"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string",
+        "comment": "<p>Message describing why the value is invalid</p>"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }",
+        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
+      },
+      {
+        "name": "value",
+        "value": "T",
+        "comment": "<p>The current value of component</p>"
+      },
+      {
+        "name": "valueType",
+        "value": "\"id\"",
+        "comment": "<p>Defines what to use in value/onValueChange: &#39;id&#39; - item id (TId). &#39;entity&#39; - the item itself (TItem)</p>"
+      }
+    ],
+    "/app/src/docs/_props/uui/components/pickers/pickerList.props.tsx": [
+      {
+        "name": "cascadeSelection",
+        "value": "boolean",
+        "comment": "<p>Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents)</p>"
+      },
+      {
+        "name": "dataSource",
+        "value": "IDataSource<TItem, TId, any>",
+        "comment": "<p>Provides items to the Picker</p>"
+      },
+      {
+        "name": "defaultIds",
+        "value": "TId[]",
+        "comment": "<p>Ids of items to show first.\r\nIf not specified, top props.maxDefaultItems will be shown according to the DataSource sorting settings (default is 10)</p>"
+      },
+      {
+        "name": "disallowClickOutside",
+        "value": "boolean",
+        "comment": null
+      },
+      {
+        "name": "emptyValue",
+        "value": "[]",
+        "comment": "<p>Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers</p>"
+      },
+      {
+        "name": "entityName",
+        "value": "string",
+        "comment": "<p>Name of the entity being selected. Affects wording like &quot;Please select [entity]&quot;</p>"
+      },
+      {
+        "name": "entityPluralName",
+        "value": "string",
+        "comment": "<p>Plural name of the entity being selected. Affects wording like &quot;X [entities] selected&quot;</p>"
+      },
+      {
+        "name": "filter",
+        "value": "any",
+        "comment": "<p>Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario.</p>"
+      },
+      {
+        "name": "getName",
+        "value": "(item: TItem) => string",
+        "comment": "<p>Gets entity display name. Default it item.name.</p>"
+      },
+      {
+        "name": "getRowOptions",
+        "value": "(item: TItem, index: number) => DataRowOptions<TItem, TId>",
+        "comment": "<p>Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks.</p>"
+      },
+      {
+        "name": "getSearchFields",
+        "value": "(item: TItem) => string[]",
+        "comment": "<p>Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field.</p>"
+      },
+      {
+        "name": "getValueChangeAnalyticsEvent",
+        "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean",
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "isFoldedByDefault",
+        "value": "(item: TItem) => boolean",
+        "comment": "<p>You can return true for all, or some items to fold them.</p>"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean",
+        "comment": "<p>True if component contains invalid input</p>"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean",
+        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean",
+        "comment": "<p>Marks that component&#39;s value is required</p>"
+      },
+      {
+        "name": "maxDefaultItems",
+        "value": "number",
+        "comment": "<p>Number of default items to show initially, when nothing is selected.\r\nDefault it 10 items</p>"
+      },
+      {
+        "name": "maxTotalItems",
+        "value": "number",
+        "comment": "<p>Maximum total number of items to show, including selected</p>"
+      },
+      {
+        "name": "noOptionsMessage",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void",
+        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
+      },
+      {
+        "name": "placeholder",
+        "value": "any",
+        "comment": "<p>Placeholder to display when empty</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "renderFilter",
+        "value": "(editableFilter: IEditable<any>) => React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "renderFooter",
+        "value": "(props: IModal<any>>) => React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "renderModalToggler",
+        "value": "(props: DataRowProps<TItem, TId>[]) => React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "renderNotFound",
+        "value": "(props: { search: string; onClose: () => void; }) => React.ReactNode",
+        "comment": "<p>Overrides the default &#39;no records found&#39; banner.\r\nThe &#39;search&#39; callback parameter allows to distinguish cases when there&#39;s no records at all, and when current search doesn&#39;t find anything.</p>"
+      },
+      {
+        "name": "renderRow",
+        "value": "(props: DataSourceState<Record<string, any>, any>) => React.ReactNode",
+        "comment": "<p>Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc.</p>"
+      },
+      {
+        "name": "selectionMode",
+        "value": "\"single\"",
+        "comment": "<p>&#39;single&#39; - only one item is selected. &#39;multi&#39; - multiple items are selected</p>"
+      },
+      {
+        "name": "settingsKey",
+        "value": "string",
+        "comment": "<p>If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key</p>"
+      },
+      {
+        "name": "size",
+        "value": "none | 24 | 30 | 36 | 42 | 48",
+        "comment": null
+      },
+      {
+        "name": "sortBy",
+        "value": "(item: TItem, sorting: SortingOption<any>) => any",
+        "comment": "<p>Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource</p>"
+      },
+      {
+        "name": "sorting",
+        "value": "SortingOption<any>",
+        "comment": "<p>Defines sorting to pass to the DataSource</p>"
       },
       {
         "name": "validationMessage",
@@ -12922,12 +11712,12 @@
       },
       {
         "name": "mode",
-        "value": "form | cell",
+        "value": "form | cell | inline",
         "comment": null
       },
       {
         "name": "onBlur",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component looses input focus</p>"
       },
       {
@@ -12942,7 +11732,7 @@
       },
       {
         "name": "onFocus",
-        "value": "(e: React.FocusEvent<T>) => void",
+        "value": "(e: React.FocusEvent<T, Element>) => void",
         "comment": "<p>Called when component gets input focus</p>"
       },
       {
@@ -13033,14 +11823,113 @@
     ],
     "/app/src/docs/_props/uui/components/typography/textPlaceholder.props.tsx": [
       {
+        "name": "children",
+        "value": "React.ReactNode",
+        "comment": null
+      },
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
         "name": "isNotAnimated",
         "value": "boolean",
         "comment": null
       },
       {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
         "name": "wordsCount",
         "value": "number",
         "comment": null
+      }
+    ],
+    "/app/src/docs/_props/uui/components/widgets/paginator.props.tsx": [
+      {
+        "name": "getValueChangeAnalyticsEvent",
+        "value": "(newValue: T, oldValue: T) => { [key: string]: any; name: string; }",
+        "comment": "<p>Given a value, returns an analytics event to send when component is edited.\r\nSee [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&amp;mode=doc&amp;skin=UUI4_promo&amp;category=contexts).</p>"
+      },
+      {
+        "name": "isDisabled",
+        "value": "boolean",
+        "comment": "<p>Disable editing, and visually de-emphasize value of the component</p>"
+      },
+      {
+        "name": "isInvalid",
+        "value": "boolean",
+        "comment": "<p>True if component contains invalid input</p>"
+      },
+      {
+        "name": "isReadonly",
+        "value": "boolean",
+        "comment": "<p>Disable editing. Unlike isDisabled, keep component&#39;s value readable.</p>"
+      },
+      {
+        "name": "isRequired",
+        "value": "boolean",
+        "comment": "<p>Marks that component&#39;s value is required</p>"
+      },
+      {
+        "name": "onValueChange",
+        "value": "(newValue: T) => void",
+        "comment": "<p>Called when value needs to be changed (usually due to user interaction)</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
+      },
+      {
+        "name": "render",
+        "value": "(params: PaginatorParams) => any",
+        "comment": "<p>Override default rendering, keeping the component behavior</p>"
+      },
+      {
+        "name": "size",
+        "value": "24 | 30",
+        "comment": "<p>Component size</p>"
+      },
+      {
+        "name": "totalPages",
+        "value": "number",
+        "comment": "<p>Total number of pages</p>"
+      },
+      {
+        "name": "validationMessage",
+        "value": "string",
+        "comment": "<p>Message describing why the value is invalid</p>"
+      },
+      {
+        "name": "validationProps",
+        "value": "{ [key: string]: ICanBeInvalid; }",
+        "comment": "<p>If T is a complex value (object or array), this property contains validation states of inner items</p>"
+      },
+      {
+        "name": "value",
+        "value": "T",
+        "comment": "<p>The current value of component</p>"
+      }
+    ],
+    "/app/src/docs/_props/uui/components/widgets/spinner.props.tsx": [
+      {
+        "name": "cx",
+        "value": "any",
+        "comment": "<p>CSS class(es) to put on component&#39;s root. See <a href='https://github.com/JedWatson/classnames#usage'>https://github.com/JedWatson/classnames#usage</a> for details</p>"
+      },
+      {
+        "name": "forwardedRef",
+        "value": "React.ForwardedRef<T>",
+        "comment": "<p>this ref is passed to the underlying component</p>"
+      },
+      {
+        "name": "rawProps",
+        "value": "T & Record<`data-${string}`, string>",
+        "comment": "<p>Any HTML attributes (native or &#39;data-&#39;) to put on the underlying component</p>"
       }
     ]
   }

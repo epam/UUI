@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { FlexRow, PickerInput, FlexCell } from '@epam/promo';
-import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 export default function SearchPositionsExample() {
@@ -15,7 +15,7 @@ export default function SearchPositionsExample() {
 
     return (
         <FlexRow spacing='12'>
-            <FlexCell minWidth={ 295 }>
+            <FlexCell minWidth={ 300 }>
                 <PickerInput
                     dataSource={ dataSource }
                     value={ value }
@@ -25,7 +25,7 @@ export default function SearchPositionsExample() {
                     valueType='id'
                 />
             </FlexCell>
-            <FlexCell minWidth={ 295 }>
+            <FlexCell minWidth={ 300 }>
                 <PickerInput
                     dataSource={ dataSource }
                     value={ value }

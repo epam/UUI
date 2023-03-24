@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button } from '@epam/loveship';
-import { PersonsTable } from './PersonsTable';
+import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow } from '@epam/loveship';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, IEditable, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens } from '@epam/uui';
+import { DataSourceState, useArrayDataSource, useLazyDataSource, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens, DataColumnProps } from '@epam/uui-core';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
+import { getColumns } from "./columns";
+import { getFilters } from "./filters";
+import cx from "classnames";
 import css from './PersonsTableDemo.scss';
 
 interface PersonsTableState extends DataSourceState {
@@ -29,6 +31,8 @@ const formatCurrency = (value: number) => {
 };
 
 export const PersonsTableDemo = () => {
+    const { personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
+
     const [summary, setSummary] = React.useState<PersonsSummary & Pick<PersonsApiResponse, 'totalCount'>>({
         totalCount: undefined,
         totalSalary: '',
@@ -62,7 +66,7 @@ export const PersonsTableDemo = () => {
                 ids.forEach(([type, id]) => {
                     idsByType[type] = idsByType[type] || [];
                     idsByType[type].push(id);
-                })
+                });
 
                 const typesToLoad = Object.keys(idsByType) as PersonTableRecordType[];
                 const response: LazyDataSourceApiResponse<PersonTableRecord> = { items: [] };
@@ -74,7 +78,7 @@ export const PersonsTableDemo = () => {
                         : (type == 'Location') ? svc.api.demo.locations : null;
 
                     const apiResponse = await api(idsRequest);
-                    response.items = [ ...response.items, ...apiResponse.items ];
+                    response.items = [...response.items, ...apiResponse.items];
                 });
 
                 await Promise.all(promises);
@@ -91,19 +95,19 @@ export const PersonsTableDemo = () => {
 
             const getPersons = async (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
                 if (groupBy && !ctx.parent) {
-                    const res = await svc.api.demo.personGroups({
+                    const personGroupsResponse = await svc.api.demo.personGroups({
                         ...rq,
                         filter: { groupBy },
                         search: null,
                         itemsRequest: { filter, search: rq.search },
                         ids,
                     } as any);
-                    updateSummary(res as PersonsApiResponse);
-                    return res;
+                    updateSummary(personGroupsResponse as PersonsApiResponse);
+                    return personGroupsResponse;
                 } else {
-                    const res_1 = await svc.api.demo.persons(rq);
-                    updateSummary(res_1 as PersonsApiResponse);
-                    return res_1;
+                    const personsResponse = await svc.api.demo.persons(rq);
+                    updateSummary(personsResponse as PersonsApiResponse);
+                    return personsResponse;
                 }
             };
 
@@ -169,7 +173,7 @@ export const PersonsTableDemo = () => {
     });
 
     return (
-        <div className={ css.container }>
+        <div className={ cx(css.container, 'uui-theme-loveship') }>
             <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
                 <FlexCell width={ 200 }>
                     <SearchInput { ...lens.prop('search').toProps() } size='30' />
@@ -198,11 +202,20 @@ export const PersonsTableDemo = () => {
                     <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
                 </FlexCell>
             </FlexRow>
-            <PersonsTable
+            <DataTable
+                getRows={ personsDataView.getVisibleRows }
+                columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, any>[] }
                 value={ value }
                 onValueChange={ onValueChange }
-                summary={ summary }
-                view={ personsDataView }
+                filters={ getFilters() }
+            />
+            <DataTableRow
+                columns={ summaryColumns }
+                cx={ css.stickyFooter }
+                id="footer"
+                rowKey="footer"
+                index={ 100500 }
+                value={ summary }
             />
         </div>
     );
