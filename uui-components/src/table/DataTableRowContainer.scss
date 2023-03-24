@@ -26,7 +26,7 @@
 
 .section {
     display: flex;
-    border-bottom: var(--uui-dt-row-border-width) solid var(--uui-dt-row-border);
+    border-bottom: var(--uui-dt-row-border-width) solid transparent;
     background: var(--uui-dt-row-bg);
     background-clip: content-box;
     box-sizing: border-box;

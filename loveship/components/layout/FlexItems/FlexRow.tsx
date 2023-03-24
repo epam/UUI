@@ -1,5 +1,5 @@
 import * as types from '../../types';
-import { cx, FlexRowProps, withMods } from '@epam/uui-core';
+import { FlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow, RowMods as uuiRowMods } from '@epam/uui';
 
 export interface RowMods extends Omit<uuiRowMods, 'spacing'>, types.RowSizeMod {
@@ -41,7 +41,7 @@ export const FlexRow = withMods<FlexRowProps, RowMods>(
         props = { ...defaults, ...props };
 
         return ({
-            spacing: props.spacing,
+            ...props,
         } as FlexRowProps);
     },
 

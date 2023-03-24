@@ -22,12 +22,11 @@ export const propsMods = { renderCell, renderDropMarkers };
 
 export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
     uuiDataTableRow,
-    ({ borderBottom = true, background, size }) => {
+    ({ borderBottom = true, size }) => {
         return [
             css.root,
             borderBottom && 'uui-dt-row-border',
             css['size-' + (size || '36')],
-            css['background-' + (background || 'default')],
         ];
     },
     () => propsMods,

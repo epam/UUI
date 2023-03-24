@@ -16,12 +16,12 @@
     border-top-style: none;
     border-bottom-style: none;
 
-    border-left-color: var(--uui-dt-cell-border);
+    border-left-color: transparent;
     &:first-child {
         border-left-color: transparent;
     }
 
-    border-right-color: var(--uui-dt-cell-border);
+    border-right-color: transparent;
     &:last-child {
         border-right-color: transparent;
     }

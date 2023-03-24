@@ -47,8 +47,13 @@
     &.padding-right-24 { padding-right: 24px; }
 
     &:global(.uui-invalid) {
-        background-color: var(--uui-dt-cell-editor-bg-invalid);
+        background-color: var(--uui-dt-cell-bg-invalid);
     }
+}
+
+:global(.uui-dt-vertical-cell-border) {
+    border-left-color: var(--uui-dt-border);
+    border-right-color: var(--uui-dt-border);
 }
 
 .drag-handle {
@@ -76,6 +81,7 @@
     flex-shrink: 0;
     width: 12px;
     padding-right: 12px;
+    box-sizing: content-box; // to fix reset css like *, *::before, *::after { box-sizing: border-box; }
 }
 
 .folding-arrow {
@@ -105,5 +111,5 @@
 }
 
 .icon-container {
-    fill: var(--gray60);
+    fill: var(--uui-icon);
 }
