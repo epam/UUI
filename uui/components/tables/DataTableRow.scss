@@ -37,6 +37,16 @@
     &:global(.uui-focus) {
         //border: 1px solid $blue;
     }
+
+    &:global(.uui-dt-row-border) {
+        border-bottom-color: var(--uui-dt-border);
+    }
+}
+
+:global(.uui-dt-row-border) {
+    :global(.uui-table-fixed-section), :global(.uui-table-scrolling-section) {
+        border-bottom-color: var(--uui-dt-border);
+    }
 }
 
 // Sizes
@@ -46,13 +56,3 @@
 .size-36 { min-height: 36px; }
 .size-48 { min-height: 48px; }
 .size-60 { min-height: 60px; }
-
-// Backgrounds
-
-.background-white {
-    --uui-dt-row-background: white;
-}
-
-.background-gray5 {
-    //--uui-dt-row-background: #{$gray5};
-}

@@ -256,7 +256,6 @@ export default function TableCellsStylesSandbox() {
     const renderRow = useCallback((props: DataTableRowProps<Item, number>) => {
         return <skin.DataTableRow
             { ...props }
-            background={ (props.value.altBackground && skinMods[skinName].altBackground) as never }
         />;
     }, [skinName]);
 
