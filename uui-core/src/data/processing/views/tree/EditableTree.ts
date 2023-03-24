@@ -56,14 +56,18 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         }
 
         const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
-        for (let [parentId, ids] of newByParentId) {
+        for (let [parentId, ids = []] of newByParentId) {
             const prevNodeInfo = this.nodeInfoById.get(parentId);
+            let count = prevNodeInfo?.count;
+            if (!prevNodeInfo || count !== undefined && !comparator) {
+                const prevIds = this.byParentId.get(parentId) ?? [];
+                const delta = ids.length - prevIds.length;
+                count = (count ?? 0) + delta;
+            }
+
             // for lazy loaded data, count should be undefined
             // and on patch with new items (not on init) previous configuration should not be overridden
-            newNodeInfoById.set(
-                parentId,
-                (!prevNodeInfo || prevNodeInfo.count != null) && !comparator ? { count: ids.length } : { count: undefined },
-            );
+            newNodeInfoById.set(parentId, { count });
         }
 
         return this.newInstance(this.params, newById, newByParentId, newNodeInfoById);
@@ -170,24 +174,9 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             return [id];
         }
 
-        let greaterPosition = -1;
-        let equalPosition = -1;
-        let smallerPosition = -1;
+        const lessOrEqualPosition = children.findIndex((itemId) => comparator(item, byId.get(itemId), true) <= 0);
+        const position = lessOrEqualPosition === -1 ? children.length : lessOrEqualPosition;
 
-        for (let i in children) {
-            const index = Number(i);
-            const itemId = children[index];
-            const comparisonResult = comparator(item, byId.get(itemId), true);
-            if (comparisonResult <= 0) {
-                smallerPosition = index;
-                break;
-            }
-            if (comparisonResult > 0) {
-                greaterPosition = index + 1;
-            }
-        };
-
-        const [position = 0] = [smallerPosition, equalPosition, greaterPosition].filter((v) => v !== -1);
         children.splice(position, 0, id);
         return children;
     }
