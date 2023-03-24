@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
-import React, { useRef } from 'react';
-import { Metadata, useList, usePrevious, useUuiContext, UuiContexts } from '@epam/uui-core';
+import React, { useMemo } from 'react';
+import { Metadata, useList, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
@@ -30,10 +30,8 @@ let savedValue: FormState = { items: {} };
 
 export const ProductsTableDemo: React.FC = (props) => {
     const svc = useUuiContext<TApi, UuiContexts>();
-    const lastPatchIdRef = useRef(0);
-    let lastId = lastPatchIdRef.current;
 
-    const { lens, save, value, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
+    const { lens, save, isChanged, value, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
@@ -43,13 +41,11 @@ export const ProductsTableDemo: React.FC = (props) => {
         getMetadata: () => metadata,
     });
 
-    const prevValue = usePrevious(value);
-
-    if (value !== prevValue) {
-        const ids = Object.values(value.items).map(({ ProductID }) => ProductID);
-        lastPatchIdRef.current = Math.min(...ids, lastPatchIdRef.current);
-        lastId = lastPatchIdRef.current;
-    }
+    const lastId = useMemo(
+        () => Object.values(value.items)
+            .reduce<number>((lastMin, item) => Math.min(lastMin, item.ProductID), 0),
+        [value.items]
+    );
 
     const [tableState, setTableState] = React.useState({});
 
