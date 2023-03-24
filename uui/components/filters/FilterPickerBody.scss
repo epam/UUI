@@ -1,0 +1,6 @@
+@use  '../../assets/styles/index' as *;
+
+.footer-wrapper {
+    border-top: 1px solid var(--uui-control-border);
+    justify-content: flex-end;
+}

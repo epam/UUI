@@ -1,0 +1,439 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmationModal should be rendered correctly 1`] = `
+<div
+  className="container modalBlocker"
+  style={
+    Object {
+      "zIndex": 1,
+    }
+  }
+>
+  <div
+    className="uui-modal-blocker"
+    onClick={[Function]}
+  />
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
+  <div
+    data-focus-lock-disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <div
+      aria-modal={true}
+      className="uui-modal-window modal container"
+      role="modal"
+      style={
+        Object {
+          "height": "auto",
+          "width": "420px",
+        }
+      }
+    >
+      <div
+        className="root size-36 padding-24 vPadding-12 borderBottom spacing-12 modalHeader container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
+      >
+        <div
+          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+        >
+          Test
+        </div>
+        <div
+          className="flexSpacer"
+        />
+        <div
+          className="flexCell"
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "auto",
+              "flexGrow": undefined,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <button
+            className="container uui-button-box uui-enabled -clickable icon-button-default root"
+            onClick={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+              />
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+        cx={
+          Array [
+            Array [
+              "uui-scroll-bars",
+              "uui-shadow-top",
+              "uui-shadow-bottom",
+            ],
+            undefined,
+          ]
+        }
+        style={
+          Object {
+            "display": "flex",
+            "height": "100%",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": 0,
+              "flex": "1 1 auto",
+              "left": 0,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <div
+          className="uui-track-horizontal"
+          style={
+            Object {
+              "display": "none",
+              "height": 6,
+              "position": "absolute",
+            }
+          }
+        >
+          <div
+            className="uui-thumb-horizontal"
+          />
+        </div>
+        <div
+          className="uui-track-vertical"
+          style={
+            Object {
+              "display": "none",
+              "position": "absolute",
+              "width": 6,
+            }
+          }
+        >
+          <div
+            className="uui-thumb-vertical"
+          />
+        </div>
+      </div>
+      <div
+        className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
+      >
+        <div
+          className="flexSpacer"
+        />
+        <button
+          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+          onClick={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <div
+            className="uui-caption"
+          >
+            Discard
+          </div>
+        </button>
+        <button
+          className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+          onClick={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <div
+            className="uui-caption"
+          >
+            Save
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
+</div>
+`;
+
+exports[`ConfirmationModal should be rendered correctly 2`] = `
+<div
+  className="container modalBlocker"
+  style={
+    Object {
+      "zIndex": 1,
+    }
+  }
+>
+  <div
+    className="uui-modal-blocker"
+    onClick={[Function]}
+  />
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
+  <div
+    data-focus-lock-disabled={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <div
+      aria-modal={true}
+      className="uui-modal-window modal container"
+      role="modal"
+      style={
+        Object {
+          "height": "auto",
+          "width": "420px",
+        }
+      }
+    >
+      <div
+        className="root size-36 padding-24 vPadding-12 borderBottom spacing-12 modalHeader container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
+      >
+        <div
+          className="uui-font-semibold uui-text-primary root line-height-24 font-size-18 v-padding-12 container"
+        >
+          Test
+        </div>
+        <div
+          className="flexSpacer"
+        />
+        <div
+          className="flexCell"
+          style={
+            Object {
+              "alignSelf": undefined,
+              "flexBasis": "auto",
+              "flexGrow": undefined,
+              "flexShrink": 0,
+              "minWidth": 0,
+              "textAlign": undefined,
+            }
+          }
+        >
+          <button
+            className="container uui-button-box uui-enabled -clickable icon-button-default root"
+            onClick={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+              />
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        className="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+        cx={
+          Array [
+            Array [
+              "uui-scroll-bars",
+              "uui-shadow-top",
+              "uui-shadow-bottom",
+            ],
+            undefined,
+          ]
+        }
+        style={
+          Object {
+            "display": "flex",
+            "height": "100%",
+            "overflow": "hidden",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "WebkitOverflowScrolling": "touch",
+              "bottom": 0,
+              "flex": "1 1 auto",
+              "left": 0,
+              "marginBottom": 0,
+              "marginRight": 0,
+              "overflow": "scroll",
+              "position": "relative",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <div
+            className="uui-panel root margin-24 container"
+          >
+            <div>
+              Test content
+            </div>
+          </div>
+        </div>
+        <div
+          className="uui-track-horizontal"
+          style={
+            Object {
+              "display": "none",
+              "height": 6,
+              "position": "absolute",
+            }
+          }
+        >
+          <div
+            className="uui-thumb-horizontal"
+          />
+        </div>
+        <div
+          className="uui-track-vertical"
+          style={
+            Object {
+              "display": "none",
+              "position": "absolute",
+              "width": 6,
+            }
+          }
+        >
+          <div
+            className="uui-thumb-vertical"
+          />
+        </div>
+      </div>
+      <div
+        className="root size-36 padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+        style={
+          Object {
+            "columnGap": undefined,
+            "rowGap": undefined,
+          }
+        }
+      >
+        <div
+          className="flexSpacer"
+        />
+        <button
+          className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-outline"
+          onClick={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <div
+            className="uui-caption"
+          >
+            Discard
+          </div>
+        </button>
+        <button
+          className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
+          onClick={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <div
+            className="uui-caption"
+          >
+            Save
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    data-focus-guard={true}
+    style={
+      Object {
+        "height": "0px",
+        "left": "1px",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "fixed",
+        "top": "1px",
+        "width": "1px",
+      }
+    }
+    tabIndex={0}
+  />
+</div>
+`;

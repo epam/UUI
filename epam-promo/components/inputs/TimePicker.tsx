@@ -4,7 +4,7 @@ import { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 import { BaseTimePickerProps, BaseTimePicker } from '@epam/uui-components';
 import { IHasEditMode, SizeMod, EditMode } from '../types';
 import { DropdownContainer } from '../overlays';
-import { TextInput } from './TextInput';
+import { TextInput } from '@epam/uui';
 import { TimePickerBody } from './TimePickerBody';
 import css from './TimePicker.scss';
 import customParseFormat from "dayjs/plugin/customParseFormat.js";

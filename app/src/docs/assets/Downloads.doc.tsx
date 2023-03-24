@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx } from '@epam/uui';
+import { cx } from '@epam/uui-core';
 import { FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, RichTextView, Text, Tooltip } from '@epam/promo';
 import { BaseDocsBlock, UUI4 } from '../../common/docs';
 import { getQuery } from '../../helpers';

@@ -1,7 +1,7 @@
 import dayjs, { Dayjs } from 'dayjs';
 import { DocBuilder } from '@epam/uui-docs';
 import { CalendarProps } from '@epam/uui-components';
-import { Calendar } from '@epam/loveship';
+import { Calendar } from '@epam/uui';
 import { iEditable } from '../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../docs';
 

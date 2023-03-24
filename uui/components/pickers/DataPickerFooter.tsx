@@ -1,12 +1,10 @@
 import React, { PropsWithChildren } from 'react';
-import cx from 'classnames';
 import { isMobile, PickerFooterProps } from "@epam/uui-core";
 import { i18n } from '../../i18n';
 import { Switch } from '../inputs';
 import { FlexCell, FlexRow, FlexSpacer } from '../layout';
 import { LinkButton } from '../buttons';
 import { SizeMod } from '../types';
-import css from './DataPickerFooter.scss';
 
 type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> & SizeMod & {
     hideShowOnlySelected?: boolean;
@@ -30,7 +28,7 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
     };
 
     return (
-        <FlexRow padding='12' cx={ cx(css.footerWrapper) }>
+        <FlexRow padding='12' >
             {
                 !props.hideShowOnlySelected && <Switch
                     size={ switchSize }

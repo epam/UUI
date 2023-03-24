@@ -6,24 +6,34 @@
     flex: 1 1 auto;
     align-self: stretch;
     width: 100%;
+
+    &.multi {
+        :global(.-scrolled-bottom) {
+            border-bottom: 1px solid var(--uui-divider);
+        }
+    }
+
+    &.modal {
+        :global(.-scrolled-top) {
+            border-top: 1px solid var(--uui-divider);
+        }
+
+        :global(.-scrolled-bottom) {
+            border-bottom: 1px solid var(--uui-divider);
+        }
+    }
+}
+
+.search-wrapper ~ .body {
+    &:not(.modal) {
+        :global(.-scrolled-top) {
+            border-top: 1px solid var(--uui-divider);
+        }
+    }
 }
 
 .modal {
     border: 0;
-}
-
-// TBD: replace with search prop when it will be done
-.search {
-    &:global(.uui-input-box) {
-        border: 0;
-        box-shadow: none;
-        background-color: transparent;
-
-        &:global(.uui-focus) {
-            border-color: transparent;
-            box-shadow: none;
-        }
-    }
 }
 
 .checkbox {
@@ -31,12 +41,7 @@
 }
 
 .search-wrapper {
-    border-bottom: 1px solid var(--divider-color);
-    padding: 0 4px;
-}
-
-.search-size-24, .search-size-30, .search-size-36, .search-size-42 {
-    padding: 0 5px;
+    padding: 9px 12px;
 }
 
 .no-found-size-24 {

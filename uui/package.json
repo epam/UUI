@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui",
-  "version": "4.10.1",
+  "version": "4.11.0-alpha.1",
   "description": "EPAM UUI components set",
   "author": "EPAM",
   "license": "MIT",
@@ -12,11 +12,18 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "4.10.1",
-    "@epam/uui-components": "4.10.1",
-    "@epam/uui-core": "4.10.1",
+    "@epam/assets": "4.11.0-alpha.1",
+    "@epam/uui-components": "4.11.0-alpha.1",
+    "@epam/uui-core": "4.11.0-alpha.1",
     "classnames": "2.2.6",
-    "react-focus-lock": "2.9.2"
+    "dayjs": "1.10.7",
+    "lodash.sortby": "4.7.0",
+    "react-focus-lock": "2.9.2",
+    "react-popper": "2.3.0"
+  },
+  "devDependencies": {
+    "enzyme": "^3.9.0",
+    "react-test-renderer": "18.2.0"
   },
   "peerDependencies": {
     "prop-types": "*",

@@ -2,7 +2,7 @@
 
 exports[`Badge should be rendered correctly 1`] = `
 <button
-  className="container uui-button-box uui-enabled root style-square size-18 fill-solid color-sky root"
+  className="container uui-button-box uui-enabled root root size-18 fill-solid badge-sky style-square fill-solid size-18 root"
   onClick={[Function]}
   tabIndex={-1}
   type="button"
@@ -11,7 +11,7 @@ exports[`Badge should be rendered correctly 1`] = `
 
 exports[`Badge should be rendered correctly with props 1`] = `
 <button
-  className="container uui-button-box uui-enabled -clickable root style-square size-12 fill-light color-sky root"
+  className="container uui-button-box uui-enabled -clickable root root size-12 fill-light badge-sky style-square fill-light size-12 root"
   onClick={[Function]}
   tabIndex={0}
   type="button"

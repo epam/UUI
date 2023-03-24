@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Product } from "@epam/uui-docs";
-import { useAsyncDataSource, useUuiContext } from "@epam/uui";
+import { useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { FlexCell, FlexRow, PickerInput } from "@epam/promo";
 
 export default function GetRowOptionsExample() {
@@ -14,7 +14,7 @@ export default function GetRowOptionsExample() {
     }, []);
 
     return (
-        <FlexCell width={ 600 }>
+        <FlexCell width={ 612 }>
             <FlexRow spacing='12' >
                 <PickerInput<Product, number>
                     dataSource={ productsDataSource }
