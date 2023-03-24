@@ -6,7 +6,7 @@ const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBu
 
 const BUILD_FOLDER = 'build'
 
-module.exports = { buildUuiModule };
+module.exports = { buildUuiModule, isRollupModule };
 
 async function withEventsLogger({ moduleRootDir, isRollup, asyncCallback }) {
     const moduleBuildLogger = new ModuleBuildProgressLogger({ moduleRootDir, isRollup });
@@ -23,7 +23,7 @@ async function withEventsLogger({ moduleRootDir, isRollup, asyncCallback }) {
 
 async function buildUuiModule() {
     const moduleRootDir = process.cwd();
-    const isRollup = await isRollupModule(moduleRootDir);
+    const isRollup = isRollupModule(moduleRootDir);
     if (isRollup) {
         await buildModuleUsingRollup({
             moduleRootDir,
@@ -98,7 +98,7 @@ function copyAllModuleFilesToOutputSync(moduleRootDir) {
  *
  * @returns {Promise<boolean>}
  */
-async function isRollupModule(moduleRootDir) {
-    const moduleIndexFile = await getIndexFileRelativePath(moduleRootDir);
+function isRollupModule(moduleRootDir) {
+    const moduleIndexFile = getIndexFileRelativePath(moduleRootDir);
     return !!moduleIndexFile;
 }

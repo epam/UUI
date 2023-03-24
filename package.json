@@ -22,7 +22,9 @@
     "generate-components-api": "cd uui-build && yarn generate-components-api",
     "transform-tokens": "tsc --esModuleInterop uui-build/tokens-converter/index.ts && node uui-build/tokens-converter",
     "release": "lerna publish --force-publish",
-    "build-modules": "lerna run build"
+    "build-modules": "lerna run build",
+    "track-bundle-size": "yarn --cwd uui-build track-bundle-size",
+    "track-bundle-size-override": "yarn --cwd uui-build track-bundle-size --override-baseline"
   },
   "repository": {
     "type": "git",

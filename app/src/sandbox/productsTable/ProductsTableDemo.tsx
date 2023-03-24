@@ -33,7 +33,7 @@ export const ProductsTableDemo: React.FC = (props) => {
     const lastPatchIdRef = useRef(0);
     let lastId = lastPatchIdRef.current;
 
-    const { lens, save, value, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
+    const { lens, save, isChanged, value, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
