@@ -19,6 +19,7 @@ import { DataRowProps } from '@epam/uui-core';
 import { Skills } from './skills';
 import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
+import { TestCX } from "./testCX";
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -36,6 +37,7 @@ export const SandboxPage = () => {
         { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
         { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
         { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
+        { id: 'testCX', name: 'Test inputCX & bodyCX', component: TestCX },
     ], []);
 
     if (!items.map(item => item.id).includes(getQuery('id'))) {

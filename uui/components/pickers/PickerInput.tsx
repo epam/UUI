@@ -80,7 +80,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
-        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
+        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } cx={ this.props.inputCx }/>);
 
         return (
             <IEditableDebouncer
@@ -100,7 +100,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             <Panel
                 style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
                 rawProps={ { tabIndex: -1 } }
-                cx={ [css.panel, uuiMarkers.lockFocus] }
+                cx={ [css.panel, uuiMarkers.lockFocus, this.props.bodyCx] }
             >
                 <MobileDropdownWrapper
                     title={ this.props.entityName }
