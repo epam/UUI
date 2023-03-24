@@ -62,7 +62,6 @@ export const ProjectDemo = () => {
         getParentId: i => i.parentId,
         getRowOptions: (task) => ({
             ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
-            //checkbox: { isVisible: true },
             isSelectable: true,
             dnd: {
                 srcData: task,
