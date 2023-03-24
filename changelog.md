@@ -1,9 +1,10 @@
-# 4.xx.xx - xx.xx.2023
-
-**What's New**
+# 4.10.2 - 24.03.2023
 
 **What's Fixed**
-* [Form]: fixed isChanged calculation, for already saved and then changed form
+* [Form]: fixed isChanged calculation for already saved and then changed form
+* [Dropdown]: fixed issue with '0' value for closeDelay prop
+* [MainMenu]: fixed issue when menu resize caused removing body overflow for opened modals
+* [TimePicker]: fixed body content alignment
 
 
 # 4.10.1 - 10.03.2023
