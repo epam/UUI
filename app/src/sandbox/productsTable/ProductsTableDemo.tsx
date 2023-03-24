@@ -30,10 +30,9 @@ let savedValue: FormState = { items: {} };
 
 export const ProductsTableDemo: React.FC = (props) => {
     const svc = useUuiContext<TApi, UuiContexts>();
-    // const [patch, setPatch] = useState<Product[]>([]);
     const lastPatchIdRef = useRef(-1);
 
-    const { lens, save, value, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
+    const { lens, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
             // At this point you usually call api.saveSomething(value) to actually send changed data to server
@@ -59,10 +58,6 @@ export const ProductsTableDemo: React.FC = (props) => {
 
         patch: Object.values(lens.prop('items').get()),
         isDeletedProp: 'IsDeleted',
-        patchComparator: (a, b) => {
-            if ((a.Name?.length ?? 0) === (b.Name?.length ?? 0)) return 0;
-            return (a.Name?.length ?? 0) < (b.Name?.length ?? 0) ? -1 : 1;
-        },
 
         getId: i => i.ProductID,
         getRowOptions: product => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),

@@ -1,6 +1,6 @@
 import { Text, Checkbox, DatePicker, NumericInput, TextInput, DataTableCell, PickerInput } from "@epam/loveship";
 import React from "react";
-import { ArrayDataSource, DataColumnProps, DataQueryFilter, IEditable, ILens, Lens } from "@epam/uui-core";
+import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
 import { Product } from "@epam/uui-docs";
 
 const colors = [
