@@ -6,7 +6,7 @@ import {
 import {
     ColumnsConfig, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable,
     DataTableState, DataTableColumnsConfigOptions, DataSourceListProps, DataColumnProps,
-    cx, TableFiltersConfig, DataTableRowProps, RowProps, IsSubtotalsRecord
+    cx, TableFiltersConfig, DataTableRowProps, RowProps, IsSubtotalsRecordFn
 } from '@epam/uui-core';
 import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal } from './';
 import { VirtualList } from '../';
@@ -15,7 +15,7 @@ import { Text } from "../typography";
 import css from './DataTable.scss';
 import { i18n } from "../../i18n";
 
-export interface DataTableProps<TItem, TId, TSubtotals = void> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, IsSubtotalsRecord<TItem, TSubtotals> {
+export interface DataTableProps<TItem, TId, TSubtotals = void> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, IsSubtotalsRecordFn<TItem, TSubtotals> {
     getRows(): RowProps<TItem, TId, TSubtotals>[];
     columns: DataColumnProps<TItem, TId>[];
     subtotalsColumns?: Exclude<TSubtotals extends void ? void : DataColumnProps<TSubtotals, string>, void>[];
