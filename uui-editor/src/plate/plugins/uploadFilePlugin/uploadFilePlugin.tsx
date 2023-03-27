@@ -32,7 +32,7 @@ interface IUploadFileButton {
 
 export const UploadFileButton = ({ editor }: IUploadFileButton): any => {
 
-    if (!isPluginActive(KEY)) return null;
+    if (!isPluginActive('attachment')) return null;
 
 
     return (
