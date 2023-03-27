@@ -175,7 +175,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             return [id];
         }
 
-        const lessOrEqualPosition = children.findIndex((itemId) => comparator(item, byId.get(itemId), true) <= 0);
+        const lessOrEqualPosition = children.findIndex((itemId) => comparator(item, byId.get(itemId)) <= 0);
         const position = lessOrEqualPosition === -1 ? children.length : lessOrEqualPosition;
 
         children.splice(position, 0, id);

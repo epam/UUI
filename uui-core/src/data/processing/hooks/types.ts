@@ -1,4 +1,4 @@
-import { ArrayListViewProps, AsyncListViewProps, ItemsComparator, ITree, LazyListViewProps } from "../views";
+import { ArrayListViewProps, AsyncListViewProps, LazyListViewProps } from "../views";
 import { DataSourceState, IDataSourceView } from "../../../types";
 
 export type PropsWithType<Props, Type extends string> = Props & { type: Type };
