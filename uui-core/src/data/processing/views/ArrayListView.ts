@@ -102,7 +102,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         }
 
         if (this.sortingWasChanged(prevValue, newValue) || !this.sortedTree || searchTreeIsUpdated) {
-            this.sortedTree = this.searchTree.sort({ sorting, sortBy });
+            this.sortedTree = this.searchTree.sort(this.getStableSort({ sorting, sortBy }));
         }
 
         this.tree = this.sortedTree;

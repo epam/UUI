@@ -13,6 +13,14 @@ interface NodeStats {
     hasMoreRows: boolean;
 }
 
+
+export interface ApplySortOptions<TItem, TId, TFilter> {
+    sorting: DataSourceState<TFilter, TId>['sorting'];
+    sortBy?(item: TItem, sorting: SortingOption): any;
+}
+
+export type ApplyStableSort<TItems> = (items: TItems[]) => TItems[];
+
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     protected originalTree: ITree<TItem, TId>;
     protected tree: ITree<TItem, TId>;
@@ -327,6 +335,53 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
         this.rows = rows;
         this.hasMoreRows = rootStats.hasMoreRows;
+    }
+
+
+    protected getComparator<TFilter>({ sorting, sortBy }: ApplySortOptions<TItem, TId, TFilter>): ItemsComparator<TItem> {
+        const compareScalars = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
+        const comparers: ((a: TItem, b: TItem) => number)[] = [];
+
+        if (sorting) {
+            sorting.forEach(sortingOption => {
+                const sortByFn = sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
+                const sign = sortingOption.direction === 'desc' ? -1 : 1;
+                comparers.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
+            });
+        }
+
+        return (a: TItem, b: TItem) => {
+            for (let n = 0; n < comparers.length; n++) {
+                const comparer = comparers[n];
+                const result = comparer(a, b);
+                if (result != 0) {
+                    return result;
+                }
+            }
+
+            return 0;
+        };
+    }
+
+    protected getStableSort(sortOptions: ApplySortOptions<TItem, TId, TFilter>): ApplyStableSort<TItem> {
+        const comparator = this.getComparator(sortOptions);
+
+        return (items: TItem[]) => {
+            const indexes = new Map<TItem, number>();
+            items.forEach((item, index) => indexes.set(item, index));
+
+            const compare = (a: TItem, b: TItem) => {
+                const result = comparator(a, b);
+                if (!result) {
+                    return indexes.get(a) - indexes.get(b);
+                }
+                return result;
+            }
+
+            items = [...items];
+            items.sort(compare);
+            return items;
+        }
     }
 
     private getEstimatedChildrenCount = (id: TId) => {
