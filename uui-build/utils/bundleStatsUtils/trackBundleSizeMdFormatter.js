@@ -3,9 +3,11 @@ module.exports = { comparisonResultToMd }
 function comparisonResultToMd({ comparisonResult, currentBaseLine }) {
     const attrs = ['baseLineSize', 'size', 'diffLabel', 'withinThreshold', 'thresholdLabel'];
     const headerRemap = {
-        diffLabel: 'diff',
-        baseLineSize: `baselineSize (v${currentBaseLine.version})`,
-        thresholdLabel: 'threshold (min - max)',
+        baseLineSize: `Baseline Size (v${currentBaseLine.version})`,
+        size: 'Size',
+        diffLabel: 'Diff',
+        withinThreshold: 'Within Threshold',
+        thresholdLabel: 'Threshold (min - max)',
     }
     const formatHeader = (h) => {
         return headerRemap[h] || h;
@@ -39,7 +41,7 @@ function comparisonResultToMd({ comparisonResult, currentBaseLine }) {
 }
 
 function formatMdTable(obj, attrs, formatHeader = (h) => h, formatValue = (h, v) => v) {
-    const header = '| module |' + attrs.map(formatHeader).join('|') + '|';
+    const header = '| Module |' + attrs.map(formatHeader).join('|') + '|';
     const headerSep = '|:-----:|' + attrs.map(() => ':-----:').join('|') + '|';
     const rows = Object.keys(obj).reduce((acc, rowId) => {
         const rowContent = attrs.map(a => {
