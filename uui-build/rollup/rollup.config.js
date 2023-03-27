@@ -21,8 +21,6 @@ const BUILD_OUTPUT_DIR = "build";
 
 module.exports = { createRollupConfigForModule };
 
-const monoRepoRootRelativePath = getCliArgValue("--configMonorepoRootRelative") || '..'
-
 /**
  * Creates rollup config for the module.
  *
@@ -56,13 +54,21 @@ async function createRollupConfigForModule(options) {
     // TODO: maybe we need to move it to plugin.
     await beforeRollupBuild({ moduleRootDir, packageJsonTransform, copyAsIs });
 
+
+    const getOutputParams = ({ file, format }) => {
+        return {
+            file, format, interop: "auto",
+            sourcemap: true, sourcemapPathTransform: jsSourceMapTransform,
+        };
+    }
+
     /** @type {import('rollup').RollupOptions} */
     const config = {
         input: indexFileRelativePath,
-        output: [{
-            file: `${outDir}/index.js`, format: "cjs", interop: "auto",
-            sourcemap: true, sourcemapPathTransform: jsSourceMapTransform,
-        }],
+        output: [
+            getOutputParams({ file: `${outDir}/index.js`, format: 'cjs' }),
+            getOutputParams({ file: `${outDir}/index.esm.js`, format: 'esm' }),
+        ],
         external: externalEffective,
         plugins: [
             replace({
@@ -70,8 +76,6 @@ async function createRollupConfigForModule(options) {
                 preventAssignment: true,
             }),
             nodeResolve({
-                // https://www.npmjs.com/package/@rollup/plugin-node-resolve
-                jail: path.resolve(moduleRootDir, monoRepoRootRelativePath),
                 preferBuiltins: false,
             }),
             commonjs(), // it's needed to import commonjs-only modules without "default" export (the only known example: "draft-js")
