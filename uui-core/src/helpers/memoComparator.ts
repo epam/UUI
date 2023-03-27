@@ -5,13 +5,9 @@ export const memoComparator = <TItem, TId>(
     getId: (item: TItem) => TId,
 ) => {
     const cache = new Map();
-    return (newItem: TItem, existingItem: TItem, cacheIsAbsent?: boolean) => {
+    return (newItem: TItem, existingItem: TItem) => {
         const id = getId(newItem);
         if (!cache.has(id)) {
-            if (!cacheIsAbsent) {
-                return 0;
-            }
-
             cache.set(id, newItem);
         }
 
