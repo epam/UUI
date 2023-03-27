@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { uuiMod, uuiSkin } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 
-import { useSelected, useReadOnly } from 'slate-react';
+import { useSelected, useReadOnly, useFocused } from 'slate-react';
 import { setElements } from '@udecode/plate';
 
 import { ReactComponent as DownloadIcon } from '../../icons/download-icon.svg';
@@ -33,11 +33,11 @@ function getReadableFileSizeString(fileSizeInBytes: number) {
 }
 
 export function AttachmentBlock(props: any) {
-    const isSelected = useSelected();
+    const isSelected = useSelected() && useFocused();
     const isReadonly = useReadOnly();
 
     const { element, editor, children } = props;
-    const [fileName, setFileName] = useState(element.data.fileName);
+    const [fileName, setFileName] = useState(element.data.fileName || element.fileName);
 
     const changeName = (name: string) => {
         setElements(editor, {
@@ -47,6 +47,14 @@ export function AttachmentBlock(props: any) {
                 fileName: name,
             },
         });
+    };
+
+    const handleKeyDown = (event: any) => {
+        event.preventDefault();
+        if (event.code === 'Enter') {
+            event.target.click();
+            event.target.blur();
+        }
     };
 
     const getIcon = () => {
@@ -126,7 +134,7 @@ export function AttachmentBlock(props: any) {
                 <div className={ css.sizeLabel }> { getReadableFileSizeString(element.data.size) } </div>
             </FlexCell>
             <FlexCell width='auto' shrink={ 0 } cx={ css.imgBox }>
-                <a href={ element.data.path } download={ true } className={ css.linkWrapper }>
+                <a href={ element.data.path } onKeyDown={handleKeyDown} download={ true } className={ css.linkWrapper }>
                     <IconContainer icon={ DownloadIcon } cx={ css.img }/>
                 </a>
             </FlexCell>
