@@ -8,12 +8,12 @@ module.exports = {
         const indexFileRelativePath = 'index.tsx';
         const packageJsonTransform = content => {
             content.main = './index.js';
-            if (content.exports?.['.']) {
-                content.exports['.'] = './index.js';
+            content.module = './index.esm.js';
+            if (content.exports) {
+                // our build doesn't support "exports" in resulting package.json
+                delete content.exports;
             }
-            if (content.exports?.['./styles.css']) {
-                content.exports['./styles.css'] = './styles.css';
-            }
+            return content;
         };
         return await createRollupConfigForModule({ indexFileRelativePath, packageJsonTransform });
     }
