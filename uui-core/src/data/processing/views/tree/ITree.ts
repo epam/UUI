@@ -1,4 +1,5 @@
-import { DataSourceState, SortingOption, DataRowPathItem } from "../../../../types";
+import { DataSourceState, DataRowPathItem } from "../../../../types";
+import { ApplyStableSort } from "../BaseListView";
 import { LazyListViewProps } from "../LazyListView";
 import { CompositeKeysMap } from "./CompositeKeysMap";
 
@@ -10,11 +11,6 @@ export interface ApplyFilterOptions<TItem, TId, TFilter> {
 export interface ApplySearchOptions<TItem, TId, TFilter> {
     search: DataSourceState<TFilter, TId>['search'];
     getSearchFields?: (item: TItem) => string[];
-}
-
-export interface ApplySortOptions<TItem, TId, TFilter> {
-    sorting: DataSourceState<TFilter, TId>['sorting'];
-    sortBy?(item: TItem, sorting: SortingOption): any;
 }
 
 export interface TreeNodeInfo {
@@ -99,5 +95,5 @@ export interface ITree<TItem, TId> {
 
     filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
     search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
-    sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
+    sort(applyStableSort: ApplyStableSort<TItem>): ITree<TItem, TId>;
 }

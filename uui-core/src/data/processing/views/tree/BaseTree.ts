@@ -1,7 +1,9 @@
 import { DataSourceState, IMap, DataRowPathItem } from "../../../../types";
 import { CompositeKeysMap } from "./CompositeKeysMap";
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo } from "./ITree";
+import { ApplyFilterOptions, ApplySearchOptions, ITree, LoadTreeOptions, TreeNodeInfo } from "./ITree";
 import { TreeParams } from "./ITree";
+import { ApplyStableSort } from "../BaseListView";
+
 
 export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
     if (params.complexIds) {
@@ -284,5 +286,5 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     abstract filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
     abstract search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
-    abstract sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
+    abstract sort(applyStableSort: ApplyStableSort<TItem>): ITree<TItem, TId>;
 }

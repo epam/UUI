@@ -1,6 +1,7 @@
 import { getSearchFilter } from "../../../querying";
 import { LoadableTree } from "./LoadableTree";
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree } from "./ITree";
+import { ApplyFilterOptions, ApplySearchOptions, ITree, ItemsComparator } from "./ITree";
+import { ApplyStableSort } from "../BaseListView";
 
 export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
     public filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
@@ -13,11 +14,10 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         return this.applyMatchToTree(search);
     }
 
-    public sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {
-        const sort = this.buildSorter(options);
+    public sort(applyStableSort: ApplyStableSort<TItem>) {
         const sortedItems: TItem[] = [];
         const sortRec = (items: TItem[]) => {
-            sortedItems.push(...sort(items));
+            sortedItems.push(...applyStableSort(items));
             items.forEach((item) => {
                 const children = this.getChildren(item);
                 sortRec(children);
@@ -37,46 +37,6 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         }
         const searchFilter = getSearchFilter(search);
         return (i: TItem) => searchFilter(getSearchFields(i));
-    }
-
-
-    private buildSorter<TFilter>({ sorting, sortBy }: ApplySortOptions<TItem, TId, TFilter>) {
-        const compareScalars = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
-        const comparers: ((a: TItem, b: TItem) => number)[] = [];
-
-        if (sorting) {
-            sorting.forEach(sortingOption => {
-                const sortByFn = sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
-                const sign = sortingOption.direction === 'desc' ? -1 : 1;
-                comparers.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
-            });
-        }
-
-        return (items: TItem[]) => {
-            if (comparers.length == 0) {
-                return items;
-            }
-
-            const indexes = new Map<TItem, number>();
-            items.forEach((item, index) => indexes.set(item, index));
-
-            const comparer = (a: TItem, b: TItem) => {
-                for (let n = 0; n < comparers.length; n++) {
-                    const comparer = comparers[n];
-                    const result = comparer(a, b);
-                    if (result != 0) {
-                        return result;
-                    }
-                }
-
-                // to make sort stable, compare items indices if other comparers return 0 (equal)
-                return indexes.get(a) - indexes.get(b);
-            };
-
-            items = [...items];
-            items.sort(comparer);
-            return items;
-        };
     }
 
     private applyMatchToTree(isMatchingFn: undefined | ((item: TItem) => boolean)) {

@@ -236,23 +236,20 @@ describe('Tree', () => {
 
     describe('sort', () => {
         it('should return sorted tree', () => {
-            const sortedTree = testTree.sort({ sorting: [{ field: 'value', direction: 'asc' }] });
+            const sortedTree = testTree.sort((items) => {
+                items.sort((a, b) => a.value < b.value
+                    ? -1
+                    : a.value > b.value
+                        ? 1
+                        : 0
+                );
+                return items;
+            });
             expect(sortedTree.getRootIds()).toEqual([300, 100, 200]);
             expect(sortedTree.getChildrenByParentId(100).map(n => n.id)).toEqual([110, 120]);
             expect(sortedTree.getChildrenByParentId(120).map(n => n.id)).toEqual([121, 122]);
             expect(sortedTree.getChildrenByParentId(300).map(n => n.id)).toEqual([330, 320, 310]);
         });
-
-        it('should return sorted tree by sortBy function', () => {
-            const sortBy = ((i: TestItem, sorting: SortingOption) => i[sorting.field as keyof TestItem] || '');
-
-            const sortedTree = testTree.sort({ sorting: [{ field: 'value', direction: 'asc' }], sortBy });
-            expect(sortedTree.getRootIds()).toEqual([300, 100, 200]);
-            expect(sortedTree.getChildrenByParentId(100).map(n => n.id)).toEqual([110, 120]);
-            expect(sortedTree.getChildrenByParentId(120).map(n => n.id)).toEqual([121, 122]);
-            expect(sortedTree.getChildrenByParentId(300).map(n => n.id)).toEqual([330, 320, 310]);
-        });
-
     });
 
     describe('search', () => {
