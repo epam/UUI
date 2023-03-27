@@ -44,7 +44,7 @@ export interface ComputeSubtotals<TItem, TSubtotals> {
     compute: (a: TSubtotals, b: TSubtotals) => TSubtotals;
 };
 
-export type IsSubtotalsRecord<TItem, TSubtotals> = {
+export type IsSubtotalsRecordFn<TItem, TSubtotals> = {
     isSubtotalsRecord?: (record: TItem | TSubtotals) => record is TSubtotals;
 }
 

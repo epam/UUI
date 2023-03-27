@@ -2,7 +2,7 @@ import { SortingOption } from "./dataQuery";
 import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from "./props";
 import { IDndActor } from './dnd';
 import { Link } from './objects';
-import { IsSubtotalsRecord } from "../data";
+import { IsSubtotalsRecordFn } from "../data";
 
 /** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
 export interface VirtualListState {
@@ -242,7 +242,7 @@ export interface BaseListViewProps<TItem, TId, TFilter, TSubtotals = void> {
      */
     selectAll?: true | false;
 
-    isSubtotalsRecord?: IsSubtotalsRecord<TItem, TSubtotals>['isSubtotalsRecord'];
+    isSubtotalsRecord?: IsSubtotalsRecordFn<TItem, TSubtotals>['isSubtotalsRecord'];
 }
 
 export type SubtotalsDataRowProps<TSubtotals extends {} | void> = TSubtotals extends void
