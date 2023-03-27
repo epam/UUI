@@ -39,9 +39,9 @@ export const MarkBalloonToolbar = () => {
             <ItalicButton editor={ editorRef } />
             <UnderlineButton editor={ editorRef } />
             <CodeButton editor={ editorRef } />
+            <ColorButton editor={ editorRef }/>
             <SuperscriptButton editor={ editorRef } />
             <LinkButton editor={ editorRef }/>
-            <ColorButton editor={ editorRef }/>
         </Toolbar>
     );
 };
