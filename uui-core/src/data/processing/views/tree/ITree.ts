@@ -65,6 +65,7 @@ export interface ITree<TItem, TId, TSubtotals = void> {
     getNodeInfo(id: TId): TreeNodeInfo;
     isFlatList(): boolean;
     setSubtotals(subtotals?: ComputedSubtotals<TId, TSubtotals>): ITree<TItem, TId, TSubtotals>;
+    getSubtotalsPathById(id: TId): DataRowPathItem<TId, TSubtotals>[];
     getSubtotalRecordByParentId(parentId?: TId): SubtotalsRecord<TSubtotals>;
 
     patch(

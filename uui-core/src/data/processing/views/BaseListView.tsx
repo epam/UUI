@@ -179,13 +179,10 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
 
     protected getSubtotalsRowProps(subtotal: TSubtotals, options: { index: number, isFolded: boolean }) {
         const rowOptions = this.props.rowOptions;
-        const id = this.props.getId(subtotal as unknown as TItem);
-        const parentId = this.props.getParentId(subtotal as unknown as TItem);
+        const id = this.props.getId(subtotal as unknown as TItem); // TODO: Fix
+        const parentId = this.props.getParentId(subtotal as unknown as TItem); // TODO: Fix
         const key = id;
-        const pathToParent = this.tree.getPathById(parentId);
-        const item = this.tree.getById(parentId);
-        const pathItem = parentId ? this.tree.getPathItem(item) : undefined;
-        const path = pathItem ? [...pathToParent, pathItem] : pathToParent;
+        const path = this.tree.getSubtotalsPathById(parentId);
         const rowProps = {
             id,
             parentId,
@@ -194,7 +191,7 @@ export abstract class BaseListView<TItem, TId, TFilter, TSubtotals = void> imple
             value: subtotal,
             depth: path.length,
             indent: path.length + 1,
-            path: path as unknown as DataRowPathItem<TId, TSubtotals>[],
+            path,
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
             isFoldable: false,
             isLastChild: false,
