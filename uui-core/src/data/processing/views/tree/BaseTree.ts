@@ -1,7 +1,10 @@
 import { DataSourceState, IMap, DataRowPathItem } from "../../../../types";
 import { SubtotalsRecord } from "./ITree";
 import { CompositeKeysMap } from "./CompositeKeysMap";
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ComputeSubtotals, ComputedSubtotals, ITree, LoadTreeOptions, TreeNodeInfo } from "./ITree";
+import {
+    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ComputeSubtotals,
+    ComputedSubtotals, ITree, LoadTreeOptions, TreeNodeInfo
+} from "./ITree";
 import { TreeParams } from "./ITree";
 import { Tree } from "./Tree";
 
@@ -260,6 +263,22 @@ export abstract class BaseTree<TItem, TId, TSubtotals = void> implements ITree<T
 
     public setSubtotals(subtotals?: ComputedSubtotals<TId, TSubtotals>) {
         return this.newInstance(this.params, this.byId, this.byParentId, this.nodeInfoById, subtotals);
+    }
+
+    private getSubtotalsPathItem(subtotals: TSubtotals) {
+        return {
+            id: this.getId?.(subtotals as unknown as TItem), // TODO: fix this
+            value: subtotals,
+            isLastChild: false,
+        };
+    }
+
+    public getSubtotalsPathById(id: TId) {
+        const item = this.getById(id);
+        const path = this.getPathById(id);
+        const pathItem = this.getPathItem(item);
+
+        return [...path, pathItem].map(({ id }) => this.getSubtotalsPathItem(this.subtotals.get(id)));
     }
 
     public getSubtotalRecordByParentId(parentId: TId) {
