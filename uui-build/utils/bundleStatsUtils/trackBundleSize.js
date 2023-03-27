@@ -4,7 +4,7 @@
  */
 const { logger } = require('../loggerUtils.js');
 const { isAllLocalDependenciesBuilt,
-    getAllMonorepoPackages
+    getAllMonorepoPackages, getAllLocalDependenciesInfo,
 } = require('../monorepoUtils');
 const path = require('path');
 const fs = require('fs');
@@ -87,7 +87,7 @@ async function checkAllModulesAreBuilt() {
 
 async function createCraFromUuiTemplate() {
     if (fs.existsSync(appTargetDirResolved)) {
-        fs.rmdirSync(appTargetDirResolved, { recursive: true });
+        await fs.rmSync(appTargetDirResolved, { recursive: true, force: true  });
     }
     runCmdFromRootSync(CLI.createAppFromTemplate.cmd, CLI.createAppFromTemplate.args);
 }
@@ -99,16 +99,22 @@ async function symlinkAppDependencies() {
 
     // 2. check whether we have any local dependencies with same names and symlink them if so.
     const allLocalPackages = getAllMonorepoPackages();
-    const localDepsToBeSymlinked = potentiallyLocalDeps.reduce((acc, name) => {
+    const localDepsToBeSymlinkedMap = potentiallyLocalDeps.reduce((acc, name) => {
         const loc = allLocalPackages[name];
         if (loc) {
-            acc.push(loc);
+            acc[name] = loc;
+
+            // also, need to add local deps of this local dep. otherwise - it will take from NPM, which is unexpected.
+            const allDepsIncludingTransitive = getAllLocalDependenciesInfo(name);
+            allDepsIncludingTransitive.forEach(({ name }) => {
+                acc[name] = allLocalPackages[name];
+            });
         }
         return acc;
-    }, []);
+    }, {});
 
     // 3. create actual symlinks
-    localDepsToBeSymlinked.forEach(({ name, moduleRootDir }) => {
+    Object.values(localDepsToBeSymlinkedMap).forEach(({ name, moduleRootDir }) => {
         const dirName = path.resolve(moduleRootDir, './build');
         const cmd = 'npm';
         const cwd = appTargetDirResolved;
