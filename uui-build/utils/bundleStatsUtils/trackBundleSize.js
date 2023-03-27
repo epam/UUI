@@ -87,7 +87,7 @@ async function checkAllModulesAreBuilt() {
 
 async function createCraFromUuiTemplate() {
     if (fs.existsSync(appTargetDirResolved)) {
-        await fs.rmSync(appTargetDirResolved, { recursive: true, force: true  });
+        fs.rmSync(appTargetDirResolved, { recursive: true, force: true  });
     }
     runCmdFromRootSync(CLI.createAppFromTemplate.cmd, CLI.createAppFromTemplate.args);
 }
