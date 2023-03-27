@@ -21,8 +21,6 @@ const BUILD_OUTPUT_DIR = "build";
 
 module.exports = { createRollupConfigForModule };
 
-const monoRepoRootRelativePath = getCliArgValue("--configMonorepoRootRelative") || '..'
-
 /**
  * Creates rollup config for the module.
  *
@@ -78,8 +76,6 @@ async function createRollupConfigForModule(options) {
                 preventAssignment: true,
             }),
             nodeResolve({
-                // https://www.npmjs.com/package/@rollup/plugin-node-resolve
-                jail: path.resolve(moduleRootDir, monoRepoRootRelativePath),
                 preferBuiltins: false,
             }),
             commonjs(), // it's needed to import commonjs-only modules without "default" export (the only known example: "draft-js")
