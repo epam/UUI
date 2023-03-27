@@ -4,6 +4,7 @@ import {
     IDataSourceView, DataRowPathItem,
 } from "../../../types";
 import { ItemsComparator, ITree } from "./tree/ITree";
+import { memoComparator } from "uui-core/src/helpers";
 
 interface NodeStats {
     isSomeCheckable: boolean;
@@ -33,6 +34,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected isDestroyed = false;
     protected hasMoreRows = false;
     protected patchComparator: ItemsComparator<TItem>;
+    protected sortingComparator: ItemsComparator<TItem>;
+
 
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
@@ -337,24 +340,30 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         this.hasMoreRows = rootStats.hasMoreRows;
     }
 
-
-    protected getComparator<TFilter>({ sorting, sortBy }: ApplySortOptions<TItem, TId, TFilter>): ItemsComparator<TItem> {
+    private getItemsComparator = (
+        sortingOption: ApplySortOptions<TItem, TId, TFilter>['sorting'][number],
+        sortBy: ApplySortOptions<TItem, TId, TFilter>['sortBy']
+    ) => (a: TItem, b: TItem) => {
         const compareScalars = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
-        const comparers: ((a: TItem, b: TItem) => number)[] = [];
+        const sortByFn = sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
+        const sign = sortingOption.direction === 'desc' ? -1 : 1;
+        return sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + '');
+    };
 
+
+    protected getComposedComparator<TFilter>({ sorting, sortBy }: ApplySortOptions<TItem, TId, TFilter>): ItemsComparator<TItem> {
+        const comparers: ((a: TItem, b: TItem) => number)[] = this.patchComparator ? [this.patchComparator] : [];
         if (sorting) {
             sorting.forEach(sortingOption => {
-                const sortByFn = sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
-                const sign = sortingOption.direction === 'desc' ? -1 : 1;
-                comparers.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
+                const comparator = memoComparator(this.getItemsComparator(sortingOption, sortBy), this.props.getId);
+                comparers.push(comparator);
             });
         }
 
         return (a: TItem, b: TItem) => {
-            for (let n = 0; n < comparers.length; n++) {
-                const comparer = comparers[n];
+            for (let comparer of comparers) {
                 const result = comparer(a, b);
-                if (result != 0) {
+                if (result !== 0) {
                     return result;
                 }
             }
@@ -363,15 +372,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         };
     }
 
-    protected getStableSort(sortOptions: ApplySortOptions<TItem, TId, TFilter>): ApplyStableSort<TItem> {
-        const comparator = this.getComparator(sortOptions);
-
+    protected getStableSort(): ApplyStableSort<TItem> {
         return (items: TItem[]) => {
             const indexes = new Map<TItem, number>();
             items.forEach((item, index) => indexes.set(item, index));
 
             const compare = (a: TItem, b: TItem) => {
-                const result = comparator(a, b);
+                const result = this.sortingComparator(a, b);
                 if (!result) {
                     return indexes.get(a) - indexes.get(b);
                 }
