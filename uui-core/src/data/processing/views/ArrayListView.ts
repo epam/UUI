@@ -109,7 +109,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         let patchedTreeIsUpdated = false;
         if (this.isPatchUpdated(this.props, newProps) || !this.patchedTree || searchTreeIsUpdated) {
-            if (this.props.patch !== newProps.patch && !newProps.patch?.length || !this.patchComparator) {
+            if ((this.props.patch !== newProps.patch && !newProps.patch?.length) || !this.patchComparator) {
                 this.patchComparator = memoComparator(
                     this.props.patchComparator ?? this.defaultPatchComparator,
                     newProps.getId,
