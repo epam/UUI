@@ -3,38 +3,46 @@
  * The generated reports can be compared with each other in order to detect any regression in bundle size.
  */
 const { logger } = require('../loggerUtils.js');
-const { isAllLocalDependenciesBuilt,
+const {
+    isAllLocalDependenciesBuilt,
     getAllMonorepoPackages, getAllLocalDependenciesInfo,
-} = require('../monorepoUtils');
+} = require('../monorepoUtils.js');
 const path = require('path');
 const fs = require('fs');
-const { readPackageJsonContentSync } = require('../packageJsonUtils');
-const { runYarnScriptFromRootSync,
+const { readPackageJsonContentSync } = require('../packageJsonUtils.js');
+const {
+    runYarnScriptFromRootSync,
     runCmdFromRootSync,
-    runCmdSync
+    runCmdSync,
 } = require('../cmdUtils.js');
 const { uuiRoot } = require('../constants.js');
 const {
     APP_TEMPLATE_DIR,
     TEMPLATE_APP_TARGET_DIR,
 } = require('./bundleStatsConstants.js');
-const {comparisonResultToMd} = require("./trackBundleSizeMdFormatter");
-const { compareBundleSizes } = require("./trackBundleSizeComparator");
-const {overrideBaseLineFileSync, getCurrentBaseLineSync, saveComparisonResultsMd} = require("./trackBundleSizeFileUtils");
-const {measureAllBundleSizes} = require("./trackBundleSizeMeasureUtils");
-
+const { comparisonResultToMd } = require('./trackBundleSizeMdFormatter.js');
+const { compareBundleSizes } = require('./trackBundleSizeComparator.js');
+const { overrideBaseLineFileSync, getCurrentBaseLineSync, saveComparisonResultsMd } = require('./trackBundleSizeFileUtils.js');
+const { measureAllBundleSizes } = require('./trackBundleSizeMeasureUtils.js');
 
 const epamPrefix = '@epam/';
 const appTargetDirResolved = path.resolve(uuiRoot, TEMPLATE_APP_TARGET_DIR);
 const webpackConfigResolved = path.resolve(appTargetDirResolved, 'node_modules/react-scripts/config/webpack.config.js');
-const webpackPatch = { replaceWhat: 'resolve: {', replaceTo: 'resolve: {symlinks: false,'};
+const webpackPatch = { replaceWhat: 'resolve: {', replaceTo: 'resolve: {symlinks: false,' };
 const CLI = {
     buildApp: { cmd: 'npm', args: ['run', 'build'] },
-    createAppFromTemplate: { cmd: 'npx', args: ['create-react-app', TEMPLATE_APP_TARGET_DIR, '--template', `file:${APP_TEMPLATE_DIR}`] },
+    createAppFromTemplate: {
+        cmd: 'npx',
+        args: [
+            'create-react-app',
+            TEMPLATE_APP_TARGET_DIR,
+            '--template',
+            `file:${APP_TEMPLATE_DIR}`,
+        ],
+    },
 };
 
-
-module.exports = { trackBundleSize }
+module.exports = { trackBundleSize };
 
 /**
  * Generate report which contains bundle size.
@@ -70,11 +78,11 @@ async function logTimeTook(fn, name) {
 async function runSimpleWorkflow(arr) {
     const fn = async () => {
         for (let i = 0; i < arr.length; i++) {
-            logger.info(``)
+            logger.info('');
             const f = arr[i];
             await logTimeTook(f);
         }
-    }
+    };
     await logTimeTook(fn, 'main');
 }
 
@@ -87,7 +95,7 @@ async function checkAllModulesAreBuilt() {
 
 async function createCraFromUuiTemplate() {
     if (fs.existsSync(appTargetDirResolved)) {
-        fs.rmSync(appTargetDirResolved, { recursive: true, force: true  });
+        fs.rmSync(appTargetDirResolved, { recursive: true, force: true });
     }
     runCmdFromRootSync(CLI.createAppFromTemplate.cmd, CLI.createAppFromTemplate.args);
 }
@@ -95,7 +103,7 @@ async function createCraFromUuiTemplate() {
 async function symlinkAppDependencies() {
     // 1. get list of dependencies which can be symlinked to local folders
     const { dependencies, devDependencies } = readPackageJsonContentSync(appTargetDirResolved);
-    const potentiallyLocalDeps = Object.keys({ ...dependencies, ...devDependencies }).filter(n => n.indexOf(epamPrefix) === 0);
+    const potentiallyLocalDeps = Object.keys({ ...dependencies, ...devDependencies }).filter((n) => n.indexOf(epamPrefix) === 0);
 
     // 2. check whether we have any local dependencies with same names and symlink them if so.
     const allLocalPackages = getAllMonorepoPackages();
@@ -104,10 +112,10 @@ async function symlinkAppDependencies() {
         if (loc) {
             acc[name] = loc;
 
-            // also, need to add local deps of this local dep. otherwise - it will take from NPM, which is unexpected.
+            // also, need to add local deps of this local dep. otherwise - it will take it from NPM, which is unexpected.
             const allDepsIncludingTransitive = getAllLocalDependenciesInfo(name);
-            allDepsIncludingTransitive.forEach(({ name }) => {
-                acc[name] = allLocalPackages[name];
+            allDepsIncludingTransitive.forEach((dt) => {
+                acc[dt.name] = allLocalPackages[dt.name];
             });
         }
         return acc;
@@ -118,10 +126,17 @@ async function symlinkAppDependencies() {
         const dirName = path.resolve(moduleRootDir, './build');
         const cmd = 'npm';
         const cwd = appTargetDirResolved;
-        runCmdSync({ cmd, cwd, args: ['link', dirName, '--save'] });
+        runCmdSync({
+            cmd,
+            cwd,
+            args: [
+                'link',
+                dirName,
+                '--save',
+            ],
+        });
         logger.info(`Symlink created for "${name}".`);
     });
-
 }
 
 async function fixCraConfig() {
@@ -153,4 +168,3 @@ async function compareWithBaseLine(params) {
         saveComparisonResultsMd(comparisonResultMd);
     }
 }
-
