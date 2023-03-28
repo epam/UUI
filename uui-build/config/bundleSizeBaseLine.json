@@ -1,8 +1,8 @@
 {
-  "version": "1.0.0",
-  "timestamp": "2023-03-27",
+  "version": "1.0.1",
+  "timestamp": "2023-03-28",
   "sizes": {
-    "templateApp": 1111778,
+    "templateApp": 977466,
     "@epam/app": 6498498,
     "@epam/draft-rte": 105017,
     "@epam/promo": 159389,
