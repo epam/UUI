@@ -6,7 +6,7 @@ import isEqual from 'lodash.isequal';
 import { memoComparator } from '../../../helpers';
 import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
-import { Tree, LoadTreeOptions, ITree, ItemsComparator } from './tree';
+import { Tree, LoadTreeOptions, ITree } from './tree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
@@ -67,10 +67,6 @@ export interface LazyListViewProps<TItem, TId, TFilter> extends BaseListViewProp
      * @default true
      */
     legacyLoadDataBehavior?: boolean;
-
-    patch?: TItem[];
-    isDeletedProp?: keyof TItem;
-    patchComparator?: ItemsComparator<TItem>;
 }
 
 interface LoadResult<TItem, TId, TFilter> {
@@ -83,12 +79,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
     private cache: ListApiCache<TItem, TId, TFilter>;
-    private memoPatchComparator: ItemsComparator<TItem>;
     private isUpdatePending = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
     private reloading: boolean = false;
-    private defaultPatchComparator = () => -1;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
@@ -130,14 +124,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = true;
 
         if (this.isPatchUpdated(this.props, props)) {
-            if (this.props.patch !== props.patch && !props.patch?.length || !this.memoPatchComparator) {
-                this.memoPatchComparator = memoComparator(
+            if (this.props.patch !== props.patch && !props.patch?.length || !this.patchComparator) {
+                this.patchComparator = memoComparator(
                     this.props.patchComparator ?? this.defaultPatchComparator,
                     props.getId,
                     true,
                 );
             }
-            this.tree = this.originalTree.patch(props.patch, props.isDeletedProp, this.memoPatchComparator);
+            this.tree = this.originalTree.patch(props.patch, props.isDeletedProp, this.patchComparator);
         }
 
         if (!isEqual(newValue?.checked, this.value?.checked)) {
@@ -441,15 +435,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             totalCount,
             selectAll: this.selectAll,
         };
-    }
-
-    protected isPatchUpdated(
-        prevProps: LazyListViewProps<TItem, TId, TFilter>,
-        newProps: LazyListViewProps<TItem, TId, TFilter>,
-    ) {
-        return newProps.patch !== prevProps.patch
-            || newProps.patchComparator !== prevProps.patchComparator
-            || newProps.isDeletedProp !== prevProps.isDeletedProp;
     }
 
     protected getChildCount = (item: TItem): number | undefined => {

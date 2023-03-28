@@ -34,6 +34,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected isDestroyed = false;
     protected hasMoreRows = false;
     protected patchComparator: ItemsComparator<TItem>;
+    protected defaultPatchComparator = () => -1;
+
     protected sortingComparator: ItemsComparator<TItem>;
 
 
@@ -484,6 +486,15 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         || !isEqual(newValue.checked, prevValue.checked)
         || newValue.selectedId !== prevValue.selectedId
         || newValue.folded !== prevValue.folded
+
+    protected isPatchUpdated(
+        prevProps: BaseListViewProps<TItem, TId, TFilter, TSubtotals>,
+        newProps: BaseListViewProps<TItem, TId, TFilter, TSubtotals>,
+    ) {
+        return newProps.patch !== prevProps.patch
+            || newProps.patchComparator !== prevProps.patchComparator
+            || newProps.isDeletedProp !== prevProps.isDeletedProp;
+    }
 
 
     protected sortingWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>

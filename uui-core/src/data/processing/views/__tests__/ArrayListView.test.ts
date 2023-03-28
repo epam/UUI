@@ -28,7 +28,7 @@ const testItems: TItem[] = [
 const totalRowsCount = 12;
 const rootNodesCount = 9;
 
-let dataSource: ArrayDataSource<{ id: number, level: string }, number, any> = null;
+let dataSource: ArrayDataSource<TItem, number, any> = null;
 let view: View = null;
 
 let onValueChange: () => any = null;
@@ -40,7 +40,7 @@ describe('ArrayListView', () => {
     beforeEach(() => {
         onValueChange = jest.fn();
 
-        dataSource = new ArrayDataSource<TItem, number>({
+        dataSource = new ArrayDataSource<TItem, number, any>({
             items: testItems,
             getId: i => i.id,
             getParentId: i => i.parentId,
