@@ -17,7 +17,7 @@ export type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'
 
 export const MultiSwitch = withMods<UuiMultiSwitchProps<any>, MultiSwitchMods>(
     UuiMultiSwitch,
-    () => {},
+    () => [],
     (props) => ({
         color: colorToMod[props.color ?? 'sky'],
     }),

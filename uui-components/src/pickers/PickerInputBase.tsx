@@ -65,8 +65,9 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICa
 
     portalTarget?: HTMLElement;
 
-    /** Styles for input and body components */
+    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */
     inputCx?: CX;
+    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
     bodyCx?: CX;
 };
 

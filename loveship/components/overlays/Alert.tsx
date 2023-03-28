@@ -16,7 +16,7 @@ export interface AlertProps extends Omit<uuiAlertProps, 'color'>, AlertMods {}
 
 export const Alert = withMods<Omit<uuiAlertProps, 'color'>, AlertMods>(
     uuiAlert,
-    () => {},
+    () => [],
     (props) => ({
         ...props,
         color: props.color ?? 'sky',

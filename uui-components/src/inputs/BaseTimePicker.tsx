@@ -14,8 +14,9 @@ export interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, 
         input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
         body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
-    /** Styles for input and body components */
+    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */
     inputCx?: CX;
+    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
     bodyCx?: CX;
 }
 
@@ -68,7 +69,7 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
         }
     }
 
-    handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    handleFocus = () => {
         this.onToggle(true);
     }
 
