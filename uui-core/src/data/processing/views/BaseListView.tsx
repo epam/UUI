@@ -488,8 +488,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         || newValue.folded !== prevValue.folded
 
     protected isPatchUpdated(
-        prevProps: BaseListViewProps<TItem, TId, TFilter, TSubtotals>,
-        newProps: BaseListViewProps<TItem, TId, TFilter, TSubtotals>,
+        prevProps: BaseListViewProps<TItem, TId, TFilter>,
+        newProps: BaseListViewProps<TItem, TId, TFilter>,
     ) {
         return newProps.patch !== prevProps.patch
             || newProps.patchComparator !== prevProps.patchComparator
