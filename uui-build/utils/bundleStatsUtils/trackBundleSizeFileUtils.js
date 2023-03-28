@@ -1,19 +1,24 @@
-const {logger} = require("../loggerUtils");
-const {createFileSync, readJsonFileSync} = require("../fileUtils");
-const path = require("path");
-const {uuiRoot} = require("../constants");
-const {BASE_LINE_PATH, TRACK_BUNDLE_SIZE_REPORT_MD} = require("./bundleStatsConstants");
-const fs = require("fs");
+const { logger } = require('../loggerUtils.js');
+const { createFileSync, readJsonFileSync } = require('../fileUtils.js');
+const path = require('path');
+const { uuiRoot } = require('../constants.js');
+const { BASE_LINE_PATH, TRACK_BUNDLE_SIZE_REPORT_MD } = require('./bundleStatsConstants.js');
+const fs = require('fs');
+
 const pathToBaselineResolved = path.resolve(uuiRoot, BASE_LINE_PATH);
 
 module.exports = {
     overrideBaseLineFileSync,
     getCurrentBaseLineSync,
     saveComparisonResultsMd,
-}
+};
 
 function incrementSemverPatch(version) {
-    const [major, minor, patch] = version.split('.').map(Number);
+    const [
+        major,
+        minor,
+        patch,
+    ] = version.split('.').map(Number);
     return `${major}.${minor}.${patch + 1}`;
 }
 

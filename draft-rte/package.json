@@ -4,7 +4,7 @@
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
-  "epam:uui:main": "build/index.js",
+  "epam:uui:main": "build/index.esm.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
