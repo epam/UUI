@@ -156,15 +156,18 @@ async function buildApp() {
 async function compareWithBaseLine(params) {
     const { overrideBaseline } = params || {};
     const newSizes = await measureAllBundleSizes();
+    console.log('New sizes:');
     console.table(newSizes);
     if (overrideBaseline) {
         overrideBaseLineFileSync(newSizes);
-    } else {
-        const currentBaseLine = getCurrentBaseLineSync();
-        const baseLineSizes = currentBaseLine.sizes;
-        const comparisonResult = compareBundleSizes({ baseLineSizes, newSizes });
-        const comparisonResultMd = comparisonResultToMd({ comparisonResult, currentBaseLine });
-        console.table(comparisonResult);
-        saveComparisonResultsMd(comparisonResultMd);
     }
+    const currentBaseLine = getCurrentBaseLineSync();
+    const baseLineSizes = currentBaseLine.sizes;
+    console.log('Baseline sizes:');
+    console.table(baseLineSizes);
+    const comparisonResult = compareBundleSizes({ baseLineSizes, newSizes });
+    const comparisonResultMd = comparisonResultToMd({ comparisonResult, currentBaseLine });
+    console.log('Comparison results:');
+    console.table(comparisonResult);
+    saveComparisonResultsMd(comparisonResultMd);
 }
