@@ -1,14 +1,20 @@
-module.exports = { comparisonResultToMd }
+module.exports = { comparisonResultToMd };
 
 function comparisonResultToMd({ comparisonResult, currentBaseLine }) {
-    const attrs = ['baseLineSize', 'size', 'diffLabel', 'withinThreshold', 'thresholdLabel'];
+    const attrs = [
+        'baseLineSize',
+        'size',
+        'diffLabel',
+        'withinThreshold',
+        'thresholdLabel',
+    ];
     const headerRemap = {
         baseLineSize: `Baseline Size (v${currentBaseLine.version})`,
         size: 'Size',
         diffLabel: 'Diff',
         withinThreshold: 'Within Threshold',
         thresholdLabel: 'Threshold (min - max)',
-    }
+    };
     const formatHeader = (h) => {
         return headerRemap[h] || h;
     };
@@ -37,14 +43,14 @@ function comparisonResultToMd({ comparisonResult, currentBaseLine }) {
         '\n',
     ].join('<br>');
 
-    return `${descriptionMd}\n${tableMd}`
+    return `${descriptionMd}\n${tableMd}`;
 }
 
 function formatMdTable(obj, attrs, formatHeader = (h) => h, formatValue = (h, v) => v) {
     const header = '| Module |' + attrs.map(formatHeader).join('|') + '|';
     const headerSep = '|:-----:|' + attrs.map(() => ':-----:').join('|') + '|';
     const rows = Object.keys(obj).reduce((acc, rowId) => {
-        const rowContent = attrs.map(a => {
+        const rowContent = attrs.map((a) => {
             return formatValue(a, obj[rowId][a]);
         }).join('|');
         acc.push(`|${rowId}|${rowContent}|`);
@@ -52,5 +58,3 @@ function formatMdTable(obj, attrs, formatHeader = (h) => h, formatValue = (h, v)
     }, []);
     return `${header}\n${headerSep}\n${rows.join('\n')}`;
 }
-
-
