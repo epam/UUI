@@ -4,7 +4,7 @@ import {
     IDataSourceView, DataRowPathItem,
 } from "../../../types";
 import { ItemsComparator, ITree } from "./tree/ITree";
-import { memoComparator } from "uui-core/src/helpers";
+import { memoComparator } from "../../../helpers";
 
 interface NodeStats {
     isSomeCheckable: boolean;

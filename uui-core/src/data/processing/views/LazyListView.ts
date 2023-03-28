@@ -134,6 +134,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 this.memoPatchComparator = memoComparator(
                     this.props.patchComparator ?? this.defaultPatchComparator,
                     props.getId,
+                    true,
                 );
             }
             this.tree = this.originalTree.patch(props.patch, props.isDeletedProp, this.memoPatchComparator);

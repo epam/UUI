@@ -32,7 +32,7 @@ export interface TreeParams<TItem, TId> {
     complexIds?: boolean;
 }
 
-export type ItemsComparator<TItem> = (newItem: TItem, existingItem: TItem) => number;
+export type ItemsComparator<TItem> = (newItem: TItem, existingItem: TItem, zeroIfNotInCache?: boolean) => number;
 
 export interface ITree<TItem, TId> {
     clearStructure(): ITree<TItem, TId>;
