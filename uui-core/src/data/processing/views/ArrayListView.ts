@@ -1,3 +1,4 @@
+import { memoComparator } from "../../../helpers";
 import {
     DataRowProps, SortingOption, IEditable, DataSourceState,
     DataSourceListProps, IDataSourceView, BaseListViewProps,
@@ -21,6 +22,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     originalTree: ITree<TItem, TId>;
     searchTree: ITree<TItem, TId>;
     filteredTree: ITree<TItem, TId>;
+    patchedTree: ITree<TItem, TId>;
     sortedTree: ITree<TItem, TId>;
 
     private refreshCache: boolean = false;
@@ -52,7 +54,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         }
 
         if (prevTree != this.tree || this.isCacheIsOutdated(newValue, currentValue)) {
-            this.updateTree(currentValue, newValue);
+            this.updateTree(currentValue, newValue, newProps);
             this.updateCheckedLookup(this.value.checked);
             this.rebuildRows();
         } else {
@@ -84,7 +86,11 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         });
     }
 
-    private updateTree(prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) {
+    private updateTree(
+        prevValue: DataSourceState<TFilter, TId>,
+        newValue: DataSourceState<TFilter, TId>,
+        newProps: ArrayListViewProps<TItem, TId, TFilter>
+    ) {
         const { filter, search, sorting } = newValue;
         const { getSearchFields, getFilter, sortBy } = this.props;
 
@@ -101,11 +107,24 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             searchTreeIsUpdated = true;
         }
 
-        if (this.sortingWasChanged(prevValue, newValue) || !this.sortedTree || searchTreeIsUpdated) {
+        let patchedTreeIsUpdated = false;
+        if (this.isPatchUpdated(this.props, newProps) || !this.patchedTree || searchTreeIsUpdated) {
+            if (this.props.patch !== newProps.patch && !newProps.patch?.length || !this.patchComparator) {
+                this.patchComparator = memoComparator(
+                    this.props.patchComparator ?? this.defaultPatchComparator,
+                    newProps.getId,
+                    true,
+                );
+            }
+            this.patchedTree = this.searchTree.patch(newProps.patch, newProps.isDeletedProp, this.patchComparator);
+            patchedTreeIsUpdated = true;
+        }
+
+        if (this.sortingWasChanged(prevValue, newValue) || !this.sortedTree || patchedTreeIsUpdated) {
             if (this.sortingWasChanged(prevValue, newValue) || !this.sortingComparator) {
                 this.sortingComparator = this.getComposedComparator({ sorting, sortBy });
             }
-            this.sortedTree = this.searchTree.sort(this.getStableSort());
+            this.sortedTree = this.patchedTree.sort(this.getStableSort());
         }
 
         this.tree = this.sortedTree;
