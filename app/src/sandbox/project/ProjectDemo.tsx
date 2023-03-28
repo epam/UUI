@@ -56,7 +56,7 @@ export const ProjectDemo = () => {
         type: 'array',
         listState: tableState,
         setListState: setTableState,
-        items: Object.values(value.items),
+        items: Object.values(savedValue.items),
 
         getId: i => i.id,
         getParentId: i => i.parentId,
@@ -70,6 +70,8 @@ export const ProjectDemo = () => {
                 onDrop: handleDrop,
             },
         }),
+
+        patch: Object.values(value.items),
     }, []);
 
     const columns = useMemo(() => getColumns({ insertTask, deleteTask: () => {} }), []);
