@@ -362,7 +362,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 comparers.push(comparator);
             });
         }
-
         return (a: TItem, b: TItem) => {
             for (let comparer of comparers) {
                 const result = comparer(a, b);
