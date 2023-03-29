@@ -41,8 +41,20 @@ export function useScrollSpy(props?: IScrollSpyProps): IScrollSpyApi {
         if (observedNodes.length === 0) return;
 
         const observer = new IntersectionObserver(entries => {
-            const intersectingElement = entries.find(entry => entry.isIntersecting);
-            setCurrentActive((intersectingElement?.target as HTMLElement)?.dataset?.spy);
+            if (entries.length === 1) {
+                const elementName = (entries[0]?.target as HTMLElement)?.dataset?.spy;
+                setCurrentActive(
+                    (prev) =>
+                        entries[0].isIntersecting
+                            ? elementName
+                            : prev !== elementName
+                                ? prev
+                                : '',
+                );
+            } else {
+                const intersectingElement = entries.find(entry => entry.isIntersecting);
+                setCurrentActive((intersectingElement?.target as HTMLElement)?.dataset?.spy);
+            }
         }, {
             ...props.options,
             root: props?.options?.root || document.querySelector('body'),
