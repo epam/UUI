@@ -208,7 +208,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             })),
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
             fixedBodyPosition: this.props.fixedBodyPosition,
-            bodyCx: this.props.bodyCx,
         };
     }
 
@@ -264,7 +263,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,
             value: this.getSearchValue(),
-            inputCx,
+            cx: inputCx,
         };
     }
 
