@@ -17,12 +17,17 @@ const defaultMemoComparatorBuilder = <TItem, TId>(
     const cache = new Map();
     return (comparator) =>
         (a: TItem, b: TItem,) => {
-            const id = getId(b);
-            if (!cache.has(id)) {
-                cache.set(id, b);
+            const aId = getId(a);
+            if (!cache.has(aId)) {
+                cache.set(aId, a);
             }
 
-            return comparator(a, cache.get(id));
+            const bId = getId(b);
+            if (!cache.has(bId)) {
+                cache.set(bId, b);
+            }
+
+            return comparator(cache.get(aId), cache.get(bId));
         };
 };
 
@@ -32,16 +37,16 @@ const memoComparatorBuilderWithSkip = <TItem, TId>(
     const cache = new Map();
     return (comparator, shouldApplyComparator) =>
         (a: TItem, b: TItem, zeroIfNotInCache = true) => {
-            if (shouldApplyComparator && !shouldApplyComparator(b)) {
-                return 0;
-            }
-
             const id = getId(b);
             if (!cache.has(id)) {
                 if (zeroIfNotInCache) {
                     return 0;
                 }
                 cache.set(id, b);
+            }
+
+            if (shouldApplyComparator && !shouldApplyComparator(b)) {
+                return 0;
             }
 
             return comparator(a, cache.get(id));
