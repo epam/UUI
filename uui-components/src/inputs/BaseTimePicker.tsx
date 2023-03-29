@@ -1,6 +1,6 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { DropdownBodyProps, isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler, IHasRawProps } from '@epam/uui-core';
+import { DropdownBodyProps, isChildFocusable, IEditable, IDisableable, ICanBeReadonly, IHasPlaceholder, TimePickerValue, IDropdownToggler, IHasRawProps, CX } from '@epam/uui-core';
 import customParseFormat from "dayjs/plugin/customParseFormat.js";
 import { Dropdown } from '../overlays';
 dayjs.extend(customParseFormat);
@@ -14,6 +14,10 @@ export interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, 
         input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
         body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
+    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */
+    inputCx?: CX;
+    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
+    bodyCx?: CX;
 }
 
 interface TimePickerState {
@@ -65,7 +69,7 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
         }
     }
 
-    handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    handleFocus = () => {
         this.onToggle(true);
     }
 

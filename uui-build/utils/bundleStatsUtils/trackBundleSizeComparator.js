@@ -1,4 +1,5 @@
-const {COMPARISON_THRESHOLD_PERCENTAGE} = require("./bundleStatsConstants");
+const { COMPARISON_THRESHOLD_PERCENTAGE } = require('./bundleStatsConstants.js');
+
 module.exports = { compareBundleSizes };
 
 function normalizeSizeNumber(num) {
@@ -30,7 +31,7 @@ function compareBundleSizes({ baseLineSizes, newSizes }) {
         acc[name] = {
             baseLineSize: bytesToKb(baseLineSize),
             size: bytesToKb(size),
-            diffLabel:`${sign}${bytesToKb(diff)}`,
+            diffLabel: `${sign}${bytesToKb(diff)}`,
             withinThreshold,
             thresholdLabel: `${bytesToKb(threshold[0])} - ${bytesToKb(threshold[1])}`,
         };
