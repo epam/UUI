@@ -180,7 +180,7 @@ describe('Tree - patch', () => {
         const patchedTree = tree.patch(
             [patchedItem],
             'isDeleted',
-            (_, { id: existingId }) => (existingId < 120) ? 1 : -1,
+            ({ id: existingId }) => (existingId < 120) ? 1 : -1,
         );
         expect(patchedTree['byId'].has(320)).toBeTruthy();
         expect(patchedTree['byParentId'].has(100)).toBeTruthy();
@@ -207,7 +207,7 @@ describe('Tree - patch', () => {
         const patchedTree = tree.patch(
             [newItem],
             'isDeleted',
-            ({ id }, { id: existingId }) => (id > existingId) ? 1 : -1,
+            ({ id: existingId }, { id }) => (id > existingId) ? 1 : -1,
         );
         expect(patchedTree['byId'].has(335)).toBeTruthy();
         expect(patchedTree === tree).toBeFalsy();
@@ -224,7 +224,7 @@ describe('Tree - patch', () => {
         const patchedTree = tree.patch(
             [deletedItem, updatedItem, newItem],
             'isDeleted',
-            ({ id }, { id: existingId }) => (id > existingId) ? 1 : -1,
+            ({ id: existingId }, { id }) => (id > existingId) ? 1 : -1,
         );
         expect(patchedTree['byId'].has(deletedItem.id)).toBeFalsy();
         expect(patchedTree['byId'].has(updatedItem.id)).toBeTruthy();
@@ -252,7 +252,7 @@ describe('Tree - patch', () => {
         const patchedTree2 = tree.patch(
             [updatedItem2],
             'isDeleted',
-            ({ id }, { id: existingId }) => (id > existingId) ? 1 : -1,
+            ({ id: existingId }, { id }) => (id > existingId) ? 1 : -1,
         );
         expect(patchedTree2['byId'].has(updatedItem2.id)).toBeTruthy();
         expect(patchedTree2['byId'].get(updatedItem2.id)).toEqual(updatedItem2);
