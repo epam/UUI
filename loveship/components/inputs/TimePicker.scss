@@ -55,10 +55,10 @@
             fill: $night600;
         }
     }
+}
 
-    :global(.uui-dropdown-body) {
-        align-items: center;
-    }
+:global(.uui-dropdown-body) {
+    align-items: center;
 }
 
 .date-input {
