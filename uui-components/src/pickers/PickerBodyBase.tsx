@@ -1,6 +1,6 @@
 import * as React from 'react';
 import isEqual from 'lodash.isequal';
-import { DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile } from '@epam/uui-core';
+import { CX, DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile } from '@epam/uui-core';
 
 export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
@@ -10,6 +10,7 @@ export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<Data
     search: IEditable<string>;
     showSearch?: boolean | 'auto';
     fixedBodyPosition?: boolean;
+    bodyCx?: CX;
 }
 
 export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends React.Component<TProps> {

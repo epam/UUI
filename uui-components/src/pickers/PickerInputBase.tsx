@@ -208,6 +208,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             })),
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
             fixedBodyPosition: this.props.fixedBodyPosition,
+            bodyCx: this.props.bodyCx,
         };
     }
 
@@ -227,7 +228,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     getTogglerProps(rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> {
         const selectedRows = this.getSelectedRows();
         const {
-            isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch,
+            isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, inputCx,
             validationMessage, validationProps, disableClear: propDisableClear, icon, iconPosition, prefix, suffix,
         } = this.props;
         const searchPosition = this.getSearchPosition();
@@ -263,6 +264,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             toggleDropdownOpening: this.toggleDropdownOpening,
             rawProps: this.props.rawProps?.input,
             value: this.getSearchValue(),
+            inputCx,
         };
     }
 
