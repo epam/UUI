@@ -1,5 +1,5 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -9,6 +9,7 @@ import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
 import { insertOrMoveTask } from './helpers';
+import isEqual from 'lodash.isequal';
 
 interface FormState {
     items: Record<number, Task>;
@@ -29,6 +30,8 @@ const metadata: Metadata<FormState> = {
 let savedValue: FormState = { items: getDemoTasks() };
 
 export const ProjectDemo = () => {
+    const [prevPatch, setPrevPatch] = useState<Record<number, Task>>();
+
     const { lens, value, setValue, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
@@ -52,10 +55,18 @@ export const ProjectDemo = () => {
 
     const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
+    const onTableStateChange = (state: DataTableState) => {
+        if (tableState.sorting !== state.sorting) {
+            setPrevPatch(value.items)
+        }
+
+        setTableState(state);
+    };
+
     const { rows, listProps } = useList({
         type: 'array',
         listState: tableState,
-        setListState: setTableState,
+        setListState: onTableStateChange,
         items: Object.values(savedValue.items),
 
         getId: i => i.id,
@@ -72,6 +83,7 @@ export const ProjectDemo = () => {
         }),
 
         patch: Object.values(value.items),
+        shouldApplyPatchComparator: (item) => !prevPatch?.[item.id] || !isEqual(prevPatch[item.id], value.items[item.id]),
     }, []);
 
     const columns = useMemo(() => getColumns({ insertTask, deleteTask: () => {} }), []);
@@ -103,7 +115,7 @@ export const ProjectDemo = () => {
             getRows={ () => rows }
             columns={ columns }
             value={ tableState }
-            onValueChange={ setTableState }
+            onValueChange={ onTableStateChange }
             showColumnsConfig
             allowColumnsResizing
             allowColumnsReordering

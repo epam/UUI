@@ -1,4 +1,4 @@
-import { memoComparator } from "../../../helpers";
+import { memoComparatorBuilder } from "../../../helpers";
 import {
     DataRowProps, SortingOption, IEditable, DataSourceState,
     DataSourceListProps, IDataSourceView, BaseListViewProps,
@@ -109,13 +109,16 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         let patchedTreeIsUpdated = false;
         if (this.isPatchUpdated(this.props, newProps) || !this.patchedTree || searchTreeIsUpdated) {
-            if ((this.props.patch !== newProps.patch && !newProps.patch?.length) || !this.patchComparator) {
-                this.patchComparator = memoComparator(
-                    this.props.patchComparator ?? this.defaultPatchComparator,
+            if ((this.props.patch !== newProps.patch && !newProps.patch?.length) || !this.patchComparatorBuilder) {
+                this.patchComparatorBuilder = memoComparatorBuilder(
                     newProps.getId,
                     true,
                 );
             }
+            this.patchComparator = this.patchComparatorBuilder(
+                this.props.patchComparator ?? this.defaultPatchComparator,
+                this.props.shouldApplyPatchComparator,
+            );
             this.patchedTree = this.searchTree.patch(newProps.patch, newProps.isDeletedProp, this.patchComparator);
             patchedTreeIsUpdated = true;
         }
