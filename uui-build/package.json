@@ -1,13 +1,14 @@
 {
   "name": "@epam/uui-build",
-  "version": "4.11.0-alpha.1",
+  "version": "4.10.2",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "generate-components-api": "ts-node getComponentsPropsSet.ts",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "track-bundle-size": "node scripts/trackBundleSize.js"
   },
   "dependencies": {
     "@lerna/package-graph": "6.4.0",
@@ -38,10 +39,11 @@
     "react-app-polyfill": "3.0.0",
     "react-test-renderer": "18.2.0",
     "replace-in-files": "^2.0.3",
-    "rollup": "3.12.1",
+    "rollup": "3.20.0",
     "rollup-plugin-postcss-modules": "2.1.0",
     "rollup-plugin-visualizer": "5.8.3",
     "sass": "1.57.0",
+    "source-map-explorer": "2.5.3",
     "stylelint": "13.4.0",
     "stylelint-config-sass-guidelines": "7.0.0",
     "stylelint-config-standard": "20.0.0",

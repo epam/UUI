@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2023-03-28",
+  "sizes": {
+    "templateApp": 977466,
+    "@epam/app": 6469567,
+    "@epam/draft-rte": 104351,
+    "@epam/promo": 158711,
+    "@epam/uui-extra": 205,
+    "@epam/loveship": 221162,
+    "@epam/uui-components": 319720,
+    "@epam/uui-core": 215005,
+    "@epam/uui-db": 44869,
+    "@epam/uui-docs": 105510,
+    "@epam/uui-editor": 230453,
+    "@epam/uui-timeline": 51687,
+    "@epam/uui": 692760
+  }
+}
