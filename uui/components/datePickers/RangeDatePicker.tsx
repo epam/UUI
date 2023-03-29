@@ -55,7 +55,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
             >
                 <TextInput
                     icon={ systemIcons[this.props.size || '36'].calendar }
-                    cx={ cx(this.props.bodyCx, css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'from' && uuiMod.focus) }
+                    cx={ cx(css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'from' && uuiMod.focus) }
                     size={ this.props.size || '36' }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                     value={ this.state.inputValue.from }
@@ -70,7 +70,7 @@ export class RangeDatePicker extends BaseRangeDatePicker<RangeDatePickerProps> {
                 />
                 <div className={ css.separator } />
                 <TextInput
-                    cx={ cx(this.props.bodyCx, css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'to' && uuiMod.focus) }
+                    cx={ cx(css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'to' && uuiMod.focus) }
                     placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                     size={ this.props.size || '36' }
                     value={ this.state.inputValue.to }

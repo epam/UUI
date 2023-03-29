@@ -11,7 +11,7 @@ export type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;
 
 export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
     UuiText,
-    () => {},
+    () => [],
     (props) => ({
         color: props.color ?? 'night700',
         font: props.font ?? 'sans',

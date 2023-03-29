@@ -1,12 +1,12 @@
 /**
  * Creates shared rollup config with default settings.
  */
-const { createRollupConfigForModule } = require('../../rollup/rollup.config');
+const { createRollupConfigForModule } = require('../../rollup/rollup.config.js');
 
 module.exports = {
     default: async () => {
         const indexFileRelativePath = 'index.tsx';
-        const packageJsonTransform = content => {
+        const packageJsonTransform = (content) => {
             content.main = './index.js';
             content.module = './index.esm.js';
             if (content.exports) {
@@ -16,5 +16,5 @@ module.exports = {
             return content;
         };
         return await createRollupConfigForModule({ indexFileRelativePath, packageJsonTransform });
-    }
-}
+    },
+};

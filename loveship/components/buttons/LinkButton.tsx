@@ -7,4 +7,4 @@ export interface LinkButtonMods extends TextSettings {
     font?: types.FontStyle;
 }
 
-export const LinkButton = withMods<LinkButtonProps, LinkButtonMods>(UuiLinkButton, () => {});
+export const LinkButton = withMods<LinkButtonProps, LinkButtonMods>(UuiLinkButton);
