@@ -11,7 +11,7 @@ export type NotificationCardProps = Omit<uuiNotificationCardProps, 'color'> & No
 
 export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color'>, NotificationCardMods>(
     uuiNotificationCard,
-    () => {},
+    () => [],
     (props) => ({
         ...props,
         color: props.color ?? 'night600',

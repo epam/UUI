@@ -23,7 +23,7 @@ export type ButtonProps = Omit<UuiButtonProps, "color"> & ButtonMods;
 
 export const Button = withMods<Omit<UuiButtonProps, "color">, ButtonMods>(
     uuiButton,
-    () => {},
+    () => [],
     (props) => ({
         mode: mapFillToMod[props.fill] || mapFillToMod.solid,
     }),
