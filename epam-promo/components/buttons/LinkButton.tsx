@@ -6,4 +6,4 @@ export interface LinkButtonMods {
     color?: types.EpamPrimaryColor;
 }
 
-export const LinkButton = withMods<LinkButtonProps, LinkButtonMods>(UuiLinkButton, () => {});
+export const LinkButton = withMods<LinkButtonProps, LinkButtonMods>(UuiLinkButton);

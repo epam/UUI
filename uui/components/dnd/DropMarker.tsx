@@ -14,11 +14,11 @@ export class DropMarker extends React.Component<DropMarkerProps> {
                 className={ css.blocker }
             /> }
             <div
-                className={ cx({
-                    [css.marker]: true,
-                    [css[this.props.position]]: true,
-                    [this.props.cx]: !!this.props.cx,
-                }) }
+                className={ cx([
+                    css.marker,
+                    css[this.props.position],
+                    this.props?.cx,
+                ]) }
             />
         </> : null;
     }
