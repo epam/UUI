@@ -245,6 +245,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     patch?: TItem[];
     isDeletedProp?: keyof TItem;
     patchComparator?: ItemsComparator<TItem>;
+    shouldApplyPatchComparator?: (item: TItem) => boolean;
 }
 
 export type IDataSourceView<TItem, TId, TFilter> = {

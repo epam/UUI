@@ -33,6 +33,10 @@ export interface TreeParams<TItem, TId> {
 }
 
 export type ItemsComparator<TItem> = (a: TItem, b: TItem, zeroIfNotInCache?: boolean) => number;
+export type ItemsComparatorBuilder<TItem> = (
+    comparator: ItemsComparator<TItem>,
+    shouldApplyComparator?: (item: TItem) => boolean
+) => ItemsComparator<TItem>;
 
 export interface ITree<TItem, TId> {
     clearStructure(): ITree<TItem, TId>;

@@ -3,7 +3,7 @@ import {
     LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps,
 } from "../../../types";
 import isEqual from 'lodash.isequal';
-import { memoComparator } from '../../../helpers';
+import { memoComparatorBuilder } from '../../../helpers';
 import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
 import { Tree, LoadTreeOptions, ITree } from './tree';
@@ -125,12 +125,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         if (this.isPatchUpdated(this.props, props)) {
             if (this.props.patch !== props.patch && !props.patch?.length || !this.patchComparator) {
-                this.patchComparator = memoComparator(
-                    this.props.patchComparator ?? this.defaultPatchComparator,
+                this.patchComparatorBuilder = memoComparatorBuilder(
                     props.getId,
                     true,
                 );
             }
+            this.patchComparator = this.patchComparatorBuilder(
+                this.props.patchComparator ?? this.defaultPatchComparator,
+                this.props.shouldApplyPatchComparator,
+            )
             this.tree = this.originalTree.patch(props.patch, props.isDeletedProp, this.patchComparator);
         }
 

@@ -3,8 +3,8 @@ import {
     BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
     IDataSourceView, DataRowPathItem,
 } from "../../../types";
-import { ItemsComparator, ITree } from "./tree/ITree";
-import { memoComparator } from "../../../helpers";
+import { ItemsComparator, ItemsComparatorBuilder, ITree } from "./tree/ITree";
+import { memoComparatorBuilder } from "../../../helpers";
 
 interface NodeStats {
     isSomeCheckable: boolean;
@@ -33,6 +33,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     public selectAll?: ICheckable;
     protected isDestroyed = false;
     protected hasMoreRows = false;
+    protected patchComparatorBuilder: ItemsComparatorBuilder<TItem>;
     protected patchComparator: ItemsComparator<TItem>;
     protected defaultPatchComparator = () => -1;
 
@@ -357,7 +358,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const comparers: ((a: TItem, b: TItem) => number)[] = this.patchComparator ? [this.patchComparator] : [];
         if (sorting) {
             sorting.forEach(sortingOption => {
-                const comparator = memoComparator(this.getItemsComparator(sortingOption, sortBy), this.props.getId);
+                const comparator = memoComparatorBuilder(this.props.getId)(this.getItemsComparator(sortingOption, sortBy));
                 comparers.push(comparator);
             });
         }

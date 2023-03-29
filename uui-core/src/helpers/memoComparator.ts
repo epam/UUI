@@ -1,46 +1,49 @@
-import { ItemsComparator } from "../data";
+import { ItemsComparatorBuilder } from "../data";
 
-export const memoComparator = <TItem, TId>(
-    comparator: ItemsComparator<TItem>,
+export const memoComparatorBuilder = <TItem, TId>(
     getId: (item: TItem) => TId,
     withSkipIfNotInCache?: boolean,
-): ItemsComparator<TItem> => {
+): ItemsComparatorBuilder<TItem> => {
     if (withSkipIfNotInCache) {
-        return memoComparatorWithSkip(comparator, getId);
+        return memoComparatorBuilderWithSkip(getId);
     }
 
-    return defaultMemoComparator(comparator, getId);
+    return defaultMemoComparatorBuilder(getId);
 };
 
-const defaultMemoComparator = <TItem, TId>(
-    comparator: ItemsComparator<TItem>,
+const defaultMemoComparatorBuilder = <TItem, TId>(
     getId: (item: TItem) => TId,
-): ItemsComparator<TItem> => {
+): ItemsComparatorBuilder<TItem> => {
     const cache = new Map();
-    return (a: TItem, b: TItem,) => {
-        const id = getId(b);
-        if (!cache.has(id)) {
-            cache.set(id, b);
-        }
+    return (comparator) =>
+        (a: TItem, b: TItem,) => {
+            const id = getId(b);
+            if (!cache.has(id)) {
+                cache.set(id, b);
+            }
 
-        return comparator(a, cache.get(id));
-    };
+            return comparator(a, cache.get(id));
+        };
 };
 
-const memoComparatorWithSkip = <TItem, TId>(
-    comparator: ItemsComparator<TItem>,
+const memoComparatorBuilderWithSkip = <TItem, TId>(
     getId: (item: TItem) => TId,
-): ItemsComparator<TItem> => {
+): ItemsComparatorBuilder<TItem> => {
     const cache = new Map();
-    return (a: TItem, b: TItem, zeroIfNotInCache = true) => {
-        const id = getId(b);
-        if (!cache.has(id)) {
-            if (zeroIfNotInCache) {
+    return (comparator, shouldApplyComparator) =>
+        (a: TItem, b: TItem, zeroIfNotInCache = true) => {
+            if (shouldApplyComparator && !shouldApplyComparator(b)) {
                 return 0;
             }
-            cache.set(id, b);
-        }
 
-        return comparator(a, cache.get(id));
-    };
+            const id = getId(b);
+            if (!cache.has(id)) {
+                if (zeroIfNotInCache) {
+                    return 0;
+                }
+                cache.set(id, b);
+            }
+
+            return comparator(a, cache.get(id));
+        };
 };
