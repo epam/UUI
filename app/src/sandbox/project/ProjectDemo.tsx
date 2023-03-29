@@ -52,12 +52,13 @@ export const ProjectDemo = () => {
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true }), []);
 
     const handleDrop = useCallback((params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData), []);
-
-    const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
+    const defaultTableState = { sorting: [{ field: 'order' }] };
+    const [tableState, setTableState] = React.useState<DataTableState>(defaultTableState);
 
     const onTableStateChange = (state: DataTableState) => {
         if (tableState.sorting !== state.sorting) {
-            setPrevPatch(value.items)
+            const isDefaultSorting = isEqual(state.sorting, defaultTableState.sorting);
+            setPrevPatch(isDefaultSorting || !state.sorting.length ? {} : value.items)
         }
 
         setTableState(state);
