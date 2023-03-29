@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus, CX } from "@epam/uui-core";
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus } from "@epam/uui-core";
 import { IconContainer } from '../layout';
 import css from './PickerToggler.scss';
 import { i18n } from "../i18n";
@@ -22,7 +22,6 @@ export interface PickerTogglerProps<TItem = any, TId = any> extends IPickerToggl
     minCharsToSearch?: number;
     prefix?: React.ReactNode;
     suffix?: React.ReactNode;
-    inputCx?: CX;
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -144,7 +143,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 (!props.isReadonly && !props.isDisabled && props.onClick) && uuiMarkers.clickable,
                 (!props.isReadonly && !props.isDisabled && inFocus) && uuiMod.focus,
                 props.cx,
-                props.inputCx,
             ) }
             tabIndex={ (inFocus || props.isReadonly || props.isDisabled) ? -1 : 0 }
             onFocus={ handleFocus }
