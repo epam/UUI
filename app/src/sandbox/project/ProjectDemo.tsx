@@ -61,7 +61,7 @@ export const ProjectDemo = () => {
             setPrevPatch(isDefaultSorting || !state.sorting.length ? {} : value.items)
         }
 
-        setTableState(state);
+        setTableState(!state.sorting || !state.sorting.length ? { ...state, ...defaultTableState } : state);
     };
 
     const { rows, listProps } = useList({
@@ -84,6 +84,7 @@ export const ProjectDemo = () => {
         }),
 
         patch: Object.values(value.items),
+        patchComparator: (a, b) => a.order < b.order ? -1 : 1,
         shouldApplyPatchComparator: (item) => !prevPatch?.[item.id] || !isEqual(prevPatch[item.id], value.items[item.id]),
     }, []);
 
