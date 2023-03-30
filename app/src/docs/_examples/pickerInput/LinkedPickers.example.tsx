@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { City, Country } from "@epam/uui-docs";
-import { useAsyncDataSource, useLazyDataSource, useUuiContext } from "@epam/uui";
+import { useAsyncDataSource, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { FlexCell, LabeledInput, PickerInput } from "@epam/promo";
 
 export default function ArrayLinkedPickers() {

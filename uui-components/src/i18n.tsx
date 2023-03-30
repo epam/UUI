@@ -18,4 +18,7 @@ export const i18n = {
     labeledInput: {
         optionalFieldLabel: 'This field is optional',
     },
+    numericInput: {
+        locale: undefined as string,
+    },
 };

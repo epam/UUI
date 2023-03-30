@@ -1,6 +1,0 @@
-:global(.panel-vars) {
-    --panel-border-radius: var(--border-radius);
-    --panel-bg-color: var(--surface-color);
-    //noinspection CssInvalidFunction
-    --panel-shadow: var(--shadow, 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10)); // WebStorm Bag Report https://youtrack.jetbrains.com/issue/WEB-54442
-}

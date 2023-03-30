@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3 } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI } from '../common';
 
 export class PaginatorDoc extends BaseDocsBlock {
     title = 'Paginator';
@@ -8,6 +8,7 @@ export class PaginatorDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/widgets/paginator.props.tsx',
             [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/paginator.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/widgets/paginator.props.tsx',
         };
     }
 

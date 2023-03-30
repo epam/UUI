@@ -30,13 +30,13 @@
 .root {
     &:hover, &:focus-within {
         :global(.uui-radioinput) {
-            border-color: var(--radio-input-border-color-hover);
+            border-color: var(--uui-radio-input-border-hover);
 
             &:global(.uui-checked) {
-                border-color: var(--radio-input-border-color-hover);
+                border-color: var(--uui-radio-input-border-hover);
 
                 :global(.uui-icon) {
-                    fill: var(--radio-input-fill-color-hover);
+                    fill: var(--uui-radio-input-fill-hover);
                 }
             }
         }
@@ -44,35 +44,35 @@
         &:global(.uui-disabled),
         &:global(.uui-readonly) {
             :global(.uui-radioinput) {
-                background-color: var(--radio-input-bg-color-disabled);
-                border-color: var(--radio-input-border-color-disabled);
+                background-color: var(--uui-radio-input-bg-disabled);
+                border-color: var(--uui-radio-input-border-disabled);
 
                 :global(.uui-icon) {
-                    fill: var(--radio-input-fill-color-checked-disabled);
+                    fill: var(--uui-radio-input-fill-checked-disabled);
                 }
             }
         }
     }
 
     :global(.uui-radioinput) {
-        background-color: var(--radio-input-bg-color);
-        border: 1px solid var(--radio-input-border-color);
+        background-color: var(--uui-radio-input-bg);
+        border: 1px solid var(--uui-radio-input-border);
         align-self: baseline;
         flex-shrink: 0;
         box-sizing: border-box;
 
         &:global(.uui-checked) {
-            border-color: var(--radio-input-border-color-checked);
+            border-color: var(--uui-radio-input-border-checked);
 
             :global(.uui-icon) {
-                fill: var(--radio-input-fill-color-checked);
+                fill: var(--uui-radio-input-fill-checked);
             }
         }
     }
 
     :global(.uui-input-label) {
         //@include typography-inline(); TODO: ???
-        color: var(--radio-input-label-color);
+        color: var(--uui-radio-input-label);
         flex-grow: 1;
         font-family: var(--font-regular);
         margin-left: 12px;
@@ -82,33 +82,33 @@
 
     &:global(.uui-invalid) {
         :global(.uui-icon) {
-            fill: var(--radio-input-error-color);
+            fill: var(--uui-radio-input-error);
         }
 
         :global(.uui-input-label) {
-            color: var(--radio-input-error-color);
+            color: var(--uui-radio-input-error);
         }
 
         :global(.uui-radioinput) {
-            border-color: var(--radio-input-error-color);
+            border-color: var(--uui-radio-input-error);
         }
 
         :global(.uui-checked) {
             &:global(.uui-radioinput) {
 
                 :global(.uui-icon) {
-                    fill: var(--radio-input-error-color);
+                    fill: var(--uui-radio-input-error);
                 }
             }
         }
 
         &:hover, &:focus-within {
             :global(.uui-radioinput) {
-                border-color: var(--radio-input-error-color);
+                border-color: var(--uui-radio-input-error);
             }
 
             :global(.uui-icon) {
-                fill: var(--radio-input-error-color);
+                fill: var(--uui-radio-input-error);
             }
         }
     }
@@ -119,19 +119,19 @@
 
         :global(.uui-radioinput) {
             cursor: default;
-            background-color: var(--radio-input-bg-color-disabled);
-            border-color: var(--radio-input-border-color-disabled);
+            background-color: var(--uui-radio-input-bg-disabled);
+            border-color: var(--uui-radio-input-border-disabled);
 
             :global(.uui-icon) {
-                fill: var(--radio-input-fill-color-checked-disabled);
+                fill: var(--uui-radio-input-fill-checked-disabled);
             }
 
 
             &:global(.uui-checked) {
-                border-color: var(--radio-input-border-color-checked-disabled);
+                border-color: var(--uui-radio-input-border-checked-disabled);
 
                 :global(.uui-icon) {
-                    fill: var(--radio-input-fill-color-checked-disabled);
+                    fill: var(--uui-radio-input-fill-checked-disabled);
                 }
             }
         }
@@ -139,11 +139,11 @@
         &:global(.uui-invalid) {
             :global(.uui-radioinput) {
                 cursor: default;
-                background-color: var(--radio-input-bg-color-disabled);
-                border-color: var(--radio-input-border-color-disabled);
+                background-color: var(--uui-radio-input-bg-disabled);
+                border-color: var(--uui-radio-input-border-disabled);
 
                 :global(.uui-icon) {
-                    fill: var(--radio-input-fill-color-checked-disabled);
+                    fill: var(--uui-radio-input-fill-checked-disabled);
                 }
             }
         }
@@ -151,13 +151,13 @@
 
     &:global(.uui-readonly) {
         :global(.uui-input-label) {
-            color: var(--radio-input-label-color);
+            color: var(--uui-radio-input-label);
         }
     }
 
     &:global(.uui-disabled) {
         :global(.uui-input-label) {
-            color: var(--radio-input-label-color-disabled);
+            color: var(--uui-radio-input-label-disabled);
         }
     }
 

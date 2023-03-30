@@ -1,15 +1,16 @@
-import * as React from 'react';
-import { MouseEvent } from 'react';
-import {
-    DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
-    TooltipCoreProps, IHasCX,
-} from '@epam/uui-core';
+import React from 'react';
+import { DataTableCellProps, RenderEditorProps, uuiElement, uuiMod } from '@epam/uui-core';
 import css from './DataTableCell.scss';
-import { FlexCell } from '../layout/';
+import { FlexCell } from '../layout';
+import { DataTableCellOverlay } from './DataTableCellOverlay';
 
 interface DataTableCellState {
     inFocus: boolean;
 }
+
+const uuiDataTableCellMarkers = {
+    uuiTableCell: 'uui-table-cell',
+} as const;
 
 export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue>) => {
     const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
@@ -19,7 +20,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     let content: React.ReactNode;
     let isEditable = !!props.onValueChange;
 
-    const handleEditorClick = React.useCallback((e: MouseEvent) => {
+    const handleEditorClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
         const input: HTMLInputElement = (e.target as HTMLElement).querySelector('.' + uuiElement.input);
         input?.focus();
     }, []);
@@ -86,6 +87,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             alignSelf={ props.isFirstColumn ? undefined : props.column.alignSelf }
             rawProps={ { role: 'cell' } }
             cx={ [
+                uuiDataTableCellMarkers.uuiTableCell,
                 css.cell,
                 props.column.cx,
                 props.cx,
@@ -99,36 +101,3 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         </FlexCell>
     );
 };
-
-
-interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
-    inFocus: boolean;
-    columnIndex: number;
-    rowIndex: number;
-    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
-}
-
-function DataTableCellOverlay(props: DataTableCellOverlayProps) {
-    const overlay = (
-        <div
-            className={ cx(
-                css.overlay,
-                props.isInvalid && uuiMod.invalid,
-                props.inFocus && uuiMod.focus,
-                props.cx,
-            ) }
-        />
-    );
-
-    if (props.inFocus) {
-        return props.renderTooltip({
-            trigger: 'manual',
-            placement: 'top',
-            value: props.isInvalid,
-            content: props.validationMessage,
-            children: overlay,
-        });
-    } else {
-        return overlay;
-    }
-}

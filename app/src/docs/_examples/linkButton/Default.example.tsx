@@ -1,7 +1,6 @@
 import React from 'react';
+import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import { Dropdown, DropdownContainer, LinkButton, Panel, Text } from '@epam/promo';
-import { DropdownBodyProps } from '@epam/uui-core';
-import { IDropdownToggler } from '@epam/uui';
 import { ReactComponent as navigationBack } from '@epam/assets/icons/common/navigation-back-18.svg';
 import css from './DefaultExample.scss';
 

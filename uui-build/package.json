@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "4.10.1",
+  "version": "4.10.2",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -43,6 +43,7 @@
     "rollup-plugin-postcss-modules": "2.1.0",
     "rollup-plugin-visualizer": "5.8.3",
     "sass": "1.57.0",
+    "source-map-explorer": "2.5.3",
     "stylelint": "13.4.0",
     "stylelint-config-sass-guidelines": "7.0.0",
     "stylelint-config-standard": "20.0.0",
@@ -51,8 +52,7 @@
     "ts-morph": "17.0.1",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
-    "tslint-react": "^3.6.0",
-    "source-map-explorer": "2.5.3"
+    "tslint-react": "^3.6.0"
   },
   "devDependencies": {
     "typescript": "4.9.3"

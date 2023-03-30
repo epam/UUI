@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 import { DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx } from "@epam/uui-core";
-import { FlexRow, FlexSpacer } from '../layout';
-import { Anchor } from '../navigation/Anchor';
+import { FlexRow } from '../layout';
+import { Anchor } from '../navigation';
 import css from './DataTableRowContainer.scss';
 
 export interface DataTableRowContainerProps<TItem, TId, TFilter> extends IClickable, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLAnchorElement | HTMLDivElement | HTMLButtonElement>> {
@@ -22,6 +22,8 @@ const uuiDataTableRowCssMarkers = {
     uuiScrollShadowRight: 'uui-scroll-shadow-right',
 } as const;
 
+const CELL_BORDER_WIDTH = 1;
+
 // Scrolling/Fixed sections wrappers, as well as the whole row itself, has to have matching flex-item parameters.
 // This is required to have the same width, as the sum of column's width, and grow in the same proportion, as columns inside.
 // E.g. for 2 columns: { width: 100, grow: 0 }, { width: 200, grow: 1 } we compute { width: 300, grow: 1 }
@@ -31,7 +33,7 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     let width = 0;
 
     columns.forEach(column => {
-        const columnWidth = (typeof column.width === 'number' ? column.width : (column.minWidth || 0));
+        const columnWidth = (typeof column.width === 'number' ? (column.fix ? column.width : column.width - CELL_BORDER_WIDTH) : (column.minWidth || 0));  // (column.width - CELL_BORDER_WIDTH) do not forget the negative margin of the scrolling columns in the calculation of the width
         width += columnWidth;
         grow += typeof column.grow === 'number' ? column.grow : 0;
     });
@@ -41,6 +43,7 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     return {
         flex: `${grow} 0 ${width}px`,
         minWidth: `${width}px`,
+        '--uui-dt-cell-border-width': `${ CELL_BORDER_WIDTH }px`,
     };
 }
 
@@ -136,4 +139,4 @@ export const DataTableRowContainer = React.forwardRef(<TItem, TId, TFilter>(prop
             </FlexRow>
         )
     );
-});
+}) as <TItem, TId, TFilter = any>(props: DataTableRowContainerProps<TItem, TId, TFilter> & { ref?: React.ForwardedRef<HTMLDivElement> }) => React.ReactElement;

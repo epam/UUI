@@ -28,7 +28,20 @@ async function buildUuiModule() {
         await buildModuleUsingRollup({
             moduleRootDir,
             copyAsIs: ['readme.md', 'assets'],
-            packageJsonTransform: content => { delete content['epam:uui:main']; },
+            packageJsonTransform: content => {
+                return Object.keys(content).reduce((acc, key) => {
+                    if (key === 'epam:uui:main') {
+                        // delete
+                        return acc;
+                    }
+                    if (key === 'main') {
+                        // "module" is read by major bundlers: Rollup, Webpack, etc.
+                        acc.module = 'index.esm.js';
+                    }
+                    acc[key] = content[key];
+                    return acc;
+                }, {});
+            },
         });
     } else {
         await buildStaticModule({ moduleRootDir });

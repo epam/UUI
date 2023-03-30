@@ -1,32 +1,11 @@
 import * as React from 'react';
-import { Text, ColumnPickerFilter, FlexRow } from '@epam/loveship';
-import { IEditable, DataQueryFilter, DataColumnProps, LazyDataSource, LazyDataSourceApi, ILens } from '@epam/uui';
-import { svc } from '../../services';
-import type { Person, PersonGroup } from '@epam/uui-docs';
+import { Text, FlexRow } from '@epam/loveship';
+import { DataQueryFilter, DataColumnProps } from '@epam/uui-core';
+import type { Person } from '@epam/uui-docs';
 import type { PersonTableRecordId } from './types';
 import type { PersonsSummary } from './PersonsTableDemo';
 
 export function getColumns() {
-    function makeFilterRenderCallback<TField extends keyof Person>(fieldName: TField, api: LazyDataSourceApi<any, any, any>) {
-        const dataSource = new LazyDataSource({ api });
-
-        const Filter = (props: IEditable<any>) => (
-            <ColumnPickerFilter
-                dataSource={ dataSource }
-                selectionMode='multi'
-                valueType='id'
-                getName={ i => i.name || "Not Specified" }
-                { ...props }
-            />
-        );
-
-        return (filterLens: ILens<any>) => <Filter { ...filterLens.prop(fieldName).toProps() } />;
-    }
-
-    const renderDepartmentFilter = makeFilterRenderCallback('departmentId', svc.api.demo.departments);
-
-    const renderJobTitlesFilter = makeFilterRenderCallback('jobTitleId', svc.api.demo.jobTitles);
-
     const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
         {
             key: 'name',
@@ -44,7 +23,6 @@ export function getColumns() {
             width: 200,
             grow: 1,
             isSortable: true,
-            renderFilter: renderJobTitlesFilter,
             isFilterActive: f => !!f.jobTitle,
         },
         {
@@ -54,7 +32,6 @@ export function getColumns() {
             width: 200,
             grow: 1,
             isSortable: true,
-            renderFilter: renderDepartmentFilter,
             isFilterActive: f => !!f.departmentId,
         },
         {
@@ -93,17 +70,6 @@ export function getColumns() {
             width: 48,
             fix: 'right',
         },
-    ];
-
-    const groupColumns: DataColumnProps<PersonGroup, number, DataQueryFilter<Person>>[] = [
-        {
-            key: 'name',
-            caption: "Name",
-            render: p => <Text>{ p.name }</Text>,
-            grow: 1,
-            width: 500,
-            fix:'left',
-        }
     ];
 
     const summaryColumns: DataColumnProps<PersonsSummary>[] = [
@@ -166,7 +132,6 @@ export function getColumns() {
 
     return {
         personColumns,
-        groupColumns,
         summaryColumns,
     };
 }
