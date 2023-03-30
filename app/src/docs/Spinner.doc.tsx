@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4 } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI } from '../common';
 
 export class SpinnerDoc extends BaseDocsBlock {
     title = 'Spinner';
@@ -8,6 +8,7 @@ export class SpinnerDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/widgets/spinner.props.ts',
             [UUI4]: './app/src/docs/_props/epam-promo/components/widgets/spinner.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/widgets/spinner.props.tsx',
         };
     }
 

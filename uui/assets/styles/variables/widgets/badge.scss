@@ -1,51 +1,51 @@
-:global(.badge-color-info) {
-    --badge-bg-color: var(--info-color);
-    --badge-bg-color-hover: var(--info-active-color);
+:global(.badge-info) {
+    --uui-badge-bg: var(--uui-info);
+    --uui-badge-bg-hover: var(--uui-info-active);
     //--bg-color-semitransparent: #{lighten(#008ACE, 50%)};
     //--border-color-semitransparent: #{lighten($blue, 40%)};
-    --badge-caption-color-solid: white;
-    //--caption-color-semitransparent: #{darken($blue, 10%)};
-    //--caption-color-semitransparent-hover: #{darken($blue, 20%)};
-    //--caption-color-transparent: #{$gray80};
-    --badge-count-bg-color: white;
-    --badge-count-color: var(--text-secondary-color);
+    --uui-badge-caption-solid: white;
+    //--uui-caption-semitransparent: #{darken($blue, 10%)};
+    //--uui-caption-semitransparent-hover: #{darken($blue, 20%)};
+    //--uui-caption-transparent: #{$gray80};
+    --uui-badge-count-bg: white;
+    --uui-badge-count: var(--uui-text-secondary);
 }
 
-:global(.badge-color-success) {
-    --badge-bg-color: var(--success-color);
-    --badge-bg-color-hover: var(--success-active-color);
+:global(.badge-success) {
+    --uui-badge-bg: var(--uui-success);
+    --uui-badge-bg-hover: var(--uui-success-active);
     //--bg-color-semitransparent: #{$cyan-lightest};
     //--border-color-semitransparent: #{$cyan-light};
-    --badge-caption-color-solid: white;
-    //--caption-color-semitransparent: #{$cyan-dark};
-    //--caption-color-semitransparent-hover: #{$cyan-darkest};
-    //--caption-color-transparent: #{$gray80};
-    --badge-count-bg-color: white;
-    --badge-count-color: var(--text-secondary-color);
+    --uui-badge-caption-solid: white;
+    //--uui-caption-semitransparent: #{$cyan-dark};
+    //--uui-caption-semitransparent-hover: #{$cyan-darkest};
+    //--uui-caption-transparent: #{$gray80};
+    --uui-badge-count-bg: white;
+    --uui-badge-count: var(--uui-text-secondary);
 }
 
-:global(.badge-color-warning) {
-    --badge-bg-color: var(--warning-color);
-    --badge-bg-color-hover: var(--warning-active-color);
+:global(.badge-warning) {
+    --uui-badge-bg: var(--uui-warning);
+    --uui-badge-bg-hover: var(--uui-warning-active);
     //--bg-color-semitransparent: #{lighten($green, 50%)};
     //--border-color-semitransparent: #{lighten($green, 40%)};
-    --badge-caption-color-solid: white;
-    //--caption-color-semitransparent: #{darken($green, 10%)};
-    //--caption-color-semitransparent-hover: #{darken($green, 20%)};
-    //--caption-color-transparent: #{$gray80};
-    --badge-count-bg-color: white;
-    --badge-count-color: var(--text-secondary-color);
+    --uui-badge-caption-solid: white;
+    //--uui-caption-semitransparent: #{darken($green, 10%)};
+    //--uui-caption-semitransparent-hover: #{darken($green, 20%)};
+    //--uui-caption-transparent: #{$gray80};
+    --uui-badge-count-bg: white;
+    --uui-badge-count: var(--uui-text-secondary);
 }
 
-:global(.badge-color-error) {
-    --badge-bg-color: var(--error-color);
-    --badge-bg-color-hover: var(--error-active-color);
+:global(.badge-error) {
+    --uui-badge-bg: var(--uui-error);
+    --uui-badge-bg-hover: var(--uui-error-active);
     //--bg-color-semitransparent: #{lighten($amber, 40%)};
     //--border-color-semitransparent: #{lighten($amber, 30%)};
-    --badge-caption-color-solid: var(--text-primary-color);
-    //--caption-color-semitransparent: #995A00;
-    //--caption-color-semitransparent-hover: #804000;
-    //--caption-color-transparent: #{$gray80};
-    --badge-count-bg-color: white;
-    --badge-count-color: var(--text-secondary-color);
+    --uui-badge-caption-solid: var(--uui-text-primary);
+    //--uui-caption-semitransparent: #995A00;
+    //--uui-caption-semitransparent-hover: #804000;
+    //--uui-caption-transparent: #{$gray80};
+    --uui-badge-count-bg: white;
+    --uui-badge-count: var(--uui-text-secondary);
 }
