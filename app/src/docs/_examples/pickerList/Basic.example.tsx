@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Country } from "@epam/uui-docs";
-import { useAsyncDataSource, useUuiContext } from "@epam/uui";
+import { useAsyncDataSource, useUuiContext } from "@epam/uui-core";
 import { PickerList } from "@epam/loveship";
 
 export default function BasicPickerListExample() {

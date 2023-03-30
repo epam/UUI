@@ -98,7 +98,7 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
                     { ...rowProps }
                     depth={ isParent ? 0 : 1 }
                     cx={ isParent && css.parent }
-                    isFoldable={ false }
+                    isFoldable={ isParent }
                     isChecked={ isParent ? false : rowProps.isChecked }
                     isChildrenChecked={ false }
                     isSelectable={ isParent ? false : rowProps.isSelectable }

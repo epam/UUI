@@ -1,0 +1,50 @@
+.search-input {
+    flex-basis: 200px;
+    max-width: 500px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 18px;
+    background-color: var(--uui-main_menu-search-bg);
+    fill: var(--uui-main_menu-search-icon);
+    padding: 0 6px;
+    margin: 0 12px;
+    transition: background-color 0.3s ease-out, flex-basis 0.3s ease-in-out;
+
+    :global(.uui-input) {
+        color: var(--uui-main_menu-text);
+        font-family: var(--font-regular);
+
+        &::placeholder {
+            color: var(--uui-main_menu-search-border);
+        }
+    }
+
+    :global(.uui-caption),
+    :global(.uui-input) {
+        padding: 8px 6px;
+        line-height: 18px;
+        font-size: 14px;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            height: 16px;
+            max-width: 16px;
+        }
+    }
+
+    :global(.uui-icon-cancel) {
+        svg {
+            height: 24px;
+            max-width: 24px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &:global(.uui-input-box) {
+        min-height: 36px;
+    }
+}

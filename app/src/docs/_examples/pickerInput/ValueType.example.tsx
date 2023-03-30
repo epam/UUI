@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { Text, PickerInput } from '@epam/promo';
-import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { Text, PickerInput, FlexCell } from '@epam/promo';
+import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 export default function ValueTypeExamplePicker() {
@@ -14,7 +14,7 @@ export default function ValueTypeExamplePicker() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     return (
-        <div>
+        <FlexCell width={ 300 }>
             <PickerInput
                 dataSource={ dataSource }
                 value={ value }
@@ -27,6 +27,6 @@ export default function ValueTypeExamplePicker() {
             <Text>
                 Selected users: { value.map(i => i.name).join(', ') }
             </Text>
-        </div>
+        </FlexCell>
     );
 }

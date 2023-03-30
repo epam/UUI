@@ -22,7 +22,7 @@ export const SmallBattery = (props: ISmallBatteryProps) => {
         case "NoSkill":
             return (
                 <div className={ cx(css.ratingBlockAlone) }>
-                    <IconContainer icon={ CrossIcon } color="gray50" cx={ css.blockAloneSvgWrapper }/>
+                    <IconContainer icon={ CrossIcon } style={ {fill: 'lime'} } cx={ [css.blockAloneSvgWrapper, css.iconGray50] }/>
                 </div>
             );
         default:

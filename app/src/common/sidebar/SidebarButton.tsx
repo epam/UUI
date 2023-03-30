@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { ReactComponent as DropdownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import css from './SidebarButton.scss';
-import { cx } from '@epam/uui';
+import { cx } from '@epam/uui-core';
 
 export interface SidebarButtonProps extends ButtonProps {
     isActive: boolean;

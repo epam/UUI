@@ -1,4 +1,5 @@
 export * from './DefaultContext';
+export * from './FlexRowContext';
 export * from './FormContext';
 export * from './ResizableContext';
 export * from './RelativePanelContext';

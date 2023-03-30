@@ -1,6 +1,6 @@
 import React from 'react';
 import type { TApi } from '../../../data';
-import { Metadata, useUuiContext, useAsyncDataSource, useLazyDataSource, UuiContexts } from "@epam/uui";
+import { Metadata, useUuiContext, useAsyncDataSource, useLazyDataSource, UuiContexts } from '@epam/uui-core';
 import { useForm, FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, PickerInput, SuccessNotification, ErrorNotification } from "@epam/promo";
 import { ReactComponent as UndoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as RedoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';

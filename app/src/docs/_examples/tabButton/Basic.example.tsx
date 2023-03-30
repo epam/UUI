@@ -7,7 +7,7 @@ export default function BasicTabButtonExample() {
 
     return (
         <FlexCell grow={ 1 }>
-            <FlexRow borderBottom='gray40' background='none' >
+            <FlexRow borderBottom background='none' >
                 <TabButton
                     caption={ 'Main' }
                     isLinkActive={ value === 'Main' }
@@ -35,7 +35,7 @@ export default function BasicTabButtonExample() {
                     size='36'
                 />
             </FlexRow>
-            <FlexRow borderBottom='gray40' background='none' >
+            <FlexRow borderBottom background='none' >
                 <TabButton
                     caption={ 'Main' }
                     isLinkActive={ value === 'Main' }
@@ -63,7 +63,7 @@ export default function BasicTabButtonExample() {
                     size='48'
                 />
             </FlexRow>
-            <FlexRow borderBottom='gray40' background='none'>
+            <FlexRow borderBottom background='none'>
                 <TabButton
                     caption={ 'Main' }
                     isLinkActive={ value === 'Main' }
