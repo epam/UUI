@@ -48,6 +48,7 @@ export function useScrollSpy(props?: IScrollSpyProps): IScrollSpyApi {
                 setCurrentActive((prevElementName) => {
                     if (isCurrentElementIntersecting) return currentElementName;
 
+                    // if previous 'currentActive' is not the one which exited the screen - don't change 'currentActive'
                     if (prevElementName !== currentElementName) return prevElementName;
 
                     return '';
