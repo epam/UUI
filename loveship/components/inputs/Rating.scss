@@ -49,12 +49,6 @@
             cursor: default;
         }
     }
-
-    &:global(.uui-invalid) {
-        :global(.uui-rating-star) {
-            fill: $fire;
-        }
-    }
 }
 
 .tooltip {
