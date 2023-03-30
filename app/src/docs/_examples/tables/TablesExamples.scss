@@ -8,6 +8,10 @@
 }
 
 :global(.uui-table-row) {
+    &.task-is-done {
+        --uui-dt-row-bg: var(--gray10);
+    }
+
     .configItem {
         visibility: hidden;
 

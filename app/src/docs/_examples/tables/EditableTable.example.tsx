@@ -1,9 +1,11 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
-import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
+import {
+    Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
     Panel, PickerInput, TextArea, TextInput, useForm,
 } from '@epam/promo';
 import { FlexSpacer } from '@epam/uui-components';
+import css from './TablesExamples.scss';
 
 // Define interface describe data for each row
 interface ToDoItem {
@@ -170,11 +172,12 @@ export default function EditableTableExample() {
 
     // Render row callback. In simple cases, you don't need, as default implementation would work ok.
     // Here we override it to change row background for 'isDone' items.
-    const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => {
-        return <DataTableRow
+    const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => (
+        <DataTableRow
             { ...props }
-        />;
-    }, []);
+            cx={ props.value.isDone ? css.taskIsDone : undefined }
+        />
+    ), []);
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return <Panel shadow={ true }>
