@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should be rendered correctly 1`] = `
+<button
+  className="container uui-button-box uui-enabled button-primary root size-36 mode-solid"
+  onClick={[Function]}
+  tabIndex={-1}
+  type="button"
+/>
+`;
+
+exports[`Button should be rendered correctly with props 1`] = `
+<button
+  aria-disabled={false}
+  className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-outline"
+  disabled={false}
+  onClick={[Function]}
+  tabIndex={0}
+  type="button"
+>
+  <div
+    className="uui-count"
+  >
+    10
+  </div>
+  <div
+    className="uui-caption"
+  >
+    Click me
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className="flipY"
+    />
+  </div>
+  <div
+    className="container uui-icon uui-enabled -clickable -clickable"
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
+  </div>
+</button>
+`;

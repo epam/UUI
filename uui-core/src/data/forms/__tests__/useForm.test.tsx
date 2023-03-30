@@ -134,7 +134,7 @@ describe('useForm', () => {
             act(() => result.current.lens.prop("dummy").set("hello"));
             expect(result.current.isChanged).toBe(true);
 
-            await handleSave(result.current.save);
+            await act(() => handleSave(result.current.save));
             expect(result.current.value).toStrictEqual({ dummy: "hello", tummy: '' });
             expect(onSaveSpy).toHaveBeenCalled();
             expect(result.current.isInvalid).toBe(false);
@@ -296,7 +296,7 @@ describe('useForm', () => {
             act(() => result.current.lens.prop('dummy').set('hello'));
             expect(result.current.isChanged).toBe(true);
 
-            await handleSave(result.current.save);
+            await act(() => handleSave(result.current.save));
 
             expect(result.current.isChanged).toBe(false);
         });
@@ -444,7 +444,7 @@ describe('useForm', () => {
             expect(result.current.canUndo).toBe(true);
             expect(result.current.canRedo).toBe(false);
 
-            await handleSave(result.current.save);
+            await act(() => handleSave(result.current.save));
             expect(result.current.isChanged).toBe(false);
         });
 
@@ -460,7 +460,7 @@ describe('useForm', () => {
             expect(result.current.isChanged).toBe(true);
             expect(testSvc.uuiLocks.getCurrentLock()).not.toBe(null);
 
-            await handleSave(result.current.save);
+            await act(() => handleSave(result.current.save));
             expect(testSvc.uuiLocks.getCurrentLock()).toBe(null);
         });
 
@@ -514,7 +514,7 @@ describe('useForm', () => {
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
 
-            await handleSave(result.current.save);
+            await act(() => handleSave(result.current.save));
             expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey)).toBe(null);
             expect(onSuccessSpy).toHaveBeenCalled();
         });
@@ -600,7 +600,7 @@ describe('useForm', () => {
                 beforeLeave: () => Promise.resolve(false),
             }));
 
-            await handleSave(firstResult.current.save);
+            await act(() => handleSave(firstResult.current.save));
             expect(firstResult.current.isInvalid).toBe(false);
 
             unmount();
@@ -612,7 +612,7 @@ describe('useForm', () => {
                 getMetadata: () => testMetadata,
             }));
 
-            await handleSave(secondResult.current.save);
+            await act(() => handleSave(secondResult.current.save));
             expect(secondResult.current.lens.toProps()).toHaveProperty('isInvalid', true);
             expect(secondResult.current.lens.prop('dummy').toProps()).toHaveProperty('isInvalid', true);
             expect(secondResult.current.lens.prop('dummy').toProps()).toHaveProperty('validationMessage', serverResponse.validation.validationProps.dummy.validationMessage);
@@ -648,7 +648,7 @@ describe('useForm', () => {
                 beforeLeave: () => Promise.resolve(false),
             }));
 
-            await handleSave(result.current.save);
+            await act(() => handleSave(result.current.save));
             expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
             expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty("isInvalid", true);
             expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty("validationMessage", serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage);
@@ -698,7 +698,7 @@ describe('useForm', () => {
                 beforeLeave: () => Promise.resolve(false),
             }));
 
-            await handleSave(result.current.save);
+            await act(() => handleSave(result.current.save));
 
             expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
             expect(result.current.lens.prop("deep").toProps().isInvalid).toBe(true);

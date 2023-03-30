@@ -38,3 +38,11 @@
 }
 
 @include drag-handle(5px, 9px, 9px, 125%);
+
+.icon-green {
+    fill: var(--uui-success);
+}
+
+.icon-gray50 {
+    fill: var(--uui-secondary);
+}

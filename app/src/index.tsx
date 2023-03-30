@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui';
+import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui-core';
 import { Snackbar, Modals } from '@epam/uui-components';
 import { skinContext as promoSkinContext } from '@epam/promo';
 import { AmplitudeListener } from "./analyticsEvents";
@@ -11,8 +11,6 @@ import App from './App';
 import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
 import './index.scss';
-import './themes/index.css';
-import { render } from 'react-dom';
 
 const history = createBrowserHistory();
 

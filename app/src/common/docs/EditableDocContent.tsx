@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Value } from 'slate';
-import { IEditableDebouncer } from '@epam/uui';
+import { IEditableDebouncer } from '@epam/uui-core';
 import { Blocker } from '@epam/loveship';
 import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin, notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin, codeBlockPlugin,
 } from "@epam/uui-editor";
