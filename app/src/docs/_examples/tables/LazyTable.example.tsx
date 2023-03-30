@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui-core';
 import { Text, DataTable, Panel, IconButton } from '@epam/promo';
-import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui';
 import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from "@epam/loveship";
 import { City } from '@epam/uui-docs';
 import { Dropdown } from "@epam/uui-components";
@@ -8,7 +8,7 @@ import css from "./TablesExamples.scss";
 import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 import { ReactComponent as PencilIcon } from "@epam/assets/icons/common/content-edit-18.svg";
 
-export default function CitiesTable(props: unknown) {
+export default function CitiesTable() {
     const svc = useUuiContext();
     const [tableState, setTableState] = useState<DataSourceState>({});
 
@@ -105,7 +105,6 @@ export default function CitiesTable(props: unknown) {
                 getRows={ view.getVisibleRows }
                 headerTextCase='upper'
                 columns={ citiesColumns }
-                { ...(props as object) }
             />
         </Panel>
     );

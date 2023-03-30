@@ -1,9 +1,10 @@
-# 4.xx.xx - xx.xx.2023
-
-**What's New**
+# 4.10.2 - 24.03.2023
 
 **What's Fixed**
-* [Form]: fixed isChanged calculation, for already saved and then changed form
+* [Form]: fixed isChanged calculation for already saved and then changed form
+* [Dropdown]: fixed issue with '0' value for closeDelay prop
+* [MainMenu]: fixed issue when menu resize caused removing body overflow for opened modals
+* [TimePicker]: fixed body content alignment
 
 
 # 4.10.1 - 10.03.2023
@@ -46,6 +47,7 @@
 * [Anchor][Button]: added `rel='noopener noreferrer'` where `target='_blank'`
 * [PickerInput]: update correctly `dataSourceState` when programmatically handling previously loaded data, if API returns empty array
 * [ColumnsConfigurationModal]: Removed disabling of a checkbox if a column has a `fix` property and fixed the problem with pinning the column after unpinning, if it has `fix` property in the column config.
+* [NumericInput]: fixed `NumericInput` by preventing rounding up numbers if `formatOptions` are defined
 * [Rating]: fixed loveship `Rating` color for selected stars
 * [useTableState]: now correctly work with react-router baseUrl
 * [RangeDatePicker]: move focus from 'to' value to 'from' value, in case when 'from' empty

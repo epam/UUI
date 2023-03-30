@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlexRow should be rendered correctly 1`] = `
+<div
+  className="root size-36 container align-items-center"
+  style={
+    Object {
+      "columnGap": undefined,
+      "rowGap": undefined,
+    }
+  }
+/>
+`;
+
+exports[`FlexRow should be rendered correctly with props 1`] = `
+<div
+  className="root size-24 padding-12 vPadding-12 margin-12 topShadow borderBottom spacing-12 container -clickable align-items-top"
+  onClick={[Function]}
+  style={
+    Object {
+      "columnGap": undefined,
+      "rowGap": undefined,
+    }
+  }
+/>
+`;

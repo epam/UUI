@@ -1,10 +1,15 @@
 import * as React from 'react';
-import { FlexRow, FlexCell, SearchInput, FlexSpacer, Text, PickerInput, Button } from '@epam/loveship';
-import { PersonsTable } from './PersonsTable';
+import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow } from '@epam/loveship';
 import { Person, PersonGroup } from '@epam/uui-docs';
-import { DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, Lens, LazyDataSourceApi } from '@epam/uui';
+import {
+    DataSourceState, useArrayDataSource, useList, LazyDataSourceApiRequest,
+    DataQueryFilter, LazyDataSourceApiResponse, Lens, DataColumnProps, LazyDataSourceApi
+} from '@epam/uui-core';
 import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
 import { svc } from '../../services';
+import { getColumns } from "./columns";
+import { getFilters } from "./filters";
+import cx from "classnames";
 import css from './PersonsTableDemo.scss';
 
 interface PersonsTableState extends DataSourceState {
@@ -29,6 +34,8 @@ const formatCurrency = (value: number) => {
 };
 
 export const PersonsTableDemo = () => {
+    const { personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
+
     const [summary, setSummary] = React.useState<PersonsSummary & Pick<PersonsApiResponse, 'totalCount'>>({
         totalCount: undefined,
         totalSalary: '',
@@ -90,19 +97,19 @@ export const PersonsTableDemo = () => {
 
         const getPersons = async (rq: LazyDataSourceApiRequest<Person, number, DataQueryFilter<Person>>) => {
             if (groupBy && !ctx.parent) {
-                const res = await svc.api.demo.personGroups({
+                const personGroupsResponse = await svc.api.demo.personGroups({
                     ...rq,
                     filter: { groupBy },
                     search: null,
                     itemsRequest: { filter, search: rq.search },
                     ids,
                 } as any);
-                updateSummary(res as PersonsApiResponse);
-                return res;
+                updateSummary(personGroupsResponse as PersonsApiResponse);
+                return personGroupsResponse;
             } else {
-                const res1 = await svc.api.demo.persons(rq);
-                updateSummary(res1 as PersonsApiResponse);
-                return res1;
+                const personsResponse = await svc.api.demo.persons(rq);
+                updateSummary(personsResponse as PersonsApiResponse);
+                return personsResponse;
             }
         };
 
@@ -130,7 +137,7 @@ export const PersonsTableDemo = () => {
         }
     };
 
-    const { rows, listProps, selectAll, reload } = useList<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
+    const { rows, listProps, reload } = useList<PersonTableRecord, PersonTableRecordId, PersonTableFilter>({
         type: 'lazy',
         listState: value,
         setListState: onValueChange,
@@ -171,7 +178,7 @@ export const PersonsTableDemo = () => {
     }, [value.filter?.groupBy]);
 
     return (
-        <div className={ css.container }>
+        <div className={ cx(css.container, 'uui-theme-loveship') }>
             <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
                 <FlexCell width={ 200 }>
                     <SearchInput { ...lens.prop('search').toProps() } size='30' />
@@ -200,13 +207,21 @@ export const PersonsTableDemo = () => {
                     <Button caption="Reload" onClick={ () => reload() } size='30' />
                 </FlexCell>
             </FlexRow>
-            <PersonsTable
+            <DataTable
+                getRows={ () => rows }
+                columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, any>[] }
                 value={ value }
                 onValueChange={ onValueChange }
-                summary={ summary }
-                rows={ rows }
-                listProps={ listProps }
-                selectAll={ selectAll }
+                filters={ getFilters() }
+                { ...listProps }
+            />
+            <DataTableRow
+                columns={ summaryColumns }
+                cx={ css.stickyFooter }
+                id="footer"
+                rowKey="footer"
+                index={ 100500 }
+                value={ summary }
             />
         </div>
     );

@@ -68,7 +68,9 @@ export class Burger extends React.Component<BurgerProps, BurgerState> {
     }
 
     componentWillUnmount() {
-        document.body.style.overflow = null;
+        if (this.state.isOpen) {
+            document.body.style.overflow = null;
+        }
     }
 
     renderContent = (ref: Ref<HTMLElement>) => {

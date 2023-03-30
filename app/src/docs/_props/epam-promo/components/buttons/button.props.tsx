@@ -2,7 +2,7 @@ import * as React from 'react';
 import { allFillStyles } from '@epam/promo';
 import { allButtonColors, Button, ButtonMods } from '@epam/promo';
 import { ColorPicker, DocBuilder } from '@epam/uui-docs';
-import { ButtonProps } from '@epam/uui-components';
+import { ButtonProps } from '@epam/promo';
 import { onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc,
     iHasPlaceholder, iconWithInfoDoc, iconOptionsDoc,  DefaultContext, FormContext } from '../../docs';
 import { colors } from '../../docs/helpers/colorMap';

@@ -1,5 +1,3 @@
-@use  '../../assets/styles/index.scss' as *;
-
 @mixin control-switch-size($size) {
     :global(.uui-switch-body) {
         height: $size;
@@ -43,8 +41,8 @@
     }
 
     :global(.uui-switch-body) {
-        background-color: var(--switch-bg-color);
-        border: 1px solid var(--switch-border-color);
+        background-color: var(--uui-switch-bg);
+        border: 1px solid var(--uui-switch-border);
         width: 36px;
         border-radius: 18px;
         box-sizing: border-box;
@@ -54,55 +52,55 @@
         left: -1px;
         border-radius: 50%;
         box-sizing: border-box;
-        background-color: var(--switch-toggler-bg-color);
-        border: 1px solid var(--switch-toggler-border-color);
+        background-color: var(--uui-switch-toggler-bg);
+        border: 1px solid var(--uui-switch-bg);
         transition: 0.1s transform cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     :global(.uui-input-label) {
         //@include typography-inline; TODO: ???
         font-family: var(--font-regular);
-        color: var(--switch-label-color);
+        color: var(--uui-switch-label);
         margin-left: 11px;
     }
 
     //Colors
     &:hover, &:focus-within {
         :global(.uui-switch-body) {
-            background-color: var(--switch-bg-color-hover);
-            border-color: var(--switch-border-color-hover);
+            background-color: var(--uui-switch-bg-hover);
+            border-color: var(--uui-switch-border-hover);
         }
 
         :global(.uui-switch-toggler) {
-            border-color: var(--switch-toggler-border-color-hover);
+            border-color: var(--uui-switch-toggler-border-hover);
         }
 
         :global(.uui-checked) {
             &:global(.uui-switch-body) {
-                background-color: var(--switch-bg-color-checked-hover);
-                border-color: var(--switch-border-color-checked-hover);
+                background-color: var(--uui-switch-bg-checked-hover);
+                border-color: var(--uui-switch-border-checked-hover);
             }
 
             :global(.uui-switch-toggler) {
-                border-color: var(--switch-toggler-border-color-checked-hover);
+                border-color: var(--uui-switch-toggler-border-checked-hover);
             }
         }
     }
 
     :global(.uui-checked) {
         &:global(.uui-switch-body) {
-            background-color: var(--switch-bg-color-checked);
-            border: 1px solid var(--switch-border-color-checked);
+            background-color: var(--uui-switch-bg-checked);
+            border: 1px solid var(--uui-switch-border-checked);
 
             :global(.uui-switch-toggler) {
-                border: 1px solid var(--switch-toggler-border-color-checked);
+                border: 1px solid var(--uui-switch-toggler-border-checked);
             }
         }
     }
 
     &:global(.uui-disabled) {
         :global(.uui-input-label) {
-            color: var(--switch-label-color-disabled);
+            color: var(--uui-switch-label-disabled);
         }
 
         &,
@@ -113,26 +111,26 @@
         }
 
         :global(.uui-switch-body) {
-            background-color: var(--switch-bg-color-disabled);
-            border: 1px solid var(--switch-border-color-disabled);
+            background-color: var(--uui-switch-bg-disabled);
+            border: 1px solid var(--uui-switch-border-disabled);
         }
 
         & :global(.uui-switch-toggler),
         &:hover :global(.uui-switch-toggler),
         &:focus-within :global(.uui-switch-toggler) {
-            background-color: var(--switch-toggler-bg-color-disabled);
-            border-color: var(--switch-toggler-border-color-disabled);
+            background-color: var(--uui-switch-toggler-bg-disabled);
+            border-color: var(--uui-switch-toggler-border-disabled);
         }
 
         :global(.uui-checked) {
             &:global(.uui-switch-body) {
-                background-color: var(--switch-bg-color-checked-disabled);
-                border: 1px solid var(--switch-border-color-checked-disabled);
+                background-color: var(--uui-switch-bg-checked-disabled);
+                border: 1px solid var(--uui-switch-border-checked-disabled);
             }
 
             :global(.uui-switch-toggler) {
-                background-color: var(--switch-toggler-bg-color-disabled);
-                border-color: var(--switch-toggler-border-color-checked-disabled);
+                background-color: var(--uui-switch-toggler-bg-disabled);
+                border-color: var(--uui-switch-toggler-border-checked-disabled);
             }
         }
     }

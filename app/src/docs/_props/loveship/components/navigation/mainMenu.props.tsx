@@ -1,5 +1,6 @@
 import React from 'react';
-import { MainMenuMods, MainMenu, MainMenuButton, FlexSpacer, GlobalMenu, BurgerButton } from "@epam/loveship";
+import { MainMenu, MainMenuButton, FlexSpacer, GlobalMenu, BurgerButton } from "@epam/loveship";
+import { MainMenuMods } from '@epam/uui';
 import { MainMenuLogo, MainMenuProps } from '@epam/uui-components';
 import { DocBuilder } from '@epam/uui-docs';
 import { ResizableContext } from "../../docs";
