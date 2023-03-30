@@ -69,7 +69,7 @@ const metadata: Metadata<FormState> = {
 
 export default function EditableTableExample() {
     // Use form to manage state of the editable table
-    const { lens, save, revert, value, setValue } = useForm<FormState>({
+    const { lens, save, revert, value, setValue, isChanged } = useForm<FormState>({
         value: { items: demoItems },
         onSave: () => Promise.resolve(),
         getMetadata: () => metadata,
@@ -187,6 +187,19 @@ export default function EditableTableExample() {
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return <Panel shadow={ true }>
+        {/* Render a panel with Save/Revert buttons to control the form */ }
+        <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom>
+            <FlexCell width='auto'>
+                <Button caption='Add task' onClick={ handleNewItem } />
+            </FlexCell>
+            <FlexSpacer />
+            <FlexCell width='auto'>
+                <Button caption='Revert' onClick={ revert } isDisabled={ !isChanged } color="gray50" />
+            </FlexCell>
+            <FlexCell width='auto'>
+                <Button caption='Save' onClick={ save } color='green' isDisabled={ !isChanged } />
+            </FlexCell>
+        </FlexRow>
         <FlexRow>
             { /* Render the data table */ }
             <DataTable
@@ -198,19 +211,6 @@ export default function EditableTableExample() {
                 headerTextCase='upper'
                 renderRow={ renderRow }
             />
-        </FlexRow>
-        {/* Render a panel with Save/Revert buttons to control the form */ }
-        <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom>
-            <FlexCell width='auto'>
-                <Button caption='Add new' onClick={ handleNewItem } />
-            </FlexCell>
-            <FlexSpacer />
-            <FlexCell width='auto'>
-                <Button caption='Save' onClick={ save } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button caption='Revert' onClick={ revert } />
-            </FlexCell>
         </FlexRow>
     </Panel>;
 }
