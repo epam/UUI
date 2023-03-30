@@ -1,0 +1,42 @@
+.preset-input-cell {
+    margin-top: auto;
+    margin-bottom: auto;
+
+    .preset-input {
+        padding-left: 3px;
+        padding-right: 3px;
+
+        :global(.uui-icon-accept),
+        :global(.uui-icon-cancel) {
+            width: 30px;
+            height: 30px;
+            align-self: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        :global(.uui-icon-accept) {
+
+            &:global(.-clickable) {
+                fill: var(--white);
+                background-color: var(--uui-accent);
+
+                &:hover {
+                    fill: var(--white);
+                    background-color: var(--uui-accent-dark);
+                }
+            }
+        }
+
+        :global(.uui-icon-cancel) {
+            background-color: var(--uui-secondary-lightest);
+            margin-left: 1px;
+
+            &:hover {
+                background-color: var(--uui-secondary-light);
+            }
+        }
+    }
+}

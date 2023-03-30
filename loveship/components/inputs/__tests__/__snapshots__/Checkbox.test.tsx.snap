@@ -2,7 +2,7 @@
 
 exports[`Checkbox should be rendered correctly 1`] = `
 <label
-  className="container uui-checkbox-container root size-18 theme-light mode-form color-sky -clickable"
+  className="container uui-checkbox-container root size-18 mode-form -clickable"
   tabIndex={-1}
 >
   <div
@@ -28,7 +28,7 @@ exports[`Checkbox should be rendered correctly 1`] = `
 
 exports[`Checkbox should be rendered correctly with new props 1`] = `
 <label
-  className="container uui-checkbox-container root size-12 theme-dark mode-form color-sun -clickable"
+  className="container uui-checkbox-container root size-12 mode-form theme-dark -clickable"
   tabIndex={-1}
 >
   <div

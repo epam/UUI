@@ -1,0 +1,148 @@
+@use  '../../assets/styles/index' as *;
+
+@mixin icon() {
+    flex: 0 0 16px;
+    width: 16px;
+    cursor: pointer;
+}
+
+.cell {
+    color: var(--uui-text-primary);
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 0 12px;
+    position: relative;
+    width: 0;
+
+    // to align with cell's borders. TBD: move this to uui-components.
+    border-right: 1px solid transparent;
+    margin-left: -1px;
+    background-clip: padding-box;
+
+    &:global(.-clickable) {
+        cursor: pointer;
+
+        &:hover {
+            background: var(--uui-dt-row-bg-hover);
+            box-shadow: var(--uui-dt-header-hover-shadow);
+
+            .sort-icon, .dropdown-icon, .infoIcon {
+                fill: var(--uui-icon-hover);
+            }
+        }
+    }
+
+    &.resizable {
+        &:hover {
+            box-shadow: var(--uui-dt-header-hover-shadow);
+        }
+    }
+
+    &.size-24 { height: 24px; }
+    &.size-30 { height: 30px; }
+    &.size-36 { height: 36px; }
+    &.size-42 { height: 42px; }
+    &.size-48 { height: 48px; }
+
+    &.padding-left-24 { padding-left: 24px; }
+
+    &.padding-right-24 { padding-right: 24px; }
+
+
+    .caption {
+        font-family: var(--font-semibold);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right: 6px;
+    }
+
+    .checkbox {
+        margin-right: 12px;
+    }
+
+    .icon {
+        display: flex;
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+
+    .icon-cell {
+        display: flex;
+        overflow: hidden;
+
+        &.align-right {
+            flex-direction: row-reverse;
+
+            .caption {
+                margin-right: 0;
+                margin-left: 6px;
+            }
+        }
+
+        &.align-center {
+            justify-content: center;
+        }
+    }
+
+    .tooltip-wrapper {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .cell-tooltip {
+        top: 0;
+    }
+
+    .upper-case {
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .font-size-14 {
+        font-size: 14px;
+    }
+
+    .resize-mark {
+        position: absolute;
+        width: 12px;
+        right: 0;
+        height: 100%;
+        cursor: col-resize;
+
+        &:hover {
+            background-color: var(--uui-dt-cell-bg-resize);
+        }
+    }
+
+    &.draggable {
+        cursor: pointer;
+    }
+
+    &.ghost {
+        background-color: var(--uui-dt-row-bg-hover);
+        @include dnd-ghost-shadow();
+    }
+
+    &.is-dragged-out {
+        background-color: var(--uui-dt-row-bg-hover);
+        opacity: 0.5;
+    }
+
+    &.dnd-marker-left {
+        box-shadow: var(--uui-dt-left-marker-shadow);
+
+        &:global(.-clickable), &:local(.resizable) {
+            box-shadow: var(--uui-dt-left-marker-shadow);
+        }
+    }
+
+    &.dnd-marker-right {
+        box-shadow: var(--uui-dt-right-marker-shadow);
+
+        &:global(.-clickable), &:local(.resizable) {
+            box-shadow: var(--uui-dt-right-marker-shadow);
+        }
+    }
+}

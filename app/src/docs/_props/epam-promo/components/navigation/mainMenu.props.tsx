@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { MainMenuMods, MainMenu, MainMenuButton, MainMenuAvatar, FlexSpacer, GlobalMenu, BurgerButton } from '@epam/promo';
+import { MainMenu, MainMenuButton, MainMenuAvatar, FlexSpacer, GlobalMenu, BurgerButton } from '@epam/promo';
+import { MainMenuMods } from '@epam/uui';
 import { MainMenuCustomElement, MainMenuLogo, MainMenuProps } from '@epam/uui-components';
 import { DocBuilder } from '@epam/uui-docs';
 import { ResizableContext } from "../../docs";

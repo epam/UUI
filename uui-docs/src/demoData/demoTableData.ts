@@ -58,7 +58,7 @@ export const personDemoData = [
     {
         id: 5,
         name: "Gail Erickson",
-        yearsInCompany: 6654,
+        yearsInCompany: 54,
         personType: "EM",
         avatarUrl:"http://static.cdn.epam.com/uploads/140f76e9e74f90510a19dbed3ca4174a/EPM-TAI/avatars/phoenix/default-6.jpg",
         phoneNumber: "849-555-0139",

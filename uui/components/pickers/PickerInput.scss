@@ -1,14 +1,16 @@
 @use  '../../assets/styles/index' as *;
 
 .panel {
+    background: var(--uui-picker_input-bg);
+    box-shadow: var(--uui-dropdown-container-shadow);
+
     @media screen and (max-width: 720px) {
         height: var(--app-mobile-height);
     }
 }
 
 .footer-wrapper {
-    border-top: 1px solid var(--divider-color);
-    background: white;
+    border-top: 1px solid var(--uui-divider);
     padding: 0 12px;
     display: flex;
 

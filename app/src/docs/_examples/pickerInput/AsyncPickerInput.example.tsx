@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Location } from "@epam/uui-docs";
-import { useAsyncDataSource, useUuiContext } from "@epam/uui";
-import { PickerInput } from "@epam/promo";
+import { useAsyncDataSource, useUuiContext } from '@epam/uui-core';
+import { FlexCell, PickerInput } from "@epam/promo";
 import { TApi } from "../../../data";
 
 export default function AsyncPickerInputExample() {
@@ -13,7 +13,7 @@ export default function AsyncPickerInputExample() {
     }, []);
 
     return (
-        <div>
+        <FlexCell width={ 300 }>
             <PickerInput<Location, string>
                 dataSource={ locationsDataSource }
                 value={ locations }
@@ -22,6 +22,6 @@ export default function AsyncPickerInputExample() {
                 selectionMode='multi'
                 valueType='id'
             />
-        </div>
+        </FlexCell>
     );
-};
+}

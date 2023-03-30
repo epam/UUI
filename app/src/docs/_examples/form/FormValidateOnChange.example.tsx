@@ -1,10 +1,9 @@
 import React from 'react';
 import type { TApi } from '../../../data';
-import { useUuiContext, useAsyncDataSource, UuiContexts } from "@epam/uui";
+import { useUuiContext, useAsyncDataSource, UuiContexts } from '@epam/uui-core';
 import {
     FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput,
-    PickerInput, SuccessNotification, ErrorNotification,
-    useForm,
+    PickerInput, SuccessNotification, useForm,
 } from "@epam/promo";
 
 interface Person {
@@ -43,7 +42,7 @@ export default function BasicFormExample() {
             },
         }),
     });
-    console.log(lens.get());
+
     return (
         <FlexCell width='100%'>
             <FlexRow vPadding='12'>

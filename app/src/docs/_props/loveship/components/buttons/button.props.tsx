@@ -12,7 +12,7 @@ const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', com
     .implements([textSettingsDoc, onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iHasPlaceholder])
     .prop('color', {
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />,
-        examples: [...allEpamPrimaryColors.filter(color => color !== 'sun'), 'white', 'night600'],
+        examples: [...allEpamPrimaryColors.filter(color => color !== 'sun'), 'white', 'night500'],
     })
     .prop('caption', { examples:  [
         { value: 'Click me', isDefault: true },
