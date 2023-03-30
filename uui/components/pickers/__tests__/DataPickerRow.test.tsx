@@ -37,6 +37,7 @@ describe('DataPickerRow', () => {
                 onCheck={ jest.fn }
                 onClick={ jest.fn }
                 onFocus={ jest.fn }
+                clickHandler={ jest.fn }
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();
