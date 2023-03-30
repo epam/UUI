@@ -162,7 +162,7 @@ export class AppHeader extends React.Component {
             window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: this.renderThemeSwitcher },
             { id: 'git', priority: 0, render: () => (
                     <Anchor cx={ css.linkContainer } href={ GIT_LINK } target='_blank' onClick={ () => this.sendEvent(GIT_LINK) } key='git'>
-                        <IconContainer icon={ GitIcon } color='white' />
+                        <IconContainer icon={ GitIcon } cx={ css.gitIcon } />
                         <Text font='sans-semibold' fontSize='14' lineHeight='24' cx={ css.linkCaption } >Open Git</Text>
                     </Anchor>
                 ),

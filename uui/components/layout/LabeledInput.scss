@@ -6,23 +6,23 @@
     :global(.uui-label) {
         @include overflow-ellipsis();
         font-family: var(--font-semibold);
-        color: var(--labeled-input-color);
+        color: var(--uui-labeled-input);
 
         :global(.uui-labeled-input-info-icon) {
             flex-shrink: 0;
             margin: 0 4px;
-            fill: var(--labeled-input-fill-color);
+            fill: var(--uui-labeled-input-info-fill);
         }
 
         :global(.uui-labeled-input-asterisk) {
-            color: var(--labeled-input-asterisk-color);
+            color: var(--uui-labeled-input-asterisk);
         }
 
         :global(.uui-labeled-input-optional) {
             font-family: var(--font-italic);
             font-size: 12px;
             line-height: 18px;
-            color: var(--labeled-input-optional-text-color);
+            color: var(--uui-labeled-input-optional-text);
         }
     }
 
@@ -35,7 +35,7 @@
     :global(.uui-invalid-message) {
         line-height: 18px;
         font-size: 12px;
-        color: var(--labeled-input-color-error);
+        color: var(--uui-labeled-input-error);
         font-family: var(--font-regular);
         margin-top: 3px;
     }

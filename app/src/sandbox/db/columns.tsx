@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, TextInput, TextArea } from '@epam/loveship';
 import { DemoDbRef } from './state';
-import { IEditable, DataQueryFilter, DataColumnProps } from '@epam/uui';
+import { IEditable, DataQueryFilter, DataColumnProps } from '@epam/uui-core';
 import { Person, PersonGroup } from '@epam/uui-docs';
 
 export function getColumns(dbRef: DemoDbRef) {
@@ -10,7 +10,7 @@ export function getColumns(dbRef: DemoDbRef) {
             return {
                 value: null,
                 onValueChange: () => {},
-            }
+            };
         }
         return {
             value: person[fieldName],
@@ -61,8 +61,8 @@ export function getColumns(dbRef: DemoDbRef) {
             key: 'notes',
             caption: "Notes",
             render: p => <TextArea mode='cell' rows={ 1 } autoSize { ...fieldLens('notes', p) } />,
-        	width: 200,
-        	grow: 1,
+            width: 200,
+            grow: 1,
         },
     ];
 

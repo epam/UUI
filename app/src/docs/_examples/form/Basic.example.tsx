@@ -1,6 +1,6 @@
 import React from 'react';
 import type { TApi } from '../../../data';
-import { useUuiContext, useAsyncDataSource, UuiContexts } from "@epam/uui";
+import { useUuiContext, useAsyncDataSource, UuiContexts } from "@epam/uui-core";
 import {
     FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput,
     PickerInput, SuccessNotification, ErrorNotification,

@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import { ContextProvider } from "@epam/uui";
+import { ContextProvider } from "@epam/uui-core";
 import { svc } from "../../../services";
 import amplitude from "amplitude-js";
-import { IAnalyticsListener, AnalyticsEvent } from "@epam/uui";
+import { IAnalyticsListener, AnalyticsEvent } from "@epam/uui-core";
 
 /**An example of creation AmplitudeClientListener */
 class AmplitudeListener implements IAnalyticsListener {

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import css from './IconsPage.scss';
-import { FlexCell, SearchInput, ControlSize, Panel, FlexRow, Text, IconContainer, Button, IconButton, LinkButton, TextInput,
-    Tooltip, FlexSpacer, NotificationCard, MultiSwitch, ScrollBars } from '@epam/promo';
-import { ArrayDataSource, cx, DataRowProps, DataSourceState, Icon } from '@epam/uui';
+import { FlexCell, ControlSize, Panel, FlexRow, Text, IconContainer, Button, IconButton, LinkButton,
+    Tooltip, FlexSpacer, NotificationCard, MultiSwitch, ScrollBars, SearchInput, TextInput } from '@epam/promo';
+import { ArrayDataSource, cx, DataRowProps, DataSourceState, Icon } from '@epam/uui-core';
 import { getGroupedIcons, getIconList, IconList } from '../../documents/iconListHelpers';
 import { ReactComponent as LockedIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
 import { ReactComponent as UnlockedIcon } from '@epam/assets/icons/common/action-lock_open-fill-18.svg';
@@ -215,7 +215,7 @@ export class IconsDoc extends React.Component {
         return (
             <FlexCell minWidth={ 60 } cx={ css.warningWrapper } >
                 <Tooltip placement='top-end' content="We don't recommend this combination of sizes">
-                    <IconContainer icon={ WarningIcon } color='red' cx={ css.warningIcon } />
+                    <IconContainer icon={ WarningIcon } cx={ [css.warningIcon, css.iconRed] } />
                 </Tooltip>
             </FlexCell>
         );

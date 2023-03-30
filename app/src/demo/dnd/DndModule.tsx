@@ -1,6 +1,6 @@
 import * as React from 'react';
 import css from './DndModule.scss';
-import { DndActor, cx, DropParams, getOrderBetween, IEditable } from '@epam/uui';
+import { DndActor, cx, DropParams, getOrderBetween, IEditable } from '@epam/uui-core';
 import { FlexRow, IconContainer, DropMarker, FlexCell, Text } from '@epam/promo';
 import { DragHandle } from '@epam/uui-components';
 
@@ -56,8 +56,10 @@ export class DndModule extends React.Component<DndModuleProps> {
                             <DragHandle cx={ [css.dragHandle] } />
                             <IconContainer
                                 icon={ item.isCompleted ? CompleteIcon : ScheduleIcon }
-                                color={ item.isCompleted ? 'green' : 'gray50' }
-                                cx={ cx(css.moduleIcon, item.isCompleted ? css.completeIcon : css.scheduleIcon) }
+                                cx={ cx(
+                                    css.moduleIcon,
+                                    item.isCompleted ? [css.completeIcon, css.iconGreen] : [css.scheduleIcon, css.iconGray50],
+                                ) }
                             />
                             <FlexCell width='auto' >
                                 <Text size='18' fontSize='14' lineHeight='18' >{ item.name }</Text>

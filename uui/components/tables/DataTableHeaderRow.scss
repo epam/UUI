@@ -1,0 +1,23 @@
+@use  '../../assets/styles/index' as *;
+
+.header-cell {
+    background: none;
+}
+
+.config-icon {
+    position: absolute;
+    height: 100%;
+    right: 24px;
+    z-index: 2;
+}
+
+:global(.uui-table-header-row) {
+    :global(.uui-table-fixed-section), :global(.uui-table-scrolling-section) {
+        border-bottom-color: var(--uui-dt-border);
+    }
+}
+
+:global(.uui-table-header-row) {
+    --uui-dt-row-bg: var(--uui-dt-header-row-bg);
+    --uui-dt-row-bg-hover: var(--uui-dt-header-row-bg-hover);
+}
