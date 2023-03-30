@@ -12,36 +12,14 @@
         color: var(--uui-accordion-text);
     }
 
-    &.padding-0 {
-        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
-            @include padding(0);
+    &:global(.uui-accordion-container) {
+        &.mode-block {
+            box-shadow: var(--uui-accordion-shadow);
         }
     }
 
-    &.padding-6 {
-        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
-            @include padding(6);
-        }
-    }
-
-    &.padding-12 {
-        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
-            @include padding(12);
-        }
-    }
-
-    &.padding-18 {
-        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
-            @include padding(18);
-        }
-    }
-}
-
-:global(.uui-accordion-container) {
-
-    &:global(.mode-block) {
+    &.mode-block {
         border-radius: var(--uui-accordion-border-radius);
-        box-shadow: var(--uui-accordion-shadow);
 
         :global(.uui-accordion-toggler) {
             background: var(--uui-accordion-bg);
@@ -80,15 +58,14 @@
                 border-radius: var(--uui-accordion-border-radius) var(--uui-accordion-border-radius) 0 0;
 
                 &:hover, &:focus {
-                    border-color: var(--uui-accordion-border);
+                    border-color: var(--uui-accordion-shadow-hovered);
                 }
             }
         }
 
         &:global(.uui-disabled) {
-            box-shadow: var(--uui-accordion-shadow);
 
-            :global(.uui-accordion-body) {
+            :global(.uui-accordion-body) > * {
                 color: var(--uui-accordion-text-disabled);
             }
 
@@ -105,19 +82,20 @@
                 }
 
                 &:hover, &:focus {
-                    box-shadow: var(--uui-accordion-shadow);
+                    box-shadow: none;
                 }
             }
         }
     }
 
-    &:global(.mode-inline) {
+    &.mode-inline {
         :global(.uui-accordion-toggler) {
             border-bottom: 1px solid var(--uui-accordion-border);
             fill: var(--uui-accordion-icon);
             line-height: 18px;
             font-size: 14px;
             padding: 8px 12px 8px;
+
             :global(.uui-accordion-toggle-container) {
                 min-height: 24px;
             }
@@ -140,7 +118,7 @@
 
         &:global(.uui-disabled) {
 
-            :global(.uui-accordion-body) {
+            :global(.uui-accordion-body) > * {
                 color: var(--uui-accordion-text-disabled);
             }
 
@@ -149,13 +127,37 @@
                 fill: var(--uui-accordion-icon-disabled);
 
                 &:global(.uui-opened) {
-                     border-bottom: none;
+                    border-bottom: none;
                 }
 
                 :global(.uui-accordion-title) {
                     color: var(--uui-accordion-text-disabled);
                 }
             }
+        }
+    }
+
+    &.padding-0 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(0);
+        }
+    }
+
+    &.padding-6 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(6);
+        }
+    }
+
+    &.padding-12 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(12);
+        }
+    }
+
+    &.padding-18 {
+        :global(.uui-accordion-toggler), :global(.uui-accordion-body) {
+            @include padding(18);
         }
     }
 }
