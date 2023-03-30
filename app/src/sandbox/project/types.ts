@@ -24,9 +24,7 @@ export interface InsertTaskCallback {
     (position: DropPosition, relativeTask: Task | null): void;
 }
 
-export interface DeleteTaskCallback {
-    (id: number): void;
-}
+export type DeleteTaskCallback = (id: number) => void;
 
 export interface ColumnsProps {
     insertTask: InsertTaskCallback;

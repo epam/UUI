@@ -1,154 +1,23 @@
-@use '../../assets/styles/scss/index' as *;
+@use '../../assets/styles/scss/index'  as *;
+
+@mixin borderStyle {
+    border-width: 1px;
+    border-style: solid;
+}
 
 .root {
-    cursor: default;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-width: 1px;
-
-    &:focus {
-        box-shadow: none;
-    }
-
-    &:hover {
-        cursor: default;
-    }
-
-    :global(.uui-caption) {
-        font-family: $font-sans;
-        align-self: center;
-        white-space: nowrap;
-    }
-
-    :global(.uui-count) {
-        font-size: 12px;
-        letter-spacing: 0;
-        color: $night600;
-        background-color: $white;
-        padding: 0 6px;
-        border-radius: 9px;
-        min-height: 18px;
-        line-height: 18px;
-
-        &:not(:first-child) {
-            margin-left: 6px;
-        }
-    }
-
-    &:global(.uui-button-box) {
-        border-radius: 30px;
-    }
-
-    &.size-18 {
-        min-width: 18px;
-        height: 18px;
-        padding-left: 2px;
-        padding-right: 2px;
-
-        :global(.uui-caption), :global(.uui-input) {
-            line-height: 16px;
-            font-size: 12px;
-            padding-left: 3px;
-            padding-right: 3px;
-        }
-
-        :global(.uui-count) {
-            min-height: 12px;
-            min-width: 6px;
-            line-height: 12px;
-            font-size: 8px;
-            padding: 0 3px;
-
-            &:not(:first-child) {
-                margin-left: 3px;
-            }
-        }
-    }
-
-    &.size-24 {
-        @include button-horizontal-layout(24px, 1px);
-        height: 24px;
-
-        :global(.uui-caption), :global(.uui-input) {
-            line-height: 22px;
-            font-size: 12px;
-        }
-    }
-
-    &.size-30 {
-        @include button-horizontal-layout(30px, 1px);
-        height: 30px;
-        padding-top: 3px;
-        padding-bottom: 3px;
-
-        :global(.uui-caption), :global(.uui-input) {
-            line-height: 22px;
-            font-size: 14px;
-        }
-    }
-
-    &.size-36 {
-        @include button-horizontal-layout(36px, 1px);
-        height: 36px;
-        padding-top: 6px;
-        padding-bottom: 6px;
-
-        :global(.uui-caption), :global(.uui-input) {
-            line-height: 22px;
-            font-size: 14px;
-        }
-    }
-
-    &.size-42 {
-        @include button-horizontal-layout(42px, 1px);
-        height: 42px;
-        padding-top: 8px;
-        padding-bottom: 8px;
-
-        :global(.uui-caption), :global(.uui-input) {
-            line-height: 24px;
-            font-size: 16px;
-        }
-
-        :global(.uui-count) {
-            min-height: 24px;
-            min-width: 12px;
-            font-size: 14px;
-            line-height: 24px;
-            border-radius: 12px;
-        }
-    }
-
-    &.size-48 {
-        @include button-horizontal-layout(48px, 1px);
-        height: 48px;
-        padding-top: 11px;
-        padding-bottom: 11px;
-
-        :global(.uui-caption), :global(.uui-input) {
-            line-height: 24px;
-            font-size: 16px;
-        }
-
-        :global(.uui-count) {
-            min-height: 24px;
-            min-width: 12px;
-            font-size: 14px;
-            line-height: 24px;
-            border-radius: 12px;
-        }
-    }
-
     &.fill-solid {
-        @include button-colors(var(--uui-color-700), var(--uui-contrast-color-700), var(--uui-color-700));
+        @include borderStyle();
+        @include button-colors(var(--night300), var(--uui-tag-fill), var(--night300));
     }
 
     &.fill-white {
-        @include button-colors($white, var(--uui-color-700), var(--uui-color-700));
+        @include borderStyle();
+        @include button-colors(var(--white), var(--uui-tag-fill), var(--night300));
     }
 
     &.fill-none {
-        @include button-colors(transparent, var(--uui-color-700), var(--uui-color-700));
+        @include borderStyle();
+        @include button-colors(transparent, var(--uui-tag-fill), var(--night300));
     }
 }

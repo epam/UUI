@@ -23,7 +23,7 @@ $text-size-count: 24px;
 
 .root {
     @include link-button-horizontal-layout(36px);
-    @include tab-button-color(var(--tab-button-text-color), var(--tab-button-text-color-active), transparent);
+    @include tab-button-color(var(--uui-tab-button-text), var(--uui-tab-button-text-active), transparent);
     cursor: pointer;
     padding-left: 12px;
     padding-right: 12px;
@@ -36,11 +36,11 @@ $text-size-count: 24px;
     border-bottom: 3px solid transparent;
 
     &:global(.uui-active) {
-        border-color: var(--tab-button-text-color-active);
+        border-color: var(--uui-tab-button-text-active);
     }
 
     &:global(.uui-disabled) {
-        @include tab-button-color(var(--tab-button-text-color-disabled), var(--tab-button-text-color-disabled), transparent);
+        @include tab-button-color(var(--uui-tab-button-text-disabled), var(--uui-tab-button-text-disabled), transparent);
     }
 
     &.uui-notification {
@@ -49,8 +49,8 @@ $text-size-count: 24px;
             margin-bottom: math.div($text-size-caption, 2);
             height: 6px;
             width: 6px;
-            background: var(--negative-color);
-            box-shadow: 0 1px 8px 0 var(--negative-color);
+            background: var(--uui-negative);
+            box-shadow: 0 1px 8px 0 var(--uui-negative);
             border-radius: 50%;
         }
     }
@@ -58,8 +58,8 @@ $text-size-count: 24px;
     :global(.uui-count) {
         @include text-size($text-size-count, 0);
         letter-spacing: 0;
-        color: var(--tab-button-count-color);
-        background-color: var(--tab-button-count-bg-color);
+        color: var(--uui-tab-button-count);
+        background-color: var(--uui-tab-button-count-bg);
         padding: 0 6px;
         margin-left: 6px;
         margin-right: 3px;

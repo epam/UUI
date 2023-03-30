@@ -2,8 +2,7 @@ import * as React from 'react';
 import {
     IHasRawProps, cx, getCalculatedValue, IHasCX, IClickable, IDisableable, IEditable, IHasPlaceholder, Icon, uuiMod, uuiElement,
     CX, ICanBeReadonly, IAnalyticableOnChange, IHasForwardedRef, ICanFocus, uuiMarkers, getMinMaxValidatedValue, getSeparatedValue, useUuiContext,
-    i18n,
-} from '@epam/uui-core';
+    i18n } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './NumericInput.scss';
 
@@ -101,7 +100,7 @@ export const NumericInput = (props: NumericInputProps) => {
 
         // clearing the input when entering invalid data using special characters
         if (event.target.validity?.badInput) {
-            inputRef.current.value = ""
+            inputRef.current.value = "";
         } else {
             const validatedValue = getMinMaxValidatedValue({ value, min, max });
             if (validatedValue !== props.value) props.onValueChange(validatedValue);
@@ -133,16 +132,16 @@ export const NumericInput = (props: NumericInputProps) => {
         }
     };
 
-    const inputRef = React.useRef<HTMLInputElement>()
+    const inputRef = React.useRef<HTMLInputElement>();
 
     // disable changing the value by scrolling the wheel when the input is in focus and hover
     React.useEffect(() => {
-        const preventValueChange = (e: WheelEvent) => (document.activeElement === e.target) && e.preventDefault()
+        const preventValueChange = (e: WheelEvent) => (document.activeElement === e.target) && e.preventDefault();
 
-        inputRef?.current?.addEventListener('wheel', preventValueChange, { passive: false })
+        inputRef?.current?.addEventListener('wheel', preventValueChange, { passive: false });
 
-        return () => { inputRef?.current?.removeEventListener('wheel', preventValueChange) }
-    }, [])
+        return () => { inputRef?.current?.removeEventListener('wheel', preventValueChange); };
+    }, []);
 
     const isPlaceholderColored = React.useMemo(() => Boolean(props.value || props.value === 0), [props.value]);
     const inputValue = React.useMemo(() => (inFocus && (props.value || props.value === 0)) ? props.value : "", [props.value, inFocus]);

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Badge, DataTable, EpamAdditionalColor, FlexRow, Panel, Text } from "@epam/promo";
-import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui';
+import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.scss';
 import { TApi } from "../../../data";
@@ -15,7 +15,7 @@ export default function StyledColumnsExample() {
     }, []);
 
     const view = dataSource.useView(value, onValueChange, {
-        getRowOptions: item => ({ checkbox: { isVisible: true } }),
+        getRowOptions: () => ({ checkbox: { isVisible: true } }),
     });
 
     const productColumns: DataColumnProps<Person>[] = useMemo(() => [

@@ -13,10 +13,18 @@
 
 .picker-row {
     &:global(.uui-focus) {
-        background-color: var(--surface-hover-color);
+        background-color: var(--uui-surface-hover);
     }
 
     &:global(.-clickable) {
         cursor: pointer;
     }
+}
+
+.icon-default {
+    fill: var(--uui-icon);
+}
+
+.icon-primary {
+    fill: var(--uui-primary);
 }

@@ -5,7 +5,7 @@ import {
     TextInput, PickerInput, DatePicker, ControlWrapper, RadioGroup, CheckboxGroup, Rating, TextArea, NumericInput,
     RangeDatePicker, Slider, RangeSlider, Blocker, DropSpotRenderParams, Text, DropSpot, UploadFileToggler, LinkButton, TimePicker,
 } from '@epam/loveship';
-import { ILens, cx, LazyDataSource, ArrayDataSource, AsyncDataSource, FileUploadResponse } from '@epam/uui';
+import { ILens, cx, LazyDataSource, ArrayDataSource, AsyncDataSource, FileUploadResponse } from '@epam/uui-core';
 import { svc } from '../../services';
 import { City, PersonDetails } from '@epam/uui-docs';
 import { ExperienceEditor } from './ExperienceEditor';
@@ -95,7 +95,7 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
     });
 
     render() {
-        return <div className={ css.horizontal }>
+        return (<div className={ css.horizontal }>
         <Panel>
             <FlexRow type='form'>
                 <FlexCell grow={ 1 }>
@@ -274,6 +274,6 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
             </FlexRow>
             <Blocker isEnabled={ this.props.isBlocked } />
         </Panel>
-    </div>
+    </div>);
     }
 }

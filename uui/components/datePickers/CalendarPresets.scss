@@ -1,0 +1,28 @@
+@use  '../../assets/styles/index' as *;
+
+.root {
+    :global(.uui-presets-container) {
+        padding: 24px;
+        font-family: var(--font-regular);
+    }
+
+    :global(.uui-presets-header) {
+        font-family: var(--font-semibold);
+        font-size: 14px;
+        line-height: 24px;
+        padding-bottom: 12px;
+    }
+
+    :global(.uui-presets-item) {
+        font-family: var(--font-semibold);
+        font-size: 12px;
+        line-height: 18px;
+        color: var(--uui-link-button-text);
+        padding-bottom: 6px;
+
+        &:hover {
+            color: var(--uui-link-button-text-active);
+            cursor: pointer;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, Badge, EpamAdditionalColor, FlexRow, LinkButton } from '@epam/promo';
-import { DataColumnProps, getSeparatedValue } from "@epam/uui";
+import { DataColumnProps, getSeparatedValue } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import css from './FilteredTable.scss';
 
