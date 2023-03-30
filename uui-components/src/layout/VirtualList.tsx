@@ -8,7 +8,8 @@ export interface VirtualListRenderRowsParams<List extends HTMLElement = any> {
     estimatedHeight: number;
     offsetY: number;
     scrollShadows: {
-        vertical: boolean;
+        verticalTop: boolean;
+        verticalBottom: boolean;
         horizontalLeft: boolean;
         horizontalRight: boolean;
     };
@@ -57,16 +58,16 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
 
     return (
         <ScrollBars
-            cx={ cx(css.scrollContainer, props.cx) }
+            cx={ cx(css.scrollContainer, props.cx, {
+                [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
+                [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight,
+                [uuiMarkers.scrolledTop]: scrollShadows.verticalTop,
+                [uuiMarkers.scrolledBottom]: scrollShadows.verticalBottom,
+            }) }
             onScroll={ handleScroll }
             renderView={ ({ style, ...rest }: any) => (
                 <div
                     style={ { ...style, position: 'relative', flex: '1 1 auto', display: 'flex', flexDirection: 'column' } }
-                    className={ cx({
-                        [uuiMarkers.scrolledLeft]: scrollShadows.horizontalLeft,
-                        [uuiMarkers.scrolledRight]: scrollShadows.horizontalRight,
-                        [uuiMarkers.scrolledVertical]: scrollShadows.vertical,
-                    }) }
                     { ...rest }
                     { ...props.rawProps }
                 />

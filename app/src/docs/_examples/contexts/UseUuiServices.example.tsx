@@ -1,5 +1,5 @@
 import React from "react";
-import { UuiContext, HistoryAdaptedRouter, useUuiServices, DragGhost } from "@epam/uui";
+import { UuiContext, HistoryAdaptedRouter, useUuiServices } from '@epam/uui-core';
 import { Modals, Snackbar } from "@epam/uui-components";
 import { skinContext, ErrorHandler } from "@epam/promo";
 import { createBrowserHistory } from "history";

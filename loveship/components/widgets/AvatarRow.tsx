@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './AvatarRow.scss';
-import { Avatar } from './Avatar';
+import { Avatar } from '@epam/uui';
 import { AvatarProps } from '@epam/uui-components';
 import cx from 'classnames';
 

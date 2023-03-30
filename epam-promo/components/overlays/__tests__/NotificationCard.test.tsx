@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderWithContextAsync } from '@epam/test-utils';
-import { ClearNotification, ErrorNotification, HintNotification, NotificationCard, SuccessNotification, WarningNotification } from '../NotificationCard';
+import { NotificationCard } from '../NotificationCard';
+import { ClearNotification, ErrorNotification, HintNotification, SuccessNotification, WarningNotification } from '../../../components';
 import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('NotificationCard', () => {
@@ -8,11 +9,11 @@ describe('NotificationCard', () => {
         const tree = await renderWithContextAsync(
             <NotificationCard
                 id={ 1 }
-                key='test'
-                color='red'
+                key="test"
+                color="red"
                 onClose={ jest.fn }
                 onSuccess={ jest.fn }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -22,11 +23,11 @@ describe('NotificationCard', () => {
             <NotificationCard
                 icon={ CalendarIcon }
                 id={ 1 }
-                key='test'
-                color='red'
+                key="test"
+                color="red"
                 onClose={ jest.fn }
                 onSuccess={ jest.fn }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -37,10 +38,10 @@ describe('WarningNotification', () => {
         const tree = await renderWithContextAsync(
             <WarningNotification
                 id={ 1 }
-                key='test'
+                key="test"
                 onClose={ jest.fn }
                 onSuccess={ jest.fn }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -51,10 +52,10 @@ describe('SuccessNotification', () => {
         const tree = await renderWithContextAsync(
             <SuccessNotification
                 id={ 1 }
-                key='test'
+                key="test"
                 onClose={ jest.fn }
                 onSuccess={ jest.fn }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -65,10 +66,10 @@ describe('HintNotification', () => {
         const tree = await renderWithContextAsync(
             <HintNotification
                 id={ 1 }
-                key='test'
+                key="test"
                 onClose={ jest.fn }
                 onSuccess={ jest.fn }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -79,10 +80,10 @@ describe('ErrorNotification', () => {
         const tree = await renderWithContextAsync(
             <ErrorNotification
                 id={ 1 }
-                key='test'
+                key="test"
                 onClose={ jest.fn }
                 onSuccess={ jest.fn }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -90,7 +91,7 @@ describe('ErrorNotification', () => {
 
 describe('ClearNotification', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(<ClearNotification key='test' />);
+        const tree = await renderWithContextAsync(<ClearNotification key="test"/>);
         expect(tree).toMatchSnapshot();
     });
 });

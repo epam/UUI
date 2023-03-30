@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VerticalTabButton should be rendered correctly 1`] = `
+<button
+  className="container uui-button-box uui-enabled root size-48 uui-no-left-icon uui-no-right-icon root"
+  onClick={[Function]}
+  role="tab"
+  tabIndex={-1}
+  type="button"
+/>
+`;
+
+exports[`VerticalTabButton should be rendered correctly with props 1`] = `
+<button
+  aria-disabled={false}
+  className="container uui-button-box uui-enabled -clickable root size-48 uuiNotification uui-has-left-icon uui-no-right-icon root"
+  disabled={false}
+  onClick={[Function]}
+  role="tab"
+  tabIndex={0}
+  type="button"
+>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
+  </div>
+</button>
+`;

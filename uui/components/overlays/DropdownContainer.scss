@@ -4,17 +4,81 @@
         flex-direction: column;
         min-width: 150px;
         box-sizing: border-box;
-        box-shadow: var(--dropdown-container-shadow);
-        background-color: var(--surface-color);
+        box-shadow: var(--uui-dropdown-container-shadow);
+        background-color: var(--uui-dropdown-container-bg);
         border: 0;
+        border-radius: var(--uui-dropdown-container-border-radius);
         overflow: hidden;
+    }
 
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
+    :global(.uui-popover-arrow) {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        overflow: hidden;
+    }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--dropdown-container-scrollbar-thumb-color);
-        }
+    :global(.uui-popover-arrow)::after {
+        content: '';
+        position: absolute;
+        background: var(--uui-dropdown-container-bg);
+        width: 8px;
+        height: 8px;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    &:global(.padding-6) {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    &:global(.padding-12) {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    &:global(.padding-18) {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    &:global(.padding-24) {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    &:global(.padding-30) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    &:global(.vPadding-6) {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    &:global(.vPadding-12) {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    &:global(.vPadding-18) {
+        padding-top: 9px;
+        padding-bottom: 9px;
+    }
+
+    &:global(.vPadding-24) {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    &:global(.vPadding-30) {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    &:global(.vPadding-48) {
+        padding-top: 24px;
+        padding-bottom: 24px;
     }
 }

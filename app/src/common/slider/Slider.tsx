@@ -2,7 +2,7 @@ import * as React from 'react';
 import css from './Slider.scss';
 import { Slide, SlideProps } from './';
 import { IconButton } from '@epam/promo';
-import { IAnalyticableOnChange, UuiContext, UuiContexts } from "@epam/uui";
+import { IAnalyticableOnChange, UuiContext, UuiContexts } from "@epam/uui-core";
 import { ReactComponent as ArrowPrev } from '../../icons/navigation-left.svg';
 import { ReactComponent as ArrowNext } from '../../icons/navigation-right.svg';
 
