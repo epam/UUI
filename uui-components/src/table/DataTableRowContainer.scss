@@ -21,23 +21,28 @@
     position: relative;
     display: flex;
     align-items: stretch;
-    background: var(--uui-dt-row-background);
+    background: var(--uui-dt-row-bg);
 }
 
 .section {
     display: flex;
-    border-bottom: var(--uui-dt-row-border-width) solid var(--uui-dt-row-border-color);
-    background: var(--uui-dt-row-background);
+    border-bottom: var(--uui-dt-row-border-width) solid transparent;
+    background: var(--uui-dt-row-bg);
     background-clip: content-box;
     box-sizing: border-box;
+
+    &:has(:global(.uui-table-cell-selection-in-progress)) {
+        cursor: crosshair;
+    }
 }
 
 .scrolling-section {
-	position: relative;
+    position: relative;
     align-items: stretch;
 }
 
-.fixed-columns-section-left, .fixed-columns-section-right {
+.fixed-columns-section-left,
+.fixed-columns-section-right {
     position: sticky;
     z-index: 5;
 }
@@ -62,7 +67,7 @@
     #{$position}: -5px;
     width: 5px;
     pointer-events: none;
-    background: linear-gradient(to $position, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    background: var(--uui-dt-#{$position}-shadow);
     opacity: 0;
 }
 

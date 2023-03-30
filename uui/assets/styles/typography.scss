@@ -1,4 +1,39 @@
+@forward "typography-mixins";
+@use "typography-mixins" as *;
+
 @mixin overflow-ellipsis() {
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+:local(.typography-header) {
+    @include typography-header();
+}
+
+:local(.typography-block) {
+    @include typography-block();
+}
+
+:local(.typography-inline) {
+    @include typography-inline();
+}
+
+:local(.typography-16) {
+    @include typography-16();
+}
+
+:local(.typography-14) {
+    @include typography-14();
+}
+
+:local(.typography-12) {
+    @include typography-12();
+}
+
+:local(.typography-promo) {
+    font-family: var(--font-regular);
+    color: var(--uui-text-primary);
+    composes: typography-header;
+    composes: typography-block;
+    composes: typography-inline;
 }

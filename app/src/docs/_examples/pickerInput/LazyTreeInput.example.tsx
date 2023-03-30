@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { DataPickerRow, FlexRow, PickerInput, PickerItem } from '@epam/promo';
-import { DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { DataPickerRow, FlexCell, PickerInput, PickerItem } from '@epam/promo';
+import { DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 export default function LazyTreePicker() {
@@ -27,7 +27,7 @@ export default function LazyTreePicker() {
     };
 
     return (
-        <FlexRow>
+        <FlexCell width={ 300 }>
             <PickerInput
                 dataSource={ dataSource }
                 value={ value }
@@ -50,6 +50,6 @@ export default function LazyTreePicker() {
                     />
                 ) }
             />
-        </FlexRow>
+        </FlexCell>
     );
 }

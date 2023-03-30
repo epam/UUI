@@ -1,6 +1,7 @@
 import React from "react";
 import { renderWithContextAsync } from '@epam/test-utils';
-import { ClearNotification, ErrorNotification, HintNotification, NotificationCard, SuccessNotification, WarningNotification } from "../NotificationCard";
+import { NotificationCard } from "../NotificationCard";
+import { ClearNotification, ErrorNotification, HintNotification, SuccessNotification, WarningNotification } from "@epam/uui";
 import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
 describe("NotificationCard", () => {
@@ -13,7 +14,7 @@ describe("NotificationCard", () => {
                 color='sun'
                 onClose={ jest.fn() }
                 onSuccess={ jest.fn() }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -27,7 +28,7 @@ describe("NotificationCard", () => {
                 color='sun'
                 onClose={ jest.fn() }
                 onSuccess={ jest.fn() }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -41,7 +42,7 @@ describe("WarningNotification", () => {
                 key='test'
                 onClose={ jest.fn() }
                 onSuccess={ jest.fn() }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -55,7 +56,7 @@ describe("SuccessNotification", () => {
                 key='test'
                 onClose={ jest.fn() }
                 onSuccess={ jest.fn() }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -69,7 +70,7 @@ describe("HintNotification", () => {
                 key='test'
                 onClose={ jest.fn() }
                 onSuccess={ jest.fn() }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -83,7 +84,7 @@ describe("ErrorNotification", () => {
                 key='test'
                 onClose={ jest.fn() }
                 onSuccess={ jest.fn() }
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });

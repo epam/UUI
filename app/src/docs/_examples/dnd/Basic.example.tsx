@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams } from '@epam/uui';
+import { DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams } from '@epam/uui-core';
 import { FlexRow, DropMarker, FlexCell, Text, IconContainer, Panel } from '@epam/promo';
 import sortBy from "lodash.sortby";
 import { DragHandle } from '@epam/uui-components';

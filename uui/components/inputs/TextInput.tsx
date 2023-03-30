@@ -1,10 +1,9 @@
 import React from 'react';
 import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui-core';
-import { TextInput as uuiTextInput, TextInputProps } from '@epam/uui-components';
+import { TextInput as uuiTextInput, TextInputProps as CoreTextInputProps } from '@epam/uui-components';
 import { IHasEditMode, EditMode, ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
 import css from './TextInput.scss';
-import '../../assets/styles/variables/inputs/textInput.scss';
 
 const defaultSize = '36';
 const defaultMode = EditMode.FORM;
@@ -15,14 +14,15 @@ export interface TextInputMods extends IHasEditMode {
 
 export function applyTextInputMods(mods: TextInputMods) {
     return [
-        'text-input-vars',
         css.root,
         css['size-' + (mods.size || defaultSize)],
         css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 
-export const TextInput = withMods<TextInputProps, TextInputMods>(
+export interface TextInputProps extends CoreTextInputProps, TextInputMods {}
+
+export const TextInput = withMods<CoreTextInputProps, TextInputMods>(
     uuiTextInput, applyTextInputMods,
     (props) => ({
         acceptIcon: systemIcons[props.size || defaultSize].accept,
@@ -31,24 +31,26 @@ export const TextInput = withMods<TextInputProps, TextInputMods>(
     }),
 );
 
-export class SearchInput extends React.Component<TextInputProps & TextInputMods & IEditableDebouncerOptions, {}> {
-    render() {
+export const SearchInput = React.forwardRef<HTMLInputElement, TextInputProps & TextInputMods & IEditableDebouncerOptions>(
+    (props, ref) => {
         // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
-        const textInputProps = {...this.props};
+        const { ...textInputProps } = props;
         delete textInputProps.getValueChangeAnalyticsEvent;
 
-        return <IEditableDebouncer
-            { ...this.props }
-            render={ (iEditable =>
+        return (
+            <IEditableDebouncer
+                { ...props }
+                render={ iEditable => (
                     <TextInput
-                        icon={ systemIcons[this.props.size || defaultSize].search }
-                        onCancel={ !!this.props.value ? (() => iEditable.onValueChange('')) : undefined }
+                        icon={ systemIcons[props.size || defaultSize].search }
+                        onCancel={ !!props.value ? (() => iEditable.onValueChange('')) : undefined }
                         type="search"
                         inputMode="search"
+                        ref={ ref }
                         { ...textInputProps }
                         { ...iEditable }
                     />
-            ) }
-        />;
-    }
-}
+                ) }
+            />
+        );
+    });

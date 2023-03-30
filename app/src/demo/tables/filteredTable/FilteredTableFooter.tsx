@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import css from "./FilteredTableFooter.scss";
-import { FlexCell, FlexRow, LabeledInput, PageButton, Paginator, PickerInput, TextInput, Text } from "@epam/promo";
+import { FlexCell, LabeledInput, TextInput, Text, PickerInput } from "@epam/uui";
+import { Button, Paginator, FlexRow } from "@epam/promo";
 import { DataTableState, useArrayDataSource } from "@epam/uui-core";
 import { ReactComponent as ArrowRightIcon_24 } from "@epam/assets/icons/common/navigation-chevron-right-18.svg";
 import { FlexSpacer } from "@epam/uui-components";
@@ -71,7 +72,7 @@ export const FilteredTableFooter = (props: IFilteredTableFooterProps) => {
                     />
                 </LabeledInput>
             </div>
-            <PageButton
+            <Button
                 cx={ css.goToPageButton }
                 size="24"
                 icon={ ArrowRightIcon_24 }
