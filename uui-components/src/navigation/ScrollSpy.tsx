@@ -42,15 +42,16 @@ export function useScrollSpy(props?: IScrollSpyProps): IScrollSpyApi {
 
         const observer = new IntersectionObserver(entries => {
             if (entries.length === 1) {
-                const elementName = (entries[0]?.target as HTMLElement)?.dataset?.spy;
-                setCurrentActive(
-                    (prev) =>
-                        entries[0].isIntersecting
-                            ? elementName
-                            : prev !== elementName
-                                ? prev
-                                : '',
-                );
+                const currentElementName = (entries[0]?.target as HTMLElement)?.dataset?.spy;
+                const isCurrentElementIntersecting = entries[0].isIntersecting;
+
+                setCurrentActive((prevElementName) => {
+                    if (isCurrentElementIntersecting) return currentElementName;
+
+                    if (prevElementName !== currentElementName) return prevElementName;
+
+                    return '';
+                });
             } else {
                 const intersectingElement = entries.find(entry => entry.isIntersecting);
                 setCurrentActive((intersectingElement?.target as HTMLElement)?.dataset?.spy);
