@@ -107,7 +107,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
                 aria-disabled={ this.props.isDisabled }
                 aria-expanded={ isAccordionOpened }
                 className={ cx(
-                    css.container,
+                    'uui-accordion-container', css.container,
                     isAccordionOpened && !this.props.isDisabled && uuiMod.opened,
                     this.props.isDisabled && uuiMod.disabled,
                     this.props.cx,
