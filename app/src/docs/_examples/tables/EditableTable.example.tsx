@@ -2,9 +2,10 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
 import {
     Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
-    Panel, PickerInput, TextArea, TextInput, useForm,
+    Panel, PickerInput, TextArea, TextInput, useForm, IconButton,
 } from '@epam/promo';
 import { FlexSpacer } from '@epam/uui-components';
+import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-clear-18.svg';
 import css from './TablesExamples.scss';
 
 // Define interface describe data for each row
@@ -152,7 +153,12 @@ export default function EditableTableExample() {
             width: 120,
             grow: 1,
         },
-
+        {
+            key: 'actions',
+            render: () => (<IconButton icon={ deleteIcon } onClick={ () => null } color="gray50" />),
+            width: 55,
+            alignSelf: 'center',
+        },
     ] as DataColumnProps<ToDoItem>[], []);
 
     // Create data-source and view to supply filtered/sorted data to the table in form of DataTableRows.
