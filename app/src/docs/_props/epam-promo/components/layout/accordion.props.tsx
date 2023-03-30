@@ -11,8 +11,8 @@ const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Acc
     .prop('children', { examples: [
         {
             name: 'Simple text 14px',
-            value: <RichTextView>
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            value: <Text fontSize='14'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
                 irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -22,14 +22,13 @@ const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Acc
                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
                 in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
                 sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </span>
-            </RichTextView>,
+                </Text>,
             isDefault: true,
         },
         {
             name: 'Simple text 12px',
-            value: <RichTextView size='12' >
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            value: <Text fontSize='12'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
                 irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -39,8 +38,7 @@ const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Acc
                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
                 in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
                 sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </span>
-            </RichTextView>,
+            </Text>,
         },
         {
             name: 'Marked up content',
