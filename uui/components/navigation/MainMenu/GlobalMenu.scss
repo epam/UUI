@@ -1,0 +1,25 @@
+.global-menu-btn {
+    display: block;
+    height: 60px;
+    width: 60px;
+    fill: var(--uui-main_menu-icon);
+    flex-shrink: 0;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+
+    &:focus, &:hover {
+        background-color: var(--uui-main_menu-hover);
+        outline: none;
+    }
+
+    &:active {
+        background-color: var(--uui-main_menu-active);
+    }
+}
+
+.globalMenuIcon svg {
+    width: 60px;
+    height: 60px;
+}

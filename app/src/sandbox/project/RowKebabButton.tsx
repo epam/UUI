@@ -1,9 +1,8 @@
 import React from 'react';
-import { DropdownMenuBody, DropdownMenuButton, Dropdown, IconButton } from '@epam/promo';
-import { DropdownBodyProps } from "@epam/uui-core";
+import { DataRowProps, DropdownBodyProps } from '@epam/uui-core';
+import { DropdownMenuBody, DropdownMenuButton, Dropdown, IconButton } from '@epam/uui';
 import { ReactComponent as MoreIcon } from "@epam/assets/icons/common/navigation-more_vert-18.svg";
 import { ColumnsProps, Task } from './types';
-import { DataRowProps } from '@epam/uui-core';
 
 export interface RowKebabProps extends ColumnsProps {
     row: DataRowProps<Task, number>;

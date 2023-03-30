@@ -2,8 +2,8 @@ import * as React from 'react';
 import { IHasIcon, Icon } from '@epam/uui-core';
 import { ColorPicker, IconPicker } from './index';
 import { DocBuilder } from '@epam/uui-docs';
-import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, commonControlColors, EditMode } from '@epam/loveship';
-import { TextMods } from '@epam/loveship';
+import { allSizes, SizeMod, FontMod, ColorMod, allFontStyles, commonControlColors } from '@epam/loveship';
+import { TextMods, IHasEditMode } from '@epam/uui';
 import { getIconList } from '../../../../documents/iconListHelpers';
 import { colors } from './helpers/colorMap';
 
@@ -38,7 +38,7 @@ export const iconOptionsDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
     .prop('iconPosition', { examples: ['left', 'right'], defaultValue: 'left' })
     .prop('onIconClick', { examples: ctx => [ctx.getCallback('onIconClick')] });
 
-export const modeDoc = new DocBuilder<EditMode>({ name: 'Mode' })
+export const modeDoc = new DocBuilder<IHasEditMode>({ name: 'Mode' })
     .prop('mode', { examples: ['form', 'inline', 'cell'], defaultValue: 'form' });
 
 export * from '@epam/uui-docs';

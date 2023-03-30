@@ -1,7 +1,8 @@
 import React from 'react';
 import { TableFiltersConfig, LazyDataSource, ArrayDataSource } from "@epam/uui-core";
 import { Country } from "@epam/uui-docs";
-import { Badge, DataPickerRow, PickerItem, defaultPredicates } from "@epam/promo";
+import { Badge, DataPickerRow, PickerItem } from "@epam/uui";
+import { defaultPredicates } from "@epam/uui";
 import { demoData } from "@epam/uui-docs";
 import { svc } from "../../../services";
 import { Person } from "@epam/uui-docs";

@@ -46,3 +46,7 @@
 }
 
 @include drag-handle(8px, 11px, 11px, 130%);
+
+.icon-gray60 {
+    fill: var(--gray60);
+}
