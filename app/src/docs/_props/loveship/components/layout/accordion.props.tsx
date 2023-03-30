@@ -1,7 +1,7 @@
 import React from 'react';
 import { DocBuilder, isDisabledDoc } from '@epam/uui-docs';
 import { AccordionProps } from '@epam/uui-components';
-import { Accordion, Button, FlexRow, FlexSpacer, Text, RichTextView } from '@epam/loveship';
+import { Accordion, Button, FlexRow, FlexSpacer, Text } from '@epam/loveship';
 import { AccordionMods } from '@epam/uui';
 import { ResizableContext } from '../../docs';
 
