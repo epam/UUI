@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { RichTextView, RichTextViewMods } from '@epam/loveship';
+import { RichTextView } from '@epam/loveship';
+import { RichTextViewMods } from '@epam/uui';
 import { DefaultContext } from '../../docs';
 import { FlexRow, LabeledInput, ControlWrapper } from '@epam/loveship';
 import { LinkButton } from '@epam/loveship';
@@ -26,10 +27,6 @@ const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'Ri
         { value: '12', isDefault: false, name: '12'},
         { value: '14', isDefault: true, name: '14'},
         { value: '16', isDefault: false, name: '16'},
-    ]})
-    .prop('theme', { examples: [
-        { value: 'light', isDefault: true, name: 'light'},
-        { value: 'dark', isDefault: false, name: 'dark'},
     ]})
     .prop('children', {
         examples: [

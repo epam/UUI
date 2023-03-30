@@ -2,7 +2,7 @@
 
 exports[`Text should be rendered correctly 1`] = `
 <div
-  className="text font-sans color-night700 line-height-18 font-size-14 v-padding-9 container"
+  className="uui-font-sans uui-text-night700 root line-height-18 font-size-14 v-padding-9 container"
 >
   Test text
 </div>
@@ -10,7 +10,7 @@ exports[`Text should be rendered correctly 1`] = `
 
 exports[`Text should be rendered correctly with extra props 1`] = `
 <div
-  className="text font-sans-light color-sun line-height-30 font-size-14 v-padding-6 container"
+  className="uui-font-sans-light uui-text-sun root line-height-30 font-size-14 v-padding-6 container"
   onClick={[Function]}
 >
   Test text

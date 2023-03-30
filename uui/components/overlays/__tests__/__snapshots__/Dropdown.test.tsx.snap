@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown should be rendered correctly 1`] = `
+<button
+  className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-solid"
+  onClick={[Function]}
+  tabIndex={0}
+  type="button"
+>
+  <div
+    className="uui-caption"
+  >
+    Test
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
+  </div>
+</button>
+`;
+
+exports[`Dropdown should be rendered correctly 2`] = `
+<button
+  className="container uui-button-box uui-enabled -clickable button-primary root size-36 mode-solid"
+  onClick={[Function]}
+  tabIndex={0}
+  type="button"
+>
+  <div
+    className="uui-caption"
+  >
+    Test
+  </div>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
+  </div>
+</button>
+`;

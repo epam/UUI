@@ -1,8 +1,27 @@
 import React from 'react';
-import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui';
+import { useAsyncDataSource, useForm, useUuiContext } from '@epam/uui-core';
 import {
-    Button, Checkbox, Switch, TextInput, SuccessNotification, ErrorNotification, Text, LabeledInput, Panel, PickerInput,
-    FlexRow, FlexCell, FlexSpacer, RadioGroup, ScrollBars, IconButton, ModalBlocker, ModalWindow, ModalHeader, Badge,
+    Button,
+    Checkbox,
+    Switch,
+    TextInput,
+    SuccessNotification,
+    ErrorNotification,
+    Text,
+    LabeledInput,
+    Panel,
+    PickerInput,
+    FlexRow,
+    FlexCell,
+    FlexSpacer,
+    RadioGroup,
+    ScrollBars,
+    IconButton,
+    ModalBlocker,
+    ModalWindow,
+    ModalHeader,
+    Badge,
+    DatePicker,
 } from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-18.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
@@ -25,9 +44,9 @@ export const ThemeDemo = () => {
         api: () => svc.api.demo.countries({}).then((r: any) => r.items),
     }, []);
 
-    const showModal = () => svc.uuiModals.show(props => <ModalBlocker overlay { ...props }>
-        <ModalWindow width={ 360 } height={ 200 }>
-            <ModalHeader title="Simple modal example " onClose={ () => props.abort() } />
+    const showModal = () => svc.uuiModals.show(props => <ModalBlocker { ...props }>
+        <ModalWindow width={ 360 }>
+            <ModalHeader borderBottom title="Simple modal example " onClose={ () => props.abort() } />
             <ScrollBars>
                 <Panel margin='24'>
                     <Text color='primary' fontSize='16' >Changes will be undone!</Text>
@@ -37,13 +56,16 @@ export const ThemeDemo = () => {
     </ModalBlocker>);
 
     const { lens, save } = useForm<Person>({
-        value: { visaRecords: [{
-            country: null,
-            term: {
-                from: '',
-                to: '',
-            },
-        }] },
+        value: {
+            visaRecords: [{
+                country: null,
+                term: {
+                    from: undefined,
+                    to: undefined,
+                },
+            }],
+            processingPersonalDataAgreed: false,
+        },
         onSave: person => Promise.resolve({ form: person }) /* place your save api call here */,
         getMetadata: () => ({
             props: {
@@ -52,6 +74,15 @@ export const ThemeDemo = () => {
                 gender: { isRequired: true },
                 processingPersonalDataAgreed: { isRequired: true },
                 displayAdsAgreed: { isRequired: true },
+                visaRecords: {
+                    all: {
+                        props: {
+                            country: {
+                                isRequired: true,
+                            },
+                        },
+                    },
+                },
             },
         }),
         settingsKey: 'theme-demo',
@@ -74,20 +105,20 @@ export const ThemeDemo = () => {
                     </FlexRow>
                     <FlexRow vPadding='12'>
                         <FlexCell grow={ 1 }>
-                            <LabeledInput label='First Name'>
+                            <LabeledInput label='First Name' { ...lens.prop('firstName').toProps() }>
                                 <TextInput placeholder='First Name' { ...lens.prop('firstName').toProps() } />
                             </LabeledInput>
                         </FlexCell>
                     </FlexRow>
                     <FlexRow vPadding='12'>
                         <FlexCell grow={ 1 }>
-                            <LabeledInput label='Last Name'>
+                            <LabeledInput label='Last Name' { ...lens.prop('lastName').toProps() }>
                                 <TextInput placeholder='Last Name' { ...lens.prop('lastName').toProps() }/>
                             </LabeledInput>
                         </FlexCell>
                     </FlexRow>
                     <FlexRow vPadding='12'>
-                        <LabeledInput label='Gender'>
+                        <LabeledInput label='Gender' { ...lens.prop('gender').toProps() }>
                             <RadioGroup direction='horizontal' { ...lens.prop('gender').toProps() } items={ [{ id: 'male', name: 'Male' }, { id: 'female', name: 'Female' }] } />
                         </LabeledInput>
                     </FlexRow>
@@ -105,9 +136,9 @@ export const ThemeDemo = () => {
                     {
                         lens.prop('visaRecords').get().map((record, index) => {
                             return (
-                                <FlexRow key={ index } spacing='12' vPadding='12' alignItems='bottom'>
+                                <FlexRow key={ index } spacing='12' vPadding='12' alignItems='top'>
                                     <FlexCell width={ 242 }>
-                                        <LabeledInput label='Country' >
+                                        <LabeledInput label='Country' { ...lens.prop('visaRecords').index(index).prop('country').toProps() }>
                                             <PickerInput<Country, string>
                                                 dataSource={ countryDataSource }
                                                 { ...lens.prop('visaRecords').index(index).prop('country').toProps() }
@@ -118,19 +149,19 @@ export const ThemeDemo = () => {
                                             />
                                         </LabeledInput>
                                     </FlexCell>
-                                    <FlexCell rawProps={ { style: { width: '300px' } } }>
+                                    <FlexCell grow={ 1 } rawProps={ { style: { width: '310px' } } }>
                                         <LabeledInput label='Term'>
                                             <FlexRow spacing='6'>
-                                                <FlexCell width={ 140 } >
-                                                    <TextInput placeholder='From:' { ...lens.prop('visaRecords').index(index).prop('term').prop('from').toProps() } />
+                                                <FlexCell width={ 152 } >
+                                                    <DatePicker placeholder='From:' { ...lens.prop('visaRecords').index(index).prop('term').prop('from').toProps() } />
                                                 </FlexCell>
-                                                <FlexCell width={ 140 } >
-                                                    <TextInput placeholder='To:' { ...lens.prop('visaRecords').index(index).prop('term').prop('to').toProps() } />
+                                                <FlexCell width={ 152 } >
+                                                    <DatePicker placeholder='To:' { ...lens.prop('visaRecords').index(index).prop('term').prop('to').toProps() } />
                                                 </FlexCell>
                                             </FlexRow>
                                         </LabeledInput>
                                     </FlexCell>
-                                    <FlexRow alignItems='center'>
+                                    <FlexRow alignItems='center' rawProps={ { style: { marginTop: '24px' } } }>
                                         <IconButton icon={ CrossIcon } onClick={ () => lens.prop('visaRecords').set(lens.prop('visaRecords').get().filter((_, i) => index !== i)) } />
                                     </FlexRow>
                                 </FlexRow>
@@ -170,12 +201,12 @@ export const ThemeDemo = () => {
     };
 
     return (
-        <Panel style={ { height: 'calc(100vh - 60px)', width: '100%' } }>
-            <Panel background shadow rawProps={ { style: { margin: '24px auto' } } }>
+        <div style={ { height: 'calc(100vh - 60px)', margin: '0 auto', display: 'flex' } }>
+            <Panel shadow rawProps={ { style: { margin: '24px auto' } } }>
                 <ScrollBars>
                     { renderDemoForm() }
                 </ScrollBars>
             </Panel>
-        </Panel>
+        </div>
     );
 };

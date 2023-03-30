@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useUuiContext, DataSourceState, useLazyDataSource, useVirtualList, cx } from '@epam/uui';
+import { useUuiContext, DataSourceState, useLazyDataSource, useVirtualList, cx } from '@epam/uui-core';
 import { Text, MainMenu, TextPlaceholder, MainMenuButton } from '@epam/promo';
 import { City } from '@epam/uui-docs';
 import css from './AdvancedExample.scss';

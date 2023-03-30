@@ -1,20 +1,20 @@
 {
   "name": "@epam/uui",
-  "version": "4.10.1",
+  "version": "4.10.2",
   "description": "EPAM UUI components set",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
-  "epam:uui:main": "build/index.js",
+  "epam:uui:main": "build/index.esm.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "4.10.1",
-    "@epam/uui-components": "4.10.1",
-    "@epam/uui-core": "4.10.1",
+    "@epam/assets": "4.10.2",
+    "@epam/uui-components": "4.10.2",
+    "@epam/uui-core": "4.10.2",
     "classnames": "2.2.6",
     "react-focus-lock": "2.9.2"
   },

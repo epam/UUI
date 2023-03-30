@@ -1,7 +1,8 @@
 import React from 'react';
 import { withMods, ModalFooterCoreProps, ModalWindowProps, ModalHeaderCoreProps, ModalBlockerProps } from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
-import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout';
+import { FlexRow, RowMods } from '../layout';
+import { FlexSpacer, FlexCell } from '@epam/uui';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '../icons/navigation-close-24.svg';
@@ -27,7 +28,7 @@ export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(uuiModalW
     css['height-' + (mods.height || 'auto')],
 ]);
 
-export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {};
+export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {}
 
 export const ModalHeader = React.forwardRef<HTMLDivElement, ModalHeaderProps>((props, ref) => (
     <FlexRow
@@ -35,11 +36,11 @@ export const ModalHeader = React.forwardRef<HTMLDivElement, ModalHeaderProps>((p
         padding={ props.padding || '24' }
         vPadding='12'
         ref={ ref }
-        borderBottom={ props.borderBottom ? 'night400' : undefined }
+        borderBottom={ props.borderBottom }
         cx={ [css.modalHeader, props.cx] }
         rawProps={ props.rawProps }
     >
-        { props.title && <Text size='48' fontSize='18' font='sans-semibold'>{ props.title }</Text> }
+        { props.title && <Text color='night800' size='48' fontSize='18' font='sans-semibold'>{ props.title }</Text> }
         { props.children }
         <FlexSpacer />
         { props.onClose && <FlexCell shrink={ 0 } width='auto'><IconButton icon={ CrossIcon } onClick={ props.onClose } /></FlexCell> }

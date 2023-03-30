@@ -1,4 +1,4 @@
-import { Metadata } from '@epam/uui';
+import { Metadata } from '@epam/uui-core';
 import { PersonDetails } from './types';
 import dayjs from "dayjs";
 

@@ -1,5 +1,6 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, DataTableRow } from '@epam/promo';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
+import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, DataTableRow } from '@epam/uui';
+import { useForm } from '@epam/promo';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, ITree, Metadata, Tree, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
@@ -62,11 +63,17 @@ export const ProjectDemo = () => {
         }));
     };
 
-    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true }), []);
+    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
+        if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
+            return null;
+        } else {
+            return { bottom: true, top: true, inside: true };
+        }
+    }, []);
 
     const handleDrop = useCallback((params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData), []);
 
-    const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
+    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
     const { rows, listProps } = useList<Task, number, any, TaskSubtotals>({
         type: 'array',
@@ -80,8 +87,8 @@ export const ProjectDemo = () => {
             ...lens.prop('items').getById(task.id).toProps(),
             isSelectable: true,
             dnd: {
-                srcData: task,
-                dstData: task,
+                srcData: { ...task, isTask: true },
+                dstData: { ...task, isTask: true },
                 canAcceptDrop: handleCanAcceptDrop,
                 onDrop: handleDrop,
             },
@@ -118,14 +125,13 @@ export const ProjectDemo = () => {
                 <Button size='30' caption="Revert" onClick={ revert } isDisabled={ !isChanged } />
             </FlexCell>
         </FlexRow>
-        <DataTable<Task, number, TaskSubtotals>
+        <DataTable<Task, number, any, TaskSubtotals>
             headerTextCase='upper'
             getRows={ () => rows }
             columns={ columns }
             subtotalsColumns={ subtotalsColumns }
             renderSubtotalsRow={ (props) => <DataTableRow
                 { ...props }
-                background={ 'gray5' }
             /> }
             isSubtotalsRecord={ isSubtotalsRecord }
             value={ tableState }

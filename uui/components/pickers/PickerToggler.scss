@@ -41,31 +41,31 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     border-style: solid;
 
     &.mode-form {
-        background-color: var(--picker-toggler-bg-color);
-        border-color: var(--picker-toggler-border-color);
-        fill: var(--picker-toggler-icon-color);
-        border-radius: var(--picker-toggler-border-radius);
+        background-color: var(--uui-picker-toggler-bg);
+        border-color: var(--uui-picker-toggler-border);
+        fill: var(--uui-picker-toggler-icon);
+        border-radius: var(--uui-picker-toggler-border-radius);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
             &:global(.uui-enabled) {
-                fill: var(--picker-toggler-icon-color-clickable);
+                fill: var(--uui-picker-toggler-icon-clickable);
 
                 &:hover {
-                    fill: var(--picker-toggler-icon-color-clickable-hover);
+                    fill: var(--uui-picker-toggler-icon-clickable-hover);
                 }
             }
 
             &:global(.uui-disabled) {
-                fill: var(--picker-toggler-icon-color-disabled);
+                fill: var(--uui-picker-toggler-icon-disabled);
             }
         }
 
         &:hover {
-            border-color: var(--picker-toggler-border-color-hover);
+            border-color: var(--uui-picker-toggler-border-hover);
         }
 
         &:global(.uui-focus) {
-            border-color: var(--picker-toggler-border-color-active);
+            border-color: var(--uui-picker-toggler-border-active);
             outline: none;
         }
     }
@@ -73,7 +73,7 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     &.mode-cell {
         background-color: transparent;
         border-color: transparent;
-        fill: var(--picker-toggler-icon-color);
+        fill: var(--uui-picker-toggler-icon);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
             cursor: pointer;
@@ -88,15 +88,12 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         }
 
         &:hover {
-            background-color: white;
-            border-color: var(--picker-toggler-border-color);
-
             :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
                 &:global(.uui-enabled) {
-                    fill: var(--picker-toggler-icon-color-clickable);
+                    fill: var(--uui-picker-toggler-icon-clickable);
 
                     &:hover {
-                        fill: var(--picker-toggler-icon-color-clickable-hover);
+                        fill: var(--uui-picker-toggler-icon-clickable-hover);
                     }
                 }
 
@@ -107,15 +104,13 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         }
 
         &:global(.uui-focus) {
-            background-color: white;
-            border-color: var(--picker-toggler-border-color-active);
             outline: none;
         }
     }
 
     &:global(.uui-invalid) {
-        &.mode-form, &.mode-cell {
-            border-color: var(--picker-toggler-border-color-error);
+        &.mode-form {
+            border-color: var(--uui-picker-toggler-border-error);
         }
     }
 
@@ -129,13 +124,13 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
 
     &:global(.uui-disabled) {
         @include disabled-input();
-        fill: var(--picker-toggler-icon-color-disabled);
+        fill: var(--uui-picker-toggler-icon-disabled);
 
         :global(.uui-input) {
             cursor: default;
 
             &::placeholder {
-                color: var(--picker-toggler-text-color-disabled);
+                color: var(--uui-picker-toggler-text-disabled);
             }
         }
 
@@ -149,10 +144,10 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         padding-right: 6px;
         margin-bottom: 2px;
         font-family: var(--font-regular);
-        color: var(--picker-toggler-text-color);
+        color: var(--uui-picker-toggler-text);
 
         &::placeholder {
-            color: var(--picker-toggler-placeholder-color);
+            color: var(--uui-picker-toggler-placeholder);
         }
 
         &::-moz-placeholder {
@@ -177,11 +172,11 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     }
 
     :global(.uui-placeholder) {
-        color: var(--picker-toggler-text-color);
+        color: var(--uui-picker-toggler-text);
     }
 
     :global(.uui-placeholder)::placeholder {
-        color: var(--picker-toggler-text-color);
+        color: var(--uui-picker-toggler-text);
     }
 
     :global(.uui-placeholder)::-moz-placeholder {

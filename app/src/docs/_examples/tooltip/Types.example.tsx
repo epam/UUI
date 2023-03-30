@@ -23,7 +23,7 @@ export default function TypesTooltipExample() {
                     <span className={ css.permissionText } >Permissions</span>
                 </RichTextView>
                 <Tooltip content='Default tooltip. Can be inside as one row as 3 rows of text' placement='bottom' >
-                    <IconContainer icon={ infoIcon } color='blue' cx={ css.icon } />
+                    <IconContainer icon={ infoIcon } cx={ css.iconBlue } />
                 </Tooltip>
             </FlexRow>
 

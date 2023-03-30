@@ -1,28 +1,9 @@
 import * as types from '../types';
-import css from './LinkButton.scss';
-import styles from '../../assets/styles/colorvars/buttons/linkButton-colorvars.scss';
 import { withMods } from '@epam/uui-core';
-import { Button, ButtonProps } from '@epam/uui-components';
-import { systemIcons } from '../../icons/icons';
-import { getIconClass } from './helper';
-
-const defaultSize = '36';
+import { LinkButton as UuiLinkButton, LinkButtonProps } from '@epam/uui';
 
 export interface LinkButtonMods {
-    size?: types.ControlSize | '42';
     color?: types.EpamPrimaryColor;
 }
 
-function applyLinkButtonMods(mods: LinkButtonMods & ButtonProps) {
-    return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        styles['linkButton-color-' + (mods.color || 'blue')],
-        ...getIconClass(mods),
-    ];
-}
-
-export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, (props) => ({
-    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-    clearIcon: systemIcons[props.size || defaultSize].clear,
-}));
+export const LinkButton = withMods<LinkButtonProps, LinkButtonMods>(UuiLinkButton);

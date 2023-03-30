@@ -3,7 +3,7 @@ import sortBy from 'lodash.sortby';
 import css from './DemoDnd.scss';
 import { FlexCell, FlexRow, FlexSpacer, IconButton, Panel, Text } from '@epam/promo';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/content-add-outline-18.svg';
-import { DropParams, getOrderBetween } from '@epam/uui';
+import { DropParams, getOrderBetween } from '@epam/uui-core';
 import { DndModule, ModuleItem } from './DndModule';
 import { DndSection, SectionItem } from './DndSection';
 import { MaterialItem } from './DndMaterial';

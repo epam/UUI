@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useScrollSpy } from '@epam/uui-components';
-import { Metadata, IFormApi, useArrayDataSource, useAsyncDataSource, useLazyDataSource } from '@epam/uui';
+import { Metadata, IFormApi, useArrayDataSource, useAsyncDataSource, useLazyDataSource } from '@epam/uui-core';
 import { City } from '@epam/uui-docs';
 import { Button, DatePicker, ErrorNotification, FlexCell, FlexRow, FlexSpacer, Form, LabeledInput, PickerInput, RadioGroup, SuccessNotification, Text, TextInput } from '@epam/promo';
 import css from './ScrollSpyForm.scss';
@@ -19,7 +19,7 @@ interface Person {
     birthDate?: string;
     motherTongue?: string;
     maritalStatus?: string;
-};
+}
 
 export function ScrollSpyForm() {
     const [person] = useState<Person>({});
@@ -33,7 +33,7 @@ export function ScrollSpyForm() {
             { name: 'English', id: 'English' },
             { name: 'Spanish', id: 'Spanish' },
             { name: 'Russian', id: 'Russian' },
-        ]
+        ],
     }, []);
 
     const maritalStatus = useArrayDataSource({
@@ -79,7 +79,7 @@ export function ScrollSpyForm() {
         });
 
         return (
-            <section ref={setRef}>
+            <section ref={ setRef }>
                 <FlexCell width='100%' cx={ css.formContainer }>
                     <FlexRow vPadding='12'>
                         <FlexCell grow={ 1 }>
@@ -134,7 +134,7 @@ export function ScrollSpyForm() {
                         <FlexCell grow={ 1 }>
                             <LabeledInput label='Birth Date' { ...lens.prop('birthDate').toProps() }>
                                 <DatePicker
-                                    {...lens.prop('birthDate').toProps()}
+                                    { ...lens.prop('birthDate').toProps() }
                                     placeholder='Birth Date'
                                     format='MM-DD-YYYY'
                                 />
@@ -183,7 +183,7 @@ export function ScrollSpyForm() {
                 </FlexCell>
             </section>
         );
-    }
+    };
 
     return (
         <Form<Person>
@@ -200,7 +200,7 @@ export function ScrollSpyForm() {
                     <Text>Form saved</Text>
                 </SuccessNotification>
             )) }
-            renderForm={ (formProps) => <RenderForm {...formProps} /> }
+            renderForm={ (formProps) => <RenderForm { ...formProps } /> }
             getMetadata={ getMetaData }
         />
     );

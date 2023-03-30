@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { IHasCX, CX } from '../types';
+import { CX } from '../types';
+import { forwardRef } from './forwardRef';
 
-export function withMods<TProps extends IHasCX, TMods = {}>(
+export function withMods<TProps, TMods = {}>(
     Component: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>,
     getCx?: (props: Readonly<TProps & TMods>) => CX,
     getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>,
 ) {
-    const wrappedComponent = React.forwardRef<any, TProps & TMods>((props, ref) => {
+    const wrappedComponent = forwardRef<any, TProps & TMods>((props, ref) => {
         // Most components are wrapped in withMods component.
         // Please keep this method simple, and performant
         // Don't clone objects/arrays if not needed
@@ -17,7 +18,12 @@ export function withMods<TProps extends IHasCX, TMods = {}>(
             Object.assign(allProps, getProps?.(props));
         }
 
-        allProps.cx = [getCx?.(props), props.cx];
+        const getCxResult = getCx?.(props);
+
+        if (getCxResult) {
+            allProps.cx = [getCxResult, (props as any).cx];
+        }
+
 
         if (Component.prototype instanceof React.Component) {
             allProps.forwardedRef = ref;
@@ -28,7 +34,7 @@ export function withMods<TProps extends IHasCX, TMods = {}>(
         return React.createElement(Component, allProps);
     });
 
-    wrappedComponent.displayName = `${Component?.displayName || Component?.name || 'unknown'} (withMods)`;
+    (wrappedComponent as any).displayName = `${Component?.displayName || Component?.name || 'unknown'} (withMods)`;
 
     return wrappedComponent;
 }

@@ -1,8 +1,0 @@
-@use '../../assets/styles/scss/index'  as *;
-
-.text {
-    // Fonts
-    @include epam-uui-fonts();
-    @include typography-inline();
-    color: var(--uui-color-700);
-}

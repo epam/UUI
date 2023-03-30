@@ -1,7 +1,8 @@
-import { Task, InsertTaskCallback, ColumnsProps } from "./types";
+import { Task, ColumnsProps } from "./types";
 import { resources } from './demoData';
 import React from "react";
-import { DataTableCell, TextInput, Text, NumericInput, PickerInput, DatePicker, Checkbox, TextArea, DataPickerRow, PickerItem } from '@epam/promo';
+import { DataTableCell, TextInput, Text, NumericInput, PickerInput, DatePicker, Checkbox, DataPickerRow, PickerItem } from '@epam/uui';
+import { TextArea } from '@epam/promo';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from "@epam/uui-core";
 import { RowKebabButton } from "./RowKebabButton";
 import { TaskSubtotals } from "./ProjectDemo";
@@ -37,7 +38,6 @@ export function getColumns(columnsProps: ColumnsProps) {
                     formatOptions={ { maximumFractionDigits: 1 } }
                 /> }
                 { ...props }
-
             />,
         },
         {
@@ -144,7 +144,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             info: "Estimate in man/days",
             width: 150,
             isSortable: true,
-            render: p => <Text font='sans-semibold' fontSize='14'>Total estimate: { p.totalEstimate }</Text>,
+            render: p => <Text fontSize='14'>Total estimate: { p.totalEstimate }</Text>,
         },
         {
             key: 'resource',
