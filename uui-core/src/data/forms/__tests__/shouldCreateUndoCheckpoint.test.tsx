@@ -68,7 +68,7 @@ describe('shouldCreateUndoCheckpoint', () => {
         )).toBe(true);
     });
 
-    it('Field is removed', () => {
+    it('field is removed', () => {
         expect(shouldCreateUndoCheckpoint(
             { name: 'a', title: 'a' },
             { name: 'b', title: 'a' },
@@ -92,4 +92,43 @@ describe('shouldCreateUndoCheckpoint', () => {
         )).toBe(false);
     });
 
+    it('all nulls', () => {
+        expect(shouldCreateUndoCheckpoint(
+            null,
+            null,
+            null,
+        )).toBe(false);
+    });
+
+    it('all undefined', () => {
+        expect(shouldCreateUndoCheckpoint(
+            null,
+            null,
+            null,
+        )).toBe(false);
+    });
+
+    it('undefined to null', () => {
+        expect(shouldCreateUndoCheckpoint(
+            undefined,
+            undefined,
+            null,
+        )).toBe(true);
+    });
+
+    it('null to undefined', () => {
+        expect(shouldCreateUndoCheckpoint(
+            null,
+            null,
+            undefined,
+        )).toBe(true);
+    });
+
+    it('object to array', () => {
+        expect(shouldCreateUndoCheckpoint(
+            null,
+            {},
+            [],
+        )).toBe(true);
+    });
 })
