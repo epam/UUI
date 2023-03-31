@@ -33,7 +33,7 @@ function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TI
                     <IconContainer
                         key='icon'
                         icon={ FoldingArrow }
-                        cx={ [css.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable, css.iconContainer] }
+                        cx={ [css.foldingArrow, css[`folding-arrow-${ additionalItemSize }`], uuiMarkers.clickable, css.iconContainer] }
                         rotate={ row.isFolded ? '90ccw' : '0' }
                         onClick={ () => row.onFold(row) }
                     />
