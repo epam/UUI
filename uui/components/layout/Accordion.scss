@@ -12,12 +12,17 @@
         color: var(--uui-accordion-text);
     }
 
+    &:global(.uui-accordion-container) {
+        &.mode-block {
+            box-shadow: var(--uui-accordion-shadow);
+        }
+    }
+
     &.mode-block {
         border-radius: var(--uui-accordion-border-radius);
 
         :global(.uui-accordion-toggler) {
             background: var(--uui-accordion-bg);
-            box-shadow: var(--uui-accordion-shadow);
             fill: var(--uui-accordion-icon);
             line-height: 24px;
             font-size: 18px;
@@ -44,7 +49,6 @@
             line-height: 24px;
             letter-spacing: 0;
             background: var(--uui-accordion-bg);
-            box-shadow: var(--uui-accordion-shadow);
             border-top: 1px solid var(--uui-accordion-border);
             border-radius: 0 0 var(--uui-accordion-border-radius) var(--uui-accordion-border-radius);
         }
@@ -52,25 +56,29 @@
         &:global(.uui-opened) {
             :global(.uui-accordion-toggler) {
                 border-radius: var(--uui-accordion-border-radius) var(--uui-accordion-border-radius) 0 0;
-                box-shadow: var(--uui-accordion-shadow);
 
                 &:hover, &:focus {
-                    border-color: var(--uui-accordion-border);
+                    border-color: var(--uui-accordion-shadow-hovered);
                 }
             }
         }
 
         &:global(.uui-disabled) {
+
             :global(.uui-accordion-toggler) {
                 cursor: default;
                 fill: var(--uui-accordion-icon-disabled);
+
+                &:global(.uui-opened) {
+                    border-radius: var(--uui-accordion-border-radius) var(--uui-accordion-border-radius) 0 0;
+                }
 
                 :global(.uui-accordion-title) {
                     color: var(--uui-accordion-text-disabled);
                 }
 
                 &:hover, &:focus {
-                    box-shadow: var(--uui-accordion-shadow);
+                    box-shadow: none;
                 }
             }
         }
@@ -100,15 +108,19 @@
 
         &:global(.uui-opened) {
             :global(.uui-accordion-toggler) {
-                border-bottom: unset;
+                border-bottom: none;
             }
         }
 
         &:global(.uui-disabled) {
+
             :global(.uui-accordion-toggler) {
                 cursor: default;
                 fill: var(--uui-accordion-icon-disabled);
-                border-bottom: unset;
+
+                &:global(.uui-opened) {
+                    border-bottom: none;
+                }
 
                 :global(.uui-accordion-title) {
                     color: var(--uui-accordion-text-disabled);
