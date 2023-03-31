@@ -47,7 +47,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
                             onClick={ action.action }
                             key={ action.name }
                             cx={ css.actionLink }
-                            size='24'
+                            size='30'
                         />
                     )) }
                 </div> }
