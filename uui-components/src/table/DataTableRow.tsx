@@ -78,15 +78,17 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         );
     };
 
+    const clickHandler = props.onClick || props.onSelect || props.onFold || props.onCheck;
+
     if (props.dnd && (props.dnd.srcData || props.dnd.canAcceptDrop)) {
         return (
             <DndActor
                 { ...props.dnd }
-                render={ params => renderRow(params, props.clickHandler, props.renderDropMarkers?.(params)) }
+                render={ params => renderRow(params, clickHandler, props.renderDropMarkers?.(params)) }
             />
         );
     } else {
-        return renderRow({}, props.clickHandler);
+        return renderRow({}, clickHandler);
     }
 });
 

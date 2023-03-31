@@ -190,7 +190,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         row.onCheck = isCheckable && this.handleOnCheck;
         row.onSelect = rowOptions && rowOptions.isSelectable && this.handleOnSelect;
         row.onFocus = (isSelectable || isCheckable) && this.handleOnFocus;
-        row.clickHandler = row.onClick || row.onSelect || row.onFold || row.onCheck;
     }
 
     protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
