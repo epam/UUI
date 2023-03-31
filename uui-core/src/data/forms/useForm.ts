@@ -82,7 +82,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     useEffect(() => {
         const unsavedChanges = getUnsavedChanges();
         if (!unsavedChanges || !props.loadUnsavedChanges) return;
-        props.loadUnsavedChanges().then(() => handleFormUpdate(() => unsavedChanges));
+        props.loadUnsavedChanges().then((res) => res !== null ? handleFormUpdate(() => unsavedChanges) : null);
     }, []);
 
     useEffect(() => {
