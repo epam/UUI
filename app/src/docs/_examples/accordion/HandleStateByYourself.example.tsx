@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Accordion, FlexCell } from '@epam/promo';
+import { Accordion, FlexCell, Text } from '@epam/promo';
 import { demoData } from '@epam/uui-docs';
 
 export default function HandleStateByYourselfExample() {
@@ -8,7 +8,7 @@ export default function HandleStateByYourselfExample() {
     return (
         <FlexCell width='100%'>
             <Accordion title='Accordion title' mode='block' value={ value } onValueChange={ onValueChange } >
-                { demoData.loremIpsum }
+                <Text fontSize='16' font='sans'>{ demoData.loremIpsum }</Text>
             </Accordion>
         </FlexCell>
     );

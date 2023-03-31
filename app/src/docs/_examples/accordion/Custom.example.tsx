@@ -11,13 +11,13 @@ const renderTitle = () => (
                 <Badge color='green' fill='transparent' caption='Employee' />
             </FlexRow>
         </FlexCell>
-)
+);
 
-export default function BasicAccordionExample() {
+export default function CustomAccordionExample() {
     return (
         <FlexCell grow={ 1 }>
             <Accordion renderTitle={ renderTitle } mode='block'>
-                { demoData.loremIpsum }
+                <Text fontSize='16' font='sans'>{ demoData.loremIpsum }</Text>
             </Accordion>
         </FlexCell>
     );
