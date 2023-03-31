@@ -1,3 +1,9 @@
+# 5.0.0 - xx.xx.20203
+* [useTableState]: 
+  - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
+  - added storing of sorting, columns config, and paging state into url
+  - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
+
 # 4.10.2 - 24.03.2023
 
 **What's Fixed**
