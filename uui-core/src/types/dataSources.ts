@@ -178,8 +178,6 @@ export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId>
     /** Handles row focusing.
      */
     onFocus?(focusedIndex: number): void;
-
-    clickHandler?(rowProps: DataRowProps<TItem, TId>): void;
 };
 
 export interface BaseListViewProps<TItem, TId, TFilter> {
