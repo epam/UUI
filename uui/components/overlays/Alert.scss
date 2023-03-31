@@ -24,7 +24,7 @@
 
 .action-wrapper {
     display: flex;
-    margin-top: -3px;
+    margin-top: -2px;
 }
 
 .action-link:not(:last-child) {
@@ -32,6 +32,7 @@
 }
 
 .close-icon {
+    margin-top: 1px;
     margin-left: 17px;
 }
 
