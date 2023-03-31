@@ -29,7 +29,8 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
     }
 
     render() {
-        const clickHandler = this.props.onClick || this.props.onSelect || this.props.onFold || this.props.onCheck ;
+        const clickHandler = this.props.onClick || this.props.onSelect || this.props.onFold || this.props.onCheck;
+
         return <FlexRow
             onClick={ clickHandler && (() => clickHandler(this.props)) }
             rawProps={ {

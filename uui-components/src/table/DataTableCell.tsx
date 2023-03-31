@@ -21,6 +21,8 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     let isEditable = !!props.onValueChange;
 
     const handleEditorClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
+        props.rowProps.onSelect?.(props.rowProps);
+
         const input: HTMLInputElement = (e.target as HTMLElement).querySelector('.' + uuiElement.input);
         input?.focus();
     }, []);
