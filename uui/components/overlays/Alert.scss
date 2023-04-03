@@ -24,7 +24,10 @@
 
 .action-wrapper {
     display: flex;
-    margin-top: -2px;
+}
+
+.action-icon {
+    min-height: 30px;
 }
 
 .action-link:not(:last-child) {
@@ -32,14 +35,14 @@
 }
 
 .close-icon {
-    margin-top: 1px;
     margin-left: 17px;
+    min-height: 30px;
+    align-self: flex-start;
 }
 
 .main-path {
     width: 100%;
     display: flex;
-    align-items: flex-start;
 }
 
 .content {
