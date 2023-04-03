@@ -26,13 +26,18 @@
     display: flex;
 }
 
+.action-icon {
+    min-height: 30px;
+}
+
 .action-link:not(:last-child) {
     margin-right: 12px;
 }
 
 .close-icon {
-    height: 100%;
     margin-left: 17px;
+    min-height: 30px;
+    align-self: flex-start;
 }
 
 .main-path {
