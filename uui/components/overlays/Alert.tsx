@@ -31,12 +31,12 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
     <div
         role="alert"
         ref={ ref }
-        className={ cx(css.alertWrapper, `alert-${props.color || 'default'}`, css.root, props.cx) }
+        className={ cx(css.alertWrapper, `alert-${ props.color || 'default' }`, css.root, props.cx) }
         { ...props.rawProps }
     >
         <div className={ css.mainPath }>
             { props.icon && <div className={ css.iconWrapper }>
-                <IconContainer icon={ props.icon } cx={ css.actionIcon } />
+                <IconContainer icon={ props.icon } cx={ css.actionIcon }/>
             </div> }
             <div className={ css.content }>
                 { props.children }
