@@ -61,7 +61,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
     onResize = (e: MouseEvent) => {
         if (this.state.isResizing) {
-            const columnsConfig = this.props.value.columnsConfig || {};
+            const columnsConfig = { ...(this.props.value.columnsConfig || {}) } ;
             const cellRect = this.cellRef.current.getBoundingClientRect();
             const newWidth = e.clientX - cellRect.left;
 
