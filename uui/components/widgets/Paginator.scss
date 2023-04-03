@@ -1,6 +1,4 @@
 @mixin set-size($padding-left, $padding-right, $min-width) {
-    padding-left: $padding-left;
-    padding-right: $padding-right;
 
     &:global(.uui-button-box) {
         min-width: $min-width;
@@ -9,6 +7,8 @@
     :global(.uui-caption) {
         font-family: var(--font-regular);
         font-size: 14px;
+        padding-left: $padding-left;
+        padding-right: $padding-right;
     }
 
     &:first-of-type {
@@ -37,7 +37,7 @@
     }
 
     .size-24 {
-        @include set-size(1.5px, 1.5px, 24px);
+        @include set-size(2px, 2px, 24px);
 
         &.spacer {
             min-width: 28px;
@@ -45,7 +45,7 @@
     }
 
     .size-30 {
-        @include set-size(4.5px, 4.5px, 30px);
+        @include set-size(5px, 5px, 30px);
 
         &.spacer {
             min-width: 34px;
