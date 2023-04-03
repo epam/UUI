@@ -22,7 +22,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
         return {
             filter: urlParams.filter,
-            columnsConfig: urlParams.columnsConfig,
+            columnsConfig: urlParams.columnsConfig || {},
             filtersConfig: filtersConfig,
             presetId: urlParams.presetId,
             page: urlParams.page,
