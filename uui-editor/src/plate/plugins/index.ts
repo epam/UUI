@@ -14,5 +14,4 @@ export * from './separatorPlugin/separatorPlugin';
 export * from './superscriptPlugin/superscriptPlugin';
 export * from './tablePlugin/tablePlugin';
 export * from './toDoListPlugin/toDoListPlugin';
-export * from './uploadFilePlugin/uploadFilePlugin';
 export * from './videoPlugin/videoPlugin';

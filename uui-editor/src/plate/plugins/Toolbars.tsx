@@ -24,10 +24,10 @@ import { NoteButton } from "./notePlugin/notePlugin";
 import { QuoteButton } from "./quotePlugin/quotePlugin";
 import { SeparatorButton } from "./separatorPlugin/separatorPlugin";
 import { PlaceholderButton } from "./placeholderPlugin/placeholderPlugin";
-import { UploadFileButton } from "./uploadFilePlugin/uploadFilePlugin";
 import { IframeButton } from "./iframePlugin/iframePlugin";
 import { VideoButton } from "./videoPlugin/videoPlugin";
 import { TableButton } from "./tablePlugin/tablePlugin";
+import { AttachFileButton } from './attachmentPlugin/AttachFileButton';
 
 
 export const MarkBalloonToolbar = () => {
@@ -64,7 +64,7 @@ const BlockToolbarButtons = () => {
         <>
             <QuoteButton editor={ editorRef } />
             <NoteButton editor={ editorRef } />
-            <UploadFileButton editor={ editorRef }/>
+            <AttachFileButton editor={ editorRef }/>
             <ImageButton editor={ editorRef }/>
             <VideoButton editor={ editorRef } />
             <IframeButton editor={ editorRef } />

@@ -4,7 +4,7 @@ import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
 import {
     SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin,
     toDoListPlugin, baseMarksPlugin,
-    linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin,
+    linkPlugin, iframePlugin, notePlugin, separatorPlugin,
     tablePlugin, quotePlugin, colorPlugin,
     superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
 } from '@epam/uui-editor';
@@ -37,8 +37,8 @@ export default function SlateEditorBasicExample() {
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        // uploadFilePlugin({ uploadFile }),
-        // attachmentPlugin(),
+        // TODO: use arrow function here instead of function by reference
+        // attachmentPlugin({ uploadFile }),
         imagePlugin(),
         videoPlugin(),
         iframePlugin(),
