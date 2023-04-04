@@ -169,10 +169,10 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     getView(): IDataSourceView<TItem, TId, any> {
         return this.props.dataSource.getView(this.getDataSourceState(), this.handleDataSourceValueChange, {
             getRowOptions: this.getRowOptions,
-            cascadeSelection: this.props.cascadeSelection,
             getSearchFields: this.props.getSearchFields || ((item: TItem) => [this.getName(item)]),
             sortBy: this.props.sortBy,
             isFoldedByDefault: this.props.isFoldedByDefault,
+            ...(this.props.cascadeSelection ? { cascadeSelection: this.props.cascadeSelection } : {})
         });
     }
 
