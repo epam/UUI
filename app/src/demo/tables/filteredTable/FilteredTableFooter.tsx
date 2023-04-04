@@ -14,7 +14,7 @@ interface IFilteredTableFooterProps {
 
 export const FilteredTableFooter = (props: IFilteredTableFooterProps) => {
     const [goToPage, setGoToPage] = useState('1');
-    const totalPages = () => props.tableState.pageSize ? Math.ceil(props.totalCount / props.tableState.pageSize) : 0;
+    const totalPages = props.tableState.pageSize ? Math.ceil(props.totalCount / props.tableState.pageSize) : 0;
     const goToPageHandler = () => props.setTableState({ ...props.tableState, page: +goToPage, indexToScroll: 0 });
     const paginatorHandler = (newPage: number) => props.setTableState({ ...props.tableState, page: newPage, indexToScroll: 0 });
 
@@ -22,12 +22,8 @@ export const FilteredTableFooter = (props: IFilteredTableFooterProps) => {
         items: [{ id: 40, page: "40" }, { id: 80, page: "80" }, { id: 120, page: "120" }, { id: 160, page: "160" }],
     }, []);
 
-    useEffect(() => {
-        setItemsPerPage(40);
-    }, []);
-
     const setGoToPageHandler = (newValue: string) => {
-        if (typeof +newValue === 'number' && !isNaN(+newValue) && +newValue <= totalPages() && +newValue > 0) {
+        if (typeof +newValue === 'number' && !isNaN(+newValue) && +newValue <= totalPages && +newValue > 0) {
             setGoToPage(() => newValue);
         }
     };
@@ -83,7 +79,7 @@ export const FilteredTableFooter = (props: IFilteredTableFooterProps) => {
             <Paginator
                 value={ props.tableState.page }
                 onValueChange={ paginatorHandler }
-                totalPages={ totalPages() }
+                totalPages={ totalPages }
                 size="24"
             />
         </FlexRow>

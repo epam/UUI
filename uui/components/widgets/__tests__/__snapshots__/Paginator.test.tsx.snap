@@ -7,7 +7,7 @@ exports[`Paginator should be rendered correctly 1`] = `
 >
   <button
     aria-disabled={false}
-    className="container uui-button-box uui-enabled -clickable button-secondary root size-24 mode-outline size-24"
+    className="container uui-button-box uui-enabled -clickable button-secondary root size-24 mode-outline navigation-size-24"
     disabled={false}
     onClick={[Function]}
     tabIndex={0}
@@ -23,7 +23,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24"
+    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -35,7 +35,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24"
+    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -47,7 +47,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24"
+    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -59,7 +59,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24"
+    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -71,7 +71,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24"
+    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -83,7 +83,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled button-primary root size-24 mode-ghost size-24"
+    className="container uui-button-box uui-enabled button-secondary root size-24 mode-ghost size-24 spacer"
     onClick={[Function]}
     tabIndex={-1}
     type="button"
@@ -95,7 +95,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24"
+    className="container uui-button-box uui-enabled -clickable button-primary root size-24 mode-ghost size-24 mode-ghost"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -108,7 +108,7 @@ exports[`Paginator should be rendered correctly 1`] = `
   </button>
   <button
     aria-disabled={false}
-    className="container uui-button-box uui-enabled -clickable button-secondary root size-24 mode-outline size-24"
+    className="container uui-button-box uui-enabled -clickable button-secondary root size-24 mode-outline navigation-size-24"
     disabled={false}
     onClick={[Function]}
     tabIndex={0}
