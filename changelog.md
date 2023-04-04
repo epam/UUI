@@ -1,4 +1,7 @@
 # 5.0.0 - xx.xx.20203
+**What's New**
+* The UUI packages now export both CommonJS (CJS) and EcmaScript modules(ESM). Usage of ESM improves tree shaking capabilities, i.e. unused code will be excluded from the app bundle. CJS is still included into the packages for backwards compatibility.
+
 * [useTableState]: 
   - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
   - added storing of sorting, columns config, and paging state into url
