@@ -37,14 +37,14 @@ export function AttachmentBlock(props: any) {
     const isReadonly = useReadOnly();
 
     const { element, editor, children } = props;
-    const [fileName, setFileName] = useState(element.data.fileName || element.fileName);
+    const [name, setName] = useState(element.data.name || element.name);
 
     const changeName = (name: string) => {
         setElements(editor, {
             ...element,
             data: {
                 ...element.data,
-                fileName: name,
+                name: name,
             },
         });
     };
@@ -120,14 +120,14 @@ export function AttachmentBlock(props: any) {
             <FlexCell width="100%" cx={ css.info }>
                 {
                     isReadonly
-                        ? <div className={ css.fileName }> { fileName }</div>
+                        ? <div className={ css.fileName }> { name }</div>
                         : <TextInput
                             cx={ css.input }
                             onClick={ (e: any) =>  { e.stopPropagation(); e.preventDefault(); } }
                             placeholder='Describe attachment: book, link...'
-                            onBlur={ () => changeName(fileName) }
-                            value={ fileName }
-                            onValueChange={ setFileName }
+                            onBlur={ () => changeName(name) }
+                            value={ name }
+                            onValueChange={ setName }
                             isReadonly={ isReadonly }
                         />
                 }

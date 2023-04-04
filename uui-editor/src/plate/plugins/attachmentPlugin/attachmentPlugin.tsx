@@ -4,13 +4,20 @@ import { createPluginFactory, getBlockAbove, insertEmptyElement } from '@udecode
 
 import { AttachmentBlock } from './AttachmentBlock';
 
-const KEY = 'attachment';
+export interface UploadFileOptions {
+    uploadFile(file: File, onProgress?: (progress: any) => any): Promise<File>;
+}
 
-export const attachmentPlugin = () => {
+export const ATTACHMENT_KEY = 'attachment';
+
+export const attachmentPlugin = (uploadOptions?: UploadFileOptions) => {
     const createAttachmentPlugin = createPluginFactory({
-        key: KEY,
+        key: ATTACHMENT_KEY,
         isElement: true,
         isVoid: true,
+        options: {
+            uploadOptions
+        },
         handlers: {
             onKeyDown: (editor) => (event) => {
                 const block = getBlockAbove(editor);

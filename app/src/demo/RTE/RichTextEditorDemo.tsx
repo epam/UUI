@@ -12,7 +12,6 @@ import {
     iframePlugin,
     notePlugin,
     separatorPlugin,
-    uploadFilePlugin,
     tablePlugin,
     quotePlugin,
     colorPlugin,
@@ -57,10 +56,8 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        uploadFilePlugin({
-            uploadFile: this.uploadFile,
-        }),
-        attachmentPlugin(),
+        // TODO: use bind here
+        attachmentPlugin({ uploadFile: this.uploadFile }),
         imagePlugin(),
         videoPlugin(),
         iframePlugin(),

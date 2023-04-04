@@ -6,9 +6,9 @@ import {
     SlateEditor, defaultPlugins,
     imagePlugin, videoPlugin, attachmentPlugin,
     toDoListPlugin, baseMarksPlugin,
-    linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin,
+    linkPlugin, iframePlugin, notePlugin, separatorPlugin,
     tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
+    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, UploadFileOptions,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 
@@ -35,8 +35,8 @@ export default function WithInnerScrollExample() {
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        uploadFilePlugin({ uploadFile }),
-        attachmentPlugin(),
+        // TODO: use arrow function here instead of function by reference
+        attachmentPlugin({ uploadFile } as UploadFileOptions),
         imagePlugin(),
         videoPlugin(),
         iframePlugin(),
