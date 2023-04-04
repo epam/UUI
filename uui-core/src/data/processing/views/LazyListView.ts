@@ -1,6 +1,6 @@
 import {
     DataRowProps, IEditable, DataSourceState,
-    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps,
+    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps, CascadeSelectionTypes,
 } from "../../../types";
 import isEqual from 'lodash.isequal';
 import { BaseListView } from "./BaseListView";
@@ -259,19 +259,23 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     private inProgressPromise: Promise<LoadResult<TItem, TId, TFilter>> = null;
 
-    private loadMissing(abortInProgress: boolean, options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId, TFilter>> {
+    private loadMissing(
+        abortInProgress: boolean,
+        options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>,
+        withNestedChildren?: boolean,
+    ): Promise<LoadResult<TItem, TId, TFilter>> {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
 
         if (this.inProgressPromise === null || abortInProgress) {
             this.inProgressPromise = Promise.resolve({ isUpdated: false, isOutdated: false, tree: this.tree });
         }
 
-        this.inProgressPromise = this.inProgressPromise.then(() => this.loadMissingImpl(options));
+        this.inProgressPromise = this.inProgressPromise.then(() => this.loadMissingImpl(options, withNestedChildren));
 
         return this.inProgressPromise;
     }
 
-    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId, TFilter>> {
+    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>, withNestedChildren?: boolean): Promise<LoadResult<TItem, TId, TFilter>> {
         const loadingTree = this.tree;
 
         try {
@@ -284,6 +288,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     filter: { ...{}, ...this.props.filter, ...this.value.filter },
                 },
                 this.value,
+                withNestedChildren,
             );
 
             const newTree = await newTreePromise;
@@ -323,11 +328,19 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         let tree = this.tree;
 
         if (this.props.cascadeSelection || isRoot) {
-            let result = await this.loadMissing(
-                false,
-                { loadAllChildren: id => isRoot || (id === checkedId) },
-            );
-            tree = result.tree;
+            if (this.props.cascadeSelection !== CascadeSelectionTypes.IMPLICIT || !isChecked) {
+                const isImplicitCheck = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
+                const withNestedChildren = !isImplicitCheck;
+                const parentId = this.props.getParentId(this.tree.getById(checkedId))
+                const result = await this.loadMissing(
+                    false,
+                    {
+                        loadAllChildren: id => isRoot || (isImplicitCheck ? (id === parentId) : (id === checkedId))
+                    },
+                    withNestedChildren,
+                );
+                tree = result.tree;
+            }
         }
 
         checked = tree.cascadeSelection(

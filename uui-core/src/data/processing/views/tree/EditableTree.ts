@@ -1,5 +1,6 @@
 import { BaseTree } from "./BaseTree";
 import { ItemsComparator, ITree, TreeNodeInfo } from "./ITree";
+import { CascadeSelection, CascadeSelectionTypes } from '../../../../types';
 
 export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
     public patch(
@@ -69,7 +70,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         isSelected: boolean,
         options: {
             isSelectable: (item: TItem) => boolean,
-            cascade: boolean,
+            cascade: CascadeSelection,
         },
     ) {
         let selectedIdsMap = this.newMap<TId, boolean>();
@@ -90,8 +91,10 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
                 selectedIdsMap.set(selectedId, true);
             }
             if (options.cascade) {
-                // check all children recursively
-                forEachChildren(id => selectedIdsMap.set(id, true));
+                if (options.cascade !== CascadeSelectionTypes.IMPLICIT) {
+                    // check all children recursively
+                    forEachChildren(id => selectedIdsMap.set(id, true));
+                }
 
                 // check parents if all children is checked
                 this.getParentIdsRecursive(selectedId).reverse().forEach(parentId => {
@@ -108,10 +111,22 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             }
 
             if (options.cascade) {
+                const parents = this.getParentIdsRecursive(selectedId);
                 // uncheck all parents recursively
-                this.getParentIdsRecursive(selectedId).forEach(parentId => selectedIdsMap.delete(parentId));
-                // uncheck all children recursively
-                forEachChildren(id => selectedIdsMap.delete(id));
+                if (options.cascade !== CascadeSelectionTypes.IMPLICIT) {
+                    // uncheck all children recursively
+                    forEachChildren(id => selectedIdsMap.delete(id));
+                } else {
+                    const parentId = this.getParentId(this.getById(selectedId));
+                    const someOfParentsIsChecked = parents.some((parent) => selectedIdsMap.get(parent));
+                    this.getChildrenIdsByParentId(parentId).forEach(id => {
+                        if (selectedId !== id && someOfParentsIsChecked) {
+                            selectedIdsMap.set(id, true);
+                        }
+                    });
+                }
+
+                parents.forEach(parentId => selectedIdsMap.delete(parentId));
             }
         }
 

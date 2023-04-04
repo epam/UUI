@@ -60,6 +60,16 @@ export interface DataRowPathItem<TId, TItem> {
     isLastChild: boolean;
 }
 
+export const CascadeSelectionTypes = {
+    IMPLICIT: 'implicit',
+    EXPLICIT: 'explicit',
+} as const;
+
+export type CascadeSelection =
+    | boolean
+    | typeof CascadeSelectionTypes.EXPLICIT
+    | typeof CascadeSelectionTypes.IMPLICIT;
+
 /** A part of the DataRowProps, which can be configured for each data row via getRowOptions callback.
  * Other props in DataRowProps are computed when generating rows.
  */
@@ -234,7 +244,7 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     /**
      * If selection (checking items) of a parent node should select all children, and vice versa
      */
-    cascadeSelection?: boolean;
+    cascadeSelection?: CascadeSelection;
 
     /**
      * Enables or disables "select all" checkbox. Default is true.
