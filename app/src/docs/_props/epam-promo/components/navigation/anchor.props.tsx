@@ -2,8 +2,7 @@ import * as React from "react";
 import { DocBuilder, onClickDoc } from "@epam/uui-docs";
 import { AnchorProps } from "@epam/uui-components";
 import { DefaultContext } from "../../docs";
-import { Text } from "@epam/promo";
-import { Anchor } from "@epam/promo";
+import { Anchor, Avatar, FlexCell, FlexRow, Panel, Text } from "@epam/promo";
 import css from './anchor.scss';
 
 const AnchorDoc = new DocBuilder<AnchorProps>({ name: 'Anchor', component: Anchor })
@@ -19,7 +18,21 @@ const AnchorDoc = new DocBuilder<AnchorProps>({ name: 'Anchor', component: Ancho
             examples: [
                 {
                     value: [
-                        <Text cx={ css.textStyle } lineHeight="30" fontSize="16">Click Me</Text>,
+                        <Panel cx={ css.panel }>
+                            <FlexRow alignItems="center" spacing="12">
+                                <Avatar
+                                    size="48"
+                                    alt="avatar"
+                                    img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
+                                    cx={ css.image }
+                                />
+
+                                <FlexCell width="100%">
+                                    <Text cx={ css.text } lineHeight="24" fontSize="16" color="gray80">John Doe</Text>
+                                    <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">Corporate Function Management | L3</Text>
+                                </FlexCell>
+                            </FlexRow>
+                        </Panel>,
                     ], isDefault: true,
                 },
             ],
