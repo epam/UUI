@@ -1,23 +1,14 @@
-import React from 'react';
-
 import { createPluginFactory, getBlockAbove, insertEmptyElement } from '@udecode/plate';
 
 import { AttachmentBlock } from './AttachmentBlock';
 
-export interface UploadFileOptions {
-    uploadFile(file: File, onProgress?: (progress: any) => any): Promise<File>;
-}
+export const ATTACHMENT_PLUGIN_KEY = 'attachment';
 
-export const ATTACHMENT_KEY = 'attachment';
-
-export const attachmentPlugin = (uploadOptions?: UploadFileOptions) => {
+export const attachmentPlugin = () => {
     const createAttachmentPlugin = createPluginFactory({
-        key: ATTACHMENT_KEY,
+        key: ATTACHMENT_PLUGIN_KEY,
         isElement: true,
         isVoid: true,
-        options: {
-            uploadOptions
-        },
         handlers: {
             onKeyDown: (editor) => (event) => {
                 const block = getBlockAbove(editor);

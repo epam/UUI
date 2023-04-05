@@ -12,7 +12,6 @@ import {
     ImageElement,
     setElements,
     ToolbarButton as PlateToolbarButton,
-    isEditorFocused,
 } from '@udecode/plate';
 
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
@@ -23,7 +22,6 @@ import { ReactComponent as AlignRight } from '../../../icons/align-right.svg';
 import { ReactComponent as FullWidth } from '../../../icons/align-full-width.svg';
 
 import css from './ImageBlock.scss';
-import { ReactComponent as HeadlinePickerIcon } from "../../icons/heading.svg";
 
 const { FlexRow, Spinner } = uuiSkin;
 

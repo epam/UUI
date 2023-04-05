@@ -9,10 +9,11 @@ import {
     toDoListPlugin, baseMarksPlugin,
     linkPlugin, iframePlugin, notePlugin, separatorPlugin,
     tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, UploadFileOptions,
+    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, uploadFilePlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.scss';
+import { UploadFileOptions } from 'uui-editor/src/plate/plugins/uploadFilePlugin/file_uploader';
 
 type EditorFontSize = '14' | '16';
 type EditorMode = 'form' | 'inline';
@@ -43,7 +44,8 @@ export default function SlateEditorBasicExample() {
         linkPlugin(),
         notePlugin(),
         // TODO: use arrow function here instead of function by reference
-        attachmentPlugin({ uploadFile } as UploadFileOptions),
+        uploadFilePlugin({ uploadFile } as UploadFileOptions),
+        attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
         iframePlugin(),

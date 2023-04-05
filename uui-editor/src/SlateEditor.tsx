@@ -86,6 +86,10 @@ const Editor = ({ initialValue, ...props }: any) => {
             <Plate
                 { ...props }
                 id={ props.id }
+
+                // we override plate core insertData plugin
+                // so, we need to disable default implementation
+                disableCorePlugins={ { insertData: true } }
             >
 
             </Plate>

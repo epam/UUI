@@ -1,5 +1,6 @@
 export * from './baseMarksPlugin/baseMarksPlugin';
 export * from './attachmentPlugin/attachmentPlugin';
+export * from './uploadFilePlugin/uploadFilePlugin';
 export * from './codeBlockPlugin/codeBlockPlugin';
 export * from './colorPlugin/colorPlugin';
 export * from './headerPlugin/headerPlugin';

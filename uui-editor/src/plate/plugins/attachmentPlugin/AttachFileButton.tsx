@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { UploadFileToggler } from '@epam/uui-components';
 
 import {
@@ -9,17 +9,19 @@ import {
 import { isPluginActive, isTextSelected } from '../../../helpers';
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
 import { ReactComponent as AttachIcon } from '../../../icons/attach-file.svg';
-import { ATTACHMENT_KEY, UploadFileOptions } from '../attachmentPlugin/attachmentPlugin';
-import { createFileUploader } from '../attachmentPlugin/file_uploader';
+import { ATTACHMENT_PLUGIN_KEY } from '../attachmentPlugin/attachmentPlugin';
+import { useFilesUploader } from '../uploadFilePlugin/useFilesUploader';
 
 interface IUploadFileButton {
     editor: PlateEditor;
 }
 
 export const AttachFileButton = memo(({ editor }: IUploadFileButton): any => {
-    const onFilesAdded = useMemo(() => createFileUploader(editor), [editor]);
+    const uploadFiles = useFilesUploader(editor);
 
-    if (!isPluginActive(ATTACHMENT_KEY)) return null;
+    const onFilesAdded = useCallback((files: File[]) => uploadFiles(files, 'attachment'), []);
+
+    if (!isPluginActive(ATTACHMENT_PLUGIN_KEY)) return null;
 
     return (
         <UploadFileToggler
