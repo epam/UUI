@@ -159,6 +159,13 @@ export class AppHeader extends React.Component {
                 />,
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key='spacer' /> },
+            { id: 'flexSpacer', priority: 0, render: () => <Anchor
+                    rawProps={ { style: { height: '60px' } } }
+                    target={ '_blank' }
+                    href='https://forms.office.com/pages/responsepage.aspx?id=0HIbtJ9OJkyKaflJ82fJHe0Hoi0jIyFGmBEkXWrhi8lURTY3WkFaOUNLR0JMR1UzQjRIUlFYQ1QzNi4u'
+                >
+                    <img height='60px' src="/static/survey_banner.png" alt="Take part in UUI survey"/>
+            </Anchor> },
             window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: this.renderThemeSwitcher },
             { id: 'git', priority: 0, render: () => (
                     <Anchor cx={ css.linkContainer } href={ GIT_LINK } target='_blank' onClick={ () => this.sendEvent(GIT_LINK) } key='git'>
