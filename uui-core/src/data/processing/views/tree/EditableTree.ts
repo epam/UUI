@@ -98,14 +98,21 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
                     forEachChildren(id => selectedIdsMap.delete(id), selectedId, false);
                 } else {
                     // check all children recursively
-                    forEachChildren(id => selectedIdsMap.set(id, true));
+                    forEachChildren(id => {
+                        if (id !== undefined) {
+                            selectedIdsMap.set(id, true)
+                        }
+                    });
                 }
 
                 // check parents if all children is checked
                 this.getParentIdsRecursive(selectedId).reverse().forEach(parentId => {
                     const childrenIds = this.getChildrenIdsByParentId(parentId);
                     if (childrenIds && childrenIds.every(childId => selectedIdsMap.has(childId))) {
-                        selectedIdsMap.set(parentId, true);
+                        if (parentId !== undefined) {
+                            selectedIdsMap.set(parentId, true);
+                        }
+
                         if (options.cascade === CascadeSelectionTypes.IMPLICIT) {
                             forEachChildren(id => selectedIdsMap.delete(id), parentId, false);
                         }
