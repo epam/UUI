@@ -90,7 +90,7 @@ const Editor = ({ initialValue, ...props }: any) => {
                 bottom: 12,
                 display: 'flex',
                 minHeight: 0,
-                zIndex: 50
+                zIndex: 50,
             } }>
                 <ToolbarButtons />
             </Toolbar>
@@ -115,7 +115,7 @@ const Editor = ({ initialValue, ...props }: any) => {
             { ...props.rawProps }
         >
             { props.scrollbars
-                ? <ScrollBars cx={ css.scrollbars }>
+                ? <ScrollBars cx={ css.scrollbars } style={{ width: '100%' }}>
                     { renderEditor() }
                 </ScrollBars>
                 : renderEditor()

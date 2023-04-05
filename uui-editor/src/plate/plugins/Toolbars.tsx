@@ -38,10 +38,10 @@ export const MarkBalloonToolbar = () => {
             <BoldButton editor={ editorRef } />
             <ItalicButton editor={ editorRef } />
             <UnderlineButton editor={ editorRef } />
-            <CodeButton editor={ editorRef } />
             <ColorButton editor={ editorRef }/>
             <SuperscriptButton editor={ editorRef } />
             <LinkButton editor={ editorRef }/>
+            <CodeButton editor={ editorRef } />
         </Toolbar>
     );
 };
