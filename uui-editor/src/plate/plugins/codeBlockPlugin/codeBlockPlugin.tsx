@@ -6,9 +6,9 @@ import {
     Value,
     createCodePlugin,
     MarkToolbarButton,
-    MARK_CODE,
     getPluginType,
-    isMarkActive, PlateEditor,
+    isMarkActive,
+    PlateEditor,
 } from "@udecode/plate";
 import { ToolbarButton } from "../../implementation/ToolbarButton";
 import { ReactComponent as CodeIcon } from "../../icons/editor-code.svg";
@@ -27,7 +27,7 @@ const Code = <V extends Value = Value, N extends TText = EText<V>>(
 };
 
 export const codeBlockPlugin = () => createCodePlugin({
-    type: KEY,
+    key: KEY,
     component: Code,
 });
 
@@ -36,7 +36,7 @@ interface ToolbarButton {
 }
 
 export const CodeButton = ({ editor }: ToolbarButton) => {
-    if (!isPluginActive(MARK_CODE)) return null;
+    if (!isPluginActive(KEY)) return null;
     return (
         <MarkToolbarButton
             styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }

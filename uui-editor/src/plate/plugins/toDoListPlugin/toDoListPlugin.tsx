@@ -6,6 +6,8 @@ import {
     BlockToolbarButton,
     PlateEditor,
     getBlockAbove,
+    insertEmptyElement,
+    getAboveNode,
 } from '@udecode/plate';
 
 import { ToolbarButton  } from '../../implementation/ToolbarButton';
@@ -22,6 +24,17 @@ export const toDoListPlugin = () => {
         key: KEY,
         isElement: true,
         component: ToDoItem,
+        handlers: {
+            onKeyDown: (editor) => (e) => {
+                if (e.key === 'Enter') {
+                    const [entries] = getAboveNode(editor);
+                    const textExist = entries.children.some(item => !!item.text);
+                    if (!textExist) {
+                        insertEmptyElement(editor, 'paragraph');
+                    }
+                }
+            },
+        },
     });
 
     return createToDoListPlugin();

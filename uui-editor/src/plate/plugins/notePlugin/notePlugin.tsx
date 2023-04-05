@@ -2,10 +2,11 @@ import React from 'react';
 import { Dropdown } from '@epam/uui-components';
 
 import {
-    createPluginFactory,
-    getBlockAbove,
+    createPluginFactory, getAboveNode,
+    getBlockAbove, insertEmptyElement,
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
+    insertText
 } from '@udecode/plate';
 
 import { isPluginActive } from '../../../helpers';
@@ -32,6 +33,15 @@ export const notePlugin = () => {
         isElement: true,
         isVoid: false,
         component: Note,
+        handlers: {
+            onKeyDown: (editor) => (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    insertText(editor, '\n');
+                    return true;
+                }
+            },
+        },
         plugins: [
             {
                 key: 'note-error',
