@@ -327,11 +327,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         let tree = this.tree;
 
-        const isImplicitCheck = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
+        const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
         if (this.props.cascadeSelection || isRoot) {
-            if (!isImplicitCheck || !isChecked) {
-                const loadNestedLayersChildren = !isImplicitCheck;
+            if (!isImplicitMode || !isChecked) {
+                const loadNestedLayersChildren = !isImplicitMode;
                 const parents = this.tree.getParentIdsRecursive(checkedId);
                 const result = await this.loadMissing(
                     false,
@@ -339,7 +339,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
                         // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
                         // Otherwise, should be loaded only checked element and all its nested children.
-                        loadAllChildren: id => (isImplicitCheck ? parents.includes(id) : (isRoot || id === checkedId))
+                        loadAllChildren: id => (isImplicitMode ? parents.includes(id) : (isRoot || id === checkedId))
                     },
                     loadNestedLayersChildren,
                 );
@@ -352,7 +352,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             checkedId,
             isChecked,
             {
-                cascade: isImplicitCheck ? isImplicitCheck : isRoot || this.props.cascadeSelection,
+                cascade: isImplicitMode ? isImplicitMode : (isRoot || this.props.cascadeSelection),
                 isSelectable: (item: TItem) => {
                     const { isCheckable } = this.getRowProps(item, null);
                     return isCheckable;
