@@ -1,7 +1,3 @@
-@use '~@epam/promo/assets/styles/fonts.scss' as *;
-@use '~@epam/promo/assets/styles/colors.scss' as *;
-
-
 .root {
     &:global(.uui-button-box) {
         height: 36px;
@@ -10,36 +6,15 @@
         font-size: 16px;
         width: 100%;
         padding-right: 12px;
-        border-left: 3px solid transparent;
     }
 
     :global(.uui-caption) {
         min-width: 0;
         text-align: left;
         flex: 1 1 auto;
-        font-family: $font-sans;
-        color: $gray80;
+        font-family: var(--font-regular);
         user-select: none;
-    }
-
-    &:global(.-clickable) {
-        &:focus, &:hover {
-            :global(.uui-caption) {
-                color: $blue;
-            }
-        }
-
-        &.active {
-            border-left: 3px solid $blue;
-
-            :global(.uui-caption) {
-                color: $blue;
-            }
-        }
-
-        &:focus {
-            outline: none;
-        }
+        font-size: 16px;
     }
 
     &.indent-12 {
