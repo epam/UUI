@@ -78,12 +78,13 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
 
         options = { isSelectable: BaseTree.truePredicate, cascade: true, ...options };
 
-        const forEachChildren = (action: (id: TId) => void) => {
+        const forEachChildren = (action: (id: TId) => void, parentId?: TId) => {
             this.forEach((item, id) => {
                 if (options.isSelectable(item)) {
                     action(id);
                 }
-            }, { parentId: selectedId });
+                // if parentId is provided, only its children should be loaded
+            }, { parentId: parentId ?? selectedId, includeParent: !!!parentId });
         };
 
         if (isSelected) {
@@ -102,6 +103,9 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
 
                     if (childrenIds && childrenIds.every(childId => selectedIdsMap.has(childId))) {
                         selectedIdsMap.set(parentId, true);
+                        if (options.cascade === CascadeSelectionTypes.IMPLICIT) {
+                            forEachChildren(id => selectedIdsMap.delete(id), parentId);
+                        }
                     }
                 });
             }
@@ -116,17 +120,24 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
                 if (options.cascade !== CascadeSelectionTypes.IMPLICIT) {
                     // uncheck all children recursively
                     forEachChildren(id => selectedIdsMap.delete(id));
+                    parents.forEach(parentId => selectedIdsMap.delete(parentId));
                 } else {
-                    const parentId = this.getParentId(this.getById(selectedId));
-                    const someOfParentsIsChecked = parents.some((parent) => selectedIdsMap.get(parent));
-                    this.getChildrenIdsByParentId(parentId).forEach(id => {
-                        if (selectedId !== id && someOfParentsIsChecked) {
-                            selectedIdsMap.set(id, true);
-                        }
-                    });
-                }
+                    const selectNeighboursOnly = (itemId: TId) => {
+                        const parentId = this.getParentId(this.getById(itemId));
+                        const parents = this.getParentIdsRecursive(itemId);
+                        // if some parent is checked, it is required to check all children explicitly,
+                        // except unchecked one.
+                        const someParentIsChecked = parents.some((parent) => selectedIdsMap.get(parent));
+                        this.getChildrenIdsByParentId(parentId).forEach(id => {
+                            if (itemId !== id && someParentIsChecked) {
+                                selectedIdsMap.set(id, true);
+                            }
+                        });
+                        selectedIdsMap.delete(parentId);
+                    }
 
-                parents.forEach(parentId => selectedIdsMap.delete(parentId));
+                    [selectedId, ...parents.reverse()].forEach(selectNeighboursOnly);
+                }
             }
         }
 
