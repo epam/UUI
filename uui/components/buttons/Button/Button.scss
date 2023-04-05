@@ -160,6 +160,10 @@
 }
 
 //Sizes
+.size-18 {
+    @include button-layout(18px, 1px);
+}
+
 .size-24 {
     @include button-layout(24px, 1px);
 }
