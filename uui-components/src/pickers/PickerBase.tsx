@@ -1,5 +1,8 @@
 import React from 'react';
-import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts, DataRowProps } from "@epam/uui-core";
+import {
+    DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps,
+    PickerFooterProps, UuiContexts
+} from "@epam/uui-core";
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
 
@@ -170,8 +173,8 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         return this.props.dataSource.getView(this.getDataSourceState(), this.handleDataSourceValueChange, {
             getRowOptions: this.getRowOptions,
             getSearchFields: this.props.getSearchFields || ((item: TItem) => [this.getName(item)]),
-            sortBy: this.props.sortBy,
             isFoldedByDefault: this.props.isFoldedByDefault,
+            ...(this.props.sortBy ? { sortBy: this.props.sortBy } : {}),
             ...(this.props.cascadeSelection ? { cascadeSelection: this.props.cascadeSelection } : {})
         });
     }

@@ -242,7 +242,16 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     isFoldedByDefault?(item: TItem): boolean;
 
     /**
-     * If selection (checking items) of a parent node should select all children, and vice versa
+     * Controls how selection (checking items) of a parent node affects selection of its all children, and vice versa.
+     * - false: All nodes are selected independently (default).
+     * - true or 'explicit': Selecting a parent node explicitly selects all its children.
+     *    Unchecking the last parent's child unchecks its parent.
+     * - 'implicit': Selecting a parent node means that all children are considered checked.
+     *    The user sees all these nodes as checked on the UI, but they only see the selected parent in the PickerInput tags,
+     *    and only the checked parent is present in the Picker's value or DataSourceState.checked array.
+     *    When the user unchecks the first children of such parent, we uncheck its parents and check all children but the unchecked one,
+     *    making children selection explicit. If the last unchecked child gets checked, we remove all children from checked, returning
+     *    to the implicit state when only the parent is checked.
      */
     cascadeSelection?: CascadeSelection;
 

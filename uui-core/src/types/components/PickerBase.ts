@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { IAnalyticableOnChange, IEditable } from "../props";
-import { IDataSource, IDataSourceView, DataRowOptions, DataRowProps, DataSourceState } from "../dataSources";
+import { IDataSource, IDataSourceView, DataRowOptions, DataRowProps, DataSourceState, CascadeSelection } from "../dataSources";
 import { SortingOption } from "../dataQuery";
 
 export type SinglePickerProps<TId, TItem> =
@@ -68,7 +68,7 @@ export type PickerBaseOptions<TItem, TId> = {
     sorting?: SortingOption;
 
     /** Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents) */
-    cascadeSelection?: boolean;
+    cascadeSelection?: CascadeSelection;
 
     /** You can return true for all, or some items to fold them. */
     isFoldedByDefault?(item: TItem): boolean;
