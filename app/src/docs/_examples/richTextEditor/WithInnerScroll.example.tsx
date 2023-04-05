@@ -8,9 +8,10 @@ import {
     toDoListPlugin, baseMarksPlugin,
     linkPlugin, iframePlugin, notePlugin, separatorPlugin,
     tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, UploadFileOptions,
+    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, uploadFilePlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
+import { UploadFileOptions } from 'uui-editor/src/plate/plugins/uploadFilePlugin/file_uploader';
 
 export default function WithInnerScrollExample() {
     const svc = useUuiContext();
@@ -36,7 +37,8 @@ export default function WithInnerScrollExample() {
         linkPlugin(),
         notePlugin(),
         // TODO: use arrow function here instead of function by reference
-        attachmentPlugin({ uploadFile } as UploadFileOptions),
+        uploadFilePlugin({ uploadFile } as UploadFileOptions),
+        attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
         iframePlugin(),

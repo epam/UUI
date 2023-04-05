@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Value } from 'slate';
 import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
 import {
-    SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin,
+    SlateEditor, defaultPlugins, imagePlugin, videoPlugin,
     toDoListPlugin, baseMarksPlugin,
     linkPlugin, iframePlugin, notePlugin, separatorPlugin,
     tablePlugin, quotePlugin, colorPlugin,
@@ -38,7 +38,8 @@ export default function SlateEditorBasicExample() {
         linkPlugin(),
         notePlugin(),
         // TODO: use arrow function here instead of function by reference
-        // attachmentPlugin({ uploadFile }),
+        // uploadFilePlugin({ uploadFile })
+        // attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
         iframePlugin(),

@@ -20,6 +20,7 @@ import {
     listPlugin,
     placeholderPlugin,
     codeBlockPlugin,
+    uploadFilePlugin,
 } from "@epam/uui-editor";
 import { svc } from '../../services';
 import { demoData } from '@epam/uui-docs';
@@ -57,7 +58,8 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
         linkPlugin(),
         notePlugin(),
         // TODO: use bind here
-        attachmentPlugin({ uploadFile: this.uploadFile }),
+        uploadFilePlugin({ uploadFile: this.uploadFile }),
+        attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
         iframePlugin(),
