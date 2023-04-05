@@ -19,13 +19,13 @@ export class SidebarButton extends React.Component<SidebarButtonProps, any> {
                 "aria-disabled": this.props.isDisabled,
                 "aria-current": this.props.isActive,
             } }
+            isLinkActive={ this.props.isActive }
             cx={ cx(
                 css.root,
-                this.props.isActive && css.active,
                 css['indent-' + this.props.indent],
             ) }
             dropdownIcon={ DropdownIcon }
-            size='36'
+            size="36"
         />;
     }
 }
