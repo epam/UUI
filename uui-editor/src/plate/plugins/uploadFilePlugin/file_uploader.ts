@@ -51,8 +51,8 @@ const upload = async (
 
     try {
         for (const file of files) {
-            const FileUploadResponse = await invokeUpload(file);
-            filesData.push(FileUploadResponse);
+            const response = await invokeUpload(file);
+            filesData.push(response);
         }
     } catch (e) {
         // TODO: add error handling
