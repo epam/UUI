@@ -4,6 +4,9 @@
   "author": "EPAM",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "build": "node ../uui-build/scripts/buildModule"
+  },
   "dependencies": {
     "@types/react-dom": "18.0.10",
     "@types/react-test-renderer": "18.0.0",
@@ -13,6 +16,8 @@
 	},
   "peerDependencies": {
     "react": ">=16.0.0",
-    "react-dom": ">=16.0.0"
+    "react-dom": ">=16.0.0",
+    "@types/jest": "27.5.1",
+    "jest": "27.5.1"
   }
 }

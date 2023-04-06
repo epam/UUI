@@ -4,6 +4,7 @@ const { APP_TARGET_DIR, COLLECT_SIZE_GLOB, TEMPLATE_APP_TARGET_DIR } = require('
 const { getAllMonorepoPackages } = require('../monorepoUtils.js');
 const { isRollupModule } = require('../moduleBuildUtils.js');
 const SourceMapExplorer = require('source-map-explorer');
+const {UNTRACKED_MODULES} = require("./bundleStatsConstants");
 
 module.exports = { measureAllBundleSizes };
 
@@ -26,7 +27,7 @@ async function measureAllBundleSizes() {
 
     const moduleBundleSizesPromises = Object.keys(allLocalPackages)
         .filter((name) => {
-            return isRollupModule(allLocalPackages[name].moduleRootDir);
+            return isRollupModule(allLocalPackages[name].moduleRootDir) && UNTRACKED_MODULES.indexOf(name) === -1;
         })
         .map((name) => {
             return measureBundleSizeBytes(`${allLocalPackages[name].moduleRootDir}/${COLLECT_SIZE_GLOB.MODULE}`)
