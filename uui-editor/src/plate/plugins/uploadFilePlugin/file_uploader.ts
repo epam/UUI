@@ -10,6 +10,7 @@ import { IMAGE_PLUGIN_KEY } from "../imagePlugin/imagePlugin";
 import { ATTACHMENT_PLUGIN_KEY } from "../attachmentPlugin/attachmentPlugin";
 import { IFRAME_PLUGIN_KEY } from "../iframePlugin/iframePlugin";
 import { useCallback } from "react";
+import type { FileUploadResponse } from "uui-core";
 
 export type UploadType = keyof typeof UPLOAD_BLOCKS;
 
@@ -17,29 +18,24 @@ export interface UploadFileOptions {
     uploadFile?: UploadFile;
 }
 
-interface UploadedFile extends File {
-    type: UploadType;
-    path: string;
-}
-
 type UploadFile = (
     file: File,
-    onProgress?: (progress: any) => any
-) => Promise<UploadedFile>;
+    onProgress?: (progress: number) => any
+) => Promise<FileUploadResponse>;
 
 const UPLOAD_BLOCKS = {
-    attachment: (file: UploadedFile) => ({
+    attachment: (file: FileUploadResponse) => ({
         type: ATTACHMENT_PLUGIN_KEY,
         data: { ...file, fileName: file.name },
         children: [{ text: "" }],
     }),
-    image: (file: UploadedFile) => ({
+    image: (file: FileUploadResponse) => ({
         type: IMAGE_PLUGIN_KEY,
         data: file,
         url: file.path,
         children: [{ text: "" }],
     }),
-    iframe: (file: UploadedFile) => ({
+    iframe: (file: FileUploadResponse) => ({
         type: IFRAME_PLUGIN_KEY,
         data: file,
         src: file.path,
@@ -50,13 +46,13 @@ const UPLOAD_BLOCKS = {
 const upload = async (
     files: File[],
     invokeUpload: UploadFile
-): Promise<UploadedFile[]> => {
-    const filesData: Array<UploadedFile> = [];
+): Promise<FileUploadResponse[]> => {
+    const filesData: Array<FileUploadResponse> = [];
 
     try {
         for (const file of files) {
-            const uploadedFile = await invokeUpload(file);
-            filesData.push(uploadedFile);
+            const FileUploadResponse = await invokeUpload(file);
+            filesData.push(FileUploadResponse);
         }
     } catch (e) {
         // TODO: add error handling
@@ -71,10 +67,10 @@ const isValidFileType = (fileType: string) => {
 };
 
 const buildFragments = (
-    files: UploadedFile[],
+    files: FileUploadResponse[],
     overriddenAction?: UploadType
 ) => {
-    return files.map((file: UploadedFile) => {
+    return files.map((file: FileUploadResponse) => {
         const fileType = file.type;
         const uploadType = (
             isValidFileType(fileType) ? fileType : "attachment"
@@ -100,10 +96,10 @@ export const createFileUploader =
         const prevSelection = { ...editor.prevSelection };
 
         // upload files
-        const uploadedFiles = await upload(files, uploadFile);
+        const FileUploadResponses = await upload(files, uploadFile);
 
         // build fragments
-        const fileFragments = buildFragments(uploadedFiles, overriddenAction);
+        const fileFragments = buildFragments(FileUploadResponses, overriddenAction);
 
         // remove loader
         editor.selection = currentSelection;

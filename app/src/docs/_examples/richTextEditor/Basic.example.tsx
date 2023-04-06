@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
 import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
-import { useUuiContext } from '@epam/uui';
+import { FileUploadResponse, useUuiContext } from '@epam/uui';
 import {
     SlateEditor,
     defaultPlugins,
@@ -13,7 +13,6 @@ import {
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.scss';
-import { UploadFileOptions } from 'uui-editor/src/plate/plugins/uploadFilePlugin/file_uploader';
 
 type EditorFontSize = '14' | '16';
 type EditorMode = 'form' | 'inline';
@@ -26,7 +25,7 @@ export default function SlateEditorBasicExample() {
     const [mode, setMode] = useState<EditorMode>('form');
     const [fontSize, setFontSize] = useState<EditorFontSize>('14');
 
-    const uploadFile = (file: File, onProgress: (progress: number) => unknown): unknown => {
+    const uploadFile = (file: File, onProgress: (progress: number) => unknown): Promise<FileUploadResponse> => {
         return svc.uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
             onProgress,
         });
@@ -43,7 +42,7 @@ export default function SlateEditorBasicExample() {
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        uploadFilePlugin({ uploadFile } as UploadFileOptions),
+        uploadFilePlugin({ uploadFile }),
         attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
