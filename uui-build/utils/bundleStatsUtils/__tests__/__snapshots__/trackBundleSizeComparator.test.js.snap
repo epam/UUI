@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`trackBundleSizeComparator should create comparison result report 1`] = `
+Object {
+  "testApp1": Object {
+    "baseLineSize": 0.1,
+    "diffLabel": "+0.02",
+    "size": 0.12,
+    "thresholdLabel": "0.09 - 0.11",
+    "withinThreshold": false,
+  },
+  "testApp2": Object {
+    "baseLineSize": 0.2,
+    "diffLabel": "+0.01",
+    "size": 0.21,
+    "thresholdLabel": "0.18 - 0.22",
+    "withinThreshold": true,
+  },
+}
+`;

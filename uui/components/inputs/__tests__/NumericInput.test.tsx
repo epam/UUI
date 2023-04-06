@@ -1,10 +1,10 @@
 import React from 'react';
 import { NumericInput } from '../NumericInput';
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 
 describe('NumericInput', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <NumericInput
                 value={ null }
                 onValueChange={ jest.fn }
@@ -16,7 +16,7 @@ describe('NumericInput', () => {
     });
 
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <NumericInput
                 value={ null }
                 onValueChange={ jest.fn }

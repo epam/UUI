@@ -39,9 +39,7 @@
     "react-popper": "2.3.0"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "7.0.2",
-    "enzyme": "3.9.0",
-    "enzyme-adapter-react-16": "1.10.0",
+    "@testing-library/react": "14.0.0",
     "react-test-renderer": "18.2.0"
   },
   "peerDependencies": {
