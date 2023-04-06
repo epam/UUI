@@ -36,7 +36,7 @@ export default function WithInnerScrollExample() {
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        uploadFilePlugin({ uploadFile: (f, p) => uploadFile(f, p) } as UploadFileOptions),
+        uploadFilePlugin({ uploadFile } as UploadFileOptions),
         attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
