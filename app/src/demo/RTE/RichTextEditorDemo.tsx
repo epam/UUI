@@ -57,8 +57,7 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        // TODO: use bind here
-        uploadFilePlugin({ uploadFile: this.uploadFile }),
+        uploadFilePlugin({ uploadFile: this.uploadFile.bind(this) }),
         attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
