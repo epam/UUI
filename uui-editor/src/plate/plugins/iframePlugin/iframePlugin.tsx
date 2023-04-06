@@ -16,12 +16,13 @@ import { ReactComponent as PdfIcon } from '../../../icons/pdf.svg';
 import { isPluginActive, isTextSelected } from '../../../helpers';
 
 import { IframeBlock } from './IframeBlock';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 
-const KEY = 'iframe';
+export const IFRAME_PLUGIN_KEY = 'iframe';
 
 export const iframePlugin = () => {
     const createIframePlugin = createPluginFactory({
-        key: KEY,
+        key: IFRAME_PLUGIN_KEY,
         isElement: true,
         isVoid: true,
         component: IframeBlock,
@@ -49,14 +50,15 @@ interface IIframeButton {
 }
 
 export const IframeButton = ({ editor }: IIframeButton) => {
+    if (!isPluginActive(IFRAME_PLUGIN_KEY)) return null;
 
-    if (!isPluginActive(KEY)) return null;
+    const onFilesAdded = useFilesUploader(editor);
 
     return (
         <UploadFileToggler
             render={ (props) => (
                 <PlateToolbarButton
-                    styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+                    styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
                     active={ true }
                     onMouseDown={
                         editor
@@ -70,9 +72,7 @@ export const IframeButton = ({ editor }: IIframeButton) => {
                     /> }
                 />
             ) }
-            onFilesAdded={ (files) =>
-                (editor as any).insertData({ getData: () => 'files', files })
-            }
+            onFilesAdded={ onFilesAdded }
             accept='.pdf'
         />
     );

@@ -1,5 +1,6 @@
 export * from './baseMarksPlugin/baseMarksPlugin';
 export * from './attachmentPlugin/attachmentPlugin';
+export * from './uploadFilePlugin/uploadFilePlugin';
 export * from './codeBlockPlugin/codeBlockPlugin';
 export * from './colorPlugin/colorPlugin';
 export * from './headerPlugin/headerPlugin';
@@ -14,5 +15,4 @@ export * from './separatorPlugin/separatorPlugin';
 export * from './superscriptPlugin/superscriptPlugin';
 export * from './tablePlugin/tablePlugin';
 export * from './toDoListPlugin/toDoListPlugin';
-export * from './uploadFilePlugin/uploadFilePlugin';
 export * from './videoPlugin/videoPlugin';

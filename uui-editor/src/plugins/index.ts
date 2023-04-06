@@ -9,7 +9,6 @@ export * from './baseMarksPlugin/baseMarksPlugin';
 // export * from './iframePlugin/iframePlugin';
 // export * from './notePlugin/notePlugin';
 // export * from './separatorPlugin/separatorPlugin';
-// export * from './uploadFilePlugin/uploadFilePlugin';
 export * from './colorPlugin/colorPlugin';
 // export * from './quotePlugin/quotePlugin';
 // export * from './tablePlugin/tablePlugin';

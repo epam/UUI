@@ -1,45 +1,33 @@
-import React from 'react';
-import { UploadFileToggler} from '@epam/uui-components';
+import React, { memo, useCallback } from 'react';
+import { UploadFileToggler } from '@epam/uui-components';
 
 import {
     ToolbarButton as PlateToolbarButton,
-    createInsertDataPlugin,
-    PlateEditor, insertData, focusEditor,
+    PlateEditor, focusEditor
 } from "@udecode/plate";
 
 import { isPluginActive, isTextSelected } from '../../../helpers';
-
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
-
 import { ReactComponent as AttachIcon } from '../../../icons/attach-file.svg';
-
-import { withFileUpload } from './withFileUpload';
-
-const KEY = 'insertData';
-
-export interface UploadFileOptions {
-    uploadFile(file: File, onProgress: (progress: any) => any): any;
-}
-
-export const uploadFilePlugin = (options: UploadFileOptions) => createInsertDataPlugin({
-    options,
-    withOverrides: withFileUpload,
-});
+import { ATTACHMENT_PLUGIN_KEY } from '../attachmentPlugin/attachmentPlugin';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 
 interface IUploadFileButton {
     editor: PlateEditor;
 }
 
-export const UploadFileButton = ({ editor }: IUploadFileButton): any => {
+export const AttachFileButton = memo(({ editor }: IUploadFileButton): any => {
+    const uploadFiles = useFilesUploader(editor);
 
-    if (!isPluginActive('attachment')) return null;
+    const onFilesAdded = useCallback((files: File[]) => uploadFiles(files, 'attachment'), []);
 
+    if (!isPluginActive(ATTACHMENT_PLUGIN_KEY)) return null;
 
     return (
         <UploadFileToggler
             render={ (props) => (
                 <PlateToolbarButton
-                    styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+                    styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
                     active={ true }
                     onMouseDown={ (e) => {
                         e.preventDefault();
@@ -57,16 +45,7 @@ export const UploadFileButton = ({ editor }: IUploadFileButton): any => {
                     /> }
                 />
             ) }
-            onFilesAdded={ (files) => {
-                const dataTransfer = new DataTransfer();
-
-                dataTransfer.setData('type', 'attachment');
-                files.map((file: File) => {
-                    dataTransfer.items.add(file);
-                });
-
-                insertData(editor, dataTransfer);
-            }}
+            onFilesAdded={ onFilesAdded }
         />
     );
-};
+});

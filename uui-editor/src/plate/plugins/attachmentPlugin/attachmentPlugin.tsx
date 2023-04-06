@@ -1,14 +1,12 @@
-import React from 'react';
-
 import { createPluginFactory, getBlockAbove, insertEmptyElement } from '@udecode/plate';
 
 import { AttachmentBlock } from './AttachmentBlock';
 
-const KEY = 'attachment';
+export const ATTACHMENT_PLUGIN_KEY = 'attachment';
 
 export const attachmentPlugin = () => {
     const createAttachmentPlugin = createPluginFactory({
-        key: KEY,
+        key: ATTACHMENT_PLUGIN_KEY,
         isElement: true,
         isVoid: true,
         handlers: {

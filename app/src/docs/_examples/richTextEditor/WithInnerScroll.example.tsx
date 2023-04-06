@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
 import { Panel } from '@epam/promo';
-import { useUuiContext } from '@epam/uui';
+import { FileUploadResponse, useUuiContext } from '@epam/uui';
 import {
     SlateEditor, defaultPlugins,
     imagePlugin, videoPlugin, attachmentPlugin,
     toDoListPlugin, baseMarksPlugin,
-    linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin,
+    linkPlugin, iframePlugin, notePlugin, separatorPlugin,
     tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
+    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, uploadFilePlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 
@@ -18,7 +18,7 @@ export default function WithInnerScrollExample() {
     const [value, setValue] = useState<Descendant>(demoData.slateInitialValue);
 
 
-    const uploadFile = (file: File, onProgress: (progress: number) => unknown): unknown => {
+    const uploadFile = (file: File, onProgress: (progress: number) => unknown): Promise<FileUploadResponse> => {
         return svc.uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
             onProgress,
         });
