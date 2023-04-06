@@ -1,6 +1,8 @@
 import { BaseContext } from './BaseContext';
 import { AnalyticsContext } from './AnalyticsContext';
-import { IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo } from '../types';
+import {
+    IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo,
+} from '../types';
 import { getCookie, isClientSide } from '../helpers';
 import { ApiContextProps } from './ContextProvider';
 
@@ -11,7 +13,7 @@ interface ApiCall extends ApiCallInfo {
 
 export class ApiCallError extends Error {
     constructor(public call: ApiCall) {
-        super("ApiContext: XHR call failed");
+        super('ApiContext: XHR call failed');
     }
 }
 
@@ -39,8 +41,11 @@ export type BlockTypes = 'attachment' | 'iframe' | 'image';
 
 export class ApiContext extends BaseContext implements IApiContext {
     private queue: ApiCall[] = [];
+
     private isRunScheduled = false;
+
     public status: ApiStatus = 'idle';
+
     public recoveryReason: ApiRecoveryReason | null = null;
 
     constructor(private props: ApiContextProps, private analyticsCtx?: AnalyticsContext) {
@@ -53,7 +58,7 @@ export class ApiContext extends BaseContext implements IApiContext {
 
     private runListeners() {
         // If this window is opened by another app in another window to re-login, tell it that Auth was passed ok
-        window.opener && window.location.pathname === this.props.apiReloginPath && window.opener.postMessage("authSuccess", "*");
+        window.opener && window.location.pathname === this.props.apiReloginPath && window.opener.postMessage('authSuccess', '*');
 
         // If we opened another window to relogin and check auth - close this window and resume
         window.addEventListener('message', (e) => {
@@ -124,10 +129,10 @@ export class ApiContext extends BaseContext implements IApiContext {
             body: call.requestData && JSON.stringify(call.requestData),
             credentials: 'include',
             ...call.options?.fetchOptions,
-        }).then(response => {
+        }).then((response) => {
             this.handleResponse(call, response);
         }).catch((e: Error) => {
-            if (e.name === "AbortError") {
+            if (e.name === 'AbortError') {
                 this.removeFromQueue(call);
                 return;
             }
@@ -150,35 +155,35 @@ export class ApiContext extends BaseContext implements IApiContext {
                     name: call.name,
                     event_category: window.location.pathname,
                 },
-            }, "apiTiming");
+            }, 'apiTiming');
 
             if (response.status == 204) {
                 return this.resolveCall(call, null);
             }
 
             response.json()
-                .then(result => {
+                .then((result) => {
                     call.responseData = result;
                     this.resolveCall(call, result);
                 })
-                .catch(e => {
+                .catch((e) => {
                     /* Problem with response JSON parsing */
                     call.status = 'error';
                     this.setStatus('error');
                     call.reject(e);
                 });
         } else if (/* Network and server-related problems. We'll ping the server and then retry the call in this case. */
-                (response.status === 408 /* Request Timeout */
+            (response.status === 408 /* Request Timeout */
                     || response.status === 420 /* Enhance Your Calm */
                     || response.status === 429 /* Too Many Requests */
                     || response.status === 502 /* Bad Gateway */
                     || response.status === 503 /* Service Unavailable */
                     || response.status === 504 /* Gateway Timeout */
-                ) && call.attemptsCount < 2 /*
+            ) && call.attemptsCount < 2 /*
                     There can be cases, when server returns some of these states, while /ping works.
                     To not enter infinite loop in this case, we limit number of retries.
                 */
-            ) {
+        ) {
             let reason: ApiRecoveryReason = 'connection-lost';
             if (response.status === 420 || response.status === 429) {
                 reason = 'server-overload';
@@ -192,7 +197,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             this.handleApiError(call, 'auth-lost');
         } else {
             // Try to parse JSON in response, if there are none - just ignore
-            response.json().catch(() => null).then(result => {
+            response.json().catch(() => null).then((result) => {
                 call.responseData = result;
                 this.handleApiError(call);
             });
@@ -200,8 +205,8 @@ export class ApiContext extends BaseContext implements IApiContext {
     }
 
     private removeFromQueue(call: ApiCall) {
-        this.queue = this.queue.filter(c => c !== call);
-        if (this.status === 'error' && !this.queue.some(c => c.status === 'error')) {
+        this.queue = this.queue.filter((c) => c !== call);
+        if (this.status === 'error' && !this.queue.some((c) => c.status === 'error')) {
             this.setStatus('idle');
             this.runQueue();
         }
@@ -215,7 +220,7 @@ export class ApiContext extends BaseContext implements IApiContext {
     private runQueue() {
         this.isRunScheduled = false;
         if (this.status === 'idle' || this.status === 'running') {
-            this.queue.filter(c => c.status === 'scheduled').forEach(c => this.startCall(c));
+            this.queue.filter((c) => c.status === 'scheduled').forEach((c) => this.startCall(c));
         }
     }
 
@@ -224,7 +229,7 @@ export class ApiContext extends BaseContext implements IApiContext {
         fetch(this.props.apiPingPath, {
             method: 'GET',
             credentials: 'include',
-        }).then(response => {
+        }).then((response) => {
             if (response.ok) {
                 this.setStatus('running');
                 this.runQueue();
@@ -269,17 +274,16 @@ export class ApiContext extends BaseContext implements IApiContext {
             this.queue.push(call);
             this.scheduleRun();
         });
-    }
+    };
 
     public uploadFile(url: string, file: File, options: FileUploadOptions) {
-
         const trackProgress = (event: any) => {
             const progress = +((event.loaded / event.total) * 100).toFixed(2);
             options.onProgress && options.onProgress(progress);
         };
 
         return new Promise<FileUploadResponse>((resolve, reject) => {
-            const formData  = new FormData();
+            const formData = new FormData();
             formData.append('file', file);
 
             const xhr = new XMLHttpRequest();
@@ -298,7 +302,7 @@ export class ApiContext extends BaseContext implements IApiContext {
             };
 
             if (options.onProgress) {
-                xhr.upload.addEventListener("progress", trackProgress, false);
+                xhr.upload.addEventListener('progress', trackProgress, false);
             }
 
             if (options.getXHR) {
@@ -317,6 +321,5 @@ export class ApiContext extends BaseContext implements IApiContext {
             };
             xhr.send(formData);
         });
-
     }
 }

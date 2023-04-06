@@ -15,17 +15,20 @@
     "build-dev": "cd ./app && yarn build-dev",
     "build": "lerna run build",
     "start-server": "cd ./app && yarn server",
-    "lint": "npx tslint -p ./tsconfig.json -e node_modules",
-    "style-lint": "npx stylelint \"**/*.{scss,less}\"\n",
-    "format": "npx tslint -p ./tsconfig.json --fix -e node_modules",
+    "eslint": "yarn --cwd uui-build lint --eslint",
+    "eslint-fix": "yarn --cwd uui-build lint --eslint --fix",
+    "stylelint": "yarn --cwd uui-build lint --stylelint",
+    "stylelint-fix": "yarn --cwd uui-build lint --stylelint --fix",
     "copy-to-template": "node uui-build/scripts/copyToTemplate",
     "build-server-helpers": "tsc --esModuleInterop uui-core/src/data/querying/getFilterPredicate.ts --outDir ./server/helpers/",
-    "generate-components-api": "cd uui-build && yarn generate-components-api",
-    "transform-tokens": "tsc --esModuleInterop uui-build/tokens-converter/index.ts && node uui-build/tokens-converter",
+    "generate-components-api": "yarn --cwd uui-build generate-components-api",
+    "transform-tokens": "yarn --cwd uui-build transform-tokens",
     "release": "lerna publish --force-publish",
     "build-modules": "lerna run build",
     "track-bundle-size": "yarn --cwd uui-build track-bundle-size",
-    "track-bundle-size-override": "yarn --cwd uui-build track-bundle-size --override-baseline"
+    "track-bundle-size-override": "yarn --cwd uui-build track-bundle-size --override-baseline",
+    "prepare": "husky install",
+    "lint-staged": "cross-env LINT_STAGED=true npx lint-staged"
   },
   "repository": {
     "type": "git",
@@ -57,13 +60,9 @@
     "@types/react-dom": "18.0.10",
     "@types/history": "4.7.11"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "devDependencies": {
+    "husky": "8.0.3",
+    "lint-staged": "12.5.0",
     "lerna": "3.22.1",
     "tslib": "^2.3.1",
     "cross-env": "^7.0.3",
