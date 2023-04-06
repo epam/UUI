@@ -16,7 +16,7 @@ import { ReactComponent as PdfIcon } from '../../../icons/pdf.svg';
 import { isPluginActive, isTextSelected } from '../../../helpers';
 
 import { IframeBlock } from './IframeBlock';
-import { useFilesUploader } from '../uploadFilePlugin/useFilesUploader';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 
 export const IFRAME_PLUGIN_KEY = 'iframe';
 

@@ -1,24 +1,46 @@
-import { createInsertDataPlugin, findEventRange, select } from "@udecode/plate";
-import { isEqual } from 'lodash';
-import { UploadFileOptions, createFileUploader } from "./file_uploader";
+import {
+    PlateEditor,
+    Value,
+    createInsertDataPlugin,
+    findEventRange,
+    select,
+} from "@udecode/plate";
+import { isEqual } from "lodash";
+import {
+    UploadFileOptions,
+    UploadType,
+    createFileUploader,
+} from "./file_uploader";
 
+interface UploadFilePluginOptions {
+    uploadFiles: (
+        editor: PlateEditor,
+        files: File[],
+        overriddenAction?: UploadType
+    ) => Promise<void>;
+}
+
+const isFilesUploadEvent = (types: readonly string[], files: FileList) => {
+    if (!isEqual(types, ["Files"])) {
+        return false;
+    }
+
+    if (files.length === 0) {
+        return false;
+    }
+
+    return true;
+};
 
 export const uploadFilePlugin = (uploadOptions?: UploadFileOptions) =>
-    createInsertDataPlugin({
-        options: { uploadOptions },
+    createInsertDataPlugin<UploadFilePluginOptions, Value, PlateEditor<Value>>({
+        options: { uploadFiles: createFileUploader(uploadOptions) },
         handlers: {
             onDrop: (editor, plugin) => {
                 return (event) => {
-                    const uploadFiles = createFileUploader(
-                        editor,
-                        plugin.options.uploadOptions
-                    );
-                    if (!isEqual(event.dataTransfer.types, ['Files'])) {
-                        return false;
-                    }
-
+                    const types = event.dataTransfer.types;
                     const { files } = event.dataTransfer;
-                    if (files.length === 0) return false;
+                    if (!isFilesUploadEvent(types, files)) return false;
 
                     event.preventDefault();
                     event.stopPropagation();
@@ -28,33 +50,19 @@ export const uploadFilePlugin = (uploadOptions?: UploadFileOptions) =>
                     if (!at) return false;
                     select(editor, at);
 
-                    uploadFiles(Array.from(files));
-
+                    plugin.options.uploadFiles(editor, Array.from(files));
                     return true;
                 };
             },
             onPaste: (editor, plugin) => {
                 return (event) => {
-                    const uploadFiles = createFileUploader(
-                        editor,
-                        plugin.options.uploadOptions
-                    );
-
-                    if (!isEqual(event.clipboardData.types, ['Files'])) {
-                        return false;
-                    }
-
+                    const types = event.clipboardData.types;
                     const { files } = event.clipboardData;
-                    if (files.length === 0) return false;
+                    if (!isFilesUploadEvent(types, files)) return false;
 
                     event.preventDefault();
                     event.stopPropagation();
-
-                    uploadFiles(
-                        Array.from(files),
-                        plugin.options.uploadOptions
-                    );
-
+                    plugin.options.uploadFiles(editor, Array.from(files));
                     return true;
                 };
             },
