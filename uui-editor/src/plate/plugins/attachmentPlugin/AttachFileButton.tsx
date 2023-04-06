@@ -10,7 +10,7 @@ import { isPluginActive, isTextSelected } from '../../../helpers';
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
 import { ReactComponent as AttachIcon } from '../../../icons/attach-file.svg';
 import { ATTACHMENT_PLUGIN_KEY } from '../attachmentPlugin/attachmentPlugin';
-import { useFilesUploader } from '../uploadFilePlugin/useFilesUploader';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 
 interface IUploadFileButton {
     editor: PlateEditor;

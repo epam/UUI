@@ -1,14 +1,21 @@
 import {
+    KEY_INSERT_DATA,
     PlateEditor,
     deleteBackward,
     focusEditor,
+    getPlugin,
     insertEmptyElement,
 } from "@udecode/plate";
 import { IMAGE_PLUGIN_KEY } from "../imagePlugin/imagePlugin";
 import { ATTACHMENT_PLUGIN_KEY } from "../attachmentPlugin/attachmentPlugin";
 import { IFRAME_PLUGIN_KEY } from "../iframePlugin/iframePlugin";
+import { useCallback } from "react";
 
-type UploadType = keyof typeof UPLOAD_BLOCKS;
+export type UploadType = keyof typeof UPLOAD_BLOCKS;
+
+export interface UploadFileOptions {
+    uploadFile?: UploadFile;
+}
 
 interface UploadedFile extends File {
     type: UploadType;
@@ -20,18 +27,12 @@ type UploadFile = (
     onProgress?: (progress: any) => any
 ) => Promise<UploadedFile>;
 
-export interface UploadFileOptions {
-    uploadFile: UploadFile;
-}
-
-const buildAttachmentBlock = (file: File | UploadedFile) => ({
-    type: ATTACHMENT_PLUGIN_KEY,
-    data: file,
-    children: [{ text: "" }],
-});
-
 const UPLOAD_BLOCKS = {
-    attachment: (file: UploadedFile) => buildAttachmentBlock(file),
+    attachment: (file: UploadedFile) => ({
+        type: ATTACHMENT_PLUGIN_KEY,
+        data: { ...file, fileName: file.name },
+        children: [{ text: "" }],
+    }),
     image: (file: UploadedFile) => ({
         type: IMAGE_PLUGIN_KEY,
         data: file,
@@ -46,7 +47,7 @@ const UPLOAD_BLOCKS = {
     }),
 };
 
-const uploadFiles = async (
+const upload = async (
     files: File[],
     invokeUpload: UploadFile
 ): Promise<UploadedFile[]> => {
@@ -84,10 +85,14 @@ const buildFragments = (
 };
 
 export const createFileUploader =
-    (editor: PlateEditor, uploadOptions?: UploadFileOptions) =>
-    async (files: File[], overriddenAction?: UploadType) => {
-        const uploadFile = uploadOptions?.uploadFile;
-        if(!uploadFile) return;
+    (options: UploadFileOptions) =>
+    async (
+        editor: PlateEditor,
+        files: File[],
+        overriddenAction?: UploadType
+    ) => {
+        const uploadFile = options?.uploadFile;
+        if (!uploadFile) return;
 
         // show loader
         insertEmptyElement(editor, "loader");
@@ -95,7 +100,7 @@ export const createFileUploader =
         const prevSelection = { ...editor.prevSelection };
 
         // upload files
-        const uploadedFiles =  await uploadFiles(files, uploadFile);
+        const uploadedFiles = await upload(files, uploadFile);
 
         // build fragments
         const fileFragments = buildFragments(uploadedFiles, overriddenAction);
@@ -109,3 +114,15 @@ export const createFileUploader =
         editor.insertFragment(fileFragments);
         focusEditor(editor);
     };
+
+export const useFilesUploader = (editor: PlateEditor) => {
+    return useCallback(
+        (files: File[], overriddenAction?: UploadType): Promise<void> =>
+            getPlugin(editor, KEY_INSERT_DATA).options.uploadFiles(
+                editor,
+                files,
+                overriddenAction
+            ),
+        [editor]
+    );
+};
