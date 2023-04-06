@@ -40,7 +40,7 @@ export const uploadFilePlugin = (uploadOptions?: UploadFileOptions) =>
                     event.preventDefault();
                     event.stopPropagation();
 
-                    // update drop location depending on cursor
+                    // update selection depending on drop location
                     const at = findEventRange(editor, event);
                     if (!at) return false;
                     select(editor, at);
