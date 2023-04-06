@@ -22,12 +22,12 @@ import { ToolbarButton } from '../../../implementation/ToolbarButton';
 
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 
-const KEY = 'image';
+export const IMAGE_PLUGIN_KEY = 'image';
 
 export const imagePlugin = () => {
 
     const createImagePlugin = createPluginFactory<ImagePlugin>({
-        key: KEY,
+        key: IMAGE_PLUGIN_KEY,
         type: 'image',
         isElement: true,
         isVoid: true,
@@ -36,7 +36,7 @@ export const imagePlugin = () => {
             onKeyDown: (editor) => (e) => {
                 // focus caption from image
                 const entry = getBlockAbove(editor, {
-                    match: { type: getPluginType(editor, KEY) },
+                    match: { type: getPluginType(editor, IMAGE_PLUGIN_KEY) },
                 });
                 if (!entry) return;
             },
@@ -81,7 +81,7 @@ export const ImageButton = ({
 
         const image: TImageElement = {
             align: 'left',
-            type: getPluginType(editor, KEY),
+            type: getPluginType(editor, IMAGE_PLUGIN_KEY),
             url: url as any,
             children: [text],
         };
@@ -89,7 +89,7 @@ export const ImageButton = ({
         context.uuiModals.closeAll();
     };
 
-    if (!isPluginActive(KEY)) return null;
+    if (!isPluginActive(IMAGE_PLUGIN_KEY)) return null;
     const block = getBlockAbove(editor);
 
     return (

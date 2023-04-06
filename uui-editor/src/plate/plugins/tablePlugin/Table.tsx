@@ -30,9 +30,8 @@ export const Table = (props: TableElementRootProps) => {
 
     const isCellsSelected = !!useTableStore().get.selectedCells();
 
-    const columnCount = getTableColumnCount(element);
     const getCurrentColSizes = () =>
-        (element.colSizes || (element as OldTableElement).data?.cellSizes || getDefaultColWidths(columnCount));
+        (element.colSizes || (element as OldTableElement).data?.cellSizes || getDefaultColWidths(getTableColumnCount(element)));
 
     const currentColSizes =
         getCurrentColSizes()

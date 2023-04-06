@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { UploadFileToggler, FlexSpacer } from '@epam/uui-components';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
-import { insertData, PlateEditor } from '@udecode/plate';
+import { PlateEditor } from '@udecode/plate';
 
 import css from './AddImageModal.scss';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 
 const {
     LabeledInput,
@@ -25,6 +26,7 @@ interface AddImageModalProps extends IModal<any> {
 export function AddImageModal(props: AddImageModalProps): JSX.Element {
     const { focusEditor, abort } = props;
 
+    const onFilesAdded = useFilesUploader(props.editor);
     const [imageURL, setImageURL] = useState(null);
     const [files, setFiles] = useState([]);
 
@@ -52,13 +54,7 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                         focusEditor();
 
                         if (files && files.length) {
-                            const dataTransfer = new DataTransfer();
-
-                            files.map((file: File) => {
-                                dataTransfer.items.add(file);
-                            });
-
-                            insertData(props.editor, dataTransfer);
+                            onFilesAdded(files);
                         } else {
                             props.insertImage(prependHttp(imageURL, { https: true }));
                         }

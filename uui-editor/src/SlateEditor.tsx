@@ -37,12 +37,17 @@ import css from './SlateEditor.scss';
 
 let components = createPlateUI();
 
+/**
+ * Please make sure defaultPlugins and all your plugins are not interfere
+ * with the following list when disableCorePlugins prop hasn't been set
+ * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
+ */
 export const defaultPlugins: any = [
     createSoftBreakPlugin(),
     createExitBreakPlugin(),
     createParagraphPlugin(),
-    // createDeserializeDocxPlugin(),
-    // createJuicePlugin(),
+    createDeserializeDocxPlugin(),
+    createJuicePlugin(),
 ];
 
 export const basePlugins: any = [
@@ -81,6 +86,10 @@ const Editor = ({ initialValue, ...props }: any) => {
             <Plate
                 { ...props }
                 id={ props.id }
+
+                // we override plate core insertData plugin
+                // so, we need to disable default implementation
+                disableCorePlugins={ { insertData: true } }
             >
 
             </Plate>
