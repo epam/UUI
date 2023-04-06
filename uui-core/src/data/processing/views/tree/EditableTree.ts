@@ -68,9 +68,9 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         currentSelection: TId[],
         selectedId: TId,
         isSelected: boolean,
-        options: {
-            isSelectable: (item: TItem) => boolean,
-            cascade: CascadeSelection,
+        options?: {
+            isSelectable?: (item: TItem) => boolean,
+            cascade?: CascadeSelection,
         },
     ) {
         let selectedIdsMap = this.newMap<TId, boolean>();

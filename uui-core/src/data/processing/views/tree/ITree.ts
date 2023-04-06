@@ -62,9 +62,9 @@ export interface ITree<TItem, TId> {
         currentSelection: TId[],
         selectedId: TId,
         isSelected: boolean,
-        options: {
-            isSelectable: (item: TItem) => boolean,
-            cascade: CascadeSelection,
+        options?: {
+            isSelectable?: (item: TItem) => boolean,
+            cascade?: CascadeSelection,
         },
     ): TId[];
 
