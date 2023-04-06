@@ -14,12 +14,12 @@ export const uuiHeader = {
     navIconLeft: 'uui-datepickerheader-nav-icon-left',
 };
 
-interface HeaderProps extends IEditable<PickerBodyValue<string>>, IHasCX {
+export interface DatePickerHeaderProps extends IEditable<PickerBodyValue<string>>, IHasCX {
     navIconLeft?: Icon;
     navIconRight?: Icon;
 }
 
-export class DatePickerHeader extends React.Component<HeaderProps, any> {
+export class DatePickerHeader extends React.Component<DatePickerHeaderProps, any> {
     getPrevMonthFromCurrent = (currentDate: Dayjs) => {
         return currentDate.subtract(1, 'month');
     }

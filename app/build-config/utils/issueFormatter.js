@@ -1,4 +1,4 @@
-const { createCodeFrameFormatter } = require('../../../node_modules/fork-ts-checker-webpack-plugin/lib/formatter/CodeFrameFormatter.js')
+const { createCodeFrameFormatter } = require('../../node_modules/fork-ts-checker-webpack-plugin/lib/formatter/CodeFrameFormatter.js')
 const path = require('path');
 const os = require('os');
 

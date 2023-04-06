@@ -1,16 +1,17 @@
 import React from 'react';
-import { act } from "react-dom/test-utils";
-import { mountWithContextAsync, mountWrappedComponentAsync } from "@epam/test-utils";
+import { renderToJsdomWithContextAsync, act } from "@epam/test-utils";
 import { IEditable } from '../../types';
 import { IEditableDebouncer } from '../IEditableDebouncer';
 
 describe('IEditableDebouncer', () => {
     it('should call onValueChanged synchronously, if disableDebounce = true', async () => {
+        const initialValue = 1;
+        const newValue = 2;
         const outerOnValueChange = jest.fn();
         let lastRenderProps: IEditable<number> = null;
-        await mountWithContextAsync(
+        await renderToJsdomWithContextAsync(
             <IEditableDebouncer
-                value={ 1 }
+                value={ initialValue }
                 onValueChange={ outerOnValueChange }
                 render={ (props) => {
                     lastRenderProps = props;
@@ -20,17 +21,19 @@ describe('IEditableDebouncer', () => {
             />,
         );
 
-        act(() => lastRenderProps.onValueChange(2));
-        expect(lastRenderProps.value).toBe(2);
-        expect(outerOnValueChange).toBeCalledWith(2);
+        act(() => lastRenderProps.onValueChange(newValue));
+        expect(lastRenderProps.value).toBe(newValue);
+        expect(outerOnValueChange).toBeCalledWith(newValue);
     });
 
-    it('should call onValueChanged delayed', async done => {
+    it('should call onValueChanged delayed', async () => {
+        const initialValue = 1;
+        const newValue = 2;
         const outerOnValueChange = jest.fn();
         let lastRenderProps: IEditable<number> = null;
-        await mountWithContextAsync(
+        await renderToJsdomWithContextAsync(
             <IEditableDebouncer
-                value={ 1 }
+                value={ initialValue }
                 onValueChange={ outerOnValueChange }
                 render={ (props) => {
                     lastRenderProps = props;
@@ -39,30 +42,23 @@ describe('IEditableDebouncer', () => {
                 debounceDelay={ 100 }
             />,
         );
+        jest.useFakeTimers();
 
-        act(() => lastRenderProps.onValueChange(2));
-
-        expect(lastRenderProps.value).toBe(2);
+        act(() => lastRenderProps.onValueChange(newValue));
         expect(outerOnValueChange).not.toBeCalled();
 
-        setTimeout(() => {
-            expect(lastRenderProps.value).toBe(2);
-            expect(outerOnValueChange).not.toBeCalled();
-        }, 1);
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
 
-        setTimeout(() => {
-            expect(lastRenderProps.value).toBe(2);
-            expect(outerOnValueChange).toBeCalledWith(2);
-            done();
-        }, 1000);
+        expect(lastRenderProps.value).toBe(newValue);
+        expect(outerOnValueChange).toBeCalledWith(newValue);
     });
 
     it('should change inner value immediately if outer value is changed outside', async () => {
         const outerOnValueChange = jest.fn(() => {
         });
         let lastRenderProps: IEditable<number> = null;
-
-        const component = await mountWrappedComponentAsync(IEditableDebouncer, {
+        const props = {
             value: 1,
             onValueChange: outerOnValueChange,
             render: (props: IEditable<number>): null => {
@@ -70,10 +66,11 @@ describe('IEditableDebouncer', () => {
                 return null;
             },
             debounceDelay: 5,
-        });
-
+        };
+        const result = await renderToJsdomWithContextAsync(<IEditableDebouncer { ...props } />);
         act(() => lastRenderProps.onValueChange(3));
-        component.setProps({ value: 2 });
+
+        result.rerender(<IEditableDebouncer { ...props } value={ 2 } />);
         expect(lastRenderProps.value).toBe(2);
     });
 });

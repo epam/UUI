@@ -1,11 +1,11 @@
 import React from 'react';
 import { LabeledInput } from '../LabeledInput';
 import { TextInput } from '../../inputs';
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 
 describe('LabeledInput', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <LabeledInput>
                 <TextInput value={ null } onValueChange={ () => {} } />
             </LabeledInput>,
@@ -15,7 +15,7 @@ describe('LabeledInput', () => {
     });
 
     it('should be rendered correctly with props', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <LabeledInput
                 label='Test label'
                 size='36'

@@ -1,5 +1,5 @@
 import React from "react";
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 import { TextInput } from "../TextInput";
 import { ReactComponent as AcceptIcon } from "../../icons/accept-12.svg";
 
@@ -8,7 +8,7 @@ describe("TextInput", () => {
     const onChange = jest.fn();
 
     it("should be rendered correctly", async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <TextInput
                 value={ value }
                 onValueChange={ onChange }
@@ -19,7 +19,7 @@ describe("TextInput", () => {
     });
 
     it("should be rendered correctly with extra props", async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <TextInput
                 value={ value }
                 onValueChange={ onChange }

@@ -215,6 +215,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         return (
             <FreeFocusInside>
                 <div
+                    role="dialog"
                     className='uui-popper'
                     aria-hidden={ !this.isOpened() }
                     aria-expanded={ this.isOpened() }

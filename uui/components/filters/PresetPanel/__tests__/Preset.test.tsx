@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithContextAsync } from "@epam/test-utils";
+import { renderSnapshotWithContextAsync } from "@epam/test-utils";
 import { Preset } from '../Preset';
 
 const mockPreset = {
@@ -22,7 +22,7 @@ const mockTableState = {};
 
 describe('Preset', () => {
     it('renders correctly when not in rename mode and not active', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <Preset
                 preset={ mockPreset }
                 addPreset={ jest.fn() }
@@ -34,7 +34,7 @@ describe('Preset', () => {
     });
 
     it('renders correctly when not in rename mode and active', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <Preset
                 preset={ mockPreset }
                 addPreset={ jest.fn() }

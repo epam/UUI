@@ -1,11 +1,11 @@
 import React from 'react';
 import { BurgerSearch } from '../BurgerSearch';
 import { ReactComponent as CalendarIcon } from '../../../../../icons/calendar-18.svg';
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 
 describe('BurgerSearch', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <BurgerSearch
                 value={ null }
                 onValueChange={ () => {} }
@@ -16,7 +16,7 @@ describe('BurgerSearch', () => {
     });
 
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <BurgerSearch
                 value={ null }
                 onValueChange={ () => {} }

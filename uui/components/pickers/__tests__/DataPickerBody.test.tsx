@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithContextAsync } from "@epam/test-utils";
+import { renderSnapshotWithContextAsync } from "@epam/test-utils";
 import { ArrayDataSource } from '@epam/uui-core';
 import { DataPickerBody, DataPickerBodyProps } from '../DataPickerBody';
 import { DataPickerRow } from '../DataPickerRow';
@@ -42,12 +42,12 @@ describe('DataPickerBody', () => {
     };
 
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(<DataPickerBody { ...requiredProps }/>);
+        const tree = await renderSnapshotWithContextAsync(<DataPickerBody { ...requiredProps }/>);
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly without rows', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <DataPickerBody
                 { ...requiredProps }
                 rows={ [] }
@@ -58,7 +58,7 @@ describe('DataPickerBody', () => {
     });
 
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <DataPickerBody
                 { ...requiredProps }
                 editMode="modal"

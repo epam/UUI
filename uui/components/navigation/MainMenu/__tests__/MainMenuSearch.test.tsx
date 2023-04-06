@@ -1,10 +1,10 @@
 import React from 'react';
 import { MainMenuSearch } from '../MainMenuSearch';
-import { renderWithContextAsync } from "@epam/test-utils";
+import { renderSnapshotWithContextAsync } from "@epam/test-utils";
 
 describe('MainMenuSearch', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <MainMenuSearch
                 value={ null }
                 onValueChange={ jest.fn }
@@ -15,7 +15,7 @@ describe('MainMenuSearch', () => {
     });
 
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <MainMenuSearch
                 value={ 'test' }
                 onValueChange={ jest.fn }

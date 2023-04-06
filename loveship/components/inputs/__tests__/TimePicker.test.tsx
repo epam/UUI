@@ -1,5 +1,5 @@
 import React from "react";
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 import { TimePicker } from "../TimePicker";
 
 describe("TimePicker", () => {
@@ -7,7 +7,7 @@ describe("TimePicker", () => {
     const onChange = jest.fn();
 
     it("should be rendered correctly", async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <TimePicker
                 value={ value }
                 onValueChange={ onChange }
@@ -18,7 +18,7 @@ describe("TimePicker", () => {
     });
 
     it("should be rendered correctly with extra props", async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <TimePicker
                 value={ value }
                 onValueChange={ onChange }

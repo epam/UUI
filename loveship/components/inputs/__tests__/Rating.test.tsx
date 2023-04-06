@@ -1,5 +1,5 @@
 import React from "react";
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 import { Rating } from "../Rating";
 
 describe("Rating", () => {
@@ -7,7 +7,7 @@ describe("Rating", () => {
     const onChange = jest.fn();
 
     it("should be rendered correctly", async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <Rating value={ value } onValueChange={ onChange } />
         );
 
@@ -16,7 +16,7 @@ describe("Rating", () => {
 
 
     it("should be rendered correctly with props", async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <Rating
                 value={ value }
                 onValueChange={ onChange }
