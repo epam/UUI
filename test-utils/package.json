@@ -16,8 +16,6 @@
 	},
   "peerDependencies": {
     "react": ">=16.0.0",
-    "react-dom": ">=16.0.0",
-    "@types/jest": "27.5.1",
-    "jest": "27.5.1"
+    "react-dom": ">=16.0.0"
   }
 }
