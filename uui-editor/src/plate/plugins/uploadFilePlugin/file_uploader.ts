@@ -10,7 +10,7 @@ import { IMAGE_PLUGIN_KEY } from "../imagePlugin/imagePlugin";
 import { ATTACHMENT_PLUGIN_KEY } from "../attachmentPlugin/attachmentPlugin";
 import { IFRAME_PLUGIN_KEY } from "../iframePlugin/iframePlugin";
 import { useCallback } from "react";
-import type { FileUploadResponse } from "uui-core";
+import type { FileUploadResponse } from "@epam/uui";
 
 export type UploadType = keyof typeof UPLOAD_BLOCKS;
 
