@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrayDataSource } from '@epam/uui-core';
-import { renderWithContextAsync } from "@epam/test-utils";
+import { renderSnapshotWithContextAsync } from "@epam/test-utils";
 import { PickerModal } from '../PickerModal';
 
 const languageLevels = [
@@ -23,7 +23,7 @@ const mockDataSource = new ArrayDataSource({
 
 describe('PickerModal', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <PickerModal
                 key="test"
                 valueType="id"
@@ -40,7 +40,7 @@ describe('PickerModal', () => {
     });
 
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <PickerModal
                 key="test"
                 valueType="id"

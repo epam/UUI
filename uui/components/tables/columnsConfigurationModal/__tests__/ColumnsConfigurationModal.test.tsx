@@ -1,7 +1,7 @@
 import React from 'react';
 import { ColumnsConfigurationModal } from '../ColumnsConfigurationModal';
 import { DataColumnProps, getDefaultColumnsConfig } from '@epam/uui-core';
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 
 const mockColumns: DataColumnProps[] = [
     {
@@ -54,7 +54,7 @@ const modalProps = {
 describe('ColumnsConfigurationModal', () => {
     it('should be rendered correctly', async () => {
         const defaultConfig = getDefaultColumnsConfig(mockColumns);
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <ColumnsConfigurationModal
                 { ...modalProps }
                 columns={ mockColumns }
@@ -66,7 +66,7 @@ describe('ColumnsConfigurationModal', () => {
 
     it('should disable Apply button if all columns are hidden', async () => {
         const defaultConfig = getDefaultColumnsConfig(mockHiddenColumns);
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <ColumnsConfigurationModal
                 { ...modalProps }
                 columns={ mockHiddenColumns }

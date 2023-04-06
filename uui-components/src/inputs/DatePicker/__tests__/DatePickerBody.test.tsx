@@ -1,28 +1,23 @@
 import * as React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
 import dayjs from 'dayjs';
-import { DatePickerBody } from '../..';
+import { renderToJsdomWithContextAsync, fireEvent } from '@epam/test-utils';
+import { DatePickerBody } from '../DatePickerBody';
 
 describe('DatePickerBody', () => {
-    let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
-
-    afterEach(() => {
-        wrapper && wrapper.unmount();
-    });
-
-
-    it('should change selectedDate on day click', () => {
-        let newState: any = {};
-        wrapper = shallow(<DatePickerBody
+    it('should change selectedDate on day click', async () => {
+        const handleChange = jest.fn();
+        const result = await renderToJsdomWithContextAsync(<DatePickerBody
             value={ {
                 view: 'DAY_SELECTION',
                 selectedDate: '',
-                displayedDate: dayjs().startOf('day'),
+                displayedDate: dayjs('2017-01-22').startOf('day'),
             } }
-            setSelectedDate={ (nV: any) => newState = { selectedDate: nV} }
-            setDisplayedDateAndView={ (displayedDate, view) => {  } }
-        />, {});
-        (wrapper.instance() as any).onDayClick(dayjs("2017-01-22"));
-        expect(newState.selectedDate).toEqual("2017-01-22");
+            setSelectedDate={ handleChange }
+            setDisplayedDateAndView={ jest.fn() }
+        />);
+
+        const nextDayElement = result.queryByText('23');
+        fireEvent.click(nextDayElement);
+        expect(handleChange).toBeCalledWith('2017-01-23');
     });
 });

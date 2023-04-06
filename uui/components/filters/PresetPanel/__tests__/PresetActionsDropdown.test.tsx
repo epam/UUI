@@ -1,6 +1,6 @@
 import React from 'react';
 import { PresetActionsDropdown } from '../PresetActionsDropdown';
-import { renderWithContextAsync } from "@epam/test-utils";
+import { renderSnapshotWithContextAsync } from "@epam/test-utils";
 
 const mockPresetActionsDropdownApi = {
     activePresetId: 1,
@@ -22,7 +22,7 @@ const mockPresetActionsDropdownApi = {
 
 describe('PresetActionsDropdown', () => {
     it('should render correctly', async () => {
-        const component = await renderWithContextAsync(
+        const component = await renderSnapshotWithContextAsync(
             <PresetActionsDropdown { ...mockPresetActionsDropdownApi }/>,
         );
         expect(component).toMatchSnapshot();
