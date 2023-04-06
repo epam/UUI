@@ -68,13 +68,16 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         currentSelection: TId[],
         selectedId: TId,
         isSelected: boolean,
-        options?: {
+        options: {
             isSelectable?: (item: TItem) => boolean,
             cascade?: CascadeSelection,
-        },
+        } = {},
     ) {
+        const isImplicitMode = options.cascade === CascadeSelectionTypes.IMPLICIT;
         let selectedIdsMap = this.newMap<TId, boolean>();
-        currentSelection.forEach(id => selectedIdsMap.set(id, true));
+        if (!(selectedId === undefined && isImplicitMode)) {
+            currentSelection.forEach(id => selectedIdsMap.set(id, true));
+        }
 
         options = { isSelectable: BaseTree.truePredicate, cascade: true, ...options };
 
@@ -96,6 +99,12 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
                     // for implicit mode, it is required to remove explicit check from children,
                     // if parent is checked
                     forEachChildren(id => selectedIdsMap.delete(id), selectedId, false);
+                    if (selectedId === undefined) {
+                        const childrenIds = this.getChildrenIdsByParentId(selectedId);
+
+                        // if selectedId is undefined and it is selected, that means selectAll
+                        childrenIds.forEach(id => selectedIdsMap.set(id, true));
+                    }
                 } else {
                     // check all children recursively
                     forEachChildren(id => {
@@ -140,8 +149,9 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
                         });
                         selectedIdsMap.delete(parentId);
                     }
-
-                    [selectedId, ...parents.reverse()].forEach(selectNeighboursOnly);
+                    if (selectedId !== undefined) {
+                        [selectedId, ...parents.reverse()].forEach(selectNeighboursOnly);
+                    }
                 } else {
                     // uncheck all children recursively
                     forEachChildren(id => selectedIdsMap.delete(id));

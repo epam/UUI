@@ -330,7 +330,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
         if (this.props.cascadeSelection || isRoot) {
-            if (!isImplicitMode || !isChecked) {
+            if ((!isImplicitMode || !isChecked) || (isImplicitMode && isChecked && checkedId === undefined)) {
                 const loadNestedLayersChildren = !isImplicitMode;
                 const parents = this.tree.getParentIdsRecursive(checkedId);
                 const result = await this.loadMissing(
@@ -339,7 +339,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
                         // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
                         // Otherwise, should be loaded only checked element and all its nested children.
-                        loadAllChildren: id => (isImplicitMode ? parents.includes(id) : (isRoot || id === checkedId))
+                        loadAllChildren: id => (
+                            isImplicitMode
+                                ? (id === undefined || parents.includes(id))
+                                : (isRoot || id === checkedId)
+                        )
                     },
                     loadNestedLayersChildren,
                 );
