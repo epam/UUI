@@ -1,27 +1,26 @@
-var express = require('express');
-var router = express.Router();
-var fs = require("fs");
-var path = require("path");
+const express = require('express');
+
+const router = express.Router();
 
 let idCounter = 0;
 
-router.post("/uploadFileMock", function(req, res) {
+router.post('/uploadFileMock', function uploadFileMock(req, res) {
     const file = req.files.file;
 
-    let fileType = "attachment";
-    file.name.search(/pdf$/) > -1 ? fileType = "iframe" : null;
-    file.name.search(/svg|png|jpg$/) > -1 ? fileType = "image" : null;
+    let fileType = 'attachment';
+    if (file.name.search(/pdf$/) > -1) { fileType = 'iframe'; }
+    if (file.name.search(/svg|png|jpg$/) > -1) { fileType = 'image'; }
 
     const newId = idCounter;
     idCounter += 1;
 
     res.send({
-        path: "/static/uploads/blue-orange.jpg",
+        path: '/static/uploads/blue-orange.jpg',
         name: req.files.file.name,
         size: req.files.file.size,
         id: newId,
         type: fileType,
-        extension: req.files.file.name.split('.').pop()
+        extension: req.files.file.name.split('.').pop(),
     });
     // res.status(400).send({ error: {message: 'some error message'}});
 });

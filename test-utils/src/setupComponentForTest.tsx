@@ -1,6 +1,6 @@
-import * as React from "react";
-import { useImperativeHandle, useState } from "react";
-import { act, renderToJsdomWithContextAsync } from "./renderingHelpers";
+import * as React from 'react';
+import { useImperativeHandle, useState } from 'react';
+import { act, renderToJsdomWithContextAsync } from './renderingHelpers';
 
 type PropsContextType<TProps> = { setProperty: (name: keyof TProps, value: TProps[keyof TProps]) => void; };
 export type PropsInitializerCallbackType<TProps> = (contextRef: React.RefObject<PropsContextType<TProps>>) => PropsAll<TProps>;
@@ -49,7 +49,7 @@ export async function setupComponentForTest<TProps extends PropsAll<TProps>>(
         useImperativeHandle(compRef, () => {
             return {
                 setProperty: (name: keyof TProps, value: TProps[keyof TProps]) => {
-                    setAllProps(prevProps => {
+                    setAllProps((prevProps) => {
                         return {
                             ...prevProps,
                             [name]: value,

@@ -8,14 +8,12 @@
         outline: none;
     }
 
-    input[type="checkbox"] {
+    input[type='checkbox'] {
         margin: 0;
         border: none;
         width: 0;
         height: 0;
         appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
 
         &:focus {
             outline: none;
@@ -25,7 +23,6 @@
     :global(.uui-switch-toggler) {
         cursor: pointer;
         display: flex;
-        position: absolute;
         flex-shrink: 0;
         position: relative;
     }

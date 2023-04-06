@@ -18,18 +18,16 @@ export class GettingStartedForDesignersDoc extends BaseDocsBlock {
     }
 
     renderLoveshipContent() {
-        return <EditableDocContent key='gettingStarted-for-designers-uui3' fileName='gettingStarted-for-designers-uui3' />;
+        return <EditableDocContent key="gettingStarted-for-designers-uui3" fileName="gettingStarted-for-designers-uui3" />;
     }
 
     renderPromoContent() {
-        return <EditableDocContent key='gettingStarted-for-designers-uui4' fileName='gettingStarted-for-designers-uui4' />;
+        return <EditableDocContent key="gettingStarted-for-designers-uui4" fileName="gettingStarted-for-designers-uui4" />;
     }
 
     renderContent() {
         return (
-            <>
-                { getQuery('skin') === UUI3 ? this.renderLoveshipContent() : this.renderPromoContent() }
-            </>
+            getQuery('skin') === UUI3 ? this.renderLoveshipContent() : this.renderPromoContent()
         );
     }
 }

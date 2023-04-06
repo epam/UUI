@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-    
+
       - uses: actions/cache@v2
         with:
           path: |
@@ -32,7 +32,7 @@ jobs:
             ./*/node_modules
           key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
           restore-keys: v1-npm-deps-
-       
+
       - name: build
         run: |
           yarn
@@ -41,3 +41,9 @@ jobs:
           cd server && yarn
       - name: test
         run: yarn test
+
+      - name: eslint
+        run: yarn eslint
+
+      - name: stylelint
+        run: yarn stylelint

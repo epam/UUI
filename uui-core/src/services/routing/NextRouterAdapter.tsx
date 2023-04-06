@@ -1,5 +1,5 @@
-import { IRouterContext, Link } from "../../types";
-import { queryToSearch } from "../../helpers";
+import { IRouterContext, Link } from '../../types';
+import { queryToSearch } from '../../helpers';
 
 const createHref = (location: Link, basePath: string) => {
     const { pathname, query } = location;
@@ -27,8 +27,8 @@ const parseQuery = (link: Link): Link => {
 };
 
 export class NextRouterAdapter implements IRouterContext {
-
     private isBlockRun: boolean;
+
     private blockedUrl: Link | null;
 
     constructor(private router: any) {
@@ -45,7 +45,7 @@ export class NextRouterAdapter implements IRouterContext {
     }
 
     parseLinkWithQuery(link: Link): Link {
-        const result =  {
+        const result = {
             ...link,
             search: queryToSearch(link.query),
         };
@@ -79,9 +79,9 @@ export class NextRouterAdapter implements IRouterContext {
     private handleBeforeHistoryChange = (url: Link, listener: (link: Link) => void) => {
         listener(url);
         if (this.isBlockRun && this.blockedUrl) {
-            this.router.events.emit("routeChangeError");
+            this.router.events.emit('routeChangeError');
         }
-    }
+    };
 
     public listen(listener: (link: Link) => void) {
         return this.router.events.on('beforeHistoryChange', (url: Link) => this.handleBeforeHistoryChange(url, listener));
@@ -89,9 +89,8 @@ export class NextRouterAdapter implements IRouterContext {
 
     private handleRouterChangeError = (listener: (link: Link) => void) => {
         listener(this.blockedUrl);
-        // tslint:disable-next-line:no-string-throw
         throw 'Block history changing';
-    }
+    };
 
     public block(listener: (link: Link) => void) {
         this.router.events.on('routeChangeError', () => this.handleRouterChangeError(listener));

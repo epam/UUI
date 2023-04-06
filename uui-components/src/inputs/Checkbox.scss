@@ -14,14 +14,12 @@
         cursor: pointer;
         flex-shrink: 0;
 
-        input[type="checkbox"] {
+        input[type='checkbox'] {
             margin: 0;
             border: none;
             width: 0;
             height: 0;
             appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
 
             &:focus {
                 outline: none;

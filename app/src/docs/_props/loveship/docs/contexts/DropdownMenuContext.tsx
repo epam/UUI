@@ -14,7 +14,7 @@ interface DropdownComponentState {
 }
 
 export class DropdownMenuContext extends React.Component<DemoComponentProps, DropdownComponentState> {
-    public static displayName = "DropdownMenu";
+    public static displayName = 'DropdownMenu';
 
     state = {
         checkboxValue: false,
@@ -25,34 +25,43 @@ export class DropdownMenuContext extends React.Component<DemoComponentProps, Dro
         const { DemoComponent, props } = this.props;
         return (
             <DropdownMenuBody color={ color }>
-                <DropdownMenuSearch value={ this.state.searchValue } onValueChange={ (newValue => this.setState({ searchValue: newValue })) } placeholder='Log in as'/>
-                <DropdownMenuButton icon={ PencilIcon } caption='Export' />
-                <Tooltip placement='left' content='Import tools from current page'><DropdownMenuButton noIcon caption='Import' /></Tooltip>
-                <DropdownMenuButton isDropdown dropdownIconPosition='left' caption='Manage external feedback' />
+                <DropdownMenuSearch value={ this.state.searchValue } onValueChange={ ((newValue) => this.setState({ searchValue: newValue })) } placeholder="Log in as" />
+                <DropdownMenuButton icon={ PencilIcon } caption="Export" />
+                <Tooltip placement="left" content="Import tools from current page"><DropdownMenuButton noIcon caption="Import" /></Tooltip>
+                <DropdownMenuButton isDropdown dropdownIconPosition="left" caption="Manage external feedback" />
                 <DemoComponent { ...props } />
-                <DropdownMenuButton icon={ TrashIcon } caption='Overwrite Titles' />
+                <DropdownMenuButton icon={ TrashIcon } caption="Overwrite Titles" />
                 <DropdownMenuCheckbox
                     value={ this.state.checkboxValue }
                     onValueChange={ () => this.setState({ checkboxValue: !this.state.checkboxValue }) }
-                    label='Enable toolbar'/>
+                    label="Enable toolbar"
+                />
                 <DropdownMenuSplitter />
-                <DropdownMenuButton noIcon caption='Help' />
-                <Tooltip placement='left' content='Cancel tools dropdown menu'><DropdownMenuButton noIcon caption='Cancel' /></Tooltip>
+                <DropdownMenuButton noIcon caption="Help" />
+                <Tooltip placement="left" content="Cancel tools dropdown menu"><DropdownMenuButton noIcon caption="Cancel" /></Tooltip>
             </DropdownMenuBody>
         );
     }
 
+    renderWhite = () => {
+        return this.renderBody('white');
+    };
+
+    renderNight = () => {
+        return this.renderBody('night');
+    };
+
     render() {
         return (
-            <Panel margin="24" >
+            <Panel margin="24">
                 <FlexRow>
                     <Dropdown
-                        renderTarget={ props => <Button caption='white' { ...props } /> }
-                        renderBody={ this.renderBody.bind(this, 'white') }
+                        renderTarget={ (props) => <Button caption="white" { ...props } /> }
+                        renderBody={ this.renderWhite }
                     />
                     <Dropdown
-                        renderTarget={ props => <Button caption='night' { ...props } /> }
-                        renderBody={ this.renderBody.bind(this, 'night') }
+                        renderTarget={ (props) => <Button caption="night" { ...props } /> }
+                        renderBody={ this.renderNight }
                     />
                 </FlexRow>
             </Panel>
