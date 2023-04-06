@@ -113,7 +113,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "false",
+                    "text": "cascadeSelection = false",
                     "marks": [
                       {
                         "object": "mark",
@@ -178,8 +178,21 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": " ",
-                    "marks": []
+                    "text": "cascadeSelection = ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
                   },
                   {
                     "object": "text",
@@ -210,7 +223,7 @@
                   },
                   {
                     "object": "text",
-                    "text": ". Explicit selection: selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+                    "text": ".  Explicit selection: selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
                     "marks": []
                   }
                 ]
@@ -225,32 +238,43 @@
               {
                 "object": "block",
                 "type": "list-item-child",
-                "data": {},
+                "data": {
+                  "checked": false
+                },
                 "nodes": [
                   {
-                    "object": "block",
-                    "type": "paragraph",
-                    "data": {
-                      "checked": false
-                    },
-                    "nodes": [
+                    "object": "text",
+                    "text": "cascadeSelection = ",
+                    "marks": [
                       {
-                        "object": "text",
-                        "text": "'implicit'",
-                        "marks": [
-                          {
-                            "object": "mark",
-                            "type": "uui-richTextEditor-code",
-                            "data": {}
-                          }
-                        ]
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
                       },
                       {
-                        "object": "text",
-                        "text": ". Implicit selection: selecting a parent node means that all children are considered checked. The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent, its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.",
-                        "marks": []
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
                       }
                     ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "'implicit'",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ". Implicit selection: selecting a parent node means that all children are considered checked. The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent, its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.",
+                    "marks": []
                   }
                 ]
               }
