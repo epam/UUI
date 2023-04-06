@@ -43,7 +43,7 @@ export default function SlateEditorBasicExample() {
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        uploadFilePlugin({ uploadFile: (f, p) => uploadFile(f, p) } as UploadFileOptions),
+        uploadFilePlugin({ uploadFile } as UploadFileOptions),
         attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
