@@ -21,13 +21,8 @@ interface UploadFilePluginOptions {
 }
 
 const isFilesUploadEvent = (types: readonly string[], files: FileList) => {
-    if (!isEqual(types, ["Files"])) {
-        return false;
-    }
-
-    if (files.length === 0) {
-        return false;
-    }
+    if (!isEqual(types, ["Files"])) return false;
+    if (files.length === 0) return false;
 
     return true;
 };
