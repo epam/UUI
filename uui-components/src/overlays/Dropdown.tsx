@@ -176,7 +176,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     private renderTarget(targetProps: ReferenceChildrenProps) {
         const { openOnClick, openOnHover } = this.props;
-        const handleTargetClick =  (openOnClick || (!openOnClick && !openOnHover)) ? this.handleTargetClick : undefined;
+        const handleTargetClick = (openOnClick || (!openOnClick && !openOnHover)) ? this.handleTargetClick : undefined;
         const innerRef = (node: HTMLElement | null) => {
             if (!node) return;
             this.targetNode = node;
@@ -200,7 +200,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             if (this.bodyNode && this.props.closeOnMouseLeave === 'boundary') {
                 const { x, y, height, width } = this.bodyNode.getBoundingClientRect();
                 if (x && y && !this.state.bodyBoundingRect.y && !this.state.bodyBoundingRect.x) {
-                    this.setState({ bodyBoundingRect : { y, height, width, x } });
+                    this.setState({ bodyBoundingRect: { y, height, width, x } });
                 }
             }
         };

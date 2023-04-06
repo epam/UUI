@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus } from "@epam/uui-core";
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus, isChildFocusable, closest } from "@epam/uui-core";
 import { IconContainer } from '../layout';
 import css from './PickerToggler.scss';
 import { i18n } from "../i18n";
@@ -49,7 +49,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     }, [props.isOpen]);
 
     const isActivePlaceholder = (): Boolean => {
-        if (props.isReadonly) return  false;
+        if (props.isReadonly) return false;
         else if (props.isOpen && props.searchPosition === 'input') return false;
         else if (props.minCharsToSearch && inFocus) return false;
         else if (props.pickerMode === 'single' && props.selection && props.selection.length > 0) return true;
@@ -57,9 +57,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const blur = (e?: React.FocusEvent<HTMLElement>) => {
-        setInFocus(false);
-        props.onBlur?.(e);
-        inputContainer.current?.blur();
+        const blurTrigger = e.relatedTarget as HTMLElement;
+        const isPickerChildTriggerBlur = isChildFocusable(e) || closest(blurTrigger, toggleContainer.current);
+        const shouldCloseOnBlur = props.isOpen && props.searchPosition !== 'body' && !isPickerChildTriggerBlur;
+        if (shouldCloseOnBlur) {
+            setInFocus(false);
+            props.onBlur?.(e);
+            inputContainer.current?.blur();
+        }
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {

@@ -37,7 +37,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         props.onKeyDown?.(e);
-        if (e.key === ENTER)  props.onAccept?.();
+        if (e.key === ENTER) props.onAccept?.();
         else if (e.key === ESCAPE) props.onCancel?.();
     };
 
