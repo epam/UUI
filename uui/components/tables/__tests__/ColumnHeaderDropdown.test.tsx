@@ -1,24 +1,15 @@
 import React from 'react';
-import { windowMock, renderWithContextAsync } from "@epam/test-utils";
+import { renderSnapshotWithContextAsync } from "@epam/test-utils";
 import { Button } from '../../buttons';
 import { ColumnHeaderDropdown } from '../ColumnHeaderDropdown';
+import { mockReactPortalsForSnapshots } from '@epam/test-utils';
 
-jest.mock('react-dom', () => ({
-    createPortal: jest.fn((element) => element),
-}));
+mockReactPortalsForSnapshots();
 
 describe('ColumnHeaderDropdown', () => {
-    beforeEach(() => {
-        jest.spyOn(window, "window", "get")
-            .mockImplementation(() => windowMock as any);
-    });
-
-    afterEach(() => {
-        jest.restoreAllMocks();
-    });
 
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(<ColumnHeaderDropdown
+        const tree = await renderSnapshotWithContextAsync(<ColumnHeaderDropdown
                 title=""
                 renderTarget={ props => <Button caption='Test' { ...props } /> }
                 isOpen

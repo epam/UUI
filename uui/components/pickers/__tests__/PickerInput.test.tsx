@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource } from '@epam/uui-core';
-import { renderWithContextAsync, windowMock } from "@epam/test-utils";
+import { renderSnapshotWithContextAsync } from "@epam/test-utils";
 import { PickerInput } from '../PickerInput';
 
 const languageLevels = [
@@ -22,19 +22,8 @@ const mockDataSource = new ArrayDataSource({
 });
 
 describe('PickerInput', () => {
-    let windowSpy: any;
-
-    beforeEach(() => {
-        windowSpy = jest.spyOn(window, "window", "get")
-            .mockImplementation(() => windowMock as any);
-    });
-
-    afterEach(() => {
-        windowSpy.mockRestore();
-    });
-
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <PickerInput
                 value={ null }
                 onValueChange={ jest.fn }
@@ -48,7 +37,7 @@ describe('PickerInput', () => {
     });
 
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <PickerInput
                 value={ [1, 2] }
                 onValueChange={ jest.fn }
