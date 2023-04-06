@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
 import { Panel } from '@epam/promo';
-import { useUuiContext } from '@epam/uui';
+import { FileUploadResponse, useUuiContext } from '@epam/uui';
 import {
     SlateEditor, defaultPlugins,
     imagePlugin, videoPlugin, attachmentPlugin,
@@ -11,7 +11,6 @@ import {
     superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, uploadFilePlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
-import { UploadFileOptions } from 'uui-editor/src/plate/plugins/uploadFilePlugin/file_uploader';
 
 export default function WithInnerScrollExample() {
     const svc = useUuiContext();
@@ -19,7 +18,7 @@ export default function WithInnerScrollExample() {
     const [value, setValue] = useState<Descendant>(demoData.slateInitialValue);
 
 
-    const uploadFile = (file: File, onProgress: (progress: number) => unknown): unknown => {
+    const uploadFile = (file: File, onProgress: (progress: number) => unknown): Promise<FileUploadResponse> => {
         return svc.uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
             onProgress,
         });
@@ -36,7 +35,7 @@ export default function WithInnerScrollExample() {
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        uploadFilePlugin({ uploadFile } as UploadFileOptions),
+        uploadFilePlugin({ uploadFile }),
         attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
