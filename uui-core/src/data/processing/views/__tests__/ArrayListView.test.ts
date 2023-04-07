@@ -292,6 +292,26 @@ describe('ArrayListView', () => {
 
                     expect(view['checkedByKey']).toEqual({ 9: true });
                 });
+
+            it.each([[true], ['explicit']])
+                ('should select all top items with cascadeSelection = %s', (cascadeSelection) => {
+                    view = dataSource.getView(
+                        { ...initialValue, checked: [7, 8] },
+                        onValueChange,
+                        {
+                            getId: i => i.id,
+                            cascadeSelection,
+                            getRowOptions: () => ({
+                                checkbox: { isVisible: true },
+                            }),
+                        },
+                    ) as View;
+
+                    const selectAll = view.selectAll;
+                    selectAll.onValueChange(true);
+
+                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [7, 8, 2, 5, 1, 3, 4, 6, 9, 10, 11, 12] });
+                });
         });
 
         describe("cascadeSelection = 'implicit'", () => {
