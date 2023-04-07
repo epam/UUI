@@ -13,6 +13,7 @@ const dataSourcesMap: any = {
         items: demoData.languageLevels,
     }),
     cities: null,
+    lazyLocations: null,
     locations: null,
     persons: null,
 
@@ -28,7 +29,7 @@ export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
     dataSourcesMap.languages = dataSourcesMap.languages || new AsyncDataSource({
         api: () => ctx.demoApi.languages({}).then(r => r.items),
     });
-    dataSourcesMap.locations = dataSourcesMap.locations || new LazyDataSource({
+    dataSourcesMap.lazyLocations = dataSourcesMap.lazyLocations || new LazyDataSource({
         api: (request, context) => {
             const { search } = request;
             const filter = search ? {} : { parentId: context?.parentId };
@@ -38,6 +39,13 @@ export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
         getParentId: i => i.parentId,
         getChildCount: l => l.childCount,
     });
+
+    dataSourcesMap.locations = dataSourcesMap.locations || new AsyncDataSource({
+        api: () => ctx.demoApi.locations({}).then(r => r.items),
+        getId: i => i.id,
+        getParentId: i => i.parentId,
+    });
+
     dataSourcesMap.persons = dataSourcesMap.persons || new LazyDataSource({
         api: rq => ctx.demoApi.persons({ ...rq, sorting: [{ field: 'name' }] }),
     });
@@ -59,6 +67,10 @@ export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
         {
             name: 'Locations',
             value: dataSourcesMap.locations,
+        },
+        {
+            name: 'Lazy locations',
+            value: dataSourcesMap.lazyLocations,
         },
         {
             name: 'Persons',
