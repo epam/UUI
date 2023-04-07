@@ -148,4 +148,12 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     protected getChildCount = (item: TItem): number | undefined => {
         return this.tree.getChildrenByParentId(this.props.getId(item)).length;
     }
+
+    protected getLastRecordIndex = () => {
+        const lastIndex = this.value.topIndex + this.value.visibleCount;
+        const actualCount = this.tree.getNodeInfo(undefined).count ?? 0;
+
+        if (actualCount < lastIndex) return actualCount;
+        return lastIndex;
+    }
 }
