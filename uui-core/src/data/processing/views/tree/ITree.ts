@@ -85,7 +85,7 @@ export interface ITree<TItem, TId> {
 
     getTotalRecursiveCount(): number;
     forEach(
-        action: (item: TItem, id: TId, parentId: TId) => void,
+        action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void,
         options?: {
             direction?: 'bottom-up' | 'top-down',
             parentId?: TId,
