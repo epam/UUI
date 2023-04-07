@@ -2,8 +2,8 @@ import React from 'react';
 import { Dropdown } from '@epam/uui-components';
 
 import {
-    createPluginFactory, getAboveNode,
-    getBlockAbove, insertEmptyElement,
+    createPluginFactory,
+    getBlockAbove,
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
     insertText
@@ -34,11 +34,19 @@ export const notePlugin = () => {
         isVoid: false,
         component: Note,
         handlers: {
-            onKeyDown: (editor) => (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    insertText(editor, '\n');
-                    return true;
+            // TODO: potential handler improvement by https://github.com/ianstormtaylor/slate/issues/97
+            onKeyDown: (editor) => (event) => {
+                if (event.key === 'Enter') {
+                    // do not prevent default behavior right here, it leads to bugs with insertData plugin
+
+                    const noteEntry = getBlockAbove(editor, {
+                        match: { type: ['note-link', 'note-error', 'note-warning', 'note-quote'] },
+                    });
+                    if(noteEntry) {
+                        event.preventDefault();
+                        insertText(editor, '\n');
+                        return true;
+                    }
                 }
             },
         },
@@ -89,9 +97,9 @@ export const NoteButton = ({ editor }: IToolbarNote) => {
 
     return (
         <Dropdown
-            renderTarget={ (props) =>  (
+            renderTarget={ (props) => (
                 <PlateToolbarButton
-                    styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+                    styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
                     active={ true }
                     onMouseDown={
                         editor

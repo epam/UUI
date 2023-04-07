@@ -10,7 +10,7 @@ import {
     getAboveNode,
 } from '@udecode/plate';
 
-import { ToolbarButton  } from '../../implementation/ToolbarButton';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { isPluginActive } from '../../../helpers';
 
 import { ReactComponent as ToDoIcon } from '../../icons/to-do.svg';
@@ -51,7 +51,7 @@ export const ToDoListButton = ({ editor }: ToolbarButton) => {
 
     return (
         <BlockToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
             type={ getPluginType(editor, KEY) }
             actionHandler='onMouseDown'
             icon={ <ToolbarButton

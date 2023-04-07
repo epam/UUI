@@ -96,10 +96,10 @@ export const createFileUploader =
         const prevSelection = { ...editor.prevSelection };
 
         // upload files
-        const FileUploadResponses = await upload(files, uploadFile);
+        const responses = await upload(files, uploadFile);
 
         // build fragments
-        const fileFragments = buildFragments(FileUploadResponses, overriddenAction);
+        const fileFragments = buildFragments(responses, overriddenAction);
 
         // remove loader
         editor.selection = currentSelection;
