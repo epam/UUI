@@ -76,12 +76,20 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     public getSelectedRows: () => DataRowProps<TItem, TId>[] = () => {
+        let checked: TId[] = [];
         if (this.value.selectedId !== null && this.value.selectedId !== undefined) {
-            return [this.getById(this.value.selectedId, 0)];
+            checked = [this.value.selectedId];
         } else if (this.value.checked) {
-            return this.value.checked.map((id, n) => this.getById(id, n));
+            checked = this.value.checked;
         }
-        return [];
+
+        let orderedChecked: TId[] = [];
+        this.tree.forEach((item, id, _, stop) => {
+            if (checked.includes(id)) orderedChecked.push(id);
+            if (orderedChecked.length === checked.length) stop();
+        });
+
+        return orderedChecked.map((id, n) => this.getById(id, n))
     }
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
