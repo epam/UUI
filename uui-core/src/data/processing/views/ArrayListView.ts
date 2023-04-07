@@ -151,7 +151,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     protected getLastRecordIndex = () => {
         const lastIndex = this.value.topIndex + this.value.visibleCount;
-        const actualCount = this.tree.getNodeInfo(undefined).count ?? 0;
+        const actualCount = this.tree.getTotalRecursiveCount() ?? 0;
 
         if (actualCount < lastIndex) return actualCount;
         return lastIndex;
