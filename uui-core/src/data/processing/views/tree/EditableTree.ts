@@ -1,5 +1,5 @@
 import { BaseTree } from "./BaseTree";
-import { ItemsComparator, ITree, TreeNodeInfo } from "./ITree";
+import { ItemsComparator, ITree, ROOT_ID, TreeNodeInfo } from "./ITree";
 import { CascadeSelection, CascadeSelectionTypes } from '../../../../types';
 import { CompositeKeysMap } from "./CompositeKeysMap";
 
@@ -76,7 +76,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
     ) {
         const isImplicitMode = options.cascade === CascadeSelectionTypes.IMPLICIT;
         let selectedIdsMap = this.newMap<TId, boolean>();
-        if (!(selectedId === undefined && isImplicitMode)) {
+        if (!(selectedId === ROOT_ID && isImplicitMode)) {
             currentSelection.forEach(id => selectedIdsMap.set(id, true));
         }
 
@@ -112,13 +112,13 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
 
     private simpleSelection(selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>, selectedId: TId, isSelected: boolean) {
         if (isSelected) {
-            if (selectedId != null) {
+            if (selectedId !== ROOT_ID) {
                 selectedIdsMap.set(selectedId, true);
             }
             return selectedIdsMap;
         }
 
-        if (selectedId != null) {
+        if (selectedId !== ROOT_ID) {
             selectedIdsMap.delete(selectedId);
         }
         return selectedIdsMap;
@@ -131,17 +131,17 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         isSelectable: (item: TItem) => boolean,
     ) {
         if (isSelected) {
-            if (selectedId != null) {
+            if (selectedId !== ROOT_ID) {
                 selectedIdsMap.set(selectedId, true);
             }
             // check all children recursively
-            this.forEachChildren(id => id !== undefined && selectedIdsMap.set(id, true), isSelectable, selectedId);
+            this.forEachChildren(id => id !== ROOT_ID && selectedIdsMap.set(id, true), isSelectable, selectedId);
             selectedIdsMap = this.checkParentsWithFullCheck(selectedIdsMap, selectedId, isSelectable);
 
             return selectedIdsMap;
         }
 
-        if (selectedId != null) {
+        if (selectedId !== ROOT_ID) {
             selectedIdsMap.delete(selectedId);
         }
 
@@ -161,13 +161,13 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         isSelectable: (item: TItem) => boolean,
     ) {
         if (isSelected) {
-            if (selectedId != null) {
+            if (selectedId !== ROOT_ID) {
                 selectedIdsMap.set(selectedId, true);
             }
             // for implicit mode, it is required to remove explicit check from children,
             // if parent is checked
             this.forEachChildren(id => selectedIdsMap.delete(id), isSelectable, selectedId, false);
-            if (selectedId === undefined) {
+            if (selectedId === ROOT_ID) {
                 const childrenIds = this.getChildrenIdsByParentId(selectedId);
 
                 // if selectedId is undefined and it is selected, that means selectAll
@@ -178,7 +178,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             return selectedIdsMap;
         }
 
-        if (selectedId != null) {
+        if (selectedId !== ROOT_ID) {
             selectedIdsMap.delete(selectedId);
         }
 
@@ -196,7 +196,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             selectedIdsMap.delete(parentId);
         }
 
-        if (selectedId !== undefined) {
+        if (selectedId !== ROOT_ID) {
             const parents = this.getParentIdsRecursive(selectedId);
             [selectedId, ...parents.reverse()].forEach(selectNeighboursOnly);
         }
@@ -212,7 +212,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         this.getParentIdsRecursive(selectedId).reverse().forEach(parentId => {
             const childrenIds = this.getChildrenIdsByParentId(parentId);
             if (childrenIds && childrenIds.every(childId => selectedIdsMap.has(childId))) {
-                if (parentId !== undefined) {
+                if (parentId !== ROOT_ID) {
                     selectedIdsMap.set(parentId, true);
                 }
                 if (removeExplicitChildrenSelection) {

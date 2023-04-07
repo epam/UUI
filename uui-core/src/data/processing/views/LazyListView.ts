@@ -5,7 +5,7 @@ import {
 import isEqual from 'lodash.isequal';
 import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
-import { Tree, LoadTreeOptions, ITree } from './tree';
+import { Tree, LoadTreeOptions, ITree, ROOT_ID } from './tree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
@@ -330,7 +330,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
         if (this.props.cascadeSelection || isRoot) {
-            if ((!isImplicitMode || !isChecked) || (isImplicitMode && isChecked && checkedId === undefined)) {
+            if ((!isImplicitMode || !isChecked) || (isImplicitMode && isChecked && checkedId === ROOT_ID)) {
                 const loadNestedLayersChildren = !isImplicitMode;
                 const parents = this.tree.getParentIdsRecursive(checkedId);
                 const result = await this.loadMissing(
@@ -341,7 +341,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         // Otherwise, should be loaded only checked element and all its nested children.
                         loadAllChildren: id => (
                             isImplicitMode
-                                ? (id === undefined || parents.includes(id))
+                                ? (id === ROOT_ID || parents.includes(id))
                                 : (isRoot || id === checkedId)
                         )
                     },

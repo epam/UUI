@@ -2,6 +2,8 @@ import { DataSourceState, SortingOption, DataRowPathItem, CascadeSelection } fro
 import { LazyListViewProps } from "../LazyListView";
 import { CompositeKeysMap } from "./CompositeKeysMap";
 
+export const ROOT_ID: undefined = undefined;
+
 export interface ApplyFilterOptions<TItem, TId, TFilter> {
     filter: DataSourceState<TFilter, TId>['filter'];
     getFilter?: (filter: TFilter) => (item: TItem) => boolean;
