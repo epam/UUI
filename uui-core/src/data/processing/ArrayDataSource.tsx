@@ -25,7 +25,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
                 // These defaults are added for compatibility reasons.
                 // We'll require getId and getParentId callbacks in other APIs, including the views.
                 getId: this.getId,
-                getParentId: props?.getParentId || this.defaultGetParentId,
+                getParentId: props?.getParentId ?? this.defaultGetParentId,
             },
                 this.props.items,
             );
@@ -57,7 +57,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             // These defaults are added for compatibility reasons.
             // We'll require getId and getParentId callbacks in other APIs, including the views.
             getId: this.getId,
-            getParentId: options?.getParentId || this.defaultGetParentId,
+            getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
         };
 
         if (view) {
