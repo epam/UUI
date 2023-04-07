@@ -122,11 +122,19 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
+        this.checkItems(!rowProps.isChecked, rowProps.id);
+    }
+
+    protected handleSelectAll = (checked: boolean) => {
+        this.checkItems(checked);
+    }
+
+    private checkItems(isChecked: boolean, checkedId?: TId) {
         let checked = this.value && this.value.checked || [];
-        let isChecked = !rowProps.isChecked;
-        checked = this.tree.cascadeSelection(
+
+        const updatedChecked = this.tree.cascadeSelection(
             checked,
-            rowProps.id,
+            checkedId,
             isChecked,
             {
                 cascade: this.props.cascadeSelection,
@@ -136,12 +144,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
                 },
             },
         );
-        this.handleCheckedChange(checked);
-    }
 
-    protected handleSelectAll = (checked: boolean) => {
-        const rowsToSelect = this.rows.filter(this.canBeSelected).map(({ id }) => id);
-        this.handleCheckedChange(checked ? rowsToSelect : []);
+        this.handleCheckedChange(updatedChecked);
     }
 
     protected getChildCount = (item: TItem): number | undefined => {
