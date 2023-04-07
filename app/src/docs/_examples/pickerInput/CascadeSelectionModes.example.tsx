@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
-import { DataPickerRow, FlexCell, PickerInput, PickerItem } from '@epam/promo';
+import { DataPickerRow, FlexRow, MultiSwitch, FlexCell, PickerInput, PickerItem } from '@epam/promo';
 import { DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
+const cascadeSelectionModes: Array<{ id: 'explicit' | 'implicit', caption: string }> = [
+    {
+        id: 'explicit',
+        caption: 'Explicit cascade selection',
+    },
+    {
+        id: 'implicit',
+        caption: 'Implicit cascade selection',
+    },
+];
 
-export default function LazyTreePicker() {
+export default function CascadeSelectionModesExample() {
     const svc = useUuiContext();
     const [value, onValueChange] = useState<string[]>();
+    const [cascadeSelection, setCascadeSelection] = useState(cascadeSelectionModes[0].id);
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
         api: (request, ctx) => {
@@ -16,7 +27,6 @@ export default function LazyTreePicker() {
             const filter = search ? {} : { parentId: ctx?.parentId };
             return svc.api.demo.locations({ ...request, search, filter });
         },
-        cascadeSelection: true,
         getId: i => i.id,
         getParentId: i => i.parentId,
         getChildCount: l => l.childCount,
@@ -29,7 +39,16 @@ export default function LazyTreePicker() {
     };
 
     return (
-        <FlexCell width={ 300 }>
+        <FlexCell width={ 350 }>
+            <FlexRow vPadding='12'>
+                <MultiSwitch
+                    size='24'
+                    value={ cascadeSelection }
+                    onValueChange={ setCascadeSelection }
+                    items={ cascadeSelectionModes }
+                />
+            </FlexRow>
+
             <PickerInput
                 dataSource={ dataSource }
                 value={ value }
@@ -37,7 +56,7 @@ export default function LazyTreePicker() {
                 entityName='location'
                 selectionMode='multi'
                 valueType='id'
-                cascadeSelection={ 'explicit' }
+                cascadeSelection={ cascadeSelection }
                 renderRow={ (props: DataRowProps<Location, string>, dataSourceState) => (
                     <DataPickerRow
                         { ...props }
