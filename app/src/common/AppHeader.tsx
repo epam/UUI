@@ -1,14 +1,13 @@
 import * as React from 'react';
-import {
-    BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger,
-    DropdownMenuBody, DropdownMenuButton,
-} from '@epam/promo';
-import { AdaptiveItemProps, Anchor, Dropdown, MainMenuLogo } from '@epam/uui-components';
-import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
+import { BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger } from '@epam/promo';
+import { AdaptiveItemProps, Anchor, MainMenuLogo } from '@epam/uui-components';
+import { DropdownBodyProps } from "@epam/uui-core";
+import { MainMenuDropdown } from "@epam/uui";
 import { UUI4 } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import css from './AppHeader.scss';
+import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 
 type Theme = 'promo' | 'loveship' | 'orange' | 'cyan' | 'violet' | 'red';
 
@@ -70,30 +69,23 @@ export class AppHeader extends React.Component {
 
     renderThemeSwitcher = () => {
         const { theme: thisTheme } = this.state;
-        return (
-            <Dropdown
-                renderTarget={ props => (
-                    <MainMenuButton
-                        isDropdown
-                        caption='Choose theme'
-                        { ...props }
-                    />
-                ) }
-                renderBody={ props => (
-                    <DropdownMenuBody { ...props }>
-                        <DropdownMenuButton caption='Promo' isSelected={ thisTheme === 'promo' } iconPosition='right' onClick={ () => this.setTheme('promo') } />
-                        <DropdownMenuButton caption='Loveship' isSelected={ thisTheme === 'loveship' } iconPosition='right' onClick={ () => this.setTheme('loveship') } />
-                        {/*<DropdownMenuSplitter />*/}
-                        {/*<DropdownMenuButton caption='Red (restricted)' isSelected={ thisTheme === 'red' } iconPosition='right' onClick={ () => this.setTheme('red') } />*/}
-                        {/*<DropdownMenuButton caption='Orange (restricted)' isSelected={ thisTheme === 'orange' } iconPosition='right' onClick={ () => this.setTheme('orange') } />*/}
-                        {/*<DropdownMenuButton caption='Cyan (restricted)' isSelected={ thisTheme === 'cyan' } iconPosition='right' onClick={ () => this.setTheme('cyan') } />*/}
-                        {/*<DropdownMenuButton caption='Violet (restricted)' isSelected={ thisTheme === 'violet' } iconPosition='right' onClick={ () => this.setTheme('violet') } />*/}
-                    </DropdownMenuBody>
-                ) }
-                placement="bottom-end"
-                key='theme'
-            />
-        );
+
+        const renderBodyItems = (props: DropdownBodyProps) => {
+            return (
+                <>
+                    <MainMenuButton caption="Promo" isLinkActive={ thisTheme === 'promo' } onClick={ () => {
+                        this.setTheme('promo');
+                        props.onClose();
+                    } }/>
+                    <MainMenuButton caption="Loveship" isLinkActive={ thisTheme === 'loveship' } onClick={ () => {
+                        this.setTheme('loveship');
+                        props.onClose();
+                    } }/>
+                </>
+            );
+        };
+
+        return <MainMenuDropdown caption={ 'Select Theme' } renderBody={ (props) => renderBodyItems(props) }/>;
     }
 
     getMainMenuItems(): AdaptiveItemProps[] {
