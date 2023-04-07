@@ -72,7 +72,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     public getById = (id: TId, index: number) => {
-        const item = this.tree.getById(id);
+        // if originalTree is not created, but blank tree is defined, get item from it
+        const item = (this.originalTree ?? this.tree).getById(id);
         return this.getRowProps(item, index);
     }
 
