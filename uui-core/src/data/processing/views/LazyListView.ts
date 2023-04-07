@@ -315,14 +315,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         let id = rowProps.id;
         let isChecked = !rowProps.isChecked;
 
-        this.updateChecked(isChecked, false, id);
+        this.checkItems(isChecked, false, id);
     }
 
     protected handleSelectAll = (value: boolean) => {
-        this.updateChecked(value, true);
+        this.checkItems(value, true);
     }
 
-    private async updateChecked(isChecked: boolean, isRoot: boolean, checkedId?: TId) {
+    private async checkItems(isChecked: boolean, isRoot: boolean, checkedId?: TId) {
         let checked = this.value && this.value.checked || [];
 
         let tree = this.tree;
