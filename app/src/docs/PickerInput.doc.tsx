@@ -34,6 +34,10 @@ export class PickerInputDoc extends BaseDocsBlock {
                     path='./_examples/pickerInput/AsyncPickerInput.example.tsx'
                 />
                 <DocExample
+                    title='Cascade selection modes'
+                    path='./_examples/pickerInput/CascadeSelectionModes.example.tsx'
+                />
+                <DocExample
                     title='Search positions'
                     path='./_examples/pickerInput/SearchPositions.example.tsx'
                 />
