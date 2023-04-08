@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import css from './AdaptivePanel.scss';
 import { FlexRow } from "./flexItems";
 import sortBy from "lodash.sortby";
-import { IHasCX, useLayoutEffectSafeForSsr } from "@epam/uui-core";
+import { DropdownBodyProps, IHasCX, useLayoutEffectSafeForSsr } from "@epam/uui-core";
 import cx from 'classnames';
 
 export type AdaptiveItemProps<T = unknown> = T & {
-    render: (item: AdaptiveItemProps<T>, hiddenItems?: AdaptiveItemProps<T>[], displayedItems?: AdaptiveItemProps<T>[]) => any;
+    render: (item: AdaptiveItemProps<T>, hiddenItems?: AdaptiveItemProps<T>[], displayedItems?: AdaptiveItemProps<T>[], dropdownBodyProps?: DropdownBodyProps) => any;
     priority: number;
     collapsedContainer?: boolean;
     id: string;
