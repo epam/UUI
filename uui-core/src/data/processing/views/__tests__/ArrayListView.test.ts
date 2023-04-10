@@ -387,4 +387,18 @@ describe('ArrayListView', () => {
 
         expect(onValueChange).toBeCalledWith({ ...initialValue, folded: { [row.id]: !row.isFolded } });
     });
+
+    it('should return selected rows in data order', () => {
+        view.update({ ...initialValue, checked: [6, 5, 4] }, viewProps);
+
+        const selectedRows = view.getSelectedRows();
+        expect(selectedRows.map(({ id }) => id)).toEqual([5, 4, 6]);
+    });
+
+    it('should return selected rows in selection order', () => {
+        view.update({ ...initialValue, checked: [6, 5, 4] }, viewProps);
+
+        const selectedRows = view.getSelectedRows(true);
+        expect(selectedRows.map(({ id }) => id)).toEqual([6, 5, 4]);
+    });
 });
