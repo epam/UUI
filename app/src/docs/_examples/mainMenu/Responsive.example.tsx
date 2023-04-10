@@ -64,14 +64,13 @@ export default function MainMenuResponsiveExample() {
             { id: 'Tasks', priority: 4, render: () => <MainMenuButton href='/' caption="Tasks" />, caption: "Tasks" },
             { id: 'Talks', priority: 4, render: () => <MainMenuButton href='/' caption="Talks" />, caption: "Talks" },
             {
-                id: 'Action Items', priority: 3, render: (_, __, ___, dropdownBodyProps) => <MainMenuButton caption="Action Items sss" onClick={ () => {
+                id: 'Action Items', priority: 3, render: (item, hiddenItems, displayedItems, dropdownBodyProps) => <MainMenuButton caption="Action Items" onClick={ () => {
                     dropdownBodyProps.onClose();
-                } }/>, caption: "Action Items",
+                } } />, caption: "Action Items",
             },
             { id: 'Subscriptions', priority: 3, render: () => <MainMenuButton href='/' caption="Subscriptions" />, caption: "Subscriptions" },
             { id: 'moreContainer', priority: 8, collapsedContainer: true, render: (item, hiddenItems) => <MainMenuDropdown
                     caption='More'
-                    // children={ hiddenItems?.map(i => i.render(item)) }
                     renderBody={ (props) => {
                         return hiddenItems?.map(i => i.render(item, null, null, props));
                     } }
