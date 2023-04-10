@@ -45,7 +45,7 @@ export default function MainMenuResponsiveExample() {
         );
     };
 
-    const getMenuItems = (): AdaptiveItemProps<{caption?: string}>[] => {
+    const getMenuItems = (): AdaptiveItemProps<{caption?: string, onClose?: () => void}>[] => {
         return [
             { id: 'burger', priority: 100, collapsedContainer: true, render: (item, hiddenItems) => <Burger
                     renderBurgerContent={ () => renderBurger(hiddenItems) }
@@ -64,15 +64,15 @@ export default function MainMenuResponsiveExample() {
             { id: 'Tasks', priority: 4, render: () => <MainMenuButton href='/' caption="Tasks" />, caption: "Tasks" },
             { id: 'Talks', priority: 4, render: () => <MainMenuButton href='/' caption="Talks" />, caption: "Talks" },
             {
-                id: 'Action Items', priority: 3, render: (item, hiddenItems, displayedItems, dropdownBodyProps) => <MainMenuButton caption="Action Items" onClick={ () => {
-                    dropdownBodyProps.onClose();
+                id: 'Action Items', priority: 3, render: (item) => <MainMenuButton href='/' caption="Action Items" onClick={ () => {
+                    item.onClose && item.onClose();
                 } } />, caption: "Action Items",
             },
             { id: 'Subscriptions', priority: 3, render: () => <MainMenuButton href='/' caption="Subscriptions" />, caption: "Subscriptions" },
             { id: 'moreContainer', priority: 8, collapsedContainer: true, render: (item, hiddenItems) => <MainMenuDropdown
                     caption='More'
                     renderBody={ (props) => {
-                        return hiddenItems?.map(i => i.render(item, null, null, props));
+                        return hiddenItems?.map(i => i.render({ ...item, onClose: props.onClose }));
                     } }
                 />,
             },
