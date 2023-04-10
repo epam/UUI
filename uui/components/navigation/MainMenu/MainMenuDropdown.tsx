@@ -18,10 +18,10 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                     />
                 ) }
                 renderBody={ (props) => {
-                    return this.props.renderBody
-                        ? <div className={ cx(css.dropdownBody) }>{ this.props.renderBody({ ...props }) } </div>
-                        : <div className={ cx(css.dropdownBody) }>
-                            { React.Children.map<React.ReactElement, React.ReactElement>((this.props.children as React.ReactElement[]), item => {
+                    return <div className={ cx(css.dropdownBody) }>
+                        { this.props.renderBody
+                            ? this.props.renderBody({ ...props })
+                            : React.Children.map<React.ReactElement, React.ReactElement>((this.props.children as React.ReactElement[]), item => {
                                 if (!item) return item;
                                 return React.createElement(item.type, {
                                     ...item.props,
@@ -31,7 +31,7 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                                     } : null,
                                 });
                             }) }
-                        </div>;
+                    </div>;
                 } }
                 placement="bottom-start"
             />
