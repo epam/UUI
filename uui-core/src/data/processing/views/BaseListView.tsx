@@ -75,12 +75,15 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return { ...object, [key]: value };
     }
 
-    public getSelectedRows: () => DataRowProps<TItem, TId>[] = () => {
+    public getSelectedRows = (inSelectionOrder?: boolean) => {
         let checked: TId[] = [];
         if (this.value.selectedId !== null && this.value.selectedId !== undefined) {
             checked = [this.value.selectedId];
         } else if (this.value.checked) {
             checked = this.value.checked;
+        }
+        if (inSelectionOrder) {
+            return checked.map((id, n) => this.getById(id, n));
         }
 
         let orderedChecked: TId[] = [];
@@ -89,7 +92,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             if (orderedChecked.length === checked.length) stop();
         });
 
-        return orderedChecked.map((id, n) => this.getById(id, n))
+        return orderedChecked.map((id, n) => this.getById(id, n));
     }
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
