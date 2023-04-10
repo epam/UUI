@@ -121,7 +121,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                 search: this.state.dataSourceState.search,
                                 onClose: () => this.toggleBodyOpening(false),
                             }) : undefined
-                    }
+                        }
                     />
                     { !this.isSingleSelect() && this.renderFooter() }
                 </MobileDropdownWrapper>

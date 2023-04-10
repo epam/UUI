@@ -263,7 +263,7 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
     getVisibleRows(): DataRowProps<TItem, TId>[];
-    getSelectedRows(): DataRowProps<TItem, TId>[];
+    getSelectedRows(inSelectionOrder?: boolean): DataRowProps<TItem, TId>[];
     reload(): void;
     destroy(): void;
     loadData(): void;

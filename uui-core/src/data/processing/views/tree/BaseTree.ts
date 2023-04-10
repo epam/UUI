@@ -158,20 +158,27 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     public forEach(
-        action: (item: TItem, id: TId, parentId: TId) => void,
+        action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void,
         options?: {
             direction?: 'bottom-up' | 'top-down',
             parentId?: TId,
             includeParent?: boolean,
         },
     ) {
+        let shouldStop = false;
+        const stop = () => {
+            shouldStop = true;
+        };
+
         options = { direction: 'top-down', parentId: undefined, ...options };
         if (options.includeParent == null) {
             options.includeParent = options.parentId != null;
         }
 
         const iterateNodes = (ids: TId[]) => {
+            if (shouldStop) return;
             ids.forEach(id => {
+                if (shouldStop) return;
                 const item = this.byId.get(id);
                 const parentId = item ? this.getParentId(item) : undefined;
                 walkChildrenRec(item, id, parentId);
@@ -180,12 +187,12 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
         const walkChildrenRec = (item: TItem, id: TId, parentId: TId) => {
             if (options.direction === 'top-down') {
-                action(item, id, parentId);
+                action(item, id, parentId, stop);
             }
             const childrenIds = this.byParentId.get(id);
             childrenIds && iterateNodes(childrenIds);
             if (options.direction === 'bottom-up') {
-                action(item, id, parentId);
+                action(item, id, parentId, stop);
             }
         };
 
