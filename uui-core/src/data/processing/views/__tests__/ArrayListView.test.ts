@@ -203,89 +203,175 @@ describe('ArrayListView', () => {
         });
     });
 
-    describe('row handlers', () => {
-        it('onCheck handler should set id to checked array in value', async () => {
-            const row1 = view.getById(6, 6);
-            row1.onCheck(row1);
-            expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6] });
+    describe('rows check', () => {
+        describe('cascadeSelection = false', () => {
+            it('should select item in single mode', () => {
+                const row = view.getById(6, 6);
+                row.onSelect(row);
 
-            view.update({ ...initialValue, checked: [6] }, viewProps);
+                expect(onValueChange).toBeCalledWith({ ...initialValue, selectedId: 6 });
+            });
 
-            const row2 = view.getById(7, 7);
-            row2.onCheck(row2);
+            it('onCheck handler should set id to checked array in value', async () => {
+                const row1 = view.getById(6, 6);
+                row1.onCheck(row1);
+                expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6] });
 
-            expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6, 7] });
+                view.update({ ...initialValue, checked: [6] }, viewProps);
+
+                const row2 = view.getById(7, 7);
+                row2.onCheck(row2);
+
+                expect(onValueChange).toHaveBeenCalledWith({ ...initialValue, checked: [6, 7] });
+            });
         });
 
-        it('should check all children when parent checked with cascadeSelection true', () => {
-            view = dataSource.getView(
-                initialValue,
-                onValueChange,
-                {
-                    getId: i => i.id,
-                    cascadeSelection: true,
-                    getRowOptions: () => ({
-                        checkbox: { isVisible: true },
-                    }),
-                },
-            ) as View;
+        describe("cascadeSelection = true | cascadeSelection = 'explicit'", () => {
+            it.each([[true], ['explicit']])
+                ('should check all children when parent checked with cascadeSelection = %s', (cascadeSelection) => {
+                    view = dataSource.getView(
+                        initialValue,
+                        onValueChange,
+                        {
+                            getId: i => i.id,
+                            cascadeSelection,
+                            getRowOptions: () => ({
+                                checkbox: { isVisible: true },
+                            }),
+                        },
+                    ) as View;
 
-            const row1 = view.getById(6, 6);
-            row1.onCheck(row1);
+                    const row1 = view.getById(6, 6);
+                    row1.onCheck(row1);
 
-            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [6, 7, 8, 9] });
+                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [6, 7, 8, 9] });
+                });
+
+            it.each([[true], ['explicit']])
+                ('should check parent if all siblings checked with cascadeSelection = %s', (cascadeSelection) => {
+                    view = dataSource.getView(
+                        { ...initialValue, checked: [7, 8] },
+                        onValueChange,
+                        {
+                            getId: i => i.id,
+                            cascadeSelection,
+                            getRowOptions: () => ({
+                                checkbox: { isVisible: true },
+                            }),
+                        },
+                    ) as View;
+
+                    const row = view.getById(9, 9);
+                    row.onCheck(row);
+
+                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [7, 8, 9, 6] });
+                });
+
+            it.each([[true], ['explicit']])
+                ('should not update internal state itself on onCheck call but only on update call with cascadeSelection = %s', (cascadeSelection) => {
+                    const view = dataSource.getView(
+                        { ...initialValue, checked: [] },
+                        onValueChange,
+                        {
+                            getId: i => i.id,
+                            cascadeSelection,
+                            getRowOptions: () => ({
+                                checkbox: { isVisible: true },
+                            }),
+                        },
+                    ) as View;
+
+                    const row = view.getById(9, 9);
+                    row.onCheck(row);
+
+                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] })
+                    expect(view['checkedByKey']).toEqual({});
+
+                    view.update({ ...initialValue, checked: [9] }, viewProps);
+                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] })
+
+                    expect(view['checkedByKey']).toEqual({ 9: true });
+                });
+
+            it.each([[true], ['explicit']])
+                ('should select all top items with cascadeSelection = %s', (cascadeSelection) => {
+                    view = dataSource.getView(
+                        { ...initialValue, checked: [7, 8] },
+                        onValueChange,
+                        {
+                            getId: i => i.id,
+                            cascadeSelection,
+                            getRowOptions: () => ({
+                                checkbox: { isVisible: true },
+                            }),
+                        },
+                    ) as View;
+
+                    const selectAll = view.selectAll;
+                    selectAll.onValueChange(true);
+
+                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [7, 8, 2, 5, 1, 3, 4, 6, 9, 10, 11, 12] });
+                });
         });
 
-        it('should check parent if all siblings checked', () => {
-            view = dataSource.getView(
-                { ...initialValue, checked: [7, 8] },
-                onValueChange,
-                {
-                    getId: i => i.id,
-                    cascadeSelection: true,
-                    getRowOptions: () => ({
-                        checkbox: { isVisible: true },
-                    }),
-                },
-            ) as View;
+        describe("cascadeSelection = 'implicit'", () => {
+            it('should check only parent when parent checked with cascadeSelection = implicit', () => {
+                view = dataSource.getView(
+                    initialValue,
+                    onValueChange,
+                    {
+                        getId: i => i.id,
+                        cascadeSelection: 'implicit',
+                        getRowOptions: () => ({
+                            checkbox: { isVisible: true },
+                        }),
+                    },
+                ) as View;
 
-            const row = view.getById(9, 9);
-            row.onCheck(row);
+                const row1 = view.getById(6, 6);
+                row1.onCheck(row1);
 
-            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [7, 8, 9, 6] });
+                expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [6] });
+            });
+
+            it('should check parent if all siblings checked with cascadeSelection = implicit', () => {
+                view = dataSource.getView(
+                    { ...initialValue, checked: [7, 8] },
+                    onValueChange,
+                    {
+                        getId: i => i.id,
+                        cascadeSelection: 'implicit',
+                        getRowOptions: () => ({
+                            checkbox: { isVisible: true },
+                        }),
+                    },
+                ) as View;
+
+                const row = view.getById(9, 9);
+                row.onCheck(row);
+
+                expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [6] });
+            });
+
+            it('should select all top items with cascadeSelection = implicit', () => {
+                view = dataSource.getView(
+                    { ...initialValue, checked: [7, 8] },
+                    onValueChange,
+                    {
+                        getId: i => i.id,
+                        cascadeSelection: 'implicit',
+                        getRowOptions: () => ({
+                            checkbox: { isVisible: true },
+                        }),
+                    },
+                ) as View;
+
+                const selectAll = view.selectAll;
+                selectAll.onValueChange(true);
+
+                expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [2, 5, 1, 3, 4, 6, 10, 11, 12] });
+            });
         });
-
-        it('should not update internal state itself on onCheck call but only on update call', () => {
-            const view = dataSource.getView(
-                { ...initialValue, checked: [] },
-                onValueChange,
-                {
-                    getId: i => i.id,
-                    cascadeSelection: true,
-                    getRowOptions: () => ({
-                        checkbox: { isVisible: true },
-                    }),
-                },
-            ) as View;
-
-            const row = view.getById(9, 9);
-            row.onCheck(row);
-
-            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] })
-            expect(view['checkedByKey']).toEqual({});
-
-            view.update({ ...initialValue, checked: [9] }, viewProps);
-            expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] })
-
-            expect(view['checkedByKey']).toEqual({ 9: true });
-        });
-    });
-
-    it('should select item in single mode', () => {
-        const row = view.getById(6, 6);
-        row.onSelect(row);
-
-        expect(onValueChange).toBeCalledWith({ ...initialValue, selectedId: 6 });
     });
 
     it('should set focusedItem', () => {

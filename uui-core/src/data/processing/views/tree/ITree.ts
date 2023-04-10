@@ -1,6 +1,8 @@
-import { DataSourceState, SortingOption, DataRowPathItem } from "../../../../types";
+import { DataSourceState, SortingOption, DataRowPathItem, CascadeSelection } from "../../../../types";
 import { LazyListViewProps } from "../LazyListView";
 import { CompositeKeysMap } from "./CompositeKeysMap";
+
+export const ROOT_ID: undefined = undefined;
 
 export interface ApplyFilterOptions<TItem, TId, TFilter> {
     filter: DataSourceState<TFilter, TId>['filter'];
@@ -62,15 +64,16 @@ export interface ITree<TItem, TId> {
         currentSelection: TId[],
         selectedId: TId,
         isSelected: boolean,
-        options: {
-            isSelectable: (item: TItem) => boolean,
-            cascade: boolean,
+        options?: {
+            isSelectable?: (item: TItem) => boolean,
+            cascade?: CascadeSelection,
         },
     ): TId[];
 
     load<TFilter>(
         options: LoadTreeOptions<TItem, TId, TFilter>,
         value: Readonly<DataSourceState>,
+        withNestedChildren?: boolean,
     ): Promise<ITree<TItem, TId>>;
 
     loadMissing<TFilter>(

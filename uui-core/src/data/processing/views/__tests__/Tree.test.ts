@@ -192,45 +192,102 @@ describe('Tree', () => {
     });
 
     describe('cascadeSelection', () => {
-        it('can select single (cascade)', () => {
-            const selection = testTree.cascadeSelection([200], 100, true).sort();
-            expect(selection).toEqual([100, 110, 120, 121, 122, 200]);
-        })
+        describe('cascade = false', () => {
+            it('can select single', () => {
+                const selection = testTree.cascadeSelection([100], 200, true, { cascade: false }).sort();
+                expect(selection).toEqual([100, 200]);
+            });
 
-        it('can un-select single (cascade)', () => {
-            const selection = testTree.cascadeSelection([100, 110, 120, 121, 200], 100, false).sort();
-            expect(selection).toEqual([200]);
-        })
+            it('can un-select single', () => {
+                const selection = testTree.cascadeSelection([100], 200, false, { cascade: false }).sort();
+                expect(selection).toEqual([100]);
+            });
+        });
 
-        it('can select single (no cascade)', () => {
-            const selection = testTree.cascadeSelection([100], 200, true, { cascade: false }).sort();
-            expect(selection).toEqual([100, 200]);
-        })
+        describe("cascade = true or cascade = 'explicit'", () => {
+            it('can select single', () => {
+                const selection = testTree.cascadeSelection([200], 100, true).sort();
+                expect(selection).toEqual([100, 110, 120, 121, 122, 200]);
+            });
 
-        it('can un-select single (no cascade)', () => {
-            const selection = testTree.cascadeSelection([100], 200, false, { cascade: false }).sort();
-            expect(selection).toEqual([100]);
-        })
+            it('can un-select single (cascade = true)', () => {
+                const selection = testTree.cascadeSelection([100, 110, 120, 121, 200], 100, false).sort();
+                expect(selection).toEqual([200]);
+            });
 
-        it('it selects parents when all children are checked', () => {
-            const selection = testTree.cascadeSelection([100, 110, 121, 200], 122, true).sort();
-            expect(selection).toEqual([100, 110, 120, 121, 122, 200]);
-        })
+            it("can un-select single (cascade = 'explicit')", () => {
+                const selection = testTree.cascadeSelection([100, 110, 120, 121, 200], 100, false, { cascade: 'explicit' }).sort();
+                expect(selection).toEqual([200]);
+            });
 
-        it('it unselects parents when any children is unchecked', () => {
-            const selection = testTree.cascadeSelection([100, 110, 120, 121, 122, 200], 121, false).sort();
-            expect(selection).toEqual([110, 122, 200]);
-        })
+            it('it selects parents when all children are checked (cascade = true)', () => {
+                const selection = testTree.cascadeSelection([100, 110, 121, 200], 122, true).sort();
+                expect(selection).toEqual([100, 110, 120, 121, 122, 200]);
+            });
 
-        it('can select all', () => {
-            const selection = testTree.cascadeSelection([200], undefined, true, { cascade: true }).sort();
-            const allTestTreeIds = testData.map(i => i.id).sort();
-            expect(selection).toEqual(allTestTreeIds);
-        })
+            it("it selects parents when all children are checked (cascade = 'explicit')", () => {
+                const selection = testTree.cascadeSelection([100, 110, 121, 200], 122, true, { cascade: 'explicit' }).sort();
+                expect(selection).toEqual([100, 110, 120, 121, 122, 200]);
+            });
 
-        it('can unselect all', () => {
-            const selection = testTree.cascadeSelection([100, 110, 120, 122, 200], undefined, false).sort();
-            expect(selection).toEqual([]);
+            it('it unselects parents when any children is unchecked (cascade = true)', () => {
+                const selection = testTree.cascadeSelection([100, 110, 120, 121, 122, 200], 121, false).sort();
+                expect(selection).toEqual([110, 122, 200]);
+            });
+
+            it("it unselects parents when any children is unchecked (cascade = 'explicit')", () => {
+                const selection = testTree.cascadeSelection([100, 110, 120, 121, 122, 200], 121, false, { cascade: 'explicit' }).sort();
+                expect(selection).toEqual([110, 122, 200]);
+            });
+
+            it('can unselect all (cascade = true)', () => {
+                const selection = testTree.cascadeSelection([100, 110, 120, 122, 200], undefined, false).sort();
+                expect(selection).toEqual([]);
+            });
+
+            it("can unselect all (cascade = 'explicit')", () => {
+                const selection = testTree.cascadeSelection([100, 110, 120, 122, 200], undefined, false, { cascade: 'explicit' }).sort();
+                expect(selection).toEqual([]);
+            });
+
+            it('can select all (cascade = true)', () => {
+                const selection = testTree.cascadeSelection([200], undefined, true, { cascade: true }).sort();
+                const allTestTreeIds = testData.map(i => i.id).sort();
+                expect(selection).toEqual(allTestTreeIds);
+            });
+
+            it("can select all (cascade = 'explicit')", () => {
+                const selection = testTree.cascadeSelection([100], undefined, true, { cascade: 'explicit' }).sort();
+                const allTestTreeIds = testData.map(i => i.id).sort();
+                expect(selection).toEqual(allTestTreeIds);
+            });
+        });
+
+        describe("cascade = 'implicit'", () => {
+            it('can select single', () => {
+                const selection = testTree.cascadeSelection([200], 100, true, { cascade: 'implicit' }).sort();
+                expect(selection).toEqual([100, 200]);
+            });
+
+            it('can un-select single', () => {
+                const selection = testTree.cascadeSelection([100, 200], 100, false, { cascade: 'implicit' }).sort();
+                expect(selection).toEqual([200]);
+            });
+
+            it('can unselect child of selected parent', () => {
+                const selection = testTree.cascadeSelection([100], 122, false, { cascade: 'implicit' }).sort();
+                expect(selection).toEqual([110, 121]);
+            });
+
+            it('can collapse explicitly selected children if parent was selected', () => {
+                const selection = testTree.cascadeSelection([122], 100, true, { cascade: 'implicit' }).sort();
+                expect(selection).toEqual([100]);
+            });
+
+            it('can collapse children to one parent, if all children were selected explicitly', () => {
+                const selection = testTree.cascadeSelection([121], 122, true, { cascade: 'implicit' }).sort();
+                expect(selection).toEqual([120]);
+            });
         });
     });
 

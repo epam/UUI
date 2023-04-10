@@ -1,5 +1,5 @@
 # 5.0.0 - xx.xx.20203
-* [useTableState]: 
+* [useTableState]:
   - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
   - added storing of sorting, columns config, and paging state into url
   - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
@@ -17,6 +17,7 @@
 
 **What's New**
 * Exposed our Rollup build toolchain from @epam/uui-build package that you be able to build and publish your own packages.
+* [Pickers]: `implicit` cascade selection mode for the pickers was added.
 
 **What's Fixed**
 * [Typography]: links now underlined
@@ -27,7 +28,7 @@
 * [FilterPanel]: fixed predicate value change
 * [FilterPanel]: fixed range date picker date selection
 * [PickerList]: fixed default sorting
-* [DataTable]: fixed first column content alignment 
+* [DataTable]: fixed first column content alignment
 
 # 4.10.0 - 06.02.2023
 

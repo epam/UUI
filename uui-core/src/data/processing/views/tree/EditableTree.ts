@@ -1,6 +1,8 @@
 import { IMap } from "../../../../types";
 import { BaseTree } from "./BaseTree";
-import { ItemsComparator, ITree, TreeNodeInfo } from "./ITree";
+import { ItemsComparator, ITree, ROOT_ID, TreeNodeInfo } from "./ITree";
+import { CascadeSelection, CascadeSelectionTypes } from '../../../../types';
+import { CompositeKeysMap } from "./CompositeKeysMap";
 
 export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
     public patch(
@@ -70,51 +72,28 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         selectedId: TId,
         isSelected: boolean,
         options: {
-            isSelectable: (item: TItem) => boolean,
-            cascade: boolean,
-        },
+            isSelectable?: (item: TItem) => boolean,
+            cascade?: CascadeSelection,
+        } = {},
     ) {
+        const isImplicitMode = options.cascade === CascadeSelectionTypes.IMPLICIT;
         let selectedIdsMap = this.newMap<TId, boolean>();
-        currentSelection.forEach(id => selectedIdsMap.set(id, true));
+        if (!(selectedId === ROOT_ID && isImplicitMode)) {
+            currentSelection.forEach(id => selectedIdsMap.set(id, true));
+        }
 
         options = { isSelectable: BaseTree.truePredicate, cascade: true, ...options };
 
-        const forEachChildren = (action: (id: TId) => void) => {
-            this.forEach((item, id) => {
-                if (options.isSelectable(item)) {
-                    action(id);
-                }
-            }, { parentId: selectedId });
-        };
+        if (!options.cascade) {
+            selectedIdsMap = this.simpleSelection(selectedIdsMap, selectedId, isSelected);
+        }
 
-        if (isSelected) {
-            if (selectedId != null) {
-                selectedIdsMap.set(selectedId, true);
-            }
-            if (options.cascade) {
-                // check all children recursively
-                forEachChildren(id => selectedIdsMap.set(id, true));
+        if (options.cascade === true || options.cascade === CascadeSelectionTypes.EXPLICIT) {
+            selectedIdsMap = this.explicitCascadeSelection(selectedIdsMap, selectedId, isSelected, options.isSelectable);
+        }
 
-                // check parents if all children is checked
-                this.getParentIdsRecursive(selectedId).reverse().forEach(parentId => {
-                    const childrenIds = this.getChildrenIdsByParentId(parentId);
-
-                    if (childrenIds && childrenIds.every(childId => selectedIdsMap.has(childId))) {
-                        selectedIdsMap.set(parentId, true);
-                    }
-                });
-            }
-        } else {
-            if (selectedId != null) {
-                selectedIdsMap.delete(selectedId);
-            }
-
-            if (options.cascade) {
-                // uncheck all parents recursively
-                this.getParentIdsRecursive(selectedId).forEach(parentId => selectedIdsMap.delete(parentId));
-                // uncheck all children recursively
-                forEachChildren(id => selectedIdsMap.delete(id));
-            }
+        if (options.cascade === CascadeSelectionTypes.IMPLICIT) {
+            selectedIdsMap = this.implicitCascadeSelection(selectedIdsMap, selectedId, isSelected, options.isSelectable);
         }
 
         const result = [];
@@ -123,6 +102,127 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         }
 
         return result;
+    }
+
+    private forEachChildren(action: (id: TId) => void, isSelectable: (item: TItem) => boolean, parentId?: TId, includeParent: boolean = true) {
+        this.forEach((item, id) => {
+            if (isSelectable(item)) {
+                action(id);
+            }
+        }, { parentId: parentId, includeParent });
+    };
+
+    private simpleSelection(selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>, selectedId: TId, isSelected: boolean) {
+        if (isSelected) {
+            if (selectedId !== ROOT_ID) {
+                selectedIdsMap.set(selectedId, true);
+            }
+            return selectedIdsMap;
+        }
+
+        if (selectedId !== ROOT_ID) {
+            selectedIdsMap.delete(selectedId);
+        }
+        return selectedIdsMap;
+    }
+
+    private explicitCascadeSelection(
+        selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
+        selectedId: TId,
+        isSelected: boolean,
+        isSelectable: (item: TItem) => boolean,
+    ) {
+        if (isSelected) {
+            if (selectedId !== ROOT_ID) {
+                selectedIdsMap.set(selectedId, true);
+            }
+            // check all children recursively
+            this.forEachChildren(id => id !== ROOT_ID && selectedIdsMap.set(id, true), isSelectable, selectedId);
+            selectedIdsMap = this.checkParentsWithFullCheck(selectedIdsMap, selectedId, isSelectable);
+
+            return selectedIdsMap;
+        }
+
+        if (selectedId !== ROOT_ID) {
+            selectedIdsMap.delete(selectedId);
+        }
+
+        // uncheck all children recursively
+        this.forEachChildren(id => selectedIdsMap.delete(id), isSelectable, selectedId);
+
+        this.getParentIdsRecursive(selectedId)
+            .forEach(parentId => selectedIdsMap.delete(parentId));
+
+        return selectedIdsMap;
+    }
+
+    private implicitCascadeSelection(
+        selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
+        selectedId: TId,
+        isSelected: boolean,
+        isSelectable: (item: TItem) => boolean,
+    ) {
+        if (isSelected) {
+            if (selectedId !== ROOT_ID) {
+                selectedIdsMap.set(selectedId, true);
+            }
+            // for implicit mode, it is required to remove explicit check from children,
+            // if parent is checked
+            this.forEachChildren(id => selectedIdsMap.delete(id), isSelectable, selectedId, false);
+            if (selectedId === ROOT_ID) {
+                const childrenIds = this.getChildrenIdsByParentId(selectedId);
+
+                // if selectedId is undefined and it is selected, that means selectAll
+                childrenIds.forEach(id => selectedIdsMap.set(id, true));
+            }
+            // check parents if all children are checked
+            selectedIdsMap = this.checkParentsWithFullCheck(selectedIdsMap, selectedId, isSelectable, true);
+            return selectedIdsMap;
+        }
+
+        if (selectedId !== ROOT_ID) {
+            selectedIdsMap.delete(selectedId);
+        }
+
+        const selectNeighboursOnly = (itemId: TId) => {
+            const parentId = this.getParentId(this.getById(itemId));
+            const parents = this.getParentIdsRecursive(itemId);
+            // if some parent is checked, it is required to check all children explicitly,
+            // except unchecked one.
+            const someParentIsChecked = parents.some((parent) => selectedIdsMap.get(parent));
+            this.getChildrenIdsByParentId(parentId).forEach(id => {
+                if (itemId !== id && someParentIsChecked) {
+                    selectedIdsMap.set(id, true);
+                }
+            });
+            selectedIdsMap.delete(parentId);
+        }
+
+        if (selectedId !== ROOT_ID) {
+            const parents = this.getParentIdsRecursive(selectedId);
+            [selectedId, ...parents.reverse()].forEach(selectNeighboursOnly);
+        }
+        return selectedIdsMap;
+    }
+
+    private checkParentsWithFullCheck(
+        selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
+        selectedId: TId,
+        isSelectable: (item: TItem) => boolean,
+        removeExplicitChildrenSelection?: boolean,
+    ) {
+        this.getParentIdsRecursive(selectedId).reverse().forEach(parentId => {
+            const childrenIds = this.getChildrenIdsByParentId(parentId);
+            if (childrenIds && childrenIds.every(childId => selectedIdsMap.has(childId))) {
+                if (parentId !== ROOT_ID) {
+                    selectedIdsMap.set(parentId, true);
+                }
+                if (removeExplicitChildrenSelection) {
+                    this.forEachChildren(id => selectedIdsMap.delete(id), isSelectable, parentId, false);
+                }
+            }
+        });
+        return selectedIdsMap;
     }
 
     private deleteFromChildren<TId>(id: TId, children: TId[]) {

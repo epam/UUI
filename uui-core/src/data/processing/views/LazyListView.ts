@@ -1,11 +1,11 @@
 import {
     DataRowProps, IEditable, DataSourceState,
-    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps,
+    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps, CascadeSelectionTypes,
 } from "../../../types";
 import isEqual from 'lodash.isequal';
 import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
-import { Tree, LoadTreeOptions, ITree } from './tree';
+import { Tree, LoadTreeOptions, ITree, ROOT_ID } from './tree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
@@ -259,19 +259,23 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     private inProgressPromise: Promise<LoadResult<TItem, TId, TFilter>> = null;
 
-    private loadMissing(abortInProgress: boolean, options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId, TFilter>> {
+    private loadMissing(
+        abortInProgress: boolean,
+        options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>,
+        withNestedChildren?: boolean,
+    ): Promise<LoadResult<TItem, TId, TFilter>> {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
 
         if (this.inProgressPromise === null || abortInProgress) {
             this.inProgressPromise = Promise.resolve({ isUpdated: false, isOutdated: false, tree: this.tree });
         }
 
-        this.inProgressPromise = this.inProgressPromise.then(() => this.loadMissingImpl(options));
+        this.inProgressPromise = this.inProgressPromise.then(() => this.loadMissingImpl(options, withNestedChildren));
 
         return this.inProgressPromise;
     }
 
-    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>): Promise<LoadResult<TItem, TId, TFilter>> {
+    private async loadMissingImpl(options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>, withNestedChildren?: boolean): Promise<LoadResult<TItem, TId, TFilter>> {
         const loadingTree = this.tree;
 
         try {
@@ -284,6 +288,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     filter: { ...{}, ...this.props.filter, ...this.value.filter },
                 },
                 this.value,
+                withNestedChildren,
             );
 
             const newTree = await newTreePromise;
@@ -310,24 +315,40 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         let id = rowProps.id;
         let isChecked = !rowProps.isChecked;
 
-        this.updateChecked(isChecked, false, id);
+        this.checkItems(isChecked, false, id);
     }
 
     protected handleSelectAll = (value: boolean) => {
-        this.updateChecked(value, true);
+        this.checkItems(value, true);
     }
 
-    private async updateChecked(isChecked: boolean, isRoot: boolean, checkedId?: TId) {
+    private async checkItems(isChecked: boolean, isRoot: boolean, checkedId?: TId) {
         let checked = this.value && this.value.checked || [];
 
         let tree = this.tree;
 
+        const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
+
         if (this.props.cascadeSelection || isRoot) {
-            let result = await this.loadMissing(
-                false,
-                { loadAllChildren: id => isRoot || (id === checkedId) },
-            );
-            tree = result.tree;
+            if ((!isImplicitMode || !isChecked) || (isImplicitMode && isChecked && checkedId === ROOT_ID)) {
+                const loadNestedLayersChildren = !isImplicitMode;
+                const parents = this.tree.getParentIdsRecursive(checkedId);
+                const result = await this.loadMissing(
+                    false,
+                    {
+                        // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
+                        // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
+                        // Otherwise, should be loaded only checked element and all its nested children.
+                        loadAllChildren: id => (
+                            isImplicitMode
+                                ? (id === ROOT_ID || parents.includes(id))
+                                : (isRoot || id === checkedId)
+                        )
+                    },
+                    loadNestedLayersChildren,
+                );
+                tree = result.tree;
+            }
         }
 
         checked = tree.cascadeSelection(
@@ -335,7 +356,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             checkedId,
             isChecked,
             {
-                cascade: isRoot || this.props.cascadeSelection,
+                cascade: isImplicitMode ? this.props.cascadeSelection : (isRoot || this.props.cascadeSelection),
                 isSelectable: (item: TItem) => {
                     const { isCheckable } = this.getRowProps(item, null);
                     return isCheckable;

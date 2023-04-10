@@ -7,8 +7,9 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
     public async load<TFilter>(
         options: LoadTreeOptions<TItem, TId, TFilter>,
         value: Readonly<DataSourceState>,
+        withNestedChildren: boolean = true,
     ) {
-        let tree = await this.loadMissing(options, value);
+        let tree = await this.loadMissing(options, value, withNestedChildren);
         tree = await tree.loadMissingIdsAndParents(options, value.checked);
         return tree;
     }
@@ -72,6 +73,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
     public async loadMissing<TFilter>(
         options: LoadTreeOptions<TItem, TId, TFilter>,
         value: Readonly<DataSourceState>,
+        withNestedChildren: boolean = true,
     ): Promise<ITree<TItem, TId>> {
         const requiredRowsCount = value.topIndex + value.visibleCount;
 
@@ -138,7 +140,8 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                         }
                     }
 
-                    let loadAll = parentLoadAll || (hasChildren && options.loadAllChildren && options.loadAllChildren(id));
+                    const loadAllChildren = hasChildren && options.loadAllChildren && options.loadAllChildren(id);
+                    let loadAll = withNestedChildren ? (parentLoadAll || loadAllChildren) : loadAllChildren;
 
                     remainingRowsCount--;
 
