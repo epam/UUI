@@ -3,7 +3,7 @@ import {
     BurgerButton, GlobalMenu, MainMenu, MainMenuAvatar, MainMenuButton, MainMenuIcon, FlexSpacer, FlexCell,
     MainMenuDropdown, BurgerSearch, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Slider, Burger,
 } from "@epam/promo";
-import { Dropdown, MainMenuLogo, AdaptiveItemProps, i18n } from "@epam/uui-components";
+import { Dropdown, MainMenuLogo, AdaptiveItemProps } from "@epam/uui-components";
 import { ReactComponent as HelpIcon } from "@epam/assets/icons/common/notification-help-outline-24.svg";
 import { ReactComponent as PinIcon } from '@epam/assets/icons/common/action-pin_on-24.svg';
 
@@ -45,7 +45,7 @@ export default function MainMenuResponsiveExample() {
         );
     };
 
-    const getMenuItems = (): AdaptiveItemProps<{caption?: string}>[] => {
+    const getMenuItems = (): AdaptiveItemProps<{caption?: string, onClose?: () => void}>[] => {
         return [
             { id: 'burger', priority: 100, collapsedContainer: true, render: (item, hiddenItems) => <Burger
                     renderBurgerContent={ () => renderBurger(hiddenItems) }
@@ -63,11 +63,17 @@ export default function MainMenuResponsiveExample() {
             { id: 'Processes', priority: 5, render: () => <MainMenuButton href='/' caption="Processes" />, caption: "Processes" },
             { id: 'Tasks', priority: 4, render: () => <MainMenuButton href='/' caption="Tasks" />, caption: "Tasks" },
             { id: 'Talks', priority: 4, render: () => <MainMenuButton href='/' caption="Talks" />, caption: "Talks" },
-            { id: 'Action Items', priority: 3, render: () => <MainMenuButton  caption="Action Items" />, caption: "Action Items" },
+            {
+                id: 'Action Items', priority: 3, render: (item) => <MainMenuButton href='/' caption="Action Items" onClick={ () => {
+                    item.onClose && item.onClose();
+                } } />, caption: "Action Items",
+            },
             { id: 'Subscriptions', priority: 3, render: () => <MainMenuButton href='/' caption="Subscriptions" />, caption: "Subscriptions" },
             { id: 'moreContainer', priority: 8, collapsedContainer: true, render: (item, hiddenItems) => <MainMenuDropdown
                     caption='More'
-                    children={ hiddenItems?.map(i => i.render(item)) }
+                    renderBody={ (props) => {
+                        return hiddenItems?.map(i => i.render({ ...item, onClose: props.onClose }));
+                    } }
                 />,
             },
             { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer />},

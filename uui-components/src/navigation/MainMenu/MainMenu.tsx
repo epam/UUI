@@ -1,11 +1,13 @@
 import React, { MouseEvent } from 'react';
-import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
+import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef, DropdownBodyProps } from '@epam/uui-core';
 import { BurgerProps, MainMenuLogo } from './index';
 import { AdaptivePanel, AdaptiveItemProps } from '../../layout';
 import { i18n } from '../../i18n';
 import css from './MainMenu.scss';
 
-export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {}
+export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
+    renderBody?: (props: DropdownBodyProps) => React.ReactNode;
+}
 
 export interface MainMenuProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     items?: AdaptiveItemProps[];
