@@ -144,7 +144,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     getSelectedRows() {
         if (this.hasSelection()) {
             const view = this.getView();
-            return view.getSelectedRows();
+            return view.getSelectedRows(true);
         }
         return [];
     }
