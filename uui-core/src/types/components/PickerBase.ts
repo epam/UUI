@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { IAnalyticableOnChange, IEditable } from "../props";
-import { IDataSource, IDataSourceView, DataRowOptions, DataRowProps, DataSourceState } from "../dataSources";
+import { IDataSource, IDataSourceView, DataRowOptions, DataRowProps, DataSourceState, CascadeSelection } from "../dataSources";
 import { SortingOption } from "../dataQuery";
 
 export type SinglePickerProps<TId, TItem> =
@@ -67,8 +67,17 @@ export type PickerBaseOptions<TItem, TId> = {
     /** Defines sorting to pass to the DataSource */
     sorting?: SortingOption;
 
-    /** Enables selection cascading (parent selects all children, unchecking a child - unchecks all parents) */
-    cascadeSelection?: boolean;
+    /**
+     * Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.
+     * - false: All nodes are selected independently (default).
+     * - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.
+     * - 'implicit': Selecting a parent node means that all children are considered checked.
+     *   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked
+     *   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,
+     *   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last
+     *   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.
+     */
+    cascadeSelection?: CascadeSelection;
 
     /** You can return true for all, or some items to fold them. */
     isFoldedByDefault?(item: TItem): boolean;

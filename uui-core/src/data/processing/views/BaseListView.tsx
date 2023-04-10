@@ -1,7 +1,7 @@
 import isEqual from "lodash.isequal";
 import {
     BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
-    IDataSourceView, DataRowPathItem,
+    IDataSourceView, DataRowPathItem, CascadeSelectionTypes,
 } from "../../../types";
 import { ITree } from "./tree/ITree";
 
@@ -184,12 +184,22 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             row.value = rowOptions.value ?? rowValue;
         }
         row.isFocused = this.value.focusedIndex === row.index;
-        row.isChecked = !!this.checkedByKey[row.rowKey];
+        row.isChecked = this.isRowChecked(row);
         row.isSelected = this.value.selectedId === row.id;
         row.isCheckable = isCheckable;
         row.onCheck = isCheckable && this.handleOnCheck;
         row.onSelect = rowOptions && rowOptions.isSelectable && this.handleOnSelect;
         row.onFocus = (isSelectable || isCheckable) && this.handleOnFocus;
+    }
+
+    private isRowChecked(row: DataRowProps<TItem, TId>) {
+        const exactCheck = !!this.checkedByKey[row.rowKey];
+        if (exactCheck || this.props.cascadeSelection !== CascadeSelectionTypes.IMPLICIT) {
+            return exactCheck;
+        }
+
+        const { path } = row;
+        return path.some(({ id }) => !!this.checkedByKey[this.idToKey(id)]);
     }
 
     protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
@@ -378,9 +388,14 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             if (row.isChecked) {
                 isSomeChecked = true;
             }
-            if (!row.isChecked && !row.checkbox.isDisabled) {
+            const isImplicitCascadeSelection = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
+            if (
+                (!row.isChecked && !row.checkbox.isDisabled && !isImplicitCascadeSelection)
+                || (row.parentId === undefined && !row.isChecked && isImplicitCascadeSelection)
+            ) {
                 isAllChecked = false;
             }
+
         }
 
         if (row.isSelected) {
