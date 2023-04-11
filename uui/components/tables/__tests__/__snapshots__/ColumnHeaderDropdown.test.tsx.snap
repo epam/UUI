@@ -30,6 +30,7 @@ Array [
       aria-hidden={false}
       className="uui-popper"
       data-placement="bottom-start"
+      role="dialog"
       style={
         Object {
           "left": "0",

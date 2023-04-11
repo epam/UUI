@@ -1,5 +1,5 @@
 import { act } from "react-dom/test-utils";
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { useSelectionManager } from '../hooks';
 import { columnsMock, rowsMock } from '../mocks';
 

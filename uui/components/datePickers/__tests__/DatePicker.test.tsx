@@ -1,235 +1,130 @@
 import * as React from 'react';
-import dayjs from 'dayjs';
-import { shallow, ShallowWrapper } from 'enzyme';
-import { renderWithContextAsync } from '@epam/test-utils';
-import { toCustomDateFormat, toValueDateFormat, valueFormat } from '@epam/uui-components';
-import { DatePicker } from '../DatePicker';
+import { renderSnapshotWithContextAsync, fireEvent, setupComponentForTest } from '@epam/test-utils';
+import { DatePicker, DatePickerProps } from '../DatePicker';
 
-describe('DataPicker', () => {
-    let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
+jest.mock('react-popper', () => {
+    const PopperJS = jest.requireActual('react-popper');
+    const Popper = function ({ children }: any) {
+        return children({
+            ref: jest.fn,
+            placement: 'bottom-start',
+            style: {
+                position: 'fixed',
+                top: 0,
+                right: 'auto',
+                bottom: 'auto',
+                left: 0,
+            },
+            update: jest.fn(),
+            isReferenceHidden: false,
+            arrowProps: {
+                ref: jest.fn,
+            },
+        });
+    };
+    return {
+        ...PopperJS,
+        Popper,
+    };
+});
+async function setupDatePicker(params: { value: string | null, format: string }) {
+    const { format, value } = params;
 
-    afterEach(() => {
-        wrapper && wrapper.unmount();
-    });
+    const { result, mocks, setProps } = await setupComponentForTest<DatePickerProps>(
+        (context) => ({
+            value,
+            format,
+            onValueChange: jest.fn().mockImplementation((newValue) => {
+                context.current.setProperty('value', newValue);
+            }),
+        }),
+        (props) => <DatePicker { ...props } />,
+    );
 
-    it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
-            <DatePicker
-                format="MMM D, YYYY"
-                value={ null }
-                onValueChange={ jest.fn }
-            />
+    const input = result.queryByRole('textbox') as HTMLInputElement;
+    const clear = result.container.querySelector('.uui-icon-cancel');
+
+    return {
+        result,
+        setProps,
+        mocks: { onValueChange: mocks.onValueChange },
+        dom: { input, clear },
+    };
+}
+
+const DATE_FORMAT_DEFAULT = 'MMM D, YYYY';
+const DATE_FORMAT_CUSTOM = 'DD-MM-YYYY';
+
+describe('DatePicker', () => {
+    it('should render with minimum props defined', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <DatePicker format={ DATE_FORMAT_DEFAULT } value={ null } onValueChange={ jest.fn } />,
         );
-
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+    it('should render with maximum props defined', async () => {
+        const tree = await renderSnapshotWithContextAsync(
             <DatePicker
-                format="MMM D, YYYY"
+                format={ DATE_FORMAT_DEFAULT }
                 value={ null }
                 onValueChange={ jest.fn }
                 placeholder='Test'
                 disableClear={ false }
                 renderFooter={ () => <div>Test footer</div>  }
-            />
+            />,
         );
-
         expect(tree).toMatchSnapshot();
     });
 
-    it(`should open picker on field focus`, () => {
-        wrapper = shallow(<DatePicker
-            format="MMM D, YYYY"
-            value={ null }
-            onValueChange={ () => null }
-        />);
-        (wrapper.instance() as any).handleFocus('from');
-        expect((wrapper.instance().state as any).isOpen).toBe(true);
+    it(`should open picker on field focus`, async () => {
+        const { result, dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+        expect(result.queryByRole('dialog')).toBeFalsy();
+        fireEvent.focus(dom.input);
+        expect(result.queryByRole('dialog')).toBeTruthy();
     });
 
-    it(`should close picker on field blur`, () => {
-        wrapper = shallow(<DatePicker
-            format="MMM D, YYYY"
-            value={ null }
-            onValueChange={ () => null }
-        />);
-        (wrapper.instance() as any).handleBlur('from');
-        expect((wrapper.instance().state as any).isOpen).toBe(false);
+    it(`should close picker on field blur`, async () => {
+        const { result, dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+        expect(result.queryByRole('dialog')).toBeFalsy();
+        fireEvent.focus(dom.input);
+        expect(result.queryByRole('dialog')).toBeTruthy();
+        fireEvent.blur(dom.input);
+        expect(result.queryByRole('dialog')).toBeFalsy();
     });
 
-    it('should change input value after change props', () => {
-        wrapper = shallow(<DatePicker
-            format="MMM D, YYYY"
-            value={ null }
-            onValueChange={ () => { } }
-        />, {});
-
-        wrapper.setProps({ value: '2017-01-22' });
-        expect(wrapper.state('inputValue')).toEqual("Jan 22, 2017");
-        expect(wrapper.state('selectedDate')).toEqual("2017-01-22");
+    it('should change input value after change props', async () => {
+        const { result, dom, mocks, setProps } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+        expect(dom.input.value).toEqual('');
+        setProps({ value: '2017-01-22' });
+        expect(dom.input.value).toEqual('Jan 22, 2017');
+        expect(mocks.onValueChange).not.toHaveBeenCalled();
     });
 
-    it('should render with default props', () => {
-        wrapper = shallow(<DatePicker
-            format="MMM D, YYYY"
-            value={ null }
-            onValueChange={ () => { } }
-        />, {});
-
-        expect(wrapper.isEmptyRender()).toBe(false);
+    it('should clear input when clear button is clicked', async () => {
+        const { result, dom, mocks } = await setupDatePicker({ value: '2017-01-22', format: DATE_FORMAT_DEFAULT });
+        expect(dom.input.value).toEqual('Jan 22, 2017');
+        fireEvent.click(dom.clear);
+        expect(dom.input.value).toEqual('');
+        expect(mocks.onValueChange).toHaveBeenCalledWith(null);
     });
 
-    it('should change state on picker clear', () => {
-        let newState: any = {};
-        wrapper = shallow(<DatePicker
-            value={ null }
-            onValueChange={ (nV: any) => newState = nV }
-            format="MMM D, YYYY"
-        />, {});
-        (wrapper.instance() as any).handleCancel();
-        expect(newState).toEqual(null);
-
+    it('should reset invalid value onBlur', async () => {
+        const { result, dom, mocks } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+        expect(dom.input.value).toEqual('');
+        fireEvent.change(dom.input, { target: { value: '2019-10-47' } });
+        expect(dom.input.value).toEqual('2019-10-47');
+        expect(mocks.onValueChange).not.toHaveBeenCalled();
+        fireEvent.blur(dom.input);
+        expect(dom.input.value).toEqual('');
+        expect(mocks.onValueChange).toHaveBeenCalledWith(null);
     });
 
-    it('should reset invalid value onBlur', () => {
-        let baseValue = '2019-10-47';
-        let newState: any = { inputValue: baseValue, value: baseValue };
-        wrapper = shallow(<DatePicker
-            value={ null }
-            onValueChange={ (nV: any) => newState.value = nV }
-            format="MMM D, YYYY"
-        />, {});
-        const instance = (wrapper.instance() as any);
-        const event = { target: { value: baseValue} };
-        instance.handleInputChange(baseValue);
-        instance.handleBlur(event, 'from');
-        expect(newState.value).toEqual(null);
-
-    });
-
-    it('should set new value', () => {
-        let testValue = '2019-10-10';
-        const inputFormat = 'DD-MM-YYYY';
-        const inputTestValue = toCustomDateFormat(testValue, inputFormat);
-        const displayedTestDate = dayjs(testValue);
-
-        const onValueChangeSpy = jest.fn((nV: any) => null);
-        const setStateSpy = jest.fn((nextState) => null);
-
-        const pickerSetState = DatePicker.prototype.setState;
-        DatePicker.prototype.setState = setStateSpy;
-
-        wrapper = shallow(<DatePicker
-            value={ null }
-            onValueChange={ onValueChangeSpy }
-            format={ inputFormat }
-        />, {});
-        const instance: any = wrapper.instance();
-
-        instance.setSelectedDate(testValue);
-
-        expect(onValueChangeSpy).toHaveBeenLastCalledWith(testValue);
-        expect(setStateSpy).toHaveBeenLastCalledWith({
-            inputValue: inputTestValue,
-            selectedDate: testValue,
-        });
-
-        DatePicker.prototype.setState = pickerSetState;
-    });
-
-    it('should set new value when new value arrived from props', () => {
-        let newValue = '2019-09-10';
-        const defaultFormat = 'MMM D, YYYY';
-
-        wrapper = shallow(<DatePicker
-            value={ '' }
-            onValueChange={ () => {} }
-            format={ defaultFormat }
-        />, {});
-        const instance: any = wrapper.instance();
-
-        wrapper.setProps({
-            ...instance.props,
-            value: newValue,
-        });
-
-        expect(instance.state.inputValue).toEqual('Sep 10, 2019');
-    });
-
-    it('should set isOpen on picker toggle', () => {
-        let baseValue = '2019-10-47';
-        let newState: any = { inputValue: baseValue, value: baseValue };
-        wrapper = shallow(<DatePicker
-            value={ baseValue }
-            onValueChange={ (nV: any) => newState.value = nV }
-            format="MMM D, YYYY"
-        />, {});
-        const instance: any = wrapper.instance();
-        expect(instance.state.isOpen).toEqual(false);
-        instance.onToggle(true);
-        expect(instance.state.isOpen).toEqual(true);
-        instance.onToggle(false);
-        expect(instance.state.isOpen).toEqual(false);
-
-    });
-
-    it('should set new value when you type date in input', () => {
-        let baseValue = '10-10-2019';
-        const defaultFormat = 'DD-MM-YYYY';
-
-        const onValueChangeSpy = jest.fn((nV: any) => null);
-        const setStateSpy = jest.fn((nextState) => null);
-
-        const pickerSetState = DatePicker.prototype.setState;
-        DatePicker.prototype.setState = setStateSpy;
-
-        wrapper = shallow(<DatePicker
-            value={ null }
-            onValueChange={ onValueChangeSpy }
-            format={ defaultFormat }
-        />, {});
-        const instance: any = wrapper.instance();
-
-        instance.handleInputChange(baseValue);
-
-        expect(onValueChangeSpy).toHaveBeenLastCalledWith(toValueDateFormat(baseValue, defaultFormat));
-
-        DatePicker.prototype.setState = pickerSetState;
-    });
-
-    it('should return format', () => {
-        const defaultFormat = 'DD-MM-YYYY';
-
-        wrapper = shallow(<DatePicker
-            value={ null }
-            onValueChange={ () => { } }
-            format={ defaultFormat }
-        />, {});
-        const instance: any = wrapper.instance();
-        let format = instance.getFormat();
-
-        expect(format).toEqual('DD-MM-YYYY');
-    });
-
-    it('should get value', () => {
-        const defaultFormat = 'DD-MM-YYYY';
-        let baseValue = '2019-10-10';
-
-        wrapper = shallow(<DatePicker
-            value={ baseValue }
-            onValueChange={ () => { } }
-            format={ defaultFormat }
-        />, {});
-        const instance: any = wrapper.instance();
-
-        let value = instance.getValue();
-
-        expect(value).toEqual({
-            selectedDate: baseValue,
-            displayedDate: dayjs(baseValue, valueFormat),
-            view: 'DAY_SELECTION',
-        });
+    it('should set new value with custom format', async () => {
+        const { dom, mocks } = await setupDatePicker({ value: null, format: DATE_FORMAT_CUSTOM });
+        expect(dom.input.value).toEqual('');
+        fireEvent.change(dom.input, { target: { value: '31-01-2017' } });
+        expect(mocks.onValueChange).toHaveBeenCalledWith('2017-01-31');
+        expect(dom.input.value).toEqual('31-01-2017');
     });
 });

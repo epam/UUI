@@ -3,7 +3,7 @@ import { MainMenu } from '../MainMenu';
 import { MainMenuButton } from '../MainMenuButton';
 import { BurgerButton } from '../Burger';
 import ReactDOM from "react-dom";
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 
 describe('MainMenu', () => {
     const oldPortal = ReactDOM.createPortal;
@@ -17,14 +17,14 @@ describe('MainMenu', () => {
     });
 
     it('should be rendered correctly', async() => {
-        const tree = await renderWithContextAsync(<MainMenu>
+        const tree = await renderSnapshotWithContextAsync(<MainMenu>
                 <MainMenuButton />
             </MainMenu>);
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly', async () => {
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <MainMenu
                 renderBurger={ () => <BurgerButton /> }
                 logoLink={ { pathname: '/' } }
