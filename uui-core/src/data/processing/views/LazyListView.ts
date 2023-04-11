@@ -181,6 +181,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.loadMissing(completeReset)
                 .then(({ isUpdated, isOutdated }) => {
                     if (isUpdated && !isOutdated) {
+                        this.updateCheckedLookup(this.value.checked);
                         this.rebuildRows();
                         this._forceUpdate();
                     }
