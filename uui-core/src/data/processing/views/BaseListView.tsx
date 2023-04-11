@@ -19,6 +19,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
     protected checkedByKey: Record<string, boolean> = {};
+    protected someChildCheckedByKey: Record<string, boolean> = {};
     public selectAll?: ICheckable;
     protected isDestroyed = false;
     protected hasMoreRows = false;
@@ -54,9 +55,28 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     protected updateCheckedLookup(checked: TId[]) {
         this.checkedByKey = {};
-        (checked || []).forEach(id => {
+        this.someChildCheckedByKey = {};
+        const checkedItems = checked ?? [];
+        for (let i = checkedItems.length - 1; i >= 0; i--) {
+            const id = checkedItems[i];
             this.checkedByKey[this.idToKey(id)] = true;
-        });
+            if (this.tree && this.props.getParentId) {
+                const item = this.tree.getById(id);
+                if (item) {
+                    const parentId = this.props.getParentId(item);
+                    if (!this.someChildCheckedByKey[this.idToKey(parentId)]) {
+                        const parents = this.tree.getParentIdsRecursive(id);
+                        for (let parent of parents) {
+                            if (this.someChildCheckedByKey[this.idToKey(parent)]) {
+                                break;
+                            }
+                            this.someChildCheckedByKey[this.idToKey(parent)] = true;
+                        }
+                    }
+
+                }
+            }
+        }
     }
 
     protected handleCheckedChange(checked: TId[]) {
@@ -190,6 +210,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         row.onCheck = isCheckable && this.handleOnCheck;
         row.onSelect = rowOptions && rowOptions.isSelectable && this.handleOnSelect;
         row.onFocus = (isSelectable || isCheckable) && this.handleOnFocus;
+        row.isChildrenChecked = this.someChildCheckedByKey[this.idToKey(row.id)];
     }
 
     private isRowChecked(row: DataRowProps<TItem, TId>) {
@@ -223,7 +244,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
         const searchIsApplied = !!this.value?.search;
-
         const iterateNode = (
             parentId: TId,
             appendRows: boolean, // Will be false, if we are iterating folded nodes.
@@ -235,6 +255,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             const nodeInfo = this.tree.getNodeInfo(parentId);
 
             const ids = this.tree.getChildrenIdsByParentId(parentId);
+
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);
@@ -247,7 +268,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 }
 
                 stats = this.getRowStats(row, stats);
-
                 row.isFoldable = false;
                 row.isLastChild = (n == ids.length - 1) && (nodeInfo.count === ids.length);
                 row.indent = isFlattenSearch ? 0 : row.path.length + 1;
@@ -385,7 +405,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
         if (row.checkbox) {
             isSomeCheckable = true;
-            if (row.isChecked) {
+            if (row.isChecked || row.isChildrenChecked) {
                 isSomeChecked = true;
             }
             const isImplicitCascadeSelection = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
