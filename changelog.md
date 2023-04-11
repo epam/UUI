@@ -1,11 +1,13 @@
 # 5.0.0 - xx.xx.20203
 **What's New**
-* The UUI packages now export both CommonJS (CJS) and EcmaScript modules(ESM). Usage of ESM improves tree shaking capabilities, i.e. unused code will be excluded from the app bundle. CJS is still included into the packages for backwards compatibility.
+* "EcmaScript" modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
 
 * [useTableState]: 
   - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
   - added storing of sorting, columns config, and paging state into url
   - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
+
+* [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
 
 # 4.10.2 - 24.03.2023
 

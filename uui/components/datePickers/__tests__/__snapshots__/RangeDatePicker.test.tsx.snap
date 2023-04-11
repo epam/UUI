@@ -1,58 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RangeDataPicker should be rendered correctly 1`] = `
-<div
-  className="dateInputGroup"
-  onBlur={[Function]}
-  onClick={[Function]}
->
-  <div
-    className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
-    onBlur={[Function]}
-    onFocus={[Function]}
-    tabIndex={-1}
-  >
-    <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
-    <input
-      className="uui-input"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder="From:"
-      tabIndex={0}
-      type="text"
-      value=""
-    />
-  </div>
-  <div
-    className="separator"
-  />
-  <div
-    className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
-    onBlur={[Function]}
-    onFocus={[Function]}
-    tabIndex={-1}
-  >
-    <input
-      className="uui-input"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder="To:"
-      tabIndex={0}
-      type="text"
-      value=""
-    />
-  </div>
-</div>
-`;
-
-exports[`RangeDataPicker should be rendered correctly 2`] = `
+exports[`RangeDataPicker should be rendered if many params defined 1`] = `
 <div
   className="dateInputGroup uui-disabled uui-readonly uui-invalid"
   onBlur={[Function]}
@@ -107,6 +55,58 @@ exports[`RangeDataPicker should be rendered correctly 2`] = `
       placeholder=""
       readOnly={true}
       tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`RangeDataPicker should be rendered if minimum params and custom format defined 1`] = `
+<div
+  className="dateInputGroup"
+  onBlur={[Function]}
+  onClick={[Function]}
+>
+  <div
+    className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    tabIndex={-1}
+  >
+    <div
+      className="container uui-icon uui-enabled"
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+    <input
+      className="uui-input"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="From:"
+      tabIndex={0}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="separator"
+  />
+  <div
+    className="container uui-input-box -clickable root size-36 mode-form dateInput size-36"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    tabIndex={-1}
+  >
+    <input
+      className="uui-input"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="To:"
+      tabIndex={0}
       type="text"
       value=""
     />

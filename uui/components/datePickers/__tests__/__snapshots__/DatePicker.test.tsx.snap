@@ -1,34 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DataPicker should be rendered correctly 1`] = `
-<div
-  className="container uui-input-box -clickable root size-36 mode-form"
-  onBlur={[Function]}
-  onClick={null}
-  onFocus={[Function]}
-  tabIndex={-1}
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
-  </div>
-  <input
-    className="uui-input"
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    placeholder="MMM D, YYYY"
-    tabIndex={0}
-    type="text"
-    value=""
-  />
-</div>
-`;
-
-exports[`DataPicker should be rendered correctly 2`] = `
+exports[`DatePicker should render with maximum props defined 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
   onBlur={[Function]}
@@ -49,6 +21,34 @@ exports[`DataPicker should be rendered correctly 2`] = `
     onChange={[Function]}
     onKeyDown={[Function]}
     placeholder="Test"
+    tabIndex={0}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`DatePicker should render with minimum props defined 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={null}
+  onFocus={[Function]}
+  tabIndex={-1}
+>
+  <div
+    className="container uui-icon uui-enabled"
+    style={Object {}}
+  >
+    <svg
+      className=""
+    />
+  </div>
+  <input
+    className="uui-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="MMM D, YYYY"
     tabIndex={0}
     type="text"
     value=""

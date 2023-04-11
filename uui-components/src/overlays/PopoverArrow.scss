@@ -1,9 +1,12 @@
 [data-placement^='right'] {
     :global(.uui-popover-arrow) {
         right: 100%;
+        // fix white line when zoomed
+        margin-right: -1px;
 
         &::after {
-            transform: translateX(100%) translateY(20%) rotate(45deg);
+            // calc function - arrow size correction
+            transform: translateX(calc(100% - 1px)) translateY(20%) rotate(45deg);
         }
     }
 }
@@ -11,9 +14,10 @@
 [data-placement^='left'] {
     :global(.uui-popover-arrow) {
         left: 100%;
+        margin-left: -1px;
 
         &::after {
-            transform: translateX(-50%) translateY(20%) rotate(45deg);
+            transform: translateX(calc(-50% + 1px)) translateY(20%) rotate(45deg);
         }
     }
 }
@@ -21,9 +25,10 @@
 [data-placement^='top'] {
     :global(.uui-popover-arrow) {
         top: 100%;
+        margin-top: -1px;
 
         &::after {
-            transform: translateX(30%) translateY(-50%) rotate(45deg);
+            transform: translateX(30%) translateY(calc(-50% + 1px)) rotate(45deg);
         }
     }
 }
@@ -31,9 +36,10 @@
 [data-placement^='bottom'] {
     :global(.uui-popover-arrow) {
         bottom: 100%;
+        margin-bottom: -1px;
 
         &::after {
-            transform: translateX(30%) translateY(100%) rotate(45deg);
+            transform: translateX(30%) translateY(calc(100% - 1px)) rotate(45deg);
         }
     }
 }
