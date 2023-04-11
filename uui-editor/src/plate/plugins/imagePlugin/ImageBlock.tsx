@@ -32,7 +32,6 @@ import css from './ImageBlock.scss';
 const { FlexRow, Spinner } = uuiSkin;
 
 const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
-const RESIZABLE_PROPS = { minWidth: 12 };
 
 type ImageSize = { width: number, height: number };
 
@@ -48,24 +47,27 @@ export interface ImageElement extends TElement {
     data?: ImageData;
 }
 
+/**
+ * Controls image size
+ */
+const useImgSizeProps = ({ element }: { element: ImageElement }) => {
+    const [resizedWidth] = useResizableStore().use.width();
+
+    // 100% is default plate img width
+    const isResized = !!resizedWidth && resizedWidth !== '100%';
+    const resizableProps = isResized
+        ? { size: { width: resizedWidth, height: '100%' }, minWidth: 12 } // for resized
+        : { size: { width: 0, height: '100%' }, minWidth: 'fit-content' } // for new img
+
+    return { style: IMAGE_STYLES, resizableProps }
+}
+
 export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageElement>> = (props) => {
     const { editor, element, children } = props;
     const ref = useRef(null);
 
     const [align, setAlign] = useState<Align>(element.align || 'left');
-
-    const [imageSize, setImageSize] = useResizableStore().use.width(element.data?.imageSize);
-
-    // postpone image render till size is calculated on load for new image. prevents flickering
-    const style = imageSize ? IMAGE_STYLES : { ...IMAGE_STYLES, display: 'none' };
-
-    const onLoad = (e: any) => {
-        const naturalWidth = e.target.naturalWidth;
-        // set default size only for new image
-        if (!imageSize && !!naturalWidth) {
-            setImageSize({ width: naturalWidth, height: '100%' });
-        }
-    }
+    const imageSizeProps = useImgSizeProps({ element })
 
     const isFocused = useFocused();
     const isSelected = useSelected();
@@ -173,10 +175,8 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
                         <ImageElement
                             { ...props }
                             align={ align }
-                            style={ style }
-                            resizableProps={ RESIZABLE_PROPS }
                             caption={ { disabled: true } }
-                            onLoad={ onLoad }
+                            { ...imageSizeProps }
                         />
                     </div>
                 </div>
