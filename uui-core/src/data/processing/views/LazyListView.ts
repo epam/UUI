@@ -79,6 +79,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public value: DataSourceState<TFilter, TId> = null;
     private cache: ListApiCache<TItem, TId, TFilter>;
     private isUpdatePending = false;
+    private loadedMissing = false;
     private loadedValue: DataSourceState<TFilter, TId> = null;
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
     private reloading: boolean = false;
@@ -167,9 +168,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || this.shouldRebuildRows(this.value, prevValue)
             || !isEqual(this.props.rowOptions, prevProps.rowOptions)
             || this.props.getRowOptions !== prevProps.getRowOptions
+            || this.loadedMissing
             || moreRowsNeeded
         ) {
-            this.updateCheckedLookup(this.value.checked);
+            if (completeReset || this.shouldRebuildRows(this.value, prevValue) || this.loadedMissing) {
+                this.updateCheckedLookup(this.value.checked);
+                this.loadedMissing = false;
+            }
             this.rebuildRows();
         }
 
@@ -181,7 +186,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.loadMissing(completeReset)
                 .then(({ isUpdated, isOutdated }) => {
                     if (isUpdated && !isOutdated) {
-                        this.updateCheckedLookup(this.value.checked);
+                        this.loadedMissing = true;
                         this.rebuildRows();
                         this._forceUpdate();
                     }
