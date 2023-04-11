@@ -32,6 +32,7 @@ import css from './ImageBlock.scss';
 const { FlexRow, Spinner } = uuiSkin;
 
 const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
+const MIN_CAPTION_WIDTH = 92;
 
 type ImageSize = { width: number, height: number };
 
@@ -50,7 +51,7 @@ export interface ImageElement extends TElement {
 /**
  * Controls image size
  */
-const useImgSizeProps = ({ element }: { element: ImageElement }) => {
+const useImgControlsProps = ({ element }: { element: ImageElement }) => {
     const [resizedWidth] = useResizableStore().use.width();
 
     // 100% is default plate img width
@@ -59,7 +60,10 @@ const useImgSizeProps = ({ element }: { element: ImageElement }) => {
         ? { size: { width: resizedWidth, height: '100%' }, minWidth: 12 } // for resized
         : { size: { width: 0, height: '100%' }, minWidth: 'fit-content' } // for new img
 
-    return { style: IMAGE_STYLES, resizableProps }
+    const isCaptionEnabled = isResized && resizedWidth >= MIN_CAPTION_WIDTH;
+    const caption = isCaptionEnabled ? { disabled: false } : { disabled: true };
+
+    return { style: IMAGE_STYLES, resizableProps, caption, }
 }
 
 export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageElement>> = (props) => {
@@ -67,7 +71,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
     const ref = useRef(null);
 
     const [align, setAlign] = useState<Align>(element.align || 'left');
-    const imageSizeProps = useImgSizeProps({ element })
+    const imageSizeProps = useImgControlsProps({ element })
 
     const isFocused = useFocused();
     const isSelected = useSelected();
@@ -81,7 +85,15 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
         );
     }
 
-    const toggleBlockAlignment = (align: Align) => setAlign(align);
+    console.log('element.align', element.align);
+
+    const toggleBlockAlignment = (align: Align) => {
+        setAlign(align);
+        setElements(editor, {
+            ...element,
+            align,
+        });
+    }
 
     const setMaxWidth = () => {
         if (ref?.current?.clientWidth) {
@@ -175,7 +187,6 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
                         <ImageElement
                             { ...props }
                             align={ align }
-                            caption={ { disabled: true } }
                             { ...imageSizeProps }
                         />
                     </div>
