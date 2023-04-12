@@ -1,10 +1,10 @@
 import React from "react";
-import { renderWithContextAsync } from "@epam/test-utils";
+import { renderSnapshotWithContextAsync } from "@epam/test-utils";
 import { PresetsPanel } from "../PresetsPanel";
 
 describe('PresetsPanel', () => {
     it('should render correctly', async () => {
-        const component = await renderWithContextAsync(
+        const component = await renderSnapshotWithContextAsync(
             <PresetsPanel
                 activePresetId={ 1 }
                 choosePreset={ jest.fn() }

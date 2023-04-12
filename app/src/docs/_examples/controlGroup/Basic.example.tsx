@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, ControlGroup, Dropdown, Panel, DropdownMenuButton } from '@epam/promo';
-import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-12.svg';
+import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 
 export default function BasicExample() {
     const renderBody = () => {

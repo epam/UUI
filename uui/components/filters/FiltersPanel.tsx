@@ -131,7 +131,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
         />;
     }, []);
 
-    const getRowOptions = useCallback((item: TableFiltersConfig<any>): DataRowOptions<any, any> => ({
+    const getRowOptions = useCallback((item: TableFiltersConfig<TFilter>): DataRowOptions<TableFiltersConfig<TFilter>, keyof TFilter> => ({
         isDisabled: item.isAlwaysVisible,
         checkbox: {
             isVisible: true,

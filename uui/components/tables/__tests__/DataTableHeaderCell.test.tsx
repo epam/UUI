@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataTableHeaderCell } from '../DataTableHeaderCell';
-import { renderWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 import { DataColumnProps } from "@epam/uui-core";
 
 describe('DataTableHeaderCell', () => {
@@ -12,7 +12,7 @@ describe('DataTableHeaderCell', () => {
             width: 150,
             fix: 'left',
         };
-        const tree = await renderWithContextAsync(
+        const tree = await renderSnapshotWithContextAsync(
             <DataTableHeaderCell
                 key="test"
                 column={ col }

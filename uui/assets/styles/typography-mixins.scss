@@ -82,6 +82,7 @@
         display: inline-flex;
         align-items: center;
         color: var(--uui-primary);
+        text-decoration: underline;
 
         &:visited {
             color: #5214CC;
@@ -92,7 +93,6 @@
         }
 
         &:hover {
-            text-decoration: underline;
             color: var(--uui-primary-dark);
         }
     }
