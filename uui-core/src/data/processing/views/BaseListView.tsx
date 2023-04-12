@@ -183,10 +183,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected applyRowOptions(row: DataRowProps<TItem, TId>) {
-        const isLoading = row.value === undefined;
-        const rowOptions = (this.props.getRowOptions && !isLoading)
+        const rowOptions = this.props.getRowOptions
             ? this.props.getRowOptions(row.value, row.index)
             : this.props.rowOptions;
+
         const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
         const isSelectable = rowOptions && rowOptions.isSelectable;
         if (rowOptions != null) {
