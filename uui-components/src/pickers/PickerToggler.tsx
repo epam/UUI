@@ -58,7 +58,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const blur = (e?: React.FocusEvent<HTMLElement>) => {
         setInFocus(false);
-        props.onBlur?.(e);
+        props.handleClickOutside?.(e);
         inputContainer.current?.blur();
     };
 

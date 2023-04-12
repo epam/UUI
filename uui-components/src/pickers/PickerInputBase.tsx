@@ -249,7 +249,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             prefix,
             suffix,
             onFocus: this.props.onFocus,
-            onBlur: this.handleBlur,
             onClear: this.handleClearSelection,
             selection: selectedRows,
             placeholder: this.getPlaceholder(),
@@ -261,6 +260,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableSearch: !minCharsToSearch && (!dropdownProps.isOpen || searchPosition !== 'input'),
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
+            handleClickOutside: this.handleClickOutside,
             rawProps: this.props.rawProps?.input,
             value: this.getSearchValue(),
             cx: inputCx,
@@ -315,7 +315,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         });
     }
 
-    handleBlur = (e: React.FocusEvent<HTMLElement>) => {
+    handleClickOutside = (e: React.FocusEvent<HTMLElement>) => {
+        console.log('handle click outside');
         this.setState({
             ...this.state,
             dataSourceState: {
