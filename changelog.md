@@ -8,6 +8,10 @@
   - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
 
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
+  
+
+**What's Fixed**
+* [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
 
 # 4.10.2 - 24.03.2023
 
