@@ -106,7 +106,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
 
     private forEachChildren(action: (id: TId) => void, isSelectable: (item: TItem) => boolean, parentId?: TId, includeParent: boolean = true) {
         this.forEach((item, id) => {
-            if (isSelectable(item)) {
+            if (item && isSelectable(item)) {
                 action(id);
             }
         }, { parentId: parentId, includeParent });
