@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 
 import { Dropdown } from '@epam/uui-components';
@@ -16,7 +16,13 @@ import {
     Value,
     TElement,
     useResizableStore,
+    PlateEditor,
+    findNodePath,
+    select,
+    setNodes,
+    TResizableElement,
 } from '@udecode/plate';
+import { debounce } from 'lodash';
 
 import { FileUploadResponse } from "@epam/uui-core";
 
@@ -48,29 +54,43 @@ export interface ImageElement extends TElement {
     data?: ImageData;
 }
 
+const updateImageSize = debounce((editor: PlateEditor, element: ImageElement, width: number) => {
+    const path = findNodePath(editor, element!);
+    if (!path) return;
+
+    setNodes<TResizableElement>(
+        editor,
+        { ...(element.data || {}), data: { imageSize: { width, height: '100%' } } },
+        { at: path }
+    );
+}, 100, { leading: false, trailing: true });
+
 /**
  * Controls image size
  */
-const useImgSizeProps = ({ element }: { element: ImageElement }) => {
-    const [resizedWidth] = useResizableStore().use.width();
+const useImgSizeProps = ({ element, editor }: { element: ImageElement, editor: PlateEditor }) => {
+    const [width] = useResizableStore().use.width();
 
-    // set data structure for new image
-    if (!element.data) element.data = { imageSize: { width: 0, height: '100%' } };
+    // 100% is default plate img width if element.width is not defined
+    const isDefinedWidth = !!width && width !== '100%';
 
-    // 100% is default plate img width
-    const isResized = !!resizedWidth && resizedWidth !== '100%';
+    const resizableProps = isDefinedWidth
+        ? { minWidth: 12 } // resized
+        : { size: { width: 0, height: '100%' }, minWidth: 'fit-content' } // new image
 
-    // update data
-    if (isResized && element.data.imageSize.width !== resizedWidth) {
-        element.data.imageSize = { width: resizedWidth, height: '100%' };
-        console.log('update image size data', element.data);
-    }
+    const updateSize = useCallback((newWidth: number) => updateImageSize(editor, element, newWidth), [editor, element])
 
-    const resizableProps = isResized
-        ? { size: { width: resizedWidth, height: '100%' }, minWidth: 12 } // resized
-        : { size: element.data.imageSize, minWidth: 'fit-content' } // initial
+    /**
+     * Updates @deprecated element.data.imageSize property.
+     * element.width updates internally by plate.
+    */
+    useEffect(() => {
+        if (element.data?.imageSize?.width !== width && isDefinedWidth) {
+            updateSize(width);
+        }
+    }, [width, isDefinedWidth]);
 
-    const isCaptionEnabled = isResized && resizedWidth >= MIN_CAPTION_WIDTH;
+    const isCaptionEnabled = isDefinedWidth && width >= MIN_CAPTION_WIDTH;
     const caption = isCaptionEnabled ? { disabled: false } : { disabled: true };
 
     return { style: IMAGE_STYLES, resizableProps, caption };
@@ -81,7 +101,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
     const ref = useRef(null);
 
     const [align, setAlign] = useState<Align>(element.align || 'left');
-    const imageSizeProps = useImgSizeProps({ element })
+    const imageSizeProps = useImgSizeProps({ element, editor })
 
     const isFocused = useFocused();
     const isSelected = useSelected();
@@ -94,8 +114,6 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
             </>
         );
     }
-
-    console.log('element.align', element.align);
 
     const toggleBlockAlignment = (align: Align) => {
         setAlign(align);
