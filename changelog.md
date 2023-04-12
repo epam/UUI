@@ -12,7 +12,6 @@
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.
   - `rebuildRows` was unified.
-  - `useList` hook was added.
   - `patch` functionality was added to `Tree`.
   - Datatable demos were added/updated.
   - `implicit` cascade selection mode was added.
