@@ -1,6 +1,6 @@
 import React from 'react';
-import { Avatar } from './Avatar';
-import {render, screen, fireEvent} from '@testing-library/react'
+import { Avatar } from '../Avatar';
+import {render, screen, fireEvent} from '@testing-library/react';
 
 describe('Avatar', () => {
     it('should show stub if image is not reachable', () => {

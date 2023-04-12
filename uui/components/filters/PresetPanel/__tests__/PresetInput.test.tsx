@@ -1,10 +1,10 @@
 import React from "react";
-import { renderWithContextAsync } from "@epam/test-utils";
+import { renderSnapshotWithContextAsync } from "@epam/test-utils";
 import { PresetInput } from "../PresetInput";
 
 describe('PresetInput', () => {
     it('should render correctly', async () => {
-        const component =  await renderWithContextAsync(
+        const component =  await renderSnapshotWithContextAsync(
             <PresetInput onCancel={ jest.fn() }/>,
         );
         expect(component).toMatchSnapshot();

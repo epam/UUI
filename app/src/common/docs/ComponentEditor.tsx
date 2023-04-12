@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { ArrayDataSource, cx, IHasCX, INotification } from "@epam/uui-core";
 import { PropDoc, PropSamplesCreationContext, IComponentDocs, PropExample, DemoContext } from '@epam/uui-docs';
-import { FlexCell, FlexRow, FlexSpacer, IconButton, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel,
+import { FlexCell, FlexRow, FlexSpacer, RadioInput, Switch, Text, Tooltip, TextInput, MultiSwitch, Panel,
     ScrollBars, PickerInput, Spinner, NotificationCard } from '@epam/promo';
+import { IconButton } from '@epam/uui';
 import { svc } from '../../services';
 import { copyTextToClipboard } from '../../helpers';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
@@ -191,7 +192,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                         </FlexCell>
                         { prop.description &&
                         <Tooltip placement='top' content={ prop.description }>
-                            <IconButton icon={ InfoIcon } color='gray60'/>
+                            <IconButton icon={ InfoIcon } color='default'/>
                         </Tooltip>
                         }
                     </>
@@ -207,7 +208,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                         />
                         { prop.description &&
                         <Tooltip placement='top' content={ prop.description }>
-                            <IconButton icon={ InfoIcon } color='gray60'/>
+                            <IconButton icon={ InfoIcon } color='default'/>
                         </Tooltip>
                         }
                     </React.Fragment>
@@ -224,7 +225,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                         />
                         { prop.description &&
                         <Tooltip placement='top' content={ prop.description }>
-                            <IconButton icon={ InfoIcon } color='gray60'/>
+                            <IconButton icon={ InfoIcon } color='default'/>
                         </Tooltip>
                         }
                     </React.Fragment>
@@ -391,7 +392,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
                                             selectedPropsIds: { ...this.initialProps },
                                             selectedContext: docs.contexts[0].name,
                                         }) }
-                                        color='blue'
+                                        color='info'
                                     />
                                 </Tooltip>
                             </FlexRow>

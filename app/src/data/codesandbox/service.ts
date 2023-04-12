@@ -74,7 +74,7 @@ class CodesandboxService {
                 if (iconFiles.includes(line)) {
                     return line.replace(/import\s\*\sas\s(\w+)/, 'import { ReactComponent as $1 }');
                 } else if (stylesheetFiles.includes(line)) {
-                    return line.replace(/(.example)?.scss/, '.module.scss');
+                    return line.replace(/(.example)?(.scss)/, '$1.module.scss');
                 } else return line;
             }).join(separator);
         } else return code;
@@ -84,7 +84,9 @@ class CodesandboxService {
         if (Object.keys(stylesheets).length === 0) return {};
         const processedStylesheets = {};
         for (const [path, stylesheet] of Object.entries(stylesheets)) {
-            const [file, extension] = path.split('.');
+            const pathSplitArr = path.split('.');
+            const extension = pathSplitArr.pop();
+            const file = pathSplitArr.join('.');
             Object.assign(processedStylesheets, { [`${file}.module.${extension}`]: stylesheet });
         }
         return processedStylesheets;

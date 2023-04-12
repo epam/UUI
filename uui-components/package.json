@@ -42,8 +42,8 @@
     "react-dom": ">=16.0.0"
   },
   "devDependencies": {
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.10.0"
+    "react-test-renderer": "18.2.0",
+    "@testing-library/react": "14.0.0"
   },
   "repository": {
     "type": "git",

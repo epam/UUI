@@ -1,5 +1,17 @@
-import { RouterMock } from "@epam/test-utils";
 import { AnalyticsContext } from "../AnalyticsContext";
+
+
+class RouterMock {
+    listeners = [] as Function[];
+
+    listen(listener: Function) {
+        this.listeners.push(listener);
+    }
+
+    block() {
+
+    }
+}
 
 describe("AnalyticsContext", () => {
     beforeEach(() => {
@@ -24,7 +36,7 @@ describe("AnalyticsContext", () => {
 
         expect(listener1.sendEvent).toBeCalledTimes(1);
         expect(listener1.sendEvent).toBeCalledWith(testEvent1, {}, "event");
-        
+
         const params = {
             param1: "test param 1",
             param2: {
