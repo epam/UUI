@@ -9,6 +9,15 @@
 
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
 
+* [Datasources]: datasources rework
+  - Moved sort/search/filter logic to the `Tree` from views.
+  - `rebuildRows` was unified.
+  - `useList` hook was added.
+  - `patch` functionality was added to `Tree`.
+  - Datatable demos were added/updated.
+  - `implicit` cascade selection mode was added.
+  - `Show only selected` order was fixed.
+
 # 4.10.2 - 24.03.2023]
 
 **What's Fixed**
