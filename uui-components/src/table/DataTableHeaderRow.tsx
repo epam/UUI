@@ -52,7 +52,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
             allowColumnsResizing: this.props.allowColumnsResizing,
             onSort: dir => this.props.onValueChange({
                 ...this.props.value,
-                sorting: dir ? [{ field: column.key, direction: dir }] : [],
+                sorting: dir ? [{ field: column.key, direction: dir }] : undefined,
             }),
             onDrop: params => this.onCellDrop(params, idx),
             renderFilter: (dropdownProps: DropdownBodyProps) => column.renderFilter(this.filterLens, dropdownProps),
