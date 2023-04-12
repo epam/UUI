@@ -164,6 +164,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const newValueLastIndex = this.getLastRecordIndex();
         const moreRowsNeeded = newValueLastIndex > this.rows.length;
 
+        if (completeReset || this.shouldRebuildRows(this.value, prevValue) || this.loadedMissing) {
+            this.updateCheckedLookup(this.value.checked);
+        }
+
         if (completeReset
             || this.shouldRebuildRows(this.value, prevValue)
             || !isEqual(this.props.rowOptions, prevProps.rowOptions)
@@ -171,11 +175,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             || this.loadedMissing
             || moreRowsNeeded
         ) {
-            if (completeReset || this.shouldRebuildRows(this.value, prevValue) || this.loadedMissing) {
-                this.updateCheckedLookup(this.value.checked);
-                this.loadedMissing = false;
-            }
             this.rebuildRows();
+            this.loadedMissing = false;
         }
 
         if (!prevValue || this.value.focusedIndex != prevValue.focusedIndex) {
