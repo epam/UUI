@@ -34,11 +34,11 @@ const { FlexRow, Spinner } = uuiSkin;
 const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
 const MIN_CAPTION_WIDTH = 92;
 
-type ImageSize = { width: number, height: number };
+type ImageSize = { width: number, height: number | string };
 
 type ImageData = {
     imageSize?: ImageSize;
-} & (File | FileUploadResponse);
+} & Partial<(File | FileUploadResponse)>;
 
 type Align = 'left' | 'center' | 'right';
 
@@ -51,19 +51,29 @@ export interface ImageElement extends TElement {
 /**
  * Controls image size
  */
-const useImgControlsProps = ({ element }: { element: ImageElement }) => {
+const useImgSizeProps = ({ element }: { element: ImageElement }) => {
     const [resizedWidth] = useResizableStore().use.width();
+
+    // set data structure for new image
+    if (!element.data) element.data = { imageSize: { width: 0, height: '100%' } };
 
     // 100% is default plate img width
     const isResized = !!resizedWidth && resizedWidth !== '100%';
+
+    // update data
+    if (isResized && element.data.imageSize.width !== resizedWidth) {
+        element.data.imageSize = { width: resizedWidth, height: '100%' };
+        console.log('update image size data', element.data);
+    }
+
     const resizableProps = isResized
-        ? { size: { width: resizedWidth, height: '100%' }, minWidth: 12 } // for resized
-        : { size: { width: 0, height: '100%' }, minWidth: 'fit-content' } // for new img
+        ? { size: { width: resizedWidth, height: '100%' }, minWidth: 12 } // resized
+        : { size: element.data.imageSize, minWidth: 'fit-content' } // initial
 
     const isCaptionEnabled = isResized && resizedWidth >= MIN_CAPTION_WIDTH;
     const caption = isCaptionEnabled ? { disabled: false } : { disabled: true };
 
-    return { style: IMAGE_STYLES, resizableProps, caption, }
+    return { style: IMAGE_STYLES, resizableProps, caption };
 }
 
 export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageElement>> = (props) => {
@@ -71,7 +81,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
     const ref = useRef(null);
 
     const [align, setAlign] = useState<Align>(element.align || 'left');
-    const imageSizeProps = useImgControlsProps({ element })
+    const imageSizeProps = useImgSizeProps({ element })
 
     const isFocused = useFocused();
     const isSelected = useSelected();
