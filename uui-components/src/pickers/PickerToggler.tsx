@@ -57,14 +57,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const blur = (e?: React.FocusEvent<HTMLElement>) => {
-        const blurTrigger = e.relatedTarget as HTMLElement;
-        const isPickerChildTriggerBlur = isChildFocusable(e) || closest(blurTrigger, toggleContainer.current);
-        const shouldCloseOnBlur = props.isOpen && props.searchPosition !== 'body' && !isPickerChildTriggerBlur;
-        if (shouldCloseOnBlur) {
-            setInFocus(false);
-            props.onBlur?.(e);
-            inputContainer.current?.blur();
-        }
+        setInFocus(false);
+        props.onBlur?.(e);
+        inputContainer.current?.blur();
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
