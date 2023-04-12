@@ -188,7 +188,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 .then(({ isUpdated, isOutdated }) => {
                     if (isUpdated && !isOutdated) {
                         this.loadedMissing = true;
-                        this.rebuildRows();
                         this._forceUpdate();
                     }
                 });
