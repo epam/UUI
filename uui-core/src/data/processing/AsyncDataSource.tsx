@@ -43,7 +43,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             // These defaults are added for compatibility reasons.
             // We'll require getId and getParentId callbacks in other APIs, including the views.
             getId: this.getId,
-            getParentId: options?.getParentId ?? props.getParentId,
+            getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
         };
 
         if (view) {
