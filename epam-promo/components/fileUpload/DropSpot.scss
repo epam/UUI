@@ -17,14 +17,6 @@
         background-color: $blue-lightest;
     }
 
-    .link {
-        color: $blue;
-
-        &:hover {
-            color: $blue-dark;
-        }
-    }
-
     .drop-area {
         position: absolute;
         top: 0;
@@ -35,6 +27,18 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        .link-container {
+            margin: 0;
+
+            .link {
+                color: $blue;
+
+                &:hover {
+                    color: $blue-dark;
+                }
+            }
+        }
     }
 }
 
