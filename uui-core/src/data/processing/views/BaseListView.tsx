@@ -183,7 +183,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected applyRowOptions(row: DataRowProps<TItem, TId>) {
-        const rowOptions = this.props.getRowOptions
+        const rowOptions = (this.props.getRowOptions && !row.isLoading)
             ? this.props.getRowOptions(row.value, row.index)
             : this.props.rowOptions;
 
