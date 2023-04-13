@@ -135,8 +135,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     }
 
     private checkItems(isChecked: boolean, checkedId?: TId) {
-        let checked = this.value && this.value.checked || [];
-
+        let checked = (this.value && this.value.checked) ?? [];
         const updatedChecked = this.tree.cascadeSelection(
             checked,
             checkedId,

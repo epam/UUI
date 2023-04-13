@@ -18,7 +18,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
     context: UuiContexts;
 
     renderRow = (row: DataRowProps<TItem, TId>) => {
-        return <PickerListItem getName={ item => this.getName(item) } { ...row } key={ row.rowKey }/>;
+        return <PickerListItem getName={ item => this.getName(item) } { ...row } key={ row.rowKey } />;
     }
 
     handleShowPicker = () => {
@@ -39,12 +39,12 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
             });
     }
 
-    defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props }/>;
+    defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props } />;
 
     render() {
         const view = this.getView();
         const viewProps = view.getListProps();
-        const selectedRows = view.getSelectedRows();
+        const selectedRows = view.getSelectedRows(true);
         const rows = this.buildRowsList();
         const showPicker = viewProps.totalCount == null || viewProps.totalCount > this.getMaxDefaultItems();
         const renderToggler = this.props.renderModalToggler || this.defaultRenderToggler;

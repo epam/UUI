@@ -53,7 +53,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
 
         const { clearSelection, view } = this.getFooterProps();
         const size = isMobile() ? '48' : '36';
-        const hasSelection = view.getSelectedRows().length > 0;
+        const hasSelection = view.getSelectedRows(true).length > 0;
 
         const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
             if (!e.shiftKey && e.key === 'Tab') e.preventDefault();
