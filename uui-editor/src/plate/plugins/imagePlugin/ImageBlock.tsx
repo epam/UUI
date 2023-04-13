@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import cx from 'classnames';
 
 import { Dropdown } from '@epam/uui-components';
@@ -10,7 +10,6 @@ import {
     getBlockAbove,
     ImageElement,
     setElements,
-    ToolbarButton as PlateToolbarButton,
     PlatePluginComponent,
     PlateRenderElementProps,
     Value,
@@ -18,75 +17,109 @@ import {
     useResizableStore,
     PlateEditor,
     findNodePath,
-    select,
-    setNodes,
-    TResizableElement,
 } from '@udecode/plate';
 import { debounce } from 'lodash';
 
 import { FileUploadResponse } from "@epam/uui-core";
 
-import { ToolbarButton } from '../../../implementation/ToolbarButton';
-
-import { ReactComponent as AlignLeft } from '../../../icons/align-left.svg';
-import { ReactComponent as AlignCenter } from '../../../icons/align-center.svg';
-import { ReactComponent as AlignRight } from '../../../icons/align-right.svg';
-import { ReactComponent as FullWidth } from '../../../icons/align-full-width.svg';
-
 import css from './ImageBlock.scss';
+import { ImgToolbar } from './Toolbar';
 
 const { FlexRow, Spinner } = uuiSkin;
 
 const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
 const MIN_CAPTION_WIDTH = 92;
 
-type ImageSize = { width: number, height: number | string };
+export type PlateImgAlign = 'left' | 'center' | 'right';
+type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
+type SlateImageSize = { width: number, height: number | string };
 
-type ImageData = {
-    imageSize?: ImageSize;
+const PLATE_TO_SLATE_IMG_ALIGN: { [key in PlateImgAlign]: SlateImgAlign } = {
+    'left': 'align-left',
+    'right': 'align-right',
+    'center': 'align-center',
+};
+
+type SlateImageData = {
+    imageSize: SlateImageSize;
+    align: SlateImgAlign;
 } & Partial<(File | FileUploadResponse)>;
 
-type Align = 'left' | 'center' | 'right';
-
-export interface ImageElement extends TElement {
-    url: string;
-    align: Align;
-    data?: ImageData;
+interface SlateProps {
+    data: SlateImageData;
 }
 
-const updateImageSize = debounce((editor: PlateEditor, element: ImageElement, width: number) => {
-    const path = findNodePath(editor, element!);
-    if (!path) return;
+interface PlateProps {
+    url: string;
+    align: PlateImgAlign;
+    width: number;
+}
 
-    setNodes<TResizableElement>(
-        editor,
-        { ...(element.data || {}), data: { imageSize: { width, height: '100%' } } },
-        { at: path }
-    );
-}, 100, { leading: false, trailing: true });
+export interface ImageElement extends TElement, PlateProps, SlateProps {}
+
+const toSlateAlign = (plateAlign: PlateImgAlign): SlateImgAlign => {
+    return PLATE_TO_SLATE_IMG_ALIGN[plateAlign];
+}
+
+const toPlateProps = (prevProps: PlateProps,
+    {
+        width = prevProps.width,
+        align = prevProps.align
+    }: { width?: number, align?: PlateImgAlign }
+) => {
+    return { width, align };
+}
+
+const toSlateProps = (
+    prevData: SlateImageData,
+    {
+        width = prevData?.imageSize?.width,
+        align = prevData?.align
+    }: { width?: number, align?: SlateImgAlign }
+): SlateProps => {
+    return { data: { ...prevData, imageSize: { width, height: '100%' }, align } };
+}
+
+type UpdateFunction = (element: ImageElement, { width, align }: { width?: number, align?: PlateImgAlign }) => void;
+
+const getImgElementPropsMapper = (editor: PlateEditor) => {
+    const update: UpdateFunction = (element, { width, align }) => {
+        setElements(editor, {
+            ...element,
+            ...toPlateProps(element, { width, align }),
+            ...toSlateProps(element.data, { width, align: toSlateAlign(align) })
+        });
+    }
+
+    return update;
+}
+
+const updateImageSize = debounce(
+    (update: UpdateFunction, editor: PlateEditor, element: ImageElement, width: number) => {
+        const path = findNodePath(editor, element!);
+        if (!path) return;
+
+        update(element, { width });
+    },
+    100,
+    { leading: false, trailing: true }
+);
 
 /**
  * Controls image size
  */
-const useImgSizeProps = ({ element, editor }: { element: ImageElement, editor: PlateEditor }) => {
+const useImgSizeProps = ({ element, editor, updateElement }: { element: ImageElement, editor: PlateEditor, updateElement: UpdateFunction }) => {
     const [width] = useResizableStore().use.width();
 
     // 100% is default plate img width if element.width is not defined
     const isDefinedWidth = !!width && width !== '100%';
 
-    const resizableProps = isDefinedWidth
-        ? { minWidth: 12 } // resized
-        : { size: { width: 0, height: '100%' }, minWidth: 'fit-content' } // new image
+    const resizableProps = isDefinedWidth ? { minWidth: 12 } : { minWidth: 'fit-content' };
 
-    const updateSize = useCallback((newWidth: number) => updateImageSize(editor, element, newWidth), [editor, element])
-
-    /**
-     * Updates @deprecated element.data.imageSize property.
-     * element.width updates internally by plate.
-    */
+    // Updates element.data.imageSize property.
     useEffect(() => {
         if (element.data?.imageSize?.width !== width && isDefinedWidth) {
-            updateSize(width);
+            updateImageSize(updateElement, editor, element, width);
         }
     }, [width, isDefinedWidth]);
 
@@ -99,36 +132,32 @@ const useImgSizeProps = ({ element, editor }: { element: ImageElement, editor: P
 export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageElement>> = (props) => {
     const { editor, element, children } = props;
     const ref = useRef(null);
+    const isNotInitialized = !element.data;
 
-    const [align, setAlign] = useState<Align>(element.align || 'left');
-    const imageSizeProps = useImgSizeProps({ element, editor })
+    const updateElement = useMemo(() => getImgElementPropsMapper(editor), [editor, element]);
+
+    // set initial slate props for new image
+    useEffect(() => {
+        if (isNotInitialized && element.type === 'image') {
+            updateElement(element, { width: 0, align: 'left' });
+        }
+    }, []);
+
+    const [align, setAlign] = useState<PlateImgAlign>(element.align || 'left');
+    const imageSizeProps = useImgSizeProps({ element, editor, updateElement });
 
     const isFocused = useFocused();
     const isSelected = useSelected();
 
-    if (element.type === 'loader') {
-        return (
-            <>
-                <Spinner  { ...props } cx={ css.spinner } />
-                { children }
-            </>
-        );
-    }
-
-    const toggleBlockAlignment = (align: Align) => {
+    const toggleBlockAlignment = (align: PlateImgAlign) => {
         setAlign(align);
-        setElements(editor, {
-            ...element,
-            align,
-        });
+        updateElement(element, { align });
     }
 
     const setMaxWidth = () => {
-        if (ref?.current?.clientWidth) {
-            setElements(editor, {
-                ...element,
-                width: ref?.current?.clientWidth,
-            });
+        const newWidth = ref?.current?.clientWidth;
+        if (newWidth) {
+            updateElement(element, { width: newWidth });
         }
     };
 
@@ -137,71 +166,14 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
         return !clientWidth || (clientWidth === element.width);
     };
 
-    const renderToolbar = useCallback(() => {
+    if (element.type === 'loader' || isNotInitialized) {
         return (
-            <div className={ cx(css.imageToolbar, 'slate-prevent-blur') }>
-                <PlateToolbarButton
-                    styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
-                    active={ true }
-                    onMouseDown={
-                        editor
-                            ? (e) => e.preventDefault()
-                            : undefined
-                    }
-                    icon={ <ToolbarButton
-                        isActive={ element.align === 'left' }
-                        icon={ AlignLeft }
-                        onClick={ () => toggleBlockAlignment('left') }
-                    /> }
-                />
-
-                <PlateToolbarButton
-                    styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
-                    active={ true }
-                    onMouseDown={
-                        editor
-                            ? (e) => e.preventDefault()
-                            : undefined
-                    }
-                    icon={ <ToolbarButton
-                        isActive={ element.align === 'center' }
-                        icon={ AlignCenter }
-                        onClick={ () => toggleBlockAlignment('center') }
-                    /> }
-                />
-
-                <PlateToolbarButton
-                    styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
-                    active={ true }
-                    onMouseDown={
-                        editor
-                            ? (e) => e.preventDefault()
-                            : undefined
-                    }
-                    icon={ <ToolbarButton
-                        isActive={ element.align === 'right' }
-                        icon={ AlignRight }
-                        onClick={ () => toggleBlockAlignment('right') }
-                    /> }
-                />
-
-                <PlateToolbarButton
-                    styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
-                    active={ true }
-                    onMouseDown={
-                        editor
-                            ? (e) => e.preventDefault()
-                            : undefined
-                    }
-                    icon={ <ToolbarButton
-                        isActive={ isFullWidth() }
-                        icon={ FullWidth }
-                        onClick={ setMaxWidth }
-                    /> }
-                />
-            </div>
+            <>
+                <Spinner  { ...props } cx={ css.spinner } />
+                { children }
+            </>
         );
-    }, [element, toggleBlockAlignment, isFullWidth, setMaxWidth]);
+    }
 
     const block = getBlockAbove(editor);
 
@@ -220,7 +192,15 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
                     </div>
                 </div>
             ) }
-            renderBody={ () => <FlexRow cx={ css.imageToolbarWrapper }>{ renderToolbar() }</FlexRow> }
+            renderBody={ () => <FlexRow cx={ css.imageToolbarWrapper }>
+                <ImgToolbar editor={ editor }
+                    align={ align }
+                    element={ element }
+                    toggleBlockAlignment={ toggleBlockAlignment }
+                    isFullWidth={ isFullWidth }
+                    setMaxWidth={ setMaxWidth }
+                />
+            </FlexRow> }
             value={ isSelected && isFocused && block?.length && block[0].type === 'image' }
             placement='top'
         />
