@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import cx from 'classnames';
 
 import { Dropdown } from '@epam/uui-components';
@@ -17,28 +17,21 @@ import {
     useResizableStore,
     PlateEditor,
     findNodePath,
+    focusEditor,
+    select,
+    setNodes,
+    TResizableElement,
 } from '@udecode/plate';
-import { debounce } from 'lodash';
+import { debounce, invert } from 'lodash';
 
 import { FileUploadResponse } from "@epam/uui-core";
 
 import css from './ImageBlock.scss';
 import { ImgToolbar } from './Toolbar';
 
-const { FlexRow, Spinner } = uuiSkin;
-
-const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
-const MIN_CAPTION_WIDTH = 92;
-
 export type PlateImgAlign = 'left' | 'center' | 'right';
 type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
 type SlateImageSize = { width: number, height: number | string };
-
-const PLATE_TO_SLATE_IMG_ALIGN: { [key in PlateImgAlign]: SlateImgAlign } = {
-    'left': 'align-left',
-    'right': 'align-right',
-    'center': 'align-center',
-};
 
 type SlateImageData = {
     imageSize: SlateImageSize;
@@ -57,107 +50,89 @@ interface PlateProps {
 
 export interface ImageElement extends TElement, PlateProps, SlateProps {}
 
-const toSlateAlign = (plateAlign: PlateImgAlign): SlateImgAlign => {
-    return PLATE_TO_SLATE_IMG_ALIGN[plateAlign];
-}
+interface UpdatingProps { width?: number, align?: PlateImgAlign };
 
-const toPlateProps = (prevProps: PlateProps,
-    {
-        width = prevProps.width,
-        align = prevProps.align
-    }: { width?: number, align?: PlateImgAlign }
-) => {
-    return { width, align };
-}
+const { FlexRow, Spinner } = uuiSkin;
 
-const toSlateProps = (
-    prevData: SlateImageData,
-    {
-        width = prevData?.imageSize?.width,
-        align = prevData?.align
-    }: { width?: number, align?: SlateImgAlign }
-): SlateProps => {
-    return { data: { ...prevData, imageSize: { width, height: '100%' }, align } };
-}
+const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
+const MIN_CAPTION_WIDTH = 92;
+const MIN_IMG_WIDTH = 12;
+const PLATE_TO_SLATE_IMG_ALIGN: { [key in PlateImgAlign]: SlateImgAlign } = {
+    'left': 'align-left',
+    'right': 'align-right',
+    'center': 'align-center',
+};
 
-type UpdateFunction = (element: ImageElement, { width, align }: { width?: number, align?: PlateImgAlign }) => void;
+const toSlateAlign = (plateAlign: PlateImgAlign): SlateImgAlign => PLATE_TO_SLATE_IMG_ALIGN[plateAlign];
 
-const getImgElementPropsMapper = (editor: PlateEditor) => {
-    const update: UpdateFunction = (element, { width, align }) => {
-        setElements(editor, {
-            ...element,
-            ...toPlateProps(element, { width, align }),
-            ...toSlateProps(element.data, { width, align: toSlateAlign(align) })
-        });
-    }
+const getUpdatedElement = (
+    element: ImageElement,
+    { width = element?.width || 0, align = element.align || 'left' }: UpdatingProps
+) => ({
+    ...element,
+    data: {
+        ...(element.data || {}),
+        imageSize: {
+            width,
+            height: '100%'
+        },
+        align: toSlateAlign(align),
+    },
+    width,
+    height: '100%',
+    align
+});
 
-    return update;
-}
+const useUpdatingElement = ({ element, editor }: { element: ImageElement, editor: PlateEditor }) => {
+    const [align, setAlign] = useState<PlateImgAlign>(element.align || 'left');
+    const [width, setWidth] = useState<number | undefined>(element.data?.imageSize.width || 0);
 
-const updateImageSize = debounce(
-    (update: UpdateFunction, editor: PlateEditor, element: ImageElement, width: number) => {
+    const onResize = useCallback(() => {}, []);
+
+    const onResizeStop = useCallback((e: any, direction: any, ref: any) => {
         const path = findNodePath(editor, element!);
         if (!path) return;
 
-        update(element, { width });
-    },
-    100,
-    { leading: false, trailing: true }
-);
-
-/**
- * Controls image size
- */
-const useImgSizeProps = ({ element, editor, updateElement }: { element: ImageElement, editor: PlateEditor, updateElement: UpdateFunction }) => {
-    const [width] = useResizableStore().use.width();
-
-    // 100% is default plate img width if element.width is not defined
-    const isDefinedWidth = !!width && width !== '100%';
-
-    const resizableProps = isDefinedWidth ? { minWidth: 12 } : { minWidth: 'fit-content' };
-
-    // Updates element.data.imageSize property.
-    useEffect(() => {
-        if (element.data?.imageSize?.width !== width && isDefinedWidth) {
-            updateImageSize(updateElement, editor, element, width);
+        const newWidth = ref.offsetWidth;
+        if (newWidth !== width) {
+            setWidth(newWidth);
+            setElements(editor, getUpdatedElement(element, { width: newWidth }));
+        } else {
+            // select if not resized
+            select(editor, path);
         }
-    }, [width, isDefinedWidth]);
+    }, [editor, element, width])
 
-    const isCaptionEnabled = isDefinedWidth && width >= MIN_CAPTION_WIDTH;
+    const isInitialized = !!element.data;
+    const size = { width, height: '100%' };
+    const resizableProps = isInitialized
+        ? { minWidth: MIN_IMG_WIDTH, onResize, onResizeStop, size }
+        : { minWidth: 'fit-content', onResize, onResizeStop, size };
+
+    const isCaptionEnabled = isInitialized && width >= MIN_CAPTION_WIDTH;
     const caption = isCaptionEnabled ? { disabled: false } : { disabled: true };
 
-    return { style: IMAGE_STYLES, resizableProps, caption };
+    return { align, setAlign, resizableProps, caption, style: IMAGE_STYLES };
 }
 
 export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageElement>> = (props) => {
     const { editor, element, children } = props;
     const ref = useRef(null);
-    const isNotInitialized = !element.data;
 
-    const updateElement = useMemo(() => getImgElementPropsMapper(editor), [editor, element]);
-
-    // set initial slate props for new image
-    useEffect(() => {
-        if (isNotInitialized && element.type === 'image') {
-            updateElement(element, { width: 0, align: 'left' });
-        }
-    }, []);
-
-    const [align, setAlign] = useState<PlateImgAlign>(element.align || 'left');
-    const imageSizeProps = useImgSizeProps({ element, editor, updateElement });
+    const { align, setAlign, ...imageSizeProps } = useUpdatingElement({ element, editor });
 
     const isFocused = useFocused();
     const isSelected = useSelected();
 
     const toggleBlockAlignment = (align: PlateImgAlign) => {
         setAlign(align);
-        updateElement(element, { align });
+        setElements(editor, getUpdatedElement(element, { align }));
     }
 
     const setMaxWidth = () => {
         const newWidth = ref?.current?.clientWidth;
         if (newWidth) {
-            updateElement(element, { width: newWidth });
+            setElements(editor, getUpdatedElement(element, { width: newWidth }));
         }
     };
 
@@ -166,7 +141,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
         return !clientWidth || (clientWidth === element.width);
     };
 
-    if (element.type === 'loader' || isNotInitialized) {
+    if (element.type === 'loader') {
         return (
             <>
                 <Spinner  { ...props } cx={ css.spinner } />
@@ -186,8 +161,8 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
                         className={ cx(css.slateImage) }>
                         <ImageElement
                             { ...props }
-                            align={ align }
                             { ...imageSizeProps }
+                            align={ align }
                         />
                     </div>
                 </div>
