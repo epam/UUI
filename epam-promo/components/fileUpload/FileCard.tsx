@@ -50,11 +50,11 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
             case 'wmw':
             case 'mkv': return <IconContainer size={ 24 } icon={ VideoIcon } cx={ css.movieColor } />;
             case 'csv':
-            case 'xml': return <IconContainer size={ 24 } icon={ TableIcon } cx={ css.xmlColor } />;
+            case 'xml': return <IconContainer size={ 24 } icon={ TableIcon } cx={ css.defaultColor } />;
             case 'rtf':
-            case 'txt': return <IconContainer size={ 24 } icon={ TextIcon } cx={ css.textColor } />;
+            case 'txt': return <IconContainer size={ 24 } icon={ TextIcon } cx={ css.defaultColor } />;
             case 'eml':
-            case 'emlx': return <IconContainer size={ 24 } icon={ MailIcon } cx={ css.emlColor } />;
+            case 'emlx': return <IconContainer size={ 24 } icon={ MailIcon } cx={ css.defaultColor } />;
             default: return <IconContainer size={ 24 } icon={ FileIcon } cx={ css.defaultColor } />;
         }
     };
