@@ -14,15 +14,10 @@ import {
     PlateRenderElementProps,
     Value,
     TElement,
-    useResizableStore,
     PlateEditor,
     findNodePath,
-    focusEditor,
     select,
-    setNodes,
-    TResizableElement,
 } from '@udecode/plate';
-import { debounce, invert } from 'lodash';
 
 import { FileUploadResponse } from "@epam/uui-core";
 
