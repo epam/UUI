@@ -58,6 +58,23 @@ exports[`PickerInput should be rendered correctly 2`] = `
       type="button"
     >
       <div
+        className="uui-caption"
+      >
+        <div
+          aria-busy={true}
+          className="container"
+        >
+          <span
+            className="loadingWord animatedLoading"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+              }
+            }
+          />
+        </div>
+      </div>
+      <div
         className="container uui-icon uui-enabled -clickable -clickable"
         onClick={[Function]}
         style={Object {}}
