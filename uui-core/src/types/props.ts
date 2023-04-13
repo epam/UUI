@@ -97,7 +97,6 @@ export interface IDropdownToggler extends IHasCaption, IClickable {
     isDropdown?: boolean;
     /** Called when associated dropdown should open or close  */
     toggleDropdownOpening?: (value: boolean) => void;
-    handleClickOutside?: (e: React.FocusEvent<HTMLElement>) => void;
     /** Called when component is interacted outside, to close the dropdown */
     isInteractedOutside?: (event: Event) => boolean;
     /** Component's ref */
