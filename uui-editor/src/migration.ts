@@ -33,8 +33,6 @@ const migrateElementNode = (node: any) => {
         data: node.data ?? {},
         type: node.type === 'table_row' ? 'tr' : node.type === 'table_header_cell' ? 'th' : node.type === 'table_cell' ? 'td' : node.type,
         ...(mediaTypes.includes(node.type) ? { url: node.data?.src } : {}),
-        ...(mediaTypes.includes(node.type) ? node.data?.imageSize || {} : {}),
-        ...(node?.data?.align ? { align: imageAlignValues[node?.data?.align || 'align-left']} : {}),
         ...(node?.data?.url ? { url: node.data.url } : {}),
         children: node.nodes?.map(migrateNode).flat() ?? [],
     };
