@@ -60,7 +60,7 @@ const JSDOM_TESTS_ROOTS = [
     //'app',
     //'draft-rte',
     //'uui-docs',
-    //'uui-editor',
+    'uui-editor',
     //'uui-timeline',
 ];
 const NODEJS_TESTS_ROOTS = [
