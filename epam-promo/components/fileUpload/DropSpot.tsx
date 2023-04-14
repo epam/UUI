@@ -18,12 +18,11 @@ export class DropSpot extends React.Component<DropSpotProps> {
     renderAttachmentArea = (props: DropSpotRenderParams) => {
         return (
             <div className={ cx(css.root, this.props.cx, props.isDragStart && css.dropStart, props.isDraggingOver && css.dropOver) } { ...this.props.rawProps }>
-                <div { ...props.eventHandlers } className={ css.dropArea } >
-                    <FlexRow size='24' spacing='6' >
+                <div { ...props.eventHandlers } className={ css.dropArea }>
+                    <FlexRow size="24">
                         <IconContainer icon={ ShapeIcon } cx={ css.iconBlue }/>
                         <Text lineHeight="24" size="24" fontSize="14" font="sans"> { i18n.fileUpload.labelStart } </Text>
                         <UploadFileToggler
-                            rawProps={ { className: css.linkContainer } }
                             onFilesAdded={ this.props.onUploadFiles }
                             render={ (props) => (
                                 <RichTextView>
@@ -34,7 +33,7 @@ export class DropSpot extends React.Component<DropSpotProps> {
                             single={ this.props.single }
                         />
                     </FlexRow>
-                    { this.props.infoText && <Text lineHeight='24' size='24' fontSize='14' color='gray60'>{ this.props.infoText }</Text> }
+                    { this.props.infoText && <Text lineHeight="24" size="24" fontSize="14" color="gray60">{ this.props.infoText }</Text> }
                 </div>
             </div>
         );
