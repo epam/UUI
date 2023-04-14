@@ -8,10 +8,15 @@
   - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
 
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
+* [Dropdown]: added a 400ms delay to the submenu's close and open triggers
   
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
+* [Dropdown]: The delay to close/open the dropdown has been fixed. The correct behavior is as follows:
+  - If the user moves out of the dropdown but remains within 30px of the dropdown body, the closeDelay value will be determined by the props. Otherwise, the dropdown will close immediately.
+  - If the user moves out of the dropdown and beyond 30px of the dropdown body, the closeDelay value will be determined by the props, or the dropdown will close immediately.
+  - If the user moves out of the dropdown and then returns, the closeDelay will be reset.
 
 # 4.10.2 - 24.03.2023
 
