@@ -153,13 +153,14 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
 
     private handleMouseMove = (e: MouseEvent) => {
-        if (this.isInteractedOutside(e) && !this.isClientInArea(e) && !this.closeDropdownTimerId) { // User leave boundary area, close dropdown immediately or with this.props.closeDelay
-            this.clearCloseDropdownTimer();
+        if (this.isInteractedOutside(e) && this.isClientInArea(e) && !this.closeDropdownTimerId) { // User cursor in boundary area, but not inside toggler or body
             this.clearOpenDropdownTimer();
-
-            if (this.props.closeDelay) {
-                this.isOpened() && this.setCloseDropdownTimer(this.props.closeDelay ?? 1500);
-            } else {
+            this.clearCloseDropdownTimer();
+            this.setCloseDropdownTimer(this.props.closeDelay ?? 1500);
+        } else if (this.isInteractedOutside(e) && !this.isClientInArea(e)) {  //User leave boundary area, close dropdown immediately or with this.props.closeDelay
+            if (this.props.closeDelay && !this.closeDropdownTimerId) {
+                this.isOpened() && this.setCloseDropdownTimer(this.props.closeDelay);
+            } else if (!this.props.closeDelay) {
                 this.handleOpenedChange(false);
             }
         } else if (!this.isInteractedOutside(e) && this.closeDropdownTimerId) { // User returned to the toggler or body area, we need to clear close timer
