@@ -1,10 +1,10 @@
 {
   "name": "@epam/draft-rte",
-  "version": "4.10.0",
+  "version": "4.10.2",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
-  "epam:uui:main": "build/index.js",
+  "epam:uui:main": "build/index.esm.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "@epam/assets": "4.5.3",
-    "@epam/loveship": "4.10.0",
-    "@epam/uui-components": "4.10.0",
-    "@epam/uui-core": "4.10.0",
+    "@epam/loveship": "4.10.2",
+    "@epam/uui-components": "4.10.2",
+    "@epam/uui-core": "4.10.2",
     "@types/draft-js": "0.10.23",
     "classnames": "^2.2.6",
     "draft-convert": "^2.1.2",

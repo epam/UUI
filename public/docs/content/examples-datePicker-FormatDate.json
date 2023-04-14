@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop, for example (\"DD-MM-YYYY\" - \"03-09-2020\",  \"DD/MM/YYYY\" - \"03/09/2020\"). ",
+            "text": " prop, for example \"DD-MM-YYYY\" - \"03-09-2020\",  \"DD/MM/YYYY\" - \"03/09/2020\". ",
             "marks": []
           }
         ]
@@ -39,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Important: not to be confused with the property value format, here we use the ISO 8601 format \"YYYY-MM-DD\" - \"2020-09-03\"",
+            "text": "Not to be confused with the value prop format, here we always use the ISO 8601 format \"YYYY-MM-DD\" - \"2020-09-03\", format prop value used only for displaying date in DatePicker.",
             "marks": []
           }
         ]
@@ -67,7 +67,7 @@
           },
           {
             "object": "text",
-            "text": " prop you can add custom footer to DatePicker body",
+            "text": " prop, you can add custom footer to DatePicker body.",
             "marks": []
           }
         ]

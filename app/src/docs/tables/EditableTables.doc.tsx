@@ -14,6 +14,11 @@ export class EditableTablesDoc extends BaseDocsBlock {
                     title='Editable Table'
                     path='./_examples/tables/EditableTable.example.tsx'
                 />
+
+                <DocExample
+                    title='Table with copying'
+                    path='./_examples/tables/TableWithCopying.example.tsx'
+                />
             </>
         );
     }

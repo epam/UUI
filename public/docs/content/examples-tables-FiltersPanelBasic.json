@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This example shows a common case of using ",
+            "text": "This example shows a typical case of using ",
             "marks": []
           },
           {
@@ -55,39 +55,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "However, you can use the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "FiltersPanel",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " component not only with ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "DataTables",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", it will work with any UX component which is built based on the ",
+            "text": "However, the FiltersPanel component can be used not only with DataTables. It will work with any UX component based on the ",
             "marks": []
           },
           {

@@ -69,6 +69,8 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
             return value.displayName;
         } else if (value.type?.displayName) {
             return value.type.displayName;
+        } else if (value.name) {
+            return value?.name;
         } else if (typeof value === 'function') {
             return 'callback';
         } else {

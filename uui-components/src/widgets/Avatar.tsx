@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import css from './Avatar.scss';
 
@@ -23,9 +23,9 @@ const AvatarComponent = (props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
     const [isError, setIsError] = React.useState<boolean>(false);
 
     function onError() {
-      if (!isError) {
-        setIsError(true);
-      }
+        if (!isError) {
+            setIsError(true);
+        }
     }
     return (
             <img

@@ -19,10 +19,10 @@ jobs:
       REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
       REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
       COMMON_HELMCHART_NAME: ${{ secrets.COMMON_HELMCHART_NAME }}
+      COMMON_HELMCHART_VERSION: ${{ secrets.COMMON_HELMCHART_VERSION_NONPROD }}
       APP_NAME_BASE: ${{ secrets.APP_NAME_QA }}
     with:
       values-file: values.qa.yaml
       # TODO: After migrating prod environment we can use the same image name for prod and non-prod
       image-name: ui-nonprod
-      # Common helmchart version may be the same for all nonprod envs (in this case the changes in helmchart will be applied to all nonprod envs after deploy)
-      common-helmchart-ver: v3
+      git-version-mode: ''

@@ -41,8 +41,22 @@ export function useScrollSpy(props?: IScrollSpyProps): IScrollSpyApi {
         if (observedNodes.length === 0) return;
 
         const observer = new IntersectionObserver(entries => {
-            const intersectingElement = entries.find(entry => entry.isIntersecting);
-            setCurrentActive((intersectingElement?.target as HTMLElement)?.dataset?.spy);
+            if (entries.length === 1) {
+                const currentElementName = (entries[0]?.target as HTMLElement)?.dataset?.spy;
+                const isCurrentElementIntersecting = entries[0].isIntersecting;
+
+                setCurrentActive((prevElementName) => {
+                    if (isCurrentElementIntersecting) return currentElementName;
+
+                    // if previous 'currentActive' is not the one which exited the screen - don't change 'currentActive'
+                    if (prevElementName !== currentElementName) return prevElementName;
+
+                    return '';
+                });
+            } else {
+                const intersectingElement = entries.find(entry => entry.isIntersecting);
+                setCurrentActive((intersectingElement?.target as HTMLElement)?.dataset?.spy);
+            }
         }, {
             ...props.options,
             root: props?.options?.root || document.querySelector('body'),

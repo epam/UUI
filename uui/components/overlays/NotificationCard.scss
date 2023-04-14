@@ -1,67 +1,67 @@
-@use  '../../assets/styles/index' as *;
+@use "../../assets/styles/index" as *;
 
 .root {
-    .icon-wrapper {
-        :global(.uui-icon) {
-            fill: var(--notification-card-fill-color);
-        }
-    }
-}
-
-.notification-wrapper {
     border-style: solid;
-    border-color: var(--notification-card-border-color);
-    border-width: var(--notification-card-border-width);
+    border-color: var(--uui-notification-card-border);
+    border-width: var(--uui-notification-card-border-width);
+    border-top-width: var(--uui-notification-card-border-top-width);
     padding: 6px 18px;
     width: 360px;
-    background: var(--notification-card-bg-color);
+    background: var(--uui-notification-card-bg);
     display: flex;
     overflow: hidden;
-    border-radius:  var(--notification-card-border-radius);
+    border-radius: var(--uui-notification-card-border-radius);
+    box-shadow: var(--uui-notification-card-shadow);
 
     @media (max-width: 720px) {
         width: 100%;
     }
-}
 
-.icon-wrapper {
-    padding: 6px 0;
-}
+    .icon-wrapper {
+        padding: 6px 0;
+    }
 
-.action-wrapper {
-    display: flex;
-}
+    .action-wrapper {
+        display: flex;
+    }
 
-.action-link:not(:last-child) {
-    margin-right: 12px;
-}
+    .action-link:not(:last-child) {
+        margin-right: 12px;
+    }
 
-.close-icon {
-    padding: 6px 0;
-}
+    .close-icon {
+        padding: 6px 0;
+    }
 
-.main-path {
-    width: 100%;
-    display: flex;
-    align-self: baseline;
-}
+    .main-path {
+        width: 100%;
+        display: flex;
+        align-self: baseline;
+    }
 
-.content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    margin: 0 12px;
-}
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 12px;
+    }
 
-.clear-button {
-    justify-content: center;
-    align-items: center;
-    height: 48px;
-    padding: 0 18px;
-}
+    .clear-button {
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        padding: 0 18px;
+    }
 
-.close-wrapper {
-    display: flex;
-    align-items: flex-start;
+    .close-wrapper {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .icon-wrapper {
+        :global(.uui-icon) {
+            fill: var(--uui-notification-card-fill);
+        }
+    }
 }

@@ -1,13 +1,14 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ForwardRefExoticComponent, RefAttributes, useCallback, useEffect, useMemo, useState } from 'react';
+import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource, DataTableCellProps, RenderCellProps } from '@epam/uui-core';
 import { useForm } from '@epam/promo';
 import * as promo from "@epam/promo";
 import * as loveship from "@epam/loveship";
-import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource } from '@epam/uui';
+import * as uui from "@epam/uui";
+import {  DatePickerProps } from '@epam/uui';
 import { PickerInputBaseProps } from '@epam/uui-components';
-import { BaseDatePickerProps, DataTableCellProps, RenderCellProps } from '@epam/uui-core';
 
 // Defined interface describe data for each row
-interface Item  {
+interface Item {
     id: number;
     text?: string;
     number?: number;
@@ -16,7 +17,7 @@ interface Item  {
     date?: string;
     textArea?: string;
     bool?: boolean;
-    meta?: IDisableable | ICanBeReadonly,
+    meta?: IDisableable | ICanBeReadonly;
     altBackground?: boolean;
     cellBackground?: boolean;
 }
@@ -25,11 +26,11 @@ const defaultItem: Partial<Item> = {
     text: 'Text Input',
     number: 1234567.89,
     selectedId: 1,
-    selectedIds: [1,2],
+    selectedIds: [1, 2],
     textArea: 'Text Area',
     date: '2020-09-03',
     bool: true,
-}
+};
 
 let id = 1;
 
@@ -55,7 +56,7 @@ const items: Item[] = [
     { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
     { id: id++, ...defaultItem, meta: { isReadonly: true } },
     { id: id++, ...defaultItem, meta: { isDisabled: true } },
-]
+];
 
 interface FormState {
     items: Item[];
@@ -70,7 +71,7 @@ const pickerItems = [
     { id: 6, name: 'Yellow' },
     { id: 7, name: 'White' },
     { id: 8, name: 'Black' },
-]
+];
 
 const metadata: Metadata<FormState> = {
     props: {
@@ -87,23 +88,30 @@ const metadata: Metadata<FormState> = {
                 },
                 isDisabled: true,
             },
-        }
-    }
-}
+        },
+    },
+};
 
 const skinMods = {
-    'promo': { altBackground: 'gray5', cellColors: ['gray5', 'red', 'blue', 'green', 'amber'] },
-    'loveship': { altBackground: 'night50', cellColors: ['night50', 'fire', 'sky', 'grass', 'sun'] },
-}
+    'promo': { border: 'gray30', altBackground: 'gray5', cellColors: ['gray5', 'red', 'blue', 'green', 'amber'] },
+    'loveship': { border: 'night300', altBackground: 'night50', cellColors: ['night50', 'fire', 'sky', 'grass', 'sun'] },
+    'uui': { border: true, altBackground: 'edited', cellColors: ['edited', 'invalid'] },
+};
 
 type SkinName = keyof typeof skinMods;
 
+const skins = {
+    'promo': promo,
+    'loveship': loveship,
+    'uui': uui,
+};
+
 export default function TableCellsStylesSandbox() {
     const [skinName, setSkinName] = useState<SkinName>('promo');
-    const skin: (typeof promo | typeof loveship) = (skinName === 'promo') ? promo : loveship;
+    const skin: (typeof promo | typeof loveship | typeof uui) = skins[skinName];
 
     // These component types doesn't merge correctly/acceptably between skins
-    const SkinDatePicker = skin.DatePicker as React.ComponentClass<BaseDatePickerProps>;
+    const SkinDatePicker = skin.DatePicker as unknown as ForwardRefExoticComponent<DatePickerProps & RefAttributes<any>>;
     const SkinPickerInput = skin.PickerInput as React.ComponentClass<PickerInputBaseProps<any, any>>;
     const SkinDataTableCell = skin.DataTableCell as React.FC<DataTableCellProps & { background: any }>;
 
@@ -117,7 +125,7 @@ export default function TableCellsStylesSandbox() {
     // Trigger save, to force validation to show invalid cell states.
     useEffect(() => save(), []);
 
-     // Use state to hold DataTable state - current sorting, filtering, etc.
+    // Use state to hold DataTable state - current sorting, filtering, etc.
     const [tableState, setTableState] = useState({});
 
     const pickerDataSource = useArrayDataSource({ items: pickerItems }, []);
@@ -135,9 +143,9 @@ export default function TableCellsStylesSandbox() {
             caption: 'Row Type',
             render: (item, row) => <skin.Text>{
                 Object.entries({ ...item.meta, rowBG: item.altBackground, cellBG: item.cellBackground, isInvalid: row.isInvalid })
-                .filter(([key, value]) => !!value)
-                .map(e => e[0])
-                .join(', ')
+                    .filter(([key, value]) => !!value)
+                    .map(e => e[0])
+                    .join(', ')
             }</skin.Text>,
             isSortable: true,
             isAlwaysVisible: true,
@@ -161,7 +169,7 @@ export default function TableCellsStylesSandbox() {
             caption: 'Number',
             renderCell: (props) => <SkinDataTableCell
                 { ...props.rowLens.prop('number').toProps() }
-                renderEditor={ props => <skin.NumericInput { ...props } formatOptions={{ minimumFractionDigits: 2 }} /> }
+                renderEditor={ props => <skin.NumericInput { ...props } formatOptions={ { minimumFractionDigits: 2 } }/> }
                 { ...props }
                 background={ getCellBackground(props) }
             />,
@@ -186,7 +194,7 @@ export default function TableCellsStylesSandbox() {
             caption: 'TextArea',
             renderCell: (props) => <SkinDataTableCell
                 { ...props.rowLens.prop('textArea').toProps() }
-                renderEditor={ props => <skin.TextArea { ...props } autoSize /> }
+                renderEditor={ props => <skin.TextInput { ...props }/> }
                 { ...props }
                 background={ getCellBackground(props) }
             />,
@@ -210,7 +218,7 @@ export default function TableCellsStylesSandbox() {
             caption: 'Single Picker',
             renderCell: (props) => <SkinDataTableCell
                 { ...props.rowLens.prop('selectedId').toProps() }
-                renderEditor={ props => <SkinPickerInput { ...props } selectionMode='single' dataSource={ pickerDataSource } /> }
+                renderEditor={ props => <SkinPickerInput { ...props } selectionMode="single" dataSource={ pickerDataSource }/> }
                 { ...props }
                 background={ getCellBackground(props) }
             />,
@@ -222,7 +230,7 @@ export default function TableCellsStylesSandbox() {
             caption: 'Multi Picker',
             renderCell: (props) => <SkinDataTableCell
                 { ...props.rowLens.prop('selectedIds').toProps() }
-                renderEditor={ props => <SkinPickerInput { ...props } selectionMode='multi' dataSource={ pickerDataSource } /> }
+                renderEditor={ props => <SkinPickerInput { ...props } selectionMode="multi" dataSource={ pickerDataSource }/> }
                 { ...props }
                 background={ getCellBackground(props) }
             />,
@@ -240,27 +248,29 @@ export default function TableCellsStylesSandbox() {
     const view = dataSource.useView(tableState, setTableState, {
         getRowOptions: (item: Item, index: number) => ({
             ...lens.prop('items').index(index).toProps(),
-        })
+            isSelectable: true,
+            checkbox: { isVisible: true },
+        }),
     });
 
     const renderRow = useCallback((props: DataTableRowProps<Item, number>) => {
         return <skin.DataTableRow
-            { ...props}
-            background={ (props.value.altBackground && skinMods[skinName].altBackground) as any }
+            { ...props }
         />;
-    }, []);
+    }, [skinName]);
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return <skin.Panel key={ skinName }>
         <skin.FlexRow>
-            <skin.FlexCell width='auto'>
+            <skin.FlexCell width="auto">
                 <skin.MultiSwitch
                     value={ skinName }
                     onValueChange={ setSkinName }
-                    items={[
+                    items={ [
                         { id: 'loveship' as SkinName, caption: 'Loveship' },
-                        { id: 'promo' as SkinName, caption: 'Promo' }
-                    ]}
+                        { id: 'promo' as SkinName, caption: 'Promo' },
+                        { id: 'uui' as SkinName, caption: 'UUI' },
+                    ] }
                 />
             </skin.FlexCell>
         </skin.FlexRow>
@@ -270,7 +280,7 @@ export default function TableCellsStylesSandbox() {
             value={ tableState }
             onValueChange={ setTableState }
             columns={ columns }
-            headerTextCase='upper'
+            headerTextCase="upper"
             renderRow={ renderRow }
         />
     </skin.Panel>;

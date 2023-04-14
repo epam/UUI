@@ -9,7 +9,7 @@ import {
 } from '@epam/uui-core';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
 import { Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton } from '@epam/loveship';
-import { ColumnsConfigurationModal } from '@epam/loveship';
+import { ColumnsConfigurationModal } from '@epam/uui';
 import { ReactComponent as GearIcon } from '@epam/assets/icons/common/action-settings-18.svg';
 
 export type Person = {

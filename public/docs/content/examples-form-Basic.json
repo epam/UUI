@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic form example with validation, undo/redo/revert actions and storing unsaved changes to localStorage.",
+            "text": "Below is a basic form example with validation.",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "We use ",
+            "text": "We use the ",
             "marks": []
           },
           {
@@ -105,7 +105,7 @@
           },
           {
             "object": "text",
-            "text": ". To turn of this mechanism pass ",
+            "text": ". To turn off this mechanism pass ",
             "marks": []
           },
           {
@@ -133,7 +133,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "From handle success/error result after save action, use ",
+            "text": "For handling success/error results after the save action, use ",
             "marks": []
           },
           {
@@ -165,7 +165,7 @@
           },
           {
             "object": "text",
-            "text": " props. Do not chain promises in ",
+            "text": " props. Do not chain promises in the ",
             "marks": []
           },
           {
@@ -181,7 +181,7 @@
           },
           {
             "object": "text",
-            "text": " callback, because it doesn't guarantee that form was completely saved. ",
+            "text": " callback because it doesn't guarantee that the form was completely saved. ",
             "marks": []
           }
         ]

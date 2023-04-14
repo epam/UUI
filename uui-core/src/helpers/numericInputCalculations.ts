@@ -49,9 +49,3 @@ export const getSeparatedValue = (value: number, formatOptions: Intl.NumberForma
     if (!value && value !== 0) return null;
     return value.toLocaleString(locale, formatOptions);
 };
-
-export const toFixedWithoutRoundingUp = (value: number, fractionDigits: number) => {
-    const valueExtractor = Math.pow(10, fractionDigits);
-    const valueWithoutUnusedDigits = Math.floor(value * valueExtractor) / valueExtractor;
-    return +valueWithoutUnusedDigits.toFixed(fractionDigits);
-}

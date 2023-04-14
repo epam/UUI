@@ -1,6 +1,6 @@
-import React, { ReactNode, Component } from "react";
+import React, { ReactNode } from 'react';
 import isEqual from 'lodash.isequal';
-import { DataColumnProps, DataRowProps, FlexRowProps, DataTableCellProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable } from '@epam/uui-core';
+import { DataColumnProps, DataRowProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable } from '@epam/uui-core';
 import { DataTableRowContainer } from "./DataTableRowContainer";
 
 const uuiDataTableRow = {
@@ -48,7 +48,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             isLastColumn,
             rowLens,
         });
-    }
+    };
 
     const renderRow = (params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
         return (

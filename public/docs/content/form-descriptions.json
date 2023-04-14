@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Form component handles the state of the form. It does:",
+            "text": "The Form component handles the state of the form. It performs such functions:",
             "marks": []
           }
         ]
@@ -33,7 +33,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Declarative binding components to the form state",
+                    "text": "Declarative binding components to the form state.",
                     "marks": []
                   }
                 ]
@@ -52,7 +52,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Validation (you can choose when validation is performed: 'onchange' or 'save', by default 'save'.)",
+                    "text": "Validation (you can choose when validation is performed: 'onchange' or 'save'; by default, 'save'.)",
                     "marks": []
                   }
                 ]
@@ -71,7 +71,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Revert/Undo/Redo actions",
+                    "text": "Revert/Undo/Redo actions.",
                     "marks": []
                   }
                 ]
@@ -90,7 +90,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Signaling user about leaving with unsaved changes",
+                    "text": "Signaling a user that they are leaving with unsaved changes.",
                     "marks": []
                   }
                 ]
@@ -109,7 +109,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Saving form state to localStorage",
+                    "text": "Saving the form state to localStorage.",
                     "marks": []
                   }
                 ]
@@ -125,45 +125,26 @@
         "nodes": [
           {
             "object": "text",
-            "text": "See the ",
+            "text": "See the Form ",
             "marks": []
           },
           {
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/demo?id=form"
+              "url": "https://uui.epam.com/demo?id=form"
             },
             "nodes": [
               {
                 "object": "text",
-                "text": "Form D",
-                "marks": []
-              },
-              {
-                "object": "inline",
-                "type": "link",
-                "data": {
-                  "url": "/demo?id=form"
-                },
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "emo",
-                    "marks": []
-                  }
-                ]
-              },
-              {
-                "object": "text",
-                "text": "",
+                "text": "demo﻿",
                 "marks": []
               }
             ]
           },
           {
             "object": "text",
-            "text": " for what's can be done with the Form Component and other components.",
+            "text": " to learn about the real potential of the Form Component and others.",
             "marks": []
           }
         ]

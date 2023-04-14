@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Person } from '@epam/uui-docs';
 import { cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps } from "@epam/uui-core";
-import { Presets, FlexRow } from '@epam/uui';
+import { FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
 import css from './DemoTable.scss';
 import type { TApi } from '../../../data';
@@ -73,7 +73,6 @@ export const MasterDetailedTable: React.FC = () => {
                     borderBottom
                     cx={ cx(css.presets, { [css.presetsWithFilter]: isFilterPanelOpened }) }
                 >
-                    <Presets { ...tableStateApi } />
                 </FlexRow>
 
                 <DataTable

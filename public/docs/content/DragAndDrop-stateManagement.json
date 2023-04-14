@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Note, that Drag-n-Drop in UUI doesn't manage state itself. It only signals you that something is dragged into something. It's up to library user to define how to store it's state, and how to update it to react to user's actions.",
+            "text": "Note, that Drag-n-Drop in UUI doesn't manage the state itself. It only signals you that something is dragged into something. It's up to library user to define how to store its state and update it to react to user's actions.",
             "marks": []
           }
         ]
@@ -35,7 +35,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In case of a basic reorderable list of items, you'd need to store items in certain order, update this order, and save changes to a server via API.",
+            "text": "In case of a basic reorderable list of items, you'd need to store items in a specific order, update this order, and save changes to a server via API.",
             "marks": []
           }
         ]
@@ -47,7 +47,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "The most straightforward way, is to store items in a plain array - in order they are placed. However, arrays of items are really hard to save to server - you need to always save the whole array (instead of a single item), and server-side code need to read the whole array from DB to compare it to the new one before saving.",
+            "text": "The most straightforward way, is to store items in a plain array - in order they are placed. However, arrays of items are really hard to save to server - you need to always save the whole array (instead of a single item), and server-side code needs to read the entire array from DB to compare it to the new one before saving.",
             "marks": []
           }
         ]
@@ -105,7 +105,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "order: string ",
+                    "text": "order: string",
                     "marks": [
                       {
                         "object": "mark",
@@ -116,7 +116,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "field",
+                    "text": " field",
                     "marks": []
                   }
                 ]
@@ -233,7 +233,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Then, to move or insert items, use:",
+            "text": "Then, to move or insert items, use the following:",
             "marks": []
           }
         ]
@@ -256,7 +256,7 @@
           },
           {
             "object": "text",
-            "text": ".  - to insert an item between other two",
+            "text": ".  - to insert an item between the other two",
             "marks": []
           }
         ]
@@ -314,7 +314,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Note, that, for all actions, only a single item needs to be updated and saved to server. ",
+            "text": "Note that, for all actions, only a single item needs to be updated and saved the server. ",
             "marks": []
           }
         ]
@@ -326,19 +326,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Also, it's this approach maps really well to relational Databases at backend - all you need is an 'order: varchar' column, just like any other column.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
+            "text": "Also, this approach maps well to relational Databases at backend - all you need is an 'order: varchar' column, just like any other column.",
             "marks": []
           }
         ]

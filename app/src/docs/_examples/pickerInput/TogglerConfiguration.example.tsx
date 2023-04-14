@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { FlexCell, PickerInput, Button, FlexRow } from '@epam/promo';
-import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui';
+import { FlexCell, PickerInput, Button, FlexRow, TextInput } from '@epam/promo';
+import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { City } from '@epam/uui-docs';
 import css from './TogglerConfiguration.scss';
 
@@ -15,7 +15,7 @@ export default function PickerTogglerConfigurationExample() {
     const dataSource = useLazyDataSource({ api: loadCities }, []);
 
     return (
-        <FlexCell width={ 460 } cx={ css.container }>
+        <FlexCell width={ 300 } cx={ css.container }>
             <PickerInput
                 dataSource={ dataSource }
                 value={ value }
@@ -56,7 +56,12 @@ export default function PickerTogglerConfigurationExample() {
                     entityName='city'
                     selectionMode='multi'
                     valueType='id'
-                    renderToggler={ (props) => <Button { ...props } /> }
+                    searchPosition="input"
+                    renderToggler={ (props) => <TextInput
+                        { ...props }
+                        value={ props.value ?? '' }
+                        onValueChange={ e => props.onValueChange?.(e) }
+                    /> }
                 />
             </FlexRow>
         </FlexCell>

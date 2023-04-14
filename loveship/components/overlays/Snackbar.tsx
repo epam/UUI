@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NotificationOperation, UuiContext, UuiContexts } from '@epam/uui-core';
 import { SnackbarProps, Snackbar as UuiSnackbar } from '@epam/uui-components';
-import { ClearNotification } from '.';
+import { ClearNotification } from '@epam/uui';
 
 export class Snackbar extends React.Component<SnackbarProps> {
     public static contextType = UuiContext;

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Simple examples with the whole set of flex items",
+            "text": "Simple example using Panel",
             "marks": []
           }
         ]

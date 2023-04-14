@@ -13,7 +13,7 @@
     font-family: var(--font-redacted);
     letter-spacing: -1px;
     margin: 0 3px 3px 0;
-    color: var(--text-placeholder-color);
+    color: var(--uui-text-placeholder);
     vertical-align: 1px; // to fix vertical over-sizing of line
     &:last-child {
         margin-right: 0;
@@ -21,7 +21,7 @@
 
     &.animated-loading {
         color: transparent;
-        background: var(--text-placeholder-gradient);
+        background: var(--uui-text-placeholder-gradient);
         background-size: 200% 100%;
         background-clip: border-box;
         -webkit-background-clip: text;

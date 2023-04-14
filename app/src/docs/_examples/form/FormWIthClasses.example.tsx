@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexCell, FlexRow, LabeledInput, TextInput, Form, Text, SuccessNotification, ErrorNotification, FlexSpacer, Button } from '@epam/promo';
-import { IFormApi } from '@epam/uui';
+import { IFormApi } from '@epam/uui-core';
 import { svc } from '../../../services';
 
 interface Person {

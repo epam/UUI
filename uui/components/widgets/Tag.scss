@@ -2,13 +2,14 @@
 
 .root {
     &:global(.uui-button-box) {
-        background-color: var(--tag-bg-color);
-        fill: var(--tag-fill-color);
+        border-radius: var(--uui-tag-border-radius);
+        background-color: var(--uui-tag-bg);
+        fill: var(--uui-tag-fill);
         border: 0;
 
         :global(.uui-count) {
-            background-color: var(--tag-count-bg-color);
-            color: var(--tag-count-color);
+            background-color: var(--uui-tag-count-bg);
+            color: var(--uui-tag-count);
             font-family: var(--font-semibold);
             margin: auto;
             height: 18px;
@@ -24,16 +25,17 @@
         }
 
         &:global(.-clickable) {
-            &:hover {
-                background-color: var(--tag-bg-color-hover);
-                fill: var(--tag-fill-color-hover);
+            &:hover, &:active, &:focus {
+                background-color: var(--uui-tag-bg-hover);
+                fill: var(--uui-tag-fill-hover);
                 cursor: pointer;
             }
         }
 
         :global(.uui-caption) {
+            text-transform: none;
             font-family: var(--font-regular);
-            color: var(--tag-caption-color);
+            color: var(--uui-tag-caption);
         }
     }
 

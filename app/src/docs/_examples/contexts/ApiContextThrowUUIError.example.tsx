@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LinkButton } from '@epam/loveship';
-import { useUuiContext, UuiError } from '@epam/uui';
+import { useUuiContext, UuiError } from '@epam/uui-core';
 
 /**
  * While UUI handles server errors automatically, often you need to trigger errors from your code, and customize their appearance.

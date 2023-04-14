@@ -1,7 +1,6 @@
 import React from 'react';
+import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import { Dropdown, DropdownContainer, LinkButton, Panel, Text } from '@epam/promo';
-import { DropdownBodyProps } from '@epam/uui-core';
-import { IDropdownToggler } from '@epam/uui';
 import { ReactComponent as navigationBack } from '@epam/assets/icons/common/navigation-back-18.svg';
 import css from './DefaultExample.scss';
 
@@ -22,9 +21,9 @@ export default function DefaultLinkButtonExample() {
             </Panel>
 
             <Panel cx={ css.descriptions }>
-                <Text>Simple action. Can be used for redirection also</Text>
-                <Text>Different icons support meaning of an action. Can be used for redirection or action</Text>
-                <Text>Chevron-down icon on the right applies use a link button as a trigger for Picker Dropdown or other overlay component (dropdown menu, popover)</Text>
+                <Text>Simple action. Can also be used for redirection</Text>
+                <Text>Different icons support the meaning of an action. Can be used for a redirection or action</Text>
+                <Text>Chevron-down icon on the right makes a link button a toggler for Dropdowns</Text>
             </Panel>
         </>
     );

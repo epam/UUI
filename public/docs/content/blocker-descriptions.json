@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It is expected to be placed into some 'position: relative' context, spans over the whole area, and serves two needs:",
+            "text": " A blocker spans over the whole area and serves two needs:",
             "marks": []
           }
         ]
@@ -44,16 +44,9 @@
                 "data": {},
                 "nodes": [
                   {
-                    "object": "block",
-                    "type": "paragraph",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "show a user that some operation is going on",
-                        "marks": []
-                      }
-                    ]
+                    "object": "text",
+                    "text": "To show a user that some operation is going on.",
+                    "marks": []
                   }
                 ]
               }
@@ -70,16 +63,9 @@
                 "data": {},
                 "nodes": [
                   {
-                    "object": "block",
-                    "type": "paragraph",
-                    "data": {},
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "block user to interact with the covered UI (when it's isEnabled={ true } )",
-                        "marks": []
-                      }
-                    ]
+                    "object": "text",
+                    "text": "To block users from interacting with the covered UI (when it's isEnabled={ true } ).",
+                    "marks": []
                   }
                 ]
               }
@@ -94,7 +80,42 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Sometimes, you have no UI underneath the Blocker. For example, you are loading something and have nothing to render underneath. In this case, use the spacerHeight prop (see example below)",
+            "text": "Sometimes, you have no UI underneath a blocker. For example, you are loading something and have nothing to render underneath. In this case, use the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "spacerHeight",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop (see ",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=blocker&mode=doc&skin=UUI4_promo&category=components#advanced"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "example",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " below).",
             "marks": []
           }
         ]

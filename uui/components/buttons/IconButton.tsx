@@ -1,6 +1,5 @@
 import { IconButtonBaseProps, IconButton as uuiIconButton } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
-import '../../assets/styles/variables/buttons/iconButton.scss';
 import css from './IconButton.scss';
 
 export type IconColor = 'info' | 'success' | 'warning' | 'error' | 'secondary' | 'default';
@@ -10,11 +9,11 @@ export interface IconButtonMods {
     color?: IconColor;
 }
 
-export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods { }
+export interface IconButtonProps extends IconButtonBaseProps, IconButtonMods {}
 
 function applyIconButtonMods(mods: IconButtonProps & IconButtonMods) {
     return [
-        `icon-button-color-${mods.color || 'default'}`,
+        `icon-button-${mods.color || 'default'}`,
         css.root,
     ];
 }

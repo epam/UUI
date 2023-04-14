@@ -1,4 +1,4 @@
-@use '~@epam/promo/assets/styles/index' as *;
+@use '~@epam/promo/assets/styles/index.scss' as *;
 
 .secondary-navigation {
     min-height: 60px;
@@ -7,8 +7,8 @@
 .container {
     display: flex;
     flex-direction: column;
-    flex: 1 1 0px;
-    min-width: 0px;
+    flex: 1 1 0;
+    min-width: 0;
     height: calc(100vh - 60px);
     overflow: hidden;
 }
@@ -22,13 +22,6 @@
 .width-wrapper {
     padding: 0 60px 60px;
     max-width: 960px;
-}
-
-.title {
-    font-family: $font-museo-sans;
-    margin: 24px 0;
-    font-size: 36px;
-    line-height: 48px;
 }
 
 .not-support {

@@ -2,7 +2,7 @@
 
 exports[`FileCard should be rendered correctly 1`] = `
 <div
-  className="fileCardWrapper uui-loading"
+  className="flexCell fileCardWrapper uui-loading"
   style={
     Object {
       "alignSelf": undefined,
@@ -15,7 +15,7 @@ exports[`FileCard should be rendered correctly 1`] = `
   }
 >
   <div
-    className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+    className="root size-36 spacing-6 flex-row-background-none fileCardRow container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -24,7 +24,7 @@ exports[`FileCard should be rendered correctly 1`] = `
     }
   >
     <div
-      className="container uui-icon uui-enabled root icon-container-color-gray60 xlsColor"
+      className="container uui-icon uui-enabled xlsColor"
       style={Object {}}
     >
       <svg
@@ -34,7 +34,7 @@ exports[`FileCard should be rendered correctly 1`] = `
       />
     </div>
     <div
-      className=""
+      className="flexCell"
       style={
         Object {
           "alignSelf": undefined,
@@ -47,12 +47,12 @@ exports[`FileCard should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 fileName container"
+        className="uui-font-sans uui-text-gray60 root line-height-18 font-size-14 v-padding-0 fileName container"
       >
         Test
       </div>
       <div
-        className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 container"
+        className="uui-font-sans uui-text-gray60 root line-height-18 font-size-14 v-padding-0 container"
       >
         XLS, 
         0 Bytes of 
@@ -95,7 +95,7 @@ exports[`FileCard should be rendered correctly 1`] = `
 
 exports[`FileCard should be rendered correctly 2`] = `
 <div
-  className="fileCardWrapper uui-loading"
+  className="flexCell fileCardWrapper uui-loading"
   style={
     Object {
       "alignSelf": undefined,
@@ -108,7 +108,7 @@ exports[`FileCard should be rendered correctly 2`] = `
   }
 >
   <div
-    className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+    className="root size-36 spacing-6 flex-row-background-none fileCardRow container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -117,7 +117,7 @@ exports[`FileCard should be rendered correctly 2`] = `
     }
   >
     <div
-      className="container uui-icon uui-enabled root icon-container-color-gray60 docColor"
+      className="container uui-icon uui-enabled docColor"
       style={Object {}}
     >
       <svg
@@ -127,7 +127,7 @@ exports[`FileCard should be rendered correctly 2`] = `
       />
     </div>
     <div
-      className=""
+      className="flexCell"
       style={
         Object {
           "alignSelf": undefined,
@@ -140,12 +140,12 @@ exports[`FileCard should be rendered correctly 2`] = `
       }
     >
       <div
-        className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 fileName container"
+        className="uui-font-sans uui-text-gray60 root line-height-18 font-size-14 v-padding-0 fileName container"
       >
         Test
       </div>
       <div
-        className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 container"
+        className="uui-font-sans uui-text-gray60 root line-height-18 font-size-14 v-padding-0 container"
       >
         DOC, 
         0 Bytes of 
@@ -188,7 +188,7 @@ exports[`FileCard should be rendered correctly 2`] = `
 
 exports[`FileCard should be rendered correctly 3`] = `
 <div
-  className="fileCardWrapper"
+  className="flexCell fileCardWrapper"
   style={
     Object {
       "alignSelf": undefined,
@@ -201,7 +201,7 @@ exports[`FileCard should be rendered correctly 3`] = `
   }
 >
   <div
-    className="root size-36 background-none spacing-6 fileCardRow container align-items-top"
+    className="root size-36 spacing-6 flex-row-background-none fileCardRow container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -210,7 +210,7 @@ exports[`FileCard should be rendered correctly 3`] = `
     }
   >
     <div
-      className="container uui-icon uui-enabled root icon-container-color-gray60 imgColor"
+      className="container uui-icon uui-enabled imgColor"
       style={Object {}}
     >
       <svg
@@ -220,7 +220,7 @@ exports[`FileCard should be rendered correctly 3`] = `
       />
     </div>
     <div
-      className=""
+      className="flexCell"
       style={
         Object {
           "alignSelf": undefined,
@@ -233,12 +233,12 @@ exports[`FileCard should be rendered correctly 3`] = `
       }
     >
       <div
-        className="root font-sans text-color-gray80 line-height-18 font-size-14 v-padding-0 fileName container"
+        className="uui-font-sans uui-text-gray80 root line-height-18 font-size-14 v-padding-0 fileName container"
       >
         Test
       </div>
       <div
-        className="root font-sans text-color-gray60 line-height-18 font-size-14 v-padding-0 container"
+        className="uui-font-sans uui-text-gray60 root line-height-18 font-size-14 v-padding-0 container"
       >
         GIF, 
         12.25 KB
@@ -250,7 +250,7 @@ exports[`FileCard should be rendered correctly 3`] = `
       onMouseLeave={[Function]}
     >
       <button
-        className="container uui-button-box uui-enabled -clickable root icon-color-gray60"
+        className="container uui-button-box uui-enabled -clickable icon-button-gray60 root"
         onClick={[Function]}
         tabIndex={0}
         type="button"

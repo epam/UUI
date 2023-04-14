@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PickerInput } from "@epam/loveship";
-import { useArrayDataSource } from "@epam/uui";
+import { useArrayDataSource } from "@epam/uui-core";
 
 const languageLevels = [
     { "id": 2, "level": "A1" },

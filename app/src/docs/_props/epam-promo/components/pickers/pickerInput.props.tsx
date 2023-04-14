@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { PickerInputBaseProps } from '@epam/uui-components';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { PickerInput, PickerInputProps } from '@epam/promo';
-import { Button, LinkButton } from '@epam/promo';
-import { SearchInput } from '@epam/promo';
+import { PickerInputProps } from '@epam/uui';
+import { PickerInput, Button, LinkButton, FlexCell, Text, SearchInput } from '@epam/promo';
 import { iconDoc, iconOptionsDoc, iEditable, isDisabledDoc } from '../../docs';
 import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext } from '../../docs';
 import { pickerBaseOptionsDoc } from './common';
-import { FlexCell } from '@epam/promo';
-import { Text } from '@epam/promo';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc])
@@ -23,8 +20,8 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('maxItems', { examples: [0, 1, 5, 10, 50, 100, 1000] })
     .prop('minCharsToSearch', { examples: [0, 1, 3, 5] })
-    .prop('prefix', { examples: [ { value: 'Prefix: ' } ] })
-    .prop('suffix', { examples: [ { value: 'Suffix' } ] })
+    .prop('prefix', { examples: [{ value: 'Prefix: ' }] })
+    .prop('suffix', { examples: [{ value: 'Suffix' }] })
     .prop('editMode', { examples: ['dropdown', 'modal'], isRequired: false, defaultValue: 'dropdown' })
     .prop('isInvalid', { examples: [true] })
     .prop('isSingleLine', { examples: [true] })

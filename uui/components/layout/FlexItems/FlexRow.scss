@@ -14,10 +14,10 @@
 .root {
     // If we have an "border-box" value here, an size-24 row with a bottom border, will have 23px min-height.
     box-sizing: content-box;
+    background-color: var(--uui-flex-row-bg);
 
-    &:global(.-clickable):hover {
-        background-color: var(--surface-hover-color);
-        cursor: pointer;
+    &.border-bottom {
+        border-bottom: var(--uui-flex-row-border-bottom);
     }
 
     &.top-shadow {
@@ -108,10 +108,6 @@
 
     &.spacing-18 {
         @include items-spacing(18px);
-    }
-
-    &.border-bottom {
-        border-bottom: 1px solid var(--divider-color);
     }
 }
 

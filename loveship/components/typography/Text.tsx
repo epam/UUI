@@ -1,28 +1,19 @@
-import css from './Text.scss';
-import styles from '../../assets/styles/scss/loveship-color-vars.scss';
+import { withMods } from "@epam/uui-core";
+import { Text as UuiText, TextProps as UuiTextProps } from '@epam/uui';
 import * as types from '../types';
-import { Text as uuiText, TextProps } from '@epam/uui-components';
-import { withMods } from '@epam/uui-core';
-import { getTextClasses, TextSettings } from '../../helpers/textLayout';
 
-export interface TextMods extends TextSettings {
-    size?: types.TextSize | '42';
+export interface TextMods {
+    color?: 'night50' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
     font?: types.FontStyle;
-    color?: types.EpamColor;
 }
 
-function applyTextMods(mods: TextMods) {
-    const textClasses = getTextClasses({
-        size: mods.size || '36',
-        lineHeight: mods.lineHeight,
-        fontSize: mods.fontSize,
-    }, false);
+export type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;
 
-    return [
-        css.text,
-        css['font-' + (mods.font || 'sans')],
-        styles['color-' + (mods.color || 'night700')],
-    ].concat(textClasses);
-}
-
-export const Text = withMods<TextProps, TextMods>(uuiText, applyTextMods);
+export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
+    UuiText,
+    () => [],
+    (props) => ({
+        color: props.color ?? 'night700',
+        font: props.font ?? 'sans',
+    }) as TextProps,
+);

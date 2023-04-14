@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Lock context provides functionality to solve problems when you need to take control(lock) and perform some action when something is trying to get control(lock) for itself.   ",
+            "text": "Lock context provides functionality to solve problems when you need to take control(lock) and perform some action when something is trying to get control(lock) for itself. ",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In UUI, Lock context widely used with forms, for cases when user tries to leave the form with unsaved changes or triggers some action which depends on saved form results and required to save form before this action will be invoked(in lock context terminology - tried to acquire lock).",
+            "text": "In UUI, the Lock context is widely used with forms for cases when a user tries to leave the form with unsaved changes or triggers some action that depends on saved form results and is required to save the form before this action is invoked(in lock context terminology - tried to acquire the lock).",
             "marks": []
           }
         ]
@@ -35,7 +35,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Also Lock context subscribes on any router change and try to release current lock before this change.",
+            "text": "Also, Lock Context subscribes to any router change and tries to release the current lock before this change.\n",
             "marks": []
           }
         ]
@@ -80,7 +80,23 @@
                   },
                   {
                     "object": "text",
-                    "text": " — try to take a lock, and set tryRelease callback, which will be invoked when something will try to take over control. If lock already exist, it try to release current lock and then set new one;\n",
+                    "text": " — try to take a lock, and set ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "tryRelease",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " callback, which will be invoked when something tries to take control over. If lock already exists, it tries to release the current lock and then set a new one;\n",
                     "marks": []
                   }
                 ]
@@ -152,7 +168,7 @@
                       },
                       {
                         "object": "text",
-                        "text": " — try to release current lock, by calling ",
+                        "text": " — try to release the current lock, by calling the ",
                         "marks": []
                       },
                       {
@@ -262,7 +278,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " — try to acquire lock for the time ",
+                    "text": " — try to acquire a lock for the time ",
                     "marks": []
                   },
                   {

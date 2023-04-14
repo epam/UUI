@@ -4,7 +4,7 @@ import { Spinner } from '@epam/promo';
 export default function BasicAccordionExample() {
     return (
         <>
-            <Spinner color='blue' />
+            <Spinner />
         </>
     );
 }

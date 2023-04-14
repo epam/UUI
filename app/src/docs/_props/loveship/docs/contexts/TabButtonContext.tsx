@@ -20,7 +20,7 @@ export class TabButtonContext extends React.Component<DemoComponentProps<ButtonP
         return (
             <Panel margin='24' style={ { padding: '6px', background: props.theme === 'dark' ? '#21232e' : undefined } }>
                 <FlexCell width='auto' >
-                    <FlexRow borderBottom={ props.theme === 'dark' ? 'night700' : 'night400' } background='none' size='36' spacing={ null }>
+                    <FlexRow borderBottom background='none' size='36' spacing={ null }>
                         <DemoComponent
                             caption={ 'Main' }
                             onClick={ () => this.setTab('Main', props.onClick) }

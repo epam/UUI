@@ -2,12 +2,13 @@ import * as React from 'react';
 import dayjs, { Dayjs } from "dayjs";
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
-import { RangeDatePicker, RangeDatePickerProps } from '@epam/loveship';
+import { RangeDatePicker } from '@epam/loveship';
 import css from './RangeDatePicker.doc.scss';
 import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc } from '../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../docs';
 import { Button } from '@epam/loveship';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
+import { RangeDatePickerProps } from "@epam/uui";
 
 const getCustomDay = (day: Dayjs) => {
     return <>
@@ -35,7 +36,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
             },
         ],
     })
-    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY' })
+    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY', type: 'string' })
     .prop('filter', {
         examples: [
             {
@@ -93,7 +94,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                         <div className={ css.counter }>Days: { getRangeLength(value) }</div>
                     </div>
                     <div className={ css.buttonGroup }>
-                        <Button cx={ css.buttonContainer } caption="clear" color="carbon" fill="none" size="30" />
+                        <Button cx={ css.buttonContainer } caption="clear" color="night600" fill="none" size="30" />
                     </div>
                 </div>,
             },

@@ -32,8 +32,8 @@ describe('LazyListView', () => {
 
     let treeDataSource = new LazyDataSource({
         api: (rq, ctx) => ctx.parent
-            ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId }})
-            : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } }}),
+            ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
+            : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
     });
 
@@ -54,7 +54,7 @@ describe('LazyListView', () => {
 
     it('can load tree, which has incorrect (probably estimated) childrenCounts', async () => {
         let ds = treeDataSource;
-        let view = ds.getView(value, onValueChanged, { isFoldedByDefault: () => false });
+        let view = ds.getView(value, onValueChanged, { isFoldedByDefault: () => false, getParentId: (({ parentId }) => parentId) });
         expectViewToLookLike(view, [
             { isLoading: true },
             { isLoading: true },

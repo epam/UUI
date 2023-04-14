@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { cx, IDisableable, IEditable, ICanBeInvalid, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import { cx, IDisableable, IEditable, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import css from './BaseRating.scss';
 
-export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeInvalid, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     from?: number;
     to?: number;
     step?: 0.5 | 1;
@@ -129,7 +129,7 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
                 aria-valuemin={ this.props.from }
                 tabIndex={ 0 }
                 onKeyDown={ (e) => !isReadonly && this.onKeyDown(e) }
-                className={ cx(css.container, this.props.isDisabled && uuiMod.disabled, this.props.isInvalid && uuiMod.invalid, isReadonly && css.containerReadonly, this.props.cx) }
+                className={ cx(css.container, this.props.isDisabled && uuiMod.disabled, isReadonly && css.containerReadonly, this.props.cx) }
                 onMouseMove={ (e) => !isReadonly && this.onMouseMove(e) }
                 onMouseLeave={ () => !isReadonly && this.onMouseLeave() }
                 onMouseUp={ (e) => !isReadonly && this.onMouseUp(e) }

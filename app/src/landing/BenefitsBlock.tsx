@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FlexRow, Text } from '@epam/promo';
 import css from './BenefitsBlock.scss';
-import { cx } from '@epam/uui';
+import { cx } from '@epam/uui-core';
 import {svc} from "../services";
 import {analyticsEvents} from "../analyticsEvents";
 

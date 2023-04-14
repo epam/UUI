@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { DataSourceState, LazyDataSource, LazyDataSourceApi, DataQueryFilter, Lens } from '@epam/uui';
+import { DataSourceState, LazyDataSource, LazyDataSourceApi, DataQueryFilter, Lens } from '@epam/uui-core';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
-import { FlexRow, FlexCell, SearchInput, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text } from '@epam/loveship';
+import { FlexRow, FlexCell, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text, SearchInput } from '@epam/loveship';
 import { DemoDbRef, useDemoDbRef, PersonTableRecord } from './state';
 import { svc } from '../../services';
 import { PersonsTable } from './PersonsTable';

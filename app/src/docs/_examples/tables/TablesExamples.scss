@@ -1,4 +1,4 @@
-@import '~@epam/promo/assets/styles/colors';
+@import "~@epam/promo/assets/styles/colors";
 
 .container {
     height: 400px;
@@ -21,4 +21,8 @@
             visibility: visible;
         }
     }
+}
+
+.weekend-day {
+    background-color: #ebedf5;
 }

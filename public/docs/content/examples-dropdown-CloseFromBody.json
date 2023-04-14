@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can close dropdown by some action from body, for this use ",
+            "text": "You can close dropdown with some action from the body. For this, use the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": "  which passed as parameters in ",
+            "text": " function which passes as the parameter in the ",
             "marks": []
           },
           {

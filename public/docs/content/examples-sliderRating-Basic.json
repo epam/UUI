@@ -11,8 +11,53 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic SliderRating usage.",
-            "marks": []
+            "text": "Let’s see the b",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "asic SliderRating usage.",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
           }
         ]
       },
@@ -23,7 +68,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By passing ",
+            "text": "By passing the ",
             "marks": []
           },
           {
@@ -39,7 +84,7 @@
           },
           {
             "object": "text",
-            "text": " property you can provide your own tooltip render.",
+            "text": " property, you can provide your own tooltip render.",
             "marks": []
           }
         ]

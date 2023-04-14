@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import { Panel, TabButtonMods, FlexCell, FlexRow } from '@epam/promo';
+import { Panel, FlexCell, FlexRow } from '@epam/promo';
+import { TabButtonMods } from '@epam/uui';
 
 interface DemoComponentState {
     activeTab: 'Main' | 'demoTab' | 'Tools' | 'Options';

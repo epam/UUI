@@ -40,6 +40,10 @@ export const i18n = {
         pickerPlaceholderTo: 'To:',
     },
     tables: {
+        noResultsBlock: {
+            title: 'No results found',
+            message: 'We can’t find any item matching your request',
+        },
         columnsConfigurationModal: {
             applyButton: 'Apply',
             cancelButton: 'Cancel',

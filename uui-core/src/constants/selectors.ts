@@ -60,7 +60,8 @@ export const uuiMarkers = {
     draggable: '-draggable',
     scrolledLeft: '-scrolled-left',
     scrolledRight: '-scrolled-right',
-    scrolledVertical: '-scrolled-vertical',
+    scrolledTop: '-scrolled-top',
+    scrolledBottom: '-scrolled-bottom',
 } as const;
 
 export const uuiDndState = {

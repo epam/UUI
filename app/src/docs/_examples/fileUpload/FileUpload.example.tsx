@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { useUuiContext } from '@epam/uui-core';
 import { DropSpot, FileCard, FileCardItem } from '@epam/promo';
-import { useUuiContext } from '@epam/uui';
 import css from './FileUpload.scss';
 
 const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
@@ -47,7 +47,7 @@ export default function FileUploadExample() {
 
     return (
         <div className={ css.container }>
-            <DropSpot onUploadFiles={ uploadFile }/>
+            <DropSpot onUploadFiles={ uploadFile } infoText="Up to 15 files. Limit for 1 file is 50 Mb"/>
             <div className={ css.attachmentBlock }>
                 { attachments.map((file, index) => (
                     <FileCard key={ index } file={ file } onClick={ () => deleteFile(file) }/>

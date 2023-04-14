@@ -22,16 +22,16 @@ export class Day extends React.Component<DayProps> {
         return (
             <div
                 onClick={ isPassedFilter ? (() => this.props.onValueChange(this.props.value)) : undefined }
-                className={ cx(
+                className={ cx([
                     isPassedFilter && uuiDaySelection.clickable,
                     isPassedFilter && uuiMarkers.clickable,
                     isCurrent && uuiDaySelection.currentDay,
                     this.props.isSelected && uuiDaySelection.selectedDay,
                     this.props.filter && !this.props.filter(this.props.value) && uuiDaySelection.filteredDay,
-                    ...(this.props.getDayCX ? this.props.getDayCX(this.props.value) : []),
+                    this.props?.getDayCX && this.props.getDayCX(this.props.value),
                     uuiDaySelection.dayWrapper,
-                    this.props.isHoliday && uuiDaySelection.holiday
-                ) }
+                    this.props.isHoliday && uuiDaySelection.holiday,
+                ]) }
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >

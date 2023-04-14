@@ -1,8 +1,0 @@
-:global(.tooltip-vars) {
-    //noinspection CssInvalidFunction
-    --tooltip-shadow: var(--shadow, 0 1px 4px 0 rgba(44, 47, 60, 0.05), 0 2px 18px 0 rgba(44, 47, 60, 0.03)); // WebStorm Bag Report https://youtrack.jetbrains.com/issue/WEB-54442
-    --tooltip-arrow-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
-    --tooltip-bg-color: var(--surface-dark-color);
-    --tooltip-text-color: white;
-    --tooltip-border-radius: var(--border-radius);
-}

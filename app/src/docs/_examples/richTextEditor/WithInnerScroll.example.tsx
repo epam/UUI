@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
+import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
 import { Panel } from '@epam/promo';
-import { FileUploadResponse, useUuiContext } from '@epam/uui';
 import {
     SlateEditor, defaultPlugins,
     imagePlugin, videoPlugin, attachmentPlugin,

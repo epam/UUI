@@ -1,10 +1,10 @@
 @use  '../../assets/styles/index' as *;
 
 .sub-header-wrapper {
-    border-bottom: 1px solid var(--divider-color);
-    padding: 6px 24px;
+    //border-bottom: 1px solid var(--uui-divider);
+    padding: 0 24px;
 }
 
 .switch {
-    margin-bottom: 6px;
+    margin-bottom: 12px;
 }

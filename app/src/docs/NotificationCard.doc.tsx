@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4 } from '../common';
+import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI } from '../common';
 
 export class NotificationCardDoc extends BaseDocsBlock {
     title = 'Notification Card';
@@ -8,6 +8,7 @@ export class NotificationCardDoc extends BaseDocsBlock {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/overlays/notificationCard.props.tsx',
             [UUI4]: './app/src/docs/_props/epam-promo/components/overlays/notificationCard.props.tsx',
+            [UUI]: './app/src/docs/_props/uui/components/overlays/notificationCard.props.tsx',
         };
     }
 

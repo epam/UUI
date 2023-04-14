@@ -27,7 +27,23 @@
           },
           {
             "object": "text",
-            "text": " within text blocks. To apply link styles, wrap your text with link into ",
+            "text": " within text blocks. To apply link styles, wrap your content with ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Anchor",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " into the ",
             "marks": []
           },
           {

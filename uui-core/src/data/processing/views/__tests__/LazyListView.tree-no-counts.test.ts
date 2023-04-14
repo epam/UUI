@@ -41,8 +41,8 @@ describe('LazyListView', () => {
 
     let treeDataSource = new LazyDataSource({
         api: (rq, ctx) => ctx.parent
-            ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId }})
-            : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } }}),
+            ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
+            : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
     });
 
@@ -52,7 +52,7 @@ describe('LazyListView', () => {
     });
 
     it('testApi is ok', async () => {
-        let data = await testApi({ filter: { parentId: 100 }});
+        let data = await testApi({ filter: { parentId: 100 } });
         expect(data).toEqual({
             items: [
                 testDataById[110],
@@ -81,7 +81,7 @@ describe('LazyListView', () => {
 
     it('can load tree, unfold nodes, and scroll down', async () => {
         let ds = treeDataSource;
-        let view = ds.getView(value, onValueChanged, {});
+        let view = ds.getView(value, onValueChanged, { getParentId: ({ parentId }) => parentId });
         expectViewToLookLike(view, [
             { isLoading: true },
             { isLoading: true },
@@ -130,11 +130,11 @@ describe('LazyListView', () => {
         rows[0].onFold(rows[0]);
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
-            { id: 100         },
+            { id: 100 },
             { isLoading: true },
             { isLoading: true },
-            { id: 200         },
-            { id: 300         },
+            { id: 200 },
+            { id: 300 },
         ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to recieve exact rows count here
 
         await delay();

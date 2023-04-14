@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkButton, Text, FlexRow } from "@epam/promo";
-import { useUuiContext } from '@epam/uui';
+import { useUuiContext } from '@epam/uui-core';
 
 export default function ApiContextBaseExample() {
     const svc = useUuiContext();

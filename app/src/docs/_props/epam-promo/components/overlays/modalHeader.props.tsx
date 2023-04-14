@@ -11,7 +11,7 @@ const ModalHeaderDoc = new DocBuilder<ModalHeaderProps>({ name: 'ModalHeader', c
         examples: ['Text', { value: 'Very long text', isDefault: true }], type: 'string',
     })
     .prop('background', { examples: ['white', 'gray5', 'none'] })
-    .prop('borderBottom', { examples: [true, 'gray40'] })
+    .prop('borderBottom', { examples: [true, false] })
     .prop('padding', { examples: ['6', '12', '24'] })
     .prop('onClose', { examples: ctx => [ctx.getCallback('onClose')] })
     .prop('children', {

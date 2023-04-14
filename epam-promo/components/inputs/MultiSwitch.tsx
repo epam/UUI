@@ -1,36 +1,24 @@
-import * as React from 'react';
-import { IEditable, IHasRawProps } from '@epam/uui-core';
-import { ButtonProps } from '@epam/uui-components';
-import { ControlGroup } from '../layout';
-import { Button, ButtonMods } from '../buttons';
-import { SizeMod } from '../types';
+import React from 'react';
+import { withMods } from "@epam/uui-core";
+import { MultiSwitch as UuiMultiSwitch, UuiMultiSwitchColor, MultiSwitchProps as UuiMultiSwitchProps } from "@epam/uui";
 
-interface MultiSwitchItem<TValue> extends ButtonProps, ButtonMods {
-    id: TValue;
+export type MultiSwitchColor = 'blue' | 'gray50';
+
+export interface MultiSwitchMods {
+    color?: MultiSwitchColor;
 }
 
-export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    items: MultiSwitchItem<TValue>[];
-    color?: 'blue' | 'gray50';
-}
+const colorToMod: Record<MultiSwitchColor, UuiMultiSwitchColor> = {
+    'blue': 'primary',
+    'gray50': 'secondary',
+};
 
-function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
-    return (
-        <ControlGroup ref={ ref } rawProps={ { ...props.rawProps, role: 'tablist' } }>
-            { props.items.map((item, index) => (
-                <Button
-                    {  ...item }
-                    isDisabled={ props.isDisabled }
-                    key={ index + '-' + item.id }
-                    onClick={ () => props.onValueChange(item.id) }
-                    fill={ props.value === item.id ? 'solid' : 'white' }
-                    color={ props.color === 'gray50' && props.value === item.id ? 'blue' : props.color || 'blue' }
-                    size={ props.size }
-                    rawProps={ { 'aria-current': props.value === item.id, role: 'tab' } }
-                />
-            )) }
-        </ControlGroup>
-    );
-}
+export type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;
 
-export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) => JSX.Element;
+export const MultiSwitch = withMods<UuiMultiSwitchProps<any>, MultiSwitchMods>(
+    UuiMultiSwitch,
+    () => [],
+    (props) => ({
+        color: colorToMod[props.color ?? 'blue'],
+    }),
+) as <TValue>(props: MultiSwitchProps<TValue>) => JSX.Element;

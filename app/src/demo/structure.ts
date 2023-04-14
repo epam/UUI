@@ -7,6 +7,7 @@ import { RichTextEditorDemo } from "./RTE/RichTextEditorDemo";
 
 export interface DemoItem {
     id: string;
+    queryObject?: Record<string, any>;
     name: string;
     component?: any;
     source: string;
@@ -28,7 +29,12 @@ export const demoItems: DemoItem[] = [
         shortDescription: 'Shows how UUI Data Tables allow to display and navigate data sets. We also show how to add sidebars to configure filters, and to review each item’s detailed info. The demo shows common built-in table features.',
     },
     {
-        id: 'filteredTable', name: 'Filtered Table', component: FilteredTable, source: 'https://github.com/epam/UUI/tree/main/app/src/demo/tables/filteredTable', previewImage: '/static/images/DemoTable.png',
+        id: 'filteredTable',
+        queryObject: { page: 1, pageSize: 40, presetId: '-1'},
+        name: 'Filtered Table',
+        component: FilteredTable,
+        source: 'https://github.com/epam/UUI/tree/main/app/src/demo/tables/filteredTable',
+        previewImage: '/static/images/DemoTable.png',
         shortDescription: 'Shows support for advanced filter toolbar – including predicates (in/not in/less/greater than), and user-defined filter presets (tabs). This demo also uses paging instead of infinite-scrolling.',
     },
     {

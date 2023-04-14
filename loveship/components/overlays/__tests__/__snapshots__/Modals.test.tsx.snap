@@ -39,7 +39,7 @@ exports[`Modals should be rendered correctly 1`] = `
       role="modal"
     >
       <div
-        className="root size-36 background-none padding-24 vPadding-12 spacing-6 modalHeader container align-items-center"
+        className="root size-36 padding-24 vPadding-12 spacing-6 flex-row-background-none modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -52,7 +52,7 @@ exports[`Modals should be rendered correctly 1`] = `
         />
       </div>
       <div
-        className="root size-36 background-none padding-24 vPadding-24 spacing-12 modalFooter container align-items-center"
+        className="root size-36 padding-24 vPadding-24 spacing-12 flex-row-background-none modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -119,7 +119,7 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
       role="modal"
     >
       <div
-        className="root size-36 background-night50 padding-6 vPadding-12 border-bottom-night400 spacing-6 modalHeader container align-items-center"
+        className="root size-36 padding-6 vPadding-12 borderBottom spacing-6 flex-row-background-night50 modalHeader container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -128,7 +128,7 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
         }
       >
         <div
-          className="text font-sans-semibold color-night700 line-height-24 font-size-18 v-padding-12 container"
+          className="uui-font-sans-semibold uui-text-night800 root line-height-24 font-size-18 v-padding-12 container"
         >
           Test header
         </div>
@@ -136,7 +136,7 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
           className="flexSpacer"
         />
         <div
-          className=""
+          className="flexCell"
           style={
             Object {
               "alignSelf": undefined,
@@ -149,7 +149,7 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
           }
         >
           <button
-            className="container uui-button-box uui-enabled -clickable root color-night600"
+            className="container uui-button-box uui-enabled -clickable icon-button-night600 root"
             onClick={[Function]}
             tabIndex={0}
             type="button"
@@ -166,7 +166,7 @@ exports[`Modals should be rendered correctly with extra props 1`] = `
         </div>
       </div>
       <div
-        className="root size-36 background-white padding-18 vPadding-24 spacing-12 modalFooter container align-items-center"
+        className="root size-36 padding-18 vPadding-24 spacing-12 flex-row-background-white modalFooter container align-items-center"
         style={
           Object {
             "columnGap": undefined,

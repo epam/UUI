@@ -9,7 +9,7 @@ import {
     TextInput,
 } from "@epam/promo";
 import { Svg } from "@epam/uui-components";
-import { cx } from "@epam/uui";
+import { cx } from "@epam/uui-core";
 import { ReactComponent as Calendar } from "@epam/assets/icons/common/action-calendar-18.svg";
 // tslint:disable-next-line:no-import
 import css from "@epam/promo/assets/styles/typography.scss";

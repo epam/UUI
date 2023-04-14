@@ -3,6 +3,7 @@ const { PackageGraph } = require("@lerna/package-graph");
 const fs = require("fs");
 const path = require("path");
 const { readPackageJsonContentSync } = require("./packageJsonUtils");
+const { isRollupModule } = require('./moduleBuildUtils');
 
 module.exports = {
     assertRunFromModule, getAllLocalDependenciesInfo,
@@ -50,8 +51,12 @@ function getAllLocalDependenciesInfo(moduleName) {
         return getAllDeps(name);
     }
     const pMap = getAllMonorepoPackages();
-    const arr = getAllLocalDependencies(moduleName);
-    return arr.map(i => pMap[i])
+    if (moduleName) {
+        const arr = getAllLocalDependencies(moduleName);
+        return arr.map(i => pMap[i])
+    } else {
+        return Object.values(pMap);
+    }
 }
 
 /**
@@ -60,6 +65,9 @@ function getAllLocalDependenciesInfo(moduleName) {
  * @returns {boolean}
  */
 function isModuleBuilt(moduleRootDir) {
+    if (!isRollupModule(moduleRootDir)) {
+        return fs.existsSync(path.resolve(moduleRootDir, './build'));
+    }
     const pkgPath = path.resolve(moduleRootDir, './build/package.json');
     const pkgJsonExists = fs.existsSync(pkgPath);
     if (pkgJsonExists) {
@@ -71,7 +79,7 @@ function isModuleBuilt(moduleRootDir) {
 
 /**
  * Checks whether all dependencies of given module are built. Including all transitive dependencies.
- * @param moduleName
+ * @param [moduleName]
  * @returns {{isBuilt: boolean, modulesNotBuilt: array}}
  */
 function isAllLocalDependenciesBuilt(moduleName) {

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can provide metadata options for each row in pickerInput via ",
+            "text": "You can provide metadata options for each row in PickerInput via the ",
             "marks": []
           },
           {
@@ -27,12 +27,24 @@
           },
           {
             "object": "text",
-            "text": " prop. For example, you can say that row ",
+            "text": " prop. ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For example, to make row disabled you need to set ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "isDisabled",
+            "text": "isDisabled={ true }",
             "marks": [
               {
                 "object": "mark",
@@ -43,12 +55,12 @@
           },
           {
             "object": "text",
-            "text": " or ",
+            "text": " and ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "isSelectable",
+            "text": "isSelectable={ false }",
             "marks": [
               {
                 "object": "mark",
@@ -59,7 +71,19 @@
           },
           {
             "object": "text",
-            "text": ". For more options look to the ",
+            "text": " . ",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "For more options, look to the ",
             "marks": []
           },
           {

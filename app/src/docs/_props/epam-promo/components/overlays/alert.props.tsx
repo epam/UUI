@@ -9,12 +9,12 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
     .prop('children', {
         examples: [
             {
-                value: <Text size="24" fontSize='14'>Notification Text</Text>,
+                value: <Text size="30">Notification Text</Text>,
                 name: 'Short',
                 isDefault: true,
             },
             {
-                value: <Text size="24" fontSize='14'>Notification with some buttons and long long text</Text>,
+                value: <Text size="30">Notification with some buttons and long long text</Text>,
                 name: 'Long',
             },
         ],

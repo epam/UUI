@@ -86,6 +86,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             tabIndex: this.getTabIndex(),
             ref: this.props.forwardedRef,
             'aria-disabled': this.props.isDisabled,
+            disabled: this.props.isDisabled,
             ...this.props.rawProps,
         };
 

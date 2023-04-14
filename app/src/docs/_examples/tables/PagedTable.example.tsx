@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui-core';
 import { DataTable, Panel, Text, Paginator, FlexRow } from "@epam/promo";
-import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.scss';
 import { FlexSpacer } from '@epam/uui-components';

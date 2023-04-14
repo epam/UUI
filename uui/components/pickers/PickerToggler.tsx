@@ -5,7 +5,6 @@ import { TextPlaceholder } from '../typography';
 import { systemIcons } from '../../icons/icons';
 import { Tag } from '../widgets';
 import * as types from '../types';
-import '../../assets/styles/variables/pickers/pickerToggler.scss';
 import css from './PickerToggler.scss';
 
 const defaultSize = '36';
@@ -17,7 +16,6 @@ export interface PickerTogglerMods extends types.IHasEditMode {
 
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
-        'picker-toggler-vars',
         css.root,
         css['size-' + (mods.size || defaultSize)],
         css['mode-' + (mods.mode || defaultMode)],
@@ -52,14 +50,14 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
         }
     };
 
-    const renderItem = (row: DataRowProps<any, any>) => (
+    const renderItem = (row: DataRowProps<TItem, TId>) => (
         <Tag
-            key={ row.id }
+            key={ row.rowKey }
             caption={ getCaption(row) }
             tabIndex={ -1 }
             size={ props.size ? getPickerTogglerButtonSize(props.size) : '30' }
             onClear={ e => {
-                row.onCheck && row.onCheck(row);
+                row.onCheck?.(row);
                 e.stopPropagation();
             } }
             isDisabled={ props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled }

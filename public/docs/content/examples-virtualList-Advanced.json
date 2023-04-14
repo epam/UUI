@@ -54,7 +54,7 @@
           },
           {
             "object": "text",
-            "text": "hook in case you would like to build something own based on it.",
+            "text": "hook in case you would like to build something your own based on it.",
             "marks": []
           }
         ]
@@ -82,7 +82,7 @@
           },
           {
             "object": "text",
-            "text": " hook return the following api:",
+            "text": " hook returns the following api:",
             "marks": []
           }
         ]
@@ -120,7 +120,7 @@
                       },
                       {
                         "object": "text",
-                        "text": " - ref to scroll container. This should be a DOM Element, which has scrollbars within. We'll use this ref to calculate estimated height of the list precisely.",
+                        "text": " - ref to scroll container. This should be a DOM Element with scrollbars inside. We'll use this ref to calculate the estimated height of the list precisely.",
                         "marks": []
                       }
                     ]
@@ -150,7 +150,7 @@
                       },
                       {
                         "object": "text",
-                        "text": " - ref to list wrapper that is going to be virtualized.",
+                        "text": " - ref to the list wrapper that is going to be virtualized.",
                         "marks": []
                       }
                     ]
@@ -240,7 +240,7 @@
                       },
                       {
                         "object": "text",
-                        "text": " - must be applied to container as scroll event handler.",
+                        "text": " - must be applied to the container as a scroll event handler.",
                         "marks": []
                       }
                     ]
@@ -270,7 +270,7 @@
                       },
                       {
                         "object": "text",
-                        "text": " - to scroll to particular item.",
+                        "text": " - to scroll to a particular item.",
                         "marks": []
                       }
                     ]
@@ -286,7 +286,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "In this example we show how to make virtualized list in case when scrollContainer it's a whole page with header(which dont't need to be virtualized), with list of items inside.",
+                "text": "In this example, we show how to make a virtualized list when scrollContainer is a whole page with a header(which dont't need to be virtualized), with a list of items inside.",
                 "marks": []
               }
             ]

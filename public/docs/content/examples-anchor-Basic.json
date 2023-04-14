@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Basic Anchor usage on block nodes. In this example, we wrap some icons and set up href attributes to get target sources.",
+            "text": "Basic Anchor usage. In this example, we wrap some icons and set up href attributes to get target sources.",
             "marks": []
           }
         ]

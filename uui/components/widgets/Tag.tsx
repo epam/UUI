@@ -1,8 +1,6 @@
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
-import buttonCss from '../buttons/Button.scss';
-import '../../assets/styles/variables/widgets/tag.scss';
 import css from './Tag.scss';
 
 const defaultSize = '36';
@@ -16,18 +14,20 @@ const mapSize = {
     '18': '18',
 };
 
+export type TagSize = '18' | '24' | '30' | '36' | '42' | '48';
+
 export interface TagMods {
-    size?: '18' | '24' | '30' | '36' | '42' | '48';
+    size?: TagSize;
 }
 
 export function applyTagMods(mods: TagMods) {
     return [
-        buttonCss.root,
-        'tag-vars',
         css['size-' + (mods.size || defaultSize)],
         css.root,
     ];
 }
+
+export type TagProps = ButtonProps & TagMods;
 
 export const Tag = withMods<ButtonProps, TagMods>(
     Button,

@@ -36,3 +36,6 @@ next-app/.vercel
 next-app/npm-debug.log*
 next-app/yarn-debug.log*
 next-app/yarn-error.log*
+
+.templates
+.reports

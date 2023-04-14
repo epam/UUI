@@ -28,7 +28,7 @@ export function ScrollSpyDemo() {
                 <Text size='48' font='sans-semibold'>Scroll Spy</Text>
                 <FlexSpacer />
             </FlexRow>
-            <FlexRow padding='24' borderBottom='gray40' background='none' >
+            <FlexRow padding='24' borderBottom background='none' >
                 <TabButton
                     caption={ Pages.Form }
                     isLinkActive={ page === Pages.Form }

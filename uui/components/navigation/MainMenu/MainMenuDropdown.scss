@@ -1,0 +1,20 @@
+.dropdown-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    background-color: var(--uui-main_menu-dropdown-bg);
+
+    :global(.-clickable) {
+        &:global(.uui-button-box):hover {
+            background-color: var(--uui-main_menu-bg);
+        }
+    }
+
+    :global(.uui-button-box) {
+        &:global(.uui-active) {
+            border: none;
+            border-left: 3px solid var(--uui-main_menu-border-active);
+            background-color: var(--uui-main_menu-bg);
+        }
+    }
+}

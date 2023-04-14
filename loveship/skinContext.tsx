@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps } from '@epam/uui-core';
-import { Checkbox, FlexRow, FlexCell, TextInput, Spinner, Button, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, LabeledInput, IconButton, EpamColor, IconButtonProps, ColumnPickerFilter, DatePicker, RangeDatePicker, FilterItemBody } from "./components";
+import { DatePicker, RangeDatePicker, FlexCell, Spinner } from '@epam/uui';
+import { Checkbox, FlexRow, TextInput, Button, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, LabeledInput, IconButton, EpamColor, IconButtonProps } from "./components";
 
 const buttonTypeToColor: { [key: string]: EpamColor } = {
     'success': 'grass',
@@ -32,11 +33,8 @@ export const skinContext: ISkin = {
     ModalWindow: skinComponent(ModalWindow),
     ModalBlocker: skinComponent(ModalBlocker, props => ({ blockerShadow: "dark" as const, ...props})),
     ModalFooter: skinComponent(ModalFooter),
-    ModalHeader: skinComponent(ModalHeader, props => ({ borderBottom: "night50" as const, ...props })),
+    ModalHeader: skinComponent(ModalHeader, props => ({ borderBottom: true as const, ...props })),
     LabeledInput: skinComponent(LabeledInput, props => ({ size: '36' as const, ...props })),
-    // @ts-ignore
-    ColumnPickerFilter: skinComponent(ColumnPickerFilter),
-    FilterItemBody: skinComponent(FilterItemBody),
     DatePicker: skinComponent(DatePicker),
     RangeDatePicker: skinComponent(RangeDatePicker),
 };

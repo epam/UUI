@@ -5,7 +5,7 @@ import {
     IDisableable, IAnalyticableClick, IHasCX, IClickable,
 } from '@epam/uui-core';
 import { Text, FlexRow, Anchor, Dropdown, FlexSpacer, DropdownContainer, IconContainer } from '@epam/uui-components';
-import { Switch } from '../inputs';
+import { Switch } from '@epam/uui';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
 import css from './DropdownMenu.scss';
@@ -193,6 +193,8 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
         <Dropdown
             openOnHover={ props.openOnHover || true }
             closeOnMouseLeave="boundary"
+            openDelay={ 400 }
+            closeDelay={ 400 }
             placement="right-start"
             renderBody={ (dropdownProps) => (
                 <DropdownMenuBody

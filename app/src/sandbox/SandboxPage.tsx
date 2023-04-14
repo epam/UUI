@@ -18,6 +18,7 @@ import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
 import { Skills } from './skills';
 import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
+import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 
 export const SandboxPage = () => {
     const items = useMemo(() => [
@@ -26,10 +27,11 @@ export const SandboxPage = () => {
         { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
         { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
         { id: 'projectDemo', name: 'Project Table', component: ProjectDemo },
+        { id: 'projectTasksDemo', name: 'Project Tasks Demo', component: ProjectTasksDemo },
         { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
         { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
         { id: 'responsive', name: 'Responsive', component: Responsive },
-        { id: 'uui-v_theming', name: 'UUI-V Theming', component: ThemeDemo },
+        { id: 'uui_theming', name: 'UUI Theming', component: ThemeDemo },
         { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
         { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
         { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },

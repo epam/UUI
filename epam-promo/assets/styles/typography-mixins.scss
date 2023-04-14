@@ -85,6 +85,7 @@
         display: inline-flex;
         align-items: center;
         color: $blue;
+        text-decoration: underline;
 
         &:visited {
             color: #5214CC;
@@ -95,7 +96,6 @@
         }
 
         &:hover {
-            text-decoration: underline;
             color: $blue-dark;
         }
     }

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "AnalyticsContext provides solution to send analytics events to ",
+            "text": "AnalyticsContext provides the solution for sending analytics events to ",
             "marks": []
           },
           {
@@ -30,7 +30,7 @@
           },
           {
             "object": "text",
-            "text": " or any other analytic system. ",
+            "text": " or any other analytic system. ",
             "marks": []
           }
         ]
@@ -42,7 +42,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Out of box, we automatically track following events for GA:",
+            "text": "Out of the box, we automatically track the following events for GA:",
             "marks": []
           }
         ]
@@ -63,9 +63,16 @@
                 "data": {},
                 "nodes": [
                   {
-                    "object": "text",
-                    "text": "Page views (on first load and on react-router url change)",
-                    "marks": []
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "Page views (on the first load and on react-router URL change)",
+                        "marks": []
+                      }
+                    ]
                   }
                 ]
               }
@@ -82,28 +89,35 @@
                 "data": {},
                 "nodes": [
                   {
-                    "object": "text",
-                    "text": "Api calls timings and errors (you need to use our ",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "/documents?category=contexts&id=apiContext"
-                    },
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
                     "nodes": [
                       {
                         "object": "text",
-                        "text": "api context",
+                        "text": "API calls timings and errors (you need to use our ",
+                        "marks": []
+                      },
+                      {
+                        "object": "inline",
+                        "type": "link",
+                        "data": {
+                          "url": "https://uui.epam.com/documents?category=contexts&id=apiContext"
+                        },
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "api context",
+                            "marks": []
+                          }
+                        ]
+                      },
+                      {
+                        "object": "text",
+                        "text": ")",
                         "marks": []
                       }
                     ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ")",
-                    "marks": []
                   }
                 ]
               }
@@ -118,7 +132,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Also we provide manual event tracking for user actions like clicks, input changes and etc. You can configure it via corresponding props in components, for example - ",
+            "text": "Also, we provide manual event tracking for user actions like clicks, input changes, etc. You can configure it via corresponding props in components, for example - ",
             "marks": []
           },
           {
@@ -134,14 +148,14 @@
           },
           {
             "object": "text",
-            "text": " on ",
+            "text": " on the ",
             "marks": []
           },
           {
             "object": "inline",
             "type": "link",
             "data": {
-              "url": "/documents?category=components&id=button"
+              "url": "https://uui.epam.com/documents?id=button&mode=doc&skin=UUI4_promo&category=components"
             },
             "nodes": [
               {

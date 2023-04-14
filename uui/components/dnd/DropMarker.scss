@@ -1,0 +1,61 @@
+@use '../../assets/styles/index' as *;
+
+.blocker {
+    //background-color: var(--uui-drop-marker-blocked);
+    opacity: 0.1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.marker {
+    --uui-drop-marker-offset: -1px;
+    --uui-drop-marker-width: 2px;
+
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.top {
+    top: var(--uui-drop-marker-offset);
+    left: 0;
+    right: 0;
+    height: var(--uui-drop-marker-width);
+    background-color: var(--uui-drop-marker);
+}
+
+.bottom {
+    bottom: var(--uui-drop-marker-offset);
+    left: 0;
+    right: 0;
+    height: var(--uui-drop-marker-width);
+    background-color: var(--uui-drop-marker);
+}
+
+.left {
+    top: 0;
+    bottom: 0;
+    left: var(--uui-drop-marker-offset);
+    width: var(--uui-drop-marker-width);
+    background-color: var(--uui-drop-marker);
+}
+
+.right {
+    top: 0;
+    bottom: 0;
+    right: var(--uui-drop-marker-offset);
+    width: var(--uui-drop-marker-width);
+    background-color: var(--uui-drop-marker);
+}
+
+.inside {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: var(--uui-drop-marker-width) solid var(--uui-drop-marker);
+    background-color: rgba(255, 255, 255, 0.5);
+}

@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Preset renders correctly when not in rename mode and active 1`] = `
+<div
+  className="flexCell"
+  style={
+    Object {
+      "alignSelf": "center",
+      "flexBasis": "auto",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": 0,
+      "textAlign": undefined,
+    }
+  }
+>
+  <button
+    className="container uui-button-box uui-enabled uui-active root size-60 uui-no-left-icon uui-has-right-icon preset activePreset"
+    onClick={[Function]}
+    role="tab"
+    tabIndex={-1}
+    type="button"
+  >
+    <div
+      className="uui-caption"
+    >
+      Test Preset
+    </div>
+    <div
+      className="container uui-icon uui-enabled"
+      style={Object {}}
+    >
+      <button
+        className="container uui-button-box uui-enabled -clickable icon-button-info root"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
+      </button>
+    </div>
+  </button>
+</div>
+`;
+
+exports[`Preset renders correctly when not in rename mode and not active 1`] = `
+<div
+  className="flexCell"
+  style={
+    Object {
+      "alignSelf": "center",
+      "flexBasis": "auto",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": 0,
+      "textAlign": undefined,
+    }
+  }
+>
+  <button
+    className="container uui-button-box uui-enabled uui-active root size-60 uui-no-left-icon uui-has-right-icon preset activePreset"
+    onClick={[Function]}
+    role="tab"
+    tabIndex={-1}
+    type="button"
+  >
+    <div
+      className="uui-caption"
+    >
+      Test Preset
+    </div>
+    <div
+      className="container uui-icon uui-enabled"
+      style={Object {}}
+    >
+      <button
+        className="container uui-button-box uui-enabled -clickable icon-button-info root"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <div
+          className="container uui-icon uui-enabled"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
+      </button>
+    </div>
+  </button>
+</div>
+`;

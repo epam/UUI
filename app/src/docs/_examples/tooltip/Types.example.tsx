@@ -8,7 +8,7 @@ import css from './TypesExample.scss';
 export default function TypesTooltipExample() {
     const renderTypesMarkup = () => <RichTextView>
         <h5>Infotip</h5>
-        <p>Infotip has a title and description? that can have up to 3 rows.</p>
+        <p>Infotip has a title and description, that can have up to 3 rows.</p>
     </RichTextView>;
 
     return (
@@ -23,7 +23,7 @@ export default function TypesTooltipExample() {
                     <span className={ css.permissionText } >Permissions</span>
                 </RichTextView>
                 <Tooltip content='Default tooltip. Can be inside as one row as 3 rows of text' placement='bottom' >
-                    <IconContainer icon={ infoIcon } color='blue' />
+                    <IconContainer icon={ infoIcon } cx={ css.iconBlue } />
                 </Tooltip>
             </FlexRow>
 
@@ -33,7 +33,7 @@ export default function TypesTooltipExample() {
 
             <Text fontSize='14' cx={ css.secondColumn }>Compact tooltip normally uses to deliver small hint, 1-4 words</Text>
             <Text fontSize='14' cx={ css.secondColumn }>Default tooltip use to deliver important hint, that can have a sentence mostly</Text>
-            <Text fontSize='14' cx={ css.secondColumn }>Infotip uses to deliver a hint in a more structured way, as it has a title (eg. start from action name)</Text>
+            <Text fontSize='14' cx={ css.secondColumn }>Infotip uses to deliver a hint in a more structured way, as it has a title (e.g. start from action name)</Text>
         </div>
     );
 }

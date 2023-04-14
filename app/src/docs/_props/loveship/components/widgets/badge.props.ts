@@ -1,10 +1,9 @@
-import { Badge, BadgeMods } from '@epam/loveship';
+import { Badge, BadgeMods, BadgeProps } from '@epam/loveship';
 import { basicPickerTogglerDoc, DocBuilder, dropdownTogglerDoc, onClickDoc } from '@epam/uui-docs';
-import { ButtonProps } from '@epam/uui-components';
 import { colorDoc, DefaultContext, FormContext, iconDoc, iconOptionsDoc, ResizableContext } from '../../docs';
 import { allBorderStyles } from '@epam/loveship';
 
-const badgeDoc = new DocBuilder<ButtonProps & BadgeMods>({ name: 'Badge', component: Badge })
+const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', component: Badge })
     .implements([colorDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc])
     .prop('caption', { examples: [
         { value: 'Badge', isDefault: true },

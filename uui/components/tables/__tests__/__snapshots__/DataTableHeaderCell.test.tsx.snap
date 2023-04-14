@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataTableHeaderCell should be rendered correctly 1`] = `
+<div
+  aria-sort="none"
+  className="flexCell uui-table-header-cell cell size-36 padding-left-24"
+  onClick={[Function]}
+  role="columnheader"
+  style={
+    Object {
+      "alignSelf": undefined,
+      "flexBasis": "150px",
+      "flexGrow": undefined,
+      "flexShrink": undefined,
+      "minWidth": "150px",
+      "textAlign": undefined,
+    }
+  }
+>
+  <div
+    className="tooltipWrapper"
+  >
+    <div
+      className="iconCell align-undefined uui-table-header-caption-wrapper"
+    >
+      <div
+        className="uui-font-regular uui-text-primary root line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
+      >
+        Test
+      </div>
+    </div>
+  </div>
+</div>
+`;

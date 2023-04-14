@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For automatically api calls error handling you need to use — ",
+            "text": "For automatic API calls error handling, you need to use the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " API context method, which will report errors in the context.",
+            "text": " API context method, which will report errors in the Context.",
             "marks": []
           }
         ]
@@ -39,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Also you need to wrap your application into UUI ",
+            "text": "Also, you need to wrap your application into UUI ",
             "marks": []
           },
           {
@@ -58,7 +58,7 @@
           },
           {
             "object": "text",
-            "text": " and ",
+            "text": ", and ",
             "marks": []
           },
           {
@@ -74,23 +74,7 @@
           },
           {
             "object": "text",
-            "text": " components, which will subscribe to the api and error contexts reported errors and replaces ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "ErrorHandler",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " children with appropriate error screen or starts recovery process depends on error type.",
+            "text": " component, which will subscribe to the API and error contexts reported errors and replaces ErrorHandler children with appropriate error screen or starts the recovery process depending on the error type.",
             "marks": []
           }
         ]
@@ -102,7 +86,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "By default ",
+            "text": "By default, ",
             "marks": []
           },
           {
@@ -118,7 +102,7 @@
           },
           {
             "object": "text",
-            "text": " will handle errors by itself, but you can customize it via options for ",
+            "text": " will handle errors by itself, but you can customize it via options for the ",
             "marks": []
           },
           {
@@ -134,7 +118,7 @@
           },
           {
             "object": "text",
-            "text": " method , there are 3 error handling types:",
+            "text": " method. There are three types of handling errors:",
             "marks": []
           }
         ]
@@ -156,7 +140,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "manual - you need to handle error by yourself, UUI will do nothing and just reject promise with error;",
+                    "text": "manual - you need to handle the error by yourself. UUI will do nothing and reject the promise with an error.",
                     "marks": []
                   }
                 ]
@@ -175,23 +159,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "page - default behavior, ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "ErrorHandler",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " will replace children with error screen;",
+                    "text": "page - default behavior, ErrorHandler will replace children with an error screen.",
                     "marks": []
                   }
                 ]
@@ -210,7 +178,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "notification - shows content from api response ",
+                    "text": "notification - shows content from API response ",
                     "marks": []
                   },
                   {
@@ -226,7 +194,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " field into notification card. It's often used to handle some not critical, expected by business logic errors",
+                    "text": " field into notification card. It's often used to handle some non-critical, expected business logic errors.",
                     "marks": []
                   }
                 ]
@@ -242,7 +210,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this example we demonstrate handling of some errors with different error hanging types",
+            "text": "In this example, we demonstrate handling some errors with different error-hanging types.",
             "marks": []
           }
         ]

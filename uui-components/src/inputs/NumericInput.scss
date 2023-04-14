@@ -28,6 +28,8 @@
         }
 
         :global(.uui-numeric-input-up-button), :global(.uui-numeric-input-down-button) {
+            user-select: none;
+
             &:hover {
                 cursor: pointer;
             }

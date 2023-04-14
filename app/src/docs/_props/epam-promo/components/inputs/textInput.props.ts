@@ -1,10 +1,8 @@
 import { DocBuilder } from '@epam/uui-docs';
-import { TextInputProps } from '@epam/uui-components';
-import { TextInput, TextInputMods } from '@epam/promo';
+import { TextInput, TextInputProps } from '@epam/promo';
 import { DefaultContext, dropdownTogglerDoc, FormContext, iconDoc, iconOptionsDoc, iEditable, IHasEditModeDoc,
     iHasPlaceholder, isDisabledDoc, isInvalidDoc, isReadonlyDoc, onClickDoc, ResizableContext, TableContext } from '../../docs';
-
-const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'TextInput', component: TextInput })
+const TextInputDoc = new DocBuilder<TextInputProps>({ name: 'TextInput', component: TextInput })
     .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
     .implements([onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, IHasEditModeDoc])
     .prop('maxLength', { examples: [10, 20, 30], type: 'number' })

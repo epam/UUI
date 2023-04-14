@@ -16,7 +16,7 @@
           },
           {
             "object": "text",
-            "text": "validateOn: 'onchange'",
+            "text": "validateOn: 'onchange",
             "marks": [
               {
                 "object": "mark",
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " .",
+            "text": "' .",
             "marks": []
           }
         ]
@@ -39,7 +39,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this validation mode the initial value and the changed value are compared, and a validation message are displayed for invalid and changed fields only. ",
+            "text": "In this validation mode, the initial and changed values are compared, and a validation message is displayed for changed fields only.",
             "marks": []
           }
         ]
@@ -51,7 +51,23 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Rest fields are validate on the save.",
+            "text": "By clicking on the save button, all fields will be validated like in the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "validateOn: save",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " mode.",
             "marks": []
           }
         ]

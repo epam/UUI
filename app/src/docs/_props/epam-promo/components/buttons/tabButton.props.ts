@@ -1,4 +1,5 @@
-import { TabButton, TabButtonMods } from '@epam/promo';
+import { TabButton } from '@epam/promo';
+import { TabButtonMods } from '@epam/uui';
 import { DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import { onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iconDoc, iconOptionsDoc } from '../../docs';

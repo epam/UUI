@@ -1,5 +1,5 @@
 import React from 'react';
-import { IModal, INotification, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui';
+import { IModal, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { Country } from '@epam/uui-docs';
 import {
     ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput,
@@ -105,7 +105,7 @@ export default function ModalWithFormExampleToggler() {
                     <SuccessNotification { ...props } >
                         <Text>Data has been saved!</Text>
                         <Text>Person: { JSON.stringify(person) }</Text>
-                    </SuccessNotification>, { duration: 2 })
+                    </SuccessNotification>, { duration: 2 }),
                 )
             }
         />

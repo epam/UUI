@@ -54,10 +54,4 @@
             fill: var(--fill-color-disabled);
         }
     }
-
-    &:global(.uui-invalid) {
-        :global(.uui-rating-star) {
-            fill: var(--fill-color-invalid);
-        }
-    }
 }

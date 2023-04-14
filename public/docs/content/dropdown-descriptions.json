@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Dropdown components provide functionality when you need to open an overlay by clicking or hovering on toggler.",
+            "text": "Dropdown components provide functionality when opening an overlay by clicking or hovering on the toggler.",
             "marks": [
               {
                 "object": "mark",
@@ -118,7 +118,7 @@
           },
           {
             "object": "text",
-            "text": "component, because it necessary for correct dropdown component work.",
+            "text": "component, because it's necessary for correct dropdown component work.",
             "marks": [
               {
                 "object": "mark",
@@ -163,7 +163,7 @@
           },
           {
             "object": "text",
-            "text": " Make sure the target of your Dropdown work correctly with refs. The ",
+            "text": " Make sure the target of your Dropdown works correctly with refs. The ",
             "marks": []
           },
           {
@@ -179,18 +179,7 @@
           },
           {
             "object": "text",
-            "text": "  ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "callback returns an object, containing a ",
+            "text": " callback returns an object containing a ",
             "marks": []
           },
           {
@@ -206,7 +195,23 @@
           },
           {
             "object": "text",
-            "text": " property for your target component. If the ref is not exposed correctly (either not pointing to a DOM element or ignored), the Dropdown will not be able to work as expected.",
+            "text": " property for your target component. If the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ref",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " is not exposed correctly (either not pointing to a DOM element or ignored), the Dropdown will not be able to work as expected.",
             "marks": []
           }
         ]

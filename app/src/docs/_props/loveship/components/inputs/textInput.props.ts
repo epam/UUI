@@ -2,11 +2,11 @@ import { DocBuilder } from '@epam/uui-docs';
 import { TextInputProps } from '@epam/uui-components';
 import { TextInput, TextInputMods } from '@epam/loveship';
 import { DefaultContext, dropdownTogglerDoc, FormContext, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder,
-    isDisabledDoc, isInvalidDoc, isReadonlyDoc, modeDoc, onClickDoc, ResizableContext, TableContext, textSettingsDoc } from '../../docs';
+    isDisabledDoc, isInvalidDoc, isReadonlyDoc, modeDoc, onClickDoc, ResizableContext, TableContext } from '../../docs';
 
 const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'TextInput', component: TextInput })
     .prop('size', { examples: ['60', '48', '42', '36', '30', '24'], defaultValue: '36' })
-    .implements([textSettingsDoc, onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, modeDoc])
+    .implements([onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, modeDoc])
     .prop('maxLength', { examples: [10, 20, 30], type: 'number' })
     .prop('prefix', { examples: [{ value: 'Prefix: ' }] })
     .prop('suffix', { examples: [{ value: 'Suffix' }] })

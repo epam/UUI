@@ -1,6 +1,6 @@
 import { ModuleItem } from './DndModule';
 import { SectionItem } from './DndSection';
-import { getOrderBetween } from '@epam/uui';
+import { getOrderBetween } from '@epam/uui-core';
 
 const demoText = 'So you have your new digital camera and clicking away to glory anything and\n' +
     ' everything in sight. Now you want to print them and you need the best photo printers to\n' +

@@ -1,5 +1,7 @@
-import { DataRowProps, IEditable, DataSourceState,
-    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps } from "../../../types";
+import {
+    DataRowProps, IEditable, DataSourceState,
+    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps, DataRowPathItem
+} from "../../../types";
 import isEqual from 'lodash.isequal';
 import { BaseListView } from "./BaseListView";
 import { ListApiCache } from '../ListApiCache';
@@ -68,7 +70,6 @@ interface LoadResult<TItem, TId, TFilter> {
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
     public value: DataSourceState<TFilter, TId> = null;
-    private tree: Tree<TItem, TId>;
     private hasMoreRows: boolean = true;
     private cache: ListApiCache<TItem, TId, TFilter>;
     private isUpdatePending = false;
@@ -106,7 +107,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public update(newValue: DataSourceState<TFilter, TId>, props: LazyListViewProps<TItem, TId, TFilter>): void {
         this.isUpdatePending = true;
 
-        if (!isEqual(newValue.checked, this.value?.checked)) {
+        if (!isEqual(newValue?.checked, this.value?.checked)) {
             this.updateCheckedLookup(newValue.checked);
         }
 
@@ -193,7 +194,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     public getById = (id: TId, index: number) => {
         const item = this.cache.byId(id);
         if (item !== null) {
-            return this.getRowProps(item, index, []);
+            return this.getRowProps(item, index);
         } else {
             return this.getLoadingRow('_loading_' + id, index, []);
         }
@@ -278,9 +279,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             return { isUpdated, isOutdated, tree: newTree };
 
-        } catch(e) {
+        } catch (e) {
             // TBD - correct error handling
-            console.log("LazyListView: Error while loading items");
+            console.error("LazyListView: Error while loading items.", e);
             return { isUpdated: false, isOutdated: false, tree: loadingTree };
         }
     }
@@ -295,9 +296,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const iterateNode = (
             parentId: TId,
             appendRows: boolean, // Will be false, if we are iterating folded nodes.
-                                 // We still need to iterate them to get their stats. E.g if there are any item of if any item inside is checked.
-            parents: DataRowProps<TItem, TId>[], // Parents from top to lower level
             estimatedCount: number = null,
+            indent: number = 0,
         ) => {
             let addedCount = 0;
             let stats = {
@@ -312,14 +312,18 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             const nodeInfo = this.tree.getNodeInfo(parentId);
 
             const ids = this.tree.getChildrenIdsByParentId(parentId);
+            if (ids.includes(parentId)) {
+                throw new Error(`LazyListView: element with parentId = ${ parentId } was specified as its own child. Possibly, you API is requesting wrong data.`);
+            }
 
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);
-                const row = this.getRowProps(item, index, parents);
 
+                const row = this.getRowProps(item, index);
                 if (appendRows && index < lastIndex) {
                     rows.push(row);
+                    row.indent = indent + 1;
                     layerRows.push(row);
                     index++;
                     addedCount++;
@@ -340,7 +344,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
                 row.isFoldable = false;
                 row.isLastChild = (n == ids.length - 1) && (nodeInfo.count === ids.length);
-
                 if (!flatten && this.props.getChildCount) {
                     let estimatedChildrenCount = this.props.getChildCount(item);
                     const childrenIds = this.tree.getChildrenIdsByParentId(id);
@@ -356,10 +359,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         row.isFolded = this.isFolded(item);
                         row.onFold = row.isFoldable && this.handleOnFold;
 
-                        const parentsWithRow = [...parents, row];
-
                         if (childrenIds.length > 0) { // some children are loaded
-                            const childStats = iterateNode(id, appendRows && !row.isFolded, parentsWithRow, estimatedChildrenCount);
+                            const childStats = iterateNode(id, appendRows && !row.isFolded, estimatedChildrenCount, indent + 1);
                             row.isChildrenChecked = childStats.isSomeChecked;
                             row.isChildrenSelected = childStats.isSomeSelected;
                             stats.isSomeCheckable = stats.isSomeCheckable || childStats.isSomeCheckable;
@@ -367,8 +368,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                             stats.isAllChecked = stats.isAllChecked && childStats.isAllChecked;
                             stats.hasMoreRows = stats.hasMoreRows || childStats.hasMoreRows;
                         } else { // children are not loaded
-                            // stats.isAllChecked = false;
-                            // stats.hasMoreRows = true;
+                            const parentsWithRow = [...row.path, this.tree.getPathItem(item)];
 
                             if (!row.isFolded && appendRows) {
                                 for (let m = 0; m < estimatedChildrenCount && index < lastIndex; m++) {
@@ -384,6 +384,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     }
                 }
             }
+
+            const pathToParent = this.tree.getPathById(parentId);
+            const path = parentId ? [...pathToParent, this.tree.getPathItem(this.tree.getById(parentId))] : pathToParent;
 
             if (appendRows) {
                 let missingCount: number;
@@ -409,7 +412,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
                 // Append loading rows, stop at lastIndex (last row visible)
                 while (index < lastIndex && missingCount > 0) {
-                    const row = this.getLoadingRow('_loading_' + index, index, parents);
+                    const row = this.getLoadingRow('_loading_' + index, index, path);
                     rows.push(row);
                     layerRows.push(row);
                     index++;
@@ -418,15 +421,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                 }
             }
 
-            const isListFlat = parents.length === 0 && !layerRows.some(r => r.isFoldable);
-
-            const indent = isListFlat ? 0 : parents.length + 1;
-            layerRows.forEach(r => r.indent = indent);
-
+            const isListFlat = path.length === 0 && !layerRows.some(r => r.isFoldable);
+            if (isListFlat || flatten) {
+                layerRows.forEach(r => r.indent = 0);
+            }
             return stats;
         };
 
-        const rootStats = iterateNode(undefined, true, []);
+        const rootStats = iterateNode(undefined, true);
 
         if (rootStats.isSomeCheckable && this.isSelectAllEnabled()) {
             this.selectAll = {
@@ -481,7 +483,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             {
                 cascade: isRoot || this.props.cascadeSelection,
                 isSelectable: (item: TItem) => {
-                    const { isCheckable } = this.getRowProps(item, null, []);
+                    const { isCheckable } = this.getRowProps(item, null);
                     return isCheckable;
                 }
             }
@@ -525,7 +527,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         let rowsCount: number;
         let totalCount: number;
-        let exactRowsCount: number;
         let lastVisibleIndex = this.value.topIndex + this.value.visibleCount;
         let rootInfo = this.tree.getNodeInfo(undefined);
         let rootCount = rootInfo.count;
@@ -533,14 +534,12 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (!this.props.getChildCount && rootCount) {
             // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
             rowsCount = rootCount;
-            exactRowsCount = rootCount;
             totalCount = rootCount;
         } else if (!this.hasMoreRows) {
             // We are at the bottom of the list. Some children might still be loading, but that's ok - we'll re-count everything after we load them.
             rowsCount = this.rows.length;
-            exactRowsCount = this.rows.length;
             totalCount = this.tree.getTotalRecursiveCount();
-        }  else {
+        } else {
             // We definitely have more rows to show below the last visible row.
             // We need to add at least 1 row below, so VirtualList or other component would not detect the end of the list, and query loading more rows later.
             // We have to balance this number.

@@ -11,6 +11,11 @@
         "nodes": [
           {
             "object": "text",
+            "text": "The ",
+            "marks": []
+          },
+          {
+            "object": "text",
             "text": "searchPosition",
             "marks": [
               {
@@ -22,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " props is defined where to place  Search input. By default is ",
+            "text": " props define where to place the search input. By default, it's ",
             "marks": []
           },
           {
@@ -38,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": "  for multi picker and ",
+            "text": " for a multi picker and ",
             "marks": []
           },
           {
@@ -54,7 +59,7 @@
           },
           {
             "object": "text",
-            "text": "  for single picker.",
+            "text": " for a single picker.",
             "marks": []
           }
         ]

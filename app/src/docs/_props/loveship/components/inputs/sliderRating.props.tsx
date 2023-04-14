@@ -13,7 +13,7 @@ const SliderRatingDoc = new DocBuilder<SliderRatingProps<number>>({ name: 'Slide
     .prop('renderTooltip', { examples: [
         {
             name: 'Custom Tooltip',
-            value: v => <RichTextView theme='dark' size='14'>
+            value: v => <RichTextView size='14'>
                 <p>Selected value is { v }.<br/>
                 You can use <b>markup</b> via RichTextView here.
                 </p>

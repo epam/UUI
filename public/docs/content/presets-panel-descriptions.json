@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "PresetsPanel component allows you to save your current filtration to the particular preset and manage it. PresetsPanel component works along with ",
+            "text": "PresetsPanel component allows you to save your current filtration to the particular preset and manage it. PresetsPanel works along with ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " api, so we recommend to use it together.",
+            "text": " hook, so you should use it together.",
             "marks": []
           }
         ]
@@ -61,7 +61,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Save current filtration, columns and filters configuration into preset",
+                    "text": "Saving current filtration, columns, and filters configuration into preset.",
                     "marks": []
                   }
                 ]
@@ -80,7 +80,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Manage preset: rename, duplicate,  delete, copy link, discard changes, save as new or save in current preset",
+                    "text": "Preset management: rename, duplicate, delete, copy link, discard changes, save as new or save in current preset.",
                     "marks": []
                   }
                 ]
@@ -99,7 +99,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Readonly presets, which can't be deleted or changed",
+                    "text": "ReadOnly presets, which can't be deleted or changed.",
                     "marks": []
                   }
                 ]
@@ -118,24 +118,12 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Adaptive presets panel layout based on container width(presets which isn't fit the container will be collapsed into 'More' dropdown)\n",
+                    "text": "Adaptive presets panel layout based on container width (presets which don't fit the container will be collapsed into the 'More' dropdown) ",
                     "marks": []
                   }
                 ]
               }
             ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
           }
         ]
       }

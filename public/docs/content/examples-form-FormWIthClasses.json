@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If you want to use form with classes, you can use ",
+            "text": "If you want to use a form with classes, you can use the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " component instead of ",
+            "text": " component instead of the ",
             "marks": []
           },
           {
@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": " hook. It provide the same functionality, but you need to pass ",
+            "text": " hook. It provides the same functionality, but you need to pass the ",
             "marks": []
           },
           {
@@ -59,7 +59,7 @@
           },
           {
             "object": "text",
-            "text": " prop which receive form api methods as a parameter.",
+            "text": " prop which receives form api methods as a parameter.",
             "marks": []
           }
         ]

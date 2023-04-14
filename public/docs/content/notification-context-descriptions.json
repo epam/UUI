@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Notification Context is used to show component in any corner on the screen that disappears in some time or by user's action. ",
+            "text": "Notification Context shows the component in any corner of the screen that disappears at some time or by the user's action. ",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To make it work, you need to place ",
+            "text": "To make it work, you have to place ",
             "marks": []
           },
           {

@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PickerInput should be rendered correctly 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body"
+  >
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input singleInput cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled uui-icon-dropdown"
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PickerInput should be rendered correctly 2`] = `
+<div
+  className="container uui-input-box -clickable root size-48 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body multiline"
+  >
+    <button
+      className="container uui-button-box uui-enabled size-42 root"
+      onClick={[Function]}
+      tabIndex={-1}
+      type="button"
+    >
+      <div
+        className="container uui-icon uui-enabled -clickable -clickable"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+    </button>
+    <button
+      className="container uui-button-box uui-enabled size-42 root"
+      onClick={[Function]}
+      tabIndex={-1}
+      type="button"
+    >
+      <div
+        className="uui-caption"
+      >
+        A1
+      </div>
+      <div
+        className="container uui-icon uui-enabled -clickable -clickable"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+    </button>
+  </div>
+  <div
+    className="actions"
+  >
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
+      onClick={[Function]}
+      style={Object {}}
+      tabIndex={-1}
+    >
+      <svg
+        className=""
+      />
+    </div>
+    <div
+      className="container uui-icon uui-enabled uui-icon-dropdown"
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;

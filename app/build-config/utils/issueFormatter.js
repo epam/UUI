@@ -20,7 +20,7 @@ function uuiCustomFormatter(issue) {
         // In order to make it clickable, the location must be absolute or relative to the root folder, but not relative to "app".
         //
         let location = norm(issue.file);
-        location = 'at ' + location
+        location = 'at ' + location;
         if (issue.location) {
             location += `:${formatIssueLocation(issue.location)}`;
         }

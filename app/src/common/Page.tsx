@@ -1,6 +1,6 @@
 import * as React from 'react';
 import css from './Page.scss';
-import { cx, IHasChildren } from '@epam/uui';
+import { cx, IHasChildren } from '@epam/uui-core';
 import { ErrorHandler } from '@epam/promo';
 
 export interface PageProps extends IHasChildren {

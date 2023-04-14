@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "LinkButton usually used as a secondary action on interface, primary action (in limited and compact interfaces) or in cases when button is not suitable. Can be used with icon, to support visually what action will be triggered or without icon for simple actions. ",
+            "text": "LinkButton is usually used as a secondary action on interface, primary action (in limited and compact interfaces), or in cases when the button is not suitable. It can be used with an icon, to visually support the action that will be triggered, or without an icon for simple actions.",
             "marks": []
           }
         ]

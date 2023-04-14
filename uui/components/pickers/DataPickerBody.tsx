@@ -12,13 +12,14 @@ export interface DataPickerBodyProps extends PickerBodyBaseProps {
     maxHeight?: number;
     editMode?: 'dropdown' | 'modal';
     searchSize?: ControlSize;
+    selectionMode?: 'single' | 'multi';
 }
 
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
     searchLens = this.lens.prop('search');
 
-    renderNoFound() {
+    renderNotFound() {
         if (this.props.renderNotFound) {
             return this.props.renderNotFound();
         }
@@ -29,16 +30,14 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     }
 
     render() {
-        const value = this.props.value;
         const searchSize = isMobile() ? '48' : (this.props.searchSize || '36');
-        const searchClass = cx(css.searchWrapper, css[`search-size-${ searchSize }`]);
 
         return <>
             { this.showSearch() && (
-                <div key='search' className={ searchClass }>
+                <div key='search' className={ css.searchWrapper }>
                     <FlexCell grow={ 1 }>
                         <SearchInput
-                            cx={ css.search }
+                            ref={ this.searchRef }
                             placeholder={ i18n.dataPickerBody.searchPlaceholder }
                             { ...this.searchLens.toProps() }
                             onKeyDown={ this.searchKeyDown }
@@ -49,18 +48,19 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
             ) }
             <FlexRow
                 key='body'
-                cx={ cx(css.body, css[this.props.editMode]) }
+                cx={ cx(css.body, css[this.props.editMode], css[this.props.selectionMode]) }
                 rawProps={ { style: { maxHeight: this.props.maxHeight } } }
             >
                 { this.props.rowsCount > 0
                     ? <VirtualList
                         { ...this.lens.toProps() }
                         rows={ this.props.rows }
-                        role="listbox"
+                        role='listbox'
                         rawProps={ this.props.rawProps }
                         rowsCount={ this.props.rowsCount }
+
                     />
-                    : this.renderNoFound()
+                    : this.renderNotFound()
                 }
             </FlexRow>
         </>;

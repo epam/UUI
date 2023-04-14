@@ -1,14 +1,10 @@
-import React from "react";
-import { ColorPicker, DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
+import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { CheckboxProps } from '@epam/uui-components';
 import { Checkbox, CheckboxMods } from '@epam/loveship';
 import { isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable, DefaultContext, FormContext, TableContext } from '../../docs';
-import { allEpamAdditionalColors, allEpamPrimaryColors } from "@epam/loveship";
-import { colors } from "../../docs/helpers/colorMap";
 
 const CheckboxDoc = new DocBuilder<CheckboxProps & CheckboxMods>({ name: 'Checkbox', component: Checkbox })
     .implements([isDisabledDoc, isReadonlyDoc, isInvalidDoc, iHasLabelDoc, iEditable])
-    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: [...allEpamPrimaryColors, ...allEpamAdditionalColors, 'night600'] })
     .prop('value', { examples: [true, false] })
     .prop('size', { examples: ['12', '18'], defaultValue: '18' })
     .prop('theme', { examples: (['light', 'dark']), defaultValue: 'light' })

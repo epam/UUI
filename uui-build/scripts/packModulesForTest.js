@@ -2,16 +2,17 @@
  * The only purpose of this file is to do some local testing of packaged modules.
  * The output will be located next to the UUI repo root inside "packModulesForTest-output" folder.
  */
-const {runCliCommand} = require("../utils/cmdUtils");
+const {runCmdSync} = require("../utils/cmdUtils");
 const { getAllMonorepoPackages } = require("../utils/monorepoUtils");
-const {logger} = require("../utils/loggerUtils");
+const { logger } = require("../utils/loggerUtils");
+const { uuiRoot } = require("../utils/constants");
 const path = require('path');
 const fs = require('fs');
 
 const destRootArg = './../packModulesForTest-output';
-const uuiRoot = path.resolve('./../..');
 
-const EXCLUDED_PACKAGES = ['@epam/app', '@epam/uui-build'];
+
+const EXCLUDED_PACKAGES = ['@epam/app'];
 
 function getPackDestinationDir() {
     // must be relative to root.
@@ -39,7 +40,7 @@ function getPkgArchiveFileName(pkg) {
 async function npmPackSingleModule({ pkg, packDestination }) {
     const { moduleRootDir } = pkg
     const cwd = path.resolve(moduleRootDir, './build');
-    await runCliCommand(cwd, `npm pack --pack-destination=${packDestination}`);
+    await runCmdSync({ cmd: 'npm pack ', cwd, args: [`--pack-destination=${packDestination}`] });
     return path.resolve(packDestination, getPkgArchiveFileName(pkg));
 }
 
@@ -53,7 +54,7 @@ async function main() {
             packageJsonDeps[pkg.name] = await npmPackSingleModule({ pkg, packDestination });
         } catch (err) {
             packageJsonDeps[pkg.name] = 'err!'
-            logger.error(`pack error. "${moduleRootDir}".`)
+            logger.error(`pack error. "${pkg.name}".`)
             logger.error(err)
         }
     });

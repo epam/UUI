@@ -43,7 +43,7 @@
           },
           {
             "object": "text",
-            "text": " and provide necessary ",
+            "text": " and provides necessary ",
             "marks": []
           },
           {
@@ -75,12 +75,28 @@
           },
           {
             "object": "text",
-            "text": " and params for Drag and Drop. Make sure that you pass ",
+            "text": " and params for Drag and Drop. Ensure you pass ",
             "marks": []
           },
           {
             "object": "text",
             "text": "eventHandlers",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ref",
             "marks": [
               {
                 "object": "mark",
@@ -107,7 +123,7 @@
           },
           {
             "object": "text",
-            "text": " to your component for correct d&d work.",
+            "text": " to your component for correct D&D work.",
             "marks": []
           }
         ]
@@ -119,7 +135,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "DragActor can play role of drop destination, drag source or both. You can configure it by ",
+            "text": "DragActor can be a drop destination, drag source or both. You can configure it by ",
             "marks": []
           },
           {
@@ -167,7 +183,7 @@
           },
           {
             "object": "text",
-            "text": " props — it's mean that this Actor can be dragged. If you pass ",
+            "text": " props, this Actor can be dragged. If you pass the ",
             "marks": []
           },
           {
@@ -183,7 +199,7 @@
           },
           {
             "object": "text",
-            "text": " prop - it's mean that this Actor can accept drop. If you pass both — Actor can be dragged and accept drop at the same time.",
+            "text": " prop, this Actor can accept drop. If you pass both, the Actor can be dragged and accept drop simultaneously.",
             "marks": []
           }
         ]
@@ -195,7 +211,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "UUI DnD uses data, not the views, as the source of truth. When you drag something across the screen, we don't say that a component, or a DOM node is being dragged. Instead, we say that some JS object is being dragged. So ",
+            "text": "UUI DnD uses data, not the views, as the source of truth. So when you drag something across the screen, we don't say that a component or a DOM node is being dragged. Instead, we say that some JS object is being dragged. So ",
             "marks": []
           },
           {
@@ -223,7 +239,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "When drag started, DragActor recalculates ",
+            "text": "DragActor recalculates ",
             "marks": []
           },
           {
@@ -239,7 +255,7 @@
           },
           {
             "object": "text",
-            "text": " and call ",
+            "text": " and calls ",
             "marks": []
           },
           {
@@ -255,7 +271,37 @@
           },
           {
             "object": "text",
-            "text": " callback with new values. So you can change your component base on this props. When component is dragged, we use the same DragActor ",
+            "text": " callback with new values when the drag starts. So you can change your component based on these props. Furthermore",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": ", w",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#0e101a",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "hen a component is dragged, we use the same DragActor ",
             "marks": []
           },
           {
@@ -271,7 +317,7 @@
           },
           {
             "object": "text",
-            "text": " function to render drag ghost, and pass  ",
+            "text": " function to render drag ghost and pass  ",
             "marks": []
           },
           {
@@ -303,7 +349,7 @@
           },
           {
             "object": "text",
-            "text": ", so based on this param you can define some styles for ghost.",
+            "text": ", so based on this param, you can define some styles for ghost.",
             "marks": []
           }
         ]
@@ -315,7 +361,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Use ",
+            "text": "Use the ",
             "marks": []
           },
           {
@@ -331,7 +377,7 @@
           },
           {
             "object": "text",
-            "text": "  prop to define it which position DragActor can accept drop - top, bottom, left, right or inside. This prop will be called when some item dragged into this DragActor, this item will be passed as an argument.",
+            "text": " prop to define which position DragActor can accept drop - top, bottom, left, right or inside. This prop will be called when some item is dragged into this DragActor; this item will be passed as an argument.",
             "marks": []
           }
         ]
@@ -343,7 +389,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "When your drop item on DragActor and it's accept drop in this position — ",
+            "text": "When you drop an item on DragActor and it's accept drop in this position — an ",
             "marks": []
           },
           {

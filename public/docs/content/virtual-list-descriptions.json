@@ -11,19 +11,28 @@
         "nodes": [
           {
             "object": "text",
-            "text": "VirtualList",
+            "text": "VirtualList provides a scrollable container, which only renders a visible part of a list of components. It automatically measures the height of items to detect the position of the visible portion and adjusts scroll values and container height.",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": " provides a scrollable container, which renders only visible part of a list of Components. It automatically measures heights of items to adjust position of the visible portion and the height of the whole container so that all items in the list should be placed without any gaps between them.",
-            "marks": []
           }
         ]
       },
@@ -105,78 +114,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "As the height of an item is unknown until it's rendered, items which are not yet rendered are estimated to have and average height of the items that was rendered.",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "VirtualList",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " track some of it's state (",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "topIndex",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "visibleCount",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ") externally. User has to provide ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "IEditable<VirtualListState>",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " implementation via props. It's safe to use it to scroll the list top or to particular item.",
+            "text": "As the height of an item is unknown until it's rendered, the items which are not yet rendered are estimated to have an average height of the rendered items.",
             "marks": []
           }
         ]
@@ -236,7 +174,7 @@
           },
           {
             "object": "text",
-            "text": " detects, that there's enough room for more items.",
+            "text": " detects, that there's enough space for more items.",
             "marks": []
           }
         ]

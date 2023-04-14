@@ -1,7 +1,7 @@
-import css from "./VerticalTabButton.scss";
 import { withMods } from "@epam/uui-core";
-import { ButtonProps } from "@epam/uui-components";
+import { VerticalTabButtonProps } from "@epam/uui";
 import { TabButton, TabButtonMods } from "./TabButton";
+import css from "./VerticalTabButton.scss";
 
 function applyVerticalTabButtonMods() {
     return [
@@ -9,4 +9,4 @@ function applyVerticalTabButtonMods() {
     ];
 }
 
-export const VerticalTabButton = withMods<ButtonProps, TabButtonMods>(TabButton, applyVerticalTabButtonMods);
+export const VerticalTabButton = withMods<VerticalTabButtonProps, TabButtonMods>(TabButton, applyVerticalTabButtonMods);

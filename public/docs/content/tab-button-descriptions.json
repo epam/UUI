@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "TabButton is used in Tabs menu. It extends all behavior from basic ",
+            "text": "TabButton is used in the Tabs menu. It extends all behavior from basic ",
             "marks": []
           },
           {
@@ -30,7 +30,7 @@
           },
           {
             "object": "text",
-            "text": " components except some styling configurations",
+            "text": " components except some styling configurations.",
             "marks": []
           }
         ]

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "NumericInput is used to let the user enter a number. It includes built-in validation to reject non-numerical input.",
+            "text": "NumericInput is used to let the user enter a number. It includes built-in validation to a reject non-numerical input.",
             "marks": []
           }
         ]

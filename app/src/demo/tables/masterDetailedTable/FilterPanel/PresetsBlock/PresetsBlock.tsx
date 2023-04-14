@@ -1,5 +1,6 @@
 import React, { ReactEventHandler, useCallback, useState } from 'react';
-import { IPresetsApi, ITablePreset, Accordion, IconContainer, TextInput, VerticalTabButton, FlexSpacer } from '@epam/uui';
+import { IPresetsApi  } from '@epam/uui-core';
+import { Accordion, IconContainer, TextInput, VerticalTabButton, FlexSpacer } from '@epam/uui';
 import { ReactComponent as PlusIcon } from '@epam/assets/icons/common/content-add-outline-18.svg';
 import css from './PresetsBlock.scss';
 

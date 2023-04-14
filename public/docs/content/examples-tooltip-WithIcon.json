@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Small icons allowed to be shown in a tooltip, just to support quick scanning & getting a hint meaning.",
+            "text": "Small icons are allowed to be shown in a tooltip, just to support quick scanning & getting a hint of meaning.",
             "marks": []
           }
         ]

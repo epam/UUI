@@ -1,6 +1,7 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
-import React, { useCallback, useMemo } from 'react';
-import { AcceptDropParams, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource, useTableState } from '@epam/uui-core';
+import React, { useCallback, useMemo, useState } from 'react';
+import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/uui';
+import { useForm } from '@epam/promo';
+import { AcceptDropParams, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -56,18 +57,23 @@ export const ProjectDemo = () => {
         task.order = getInsertionOrder(
             Object.values(value.items).filter(i => i.parentId === task.parentId).map(i => i.order),
             position == 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-            relativeTask?.order
+            relativeTask?.order,
         );
 
         onValueChange({ ...value, items: { ...value.items, [task.id]: task }});
-    }
+    };
 
-    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task, Task>) => ({ bottom: true, top: true, inside: true }), []);
+    const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
+        if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
+            return null;
+        } else {
+            return { bottom: true, top: true, inside: true };
+        }
+    }, []);
 
     const handleDrop = useCallback((params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData), []);
 
-    //const { tableState, setTableState } = useTableState<any>({ columns });
-    const [ tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }]});
+    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }]});
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
         items: Object.values(value.items),
@@ -81,8 +87,8 @@ export const ProjectDemo = () => {
             //checkbox: { isVisible: true },
             isSelectable: true,
             dnd: {
-                srcData: task,
-                dstData: task,
+                srcData: { ...task, isTask: true },
+                dstData: { ...task, isTask: true },
                 canAcceptDrop: handleCanAcceptDrop,
                 onDrop: handleDrop,
             },
@@ -94,10 +100,10 @@ export const ProjectDemo = () => {
     return <Panel style={ { width: '100%' } }>
         <FlexRow spacing='12' margin='12'>
             <FlexCell width='auto'>
-                <IconButton icon={ insertAfter } onClick={() => insertTask('top')} />
+                <IconButton icon={ insertAfter } onClick={ () => insertTask('top') } />
             </FlexCell>
             <FlexCell width='auto'>
-                <IconButton icon={ insertBefore } onClick={() => insertTask('bottom')} />
+                <IconButton icon={ insertBefore } onClick={ () => insertTask('bottom') } />
             </FlexCell>
             <FlexSpacer />
             <FlexCell width='auto'>

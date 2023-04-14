@@ -1,24 +1,34 @@
-const child_process = require('child_process')
-
-async function runCliCommand(cwd, command) {
-  await new Promise((resolve, reject) => {
-    child_process.exec(
-      command,
-      {
-        cwd,
-      },
-      (error, stdout, stderr) => {
-        if (error) {
-          console.log(stdout);
-          console.error(stderr);
-          reject(`${command} error: ${error}`);
-        }
-        resolve();
-      }
-    );
-  });
-}
+const spawn = require('cross-spawn');
+const { uuiRoot } = require('./constants.js');
 
 module.exports = {
-  runCliCommand
+    runYarnScriptFromRootSync,
+    runCmdFromRootSync,
+    runCmdSync,
+    hasCliArg,
+    getCliArgValue,
+}
+function runYarnScriptFromRootSync(scriptName) {
+    runCmdFromRootSync('yarn', [scriptName]);
+}
+function runCmdFromRootSync(cmd, args) {
+    runCmdSync({ cmd, cwd: uuiRoot, args })
+}
+function runCmdSync({ cmd, cwd, args = []}) {
+    const result = spawn.sync(cmd, args,{ encoding: "utf8", stdio: "inherit", cwd });
+    if (result.status !== 0) {
+        console.error(result.error);
+        process.exit(1);
+    }
+}
+
+function hasCliArg(argName) {
+    return process.argv.includes(argName);
+}
+
+function getCliArgValue(argName) {
+    const i = process.argv.indexOf(argName);
+    if (i !== -1) {
+        return process.argv[i + 1];
+    }
 }

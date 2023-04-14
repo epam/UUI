@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can change the button color via ",
+            "text": "You can change the button color via the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": " prop",
+            "text": " prop.",
             "marks": []
           }
         ]
@@ -52,6 +52,11 @@
                 "data": {}
               }
             ]
+          },
+          {
+            "object": "text",
+            "text": " .",
+            "marks": []
           }
         ]
       }

@@ -1,26 +1,26 @@
-import * as React from 'react';
-import { MouseEvent } from 'react';
-import { DataTableCellProps, RenderEditorProps, uuiElement, uuiMod, cx, ICanBeInvalid,
-    TooltipCoreProps, IHasCX } from '@epam/uui-core';
+import React from 'react';
+import { DataTableCellProps, RenderEditorProps, uuiElement, uuiMod } from '@epam/uui-core';
 import css from './DataTableCell.scss';
-import { FlexCell } from '../layout/';
+import { FlexCell } from '../layout';
+import { DataTableCellOverlay } from './DataTableCellOverlay';
 
 interface DataTableCellState {
     inFocus: boolean;
 }
+
+const uuiDataTableCellMarkers = {
+    uuiTableCell: 'uui-table-cell',
+} as const;
 
 export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue>) => {
     const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
 
-    //const { setSelectionRange, selectionRange } = useContext(DataTableSelectionContext);
-
     let content: React.ReactNode;
-    let outline: React.ReactNode = null;
     let isEditable = !!props.onValueChange;
 
-    const handleEditorClick = React.useCallback((e: MouseEvent) => {
+    const handleEditorClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
         const input: HTMLInputElement = (e.target as HTMLElement).querySelector('.' + uuiElement.input);
         input?.focus();
     }, []);
@@ -68,61 +68,36 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         justifyContent = props.column.textAlign;
     }
 
+    const { textAlign, alignSelf } = props.column;
+    const styles = { textAlign, alignSelf, justifyContent };
+
+    const getWrappedContent = () => (
+        <div style={ styles } className={ css.contentWrapper }>
+            { content }
+        </div>
+    );
+
     return (
         <FlexCell
             ref={ ref }
-            { ...props.column }
+            grow={ props.column.grow }
+            width={ props.column.width }
             minWidth={ props.column.width }
-            rawProps={ {
-                role: 'cell',
-            } }
+            textAlign={ props.isFirstColumn ? undefined : props.column.textAlign }
+            alignSelf={ props.isFirstColumn ? undefined : props.column.alignSelf }
+            rawProps={ { role: 'cell' } }
             cx={ [
+                uuiDataTableCellMarkers.uuiTableCell,
                 css.cell,
                 props.column.cx,
                 props.cx,
                 props.isInvalid && uuiMod.invalid,
                 state.inFocus && uuiMod.focus,
             ] }
-            style={ {
-                justifyContent,
-            } }
+            style={ !props.isFirstColumn && { justifyContent: justifyContent } }
         >
             { props.addons }
-            { content }
-            { outline }
+            { props.isFirstColumn ? getWrappedContent() : content }
         </FlexCell>
     );
 };
-
-
-interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
-    inFocus: boolean;
-    columnIndex: number;
-    rowIndex: number;
-    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
-}
-
-function DataTableCellOverlay(props: DataTableCellOverlayProps) {
-    const overlay = (
-            <div
-                className={ cx(
-                    css.overlay,
-                    props.isInvalid && uuiMod.invalid,
-                    props.inFocus && uuiMod.focus,
-                    props.cx,
-                ) }
-            />
-    );
-
-    if (props.inFocus) {
-        return props.renderTooltip({
-            trigger: 'manual',
-            placement: 'top',
-            value: props.isInvalid,
-            content: props.validationMessage,
-            children: overlay,
-        });
-    } else {
-        return overlay;
-    }
-}

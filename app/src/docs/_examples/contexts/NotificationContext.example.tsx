@@ -4,7 +4,7 @@ import {
     TextInput, WarningNotification, SuccessNotification,
     ErrorNotification, NotificationCard, RichTextView
 } from '@epam/promo';
-import { ArrayDataSource, INotification, useUuiContext } from '@epam/uui';
+import { ArrayDataSource, INotification, useUuiContext } from '@epam/uui-core';
 import { FlexCell } from '@epam/uui-components';
 export interface PositionType {
     direction: 'bot-left' | 'bot-right' | 'top-left' | 'top-right' | 'top-center' | 'bot-center';

@@ -13,7 +13,7 @@ on:
       image-name:
         required: true
         type: string
-      common-helmchart-ver:
+      git-version-mode:
         required: true
         type: string
     secrets:
@@ -24,6 +24,8 @@ on:
       REGISTRY_PASSWORD:
         required: true
       COMMON_HELMCHART_NAME:
+        required: true
+      COMMON_HELMCHART_VERSION:
         required: true
       APP_NAME_BASE:
         required: true
@@ -36,15 +38,17 @@ jobs:
   build-and-test:
 
     runs-on: ubuntu-latest
-    container: node:14
+    env:
+      ACTIONS_STEP_DEBUG: true
+      REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '14.x'
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: |
             node_modules
@@ -61,27 +65,8 @@ jobs:
       - name: test
         run: yarn test
 
-  docker:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    env:
-      ACTIONS_STEP_DEBUG: true
-      REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
-
-    steps:
-      - name: Check Out Repo
-        uses: actions/checkout@v2
-
-      # TODO: Reuse files from build-and-test job instead of build app again
-      - name: build app
-        run: |
-          yarn
-          yarn build
-          yarn generate-components-api
-          cd server && yarn
-
       - name: Login to registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USER }}
@@ -89,7 +74,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           # list of Docker images to use as base name for tags
           images: |
@@ -100,11 +85,11 @@ jobs:
             type=sha
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
 
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./
           file: ./Dockerfile
@@ -113,16 +98,16 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
 
   package:
-    needs: docker
+    needs: build-and-test
     runs-on: ubuntu-20.04 # Gitversion requires .NET SDK 3.1
     env:
       ACTIONS_STEP_DEBUG: true
       REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
       VALUES_FILE: ${{ inputs.values-file }}
-      COMMON_HELMCHART_VER: ${{ inputs.common-helmchart-ver }}
+      COMMON_HELMCHART_VER: ${{ secrets.COMMON_HELMCHART_VERSION }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         name: Code checkout
         with:
           fetch-depth: 0
@@ -136,9 +121,11 @@ jobs:
       - name: Version determination
         id:   gitversion
         uses: gittools/actions/gitversion/execute@v0.9.15
+        with:
+          additionalArguments: ${{ inputs.git-version-mode }}
 
       - name: Install Helm
-        uses: azure/setup-helm@v1
+        uses: azure/setup-helm@v3
         with:
           version: v3.8.0
 
@@ -153,7 +140,14 @@ jobs:
       - name: Packaging and Uploading Helm Chart
         run: |
           cd ./helmchart
-          export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MINOR.$GITVERSION_COMMITSSINCEVERSIONSOURCE"
+          # workaround to separate versioning modes for prod and non-prod
+          if [[ ${{ github.ref_name}} == "main" ]]; then
+            export helm_tag="$GITVERSION_SEMVER"
+          else
+            export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MINOR.$GITVERSION_COMMITSSINCEVERSIONSOURCE"
+          fi
+          echo "[INFO] ${helm_tag}..."
+
           echo "[INFO] Replace Helm Chart package version..."
           sed -i -e "s/version: ${COMMON_HELMCHART_VER}/version: ${helm_tag}/g" ${{ secrets.COMMON_HELMCHART_NAME }}/Chart.yaml
           echo "[INFO] Changing Helm Chart package name..."

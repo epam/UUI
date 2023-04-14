@@ -1,7 +1,8 @@
-import { Lens } from "../../lenses";
-import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView } from "../../../types";
+import { BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps, IDataSourceView, DataRowPathItem } from "../../../types";
+import { Tree } from "./Tree";
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
+    protected tree: Tree<TItem, TId>;
     protected rows: DataRowProps<TItem, TId>[] = [];
     public value: DataSourceState<TFilter, TId> = {};
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
@@ -135,11 +136,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return true;
     }
 
-    protected getRowProps(item: TItem, index: number, parents: DataRowProps<TItem, TId>[]): DataRowProps<TItem, TId> {
+    protected getRowProps(item: TItem, index: number): DataRowProps<TItem, TId> {
         const id = this.props.getId(item);
         const key = this.idToKey(id);
-
-        const path = parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value }));
+        const path = this.tree.getPathById(id);
         const parentId = path.length > 0 ? path[path.length - 1].id : undefined;
 
         const rowProps = {
@@ -149,7 +149,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             rowKey: key,
             index,
             value: item,
-            depth: parents.length,
+            depth: path.length,
             path,
         } as DataRowProps<TItem, TId>;
 
@@ -176,20 +176,17 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         row.onFocus = (isSelectable || isCheckable) && this.handleOnFocus;
     }
 
-    protected getLoadingRow(id: any, index: number = 0, parents: DataRowProps<TItem, TId>[] = null): DataRowProps<TItem, TId> {
+    protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
         const rowOptions = this.props.rowOptions;
-
-        const path = parents ? parents.map(p => ({ id: p.id, isLastChild: p.isLastChild, value: p.value })) : [];
 
         return {
             id,
             rowKey: this.idToKey(id),
             index,
             isLoading: true,
-            depth: parents ? parents.length : 0,
-            path,
+            depth: path ? path.length : 0,
+            path: path ?? [],
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
         };
     }
 }
-

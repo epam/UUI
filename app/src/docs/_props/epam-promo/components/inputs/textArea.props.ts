@@ -1,10 +1,10 @@
 import { DocBuilder } from '@epam/uui-docs';
-import { TextAreaProps } from '@epam/uui-components';
-import { TextArea, TextAreaMods } from '@epam/promo';
+import { TextAreaProps } from '@epam/uui';
+import { TextArea } from '@epam/promo';
 import { DefaultContext, FormContext, iEditable, IHasEditModeDoc, iHasPlaceholder,
     isDisabledDoc, isInvalidDoc, isReadonlyDoc, ResizableContext, sizeDoc, TableContext } from '../../docs';
 
-const TextareaDoc = new DocBuilder<TextAreaProps & TextAreaMods>({ name: 'TextArea', component: TextArea })
+const TextareaDoc = new DocBuilder<TextAreaProps>({ name: 'TextArea', component: TextArea })
     .implements([iEditable, sizeDoc, iHasPlaceholder, isDisabledDoc, isReadonlyDoc, isInvalidDoc, IHasEditModeDoc])
     .prop('value', { examples: [
             'Hello, World!',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AvatarStack, FlexCell, Tooltip } from '@epam/promo';
 import css from './BasicExample.scss';
-import { uuiMarkers } from "@epam/uui";
+import { uuiMarkers } from "@epam/uui-core";
 
 const avatarsArray = Array(10).fill('').map((_, index) => `https://avatars.dicebear.com/api/human/avatar12${index}.svg?background=%23EBEDF5&radius=50`);
 

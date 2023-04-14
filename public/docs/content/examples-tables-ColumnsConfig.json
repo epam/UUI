@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can give your user possibility to configure columns visibility, order and width by yourself. ",
+            "text": "You can allow your users to configure column visibility, order, and width by themselves.",
             "marks": []
           }
         ]
@@ -23,12 +23,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Provide ",
+            "text": "Provide the ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "showColumnsConfig={ true }",
+            "text": "showColumnsConfig={true}",
             "marks": [
               {
                 "object": "mark",
@@ -39,7 +39,7 @@
           },
           {
             "object": "text",
-            "text": " prop to enable columns config dialog. Config button will appear in the last column.",
+            "text": " prop to enable the columns config dialog. The config button will appear in the last column.",
             "marks": []
           }
         ]
@@ -51,12 +51,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "For allowing columns resize and reorder use ",
+            "text": "For allowing columns to resize and reorder, use ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "allowColumnsResizing={ true }",
+            "text": "allowColumnsResizing={true}",
             "marks": [
               {
                 "object": "mark",
@@ -72,7 +72,7 @@
           },
           {
             "object": "text",
-            "text": "allowColumnsReordering={ true }",
+            "text": "allowColumnsReordering={true}",
             "marks": [
               {
                 "object": "mark",
@@ -106,7 +106,7 @@
           },
           {
             "object": "text",
-            "text": ": To display a columns config button in your table, you need to explicitly add last column with a ",
+            "text": ": To display a column config button in your table, you need to explicitly add last column with empty caption and  ",
             "marks": []
           },
           {
@@ -122,7 +122,7 @@
           },
           {
             "object": "text",
-            "text": " field to provide required space for this button.",
+            "text": " to provide the required space for this button.",
             "marks": []
           }
         ]

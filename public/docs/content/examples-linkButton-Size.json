@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can use different link button sizes, based on component height, provide ",
+            "text": "You can use different link button sizes based on component height and provide the ",
             "marks": []
           },
           {

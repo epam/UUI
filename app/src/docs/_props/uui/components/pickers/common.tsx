@@ -7,39 +7,58 @@ import { demoData } from '@epam/uui-docs';
 import { PickerItem } from '@epam/uui';
 import css from './DataPickerRowDoc.scss';
 
-export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => [
-    {
-        name: 'Languages',
-        isDefault: true,
-        value: new AsyncDataSource({
-            api: () => ctx.demoApi.languages({}).then(r => r.items),
-        }),
-    },
-    {
-        name: 'Language Levels',
-        value: new ArrayDataSource({
-            items: demoData.languageLevels,
-        }),
-    },
-    {
-        name: 'Cities',
-        value: new AsyncDataSource({
-            api: () => ctx.demoApi.cities({ sorting: [{ field: 'name' }] }).then(r => r.items),
-        }),
-    },
-    {
-        name: 'Locations',
-        value: new AsyncDataSource({
-            api: () => ctx.demoApi.locations({}).then(r => r.items),
-        }),
-    },
-    {
-        name: 'Persons',
-        value: new LazyDataSource({
-            api: rq => ctx.demoApi.persons({ ...rq, sorting: [{ field: 'name' }] }),
-        }),
-    },
-];
+const dataSourcesMap: any = {
+    languages: null,
+    languageLevels: new ArrayDataSource({
+        items: demoData.languageLevels,
+    }),
+    cities: null,
+    locations: null,
+    persons: null,
+
+};
+
+export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
+    dataSourcesMap.languages = dataSourcesMap.languages || new AsyncDataSource({
+        api: () => ctx.demoApi.languages({}).then(r => r.items),
+    });
+    dataSourcesMap.cities = dataSourcesMap.cities || new AsyncDataSource({
+        api: () => ctx.demoApi.cities({ sorting: [{ field: 'name' }] }).then(r => r.items),
+    });
+    dataSourcesMap.languages = dataSourcesMap.languages || new AsyncDataSource({
+        api: () => ctx.demoApi.languages({}).then(r => r.items),
+    });
+    dataSourcesMap.locations = dataSourcesMap.locations || new AsyncDataSource({
+        api: () => ctx.demoApi.locations({}).then(r => r.items),
+    });
+    dataSourcesMap.persons = dataSourcesMap.persons || new LazyDataSource({
+        api: rq => ctx.demoApi.persons({ ...rq, sorting: [{ field: 'name' }] }),
+    });
+
+    return [
+        {
+            name: 'Languages',
+            isDefault: true,
+            value: dataSourcesMap.languages,
+        },
+        {
+            name: 'Language Levels',
+            value: dataSourcesMap.languageLevels,
+        },
+        {
+            name: 'Cities',
+            value: dataSourcesMap.cities,
+        },
+        {
+            name: 'Locations',
+            value: dataSourcesMap.locations,
+        },
+        {
+            name: 'Persons',
+            value: dataSourcesMap.persons,
+        },
+    ];
+};
 
 export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>({ name: 'PickerBaseOptions' })
     .prop('dataSource', { examples: getDataSourceExamples, isRequired: true })

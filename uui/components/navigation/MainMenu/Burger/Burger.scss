@@ -1,0 +1,75 @@
+.root {
+    position: relative;
+    display: flex;
+
+    &:global(.uui-burger-menu-open) {
+        z-index: 1001;
+    }
+
+    &:global(.uui-burger-menu-open) ~ :global(#global_menu_toggle) {
+        background-color: var(--uui-burger_menu-bg);
+        z-index: 1001;
+
+        :hover {
+            background-color: var(--uui-burger_menu-bg-hover);
+        }
+    }
+
+    :global(.uui-burger-button) {
+        width: 60px;
+        cursor: pointer;
+        fill: var(--uui-burger_icon);
+
+        &:hover {
+            background-color: var(--uui-burger_menu-bg-hover);
+        }
+
+        &:active {
+            background-color: var(--uui-burger_menu-bg-hover);
+        }
+
+        :global(.uui-icon) svg {
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    :global(.uui-burger-logo-container) {
+        position: absolute;
+        left: 60px;
+        top: 0;
+    }
+
+    :global(.uui-burger-logo) {
+        display: block;
+        height: 60px;
+    }
+}
+
+.burger-content {
+    &:global(.uui-burger-overlay) {
+        &:global(.uui-burger-overlay-visible) {
+            position: fixed;
+            z-index: 1000;
+            top: 60px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(29, 30, 38, 0.8);
+        }
+    }
+
+    :global(.uui-burger-items) {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        width: 300px;
+        background: var(--uui-burger_item);
+        transform: translateX(-100px);
+
+        &:global(.uui-burger-items-visible) {
+            transform: translateX(0);
+        }
+    }
+}

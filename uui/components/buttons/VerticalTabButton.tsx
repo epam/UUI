@@ -9,4 +9,6 @@ function applyVerticalTabButtonMods() {
     ];
 }
 
-export const VerticalTabButton = withMods<ButtonProps & TabButtonMods>(TabButton, applyVerticalTabButtonMods);
+export type VerticalTabButtonProps = ButtonProps & TabButtonMods;
+
+export const VerticalTabButton = withMods<VerticalTabButtonProps>(TabButton, applyVerticalTabButtonMods);
