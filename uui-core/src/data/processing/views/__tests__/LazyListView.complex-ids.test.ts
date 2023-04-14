@@ -24,8 +24,8 @@ type TestItemId = [TestItem['type'], number];
 describe('LazyListView - can work with id like [string, number]', () => {
     const testData: TestItem[] = [
         { type: 'parent', id: 1, childrenCount: 1 },
-        { type: 'child' , id: 1, parentId: 1 },
-        { type: 'child' , id: 2, parentId: 1 },
+        { type: 'child', id: 1, parentId: 1 },
+        { type: 'child', id: 2, parentId: 1 },
     ];
 
     let value: DataSourceState<DataQueryFilter<TestItem>, TestItemId>;
@@ -35,9 +35,9 @@ describe('LazyListView - can work with id like [string, number]', () => {
         api: async ({ ids: clientIds, filter, range }, ctx) => {
             let ids = clientIds && clientIds.map(id => id[1]);
             if (ctx.parent) {
-                return runDataQuery(testData, { filter: { type: 'child', parentId: ctx.parent.id} });
+                return runDataQuery(testData, { filter: { type: 'child', parentId: ctx.parent.id } });
             } else {
-                return runDataQuery(testData, { filter: { type: 'parent' }});
+                return runDataQuery(testData, { filter: { type: 'parent' } });
             }
         },
         getChildCount: (i) => i.type == 'parent' ? i.childrenCount : 0,
@@ -94,6 +94,9 @@ describe('LazyListView - can work with id like [string, number]', () => {
         view = ds.getView(value, onValueChanged, {});
         rows[0].onFold(rows[0]);
         view = ds.getView(value, onValueChanged, {});
+
+        rows = view.getVisibleRows();
+
         await delay();
 
         expectViewToLookLike(view, [

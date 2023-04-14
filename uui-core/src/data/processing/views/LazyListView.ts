@@ -168,6 +168,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (completeReset
             || this.shouldRebuildRows(this.value, prevValue)
             || !isEqual(this.props.rowOptions, prevProps.rowOptions)
+            || isFoldingChanged
             || this.props.getRowOptions !== prevProps.getRowOptions
             || moreRowsNeeded
         ) {
