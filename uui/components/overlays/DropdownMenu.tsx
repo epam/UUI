@@ -192,6 +192,8 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
         <Dropdown
             openOnHover={ props.openOnHover || true }
             closeOnMouseLeave="boundary"
+            openDelay={ 400 }
+            closeDelay={ 400 }
             placement="right-start"
             renderBody={ (dropdownProps) => (
                 <DropdownMenuBody
