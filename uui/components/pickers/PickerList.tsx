@@ -44,7 +44,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
     render() {
         const view = this.getView();
         const viewProps = view.getListProps();
-        const selectedRows = view.getSelectedRows(true);
+        const selectedRows = view.getSelectedRows();
         const rows = this.buildRowsList();
         const showPicker = viewProps.totalCount == null || viewProps.totalCount > this.getMaxDefaultItems();
         const renderToggler = this.props.renderModalToggler || this.defaultRenderToggler;
@@ -56,7 +56,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
                 { rows.map(row => renderRow({ ...row, isDisabled: this.props.isDisabled }, this.state.dataSourceState)) }
                 { showPicker && renderToggler({
                     onClick: this.handleShowPicker,
-                    caption: this.getModalTogglerCaption(viewProps.totalCount, selectedRows.length),
+                    caption: this.getModalTogglerCaption(viewProps.totalCount, view.getSelectedRowsCount()),
                     isDisabled: this.props.isDisabled,
                 }, selectedRows) }
             </div>

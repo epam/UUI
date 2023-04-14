@@ -15,7 +15,11 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
 
     switch (e.key) {
         case 'Backspace': {
-            const selectedRows = params.listView.getSelectedRows(true);
+            const selectedRowsCount = params.listView.getSelectedRowsCount();
+            const selectedRows = params.listView.getSelectedRows({
+                start: selectedRowsCount - 2,
+                end: selectedRowsCount - 1
+            });
             if (params.editMode !== 'modal' && !value.search && value.checked && selectedRows.length > 0) {
                 let lastSelection = selectedRows[selectedRows.length - 1];
                 lastSelection.onCheck(lastSelection);
