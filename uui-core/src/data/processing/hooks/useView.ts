@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { IView, ListViewProps } from "./types";
+import { usePrevious } from "../../../hooks";
 
 export function useView<TItem, TId, TFilter, Props extends ListViewProps<TItem, TId, TFilter>>(
     create: () => IView<TItem, TId, TFilter, Props>,
@@ -7,10 +8,10 @@ export function useView<TItem, TId, TFilter, Props extends ListViewProps<TItem, 
     deps: any[],
 ): IView<TItem, TId, TFilter, Props> {
     const viewRef = useRef<IView<TItem, TId, TFilter, Props>>(null);
-    const prevDeps = useRef(deps);
+    const prevDeps = usePrevious(deps);
 
-    const isDepsChanged = (prevDeps.current.length != deps.length)
-        || prevDeps.current.some((devVal, index) => devVal != deps[index]);
+    const isDepsChanged = (prevDeps.length != deps.length)
+        || prevDeps.some((devVal, index) => devVal != deps[index]);
 
     if (viewRef.current === null || isDepsChanged) {
         viewRef.current = create();
