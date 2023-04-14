@@ -60,19 +60,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       <div
         className="uui-caption"
       >
-        <div
-          aria-busy={true}
-          className="container"
-        >
-          <span
-            className="loadingWord animatedLoading"
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
-              }
-            }
-          />
-        </div>
+        A1
       </div>
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
@@ -93,7 +81,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
       <div
         className="uui-caption"
       >
-        A1
+        A1+
       </div>
       <div
         className="container uui-icon uui-enabled -clickable -clickable"
