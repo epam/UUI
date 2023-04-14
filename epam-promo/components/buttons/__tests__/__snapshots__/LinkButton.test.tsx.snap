@@ -13,7 +13,6 @@ exports[`LinkButton should be rendered correctly with props 1`] = `
 <button
   aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable root size-36 uui-has-left-icon uui-has-right-icon"
-  disabled={false}
   onClick={[Function]}
   tabIndex={0}
   type="button"
