@@ -12,7 +12,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
     onDrop={[Function]}
   >
     <div
-      className="root size-24 spacing-6 flex-row-background-none container align-items-center"
+      className="root size-24 flex-row-background-none container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -35,9 +35,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
         Drop files to attach or
          
       </div>
-      <div
-        className="linkContainer"
-      >
+      <div>
         <input
           className="fileInput"
           multiple={true}
@@ -75,7 +73,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
     onDrop={[Function]}
   >
     <div
-      className="root size-24 spacing-6 flex-row-background-none container align-items-center"
+      className="root size-24 flex-row-background-none container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -98,9 +96,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
         Drop files to attach or
          
       </div>
-      <div
-        className="linkContainer"
-      >
+      <div>
         <input
           className="fileInput"
           multiple={true}
