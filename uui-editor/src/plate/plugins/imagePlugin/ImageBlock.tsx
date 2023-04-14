@@ -5,6 +5,7 @@ import { Dropdown } from '@epam/uui-components';
 import { uuiSkin } from "@epam/uui-core";
 
 import { useFocused, useSelected } from 'slate-react';
+import { invert } from 'lodash';
 
 import {
     getBlockAbove,
@@ -45,66 +46,62 @@ interface PlateProps {
 
 export interface ImageElement extends TElement, PlateProps, SlateProps {}
 
-interface UpdatingProps { width?: number, align?: PlateImgAlign };
+interface UpdatingProps { width?: number, align?: SlateImgAlign };
 
 const { FlexRow, Spinner } = uuiSkin;
 
 const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
 const MIN_CAPTION_WIDTH = 92;
 const MIN_IMG_WIDTH = 12;
-const PLATE_TO_SLATE_IMG_ALIGN: { [key in PlateImgAlign]: SlateImgAlign } = {
+const PLATE_TO_SLATE_IMG_ALIGN = {
     'left': 'align-left',
     'right': 'align-right',
     'center': 'align-center',
 };
+const SLATE_TO_PLATE_IMG_ALIGN = invert(PLATE_TO_SLATE_IMG_ALIGN);
 
-const toSlateAlign = (plateAlign: PlateImgAlign): SlateImgAlign => PLATE_TO_SLATE_IMG_ALIGN[plateAlign];
+const toSlateAlign = (plateAlign: PlateImgAlign) => PLATE_TO_SLATE_IMG_ALIGN[plateAlign] as SlateImgAlign;
+
+const toPlateAlign = (slateAlign: SlateImgAlign) => SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as PlateImgAlign;
 
 const getUpdatedElement = (
     element: ImageElement,
-    { width = element?.width || 0, align = element.align || 'left' }: UpdatingProps
+    { width = element.data?.imageSize?.width || 0, align = element.data?.align || 'align-left' }: UpdatingProps
 ) => ({
     ...element,
     data: {
         ...(element.data || {}),
-        imageSize: {
-            width,
-            height: '100%'
-        },
-        align: toSlateAlign(align),
+        imageSize: { width, height: '100%' },
+        align,
     },
-    width,
-    height: '100%',
-    align
 });
 
 const useUpdatingElement = ({ element, editor }: { element: ImageElement, editor: PlateEditor }) => {
-    const [align, setAlign] = useState<PlateImgAlign>(element.align || 'left');
-    const [width, setWidth] = useState<number | undefined>(element.data?.imageSize.width || 0);
+    const [align, setAlign] = useState<PlateImgAlign>(toPlateAlign(element.data?.align) || 'left');
+    const [width, setWidth] = useState<number | undefined>(element.data?.imageSize?.width || 0);
 
-    const onResize = useCallback(() => {}, []);
+    const onResize = useCallback((e: any, direction: any, ref: any) => setWidth(ref.offsetWidth), []);
 
     const onResizeStop = useCallback((e: any, direction: any, ref: any) => {
         const path = findNodePath(editor, element!);
         if (!path) return;
 
         const newWidth = ref.offsetWidth;
-        if (newWidth !== width) {
-            setWidth(newWidth);
+        const nodeWidth = element.data?.imageSize?.width;
+        if (newWidth !== nodeWidth) {
             setElements(editor, getUpdatedElement(element, { width: newWidth }));
         } else {
             // select if not resized
             select(editor, path);
         }
-    }, [editor, element, width])
+    }, [editor, element])
 
-    const isInitialized = !!element.data;
     const size = { width, height: '100%' };
-    const resizableProps = isInitialized
+    const resizableProps = !!width
         ? { minWidth: MIN_IMG_WIDTH, onResize, onResizeStop, size }
         : { minWidth: 'fit-content', onResize, onResizeStop, size };
 
-    const isCaptionEnabled = isInitialized && width >= MIN_CAPTION_WIDTH;
+    const isCaptionEnabled = !!element.data && width >= MIN_CAPTION_WIDTH;
     const caption = isCaptionEnabled ? { disabled: false } : { disabled: true };
 
     return { align, setAlign, resizableProps, caption, style: IMAGE_STYLES };
@@ -121,7 +118,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
 
     const toggleBlockAlignment = (align: PlateImgAlign) => {
         setAlign(align);
-        setElements(editor, getUpdatedElement(element, { align }));
+        setElements(editor, getUpdatedElement(element, { align: toSlateAlign(align) }));
     }
 
     const setMaxWidth = () => {
