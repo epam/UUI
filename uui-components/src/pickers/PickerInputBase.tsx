@@ -225,13 +225,16 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     }
 
     getTogglerProps(rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> {
-        const selectedRows = this.getSelectedRows();
+        const view = this.getView();
+        const selectedRowsCount = view.getSelectedRowsCount();
+        const itemsToTake = selectedRowsCount > this.props.maxItems && this.props.maxItems !== undefined ? this.props.maxItems : 10;
+        const selectedRows = this.getSelectedRows(itemsToTake);
         const {
             isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, inputCx,
             validationMessage, validationProps, disableClear: propDisableClear, icon, iconPosition, prefix, suffix,
         } = this.props;
         const searchPosition = this.getSearchPosition();
-        const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRows.length);
+        const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
         const disableClear = forcedDisabledClear || propDisableClear;
 
         return {
@@ -252,9 +255,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             onBlur: this.handleBlur,
             onClear: this.handleClearSelection,
             selection: selectedRows,
+            selectedRowsCount,
             placeholder: this.getPlaceholder(),
             getName: (i: any) => this.getName(i),
-            entityName: this.getEntityName(selectedRows.length),
+            entityName: this.getEntityName(selectedRowsCount),
             pickerMode: this.isSingleSelect() ? 'single' : 'multi',
             searchPosition,
             onKeyDown: e => this.handlePickerInputKeyboard(rows, e),
@@ -340,7 +344,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (!showSelected) {
             preparedRows = getVisibleRows();
         } else {
-            preparedRows = getSelectedRows().slice(topIndex, topIndex + visibleCount);
+            preparedRows = getSelectedRows({ start: topIndex, end: topIndex + visibleCount });
         }
 
         return preparedRows.map((rowProps) => {
@@ -353,10 +357,13 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         });
     }
 
+    private handleCloseBody = () => {
+        this.toggleBodyOpening(false)
+    }
+
     getFooterProps(): PickerFooterProps<TItem, TId> & { onClose: () => void } {
         const footerProps = super.getFooterProps();
-
-        return { ...footerProps, onClose: () => this.toggleBodyOpening(false) };
+        return { ...footerProps, onClose: this.handleCloseBody };
     }
 
     returnFocusToInput(): void {

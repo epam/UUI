@@ -1042,7 +1042,7 @@ describe('LazyListView', () => {
         view.getListProps(); // trigger loading
         await delay();
 
-        const selectedRows = view.getSelectedRows(true);
+        const selectedRows = view.getSelectedRows();
         expect(selectedRows.map(({ id }) => id)).toEqual([320, 310, 121, 122]);
     });
 });

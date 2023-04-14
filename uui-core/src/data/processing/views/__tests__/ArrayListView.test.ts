@@ -398,7 +398,7 @@ describe('ArrayListView', () => {
     it('should return selected rows in selection order', () => {
         view.update({ ...initialValue, checked: [6, 5, 4] }, viewProps);
 
-        const selectedRows = view.getSelectedRows(true);
+        const selectedRows = view.getSelectedRows();
         expect(selectedRows.map(({ id }) => id)).toEqual([6, 5, 4]);
     });
 });
