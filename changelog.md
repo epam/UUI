@@ -14,6 +14,8 @@
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
 * [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
+* [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
+
 
 # 4.10.2 - 24.03.2023
 
