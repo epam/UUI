@@ -9,4 +9,4 @@ export * from './ControlGroup';
 export * from './Tree';
 export * from './Blocker';
 export * from './ScrollBars';
-export * from './AdaptivePanel';
+export * from '../adaptivePanel/AdaptivePanel';
