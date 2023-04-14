@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Descendant } from 'slate';
-import { IEditableDebouncer } from '@epam/uui';
+import { IEditableDebouncer } from '@epam/uui-core';
 import { Blocker } from '@epam/loveship';
 import {
     SlateEditor,

@@ -2,7 +2,7 @@
 
 exports[`Alert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper color-blue root"
+  className="alertWrapper alert-blue root"
   role="alert"
 >
   <div
@@ -17,7 +17,7 @@ exports[`Alert should be rendered correctly 1`] = `
 
 exports[`Alert should be rendered correctly 2`] = `
 <div
-  className="alertWrapper color-amber root"
+  className="alertWrapper alert-amber root"
   role="alert"
 >
   <div
@@ -42,7 +42,7 @@ exports[`Alert should be rendered correctly 2`] = `
         className="actionWrapper"
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-24 linkButton-color-blue uui-no-left-icon uui-no-right-icon actionLink"
+          className="container uui-button-box uui-enabled -clickable root size-30 uui-no-left-icon uui-no-right-icon actionLink"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -56,7 +56,7 @@ exports[`Alert should be rendered correctly 2`] = `
       </div>
     </div>
     <button
-      className="container uui-button-box uui-enabled -clickable root icon-color-gray60 closeIcon"
+      className="container uui-button-box uui-enabled -clickable icon-button-default root closeIcon"
       onClick={[Function]}
       tabIndex={0}
       type="button"
@@ -76,7 +76,7 @@ exports[`Alert should be rendered correctly 2`] = `
 
 exports[`ErrorAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper color-red root"
+  className="alertWrapper alert-red root"
   role="alert"
 >
   <div
@@ -103,7 +103,7 @@ exports[`ErrorAlert should be rendered correctly 1`] = `
 
 exports[`HintAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper color-blue root"
+  className="alertWrapper alert-blue root"
   role="alert"
 >
   <div
@@ -130,7 +130,7 @@ exports[`HintAlert should be rendered correctly 1`] = `
 
 exports[`SuccessAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper color-green root"
+  className="alertWrapper alert-green root"
   role="alert"
 >
   <div
@@ -157,7 +157,7 @@ exports[`SuccessAlert should be rendered correctly 1`] = `
 
 exports[`WarningAlert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper color-amber root"
+  className="alertWrapper alert-amber root"
   role="alert"
 >
   <div

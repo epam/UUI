@@ -1,18 +1,18 @@
 {
   "name": "@epam/uui-timeline",
-  "version": "4.10.0",
+  "version": "4.10.2",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
-  "epam:uui:main": "build/index.js",
+  "epam:uui:main": "build/index.esm.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-components": "4.10.0",
-    "@epam/uui-core": "4.10.0",
+    "@epam/uui-components": "4.10.2",
+    "@epam/uui-core": "4.10.2",
     "@types/lodash.sortby": "4.7.6",
     "@types/lodash.sortedindex": "4.1.6",
     "classnames": "^2.2.6",

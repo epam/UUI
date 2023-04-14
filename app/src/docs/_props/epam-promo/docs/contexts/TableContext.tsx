@@ -70,20 +70,20 @@ export const TableContext = (contextProps: DemoComponentProps) => {
             key: 'name',
             caption: 'Name',
             renderCell: (props) => <DataTableCell
-                { ...props.rowLens.prop('name').toProps() }
-                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props }/> }
+                { ...props.rowLens.prop(DemoComponent.name === 'PickerInput' ? 'id' : 'name').toProps() }
+                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } getName={ (i: any) => i.name } { ...props } /> }
                 { ...props }
             />,
             isSortable: true,
-            width: 200,
+            width: 300,
             fix: 'left',
         },
         {
             key: 'yearsInCompany',
             caption: 'Years In Company',
             renderCell: (props) => <DataTableCell
-                { ...props.rowLens.prop('yearsInCompany').toProps() }
-                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props }/> }
+                { ...props.rowLens.prop(DemoComponent.name === 'PickerInput' ? 'id' : 'yearsInCompany').toProps() }
+                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } getName={ (i: any) => i.yearsInCompany } { ...props }/> }
                 { ...props }
             />,
             isSortable: true,
@@ -100,8 +100,8 @@ export const TableContext = (contextProps: DemoComponentProps) => {
             key: 'birthDate',
             caption: 'Birth Date',
             renderCell: (props) => <DataTableCell
-                { ...props.rowLens.prop('birthDate').toProps() }
-                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props }/> }
+                { ...props.rowLens.prop(DemoComponent.name === 'PickerInput' ? 'id' : 'birthDate').toProps() }
+                renderEditor={ props => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } getName={ (i: any) => i.birthDate } { ...props }/> }
                 { ...props }
             />,
             isSortable: true,

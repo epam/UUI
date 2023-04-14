@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
+import { DataColumnProps, DataTableState, getOrderBetween, useArrayDataSource } from '@epam/uui-core';
 import { DataTable, Panel, Text } from "@epam/promo";
-import { DataColumnProps, DataTableState, getOrderBetween, useArrayDataSource } from '@epam/uui';
 import { demoData, FeatureClass} from '@epam/uui-docs';
 import css from './TablesExamples.scss';
 import sortBy from 'lodash.sortby';

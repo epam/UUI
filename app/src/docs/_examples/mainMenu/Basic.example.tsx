@@ -7,13 +7,13 @@ import { Dropdown, AdaptiveItemProps, MainMenuLogo } from "@epam/uui-components"
 import { ReactComponent as HelpIcon } from "@epam/assets/icons/common/notification-help-outline-24.svg";
 
 export default function MainMenuBasicExample() {
-    const renderBurger = () => (
+    const renderBurger = (props: {onClose: () => void}) => (
         <>
-            <BurgerButton caption="Training Catalog" />
-            <BurgerButton caption="Requests" />
-            <BurgerButton caption="Help" />
-            <BurgerButton caption="Settings" />
-            <BurgerButton caption="Log out" />
+            <BurgerButton href='/' caption="Training Catalog" onClick={ () => { props.onClose && props.onClose(); } }/>
+            <BurgerButton href='/' caption="Requests" onClick={ () => { props.onClose && props.onClose(); } }/>
+            <BurgerButton href='/' caption="Help" onClick={ () => { props.onClose && props.onClose(); } }/>
+            <BurgerButton href='/' caption="Settings" onClick={ () => { props.onClose && props.onClose(); } }/>
+            <BurgerButton href='/' caption="Log out" onClick={ () => { props.onClose && props.onClose(); } }/>
         </>
     );
 

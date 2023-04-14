@@ -2,20 +2,20 @@
 
 exports[`LabeledInput should be rendered correctly 1`] = `
 <div
-  className="container root size-36 color-night700"
+  className="container root size-36 uui-theme-loveship"
 >
   <div
     className="uui-label-top"
   >
     <div>
       <div
-        className="container uui-input-box -clickable colorSky root size-36 mode-form"
+        className="container uui-input-box -clickable root size-36 mode-form size-36"
         onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
       >
         <input
-          className="uui-input line-height-18 font-size-14 v-padding-8"
+          className="uui-input"
           onChange={[Function]}
           onKeyDown={[Function]}
           tabIndex={0}
@@ -30,7 +30,7 @@ exports[`LabeledInput should be rendered correctly 1`] = `
 
 exports[`LabeledInput should be rendered correctly with props 1`] = `
 <div
-  className="container root size-36 color-night700"
+  className="container root size-36 uui-theme-loveship"
 >
   <div
     className="uui-label-left"
@@ -47,13 +47,13 @@ exports[`LabeledInput should be rendered correctly with props 1`] = `
       className="rightChildrenPosition"
     >
       <div
-        className="container uui-input-box -clickable colorSky root size-36 mode-form"
+        className="container uui-input-box -clickable root size-36 mode-form size-36"
         onBlur={[Function]}
         onFocus={[Function]}
         tabIndex={-1}
       >
         <input
-          className="uui-input line-height-18 font-size-14 v-padding-8"
+          className="uui-input"
           onChange={[Function]}
           onKeyDown={[Function]}
           tabIndex={0}

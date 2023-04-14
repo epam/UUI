@@ -2,7 +2,7 @@
 
 exports[`Alert should be rendered correctly 1`] = `
 <div
-  className="alertWrapper color-sky"
+  className="alertWrapper alert-sky root"
   role="alert"
 >
   <div
@@ -17,7 +17,7 @@ exports[`Alert should be rendered correctly 1`] = `
 
 exports[`Alert should be rendered correctly with props 1`] = `
 <div
-  className="alertWrapper color-sun root"
+  className="alertWrapper alert-sun root root"
   role="alert"
 >
   <div
@@ -42,34 +42,34 @@ exports[`Alert should be rendered correctly with props 1`] = `
         className="actionWrapper"
       >
         <button
-          className="container uui-button-box uui-enabled -clickable root size-24 color-sky font-sans-semibold uui-no-left-icon uui-no-right-icon actionLink"
+          className="container uui-button-box uui-enabled -clickable root size-30 uui-no-left-icon uui-no-right-icon actionLink"
           onClick={[Function]}
           tabIndex={0}
           type="button"
         >
           <div
-            className="uui-caption line-height-18 font-size-14 v-padding-3"
+            className="uui-caption"
           >
             test
           </div>
         </button>
       </div>
     </div>
-  </div>
-  <button
-    className="container uui-button-box uui-enabled -clickable root color-night600 closeIcon"
-    onClick={[Function]}
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+    <button
+      className="container uui-button-box uui-enabled -clickable icon-button-default root closeIcon"
+      onClick={[Function]}
+      tabIndex={0}
+      type="button"
     >
-      <svg
-        className=""
-      />
-    </div>
-  </button>
+      <div
+        className="container uui-icon uui-enabled"
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+    </button>
+  </div>
 </div>
 `;

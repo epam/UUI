@@ -1,14 +1,14 @@
 import React from 'react';
 import { PickerListBase, PickerModalOptions } from '@epam/uui-components';
-import { DataRowProps, IClickable, IHasCaption, IHasPlaceholder, UuiContext, UuiContexts } from '@epam/uui-core';
+import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder, UuiContext, UuiContexts } from '@epam/uui-core';
 import { Text } from '../typography';
-import { TextSize, SizeMod } from '../types';
+import { SizeMod, TextSize } from '../types';
 import { LinkButton } from '../buttons';
 import { PickerListItem } from './PickerListItem';
 import { PickerModal } from './PickerModal';
 
 export type PickerListProps<TItem, TId> = SizeMod & IHasPlaceholder & PickerModalOptions<TItem, TId> & {
-    renderModalToggler?(props: IClickable & IHasCaption, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
+    renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;
 };
 
@@ -39,12 +39,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
             });
     }
 
-    defaultRenderToggler = (props: IClickable) => (
-        <LinkButton
-            caption='Show all'
-            { ...props }
-        />
-    )
+    defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props }/>;
 
     render() {
         const view = this.getView();
@@ -57,14 +52,12 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
 
         return (
             <div>
-                { !rows.length && (this.props.noOptionsMessage ?
-                    this.props.noOptionsMessage :
-                    <Text color={ 'secondary' }
-                          size={ this.props.size as TextSize }>No options available</Text>) }
-                { rows.map(row => renderRow(row)) }
+                { !rows.length && (this.props.noOptionsMessage || <Text color={ 'secondary' } size={ this.props.size as TextSize }>No options available</Text>) }
+                { rows.map(row => renderRow({ ...row, isDisabled: this.props.isDisabled }, this.state.dataSourceState)) }
                 { showPicker && renderToggler({
                     onClick: this.handleShowPicker,
                     caption: this.getModalTogglerCaption(viewProps.totalCount, selectedRows.length),
+                    isDisabled: this.props.isDisabled,
                 }, selectedRows) }
             </div>
         );

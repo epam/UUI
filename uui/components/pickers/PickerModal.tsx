@@ -1,19 +1,20 @@
 import * as React from 'react';
 import css from './PickerModal.scss';
 import { DataRowProps, Lens } from '@epam/uui-core';
-import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard } from '@epam/uui-components';
+import { PickerModalBase, PickerModalProps, handleDataSourceKeyboard, IconContainer } from '@epam/uui-components';
 import { DataPickerBody } from './DataPickerBody';
-import { FlexRow, FlexCell, FlexSpacer } from '../layout/FlexItems';
+import { FlexRow, FlexCell, FlexSpacer } from '../layout';
 import { ModalBlocker, ModalWindow, ModalHeader, ModalFooter } from '../overlays';
 import { SearchInput, Switch } from '../inputs';
 import { LinkButton, Button } from '../buttons';
 import { DataPickerRow } from './DataPickerRow';
 import { Text, TextPlaceholder } from '../typography';
 import { i18n } from '../../i18n';
+import { ReactComponent as SearchIcon } from '../../icons/search-with-background.svg';
 
 export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     renderRow(rowProps: DataRowProps<TItem, TId>) {
-        return this.props.renderRow ? this.props.renderRow(rowProps) : (
+        return this.props.renderRow ? this.props.renderRow(rowProps, this.state.dataSourceState) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
@@ -42,7 +43,17 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
         </>;
     }
 
-    render(): React.ReactNode {
+    renderNotFound = () => {
+        return this.props.renderNotFound
+            ? this.props.renderNotFound({ search: this.state.dataSourceState.search, onClose: () => this.props.success(null) })
+            : <div className={ css.noFoundModalContainer }>
+                <IconContainer cx={ css.noFoundModalContainerIcon } icon={ SearchIcon } />
+                <Text cx={ css.noFoundModalContainerText } font='semibold' fontSize='16' lineHeight='24' color='primary' size={ '36' }>{ i18n.dataPickerBody.noRecordsMessage }</Text>
+                <Text cx={ css.noFoundModalContainerText } fontSize='12' lineHeight='18' font='regular' color='primary' size={ '36' }>{ i18n.dataPickerBody.noRecordsSubTitle }</Text>
+            </div>;
+    }
+
+    render() {
         const view = this.getView();
         const dataRows = this.getRows();
         const selectedDataRows = view.getSelectedRows();
@@ -51,7 +62,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
         return (
             <ModalBlocker { ...this.props } >
                 <ModalWindow width={ 600 } height={ 700 }>
-                    <ModalHeader borderBottom title={ this.props.caption || i18n.pickerModal.headerTitle } onClose={ () => this.props.abort()  } />
+                    <ModalHeader title={ this.props.caption || i18n.pickerModal.headerTitle } onClose={ () => this.props.abort() } />
                     <FlexCell cx={ css.subHeaderWrapper }>
                         <FlexRow vPadding='24'>
                             <SearchInput
@@ -87,13 +98,10 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                         search={ this.lens.prop('dataSourceState').prop('search').toProps() }
                         showSearch={ false }
                         rows={ rows }
-                        renderNotFound={ this.props.renderNotFound && (() => this.props.renderNotFound({
-                            search: this.state.dataSourceState.search,
-                            onClose: () => this.props.success(selectedDataRows),
-                        })) }
+                        renderNotFound={ this.renderNotFound }
                         editMode='modal'
                     />
-                    <ModalFooter borderTop padding='24' vPadding='24'>
+                    <ModalFooter padding='24' vPadding='24'>
                         {
                             this.props.renderFooter
                                 ? this.props.renderFooter(this.getFooterProps())

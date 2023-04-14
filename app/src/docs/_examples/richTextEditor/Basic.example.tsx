@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
+import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
 import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
-import { FileUploadResponse, useUuiContext } from '@epam/uui';
 import {
     SlateEditor,
     defaultPlugins,

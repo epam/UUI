@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Modal Context is used to show component as an overlay in the middle of the screen.",
+            "text": "Modal Context shows components as an overlay in the middle of the screen.",
             "marks": []
           }
         ]
@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "To make it work, you need to place ",
+            "text": "To make it work, you have to place the ",
             "marks": []
           },
           {
@@ -39,7 +39,7 @@
           },
           {
             "object": "text",
-            "text": " component at the root of your app. This component subscribes to modal context changes and show/hide modal components.",
+            "text": " component at the root of your app. This component subscribes to modal context changes and shows/hides modal components.",
             "marks": []
           }
         ]

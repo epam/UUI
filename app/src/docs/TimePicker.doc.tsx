@@ -22,7 +22,7 @@ export class TimePickerDoc extends BaseDocsBlock {
                 />
 
                 <DocExample
-                    title=' 24 time format'
+                    title=' 24-hour format'
                     path='./_examples/timePicker/TimeFormat.example.tsx'
                 />
             </>

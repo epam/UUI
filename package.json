@@ -6,8 +6,9 @@
   "scripts": {
     "analyzer": "cd app && yarn analyzer",
     "postinstall": "cd server && yarn",
-    "test": "node uui-build/scripts/runTests.js",
-    "coverage": "yarn test --coverage",
+    "test": "node uui-build/scripts/runTests.js --config=./jest.config.js",
+    "test-update": "yarn test --updateSnapshot",
+    "test-report": "yarn test --collectCoverage",
     "process-icons": "node uui-build/scripts/processIcons.js",
     "start": "cd ./app && yarn start",
     "next:dev": "cd ./next-app && yarn && node ../uui-build/scripts/runNextApp.js && yarn dev",
@@ -22,7 +23,9 @@
     "generate-components-api": "cd uui-build && yarn generate-components-api",
     "transform-tokens": "tsc --esModuleInterop uui-build/tokens-converter/index.ts && node uui-build/tokens-converter",
     "release": "lerna publish --force-publish",
-    "build-modules": "lerna run build"
+    "build-modules": "lerna run build",
+    "track-bundle-size": "yarn --cwd uui-build track-bundle-size",
+    "track-bundle-size-override": "yarn --cwd uui-build track-bundle-size --override-baseline"
   },
   "repository": {
     "type": "git",
@@ -43,7 +46,8 @@
       "uui-timeline",
       "uui-editor",
       "extra",
-      "draft-rte"
+      "draft-rte",
+      "test-utils"
     ]
   },
   "author": "",

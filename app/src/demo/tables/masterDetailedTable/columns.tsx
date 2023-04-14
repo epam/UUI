@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
-import { DataColumnProps } from "@epam/uui";
+import { DataColumnProps } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import css from './DemoTable.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
@@ -14,7 +14,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         fix: 'left',
         isSortable: true,
         justifyContent: 'space-between',
-        textAlign: 'right',
         isAlwaysVisible: true,
     },
     {

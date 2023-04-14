@@ -10,7 +10,6 @@ export default function BasicExample() {
             <Rating value={ value } onValueChange={ onValueChange } />
             <Rating isDisabled value={ value } onValueChange={ onValueChange } />
             <Rating isReadonly value={ value } onValueChange={ onValueChange } />
-            <Rating isInvalid value={ value } onValueChange={ onValueChange } />
         </FlexCell>
     );
 }

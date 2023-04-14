@@ -1,4 +1,4 @@
-import { Metadata } from '@epam/uui';
+import { Metadata } from '@epam/uui-core';
 import { PersonDetails } from './types';
 import dayjs from "dayjs";
 
@@ -41,7 +41,12 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                 department: { isRequired: false },
                 degree: { isRequired: false },
                 speciality: { isRequired: false },
-                graduationYear: { isRequired: false },
+                graduationYear: {
+                    isRequired: false,
+                    validators: [
+                        (value: number | null) => [(value !== null && value < 1950) && 'The year of graduation can not be less than 1950!'],
+                    ],
+                },
             },
         },
         languageInfo: {

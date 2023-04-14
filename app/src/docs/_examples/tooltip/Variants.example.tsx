@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Text, Tooltip } from '@epam/promo';
-import { cx } from '@epam/uui';
+import { cx } from '@epam/uui-core';
 import css from './TypesExample.scss';
 
 export default function VariantsTooltipExample() {
@@ -18,8 +18,8 @@ export default function VariantsTooltipExample() {
               <Button caption='Critical' fill='white' color='red' onClick={ () => null } />
           </Tooltip>
 
-          <Text fontSize='14' cx={ cx(css.secondColumn, css.text) }>Has perfect contrast ration, easy to grab attention.<br/>
-            Advices to use for any hint type considered as important to deliver (normally covers the most of cases).</Text>
+          <Text fontSize='14' cx={ cx(css.secondColumn, css.text) }>It has a perfect contrast ration, easily attracts attention.<br/>
+            Advices that can be used for any type of hint, that is considered important to inform (usually covers most cases).</Text>
           <Text fontSize='14' cx={ cx(css.secondColumn, css.text) }>Has less visibility. Can be used when we don’t want to annoy, especially when trigger actions place close to each other, and may be triggered accidentally.</Text>
           <Text fontSize='14' cx={ cx(css.secondColumn, css.text) }>Uses to deliver any critical, error or validation messages for table cells, forms, etc.</Text>
       </div>

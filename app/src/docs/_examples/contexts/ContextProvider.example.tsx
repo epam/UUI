@@ -1,5 +1,5 @@
 import React from "react";
-import { ContextProvider } from "@epam/uui";
+import { ContextProvider } from "@epam/uui-core";
 import { Modals, Snackbar } from "@epam/uui-components";
 import { ErrorHandler } from '@epam/loveship';
 import { skinContext as promoSkinContext } from "@epam/promo";

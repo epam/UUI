@@ -1,3 +1,45 @@
+# 5.0.0 - xx.xx.20203
+**What's New**
+* "EcmaScript" modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
+
+* [useTableState]: 
+  - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
+  - added storing of sorting, columns config, and paging state into url
+  - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
+
+* [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
+* [Dropdown]: added a 400ms delay to the submenu's close and open triggers
+  
+
+**What's Fixed**
+* [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
+* [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
+
+# 4.10.2 - 24.03.2023
+
+**What's Fixed**
+* [Form]: fixed isChanged calculation for already saved and then changed form
+* [Dropdown]: fixed issue with '0' value for closeDelay prop
+* [MainMenu]: fixed issue when menu resize caused removing body overflow for opened modals
+* [TimePicker]: fixed body content alignment
+
+
+# 4.10.1 - 10.03.2023
+
+**What's New**
+* Exposed our Rollup build toolchain from @epam/uui-build package that you be able to build and publish your own packages.
+
+**What's Fixed**
+* [Typography]: links now underlined
+* [NumericInput]: prevented text selection by arrows click
+* [NumericInput]: `formatter` prop replaced with custom `formatValue` function which converts given input into text instead of number
+* [ButtonBase]: set `disabled` attribute for disabled buttons
+* [NumericInput]: improved work with floating numbers
+* [FilterPanel]: fixed predicate value change
+* [FilterPanel]: fixed range date picker date selection
+* [PickerList]: fixed default sorting
+* [DataTable]: fixed first column content alignment 
+
 # 4.10.0 - 06.02.2023
 
 **What's New**

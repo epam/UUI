@@ -7,9 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
-    types: [ closed ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -19,118 +16,18 @@ env:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-and-test:
-
-    runs-on: ubuntu-latest
-    container: node:14
-
-
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-
-    - uses: actions/cache@v2
-      with:
-        path: |
-          node_modules
-          ./*/node_modules
-        key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: v1-npm-deps-
-
-
-    - name: build
-      run: |
-        yarn
-        yarn build
-        yarn generate-components-api
-        cd server && yarn
-    - name: test
-      run: yarn test
-
-  docker:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: ui
-      ACTIONS_STEP_DEBUG: true
-      REGISTRY_URL: epmtai.azurecr.io
-    steps:
-      - name: Check Out Repo
-        uses: actions/checkout@v2
-
-      - name: build app
-        run: |
-          yarn
-          yarn build
-          yarn generate-components-api
-          cd server && yarn
-
-      - name: Login to registry
-        uses: docker/login-action@v1
-        with:
-          registry: ${{ secrets.REGISTRY_URL }}
-          username: ${{ secrets.REGISTRY_USER }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ${{ secrets.REGISTRY_URL }}/ui
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=sha
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          context: ./
-          file: ./Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-
-  deploy:
-    needs: docker
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ${{ secrets.REGISTRY_URL }}/uui
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=sha
-
-      - name: Install Helm
-        uses: azure/setup-helm@v1
-        with:
-          version: v3.6.0
-
-      - name: Preparation helm chart
-        run: |
-          export tag=$(echo ${{ steps.meta.outputs.tags }} | awk -F":" '{print $2}')
-          export HELM_EXPERIMENTAL_OCI=1
-          echo $tag
-          echo "::set-env name=tag::$tag"
-          echo ${{ secrets.REGISTRY_PASSWORD }} | helm registry login ${{ secrets.REGISTRY_URL }} --username ${{ secrets.REGISTRY_USER }} --password-stdin
-          helm version
-          helm chart pull ${{ secrets.HELM_REGISTRY }}
-          helm chart export ${{ secrets.HELM_REGISTRY }} --destination .
-
-      - name: Deploy
-        uses: WyriHaximus/github-action-helm3@v2
-        with:
-          exec: helm upgrade --install ${{ secrets.APP_NAME }} -f ${{ secrets.HELM_VALUES }} --set image.tag=$tag --atomic ui/ --namespace ${{ secrets.APP_NAME }}
-          kubeconfig: ${{ secrets.KUBECONFIG }}
+  call-base-for-prod:
+    # Call all jobs from base.yml
+    uses: ./.github/workflows/base.yml
+    secrets:
+      REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
+      REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+      COMMON_HELMCHART_NAME: ${{ secrets.COMMON_HELMCHART_NAME }}
+      COMMON_HELMCHART_VERSION: ${{ secrets.COMMON_HELMCHART_VERSION_PROD }}
+      APP_NAME_BASE: ${{ secrets.APP_NAME }}
+    with:
+      values-file: values.prod.yaml
+      # TODO: After migrating prod environment we can use the same image name for prod and non-prod
+      image-name: ui
+      git-version-mode: '/overrideconfig mode=Mainline'

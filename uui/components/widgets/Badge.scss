@@ -76,7 +76,7 @@
             padding-top: 2px;
             padding-bottom: 2px;
             line-height: 18px;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         &.fill-transparent {
@@ -214,64 +214,66 @@
     }
 
     &.fill-solid {
-        background-color: var(--badge-bg-color);
-        color: var(--badge-caption-color-solid);
-        fill: var(--badge-caption-color-solid);
-        border-color: var(--badge-bg-color);
+        background-color: var(--uui-badge-bg);
+        color: var(--uui-badge-caption-solid);
+        fill: var(--uui-badge-caption-solid);
+        border-color: var(--uui-badge-bg);
 
         :global(.uui-count) {
-            background-color: var(--badge-count-bg-color);
-            color: var(--badge-count-color);
+            background-color: var(--uui-badge-count-bg);
+            color: var(--uui-badge-count);
         }
 
         &:global(.-clickable) {
             &:hover {
-                background-color: var(--badge-bg-color-hover);
-                border-color: var(--badge-bg-color-hover);
+                background-color: var(--uui-badge-bg-hover);
+                border-color: var(--uui-badge-bg-hover);
                 cursor: pointer;
             }
         }
     }
 
-    //&.fill-semitransparent {
-    //    background-color: var(--bg-color-semitransparent);
-    //    color: var(--caption-color-semitransparent);
-    //    fill: var(--caption-color-semitransparent);
-    //    border-color: var(--border-color-semitransparent);
-    //
-    //    :global(.uui-count) {
-    //        background-color: var(--count-bg-color);
-    //        color: var(--count-color);
-    //    }
-    //
-    //    &:global(.-clickable) {
-    //        &:hover {
-    //            background-color: var(--border-color-semitransparent);
-    //            color: var(--caption-color-semitransparent-hover);
-    //            fill: var(--caption-color-semitransparent-hover);
-    //            cursor: pointer;
-    //        }
-    //    }
-    //}
-    //
-    //&.fill-transparent {
-    //    background-color: transparent;
-    //    color: var(--caption-color-transparent);
-    //    fill: var(--bg-color);
-    //    border-color: transparent;
-    //
-    //    &:global(.-clickable) {
-    //        &:hover {
-    //            fill: var(--bg-color-hover);
-    //            cursor: pointer;
-    //        }
-    //    }
-    //
-    //    &::before {
-    //        position: absolute;
-    //        content: '';
-    //        border-radius: 50%;
-    //        background-color: var(--bg-color);
-    //    }
-    //}
+    &.fill-semitransparent {
+        background-color: var(--uui-badge-bg-halftone);
+        color: var(--uui-badge-caption-halftone);
+        fill: var(--uui-badge-caption-halftone);
+        border-color: var(--uui-badge-border-halftone);
+
+        :global(.uui-count) {
+            background-color: var(--uui-badge-count-bg);
+            color: var(--uui-badge-count);
+        }
+
+        &:global(.-clickable) {
+            &:hover {
+                background-color: var(--uui-badge-bg-halftone-hover);
+                color: var(--uui-badge-caption-halftone);
+                fill: var(--uui-badge-caption-halftone);
+                border-color: var(--uui-badge-border-halftone-hover);
+                cursor: pointer;
+            }
+        }
+    }
+
+    &.fill-transparent {
+        background-color: transparent;
+        color: var(--uui-text-primary);
+        fill: var(--uui-text-primary);
+        border-color: transparent;
+
+        &:global(.-clickable) {
+            &:hover {
+                color: var(--uui-badge-bg-hover);
+                fill: var(--uui-badge-bg-hover);
+                cursor: pointer;
+            }
+        }
+
+        &::before {
+            position: absolute;
+            content: '';
+            border-radius: 50%;
+            background-color: var(--uui-badge-bg);
+        }
+    }
 }

@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { Button, ButtonProps } from '@epam/uui-components';
+import { VerticalTabButton, VerticalTabButtonProps } from '@epam/uui';
 import { ReactComponent as DropdownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import css from './SidebarButton.scss';
-import { cx } from '@epam/uui';
+import { cx } from '@epam/uui-core';
 
-export interface SidebarButtonProps extends ButtonProps {
+export interface SidebarButtonProps extends VerticalTabButtonProps {
     isActive: boolean;
     indent?: number;
 }
 
 export class SidebarButton extends React.Component<SidebarButtonProps, any> {
     render() {
-        return <Button
+        return <VerticalTabButton
             { ...this.props }
             rawProps={ {
                 role: this.props.isDropdown ? undefined : 'tab',
@@ -19,12 +19,13 @@ export class SidebarButton extends React.Component<SidebarButtonProps, any> {
                 "aria-disabled": this.props.isDisabled,
                 "aria-current": this.props.isActive,
             } }
+            isLinkActive={ this.props.isActive }
             cx={ cx(
                 css.root,
-                this.props.isActive && css.active,
                 css['indent-' + this.props.indent],
             ) }
             dropdownIcon={ DropdownIcon }
+            size="36"
         />;
     }
 }

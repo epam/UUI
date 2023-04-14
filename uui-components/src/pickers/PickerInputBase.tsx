@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
-import { DropdownBodyProps, DropdownState, UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus } from '@epam/uui-core';
+import { DropdownBodyProps, DropdownState, UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus, CX } from '@epam/uui-core';
 import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps, dataSourceStateToValue, applyValueToDataSourceState } from './index';
 import { Dropdown } from '../overlays';
 import { i18n } from '../i18n';
@@ -64,6 +64,11 @@ export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICa
     fixedBodyPosition?: boolean;
 
     portalTarget?: HTMLElement;
+
+    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */
+    inputCx?: CX;
+    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
+    bodyCx?: CX;
 };
 
 interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
@@ -222,7 +227,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     getTogglerProps(rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> {
         const selectedRows = this.getSelectedRows();
         const {
-            isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch,
+            isDisabled, autoFocus, isInvalid, isReadonly, isSingleLine, maxItems, minCharsToSearch, inputCx,
             validationMessage, validationProps, disableClear: propDisableClear, icon, iconPosition, prefix, suffix,
         } = this.props;
         const searchPosition = this.getSearchPosition();
@@ -244,8 +249,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             prefix,
             suffix,
             onFocus: this.props.onFocus,
-            onBlur: this.handleBlur,
             onClear: this.handleClearSelection,
+            onBlur: this.props.onBlur,
             selection: selectedRows,
             placeholder: this.getPlaceholder(),
             getName: (i: any) => this.getName(i),
@@ -256,8 +261,10 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableSearch: !minCharsToSearch && (!dropdownProps.isOpen || searchPosition !== 'input'),
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
+            closePickerBody: this.closePickerBody,
             rawProps: this.props.rawProps?.input,
             value: this.getSearchValue(),
+            cx: inputCx,
         };
     }
 
@@ -309,7 +316,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         });
     }
 
-    handleBlur = (e: React.FocusEvent<HTMLElement>) => {
+    closePickerBody = () => {
         this.setState({
             ...this.state,
             dataSourceState: {
@@ -319,8 +326,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             isSearchChanged: false,
             opened: false,
         });
-
-        this.props.onBlur && this.props.onBlur(e);
     }
 
     getRows() {

@@ -6,7 +6,7 @@ const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBu
 
 const BUILD_FOLDER = 'build'
 
-module.exports = { buildUuiModule };
+module.exports = { buildUuiModule, isRollupModule };
 
 async function withEventsLogger({ moduleRootDir, isRollup, asyncCallback }) {
     const moduleBuildLogger = new ModuleBuildProgressLogger({ moduleRootDir, isRollup });
@@ -23,12 +23,25 @@ async function withEventsLogger({ moduleRootDir, isRollup, asyncCallback }) {
 
 async function buildUuiModule() {
     const moduleRootDir = process.cwd();
-    const isRollup = await isRollupModule(moduleRootDir);
+    const isRollup = isRollupModule(moduleRootDir);
     if (isRollup) {
         await buildModuleUsingRollup({
             moduleRootDir,
             copyAsIs: ['readme.md', 'assets'],
-            packageJsonTransform: content => { delete content['epam:uui:main']; },
+            packageJsonTransform: content => {
+                return Object.keys(content).reduce((acc, key) => {
+                    if (key === 'epam:uui:main') {
+                        // delete
+                        return acc;
+                    }
+                    if (key === 'main') {
+                        // "module" is read by major bundlers: Rollup, Webpack, etc.
+                        acc.module = 'index.esm.js';
+                    }
+                    acc[key] = content[key];
+                    return acc;
+                }, {});
+            },
         });
     } else {
         await buildStaticModule({ moduleRootDir });
@@ -98,7 +111,7 @@ function copyAllModuleFilesToOutputSync(moduleRootDir) {
  *
  * @returns {Promise<boolean>}
  */
-async function isRollupModule(moduleRootDir) {
-    const moduleIndexFile = await getIndexFileRelativePath(moduleRootDir);
+function isRollupModule(moduleRootDir) {
+    const moduleIndexFile = getIndexFileRelativePath(moduleRootDir);
     return !!moduleIndexFile;
 }

@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "You can change the time format from 12 hour to 24 hour by using the ",
+            "text": "You can change the time format from 12-hour to 24-hour by using the ",
             "marks": []
           },
           {
@@ -27,7 +27,7 @@
           },
           {
             "object": "text",
-            "text": "prop. The default is 12 hour format.",
+            "text": "prop. The default is a 12-hour format.",
             "marks": []
           }
         ]

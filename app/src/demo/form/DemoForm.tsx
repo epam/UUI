@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext, cx } from '@epam/uui';
+import { useArrayDataSource, useLazyDataSource, ILens, Lens, useAsyncDataSource, AsyncDataSource, UuiContexts, useUuiContext, cx } from '@epam/uui-core';
 import { demoData, Country } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import {
@@ -262,10 +262,11 @@ const Education = ({ lens }: { lens: ILens<PersonDetails['education']> }) => {
                     <LabeledInput htmlFor="graduationYear" label='Graduation year' { ...lens.prop('graduationYear').toProps() }>
                         <NumericInput
                             { ...lens.prop('graduationYear').toProps() }
-                            min={ 1950 }
-                            max={ 2020 }
+                            min={ 0 }
+                            max={ new Date().getFullYear() }
                             placeholder='2020'
                             id="graduationYear"
+                            disableLocaleFormatting
                         />
                     </LabeledInput>
                 </FlexCell>

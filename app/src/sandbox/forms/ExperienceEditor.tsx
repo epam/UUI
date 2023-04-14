@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Lens, IEditable, ArrayDataSource } from '@epam/uui';
+import { Lens, IEditable, ArrayDataSource } from '@epam/uui-core';
 import { LabeledInput, TextInput, FlexRow, FlexCell, Button, FlexSpacer, PickerInput, LinkButton, RichTextView } from '@epam/loveship';
 import { PersonExperienceItem } from '@epam/uui-docs';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/content-plus-18.svg';
@@ -55,7 +55,6 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
                 <LinkButton
                     rawProps={ { "aria-label": 'Remove' } }
                     icon={ RemoveIcon }
-                    color='night600'
                     onClick={ () => this.props.onValueChange(this.props.value.filter((item, i) => index != i)) }
                 />
             </FlexCell>

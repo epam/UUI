@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { Button, FlexRow, Panel, Tooltip, PickerInput } from '@epam/promo';
 import { Dropdown } from '@epam/uui-components';
-import { useLazyDataSource, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui';
+import { useLazyDataSource, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui-core';
 import { Person } from "@epam/uui-docs";
 
 export default function ButtonAsToggler() {

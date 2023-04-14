@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FlexRow, PickerInput, FlexCell } from '@epam/promo';
-import { useArrayDataSource } from '@epam/uui';
+import { useArrayDataSource } from '@epam/uui-core';
 
 const languageLevels = [
     { "id": 2, "level": "A1" },
@@ -26,7 +26,7 @@ export default function LanguagesMultiPicker() {
     }, []);
 
     return (
-        <FlexCell width={ 600 }>
+        <FlexCell width={ 612 }>
             <FlexRow spacing='12' >
                 <PickerInput
                     dataSource={ dataSource }

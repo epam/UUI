@@ -3,16 +3,15 @@ import {
     SwitchDoc, CheckboxGroupDoc, RadioGroupDoc, MultiSwitchDoc, NumericInputDoc, RatingDoc, SearchInputDoc, TextAreaDoc,
     AccordionDoc, ContextProviderDoc, ApiContextDoc, ModalContextDoc, NotificationContextDoc, DropdownDoc, MainMenuDoc,
     ModalsDoc, BadgeDoc, FiltersPanelDoc, TagDoc, PaginatorDoc, SpinnerDoc, RichTextViewDoc, TextDoc, TextPlaceholderDoc,
-    DatePickerDoc, RangeDatePickerDoc, TimePickerDoc, ControlGroupDoc, GettingStartedDoc, NotificationCardDoc, TooltipDoc,
+    DatePickerDoc, RangeDatePickerDoc, TimePickerDoc, ControlGroupDoc, InstallationDoc, NotificationCardDoc, TooltipDoc,
     LabeledInputDoc, AlertDoc, IconContainerDoc, BlockerDoc, IconsDoc, ColorsPageDoc, DownloadsDoc, ProjectsDoc,
-    ReleaseNotesDoc, FlexItemsDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, AvatarDoc,
+    ReleaseNotesDoc, FlexRowDoc, FlexCellDoc, FlexSpacerDoc, PanelDoc, GettingStartedForDesignersDoc, RichTextEditorDoc, FormDoc, LockContextDoc, AvatarDoc,
     InternationalizationDoc, FileUploadDoc, SliderDoc, SliderRatingDoc, AvatarStackDoc, PickerListDoc, TeamDoc,
     AnalyticsContextDoc, DragAndDropDoc, VirtualListDoc, EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc,
     VisualExamplesDoc, DropdownMenuDoc, ProgressBarDoc, VerticalTabButtonDoc, ScrollSpyDoc, DropdownContainerDoc,
-    AdaptivePanelDoc, EditableTablesDoc, TablesOverviewDoc, AdvancedTablesDoc, PresetsPanelDoc
+    AdaptivePanelDoc, EditableTablesDoc, TablesOverviewDoc, AdvancedTablesDoc, PresetsPanelDoc, GettingStartedDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
-import { OverviewDoc } from '../docs/Overview';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
 import { AnchorDoc } from "../docs/Anchor.doc";
 
@@ -41,7 +40,11 @@ const componentsStructure = sortBy([
     { id: 'datePicker', name: 'Date Picker', component: DatePickerDoc, parentId: 'components' },
     { id: 'dropdown', name: 'Dropdown', component: DropdownDoc, parentId: 'components' },
     { id: 'dropdownMenu', name: 'Dropdown Menu', component: DropdownMenuDoc, parentId: 'components' },
-    { id: 'flexItems', name: 'Flex Items', component: FlexItemsDoc, parentId: 'components' },
+    { id: 'flexItems', name: 'Flex Items', parentId: 'components' },
+    { id: 'panel', name: 'Panel', component: PanelDoc, parentId: 'flexItems', order: 1 },
+    { id: 'flexRow', name: 'Flex Row', component: FlexRowDoc, parentId: 'flexItems', order: 2 },
+    { id: 'flexCell', name: 'Flex Cell', component: FlexCellDoc, parentId: 'flexItems', order: 3 },
+    { id: 'flexSpacer', name: 'Flex Spacer', component: FlexSpacerDoc, parentId: 'flexItems', order: 4 },
     { id: 'iconButton', name: 'Icon Button', component: IconButtonDoc, parentId: 'components' },
     { id: 'iconContainer', name: 'Icon Container', component: IconContainerDoc, parentId: 'components' },
     { id: 'labeledInput', name: 'Labeled Input', component: LabeledInputDoc, parentId: 'components' },
@@ -86,12 +89,12 @@ const componentsStructure = sortBy([
     { id: 'progressBar', name: 'Progress Bar', component: ProgressBarDoc, parentId: 'components' },
     { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDoc, parentId: 'components' },
     { id: 'dropdownContainer', name: 'Dropdown Container', component: DropdownContainerDoc, parentId: 'components' },
-], (item) => item.order || item.name);
+], (item) => item.order ? item.order + item.name : item.name);
 
 export const items: DocItem[] = [
-    { id: 'overview', name: 'Overview', component: OverviewDoc },
-    { id: 'coreConcepts', name: 'Core Concepts', component: CoreConceptsDoc },
     { id: 'gettingStarted', name: 'Getting Started', component: GettingStartedDoc },
+    { id: 'installation', name: 'Installation', component: InstallationDoc },
+    { id: 'coreConcepts', name: 'Core Concepts', component: CoreConceptsDoc },
     { id: 'forDesigners', name: 'For Designers' },
     { id: 'gettingStartedForDesigners', name: 'Getting Started', component: GettingStartedForDesignersDoc, parentId: 'forDesigners' },
     { id: 'guidelines', name: 'Guidelines', parentId: 'forDesigners' },

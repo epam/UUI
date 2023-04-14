@@ -1,0 +1,13 @@
+@use  '../../assets/styles/index' as *;
+
+.header {
+    font-family: var(--font-regular);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 12px 0 12px;
+
+    button.removeButton {
+        padding-left: 24px;
+    }
+}

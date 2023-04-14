@@ -1,20 +1,21 @@
 {
   "name": "@epam/loveship",
-  "version": "4.10.0",
+  "version": "4.10.2",
   "description": "EPAM UUI components set branded with 'loveship' style",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
-  "epam:uui:main": "build/index.js",
+  "epam:uui:main": "build/index.esm.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "4.10.0",
-    "@epam/uui-components": "4.10.0",
-    "@epam/uui-core": "4.10.0",
+    "@epam/assets": "4.10.2",
+    "@epam/uui": "4.10.2",
+    "@epam/uui-components": "4.10.2",
+    "@epam/uui-core": "4.10.2",
     "@types/classnames": "2.2.6",
     "@types/lodash.isequal": "4.5.5",
     "@types/lodash.sortby": "4.7.6",
@@ -27,8 +28,6 @@
   },
   "devDependencies": {
     "@types/react-test-renderer": "18.0.0",
-    "enzyme": "3.11.0",
-    "enzyme-adapter-react-16": "1.15.5",
     "mockdate": "^3.0.5",
     "react-test-renderer": "18.2.0"
   },

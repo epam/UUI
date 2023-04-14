@@ -1,20 +1,20 @@
-@use  '../../assets/styles/index' as *;
+@use  '../../assets/styles/buttonLayout' as *;
 
 .root {
     &:global(.uui-button-box) {
         background-color: transparent;
-        color: var(--link-button-text-color);
-        fill: var(--link-button-text-color);
+        color: var(--uui-link-button-text);
+        fill: var(--uui-link-button-text);
 
         &:global(.-clickable:not(.uui-disabled)) {
             &:hover, &:focus {
-                color: var(--link-button-text-color-hover);
-                fill: var(--link-button-text-color-hover);
+                color: var(--uui-link-button-text-hover);
+                fill: var(--uui-link-button-text-hover);
             }
 
             &:active {
-                color: var(--link-button-text-color-active);
-                fill: var(--link-button-text-color-active);
+                color: var(--uui-link-button-text-active);
+                fill: var(--uui-link-button-text-active);
             }
 
             &:focus {
@@ -23,8 +23,8 @@
         }
 
         &:global(.uui-disabled) {
-            color: var(--link-button-text-color-disabled);
-            fill: var(--link-button-text-color-disabled);
+            color: var(--uui-link-button-text-disabled);
+            fill: var(--uui-link-button-text-disabled);
             background-color: transparent;
 
             &:hover {

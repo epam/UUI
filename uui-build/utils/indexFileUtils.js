@@ -10,17 +10,15 @@ const indexFileNames = ["index.ts", "index.tsx"];
  *
  * @param {string} moduleRootDir
  */
-async function getIndexFileRelativePath(moduleRootDir) {
-    const found = await Promise.all(
-        indexFileNames.map(async (name) => {
-            const relativePath = `./${name}`;
-            const pathResolved = path.resolve(moduleRootDir, relativePath)
-            if (await fs.exists(pathResolved)) {
-                return relativePath;
-            }
-        })
-    );
-    return found.find(Boolean);
+function getIndexFileRelativePath(moduleRootDir) {
+    return indexFileNames.reduce((acc, name) => {
+        const relativePath = `./${name}`;
+        const pathResolved = path.resolve(moduleRootDir, relativePath)
+        if (fs.existsSync(pathResolved)) {
+            return relativePath;
+        }
+        return acc;
+    }, null);
 }
 
 
