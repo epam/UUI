@@ -7,7 +7,7 @@ import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
 import { FiltersPanelItem } from "./FiltersPanelItem";
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
 
-interface FiltersToolbarProps<TFilter> {
+interface FiltersPanelProps<TFilter> {
     filters: TableFiltersConfig<TFilter>[];
     tableState: DataTableState;
     setTableState: (newState: DataTableState) => void;
@@ -52,7 +52,7 @@ const normalizeFilterWithPredicates = <TFilter, >(filter: TFilter) => {
     return result;
 };
 
-const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<TFilter>) => {
+const FiltersToolbarImpl = <TFilter extends object>(props: FiltersPanelProps<TFilter>) => {
     const { filters, tableState, setTableState } = props;
     const [newFilterId, setNewFilterId] = useState(null);
 
