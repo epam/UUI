@@ -1,10 +1,9 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { render, renderHook, fireEvent, screen, within, waitForElementToBeRemoved, waitFor } from '@testing-library/react';
+import { render, renderHook } from './testingLibraryReact';
 import renderer, { act } from 'react-test-renderer';
 import { ContextProvider, UuiContexts } from '@epam/uui-core';
 
-// re-export some useful stuff for convenience
-export { act, fireEvent, screen, within, waitForElementToBeRemoved, waitFor };
+export * from './testingLibraryReact';
 
 export const delay = (ms: number = 1): Promise<void> => new Promise(resolve => {
     setTimeout(resolve, ms);

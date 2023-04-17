@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, within, screen } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen } from '@epam/test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 
 jest.mock('react-popper', () => {
