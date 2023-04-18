@@ -920,6 +920,13 @@
     --uui-notification-card-text: var(--uui-text-primary);
 }
 
+    :global(.notification-card-transparent) {
+    --uui-notification-card-fill: var(--night600);
+    --uui-notification-card-border: var(--uui-surface);
+    --uui-notification-card-bg: var(--uui-surface);
+    --uui-notification-card-text: var(--uui-text-primary);
+}
+
     :global(.orange) {
         --orange-10: #FFE1BD;
         --orange-20: #FFD091;
