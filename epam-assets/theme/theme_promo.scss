@@ -901,6 +901,13 @@
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
+    :global(.notification-card-transparent) {
+        --uui-notification-card-fill:  var(--uui-secondary-dark);
+        --uui-notification-card-border: var(--uui-surface);
+        --uui-notification-card-bg: var(--uui-surface);
+        --uui-notification-card-text: var(--uui-text-primary);
+    }
+
     :global(.alert-error),
     :global(.alert-red) {
         --uui-alert-text: var(--uui-text-primary);
