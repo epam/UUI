@@ -260,8 +260,8 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
 }
 
 export interface GetSelectedRowsOptions {
-    start?: number;
-    end?: number;
+    topIndex?: number;
+    visibleCount?: number;
 }
 
 export type IDataSourceView<TItem, TId, TFilter> = {

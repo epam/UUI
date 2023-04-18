@@ -45,9 +45,9 @@ export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerMo
 
     getRows() {
         const view = this.getView();
-        const topIndex = this.state.dataSourceState.topIndex;
+        const { topIndex, visibleCount } = this.state.dataSourceState;
         return this.state.showSelected
-            ? view.getSelectedRows({ start: topIndex, end: topIndex + this.state.dataSourceState.visibleCount })
+            ? view.getSelectedRows({ topIndex, visibleCount })
             : view.getVisibleRows();
     }
 
