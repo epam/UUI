@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderSnapshotWithContextAsync, fireEvent, setupComponentForTest } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen } from '@epam/test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 
 jest.mock('react-popper', () => {
@@ -41,8 +41,8 @@ async function setupDatePicker(params: { value: string | null, format: string })
         (props) => <DatePicker { ...props } />,
     );
 
-    const input = result.queryByRole('textbox') as HTMLInputElement;
-    const clear = result.container.querySelector('.uui-icon-cancel');
+    const input = screen.queryByRole('textbox') as HTMLInputElement;
+    const clear = screen.queryByRole('button');
 
     return {
         result,
@@ -79,18 +79,18 @@ describe('DatePicker', () => {
 
     it(`should open picker on field focus`, async () => {
         const { result, dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
-        expect(result.queryByRole('dialog')).toBeFalsy();
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         fireEvent.focus(dom.input);
-        expect(result.queryByRole('dialog')).toBeTruthy();
+        expect(screen.queryByRole('dialog')).toBeInTheDocument();
     });
 
     it(`should close picker on field blur`, async () => {
         const { result, dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
-        expect(result.queryByRole('dialog')).toBeFalsy();
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         fireEvent.focus(dom.input);
-        expect(result.queryByRole('dialog')).toBeTruthy();
+        expect(screen.queryByRole('dialog')).toBeInTheDocument();
         fireEvent.blur(dom.input);
-        expect(result.queryByRole('dialog')).toBeFalsy();
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
     it('should change input value after change props', async () => {
@@ -110,7 +110,7 @@ describe('DatePicker', () => {
     });
 
     it('should reset invalid value onBlur', async () => {
-        const { result, dom, mocks } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+        const { dom, mocks } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
         expect(dom.input.value).toEqual('');
         fireEvent.change(dom.input, { target: { value: '2019-10-47' } });
         expect(dom.input.value).toEqual('2019-10-47');
