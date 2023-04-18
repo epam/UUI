@@ -2,12 +2,12 @@
 
 .root {
     border-style: solid;
-    border-color: var(--uui-notification-card-border);
+    border-color: var(--uui-notification-card-border, transparent);
     border-width: var(--uui-notification-card-border-width);
     border-top-width: var(--uui-notification-card-border-top-width);
     padding: 6px 18px;
     width: 360px;
-    background: var(--uui-notification-card-bg);
+    background: var(--uui-notification-card-bg, var(--uui-surface));
     display: flex;
     overflow: hidden;
     border-radius: var(--uui-notification-card-border-radius);
