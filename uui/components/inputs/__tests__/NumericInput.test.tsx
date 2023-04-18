@@ -80,6 +80,15 @@ describe('NumericInput', () => {
             expect(res.dom.input.placeholder).toEqual('1,000');
         });
 
+        it('should invoke onValueChange on blur only when new value is different from current', async () => {
+            const res = await setupNumericInput({ value: 1000 });
+            expect(res.dom.input.placeholder).toEqual('1,000');
+            fireEvent.focusIn(res.dom.input);
+            expect(res.dom.input.value).toEqual('1000');
+            fireEvent.focusOut(res.dom.input);
+            expect(res.mocks.onValueChange).not.toHaveBeenCalled();
+        });
+
         it('should change value by typing considering min/max specified', async () => {
             const res = await setupNumericInput({ value: 10, min: -15, max: 15 });
             expect(res.dom.input.placeholder).toEqual('10');
