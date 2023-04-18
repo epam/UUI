@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PresetsPanel should render correctly 1`] = `
+exports[`PresetsPanel should render with minimum props 1`] = `
 <div
   className="flexCell"
   style={

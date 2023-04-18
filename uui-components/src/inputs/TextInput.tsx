@@ -117,12 +117,14 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 isDisabled={ props.isDisabled }
                 icon={ props.acceptIcon }
                 onClick={ props.onAccept }
+                rawProps={ { 'role': 'button' } }
             /> }
             { props.onCancel && showIconsOnAction && <IconContainer
                 cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
                 isDisabled={ props.isDisabled }
                 icon={ props.cancelIcon }
                 onClick={ handleCancel }
+                rawProps={ { 'role': 'button' } }
             /> }
             { props.iconPosition === 'right' && icon }
             { props.isDropdown && <IconContainer
