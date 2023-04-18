@@ -43,7 +43,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
     return (
         <div
             role="alert"
-            className={ cx(props.color ? `notification-card-${ props.color }` : `notification-card-transparent`, css.root, props.cx) }
+            className={ cx(`notification-card-${ props.color ?? 'default' }`, css.root, props.cx) }
             ref={ notificationCardNode }
             { ...props.rawProps }
         >
