@@ -8,7 +8,7 @@
 
     :global(.uui-input) {
         color: var(--uui-burger_search);
-        font-family: var(--font-regular);
+        font-family: var(--uui-burger_search-font);
 
         &::placeholder {
             color: var(--uui-burger_search-placeholder);

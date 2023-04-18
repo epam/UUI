@@ -2,13 +2,13 @@
 
 .root {
     :global(.uui-accordion-toggler) {
-        font-family: var(--font-semibold);
+        font-family: var(--uui-accordion-toggler-font);
         color: var(--uui-accordion-text);
         cursor: pointer;
     }
 
     :global(.uui-accordion-body) {
-        font-family: var(--font-regular);
+        font-family: var(--uui-accordion-body-font);
         color: var(--uui-accordion-text);
     }
 

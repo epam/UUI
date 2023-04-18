@@ -12,7 +12,7 @@
 
     :global(.uui-input) {
         color: var(--uui-main_menu-text);
-        font-family: var(--font-regular);
+        font-family: var(--uuim-main_menu-search-font);
 
         &::placeholder {
             color: var(--uui-main_menu-search-border);

@@ -1,6 +1,6 @@
 import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer  } from '@epam/loveship';
 import React from 'react';
-import { DataQueryFilter, Metadata, useLazyDataSource, useTableState, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { DataQueryFilter, Metadata, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
@@ -28,7 +28,7 @@ const metadata: Metadata<FormState> = {
 
 let savedValue: FormState = { items: {} };
 
-export const ProductsTableDemo: React.FC = (props) => {
+export const ProductsTableDemo: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const { lens, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
@@ -40,7 +40,7 @@ export const ProductsTableDemo: React.FC = (props) => {
         getMetadata: () => metadata,
     });
 
-    const [ tableState, setTableState ] = React.useState({});
+    const [tableState, setTableState] = React.useState({});
 
     const dataSource = useLazyDataSource<Product, number, DataQueryFilter<Product>>({
         api: svc.api.demo.products,
@@ -49,8 +49,8 @@ export const ProductsTableDemo: React.FC = (props) => {
 
     const dataView = dataSource.useView(tableState, setTableState, {
         getRowOptions: product => ({
-            ...lens.prop('items').prop(product.ProductID).default(product).toProps()
-        })
+            ...lens.prop('items').prop(product.ProductID).default(product).toProps(),
+        }),
     });
 
     return <Panel style={ { width: '100%' } }>
