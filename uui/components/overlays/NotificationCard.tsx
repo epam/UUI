@@ -43,7 +43,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
     return (
         <div
             role="alert"
-            className={ cx(`notification-card-${ props.color }`, css.root, props.cx) }
+            className={ cx(props.color && `notification-card-${ props.color }`, css.root, props.cx) }
             ref={ notificationCardNode }
             { ...props.rawProps }
         >

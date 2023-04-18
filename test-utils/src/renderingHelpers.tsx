@@ -1,17 +1,16 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { render, renderHook, fireEvent, screen, within } from '@testing-library/react';
+import { render, renderHook } from './testingLibraryReact';
 import renderer, { act } from 'react-test-renderer';
 import { ContextProvider, UuiContexts } from '@epam/uui-core';
 
-// re-export some useful stuff for convenience
-export { act, fireEvent, screen, within };
+export * from './testingLibraryReact';
 
 export const delay = (ms: number = 1): Promise<void> => new Promise(resolve => {
     setTimeout(resolve, ms);
 });
 
-export async function delayWrapInAct() {
-    await act(() => delay(1));
+export async function delayWrapInAct(ms: number = 1) {
+    await act(() => delay(ms));
 }
 
 export const testSvc = {} as UuiContexts;
@@ -23,12 +22,23 @@ export async function renderHookToJsdomWithContextAsync<TProps, TResult>(hook: (
     return result;
 }
 
-export const renderSnapshotWithContextAsync = async (component: ReactElement) => {
-    const result = renderer.create(wrapElementWithUuiContext(component));
+/**
+ * Returns virtual DOM structure.
+ * Can be used to render React components to pure JavaScript objects.
+ * It has no dependency on DOM.
+ *
+ * @param reactElement
+ */
+export const renderSnapshotWithContextAsync = async (reactElement: ReactElement) => {
+    const result = renderer.create(wrapElementWithUuiContext(reactElement));
     await delayWrapInAct();
     return result.toJSON();
 };
 
+/**
+ * Renders component to JSDom.
+ * @param reactElement
+ */
 export const renderToJsdomWithContextAsync = async (reactElement: ReactElement) => {
     let result = render(wrapElementWithUuiContext(reactElement));
     await delayWrapInAct();

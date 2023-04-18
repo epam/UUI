@@ -59,7 +59,7 @@ const mainMenuDoc = new DocBuilder<MainMenuMods & MainMenuProps>({ name: 'MainMe
             },
             {
                 value: [
-                    <MainMenuLogo key='appLogo2' logoUrl='/static/images/app-logos/logo.svg' priority={ 100500 } estimatedWidth={ 52 }/>,
+                    <MainMenuLogo key='appLogo2' logoUrl='/static/logo.svg' priority={ 100500 } estimatedWidth={ 52 }/>,
                     <MainMenuButton caption='Home' priority={ 4 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu key='home' isLinkActive={ true }/>,
                     <MainMenuButton caption='Assets' priority={ 2 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu key='assets'/>,
                     <MainMenuButton caption='Components' priority={ 4 } collapseToMore estimatedWidth={ 108 } showInBurgerMenu key='components'/>,
