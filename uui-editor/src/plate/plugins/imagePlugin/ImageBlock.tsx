@@ -5,7 +5,7 @@ import { Dropdown } from '@epam/uui-components';
 import { uuiSkin } from "@epam/uui-core";
 
 import { useFocused, useSelected } from 'slate-react';
-import { invert } from 'lodash';
+import { invert, debounce } from 'lodash';
 
 import {
     getBlockAbove,
@@ -18,6 +18,7 @@ import {
     PlateEditor,
     findNodePath,
     select,
+    useResizableStore,
 } from '@udecode/plate';
 
 import { FileUploadResponse } from "@epam/uui-core";
@@ -40,13 +41,13 @@ interface SlateProps {
 
 interface PlateProps {
     url: string;
-    align: PlateImgAlign;
-    width: number;
+    align?: PlateImgAlign;
+    width?: number;
 }
 
 export interface ImageElement extends TElement, PlateProps, SlateProps {}
 
-interface UpdatingProps { width?: number, align?: SlateImgAlign };
+interface UpdatingProps { width?: number | string, align?: SlateImgAlign };
 
 const { FlexRow, Spinner } = uuiSkin;
 
@@ -76,32 +77,40 @@ const getUpdatedElement = (
     },
 });
 
+const updateImageSize = debounce((editor: PlateEditor, element: ImageElement, width: number | string) => {
+    const path = findNodePath(editor, element!);
+    if (!path) {
+        return;
+    }
+
+    setElements(editor, getUpdatedElement(element, { width }));
+}, 100, { leading: false, trailing: true })
+
+
 const useUpdatingElement = ({ element, editor }: { element: ImageElement, editor: PlateEditor }) => {
     const [align, setAlign] = useState<PlateImgAlign>(toPlateAlign(element.data?.align) || 'left');
-    const [width, setWidth] = useState<number | undefined>(element.data?.imageSize?.width || 0);
+    const prevNodeWidthRef = useRef(element.width);
 
-    const onResize = useCallback((e: any, direction: any, ref: any) => setWidth(ref.offsetWidth), []);
-
-    const onResizeStop = useCallback((e: any, direction: any, ref: any) => {
-        const path = findNodePath(editor, element!);
-        if (!path) return;
-
-        const newWidth = ref.offsetWidth;
-        const nodeWidth = element.data?.imageSize?.width;
-        if (newWidth !== nodeWidth) {
-            setElements(editor, getUpdatedElement(element, { width: newWidth }));
+    // initialize image width
+    if (!element.width) {
+        if (element.data?.imageSize) {
+            element.width = element.data?.imageSize?.width; // existing
         } else {
-            // select if not resized
-            select(editor, path);
+            element.width = 'fit-content' as unknown as number; // new image
         }
-    }, [editor, element])
+    }
 
-    const size = { width, height: '100%' };
-    const resizableProps = !!width
-        ? { minWidth: MIN_IMG_WIDTH, onResize, onResizeStop, size }
-        : { minWidth: 'fit-content', onResize, onResizeStop, size };
+    // update slate structure
+    useEffect(() => {
+        const prevWidth = prevNodeWidthRef.current;
+        if (element.type === 'image' && !!element.width && prevWidth !== element.width) {
+            updateImageSize(editor, element, element.width);
+            prevNodeWidthRef.current = element.width;
+        }
+    }, [element.width]);
 
-    const isCaptionEnabled = !!element.data && width >= MIN_CAPTION_WIDTH;
+    const resizableProps = { minWidth: MIN_IMG_WIDTH };
+    const isCaptionEnabled = !!element.data && element.data?.imageSize?.width >= MIN_CAPTION_WIDTH;
     const caption = isCaptionEnabled ? { disabled: false } : { disabled: true };
 
     return { align, setAlign, resizableProps, caption, style: IMAGE_STYLES };
@@ -124,6 +133,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
     const setMaxWidth = () => {
         const newWidth = ref?.current?.clientWidth;
         if (newWidth) {
+            element.width = newWidth;
             setElements(editor, getUpdatedElement(element, { width: newWidth }));
         }
     };
