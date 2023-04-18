@@ -259,16 +259,11 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     selectAll?: true | false;
 }
 
-export interface GetSelectedRowsOptions {
-    topIndex?: number;
-    visibleCount?: number;
-}
-
 export type IDataSourceView<TItem, TId, TFilter> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
     getVisibleRows(): DataRowProps<TItem, TId>[];
-    getSelectedRows(options?: GetSelectedRowsOptions): DataRowProps<TItem, TId>[];
+    getSelectedRows(topIndex: number, visibleCount?: number): DataRowProps<TItem, TId>[];
     getSelectedRowsCount(): number;
     reload(): void;
     destroy(): void;
