@@ -13,9 +13,6 @@ jobs:
     track-bundle-size:
         runs-on: ubuntu-latest
         container: node:16
-        # since this job is run in context of source repo (pull_request), then we should skip the workflow, because commenting won't work in case of forks.
-        # the condition below checks that pull request is created from the same repo, not from a fork (https://github.com/orgs/community/discussions/26829).
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
         steps:
             - uses: actions/checkout@v2
               with:
