@@ -33,7 +33,6 @@
     "lodash.defaultsdeep": "4.6.1",
     "lodash.uniqueid": "4.0.1",
     "react-app-polyfill": "3.0.0",
-    "react-test-renderer": "18.2.0",
     "replace-in-files": "^2.0.3",
     "rollup": "3.20.2",
     "rollup-plugin-postcss-modules": "2.1.0",
@@ -53,7 +52,8 @@
     "jest-html-reporter": "3.7.1"
   },
   "devDependencies": {
-    "typescript": "4.9.3"
+    "typescript": "4.9.3",
+    "@testing-library/jest-dom": "5.16.5"
   },
   "publishConfig": {
     "directory": "build"

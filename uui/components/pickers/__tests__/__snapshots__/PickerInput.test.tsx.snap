@@ -1,46 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PickerInput should be rendered correctly 1`] = `
-<div
-  className="container uui-input-box -clickable root size-36 mode-form"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
->
-  <div
-    className="body"
-  >
-    <input
-      aria-haspopup={true}
-      autoComplete="no"
-      className="uui-input singleInput cursorText"
-      onChange={[Function]}
-      placeholder="Please select "
-      readOnly={true}
-      tabIndex={-1}
-      type="text"
-      value=""
-    />
-  </div>
-  <div
-    className="actions"
-  >
-    <div
-      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`PickerInput should be rendered correctly 2`] = `
+exports[`PickerInput should render with maximum props 1`] = `
 <div
   className="container uui-input-box -clickable root size-48 mode-form"
   onBlur={[Function]}
@@ -96,6 +56,7 @@ exports[`PickerInput should be rendered correctly 2`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
+      role="button"
       style={Object {}}
       tabIndex={-1}
     >
@@ -103,6 +64,46 @@ exports[`PickerInput should be rendered correctly 2`] = `
         className=""
       />
     </div>
+    <div
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PickerInput should render with minimum props 1`] = `
+<div
+  className="container uui-input-box -clickable root size-36 mode-form"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <div
+    className="body"
+  >
+    <input
+      aria-haspopup={true}
+      autoComplete="no"
+      className="uui-input singleInput cursorText"
+      onChange={[Function]}
+      placeholder="Please select "
+      readOnly={true}
+      tabIndex={-1}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="actions"
+  >
     <div
       className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
       onClick={[Function]}

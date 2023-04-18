@@ -32,7 +32,10 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
     return (
         <FlexRow
             { ...props }
-            rawProps={ { style: { maxWidth: `${ (props.maxWidth ? (props.maxWidth + 'px') : 'auto') }` } } }
+            rawProps={ {
+                style: { maxWidth: `${ (props.maxWidth ? (props.maxWidth + 'px') : 'auto') }` },
+                role: 'button',
+            } }
             cx={ cx(css.root,
                 uuiElement.inputBox, uuiMarkers.clickable,
                 props.isOpen && uuiMod.opened,

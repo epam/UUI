@@ -175,6 +175,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                         icon={ props.cancelIcon }
                         tabIndex={ -1 }
                         onClick={ handleCrossIconClick }
+                        rawProps={ { 'role': 'button' } }
                     />
                 ) }
                 { props.isDropdown && (
