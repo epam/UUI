@@ -344,7 +344,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (!showSelected) {
             preparedRows = getVisibleRows();
         } else {
-            preparedRows = getSelectedRows({ topIndex, visibleCount });
+            preparedRows = getSelectedRows(topIndex, visibleCount);
         }
 
         return preparedRows.map((rowProps) => {

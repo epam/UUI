@@ -176,7 +176,7 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
             }
         };
 
-        addRows(view.getSelectedRows(), this.getMaxTotalItems());
+        addRows(view.getSelectedRows(0), this.getMaxTotalItems());
 
         if (this.state.visibleIds && result.length < maxTotalItems) {
             let rows = this.state.visibleIds.map((id, n) => view.getById(id, n)).filter(r => !!r);
