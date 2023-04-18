@@ -7,7 +7,7 @@ import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
 import { FiltersPanelItem } from "./FiltersPanelItem";
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
 
-interface FiltersPanelProps<TFilter> {
+export interface FiltersPanelProps<TFilter> {
     filters: TableFiltersConfig<TFilter>[];
     tableState: DataTableState;
     setTableState: (newState: DataTableState) => void;

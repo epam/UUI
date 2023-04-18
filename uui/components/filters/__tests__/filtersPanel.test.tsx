@@ -1,5 +1,5 @@
-import { FiltersPanel } from '../FiltersPanel';
-import { ArrayDataSource, DataColumnProps, TableFiltersConfig, useTableState } from "@epam/uui-core";
+import { FiltersPanel, FiltersPanelProps } from '../FiltersPanel';
+import { ArrayDataSource, DataColumnProps, TableFiltersConfig } from "@epam/uui-core";
 import { defaultPredicates } from "../defaultPredicates";
 import { setupComponentForTest, screen, fireEvent, within } from "@epam/test-utils";
 import React, { useState } from "react";
@@ -130,35 +130,15 @@ const filtersConfigWithPredicatesAll: TableFiltersConfig<TestItemType>[] = [
 ];
 
 async function setupFilterPanelComponent({ filtersConfig }: { filtersConfig: TableFiltersConfig<TestItemType>[] }) {
-    type TestComponentWrapperProps = {
-        onSetTableState: (state: any) => void;
-        filters: TableFiltersConfig<TestItemType>[];
-    };
-    function TestComponentWrapper(props: TestComponentWrapperProps) {
-        const [value, setValue] = useState({});
-        const { tableState, setTableState } = useTableState({
-            columns,
-            filters: props.filters,
-            onValueChange: setValue,
-            value,
-        });
-        return (
-            <FiltersPanel<TestItemType>
-                filters={ props.filters }
-                tableState={ tableState }
-                setTableState={ (newState) => { setTableState(newState); props.onSetTableState(newState); }  }
-            />
-        );
-    }
-
-    const { result, mocks } = await setupComponentForTest<TestComponentWrapperProps>(
-        () => {
+    const { result, mocks } = await setupComponentForTest<FiltersPanelProps<TestItemType>>(
+        (contextRef) => {
             return {
                 filters: filtersConfig,
-                onSetTableState: jest.fn(),
+                tableState: {},
+                setTableState: jest.fn().mockImplementation(newTableState => contextRef.current.setProperty('tableState', newTableState)),
             };
         },
-        (props) => (<TestComponentWrapper filters={ props.filters } { ...props } />),
+        (props) => (<FiltersPanel { ...props } />),
     );
     const dom = {
         add: screen.getByText('Add filter'),
@@ -189,7 +169,7 @@ describe('FiltersPanel', () => {
             fireEvent.click(statusOption);
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'option', text: 'Red' }));
             notExpectDialog();
-            expect(mocks.onSetTableState).lastCalledWith(expect.objectContaining({ filter: { status: 2 } }));
+            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { status: 2 } }));
             fireEvent.click(screen.getByRoleAndText({ role: 'button', text: 'Status:Red' }));
             expectDialog();
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'Red' })).toHaveAttribute('aria-selected', 'true');
@@ -214,7 +194,7 @@ describe('FiltersPanel', () => {
             fireEvent.click(exitDateOption);
             fireEvent.click(withinDialog().getByText(TODAY_DAY_OF_MONTH));
             notExpectDialog();
-            expect(mocks.onSetTableState).lastCalledWith(expect.objectContaining({ filter: { exitDate: TODAY_DATE_ISO } }));
+            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { exitDate: TODAY_DATE_ISO } }));
             fireEvent.click(screen.getByRoleAndText({ role: 'button', text: `Exit Date:${TODAY_DATE_FORMATTED}` }));
             expectDialog();
             expect(withinDialog().getByText(TODAY_DAY_OF_MONTH).parentElement).toHaveClass('uui-calendar-selected-day');
@@ -240,7 +220,7 @@ describe('FiltersPanel', () => {
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'option', text: 'Dev' }));
             fireEvent.click(window.document.body);
             notExpectDialog();
-            expect(mocks.onSetTableState).lastCalledWith(expect.objectContaining({ filter: { position: [2, 3] } }));
+            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { position: [2, 3] } }));
             fireEvent.click(screen.getByRoleAndText({ role: 'button', text: 'Position:QA, Dev' }));
             expectDialog();
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'QA' })).toBeChecked();
@@ -268,7 +248,7 @@ describe('FiltersPanel', () => {
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'tab', text: 'is not' }));
             fireEvent.click(window.document.body);
             notExpectDialog();
-            expect(mocks.onSetTableState).lastCalledWith(expect.objectContaining({ filter: { position: { nin: [2, 3] } } }));
+            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { position: { nin: [2, 3] } } }));
             fireEvent.click(screen.getByRoleAndText({ role: 'button', text: 'Position is notQA, Dev' }));
             expectDialog();
             expect(withinDialog().getByRoleAndText({ role: 'option', text: 'QA' })).toBeChecked();
@@ -295,7 +275,7 @@ describe('FiltersPanel', () => {
             fireEvent.change(withinDialog().getByRole('spinbutton'), { target: { value: 20 }});
             fireEvent.click(window.document.body);
             notExpectDialog();
-            expect(mocks.onSetTableState).lastCalledWith(expect.objectContaining({ filter: { age: 20 } }));
+            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { age: 20 } }));
             fireEvent.click(screen.getByRoleAndText({ role: 'button', text: 'Age:20' }));
             expectDialog();
             const input = withinDialog().getByRole('spinbutton') as HTMLInputElement;
@@ -321,7 +301,7 @@ describe('FiltersPanel', () => {
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'tab', text: '≠' }));
             fireEvent.click(window.document.body);
             notExpectDialog();
-            expect(mocks.onSetTableState).lastCalledWith(expect.objectContaining({ filter: { age: { neq: 20 } } }));
+            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { age: { neq: 20 } } }));
             fireEvent.click(screen.getByRoleAndText({ role: 'button', text: 'Age ≠20' }));
             expectDialog();
             const input = withinDialog().getByRole('spinbutton') as HTMLInputElement;
@@ -348,7 +328,7 @@ describe('FiltersPanel', () => {
             fireEvent.click(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0]);
             fireEvent.click(window.document.body);
             notExpectDialog();
-            expect(mocks.onSetTableState).lastCalledWith(expect.objectContaining({ filter: { hireDate: { from: TODAY_DATE_ISO, to: TODAY_DATE_ISO }} }));
+            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { hireDate: { from: TODAY_DATE_ISO, to: TODAY_DATE_ISO }} }));
             fireEvent.click(screen.getByRoleAndText({ role: 'button', text: `Hire Date:${TODAY_DATE_FORMATTED} - ${TODAY_DATE_FORMATTED}` }));
             expectDialog();
             expect(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0].parentElement).toHaveClass('uui-calendar-selected-day');
@@ -374,7 +354,7 @@ describe('FiltersPanel', () => {
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'tab', text: 'Not in Range' }));
             fireEvent.click(window.document.body);
             notExpectDialog();
-            expect(mocks.onSetTableState).lastCalledWith(expect.objectContaining({ filter: { hireDate: { notInRange: { from: TODAY_DATE_ISO, to: TODAY_DATE_ISO }}} }));
+            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { hireDate: { notInRange: { from: TODAY_DATE_ISO, to: TODAY_DATE_ISO }}} }));
             fireEvent.click(screen.getByRoleAndText({ role: 'button', text: `Hire Date Not in Range${TODAY_DATE_FORMATTED} - ${TODAY_DATE_FORMATTED}` }));
             expectDialog();
             expect(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0].parentElement).toHaveClass('uui-calendar-selected-day');
