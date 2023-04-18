@@ -11,6 +11,9 @@ export class StubAdaptedRouter implements IRouterContext {
 
     public getCurrentLink(): Link {
         this.throwError();
+        if (process.env.NODE_ENV === 'test') {
+            return { pathname: '', query: {} };
+        }
         return null;
     }
 
