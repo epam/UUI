@@ -1,4 +1,5 @@
-import { measureAdaptiveItems, AdaptiveItemProps } from '../AdaptivePanel';
+import { measureAdaptiveItems } from '../measureItemsUtils';
+import type { AdaptiveItemProps } from '../AdaptivePanel';
 
 const items = [
     { id: 'container2', priority: 100, collapsedContainer: true },
@@ -20,7 +21,7 @@ const itemsWidth = {
     'container2': 200,
 };
 
-describe('layout apaptive items', () => {
+describe('measureItemsUtils: measureAdaptiveItems', () => {
     it('should show all items if items width less than container', () => {
         expect(measureAdaptiveItems(items, 1000, itemsWidth)).toEqual({
             displayed: items.filter(i => !i.collapsedContainer),

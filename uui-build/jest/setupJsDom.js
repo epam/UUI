@@ -1,11 +1,10 @@
-class ResizeObserver {
-    observe() {
-        // do nothing
-    }
+import '@testing-library/jest-dom'
 
-    disconnect() {
-        // do nothing
-    }
-}
+global.ResizeObserver = class ResizeObserver {
+    observe() {}
+    disconnect() {}
+};
 
-global.ResizeObserver = ResizeObserver;
+global.navigator.clipboard = {
+    writeText: () => {}
+};
