@@ -1,10 +1,14 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource } from '@epam/uui-core';
 import { renderSnapshotWithContextAsync, setupComponentForTest, screen, fireEvent } from "@epam/test-utils";
-import { PickerInput, PickerInputProps } from '../PickerInput';
-import { PickerInputBaseProps } from "@epam/uui-components";
+import { PickerInput } from '../PickerInput';
 
-const languageLevels = [
+type TestItemType = {
+    id: number,
+    level: string,
+};
+
+const languageLevels: TestItemType[] = [
     { "id": 2, "level": "A1" },
     { "id": 3, "level": "A1+" },
     { "id": 4, "level": "A2" },
@@ -22,21 +26,35 @@ const mockDataSource = new ArrayDataSource({
     items: languageLevels,
 });
 
-type ComponentProps = PickerInputProps & PickerInputBaseProps<any, any>;
-async function setupPickerInputForTest(params: { value: any, selectionMode: any }) {
+type PickerInputComponentProps = React.ComponentProps<typeof PickerInput<TestItemType, number>>;
+
+async function setupPickerInputForTest(params: Partial<PickerInputComponentProps>) {
     const {
         result,
         mocks,
-    } = await setupComponentForTest<ComponentProps>(
-        (context) => ({
-            value: params.value,
-            onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
-            selectionMode: params.selectionMode,
-            dataSource: mockDataSource,
-            disableClear: false,
-            searchPosition: 'input',
-            getName: item => item.level,
-        }),
+    } = await setupComponentForTest<PickerInputComponentProps>(
+        (context): PickerInputComponentProps => {
+            if (params.selectionMode === 'single') {
+                return {
+                    value: params.value as number,
+                    selectionMode: params.selectionMode,
+                    onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
+                    dataSource: mockDataSource,
+                    disableClear: false,
+                    searchPosition: 'input',
+                    getName: item => item.level,
+                };
+            }
+            return {
+                value: params.value as number[],
+                selectionMode: params.selectionMode,
+                onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
+                dataSource: mockDataSource,
+                disableClear: false,
+                searchPosition: 'input',
+                getName: item => item.level,
+            };
+        },
         (props) => (<PickerInput { ...props } />),
     );
     const input = screen.queryByRole('textbox');
@@ -103,7 +121,7 @@ describe('PickerInput', () => {
         expect(dom.input.getAttribute('placeholder').trim()).toEqual('Please select');
         fireEvent.click(dom.input);
         expect(screen.queryByRole('dialog')).toBeInTheDocument();
-        const [cb1, cb2, ...cbRest] = screen.queryAllByRole('checkbox');
+        const [cb1, cb2] = screen.getAllByRole('checkbox');
         fireEvent.click(cb1);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
         fireEvent.click(cb2);
@@ -113,9 +131,9 @@ describe('PickerInput', () => {
         fireEvent.click(window.document.body);
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         expect(screen.queryAllByRole('button')).toHaveLength(3); // 2 tags and 1 clear button
-        const a1 = screen.queryByText('A1');
+        const a1 = screen.getByText('A1');
         const a1Clear = a1.nextElementSibling;
-        const a1plus = screen.queryByText('A1+');
+        const a1plus = screen.getByText('A1+');
         const a1plusClear = a1plus.nextElementSibling;
         fireEvent.click(a1Clear);
         expect(screen.queryAllByRole('button')).toHaveLength(2); // 1 tag and 1 clear button
@@ -135,13 +153,13 @@ describe('PickerInput', () => {
         expect(dom.input.getAttribute('placeholder').trim()).toEqual('Please select');
         fireEvent.click(dom.input);
         expect(screen.queryByRole('dialog')).toBeInTheDocument();
-        const optionC2 = screen.queryByText('C2');
+        const optionC2 = screen.getByText('C2');
         fireEvent.click(optionC2);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
         fireEvent.click(window.document.body);
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         expect(screen.queryByPlaceholderText('C2')).toBeInTheDocument();
-        const clear = screen.queryByRole('button');
+        const clear = screen.getByRole('button');
         fireEvent.click(clear);
         expect(screen.queryByText('C2')).not.toBeInTheDocument();
     });
