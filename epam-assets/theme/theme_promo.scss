@@ -901,7 +901,7 @@
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.notification-card-transparent) {
+    :global(.notification-card-default) {
         --uui-notification-card-fill:  var(--uui-secondary-dark);
         --uui-notification-card-border: var(--uui-surface);
         --uui-notification-card-bg: var(--uui-surface);
