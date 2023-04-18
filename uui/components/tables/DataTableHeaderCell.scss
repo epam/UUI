@@ -25,7 +25,7 @@
 
         &:hover {
             background: var(--uui-dt-row-bg-hover);
-            box-shadow: var(--uui-dt-header-hover-shadow);
+            box-shadow: inset 1px 0 0 var(--uui-dt-border), inset -1px 0 0 var(--uui-dt-border);
 
             .sort-icon, .dropdown-icon, .infoIcon {
                 fill: var(--uui-icon-hover);
@@ -35,7 +35,7 @@
 
     &.resizable {
         &:hover {
-            box-shadow: var(--uui-dt-header-hover-shadow);
+            box-shadow: inset 1px 0 0 var(--uui-dt-border), inset -1px 0 0 var(--uui-dt-border);
         }
     }
 
@@ -51,7 +51,7 @@
 
 
     .caption {
-        font-family: var(--font-semibold);
+        font-family: var(--uui-dt-header-cell-font);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -131,18 +131,18 @@
     }
 
     &.dnd-marker-left {
-        box-shadow: var(--uui-dt-left-marker-shadow);
+        box-shadow: inset 2px 0 0 0 var(--uui-dt_header-drop_marker);
 
         &:global(.-clickable), &:local(.resizable) {
-            box-shadow: var(--uui-dt-left-marker-shadow);
+            box-shadow: inset 2px 0 0 0 var(--uui-dt_header-drop_marker);
         }
     }
 
     &.dnd-marker-right {
-        box-shadow: var(--uui-dt-right-marker-shadow);
+        box-shadow: inset -2px 0 0 0 var(--uui-dt_header-drop_marker);
 
         &:global(.-clickable), &:local(.resizable) {
-            box-shadow: var(--uui-dt-right-marker-shadow);
+            box-shadow: inset -2px 0 0 0 var(--uui-dt_header-drop_marker);
         }
     }
 }

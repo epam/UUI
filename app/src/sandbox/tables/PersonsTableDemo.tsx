@@ -173,7 +173,7 @@ export const PersonsTableDemo = () => {
     });
 
     return (
-        <div className={ cx(css.container, 'uui-theme-loveship') }>
+        <div className={ cx(css.container) }>
             <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
                 <FlexCell width={ 200 }>
                     <SearchInput { ...lens.prop('search').toProps() } size='30' />
