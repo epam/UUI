@@ -4,7 +4,7 @@ import { NotificationCard as uuiNotificationCard, NotificationCardProps as uuiNo
 import { EpamPrimaryColor } from '../types';
 
 export interface NotificationCardMods {
-    color: EpamPrimaryColor | 'gray60';
+    color?: EpamPrimaryColor | 'gray60';
 }
 
 export type NotificationCardProps = Omit<uuiNotificationCardProps, 'color'> & NotificationCardMods;
@@ -14,6 +14,6 @@ export const NotificationCard = withMods<Omit<uuiNotificationCardProps, 'color'>
     () => [],
     (props) => ({
         ...props,
-        color: props.color ?? 'gray60',
+        color: props.color ?? null,
     }),
 );
