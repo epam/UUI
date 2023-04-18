@@ -69,6 +69,17 @@ describe('NumericInput', () => {
             expect(res.dom.input.placeholder).toEqual('2,000');
         });
 
+        it('should change value by keyboard arrow up/down', async () => {
+            const res = await setupNumericInput({ value: 1000, step: 10 });
+            expect(res.dom.input.placeholder).toEqual('1,000');
+            fireEvent.keyDown(res.dom.input, { key: 'ArrowUp' });
+            expect(res.mocks.onValueChange).toHaveBeenCalledWith(1010);
+            expect(res.dom.input.placeholder).toEqual('1,010');
+            fireEvent.keyDown(res.dom.input, { key: 'ArrowDown' });
+            expect(res.mocks.onValueChange).toHaveBeenCalledWith(1000);
+            expect(res.dom.input.placeholder).toEqual('1,000');
+        });
+
         it('should change value by typing considering min/max specified', async () => {
             const res = await setupNumericInput({ value: 10, min: -15, max: 15 });
             expect(res.dom.input.placeholder).toEqual('10');
