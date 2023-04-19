@@ -6,7 +6,7 @@ import { TApi } from "../../../data";
 
 export default function AsyncPickerInputExample() {
     const svc = useUuiContext<TApi>();
-    const [locations, setLocations] = useState<string[]>([]);
+    const [location, setLocation] = useState<string>();
 
     const locationsDataSource = useAsyncDataSource<Location, string, unknown>({
         api: () => svc.api.demo.locations({}).then((res) => res.items),
@@ -16,11 +16,14 @@ export default function AsyncPickerInputExample() {
         <FlexCell width={ 300 }>
             <PickerInput<Location, string>
                 dataSource={ locationsDataSource }
-                value={ locations }
-                onValueChange={ setLocations }
+                value={ location }
+                onValueChange={ setLocation }
                 entityName='location'
-                selectionMode='multi'
+                selectionMode='single'
                 valueType='id'
+                getRowOptions={ (item: Location) => ({
+                    isSelectable: !!item?.parentId
+                }) }
             />
         </FlexCell>
     );
