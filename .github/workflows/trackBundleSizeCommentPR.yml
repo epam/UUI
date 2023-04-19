@@ -18,7 +18,7 @@ jobs:
                   script: |
                       const ART_1 = "trackBundleSize.md";
                       const ART_2 = "prNumber.txt";
-                      var artifacts = await github.actions.listWorkflowRunArtifacts({
+                      var artifacts = await github.rest.actions.listWorkflowRunArtifacts({
                          owner: context.repo.owner,
                          repo: context.repo.repo,
                          run_id: ${{ github.event.workflow_run.id }},
@@ -28,7 +28,7 @@ jobs:
                         var matchArtifact = artifacts.data.artifacts.find((artifact) => {
                             return artName === artifact.name; 
                         });
-                        var download = await github.actions.downloadArtifact({
+                        var download = await github.rest.actions.downloadArtifact({
                              owner: context.repo.owner,
                              repo: context.repo.repo,
                              artifact_id: matchArtifact.id,
