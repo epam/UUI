@@ -149,7 +149,6 @@ export const AppHeader = () => {
                 >
                     <img height='60px' src="/static/survey_banner.png" alt="Take part in UUI survey"/>
             </Anchor> },
-            window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: this.renderThemeSwitcher },
             { id: 'git', priority: 0, render: () => (
                     <Anchor cx={ css.linkContainer } href={ GIT_LINK } target='_blank' onClick={ () => sendEvent(GIT_LINK) } key='git'>
                         <IconContainer icon={ GitIcon } cx={ css.gitIcon } />
