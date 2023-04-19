@@ -65,7 +65,8 @@ exports[`PickerInput should render with maximum props 1`] = `
       />
     </div>
     <div
-      className="container uui-icon uui-enabled uui-icon-dropdown"
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
       style={Object {}}
     >
       <svg
@@ -104,7 +105,8 @@ exports[`PickerInput should render with minimum props 1`] = `
     className="actions"
   >
     <div
-      className="container uui-icon uui-enabled uui-icon-dropdown"
+      className="container uui-icon uui-enabled -clickable uui-icon-dropdown"
+      onClick={[Function]}
       style={Object {}}
     >
       <svg
