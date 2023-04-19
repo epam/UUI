@@ -65,8 +65,7 @@ jobs:
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   script: |
-                      var prevCommentId = ${{ steps.findPrevComment.outputs.comment-id }};
-                      var fs = require('fs');
+                      var prevCommentId = '${{ steps.findPrevComment.outputs.comment-id }}';
                       var issue_number = Number(require('fs').readFileSync('./prNumber.txt'));
                       var body = String(require('fs').readFileSync('./trackBundleSize.md'));
                       var attrsBase = {
