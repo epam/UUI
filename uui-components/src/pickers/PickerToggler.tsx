@@ -57,10 +57,11 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         else return false;
     };
 
+
     const blur = (e?: React.FocusEvent<HTMLElement>) => {
         setInFocus(false);
-        props.closePickerBody();
         props.onBlur?.(e);
+        props.closePickerBody();
         inputContainer.current?.blur();
     };
 
@@ -131,6 +132,13 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         props.onClick?.();
     };
 
+    const closeOpenedPickerBody = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+        if (props.isOpen) {
+            props.closePickerBody();
+            e.stopPropagation();
+        }
+    }, [props.isOpen, props.closePickerBody]);
+
     const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
 
     return (
@@ -175,6 +183,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                         icon={ props.dropdownIcon }
                         flipY={ props.isOpen }
                         cx='uui-icon-dropdown'
+                        onClick={ closeOpenedPickerBody }
                     />
                 ) }
             </div> }
