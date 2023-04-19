@@ -82,15 +82,16 @@ const updateImageSize = debounce((editor: PlateEditor, element: ImageElement, wi
     }
 
     setElements(editor, getUpdatedElement(element, { width }));
-}, 100, { leading: false, trailing: true })
+}, 100, { leading: false, trailing: true });
 
+const isImgElem = (editor?: PlateEditor, element?: ImageElement) => editor && element.type === 'image';
 
 const useUpdatingElement = ({ element, editor }: { element: ImageElement, editor: PlateEditor }) => {
     const [align, setAlign] = useState<PlateImgAlign>(toPlateAlign(element.data?.align) || 'left');
     const prevNodeWidthRef = useRef(element.width);
 
     // initialize image width
-    if (!element.width) {
+    if (isImgElem(editor, element) && !element.width) {
         if (element.data?.imageSize) {
             element.width = element.data?.imageSize?.width; // existing
         } else {
@@ -101,7 +102,7 @@ const useUpdatingElement = ({ element, editor }: { element: ImageElement, editor
     // update slate structure
     useEffect(() => {
         const prevWidth = prevNodeWidthRef.current;
-        if (element.type === 'image' && !!element.width && prevWidth !== element.width) {
+        if (isImgElem(editor, element) && !!element.width && prevWidth !== element.width) {
             updateImageSize(editor, element, element.width);
             prevNodeWidthRef.current = element.width;
         }
@@ -140,6 +141,10 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
         const clientWidth = ref?.current?.clientWidth;
         return !clientWidth || (clientWidth === element.width);
     };
+
+    if (!editor) {
+        return null;
+    }
 
     if (element.type === 'loader') {
         return (
