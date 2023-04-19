@@ -79,6 +79,7 @@ export const PresetsPanel = (props: PresetsPanelProps) => {
                     {
                         hiddenItems.map(item =>
                             <DropdownMenuButton
+                                key={item.preset.id}
                                 onClick={ () => onPresetDropdownSelect(item) }
                                 caption={ item.preset.name }
                                 icon={ !item.preset.isReadonly && DeleteIcon }
