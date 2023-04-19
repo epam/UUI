@@ -181,7 +181,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const key = this.idToKey(id);
         const path = this.tree.getPathById(id);
         const parentId = path.length > 0 ? path[path.length - 1].id : undefined;
-
         const rowProps = {
             id,
             parentId,
@@ -202,6 +201,13 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         const rowOptions = (this.props.getRowOptions && !row.isLoading)
             ? this.props.getRowOptions(row.value, row.index)
             : this.props.rowOptions;
+        const estimatedChildrenCount = this.getEstimatedChildrenCount(row.id);
+        const isFlattenSearch = this.isFlattenSearch?.() ?? false;
+
+        row.isFoldable = false;
+        if (!isFlattenSearch && estimatedChildrenCount !== undefined && estimatedChildrenCount > 0) {
+            row.isFoldable = true;
+        }
 
         const isCheckable = rowOptions && rowOptions.checkbox && rowOptions.checkbox.isVisible && !rowOptions.checkbox.isDisabled;
         const isSelectable = rowOptions && rowOptions.isSelectable;
@@ -216,7 +222,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         row.isCheckable = isCheckable;
         row.onCheck = isCheckable && this.handleOnCheck;
         row.onSelect = rowOptions && rowOptions.isSelectable && this.handleOnSelect;
-        row.onFocus = (isSelectable || isCheckable) && this.handleOnFocus;
+        row.onFocus = (isSelectable || isCheckable || row.isFoldable) && this.handleOnFocus;
         row.isChildrenChecked = this.someChildCheckedByKey[this.idToKey(row.id)];
     }
 
@@ -275,7 +281,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 }
 
                 stats = this.getRowStats(row, stats);
-                row.isFoldable = false;
                 row.isLastChild = (n == ids.length - 1) && (nodeInfo.count === ids.length);
                 row.indent = isFlattenSearch ? 0 : row.path.length + 1;
                 const estimatedChildrenCount = this.getEstimatedChildrenCount(id);
@@ -283,7 +288,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                     const childrenIds = this.tree.getChildrenIdsByParentId(id);
 
                     if (estimatedChildrenCount > 0) {
-                        row.isFoldable = true;
                         let isFolded = this.isFolded(item);
                         if (searchIsApplied && childrenIds.length > 0) {
                             isFolded = false;
