@@ -36,7 +36,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         return this.tree.getById(id);
     }
 
-    private defaultGetParentId = (item: TItem) => {
+    protected defaultGetParentId = (item: TItem) => {
         return (item as any)['parentId'];
     }
 

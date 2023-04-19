@@ -83,9 +83,8 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         }
 
         options = { isSelectable: BaseTree.truePredicate, cascade: true, ...options };
-
         if (!options.cascade) {
-            selectedIdsMap = this.simpleSelection(selectedIdsMap, selectedId, isSelected);
+            selectedIdsMap = this.simpleSelection(selectedIdsMap, selectedId, isSelected, options.isSelectable);
         }
 
         if (options.cascade === true || options.cascade === CascadeSelectionTypes.EXPLICIT) {
@@ -112,10 +111,16 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         }, { parentId: parentId, includeParent });
     };
 
-    private simpleSelection(selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>, selectedId: TId, isSelected: boolean) {
+    private simpleSelection(selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>, selectedId: TId, isSelected: boolean, isSelectable: (item: TItem) => boolean) {
         if (isSelected) {
             if (selectedId !== ROOT_ID) {
                 selectedIdsMap.set(selectedId, true);
+            } else {
+                for (let [id, item] of this.byId) {
+                    if (isSelectable(item)) {
+                        selectedIdsMap.set(id, true);
+                    }
+                }
             }
             return selectedIdsMap;
         }

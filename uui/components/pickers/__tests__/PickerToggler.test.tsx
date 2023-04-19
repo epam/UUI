@@ -23,7 +23,8 @@ describe('PickerToggler', () => {
                 onValueChange={ jest.fn }
                 size='48'
                 maxItems={ 6 }
-                getName={ item => item.value }
+                getName={ item => item }
+                selectedRowsCount={ 1 }
                 selection={ [
                     {
                         id: 'test',

@@ -39,7 +39,7 @@ describe('PickerInput', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <PickerInput
-                value={ [1, 2] }
+                value={ [2, 3] }
                 onValueChange={ jest.fn }
                 selectionMode="multi"
                 dataSource={ mockDataSource }

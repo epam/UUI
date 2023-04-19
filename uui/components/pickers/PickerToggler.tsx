@@ -43,7 +43,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
 
         if (row.isLoading) {
             return <TextPlaceholder />;
-        } else if (!props.getName || props.selection?.length > maxItems) {
+        } else if (!props.getName || props.selectedRowsCount > maxItems) {
             return row.value;
         } else {
             return props.getName(row.value);

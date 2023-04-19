@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+import isEqual from 'lodash.isequal';
 import { isMobile, PickerFooterProps } from "@epam/uui-core";
 import { i18n } from '../../i18n';
 import { Switch } from '../inputs';
@@ -21,7 +22,7 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const { clearSelection, view, showSelected } = props;
     const size = isMobile() ? '48' : (props.size || '36');
     const switchSize = switchSizes[size as keyof typeof switchSizes];
-    const hasSelection = view.getSelectedRows().length > 0;
+    const hasSelection = view.getSelectedRowsCount() > 0;
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
         if (!e.shiftKey && e.key === 'Tab') e.preventDefault();
@@ -39,7 +40,7 @@ const DataPickerFooterImpl = <TItem, TId>(props: PropsWithChildren<DataPickerFoo
                 />
             }
 
-            <FlexSpacer/>
+            <FlexSpacer />
 
             { view.selectAll && (
                 <FlexCell width='auto' alignSelf='center'>

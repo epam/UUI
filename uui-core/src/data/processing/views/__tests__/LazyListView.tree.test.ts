@@ -999,50 +999,13 @@ describe('LazyListView', () => {
         ]);
     });
 
-    it('should return selected rows in data order', async () => {
-        let ds = treeDataSource;
-        let view = ds.getView({ ...value, checked: [300, 120, 110, 100] }, onValueChanged, {});
-        view.getListProps()
-
-        await delay();
-
-        let rows = view.getVisibleRows();
-        value.visibleCount = 6;
-        view = ds.getView(value, onValueChanged, {});
-        rows[0].onFold(rows[0]);
-        view = ds.getView(value, onValueChanged, {});
-
-        await delay();
-
-        expectViewToLookLike(view, [
-            { id: 100, depth: 0, indent: 1 },
-            { isLoading: true, depth: 1, indent: 2 },
-            { isLoading: true, depth: 1, indent: 2 },
-            { id: 200, depth: 0, indent: 1 },
-            { id: 300, depth: 0, indent: 1 },
-        ], 5);
-
-        await delay();
-
-        expectViewToLookLike(view, [
-            { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
-            { id: 110, depth: 1, indent: 2, isFoldable: false },
-            { id: 120, depth: 1, indent: 2, isFoldable: true },
-            { id: 200, depth: 0, indent: 1 },
-            { id: 300, depth: 0, indent: 1 },
-        ], 5);
-
-        const selectedRows = view.getSelectedRows();
-        expect(selectedRows.map(({ id }) => id)).toEqual([100, 110, 120, 300]);
-    });
-
     it('should return selected rows in selection order', async () => {
         let ds = treeDataSource;
         let view = ds.getView({ ...value, checked: [320, 310, 121, 122] }, onValueChanged, {});
         view.getListProps(); // trigger loading
         await delay();
 
-        const selectedRows = view.getSelectedRows(true);
+        const selectedRows = view.getSelectedRows(0);
         expect(selectedRows.map(({ id }) => id)).toEqual([320, 310, 121, 122]);
     });
 });
