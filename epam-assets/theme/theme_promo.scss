@@ -117,13 +117,11 @@
     --uui-negative-dark: var(--red-dark);
     --uui-negative-darkest: var(--red-darkest);
 
-    --uui-button-bg-halftone: var(--white);
-    --uui-button-caption-disabled: var(--gray50);
-
     --uui-link: var(--blue);
     --uui-link-hover: var(--blue-dark);
     --uui-link-visited: #5214CC;
     --uui-link-disabled: var(--gray50);
+    --uui-visited: #5214CC;
 
     --uui-info: var(--blue);
     --uui-info-lightest: var(--blue-lightest);
@@ -164,15 +162,26 @@
 
     --uui-surface: var(--white);
     --uui-surface-hover: var(--gray30);
-    --uui-surface-light: var(--white);
     --uui-surface-inverted: var(--gray90);
-    --uui-surface-inverted-light: var(--gray80);
+    /* new start */
+    --uui-surface-light: var(--gray5);
+    --uui-surface-light-hover: var(--gray10);
+    --uui-surface-contrast: var(--gray80);
+    --uui-surface-contrast-hover: var(--gray90);
+    --uui-surface-contrast-active: var(--gray90);
+    /* new end */
 
-    --uui-visited: #5214CC;
-    --uui-disabled: var(--gray30);
     --uui-background: var(--gray10);
-    --uui-contrast: var(--white);
     --uui-divider: var(--gray40);
+    --uui-divider-light: var(--gray30);
+    --uui-contrast: var(--white);
+    --uui-disabled: var(--gray30);
+
+    --uui-scroll-bars-bg: var(--gray40);
+    --uui-scroll-bars-bg-active: var(--gray60);
+
+    --uui-button-bg-halftone: var(--white);
+    --uui-button-caption-disabled: var(--gray50);
 
     --uui-text-brand: var(--gray90);
     --uui-text-primary: var(--gray80);
@@ -180,19 +189,15 @@
     --uui-text-disabled: var(--gray50);
     --uui-text-contrast: var(--gray5);
 
-    --uui-caption: var(--white);
-
-    --uui-control-rest: var(--uui-primary);
-    --uui-control-hover: var(--uui-primary-dark);
-    --uui-control-active: var(--uui-primary-darkest);
-
     --uui-control-bg: var(--white);
     --uui-control-bg-checked: var(--uui-primary);
     --uui-control-bg-checked-hover: var(--uui-primary-dark);
     --uui-control-bg-checked-disabled: var(--uui-primary-light);
+    --uui-control-bg-hover: var(--gray60);
     --uui-control-bg-disabled: var(--gray5);
     --uui-control-bg-readonly: var(--gray5);
-    --uui-control-bg-hover: var(--gray60);
+    --uui-control_switch-bg: var(--gray40);
+    --uui-control_switch_toggler-bg: var(--white);
 
     --uui-control-border-checked-disabled: var(--uui-primary-light);
     --uui-control-border: var(--gray40);
@@ -202,7 +207,8 @@
     --uui-control-border-disabled: var(--uui-disabled);
     --uui-control-border-readonly: var(--uui-disabled);
 
-    --uui-control-textinput-border-hover: var(--gray60);
+    --uui-control_switch-border-hover: var(--gray60);
+    --uui-control_textinput-border-hover: var(--gray60);
 
     --uui-control-label: var(--uui-text-primary);
     --uui-control-label-disabled: var(--uui-text-disabled);
@@ -222,26 +228,28 @@
 
     --uui-control-checkbox-icon: var(--white);
 
+    --uui-tag-bg: var(--gray30);
+    --uui-tag-bg-hover: var(--gray40);
+
     --uui-skeleton: var(--gray40);
     --uui-skeleton-gradient: linear-gradient(90deg, var(--gray40) 0%, var(--gray10) 50%, var(--gray40) 100%);
 
     --uui-overlay: rgba(29, 30, 38, 0.8);
+    --uui-border-radius: 0;
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
     --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0px 6px rgba(29, 30, 38, 0.05);
     --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
-    --uui-scroll: var(--gray60);
-    --uui-surface-dark: var(--gray90);
-    --uui-border-radius: 0px;
 
-    /*  Button-vars */
-    --uui-btn-border-radius: var(--uui-border-radius);
+    /* core variables end */
+
+    /* find below the not core variables that are used and highlight them in the code */
 
     /*  TextInput vars  */
     --uui-text-input-bg: var(--uui-control-bg);
     --uui-text-input-bg-disabled: var(--uui-control-bg-disabled);
     --uui-text-input-bg-readonly: var(--uui-control-bg-readonly);
     --uui-text-input-border: var(--uui-control-border);
-    --uui-text-input-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-text-input-border-hover: var(--uui-control_textinput-border-hover);
     --uui-text-input-border-active: var(--uui-control-border-checked);
     --uui-text-input-border-error: var(--uui-negative);
     --uui-text-input-border-disabled: var(--uui-control-border-disabled);
@@ -256,13 +264,21 @@
     --uui-text-input-icon-clickable-hover: var(--uui-icon-hover);
     --uui-text-input-border-radius: var(--uui-border-radius);
 
+    --uui-text-input-font: var(--font-regular);
+
+    /*  Button vars */
+    --uui-btn-border-radius: var(--uui-border-radius);
+
+    --uui-btn-font: var(--font-semibold);
+
     /*  LinkButton vars   */
     --uui-link-button-text: var(--uui-primary);
     --uui-link-button-text-hover: var(--uui-primary-dark);
     --uui-link-button-text-active: var(--uui-primary-darkest);
     --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
+    --uui-link-button-font: var(--font-semibold);
 
-    /*  DatePicker vars    */
+    /*  DatePicker vars   */
     --uui-dtp-title-bg: var(--uui-control-bg);
     --uui-dtp-title-bg-hover: var(--uui-primary-halftone);
     --uui-dtp-text-selected: var(--uui-control-border-checked);
@@ -270,7 +286,10 @@
     --uui-dtp-next-prev-icon: var(--uui-icon);
     --uui-dtp-next-prev-icon-bg-hover: var(--uui-secondary-lightest);
 
-    /*  RangeDatePicker vars    */
+    --uui-dtp_header-font: var(--font-semibold);
+    --uui-dtp_body-content-font: var(--font-regular);
+
+    /*  RangeDatePicker vars   */
     --uui-rdtp-bg: var(--uui-control-bg);
     --uui-rdtp-bg-selected-date: var(--uui-primary-lightest);
 
@@ -283,13 +302,16 @@
     --uui-calendar-text-filtered: var(--uui-control-text-disabled);
     --uui-calendar-bg-selected: var(--uui-secondary);
 
+    --uui-calendar-content-font: var(--font-regular);
+    --uui-calendar-weekday-font: var(--font-regular);
+    --uui-calendar-selected_day-font: var(--font-semibold);
+
     /*  tab-button-vars     */
     --uui-tab-button-text: var(--uui-text-primary);
     --uui-tab-button-text-hover: var(--uui-primary);
     --uui-tab-button-text-active: var(--uui-primary);
     --uui-tab-button-text-disabled: var(--uui-text-disabled);
-    --uui-tab-button-count-bg: var(--gray30);
-    --uui-tab-button-count: var(--uui-text-secondary);
+    --uui-tab-button-font: var(--font-semibold);
 
     /*  radio-input-vars    */
     --uui-radio-input-bg: var(--uui-control-bg);
@@ -305,6 +327,8 @@
     --uui-radio-input-fill-hover: var(--uui-control-border-hover);
     --uui-radio-input-fill-checked-disabled: var(--uui-control-border-checked-disabled);
     --uui-radio-input-error: var(--uui-negative);
+
+    --uui-radio-input-font: var(--font-regular);
 
     /*  Checkbox vars   */
     --uui-checkbox-border: var(--uui-control-border);
@@ -323,26 +347,26 @@
     --uui-checkbox-label-disabled: var(--uui-control-label-disabled);
     --uui-checkbox-border-radius: var(--uui-border-radius);
 
+    --uui-checkbox-font: var(--font-regular);
+
     /* Tag vars */
-    --uui-tag-bg: var(--gray30);
-    --uui-tag-bg-hover: var(--gray40);
     --uui-tag-caption: var(--uui-text-primary);
     --uui-tag-fill: var(--uui-icon);
     --uui-tag-fill-hover: var(--uui-icon-hover);
-    --uui-tag-count-bg: var(--white);
+    --uui-tag-count-bg: var(--uui-surface);
     --uui-tag-count: var(--uui-text-secondary);
     --uui-tag-label: var(--uui-text-secondary);
     --uui-tag-border-radius: var(--uui-border-radius);
 
-    /*  Badge vars  */
-    --uui-badge-border-radius: 100px;
+    --uui-tag-font: var(--font-regular);
+    --uui-tag-count-font: var(--font-semibold);
 
     /*  TextArea vars  */
     --uui-text-area-bg: var(--uui-control-bg);
     --uui-text-area-bg-disabled: var(--uui-control-bg-disabled);
     --uui-text-area-border: var(--uui-control-border);
     --uui-text-area-border-disabled: var(--uui-control-border-disabled);
-    --uui-text-area-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-text-area-border-hover: var(--uui-control_textinput-border-hover);
     --uui-text-area-border-active: var(--uui-control-border-checked);
     --uui-text-area-border-error: var(--uui-negative);
     --uui-text-area-placeholder: var(--uui-control-placeholder);
@@ -351,18 +375,19 @@
     --uui-text-area-icon: var(--uui-icon);
     --uui-text-area-border-radius: var(--uui-border-radius);
 
+    --uui-text-area-font: var(--font-regular);
+    --uui-text-area-counter-font: var(--font-regular);
+
     /* DropMarker vars */
     --uui-drop-marker: var(--uui-primary);
     --uui-drop-marker-blocked: var(--uui-error);
-
-    /* ScrollBars vars */
-    --uui-scroll-bars-bg: var(--gray40);
-    --uui-scroll-bars-bg-active: var(--gray60);
 
     /* Tooltip vars */
     --uui-tooltip-shadow: var(--uui-shadow-level-2, 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 0 3px 0 rgba(29, 30, 38, 0.15)); /* WebStorm Bag Report https://youtrack.jetbrains.com/issue/WEB-54442 */
     --uui-tooltip-arrow-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     --uui-tooltip-border-radius: var(--uui-border-radius);
+
+    --uui-tooltip-font: var(--font-regular);
 
     /* PickerInput vars */
     --uui-picker_input-bg: var(--uui-surface);
@@ -372,7 +397,7 @@
     --uui-picker-toggler-bg-disabled: var(--uui-control-bg-disabled);
     --uui-picker-toggler-border: var(--uui-control-border);
     --uui-picker-toggler-border-disabled: var(--uui-control-border-disabled);
-    --uui-picker-toggler-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-picker-toggler-border-hover: var(--uui-control_textinput-border-hover);
     --uui-picker-toggler-border-active: var(--uui-control-border-checked);
     --uui-picker-toggler-border-error: var(--uui-negative);
     --uui-picker-toggler-placeholder: var(--uui-control-placeholder);
@@ -383,6 +408,8 @@
     --uui-picker-toggler-icon-clickable: var(--uui-icon);
     --uui-picker-toggler-icon-clickable-hover: var(--uui-icon-hover);
     --uui-picker-toggler-border-radius: var(--uui-border-radius);
+
+    --uui-picker-toggler-font: var(--font-regular);
 
     /* Panel */
     --uui-panel-border-radius: var(--uui-border-radius);
@@ -407,6 +434,10 @@
     --uui-labeled-input-optional-text: var(--uui-text-secondary);
     --uui-labeled-input-asterisk: var(--uui-error);
 
+    --uui-labeled-input-font: var(--font-semibold);
+    --uui-labeled-input-optional-font: var(--font-italic);
+    --uui-labeled-input-invalid-msg-font: var(--font-regular);
+
     /* Accordion */
     --uui-accordion-bg: var(--uui-surface);
     --uui-accordion-border: var(--uui-divider);
@@ -419,9 +450,12 @@
     --uui-accordion-shadow: var(--uui-shadow-level-1);
     --uui-accordion-shadow-hovered: var(--uui-shadow-level-2);
 
+    --uui-accordion-toggler-font: var(--font-semibold);
+    --uui-accordion-body-font: var(--font-regular);
+
     /* Switch */
-    --uui-switch-bg: var(--gray40);
-    --uui-switch-border-hover: var(--gray60);
+    --uui-switch-bg: var(--uui-control_switch-bg);
+    --uui-switch-border-hover: var(--uui-control_switch-border-hover);
     --uui-switch-bg-checked: var(--uui-control-bg-checked);
     --uui-switch-bg-hover: var(--uui-control-bg-hover);
     --uui-switch-bg-disabled: var(--uui-control-bg-disabled);
@@ -435,7 +469,7 @@
     --uui-switch-border-checked-disabled: var(--uui-control-border-checked-disabled);
     --uui-switch-label: var(--uui-control-label);
     --uui-switch-label-disabled: var(--uui-control-label-disabled);
-    --uui-switch-toggler-bg: var(--white);
+    --uui-switch-toggler-bg: var(--uui-control_switch_toggler-bg);
     --uui-switch-toggler-bg-disabled: var(--uui-control-bg-disabled);
     --uui-switch-toggler-border-checked: var(--uui-control-bg-checked);
     --uui-switch-toggler-border-hover: var(--uui-control-bg-hover);
@@ -443,65 +477,88 @@
     --uui-switch-toggler-border-checked-hover: var(--uui-control-bg-checked-hover);
     --uui-switch-toggler-border-checked-disabled: var(--uui-control-bg-checked-disabled);
 
+    --uui-switch-font: var(--font-regular);
+
     /* DropdownContainer */
     --uui-dropdown-container-border-radius: 0;
     --uui-dropdown-container-shadow: var(--uui-shadow-level-2);
-    --uui-dropdown-container-bg: var(--white);
+    --uui-dropdown-container-bg: var(--uui-surface);
+
+    /* DropdownMenu */
+    // TODO: update tokens
+    --uui-dropdown-menu-bg: var(--uui-surface);
+    --uui-dropdown-menu-shadow: var(--uui-shadow-level-2);
+    --uui-dropdown-menu-splitter: var(--uui-divider);
+    --uui-dropdown-menu-item-hover: var(--uui-surface-hover);
+    --uui-dropdown-menu-item-active: var(--uui-surface-hover);
+    --uui-dropdown-menu-item-text: var(--uui-text-primary);
+
+    --uui-dropdown-menu-body-font: var(--font-regular);
+    --uui-dropdown-menu-item-font: var(--font-regular);
 
     /* MainMenu */
-    --uui-main_menu-text: var(--white);
-    --uui-main_menu-bg: var(--gray80);
-    --uui-main_menu-bg-hover: var(--gray80);
-    --uui-main_menu-active: var(--gray90);
-    --uui-main_menu-hover: var(--gray90);
+    --uui-main_menu-text: var(--uui-text-contrast);
+    --uui-main_menu-bg: var(--uui-surface-contrast);
+    --uui-main_menu-hover: var(--uui-surface-contrast-hover);
+    --uui-main_menu-active: var(--uui-surface-contrast-active);
     --uui-main_menu-border-active: var(--uui-primary);
-    --uui-main_menu-border-light: var(--white);
 
-    --uui-main_menu-dropdown-bg: var(--gray90);
+    --uui-main_menu-dropdown-bg: var(--uui-surface-inverted);
     --uui-main_menu-dropdown-hover: var(--uui-primary);
+    --uui-main_menu-dropdown-shadow: none;
+    --uui-main_menu-dropdown-border-radius: none;
 
-    --uui-main_menu-search-bg: var(--gray70);
-    --uui-main_menu-search-border: var(--gray70);
+    --uui-main_menu-search-bg: var(--uui-secondary-darkest);
+    --uui-main_menu-search-border: var(--uui-secondary-darkest);
     --uui-main_menu-search-placeholder: var(--uui-text-disabled);
     --uui-main_menu-search-text: var(--uui-contrast);
     --uui-main_menu-search-icon: var(--uui-icon-disabled);
 
-    --uui-main_menu-icon: var(--white);
-    --uui-main_menu-icon-hover: var(--white);
-    --uui-main_menu-icon-active: var(--white);
+    --uui-main_menu-icon: var(--uui-text-contrast);
+    --uui-main_menu-icon-hover: var(--uui-text-contrast);
+    --uui-main_menu-icon-active: var(--uui-text-contrast);
+
+    --uui-main_menu-font: var(--font-semibold);
+    --uui-main_menu-search-font: var(--font-regular);
 
     /* BurgerMenu */
-    --uui-burger_menu-bg: var(--gray90);
+    --uui-burger_menu-bg: var(--uui-surface-inverted);
     --uui-burger_menu-bg-hover: var(--uui-primary-dark);
-    --uui-burger_menu-caption: var(--uui-contrast);
+    --uui-burger_menu-caption: var(--uui-text-contrast);
     --uui-burger_menu-caption-hover: var(--uui-primary);
     --uui-burger_menu-overlay: var(--uui-overlay);
-    --uui-burger_icon: var(--white);
+    --uui-burger_icon: var(--uui-text-contrast);
     --uui-burger_item: var(--uui-text-brand);
 
     /* BurgerGroupHeader */
-    --uui-burger_group-text: var(--gray50);
-    --uui-burger_group-bg: var(--gray80);
-    --uui-burger_group-line: var(--gray60);
+    --uui-burger_group-text: var(--uui-text-disabled);
+    --uui-burger_group-bg: var(--uui-surface-contrast);
+    --uui-burger_group-line: var(--uui-text-secondary);
+
+    --uui-burger_group-font: var(--font-regular);
 
     /* BurgerButton */
-    --uui-burger_btn: var(--white);
-    --uui-burger_btn-hover: var(--uui-primary);
-    --uui-burger_btn-active: var(--uui-primary);
-    --uui-burger_btn-border: var(--gray30);
+    --uui-burger_btn_caption: var(--uui-text-contrast);
+    --uui-burger_btn_caption-hover: var(--uui-primary);
+    --uui-burger_btn_caption-active: var(--uui-primary);
+    --uui-burger_btn-border: var(--uui-disabled);
+
+    --uui-burger_btn-font: var(--font-regular);
 
     /* BurgerSearch */
-    --uui-burger_search: var(--gray40);
-    --uui-burger_search-fill: var(--gray50);
-    --uui-burger_search-bg: var(--gray80);
-    --uui-burger_search-placeholder: var(--gray50);
+    --uui-burger_search: var(--uui-text-contrast);
+    --uui-burger_search-fill: var(--uui-text-disabled);
+    --uui-burger_search-bg: var(--uui-surface-contrast);
+    --uui-burger_search-placeholder: var(--uui-text-disabled);
+
+    --uui-burger_search-font: var(--font-regular);
 
     /* NumericInput */
     --uui-numeric-input-bg: var(--uui-control-bg);
     --uui-numeric-input-bg-disabled: var(--uui-control-bg-disabled);
     --uui-numeric-input-border: var(--uui-control-border);
     --uui-numeric-input-border-disabled: var(--uui-control-border-disabled);
-    --uui-numeric-input-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-numeric-input-border-hover: var(--uui-control_textinput-border-hover);
     --uui-numeric-input-border-active: var(--uui-control-border-checked);
     --uui-numeric-input-border-error: var(--uui-negative);
     --uui-numeric-input-placeholder: var(--uui-control-placeholder);
@@ -516,7 +573,7 @@
     --uui-time-picker-bg-disabled: var(--uui-control-bg-disabled);
     --uui-time-picker-border: var(--uui-control-border);
     --uui-time-picker-border-disabled: var(--uui-control-border-disabled);
-    --uui-time-picker-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-time-picker-border-hover: var(--uui-control_textinput-border-hover);
     --uui-time-picker-border-active: var(--uui-control-border-checked);
     --uui-time-picker-border-error: var(--uui-negative);
     --uui-time-picker-placeholder: var(--uui-control-placeholder);
@@ -531,7 +588,7 @@
     --uui-search-input-bg-disabled: var(--uui-control-bg-disabled);
     --uui-search-input-border: var(--uui-control-border);
     --uui-search-input-border-disabled: var(--uui-control-border-disabled);
-    --uui-search-input-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-search-input-border-hover: var(--uui-control_textinput-border-hover);
     --uui-search-input-border-active: var(--uui-control-border-checked);
     --uui-search-input-border-error: var(--uui-negative);
     --uui-search-input-placeholder: var(--uui-control-placeholder);
@@ -546,7 +603,20 @@
     --uui-popover-shadow: var(--uui-shadow-level-2);
 
     /* Footer */
-    --uui-footer-bg: var(--gray80);
+    --uui-footer-bg: var(--uui-surface-contrast);
+
+    /* FilterPanelItemToggler vars */
+    --uui-filters-toggler-border: var(--uui-text-input-border);
+    --uui-filters-toggler-border-hover: var(--uui-text-input-border-hover);
+    --uui-filters-toggler-border-radius: var(--uui-border-radius);
+    --uui-filters-toggler-bg: var(--uui-surface);
+    --uui-filters-toggler-bg-hover: var(--uui-surface-light-hover);
+    --uui-filters-toggler-text: var(--uui-text-brand);
+    --uui-filters-toggler-label: var(--uui-text-secondary);
+    --uui-filters-toggler-icon: var(--uui-text-input-icon-clickable);
+
+    --uui-filters-toggler-font: var(--font-regular);
+    --uui-filters-panel-header-font: var(--font-regular);
 
     /* NotificationCard */
     --uui-notification-card-border-radius: var(--uui-border-radius);
@@ -556,16 +626,6 @@
 
     /* Alert */
     --uui-alert-border-radius: var(--uui-border-radius);
-
-    /* FilterPanelItemToggler vars */
-    --uui-filters-toggler-border: var(--uui-text-input-border);
-    --uui-filters-toggler-border-hover: var(--uui-text-input-border-hover);
-    --uui-filters-toggler-border-radius: var(--uui-border-radius);
-    --uui-filters-toggler-bg: var(--white);
-    --uui-filters-toggler-bg-hover: var(--gray10);
-    --uui-filters-toggler-text: var(--uui-text-brand);
-    --uui-filters-toggler-label: var(--uui-text-secondary);
-    --uui-filters-toggler-icon: var(--uui-text-input-icon-clickable);
 
     /* Panel */
 
@@ -582,28 +642,42 @@
     --uui-flex-row-border-bottom: 1px solid var(--uui-divider);
 
     /* DataTable vars */
-    --uui-dt-border: var(--gray30);
+    --uui-dt-border: var(--uui-divider-light);
 
     --uui-dt-cell-bg: transparent;
     --uui-dt-cell-bg-resize: #EF55331F;
-    --uui-dt-cell-bg-invalid: var(--red-lightest);
-    --uui-dt-cell-border-hover: var(--uui-control-textinput-border-hover);
+    --uui-dt-cell-bg-invalid: var(--uui-negative-lightest);
+    --uui-dt-cell-border-hover: var(--uui-control_textinput-border-hover);
     --uui-dt-cell-border-focus: var(--uui-control-border-checked);
 
-    --uui-dt-row-bg: var(--white);
-    --uui-dt-row-bg-hover: var(--gray10);
+    --uui-dt-row-bg: var(--uui-surface);
+    --uui-dt-row-bg-hover: var(--uui-surface-light-hover);
     --uui-dt-row-bg-invalid: #FEF7F6;
     --uui-dt-row-bg-selected: #EBF7FF;
 
-    --uui-dt-header-row-bg: var(--gray5);
-    --uui-dt-header-row-bg-hover: var(--gray20);
+    --uui-dt-header-row-bg: var(--uui-surface-light);
+    --uui-dt-header-row-bg-hover: var(--uui-surface-hover);
 
     --uui-dt-top-shadow: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
     --uui-dt-left-shadow: linear-gradient(to left, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
     --uui-dt-right-shadow: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
-    --uui-dt-left-marker-shadow: inset 2px 0 0 0 var(--uui-primary);
-    --uui-dt-right-marker-shadow: inset -2px 0 0 0 var(--uui-primary);
-    --uui-dt-header-hover-shadow: inset 1px 0 0 var(--gray30), inset -1px 0 0 var(--gray30);
+    --uui-dt_header-drop_marker: var(--uui-primary);
+
+    --uui-dt-header-cell-font: var(--font-semibold);
+
+    /* AvatarStack */
+
+    --uui-avatar-stack-font: var(--font-semibold);
+
+    /* Badge */
+
+    --uui-badge-font: var(--font-regular);
+    --uui-badge-count-font: var(--font-semibold);
+
+    /* Pagination */
+
+    --uui-pagination-font: var(--font-regular);
+
 
     /* ------------------------------------ */
 
@@ -933,57 +1007,19 @@
         --uui-alert-icon: var(--uui-primary);
     }
 
-    :global(.informer-color-default) {
+    :global(.informer-default) {
         --uui-informer-bg: var(--gray30);
         --uui-informer-caption: var(--gray60);
     }
 
-    :global(.informer-color-focus) {
+    :global(.informer-focus) {
         --uui-informer-bg: var(--red);
         --uui-informer-caption: var(--uui-contrast);
     }
 
-    :global(.informer-color-white) {
+    :global(.informer-white) {
         --uui-informer-bg: var(--uui-surface);
         --uui-informer-caption: var(--uui-text-secondary);
-    }
-
-    :global(.informer-vars) {
-        --uui-informer-border-radius: 50px;
-    }
-
-    :global(.icon-container-color-info),
-    :global(.icon-container-color-blue) {
-        --uui-icon-container-fill: var(--uui-info);
-    }
-
-    :global(.icon-container-color-success),
-    :global(.icon-container-color-green) {
-        --uui-icon-container-fill: var(--uui-success);
-    }
-
-    :global(.icon-container-color-warning),
-    :global(.icon-container-color-amber) {
-        --uui-icon-container-fill: var(--uui-warning);
-    }
-
-    :global(.icon-container-color-error),
-    :global(.icon-container-color-red) {
-        --uui-icon-container-fill: var(--uui-error);
-    }
-
-    :global(.icon-container-color-default),
-    :global(.icon-container-color-gray60) {
-        --uui-icon-container-fill: var(--uui-icon);
-    }
-
-    :global(.icon-container-color-secondary),
-    :global(.icon-container-color-gray50) {
-        --uui-icon-container-fill: var(--uui-secondary);
-    }
-
-    :global(.icon-container-color-gray30) {
-        --uui-icon-container-fill: var(--uui-secondary-light);
     }
 
     :global(.uui-text-brand),

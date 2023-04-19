@@ -201,12 +201,14 @@ export const NumericInput = (props: NumericInputProps) => {
                         icon={ props.upIcon }
                         onClick={ handleIncreaseValue }
                         isDisabled={ props.isDisabled }
+                        rawProps={ { role: 'button' } }
                     />
                     <IconContainer
                         cx={ uuiNumericInput.downButton }
                         icon={ props.downIcon }
                         onClick={ handleDecreaseValue }
                         isDisabled={ props.isDisabled }
+                        rawProps={ { role: 'button' } }
                     />
                 </div>
             ) }

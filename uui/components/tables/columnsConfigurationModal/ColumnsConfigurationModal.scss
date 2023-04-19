@@ -16,7 +16,7 @@
             top: -3px;
 
             > :global(.uui-caption) {
-                font-family: var(--font-semibold);
+                font-family: var(--font-semibold); //TODO: rework component
             }
         }
 
