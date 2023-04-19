@@ -1,7 +1,7 @@
 import isEqual from "lodash.isequal";
 import {
     BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
-    IDataSourceView, DataRowPathItem, CascadeSelectionTypes,
+    IDataSourceView, DataRowPathItem, CascadeSelectionTypes, VirtualListRange,
 } from "../../../types";
 import { ITree } from "./tree/ITree";
 
@@ -95,7 +95,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return { ...object, [key]: value };
     }
 
-    public getSelectedRows = (topIndex: number, visibleCount?: number) => {
+    public getSelectedRows = ({ topIndex = 0, visibleCount }: VirtualListRange = {}) => {
         let checked: TId[] = [];
         if (this.value.selectedId !== null && this.value.selectedId !== undefined) {
             checked = [this.value.selectedId];

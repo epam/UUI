@@ -44,7 +44,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
     render() {
         const view = this.getView();
         const viewProps = view.getListProps();
-        const selectedRows = view.getSelectedRows(0);
+        const selectedRows = view.getSelectedRows();
         const rows = this.buildRowsList();
         const showPicker = viewProps.totalCount == null || viewProps.totalCount > this.getMaxDefaultItems();
         const renderToggler = this.props.renderModalToggler || this.defaultRenderToggler;
