@@ -14,10 +14,10 @@
 
     :global(.uui-mainmenu-server-badge-label) {
         padding: 0 5px;
-        border: 2px solid var(--uui-main_menu-border-light);
+        border: 2px solid #FFFFFF; /* for CI/CD, not themeable  */
         border-radius: 5px 5px 0 0;
         border-bottom: 0;
-        font-family: var(--font-semibold);
+        font-family: var(--uui-main_menu-font);
         font-size: 9px;
         text-transform: uppercase;
     }

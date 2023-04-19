@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { useUuiContext, DataSourceState, useLazyDataSource, useVirtualList, cx } from '@epam/uui-core';
+import { useUuiContext, DataSourceState, useLazyDataSource, useVirtualList } from '@epam/uui-core';
 import { Text, MainMenu, TextPlaceholder, MainMenuButton } from '@epam/promo';
 import { City } from '@epam/uui-docs';
 import css from './AdvancedExample.scss';
 
 function Header() {
     return (
-        <MainMenu cx={ css.menuContainer } logoLink={ { pathname: '/' } } appLogoUrl='/static/logo.svg' logoWidth={ 168 }>
+        <MainMenu serverBadge={ 'QA' } cx={ css.menuContainer } logoLink={ { pathname: '/' } } appLogoUrl='/static/logo.svg' logoWidth={ 168 }>
             <MainMenuButton caption='Home' />
         </MainMenu>
     );
