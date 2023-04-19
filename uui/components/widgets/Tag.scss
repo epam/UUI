@@ -10,7 +10,7 @@
         :global(.uui-count) {
             background-color: var(--uui-tag-count-bg);
             color: var(--uui-tag-count);
-            font-family: var(--font-semibold);
+            font-family: var(--uui-tag-count-font);
             margin: auto;
             height: 18px;
             line-height: 18px;
@@ -34,7 +34,7 @@
 
         :global(.uui-caption) {
             text-transform: none;
-            font-family: var(--font-regular);
+            font-family: var(--uui-tag-font);
             color: var(--uui-tag-caption);
         }
     }

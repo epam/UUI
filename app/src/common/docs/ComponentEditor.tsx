@@ -18,7 +18,7 @@ const PATH_PREFIX = './app/src/docs/_props'; // Keep it in sync with "uui-build/
 // narrow down the context base path to speed up lookup.
 const requireContext = require.context(`../../../../app/src/docs/_props`, true, /\/(loveship|epam-promo|uui)\/.*\.props.(ts|tsx)$/, 'lazy');
 
-interface ComponentEditorProps<TProps> extends IHasCX {
+interface ComponentEditorProps extends IHasCX {
     propsDocPath: string;
     title: string;
 }
@@ -34,7 +34,7 @@ interface ComponentEditorState {
     componentKey?: string;
 }
 
-export class ComponentEditor extends React.Component<ComponentEditorProps<any>, ComponentEditorState> {
+export class ComponentEditor extends React.Component<ComponentEditorProps, ComponentEditorState> {
     propSamplesCreationContext: PropSamplesCreationContext<any> = {
         getCallback: (name: string) => {
             const callback = (...args: any[]) => {
@@ -66,7 +66,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
         demoApi: svc.api.demo,
     };
 
-    constructor(props: ComponentEditorProps<any>) {
+    constructor(props: ComponentEditorProps) {
         super(props);
         const { propsDocPath } = props;
 
@@ -361,7 +361,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps<any>, 
         const id = routeArray?.indexOf('_props');
         if (!id) return '';
         switch (routeArray[id + 1]) {
-            case 'uui': return 'uui-theme-promo';
+            case 'uui': return 'uui-theme-vanilla_thunder';
             case 'epam-promo': return 'uui-theme-promo';
             case 'loveship': return 'uui-theme-loveship';
             default: return '';
