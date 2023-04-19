@@ -5,7 +5,7 @@
 - Changelog is updated or not needed
 - Documentation is updated/provided or not needed
 - Property explorer is updated/provided or not needed
-- TSDoc comments is updated/provided or not needed 
+- TSDoc comments for public interfaces is updated/provided or not needed 
  -->
 
 #### Issue link(if exists): 
