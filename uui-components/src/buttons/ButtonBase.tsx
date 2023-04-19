@@ -86,7 +86,9 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             tabIndex: this.getTabIndex(),
             ref: this.props.forwardedRef,
             'aria-disabled': this.props.isDisabled,
-            disabled: this.props.isDisabled,
+            // NOTE: do not use disabled attribute for button because it will prevent all events and broke Tooltip at least
+            // more info: https://github.com/epam/UUI/issues/1057#issuecomment-1508632942
+            // disabled: this.props.isDisabled,
             ...this.props.rawProps,
         };
 

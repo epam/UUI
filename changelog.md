@@ -8,6 +8,15 @@
   - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
 
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
+* [Dropdown]: added a 400ms delay to the submenu's close and open triggers
+* [FiltersPanel]: hide 'Add filter' button, if all filters `isAlwaysVisible`
+
+
+**What's Fixed**
+* [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
+* [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
+* [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
+* [PickerInput]: fixed single select dropdown body closing by the collapse icon if any value was selected.
 
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.

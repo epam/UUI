@@ -252,8 +252,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             prefix,
             suffix,
             onFocus: this.props.onFocus,
-            onBlur: this.handleBlur,
             onClear: this.handleClearSelection,
+            onBlur: this.props.onBlur,
             selection: selectedRows,
             selectedRowsCount,
             placeholder: this.getPlaceholder(),
@@ -265,6 +265,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableSearch: !minCharsToSearch && (!dropdownProps.isOpen || searchPosition !== 'input'),
             disableClear: disableClear,
             toggleDropdownOpening: this.toggleDropdownOpening,
+            closePickerBody: this.closePickerBody,
             rawProps: this.props.rawProps?.input,
             value: this.getSearchValue(),
             cx: inputCx,
@@ -319,7 +320,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         });
     }
 
-    handleBlur = (e: React.FocusEvent<HTMLElement>) => {
+    closePickerBody = () => {
         this.setState({
             ...this.state,
             dataSourceState: {
@@ -329,8 +330,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             isSearchChanged: false,
             opened: false,
         });
-
-        this.props.onBlur && this.props.onBlur(e);
     }
 
     getRows() {
@@ -344,7 +343,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         if (!showSelected) {
             preparedRows = getVisibleRows();
         } else {
-            preparedRows = getSelectedRows(topIndex, visibleCount);
+            preparedRows = getSelectedRows({ topIndex, visibleCount });
         }
 
         return preparedRows.map((rowProps) => {

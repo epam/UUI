@@ -69,7 +69,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
             rowsCount: this.rows.length,
             knownRowsCount: this.rows.length,
             exactRowsCount: this.rows.length,
-            totalCount: this.tree.getTotalRecursiveCount(),
+            totalCount: this.originalTree?.getTotalRecursiveCount(),
             selectAll: this.selectAll,
         };
     }

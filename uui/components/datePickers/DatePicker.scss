@@ -19,7 +19,7 @@
     }
 
     :global(.uui-datepickerheader-nav-title) {
-        font-family: var(--font-semibold);
+        font-family: var(--uui-dtp_header-font);
         color: var(--uui-dtp-text-selected);
         font-size: 14px;
         padding: 3px 10px;
@@ -60,7 +60,7 @@
 
     // Month and Year selection styles
     :global(.uui-monthselection-content), :global(.uui-yearselection-content) {
-        font-family: var(--font-regular);
+        font-family: var(--uui-dtp_body-content-font);
     }
 
     :global(.uui-monthselection-month-container) {

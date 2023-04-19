@@ -47,7 +47,7 @@ export default function FileUploadExample() {
 
     return (
         <div className={ css.container }>
-            <DropSpot onUploadFiles={ uploadFile }/>
+            <DropSpot onUploadFiles={ uploadFile } infoText="Up to 15 files. Limit for 1 file is 50 Mb"/>
             <div className={ css.attachmentBlock }>
                 { attachments.map((file, index) => (
                     <FileCard key={ index } file={ file } onClick={ () => deleteFile(file) }/>

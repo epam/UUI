@@ -28,7 +28,7 @@ const metadata: Metadata<FormState> = {
 
 let savedValue: FormState = { items: {} };
 
-export const ProductsTableDemo: React.FC = (props) => {
+export const ProductsTableDemo: React.FC = () => {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const { lens, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
