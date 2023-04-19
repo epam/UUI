@@ -1,44 +1,35 @@
-import React from "react";
-import { renderSnapshotWithContextAsync, renderToJsdomWithContextAsync, screen, within, fireEvent, mockAdaptivePanelLayout } from "@epam/test-utils";
-import { PresetsPanel, PresetsPanelProps } from "../PresetsPanel";
+import React from 'react';
+import {
+    renderSnapshotWithContextAsync,
+    renderToJsdomWithContextAsync,
+    screen,
+    within,
+    fireEvent,
+    mockAdaptivePanelLayout,
+    waitForElementToBeRemoved,
+} from '@epam/test-utils';
+import { PresetsPanel, PresetsPanelProps } from '../PresetsPanel';
 import {
     ColumnsConfig,
     DataTableState, FiltersConfig,
     ITablePreset,
-} from "@epam/uui-core";
+} from '@epam/uui-core';
 
-jest.mock('react-popper', () => {
-    const PopperJS = jest.requireActual('react-popper');
-    const Popper = function ({ children }: any) {
+jest.mock('react-popper', () => ({
+    ...jest.requireActual('react-popper'),
+    Popper: function PopperMock({ children }: any) {
         return children({
-            ref: jest.fn,
-            placement: 'bottom-start',
-            style: {
-                position: 'fixed',
-                top: 0,
-                right: 'auto',
-                bottom: 'auto',
-                left: 0,
-            },
-            update: jest.fn(),
-            isReferenceHidden: false,
-            arrowProps: {
-                ref: jest.fn,
-            },
+            ref: jest.fn, update: jest.fn(), style: {}, arrowProps: { ref: jest.fn }, placement: 'bottom-start', isReferenceHidden: false,
         });
-    };
-    return {
-        ...PopperJS,
-        Popper,
-    };
-});
+    },
+}));
 
 async function openTabMenuAndClickOption(tab: HTMLElement, optionToClick: string) {
     const btn = within(tab).getByRole('button');
     fireEvent.click(btn);
     const dialog = await screen.findByRole('dialog');
     const items = within(dialog).getAllByRole('menuitem');
-    const opt = items.map(item => within(item).queryByText(optionToClick)).find(e => !!e);
+    const opt = items.map((item) => within(item).queryByText(optionToClick)).find((e) => !!e);
     fireEvent.click(opt);
 }
 async function expectPresetTabHasOptions(tab: HTMLElement, expectedOptions: string[]) {
@@ -70,9 +61,15 @@ async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps
         status: { width: 100, isVisible: true, order: 'b' },
     };
     const initialPresets: ITablePreset<TestFilterType, TestViewStateType>[] = [
-        { id: -1, name: 'All items', order: 'a', isReadonly: true},
-        { id: -2, name: 'Items with green status', order: 'b', filter: { status: 1 }},
-        { id: -3, name: 'Items with red status', order: 'c', filter: { status: 2 } },
+        {
+            id: -1, name: 'All items', order: 'a', isReadonly: true,
+        },
+        {
+            id: -2, name: 'Items with green status', order: 'b', filter: { status: 1 },
+        },
+        {
+            id: -3, name: 'Items with red status', order: 'c', filter: { status: 2 },
+        },
     ];
     const filtersConfig: FiltersConfig<TestFilterType> = {
         status: {
@@ -96,7 +93,7 @@ async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps
         getPresetLink: mocks.getPresetLink,
         presets: initialPresets,
         rawProps: {
-            ['data-testid']: 'presets-panel',
+            'data-testid': 'presets-panel',
         },
     };
     const result = await renderToJsdomWithContextAsync(
@@ -126,14 +123,14 @@ describe('PresetsPanel', () => {
                 deletePreset={ jest.fn() }
                 updatePreset={ jest.fn() }
                 getPresetLink={ jest.fn() }
-                presets={ [] }/>,
+                presets={ [] }
+            />,
         );
         expect(component).toMatchSnapshot();
     });
 
-
     it('should render presets panel with all tabs and options', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel();
+        const { dom: { tabs } } = await setupPresetsPanel();
         // 1. check that it's rendered and active element is correct
         expect(tabs.length).toBe(3);
         expect(tabs[0]).toHaveTextContent('All items');
@@ -144,8 +141,17 @@ describe('PresetsPanel', () => {
         expect(addPresetBtn).toBeInTheDocument();
         // 2. check that menu of each tab contains correct options
         await expectPresetTabHasOptions(tabs[0], ['Duplicate', 'Copy Link']);
-        await expectPresetTabHasOptions(tabs[1], ['Rename', 'Duplicate', 'Copy Link', 'Delete']);
-        await expectPresetTabHasOptions(tabs[2], ['Duplicate', 'Copy Link', 'Delete']);
+        await expectPresetTabHasOptions(tabs[1], [
+            'Rename',
+            'Duplicate',
+            'Copy Link',
+            'Delete',
+        ]);
+        await expectPresetTabHasOptions(tabs[2], [
+            'Duplicate',
+            'Copy Link',
+            'Delete',
+        ]);
     });
 
     it('should create new preset using "Add preset" button', async () => {
@@ -162,18 +168,23 @@ describe('PresetsPanel', () => {
         expect(second).toHaveClass('uui-icon-cancel');
         fireEvent.click(first);
         expect(mocks.createNewPreset).toHaveBeenCalledWith('New preset');
+        await waitForElementToBeRemoved(() => screen.queryByRole('textbox'));
     });
 
     it('should create new preset using "Duplicate" button', async () => {
         const { mocks, dom: { tabs } } = await setupPresetsPanel();
         await openTabMenuAndClickOption(tabs[1], 'Duplicate');
-        expect(mocks.duplicatePreset).toHaveBeenCalledWith({"filter": {"status": 1}, "id": -2, "name": "Items with green status", "order": "b"});
+        expect(mocks.duplicatePreset).toHaveBeenCalledWith({
+            filter: { status: 1 }, id: -2, name: 'Items with green status', order: 'b',
+        });
     });
 
     it('should delete preset using "Delete" button', async () => {
         const { mocks, dom: { tabs } } = await setupPresetsPanel();
         await openTabMenuAndClickOption(tabs[1], 'Delete');
-        expect(mocks.deletePreset).toHaveBeenCalledWith({"filter": {"status": 1}, "id": -2, "name": "Items with green status", "order": "b"});
+        expect(mocks.deletePreset).toHaveBeenCalledWith({
+            filter: { status: 1 }, id: -2, name: 'Items with green status', order: 'b',
+        });
     });
 
     it('should rename preset using "Rename" button', async () => {
@@ -184,29 +195,44 @@ describe('PresetsPanel', () => {
         const [first, second] = await within(input.parentElement).findAllByRole('button');
         expect(first).toHaveClass('uui-icon-accept');
         expect(second).toHaveClass('uui-icon-cancel');
-        fireEvent.change(input, { target: { value: 'This is new name' }});
+        fireEvent.change(input, { target: { value: 'This is new name' } });
         fireEvent.click(first);
-        expect(mocks.updatePreset).toHaveBeenCalledWith({"filter": {"status": 1}, "id": -2, "name": "This is new name", "order": "b"});
+        expect(mocks.updatePreset).toHaveBeenCalledWith({
+            filter: { status: 1 }, id: -2, name: 'This is new name', order: 'b',
+        });
+        await waitForElementToBeRemoved(() => screen.queryByRole('textbox'));
     });
 
     it('should copy link using "Copy Link" button', async () => {
         const { mocks, dom: { tabs } } = await setupPresetsPanel();
         await openTabMenuAndClickOption(tabs[1], 'Copy Link');
-        expect(mocks.getPresetLink).toHaveBeenCalledWith({"filter": {"status": 1}, "id": -2, "name": "Items with green status", "order": "b"});
+        expect(mocks.getPresetLink).toHaveBeenCalledWith({
+            filter: { status: 1 }, id: -2, name: 'Items with green status', order: 'b',
+        });
     });
 
     it('should choose another preset by click on it', async () => {
         const { mocks, dom: { tabs } } = await setupPresetsPanel();
         fireEvent.click(tabs[2]);
-        expect(mocks.choosePreset).toHaveBeenCalledWith({"filter": {"status": 2}, "id": -3, "name": "Items with red status", "order": "c"});
+        expect(mocks.choosePreset).toHaveBeenCalledWith({
+            filter: { status: 2 }, id: -3, name: 'Items with red status', order: 'c',
+        });
     });
 
     it('should mark modified preset with special css class and extra options should become available', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel({
+        const { dom: { tabs } } = await setupPresetsPanel({
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
         expect(tabs[1]).toHaveClass('uui-has-right-icon');
-        await expectPresetTabHasOptions(tabs[1], ['Save in current', 'Save as new', 'Discard all changes', 'Rename', 'Duplicate', 'Copy Link', 'Delete']);
+        await expectPresetTabHasOptions(tabs[1], [
+            'Save in current',
+            'Save as new',
+            'Discard all changes',
+            'Rename',
+            'Duplicate',
+            'Copy Link',
+            'Delete',
+        ]);
     });
 
     it('should save modified preset', async () => {
@@ -215,27 +241,27 @@ describe('PresetsPanel', () => {
         });
         await openTabMenuAndClickOption(tabs[1], 'Save in current');
         expect(mocks.updatePreset).toHaveBeenCalledWith({
-            "columnsConfig": {
-                "name": {
-                    "isVisible": true,
-                    "order": "a",
-                    "width": 100,
+            columnsConfig: {
+                name: {
+                    isVisible: true,
+                    order: 'a',
+                    width: 100,
                 },
-                "status": {
-                    "isVisible": true,
-                    "order": "b",
-                    "width": 100,
-                },
-            },
-            "filtersConfig": {
-                "status": {
-                    "isVisible": true,
-                    "order": "c",
+                status: {
+                    isVisible: true,
+                    order: 'b',
+                    width: 100,
                 },
             },
-            "id": -2,
-            "name": "Items with green status",
-            "order": "b",
+            filtersConfig: {
+                status: {
+                    isVisible: true,
+                    order: 'c',
+                },
+            },
+            id: -2,
+            name: 'Items with green status',
+            order: 'b',
         });
     });
 
@@ -245,27 +271,27 @@ describe('PresetsPanel', () => {
         });
         await openTabMenuAndClickOption(tabs[1], 'Save in current');
         expect(mocks.updatePreset).toHaveBeenCalledWith({
-            "columnsConfig": {
-                "name": {
-                    "isVisible": true,
-                    "order": "a",
-                    "width": 100,
+            columnsConfig: {
+                name: {
+                    isVisible: true,
+                    order: 'a',
+                    width: 100,
                 },
-                "status": {
-                    "isVisible": true,
-                    "order": "b",
-                    "width": 100,
-                },
-            },
-            "filtersConfig": {
-                "status": {
-                    "isVisible": true,
-                    "order": "c",
+                status: {
+                    isVisible: true,
+                    order: 'b',
+                    width: 100,
                 },
             },
-            "id": -2,
-            "name": "Items with green status",
-            "order": "b",
+            filtersConfig: {
+                status: {
+                    isVisible: true,
+                    order: 'c',
+                },
+            },
+            id: -2,
+            name: 'Items with green status',
+            order: 'b',
         });
     });
 
@@ -282,10 +308,11 @@ describe('PresetsPanel', () => {
         expect(second).toHaveClass('uui-icon-cancel');
         fireEvent.click(first);
         expect(mocks.createNewPreset).toHaveBeenCalledWith('New preset');
+        await waitForElementToBeRemoved(() => screen.queryByRole('textbox'));
     });
 
     it('should cancel saving modified preset as new', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel({
+        const { dom: { tabs } } = await setupPresetsPanel({
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
         await openTabMenuAndClickOption(tabs[1], 'Save as new');
@@ -301,7 +328,7 @@ describe('PresetsPanel', () => {
 
     it('should render presets panel with hidden items in collapsed container (the active item is not hidden)', async () => {
         mockAdaptivePanelLayout({
-            isAdaptivePanelRoot: elem => {
+            isAdaptivePanelRoot: (elem) => {
                 const p = elem.parentElement?.parentElement;
                 if (p && p.getAttribute('data-testid') === 'presets-panel') {
                     return true;
@@ -310,7 +337,7 @@ describe('PresetsPanel', () => {
             width: 50,
             itemWidth: 15,
         });
-        const { mocks, dom: { tabs } } = await setupPresetsPanel();
+        const { dom: { tabs } } = await setupPresetsPanel();
         expect(tabs.length).toBe(1);
 
         const btn = screen.queryByText('2 more');

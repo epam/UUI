@@ -1,32 +1,17 @@
 import * as React from 'react';
 import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
-import { renderSnapshotWithContextAsync, setupComponentForTest, fireEvent, screen, within } from '@epam/test-utils';
+import {
+    renderSnapshotWithContextAsync, setupComponentForTest, fireEvent, screen, within,
+} from '@epam/test-utils';
 
-jest.mock('react-popper', () => {
-    const PopperJS = jest.requireActual('react-popper');
-    const Popper = function ({ children }: any) {
+jest.mock('react-popper', () => ({
+    ...jest.requireActual('react-popper'),
+    Popper: function PopperMock({ children }: any) {
         return children({
-            ref: jest.fn,
-            placement: 'bottom-start',
-            style: {
-                position: 'fixed',
-                top: 0,
-                right: 'auto',
-                bottom: 'auto',
-                left: 0,
-            },
-            update: jest.fn(),
-            isReferenceHidden: false,
-            arrowProps: {
-                ref: jest.fn,
-            },
+            ref: jest.fn, update: jest.fn(), style: {}, arrowProps: { ref: jest.fn }, placement: 'bottom-start', isReferenceHidden: false,
         });
-    };
-    return {
-        ...PopperJS,
-        Popper,
-    };
-});
+    },
+}));
 
 async function setupRangeDatePicker(params: { value: { from: string, to: string } | null, format?: string }) {
     const { value, format } = params;
@@ -40,11 +25,11 @@ async function setupRangeDatePicker(params: { value: { from: string, to: string 
                 context.current.setProperty('value', newValue);
             }),
         }),
-        props => <RangeDatePicker { ...props } />,
+        (props) => <RangeDatePicker { ...props } />,
     );
 
-    const from = within(result.getByTestId('from')).getByRole('textbox') as HTMLInputElement;
-    const to = within(result.getByTestId('to')).getByRole('textbox') as HTMLInputElement;
+    const from = within(screen.getByTestId('from')).getByRole('textbox') as HTMLInputElement;
+    const to = within(screen.getByTestId('to')).getByRole('textbox') as HTMLInputElement;
     const clear = result.container.querySelector('.uui-icon-cancel');
 
     return {
@@ -74,7 +59,7 @@ describe('RangeDataPicker', () => {
                 onValueChange={ jest.fn }
                 renderFooter={ ((value: any) => jest.fn(value)) as any }
                 disableClear={ false }
-                getPlaceholder={ (type) => '' }
+                getPlaceholder={ () => '' }
                 isDisabled
                 isReadonly
                 isInvalid
@@ -102,20 +87,20 @@ describe('RangeDataPicker', () => {
         expect(mocks.onValueChange).toBeCalledWith({ from: null, to: null });
     });
 
-    it(`should open picker on 'from' field focus and close it on blur`, async () => {
+    it('should open picker on \'from\' field focus and close it on blur', async () => {
         const { dom } = await setupRangeDatePicker({ value: null });
         fireEvent.focus(dom.from);
-        expect(await screen.queryByRole('dialog')).toBeTruthy();
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
         fireEvent.blur(dom.from);
-        expect(await screen.queryByRole('dialog')).toBeFalsy();
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
-    it(`should open picker on "To" field focus and close it on blur`, async () => {
+    it('should open picker on "To" field focus and close it on blur', async () => {
         const { dom } = await setupRangeDatePicker({ value: null });
         fireEvent.focus(dom.to);
-        expect(await screen.queryByRole('dialog')).toBeTruthy();
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
         fireEvent.blur(dom.to);
-        expect(await screen.queryByRole('dialog')).toBeFalsy();
+        expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
     it('should reset invalid "From" value onBlur', async () => {
@@ -147,8 +132,8 @@ describe('RangeDataPicker', () => {
         const { dom, mocks } = await setupRangeDatePicker({ value });
 
         fireEvent.focus(dom.from);
-        const dialog = await screen.queryByRole('dialog');
-        const [sept11, oct11] = await within(dialog).findAllByText('11');
+        const dialog = screen.queryByRole('dialog');
+        const [sept11] = await within(dialog).findAllByText('11');
         fireEvent.click(sept11);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
             from: newValueManualSel.from,

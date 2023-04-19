@@ -1,13 +1,18 @@
 import { AdaptiveItemProps, AdaptivePanel } from '../AdaptivePanel';
-import { renderSnapshotWithContextAsync, renderToJsdomWithContextAsync, mockAdaptivePanelLayout } from '@epam/test-utils';
+import {
+    renderSnapshotWithContextAsync, renderToJsdomWithContextAsync, mockAdaptivePanelLayout, screen,
+} from '@epam/test-utils';
 import React from 'react';
 
-type TestItemType = AdaptiveItemProps<{data?: {label: string}}>;
+type TestItemType = AdaptiveItemProps<{ data?: { label: string } }>;
 
 function getNItems(baseId: string, n: number, priority: number = 1): TestItemType[] {
-    const genItem = ({ id, priority }: Pick<TestItemType, 'id' | 'priority'>): TestItemType => {
+    const genItem = (params: Pick<TestItemType, 'id' | 'priority'>): TestItemType => {
         return {
-            id, priority, collapsedContainer: false, data: { label: `Item ${id}` },
+            id: params.id,
+            priority: params.priority,
+            collapsedContainer: false,
+            data: { label: `Item ${params.id}` },
             render: (item) => (<div data-testid="adaptive-item" data-label={ item.data.label } key={ item.id } />),
         };
     };
@@ -21,13 +26,16 @@ function getNItems(baseId: string, n: number, priority: number = 1): TestItemTyp
 async function setupAdaptivePanel({ width, itemWidth }: { width: number, itemWidth: number }) {
     const genContainerItem = ({ id, priority }: Pick<TestItemType, 'id' | 'priority'>): TestItemType => {
         return {
-            id, priority, collapsedContainer: true, data: { label: `Collapsed Container Item ${id}` },
+            id,
+            priority,
+            collapsedContainer: true,
+            data: { label: `Collapsed Container Item ${id}` },
             render: (item, hiddenItems) => (
                 <div
                     key={ id }
                     data-testid="adaptive-item-cc"
                     data-label={ item.data.label }
-                    data-hiddenitems={ hiddenItems.map(i => i.id).join(',') }
+                    data-hiddenitems={ hiddenItems.map((i) => i.id).join(',') }
                 />
             ),
         };
@@ -40,12 +48,14 @@ async function setupAdaptivePanel({ width, itemWidth }: { width: number, itemWid
         genContainerItem({ id: 'medium-screen', priority: 4 }),
         genContainerItem({ id: 'small-screen', priority: 6 }),
     ];
-    let layoutMock = mockAdaptivePanelLayout({ width, itemWidth });
-    let result = await renderToJsdomWithContextAsync(<AdaptivePanel items={ items } rawProps={ { 'data-testid': 'adaptive-panel'} } />);
-    let visibleItems = result.queryAllByTestId('adaptive-item').map(i => i.getAttribute('data-label')).join(',');
-    let containerItem = result.queryByTestId('adaptive-item-cc');
-    let hiddenItems = containerItem.getAttribute('data-hiddenitems');
-    return { result, visibleItems, hiddenItems, containerItem };
+    mockAdaptivePanelLayout({ width, itemWidth });
+    const result = await renderToJsdomWithContextAsync(<AdaptivePanel items={ items } rawProps={ { 'data-testid': 'adaptive-panel' } } />);
+    const visibleItems = screen.queryAllByTestId('adaptive-item').map((i) => i.getAttribute('data-label')).join(',');
+    const containerItem = screen.queryByTestId('adaptive-item-cc');
+    const hiddenItems = containerItem.getAttribute('data-hiddenitems');
+    return {
+        result, visibleItems, hiddenItems, containerItem,
+    };
 }
 
 describe('AdaptivePanel', () => {
