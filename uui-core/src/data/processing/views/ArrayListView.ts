@@ -121,7 +121,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             rowsCount: this.rows.length,
             knownRowsCount: this.rows.length,
             exactRowsCount: this.rows.length,
-            totalCount: this.tree.getTotalRecursiveCount(),
+            totalCount: this.originalTree?.getTotalRecursiveCount() ?? 0,
             selectAll: this.selectAll,
         };
     }
