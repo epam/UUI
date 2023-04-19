@@ -160,9 +160,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         let isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
 
-        const newValueLastIndex = this.getLastRecordIndex();
-        const moreRowsNeeded = newValueLastIndex > this.rows.length;
-
+        const moreRowsNeeded = this.areMoreRowsNeeded(prevValue, this.value);
         if (completeReset || this.shouldRebuildRows(this.value, prevValue)) {
             this.updateCheckedLookup(this.value.checked);
         }
@@ -170,6 +168,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         if (completeReset
             || this.shouldRebuildRows(this.value, prevValue)
             || !isEqual(this.props.rowOptions, prevProps.rowOptions)
+            || isFoldingChanged
             || this.props.getRowOptions !== prevProps.getRowOptions
             || moreRowsNeeded
         ) {
@@ -453,4 +452,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     protected isPartialLoad = () => true;
+
+    private areMoreRowsNeeded = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => {
+        const isFetchPositionAndAmountChanged = prevValue?.topIndex !== newValue?.topIndex || prevValue?.visibleCount !== newValue?.visibleCount;
+        const lastIndex = this.getLastRecordIndex();
+
+        return isFetchPositionAndAmountChanged && lastIndex > this.rows.length;
+    };
 }

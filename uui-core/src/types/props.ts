@@ -2,9 +2,9 @@ import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode } fr
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
 import { DataRowProps } from "./dataSources";
-import {AnalyticsEvent} from "./contexts";
+import { AnalyticsEvent } from "./contexts";
 import { PopperArrowProps } from "react-popper";
-import { Placement} from '@popperjs/core';
+import { Placement } from '@popperjs/core';
 
 /** Component value can be invalid */
 export interface ICanBeInvalid {
@@ -133,6 +133,7 @@ export interface IBasicPickerToggler extends IDropdownToggler {
  */
 export interface IPickerToggler<TItem = any, TId = any> extends IBasicPickerToggler, Partial<IEditable<string>>, Partial<IHasPlaceholder>, Partial<IDisableable>, Partial<ICanBeInvalid> {
     selection?: DataRowProps<TItem, TId>[];
+    selectedRowsCount?: number;
 }
 
 /**
@@ -198,9 +199,9 @@ export interface INotification {
     key: string;
 }
 
-export type IHasRawProps<T> =  {
+export type IHasRawProps<T> = {
     /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: T & Record<`data-${string}`, string>;
+    rawProps?: T & Record<`data-${ string }`, string>;
 };
 
 export interface IHasForwardedRef<T extends HTMLOrSVGElement> {

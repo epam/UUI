@@ -3,8 +3,7 @@ import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from
 import { IDndActor } from './dnd';
 import { Link } from './objects';
 
-/** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
-export interface VirtualListState {
+export interface VirtualListRange {
     /**
      * Index of the topmost item, in rendered batch.
      * Note - this item might not be visible, as Virtual List maintain some reserve of rows on top / at the bottom of the list
@@ -17,6 +16,10 @@ export interface VirtualListState {
      * as it need maintain some reserve of rows on top / at the bottom of the list.
      */
     visibleCount?: number;
+}
+
+/** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
+export interface VirtualListState extends VirtualListRange {
     /**
      * Virtual list ensures that row with this Index is within the visible area, if not Virtual List .
      * Virtual list updates this value on scroll to null when appear in the visible area.
@@ -263,7 +266,8 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
     getVisibleRows(): DataRowProps<TItem, TId>[];
-    getSelectedRows(inSelectionOrder?: boolean): DataRowProps<TItem, TId>[];
+    getSelectedRows(range?: VirtualListRange): DataRowProps<TItem, TId>[];
+    getSelectedRowsCount(): number;
     reload(): void;
     destroy(): void;
     loadData(): void;

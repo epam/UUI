@@ -144,10 +144,10 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         }
     }
 
-    getSelectedRows() {
+    getSelectedRows(visibleCount?: number) {
         if (this.hasSelection()) {
             const view = this.getView();
-            return view.getSelectedRows(true);
+            return view.getSelectedRows({ visibleCount });
         }
         return [];
     }
@@ -179,15 +179,19 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         });
     }
 
+    private onShowSelectedChange = (nV: boolean) => {
+        this.setState({
+            showSelected: nV,
+            dataSourceState: { ...this.state.dataSourceState },
+        });
+    }
+
     getFooterProps(): PickerFooterProps<TItem, TId> {
         return {
             view: this.getView(),
             showSelected: {
                 value: this.state.showSelected,
-                onValueChange: (nV: boolean) => this.setState({
-                    showSelected: nV,
-                    dataSourceState: { ...this.state.dataSourceState },
-                }),
+                onValueChange: this.onShowSelectedChange,
             },
             clearSelection: this.clearSelection,
         };

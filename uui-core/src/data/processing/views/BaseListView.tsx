@@ -1,7 +1,7 @@
 import isEqual from "lodash.isequal";
 import {
     BaseListViewProps, DataRowProps, ICheckable, IEditable, SortingOption, DataSourceState, DataSourceListProps,
-    IDataSourceView, DataRowPathItem, CascadeSelectionTypes,
+    IDataSourceView, DataRowPathItem, CascadeSelectionTypes, VirtualListRange,
 } from "../../../types";
 import { ITree } from "./tree/ITree";
 
@@ -95,24 +95,19 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         return { ...object, [key]: value };
     }
 
-    public getSelectedRows = (inSelectionOrder?: boolean) => {
+    public getSelectedRows = ({ topIndex = 0, visibleCount }: VirtualListRange = {}) => {
         let checked: TId[] = [];
         if (this.value.selectedId !== null && this.value.selectedId !== undefined) {
             checked = [this.value.selectedId];
         } else if (this.value.checked) {
             checked = this.value.checked;
         }
-        if (inSelectionOrder) {
-            return checked.map((id, n) => this.getById(id, n));
+
+        if (visibleCount !== undefined) {
+            checked = checked.slice(topIndex, topIndex + visibleCount);
         }
 
-        let orderedChecked: TId[] = [];
-        this.tree.forEach((item, id, _, stop) => {
-            if (checked.includes(id)) orderedChecked.push(id);
-            if (orderedChecked.length === checked.length) stop();
-        });
-
-        return orderedChecked.map((id, n) => this.getById(id, n));
+        return checked.map((id, n) => this.getById(id, topIndex + n));
     }
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
@@ -125,6 +120,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             this.handleCheckedChange(checked);
         }
     }
+
 
     protected isSelectAllEnabled() {
         return this.props.selectAll == undefined ? true : this.props.selectAll;
@@ -434,6 +430,15 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         }
 
         return { ...actualStats, isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected };
+    }
+
+    public getSelectedRowsCount = () => {
+        const count = this.value.checked?.length ?? 0;
+        if (!count) {
+            return this.value.selectedId ? 1 : 0;
+        }
+
+        return count;
     }
 
     private mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
