@@ -2,7 +2,8 @@ name: track_bundle_size
 on:
     pull_request:
         branches:
-            - sy/test_workflow
+            - develop
+            - main
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.base_ref }}-${{ github.head_ref }}
