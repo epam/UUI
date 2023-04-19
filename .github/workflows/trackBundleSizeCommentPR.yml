@@ -27,8 +27,9 @@ jobs:
             - name: 'Extract prNumber.txt'
               uses: actions/github-script@v6
               id: extract_pr_number
-              script: |
-                  return Number(require('fs').readFileSync('./prNumber.txt'));
+              with:
+                  script: |
+                      return Number(require('fs').readFileSync('./prNumber.txt'));
 
             - name: 'Find Comment'
               uses: peter-evans/find-comment@v2
