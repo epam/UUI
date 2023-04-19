@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen } from '@epam/test-utils';
+import {
+    renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen,
+} from '@epam/test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 
 jest.mock('react-popper', () => {
     const PopperJS = jest.requireActual('react-popper');
-    const Popper = function ({ children }: any) {
+    const Popper = function PopperMock({ children }: any) {
         return children({
             ref: jest.fn,
             placement: 'bottom-start',
@@ -69,32 +71,34 @@ describe('DatePicker', () => {
                 format={ DATE_FORMAT_DEFAULT }
                 value={ null }
                 onValueChange={ jest.fn }
-                placeholder='Test'
+                placeholder="Test"
                 disableClear={ false }
-                renderFooter={ () => <div>Test footer</div>  }
+                renderFooter={ () => <div>Test footer</div> }
             />,
         );
         expect(tree).toMatchSnapshot();
     });
 
-    it(`should open picker on field focus`, async () => {
-        const { result, dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+    it('should open picker on field focus', async () => {
+        const { dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         fireEvent.focus(dom.input);
-        expect(screen.queryByRole('dialog')).toBeInTheDocument();
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
     });
 
-    it(`should close picker on field blur`, async () => {
-        const { result, dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+    it('should close picker on field blur', async () => {
+        const { dom } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
         fireEvent.focus(dom.input);
-        expect(screen.queryByRole('dialog')).toBeInTheDocument();
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
         fireEvent.blur(dom.input);
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
 
     it('should change input value after change props', async () => {
-        const { result, dom, mocks, setProps } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+        const {
+            dom, mocks, setProps,
+        } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
         expect(dom.input.value).toEqual('');
         setProps({ value: '2017-01-22' });
         expect(dom.input.value).toEqual('Jan 22, 2017');
@@ -102,7 +106,7 @@ describe('DatePicker', () => {
     });
 
     it('should clear input when clear button is clicked', async () => {
-        const { result, dom, mocks } = await setupDatePicker({ value: '2017-01-22', format: DATE_FORMAT_DEFAULT });
+        const { dom, mocks } = await setupDatePicker({ value: '2017-01-22', format: DATE_FORMAT_DEFAULT });
         expect(dom.input.value).toEqual('Jan 22, 2017');
         fireEvent.click(dom.clear);
         expect(dom.input.value).toEqual('');

@@ -1,7 +1,8 @@
 import React from 'react';
 import { NumericInput, NumericInputProps } from '../NumericInput';
-import { renderSnapshotWithContextAsync, setupComponentForTest, screen } from '@epam/test-utils';
-import { fireEvent } from "@testing-library/react";
+import {
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, fireEvent,
+} from '@epam/test-utils';
 import { i18n } from '@epam/uui-core';
 
 async function setupNumericInput(params: Partial<NumericInputProps>) {
@@ -52,8 +53,8 @@ describe('NumericInput', () => {
                     onValueChange={ jest.fn }
                     min={ 0 }
                     max={ 50 }
-                    size='36'
-                    mode='inline'
+                    size="36"
+                    mode="inline"
                 />,
             );
             expect(tree).toMatchSnapshot();
@@ -64,7 +65,7 @@ describe('NumericInput', () => {
         it('should change value by typing', async () => {
             const res = await setupNumericInput({ value: 1000 });
             expect(res.dom.input.placeholder).toEqual('1,000');
-            fireEvent.change(res.dom.input, { target: { value: 2000}});
+            fireEvent.change(res.dom.input, { target: { value: 2000 } });
             expect(res.mocks.onValueChange).toHaveBeenCalledWith(2000);
             expect(res.dom.input.placeholder).toEqual('2,000');
         });
@@ -92,16 +93,16 @@ describe('NumericInput', () => {
         it('should change value by typing considering min/max specified', async () => {
             const res = await setupNumericInput({ value: 10, min: -15, max: 15 });
             expect(res.dom.input.placeholder).toEqual('10');
-            fireEvent.change(res.dom.input, { target: { value: 20}});
+            fireEvent.change(res.dom.input, { target: { value: 20 } });
             expect(res.mocks.onValueChange).toHaveBeenCalledWith(20);
             expect(res.dom.input.placeholder).toEqual('20');
-            fireEvent.change(res.dom.input, { target: { value: -20}});
+            fireEvent.change(res.dom.input, { target: { value: -20 } });
             expect(res.mocks.onValueChange).toHaveBeenCalledWith(-20);
             expect(res.dom.input.placeholder).toEqual('-20');
-            fireEvent.change(res.dom.input, { target: { value: -2}});
+            fireEvent.change(res.dom.input, { target: { value: -2 } });
             expect(res.mocks.onValueChange).toHaveBeenCalledWith(-2);
             expect(res.dom.input.placeholder).toEqual('-2');
-            fireEvent.change(res.dom.input, { target: { value: 2}});
+            fireEvent.change(res.dom.input, { target: { value: 2 } });
             expect(res.mocks.onValueChange).toHaveBeenCalledWith(2);
             expect(res.dom.input.placeholder).toEqual('2');
         });
@@ -179,7 +180,7 @@ describe('NumericInput', () => {
                 formatValue,
             });
             expect(res.dom.input.placeholder).toEqual('1|0|0|0|.|1|1|1');
-            fireEvent.change(res.dom.input, { target: { value: 1000.2222222222 }});
+            fireEvent.change(res.dom.input, { target: { value: 1000.2222222222 } });
             expect(res.mocks.onValueChange).toHaveBeenCalledWith(1000.222);
             expect(res.dom.input.placeholder).toEqual('1|0|0|0|.|2|2|2');
         });
@@ -206,7 +207,7 @@ describe('NumericInput', () => {
                 formatOptions: { maximumFractionDigits: 3, minimumFractionDigits: 2 },
             });
             expect(res.dom.input.placeholder).toEqual('1,000.11');
-            fireEvent.change(res.dom.input, { target: { value: 1000.1116 }});
+            fireEvent.change(res.dom.input, { target: { value: 1000.1116 } });
             expect(res.mocks.onValueChange).toHaveBeenCalledWith(1000.112);
             expect(res.dom.input.placeholder).toEqual('1,000.112');
         });
@@ -221,4 +222,3 @@ describe('NumericInput', () => {
         });
     });
 });
-
