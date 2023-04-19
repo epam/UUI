@@ -1,8 +1,10 @@
 import { FiltersPanel, FiltersPanelProps } from '../FiltersPanel';
-import { ArrayDataSource, DataColumnProps, TableFiltersConfig } from "@epam/uui-core";
-import { defaultPredicates } from "../defaultPredicates";
-import { setupComponentForTest, screen, fireEvent, within } from "@epam/test-utils";
-import React, { useState } from "react";
+import { ArrayDataSource, TableFiltersConfig } from '@epam/uui-core';
+import { defaultPredicates } from '../defaultPredicates';
+import {
+    setupComponentForTest, screen, fireEvent, within,
+} from '@epam/test-utils';
+import React from 'react';
 import dayjs from 'dayjs';
 
 const TODAY_DAY_OF_MONTH = dayjs().date().toString();
@@ -18,113 +20,80 @@ type TestItemType = {
     exitDate: number;
 };
 
-const columns: DataColumnProps<TestItemType, number>[] = [
-    {
-        key: 'name',
-        caption: "Name",
-        render: p => p.name,
-        width: 100,
-        isSortable: true,
-        isAlwaysVisible: true,
-    },
-    {
-        key: 'status',
-        caption: 'Status',
-        render: p => p.status,
-        width: 100,
-        isSortable: true,
-        isFilterActive: f => f.status != null,
-    },
-    {
-        key: 'age',
-        caption: 'Age',
-        render: p => p.age,
-        width: 100,
-        isSortable: true,
-        isFilterActive: f => f.age != null,
-    },
-    {
-        key: 'position',
-        caption: 'Position',
-        render: p => p.position,
-        width: 100,
-        isSortable: true,
-        isFilterActive: f => f.position != null,
-    },
-    {
-        key: 'hireDate',
-        caption: 'Hire Date',
-        render: p => p.hireDate,
-        width: 100,
-        isSortable: true,
-        isFilterActive: f => f.hireDate != null,
-    },
-    {
-        key: 'exitDate',
-        caption: 'Exit Date',
-        render: p => p.exitDate,
-        width: 100,
-        isSortable: true,
-        isFilterActive: f => f.exitDate != null,
-    },
-];
-
 const filtersConfigWithoutPredicatesAll: TableFiltersConfig<TestItemType>[] = [
     {
-        field: "status",
-        columnKey: "status",
-        title: "Status",
-        type: "singlePicker",
-        dataSource: new ArrayDataSource({ items: [{id: 1, name: 'Green'}, {id: 2, name: 'Red'}, {id: 3, name: 'White'}] }),
+        field: 'status',
+        columnKey: 'status',
+        title: 'Status',
+        type: 'singlePicker',
+        dataSource: new ArrayDataSource({
+            items: [
+                { id: 1, name: 'Green' },
+                { id: 2, name: 'Red' },
+                { id: 3, name: 'White' },
+            ],
+        }),
     },
     {
-        field: "position",
-        columnKey: "position",
-        title: "Position",
-        type: "multiPicker",
-        dataSource: new ArrayDataSource({ items: [{id: 1, name: 'Designer'}, {id: 2, name: 'QA'}, {id: 3, name: 'Dev'}] }),
+        field: 'position',
+        columnKey: 'position',
+        title: 'Position',
+        type: 'multiPicker',
+        dataSource: new ArrayDataSource({
+            items: [
+                { id: 1, name: 'Designer' },
+                { id: 2, name: 'QA' },
+                { id: 3, name: 'Dev' },
+            ],
+        }),
     },
     {
-        field: "age",
-        columnKey: "age",
-        title: "Age",
-        type: "numeric",
+        field: 'age',
+        columnKey: 'age',
+        title: 'Age',
+        type: 'numeric',
     },
     {
-        field: "hireDate",
-        columnKey: "hireDate",
-        title: "Hire Date",
-        type: "rangeDatePicker",
+        field: 'hireDate',
+        columnKey: 'hireDate',
+        title: 'Hire Date',
+        type: 'rangeDatePicker',
     },
     {
-        field: "exitDate",
-        columnKey: "exitDate",
-        title: "Exit Date",
-        type: "datePicker",
+        field: 'exitDate',
+        columnKey: 'exitDate',
+        title: 'Exit Date',
+        type: 'datePicker',
     },
 ];
 
 const filtersConfigWithPredicatesAll: TableFiltersConfig<TestItemType>[] = [
     {
-        field: "position",
-        columnKey: "position",
-        title: "Position",
-        type: "multiPicker",
+        field: 'position',
+        columnKey: 'position',
+        title: 'Position',
+        type: 'multiPicker',
         predicates: defaultPredicates.multiPicker,
-        dataSource: new ArrayDataSource({ items: [{id: 1, name: 'Designer'}, {id: 2, name: 'QA'}, {id: 3, name: 'Dev'}] }),
+        dataSource: new ArrayDataSource({
+            items: [
+                { id: 1, name: 'Designer' },
+                { id: 2, name: 'QA' },
+                { id: 3, name: 'Dev' },
+            ],
+        }),
     },
     {
-        field: "age",
-        columnKey: "age",
-        title: "Age",
-        type: "numeric",
+        field: 'age',
+        columnKey: 'age',
+        title: 'Age',
+        type: 'numeric',
         predicates: defaultPredicates.numeric,
     },
     {
-        field: "hireDate",
-        columnKey: "hireDate",
-        title: "Hire Date",
-        type: "rangeDatePicker",
+        field: 'hireDate',
+        columnKey: 'hireDate',
+        title: 'Hire Date',
+        type: 'rangeDatePicker',
         predicates: defaultPredicates.rangeDatePicker,
     },
 ];
@@ -135,7 +104,7 @@ async function setupFilterPanelComponent({ filtersConfig }: { filtersConfig: Tab
             return {
                 filters: filtersConfig,
                 tableState: {},
-                setTableState: jest.fn().mockImplementation(newTableState => contextRef.current.setProperty('tableState', newTableState)),
+                setTableState: jest.fn().mockImplementation((newTableState) => contextRef.current.setProperty('tableState', newTableState)),
             };
         },
         (props) => (<FiltersPanel { ...props } />),
@@ -150,7 +119,7 @@ function withinDialog() {
     return within(screen.queryByRole('dialog'));
 }
 function expectDialog() {
-    expect(screen.queryByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
 }
 function notExpectDialog() {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -178,7 +147,7 @@ describe('FiltersPanel', () => {
             const removeButton = withinDialog().getByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });
             fireEvent.click(removeButton);
             notExpectDialog();
-            expect(screen.queryByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
+            expect(screen.getByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
         });
     });
 
@@ -203,7 +172,7 @@ describe('FiltersPanel', () => {
             const removeButton = withinDialog().getByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });
             fireEvent.click(removeButton);
             notExpectDialog();
-            expect(screen.queryByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
+            expect(screen.getByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
         });
     });
     describe('filter type: multiPicker', () => {
@@ -231,7 +200,7 @@ describe('FiltersPanel', () => {
             const removeButton = withinDialog().queryByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });
             fireEvent.click(removeButton);
             notExpectDialog();
-            expect(screen.queryByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
+            expect(screen.getByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
         });
         it('should add / view / clear / remove (with multiPicker predicate)', async () => {
             const { dom, mocks } = await setupFilterPanelComponent({
@@ -242,7 +211,7 @@ describe('FiltersPanel', () => {
             const positionOption = withinDialog().queryByRoleAndText({ role: 'option', text: 'Position' });
             expect(positionOption).toBeInTheDocument();
             fireEvent.click(positionOption);
-            expect(withinDialog().queryAllByRole('tab').map(t => t.textContent)).toEqual(['is', 'is not']);
+            expect(withinDialog().queryAllByRole('tab').map((t) => t.textContent)).toEqual(['is', 'is not']);
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'option', text: 'QA' }));
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'option', text: 'Dev' }));
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'tab', text: 'is not' }));
@@ -259,7 +228,7 @@ describe('FiltersPanel', () => {
             const removeButton = withinDialog().queryByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });
             fireEvent.click(removeButton);
             notExpectDialog();
-            expect(screen.queryByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
+            expect(screen.getByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
         });
     });
     describe('filter type: numeric', () => {
@@ -272,7 +241,7 @@ describe('FiltersPanel', () => {
             const ageOption = withinDialog().queryByRoleAndText({ role: 'option', text: 'Age' });
             expect(ageOption).toBeInTheDocument();
             fireEvent.click(ageOption);
-            fireEvent.change(withinDialog().getByRole('spinbutton'), { target: { value: 20 }});
+            fireEvent.change(withinDialog().getByRole('spinbutton'), { target: { value: 20 } });
             fireEvent.click(window.document.body);
             notExpectDialog();
             expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { age: 20 } }));
@@ -285,7 +254,7 @@ describe('FiltersPanel', () => {
             const removeButton = withinDialog().queryByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });
             fireEvent.click(removeButton);
             notExpectDialog();
-            expect(screen.queryByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
+            expect(screen.getByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
         });
         it('should add / view / clear / remove (with numeric predicate)', async () => {
             const { dom, mocks } = await setupFilterPanelComponent({
@@ -296,8 +265,14 @@ describe('FiltersPanel', () => {
             const ageOption = withinDialog().queryByRoleAndText({ role: 'option', text: 'Age' });
             expect(ageOption).toBeInTheDocument();
             fireEvent.click(ageOption);
-            expect(withinDialog().queryAllByRole('tab').map(t => t.textContent)).toEqual(['=', '≠', '≤', '≥', 'In Range']);
-            fireEvent.change(withinDialog().getByRole('spinbutton'), { target: { value: 20 }});
+            expect(withinDialog().queryAllByRole('tab').map((t) => t.textContent)).toEqual([
+                '=',
+                '≠',
+                '≤',
+                '≥',
+                'In Range',
+            ]);
+            fireEvent.change(withinDialog().getByRole('spinbutton'), { target: { value: 20 } });
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'tab', text: '≠' }));
             fireEvent.click(window.document.body);
             notExpectDialog();
@@ -311,7 +286,7 @@ describe('FiltersPanel', () => {
             const removeButton = withinDialog().queryByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });
             fireEvent.click(removeButton);
             notExpectDialog();
-            expect(screen.queryByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
+            expect(screen.getByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
         });
     });
     describe('filter type: rangeDatePicker', () => {
@@ -328,7 +303,7 @@ describe('FiltersPanel', () => {
             fireEvent.click(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0]);
             fireEvent.click(window.document.body);
             notExpectDialog();
-            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { hireDate: { from: TODAY_DATE_ISO, to: TODAY_DATE_ISO }} }));
+            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { hireDate: { from: TODAY_DATE_ISO, to: TODAY_DATE_ISO } } }));
             fireEvent.click(screen.getByRoleAndText({ role: 'button', text: `Hire Date:${TODAY_DATE_FORMATTED} - ${TODAY_DATE_FORMATTED}` }));
             expectDialog();
             expect(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0].parentElement).toHaveClass('uui-calendar-selected-day');
@@ -337,7 +312,7 @@ describe('FiltersPanel', () => {
             const removeButton = withinDialog().getByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });
             fireEvent.click(removeButton);
             notExpectDialog();
-            expect(screen.queryByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
+            expect(screen.getByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
         });
         it('should add / view / clear / remove (with rangeDatePicker predicate)', async () => {
             const { dom, mocks } = await setupFilterPanelComponent({
@@ -348,13 +323,13 @@ describe('FiltersPanel', () => {
             const hireDateOption = withinDialog().queryByRoleAndText({ role: 'option', text: 'Hire Date' });
             expect(hireDateOption).toBeInTheDocument();
             fireEvent.click(hireDateOption);
-            expect(withinDialog().queryAllByRole('tab').map(t => t.textContent)).toEqual(['In Range', 'Not in Range']);
+            expect(withinDialog().queryAllByRole('tab').map((t) => t.textContent)).toEqual(['In Range', 'Not in Range']);
             fireEvent.click(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0]);
             fireEvent.click(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0]);
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'tab', text: 'Not in Range' }));
             fireEvent.click(window.document.body);
             notExpectDialog();
-            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { hireDate: { notInRange: { from: TODAY_DATE_ISO, to: TODAY_DATE_ISO }}} }));
+            expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { hireDate: { notInRange: { from: TODAY_DATE_ISO, to: TODAY_DATE_ISO } } } }));
             fireEvent.click(screen.getByRoleAndText({ role: 'button', text: `Hire Date Not in Range${TODAY_DATE_FORMATTED} - ${TODAY_DATE_FORMATTED}` }));
             expectDialog();
             expect(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0].parentElement).toHaveClass('uui-calendar-selected-day');
@@ -363,7 +338,7 @@ describe('FiltersPanel', () => {
             const removeButton = withinDialog().getByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });
             fireEvent.click(removeButton);
             notExpectDialog();
-            expect(screen.queryByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
+            expect(screen.getByRoleAndText({ role: 'button', text: 'Add filter' })).toBeInTheDocument();
         });
     });
 });

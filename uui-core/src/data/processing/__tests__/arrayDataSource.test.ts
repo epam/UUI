@@ -1,5 +1,4 @@
 import { ArrayDataSource } from '../ArrayDataSource';
-import { DataRowProps, DataSourceState, SortingOption } from "../../../types";
 
 type Test_ItemIdType = string;
 type Test_ItemType = {
@@ -17,12 +16,22 @@ type Test_EmployeeFilterType = {
 function setupArrayDatasource() {
     const items: Test_ItemType[] = [
         { _type: 'department', id: 'Department-A', departmentName: 'Department A' },
-        { _type: 'employee', id: 'Emp-1', firstName: 'First-1', lastName: 'Last-1', departmentId: 'Department-A', city: 'City-A' },
-        { _type: 'employee', id: 'Emp-2', firstName: 'First-2', lastName: 'Last-2', departmentId: 'Department-A', city: 'City-A' },
+        {
+            _type: 'employee', id: 'Emp-1', firstName: 'First-1', lastName: 'Last-1', departmentId: 'Department-A', city: 'City-A',
+        },
+        {
+            _type: 'employee', id: 'Emp-2', firstName: 'First-2', lastName: 'Last-2', departmentId: 'Department-A', city: 'City-A',
+        },
         { _type: 'department', id: 'Department-B', departmentName: 'Department B' },
-        { _type: 'employee', id: 'Emp-3', firstName: 'First-3', lastName: 'Last-3', departmentId: 'Department-B', city: 'City-A' },
-        { _type: 'employee', id: 'Emp-4', firstName: 'First-4', lastName: 'Last-4', departmentId: 'Department-B', city: 'City-A' },
-        { _type: 'employee', id: 'Emp-5', firstName: 'First-5', lastName: 'Last-5', departmentId: 'Department-B', city: 'City-B' },
+        {
+            _type: 'employee', id: 'Emp-3', firstName: 'First-3', lastName: 'Last-3', departmentId: 'Department-B', city: 'City-A',
+        },
+        {
+            _type: 'employee', id: 'Emp-4', firstName: 'First-4', lastName: 'Last-4', departmentId: 'Department-B', city: 'City-A',
+        },
+        {
+            _type: 'employee', id: 'Emp-5', firstName: 'First-5', lastName: 'Last-5', departmentId: 'Department-B', city: 'City-B',
+        },
     ];
     return new ArrayDataSource<Test_ItemType, Test_ItemIdType, Test_EmployeeFilterType>({
         items,
@@ -37,18 +46,17 @@ function setupArrayDatasource() {
             return true;
         },
         complexIds: false,
-        getRowOptions: (item, index) => ({
+        getRowOptions: (item) => ({
             checkbox: { isVisible: true, isDisabled: false, isInvalid: false },
             isSelectable: true,
-            onClick(rowProps: DataRowProps<Test_ItemType, Test_ItemIdType>) {},
+            onClick() {},
             link: { pathname: 'test', query: { id: item.id, type: item._type } },
         }),
-        isFoldedByDefault: (item) => true,
+        isFoldedByDefault: () => true,
         cascadeSelection: true,
         selectAll: true,
     });
 }
-
 
 describe('ArrayDataSource', () => {
     it('should create array data source', () => {
