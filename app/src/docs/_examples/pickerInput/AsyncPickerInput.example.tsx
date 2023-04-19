@@ -6,7 +6,7 @@ import { TApi } from "../../../data";
 
 export default function AsyncPickerInputExample() {
     const svc = useUuiContext<TApi>();
-    const [locations, setLocations] = useState<string[]>();
+    const [locations, setLocations] = useState<string[]>([]);
 
     const locationsDataSource = useAsyncDataSource<Location, string, unknown>({
         api: () => svc.api.demo.locations({}).then((res) => res.items),
