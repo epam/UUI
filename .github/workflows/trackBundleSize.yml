@@ -17,9 +17,11 @@ jobs:
               with:
                   ref: ${{ github.head_ref }}
                   path: source-branch
+
             - uses: actions/setup-node@v1
               with:
                   node-version: '16.x'
+
             - uses: actions/cache@v2
               with:
                   path: |
@@ -27,20 +29,27 @@ jobs:
                       ./*/node_modules
                   key: v1-npm-deps-${{ hashFiles('**/yarn.lock') }}
                   restore-keys: v1-npm-deps-
+
             - name: track-bundle-size-source
               working-directory: source-branch
               run: |
                   yarn
                   yarn track-bundle-size
+
             - name: 'Upload trackBundleSize.md'
               uses: actions/upload-artifact@v3
               with:
                   name: trackBundleSize.md
                   path: ./source-branch/.reports/trackBundleSize.md
-            - name: 'Upload prNumber.txt'
+                  retention-days: 1 # set minimum retention
+
+            - name: 'Create prNumber.txt'
               run: |
                   echo ${{ github.event.pull_request.number }} > ./prNumber.txt
-            - uses: actions/upload-artifact@v3
+
+            - name: 'Upload prNumber.txt'
+              uses: actions/upload-artifact@v3
               with:
                   name: prNumber.txt
                   path: ./prNumber.txt
+                  retention-days: 1 # set minimum retention
