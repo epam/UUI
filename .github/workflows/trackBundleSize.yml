@@ -1,6 +1,6 @@
 name: track_bundle_size
 on:
-    pull_request_target:
+    pull_request:
         branches:
             - main
             - develop
@@ -13,7 +13,6 @@ jobs:
     track-bundle-size:
         runs-on: ubuntu-latest
         container: node:16
-
         steps:
             - uses: actions/checkout@v2
               with:
