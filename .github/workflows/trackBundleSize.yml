@@ -51,5 +51,5 @@ jobs:
               with:
                   comment-id: ${{ steps.findPrevComment.outputs.comment-id }}
                   issue-number: ${{ github.event.pull_request.number }}
-                  body-file: ./source-branch/.reports/trackBundleSize.md
+                  body-path: ./source-branch/.reports/trackBundleSize.md
                   edit-mode: replace
