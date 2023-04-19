@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import sortBy from "lodash.sortby";
 import { i18n } from "../../../i18n";
-import { DataTableState, IPresetsApi, ITablePreset } from "@epam/uui-core";
+import { DataTableState, IHasRawProps, IPresetsApi, ITablePreset } from "@epam/uui-core";
 import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
 import css from './PresetsPanel.scss';
 import { Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow } from "../../index";
@@ -10,13 +10,13 @@ import { PresetInput } from "./PresetInput";
 import { ReactComponent as DeleteIcon } from "@epam/assets/icons/common/action-deleteforever-18.svg";
 import { ReactComponent as addIcon } from "@epam/assets/icons/common/content-plus_bold-18.svg";
 
-interface PresetsBlockProps extends IPresetsApi {
+export interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     tableState: DataTableState;
 }
 
 type PresetAdaptiveItem = AdaptiveItemProps<{preset?: ITablePreset }>;
 
-export const PresetsPanel = (props: PresetsBlockProps) => {
+export const PresetsPanel = (props: PresetsPanelProps) => {
     const [isAddingPreset, setIsAddingPreset] = useState(false);
 
     const setAddingPreset = useCallback(() => {
@@ -63,6 +63,7 @@ export const PresetsPanel = (props: PresetsBlockProps) => {
     const renderMoreButtonDropdown = (item: PresetAdaptiveItem, hiddenItems: PresetAdaptiveItem[]) => {
         return (
             <Dropdown
+                key="more"
                 renderTarget={ (props) =>
                     <FlexRow>
                         <div className={ css.divider } />
@@ -106,11 +107,10 @@ export const PresetsPanel = (props: PresetsBlockProps) => {
     };
 
     return (
-        <FlexCell grow={ 1 } minWidth={ 310 }>
+        <FlexCell grow={ 1 } minWidth={ 310 } rawProps={ props.rawProps }>
             <FlexRow size={ null } spacing='12' cx={ css.presetsWrapper }>
                 <AdaptivePanel items={ getPanelItems() } />
             </FlexRow>
         </FlexCell>
-
     );
 };

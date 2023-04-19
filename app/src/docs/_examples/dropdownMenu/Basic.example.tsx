@@ -112,6 +112,8 @@ export default function BasicDropdownMenuExample() {
     return (
         <>
             <Dropdown
+                closeOnMouseLeave='boundary'
+                closeDelay={ 400 }
                 renderBody={ props => renderDropdownBody(props) }
                 renderTarget={ props => <Avatar
                     img={ 'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50' }

@@ -10,6 +10,7 @@ import { svc } from './services';
 import App from './App';
 import { getApi, TApi } from './data';
 import '@epam/internal/styles.css';
+import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import './index.scss';
 
 const history = createBrowserHistory();
@@ -23,7 +24,7 @@ export class UuiEnhancedApp extends React.Component {
     }
 
     render() {
-        const isProduction = /uui.epam.com/.test(location.hostname);
+        const isProduction = /uui.epam.com/.test(window.location.hostname);
         const ampCode = isProduction ? '94e0dbdbd106e5b208a33e72b58a1345' : 'b2260a6d42a038e9f9e3863f67042cc1';
 
         return (

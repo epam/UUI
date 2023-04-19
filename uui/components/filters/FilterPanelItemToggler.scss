@@ -11,6 +11,7 @@
         border: 1px solid var(--uui-filters-toggler-border);
         border-radius: var(--uui-filters-toggler-border-radius);
         background-color: var(--uui-filters-toggler-bg);
+        box-shadow: var(--uui-filters-toggler-shadow);
         padding-left: 6px;
         padding-right: 6px;
 
@@ -29,7 +30,7 @@
         }
 
         .title-wrapper {
-            font-family: var(--font-regular);
+            font-family: var(--uui-filters-toggler-font);
             flex: 1 1 auto;
             min-width: 0;
             outline: none;

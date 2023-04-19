@@ -7,7 +7,7 @@ import { PickerTogglerProps, FlexCell } from "@epam/uui-components";
 import { FiltersPanelItem } from "./FiltersPanelItem";
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
 
-interface FiltersToolbarProps<TFilter> {
+export interface FiltersPanelProps<TFilter> {
     filters: TableFiltersConfig<TFilter>[];
     tableState: DataTableState;
     setTableState: (newState: DataTableState) => void;
@@ -52,7 +52,7 @@ const normalizeFilterWithPredicates = <TFilter, >(filter: TFilter) => {
     return result;
 };
 
-const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<TFilter>) => {
+const FiltersToolbarImpl = <TFilter extends object>(props: FiltersPanelProps<TFilter>) => {
     const { filters, tableState, setTableState } = props;
     const [newFilterId, setNewFilterId] = useState(null);
 
@@ -139,6 +139,8 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
         },
     }), []);
 
+    const isAllFiltersAlwaysVisible = props.filters.every(i => i.isAlwaysVisible);
+
     useEffect(() => {
         // Reset new filter id, after first render with autofocus
         setNewFilterId(null);
@@ -158,7 +160,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
                     />
                 </FlexCell>
             )) }
-            <PickerInput
+            { !isAllFiltersAlwaysVisible && <PickerInput
                 dataSource={ dataSource }
                 value={ selectedFilters }
                 onValueChange={ onFiltersChange }
@@ -178,7 +180,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersToolbarProps<T
                 emptyValue={ [] }
                 getRowOptions={ getRowOptions }
                 fixedBodyPosition={ true }
-            />
+            /> }
         </>
     );
 };

@@ -22,8 +22,9 @@ app.use(cors({
 
 app.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
-    res.set('Strict-Transport-Security', 'max-age=63072000;');
+    res.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
     res.set('x-frame-options', 'SAMEORIGIN');
+    res.set('X-Content-Type-Options', 'nosniff');
     next();
 });
 

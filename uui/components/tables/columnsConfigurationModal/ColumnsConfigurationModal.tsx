@@ -134,7 +134,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                     <Button mode="ghost" color="secondary" caption={ i18nLocal.cancelButton } onClick={ close } />
                     { noVisibleColumns
                         ? (
-                            <Tooltip content={ i18nLocal.enableAtLeastOneColumnMessage } placement='top-end' color='contrast'>
+                            <Tooltip content={ i18nLocal.enableAtLeastOneColumnMessage } placement='top-end' color='critical'>
                                 { applyButton }
                             </Tooltip>
                         )
