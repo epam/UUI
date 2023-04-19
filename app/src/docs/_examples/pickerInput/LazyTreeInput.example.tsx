@@ -6,7 +6,7 @@ import { Location } from '@epam/uui-docs';
 
 export default function LazyTreePicker() {
     const svc = useUuiContext();
-    const [value, onValueChange] = useState<string[]>();
+    const [value, onValueChange] = useState<string>();
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>({
         api: (request, ctx) => {
@@ -35,9 +35,12 @@ export default function LazyTreePicker() {
                 value={ value }
                 onValueChange={ onValueChange }
                 entityName='location'
-                selectionMode='multi'
+                selectionMode='single'
                 valueType='id'
                 cascadeSelection={ 'explicit' }
+                getRowOptions={ (item) => ({
+                    isSelectable: !!item?.parentId,
+                }) }
                 renderRow={ (props: DataRowProps<Location, string>, dataSourceState) => (
                     <DataPickerRow
                         { ...props }
