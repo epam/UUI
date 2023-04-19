@@ -12,20 +12,8 @@ jobs:
             github.event.workflow_run.event == 'pull_request' &&
             github.event.workflow_run.conclusion == 'success'
         steps:
-            - name: 'Download trackBundleSize.md'
-              uses: actions/download-artifact@v3
-              with:
-                  name: trackBundleSize.md
-                  path: ./trackBundleSize.md
-
-            - name: 'Download prNumber.txt'
-              uses: actions/download-artifact@v3
-              with:
-                  name: prNumber.txt
-                  path: ./prNumber.txt
-
             - name: 'Download trackBundleSize.md and prNumber.txt'
-              uses: actions/github-script@v3.1.0
+              uses: actions/github-script@v6
               with:
                   script: |
                       const ART_1 = "trackBundleSize.md";
