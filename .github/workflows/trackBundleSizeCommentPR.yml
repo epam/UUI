@@ -6,7 +6,7 @@ on:
         types:
             - completed
 jobs:
-    upload:
+    track_bundle_size_comment_pr:
         runs-on: ubuntu-latest
         if: >
             github.event.workflow_run.event == 'pull_request' &&
@@ -23,6 +23,39 @@ jobs:
               with:
                   name: prNumber.txt
                   path: ./prNumber.txt
+
+            - name: 'Download trackBundleSize.md and prNumber.txt'
+              uses: actions/github-script@v3.1.0
+              with:
+                  script: |
+                      const ART_1 = "trackBundleSize.md";
+                      const ART_2 = "prNumber.txt";
+                      var artifacts = await github.actions.listWorkflowRunArtifacts({
+                         owner: context.repo.owner,
+                         repo: context.repo.repo,
+                         run_id: ${{ github.event.workflow_run.id }},
+                      });
+                      async function downloadArt(artName) {
+                        var fs = require('fs');
+                        var matchArtifact = artifacts.data.artifacts.find((artifact) => {
+                            return artName === artifact.name; 
+                        });
+                        var download = await github.actions.downloadArtifact({
+                             owner: context.repo.owner,
+                             repo: context.repo.repo,
+                             artifact_id: matchArtifact.id,
+                             archive_format: 'zip',
+                        });
+                        fs.writeFileSync('${{github.workspace}}/' + artName + '.zip', Buffer.from(download.data));
+                      }
+                      await Promise.all([
+                        downloadArt(ART_1),
+                        downloadArt(ART_2),
+                      ]);
+
+            - run: unzip trackBundleSize.md.zip
+
+            - run: unzip prNumber.txt.zip
 
             - name: 'Extract prNumber.txt'
               uses: actions/github-script@v6
