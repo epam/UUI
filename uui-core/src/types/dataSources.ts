@@ -3,8 +3,7 @@ import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from
 import { IDndActor } from './dnd';
 import { Link } from './objects';
 
-/** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
-export interface VirtualListState {
+export interface VirtualListRange {
     /**
      * Index of the topmost item, in rendered batch.
      * Note - this item might not be visible, as Virtual List maintain some reserve of rows on top / at the bottom of the list
@@ -17,6 +16,10 @@ export interface VirtualListState {
      * as it need maintain some reserve of rows on top / at the bottom of the list.
      */
     visibleCount?: number;
+}
+
+/** Holds state of a Virtual List - top visible item index, and estimated count of visible items */
+export interface VirtualListState extends VirtualListRange {
     /**
      * Virtual list ensures that row with this Index is within the visible area, if not Virtual List .
      * Virtual list updates this value on scroll to null when appear in the visible area.
@@ -59,6 +62,16 @@ export interface DataRowPathItem<TId, TItem> {
     value: TItem;
     isLastChild: boolean;
 }
+
+export const CascadeSelectionTypes = {
+    IMPLICIT: 'implicit',
+    EXPLICIT: 'explicit',
+} as const;
+
+export type CascadeSelection =
+    | boolean
+    | typeof CascadeSelectionTypes.EXPLICIT
+    | typeof CascadeSelectionTypes.IMPLICIT;
 
 /** A part of the DataRowProps, which can be configured for each data row via getRowOptions callback.
  * Other props in DataRowProps are computed when generating rows.
@@ -232,9 +245,16 @@ export interface BaseListViewProps<TItem, TId, TFilter> {
     isFoldedByDefault?(item: TItem): boolean;
 
     /**
-     * If selection (checking items) of a parent node should select all children, and vice versa
+     * Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.
+     * - false: All nodes are selected independently (default).
+     * - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.
+     * - 'implicit': Selecting a parent node means that all children are considered checked.
+     *   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked
+     *   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,
+     *   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last
+     *   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked.
      */
-    cascadeSelection?: boolean;
+    cascadeSelection?: CascadeSelection;
 
     /**
      * Enables or disables "select all" checkbox. Default is true.
@@ -246,8 +266,11 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     getById(id: TId, index: number): DataRowProps<TItem, TId>;
     getListProps(): DataSourceListProps;
     getVisibleRows(): DataRowProps<TItem, TId>[];
-    getSelectedRows(): DataRowProps<TItem, TId>[];
+    getSelectedRows(range?: VirtualListRange): DataRowProps<TItem, TId>[];
+    getSelectedRowsCount(): number;
+    reload(): void;
     destroy(): void;
+    loadData(): void;
     _forceUpdate(): void;
     selectAll?: ICheckable;
 };

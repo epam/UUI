@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import css from "./DemoTablePaged.scss";
 import { DataTable, FlexRow, Paginator, FlexSpacer, Button } from "@epam/promo";
-import { DataRowOptions, DataTableState, LazyDataSourceApi, useLazyDataSource, useTableState } from "@epam/uui-core";
+import { DataRowOptions, LazyDataSourceApi, useTableState, useList } from "@epam/uui-core";
 import { Person } from "@epam/uui-docs";
 import { svc } from "../../services";
 import { getFilters } from "./filters";
@@ -11,7 +11,7 @@ import { FlexCell } from "@epam/uui-components";
 export const DemoTablePaged: React.FC = () => {
     const filters = useMemo(getFilters, []);
 
-    const { tableState, setTableState } = useTableState({
+    const { tableState, setTableState } = useTableState<Person>({
         columns: personColumns,
     });
 
@@ -20,7 +20,7 @@ export const DemoTablePaged: React.FC = () => {
     }, []);
 
     const [totalCount, setTotalCount] = useState(0);
-    const [appliedFilter, setAppliedFilter] = useState<DataTableState>({});
+    const [appliedFilter, setAppliedFilter] = useState<Person>();
 
     const api: LazyDataSourceApi<Person, number, Person> = useCallback(async request => {
         const result = await svc.api.demo.personsPaged({
@@ -45,10 +45,6 @@ export const DemoTablePaged: React.FC = () => {
         applyFilter();
     }, []);
 
-    const dataSource = useLazyDataSource({
-        api,
-    }, [api]);
-
     const rowOptions: DataRowOptions<Person, number> = {
         checkbox: { isVisible: true },
         isSelectable: true,
@@ -62,23 +58,28 @@ export const DemoTablePaged: React.FC = () => {
         filter: appliedFilter,
     }), [tableState, appliedFilter]);
 
-    const personsDataView = dataSource.useView(viewTableState, setTableState, {
+    const { rows, listProps } = useList({
+        type: 'lazy',
+        listState: tableState,
+        setListState: setTableState,
+        api,
         rowOptions,
+        getId: ({ id }) => id,
         isFoldedByDefault: () => true,
-    });
+    }, [api]);
 
     return (
         <div className={ css.container }>
             <DataTable
                 headerTextCase="upper"
-                getRows={ personsDataView.getVisibleRows }
+                getRows={ () => rows }
                 columns={ personColumns }
                 filters={ filters }
                 showColumnsConfig
                 value={ tableState }
                 onValueChange={ setTableState }
                 allowColumnsResizing
-                { ...personsDataView.getListProps() }
+                { ...listProps }
             />
 
             <FlexRow size="36" padding="12" background="gray5">

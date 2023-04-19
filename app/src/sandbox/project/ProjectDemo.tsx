@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton } from '@epam/uui';
 import { useForm } from '@epam/promo';
-import { AcceptDropParams, DataQueryFilter, DataTableState, DropParams, DropPosition, Metadata, useArrayDataSource } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, useList } from '@epam/uui-core';
 import { ReactComponent as undoIcon } from '@epam/assets/icons/common/content-edit_undo-18.svg';
 import { ReactComponent as redoIcon } from '@epam/assets/icons/common/content-edit_redo-18.svg';
 import { ReactComponent as insertAfter } from '@epam/assets/icons/common/table-row_plus_after-24.svg';
@@ -60,7 +60,7 @@ export const ProjectDemo = () => {
             relativeTask?.order,
         );
 
-        onValueChange({ ...value, items: { ...value.items, [task.id]: task }});
+        onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
     };
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
@@ -73,15 +73,15 @@ export const ProjectDemo = () => {
 
     const handleDrop = useCallback((params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData), []);
 
-    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }]});
+    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
-    const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
+    const { rows, listProps } = useList({
+        type: 'array',
+        listState: tableState,
+        setListState: setTableState,
         items: Object.values(value.items),
         getId: i => i.id,
         getParentId: i => i.parentId,
-    }, []);
-
-    const dataView = dataSource.useView(tableState, setTableState, {
         getRowOptions: (task) => ({
             ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
             //checkbox: { isVisible: true },
@@ -93,7 +93,7 @@ export const ProjectDemo = () => {
                 onDrop: handleDrop,
             },
         }),
-    });
+    }, []);
 
     const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
 
@@ -121,14 +121,14 @@ export const ProjectDemo = () => {
         </FlexRow>
         <DataTable
             headerTextCase='upper'
-            getRows={ dataView.getVisibleRows }
+            getRows={ () => rows }
             columns={ columns }
             value={ tableState }
             onValueChange={ setTableState }
             showColumnsConfig
             allowColumnsResizing
             allowColumnsReordering
-            { ...dataView.getListProps() }
+            { ...listProps }
         />
     </Panel>;
 };

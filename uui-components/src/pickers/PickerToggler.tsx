@@ -83,10 +83,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const renderItems = () => {
         const maxItems = (props.maxItems || props.maxItems === 0) ? props.maxItems : 100;
-
-        if (props.selection?.length > maxItems) {
+        if (props.selectedRowsCount > maxItems) {
             return props.renderItem?.({
-                value: i18n.pickerToggler.createItemValue(props.selection.length, props.entityName || ''),
+                value: i18n.pickerToggler.createItemValue(props.selectedRowsCount, props.entityName || ''),
                 onCheck: () => props.onClear?.(),
             } as any);
         } else {
@@ -98,7 +97,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         const isSinglePickerSelected = props.pickerMode === 'single' && props.selection && !!props.selection[0];
         const placeholder = isSinglePickerSelected ? props.getName(props.selection[0]?.value) : props.placeholder;
         const value = props.disableSearch ? null : props.value;
-        if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selection.length > 0) {
+        if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selectedRowsCount > 0) {
             return null;
         }
 
@@ -168,7 +167,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 { props.iconPosition === 'right' && icon }
             </div>
             { (!props.isDisabled && !props.isReadonly) && <div className={ css.actions }>
-                { !props.disableClear && (props.value || props.selection && props.selection.length > 0) && (
+                { !props.disableClear && (props.value || props.selectedRowsCount > 0) && (
                     <IconContainer
                         cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
                         isDisabled={ props.isDisabled }

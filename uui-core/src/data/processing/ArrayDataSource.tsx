@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types';
 import { BaseDataSource } from './BaseDataSource';
-import { ArrayListView, ArrayListViewProps,  } from './views';
-import { Tree } from './views/Tree';
+import { ArrayListView, ArrayListViewProps } from './views';
+import { ITree, Tree } from './views/tree';
 
-export type ArrayDataSourceProps<TItem, TId, TFilter> = ArrayListViewProps<TItem, TId, TFilter> & {
-    items: TItem[] | Tree<TItem, TId>;
-};
+export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {}
 
 export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: ArrayDataSourceProps<TItem, TId, TFilter>;
-    tree: Tree<TItem, TId>;
+    tree: ITree<TItem, TId>;
 
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         super(props);
@@ -23,13 +21,13 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             this.tree = this.props.items;
         } else {
             this.tree = Tree.create({
-                    ...this.props,
-                    // These defaults are added for compatibility reasons.
-                    // We'll require getId and getParentId callbacks in other APIs, including the views.
-                    getId: this.getId,
-                    getParentId: props?.getParentId || this.defaultGetParentId,
-                },
-                this.props.items
+                ...this.props,
+                // These defaults are added for compatibility reasons.
+                // We'll require getId and getParentId callbacks in other APIs, including the views.
+                getId: this.getId,
+                getParentId: props?.getParentId ?? this.defaultGetParentId,
+            },
+                this.props.items,
             );
         }
     }
@@ -38,8 +36,8 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         return this.tree.getById(id);
     }
 
-    private defaultGetParentId = (item: TItem) => {
-        return (item as any) ['parentId'];
+    protected defaultGetParentId = (item: TItem) => {
+        return (item as any)['parentId'];
     }
 
     setItem(item: TItem): void {
@@ -59,7 +57,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             // These defaults are added for compatibility reasons.
             // We'll require getId and getParentId callbacks in other APIs, including the views.
             getId: this.getId,
-            getParentId: options?.getParentId || this.defaultGetParentId,
+            getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
         };
 
         if (view) {
@@ -75,7 +73,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     useView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: ArrayListViewProps<TItem, TId, TFilter>
+        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
     ): IDataSourceView<TItem, TId, TFilter> {
         useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
 

@@ -49,7 +49,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             <div className={ css.noResults }>
                 { props.renderNoResultsBlock ? props.renderNoResultsBlock?.() :
                     <>
-                        <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon }/>
+                        <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon } />
                         <Text cx={ css.noResultsTitle } fontSize='24' lineHeight='30' color='primary' font='semibold'>{ i18n.tables.noResultsBlock.title }</Text>
                         <Text fontSize='16' lineHeight='24' font='regular' color='primary'>{ i18n.tables.noResultsBlock.message }</Text>
                     </>
@@ -90,7 +90,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 }) } />
             </div>
             { props.exactRowsCount !== 0 ? (
-                <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
+                <div className={ css.listContainer } style={ { minHeight: `${ estimatedHeight }px` } }>
                     <div
                         ref={ listContainerRef }
                         role='rowgroup'
@@ -103,7 +103,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     ), [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]);
 
     return (
-        <DataTableSelectionProvider onCopy={ props.onCopy } rows={ rows as any } columns={ columns }>
+        <DataTableSelectionProvider onCopy={ props.onCopy } rows={ rows } columns={ columns }>
             <VirtualList
                 value={ props.value }
                 onValueChange={ props.onValueChange }

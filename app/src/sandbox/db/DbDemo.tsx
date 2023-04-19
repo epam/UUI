@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataSourceState, LazyDataSource, LazyDataSourceApi, DataQueryFilter, Lens } from '@epam/uui-core';
+import { DataSourceState, LazyDataSourceApi, DataQueryFilter, Lens, useList } from '@epam/uui-core';
 import { DbContext } from '@epam/uui-db';
 import { Person } from '@epam/uui-docs';
 import { FlexRow, FlexCell, FlexSpacer, Button, SuccessNotification, ErrorNotification, Text, SearchInput } from '@epam/loveship';
@@ -20,17 +20,17 @@ export const DbDemoImpl = () => {
                 svc.uuiNotifications.show((props) =>
                     <SuccessNotification { ...props } >
                         <Text size="24" font='sans' fontSize='14'>Data has been saved! See console for details.</Text>
-                    </SuccessNotification>, { duration: 2 }
+                    </SuccessNotification>, { duration: 2 },
                 );
             })
             .catch((e) => {
                 svc.uuiNotifications.show((props) =>
                     <ErrorNotification { ...props } >
                         <Text size="24" font='sans' fontSize='14'>Error saving data</Text>
-                    </ErrorNotification>, { duration: 2 }
+                    </ErrorNotification>, { duration: 2 },
                 );
-            })
-    }
+            });
+    };
 
     const api: LazyDataSourceApi<PersonTableRecord, number, DataQueryFilter<Person>> = React.useMemo(() => async (rq, ctx) => {
         if (!ctx.parent) {
@@ -59,15 +59,16 @@ export const DbDemoImpl = () => {
     dbRef.jobTitlesLoader.load({});
     dbRef.departmentsLoader.load({});
 
-    let dataSource = React.useMemo(() => new LazyDataSource({
+    const { rows, listProps, reload } = useList({
+        type: 'lazy',
+        listState: value,
+        setListState: onValueChange,
         api,
+        getId: ({ id }) => id,
         getChildCount: (item: PersonTableRecord) => item.__typename === 'PersonGroup' ? item.count : null,
-    }), []);
-
-    const personsDataView = dataSource.useView(value, onValueChange, {
         getRowOptions: p => ({ checkbox: { isVisible: true } }),
         isFoldedByDefault: () => false,
-    });
+    }, []);
 
     return <div className={ css.container }>
         <FlexRow spacing='12' padding='24' vPadding='12' borderBottom={ true } >
@@ -76,16 +77,16 @@ export const DbDemoImpl = () => {
             </FlexCell>
             <FlexSpacer />
             <FlexCell width='auto'>
-                <Button caption="Save" onClick={ handleSave } size='30'/>
+                <Button caption="Save" onClick={ handleSave } size='30' />
             </FlexCell>
             <FlexCell width='auto'>
-                <Button caption="Revert" onClick={ () => dbRef.revert() } size='30'/>
+                <Button caption="Revert" onClick={ () => dbRef.revert() } size='30' />
             </FlexCell>
             <FlexCell width='auto'>
-                <Button caption="Reload" onClick={ () => dataSource.clearCache() } size='30'/>
+                <Button caption="Reload" onClick={ () => reload() } size='30' />
             </FlexCell>
         </FlexRow>
-        <PersonsTable { ...lens.toProps() } view={ personsDataView }/>
+        <PersonsTable { ...lens.toProps() } rows={ rows } listProps={ listProps } />
     </div>;
 };
 

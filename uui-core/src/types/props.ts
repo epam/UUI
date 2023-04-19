@@ -133,6 +133,7 @@ export interface IBasicPickerToggler extends IDropdownToggler {
  */
 export interface IPickerToggler<TItem = any, TId = any> extends IBasicPickerToggler, Partial<IEditable<string>>, Partial<IHasPlaceholder>, Partial<IDisableable>, Partial<ICanBeInvalid> {
     selection?: DataRowProps<TItem, TId>[];
+    selectedRowsCount?: number;
 }
 
 /**

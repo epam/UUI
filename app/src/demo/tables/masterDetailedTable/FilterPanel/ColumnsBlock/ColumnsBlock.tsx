@@ -5,7 +5,7 @@ import { Accordion } from '@epam/uui';
 import Column from './Column';
 
 interface IColumnsBlockProps {
-    columnsConfig: ColumnsConfig;
+    columnsConfig?: ColumnsConfig;
     onColumnsConfigChange(newConfig: ColumnsConfig): void;
     columns: DataColumnProps<any>[];
 }
@@ -14,7 +14,7 @@ const ColumnsBlock: React.FC<IColumnsBlockProps> = (props) => {
     const items = useMemo(() => {
         const columnsConfig = props.columnsConfig || {};
         const sortedColumns = sortBy(props.columns.filter(column => !!column.caption), i => {
-            columnsConfig[i.key]?.order;
+            return columnsConfig[i.key]?.order;
         });
 
         return sortedColumns.map(column => ({
@@ -34,7 +34,7 @@ const ColumnsBlock: React.FC<IColumnsBlockProps> = (props) => {
                     columnInfo={ item }
                     key={ item.key }
                 />
-            )) } 
+            )) }
         </Accordion>
     );
 };

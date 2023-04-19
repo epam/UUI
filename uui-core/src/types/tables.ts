@@ -1,6 +1,8 @@
 import React, { Attributes, ReactNode } from 'react';
-import { IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps,
-    ICanBeInvalid, ICanFocus, IDropdownBodyProps } from './props';
+import {
+    IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps,
+    ICanBeInvalid, ICanFocus, IDropdownBodyProps,
+} from './props';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
@@ -194,7 +196,7 @@ export type ColumnsConfig = {
     [key: string]: IColumnConfig,
 };
 
-export type IColumnConfig =  {
+export type IColumnConfig = {
     isVisible?: boolean;
     order?: string;
     width?: number;
@@ -273,7 +275,7 @@ export interface IPresetsApi<TFilter = any, TViewState = any> {
 
 export interface ITableState<TFilter = Record<string, any>, TViewState = any> extends IPresetsApi<TFilter, TViewState> {
     tableState: DataTableState<TFilter, TViewState>;
-    setTableState(newState: DataTableState): void;
+    setTableState(newState: DataTableState<TFilter, TViewState>): void;
     setFilter(filter: TFilter): void;
     setColumnsConfig(columnsConfig: ColumnsConfig): void;
     setFiltersConfig(filtersConfig: FiltersConfig): void;
