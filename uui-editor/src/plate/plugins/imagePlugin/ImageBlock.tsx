@@ -9,7 +9,6 @@ import { invert, debounce } from 'lodash';
 
 import {
     getBlockAbove,
-    ImageElement,
     setElements,
     PlatePluginComponent,
     PlateRenderElementProps,
@@ -17,14 +16,13 @@ import {
     TElement,
     PlateEditor,
     findNodePath,
-    select,
-    useResizableStore,
 } from '@udecode/plate';
 
 import { FileUploadResponse } from "@epam/uui-core";
 
 import css from './ImageBlock.scss';
 import { ImgToolbar } from './Toolbar';
+import { ImageElement } from './ImageElement';
 
 export type PlateImgAlign = 'left' | 'center' | 'right';
 type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
