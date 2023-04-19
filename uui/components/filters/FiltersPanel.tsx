@@ -139,6 +139,8 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersPanelProps<TFi
         },
     }), []);
 
+    const isAllFiltersAlwaysVisible = props.filters.every(i => i.isAlwaysVisible);
+
     useEffect(() => {
         // Reset new filter id, after first render with autofocus
         setNewFilterId(null);
@@ -158,7 +160,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersPanelProps<TFi
                     />
                 </FlexCell>
             )) }
-            <PickerInput
+            { !isAllFiltersAlwaysVisible && <PickerInput
                 dataSource={ dataSource }
                 value={ selectedFilters }
                 onValueChange={ onFiltersChange }
@@ -178,7 +180,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersPanelProps<TFi
                 emptyValue={ [] }
                 getRowOptions={ getRowOptions }
                 fixedBodyPosition={ true }
-            />
+            /> }
         </>
     );
 };
