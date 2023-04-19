@@ -17,7 +17,10 @@
   - `implicit` cascade selection mode was added.
   - `Show only selected` order was fixed.
 
-# 4.10.2 - 24.03.2023]
+**What's Fixed**
+* [PickerInput]: fixes Hover doesn't appear on "parent" when pointing the mouse.
+
+# 4.10.2 - 24.03.2023
 
 **What's Fixed**
 * [Form]: fixed isChanged calculation for already saved and then changed form
