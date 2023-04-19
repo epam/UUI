@@ -18,7 +18,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
     context: UuiContexts;
 
     renderRow = (row: DataRowProps<TItem, TId>) => {
-        return <PickerListItem getName={ item => this.getName(item) } { ...row } key={ row.rowKey }/>;
+        return <PickerListItem getName={ item => this.getName(item) } { ...row } key={ row.rowKey } />;
     }
 
     handleShowPicker = () => {
@@ -39,7 +39,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
             });
     }
 
-    defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props }/>;
+    defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props } />;
 
     render() {
         const view = this.getView();
@@ -56,7 +56,7 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
                 { rows.map(row => renderRow({ ...row, isDisabled: this.props.isDisabled }, this.state.dataSourceState)) }
                 { showPicker && renderToggler({
                     onClick: this.handleShowPicker,
-                    caption: this.getModalTogglerCaption(viewProps.totalCount, selectedRows.length),
+                    caption: this.getModalTogglerCaption(viewProps.totalCount, view.getSelectedRowsCount()),
                     isDisabled: this.props.isDisabled,
                 }, selectedRows) }
             </div>

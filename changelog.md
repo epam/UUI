@@ -18,6 +18,17 @@
 * [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
 * [PickerInput]: fixed single select dropdown body closing by the collapse icon if any value was selected.
 
+* [Datasources]: datasources rework
+  - Moved sort/search/filter logic to the `Tree` from views.
+  - `rebuildRows` was unified.
+  - `patch` functionality was added to `Tree`.
+  - Datatable demos were added/updated.
+  - `implicit` cascade selection mode was added.
+  - `Show only selected` order was fixed.
+
+**What's Fixed**
+* [PickerInput]: fixes Hover doesn't appear on "parent" when pointing the mouse.
+
 # 4.10.2 - 24.03.2023
 
 **What's Fixed**
@@ -31,6 +42,7 @@
 
 **What's New**
 * Exposed our Rollup build toolchain from @epam/uui-build package that you be able to build and publish your own packages.
+* [Pickers]: `implicit` cascade selection mode for the pickers was added.
 
 **What's Fixed**
 * [Typography]: links now underlined

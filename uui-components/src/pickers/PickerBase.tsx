@@ -1,5 +1,8 @@
 import React from 'react';
-import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts, DataRowProps } from "@epam/uui-core";
+import {
+    DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps,
+    PickerFooterProps, UuiContexts
+} from "@epam/uui-core";
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
 
@@ -141,10 +144,10 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         }
     }
 
-    getSelectedRows() {
+    getSelectedRows(visibleCount?: number) {
         if (this.hasSelection()) {
             const view = this.getView();
-            return view.getSelectedRows();
+            return view.getSelectedRows({ visibleCount });
         }
         return [];
     }
@@ -169,10 +172,17 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     getView(): IDataSourceView<TItem, TId, any> {
         return this.props.dataSource.getView(this.getDataSourceState(), this.handleDataSourceValueChange, {
             getRowOptions: this.getRowOptions,
-            cascadeSelection: this.props.cascadeSelection,
             getSearchFields: this.props.getSearchFields || ((item: TItem) => [this.getName(item)]),
-            sortBy: this.props.sortBy,
             isFoldedByDefault: this.props.isFoldedByDefault,
+            ...(this.props.sortBy ? { sortBy: this.props.sortBy } : {}),
+            ...(this.props.cascadeSelection ? { cascadeSelection: this.props.cascadeSelection } : {})
+        });
+    }
+
+    private onShowSelectedChange = (nV: boolean) => {
+        this.setState({
+            showSelected: nV,
+            dataSourceState: { ...this.state.dataSourceState },
         });
     }
 
@@ -181,10 +191,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
             view: this.getView(),
             showSelected: {
                 value: this.state.showSelected,
-                onValueChange: (nV: boolean) => this.setState({
-                    showSelected: nV,
-                    dataSourceState: { ...this.state.dataSourceState },
-                }),
+                onValueChange: this.onShowSelectedChange,
             },
             clearSelection: this.clearSelection,
         };

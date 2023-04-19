@@ -19,6 +19,11 @@ exports[`PickerInput should render with maximum props 1`] = `
       type="button"
     >
       <div
+        className="uui-caption"
+      >
+        A1
+      </div>
+      <div
         className="container uui-icon uui-enabled -clickable -clickable"
         onClick={[Function]}
         style={Object {}}
@@ -37,7 +42,7 @@ exports[`PickerInput should render with maximum props 1`] = `
       <div
         className="uui-caption"
       >
-        A1
+        A1+
       </div>
       <div
         className="container uui-icon uui-enabled -clickable -clickable"

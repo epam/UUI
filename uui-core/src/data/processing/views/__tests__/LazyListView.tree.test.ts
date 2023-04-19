@@ -375,71 +375,9 @@ describe('LazyListView', () => {
         ]);
     });
 
-    it('Cascade selection works', async () => {
-        const getView = () => ds.getView(
-            value,
-            onValueChanged,
-            {
-                getRowOptions: i => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: i => false,
-                cascadeSelection: true,
-            },
-        );
-
-        let ds = treeDataSource;
-        value.visibleCount = 6;
-        let view = getView();
-        view.getListProps(); // trigger loading
-        await delay();
-
-        let row120 = view.getVisibleRows()[2];
-        expect(row120.id).toBe(120);
-        expect(row120.isChecked).toBe(false);
-        row120.onCheck(row120);
-
-        await delay();
-
-        view = getView();
-        await delay();
-
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: false, isChildrenChecked: true },
-            { id: 110, isChecked: false },
-            { id: 120, isChecked: true, isChildrenChecked: true },
-            { id: 121, isChecked: true },
-            { id: 122, isChecked: true },
-            { id: 200, isChecked: false },
-        ]);
-
-        row120 = view.getVisibleRows()[2];
-        row120.onCheck(row120);
-        await delay();
-
-        view = getView();
-        await delay();
-
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: false, isChildrenChecked: false },
-            { id: 110, isChecked: false },
-            { id: 120, isChecked: false, isChildrenChecked: false },
-            { id: 121, isChecked: false },
-            { id: 122, isChecked: false },
-            { id: 200, isChecked: false },
-        ]);
-    });
-
-    it('Cascade selection - handles quick (simultaneous) clicks', async () => {
-        let ds = treeDataSource;
-        let view: LazyListView<TestItem, number> = null;
-        value.visibleCount = 10;
-
-        let onValueChanged = (newValue: DataSourceState) => {
-            value = newValue;
-            view = getView();
-        };
-
-        function getView() {
-            return ds.getView(
+    describe('CascadeSelection - explicit mode', () => {
+        it('Cascade selection works', async () => {
+            const getView = () => ds.getView(
                 value,
                 onValueChanged,
                 {
@@ -448,103 +386,351 @@ describe('LazyListView', () => {
                     cascadeSelection: true,
                 },
             );
-        }
 
-        view = getView();
-        view.getListProps(); // trigger loading
-        await delay();
+            let ds = treeDataSource;
+            value.visibleCount = 6;
+            let view = getView();
+            view.getListProps(); // trigger loading
+            await delay();
 
-        let row120 = view.getVisibleRows()[2];
-        expect(row120.id).toBe(120);
-        row120.onCheck(row120);
+            let row120 = view.getVisibleRows()[2];
+            expect(row120.id).toBe(120);
+            expect(row120.isChecked).toBe(false);
+            row120.onCheck(row120);
 
-        await delay();
+            await delay();
 
-        let row300 = view.getVisibleRows()[6];
-        expect(row300.id).toBe(300);
-        row300.onCheck(row300);
+            view = getView();
+            await delay();
 
-        await delay();
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false, isChildrenChecked: true },
+                { id: 110, isChecked: false },
+                { id: 120, isChecked: true, isChildrenChecked: true },
+                { id: 121, isChecked: true },
+                { id: 122, isChecked: true },
+                { id: 200, isChecked: false },
+            ]);
 
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: false, isChildrenChecked: true },
-            { id: 110, isChecked: false },
-            { id: 120, isChecked: true, isChildrenChecked: true },
-            { id: 121, isChecked: true },
-            { id: 122, isChecked: true },
-            { id: 200, isChecked: false },
-            { id: 300, isChecked: true, isChildrenChecked: true },
-            { id: 310, isChecked: true },
-            { id: 320, isChecked: true },
-            { id: 330, isChecked: true },
-        ]);
+            row120 = view.getVisibleRows()[2];
+            row120.onCheck(row120);
+            await delay();
+
+            view = getView();
+            await delay();
+
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false, isChildrenChecked: false },
+                { id: 110, isChecked: false },
+                { id: 120, isChecked: false, isChildrenChecked: false },
+                { id: 121, isChecked: false },
+                { id: 122, isChecked: false },
+                { id: 200, isChecked: false },
+            ]);
+        });
+
+        it('Cascade selection - handles quick (simultaneous) clicks', async () => {
+            let ds = treeDataSource;
+            let view: LazyListView<TestItem, number> = null;
+            value.visibleCount = 10;
+
+            let onValueChanged = (newValue: DataSourceState) => {
+                value = newValue;
+                view = getView();
+            };
+
+            function getView() {
+                return ds.getView(
+                    value,
+                    onValueChanged,
+                    {
+                        getRowOptions: i => ({ checkbox: { isVisible: true } }),
+                        isFoldedByDefault: i => false,
+                        cascadeSelection: true,
+                    },
+                );
+            }
+
+            view = getView();
+            view.getListProps(); // trigger loading
+            await delay();
+
+            let row120 = view.getVisibleRows()[2];
+            expect(row120.id).toBe(120);
+            row120.onCheck(row120);
+
+            await delay();
+
+            let row300 = view.getVisibleRows()[6];
+            expect(row300.id).toBe(300);
+            row300.onCheck(row300);
+
+            await delay();
+
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false, isChildrenChecked: true },
+                { id: 110, isChecked: false },
+                { id: 120, isChecked: true, isChildrenChecked: true },
+                { id: 121, isChecked: true },
+                { id: 122, isChecked: true },
+                { id: 200, isChecked: false },
+                { id: 300, isChecked: true, isChildrenChecked: true },
+                { id: 310, isChecked: true },
+                { id: 320, isChecked: true },
+                { id: 330, isChecked: true },
+            ]);
+        });
+
+        it('Select All', async () => {
+            const getView = () => ds.getView(
+                value,
+                onValueChanged,
+                {
+                    cascadeSelection: true,
+                    getRowOptions: i => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: i => false,
+                });
+
+            let ds = treeDataSource;
+            value.visibleCount = 2; // to check that Select All works even if not all rows are loaded
+            value.checked = [121, 122, 310, 320];
+            let view = getView();
+            view.getListProps(); // trigger loading
+            await delay();
+
+            let selectAll = view.getListProps().selectAll;
+            expect(selectAll.value).toBe(false);
+            expect(selectAll.indeterminate).toBe(true);
+
+            selectAll.onValueChange(true);
+            await delay();
+
+            value.visibleCount = 10;
+            view = getView();
+            await delay();
+
+            selectAll = view.getListProps().selectAll;
+            expect(selectAll.value).toBe(true);
+            expect(selectAll.indeterminate).toBe(false);
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: true, isChildrenChecked: true },
+                { id: 110, isChecked: true },
+                { id: 120, isChecked: true, isChildrenChecked: true },
+                { id: 121, isChecked: true },
+                { id: 122, isChecked: true },
+                { id: 200, isChecked: true },
+                { id: 300, isChecked: true, isChildrenChecked: true },
+                { id: 310, isChecked: true },
+                { id: 320, isChecked: true },
+                { id: 330, isChecked: true },
+            ], 10);
+
+            selectAll.onValueChange(false);
+            await delay();
+
+            view = getView();
+            await delay();
+
+            selectAll = view.getListProps().selectAll;
+            expect(selectAll.value).toBe(false);
+            expect(selectAll.indeterminate).toBe(false);
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false, isChildrenChecked: false },
+                { id: 110, isChecked: false },
+                { id: 120, isChecked: false, isChildrenChecked: false },
+                { id: 121, isChecked: false },
+                { id: 122, isChecked: false },
+                { id: 200, isChecked: false },
+                { id: 300, isChecked: false, isChildrenChecked: false },
+                { id: 310, isChecked: false },
+                { id: 320, isChecked: false },
+                { id: 330, isChecked: false },
+            ], 10);
+        });
     });
 
-    it('Select All', async () => {
-        const getView = () => ds.getView(
-            value,
-            onValueChanged,
-            {
-                cascadeSelection: true,
-                getRowOptions: i => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: i => false,
-            });
 
-        let ds = treeDataSource;
-        value.visibleCount = 2; // to check that Select All works even if not all rows are loaded
-        value.checked = [121, 122, 310, 320];
-        let view = getView();
-        view.getListProps(); // trigger loading
-        await delay();
+    describe('CascadeSelection - implicit mode', () => {
+        it('Cascade selection works', async () => {
+            const getView = () => ds.getView(
+                value,
+                onValueChanged,
+                {
+                    getRowOptions: i => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: i => false,
+                    cascadeSelection: 'implicit',
+                },
+            );
 
-        let selectAll = view.getListProps().selectAll;
-        expect(selectAll.value).toBe(false);
-        expect(selectAll.indeterminate).toBe(true);
+            let ds = treeDataSource;
+            value.visibleCount = 6;
+            let view = getView();
+            view.getListProps(); // trigger loading
+            await delay();
 
-        selectAll.onValueChange(true);
-        await delay();
+            let row120 = view.getVisibleRows()[2];
+            expect(row120.id).toBe(120);
+            expect(row120.isChecked).toBe(false);
+            row120.onCheck(row120);
 
-        value.visibleCount = 10;
-        view = getView();
-        await delay();
+            await delay();
 
-        selectAll = view.getListProps().selectAll;
-        expect(selectAll.value).toBe(true);
-        expect(selectAll.indeterminate).toBe(false);
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: true, isChildrenChecked: true },
-            { id: 110, isChecked: true },
-            { id: 120, isChecked: true, isChildrenChecked: true },
-            { id: 121, isChecked: true },
-            { id: 122, isChecked: true },
-            { id: 200, isChecked: true },
-            { id: 300, isChecked: true, isChildrenChecked: true },
-            { id: 310, isChecked: true },
-            { id: 320, isChecked: true },
-            { id: 330, isChecked: true },
-        ], 10);
+            view = getView();
+            await delay();
 
-        selectAll.onValueChange(false);
-        await delay();
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false, isChildrenChecked: true },
+                { id: 110, isChecked: false },
+                { id: 120, isChecked: true, isChildrenChecked: true },
+                { id: 121, isChecked: true },
+                { id: 122, isChecked: true },
+                { id: 200, isChecked: false },
+            ]);
 
-        view = getView();
-        await delay();
+            expect(value.checked).toEqual([120]);
 
-        selectAll = view.getListProps().selectAll;
-        expect(selectAll.value).toBe(false);
-        expect(selectAll.indeterminate).toBe(false);
-        expectViewToLookLike(view, [
-            { id: 100, isChecked: false, isChildrenChecked: false },
-            { id: 110, isChecked: false },
-            { id: 120, isChecked: false, isChildrenChecked: false },
-            { id: 121, isChecked: false },
-            { id: 122, isChecked: false },
-            { id: 200, isChecked: false },
-            { id: 300, isChecked: false, isChildrenChecked: false },
-            { id: 310, isChecked: false },
-            { id: 320, isChecked: false },
-            { id: 330, isChecked: false },
-        ], 10);
+            row120 = view.getVisibleRows()[2];
+            row120.onCheck(row120);
+            await delay();
+
+            view = getView();
+            await delay();
+
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false, isChildrenChecked: false },
+                { id: 110, isChecked: false },
+                { id: 120, isChecked: false, isChildrenChecked: false },
+                { id: 121, isChecked: false },
+                { id: 122, isChecked: false },
+                { id: 200, isChecked: false },
+            ]);
+
+            expect(value.checked).toEqual([]);
+        });
+
+        it('Cascade selection - handles quick (simultaneous) clicks', async () => {
+            let ds = treeDataSource;
+            let view: LazyListView<TestItem, number> = null;
+            value.visibleCount = 10;
+
+            let onValueChanged = (newValue: DataSourceState) => {
+                value = newValue;
+                view = getView();
+            };
+
+            function getView() {
+                return ds.getView(
+                    value,
+                    onValueChanged,
+                    {
+                        getRowOptions: i => ({ checkbox: { isVisible: true } }),
+                        isFoldedByDefault: i => false,
+                        cascadeSelection: 'implicit',
+                    },
+                );
+            }
+
+            view = getView();
+            view.getListProps(); // trigger loading
+            await delay();
+
+            let row120 = view.getVisibleRows()[2];
+            expect(row120.id).toBe(120);
+            row120.onCheck(row120);
+
+            await delay();
+
+            let row300 = view.getVisibleRows()[6];
+            expect(row300.id).toBe(300);
+            row300.onCheck(row300);
+
+            await delay();
+
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false, isChildrenChecked: true },
+                { id: 110, isChecked: false },
+                { id: 120, isChecked: true, isChildrenChecked: true },
+                { id: 121, isChecked: true },
+                { id: 122, isChecked: true },
+                { id: 200, isChecked: false },
+                { id: 300, isChecked: true, isChildrenChecked: true },
+                { id: 310, isChecked: true },
+                { id: 320, isChecked: true },
+                { id: 330, isChecked: true },
+            ]);
+
+            expect(value.checked).toEqual([120, 300])
+        });
+
+        it('Select All', async () => {
+            const getView = () => ds.getView(
+                value,
+                onValueChanged,
+                {
+                    cascadeSelection: 'implicit',
+                    getRowOptions: i => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: i => false,
+                });
+
+            let ds = treeDataSource;
+            value.visibleCount = 2; // to check that Select All works even if not all rows are loaded
+            value.checked = [121, 122, 310, 320];
+            let view = getView();
+            view.getListProps(); // trigger loading
+            await delay();
+
+            let selectAll = view.getListProps().selectAll;
+            expect(selectAll.value).toBe(false);
+            expect(selectAll.indeterminate).toBe(true);
+
+            selectAll.onValueChange(true);
+            await delay();
+
+            value.visibleCount = 10;
+            view = getView();
+            await delay();
+
+            selectAll = view.getListProps().selectAll;
+            expect(selectAll.value).toBe(true);
+            expect(selectAll.indeterminate).toBe(false);
+            await delay();
+
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: true, isChildrenChecked: true },
+                { id: 110, isChecked: true },
+                { id: 120, isChecked: true, isChildrenChecked: true },
+                { id: 121, isChecked: true },
+                { id: 122, isChecked: true },
+                { id: 200, isChecked: true },
+                { id: 300, isChecked: true, isChildrenChecked: true },
+                { id: 310, isChecked: true },
+                { id: 320, isChecked: true },
+                { id: 330, isChecked: true },
+            ], 10);
+
+            expect(value.checked).toEqual([100, 200, 300]);
+            selectAll.onValueChange(false);
+            await delay();
+
+            view = getView();
+            await delay();
+
+            selectAll = view.getListProps().selectAll;
+            expect(selectAll.value).toBe(false);
+            expect(selectAll.indeterminate).toBe(false);
+            expectViewToLookLike(view, [
+                { id: 100, isChecked: false, isChildrenChecked: false },
+                { id: 110, isChecked: false },
+                { id: 120, isChecked: false, isChildrenChecked: false },
+                { id: 121, isChecked: false },
+                { id: 122, isChecked: false },
+                { id: 200, isChecked: false },
+                { id: 300, isChecked: false, isChildrenChecked: false },
+                { id: 310, isChecked: false },
+                { id: 320, isChecked: false },
+                { id: 330, isChecked: false },
+            ], 10);
+        });
     });
 
     it('FocusedIndex works', async () => {
@@ -811,5 +997,15 @@ describe('LazyListView', () => {
             { id: 320, isChecked: false },
             { id: 330 },
         ]);
+    });
+
+    it('should return selected rows in selection order', async () => {
+        let ds = treeDataSource;
+        let view = ds.getView({ ...value, checked: [320, 310, 121, 122] }, onValueChanged, {});
+        view.getListProps(); // trigger loading
+        await delay();
+
+        const selectedRows = view.getSelectedRows(0);
+        expect(selectedRows.map(({ id }) => id)).toEqual([320, 310, 121, 122]);
     });
 });

@@ -1,9 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
-import { Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
-    Panel, PickerInput, TextArea, TextInput, useForm,
+import {
+    Button, Checkbox, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow,
+    Panel, PickerInput, TextArea, TextInput, useForm, IconButton,
 } from '@epam/promo';
 import { FlexSpacer } from '@epam/uui-components';
+import { ReactComponent as deleteIcon } from '@epam/assets/icons/common/content-clear-18.svg';
+import css from './TablesExamples.scss';
 
 // Define interface describe data for each row
 interface ToDoItem {
@@ -66,7 +69,7 @@ const metadata: Metadata<FormState> = {
 
 export default function EditableTableExample() {
     // Use form to manage state of the editable table
-    const { lens, save, revert, value, setValue } = useForm<FormState>({
+    const { lens, save, revert, value, setValue, isChanged } = useForm<FormState>({
         value: { items: demoItems },
         onSave: () => Promise.resolve(),
         getMetadata: () => metadata,
@@ -150,7 +153,12 @@ export default function EditableTableExample() {
             width: 120,
             grow: 1,
         },
-
+        {
+            key: 'actions',
+            render: () => (<IconButton icon={ deleteIcon } onClick={ () => null } color="gray50" />),
+            width: 55,
+            alignSelf: 'center',
+        },
     ] as DataColumnProps<ToDoItem>[], []);
 
     // Create data-source and view to supply filtered/sorted data to the table in form of DataTableRows.
@@ -170,14 +178,28 @@ export default function EditableTableExample() {
 
     // Render row callback. In simple cases, you don't need, as default implementation would work ok.
     // Here we override it to change row background for 'isDone' items.
-    const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => {
-        return <DataTableRow
+    const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => (
+        <DataTableRow
             { ...props }
-        />;
-    }, []);
+            cx={ props.value.isDone ? css.taskIsDone : undefined }
+        />
+    ), []);
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return <Panel shadow={ true }>
+        {/* Render a panel with Save/Revert buttons to control the form */ }
+        <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom>
+            <FlexCell width='auto'>
+                <Button caption='Add task' onClick={ handleNewItem } />
+            </FlexCell>
+            <FlexSpacer />
+            <FlexCell width='auto'>
+                <Button caption='Revert' onClick={ revert } isDisabled={ !isChanged } color="gray50" />
+            </FlexCell>
+            <FlexCell width='auto'>
+                <Button caption='Save' onClick={ save } color='green' isDisabled={ !isChanged } />
+            </FlexCell>
+        </FlexRow>
         <FlexRow>
             { /* Render the data table */ }
             <DataTable
@@ -189,19 +211,6 @@ export default function EditableTableExample() {
                 headerTextCase='upper'
                 renderRow={ renderRow }
             />
-        </FlexRow>
-        {/* Render a panel with Save/Revert buttons to control the form */ }
-        <FlexRow background='gray5' spacing='12' padding='12' vPadding='12' borderBottom>
-            <FlexCell width='auto'>
-                <Button caption='Add new' onClick={ handleNewItem } />
-            </FlexCell>
-            <FlexSpacer />
-            <FlexCell width='auto'>
-                <Button caption='Save' onClick={ save } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button caption='Revert' onClick={ revert } />
-            </FlexCell>
         </FlexRow>
     </Panel>;
 }

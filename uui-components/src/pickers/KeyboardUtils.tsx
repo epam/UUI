@@ -1,4 +1,4 @@
-import {DataSourceState, DataRowProps, IEditable, IDataSourceView } from "@epam/uui-core";
+import { DataSourceState, DataRowProps, IEditable, IDataSourceView } from "@epam/uui-core";
 
 export interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
     listView: IDataSourceView<any, any, any>;
@@ -9,13 +9,14 @@ export interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
 export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: React.KeyboardEvent<HTMLElement>) => {
     const value = params.value;
     let search = value.search;
-    const selectedRows = params.listView.getSelectedRows();
 
     let focusedIndex = value.focusedIndex || 0;
     let maxVisibleIndex = value.topIndex + params.rows.length - 1;
 
     switch (e.key) {
         case 'Backspace': {
+            const selectedRowsCount = params.listView.getSelectedRowsCount();
+            const selectedRows = params.listView.getSelectedRows({ topIndex: selectedRowsCount - 2, visibleCount: 1 });
             if (params.editMode !== 'modal' && !value.search && value.checked && selectedRows.length > 0) {
                 let lastSelection = selectedRows[selectedRows.length - 1];
                 lastSelection.onCheck(lastSelection);

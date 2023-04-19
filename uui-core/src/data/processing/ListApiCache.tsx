@@ -1,5 +1,5 @@
 import { LazyLoadedMap } from '../../helpers';
-import { LazyDataSourceApi, LazyDataSourceApiRequestOptions, LazyDataSourceApiRequest } from '../../types';
+import { LazyDataSourceApi } from '../../types';
 import { batch } from '../../helpers/batch';
 
 export interface ListApiSettings<TItem, TId, TFilter> {

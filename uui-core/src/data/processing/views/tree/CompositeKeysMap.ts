@@ -1,4 +1,4 @@
-import { IMap } from "../../../types";
+import { IMap } from "../../../../types";
 
 export class CompositeKeysMap<TKey, TValue> implements IMap<TKey, TValue> {
     map: Map<string, TValue>;
@@ -28,7 +28,7 @@ export class CompositeKeysMap<TKey, TValue> implements IMap<TKey, TValue> {
     }
 
     *[Symbol.iterator](): IterableIterator<[TKey, TValue]> {
-        for(let [key, value] of this.map) {
+        for (let [key, value] of this.map) {
             yield [key !== undefined ? JSON.parse(key) : undefined, value];
         }
     }

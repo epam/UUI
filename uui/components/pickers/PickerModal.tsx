@@ -26,10 +26,9 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
         );
     }
 
-    renderFooter(selectedDataRows: DataRowProps<TItem, TId>[]) {
-        const hasSelection = selectedDataRows.length > 0;
+    renderFooter() {
         const view = this.getView();
-
+        const hasSelection = view.getSelectedRowsCount() > 0;
         return <>
             {
                 view.selectAll && <LinkButton
@@ -56,7 +55,6 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
     render() {
         const view = this.getView();
         const dataRows = this.getRows();
-        const selectedDataRows = view.getSelectedRows();
         const rows = dataRows.map(props => this.renderRow(props));
 
         return (
@@ -82,7 +80,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                             cx={ css.switch }
                             size='18'
                             { ...this.stateLens.prop('showSelected').toProps() }
-                            isDisabled={ selectedDataRows.length < 1 }
+                            isDisabled={ view.getSelectedRowsCount() < 1 }
                             label='Show only selected'
                         /> }
                         {
@@ -105,7 +103,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
                         {
                             this.props.renderFooter
                                 ? this.props.renderFooter(this.getFooterProps())
-                                : this.renderFooter(selectedDataRows)
+                                : this.renderFooter()
                         }
                     </ModalFooter>
                 </ModalWindow>

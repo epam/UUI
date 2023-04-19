@@ -1,6 +1,6 @@
-import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer  } from '@epam/loveship';
+import { DataTable, useForm, Panel, Button, FlexCell, FlexRow, FlexSpacer } from '@epam/loveship';
 import React from 'react';
-import { DataQueryFilter, Metadata, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
+import { Metadata, useList, useUuiContext, UuiContexts } from '@epam/uui-core';
 import { Product } from '@epam/uui-docs';
 import type { TApi } from '../../data';
 import { productColumns } from './columns';
@@ -42,28 +42,26 @@ export const ProductsTableDemo: React.FC = () => {
 
     const [tableState, setTableState] = React.useState({});
 
-    const dataSource = useLazyDataSource<Product, number, DataQueryFilter<Product>>({
+    const { rows, listProps } = useList({
+        type: 'lazy',
         api: svc.api.demo.products,
         getId: i => i.ProductID,
+        getRowOptions: product => ({ ...lens.prop('items').prop(product.ProductID).default(product).toProps() }),
+        listState: tableState,
+        setListState: setTableState,
     }, []);
-
-    const dataView = dataSource.useView(tableState, setTableState, {
-        getRowOptions: product => ({
-            ...lens.prop('items').prop(product.ProductID).default(product).toProps(),
-        }),
-    });
 
     return <Panel style={ { width: '100%' } }>
         <DataTable
             headerTextCase='upper'
-            getRows={ dataView.getVisibleRows }
+            getRows={ () => rows }
             columns={ productColumns }
             value={ tableState }
             onValueChange={ setTableState }
             showColumnsConfig
             allowColumnsResizing
             allowColumnsReordering
-            { ...dataView.getListProps() }
+            { ...listProps }
         />
         {
             isChanged && <FlexRow spacing='12' margin='12'>

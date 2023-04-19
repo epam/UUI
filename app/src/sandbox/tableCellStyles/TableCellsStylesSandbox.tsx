@@ -1,10 +1,13 @@
 import React, { ForwardRefExoticComponent, RefAttributes, useCallback, useEffect, useMemo, useState } from 'react';
-import { DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata, useArrayDataSource, DataTableCellProps, RenderCellProps } from '@epam/uui-core';
+import {
+    DataColumnProps, DataTableRowProps, ICanBeReadonly, IDisableable, Metadata,
+    useArrayDataSource, DataTableCellProps, RenderCellProps, useList
+} from '@epam/uui-core';
 import { useForm } from '@epam/promo';
 import * as promo from "@epam/promo";
 import * as loveship from "@epam/loveship";
 import * as uui from "@epam/uui";
-import {  DatePickerProps } from '@epam/uui';
+import { DatePickerProps } from '@epam/uui';
 import { PickerInputBaseProps } from '@epam/uui-components';
 
 // Defined interface describe data for each row
@@ -116,7 +119,7 @@ export default function TableCellsStylesSandbox() {
     const SkinDataTableCell = skin.DataTableCell as React.FC<DataTableCellProps & { background: any }>;
 
     // Use form to manage state of the editable table
-    const { lens, validate, save, validationProps } = useForm<FormState>({
+    const { lens, save } = useForm<FormState>({
         value: { items },
         onSave: () => Promise.resolve(),
         getMetadata: () => metadata,
@@ -169,7 +172,7 @@ export default function TableCellsStylesSandbox() {
             caption: 'Number',
             renderCell: (props) => <SkinDataTableCell
                 { ...props.rowLens.prop('number').toProps() }
-                renderEditor={ props => <skin.NumericInput { ...props } formatOptions={ { minimumFractionDigits: 2 } }/> }
+                renderEditor={ props => <skin.NumericInput { ...props } formatOptions={ { minimumFractionDigits: 2 } } /> }
                 { ...props }
                 background={ getCellBackground(props) }
             />,
@@ -194,7 +197,7 @@ export default function TableCellsStylesSandbox() {
             caption: 'TextArea',
             renderCell: (props) => <SkinDataTableCell
                 { ...props.rowLens.prop('textArea').toProps() }
-                renderEditor={ props => <skin.TextInput { ...props }/> }
+                renderEditor={ props => <skin.TextInput { ...props } /> }
                 { ...props }
                 background={ getCellBackground(props) }
             />,
@@ -218,7 +221,7 @@ export default function TableCellsStylesSandbox() {
             caption: 'Single Picker',
             renderCell: (props) => <SkinDataTableCell
                 { ...props.rowLens.prop('selectedId').toProps() }
-                renderEditor={ props => <SkinPickerInput { ...props } selectionMode="single" dataSource={ pickerDataSource }/> }
+                renderEditor={ props => <SkinPickerInput { ...props } selectionMode="single" dataSource={ pickerDataSource } /> }
                 { ...props }
                 background={ getCellBackground(props) }
             />,
@@ -230,7 +233,7 @@ export default function TableCellsStylesSandbox() {
             caption: 'Multi Picker',
             renderCell: (props) => <SkinDataTableCell
                 { ...props.rowLens.prop('selectedIds').toProps() }
-                renderEditor={ props => <SkinPickerInput { ...props } selectionMode="multi" dataSource={ pickerDataSource }/> }
+                renderEditor={ props => <SkinPickerInput { ...props } selectionMode="multi" dataSource={ pickerDataSource } /> }
                 { ...props }
                 background={ getCellBackground(props) }
             />,
@@ -239,19 +242,18 @@ export default function TableCellsStylesSandbox() {
         },
     ] as DataColumnProps<Item>[], [skinName]);
 
-    // Create data-source and view to supply filtered/sorted data to the table in form of DataTableRows.
-
-    const dataSource = useArrayDataSource<Item, number, unknown>({
+    const { rows, listProps } = useList({
+        type: 'array',
+        listState: tableState,
+        setListState: setTableState,
         items,
-    }, []);
-
-    const view = dataSource.useView(tableState, setTableState, {
+        getId: ({ id }) => id,
         getRowOptions: (item: Item, index: number) => ({
             ...lens.prop('items').index(index).toProps(),
             isSelectable: true,
             checkbox: { isVisible: true },
         }),
-    });
+    }, []);
 
     const renderRow = useCallback((props: DataTableRowProps<Item, number>) => {
         return <skin.DataTableRow
@@ -275,8 +277,8 @@ export default function TableCellsStylesSandbox() {
             </skin.FlexCell>
         </skin.FlexRow>
         <skin.DataTable
-            { ...view.getListProps() }
-            getRows={ view.getVisibleRows }
+            { ...listProps }
+            getRows={ () => rows }
             value={ tableState }
             onValueChange={ setTableState }
             columns={ columns }
