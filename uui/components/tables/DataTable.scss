@@ -34,7 +34,7 @@
     :global(.uui-scroll-shadow-top-visible) {
         display: block;
         height: 5px;
-        background: var(--uui-dt-top-shadow);
+        background: var(--uui-dt-top-shadow, linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%));
         transition: display 200ms;
     }
 }
