@@ -1,1 +1,1 @@
-export {default as GroupingBlock} from "./GroupingBlock";
+export { default as GroupingBlock } from './GroupingBlock';

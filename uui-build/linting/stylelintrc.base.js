@@ -4,7 +4,10 @@ const { turnOffStylelintRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
 
 const sassGuidelinesRulesSubsetForLess = Object.keys(sassGuidelinesRules)
     .filter((k) => k.indexOf('scss/') !== 0)
-    .reduce((acc, k) => { acc[k] = sassGuidelinesRules[k]; return acc; }, {});
+    .reduce((acc, k) => {
+        acc[k] = sassGuidelinesRules[k];
+        return acc;
+    }, {});
 
 const SCSS_AND_LESS_COMMON_RULES = {
     'order/properties-alphabetical-order': null,

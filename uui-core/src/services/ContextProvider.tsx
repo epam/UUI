@@ -1,11 +1,13 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { CommonContexts, IHasChildren } from "../types";
-import { LegacyContextProvider, IProcessRequest } from "./index";
-import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from "./routing";
-import { DragGhost } from "./dnd";
-import { ISkin } from "./SkinContext";
-import { useUuiServices } from "../hooks";
-import { GAListener } from "./analytics";
+import React, {
+    createContext, useContext, useEffect, useState,
+} from 'react';
+import { CommonContexts, IHasChildren } from '../types';
+import { LegacyContextProvider, IProcessRequest } from './index';
+import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from './routing';
+import { DragGhost } from './dnd';
+import { ISkin } from './SkinContext';
+import { useUuiServices } from '../hooks';
+import { GAListener } from './analytics';
 
 export interface ApiContextProps {
     apiReloginPath?: string;
@@ -28,21 +30,21 @@ export interface ContextProviderProps<TApi, TAppContext> extends IUuiServicesPro
 
 export const UuiContext = createContext({} as CommonContexts<any, any>);
 
-export const ContextProvider = <TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>) => {
+export function ContextProvider<TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>) {
     const [isLoaded, setIsLoaded] = useState(false);
-    const { loadAppContext, onInitCompleted, enableLegacyContext, children: propsChildren, history, gaCode, ...restProps } = props;
+    const {
+        loadAppContext, onInitCompleted, enableLegacyContext, children: propsChildren, history, gaCode, ...restProps
+    } = props;
 
-    const router = !!history
-        ? new HistoryAdaptedRouter(history)
-        : new StubAdaptedRouter();
+    const router = !!history ? new HistoryAdaptedRouter(history) : new StubAdaptedRouter();
 
-    const { services } = useUuiServices<TApi, TAppContext>({...restProps, router});
+    const { services } = useUuiServices<TApi, TAppContext>({ ...restProps, router });
     services.history = history;
 
     useEffect(() => {
         const loadAppContextPromise = loadAppContext || (() => Promise.resolve({} as TAppContext));
         gaCode && services.uuiAnalytics.addListener(new GAListener(gaCode));
-        loadAppContextPromise(services.api).then(appCtx => {
+        loadAppContextPromise(services.api).then((appCtx) => {
             services.uuiApp = appCtx;
             onInitCompleted(services);
             setIsLoaded(true);
@@ -52,32 +54,29 @@ export const ContextProvider = <TApi, TAppContext>(props: ContextProviderProps<T
         }
     }, []);
 
-    const children = isLoaded ? propsChildren : "";
+    const children = isLoaded ? propsChildren : '';
     const isEnableLegacyContexts = enableLegacyContext ?? true;
 
     return (
         <UuiContext.Provider value={ services }>
-            { isEnableLegacyContexts
-                ? (
-                    <LegacyContextProvider { ...props } uuiContexts={ services }>
-                        { children }
-                    </LegacyContextProvider>
-                )
-                : (
-                    <>
-                        { children }
-                        <DragGhost/>
-                    </>
-                )
-            }
+            {isEnableLegacyContexts ? (
+                <LegacyContextProvider { ...props } uuiContexts={ services }>
+                    {children}
+                </LegacyContextProvider>
+            ) : (
+                <>
+                    {children}
+                    <DragGhost />
+                </>
+            )}
         </UuiContext.Provider>
     );
-};
+}
 
 export function useUuiContext<TApi = any, TAppContext = any>(): CommonContexts<TApi, TAppContext> {
     const context = useContext(UuiContext);
     if (!Object.keys(context).length) {
-        throw new Error("useUuiContext must be called within UuiContextProvider");
+        throw new Error('useUuiContext must be called within UuiContextProvider');
     }
     return context;
 }

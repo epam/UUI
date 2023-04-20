@@ -40,15 +40,18 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
     );
 
     renderBody = (props: DropdownBodyProps) => {
-        return !this.props.isDisabled && !this.props.isReadonly && (
-            <DropdownContainer { ...props }>
-                <TimePickerBody
-                    { ...this.props }
-                    value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }
-                    rawProps={ this.props.rawProps?.body }
-                    cx={ this.props.bodyCx }
-                />
-            </DropdownContainer>
+        return (
+            !this.props.isDisabled
+            && !this.props.isReadonly && (
+                <DropdownContainer { ...props }>
+                    <TimePickerBody
+                        { ...this.props }
+                        value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }
+                        rawProps={ this.props.rawProps?.body }
+                        cx={ this.props.bodyCx }
+                    />
+                </DropdownContainer>
+            )
         );
     };
 }

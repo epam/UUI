@@ -2,24 +2,26 @@ import React from 'react';
 import { MainMenu } from '../MainMenu';
 import { MainMenuButton } from '../MainMenuButton';
 import { BurgerButton } from '../Burger';
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 
 describe('MainMenu', () => {
     const oldPortal = ReactDOM.createPortal;
 
     beforeAll(() => {
-        ReactDOM.createPortal = node => node as any;
+        ReactDOM.createPortal = (node) => node as any;
     });
 
     afterAll(() => {
         ReactDOM.createPortal = oldPortal;
     });
 
-    it('should be rendered correctly', async() => {
-        const tree = await renderSnapshotWithContextAsync(<MainMenu>
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <MainMenu>
                 <MainMenuButton />
-            </MainMenu>);
+            </MainMenu>,
+        );
         expect(tree).toMatchSnapshot();
     });
 
@@ -28,17 +30,16 @@ describe('MainMenu', () => {
             <MainMenu
                 renderBurger={ () => <BurgerButton /> }
                 logoLink={ { pathname: '/' } }
-                appLogoUrl=''
+                appLogoUrl=""
                 logoWidth={ 120 }
                 isTransparent
-                serverBadge='Dev'
-                tooltipTechInfo='Tech Info'
+                serverBadge="Dev"
+                tooltipTechInfo="Tech Info"
             >
                 <MainMenuButton />
-            </MainMenu>);
+            </MainMenu>,
+        );
 
         expect(tree).toMatchSnapshot();
     });
 });
-
-

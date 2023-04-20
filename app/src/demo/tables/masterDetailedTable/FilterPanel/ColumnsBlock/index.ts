@@ -1,1 +1,1 @@
-export {default as ColumnsBlock} from "./ColumnsBlock";
+export { default as ColumnsBlock } from './ColumnsBlock';

@@ -9,10 +9,15 @@ import { getFilterPredicate, getOrderComparer } from '@epam/uui-core';
 import { string } from 'prop-types';
 import { DbTable } from '..';
 
-[1e1, 1e2, 1e3, 1e4, 1e5].forEach(size => {
-    const testPersons = range(0, size)
-        .map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * size / 10) }));
-    const pairs = testPersons.map(p => [p.id, p] as [number, Person]);
+[
+    1e1,
+    1e2,
+    1e3,
+    1e4,
+    1e5,
+].forEach((size) => {
+    const testPersons = range(0, size).map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor((Math.random() * size) / 10) }));
+    const pairs = testPersons.map((p) => [p.id, p] as [number, Person]);
     const person = testPersons[0];
     const filterPredicate = getFilterPredicate<Person>({ departmentId: 5 });
     const orderComparer = getOrderComparer<Person>([{ field: 'name' }]);
@@ -34,7 +39,11 @@ import { DbTable } from '..';
         `Find N entities in ${size} dataset by departmentId, sorted by name`,
 
         b.add('Array - scan', () => {
-            return () => orderBy(testPersons.filter(p => p.departmentId == 5), 'name');
+            return () =>
+                orderBy(
+                    testPersons.filter((p) => p.departmentId == 5),
+                    'name',
+                );
         }),
 
         b.add('Array - with filterPredicate/orderComparer', () => {
@@ -48,18 +57,12 @@ import { DbTable } from '..';
 
         b.add('I.Map - iterable.filter.sort, then toArray', () => {
             const set = I.Map(pairs);
-            return () => (set as I.Iterable<number, Person>)
-                .filter(filterPredicate)
-                .sort(orderComparer)
-                .toArray();
+            return () => (set as I.Iterable<number, Person>).filter(filterPredicate).sort(orderComparer).toArray();
         }),
 
         b.add('I.Map - toArray, then filter/sort', () => {
             const set = I.Map(pairs);
-            return () => sortBy(
-                (set as I.Iterable<number, Person>).toArray().filter(filterPredicate),
-                'name',
-            );
+            return () => sortBy((set as I.Iterable<number, Person>).toArray().filter(filterPredicate), 'name');
         }),
 
         // Super-fast by design, probably the best way to go with indexes.

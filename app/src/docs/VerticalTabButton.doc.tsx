@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4 } from '../common';
+import {
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4,
+} from '../common';
 
 export class VerticalTabButtonDoc extends BaseDocsBlock {
     title = 'Vertical Tab Button';
@@ -14,12 +16,9 @@ export class VerticalTabButtonDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='vertical-tab-button-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/verticalTabButton/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="vertical-tab-button-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/verticalTabButton/Basic.example.tsx" />
             </>
         );
     }

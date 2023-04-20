@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4 } from '../common';
+import {
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4,
+} from '../common';
 
 export class RadioGroupDoc extends BaseDocsBlock {
     title = 'RadioGroup';
@@ -14,12 +16,9 @@ export class RadioGroupDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='radioGroup-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='RadioInput Group'
-                    path='./_examples/radioInput/Group.example.tsx'
-                />
+                <EditableDocContent fileName="radioGroup-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="RadioInput Group" path="./_examples/radioInput/Group.example.tsx" />
             </>
         );
     }

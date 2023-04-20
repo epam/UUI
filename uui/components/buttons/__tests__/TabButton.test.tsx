@@ -5,23 +5,12 @@ import { ReactComponent as calendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('TabButton', () => {
     it('should be rendered correctly', () => {
-
-        const tree = renderer
-            .create(<TabButton/>)
-            .toJSON();
+        const tree = renderer.create(<TabButton />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly with props', () => {
-
-        const tree = renderer
-            .create(<TabButton
-                onClick={ jest.fn }
-                icon={ calendarIcon }
-                isDisabled={ false }
-                withNotify={ true }
-            />)
-            .toJSON();
+        const tree = renderer.create(<TabButton onClick={ jest.fn } icon={ calendarIcon } isDisabled={ false } withNotify={ true } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

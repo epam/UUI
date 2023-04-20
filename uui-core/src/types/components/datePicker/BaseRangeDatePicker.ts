@@ -1,9 +1,11 @@
-import { ReactElement, ReactNode } from "react";
-import { Dayjs } from "dayjs";
-import { Placement } from "@popperjs/core";
-import { IAnalyticableOnChange, ICanBeReadonly, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasRawProps } from "../../props";
-import * as React from "react";
-import { CX } from "../../objects";
+import { ReactElement, ReactNode } from 'react';
+import { Dayjs } from 'dayjs';
+import { Placement } from '@popperjs/core';
+import {
+    IAnalyticableOnChange, ICanBeReadonly, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasRawProps,
+} from '../../props';
+import * as React from 'react';
+import { CX } from '../../objects';
 
 export interface RangeDatePickerValue {
     from: string | null;
@@ -12,15 +14,15 @@ export interface RangeDatePickerValue {
 
 export type RangeDatePickerPresets = {
     [key: string]: {
-        name: string,
-        getRange: () => RangeDatePickerPresetValue,
-    },
+        name: string;
+        getRange: () => RangeDatePickerPresetValue;
+    };
 };
 
 export type RangeDatePickerPresetValue = {
-    from: string,
-    to: string,
-    order?: number,
+    from: string;
+    to: string;
+    order?: number;
 };
 
 export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue>, IDisableable, ICanBeReadonly, IAnalyticableOnChange<RangeDatePickerValue> {

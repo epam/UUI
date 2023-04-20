@@ -5,9 +5,7 @@ import css from './VirtualList.scss';
 export interface VirtualListMods {}
 
 function applyVirtualListMods(mods: VirtualListMods) {
-    return [
-        css.root,
-    ];
+    return [css.root];
 }
 
 export const VirtualList = withMods<VirtualListProps, VirtualListMods>(uuiVirtualList, applyVirtualListMods);

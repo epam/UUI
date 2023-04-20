@@ -4,7 +4,7 @@
 
 //@mixin button-focus-shadow() { box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); } // TODO: design?
 
-@mixin dnd-ghost-shadow() { box-shadow: 0 6px 18px 0 rgba(29,30,38,0.05), 0 3px 12px 0 rgba(29,30,38,0.05); }
+@mixin dnd-ghost-shadow() { box-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05); }
 
 //@mixin control-focus-effect($name) { box-shadow: 0 0 0 2px fade-out($name, 0.6); } // TODO: design?
-@mixin control-focus-effect() { box-shadow: 0 0 0 2px rgba(0, 137 ,204, 0.40); }
+@mixin control-focus-effect() { box-shadow: 0 0 0 2px rgba(0, 137 , 204, 0.4); }

@@ -7,15 +7,15 @@ module.exports = {
     runCmdSync,
     hasCliArg,
     getCliArgValue,
-}
+};
 function runYarnScriptFromRootSync(scriptName) {
     runCmdFromRootSync('yarn', [scriptName]);
 }
 function runCmdFromRootSync(cmd, args) {
-    runCmdSync({ cmd, cwd: uuiRoot, args })
+    runCmdSync({ cmd, cwd: uuiRoot, args });
 }
-function runCmdSync({ cmd, cwd, args = []}) {
-    const result = spawn.sync(cmd, args,{ encoding: "utf8", stdio: "inherit", cwd });
+function runCmdSync({ cmd, cwd, args = [] }) {
+    const result = spawn.sync(cmd, args, { encoding: 'utf8', stdio: 'inherit', cwd });
     if (result.status !== 0) {
         console.error(result.error);
         process.exit(1);

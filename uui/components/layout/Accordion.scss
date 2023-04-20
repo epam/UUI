@@ -64,7 +64,6 @@
         }
 
         &:global(.uui-disabled) {
-
             :global(.uui-accordion-toggler) {
                 cursor: default;
                 fill: var(--uui-accordion-icon-disabled);
@@ -113,7 +112,6 @@
         }
 
         &:global(.uui-disabled) {
-
             :global(.uui-accordion-toggler) {
                 cursor: default;
                 fill: var(--uui-accordion-icon-disabled);

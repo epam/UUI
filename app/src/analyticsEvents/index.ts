@@ -9,4 +9,4 @@ export const analyticsEvents = {
     document: documentAnalyticsEvents,
     demo: demoAnalyticsEvents,
 } as const;
-export * from "./listeners"
+export * from './listeners';

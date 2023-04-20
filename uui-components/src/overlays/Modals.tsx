@@ -3,6 +3,7 @@ import { UuiContexts, UuiContext } from '@epam/uui-core';
 
 export class Modals extends React.Component {
     static contextType = UuiContext;
+
     context: UuiContexts;
 
     constructor(props: {}) {
@@ -17,9 +18,9 @@ export class Modals extends React.Component {
     public render() {
         return (
             <>
-                { this.context.uuiModals.getOperations().map(modalOperation => {
+                {this.context.uuiModals.getOperations().map((modalOperation) => {
                     return React.createElement(modalOperation.component, modalOperation.props);
-                }) }
+                })}
             </>
         );
     }

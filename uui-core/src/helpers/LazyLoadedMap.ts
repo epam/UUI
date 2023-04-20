@@ -10,13 +10,13 @@ interface MapRecord<TValue> {
  */
 export type LazyLoadedMapLoadCallback<TKey, TValue> = (pending: TKey[]) => Promise<[TKey, TValue][]>;
 
-export const UNKNOWN = Symbol("UNKNOWN");
-export const LOADING = Symbol("LOADING");
-export const LOADED = Symbol("LOADED");
-export const PENDING = Symbol("PENDING");
-export const FAILED = Symbol("FAILED");
+export const UNKNOWN = Symbol('UNKNOWN');
+export const LOADING = Symbol('LOADING');
+export const LOADED = Symbol('LOADED');
+export const PENDING = Symbol('PENDING');
+export const FAILED = Symbol('FAILED');
 
-export type LoadingStatus = (typeof UNKNOWN) | (typeof LOADING) | (typeof PENDING) | (typeof LOADED) | (typeof FAILED);
+export type LoadingStatus = typeof UNKNOWN | typeof LOADING | typeof PENDING | typeof LOADED | typeof FAILED;
 
 /**
  * Represents a Map (key/value collection), which can be batch-loaded as required with async requests.
@@ -30,9 +30,7 @@ export class LazyLoadedMap<TKey, TValue> {
      * @param runBatch Will be called with all missing Keys was requested with get() method on previous JS tick.
      * @param onBatchComplete Will be called each time another batch is completed, and result is added to the map.
      */
-    constructor(private runBatch: LazyLoadedMapLoadCallback<TKey, TValue>, private onBatchComplete?: () => void) {
-
-    }
+    constructor(private runBatch: LazyLoadedMapLoadCallback<TKey, TValue>, private onBatchComplete?: () => void) {}
 
     /**
      * Gets an element from map.
@@ -72,14 +70,14 @@ export class LazyLoadedMap<TKey, TValue> {
         });
 
         return this.runBatch(keys)
-            .then(result => {
-                result.forEach(entry => {
+            .then((result) => {
+                result.forEach((entry) => {
                     this.set(entry[0], entry[1]);
                 });
                 this.onBatchComplete && this.onBatchComplete();
             })
             .catch(() => {
-                keys.forEach(key => {
+                keys.forEach((key) => {
                     this.map.set(key, { status: FAILED });
                 });
             });

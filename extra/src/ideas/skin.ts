@@ -2,8 +2,8 @@ import { IClickable, Icon } from '@epam/uui-core';
 import * as React from 'react';
 
 type UUIInterfaces = {
-    'Icon': Icon;
-    'IClickable': IClickable;
+    Icon: Icon;
+    IClickable: IClickable;
 };
 
 export type UUIInterfaceName = keyof UUIInterfaces;
@@ -18,4 +18,3 @@ export interface SkinContext {
 /* test code, remove later */
 const skin: SkinContext = null;
 const Btn = skin.getComponent('IClickable');
-

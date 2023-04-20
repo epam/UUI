@@ -3,9 +3,7 @@ import { CalendarPresets as uuiCalendarPresets, CalendarPresetsProps } from '@ep
 import { withMods } from '@epam/uui-core';
 
 export function applyCalendarPresetsMods() {
-    return [
-        css.root,
-    ];
+    return [css.root];
 }
 
 export const CalendarPresets = withMods<CalendarPresetsProps>(uuiCalendarPresets, applyCalendarPresetsMods, () => ({}));

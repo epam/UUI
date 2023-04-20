@@ -5,7 +5,7 @@ import { ContextProvider, UuiContexts } from '@epam/uui-core';
 
 export * from './testingLibraryReact';
 
-export const delay = (ms: number = 1): Promise<void> => new Promise(resolve => {
+export const delay = (ms: number = 1): Promise<void> => new Promise((resolve) => {
     setTimeout(resolve, ms);
 });
 
@@ -40,7 +40,7 @@ export const renderSnapshotWithContextAsync = async (reactElement: ReactElement)
  * @param reactElement
  */
 export const renderToJsdomWithContextAsync = async (reactElement: ReactElement) => {
-    let result = render(wrapElementWithUuiContext(reactElement));
+    const result = render(wrapElementWithUuiContext(reactElement));
     await delayWrapInAct();
     return {
         ...result,
@@ -50,7 +50,7 @@ export const renderToJsdomWithContextAsync = async (reactElement: ReactElement) 
 
 function wrapElementWithUuiContext(component: ReactNode) {
     return (
-        <ContextProvider onInitCompleted={ svc => { Object.assign(testSvc, svc); } }>
+        <ContextProvider onInitCompleted={ (svc) => { Object.assign(testSvc, svc); } }>
             { component }
         </ContextProvider>
     );
