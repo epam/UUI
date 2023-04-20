@@ -20,7 +20,7 @@
     }
 
     .bodes-wrapper {
-        transition: height .3s ease-in-out;
+        transition: height 0.3s ease-in-out;
     }
 
     .blocker {
@@ -34,5 +34,5 @@
 }
 
 :global(.uui-datepicker-container) {
-    transition: height .3s ease-in-out;
+    transition: height 0.3s ease-in-out;
 }

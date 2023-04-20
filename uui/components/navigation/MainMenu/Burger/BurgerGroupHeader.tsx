@@ -5,11 +5,11 @@ export interface BurgerGroupHeaderProps {
     caption: string;
 }
 
-export const BurgerGroupHeader = (props: BurgerGroupHeaderProps) => {
+export function BurgerGroupHeader(props: BurgerGroupHeaderProps) {
     return (
         <div className={ css.groupHeader }>
             <hr className={ css.line } />
-            <span className={ css.groupName }>{ props.caption }</span>
+            <span className={ css.groupName }>{props.caption}</span>
         </div>
     );
-};
+}

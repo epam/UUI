@@ -4,9 +4,7 @@ import { ButtonProps } from '@epam/uui-components';
 import { TabButton, TabButtonMods } from './TabButton';
 
 function applyVerticalTabButtonMods() {
-    return [
-        css.root,
-    ];
+    return [css.root];
 }
 
 export type VerticalTabButtonProps = ButtonProps & TabButtonMods;

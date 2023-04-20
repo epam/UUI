@@ -20,7 +20,7 @@ async function buildUsingRollup(params) {
     const { output: outputConfig, ...inputConfig } = cfg[0];
     let bundle;
     const cleanup = async () => {
-        bundle && await bundle.close();
+        bundle && (await bundle.close());
     };
     try {
         bundle = await rollup.rollup({ ...inputConfig });

@@ -10,17 +10,18 @@ import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
 
 type DocsQuery = {
-    id: string,
-    mode?: string,
-    skin?: UUI3 | UUI4,
-    category?: string,
+    id: string;
+    mode?: string;
+    skin?: UUI3 | UUI4;
+    category?: string;
 };
 
-export const DocumentsPage = () => {
-    const redirectTo = (query: DocsQuery) => svc.uuiRouter.redirect({
-        pathname: '/documents',
-        query,
-    });
+export function DocumentsPage() {
+    const redirectTo = (query: DocsQuery) =>
+        svc.uuiRouter.redirect({
+            pathname: '/documents',
+            query,
+        });
 
     if (!items.map((item) => item.id).includes(getQuery('id'))) {
         redirectTo({ id: items[0].id, mode: 'doc', skin: UUI4 });
@@ -29,7 +30,10 @@ export const DocumentsPage = () => {
     const onChange = (row: DataRowProps<TreeListItem, string>) => {
         if (row.parentId === 'components') {
             redirectTo({
-                id: row.id, mode: getQuery('mode') || 'doc', skin: getQuery<DocsQuery['skin']>('skin') || UUI4, category: row.parentId,
+                id: row.id,
+                mode: getQuery('mode') || 'doc',
+                skin: getQuery<DocsQuery['skin']>('skin') || UUI4,
+                category: row.parentId,
             });
         } else {
             redirectTo({ id: row.id, category: row.parentId });
@@ -51,18 +55,19 @@ export const DocumentsPage = () => {
                     onValueChange={ onChange }
                     items={ items }
                     getSearchFields={ (i) => [i.name, ...(i.tags || [])] }
-                    getItemLink={ (row) => !row.isFoldable && {
-                        pathname: 'documents',
-                        query: {
-                            id: row.id,
-                            mode: row.parentId && svc.uuiRouter.getCurrentLink().query.mode || 'doc',
-                            skin: row.parentId && svc.uuiRouter.getCurrentLink().query.skin || UUI4,
-                            category: row.parentId && row.parentId,
-                        },
-                    } }
+                    getItemLink={ (row) =>
+                        !row.isFoldable && {
+                            pathname: 'documents',
+                            query: {
+                                id: row.id,
+                                mode: (row.parentId && svc.uuiRouter.getCurrentLink().query.mode) || 'doc',
+                                skin: (row.parentId && svc.uuiRouter.getCurrentLink().query.skin) || UUI4,
+                                category: row.parentId && row.parentId,
+                            },
+                        } }
                 />
                 <PageComponent />
             </FlexRow>
         </Page>
     );
-};
+}

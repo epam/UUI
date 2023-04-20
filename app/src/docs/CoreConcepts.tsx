@@ -6,9 +6,7 @@ export class CoreConceptsDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <>
-                <EditableDocContent fileName='coreConcepts' />
-            </>
+            <EditableDocContent fileName="coreConcepts" />
         );
     }
 }

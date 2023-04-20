@@ -1,10 +1,15 @@
 import type { ComponentType } from 'react';
-import type { IComponentDocs, DemoComponentProps, DemoContext, PropExample, PropDoc } from './types';
+import type {
+    IComponentDocs, DemoComponentProps, DemoContext, PropExample, PropDoc,
+} from './types';
 
 export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     name: string;
+
     props?: PropDoc<TProps, keyof TProps>[];
+
     contexts?: DemoContext[];
+
     component: IComponentDocs<TProps>['component'];
 
     constructor(docs: IComponentDocs<TProps>) {
@@ -14,17 +19,14 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
         this.component = docs.component || null;
     }
 
-    public prop<TProp extends keyof TProps>(
-        name: TProp,
-        details?: Partial<PropDoc<TProps, TProp>>,
-    ) {
+    public prop<TProp extends keyof TProps>(name: TProp, details?: Partial<PropDoc<TProps, TProp>>) {
         // Apply defaults
         details.isRequired = details.isRequired || false;
         details.examples = details.examples || [];
 
         if (typeof details.examples === 'function') {
             const originalExamples = details.examples;
-            details.examples = ctx => this.normalizeExamples(originalExamples(ctx));
+            details.examples = (ctx) => this.normalizeExamples(originalExamples(ctx));
         } else {
             details.examples = this.normalizeExamples(details.examples);
         }
@@ -33,15 +35,15 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     }
 
     public implements(docs: any[] extends DocBuilder<TProps>[] ? any[] : never) {
-        docs.forEach(doc => {
+        docs.forEach((doc) => {
             this.props.push(...doc.props);
             this.contexts.push(...doc.contexts);
         });
         return this;
     }
 
-    public withContexts(...contexts: (ComponentType<DemoComponentProps>)[]) {
-        contexts.forEach(context => this.contexts.push({ context, name: context.displayName }));
+    public withContexts(...contexts: ComponentType<DemoComponentProps>[]) {
+        contexts.forEach((context) => this.contexts.push({ context, name: context.displayName }));
         return this;
     }
 

@@ -1,4 +1,4 @@
-import { DataQueryFilter, DataTableSelectedCellData } from "@epam/uui-core";
+import { DataQueryFilter, DataTableSelectedCellData } from '@epam/uui-core';
 
 export type StatusType = 'To do' | 'In progress' | 'Testing' | 'Done';
 export interface Status {

@@ -1,16 +1,16 @@
 type calculatedDTO = {
     value: number;
     step?: number;
-    action?: "incr" | "decr"
+    action?: 'incr' | 'decr';
 };
 
 type validationDTO = {
     value: number;
     min?: number;
-    max?: number
+    max?: number;
 };
 
-export const  getMinMaxValidatedValue = ({ value, min = 0, max = Number.MAX_SAFE_INTEGER }: validationDTO): number => {
+export const getMinMaxValidatedValue = ({ value, min = 0, max = Number.MAX_SAFE_INTEGER }: validationDTO): number => {
     if (value > max) {
         return max;
     } else if (value < min) {
@@ -20,17 +20,17 @@ export const  getMinMaxValidatedValue = ({ value, min = 0, max = Number.MAX_SAFE
     }
 };
 
-export const getCalculatedValue = ({value, step = 1, action = "incr"}: calculatedDTO): number => {
+export const getCalculatedValue = ({ value, step = 1, action = 'incr' }: calculatedDTO): number => {
     let decimalLength = 0;
     const valueDecimalLength = getDecimalLength(value);
     const stepDecimalLength = getDecimalLength(step);
     decimalLength = valueDecimalLength >= stepDecimalLength ? valueDecimalLength : stepDecimalLength;
     let valueToFix = value;
     switch (action) {
-        case "decr":
+        case 'decr':
             valueToFix = value - step;
             break;
-        case "incr":
+        case 'incr':
             valueToFix = value + step;
             break;
         default:
@@ -40,7 +40,7 @@ export const getCalculatedValue = ({value, step = 1, action = "incr"}: calculate
 };
 
 export const getDecimalLength = (value: number): number => {
-    const splitedValue = String(value).split(".");
+    const splitedValue = String(value).split('.');
     if (splitedValue.length === 1) return 0;
     return splitedValue[1].length;
 };

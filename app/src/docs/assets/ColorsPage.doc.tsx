@@ -13,14 +13,14 @@ export class ColorsPageDoc extends BaseDocsBlock {
     renderDocTitle() {
         return (
             <FlexRow>
-                <div className={ css.title }>{ this.title }</div>
+                <div className={ css.title }>{this.title}</div>
                 <FlexSpacer />
-                { this.renderMultiSwitch() }
+                {this.renderMultiSwitch()}
             </FlexRow>
         );
     }
 
     renderContent(): React.ReactNode {
-        return (getQuery('skin') === UUI3 ? React.createElement(LoveshipColorsDoc) : React.createElement(PromoColorsDoc));
+        return getQuery('skin') === UUI3 ? React.createElement(LoveshipColorsDoc) : React.createElement(PromoColorsDoc);
     }
 }

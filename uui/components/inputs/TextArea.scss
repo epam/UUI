@@ -130,13 +130,13 @@
                 &:hover, &:active, &:focus {
                     background-color: transparent;
                     color: var(--uui-text-area-text-disabled);
-                    fill: var(--uui-text-area-icon);;
+                    fill: var(--uui-text-area-icon);
                     border-color: transparent;
                     box-shadow: none;
                 }
 
                 &::placeholder {
-                    color:var( --uui-text-area-placeholder);
+                    color: var(--uui-text-area-placeholder);
                 }
             }
         }

@@ -16,7 +16,7 @@ import { ReactComponent as NaIcon } from '../icons/slider-rating/na_icon.svg';
 import { ReactComponent as NaActiveIcon } from '../icons/slider-rating/na_active_icon.svg';
 import { Tooltip } from '../overlays';
 import cx from 'classnames';
-import { i18n } from "../../i18n";
+import { i18n } from '../../i18n';
 
 const defaultSize = '18';
 
@@ -36,27 +36,38 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
 
     getScaleIcon = (rating: number) => {
         switch (rating) {
-            case 1: return LineRedIcon;
-            case 2: return LineYellowIcon;
-            case 3: return LineGrayIcon;
-            case 4: return LineBlueIcon;
-            case 5: return LineVioletIcon;
-            default: return LineGrayIcon;
+            case 1:
+                return LineRedIcon;
+            case 2:
+                return LineYellowIcon;
+            case 3:
+                return LineGrayIcon;
+            case 4:
+                return LineBlueIcon;
+            case 5:
+                return LineVioletIcon;
+            default:
+                return LineGrayIcon;
         }
-    }
+    };
 
     getHandlerIcon = (rating: number) => {
         switch (rating) {
-            case 1: return ActiveMarkRedIcon;
-            case 2: return ActiveMarkYellowIcon;
-            case 3: return ActiveMarkGreenIcon;
-            case 4: return ActiveMarkBlueIcon;
-            case 5: return ActiveMarkVioletIcon;
+            case 1:
+                return ActiveMarkRedIcon;
+            case 2:
+                return ActiveMarkYellowIcon;
+            case 3:
+                return ActiveMarkGreenIcon;
+            case 4:
+                return ActiveMarkBlueIcon;
+            case 5:
+                return ActiveMarkVioletIcon;
         }
-    }
+    };
 
     getLeftHandlerIconPosition = (rating: number, from: number, stepWidth: number) => {
-        let left = !!rating ? ((rating - from) * stepWidth) - (this.handlerWidth / 2) : 0;
+        const left = !!rating ? (rating - from) * stepWidth - this.handlerWidth / 2 : 0;
 
         if (rating && rating === from) {
             return left + 2;
@@ -65,47 +76,55 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
         }
 
         return left;
-    }
+    };
 
     renderTooltipBox(rating: number) {
         const tooltipContent = this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}`;
-        return (
-            <TooltipBox content={ tooltipContent } size={ this.props.size || '18' }/>
-        );
+        return <TooltipBox content={ tooltipContent } size={ this.props.size || '18' } />;
     }
 
     renderRating = (sliderRating: number, markWidth: number, numberOfMarks: number) => {
         const rating = sliderRating || 0;
         const from = this.props.from || 1;
-        const stepWidth = markWidth * numberOfMarks / (numberOfMarks - 1);
+        const stepWidth = (markWidth * numberOfMarks) / (numberOfMarks - 1);
         const left = this.getLeftHandlerIconPosition(rating, from, stepWidth);
         const size = this.props.size || defaultSize;
 
         return (
             <>
                 <div className={ cx(css.scale, css[`size-${size}`], from === 2 && css.shortScale) }>
-                    <IconContainer cx={ css.scaleIcon } icon={ this.props.getScaleIcon ? this.props.getScaleIcon(rating) : this.getScaleIcon(rating) }/>
+                    <IconContainer cx={ css.scaleIcon } icon={ this.props.getScaleIcon ? this.props.getScaleIcon(rating) : this.getScaleIcon(rating) } />
                 </div>
-                { this.renderTooltipBox(rating) }
-                <div className={ cx(css.handler, css[`size-${size}`], !rating && css.hidden) } style={ { left: left } } ref={ (handler) => { this.handlerWidth = handler && handler.offsetWidth; } }>
+                {this.renderTooltipBox(rating)}
+                <div
+                    className={ cx(css.handler, css[`size-${size}`], !rating && css.hidden) }
+                    style={ { left: left } }
+                    ref={ (handler) => {
+                        this.handlerWidth = handler && handler.offsetWidth;
+                    } }
+                >
                     <Tooltip cx={ css.tooltip } content={ this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}` }>
-                        <IconContainer cx={ css.handlerIcon } icon={ this.props.getHandlerIcon ? this.props.getHandlerIcon(rating) : this.getHandlerIcon(rating) }/>
+                        <IconContainer cx={ css.handlerIcon } icon={ this.props.getHandlerIcon ? this.props.getHandlerIcon(rating) : this.getHandlerIcon(rating) } />
                     </Tooltip>
                 </div>
             </>
         );
-    }
+    };
 
     renderNa() {
         const isReadonly = this.props.isReadonly || this.props.isDisabled;
         const size = this.props.size || defaultSize;
 
         if (isReadonly && this.props.value !== 0) {
-            return <IconContainer cx={ cx(css.naIcon, css[`size-${size}`], css.disabled) } icon={ NaIcon }/>;
+            return <IconContainer cx={ cx(css.naIcon, css[`size-${size}`], css.disabled) } icon={ NaIcon } />;
         } else {
             return (
                 <Tooltip content={ this.props.renderTooltip ? this.props.renderTooltip(0) : i18n.sliderRating.notAvailableMessage }>
-                    <IconContainer cx={ cx(css.naIcon, css[`size-${size}`], isReadonly && css.disabled) } icon={ this.props.value === 0 ? NaActiveIcon : NaIcon } onClick={ !isReadonly && (() => this.props.onValueChange(0)) }/>
+                    <IconContainer
+                        cx={ cx(css.naIcon, css[`size-${size}`], isReadonly && css.disabled) }
+                        icon={ this.props.value === 0 ? NaActiveIcon : NaIcon }
+                        onClick={ !isReadonly && (() => this.props.onValueChange(0)) }
+                    />
                 </Tooltip>
             );
         }
@@ -123,21 +142,18 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
                     value={ this.props.value === 0 ? null : this.props.value }
                     cx={ css.baseRatingContainer }
                 />
-                {
-                    !this.props.withoutNa &&
-                    <div className={ css.naIconContainer }>{ this.renderNa() }</div>
-                }
+                {!this.props.withoutNa && <div className={ css.naIconContainer }>{this.renderNa()}</div>}
             </div>
         );
     }
 }
 
 type TooltipBoxProps = {
-    size: string,
+    size: string;
     content: React.ReactNode | string;
 };
 
-const TooltipBox = (props: TooltipBoxProps) => {
+function TooltipBox(props: TooltipBoxProps) {
     const { content, size } = props;
     const tooltipBoxRef = useRef<HTMLDivElement>(null);
     const [left, setLeft] = useState<number>(0);
@@ -145,35 +161,37 @@ const TooltipBox = (props: TooltipBoxProps) => {
     const topPosition = tooltipBoxRef.current?.getBoundingClientRect().y || 0;
 
     return (
-        <div
-            className={ css.tooltipsBox }
-            ref={ tooltipBoxRef }
-            onMouseMove={ (event: React.MouseEvent) => setLeft(event.clientX) }
-        >
-            <Tooltip placement='top' content={ content } cx={ css.tooltip }>
-                <div className={ css.tooltipsBoxItem } style={ {
-                    left: `${left - 1}px`,
-                    top: `${topPosition}px`,
-                    height: `${size}px`,
-                } }
+        <div className={ css.tooltipsBox } ref={ tooltipBoxRef } onMouseMove={ (event: React.MouseEvent) => setLeft(event.clientX) }>
+            <Tooltip placement="top" content={ content } cx={ css.tooltip }>
+                <div
+                    className={ css.tooltipsBoxItem }
+                    style={ {
+                        left: `${left - 1}px`,
+                        top: `${topPosition}px`,
+                        height: `${size}px`,
+                    } }
                 />
             </Tooltip>
-            <Tooltip placement='top' content={ content } cx={ css.tooltip }>
-                <div className={ css.tooltipsBoxItem } style={ {
-                    left: `${left}px`,
-                    top: `${topPosition}px`,
-                    height: `${size}px`,
-                } }
+            <Tooltip placement="top" content={ content } cx={ css.tooltip }>
+                <div
+                    className={ css.tooltipsBoxItem }
+                    style={ {
+                        left: `${left}px`,
+                        top: `${topPosition}px`,
+                        height: `${size}px`,
+                    } }
                 />
             </Tooltip>
-            <Tooltip placement='top' content={ content } cx={ css.tooltip }>
-                <div className={ css.tooltipsBoxItem } style={ {
-                    left: `${left + 1}px`,
-                    top: `${topPosition}px`,
-                    height: `${size}px`,
-                } }
+            <Tooltip placement="top" content={ content } cx={ css.tooltip }>
+                <div
+                    className={ css.tooltipsBoxItem }
+                    style={ {
+                        left: `${left + 1}px`,
+                        top: `${topPosition}px`,
+                        height: `${size}px`,
+                    } }
                 />
             </Tooltip>
         </div>
     );
-};
+}

@@ -45,7 +45,9 @@ function filterAndSort(request, allItems, typeName) {
     }
 
     if (typeName) {
-        items.forEach((i) => { i.__typename = typeName; });
+        items.forEach((i) => {
+            i.__typename = typeName;
+        });
     }
 
     return {
@@ -59,7 +61,7 @@ function filterAndSort(request, allItems, typeName) {
 
 function group(request, allItems, typeName) {
     request = request || {};
-    let filter = request.filter || {};
+    const filter = request.filter || {};
 
     let groups = [];
     const items = filterAndSort(request.itemsRequest, allItems).items;
@@ -70,7 +72,7 @@ function group(request, allItems, typeName) {
     Object.keys(grouped).forEach((groupIdStr) => {
         const groupId = groupIdStr === 'undefined' ? 0 : +groupIdStr; // null-values are grouped under groupId = 0
         const groupedItem = grouped[groupIdStr];
-        const name = (groupedItem[0])[groupBy] || (groupedItem[0])[`${groupBy}Name`];
+        const name = groupedItem[0][groupBy] || groupedItem[0][`${groupBy}Name`];
         groups.push({
             count: group.length,
             groupBy,
@@ -121,9 +123,7 @@ router.post('/schedules', async (req, res) => {
 router.post('/persons', async (req, res) => {
     const data = await helpers.getPersons();
     const result = filterAndSort(req.body, data.persons, 'Person');
-    const totalData = (req.body.search || Object.keys(req.body.filter).length > 0)
-        ? result.items
-        : data.persons;
+    const totalData = req.body.search || Object.keys(req.body.filter).length > 0 ? result.items : data.persons;
     res.json(calculateTotal(totalData, result));
 });
 

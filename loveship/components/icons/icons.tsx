@@ -18,7 +18,7 @@ import { ReactComponent as Info18 } from './info-18.svg';
 import { ReactComponent as Info24 } from './info-24.svg';
 
 export const systemIcons: { [key: string]: any } = {
-    '18': {
+    18: {
         clear: BtnCross12,
         foldingArrow: FoldingArrow12,
         accept: Accept12,
@@ -26,7 +26,7 @@ export const systemIcons: { [key: string]: any } = {
         calendar: Calendar12,
         info: Info12,
     },
-    '24': {
+    24: {
         clear: BtnCross12,
         foldingArrow: FoldingArrow12,
         accept: Accept12,
@@ -34,7 +34,7 @@ export const systemIcons: { [key: string]: any } = {
         calendar: Calendar12,
         info: Info12,
     },
-    '30': {
+    30: {
         clear: BtnCross12,
         foldingArrow: FoldingArrow12,
         accept: Accept12,
@@ -42,7 +42,7 @@ export const systemIcons: { [key: string]: any } = {
         calendar: Calendar12,
         info: Info12,
     },
-    '36': {
+    36: {
         clear: BtnCross18,
         foldingArrow: FoldingArrow18,
         accept: Accept18,
@@ -50,7 +50,7 @@ export const systemIcons: { [key: string]: any } = {
         calendar: Calendar18,
         info: Info18,
     },
-    '42': {
+    42: {
         clear: BtnCross18,
         foldingArrow: FoldingArrow18,
         accept: Accept18,
@@ -58,7 +58,7 @@ export const systemIcons: { [key: string]: any } = {
         calendar: Calendar18,
         info: Info18,
     },
-    '48': {
+    48: {
         clear: BtnCross24,
         foldingArrow: FoldingArrow24,
         accept: Accept24,
@@ -66,7 +66,7 @@ export const systemIcons: { [key: string]: any } = {
         calendar: Calendar24,
         info: Info24,
     },
-    '60': {
+    60: {
         clear: BtnCross24,
         foldingArrow: FoldingArrow24,
         accept: Accept24,
@@ -74,7 +74,7 @@ export const systemIcons: { [key: string]: any } = {
         calendar: Calendar24,
         info: Info24,
     },
-    'none': {
+    none: {
         clear: BtnCross18,
         foldingArrow: FoldingArrow18,
         accept: Accept18,

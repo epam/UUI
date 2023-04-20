@@ -9,10 +9,7 @@ export interface TooltipMods {
 }
 
 function applyTooltipMods(mods: TooltipMods) {
-    return [
-        css.root,
-        styles['color-' + (mods.color || 'night900')],
-    ];
+    return [css.root, styles['color-' + (mods.color || 'night900')]];
 }
 
 export const Tooltip = withMods<TooltipProps, TooltipMods>(uuiTooltip, applyTooltipMods);

@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI } from '../common';
+import {
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI,
+} from '../common';
 
 export class BlockerDoc extends BaseDocsBlock {
     title = 'Blocker';
@@ -15,17 +17,11 @@ export class BlockerDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='blocker-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/blocker/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="blocker-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/blocker/Basic.example.tsx" />
 
-                <DocExample
-                    title='Advanced'
-                    path='./_examples/blocker/Advanced.example.tsx'
-                />
+                <DocExample title="Advanced" path="./_examples/blocker/Advanced.example.tsx" />
             </>
         );
     }

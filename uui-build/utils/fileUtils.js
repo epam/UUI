@@ -13,11 +13,11 @@ module.exports = { createFileSync, readJsonFileSync };
  */
 function createFileSync(filePathResolved, contentStr) {
     if (fs.existsSync(filePathResolved)) {
-        fs.rmSync(filePathResolved)
+        fs.rmSync(filePathResolved);
     }
     const targetDir = path.dirname(filePathResolved);
     !fs.existsSync(targetDir) && fs.mkdirSync(targetDir, { recursive: true });
-    fs.writeFileSync(filePathResolved, contentStr)
+    fs.writeFileSync(filePathResolved, contentStr);
 }
 
 function readJsonFileSync(filePathResolved) {

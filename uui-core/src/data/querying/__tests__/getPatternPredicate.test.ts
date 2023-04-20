@@ -7,15 +7,23 @@ interface Person {
     age?: number;
 }
 
-const alice = { name: "Alice", departmentId: 1, age: 25 } as Person;
-const bob = { name: "Bob", departmentId: 1, age: 30 } as Person;
-const edward = { name: "Edward", departmentId: 1, age: 40 } as Person;
-const jack = { name: "Jack", departmentId: 2, age: null } as Person;
-const pete = { name: "Pete", departmentId: 3, age: 45 } as Person;
-const sandra = { name: "Sandra", departmentId: 3, age: 35 } as Person;
-const william = { name: "William", departmentId: 4 } as Person;
+const alice = { name: 'Alice', departmentId: 1, age: 25 } as Person;
+const bob = { name: 'Bob', departmentId: 1, age: 30 } as Person;
+const edward = { name: 'Edward', departmentId: 1, age: 40 } as Person;
+const jack = { name: 'Jack', departmentId: 2, age: null } as Person;
+const pete = { name: 'Pete', departmentId: 3, age: 45 } as Person;
+const sandra = { name: 'Sandra', departmentId: 3, age: 35 } as Person;
+const william = { name: 'William', departmentId: 4 } as Person;
 
-const persons = [alice, bob, edward, jack, pete, sandra, william];
+const persons = [
+    alice,
+    bob,
+    edward,
+    jack,
+    pete,
+    sandra,
+    william,
+];
 
 const run = (filter: DataQueryFilter<Person>) => {
     const filterPredicate = getFilterPredicate(filter as any);
@@ -28,15 +36,15 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ name: "Alice" }', () => {
-        expect(run({ name: "Alice" })).toEqual([alice]);
+        expect(run({ name: 'Alice' })).toEqual([alice]);
     });
 
     it('{ name: "Alice", age: 25 }', () => {
-        expect(run({ name: "Alice", age: 25 })).toEqual([alice]);
+        expect(run({ name: 'Alice', age: 25 })).toEqual([alice]);
     });
 
     it('{ name: "Alice", age: 30 }', () => {
-        expect(run({ name: "Alice", age: 30 })).toEqual([]);
+        expect(run({ name: 'Alice', age: 30 })).toEqual([]);
     });
 
     it('{ age: { in: [25, 30] } }', () => {
@@ -44,15 +52,19 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ departmentId: { in: [3, 4] } }', () => {
-        expect(run({ departmentId: { in: [3, 4] } })).toEqual([pete, sandra, william]);
+        expect(run({ departmentId: { in: [3, 4] } })).toEqual([
+            pete,
+            sandra,
+            william,
+        ]);
     });
 
     it('{ name: { in: ["Jack", "Pete"] }, departmentId: { in: [1, 2]} }', () => {
-        expect(run({ name: { in: ["Jack", "Pete"] }, departmentId: { in: [1, 2]} })).toEqual([jack]);
+        expect(run({ name: { in: ['Jack', 'Pete'] }, departmentId: { in: [1, 2] } })).toEqual([jack]);
     });
 
     it('{ name: { in: ["Jack", "Pete"] } }', () => {
-        expect(run({ name: { in: ["Jack", "Pete"] } })).toEqual([jack, pete]);
+        expect(run({ name: { in: ['Jack', 'Pete'] } })).toEqual([jack, pete]);
     });
 
     it('{ age: { isNull: true } }', () => {
@@ -60,12 +72,23 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ age: { isNull: false } }', () => {
-        expect(run({ age: { isNull: false } })).toEqual([alice, bob, edward, pete, sandra]);
+        expect(run({ age: { isNull: false } })).toEqual([
+            alice,
+            bob,
+            edward,
+            pete,
+            sandra,
+        ]);
     });
 
     it('{ age: { gte: 40 } }', () => {
         // Should include null values as well, filter non-null values with explicit isNull: false
-        expect(run({ age: { gte: 40 } })).toEqual([edward, jack, pete, william]);
+        expect(run({ age: { gte: 40 } })).toEqual([
+            edward,
+            jack,
+            pete,
+            william,
+        ]);
     });
 
     it('{ age: { gte: 40, isNull: false } }', () => {
@@ -74,7 +97,12 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ age: { lte: 30 } }', () => {
-        expect(run({ age: { lte: 30 } })).toEqual([alice, bob, jack, william]);
+        expect(run({ age: { lte: 30 } })).toEqual([
+            alice,
+            bob,
+            jack,
+            william,
+        ]);
     });
 
     it('{ age: { lte: 30, isNull: false } }', () => {
@@ -91,17 +119,21 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ age: { lt: 40, isNull: false }}', () => {
-        expect(run({ age: { lt: 40, isNull: false }})).toEqual([alice, bob, sandra]);
+        expect(run({ age: { lt: 40, isNull: false } })).toEqual([
+            alice,
+            bob,
+            sandra,
+        ]);
     });
 
     it('{ name: { lte: "Bob" } }', () => {
         const filter = { count: { lte: 10 } };
-        expect(run({ name: { lte: "Bob" } })).toEqual([alice, bob]);
+        expect(run({ name: { lte: 'Bob' } })).toEqual([alice, bob]);
     });
 
     it('{ name: { gt: "Pete" } }', () => {
         const filter = { count: { lte: 10 } };
-        expect(run({ name: { gt: "Pete" } })).toEqual([sandra, william]);
+        expect(run({ name: { gt: 'Pete' } })).toEqual([sandra, william]);
     });
 
     it('{ departmentId: { in: [3, 4] }, age: { gt: 40 } }', () => {
@@ -113,11 +145,22 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ age: { in: [null, 40] } }', () => {
-        expect(run({ age: { in: [undefined, null, 40] } })).toEqual([edward, jack, william]);
+        expect(run({
+            age: {
+                in: [
+                    undefined,
+                    null,
+                    40,
+                ],
+            },
+        })).toEqual([
+            edward,
+            jack,
+            william,
+        ]);
     });
 
     it('{ age: { in: [null, "40" as any] } }', () => {
-        expect(run({ age: { in: [null, "40" as any] } })).toEqual([jack]);
+        expect(run({ age: { in: [null, '40' as any] } })).toEqual([jack]);
     });
-
 });

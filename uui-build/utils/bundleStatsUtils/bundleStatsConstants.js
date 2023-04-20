@@ -9,9 +9,7 @@ const BASE_LINE_PATH = './uui-build/config/bundleSizeBaseLine.json';
 const COMPARISON_THRESHOLD_PERCENTAGE = 10;
 const TRACK_BUNDLE_SIZE_REPORT_MD = './.reports/trackBundleSize.md';
 
-const UNTRACKED_MODULES = [
-    '@epam/test-utils',
-]
+const UNTRACKED_MODULES = ['@epam/test-utils'];
 
 module.exports = {
     BASE_LINE_PATH,

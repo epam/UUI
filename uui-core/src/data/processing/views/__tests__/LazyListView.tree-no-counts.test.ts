@@ -1,8 +1,10 @@
-import { LazyDataSource } from "../../LazyDataSource";
-import { LazyListView } from "../LazyListView";
-import { DataSourceState, LazyDataSourceApi, DataQueryFilter, DataRowProps } from "../../../../types";
+import { LazyDataSource } from '../../LazyDataSource';
+import { LazyListView } from '../LazyListView';
+import {
+    DataSourceState, LazyDataSourceApi, DataQueryFilter, DataRowProps,
+} from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay } from "@epam/test-utils";
+import { delay } from '@epam/test-utils';
 
 interface TestItem {
     id: number;
@@ -24,25 +26,27 @@ describe('LazyListView', () => {
         { id: 330, parentId: 300 }, //  9     330
     ];
 
-    testData.forEach(i => { i.childrenCount = testData.filter(x => x.parentId == i.id).length; });
+    testData.forEach((i) => {
+        i.childrenCount = testData.filter((x) => x.parentId == i.id).length;
+    });
 
-    const testDataById = (Object as any).fromEntries(testData.map(i => [i.id, i]));
+    const testDataById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));
 
     let value: DataSourceState;
-    let onValueChanged = (newValue: DataSourceState) => { value = newValue; };
+    const onValueChanged = (newValue: DataSourceState) => {
+        value = newValue;
+    };
 
-    const testApiFn: LazyDataSourceApi<TestItem, number, DataQueryFilter<TestItem>> =
-        (rq) => {
-            const result = runDataQuery(testData, rq);
-            return Promise.resolve({ items: result.items });
-        };
+    const testApiFn: LazyDataSourceApi<TestItem, number, DataQueryFilter<TestItem>> = (rq) => {
+        const result = runDataQuery(testData, rq);
+        return Promise.resolve({ items: result.items });
+    };
 
     const testApi = jest.fn(testApiFn);
 
-    let treeDataSource = new LazyDataSource({
-        api: (rq, ctx) => ctx.parent
-            ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
-            : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
+    const treeDataSource = new LazyDataSource({
+        api: (rq, ctx) =>
+            ctx.parent ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } }) : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
     });
 
@@ -52,35 +56,28 @@ describe('LazyListView', () => {
     });
 
     it('testApi is ok', async () => {
-        let data = await testApi({ filter: { parentId: 100 } });
+        const data = await testApi({ filter: { parentId: 100 } });
         expect(data).toEqual({
-            items: [
-                testDataById[110],
-                testDataById[120],
-            ],
+            items: [testDataById[110], testDataById[120]],
         });
     });
 
-    function expectViewToLookLike(
-        view: LazyListView<TestItem, number>,
-        rows: Partial<DataRowProps<TestItem, number>>[],
-        rowsCount?: number,
-    ) {
-        let viewRows = view.getVisibleRows();
+    function expectViewToLookLike(view: LazyListView<TestItem, number>, rows: Partial<DataRowProps<TestItem, number>>[], rowsCount?: number) {
+        const viewRows = view.getVisibleRows();
 
-        rows.forEach(r => {
+        rows.forEach((r) => {
             if (r.id) {
                 r.value = testDataById[r.id];
             }
         });
 
-        expect(viewRows).toEqual(rows.map(r => expect.objectContaining(r)));
-        let listProps = view.getListProps();
+        expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
+        const listProps = view.getListProps();
         rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can load tree, unfold nodes, and scroll down', async () => {
-        let ds = treeDataSource;
+        const ds = treeDataSource;
         let view = ds.getView(value, onValueChanged, { getParentId: ({ parentId }) => parentId });
         expectViewToLookLike(view, [
             { isLoading: true },
@@ -114,17 +111,14 @@ describe('LazyListView', () => {
         expect(testApi).toBeCalledTimes(1);
         testApi.mockClear();
 
-        expectViewToLookLike(view, [
-            { id: 200, isFoldable: false },
-            { id: 300, isFoldable: true, isFolded: true },
-        ]);
+        expectViewToLookLike(view, [{ id: 200, isFoldable: false }, { id: 300, isFoldable: true, isFolded: true }]);
         expect(view.getListProps().rowsCount).toBe(3); // now we know that item #4 doesn't exists, so we know count
 
         // scroll top
         value.topIndex = 0;
         value.visibleCount = 6;
         view = ds.getView(value, onValueChanged, {});
-        let rows = view.getVisibleRows();
+        const rows = view.getVisibleRows();
 
         // unfold first row
         rows[0].onFold(rows[0]);
@@ -139,12 +133,18 @@ describe('LazyListView', () => {
 
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100, isFolded: false, depth: 0, isFoldable: true },
-            { id: 110, depth: 1, isFoldable: false },
-            { id: 120, depth: 1, isFoldable: true },
-            { id: 200, depth: 0 },
-            { id: 300, depth: 0 },
-        ], 5);
+        expectViewToLookLike(
+            view,
+            [
+                {
+                    id: 100, isFolded: false, depth: 0, isFoldable: true,
+                },
+                { id: 110, depth: 1, isFoldable: false },
+                { id: 120, depth: 1, isFoldable: true },
+                { id: 200, depth: 0 },
+                { id: 300, depth: 0 },
+            ],
+            5,
+        );
     });
 });

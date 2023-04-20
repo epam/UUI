@@ -8,7 +8,7 @@ const defaultSize = '18';
 export interface BadgeMods {
     color?: types.EpamColor;
     shape?: types.ControlShape;
-    fill?: UuiBadgeMods['fill'] | "white" | "light" | "none";
+    fill?: UuiBadgeMods['fill'] | 'white' | 'light' | 'none';
     size?: UuiBadgeMods['size'] | '12';
 }
 
@@ -21,13 +21,14 @@ export function applyBadgeMods(mods: BadgeMods) {
     ];
 }
 
-export type BadgeProps = Omit<UuiBadgeProps, "color" | "fill" | "size"> & BadgeMods;
+export type BadgeProps = Omit<UuiBadgeProps, 'color' | 'fill' | 'size'> & BadgeMods;
 
-export const Badge = withMods<Omit<UuiBadgeProps, "color" | "fill" | "size">, BadgeMods>(
+export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, BadgeMods>(
     UuiBadge,
     applyBadgeMods,
-    (props) => ({
-        color: props.color || 'sky',
-        size: props.size || defaultSize,
-    }) as BadgeProps,
+    (props) =>
+        ({
+            color: props.color || 'sky',
+            size: props.size || defaultSize,
+        } as BadgeProps),
 );

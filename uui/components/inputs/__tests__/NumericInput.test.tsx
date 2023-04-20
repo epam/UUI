@@ -22,7 +22,7 @@ async function setupNumericInput(params: Partial<NumericInputProps>) {
                 onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
             };
         },
-        (props) => (<NumericInput { ...props } />),
+        (props) => <NumericInput { ...props } />,
     );
 
     const dom = {
@@ -35,28 +35,12 @@ async function setupNumericInput(params: Partial<NumericInputProps>) {
 describe('NumericInput', () => {
     describe('snapshots', () => {
         it('should be rendered with minimum props', async () => {
-            const tree = await renderSnapshotWithContextAsync(
-                <NumericInput
-                    value={ null }
-                    onValueChange={ jest.fn }
-                    min={ 0 }
-                    max={ 50 }
-                />,
-            );
+            const tree = await renderSnapshotWithContextAsync(<NumericInput value={ null } onValueChange={ jest.fn } min={ 0 } max={ 50 } />);
             expect(tree).toMatchSnapshot();
         });
 
         it('should be rendered with maximum props', async () => {
-            const tree = await renderSnapshotWithContextAsync(
-                <NumericInput
-                    value={ null }
-                    onValueChange={ jest.fn }
-                    min={ 0 }
-                    max={ 50 }
-                    size="36"
-                    mode="inline"
-                />,
-            );
+            const tree = await renderSnapshotWithContextAsync(<NumericInput value={ null } onValueChange={ jest.fn } min={ 0 } max={ 50 } size="36" mode="inline" />);
             expect(tree).toMatchSnapshot();
         });
     });
@@ -187,7 +171,7 @@ describe('NumericInput', () => {
 
         it('should change value by arrows considering min/max specified and fractional step', async () => {
             const res = await setupNumericInput({
-                value: 1199.090,
+                value: 1199.09,
                 formatOptions: { maximumFractionDigits: 3, minimumFractionDigits: 2 },
                 step: 0.001,
             });
@@ -203,7 +187,7 @@ describe('NumericInput', () => {
 
         it('should change value by typing considering min/max specified', async () => {
             const res = await setupNumericInput({
-                value: 1000.110,
+                value: 1000.11,
                 formatOptions: { maximumFractionDigits: 3, minimumFractionDigits: 2 },
             });
             expect(res.dom.input.placeholder).toEqual('1,000.11');

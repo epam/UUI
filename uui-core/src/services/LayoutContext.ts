@@ -2,14 +2,13 @@ import { BaseContext } from './BaseContext';
 import maxBy from 'lodash.maxby';
 import { LayoutLayer } from '../types/objects';
 
-
-
 export class LayoutContext extends BaseContext {
     layerIdCounter = 0;
+
     layers: LayoutLayer[] = [];
 
     public getLayer(): LayoutLayer {
-        const topLayer = maxBy(this.layers, l => l.depth);
+        const topLayer = maxBy(this.layers, (l) => l.depth);
         const depth = topLayer ? topLayer.depth + 1 : 0;
         const layer = {
             id: this.layerIdCounter++,
@@ -23,6 +22,6 @@ export class LayoutContext extends BaseContext {
     }
 
     public releaseLayer(layer: LayoutLayer) {
-        this.layers = this.layers.filter(l => l.id != layer.id);
+        this.layers = this.layers.filter((l) => l.id != layer.id);
     }
 }
