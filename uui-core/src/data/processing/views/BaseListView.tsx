@@ -198,9 +198,12 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected applyRowOptions(row: DataRowProps<TItem, TId>) {
-        const rowOptions = (this.props.getRowOptions && !row.isLoading)
+        const externalRowOptions = (this.props.getRowOptions && !row.isLoading)
             ? this.props.getRowOptions(row.value, row.index)
-            : this.props.rowOptions;
+            : {};
+
+        const rowOptions = { ...this.props.rowOptions, ...externalRowOptions };
+
         const estimatedChildrenCount = this.getEstimatedChildrenCount(row.id);
         const isFlattenSearch = this.isFlattenSearch?.() ?? false;
 

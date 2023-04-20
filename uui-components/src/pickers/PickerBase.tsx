@@ -115,17 +115,12 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         return applyValueToDataSourceState(this.props, this.state.dataSourceState, this.props.value, this.props.dataSource);
     }
 
-    getRowOptions = (item: TItem, index: number) => {
-        let options: DataRowOptions<TItem, TId> = {};
+    getRowOptions = () => {
         if (this.isSingleSelect()) {
-            options.isSelectable = true;
-        } else {
-            options.checkbox = { isVisible: true };
+            return { isSelectable: true };
         }
 
-        const externalOptions = this.props.getRowOptions ? this.props.getRowOptions(item, index) : {};
-
-        return { ...options, ...externalOptions };
+        return { checkbox: { isVisible: true } };
     }
 
     clearSelection = () => {
@@ -171,11 +166,12 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
 
     getView(): IDataSourceView<TItem, TId, any> {
         return this.props.dataSource.getView(this.getDataSourceState(), this.handleDataSourceValueChange, {
-            getRowOptions: this.getRowOptions,
+            rowOptions: this.getRowOptions(),
             getSearchFields: this.props.getSearchFields || ((item: TItem) => [this.getName(item)]),
             isFoldedByDefault: this.props.isFoldedByDefault,
             ...(this.props.sortBy ? { sortBy: this.props.sortBy } : {}),
-            ...(this.props.cascadeSelection ? { cascadeSelection: this.props.cascadeSelection } : {})
+            ...(this.props.cascadeSelection ? { cascadeSelection: this.props.cascadeSelection } : {}),
+            ...(this.props.getRowOptions ? { getRowOptions: this.props.getRowOptions } : {}),
         });
     }
 
