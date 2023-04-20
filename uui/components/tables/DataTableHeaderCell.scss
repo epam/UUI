@@ -121,8 +121,8 @@
     }
 
     &.ghost {
-        background-color: var(--uui-dt-row-bg-hover);
         @include dnd-ghost-shadow();
+        background-color: var(--uui-dt-row-bg-hover);
     }
 
     &.is-dragged-out {

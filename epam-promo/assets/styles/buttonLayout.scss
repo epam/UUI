@@ -39,8 +39,7 @@
     } @else if ($size == 48px) {
         @include button-padding(12px, 6px, $borderWidth);
     } @else {
-        @include button-padding(6px, 6px, $borderWidth)
-    }
+        @include button-padding(6px, 6px, $borderWidth); }
 }
 
 @mixin button-padding($controlPadding, $captionPadding, $borderWidth) {

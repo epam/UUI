@@ -21,7 +21,7 @@ body {
     height: calc(100vh - 102px);
     transition: all 500ms;
     flex-basis: auto;
-    min-width: 0px;
+    min-width: 0;
     flex-grow: 1;
 
     :global(.uui-table-row) {
@@ -61,7 +61,7 @@ body {
 
 .presets {
     padding-left: 50px;
-    transition: .5s padding-left;
+    transition: 0.5s padding-left;
     background-color: var(--surface-color, white);
 
     &-with-filter {
