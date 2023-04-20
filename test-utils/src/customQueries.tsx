@@ -1,10 +1,10 @@
 import { buildQueries, within } from '@testing-library/react';
 
-function buildQueryByRoleAndText() {
-    function queryAllByRoleAndText(container: HTMLElement, params: { role: string, text: string }) {
-        return within(container).queryAllByRole(params.role).filter((e) => e.textContent === params.text);
-    }
+function queryAllByRoleAndText(container: HTMLElement, params: { role: string, text: string }) {
+    return within(container).queryAllByRole(params.role).filter((e) => e.textContent === params.text);
+}
 
+function buildQueryByRoleAndText() {
     const [
         queryByRoleAndText,
         getAllByRoleAndText,
@@ -29,6 +29,8 @@ function buildQueryByRoleAndText() {
 
 const buildQueryByRoleAndTextApi = buildQueryByRoleAndText();
 
-export default {
+const allCustomQueries = {
     ...buildQueryByRoleAndTextApi,
 };
+
+export default allCustomQueries;

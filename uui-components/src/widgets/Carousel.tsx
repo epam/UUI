@@ -34,17 +34,17 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
         activeSlide: 0,
     };
 
-    nextPage = (maxPage: number) => (event: any) => {
+    nextPage = (maxPage: number) => () => {
         if (this.state.activeSlide < maxPage) {
-            this.setState({ activeSlide: this.state.activeSlide + 1 });
+            this.setState((prevState) => ({ activeSlide: prevState.activeSlide + 1 }));
         } else {
             this.setState({ activeSlide: 0 });
         }
     };
 
-    prevPage = (maxPage: number) => (event: any) => {
+    prevPage = (maxPage: number) => () => {
         if (this.state.activeSlide > 0) {
-            this.setState({ activeSlide: this.state.activeSlide - 1 });
+            this.setState((prevState) => ({ activeSlide: prevState.activeSlide - 1 }));
         } else {
             this.setState({ activeSlide: maxPage });
         }
@@ -52,7 +52,11 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
 
     renderCarouselBar = (slidesCount: number) => {
         return range(slidesCount).map((x, idx) => (
-            <div onClick={ () => this.setState({ activeSlide: idx }) } key={ idx } className={ cx(uuiCarousel.barItem, this.state.activeSlide === idx && uuiMod.active) } />
+            <div
+                onClick={ () => this.setState({ activeSlide: idx }) }
+                key={ idx }
+                className={ cx(uuiCarousel.barItem, this.state.activeSlide === idx && uuiMod.active) }
+            />
         ));
     };
 

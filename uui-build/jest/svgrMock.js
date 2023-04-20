@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as React from 'react';
 
 const svgrURL = 'SvgrURL';

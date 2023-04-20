@@ -16,7 +16,9 @@
     "@epam/uui-components": "5.0.0-alpha.0",
     "@epam/uui-core": "5.0.0-alpha.0",
     "classnames": "2.2.6",
-    "react-focus-lock": "2.9.2"
+    "react-focus-lock": "2.9.2",
+    "lodash.sortby": "4.7.0",
+    "react-popper": "2.3.0"
   },
   "peerDependencies": {
     "prop-types": "*",

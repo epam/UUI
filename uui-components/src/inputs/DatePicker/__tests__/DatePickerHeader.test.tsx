@@ -1,6 +1,6 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { fireEvent, setupComponentForTest } from '@epam/test-utils';
+import { fireEvent, setupComponentForTest, screen } from '@epam/test-utils';
 import { DatePickerHeader, DatePickerHeaderProps } from '../DatePickerHeader';
 
 async function setupDatePickerHeader(params: { initialDate: string }) {
@@ -32,28 +32,28 @@ async function setupDatePickerHeader(params: { initialDate: string }) {
 
 describe('DatePickerHeader', () => {
     it('should change date on arrow click', async () => {
-        const { result, dom } = await setupDatePickerHeader({ initialDate: '2017-01-22' });
+        const { dom } = await setupDatePickerHeader({ initialDate: '2017-01-22' });
 
-        expect(result.queryByText('January 2017')).toBeTruthy();
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
 
         fireEvent.click(dom.left);
-        expect(result.queryByText('December 2016')).toBeTruthy();
+        expect(screen.getByText('December 2016')).toBeInTheDocument();
 
         fireEvent.click(dom.right);
-        expect(result.queryByText('January 2017')).toBeTruthy();
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
 
         fireEvent.click(dom.right);
-        expect(result.queryByText('February 2017')).toBeTruthy();
+        expect(screen.getByText('February 2017')).toBeInTheDocument();
     });
 
     it('should change view on header caption click', async () => {
-        const { result, dom } = await setupDatePickerHeader({ initialDate: '2017-01-22' });
-        expect(result.queryByText('January 2017')).toBeTruthy();
+        const { dom } = await setupDatePickerHeader({ initialDate: '2017-01-22' });
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
 
         fireEvent.click(dom.title);
-        expect(result.queryByText('2017')).toBeTruthy();
+        expect(screen.getByText('2017')).toBeInTheDocument();
 
         fireEvent.click(dom.title);
-        expect(result.queryByText('January 2017')).toBeTruthy();
+        expect(screen.getByText('January 2017')).toBeInTheDocument();
     });
 });

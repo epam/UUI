@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { getParameters } from 'codesandbox/lib/api/define';
 import { FilesRecord, getCodesandboxConfig } from './getCodesandboxConfig';
 import { svc } from '../../services';

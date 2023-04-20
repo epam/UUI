@@ -39,9 +39,13 @@ export class DatePickerBody extends DatePickerBodyBase<string, DatePickerBodyPro
     getView = () => {
         switch (this.props.value?.view) {
             case 'MONTH_SELECTION':
-                return <MonthSelection selectedDate={ dayjs(this.props.value.selectedDate) } value={ this.props.value.displayedDate } onValueChange={ this.onMonthClick } />;
+                return (
+                    <MonthSelection selectedDate={ dayjs(this.props.value.selectedDate) } value={ this.props.value.displayedDate } onValueChange={ this.onMonthClick } />
+                );
             case 'YEAR_SELECTION':
-                return <YearSelection selectedDate={ dayjs(this.props.value.selectedDate) } value={ this.props.value.displayedDate } onValueChange={ this.onYearClick } />;
+                return (
+                    <YearSelection selectedDate={ dayjs(this.props.value.selectedDate) } value={ this.props.value.displayedDate } onValueChange={ this.onYearClick } />
+                );
             case 'DAY_SELECTION':
                 return (
                     <Calendar
@@ -62,7 +66,7 @@ export class DatePickerBody extends DatePickerBodyBase<string, DatePickerBodyPro
             <>
                 <div className={ uuiDatePickerBody.separator } />
                 <CalendarPresets
-                    onPresetSet={ (presetVal) => {
+                    onPresetSet={ () => {
                         // this.props.onValueChange((presetVal) => this.props.setDisplayedDateAndView(presetVal.displayedDate, presetVal.view));
                         this.props.changeIsOpen(false);
                     } }

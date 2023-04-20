@@ -267,11 +267,9 @@ describe('useForm', () => {
             expect(result.current.isInvalid).toEqual(false);
 
             // Update the getMetadata callback so 'dummy' is now required
-            act(() => {
-                rerender({
-                    ...props,
-                    getMetadata: () => ({ props: { dummy: { isRequired: true } } }),
-                });
+            rerender({
+                ...props,
+                getMetadata: () => ({ props: { dummy: { isRequired: true } } }),
             });
 
             act(() => result.current.lens.prop('dummy').set(' '));
@@ -370,7 +368,7 @@ describe('useForm', () => {
         it('Should revert to the last saved value', async () => {
             const props: UseFormProps<IFoo> = {
                 value: testData,
-                onSave: async (value) => {},
+                onSave: async () => {},
                 beforeLeave: () => Promise.resolve(false),
                 getMetadata: () => testMetadata,
             };
@@ -578,8 +576,8 @@ describe('useForm', () => {
             deep2?: { inner2: string };
         }
 
-        const testData: IAdvancedFoo = { dummy: 'test', deep: { inner: '' } };
-        const testMetadata: Metadata<IAdvancedFoo> = { props: { dummy: { isRequired: true } } };
+        const testDataLocal: IAdvancedFoo = { dummy: 'test', deep: { inner: '' } };
+        const testMetadataLocal: Metadata<IAdvancedFoo> = { props: { dummy: { isRequired: true } } };
 
         it('Should correctly handle server validation', async () => {
             const serverResponse: FormSaveResponse<IAdvancedFoo> = {
@@ -605,10 +603,10 @@ describe('useForm', () => {
 
             const { result: firstResult, unmount } = await renderHookToJsdomWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
                 useForm({
-                    value: testData,
+                    value: testDataLocal,
                     onSave: (data) => Promise.resolve({ form: data }),
                     onSuccess: () => '',
-                    getMetadata: () => testMetadata,
+                    getMetadata: () => testMetadataLocal,
                     beforeLeave: () => Promise.resolve(false),
                 }));
 
@@ -619,10 +617,10 @@ describe('useForm', () => {
 
             const { result: secondResult } = await renderHookToJsdomWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
                 useForm({
-                    value: testData,
+                    value: testDataLocal,
                     onSave: () => Promise.resolve(serverResponse),
                     onSuccess: () => '',
-                    getMetadata: () => testMetadata,
+                    getMetadata: () => testMetadataLocal,
                 }));
 
             await act(() => handleSave(secondResult.current.save));
@@ -659,10 +657,10 @@ describe('useForm', () => {
 
             const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
                 useForm({
-                    value: { ...testData, deep: { inner: 'error' } },
+                    value: { ...testDataLocal, deep: { inner: 'error' } },
                     onSave: ({ deep: { inner } }) => (inner === 'error' ? Promise.resolve(serverResponse) : Promise.resolve()),
                     onSuccess: () => '',
-                    getMetadata: () => testMetadata,
+                    getMetadata: () => testMetadataLocal,
                     beforeLeave: () => Promise.resolve(false),
                 }));
 
@@ -713,10 +711,10 @@ describe('useForm', () => {
 
             const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
                 useForm({
-                    value: { ...testData, deep: { inner: 'error1' }, deep2: { inner2: 'error' } },
+                    value: { ...testDataLocal, deep: { inner: 'error1' }, deep2: { inner2: 'error' } },
                     onSave: () => Promise.resolve(serverResponse),
                     onSuccess: () => '',
-                    getMetadata: () => testMetadata,
+                    getMetadata: () => testMetadataLocal,
                     beforeLeave: () => Promise.resolve(false),
                 }));
 

@@ -52,7 +52,13 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         content = (
             <div className={ css.editorWrapper } onClick={ handleEditorClick }>
                 {props.renderEditor(editorProps)}
-                <DataTableCellOverlay { ...editorProps } renderTooltip={ props.renderTooltip } inFocus={ state.inFocus } rowIndex={ row.index } columnIndex={ props.index } />
+                <DataTableCellOverlay
+                    { ...editorProps }
+                    renderTooltip={ props.renderTooltip }
+                    inFocus={ state.inFocus }
+                    rowIndex={ row.index }
+                    columnIndex={ props.index }
+                />
             </div>
         );
     } else {

@@ -120,7 +120,9 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             rowHeights.current[topIndex + index] = height;
         });
 
-        const averageHeight = rowHeights.current.length === 0 ? rowHeights.current.length + 1 : rowHeights.current.reduce((sum, next) => sum + next, 0) / rowHeights.current.length;
+        const averageHeight = rowHeights.current.length === 0
+            ? rowHeights.current.length + 1
+            : rowHeights.current.reduce((sum, next) => sum + next, 0) / rowHeights.current.length;
 
         rowOffsets.current = [];
         let lastOffset = listOffset;

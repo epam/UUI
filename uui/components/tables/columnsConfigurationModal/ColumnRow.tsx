@@ -48,5 +48,14 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps) {
         );
     };
 
-    return <DndActor<DndDataType, DndDataType> key={ column.key } srcData={ data } dstData={ data } canAcceptDrop={ onCanAcceptDrop } onDrop={ onDrop } render={ renderContent } />;
+    return (
+        <DndActor<DndDataType, DndDataType>
+            key={ column.key }
+            srcData={ data }
+            dstData={ data }
+            canAcceptDrop={ onCanAcceptDrop }
+            onDrop={ onDrop }
+            render={ renderContent }
+        />
+    );
 });

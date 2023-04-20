@@ -83,12 +83,17 @@ export class Snackbar extends React.Component<SnackbarProps> {
         }
 
         const transitionRef = React.createRef<HTMLDivElement>();
-
+        let className;
+        if (isItemOnLeftSide) {
+            className = uuiSnackbar.itemWrapper.self;
+        } else {
+            className = isItemOnCenter ? uuiSnackbar.itemWrapperCenter.self : uuiSnackbar.itemWrapperRight.self;
+        }
         return (
             <CSSTransition nodeRef={ transitionRef } classNames={ style } timeout={ 200 } key={ item.props.id }>
                 <div
                     ref={ transitionRef }
-                    className={ isItemOnLeftSide ? uuiSnackbar.itemWrapper.self : isItemOnCenter ? uuiSnackbar.itemWrapperCenter.self : uuiSnackbar.itemWrapperRight.self }
+                    className={ className }
                     key={ item.props.key }
                     style={ isItemOnBottom ? { bottom: position } : { top: position } }
                 >
@@ -100,7 +105,8 @@ export class Snackbar extends React.Component<SnackbarProps> {
         );
     }
 
-    private renderItemWithOffset(offsetCounter: number) {
+    private renderItemWithOffset(offsetCounterParam: number) {
+        let offsetCounter = offsetCounterParam;
         return (item: NotificationOperation) => {
             const height = this.itemsHeights[item.props.id] || 0;
             const renderItem = this.renderItem(item, height > 0 ? offsetCounter : -300);
