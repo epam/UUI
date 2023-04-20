@@ -101,5 +101,11 @@
     "scss.lint.emptyRules": "ignore",
     "editor.codeActionsOnSave": {
         "source.fixAll.stylelint": true
-    }
+    },
+    "stylelint.validate": [
+        "css",
+        "less",
+        "scss"
+    ],
+    "eslint.format.enable": true
 }

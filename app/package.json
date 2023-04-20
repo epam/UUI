@@ -13,12 +13,6 @@
     "analyzer": "source-map-explorer 'build/static/**/*.js'"
   },
   "cracoConfig": "./build-config/craco.config.js",
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "dependencies": {
     "@epam/assets": "5.0.0-alpha.0",
     "@epam/draft-rte": "4.9.1",
@@ -89,6 +83,7 @@
     "escape-string-regexp": "1.0.5",
     "react-scripts": "5.0.1",
     "source-map-explorer": "2.5.3",
+    "stylelint-webpack-plugin": "4.0.0",
     "typescript": "4.9.3"
   }
 }

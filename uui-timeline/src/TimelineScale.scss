@@ -6,21 +6,17 @@ canvas {
 .timelineHeader {
     position: relative;
     height: 61px;
-    background-color: #fff;
-    border-top: 1px solid #eee; // temp
+    background-color: #FFF;
+    border-top: 1px solid #EEE; // temp
 }
 
 .timelineScale {
     cursor: pointer;
     cursor: grab;
-    cursor: -webkit-grab;
-    cursor: -moz-grab;
 
     &Grabbing {
         cursor: ew-resize;
         cursor: grabbing;
-        cursor: -moz-grabbing;
-        cursor: -webkit-grabbing;
     }
 }
 
@@ -35,24 +31,20 @@ canvas {
     margin: auto;
     color: rgba(102, 102, 102, 0.7);
     cursor: pointer;
-    fill: #aeaeae;
+    fill: #AEAEAE;
 
     &:hover {
-        fill: #1a9cb0;
+        fill: #1A9CB0;
     }
 
     &Left {
         left: 0;
-        background: -moz-linear-gradient(left, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(to right, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b3ffffff', endColorstr='#00ffffff', GradientType=1); /* IE6-9 */
     }
 
     &Right {
         right: 0;
-        background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 100%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#b3ffffff', GradientType=1); /* IE6-9 */
     }
