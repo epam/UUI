@@ -1,4 +1,4 @@
-import { withMods } from "@epam/uui-core";
+import { withMods } from '@epam/uui-core';
 import { Text as UuiText, TextProps as UuiTextProps } from '@epam/uui';
 import * as types from '../types';
 
@@ -12,8 +12,9 @@ export type TextProps = Omit<UuiTextProps, 'color' | 'font'> & TextMods;
 export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
     UuiText,
     () => [],
-    (props) => ({
-        color: props.color ?? 'night700',
-        font: props.font ?? 'sans',
-    }) as TextProps,
+    (props) =>
+        ({
+            color: props.color ?? 'night700',
+            font: props.font ?? 'sans',
+        } as TextProps),
 );

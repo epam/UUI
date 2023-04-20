@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4 } from '../common';
+import {
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4,
+} from '../common';
 
 export class MultiSwitchDoc extends BaseDocsBlock {
     title = 'MultiSwitch';
@@ -14,12 +16,9 @@ export class MultiSwitchDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='multiSwitch-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/multiSwitch/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="multiSwitch-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/multiSwitch/Basic.example.tsx" />
             </>
         );
     }

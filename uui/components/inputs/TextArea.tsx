@@ -21,11 +21,7 @@ export function applyTextAreaMods(mods: TextAreaMods) {
 
 export type TextAreaProps = UuiTextAreaProps & TextAreaMods;
 
-export const TextArea = withMods<UuiTextAreaProps, TextAreaMods>(
-    uuiTextArea,
-    applyTextAreaMods,
-    props => ({
-        autoSize: props.mode === types.EditMode.CELL ? true : props.autoSize,
-        maxLength: props.mode === types.EditMode.CELL ? undefined : props.maxLength,
-    }),
-);
+export const TextArea = withMods<UuiTextAreaProps, TextAreaMods>(uuiTextArea, applyTextAreaMods, (props) => ({
+    autoSize: props.mode === types.EditMode.CELL ? true : props.autoSize,
+    maxLength: props.mode === types.EditMode.CELL ? undefined : props.maxLength,
+}));

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import css from './MainMenuAvatar.scss';
 import cx from 'classnames';
-import { IAdaptiveItem, IDropdownToggler, Icon, IHasCX, uuiMarkers } from '@epam/uui-core';
+import {
+    IAdaptiveItem, IDropdownToggler, Icon, IHasCX, uuiMarkers,
+} from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { ReactComponent as FoldingArrow } from '../../../icons/folding-arrow-18.svg';
 import { Avatar } from '@epam/uui-components';
@@ -17,12 +19,12 @@ export const MainMenuAvatar = React.forwardRef<HTMLButtonElement, MainMenuAvatar
         className={ cx(css.container, props.isDropdown && css.dropdown, props.isOpen && css.open, props.onClick && uuiMarkers.clickable, props.cx) }
         onClick={ props.onClick }
     >
-        <Avatar size='36' img={ props.avatarUrl } />
-        { props.icon && <IconContainer icon={ props.icon } /> }
-        { props.isDropdown && (
+        <Avatar size="36" img={ props.avatarUrl } />
+        {props.icon && <IconContainer icon={ props.icon } />}
+        {props.isDropdown && (
             <div>
                 <IconContainer icon={ FoldingArrow } flipY={ props.isOpen } />
             </div>
-        ) }
+        )}
     </button>
 ));

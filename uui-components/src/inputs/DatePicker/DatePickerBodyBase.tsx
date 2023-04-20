@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Dayjs } from 'dayjs';
-import { IHasCX, Icon, cx, IHasRawProps, RangeDatePickerPresets, IHasForwardedRef } from "@epam/uui-core";
+import {
+    IHasCX, Icon, cx, IHasRawProps, RangeDatePickerPresets, IHasForwardedRef,
+} from '@epam/uui-core';
 
 export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 
@@ -9,15 +11,15 @@ export const valueFormat = 'YYYY-MM-DD';
 export const supportedDateFormats = (format: string) => {
     return [
         ...(format ? [format] : []),
-        "MM/DD/YYYY",
-        "DD-MM-YYYY",
-        "DD.MM.YYYY",
-        "YYYY/MM/DD",
-        "YYYY-MM-DD",
-        "YYYY.MM.DD",
-        "MMM D, YYYY",
-        "D/M/YYYY",
-        "YYYY/M/D",
+        'MM/DD/YYYY',
+        'DD-MM-YYYY',
+        'DD.MM.YYYY',
+        'YYYY/MM/DD',
+        'YYYY-MM-DD',
+        'YYYY.MM.DD',
+        'MMM D, YYYY',
+        'D/M/YYYY',
+        'YYYY/M/D',
     ];
 };
 
@@ -51,16 +53,16 @@ export abstract class DatePickerBodyBase<TSelection, TProps> extends React.Compo
 
     onMonthClick = (newDate: Dayjs) => {
         this.props.setDisplayedDateAndView(newDate, 'DAY_SELECTION');
-    }
+    };
 
     onYearClick = (newDate: Dayjs) => {
         this.props.setDisplayedDateAndView(newDate, 'MONTH_SELECTION');
-    }
+    };
 
     render() {
         return (
             <div ref={ this.props.forwardedRef } className={ cx(uuiDatePickerBodyBase.container, this.props.cx) } { ...this.props.rawProps }>
-                { this.renderDatePicker() }
+                {this.renderDatePicker()}
             </div>
         );
     }

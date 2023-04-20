@@ -25,7 +25,7 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
                 value: [
                     {
                         name: 'ACTION 1',
-                        action: () => { },
+                        action: () => {},
                     },
                 ],
                 name: '1 action',
@@ -34,11 +34,11 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
                 value: [
                     {
                         name: 'ACTION 1',
-                        action: () => { },
+                        action: () => {},
                     },
                     {
                         name: 'ACTION 2',
-                        action: () => { },
+                        action: () => {},
                     },
                 ],
                 name: '2 actions',
@@ -48,7 +48,7 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
     .prop('onClose', {
         examples: [
             {
-                value: () => { },
+                value: () => {},
                 name: 'OnClose',
             },
         ],

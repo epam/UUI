@@ -2,6 +2,7 @@
     height: calc(100vh - 102px);
     background: white;
 }
+
 body {
     &:global(.full-screen) {
         .root {

@@ -1,8 +1,9 @@
 import { ApiCallError, ApiContext } from '../ApiContext';
 
-const delay = (time?: number) => new Promise((resolve) => {
-    setTimeout(resolve, time || 0);
-});
+const delay = (time?: number) =>
+    new Promise((resolve) => {
+        setTimeout(resolve, time || 0);
+    });
 
 describe('ApiContext', () => {
     let context = new ApiContext({});

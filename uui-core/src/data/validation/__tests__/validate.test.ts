@@ -1,5 +1,5 @@
-import { validate } from "../validate";
-import { Metadata } from "../../../types";
+import { validate } from '../validate';
+import { Metadata } from '../../../types';
 
 interface IBar {
     id?: number;
@@ -13,11 +13,11 @@ interface IFoo {
 }
 
 const initBarValue: IBar = {
-    name: "",
+    name: '',
 };
 
 const initFooValueSimple: IFoo = {
-    name: "",
+    name: '',
 };
 
 const initFooValueNested: IFoo = {
@@ -29,7 +29,7 @@ const initFooValueArray: IFoo = {
 };
 
 const initFooValueMap: IFoo = {
-    map: {user1: initBarValue, user2: initBarValue},
+    map: { user1: initBarValue, user2: initBarValue },
 };
 
 const fooMetadata: Metadata<IFoo> = {
@@ -108,7 +108,8 @@ describe('validate', () => {
                             },
                         },
                         1: {
-                            isInvalid: true, validationProps: {
+                            isInvalid: true,
+                            validationProps: {
                                 name: { isInvalid: true },
                             },
                         },
@@ -142,12 +143,14 @@ describe('validate', () => {
                     isInvalid: true,
                     validationProps: {
                         user1: {
-                            isInvalid: false, validationProps: {
+                            isInvalid: false,
+                            validationProps: {
                                 name: { isInvalid: false },
                             },
                         },
                         user2: {
-                            isInvalid: true, validationProps: {
+                            isInvalid: true,
+                            validationProps: {
                                 name: { isInvalid: true },
                             },
                         },
@@ -176,7 +179,7 @@ describe('validate', () => {
     });
 
     it('Can use custom validators', () => {
-        const value: IBar = { name: "bar" };
+        const value: IBar = { name: 'bar' };
         const meta: Metadata<IBar> = {
             props: {
                 name: {
@@ -189,17 +192,17 @@ describe('validate', () => {
             validationProps: {
                 name: {
                     isInvalid: true,
-                    validationMessage: "expect anything but bar",
+                    validationMessage: 'expect anything but bar',
                 },
             },
         });
     });
 
     it('Metadata root can contain rules', () => {
-        const value: IBar = { name: "bar" };
+        const value: IBar = { name: 'bar' };
         const meta: Metadata<IBar> = {
             isRequired: true,
-            validators: [(v) => [!v && "failed"]],
+            validators: [(v) => [!v && 'failed']],
             props: { name: { isRequired: true } },
             all: { isRequired: true },
         };
@@ -209,57 +212,75 @@ describe('validate', () => {
         expect(resultOnChanged).toEqual(expect.objectContaining({ isInvalid: false }));
     });
 
-
     it('Custom validators receive parent objects', () => {
         const validator = jest.fn().mockReturnValue(['error']);
-        const value = { array: [{ id: 100, name: 'abc' }, { id: 101, name: 'bcd' }] };
-        const initValue = { array: [{ id: 100, name: 'abc' }, { id: 101, name: 'bcd' }] };
+        const value = {
+            array: [{ id: 100, name: 'abc' }, { id: 101, name: 'bcd' }],
+        };
+        const initValue = {
+            array: [{ id: 100, name: 'abc' }, { id: 101, name: 'bcd' }],
+        };
 
-        const resultDefault = validate<IFoo>(value, {
-            props: {
-                array: {
-                    all: {
-                        props: {
-                            name: {
-                                validators: [validator],
+        const resultDefault = validate<IFoo>(
+            value,
+            {
+                props: {
+                    array: {
+                        all: {
+                            props: {
+                                name: {
+                                    validators: [validator],
+                                },
                             },
                         },
                     },
                 },
             },
-        }, initValue, 'save');
+            initValue,
+            'save',
+        );
 
         expect(validator).toBeCalledTimes(2);
         expect(validator).nthCalledWith(1, 'abc', value.array[0], value.array, value);
         expect(validator).nthCalledWith(2, 'bcd', value.array[1], value.array, value);
 
-        const resultWithOnChanged = validate<IFoo>(value, {
-            props: {
-                array: {
-                    all: {
-                        props: {
-                            name: {
-                                validators: [validator],
+        const resultWithOnChanged = validate<IFoo>(
+            value,
+            {
+                props: {
+                    array: {
+                        all: {
+                            props: {
+                                name: {
+                                    validators: [validator],
+                                },
                             },
                         },
                     },
                 },
             },
-        }, initFooValueArray, "change");
+            initFooValueArray,
+            'change',
+        );
 
-        const resultWithNotChangedValue = validate<IFoo>(value, {
-            props: {
-                array: {
-                    all: {
-                        props: {
-                            name: {
-                                validators: [validator],
+        const resultWithNotChangedValue = validate<IFoo>(
+            value,
+            {
+                props: {
+                    array: {
+                        all: {
+                            props: {
+                                name: {
+                                    validators: [validator],
+                                },
                             },
                         },
                     },
                 },
             },
-        }, initValue, "change");
+            initValue,
+            'change',
+        );
 
         expect(resultDefault).toMatchObject({
             isInvalid: true,

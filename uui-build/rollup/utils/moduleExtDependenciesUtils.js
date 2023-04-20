@@ -37,16 +37,11 @@ const getIsExternalSubFolderBundledUUI = (externalSubFolderImport) => {
  * @returns callback, which returns: "true" - to exclude from bundle, or "false" - to include to bundle.
  */
 function getExternalDeps(params) {
-    const {
-        moduleRootDir,
-        depsAlwaysBundled = DEPS_ALWAYS_BUNDLED_UUI,
-        getIsExternalSubFolderBundled = getIsExternalSubFolderBundledUUI,
-    } = params;
+    const { moduleRootDir, depsAlwaysBundled = DEPS_ALWAYS_BUNDLED_UUI, getIsExternalSubFolderBundled = getIsExternalSubFolderBundledUUI } = params;
     const keysExternal = getExternalModuleDependencies({ moduleRootDir, depsAlwaysBundled });
     return (importId) => {
         return keysExternal.some((keyExternal) => {
-            return keyExternal === importId
-                || (importId.indexOf(`${keyExternal}/`) === 0 && !getIsExternalSubFolderBundled(importId));
+            return keyExternal === importId || (importId.indexOf(`${keyExternal}/`) === 0 && !getIsExternalSubFolderBundled(importId));
         });
     };
 }

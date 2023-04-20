@@ -1,7 +1,9 @@
 import React from 'react';
 import { PickerBase, PickerBaseState } from './PickerBase';
-import { UuiContexts, DataRowProps, UuiContext, PickerBaseProps } from '@epam/uui-core';
-import { i18n } from "../i18n";
+import {
+    UuiContexts, DataRowProps, UuiContext, PickerBaseProps,
+} from '@epam/uui-core';
+import { i18n } from '../i18n';
 
 export type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
     /**
@@ -41,8 +43,11 @@ interface LastUsedRec<TId> {
 
 export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerListBaseProps<TItem, TId> & TProps, PickerListState<TId>> {
     static contextType = UuiContext;
-    sessionStartTime = (new Date()).getTime();
+
+    sessionStartTime = new Date().getTime();
+
     context: UuiContexts;
+
     state: PickerListState<TId> = {
         dataSourceState: { focusedIndex: 0, topIndex: 0, visibleCount: this.getMaxDefaultItems() },
         visibleIds: this.getVisibleIds(),
@@ -80,25 +85,22 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
     getVisibleIds() {
         let lastUsedUds: TId[] = [];
         if (this.props.settingsKey) {
-            let settings = this.context.uuiUserSettings.get(this.getSettingsKey(), [] as LastUsedRec<TId>[]);
-            lastUsedUds = settings.map(r => r.id);
+            const settings = this.context.uuiUserSettings.get(this.getSettingsKey(), [] as LastUsedRec<TId>[]);
+            lastUsedUds = settings.map((r) => r.id);
         }
 
         let visibleIds: TId[] = this.getSelectedIdsArray(this.props.value).slice(0, this.getMaxTotalItems());
 
-        visibleIds = this.addDistinct(visibleIds, [
-            ...lastUsedUds,
-            ...(this.props.defaultIds || []),
-        ], this.getMaxDefaultItems());
+        visibleIds = this.addDistinct(visibleIds, [...lastUsedUds, ...(this.props.defaultIds || [])], this.getMaxDefaultItems());
 
         return visibleIds;
     }
 
     distinct(ids: TId[]): TId[] {
-        let result: TId[] = [];
-        let hash: Record<string, boolean> = {};
-        ids.forEach(id => {
-            let key = JSON.stringify(id);
+        const result: TId[] = [];
+        const hash: Record<string, boolean> = {};
+        ids.forEach((id) => {
+            const key = JSON.stringify(id);
             if (!hash[key]) {
                 result.push(id);
                 hash[key] = true;
@@ -108,12 +110,12 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
     }
 
     addDistinct(to: TId[], add: TId[], maxItems: number) {
-        let added: Record<string, boolean> = {};
-        to.forEach(id => added[JSON.stringify(id)] = true);
-        let result = [...to];
-        for (let n = 0; n < add.length && (result.length < maxItems); n++) {
-            let id = add[n];
-            let key = JSON.stringify(id);
+        const added: Record<string, boolean> = {};
+        to.forEach((id) => (added[JSON.stringify(id)] = true));
+        const result = [...to];
+        for (let n = 0; n < add.length && result.length < maxItems; n++) {
+            const id = add[n];
+            const key = JSON.stringify(id);
             if (!added[key]) {
                 result.push(id);
                 added[key] = true;
@@ -125,11 +127,11 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
     appendLastSelected(ids: TId[]) {
         if (this.props.settingsKey) {
             let lastUsedIds = this.context.uuiUserSettings.get(this.getSettingsKey(), [] as LastUsedRec<TId>[]);
-            let selectionTime = (new Date()).getTime();
-            lastUsedIds = [
-                ...ids.map(id => ({ id, selectionTime, sessionStartTime: this.sessionStartTime } as LastUsedRec<TId>)).reverse(),
-                ...lastUsedIds,
-            ].slice(0, 100);
+            const selectionTime = new Date().getTime();
+            lastUsedIds = [...ids.map((id) => ({ id, selectionTime, sessionStartTime: this.sessionStartTime } as LastUsedRec<TId>)).reverse(), ...lastUsedIds].slice(
+                0,
+                100,
+            );
 
             this.context.uuiUserSettings.set(this.getSettingsKey(), lastUsedIds);
         }
@@ -145,7 +147,7 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
 
         const sortBy = this.props.sortBy || ((i: TItem) => i[sorting.field as keyof TItem]);
         const sign = sorting.direction === 'desc' ? -1 : 1;
-        const stringComparer = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
+        const stringComparer = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
         const comparer = (a: DataRowProps<TItem, TId>, b: DataRowProps<TItem, TId>) => {
             const loadingComparison = (b.isLoading ? 0 : 1) - (a.isLoading ? 0 : 1);
             if (loadingComparison != 0 || (a.isLoading && b.isLoading)) {
@@ -163,8 +165,8 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
         const maxTotalItems = this.getMaxTotalItems();
         const view = this.getView();
 
-        let result: DataRowProps<TItem, TId>[] = [];
-        let added: Record<string, boolean> = {};
+        const result: DataRowProps<TItem, TId>[] = [];
+        const added: Record<string, boolean> = {};
 
         const addRows = (rows: DataRowProps<TItem, TId>[], maxItems: number) => {
             for (let n = 0; n < rows.length && (!maxItems || result.length < maxItems); n++) {
@@ -179,12 +181,12 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
         addRows(view.getSelectedRows(), this.getMaxTotalItems());
 
         if (this.state.visibleIds && result.length < maxTotalItems) {
-            let rows = this.state.visibleIds.map((id, n) => view.getById(id, n)).filter(r => !!r);
+            const rows = this.state.visibleIds.map((id, n) => view.getById(id, n)).filter((r) => !!r);
             addRows(rows, maxTotalItems);
         }
 
         if (!this.props.defaultIds && result.length < maxDefaultItems) {
-            let rows = view.getVisibleRows();
+            const rows = view.getVisibleRows();
             addRows(rows, maxDefaultItems);
         }
 

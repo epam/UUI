@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI3 } from '../common';
+import {
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3,
+} from '../common';
 
 export class SliderRatingDoc extends BaseDocsBlock {
     title = 'SliderRating';
@@ -13,12 +15,9 @@ export class SliderRatingDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='sliderRating-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/sliderRating/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="sliderRating-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/sliderRating/Basic.example.tsx" />
             </>
         );
     }

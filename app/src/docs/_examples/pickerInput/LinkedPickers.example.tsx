@@ -8,13 +8,19 @@ export default function ArrayLinkedPickers() {
     const [country, setCountry] = useState<Country>(null);
     const [cities, setCities] = useState<string[]>(null);
 
-    const countryDataSource = useAsyncDataSource<Country, string, unknown>({
-        api: () => svc.api.demo.countries({}).then((r: any) => r.items),
-    }, []);
+    const countryDataSource = useAsyncDataSource<Country, string, unknown>(
+        {
+            api: () => svc.api.demo.countries({}).then((r: any) => r.items),
+        },
+        [],
+    );
 
-    const citiesDataSource = useLazyDataSource<City, string, unknown>({
-        api: svc.api.demo.cities,
-    }, []);
+    const citiesDataSource = useLazyDataSource<City, string, unknown>(
+        {
+            api: svc.api.demo.cities,
+        },
+        [],
+    );
 
     return (
         <FlexCell width={ 300 }>

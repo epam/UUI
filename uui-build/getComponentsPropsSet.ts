@@ -1,4 +1,4 @@
-import { Project, SourceFile, Symbol } from "ts-morph";
+import { Project, SourceFile, Symbol } from 'ts-morph';
 import path from 'path';
 import * as fs from 'fs';
 import * as ts from 'typescript';
@@ -18,12 +18,11 @@ const typeChecker = project.getTypeChecker().compilerObject;
 const linksRegex = /(?:\[(.*)\])?\{\s*@link\s*(https:\/\/\S+?)\s*}/gm;
 
 function escape(htmlStr: string) {
-    return htmlStr.replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#39;");
-
+    return htmlStr.replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
 }
 
 function formatComment(comment: string) {
@@ -80,26 +79,25 @@ function main() {
      */
     const docsFiles = project.addSourceFilesAtPaths(DOCS_GLOB);
     const docsFilesSorted = sortDocFiles(docsFiles);
-    docsFilesSorted.map(i => {
+    docsFilesSorted.map((i) => {
         const docPath = getDocPathFromFile(i);
         const props = getPropsFromDocFile(i);
         docsProps[docPath] = props;
     });
     fs.writeFile('../public/docs/componentsPropsSet.json', JSON.stringify({ props: docsProps }, null, 2), () => null);
     console.log(`Props: ${propsCount}. JsDoc exists: ${JsDocCommentsCount}, missing: ${missingJsDocCommentsCount}`);
-
 }
 function getPropsFromDocFile(f: SourceFile) {
     const docPath = getDocPathFromFile(f);
     const exportExpression = f.getExportAssignment(() => true).getStructure().expression;
     const propsArr = f.getVariableDeclaration(exportExpression as any).getType().getTypeArguments()[0].getProperties();
     const propsArrSorted = sortProps(propsArr);
-    const props = propsArrSorted.map(prop => getPropType(prop, docPath));
+    const props = propsArrSorted.map((prop) => getPropType(prop, docPath));
     return props;
 }
 function getDocPathFromFile(f: SourceFile) {
     const fpFull = f.getFilePath();
-    const rootOfTheRepo = path.resolve(process.cwd(), "..").replace(/\\+/g, '/');
+    const rootOfTheRepo = path.resolve(process.cwd(), '..').replace(/\\+/g, '/');
     return fpFull.substring(rootOfTheRepo.length);
 }
 function sortProps(propsArr: Symbol[]) {
@@ -121,6 +119,4 @@ function sortDocFiles(filesArr: SourceFile[]) {
     return arr;
 }
 
-
 main();
-

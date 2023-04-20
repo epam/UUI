@@ -1,14 +1,13 @@
-import { useEffect, useMemo, useRef } from "react";
-import { useView } from "./useView";
-import { UnboxListProps, UseListProps } from "./types";
-import { createView, mergePropsWithDefaults } from "./helpers";
-import { usePrevious } from "../../../../src/hooks";
-import isEqual from "lodash.isequal";
+import { useEffect, useMemo, useRef } from 'react';
+import { useView } from './useView';
+import { UnboxListProps, UseListProps } from './types';
+import { createView, mergePropsWithDefaults } from './helpers';
+import { usePrevious } from '../../../../src/hooks';
+import isEqual from 'lodash.isequal';
 
-export function useList<TItem, TId, TFilter>(
-    { listState, setListState, loadData = true, ...props }: UseListProps<TItem, TId, TFilter>,
-    deps: any[],
-) {
+export function useList<TItem, TId, TFilter>({
+    listState, setListState, loadData = true, ...props
+}: UseListProps<TItem, TId, TFilter>, deps: any[]) {
     const prevLoadDataRef = useRef(false);
     const prevListState = usePrevious(listState);
 

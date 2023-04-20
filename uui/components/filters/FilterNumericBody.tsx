@@ -1,10 +1,10 @@
-import React from "react";
-import { FlexSpacer } from "@epam/uui-components";
-import { NumericInput } from "../inputs";
-import { DropdownBodyProps, isMobile } from "@epam/uui-core";
-import { FlexCell, FlexRow } from "../layout";
-import { LinkButton } from "../buttons";
-import { i18n } from "../../i18n";
+import React from 'react';
+import { FlexSpacer } from '@epam/uui-components';
+import { NumericInput } from '../inputs';
+import { DropdownBodyProps, isMobile } from '@epam/uui-core';
+import { FlexCell, FlexRow } from '../layout';
+import { LinkButton } from '../buttons';
+import { i18n } from '../../i18n';
 
 interface INumericRangeValue {
     from: number | null;
@@ -17,20 +17,20 @@ interface IFilterNumericBodyProps extends DropdownBodyProps {
     selectedPredicate?: string;
 }
 
-export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
+export function FilterNumericBody(props: IFilterNumericBodyProps) {
     const isInRangePredicate = props?.selectedPredicate === 'inRange' || props?.selectedPredicate === 'notInRange';
 
     const rangeValueHandler = (type: 'from' | 'to') => (val: number) => {
         const value = props.value as INumericRangeValue;
         switch (type) {
-            case "from": {
+            case 'from': {
                 props.onValueChange({
                     from: val,
                     to: value?.to ?? null,
                 });
                 break;
             }
-            case "to": {
+            case 'to': {
                 props.onValueChange({
                     from: value?.from ?? null,
                     to: val,
@@ -54,14 +54,9 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
 
         return (
             <FlexRow padding="12">
-                <FlexSpacer/>
+                <FlexSpacer />
                 <FlexCell width="auto" alignSelf="center">
-                    <LinkButton
-                        isDisabled={ isClearDisabled }
-                        size={ size }
-                        caption={ i18n.pickerInput.clearSelectionButtonSingle }
-                        onClick={ clearSelection }
-                    />
+                    <LinkButton isDisabled={ isClearDisabled } size={ size } caption={ i18n.pickerInput.clearSelectionButtonSingle } onClick={ clearSelection } />
                 </FlexCell>
             </FlexRow>
         );
@@ -72,7 +67,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
         return (
             <div>
                 <FlexRow padding="12" vPadding="24" alignItems="center" spacing="12" borderBottom={ true }>
-                    <FlexCell width={ '100%' }>
+                    <FlexCell width="100%">
                         <NumericInput
                             value={ value?.from ?? null }
                             onValueChange={ rangeValueHandler('from') }
@@ -81,7 +76,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
                             formatOptions={ { maximumFractionDigits: 2 } }
                         />
                     </FlexCell>
-                    <FlexCell width={ '100%' }>
+                    <FlexCell width="100%">
                         <NumericInput
                             value={ value?.to ?? null }
                             onValueChange={ rangeValueHandler('to') }
@@ -91,7 +86,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
                         />
                     </FlexCell>
                 </FlexRow>
-                { renderFooter() }
+                {renderFooter()}
             </div>
         );
     }
@@ -104,12 +99,12 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
                         value={ typeof props.value === 'number' ? props.value : null }
                         onValueChange={ props.onValueChange }
                         size="30"
-                        placeholder={ "Enter a number" }
+                        placeholder="Enter a number"
                         formatOptions={ { maximumFractionDigits: 2 } }
                     />
                 </FlexCell>
             </FlexRow>
-            { renderFooter() }
+            {renderFooter()}
         </div>
     );
-};
+}

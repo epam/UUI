@@ -4,8 +4,6 @@ import { DropdownProps } from '@epam/uui-core';
 
 export class Dropdown extends React.Component<DropdownProps, any> {
     render() {
-        return (
-            <UuiDropdown  { ...this.props } />
-        );
+        return <UuiDropdown { ...this.props } />;
     }
 }

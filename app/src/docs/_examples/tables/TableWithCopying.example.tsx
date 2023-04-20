@@ -1,8 +1,12 @@
-import { DataTable, useForm, Panel, DataTableCell, NumericInput, TextInput } from '@epam/promo';
+import {
+    DataTable, useForm, Panel, DataTableCell, NumericInput, TextInput,
+} from '@epam/promo';
 import React, { useMemo } from 'react';
-import { DataQueryFilter, DataTableState, DataTableSelectedCellData, useArrayDataSource, DataColumnProps } from '@epam/uui-core';
+import {
+    DataQueryFilter, DataTableState, DataTableSelectedCellData, useArrayDataSource, DataColumnProps,
+} from '@epam/uui-core';
 
-import css from "./TablesExamples.scss";
+import css from './TablesExamples.scss';
 
 enum Day {
     Monday = 'Monday',
@@ -11,7 +15,7 @@ enum Day {
     Thursday = 'Thursday',
     Friday = 'Friday',
     Saturday = 'Saturday',
-    Sunday = 'Sunday',
+    Sunday = 'Sunday'
 }
 
 export interface ProjectReport extends Record<Day, number> {
@@ -27,15 +31,15 @@ interface FormState {
 type SelectedCellData = DataTableSelectedCellData<ProjectReport, number, DataQueryFilter<ProjectReport>>;
 
 export const projectReports: Partial<ProjectReport>[] = [
-    { id: 1, name: "Learn" },
-    { id: 2, name: "Heroes" },
-    { id: 3, name: "People" },
-    { id: 4, name: "Assessment" },
-    { id: 5, name: "Level Up" },
-    { id: 6, name: "Grow" },
-    { id: 7, name: "Time" },
-    { id: 8, name: "Onboarding" },
-    { id: 9, name: "Vacations" },
+    { id: 1, name: 'Learn' },
+    { id: 2, name: 'Heroes' },
+    { id: 3, name: 'People' },
+    { id: 4, name: 'Assessment' },
+    { id: 5, name: 'Level Up' },
+    { id: 6, name: 'Grow' },
+    { id: 7, name: 'Time' },
+    { id: 8, name: 'Onboarding' },
+    { id: 9, name: 'Vacations' },
 ];
 
 export const getDemoTasks = () => projectReports.reduce((acc, task) => ({ ...acc, [task.id]: task }), {});
@@ -47,20 +51,15 @@ const getWorkingDayColumn = (day: Day): DataColumnProps<ProjectReport, number, D
     grow: 1,
     width: 73,
     canCopy: () => true,
-    canAcceptCopy: (from, to) =>
-        from.row.id === to.row.id &&
-        ![Day.Saturday, Day.Sunday].includes(from.column.key as Day),
+    canAcceptCopy: (from, to) => from.row.id === to.row.id && ![Day.Saturday, Day.Sunday].includes(from.column.key as Day),
 
     renderCell: (props) => (
         <DataTableCell
             { ...props.rowLens.prop(day as Day).toProps() }
-            renderEditor={ props => (
-                <NumericInput
-                    { ...props }
-                    formatOptions={ { maximumFractionDigits: 1 } }
-                />) }
+            renderEditor={ (props) => <NumericInput { ...props } formatOptions={ { maximumFractionDigits: 1 } } /> }
             { ...props }
-        />),
+        />
+    ),
 });
 
 const getWeekendColumn = (day: Day): DataColumnProps<ProjectReport, number, DataQueryFilter<ProjectReport>> => ({
@@ -74,14 +73,10 @@ const getWeekendColumn = (day: Day): DataColumnProps<ProjectReport, number, Data
         <DataTableCell
             cx={ css.weekendDay }
             { ...props.rowLens.prop(day as Day).toProps() }
-            renderEditor={ props => (
-                <NumericInput
-                    { ...props }
-                    formatOptions={ { maximumFractionDigits: 1 } }
-                    isDisabled={ true }
-                />) }
+            renderEditor={ (props) => <NumericInput { ...props } formatOptions={ { maximumFractionDigits: 1 } } isDisabled={ true } /> }
             { ...props }
-        />),
+        />
+    ),
 });
 
 function getColumns() {
@@ -92,12 +87,7 @@ function getColumns() {
             width: 175,
             fix: 'left',
             isSortable: true,
-            renderCell: (props) => <DataTableCell
-                padding='12'
-                { ...props.rowLens.prop('name').toProps() }
-                renderEditor={ props => <TextInput { ...props } /> }
-                { ...props }
-            />,
+            renderCell: (props) => <DataTableCell padding="12" { ...props.rowLens.prop('name').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />,
         },
         getWorkingDayColumn(Day.Monday),
         getWorkingDayColumn(Day.Tuesday),
@@ -123,11 +113,14 @@ export default function ProjectTimeReportDemo() {
 
     const [tableState, setTableState] = React.useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
-    const dataSource = useArrayDataSource<ProjectReport, number, DataQueryFilter<ProjectReport>>({
-        items: Object.values(value.items),
-        getId: i => i.id,
-        getParentId: i => i.parentId,
-    }, []);
+    const dataSource = useArrayDataSource<ProjectReport, number, DataQueryFilter<ProjectReport>>(
+        {
+            items: Object.values(value.items),
+            getId: (i) => i.id,
+            getParentId: (i) => i.parentId,
+        },
+        [],
+    );
 
     const dataView = dataSource.useView(tableState, setTableState, {
         getRowOptions: (task) => ({ ...lens.prop('items').prop(task.id).toProps() }),
@@ -149,7 +142,7 @@ export default function ProjectTimeReportDemo() {
     return (
         <Panel shadow cx={ css.container }>
             <DataTable
-                headerTextCase='upper'
+                headerTextCase="upper"
                 onCopy={ onCopy }
                 getRows={ dataView.getVisibleRows }
                 columns={ columns }

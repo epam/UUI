@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import { Panel, TabButtonMods, FlexCell, FlexRow } from '@epam/loveship';
+import {
+    Panel, TabButtonMods, FlexCell, FlexRow,
+} from '@epam/loveship';
 
 interface DemoComponentState {
     activeTab: 'Main' | 'demoTab' | 'Tools' | 'Options';
@@ -22,11 +24,11 @@ export class VerticalTabButtonContext extends React.Component<DemoComponentProps
     render() {
         const { DemoComponent, props } = this.props;
         return (
-            <Panel margin='24' style={ { padding: '6px 0', background: props.theme === 'dark' ? '#21232e' : 'white' } }>
+            <Panel margin="24" style={ { padding: '6px 0', background: props.theme === 'dark' ? '#21232e' : 'white' } }>
                 <FlexRow>
                     <FlexCell grow={ 1 }>
                         <DemoComponent
-                            caption={ 'Main' }
+                            caption="Main"
                             onClick={ () => this.setTab('Main', props.onClick) }
                             size={ props.size }
                             theme={ props.theme }
@@ -41,14 +43,14 @@ export class VerticalTabButtonContext extends React.Component<DemoComponentProps
                             isLinkActive={ this.state.activeTab === 'demoTab' }
                         />
                         <DemoComponent
-                            caption={ 'Tools' }
+                            caption="Tools"
                             onClick={ () => this.setTab('Tools', props.onClick) }
                             size={ props.size }
                             theme={ props.theme }
                             isLinkActive={ this.state.activeTab === 'Tools' }
                         />
                         <DemoComponent
-                            caption={ 'Options' }
+                            caption="Options"
                             onClick={ () => this.setTab('Options', props.onClick) }
                             size={ props.size }
                             theme={ props.theme }
