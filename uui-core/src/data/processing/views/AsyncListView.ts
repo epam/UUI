@@ -1,5 +1,5 @@
-import { IEditable, DataSourceState, IDataSourceView } from "../../../types";
-import { ArrayListView, BaseArrayListViewProps } from "./ArrayListView";
+import { IEditable, DataSourceState, IDataSourceView } from '../../../types';
+import { ArrayListView, BaseArrayListViewProps } from './ArrayListView';
 
 export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
     api(): Promise<TItem[]>;
@@ -7,6 +7,7 @@ export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListVi
 
 export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     private isloading: boolean = false;
+
     private isloaded: boolean = false;
 
     constructor(
@@ -18,17 +19,18 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         this.update(editable.value, props);
     }
 
-    public loadData() {
+    public async loadData() {
         if (this.isLoaded || this.isLoading) {
             return;
         }
 
         this.isLoading = true;
-        this.props.api().then((items) => {
+        return this.props.api().then((items) => {
             this.isLoaded = true;
             this.isLoading = false;
             this.update(this.editable.value, { ...this.props, items });
             this._forceUpdate();
+            return items;
         });
     }
 
@@ -36,7 +38,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         this.isLoading = false;
         this.isLoaded = false;
         super.reload();
-    }
+    };
 
     public getVisibleRows = () => {
         const from = this.value.topIndex;
@@ -52,7 +54,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         }
 
         return this.rows.slice(this.value.topIndex, this.getLastRecordIndex());
-    }
+    };
 
     public getListProps = () => {
         if (!this.isLoaded) {
@@ -72,7 +74,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
             totalCount: this.originalTree?.getTotalRecursiveCount(),
             selectAll: this.selectAll,
         };
-    }
+    };
 
     get isLoading(): boolean {
         return this.isloading;
