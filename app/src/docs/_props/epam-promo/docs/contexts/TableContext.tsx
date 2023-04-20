@@ -45,7 +45,7 @@ export function TableContext(contextProps: DemoComponentProps) {
     const { DemoComponent } = contextProps;
 
     const {
-        lens, save, isChanged, revert, undo, canUndo, redo, canRedo,
+        lens, save,
     } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {

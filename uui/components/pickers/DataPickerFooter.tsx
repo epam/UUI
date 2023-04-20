@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from 'react';
-import isEqual from 'lodash.isequal';
 import { isMobile, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 import { Switch } from '../inputs';

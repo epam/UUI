@@ -14,7 +14,7 @@ export default function LinkTooltipExample() {
             <Text cx={ css.content } fontSize="12" lineHeight="18">
                 The text field longer be supported. Deprecated date Dec 20, 2022.
                 {' '}
-                <a href="#">Read KB</a>
+                <a href="https://uui.epam.com">Read KB</a>
             </Text>
         </FlexCell>
     );

@@ -73,9 +73,16 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
 
     const onConfigurationButtonClick = React.useCallback(() => {
         uuiModals
-            .show<ColumnsConfig>((modalProps) => (
-                <ColumnsConfigurationModal { ...modalProps } columns={ props.columns } columnsConfig={ config } defaultConfig={ defaultConfig } />
-        ))
+            .show<ColumnsConfig>((modalProps) => {
+            return (
+                <ColumnsConfigurationModal
+                    { ...modalProps }
+                    columns={ props.columns }
+                    columnsConfig={ config }
+                    defaultConfig={ defaultConfig }
+                />
+            );
+        })
             .then((columnsConfig) => props.onValueChange({ ...props.value, columnsConfig }))
             .catch(() => null);
     }, [

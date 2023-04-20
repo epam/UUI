@@ -2,7 +2,7 @@ import React from 'react';
 import { FlexRow, Text, IconContainer } from '@epam/promo';
 import { getDateInFormat, getLevel } from '../utils';
 import { ISkill, ISkillLevel } from '../index';
-import css from './SkillsBatteryPopover.scss';
+import css from './../SkillsBatteryPopover.scss';
 
 interface ITooltip {
     level: ISkillLevel;

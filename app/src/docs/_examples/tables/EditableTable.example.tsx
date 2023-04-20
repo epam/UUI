@@ -206,7 +206,10 @@ export default function EditableTableExample() {
 
     // Render row callback. In simple cases, you don't need, as default implementation would work ok.
     // Here we override it to change row background for 'isDone' items.
-    const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => <DataTableRow { ...props } cx={ props.value.isDone ? css.taskIsDone : undefined } />, []);
+    const renderRow = useCallback(
+        (props: DataTableRowProps<ToDoItem, number>) => <DataTableRow { ...props } cx={ props.value.isDone ? css.taskIsDone : undefined } />,
+        [],
+    );
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return (
