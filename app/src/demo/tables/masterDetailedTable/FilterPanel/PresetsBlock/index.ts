@@ -1,1 +1,1 @@
-export {default as PresetsBlock} from "./PresetsBlock";
+export { default as PresetsBlock } from './PresetsBlock';

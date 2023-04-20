@@ -1,4 +1,4 @@
-import {i18n as uuiI18n} from '@epam/uui-core';
+import { i18n as uuiI18n } from '@epam/uui-core';
 
 export const i18n = {
     ...uuiI18n,
@@ -61,9 +61,9 @@ export const i18n = {
                 subText: 'We can’t find any item matching your request',
             },
             enableAtLeastOneColumnMessage: 'Please enable at least one column',
-            pinColumnButton: "Pin column",
-            unPinColumnButton: "Unpin column",
-            lockedColumnPinButton: "You cannot unpin this column",
+            pinColumnButton: 'Pin column',
+            unPinColumnButton: 'Unpin column',
+            lockedColumnPinButton: 'You cannot unpin this column',
         },
     },
     pickerFilterHeader: {

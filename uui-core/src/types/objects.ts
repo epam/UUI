@@ -1,4 +1,4 @@
-import { ClassValue } from "../helpers";
+import { ClassValue } from '../helpers';
 
 /* Common interface for data items */
 export interface IdAndName {

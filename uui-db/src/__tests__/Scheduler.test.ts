@@ -1,8 +1,9 @@
 import { Scheduler } from '../Scheduler';
 
-const delay = (t: number) => new Promise((resolve) => {
-    setTimeout(resolve, t);
-});
+const delay = (t: number) =>
+    new Promise((resolve) => {
+        setTimeout(resolve, t);
+    });
 
 const testApi = async (params: any) => {
     await delay(1);

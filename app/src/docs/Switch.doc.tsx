@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI } from '../common';
+import {
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI,
+} from '../common';
 
 export class SwitchDoc extends BaseDocsBlock {
     title = 'Switch';
@@ -15,12 +17,9 @@ export class SwitchDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='switch-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/switch/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="switch-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/switch/Basic.example.tsx" />
             </>
         );
     }

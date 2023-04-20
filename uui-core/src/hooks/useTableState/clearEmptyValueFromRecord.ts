@@ -1,11 +1,7 @@
-import isEmpty from "lodash.isempty";
+import isEmpty from 'lodash.isempty';
 
 export const clearEmptyValueFromRecord = <TRecord extends Record<string, any> = Record<string, any>>(record: TRecord): TRecord => {
-    if (
-        (record === undefined)
-        || (record === null)
-        || (typeof record !== 'object')
-    ) {
+    if (record === undefined || record === null || typeof record !== 'object') {
         return record;
     }
 

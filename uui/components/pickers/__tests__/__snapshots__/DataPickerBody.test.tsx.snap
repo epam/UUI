@@ -1,39 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DataPickerBody should be rendered correctly 1`] = `
-<div
-  className="root size-36 body undefined undefined container align-items-center"
-  style={
-    Object {
-      "columnGap": undefined,
-      "maxHeight": undefined,
-      "rowGap": undefined,
-    }
-  }
->
-  <div
-    className="no-found-size-36"
-    style={
-      Object {
-        "alignSelf": undefined,
-        "flexBasis": "0",
-        "flexGrow": 1,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": "center",
-      }
-    }
-  >
-    <div
-      className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
-    >
-      No records found
-    </div>
-  </div>
-</div>
-`;
-
-exports[`DataPickerBody should be rendered correctly 2`] = `
+exports[`DataPickerBody should be rendered with maximum props 1`] = `
 Array [
   <div
     className="searchWrapper"
@@ -171,7 +138,40 @@ Array [
 ]
 `;
 
-exports[`DataPickerBody should be rendered correctly without rows 1`] = `
+exports[`DataPickerBody should be rendered with minimum props 1`] = `
+<div
+  className="root size-36 body undefined undefined container align-items-center"
+  style={
+    Object {
+      "columnGap": undefined,
+      "maxHeight": undefined,
+      "rowGap": undefined,
+    }
+  }
+>
+  <div
+    className="no-found-size-36"
+    style={
+      Object {
+        "alignSelf": undefined,
+        "flexBasis": "0",
+        "flexGrow": 1,
+        "flexShrink": undefined,
+        "minWidth": 0,
+        "textAlign": "center",
+      }
+    }
+  >
+    <div
+      className="uui-font-regular uui-text-primary root line-height-18 font-size-14 v-padding-9 container"
+    >
+      No records found
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DataPickerBody should be rendered without rows 1`] = `
 <div
   className="root size-36 body undefined undefined container align-items-center"
   style={

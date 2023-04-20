@@ -58,7 +58,7 @@
 
 .presets {
     padding-left: 50px;
-    transition: .5s padding-left;
+    transition: 0.5s padding-left;
     background-color: var(--surface-color, white);
 
     &-with-filter {
@@ -74,7 +74,6 @@
     .filter-panel {
         flex-wrap: wrap;
         padding-right: 12px;
-
         width: calc(100% - 295px);
 
         & > * {

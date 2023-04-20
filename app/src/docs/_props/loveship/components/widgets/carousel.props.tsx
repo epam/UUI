@@ -3,29 +3,38 @@ import { DocBuilder } from '@epam/uui-docs';
 import { CarouselProps } from '@epam/uui-components';
 import { CarouselMods, Carousel } from '@epam/loveship';
 import { colorDoc, DefaultContext, ResizableContext } from '../../docs';
-import { FlexRow, Text, FlexCell, Panel } from '@epam/loveship';
+import {
+    FlexRow, Text, FlexCell, Panel,
+} from '@epam/loveship';
 
 const renderItem = (item: Record<string, any>) => {
     return (
-        <Panel style={ { width: 200 } } margin='24' background='white'>
-            <FlexRow padding='12'>
-                <Text font='sans'>GRID</Text>
+        <Panel style={ { width: 200 } } margin="24" background="white">
+            <FlexRow padding="12">
+                <Text font="sans">GRID</Text>
             </FlexRow>
-            <FlexRow padding='12' background='night50'>
+            <FlexRow padding="12" background="night50">
                 <FlexCell width={ 150 } minWidth={ 150 } grow={ 4 }>
-                    <Text size='24'>{ item.country }</Text>
+                    <Text size="24">{item.country}</Text>
                 </FlexCell>
             </FlexRow>
-            <FlexRow padding='12' size='36' borderBottom>
-                <FlexCell grow={ 1 }><Text size='24'>Republic Cruiser</Text></FlexCell>
+            <FlexRow padding="12" size="36" borderBottom>
+                <FlexCell grow={ 1 }>
+                    <Text size="24">Republic Cruiser</Text>
+                </FlexCell>
             </FlexRow>
-            <FlexRow padding='12' size='36' borderBottom>
-                <FlexCell grow={ 1 }><Text size='24'>Calamari Cruiser</Text></FlexCell>
+            <FlexRow padding="12" size="36" borderBottom>
+                <FlexCell grow={ 1 }>
+                    <Text size="24">Calamari Cruiser</Text>
+                </FlexCell>
             </FlexRow>
-            <FlexRow padding='12' size='36' borderBottom>
-                <FlexCell grow={ 1 }><Text size='24'>Naboo Royal Starship</Text></FlexCell>
+            <FlexRow padding="12" size="36" borderBottom>
+                <FlexCell grow={ 1 }>
+                    <Text size="24">Naboo Royal Starship</Text>
+                </FlexCell>
             </FlexRow>
-        </Panel>);
+        </Panel>
+    );
 };
 
 const items = [
@@ -57,7 +66,8 @@ const textDoc = new DocBuilder<CarouselProps & CarouselMods>({ name: 'Carousel',
                 name: 'renderItem',
                 isDefault: true,
             },
-        ], isRequired: true,
+        ],
+        isRequired: true,
     })
     .prop('divideBy', {
         examples: [
@@ -66,7 +76,8 @@ const textDoc = new DocBuilder<CarouselProps & CarouselMods>({ name: 'Carousel',
                 value: 3,
                 isDefault: true,
             },
-        ], defaultValue: 3,
+        ],
+        defaultValue: 3,
     })
     .withContexts(ResizableContext, DefaultContext);
 

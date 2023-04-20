@@ -7,12 +7,10 @@ export class FlexSpacerDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='flexSpacer-description' />
+                <EditableDocContent fileName="flexSpacer-description" />
 
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    path='./_examples/flexItems/FlexSpacer.example.tsx'
-                />
+                {this.renderSectionTitle('Examples')}
+                <DocExample path="./_examples/flexItems/FlexSpacer.example.tsx" />
             </>
         );
     }

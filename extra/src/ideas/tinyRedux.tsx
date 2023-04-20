@@ -1,7 +1,7 @@
 // Redux mini
 
 type Reducer<TPayload, TState> = (params: TPayload) => (state: TState) => TState;
-type Action<TPayload> = { name: string, payload: TPayload };
+type Action<TPayload> = { name: string; payload: TPayload };
 type ActionFactory<TPayload> = (payload: TPayload) => Action<TPayload>;
 type ActionDispatcher<TPayload> = (payload: TPayload) => void;
 type ReducersSet<TActions, TState> = { [P in keyof TActions]: Reducer<TActions[P], TState> };
@@ -26,7 +26,7 @@ export function createStore<TState, TActions>(initialState: TState, reducers: Re
     }
 
     const store: any = {};
-    Object.keys(reducers).map((name) => store[name] = wrapDispatch(name));
+    Object.keys(reducers).map((name) => (store[name] = wrapDispatch(name)));
     return store;
 }
 

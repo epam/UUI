@@ -7,12 +7,9 @@ export class DropdownMenuDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='dropdownMenu-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='DropdownMenu'
-                    path='./_examples/dropdownMenu/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="dropdownMenu-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="DropdownMenu" path="./_examples/dropdownMenu/Basic.example.tsx" />
             </>
         );
     }

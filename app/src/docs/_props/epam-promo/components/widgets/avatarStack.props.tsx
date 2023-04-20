@@ -1,25 +1,18 @@
-import * as React from "react";
+import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext } from '../../docs';
 import { AvatarStackProps } from '@epam/uui-components';
-import { Tooltip, AvatarStack } from "@epam/promo";
-import { uuiMarkers } from "@epam/uui-core";
+import { Tooltip, AvatarStack } from '@epam/promo';
+import { uuiMarkers } from '@epam/uui-core';
 
 const renderItem = (url: string) => {
     const handleClick = () => {
-        console.log("handleClick");
+        console.log('handleClick');
     };
 
     return (
-        <Tooltip content='Some text' placement='bottom' >
-            <img
-                src={ url }
-                alt='avatar'
-                width={ 36 }
-                height={ 36 }
-                onClick={ handleClick }
-                className={ uuiMarkers.clickable }
-            />
+        <Tooltip content="Some text" placement="bottom">
+            <img src={ url } alt="avatar" width={ 36 } height={ 36 } onClick={ handleClick } className={ uuiMarkers.clickable } />
         </Tooltip>
     );
 };
@@ -30,9 +23,9 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
             {
                 name: 'Olivia',
                 value: [
-                    "https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50",
-                    "https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50",
-                    "https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50",
+                    'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50',
+                    'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50',
+                    'https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50',
                 ],
                 isDefault: true,
             },
@@ -40,7 +33,12 @@ const AvatarStackDoc = new DocBuilder<AvatarStackProps>({ name: 'AvatarStack', c
         isRequired: true,
     })
     .prop('avatarSize', {
-        examples: ['24', '36', { name: '48', value: '48', isDefault: true }, '144'],
+        examples: [
+            '24',
+            '36',
+            { name: '48', value: '48', isDefault: true },
+            '144',
+        ],
         isRequired: true,
     })
     .prop('direction', {

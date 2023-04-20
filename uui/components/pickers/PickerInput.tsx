@@ -22,18 +22,19 @@ const pickerWidth = 360;
 export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
     toggleModalOpening() {
         const { renderFooter, rawProps, ...restProps } = this.props;
-        this.context.uuiModals.show((props) => (
-            <PickerModal<TItem, TId>
-                { ...restProps }
-                rawProps={ rawProps?.body }
-                { ...props }
-                caption={ this.getPlaceholder() }
-                initialValue={ this.props.value as any }
-                renderRow={ this.renderRow }
-                selectionMode={ this.props.selectionMode }
-                valueType={ this.props.valueType }
-            />
-        ))
+        this.context.uuiModals
+            .show((props) => (
+                <PickerModal<TItem, TId>
+                    { ...restProps }
+                    rawProps={ rawProps?.body }
+                    { ...props }
+                    caption={ this.getPlaceholder() }
+                    initialValue={ this.props.value as any }
+                    renderRow={ this.renderRow }
+                    selectionMode={ this.props.selectionMode }
+                    valueType={ this.props.valueType }
+                />
+            ))
             .then((newSelection) => {
                 this.handleSelectionValueChange(newSelection);
                 this.returnFocusToInput();
@@ -44,11 +45,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     getRowSize() {
-        if (isMobile()) {
-            return '48';
-        }
-
-        return this.props.editMode === 'modal' ? '36' : this.props.size;
+        return isMobile() ? '48' : this.props.editMode === 'modal' ? '36' : this.props.size;
     }
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
@@ -56,7 +53,9 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     };
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
-        return this.props.renderRow ? this.props.renderRow(rowProps, this.state.dataSourceState) : (
+        return this.props.renderRow ? (
+            this.props.renderRow(rowProps, this.state.dataSourceState)
+        ) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
@@ -103,8 +102,8 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
 
     renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) {
         const renderedDataRows = rows.map((row) => this.renderRow(row));
-        const maxHeight = isMobile() ? document.documentElement.clientHeight : (this.props.dropdownHeight || pickerHeight);
-        const minBodyWidth = isMobile() ? document.documentElement.clientWidth : (this.props.minBodyWidth || pickerWidth);
+        const maxHeight = isMobile() ? document.documentElement.clientHeight : this.props.dropdownHeight || pickerHeight;
+        const minBodyWidth = isMobile() ? document.documentElement.clientWidth : this.props.minBodyWidth || pickerWidth;
 
         return (
             <Panel
@@ -130,14 +129,17 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                         searchSize={ this.props.size }
                         editMode="dropdown"
                         selectionMode={ this.props.selectionMode }
-                        renderNotFound={ this.props.renderNotFound
-                            ? () => this.props.renderNotFound({
-                                search: this.state.dataSourceState.search,
-                                onClose: () => this.toggleBodyOpening(false),
-                            })
-                            : undefined }
+                        renderNotFound={
+                            this.props.renderNotFound
+                                ? () =>
+                                    this.props.renderNotFound({
+                                        search: this.state.dataSourceState.search,
+                                        onClose: () => this.toggleBodyOpening(false),
+                                    })
+                                : undefined
+                        }
                     />
-                    { !this.isSingleSelect() && this.renderFooter() }
+                    { this.renderFooter() }
                 </MobileDropdownWrapper>
             </Panel>
         );

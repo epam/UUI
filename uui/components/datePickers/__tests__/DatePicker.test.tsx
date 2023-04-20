@@ -29,7 +29,7 @@ jest.mock('react-popper', () => {
         Popper,
     };
 });
-async function setupDatePicker(params: { value: string | null, format: string }) {
+async function setupDatePicker(params: { value: string | null; format: string }) {
     const { format, value } = params;
 
     const { result, mocks, setProps } = await setupComponentForTest<DatePickerProps>(
@@ -59,9 +59,7 @@ const DATE_FORMAT_CUSTOM = 'DD-MM-YYYY';
 
 describe('DatePicker', () => {
     it('should render with minimum props defined', async () => {
-        const tree = await renderSnapshotWithContextAsync(
-            <DatePicker format={ DATE_FORMAT_DEFAULT } value={ null } onValueChange={ jest.fn } />,
-        );
+        const tree = await renderSnapshotWithContextAsync(<DatePicker format={ DATE_FORMAT_DEFAULT } value={ null } onValueChange={ jest.fn } />);
         expect(tree).toMatchSnapshot();
     });
 
@@ -96,9 +94,7 @@ describe('DatePicker', () => {
     });
 
     it('should change input value after change props', async () => {
-        const {
-            dom, mocks, setProps,
-        } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
+        const { dom, mocks, setProps } = await setupDatePicker({ value: null, format: DATE_FORMAT_DEFAULT });
         expect(dom.input.value).toEqual('');
         setProps({ value: '2017-01-22' });
         expect(dom.input.value).toEqual('Jan 22, 2017');

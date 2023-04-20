@@ -6,16 +6,26 @@ export interface SortingOption<T = any> {
 }
 
 export type DataQueryFilter<T> = {
-    [TPropName in keyof T]?: DataQueryFilterCondition<T, T[TPropName]>
+    [TPropName in keyof T]?: DataQueryFilterCondition<T, T[TPropName]>;
 };
 
-type RangeValue = { from: string, to: string };
+type RangeValue = { from: string; to: string };
 
 export type DataQueryFilterCondition<TEntity, TField> = TField | FilterPredicate<TField>;
 
-export type FilterPredicate<TField> = { in?: TField[]; nin?: TField[]; isNull?: boolean; gt?: TField; gte?: TField;
-    lt?: TField; lte?: TField; inRange?: RangeValue; notInRange?: RangeValue,
-    eq?: TField, neq?: TField, not?: FilterPredicate<TField>
+export type FilterPredicate<TField> = {
+    in?: TField[];
+    nin?: TField[];
+    isNull?: boolean;
+    gt?: TField;
+    gte?: TField;
+    lt?: TField;
+    lte?: TField;
+    inRange?: RangeValue;
+    notInRange?: RangeValue;
+    eq?: TField;
+    neq?: TField;
+    not?: FilterPredicate<TField>;
 };
 
 export type FilterPredicateName = keyof FilterPredicate<any>;

@@ -19,9 +19,8 @@ import { ReactComponent as info24 } from './info-24.svg';
 import { ReactComponent as help10 } from './help-fill-10.svg';
 import { ReactComponent as help16 } from './help-fill-16.svg';
 
-
 export const systemIcons: { [key: string]: any } = {
-    '18': {
+    18: {
         clear: btnCross12,
         foldingArrow: foldingArrow12,
         accept: accept12,
@@ -30,7 +29,7 @@ export const systemIcons: { [key: string]: any } = {
         info: info12,
         help: help10,
     },
-    '24': {
+    24: {
         clear: btnCross12,
         foldingArrow: foldingArrow12,
         accept: accept12,
@@ -39,7 +38,7 @@ export const systemIcons: { [key: string]: any } = {
         info: info12,
         help: help10,
     },
-    '30': {
+    30: {
         clear: btnCross18,
         foldingArrow: foldingArrow18,
         accept: accept18,
@@ -48,7 +47,7 @@ export const systemIcons: { [key: string]: any } = {
         info: info18,
         help: help10,
     },
-    '36': {
+    36: {
         clear: btnCross18,
         foldingArrow: foldingArrow18,
         accept: accept18,
@@ -57,7 +56,7 @@ export const systemIcons: { [key: string]: any } = {
         info: info18,
         help: help16,
     },
-    '42': {
+    42: {
         clear: btnCross18,
         foldingArrow: foldingArrow18,
         accept: accept18,
@@ -66,7 +65,7 @@ export const systemIcons: { [key: string]: any } = {
         info: info18,
         help: help16,
     },
-    '48': {
+    48: {
         clear: btnCross24,
         foldingArrow: foldingArrow24,
         accept: accept24,
@@ -75,7 +74,7 @@ export const systemIcons: { [key: string]: any } = {
         info: info24,
         help: help16,
     },
-    '60': {
+    60: {
         clear: btnCross24,
         foldingArrow: foldingArrow24,
         accept: accept24,
@@ -84,7 +83,7 @@ export const systemIcons: { [key: string]: any } = {
         info: info24,
         help: help16,
     },
-    'none': {
+    none: {
         clear: btnCross18,
         foldingArrow: foldingArrow18,
         accept: accept18,

@@ -6,12 +6,10 @@ export interface RadioInputMods extends UuiRadioInputMods {
     theme?: 'light' | 'dark';
 }
 
-export interface RadioInputProps extends  RadioInputMods, UuiRadioInputProps {}
+export interface RadioInputProps extends RadioInputMods, UuiRadioInputProps {}
 
 function applyRadioInputMods(mods: RadioInputProps) {
-    return [
-        mods.theme === 'dark' && css.themeDark,
-    ];
+    return [mods.theme === 'dark' && css.themeDark];
 }
 
 export const RadioInput = withMods<UuiRadioInputProps, RadioInputMods>(uuiRadioInput, applyRadioInputMods);

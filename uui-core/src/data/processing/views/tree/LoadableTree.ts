@@ -1,30 +1,24 @@
-import { DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from "../../../../types";
-import { EditableTree } from "./EditableTree";
-import { ITree, LoadTreeOptions, TreeNodeInfo } from "./ITree";
-
+import {
+    DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange,
+} from '../../../../types';
+import { EditableTree } from './EditableTree';
+import { ITree, LoadTreeOptions, TreeNodeInfo } from './ITree';
 
 export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> {
-    public async load<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        value: Readonly<DataSourceState>,
-        withNestedChildren: boolean = true,
-    ) {
+    public async load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>, withNestedChildren: boolean = true) {
         let tree = await this.loadMissing(options, value, withNestedChildren);
         tree = await tree.loadMissingIdsAndParents(options, value.checked);
         return tree;
     }
 
-    public async loadMissingIdsAndParents<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        idsToLoad: TId[],
-    ): Promise<ITree<TItem, TId>> {
+    public async loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<ITree<TItem, TId>> {
         let byId = this.byId;
         let iteration = 0;
         while (true) {
-            let missingIds = new Set<TId>();
+            const missingIds = new Set<TId>();
 
             if (idsToLoad && idsToLoad.length > 0) {
-                idsToLoad.forEach(id => {
+                idsToLoad.forEach((id) => {
                     if (!byId.has(id)) {
                         missingIds.add(id);
                     }
@@ -32,7 +26,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             }
 
             if (this.params.getParentId) {
-                for (let [, item] of byId) {
+                for (const [, item] of byId) {
                     const parentId = this.getParentId(item);
                     if (parentId != null && !byId.has(parentId)) {
                         missingIds.add(parentId);
@@ -50,9 +44,9 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                 }
 
                 // Clone before first update
-                byId = (byId == this.byId) ? this.cloneMap(byId) : byId;
+                byId = byId == this.byId ? this.cloneMap(byId) : byId;
 
-                response.items.forEach(item => {
+                response.items.forEach((item) => {
                     byId.set(this.getId(item), item);
                 });
             }
@@ -83,30 +77,16 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
         const flatten = value.search && options.flattenSearchResults;
 
-        const loadRecursive = async (
-            parentId: TId,
-            parent: TItem,
-            parentLoadAll: boolean,
-            remainingRowsCount: number,
-        ) => {
+        const loadRecursive = async (parentId: TId, parent: TItem, parentLoadAll: boolean, remainingRowsCount: number) => {
             let recursiveLoadedCount = 0;
             const currentIds = byParentId.get(parentId);
             const currentNodeInfo = this.nodeInfoById.get(parentId);
-            const { ids, nodeInfo, loadedItems } = await this.loadItems(
-                currentIds,
-                currentNodeInfo,
-                options,
-                parentId,
-                parent,
-                value,
-                remainingRowsCount,
-                parentLoadAll,
-            );
+            const { ids, nodeInfo, loadedItems } = await this.loadItems(currentIds, currentNodeInfo, options, parentId, parent, value, remainingRowsCount, parentLoadAll);
 
             if (ids != currentIds || nodeInfo != currentNodeInfo) {
-                byParentId = (byParentId == this.byParentId) ? this.cloneMap(byParentId) : byParentId;
+                byParentId = byParentId == this.byParentId ? this.cloneMap(byParentId) : byParentId;
                 byParentId.set(parentId, ids);
-                nodeInfoById = (nodeInfoById == this.nodeInfoById) ? this.cloneMap(nodeInfoById) : nodeInfoById;
+                nodeInfoById = nodeInfoById == this.nodeInfoById ? this.cloneMap(nodeInfoById) : nodeInfoById;
                 nodeInfoById.set(parentId, nodeInfo);
             }
 
@@ -114,9 +94,9 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
             if (loadedItems.length > 0) {
                 // Clone the map if it's not cloned yet
-                byId = (byId == this.byId) ? this.cloneMap(byId) : byId;
+                byId = byId == this.byId ? this.cloneMap(byId) : byId;
 
-                loadedItems.forEach(item => {
+                loadedItems.forEach((item) => {
                     const id = this.getId(item);
                     byId.set(id, item);
                 });
@@ -132,16 +112,18 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                     let isFolded = false;
                     let hasChildren = false;
 
-                    if (options.getChildCount) { // not a root node
-                        let childrenCount = options.getChildCount(item);
-                        if (childrenCount) { // foldable
+                    if (options.getChildCount) {
+                        // not a root node
+                        const childrenCount = options.getChildCount(item);
+                        if (childrenCount) {
+                            // foldable
                             isFolded = options.isFolded(item);
                             hasChildren = true;
                         }
                     }
 
                     const loadAllChildren = hasChildren && options.loadAllChildren && options.loadAllChildren(id);
-                    let loadAll = withNestedChildren ? (parentLoadAll || loadAllChildren) : loadAllChildren;
+                    const loadAll = withNestedChildren ? parentLoadAll || loadAllChildren : loadAllChildren;
 
                     remainingRowsCount--;
 
@@ -186,7 +168,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
     ) {
         let ids = inputIds || [];
         let nodeInfo = inputNodeInfo || {};
-        let loadedItems: TItem[] = [];
+        const loadedItems: TItem[] = [];
 
         const flatten = value.search && options.flattenSearchResults;
 
@@ -195,9 +177,9 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             requiredRowsCount = Number.MAX_SAFE_INTEGER;
         }
 
-        let missingCount = requiredRowsCount - ids.length;
+        const missingCount = requiredRowsCount - ids.length;
 
-        let availableCount = nodeInfo.count != null ? (nodeInfo.count - ids.length) : missingCount;
+        const availableCount = nodeInfo.count != null ? nodeInfo.count - ids.length : missingCount;
 
         const range: LazyDataSourceApiRequestRange = { from: ids.length };
 
@@ -205,8 +187,9 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             range.count = missingCount;
         }
 
-        if (missingCount > 0 && availableCount > 0) { // Need to load additional items in the current layer
-            let requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
+        if (missingCount > 0 && availableCount > 0) {
+            // Need to load additional items in the current layer
+            const requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
 
             if (!flatten) {
                 if (parent != null) {
@@ -219,16 +202,19 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                 }
             }
 
-            const response = await options.api({
-                sorting: value.sorting,
-                search: value.search,
-                filter: options.filter,
-                range,
-                page: value.page,
-                pageSize: value.pageSize,
-            }, requestContext);
+            const response = await options.api(
+                {
+                    sorting: value.sorting,
+                    search: value.search,
+                    filter: options.filter,
+                    range,
+                    page: value.page,
+                    pageSize: value.pageSize,
+                },
+                requestContext,
+            );
 
-            const from = (response.from == null) ? range.from : response.from;
+            const from = response.from == null ? range.from : response.from;
 
             if (response.items.length) {
                 ids = [...ids];
@@ -259,5 +245,4 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             loadedItems,
         };
     }
-
 }

@@ -5,8 +5,7 @@ import { Burger as uuiBurger, BurgerProps } from '@epam/uui-components';
 import { ReactComponent as BurgerIcon } from '../../../../icons/burger.svg';
 import { ReactComponent as CrossIcon } from '../../../../icons/burger-close.svg';
 
-export interface BurgerMods {
-}
+export interface BurgerMods {}
 
 function applyBurgerMods() {
     return [css.root];

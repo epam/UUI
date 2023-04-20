@@ -11,7 +11,7 @@ router.post('/get-doc-content', (req, res) => {
     const isPathInsideDocsDirectory = docContentPath.includes(path.normalize('public/docs/content/'));
 
     if (!isPathInsideDocsDirectory) {
-        return res.status(500).json({ error: 'Doc with such file name doesn\'t exist' });
+        return res.status(500).json({ error: "Doc with such file name doesn't exist" });
     }
 
     if (!fs.existsSync(docContentPath)) {
@@ -31,7 +31,7 @@ router.post('/save-doc-content', (req, res) => {
     const isPathInsideDocsDirectory = docContentPath.includes(path.normalize('public/docs/content/'));
 
     if (!isPathInsideDocsDirectory) {
-        return res.status(500).json({ error: 'File name isn\'t correct' });
+        return res.status(500).json({ error: "File name isn't correct" });
     }
 
     fs.writeFileSync(docContentPath, JSON.stringify(req.body.content, null, 2));

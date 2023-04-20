@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { cx } from '@epam/uui-core';
-import { FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, RichTextView, Text, Tooltip } from '@epam/promo';
+import {
+    FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, RichTextView, Text, Tooltip,
+} from '@epam/promo';
 import { BaseDocsBlock, UUI4 } from '../../common/docs';
 import { getQuery } from '../../helpers';
 import css from './DownloadsDoc.scss';
@@ -119,43 +121,39 @@ export class DownloadsDoc extends BaseDocsBlock {
     renderDocTitle() {
         return (
             <FlexRow>
-                <div className={ css.title }>{ this.title }</div>
+                <div className={ css.title }>{this.title}</div>
                 <FlexSpacer />
-                { this.renderMultiSwitch() }
+                {this.renderMultiSwitch()}
             </FlexRow>
         );
     }
 
-    renderLibraryCard({ title, additionalInfo, link, image, libraryType }: any) {
+    renderLibraryCard({
+        title, additionalInfo, link, image, libraryType,
+    }: any) {
         return (
             <FlexCell minWidth={ 320 }>
-                <FlexRow spacing='12'>
+                <FlexRow spacing="12">
                     <IconContainer icon={ image } />
-                    <FlexCell width='auto'>
-                        {
-                            title === 'UUI Illustrations'
-                                ? <Tooltip content='For internal use only' offset={ [0, 10] } >
-                                    <LinkButton
-                                        href={ link }
-                                        size='24'
-                                        target="_blank"
-                                        captionCX={ css.libraryLinkTitle }
-                                        caption={ title }
-                                        iconPosition='right'
-                                        icon={ LockIcon }
-                                    />
-                                </Tooltip>
-                                : <LinkButton
-                                    href={ link }
-                                    size='24'
-                                    target="_blank"
-                                    captionCX={ css.libraryLinkTitle }
-                                    caption={ title }
-                                    iconPosition='right'
-                                    icon={ libraryType === 'sketch' ? DownloadFileIcon : ContentLinkIcon }
-                                />
-                        }
-                        <Text size='18' fontSize='12' lineHeight='18' color='gray60' >{ additionalInfo }</Text>
+                    <FlexCell width="auto">
+                        {title === 'UUI Illustrations' ? (
+                            <Tooltip content="For internal use only" offset={ [0, 10] }>
+                                <LinkButton href={ link } size="24" target="_blank" captionCX={ css.libraryLinkTitle } caption={ title } iconPosition="right" icon={ LockIcon } />
+                            </Tooltip>
+                        ) : (
+                            <LinkButton
+                                href={ link }
+                                size="24"
+                                target="_blank"
+                                captionCX={ css.libraryLinkTitle }
+                                caption={ title }
+                                iconPosition="right"
+                                icon={ libraryType === 'sketch' ? DownloadFileIcon : ContentLinkIcon }
+                            />
+                        )}
+                        <Text size="18" fontSize="12" lineHeight="18" color="gray60">
+                            {additionalInfo}
+                        </Text>
                     </FlexCell>
                 </FlexRow>
             </FlexCell>
@@ -166,81 +164,79 @@ export class DownloadsDoc extends BaseDocsBlock {
         const isUUI4Skin = getQuery('skin') === UUI4;
         return (
             <>
-                <FlexRow alignItems='top'  cx={ css.headerRow } >
-                    <FlexCell width='100%' cx={ css.contentBlock } >
-                        <RichTextView size='16' >
+                <FlexRow alignItems="top" cx={ css.headerRow }>
+                    <FlexCell width="100%" cx={ css.contentBlock }>
+                        <RichTextView size="16">
                             <h2>Design Libraries</h2>
                             <p>
-                                You need to install the component library for full-scale work with design documents.
-                                You will find detailed instructions on installing the library, additional files,
-                                and answers to frequent questions here.
+                                You need to install the component library for full-scale work with design documents. You will find detailed instructions on installing the
+                                library, additional files, and answers to frequent questions here.
                             </p>
                         </RichTextView>
-                        <FlexRow cx={ css.libraryBlock } >
-                            { libraries[isUUI4Skin ? 'UUI4' : 'UUI3'].map(item => this.renderLibraryCard(item)) }
-                        </FlexRow>
+                        <FlexRow cx={ css.libraryBlock }>{libraries[isUUI4Skin ? 'UUI4' : 'UUI3'].map((item) => this.renderLibraryCard(item))}</FlexRow>
                     </FlexCell>
                 </FlexRow>
                 <FlexCell>
-                    <RichTextView size='16' >
+                    <RichTextView size="16">
                         <h2>Assets</h2>
                     </RichTextView>
-                    <FlexRow alignItems='bottom' cx={ css.downloadsRow } >
-                        <FlexCell minWidth={ 320 } >
-                            <FlexRow spacing='12' >
-                                <div className={ cx(css.downloadsOval, css.fontPackBackground) } >
+                    <FlexRow alignItems="bottom" cx={ css.downloadsRow }>
+                        <FlexCell minWidth={ 320 }>
+                            <FlexRow spacing="12">
+                                <div className={ cx(css.downloadsOval, css.fontPackBackground) }>
                                     <IconContainer icon={ FontIcon } />
                                 </div>
-                                <FlexCell width='auto' >
-                                    <Text size='24' fontSize='16' font='museo-sans' >Font Pack</Text>
-                                    {
-                                        isUUI4Skin
-                                            ? <Tooltip content='For internal use only' offset={ [0, 10] } >
-                                                <LinkButton
-                                                    iconPosition='right'
-                                                    icon={ LockIcon }
-                                                    caption='Download'
-                                                    size='24'
-                                                    href={ assets.UUI4.fonts }
-                                                    captionCX={ css.assetsLinkCaption }
-                                                />
-                                            </Tooltip>
-                                            : <LinkButton
-                                                caption='Download'
-                                                size='24'
-                                                href={ assets.UUI3.fonts }
+                                <FlexCell width="auto">
+                                    <Text size="24" fontSize="16" font="museo-sans">
+                                        Font Pack
+                                    </Text>
+                                    {isUUI4Skin ? (
+                                        <Tooltip content="For internal use only" offset={ [0, 10] }>
+                                            <LinkButton
+                                                iconPosition="right"
+                                                icon={ LockIcon }
+                                                caption="Download"
+                                                size="24"
+                                                href={ assets.UUI4.fonts }
                                                 captionCX={ css.assetsLinkCaption }
                                             />
-                                    }
+                                        </Tooltip>
+                                    ) : (
+                                        <LinkButton caption="Download" size="24" href={ assets.UUI3.fonts } captionCX={ css.assetsLinkCaption } />
+                                    )}
                                 </FlexCell>
                             </FlexRow>
                         </FlexCell>
-                        <FlexCell minWidth={ 320 } >
-                            <FlexRow spacing='12' >
-                                <div className={ cx(css.downloadsOval, css.logotypesBackground) } >
+                        <FlexCell minWidth={ 320 }>
+                            <FlexRow spacing="12">
+                                <div className={ cx(css.downloadsOval, css.logotypesBackground) }>
                                     <IconContainer icon={ LogotypeIcon } />
                                 </div>
-                                <FlexCell width='auto'>
-                                    <Text size='24' fontSize='16' font='museo-sans' >Logotypes</Text>
+                                <FlexCell width="auto">
+                                    <Text size="24" fontSize="16" font="museo-sans">
+                                        Logotypes
+                                    </Text>
                                     <LinkButton
-                                        caption='Download'
-                                        size='24'
+                                        caption="Download"
+                                        size="24"
                                         href={ isUUI4Skin ? assets.UUI4.logos : assets.UUI3.logos }
                                         captionCX={ css.assetsLinkCaption }
                                     />
                                 </FlexCell>
                             </FlexRow>
                         </FlexCell>
-                        <FlexCell minWidth={ 320 } >
-                            <FlexRow spacing='12' >
-                                <div className={ cx(css.downloadsOval, css.iconSetBackground) } >
+                        <FlexCell minWidth={ 320 }>
+                            <FlexRow spacing="12">
+                                <div className={ cx(css.downloadsOval, css.iconSetBackground) }>
                                     <IconContainer icon={ DownloadIcon } />
                                 </div>
-                                <FlexCell width='auto' >
-                                    <Text size='24' fontSize='16' font='museo-sans' >Icon Set</Text>
+                                <FlexCell width="auto">
+                                    <Text size="24" fontSize="16" font="museo-sans">
+                                        Icon Set
+                                    </Text>
                                     <LinkButton
-                                        caption='Download'
-                                        size='24'
+                                        caption="Download"
+                                        size="24"
                                         href={ isUUI4Skin ? assets.UUI4.icons : assets.UUI3.icons }
                                         captionCX={ css.assetsLinkCaption }
                                     />
@@ -248,21 +244,23 @@ export class DownloadsDoc extends BaseDocsBlock {
                             </FlexRow>
                         </FlexCell>
                     </FlexRow>
-                    <FlexRow alignItems='bottom' cx={ css.downloadsRow } >
-                        <FlexCell minWidth={ 480 } >
-                            <FlexRow spacing='12' >
-                                <div className={ cx(css.downloadsOval, css.illustrationsBackground) } >
+                    <FlexRow alignItems="bottom" cx={ css.downloadsRow }>
+                        <FlexCell minWidth={ 480 }>
+                            <FlexRow spacing="12">
+                                <div className={ cx(css.downloadsOval, css.illustrationsBackground) }>
                                     <IconContainer icon={ IllustrationsIcon } />
                                 </div>
-                                <FlexCell width='auto'>
-                                    <Text size='24' fontSize='16' font='museo-sans' >UUI Illustrations (SVG pack & Guidelines)</Text>
+                                <FlexCell width="auto">
+                                    <Text size="24" fontSize="16" font="museo-sans">
+                                        UUI Illustrations (SVG pack & Guidelines)
+                                    </Text>
                                     <FlexRow>
-                                        <Tooltip content='For internal use only' offset={ [0, 10] } >
+                                        <Tooltip content="For internal use only" offset={ [0, 10] }>
                                             <LinkButton
-                                                iconPosition='right'
+                                                iconPosition="right"
                                                 icon={ LockIcon }
-                                                caption='Download'
-                                                size='24'
+                                                caption="Download"
+                                                size="24"
                                                 href={ isUUI4Skin ? assets.UUI4.illustrations : assets.UUI3.illustrations }
                                                 captionCX={ css.assetsLinkCaption }
                                             />
