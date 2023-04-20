@@ -2,8 +2,7 @@ import React from 'react';
 import { useUuiContext } from '@epam/uui-core';
 
 import {
-    createMediaEmbedPlugin,
-    ELEMENT_MEDIA_EMBED,
+    createPluginFactory,
     getBlockAbove,
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
@@ -19,7 +18,10 @@ import { AddVideoModal } from './AddVideoModal';
 
 const noop = () => {};
 
-export const videoPlugin = () => createMediaEmbedPlugin({
+const VIDEO_PLUGIN_KEY = 'video';
+
+export const videoPlugin = createPluginFactory({
+    key: VIDEO_PLUGIN_KEY,
     type: 'video',
 });
 
@@ -32,13 +34,13 @@ export const VideoButton = ({
 }: IVideoButton) => {
     const context = useUuiContext();
 
-    if (!isPluginActive(ELEMENT_MEDIA_EMBED)) return null;
+    if (!isPluginActive('video')) return null;
 
     const block = getBlockAbove(editor);
 
     return (
         <PlateToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
             onMouseDown={ async (event) => {
                 if (!editor) return;
                 event.preventDefault();

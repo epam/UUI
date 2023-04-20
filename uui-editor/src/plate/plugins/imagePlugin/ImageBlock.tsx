@@ -9,6 +9,7 @@ import { invert, debounce } from 'lodash';
 
 import {
     getBlockAbove,
+    ImageElement,
     setElements,
     PlatePluginComponent,
     PlateRenderElementProps,
@@ -22,7 +23,6 @@ import { FileUploadResponse } from "@epam/uui-core";
 
 import css from './ImageBlock.scss';
 import { ImgToolbar } from './Toolbar';
-import { ImageElement } from './ImageElement';
 
 export type PlateImgAlign = 'left' | 'center' | 'right';
 type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
@@ -75,14 +75,7 @@ const getUpdatedElement = (
     },
 });
 
-const updateImageSize = debounce((editor: PlateEditor, element: ImageElement, width: number | string) => {
-    const path = findNodePath(editor, element!);
-    if (!path) {
-        return;
-    }
-
-    setElements(editor, getUpdatedElement(element, { width }));
-}, 100, { leading: false, trailing: true });
+const debounced = debounce((exec: () => void) => exec(), 50, { leading: true, trailing: false });
 
 const isImgElem = (editor?: PlateEditor, element?: ImageElement) => editor && element.type === 'image';
 
@@ -100,13 +93,16 @@ const useUpdatingElement = ({ element, editor }: { element: ImageElement, editor
     }
 
     // update slate structure
-    useEffect(() => {
-        const prevWidth = prevNodeWidthRef.current;
-        if (isImgElem(editor, element) && !!element.width && prevWidth !== element.width) {
-            updateImageSize(editor, element, element.width);
-            prevNodeWidthRef.current = element.width;
-        }
-    }, [element.width]);
+    useEffect(() =>
+        debounced(() => {
+            const prevWidth = prevNodeWidthRef.current;
+            const path = findNodePath(editor, element!);
+            if (isImgElem(editor, element) && !!path && !!element.width && prevWidth !== element.width) {
+                setElements(editor, getUpdatedElement(element, { width: element.width }));
+                prevNodeWidthRef.current = element.width;
+            }
+        }), [element.width]
+    );
 
     const resizableProps = { minWidth: MIN_IMG_WIDTH };
     const isCaptionEnabled = !!element.data && element.data?.imageSize?.width >= MIN_CAPTION_WIDTH;
@@ -118,11 +114,18 @@ const useUpdatingElement = ({ element, editor }: { element: ImageElement, editor
 export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageElement>> = (props) => {
     const { editor, element, children } = props;
     const ref = useRef(null);
-
-    const { align, setAlign, ...imageSizeProps } = useUpdatingElement({ element, editor });
-
     const isFocused = useFocused();
     const isSelected = useSelected();
+
+    const { align, setAlign, ...imageSizeProps } = useUpdatingElement({ element, editor });
+    const [showToolbar, setShowToolbar] = useState(false);
+
+    useEffect(() => {
+        const block = getBlockAbove(editor);
+        setShowToolbar(isSelected && isFocused && block?.length && block[0].type === 'image');
+    }, [isSelected, isFocused]);
+
+    const onChangeDropDownValue = (value: boolean) => setShowToolbar(value);
 
     const toggleBlockAlignment = (align: PlateImgAlign) => {
         setAlign(align);
@@ -155,8 +158,6 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
         );
     }
 
-    const block = getBlockAbove(editor);
-
     return (
         <Dropdown
             renderTarget={ (innerProps: any) => (
@@ -172,16 +173,19 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
                     </div>
                 </div>
             ) }
-            renderBody={ () => <FlexRow cx={ css.imageToolbarWrapper }>
-                <ImgToolbar editor={ editor }
-                    align={ align }
-                    element={ element }
-                    toggleBlockAlignment={ toggleBlockAlignment }
-                    isFullWidth={ isFullWidth }
-                    setMaxWidth={ setMaxWidth }
-                />
-            </FlexRow> }
-            value={ isSelected && isFocused && block?.length && block[0].type === 'image' }
+            renderBody={ () => (
+                <FlexRow cx={ css.imageToolbarWrapper }>
+                    <ImgToolbar editor={ editor }
+                        align={ align }
+                        element={ element }
+                        toggleBlockAlignment={ toggleBlockAlignment }
+                        isFullWidth={ isFullWidth }
+                        setMaxWidth={ setMaxWidth }
+                    />
+                </FlexRow>
+            ) }
+            onValueChange={ onChangeDropDownValue }
+            value={ showToolbar }
             placement='top'
         />
     );
