@@ -35,7 +35,7 @@ export default function ArrayLinkedPickers() {
                 />
             </LabeledInput>
 
-            <LabeledInput label={ country ? `Select city from ${ country.name }` : 'Select city' }>
+            <LabeledInput label={ country ? `Select city from ${country.name}` : 'Select city' }>
                 <PickerInput<City, string>
                     dataSource={ citiesDataSource }
                     value={ cities }
