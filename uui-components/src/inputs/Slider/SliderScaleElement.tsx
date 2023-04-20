@@ -18,6 +18,7 @@ interface SliderScaleElementState {
 
 export class SliderScaleElement extends React.Component<SliderScaleElementProps, SliderScaleElementState> {
     scaleNumber: HTMLElement | null;
+
     scaleDot: HTMLElement | null;
 
     componentDidMount() {
@@ -31,28 +32,28 @@ export class SliderScaleElement extends React.Component<SliderScaleElementProps,
             return 0;
         }
         if (this.props.sliderWidth === parseInt(`${this.props.offset}`, 10)) {
-            return this.props.offset -  Math.ceil((this.scaleNumber ? (this.state.scaleNumberWidth) : 0)) + (2  * this.props.sliderMargin);
+            return this.props.offset - Math.ceil(this.scaleNumber ? this.state.scaleNumberWidth : 0) + 2 * this.props.sliderMargin;
         }
-        return this.props.offset + this.props.sliderMargin - Math.ceil((this.scaleNumber ? (this.state.scaleNumberWidth / 2) : 0));
-    }
+        return this.props.offset + this.props.sliderMargin - Math.ceil(this.scaleNumber ? this.state.scaleNumberWidth / 2 : 0);
+    };
 
     render() {
-        const dotOffset = this.props.offset + this.props.sliderMargin - (this.scaleDot ? (this.state.scaleDotWidth / 2) : 0);
-        let numberOffset = this.calculateLabelPosition();
+        const dotOffset = this.props.offset + this.props.sliderMargin - (this.scaleDot ? this.state.scaleDotWidth / 2 : 0);
+        const numberOffset = this.calculateLabelPosition();
 
         return (
             <>
                 <div
                     className={ cx(uuiSlider.scaleDot, this.props.isFilledDot && uuiSlider.scaleFilledDot) }
-                    ref={ (scaleDotRef) => this.scaleDot = scaleDotRef }
-                    style={ { transform: `translateX(${ dotOffset }px)` } }
+                    ref={ (scaleDotRef) => (this.scaleDot = scaleDotRef) }
+                    style={ { transform: `translateX(${dotOffset}px)` } }
                 />
                 <div
                     className={ uuiSlider.scaleNumber }
-                    ref={ (scaleNumberRef) => this.scaleNumber = scaleNumberRef }
-                    style={ { transform: `translateX(${ numberOffset }px)` } }
+                    ref={ (scaleNumberRef) => (this.scaleNumber = scaleNumberRef) }
+                    style={ { transform: `translateX(${numberOffset}px)` } }
                 >
-                    { this.props.label }
+                    {this.props.label}
                 </div>
             </>
         );

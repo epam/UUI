@@ -4,4 +4,4 @@ const uuiRoot = path.resolve(__dirname, '../..');
 
 module.exports = {
     uuiRoot,
-}
+};

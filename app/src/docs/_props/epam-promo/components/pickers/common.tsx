@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { ArrayDataSource, LazyDataSource, AsyncDataSource, PickerBaseOptions } from '@epam/uui-core';
+import {
+    ArrayDataSource, LazyDataSource, AsyncDataSource, PickerBaseOptions,
+} from '@epam/uui-core';
 import { DocBuilder, PropSamplesCreationContext } from '@epam/uui-docs';
 import { Text } from '@epam/promo';
 import { DataPickerRow } from '@epam/promo';
@@ -16,40 +18,45 @@ const dataSourcesMap: any = {
     lazyLocations: null,
     locations: null,
     persons: null,
-
 };
 
 export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
-    dataSourcesMap.languages = dataSourcesMap.languages || new AsyncDataSource({
-        api: () => ctx.demoApi.languages({}).then(r => r.items),
-    });
-    dataSourcesMap.cities = dataSourcesMap.cities || new AsyncDataSource({
-        api: () => ctx.demoApi.cities({ sorting: [{ field: 'name' }] }).then(r => r.items),
-    });
-    dataSourcesMap.languages = dataSourcesMap.languages || new AsyncDataSource({
-        api: () => ctx.demoApi.languages({}).then(r => r.items),
-    });
+    dataSourcesMap.languages = dataSourcesMap.languages
+        || new AsyncDataSource({
+            api: () => ctx.demoApi.languages({}).then((r) => r.items),
+        });
+    dataSourcesMap.cities = dataSourcesMap.cities
+        || new AsyncDataSource({
+            api: () => ctx.demoApi.cities({ sorting: [{ field: 'name' }] }).then((r) => r.items),
+        });
+    dataSourcesMap.languages = dataSourcesMap.languages
+        || new AsyncDataSource({
+            api: () => ctx.demoApi.languages({}).then((r) => r.items),
+        });
 
-    dataSourcesMap.lazyLocations = dataSourcesMap.lazyLocations || new LazyDataSource({
-        api: (request, context) => {
-            const { search } = request;
-            const filter = search ? {} : { parentId: context?.parentId };
-            return ctx.demoApi.locations({ ...request, search, filter });
-        },
-        getId: i => i.id,
-        getParentId: i => i.parentId,
-        getChildCount: l => l.childCount,
-    });
+    dataSourcesMap.lazyLocations = dataSourcesMap.lazyLocations
+        || new LazyDataSource({
+            api: (request, context) => {
+                const { search } = request;
+                const filter = search ? {} : { parentId: context?.parentId };
+                return ctx.demoApi.locations({ ...request, search, filter });
+            },
+            getId: (i) => i.id,
+            getParentId: (i) => i.parentId,
+            getChildCount: (l) => l.childCount,
+        });
 
-    dataSourcesMap.locations = dataSourcesMap.locations || new AsyncDataSource({
-        api: () => ctx.demoApi.locations({}).then(r => r.items),
-        getId: i => i.id,
-        getParentId: i => i.parentId,
-    });
+    dataSourcesMap.locations = dataSourcesMap.locations
+        || new AsyncDataSource({
+            api: () => ctx.demoApi.locations({}).then((r) => r.items),
+            getId: (i) => i.id,
+            getParentId: (i) => i.parentId,
+        });
 
-    dataSourcesMap.persons = dataSourcesMap.persons || new LazyDataSource({
-        api: rq => ctx.demoApi.persons({ ...rq, sorting: [{ field: 'name' }] }),
-    });
+    dataSourcesMap.persons = dataSourcesMap.persons
+        || new LazyDataSource({
+            api: (rq) => ctx.demoApi.persons({ ...rq, sorting: [{ field: 'name' }] }),
+        });
 
     return [
         {
@@ -90,47 +97,59 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
         ],
     })
     .prop('getName', {
+        examples: [{ name: 'i => i.name', value: (i) => i.name }, { name: 'i => i.level', value: (i) => i.level }],
+    })
+    .prop('entityName', {
         examples: [
-            { name: 'i => i.name', value: i => i.name },
-            { name: 'i => i.level', value: i => i.level },
+            'Language',
+            'City',
+            'Role',
+            'Location',
+            'Person',
         ],
     })
-    .prop('entityName', { examples: ['Language', 'City', 'Role', 'Location', 'Person'] })
     .prop('entityPluralName', { examples: ['Cities'] })
     .prop('renderRow', {
-        examples: ctx => [
+        examples: (ctx) => [
             {
                 name: 'UserPickerRow',
-                value: props => <DataPickerRow
-                    { ...props }
-                    key={ props.rowKey }
-                    alignActions='center'
-                    padding={ (ctx.getSelectedProps() as any).editMode === 'modal' ? '24' : '12' }
-                    renderItem={ (item, rowProps) =>
-                        <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } />
-                    }
-                />,
+                value: (props) => (
+                    <DataPickerRow
+                        { ...props }
+                        key={ props.rowKey }
+                        alignActions="center"
+                        padding={ (ctx.getSelectedProps() as any).editMode === 'modal' ? '24' : '12' }
+                        renderItem={ (item, rowProps) => <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } /> }
+                    />
+                ),
             },
             {
                 name: 'Skills',
-                value: rowProps => {
+                value: (rowProps) => {
                     const isParent = !rowProps.value.parentId;
-                    return <DataPickerRow
-                        { ...rowProps }
-                        depth={ isParent ? 0 : 1 }
-                        cx={ isParent && css.parent }
-                        isFoldable={ isParent }
-                        isChecked={ isParent ? false : rowProps.isChecked }
-                        isChildrenChecked={ false }
-                        isSelectable={ isParent ? false : rowProps.isSelectable }
-                        isFocused={ isParent ? false : rowProps.isFocused }
-                        borderBottom='none'
-                        size={ '36' }
-                        renderItem={ i => <Text size={ '36' }>{ i.name }</Text> }
-                    />;
+                    return (
+                        <DataPickerRow
+                            { ...rowProps }
+                            depth={ isParent ? 0 : 1 }
+                            cx={ isParent && css.parent }
+                            isFoldable={ isParent }
+                            isChecked={ isParent ? false : rowProps.isChecked }
+                            isChildrenChecked={ false }
+                            isSelectable={ isParent ? false : rowProps.isSelectable }
+                            isFocused={ isParent ? false : rowProps.isFocused }
+                            borderBottom="none"
+                            size="36"
+                            renderItem={ (i) => <Text size="36">{i.name}</Text> }
+                        />
+                    );
                 },
             },
-        ]
+        ],
     })
-    .prop('cascadeSelection', { examples: [true, 'explicit', 'implicit'] });
-
+    .prop('cascadeSelection', {
+        examples: [
+            true,
+            'explicit',
+            'implicit',
+        ],
+    });

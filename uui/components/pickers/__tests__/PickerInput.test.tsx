@@ -6,8 +6,8 @@ import {
 import { PickerInput } from '../PickerInput';
 
 type TestItemType = {
-    id: number,
-    level: string,
+    id: number;
+    level: string;
 };
 
 const languageLevels: TestItemType[] = [
@@ -31,10 +31,7 @@ const mockDataSource = new ArrayDataSource({
 type PickerInputComponentProps = React.ComponentProps<typeof PickerInput<TestItemType, number>>;
 
 async function setupPickerInputForTest(params: Partial<PickerInputComponentProps>) {
-    const {
-        result,
-        mocks,
-    } = await setupComponentForTest<PickerInputComponentProps>(
+    const { result, mocks } = await setupComponentForTest<PickerInputComponentProps>(
         (context): PickerInputComponentProps => {
             if (params.selectionMode === 'single') {
                 return {
@@ -57,7 +54,7 @@ async function setupPickerInputForTest(params: Partial<PickerInputComponentProps
                 getName: (item) => item.level,
             };
         },
-        (props) => (<PickerInput { ...props } />),
+        (props) => <PickerInput { ...props } />,
     );
     const input = screen.queryByRole('textbox');
 
@@ -71,14 +68,7 @@ async function setupPickerInputForTest(params: Partial<PickerInputComponentProps
 describe('PickerInput', () => {
     it('should render with minimum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <PickerInput
-                value={ null }
-                onValueChange={ jest.fn }
-                selectionMode="single"
-                dataSource={ mockDataSource }
-                disableClear
-                searchPosition="input"
-            />,
+            <PickerInput value={ null } onValueChange={ jest.fn } selectionMode="single" dataSource={ mockDataSource } disableClear searchPosition="input" />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -104,11 +94,11 @@ describe('PickerInput', () => {
                 renderNotFound={ ({ search, onClose = jest.fn }) => {
                     return (
                         <div onClick={ onClose } role="button">
-                            { `No found ${search}` }
+                            {`No found ${search}`}
                         </div>
                     );
                 } }
-                renderFooter={ (props) => <div>{ props as unknown as ReactNode }</div> }
+                renderFooter={ (props) => <div>{props as unknown as ReactNode}</div> }
                 cascadeSelection
                 dropdownHeight={ 48 }
                 minCharsToSearch={ 4 }
@@ -118,10 +108,7 @@ describe('PickerInput', () => {
     });
 
     it('[selectionMode multi] should select & clear several options', async () => {
-        const {
-            dom,
-            mocks,
-        } = await setupPickerInputForTest({
+        const { dom, mocks } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
         });
@@ -149,10 +136,7 @@ describe('PickerInput', () => {
     });
 
     it('[selectionMode single] should select & clear option', async () => {
-        const {
-            dom,
-            mocks,
-        } = await setupPickerInputForTest({
+        const { dom, mocks } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'single',
         });

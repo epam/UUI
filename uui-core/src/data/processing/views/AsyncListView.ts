@@ -1,5 +1,5 @@
-import { IEditable, DataSourceState, IDataSourceView } from "../../../types";
-import { ArrayListView, BaseArrayListViewProps } from "./ArrayListView";
+import { IEditable, DataSourceState, IDataSourceView } from '../../../types';
+import { ArrayListView, BaseArrayListViewProps } from './ArrayListView';
 
 export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
     api(): Promise<TItem[]>;
@@ -7,12 +7,10 @@ export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListVi
 
 export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     private isloading: boolean = false;
+
     private isloaded: boolean = false;
 
-    constructor(
-        protected editable: IEditable<DataSourceState<TFilter, TId>>,
-        protected props: AsyncListViewProps<TItem, TId, TFilter>,
-    ) {
+    constructor(protected editable: IEditable<DataSourceState<TFilter, TId>>, protected props: AsyncListViewProps<TItem, TId, TFilter>) {
         super(editable, props);
         this.props = props;
         this.update(editable.value, props);
@@ -36,7 +34,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         this.isLoading = false;
         this.isLoaded = false;
         super.reload();
-    }
+    };
 
     public getVisibleRows = () => {
         const from = this.value.topIndex;
@@ -52,7 +50,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         }
 
         return this.rows.slice(this.value.topIndex, this.getLastRecordIndex());
-    }
+    };
 
     public getListProps = () => {
         if (!this.isLoaded) {
@@ -72,7 +70,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
             totalCount: this.originalTree?.getTotalRecursiveCount(),
             selectAll: this.selectAll,
         };
-    }
+    };
 
     get isLoading(): boolean {
         return this.isloading;

@@ -1,8 +1,9 @@
 import { LazyLoadedMap, LazyLoadedMapLoadCallback } from '../LazyLoadedMap';
 
-const delay = () => new Promise((resolve) => {
-    setTimeout(resolve, 1);
-});
+const delay = () =>
+    new Promise((resolve) => {
+        setTimeout(resolve, 1);
+    });
 
 describe('LazyLoadedMap', () => {
     const mockApi: LazyLoadedMapLoadCallback<number, string> = (keys: number[]) => {

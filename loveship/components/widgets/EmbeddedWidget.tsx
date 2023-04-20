@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from "@epam/uui";
+import { Spinner } from '@epam/uui';
 
 interface EmbeddedAppState {
     isLoading: boolean;
@@ -40,7 +40,7 @@ export class EmbeddedWidget<TProps = any> extends React.Component<EmbeddedAppPro
         return new Promise<void>((resolve, reject) => {
             const linkNode = document.createElement('link');
             linkNode.setAttribute('href', href);
-            linkNode.setAttribute('rel', "stylesheet");
+            linkNode.setAttribute('rel', 'stylesheet');
             document.head.appendChild(linkNode);
             linkNode.onload = () => resolve();
             linkNode.onerror = () => reject();
@@ -55,13 +55,15 @@ export class EmbeddedWidget<TProps = any> extends React.Component<EmbeddedAppPro
         //     };
         // }
 
-        fetch(this.props.publicUrl + '/asset-manifest.json').then(i => {
-            i.json().then(manifest => {
-                const jsFiles = Object.keys(manifest).filter(f => f.endsWith('js'));
-                const cssFiles = Object.keys(manifest).filter(f => f.endsWith('css'));
+        fetch(this.props.publicUrl + '/asset-manifest.json').then((i) => {
+            i.json().then((manifest) => {
+                const jsFiles = Object.keys(manifest).filter((f) => f.endsWith('js'));
+                const cssFiles = Object.keys(manifest).filter((f) => f.endsWith('css'));
                 const loadTasks = [
-                    ...jsFiles.map(file => this.addScript(this.props.publicUrl + manifest[file])),
-                    ...cssFiles.map(file => this.addStyles(this.props.publicUrl + manifest[file])),
+                    ...jsFiles.map(
+                        (file) => this.addScript(this.props.publicUrl + manifest[file]),
+                    ),
+                    ...cssFiles.map((file) => this.addStyles(this.props.publicUrl + manifest[file])),
                 ];
                 Promise.all(loadTasks).then(() => {
                     this.setState({ isLoading: false });
@@ -76,8 +78,6 @@ export class EmbeddedWidget<TProps = any> extends React.Component<EmbeddedAppPro
             return <Spinner />;
         }
 
-        return (
-            <div ref={ node => this.widgetNode = node } />
-        );
+        return <div ref={ (node) => { this.widgetNode = node; } } />;
     }
 }

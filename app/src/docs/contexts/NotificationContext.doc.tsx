@@ -7,11 +7,8 @@ export class NotificationContextDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='notification-context-descriptions' />
-                <DocExample
-                    title='Example'
-                    path='./_examples/contexts/NotificationContext.example.tsx'
-                />
+                <EditableDocContent fileName="notification-context-descriptions" />
+                <DocExample title="Example" path="./_examples/contexts/NotificationContext.example.tsx" />
             </>
         );
     }

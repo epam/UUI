@@ -1,6 +1,8 @@
 import * as React from 'react';
 import css from './IconContainer.scss';
-import { uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps, IHasTabIndex } from '@epam/uui-core';
+import {
+    uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps, IHasTabIndex,
+} from '@epam/uui-core';
 import { Svg } from '../widgets';
 
 export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasTabIndex {
@@ -37,7 +39,7 @@ export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>(
             style={ { ...props.style, ...props.rawProps?.style } }
             { ...props.rawProps }
         >
-            <Svg svg={ props.icon } width={ props.size } height={ props.size } cx={ cx(props.flipY && css.flipY, props.rotate && css['rotate-' + props.rotate]) }/>
+            <Svg svg={ props.icon } width={ props.size } height={ props.size } cx={ cx(props.flipY && css.flipY, props.rotate && css['rotate-' + props.rotate]) } />
         </div>
     );
 });

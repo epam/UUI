@@ -1,6 +1,10 @@
 import { Db } from './Db';
-import { DbPatch, DbTablesSet, ServerError, DbSaveResponse, DbView, ViewCacheItem, DbSubscription, DbPkFieldType } from './types';
-import { makeCumulativePatch, unionPatches, mergeEntityPatches, flattenResponse } from './patchHelpers';
+import {
+    DbPatch, DbTablesSet, ServerError, DbSaveResponse, DbView, ViewCacheItem, DbSubscription, DbPkFieldType,
+} from './types';
+import {
+    makeCumulativePatch, unionPatches, mergeEntityPatches, flattenResponse,
+} from './patchHelpers';
 import { TempIdMap, IClientIdsMap } from './tempIds';
 import { objectKeys, defaultCompareViewDependencies, difference } from './utils';
 import isEmpty from 'lodash.isempty';
@@ -11,13 +15,19 @@ import { ListLoadingTracker, ListLoadingTrackerOptions } from './ListLoadingTrac
 
 export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>> {
     private base: TDb;
+
     private log: { patch: DbPatch<TTables> }[] = [];
+
     private autoSave = true;
+
     private savedPoint = 0;
+
     private tempIdMap: TempIdMap<TTables>;
 
     public db: TDb;
+
     protected throttleSaveMs = 1000;
+
     public readonly idMap: IClientIdsMap;
 
     constructor(public blank: TDb) {
@@ -57,7 +67,6 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
         return Promise.resolve({ submit: {} });
     }
 
-
     /* Db Update logic */
 
     public commit(patch: DbPatch<TTables>): void {
@@ -74,27 +83,35 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     private beforeUpdate(patch: DbPatch<TTables>, tables: TTables, prevTables: TTables): DbPatch<TTables> {
         let patchAndDependencies: DbPatch<TTables> = {};
 
-        objectKeys(tables).filter(entityName => patch[entityName] && !tables[entityName].schema.beforeUpdate).forEach(entityName => {
-            patchAndDependencies[entityName] = patch[entityName];
-        });
+        objectKeys(tables)
+            .filter((entityName) => patch[entityName] && !tables[entityName].schema.beforeUpdate)
+            .forEach((entityName) => {
+                patchAndDependencies[entityName] = patch[entityName];
+            });
 
-        objectKeys(tables).filter(entityName => patch[entityName] && tables[entityName].schema.beforeUpdate).forEach(entityName => {
-            const schema = tables[entityName].schema;
-            const { beforeUpdate } = schema;
-            let context = {
-                clientIdsMap: this.tempIdMap,
-                schema,
-                tables,
-                prevTables,
-            };
+        objectKeys(tables)
+            .filter((entityName) => patch[entityName] && tables[entityName].schema.beforeUpdate)
+            .forEach((entityName) => {
+                const schema = tables[entityName].schema;
+                const { beforeUpdate } = schema;
+                const context = {
+                    clientIdsMap: this.tempIdMap,
+                    schema,
+                    tables,
+                    prevTables,
+                };
 
-            const results = patch[entityName].map(e => beforeUpdate(e, context));
-            const updatedPatch = { [entityName]: results.map(result => result.entity) } as DbPatch<TTables>;
-            const dependentEntityPatchesForUpdate = unionPatches(results.filter(result => result.dependentEntities).map(result => result.dependentEntities));
-            const dependentEntityPatches = this.beforeUpdate(dependentEntityPatchesForUpdate, tables, prevTables);
+                const results = patch[entityName].map((e) => beforeUpdate(e, context));
+                const updatedPatch = { [entityName]: results.map((result) => result.entity) } as DbPatch<TTables>;
+                const dependentEntityPatchesForUpdate = unionPatches(results.filter((result) => result.dependentEntities).map((result) => result.dependentEntities));
+                const dependentEntityPatches = this.beforeUpdate(dependentEntityPatchesForUpdate, tables, prevTables);
 
-            patchAndDependencies = mergeEntityPatches(tables, unionPatches([patchAndDependencies, updatedPatch, dependentEntityPatches]));
-        });
+                patchAndDependencies = mergeEntityPatches(tables, unionPatches([
+                    patchAndDependencies,
+                    updatedPatch,
+                    dependentEntityPatches,
+                ]));
+            });
         return patchAndDependencies;
     }
 
@@ -115,7 +132,11 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     private makeCumulativePatch() {
         const lastLogEntry = this.log.length;
         const logEntriesToSave = this.log.slice(this.savedPoint, lastLogEntry);
-        let cumulativePatch = makeCumulativePatch(this.db, logEntriesToSave.map(t => t.patch), this.tempIdMap);
+        let cumulativePatch = makeCumulativePatch(
+            this.db,
+            logEntriesToSave.map((t) => t.patch),
+            this.tempIdMap,
+        );
         cumulativePatch = this.tempIdMap.clientToServerPatch(cumulativePatch);
 
         return cumulativePatch;
@@ -134,6 +155,7 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     /* Update subscriptions (aka live views) */
 
     private lastSubscriptionId = 1;
+
     private subscriptions: Map<number, DbSubscription<any, any>> = new Map();
 
     public subscribe<TValue, TParams, TDependencies>(
@@ -152,7 +174,9 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
             currentParams: null,
             currentValue: null,
             onUpdate,
-            unsubscribe: () => { this.subscriptions.delete(id); },
+            unsubscribe: () => {
+                this.subscriptions.delete(id);
+            },
         };
 
         subscription.update(params);
@@ -165,14 +189,18 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     updateHandlers: (() => any)[] = [];
 
     public onUpdate(handler: () => any) {
-        this.subscribe({
-            compute: db => db,
-            compareResults: (a, b) => a === b,
-        }, null, handler);
+        this.subscribe(
+            {
+                compute: (db) => db,
+                compareResults: (a, b) => a === b,
+            },
+            null,
+            handler,
+        );
     }
 
     private update() {
-        this.subscriptions.forEach(subscription => {
+        this.subscriptions.forEach((subscription) => {
             const previousValue = subscription.currentValue;
             subscription.update(subscription.currentParams);
             if (subscription.currentValue !== previousValue && subscription.onUpdate) {
@@ -180,7 +208,6 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
             }
         });
     }
-
 
     /* Error Subscriptions */
 
@@ -191,9 +218,8 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     }
 
     private saveError(request: DbPatch<TTables>, error: any) {
-        this.saveErrorHandlers.forEach(handler => handler(request, error));
+        this.saveErrorHandlers.forEach((handler) => handler(request, error));
     }
-
 
     /* Save scheduling */
 
@@ -212,37 +238,27 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
             this.update();
             throw error;
         }
-    })
+    });
 
     private handleBeforeUnload = (e: BeforeUnloadEvent) => {
         if (this.enqueueSave.isBusy) {
             e.returnValue = false;
             return false;
         }
-    }
+    };
 
     loaders: Loader<TTables, any, any>[] = [];
 
-    protected makeLoader<TResponse, TRequest>(
-        options: LoaderOptions<TTables, TResponse, TRequest>,
-    ) {
-        const loader = new Loader<TTables, TResponse, TRequest>(
-            this as any,
-            () => new SimpleLoadingTracker<TRequest, TResponse>(),
-            options,
-        );
+    protected makeLoader<TResponse, TRequest>(options: LoaderOptions<TTables, TResponse, TRequest>) {
+        const loader = new Loader<TTables, TResponse, TRequest>(this as any, () => new SimpleLoadingTracker<TRequest, TResponse>(), options);
         this.loaders.push(loader);
         return loader;
     }
 
     protected makeListLoader<TItem, TResponse = DataQuery<TItem>, TRequest extends DataQuery<TItem> = DataQuery<TItem>>(
-        options: (LoaderOptions<TTables, TResponse, TRequest> & ListLoadingTrackerOptions<TItem, TResponse>),
+        options: LoaderOptions<TTables, TResponse, TRequest> & ListLoadingTrackerOptions<TItem, TResponse>,
     ) {
-        const loader = new Loader<TTables, TResponse, TRequest>(
-            this as any,
-            () => new ListLoadingTracker<TItem, TRequest, TResponse>(),
-            options,
-        );
+        const loader = new Loader<TTables, TResponse, TRequest>(this as any, () => new ListLoadingTracker<TItem, TRequest, TResponse>(), options);
         this.loaders.push(loader);
         return loader;
     }

@@ -1,15 +1,17 @@
-import { DbQuery, DbState, EntityState, ColumnOrder } from "./types";
+import {
+    DbQuery, DbState, EntityState, ColumnOrder,
+} from './types';
 import * as I from 'immutable';
 
 export const runQuery = runQueryNaive;
 
-const runFilterSortNaive = cached(p => {
+const runFilterSortNaive = cached((p) => {
     const { entityName, order, pattern } = p;
     return JSON.stringify({ entityName, order, pattern });
 }, runFilterSortNaiveImpl);
 
 function runFilterSortNaiveImpl(db: DbState, q: DbQuery): any[] {
-    let e = db.entities[q.entityName];
+    const e = db.entities[q.entityName];
     let result: I.Iterable<any, any> = db.entities[q.entityName].byKey;
 
     result = runFilterNaive(q, result);
@@ -21,7 +23,7 @@ function runFilterSortNaiveImpl(db: DbState, q: DbQuery): any[] {
 
 function runFilterNaive(q: DbQuery, result: I.Iterable<any, any>) {
     if (q.pattern) {
-        result = result.filter(e => Object.keys(q.pattern).every(key => e[key] == (q.pattern as any)[key]));
+        result = result.filter((e) => Object.keys(q.pattern).every((key) => e[key] == (q.pattern as any)[key]));
     }
     return result;
 }
@@ -29,11 +31,11 @@ function runFilterNaive(q: DbQuery, result: I.Iterable<any, any>) {
 function runSortNaive(q: DbQuery, result: I.Iterable<any, any>) {
     if (q.order) {
         if (q.order.length > 0) {
-            let comparer = (a: any, b: any) => {
+            const comparer = (a: any, b: any) => {
                 for (let n = 0; n < q.order.length; n++) {
-                    let fieldName = q.order[n].name;
+                    const fieldName = q.order[n].name;
                     if (a[fieldName] != b[fieldName]) {
-                        let cmp = a[fieldName] < b[fieldName] ? -1 : 1;
+                        const cmp = a[fieldName] < b[fieldName] ? -1 : 1;
                         return q.order[n].dir == 'asc' ? cmp : -cmp;
                     }
                 }
@@ -68,7 +70,7 @@ function withCache<T>(db: DbState, key: string, create: () => T) {
     }
 }
 
-function cached<Params, Result>(getKey: (p: Params) => string, fn: (db: DbState, p: Params) => Result): ((db: DbState, p: Params) => Result) {
+function cached<Params, Result>(getKey: (p: Params) => string, fn: (db: DbState, p: Params) => Result): (db: DbState, p: Params) => Result {
     return function (db: DbState, p: Params) {
         const key = getKey(p);
         return withCache(db, key, () => fn(db, p));

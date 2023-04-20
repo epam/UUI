@@ -2,8 +2,25 @@ import * as React from 'react';
 import { Value } from 'slate';
 import { IEditableDebouncer } from '@epam/uui-core';
 import { Blocker } from '@epam/loveship';
-import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin, notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin, codeBlockPlugin,
-} from "@epam/uui-editor";
+import {
+    SlateEditor,
+    basePlugins,
+    toDoListPlugin,
+    attachmentPlugin,
+    imagePlugin,
+    videoPlugin,
+    linkPlugin,
+    iframePlugin,
+    notePlugin,
+    separatorPlugin,
+    headerPlugin,
+    colorPlugin,
+    superscriptPlugin,
+    listPlugin,
+    quotePlugin,
+    tablePlugin,
+    codeBlockPlugin,
+} from '@epam/uui-editor';
 import { svc } from '../../services';
 import css from './EditableDocContent.scss';
 
@@ -44,8 +61,9 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
     };
 
     componentDidMount() {
-        svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: this.props.fileName })
-            .then(res => this.setState({ content: res.content && Value.fromJSON(res.content), isLoading: !this.state.isLoading }));
+        svc.uuiApi
+            .processRequest('/api/get-doc-content', 'POST', { name: this.props.fileName })
+            .then((res) => this.setState({ content: res.content && Value.fromJSON(res.content), isLoading: !this.state.isLoading }));
     }
 
     saveDocContent = (content: Value) => {
@@ -54,30 +72,31 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
             name: this.props.fileName,
             content: content.toJSON(),
         });
-    }
+    };
 
     render() {
         const { isLoading } = this.state;
 
         return (
-            <div className={ css.wrapper } >
+            <div className={ css.wrapper }>
                 <IEditableDebouncer
                     value={ this.state.content }
                     onValueChange={ this.saveDocContent }
-                    render={ (props) => <SlateEditor
-                        placeholder='Please type'
-                        plugins={ plugins }
-                        cx={ css.container }
-                        mode='inline'
-                        isReadonly={ !window.location.host.includes('localhost') }
-                        minHeight={ 36 }
-                        fontSize="16"
-                        { ...props }
-                    /> }
+                    render={ (props) => (
+                        <SlateEditor
+                            placeholder="Please type"
+                            plugins={ plugins }
+                            cx={ css.container }
+                            mode="inline"
+                            isReadonly={ !window.location.host.includes('localhost') }
+                            minHeight={ 36 }
+                            fontSize="16"
+                            { ...props }
+                        />
+                    ) }
                 />
                 <Blocker isEnabled={ isLoading } />
             </div>
-
-        ) ;
+        );
     }
 }

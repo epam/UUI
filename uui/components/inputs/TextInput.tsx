@@ -22,35 +22,31 @@ export function applyTextInputMods(mods: TextInputMods) {
 
 export interface TextInputProps extends CoreTextInputProps, TextInputMods {}
 
-export const TextInput = withMods<CoreTextInputProps, TextInputMods>(
-    uuiTextInput, applyTextInputMods,
-    (props) => ({
-        acceptIcon: systemIcons[props.size || defaultSize].accept,
-        cancelIcon: systemIcons[props.size || defaultSize].clear,
-        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-    }),
-);
+export const TextInput = withMods<CoreTextInputProps, TextInputMods>(uuiTextInput, applyTextInputMods, (props) => ({
+    acceptIcon: systemIcons[props.size || defaultSize].accept,
+    cancelIcon: systemIcons[props.size || defaultSize].clear,
+    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+}));
 
-export const SearchInput = React.forwardRef<HTMLInputElement, TextInputProps & TextInputMods & IEditableDebouncerOptions>(
-    (props, ref) => {
-        // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
-        const { ...textInputProps } = props;
-        delete textInputProps.getValueChangeAnalyticsEvent;
+export const SearchInput = React.forwardRef<HTMLInputElement, TextInputProps & TextInputMods & IEditableDebouncerOptions>((props, ref) => {
+    // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
+    const { ...textInputProps } = props;
+    delete textInputProps.getValueChangeAnalyticsEvent;
 
-        return (
-            <IEditableDebouncer
-                { ...props }
-                render={ iEditable => (
-                    <TextInput
-                        icon={ systemIcons[props.size || defaultSize].search }
-                        onCancel={ !!props.value ? (() => iEditable.onValueChange('')) : undefined }
-                        type="search"
-                        inputMode="search"
-                        ref={ ref }
-                        { ...textInputProps }
-                        { ...iEditable }
-                    />
-                ) }
-            />
-        );
-    });
+    return (
+        <IEditableDebouncer
+            { ...props }
+            render={ (iEditable) => (
+                <TextInput
+                    icon={ systemIcons[props.size || defaultSize].search }
+                    onCancel={ !!props.value ? () => iEditable.onValueChange('') : undefined }
+                    type="search"
+                    inputMode="search"
+                    ref={ ref }
+                    { ...textInputProps }
+                    { ...iEditable }
+                />
+            ) }
+        />
+    );
+});

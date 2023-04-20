@@ -24,11 +24,13 @@ describe('ModalContext', () => {
 
     it('should handle success', (done) => {
         const data = 'test';
-        context.show(() => <div />).then((result) => {
-            expect(result).toBe(data);
-            expect(context.getOperations().length).toBe(0);
-            done();
-        });
+        context
+            .show(() => <div />)
+            .then((result) => {
+                expect(result).toBe(data);
+                expect(context.getOperations().length).toBe(0);
+                done();
+            });
         expect(context.getOperations().length).toBe(1);
 
         context.getOperations()[0].props.success(data);
