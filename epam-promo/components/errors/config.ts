@@ -1,10 +1,10 @@
 import { ApiRecoveryReason } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 
-export const getRecoveryMessageConfig: () => Record<ApiRecoveryReason, { title: string, subtitle: string }> = () => ({
+export const getRecoveryMessageConfig: () => Record<ApiRecoveryReason, { title: string; subtitle: string }> = () => ({
     'auth-lost': i18n.errorHandler.recoveryMessageConfig['auth-lost'],
     'connection-lost': i18n.errorHandler.recoveryMessageConfig['connection-lost'],
-    'maintenance': i18n.errorHandler.recoveryMessageConfig.maintenance,
+    maintenance: i18n.errorHandler.recoveryMessageConfig.maintenance,
     'server-overload': i18n.errorHandler.recoveryMessageConfig['server-overload'],
 });
 

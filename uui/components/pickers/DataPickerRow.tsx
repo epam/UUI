@@ -19,47 +19,53 @@ export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId>
 export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProps<TItem, TId>> {
     private getIcon = (size: string) => {
         switch (size) {
-            case '24': return TickIcon_12;
-            case '30': return TickIcon_18;
-            case '36': return TickIcon_18;
-            case '42': return TickIcon_24;
-            default: return TickIcon_18;
+            case '24':
+                return TickIcon_12;
+            case '30':
+                return TickIcon_18;
+            case '36':
+                return TickIcon_18;
+            case '42':
+                return TickIcon_24;
+            default:
+                return TickIcon_18;
         }
-    }
+    };
 
-    column: DataColumnProps<TItem> =
-        {
-            key: 'name',
-            grow: 1,
-            width: 0,
-            render: (item, rowProps) => <div key={ rowProps.id }  className={ css.renderItem }>
-                { this.props.renderItem(item, rowProps) }
+    column: DataColumnProps<TItem> = {
+        key: 'name',
+        grow: 1,
+        width: 0,
+        render: (item, rowProps) => (
+            <div key={ rowProps.id } className={ css.renderItem }>
+                {this.props.renderItem(item, rowProps)}
                 <FlexSpacer />
-                { (rowProps.isChildrenSelected || rowProps.isSelected) && <div className={ css.iconWrapper }>
-                    <IconContainer icon={ this.getIcon(this.props.size) } cx={ rowProps.isChildrenSelected ? css.iconDefault : css.iconPrimary } />
-                </div> }
-            </div>,
-        };
+                {(rowProps.isChildrenSelected || rowProps.isSelected) && (
+                    <div className={ css.iconWrapper }>
+                        <IconContainer icon={ this.getIcon(this.props.size) } cx={ rowProps.isChildrenSelected ? css.iconDefault : css.iconPrimary } />
+                    </div>
+                )}
+            </div>
+        ),
+    };
 
     renderContent = () => {
-        return <DataTableCell
-            key='name'
-            size={ this.props.size || '36' }
-            padding={ this.props.padding || '24' }
-            isFirstColumn={ true }
-            isLastColumn={ false }
-            tabIndex={ -1 }
-            column={ this.column }
-            rowProps={ this.props }
-            alignActions={ this.props.alignActions || 'top' }
-        />;
-    }
+        return (
+            <DataTableCell
+                key="name"
+                size={ this.props.size || '36' }
+                padding={ this.props.padding || '24' }
+                isFirstColumn={ true }
+                isLastColumn={ false }
+                tabIndex={ -1 }
+                column={ this.column }
+                rowProps={ this.props }
+                alignActions={ this.props.alignActions || 'top' }
+            />
+        );
+    };
 
     render() {
-        return <UUIDataPickerRow
-            { ...this.props }
-            cx={ [css.pickerRow, this.props.cx] }
-            renderContent={ this.renderContent }
-        />;
+        return <UUIDataPickerRow { ...this.props } cx={ [css.pickerRow, this.props.cx] } renderContent={ this.renderContent } />;
     }
 }

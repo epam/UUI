@@ -31,7 +31,7 @@ export interface FileUploadResponse {
     extension?: string;
     error?: {
         isError: boolean;
-        message?: string ;
+        message?: string;
     };
 }
 
@@ -129,39 +129,45 @@ export class ApiContext extends BaseContext implements IApiContext {
             body: call.requestData && JSON.stringify(call.requestData),
             credentials: 'include',
             ...call.options?.fetchOptions,
-        }).then((response) => {
-            this.handleResponse(call, response);
-        }).catch((e: Error) => {
-            if (e.name === 'AbortError') {
-                this.removeFromQueue(call);
-                return;
-            }
-            if (call.attemptsCount < 2) {
-                this.handleApiError(call, 'connection-lost');
-            } else {
-                this.handleApiError(call);
-            }
-        });
+        })
+            .then((response) => {
+                this.handleResponse(call, response);
+            })
+            .catch((e: Error) => {
+                if (e.name === 'AbortError') {
+                    this.removeFromQueue(call);
+                    return;
+                }
+                if (call.attemptsCount < 2) {
+                    this.handleApiError(call, 'connection-lost');
+                } else {
+                    this.handleApiError(call);
+                }
+            });
     }
 
     private handleResponse(call: ApiCall, response: Response) {
         call.finishedAt = new Date();
         call.httpStatus = response.status;
         if (response.ok) {
-            this.analyticsCtx?.sendEvent({
-                name: 'timing_complete',
-                parameters: {
-                    value: call.finishedAt.getTime() - call.startedAt.getTime(),
-                    name: call.name,
-                    event_category: window.location.pathname,
+            this.analyticsCtx?.sendEvent(
+                {
+                    name: 'timing_complete',
+                    parameters: {
+                        value: call.finishedAt.getTime() - call.startedAt.getTime(),
+                        name: call.name,
+                        event_category: window.location.pathname,
+                    },
                 },
-            }, 'apiTiming');
+                'apiTiming',
+            );
 
             if (response.status == 204) {
                 return this.resolveCall(call, null);
             }
 
-            response.json()
+            response
+                .json()
                 .then((result) => {
                     call.responseData = result;
                     this.resolveCall(call, result);
@@ -172,14 +178,15 @@ export class ApiContext extends BaseContext implements IApiContext {
                     this.setStatus('error');
                     call.reject(e);
                 });
-        } else if (/* Network and server-related problems. We'll ping the server and then retry the call in this case. */
-            (response.status === 408 /* Request Timeout */
-                    || response.status === 420 /* Enhance Your Calm */
-                    || response.status === 429 /* Too Many Requests */
-                    || response.status === 502 /* Bad Gateway */
-                    || response.status === 503 /* Service Unavailable */
-                    || response.status === 504 /* Gateway Timeout */
-            ) && call.attemptsCount < 2 /*
+        } else if (
+            /* Network and server-related problems. We'll ping the server and then retry the call in this case. */
+            (response.status === 408
+                || /* Request Timeout */ response.status === 420
+                || /* Enhance Your Calm */ response.status === 429
+                || /* Too Many Requests */ response.status === 502
+                || /* Bad Gateway */ response.status === 503
+                || /* Service Unavailable */ response.status === 504)
+            && /* Gateway Timeout */ call.attemptsCount < 2 /*
                     There can be cases, when server returns some of these states, while /ping works.
                     To not enter infinite loop in this case, we limit number of retries.
                 */
@@ -193,14 +200,17 @@ export class ApiContext extends BaseContext implements IApiContext {
             }
 
             this.handleApiError(call, reason);
-        } else if (response.status === 401) /* Authentication cookies invalidated */ {
-            this.handleApiError(call, 'auth-lost');
+        } else if (response.status === 401) {
+            /* Authentication cookies invalidated */ this.handleApiError(call, 'auth-lost');
         } else {
             // Try to parse JSON in response, if there are none - just ignore
-            response.json().catch(() => null).then((result) => {
-                call.responseData = result;
-                this.handleApiError(call);
-            });
+            response
+                .json()
+                .catch(() => null)
+                .then((result) => {
+                    call.responseData = result;
+                    this.handleApiError(call);
+                });
         }
     }
 
@@ -229,15 +239,17 @@ export class ApiContext extends BaseContext implements IApiContext {
         fetch(this.props.apiPingPath, {
             method: 'GET',
             credentials: 'include',
-        }).then((response) => {
-            if (response.ok) {
-                this.setStatus('running');
-                this.runQueue();
-                this.update({});
-            } else {
-                retry();
-            }
-        }).catch(retry);
+        })
+            .then((response) => {
+                if (response.ok) {
+                    this.setStatus('running');
+                    this.runQueue();
+                    this.update({});
+                } else {
+                    retry();
+                }
+            })
+            .catch(retry);
     }
 
     private scheduleRun() {
@@ -312,12 +324,12 @@ export class ApiContext extends BaseContext implements IApiContext {
 
             xhr.onreadystatechange = () => {
                 if (xhr.readyState !== 4) return;
-                if (!(new RegExp('^2[0-9][0-9]')).test(xhr.status.toString())) {
+                if (!new RegExp('^2[0-9][0-9]').test(xhr.status.toString())) {
                     reject({ error: { isError: true, message: xhr.response && JSON.parse(xhr.response)?.error?.message } });
                 }
 
                 removeAllListeners();
-                resolve(xhr.response && { ...JSON.parse(xhr.response) } || null);
+                resolve((xhr.response && { ...JSON.parse(xhr.response) }) || null);
             };
             xhr.send(formData);
         });

@@ -7,10 +7,7 @@ export interface ScrollBarsMods {
 }
 
 function applyScrollBarsMods(mods: ScrollBarsMods) {
-    return [
-        css.root,
-        css['theme-' + (mods.theme || 'light')],
-    ];
+    return [css.root, css['theme-' + (mods.theme || 'light')]];
 }
 
 export const ScrollBars = withMods<ScrollbarProps, ScrollBarsMods>(uuiScrollBars, applyScrollBarsMods);

@@ -23,11 +23,11 @@ export class VerticalTabButtonContext extends React.Component<DemoComponentProps
     render() {
         const { DemoComponent, props } = this.props;
         return (
-            <Panel background='white' margin='24'>
+            <Panel background="white" margin="24">
                 <FlexRow>
                     <FlexCell grow={ 1 }>
                         <DemoComponent
-                            caption={ 'Main' }
+                            caption="Main"
                             onClick={ () => this.setTab('Main', props.onClick) }
                             size={ props.size }
                             isLinkActive={ this.state.activeTab === 'Main' }
@@ -40,13 +40,13 @@ export class VerticalTabButtonContext extends React.Component<DemoComponentProps
                             isLinkActive={ this.state.activeTab === 'demoTab' }
                         />
                         <DemoComponent
-                            caption={ 'Tools' }
+                            caption="Tools"
                             onClick={ () => this.setTab('Tools', props.onClick) }
                             size={ props.size }
                             isLinkActive={ this.state.activeTab === 'Tools' }
                         />
                         <DemoComponent
-                            caption={ 'Options' }
+                            caption="Options"
                             onClick={ () => this.setTab('Options', props.onClick) }
                             size={ props.size }
                             isLinkActive={ this.state.activeTab === 'Options' }

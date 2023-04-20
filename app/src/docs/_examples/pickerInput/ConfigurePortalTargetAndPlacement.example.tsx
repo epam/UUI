@@ -1,6 +1,12 @@
-import React, { useState, useCallback, FC, useRef } from 'react';
-import { PickerInput, DropdownContainer, FlexCell, FlexRow, Button, Dropdown, Text, Panel } from '@epam/promo';
-import { IDropdownToggler, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import React, {
+    useState, useCallback, FC, useRef,
+} from 'react';
+import {
+    PickerInput, DropdownContainer, FlexCell, FlexRow, Button, Dropdown, Text, Panel,
+} from '@epam/promo';
+import {
+    IDropdownToggler, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext,
+} from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import { DropdownBodyProps } from '@epam/uui-core';
 import css from './PickerInputInDropdown.scss';
@@ -17,19 +23,21 @@ export default function ConfigurePortalTargetAndPlacement() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     const renderDropdownBody = (props: DropdownBodyProps) => (
-        <DropdownContainer showArrow={ true } maxWidth={ 360 } { ...props } >
-            <FlexRow alignItems="top" padding='18' vPadding='24'>
+        <DropdownContainer showArrow={ true } maxWidth={ 360 } { ...props }>
+            <FlexRow alignItems="top" padding="18" vPadding="24">
                 <Panel style={ { width: '100%' } }>
                     <FlexCell alignSelf="flex-start">
-                        <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">Reporting to</Text>
+                        <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">
+                            Reporting to
+                        </Text>
                         <PickerInput
                             dataSource={ dataSource }
                             value={ value }
                             onValueChange={ onValueChange }
-                            entityName='person'
-                            selectionMode='multi'
-                            valueType='id'
-                            dropdownPlacement='right-start'
+                            entityName="person"
+                            selectionMode="multi"
+                            valueType="id"
+                            dropdownPlacement="right-start"
                             portalTarget={ portalTargetRef.current }
                         />
                     </FlexCell>
@@ -38,7 +46,7 @@ export default function ConfigurePortalTargetAndPlacement() {
 
             <div className={ css.divider }></div>
 
-            <FlexRow alignItems="top" padding='18' vPadding='24'>
+            <FlexRow alignItems="top" padding="18" vPadding="24">
                 <Panel style={ { width: '100%' } }>
                     <FlexCell alignSelf="flex-start">
                         <FlexRow spacing="12">
@@ -48,15 +56,12 @@ export default function ConfigurePortalTargetAndPlacement() {
                     </FlexCell>
                 </Panel>
             </FlexRow>
-        </DropdownContainer >
+        </DropdownContainer>
     );
 
     return (
         <div ref={ portalTargetRef }>
-            <Dropdown
-                renderBody={ renderDropdownBody }
-                renderTarget={ (props: IDropdownToggler) => <Button caption='Click to open' { ...props } /> }
-            />
+            <Dropdown renderBody={ renderDropdownBody } renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open" { ...props } /> } />
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import { uuiMarkers } from '../constants';
-import { isClientSide } from "../helpers";
+import { isClientSide } from '../helpers';
 
 export interface ScrollPosition {
     x: number;
@@ -8,7 +8,7 @@ export interface ScrollPosition {
 
 /**
  * @deprecated will be removed in the next major release
-*/
+ */
 export class ScrollManager {
     public scrollPosition: ScrollPosition = {
         y: 0,
@@ -16,7 +16,9 @@ export class ScrollManager {
     };
 
     private scrollWidth?: number;
+
     private clientWidth?: number;
+
     private offsetLeft?: number;
 
     private markersStatus = {
@@ -26,20 +28,21 @@ export class ScrollManager {
     };
 
     subscribers: { node: HTMLElement }[] = [];
-    scrollNodes: { node: HTMLElement, scrollHandler: any }[] = [];
+
+    scrollNodes: { node: HTMLElement; scrollHandler: any }[] = [];
 
     updateScrollPosition(scrollPosition: ScrollPosition) {
         if (scrollPosition.x === this.scrollPosition.x && scrollPosition.y === this.scrollPosition.y) {
             return;
         }
 
-        let xScrollChanged = scrollPosition.x !== this.scrollPosition.x;
+        const xScrollChanged = scrollPosition.x !== this.scrollPosition.x;
 
         this.scrollPosition = scrollPosition;
         if (xScrollChanged) {
             this.markersStatus.isUpdated = false;
-            this.subscribers.forEach(s => this.updateAttachedNodeNodeScroll(s.node));
-            this.scrollNodes.forEach(s => this.updateScrollingNodeScroll(s.node));
+            this.subscribers.forEach((s) => this.updateAttachedNodeNodeScroll(s.node));
+            this.scrollNodes.forEach((s) => this.updateScrollingNodeScroll(s.node));
         }
     }
 
@@ -102,7 +105,7 @@ export class ScrollManager {
     }
 
     updateXScroll(x: number) {
-        this.updateScrollPosition({...this.scrollPosition, x });
+        this.updateScrollPosition({ ...this.scrollPosition, x });
     }
 
     handleOnWheel(e: WheelEvent, node: HTMLElement) {
@@ -116,15 +119,16 @@ export class ScrollManager {
         }
     }
 
-    resizeObserver = isClientSide && new ResizeObserver(entries => {
-        for (let entry of entries) {
-            const contentRect = entry.contentRect;
+    resizeObserver = isClientSide
+        && new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                const contentRect = entry.contentRect;
 
-            if (contentRect.width !== this.scrollWidth || contentRect.width < this.scrollWidth) {
-                entries.forEach(element => this.updateMarkers(element.target as HTMLElement));
+                if (contentRect.width !== this.scrollWidth || contentRect.width < this.scrollWidth) {
+                    entries.forEach((element) => this.updateMarkers(element.target as HTMLElement));
+                }
             }
-        }
-    });
+        });
 
     attachNode(node: HTMLElement) {
         this.subscribers.push({ node });
@@ -134,10 +138,10 @@ export class ScrollManager {
     }
 
     detachNode(node: HTMLElement) {
-        const subscriber = this.subscribers.find(s => s.node === node);
+        const subscriber = this.subscribers.find((s) => s.node === node);
         if (subscriber) {
             this.resizeObserver.unobserve(subscriber.node);
-            this.subscribers = this.subscribers.filter(s => s !== subscriber);
+            this.subscribers = this.subscribers.filter((s) => s !== subscriber);
         }
     }
 
@@ -152,13 +156,13 @@ export class ScrollManager {
             node,
             scrollHandler,
         });
-    }
+    };
 
     detachScrollNode(node: HTMLElement) {
-        const subscriber = this.scrollNodes.find(s => s.node === node);
+        const subscriber = this.scrollNodes.find((s) => s.node === node);
         if (subscriber) {
             subscriber.node.removeEventListener('scroll', subscriber.scrollHandler);
-            this.scrollNodes = this.scrollNodes.filter(s => s !== subscriber);
+            this.scrollNodes = this.scrollNodes.filter((s) => s !== subscriber);
         }
     }
 }

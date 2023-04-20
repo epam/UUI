@@ -1,1 +1,1 @@
-export {FiltersBlock} from "./FiltersBlock";
+export { FiltersBlock } from './FiltersBlock';

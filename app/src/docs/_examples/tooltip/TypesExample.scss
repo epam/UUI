@@ -1,35 +1,35 @@
-.container{
-  display: grid;
-  grid-template-columns: fit-content 1fr;
-  grid-template-rows: repeat(3, 1fr);
-  grid-auto-flow: column;
-  gap: 12px 18px;
-  align-items: center;
+.container {
+    display: grid;
+    grid-template-columns: fit-content 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-auto-flow: column;
+    gap: 12px 18px;
+    align-items: center;
 
-  .firstColumn{
-    justify-self: end;
-  };
+    .firstColumn {
+        justify-self: end;
+    };
 
-  .secondColumn{
-    justify-self: start;
-    max-width: 600px
-  };
+    .secondColumn {
+        justify-self: start;
+        max-width: 600px;
+    };
 
-  .icon{
-    height: 18px;
-    align-self: center;
-  }
+    .icon {
+        height: 18px;
+        align-self: center;
+    }
 
-  .text{
-    padding: 0;
-  }
+    .text {
+        padding: 0;
+    }
 
-  .permissionText{
-    margin-right: 4px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
+    .permissionText {
+        margin-right: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
 }
 
 .icon-blue {

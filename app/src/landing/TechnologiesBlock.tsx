@@ -22,18 +22,12 @@ const technologies = [
 export class TechnologiesBlock extends React.Component {
     render() {
         return (
-            <div className={ css.layout } >
-                <div className={  css.wrapper } >
-                    <FlexRow cx={ css.technologies } >
-                        { technologies.map(({ icon, label, link }) => (
-                            <IconButton
-                                rawProps={ { 'aria-label': label } }
-                                key={ label }
-                                icon={ icon }
-                                target='_blank'
-                                href={ link }
-                            />
-                        )) }
+            <div className={ css.layout }>
+                <div className={ css.wrapper }>
+                    <FlexRow cx={ css.technologies }>
+                        {technologies.map(({ icon, label, link }) => (
+                            <IconButton rawProps={ { 'aria-label': label } } key={ label } icon={ icon } target="_blank" href={ link } />
+                        ))}
                     </FlexRow>
                 </div>
             </div>

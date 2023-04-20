@@ -14,7 +14,7 @@ export const defaultData: PersonDetails = {
         remoteStatus: true,
     },
     personalInfo: {
-        fullName: "",
+        fullName: '',
         birthdayDate: null,
     },
     location: {
@@ -27,10 +27,10 @@ export const emptyInfo = {
     language: {
         language: null,
         writingLevel: null,
-        speakingLevel: null
+        speakingLevel: null,
     } as PersonLanguageInfo,
     visa: {
         country: null,
-        term: null
+        term: null,
     } as PersonTravelVisa,
 };

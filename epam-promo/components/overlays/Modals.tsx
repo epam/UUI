@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { withMods, ModalFooterCoreProps, ModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps } from '@epam/uui-core';
+import {
+    withMods, ModalFooterCoreProps, ModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps,
+} from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
 import { FlexRow, RowMods } from '../layout';
 import { FlexSpacer, FlexCell } from '@epam/uui';
@@ -12,17 +14,14 @@ export interface ModalBlockerMods {
     blockerShadow?: 'light' | 'dark' | 'none';
 }
 
-export const ModalBlocker = withMods<ModalBlockerProps, ModalBlockerMods>(uuiModalBlocker, mods => [
-    css.modalBlocker,
-    css['shadow-' + (mods.blockerShadow || 'dark')],
-]);
+export const ModalBlocker = withMods<ModalBlockerProps, ModalBlockerMods>(uuiModalBlocker, (mods) => [css.modalBlocker, css['shadow-' + (mods.blockerShadow || 'dark')]]);
 
 export interface ModalWindowMods {
     width?: '300' | '420' | '600' | '900';
     height?: '300' | '700' | 'auto';
 }
 
-export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(uuiModalWindow, mods => [
+export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(uuiModalWindow, (mods) => [
     css.modal,
     css['width-' + (mods.width || '420')],
     css['height-' + (mods.height || 'auto')],
@@ -34,17 +33,25 @@ export const ModalHeader = React.forwardRef<HTMLDivElement, ModalHeaderProps>((p
     <FlexRow
         background={ props.background || 'none' }
         padding={ props.padding || '24' }
-        vPadding='12'
+        vPadding="12"
         borderBottom={ props.borderBottom }
         cx={ [css.modalHeader, props.cx] }
-        spacing='12'
+        spacing="12"
         ref={ ref }
         rawProps={ props.rawProps }
     >
-        { props.title && <Text size='48' fontSize='18' font='sans-semibold'>{ props.title }</Text> }
-        { props.children }
-        { props.onClose && <FlexSpacer /> }
-        { props.onClose && <FlexCell shrink={ 0 } width='auto'><IconButton icon={ CrossIcon } onClick={ props.onClose } /></FlexCell> }
+        {props.title && (
+            <Text size="48" fontSize="18" font="sans-semibold">
+                {props.title}
+            </Text>
+        )}
+        {props.children}
+        {props.onClose && <FlexSpacer />}
+        {props.onClose && (
+            <FlexCell shrink={ 0 } width="auto">
+                <IconButton icon={ CrossIcon } onClick={ props.onClose } />
+            </FlexCell>
+        )}
     </FlexRow>
 ));
 
@@ -54,12 +61,16 @@ export const ModalFooter = React.forwardRef<HTMLDivElement, ModalFooterProps>((p
     <FlexRow
         ref={ ref }
         spacing={ props.spacing || '12' }
-        cx={ [css.modalFooter, props.borderTop && css.borderTop, props.cx] }
+        cx={ [
+            css.modalFooter,
+            props.borderTop && css.borderTop,
+            props.cx,
+        ] }
         padding={ props.padding || '24' }
         vPadding={ props.vPadding || '24' }
         background={ props.background || 'none' }
         rawProps={ props.rawProps }
     >
-        { props.children }
+        {props.children}
     </FlexRow>
 ));

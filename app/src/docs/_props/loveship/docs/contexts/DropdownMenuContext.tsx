@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import {
-    Panel, FlexRow, Button, DropdownMenuBody, DropdownMenuButton,
-    DropdownMenuSplitter, Tooltip, DropdownMenuCheckbox, DropdownMenuSearch,
+    Panel, FlexRow, Button, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, Tooltip, DropdownMenuCheckbox, DropdownMenuSearch,
 } from '@epam/loveship';
 import { Dropdown } from '@epam/uui-components';
 import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
@@ -25,9 +24,11 @@ export class DropdownMenuContext extends React.Component<DemoComponentProps, Dro
         const { DemoComponent, props } = this.props;
         return (
             <DropdownMenuBody color={ color }>
-                <DropdownMenuSearch value={ this.state.searchValue } onValueChange={ ((newValue) => this.setState({ searchValue: newValue })) } placeholder="Log in as" />
+                <DropdownMenuSearch value={ this.state.searchValue } onValueChange={ (newValue) => this.setState({ searchValue: newValue }) } placeholder="Log in as" />
                 <DropdownMenuButton icon={ PencilIcon } caption="Export" />
-                <Tooltip placement="left" content="Import tools from current page"><DropdownMenuButton noIcon caption="Import" /></Tooltip>
+                <Tooltip placement="left" content="Import tools from current page">
+                    <DropdownMenuButton noIcon caption="Import" />
+                </Tooltip>
                 <DropdownMenuButton isDropdown dropdownIconPosition="left" caption="Manage external feedback" />
                 <DemoComponent { ...props } />
                 <DropdownMenuButton icon={ TrashIcon } caption="Overwrite Titles" />
@@ -38,7 +39,9 @@ export class DropdownMenuContext extends React.Component<DemoComponentProps, Dro
                 />
                 <DropdownMenuSplitter />
                 <DropdownMenuButton noIcon caption="Help" />
-                <Tooltip placement="left" content="Cancel tools dropdown menu"><DropdownMenuButton noIcon caption="Cancel" /></Tooltip>
+                <Tooltip placement="left" content="Cancel tools dropdown menu">
+                    <DropdownMenuButton noIcon caption="Cancel" />
+                </Tooltip>
             </DropdownMenuBody>
         );
     }
@@ -55,14 +58,8 @@ export class DropdownMenuContext extends React.Component<DemoComponentProps, Dro
         return (
             <Panel margin="24">
                 <FlexRow>
-                    <Dropdown
-                        renderTarget={ (props) => <Button caption="white" { ...props } /> }
-                        renderBody={ this.renderWhite }
-                    />
-                    <Dropdown
-                        renderTarget={ (props) => <Button caption="night" { ...props } /> }
-                        renderBody={ this.renderNight }
-                    />
+                    <Dropdown renderTarget={ (props) => <Button caption="white" { ...props } /> } renderBody={ this.renderWhite } />
+                    <Dropdown renderTarget={ (props) => <Button caption="night" { ...props } /> } renderBody={ this.renderNight } />
                 </FlexRow>
             </Panel>
         );

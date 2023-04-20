@@ -14,15 +14,18 @@ export interface TextMods extends TextSettings {
 export type TextProps = UuiTextProps & TextMods;
 
 function applyTextMods(mods: TextMods) {
-    const textClasses = getTextClasses({
-        size: mods.size || '36',
-        lineHeight: mods.lineHeight,
-        fontSize: mods.fontSize,
-    }, false);
+    const textClasses = getTextClasses(
+        {
+            size: mods.size || '36',
+            lineHeight: mods.lineHeight,
+            fontSize: mods.fontSize,
+        },
+        false,
+    );
 
     return [
-        `uui-font-${ mods.font || 'regular' }`,
-        `uui-text-${ mods.color || 'primary' }`,
+        `uui-font-${mods.font || 'regular'}`,
+        `uui-text-${mods.color || 'primary'}`,
         css.root,
     ].concat(textClasses);
 }

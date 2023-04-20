@@ -4,26 +4,12 @@ import renderer from 'react-test-renderer';
 
 describe('Checkbox', () => {
     it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<Checkbox
-                value={ null }
-                onValueChange={ jest.fn }
-            />)
-            .toJSON();
+        const tree = renderer.create(<Checkbox value={ null } onValueChange={ jest.fn } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<Checkbox
-                value={ null }
-                onValueChange={ jest.fn }
-                size='18'
-                mode='cell'
-            />)
-            .toJSON();
+        const tree = renderer.create(<Checkbox value={ null } onValueChange={ jest.fn } size="18" mode="cell" />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });
-
-

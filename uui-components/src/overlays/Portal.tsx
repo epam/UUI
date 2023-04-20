@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { IHasChildren } from "@epam/uui-core";
+import { IHasChildren } from '@epam/uui-core';
 
 export interface PortalProps extends IHasChildren {
     target?: HTMLElement;

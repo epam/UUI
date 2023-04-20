@@ -23,7 +23,7 @@ export function shouldCreateUndoCheckpoint(a: any, b: any, c: any): boolean {
         a = a || {};
         b = b || {};
         const keys: any[] = Object.keys({ ...a, ...b, ...c });
-        return keys.some(key => shouldCreateUndoCheckpoint(a[key], b[key], c[key]));
+        return keys.some((key) => shouldCreateUndoCheckpoint(a[key], b[key], c[key]));
     }
 
     // The field is scalar (null, undefined, boolean, string, number, NaN)

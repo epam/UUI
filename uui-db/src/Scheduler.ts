@@ -9,12 +9,16 @@ export interface SchedulerTask {
 
 export class Scheduler {
     scheduled: SchedulerTask[] = [];
+
     running: SchedulerTask[] = [];
+
     complete: SchedulerTask[] = [];
 
     public run(run: () => Promise<any>, isConcurrent = false) {
         return new Promise((resolve, reject) => {
-            this.scheduled.push({ run, isConcurrent, resolve, reject });
+            this.scheduled.push({
+                run, isConcurrent, resolve, reject,
+            });
             this.scheduleRun();
         });
     }
@@ -48,15 +52,15 @@ export class Scheduler {
             const task = this.scheduled.shift();
             this.running.push(task);
             task.run()
-                .then(r => {
+                .then((r) => {
                     task.result = r;
                 })
-                .catch(err => {
+                .catch((err) => {
                     task.error = err;
                 })
                 .finally(() => {
                     this.complete.push(task);
-                    this.running = this.running.filter(t => t !== task);
+                    this.running = this.running.filter((t) => t !== task);
                     this.scheduleRun();
                 });
         }

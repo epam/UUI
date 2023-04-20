@@ -1,7 +1,9 @@
 import { Link, LayoutLayer } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
-import { FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, NotificationOperation, IHistory4, Lock } from "../services";
+import {
+    FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, NotificationOperation, IHistory4, Lock,
+} from '../services';
 
 export interface IBaseContext<TState = {}> {
     subscribe(handler: (state: TState) => void): void;
@@ -25,7 +27,7 @@ export interface ILayoutContext {
     releaseLayer(layer: LayoutLayer): void;
 }
 
-export interface ILockContext  {
+export interface ILockContext {
     acquire(tryRelease: () => Promise<any>): Promise<object>;
     release(lock: object): void;
     withLock(action: () => Promise<any>): Promise<object>;
@@ -49,7 +51,6 @@ export interface IModalContext extends IBaseContext {
     getOperations(): ModalOperation[];
 }
 
-
 export interface DndContextState {
     isDragging: boolean;
     ghostOffsetX?: number;
@@ -70,7 +71,6 @@ export interface IUserSettingsContext {
     set<TValue>(key: any, value: TValue): void;
 }
 
-
 export interface UuiErrorInfo {
     status?: number;
     title?: React.ReactNode;
@@ -81,8 +81,8 @@ export interface UuiErrorInfo {
 
 export class UuiError extends Error {
     constructor(public info: UuiErrorInfo) {
-        super(`UUI Error`);
-        this.name = "UuiError";
+        super('UUI Error');
+        this.name = 'UuiError';
         // Set the prototype explicitly.
         // https://github.com/Microsoft/TypeScript/wiki/Breaking-Changes#extending-built-ins-like-error-array-and-map-may-no-longer-work
         Object.setPrototypeOf(this, UuiError.prototype);
@@ -140,11 +140,7 @@ export interface IAnalyticsContext {
 }
 
 export interface IAnalyticsListener {
-    sendEvent(
-        event: AnalyticsEvent,
-        parameters: Omit<AnalyticsEvent, "name">,
-        eventType?: "event" | "pageView" | "apiTiming",
-        ): void;
+    sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, 'name'>, eventType?: 'event' | 'pageView' | 'apiTiming'): void;
 }
 
 export interface UuiContexts {

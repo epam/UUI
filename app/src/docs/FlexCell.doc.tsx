@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI4, UUI3 } from '../common/docs';
+import {
+    BaseDocsBlock, DocExample, EditableDocContent, UUI4, UUI3,
+} from '../common/docs';
 
 export class FlexCellDoc extends BaseDocsBlock {
     title = 'FlexCell';
@@ -14,12 +16,10 @@ export class FlexCellDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='flexCell-description' />
+                <EditableDocContent fileName="flexCell-description" />
 
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    path='./_examples/flexItems/FlexCell.example.tsx'
-                />
+                {this.renderSectionTitle('Examples')}
+                <DocExample path="./_examples/flexItems/FlexCell.example.tsx" />
             </>
         );
     }

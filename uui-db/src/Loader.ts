@@ -1,5 +1,7 @@
 import { DbRef } from './DbRef';
-import { DbPatch, DbTablesSet, LoadingState, ILoadingTracker } from './types';
+import {
+    DbPatch, DbTablesSet, LoadingState, ILoadingTracker,
+} from './types';
 
 export interface LoaderOptions<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
     api: (request: TRequest) => Promise<TResult>;
@@ -15,7 +17,9 @@ export interface LoaderResult<TRequest> extends LoadingState<TRequest> {
 
 export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
     private currentRequests: Set<Promise<void>> = new Set();
+
     public loaded: ILoadingTracker<TRequest, TResult>;
+
     private loadedAndLoading: ILoadingTracker<TRequest, TResult>;
 
     constructor(
@@ -34,7 +38,7 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
         if (this.options.clientToServerRequest) {
             serverRequest = this.options.clientToServerRequest(serverRequest);
         }
-        state.promise = this.options.api(serverRequest).then(result => {
+        state.promise = this.options.api(serverRequest).then((result) => {
             this.loaded.append(state.missing, result);
             this.loadedAndLoading.append(state.missing, result);
             state.missing = null;
@@ -91,5 +95,5 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
                 return result;
             }
         }
-    }
+    };
 }

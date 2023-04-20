@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import type { Options } from '@popperjs/core/lib/modifiers/offset';
 import { DropdownProps } from './index';
-import { IHasChildren, IHasCX, IHasRawProps } from "../props";
-import {IEditable} from '../../../src/types/props';
+import { IHasChildren, IHasCX, IHasRawProps } from '../props';
+import { IEditable } from '../props';
 
 export interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
     Partial<IEditable<boolean>>, Pick<DropdownProps, 'onClose' | 'placement' | 'modifiers' | 'openDelay' |

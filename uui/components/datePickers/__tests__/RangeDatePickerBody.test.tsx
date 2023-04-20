@@ -15,13 +15,7 @@ describe('RangeDatePickerBody', () => {
             } as RangeDatePickerValue,
             displayedDate,
         };
-        const tree = renderer
-            .create(<RangeDatePickerBody
-                value={ value }
-                focusPart={ 'from' }
-                onValueChange={ jest.fn }
-            />)
-            .toJSON();
+        const tree = renderer.create(<RangeDatePickerBody value={ value } focusPart="from" onValueChange={ jest.fn } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

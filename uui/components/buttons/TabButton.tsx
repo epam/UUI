@@ -21,7 +21,7 @@ function applyTabButtonMods(mods: TabButtonProps) {
     ];
 }
 
-export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabButtonMods, props => ({
+export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabButtonMods, (props) => ({
     dropdownIcon: systemIcons['36'].foldingArrow,
     clearIcon: systemIcons['36'].clear,
     countPosition: 'right',

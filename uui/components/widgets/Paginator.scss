@@ -1,5 +1,4 @@
 @mixin set-size($padding-left, $padding-right, $min-width) {
-
     &:global(.uui-button-box) {
         min-width: $min-width;
     }
