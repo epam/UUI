@@ -63,7 +63,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
                 </FlexCell>
             )}
 
-            {isSinglePicker && (
+            {(isSinglePicker && !view.selectAll) && (
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
                         isDisabled={ !hasSelection }
