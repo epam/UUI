@@ -19,8 +19,7 @@ export function Tooltip(props: TooltipProps) {
     const isTooltipExist = () => !!props.content || !!props.renderContent;
 
     const renderTooltip = () => (
-        <div role="tooltip" aria-hidden={ isTooltipExist() } className={ uuiElement.tooltipBody }>
-            { ...rawProps }
+        <div role="tooltip" aria-hidden={ isTooltipExist() } className={ uuiElement.tooltipBody } { ...rawProps }>
             {props.content || props.renderContent?.()}
         </div>
     );
