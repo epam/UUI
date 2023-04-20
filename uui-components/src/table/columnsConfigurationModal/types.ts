@@ -1,4 +1,6 @@
-import { AcceptDropParams, DataColumnProps, DropParams, DropPositionOptions, IColumnConfig } from '@epam/uui-core';
+import {
+    AcceptDropParams, DataColumnProps, DropParams, DropPositionOptions, IColumnConfig,
+} from '@epam/uui-core';
 
 export type DndDataType = { column: DataColumnProps; columnConfig: IColumnConfig };
 export interface ColumnsConfigurationRowProps extends GroupedDataColumnProps {

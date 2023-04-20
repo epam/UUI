@@ -11,13 +11,13 @@ const history = createBrowserHistory();
 export default function UuiEnhancedApp() {
     return (
         <ContextProvider
-            loadAppContext={(api) => Promise.resolve({})}
-            onInitCompleted={(context) => {
+            loadAppContext={ (api) => Promise.resolve({}) }
+            onInitCompleted={ (context) => {
                 Object.assign(svc, context);
-            }}
-            history={history}
-            gaCode={'Code of our Google Analytics account'}
-            skinContext={promoSkinContext} /* It's needed for some packages correct work, for example - @epam/uui-editor*/
+            } }
+            history={ history }
+            gaCode="Code of our Google Analytics account"
+            skinContext={ promoSkinContext } /* It's needed for some packages correct work, for example - @epam/uui-editor */
         >
             <ErrorHandler>Your App component</ErrorHandler>
             <Snackbar />

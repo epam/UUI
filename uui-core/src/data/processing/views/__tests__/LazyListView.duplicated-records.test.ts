@@ -1,7 +1,9 @@
 import { LazyDataSource } from '../../LazyDataSource';
 import { LazyListView } from '../LazyListView';
 import { delay } from '@epam/test-utils';
-import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IEditable } from '../../../../types';
+import {
+    DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps, IEditable,
+} from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
 
 interface TestItem {
@@ -31,7 +33,7 @@ describe('LazyListView with flat list', () => {
 
     const testApi = (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq));
 
-    let flatDataSource = new LazyDataSource({
+    const flatDataSource = new LazyDataSource({
         api: testApi,
     });
 
@@ -43,16 +45,20 @@ describe('LazyListView with flat list', () => {
     });
 
     function expectViewToLookLike(view: LazyListView<TestItem, number>, rows: Partial<DataRowProps<TestItem, number>>[], rowsCount?: number) {
-        let viewRows = view.getVisibleRows();
+        const viewRows = view.getVisibleRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
-        let listProps = view.getListProps();
+        const listProps = view.getListProps();
         rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can scroll thru plain lists', async () => {
-        let ds = flatDataSource;
+        const ds = flatDataSource;
         let view = ds.getView(value, onValueChange, {});
-        expectViewToLookLike(view, [{ isLoading: true }, { isLoading: true }, { isLoading: true }]);
+        expectViewToLookLike(view, [
+            { isLoading: true },
+            { isLoading: true },
+            { isLoading: true },
+        ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
         await delay();
@@ -64,12 +70,16 @@ describe('LazyListView with flat list', () => {
                 { id: 110, value: testDataById[110], depth: 0 },
                 { id: 120, value: testDataById[120], depth: 0 },
             ],
-            11
+            11,
         );
 
         // Scroll down by 1 row
         view = ds.getView({ topIndex: 1, visibleCount: 3 }, onValueChange, {});
-        expectViewToLookLike(view, [{ id: 110, value: testDataById[110] }, { id: 120, value: testDataById[120] }, { isLoading: true }], 11);
+        expectViewToLookLike(view, [
+            { id: 110, value: testDataById[110] },
+            { id: 120, value: testDataById[120] },
+            { isLoading: true },
+        ], 11);
 
         await delay();
 
@@ -80,13 +90,17 @@ describe('LazyListView with flat list', () => {
                 { id: 120, value: testDataById[120] },
                 { id: 120, value: testDataById[120] },
             ],
-            11
+            11,
         );
 
         // Scroll down to bottom
         view = ds.getView({ topIndex: 8, visibleCount: 3 }, onValueChange, {});
 
-        expectViewToLookLike(view, [{ isLoading: true }, { isLoading: true }, { isLoading: true }], 11);
+        expectViewToLookLike(view, [
+            { isLoading: true },
+            { isLoading: true },
+            { isLoading: true },
+        ], 11);
 
         await delay();
 
@@ -97,7 +111,7 @@ describe('LazyListView with flat list', () => {
                 { id: 320, value: testDataById[320] },
                 { id: 330, value: testDataById[330] },
             ],
-            11
+            11,
         );
     });
 });
@@ -133,7 +147,7 @@ describe('LazyListView with tree table', () => {
 
     const testApi = jest.fn((rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq)));
 
-    let treeDataSource = new LazyDataSource({
+    const treeDataSource = new LazyDataSource({
         api: (rq, ctx) =>
             ctx?.parent ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } }) : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
@@ -149,7 +163,7 @@ describe('LazyListView with tree table', () => {
     });
 
     it('testApi is ok', async () => {
-        let data = await testApi({ filter: { parentId: 100 } });
+        const data = await testApi({ filter: { parentId: 100 } });
         expect(data).toEqual({
             items: [testDataById[110], testDataById[120]],
             count: 2,
@@ -157,7 +171,7 @@ describe('LazyListView with tree table', () => {
     });
 
     function expectViewToLookLike(view: LazyListView<TestItem, number>, rows: Partial<DataRowProps<TestItem, number>>[], rowsCount?: number) {
-        let viewRows = view.getVisibleRows();
+        const viewRows = view.getVisibleRows();
 
         rows.forEach((r) => {
             if (r.id) {
@@ -166,17 +180,23 @@ describe('LazyListView with tree table', () => {
         });
 
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
-        let listProps = view.getListProps();
+        const listProps = view.getListProps();
         rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can load tree, unfold nodes, and scroll down', async () => {
-        let ds = treeDataSource;
+        const ds = treeDataSource;
         let view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
-            { isLoading: true, depth: 0, indent: 0, path: [] },
-            { isLoading: true, depth: 0, indent: 0, path: [] },
-            { isLoading: true, depth: 0, indent: 0, path: [] },
+            {
+                isLoading: true, depth: 0, indent: 0, path: [],
+            },
+            {
+                isLoading: true, depth: 0, indent: 0, path: [],
+            },
+            {
+                isLoading: true, depth: 0, indent: 0, path: [],
+            },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
@@ -187,11 +207,15 @@ describe('LazyListView with tree table', () => {
         expectViewToLookLike(
             view,
             [
-                { id: 100, isFoldable: true, isFolded: true, path: [] },
+                {
+                    id: 100, isFoldable: true, isFolded: true, path: [],
+                },
                 { id: 200, isFoldable: false, path: [] },
-                { id: 300, isFoldable: true, isFolded: true, path: [] },
+                {
+                    id: 300, isFoldable: true, isFolded: true, path: [],
+                },
             ],
-            3
+            3,
         );
 
         // // Unfold some rows
@@ -209,7 +233,7 @@ describe('LazyListView with tree table', () => {
                 { id: 200, depth: 0, indent: 1 },
                 { id: 300, depth: 0, indent: 1 },
             ],
-            5
+            5,
         ); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to receive exact rows count here
 
         await delay();
@@ -217,13 +241,19 @@ describe('LazyListView with tree table', () => {
         expectViewToLookLike(
             view,
             [
-                { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
-                { id: 110, depth: 1, indent: 2, isFoldable: false },
-                { id: 120, depth: 1, indent: 2, isFoldable: true },
+                {
+                    id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
+                },
+                {
+                    id: 110, depth: 1, indent: 2, isFoldable: false,
+                },
+                {
+                    id: 120, depth: 1, indent: 2, isFoldable: true,
+                },
                 { id: 200, depth: 0, indent: 1 },
                 { id: 300, depth: 0, indent: 1 },
             ],
-            5
+            5,
         );
 
         // // Unfold more rows
@@ -235,9 +265,15 @@ describe('LazyListView with tree table', () => {
         view = ds.getView(value, onValueChanged, {});
 
         expectViewToLookLike(view, [
-            { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
-            { id: 110, depth: 1, indent: 2, isFoldable: false },
-            { id: 120, depth: 1, indent: 2, isFoldable: true },
+            {
+                id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
+            },
+            {
+                id: 110, depth: 1, indent: 2, isFoldable: false,
+            },
+            {
+                id: 120, depth: 1, indent: 2, isFoldable: true,
+            },
             { isLoading: true, depth: 2, indent: 3 },
             { isLoading: true, depth: 2, indent: 3 },
         ]);
@@ -245,11 +281,21 @@ describe('LazyListView with tree table', () => {
         await delay();
 
         expectViewToLookLike(view, [
-            { id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true },
-            { id: 110, depth: 1, indent: 2, isFoldable: false },
-            { id: 120, depth: 1, indent: 2, isFoldable: true },
-            { id: 121, depth: 2, indent: 3, isFoldable: false },
-            { id: 122, depth: 2, indent: 3, isFoldable: false },
+            {
+                id: 100, isFolded: false, depth: 0, indent: 1, isFoldable: true,
+            },
+            {
+                id: 110, depth: 1, indent: 2, isFoldable: false,
+            },
+            {
+                id: 120, depth: 1, indent: 2, isFoldable: true,
+            },
+            {
+                id: 121, depth: 2, indent: 3, isFoldable: false,
+            },
+            {
+                id: 122, depth: 2, indent: 3, isFoldable: false,
+            },
         ]);
 
         value.visibleCount = 4;
@@ -269,8 +315,12 @@ describe('LazyListView with tree table', () => {
         await delay();
 
         expectViewToLookLike(view, [
-            { id: 122, depth: 2, indent: 3, isFoldable: false },
-            { id: 122, depth: 2, indent: 3, isFoldable: false },
+            {
+                id: 122, depth: 2, indent: 3, isFoldable: false,
+            },
+            {
+                id: 122, depth: 2, indent: 3, isFoldable: false,
+            },
             { id: 200, depth: 0, indent: 1 },
             { id: 300, depth: 0, indent: 1 },
         ]);
@@ -281,11 +331,8 @@ describe('LazyListView with tree table', () => {
 
         expectViewToLookLike(
             view,
-            [
-                { id: 200, depth: 0, indent: 1 },
-                { id: 300, depth: 0, indent: 1 },
-            ],
-            8
+            [{ id: 200, depth: 0, indent: 1 }, { id: 300, depth: 0, indent: 1 }],
+            8,
         );
     });
 });

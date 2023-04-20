@@ -8,6 +8,7 @@ interface AnalyticsContextOptions {
 
 export class AnalyticsContext extends BaseContext {
     private readonly router: IRouterContext;
+
     public listeners: IAnalyticsListener[] = [];
 
     constructor(options: AnalyticsContextOptions) {
@@ -26,8 +27,8 @@ export class AnalyticsContext extends BaseContext {
     private listenRouter() {
         if (!isClientSide) return;
         let currentLocation = window.location?.pathname;
-        this.router &&
-            this.router.listen((location) => {
+        this.router
+            && this.router.listen((location) => {
                 if (currentLocation !== location?.pathname) {
                     currentLocation = location?.pathname;
                     this.sendEvent({ path: location?.pathname, name: 'pageView' }, 'pageView');

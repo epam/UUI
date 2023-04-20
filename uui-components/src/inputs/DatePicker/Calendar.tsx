@@ -1,10 +1,13 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-import { IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import {
+    IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef,
+} from '@epam/uui-core';
 import { Day } from './Day';
 import { i18n } from '../../i18n';
 import localeData from 'dayjs/plugin/localeData.js';
 import css from './Calendar.scss';
+
 dayjs.extend(localeData);
 
 const DAYS_COUNT_IN_WEEK = 7;
@@ -79,17 +82,17 @@ export class Calendar<TSelection> extends React.Component<CalendarProps<TSelecti
 
         return days.map((day, index) => {
             return (
-                <div className={uuiDaySelection.dayCell} tabIndex={0} key={`day-${day && day.valueOf()}-${index}`}>
+                <div className={ uuiDaySelection.dayCell } tabIndex={ 0 } key={ `day-${day && day.valueOf()}-${index}` }>
                     {this.props.renderDay ? (
                         this.props.renderDay(day, this.props.onValueChange)
                     ) : (
                         <Day
-                            value={day}
-                            onValueChange={this.props.onValueChange}
-                            isHoliday={this.props.isHoliday ? this.props.isHoliday(day) : isHoliday(day)}
-                            isSelected={isSelected(day)}
-                            getDayCX={this.props.getDayCX}
-                            filter={this.props.filter}
+                            value={ day }
+                            onValueChange={ this.props.onValueChange }
+                            isHoliday={ this.props.isHoliday ? this.props.isHoliday(day) : isHoliday(day) }
+                            isSelected={ isSelected(day) }
+                            getDayCX={ this.props.getDayCX }
+                            filter={ this.props.filter }
                         />
                     )}
                 </div>
@@ -119,22 +122,22 @@ export class Calendar<TSelection> extends React.Component<CalendarProps<TSelecti
 
     renderDaysTable() {
         return this.getDaysMatrix(this.props.displayedDate?.startOf('day')).map((week, index) => {
-            return <div key={index}>{week.map((day) => day)}</div>;
+            return <div key={ index }>{week.map((day) => day)}</div>;
         });
     }
 
     render() {
         return (
-            <div ref={this.props.forwardedRef} className={cx(css.container, uuiDaySelection.container, this.props.cx)} {...this.props.rawProps}>
-                <div className={uuiDaySelection.content}>
-                    <div className={uuiDaySelection.weekdaysContainer}>
+            <div ref={ this.props.forwardedRef } className={ cx(css.container, uuiDaySelection.container, this.props.cx) } { ...this.props.rawProps }>
+                <div className={ uuiDaySelection.content }>
+                    <div className={ uuiDaySelection.weekdaysContainer }>
                         {dayjs.weekdaysShort(true).map((weekday, index) => (
-                            <div className={uuiDaySelection.weekday} key={index}>
+                            <div className={ uuiDaySelection.weekday } key={ index }>
                                 {weekday}
                             </div>
                         ))}
                     </div>
-                    <div className={uuiDaySelection.days} style={{ height: `${this.state.weeksHeight}px` }}>
+                    <div className={ uuiDaySelection.days } style={ { height: `${this.state.weeksHeight}px` } }>
                         {this.renderDaysTable()}
                     </div>
                 </div>

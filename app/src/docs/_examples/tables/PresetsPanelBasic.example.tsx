@@ -1,6 +1,10 @@
 import React, { useMemo } from 'react';
-import { DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor, PresetsPanel } from '@epam/promo';
-import { DataColumnProps, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
+import {
+    DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor, PresetsPanel,
+} from '@epam/promo';
+import {
+    DataColumnProps, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext,
+} from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
 
@@ -19,7 +23,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={p.profileStatus.toLowerCase() as EpamAdditionalColor} caption={p.profileStatus} />
+                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 160,
@@ -109,7 +113,7 @@ export default function PresetsPanelExample() {
                 type: 'datePicker',
             },
         ],
-        []
+        [],
     );
 
     const tableStateApi = useTableState({
@@ -125,23 +129,23 @@ export default function PresetsPanelExample() {
         {
             api: svc.api.demo.persons,
         },
-        []
+        [],
     );
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState);
 
     return (
-        <Panel style={{ height: '400px' }}>
+        <Panel style={ { height: '400px' } }>
             <FlexRow>
-                <PresetsPanel {...tableStateApi} />
+                <PresetsPanel { ...tableStateApi } />
             </FlexRow>
             <DataTable
-                getRows={view.getVisibleRows}
-                columns={personColumns}
-                filters={filtersConfig}
-                value={tableStateApi.tableState}
-                onValueChange={tableStateApi.setTableState}
-                {...view.getListProps()}
+                getRows={ view.getVisibleRows }
+                columns={ personColumns }
+                filters={ filtersConfig }
+                value={ tableStateApi.tableState }
+                onValueChange={ tableStateApi.setTableState }
+                { ...view.getListProps() }
             />
         </Panel>
     );

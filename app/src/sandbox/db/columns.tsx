@@ -22,7 +22,7 @@ export function getColumns(dbRef: DemoDbRef) {
         {
             key: 'name',
             caption: 'Name',
-            render: (p) => <TextInput mode="cell" {...fieldLens('name', p)} />,
+            render: (p) => <TextInput mode="cell" { ...fieldLens('name', p) } />,
             width: 250,
             fix: 'left',
             isSortable: true,
@@ -60,7 +60,7 @@ export function getColumns(dbRef: DemoDbRef) {
         {
             key: 'notes',
             caption: 'Notes',
-            render: (p) => <TextArea mode="cell" rows={1} autoSize {...fieldLens('notes', p)} />,
+            render: (p) => <TextArea mode="cell" rows={ 1 } autoSize { ...fieldLens('notes', p) } />,
             width: 200,
             grow: 1,
         },

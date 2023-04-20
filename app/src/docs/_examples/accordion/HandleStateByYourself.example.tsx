@@ -7,7 +7,7 @@ export default function HandleStateByYourselfExample() {
 
     return (
         <FlexCell width="100%">
-            <Accordion title="Accordion title" mode="block" value={value} onValueChange={onValueChange}>
+            <Accordion title="Accordion title" mode="block" value={ value } onValueChange={ onValueChange }>
                 <Text fontSize="16" font="sans">
                     {demoData.loremIpsum}
                 </Text>

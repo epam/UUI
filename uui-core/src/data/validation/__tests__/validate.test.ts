@@ -215,16 +215,10 @@ describe('validate', () => {
     it('Custom validators receive parent objects', () => {
         const validator = jest.fn().mockReturnValue(['error']);
         const value = {
-            array: [
-                { id: 100, name: 'abc' },
-                { id: 101, name: 'bcd' },
-            ],
+            array: [{ id: 100, name: 'abc' }, { id: 101, name: 'bcd' }],
         };
         const initValue = {
-            array: [
-                { id: 100, name: 'abc' },
-                { id: 101, name: 'bcd' },
-            ],
+            array: [{ id: 100, name: 'abc' }, { id: 101, name: 'bcd' }],
         };
 
         const resultDefault = validate<IFoo>(
@@ -243,7 +237,7 @@ describe('validate', () => {
                 },
             },
             initValue,
-            'save'
+            'save',
         );
 
         expect(validator).toBeCalledTimes(2);
@@ -266,7 +260,7 @@ describe('validate', () => {
                 },
             },
             initFooValueArray,
-            'change'
+            'change',
         );
 
         const resultWithNotChangedValue = validate<IFoo>(
@@ -285,7 +279,7 @@ describe('validate', () => {
                 },
             },
             initValue,
-            'change'
+            'change',
         );
 
         expect(resultDefault).toMatchObject({

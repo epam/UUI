@@ -35,7 +35,9 @@ export const createSizeString = (value: string) => {
         .join(' ');
 };
 
-export const createShadowString = ({ type, x, y, blur, spread, color }: ShadowToken) => {
+export const createShadowString = ({
+    type, x, y, blur, spread, color,
+}: ShadowToken) => {
     let result = '';
     if (type === 'innerShadow') {
         result += 'inset ';

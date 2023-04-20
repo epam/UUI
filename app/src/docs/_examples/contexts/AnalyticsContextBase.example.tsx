@@ -4,9 +4,10 @@ import { svc } from '../../../services';
 import amplitude from 'amplitude-js';
 import { IAnalyticsListener, AnalyticsEvent } from '@epam/uui-core';
 
-/**An example of creation AmplitudeClientListener */
+/** An example of creation AmplitudeClientListener */
 class AmplitudeListener implements IAnalyticsListener {
     public ampCode: string;
+
     public client: amplitude.AmplitudeClient;
 
     constructor(ampCode: string) {
@@ -32,13 +33,13 @@ const AnalyticsContextBase: React.FC = () => {
     const onInitCompleted = useCallback((context: any) => {
         Object.assign(svc, context);
 
-        /**Here you can create AmplitudeClient and add it to the listener*/
+        /** Here you can create AmplitudeClient and add it to the listener */
         const listener = new AmplitudeListener('Your amplitude secret key');
         context.uuiAnalytics.addListener(listener);
     }, []);
 
     return (
-        <ContextProvider loadAppContext={loadAppContext} onInitCompleted={onInitCompleted} gaCode="Your google analytics secret key">
+        <ContextProvider loadAppContext={ loadAppContext } onInitCompleted={ onInitCompleted } gaCode="Your google analytics secret key">
             Your app component
         </ContextProvider>
     );

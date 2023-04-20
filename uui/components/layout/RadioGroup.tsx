@@ -6,5 +6,5 @@ import css from './RadioGroup.scss';
 export const RadioGroup = withMods<RadioGroupProps<any>>(
     uuiRadioGroup,
     () => [css.root],
-    () => ({ RadioInput })
+    () => ({ RadioInput }),
 );

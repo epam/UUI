@@ -3,7 +3,14 @@ import { withMods } from '@epam/uui-core';
 import css from './IconButton.scss';
 
 export type IconColor = 'info' | 'success' | 'warning' | 'error' | 'secondary' | 'default';
-export const allIconColors: IconColor[] = ['info', 'success', 'warning', 'error', 'secondary', 'default'];
+export const allIconColors: IconColor[] = [
+    'info',
+    'success',
+    'warning',
+    'error',
+    'secondary',
+    'default',
+];
 
 export interface IconButtonMods {
     color?: IconColor;

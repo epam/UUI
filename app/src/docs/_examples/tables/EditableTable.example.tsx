@@ -1,5 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource } from '@epam/uui-core';
+import {
+    DataColumnProps, DataTableRowProps, Metadata, useArrayDataSource,
+} from '@epam/uui-core';
 import {
     Button,
     Checkbox,
@@ -44,12 +46,22 @@ let id = 1;
 
 // Prepare mock data for the demo. Usually, you'll get initial data from server API call
 const demoItems: ToDoItem[] = [
-    { ...blankItem, id: id++, name: 'Complete data sources re-work', comments: 'The plan is to unite all dataSources into a single "useList" hook' },
-    { ...blankItem, id: id++, name: 'Implement editable cells', isDone: true },
-    { ...blankItem, id: id++, name: 'Find better ways to add/remove rows', dueDate: '01-09-2022', priority: 2 },
-    { ...blankItem, id: id++, name: 'Finalize the "Project" table demo', comments: 'We first need to build the add/remove rows helpers, and rows drag-n-drop' },
+    {
+        ...blankItem, id: id++, name: 'Complete data sources re-work', comments: 'The plan is to unite all dataSources into a single "useList" hook',
+    },
+    {
+        ...blankItem, id: id++, name: 'Implement editable cells', isDone: true,
+    },
+    {
+        ...blankItem, id: id++, name: 'Find better ways to add/remove rows', dueDate: '01-09-2022', priority: 2,
+    },
+    {
+        ...blankItem, id: id++, name: 'Finalize the "Project" table demo', comments: 'We first need to build the add/remove rows helpers, and rows drag-n-drop',
+    },
     { ...blankItem, id: id++, name: 'Complete cells replication' },
-    { ...blankItem, id: id++, name: 'Better rows drag-n-drop support', comments: 'With state-management helpers, and tree/hierarchy support' },
+    {
+        ...blankItem, id: id++, name: 'Better rows drag-n-drop support', comments: 'With state-management helpers, and tree/hierarchy support',
+    },
 ];
 
 // Interface to hold form data. Here we'll only store items, so we might use ToDoItem[] as a state.
@@ -82,7 +94,9 @@ const metadata: Metadata<FormState> = {
 
 export default function EditableTableExample() {
     // Use form to manage state of the editable table
-    const { lens, save, revert, value, setValue, isChanged } = useForm<FormState>({
+    const {
+        lens, save, revert, value, setValue, isChanged,
+    } = useForm<FormState>({
         value: { items: demoItems },
         onSave: () => Promise.resolve(),
         getMetadata: () => metadata,
@@ -113,15 +127,15 @@ export default function EditableTableExample() {
                         <DataTableCell
                             // We use the passed rowLens, to extract IEditable instance to the cell value.
                             // This is used by the cell itself to highlight invalid cells.
-                            {...props.rowLens.prop('name').toProps()}
+                            { ...props.rowLens.prop('name').toProps() }
                             // The same IEditable is then passed to the renderEditor callback,
                             // which should render an compatible IEditable component
                             // The cell passes the mode='cell' prop, so all compatible UUI components
                             // are rendered in a 'cell mode' - adopted to use in cells (e.g. with borders removed)
-                            renderEditor={(props) => <TextInput {...props} />}
+                            renderEditor={ (props) => <TextInput { ...props } /> }
                             // Need to set smaller cell padding, that cell editor content will be aligned with header caption
                             padding="12"
-                            {...props}
+                            { ...props }
                         />
                     ),
                     fix: 'left',
@@ -130,7 +144,7 @@ export default function EditableTableExample() {
                 {
                     key: 'isDone',
                     caption: 'Done',
-                    renderCell: (props) => <DataTableCell {...props.rowLens.prop('isDone').toProps()} renderEditor={(props) => <Checkbox {...props} />} {...props} />,
+                    renderCell: (props) => <DataTableCell { ...props.rowLens.prop('isDone').toProps() } renderEditor={ (props) => <Checkbox { ...props } /> } { ...props } />,
                     textAlign: 'center',
                     fix: 'left',
                     width: 80,
@@ -138,7 +152,7 @@ export default function EditableTableExample() {
                 {
                     key: 'dueDate',
                     caption: 'Due Date',
-                    renderCell: (props) => <DataTableCell {...props.rowLens.prop('dueDate').toProps()} renderEditor={(props) => <DatePicker {...props} />} {...props} />,
+                    renderCell: (props) => <DataTableCell { ...props.rowLens.prop('dueDate').toProps() } renderEditor={ (props) => <DatePicker { ...props } /> } { ...props } />,
                     width: 150,
                 },
                 {
@@ -146,9 +160,9 @@ export default function EditableTableExample() {
                     caption: 'Priority',
                     renderCell: (props) => (
                         <DataTableCell
-                            {...props.rowLens.prop('priority').toProps()}
-                            renderEditor={(props) => <PickerInput {...props} selectionMode="single" dataSource={pickerDataSource} />}
-                            {...props}
+                            { ...props.rowLens.prop('priority').toProps() }
+                            renderEditor={ (props) => <PickerInput { ...props } selectionMode="single" dataSource={ pickerDataSource } /> }
+                            { ...props }
                         />
                     ),
                     width: 130,
@@ -157,19 +171,19 @@ export default function EditableTableExample() {
                     key: 'comments',
                     caption: 'Comments',
                     renderCell: (props) => (
-                        <DataTableCell {...props.rowLens.prop('comments').toProps()} renderEditor={(props) => <TextArea {...props} autoSize />} {...props} />
+                        <DataTableCell { ...props.rowLens.prop('comments').toProps() } renderEditor={ (props) => <TextArea { ...props } autoSize /> } { ...props } />
                     ),
                     width: 120,
                     grow: 1,
                 },
                 {
                     key: 'actions',
-                    render: () => <IconButton icon={deleteIcon} onClick={() => null} color="gray50" />,
+                    render: () => <IconButton icon={ deleteIcon } onClick={ () => null } color="gray50" />,
                     width: 55,
                     alignSelf: 'center',
                 },
             ] as DataColumnProps<ToDoItem>[],
-        []
+        [],
     );
 
     // Create data-source and view to supply filtered/sorted data to the table in form of DataTableRows.
@@ -179,7 +193,7 @@ export default function EditableTableExample() {
         {
             items: value.items,
         },
-        []
+        [],
     );
 
     // Make an IDataSourceView instance, which takes data from the DataSource, and transforms it into DataTableRows.
@@ -192,34 +206,34 @@ export default function EditableTableExample() {
 
     // Render row callback. In simple cases, you don't need, as default implementation would work ok.
     // Here we override it to change row background for 'isDone' items.
-    const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => <DataTableRow {...props} cx={props.value.isDone ? css.taskIsDone : undefined} />, []);
+    const renderRow = useCallback((props: DataTableRowProps<ToDoItem, number>) => <DataTableRow { ...props } cx={ props.value.isDone ? css.taskIsDone : undefined } />, []);
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return (
-        <Panel shadow={true}>
+        <Panel shadow={ true }>
             {/* Render a panel with Save/Revert buttons to control the form */}
             <FlexRow background="gray5" spacing="12" padding="12" vPadding="12" borderBottom>
                 <FlexCell width="auto">
-                    <Button caption="Add task" onClick={handleNewItem} />
+                    <Button caption="Add task" onClick={ handleNewItem } />
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">
-                    <Button caption="Revert" onClick={revert} isDisabled={!isChanged} color="gray50" />
+                    <Button caption="Revert" onClick={ revert } isDisabled={ !isChanged } color="gray50" />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button caption="Save" onClick={save} color="green" isDisabled={!isChanged} />
+                    <Button caption="Save" onClick={ save } color="green" isDisabled={ !isChanged } />
                 </FlexCell>
             </FlexRow>
             <FlexRow>
                 {/* Render the data table */}
                 <DataTable
-                    {...view.getListProps()}
-                    getRows={view.getVisibleRows}
-                    value={tableState}
-                    onValueChange={setTableState}
-                    columns={columns}
+                    { ...view.getListProps() }
+                    getRows={ view.getVisibleRows }
+                    value={ tableState }
+                    onValueChange={ setTableState }
+                    columns={ columns }
                     headerTextCase="upper"
-                    renderRow={renderRow}
+                    renderRow={ renderRow }
                 />
             </FlexRow>
         </Panel>

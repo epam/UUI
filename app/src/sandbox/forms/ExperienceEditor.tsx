@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Lens, IEditable, ArrayDataSource } from '@epam/uui-core';
-import { LabeledInput, TextInput, FlexRow, FlexCell, Button, FlexSpacer, PickerInput, LinkButton, RichTextView } from '@epam/loveship';
+import {
+    LabeledInput, TextInput, FlexRow, FlexCell, Button, FlexSpacer, PickerInput, LinkButton, RichTextView,
+} from '@epam/loveship';
 import { PersonExperienceItem } from '@epam/uui-docs';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/content-plus-18.svg';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
@@ -10,7 +12,7 @@ export interface ExperienceEditorProps extends IEditable<PersonExperienceItem[]>
     isReadOnly?: boolean;
 }
 
-let years = new Array(50)
+const years = new Array(50)
     .fill(0)
     .map((item, index) => (2018 - index).toString())
     .map((name) => ({ id: name, name: name }));
@@ -24,13 +26,13 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
 
     renderYearPicker(editable: IEditable<string>) {
         return (
-            <LabeledInput {...editable}>
+            <LabeledInput { ...editable }>
                 <PickerInput<{ name: string }, string>
-                    {...editable}
-                    dataSource={this.yearsDataSource}
+                    { ...editable }
+                    dataSource={ this.yearsDataSource }
                     selectionMode="single"
                     valueType="id"
-                    getName={(val) => val.name}
+                    getName={ (val) => val.name }
                     size="36"
                 />
             </LabeledInput>
@@ -38,21 +40,21 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
     }
 
     renderItem(item: PersonExperienceItem, index: number) {
-        let lens = this.lens.index(index);
+        const lens = this.lens.index(index);
         return (
-            <FlexRow type="form" key={`experienceName${index}`}>
-                <FlexCell grow={1}>
-                    <LabeledInput {...lens.prop('experienceName').toProps()}>
-                        <TextInput {...lens.prop('experienceName').toProps()} placeholder="Experience" />
+            <FlexRow type="form" key={ `experienceName${index}` }>
+                <FlexCell grow={ 1 }>
+                    <LabeledInput { ...lens.prop('experienceName').toProps() }>
+                        <TextInput { ...lens.prop('experienceName').toProps() } placeholder="Experience" />
                     </LabeledInput>
                 </FlexCell>
-                <FlexCell grow={1}>{this.renderYearPicker(lens.prop('startRange').toProps())}</FlexCell>
-                <FlexCell grow={1}>{this.renderYearPicker(lens.prop('endRange').toProps())}</FlexCell>
+                <FlexCell grow={ 1 }>{this.renderYearPicker(lens.prop('startRange').toProps())}</FlexCell>
+                <FlexCell grow={ 1 }>{this.renderYearPicker(lens.prop('endRange').toProps())}</FlexCell>
                 <FlexCell width="auto">
                     <LinkButton
-                        rawProps={{ 'aria-label': 'Remove' }}
-                        icon={RemoveIcon}
-                        onClick={() => this.props.onValueChange(this.props.value.filter((item, i) => index != i))}
+                        rawProps={ { 'aria-label': 'Remove' } }
+                        icon={ RemoveIcon }
+                        onClick={ () => this.props.onValueChange(this.props.value.filter((item, i) => index != i)) }
                     />
                 </FlexCell>
             </FlexRow>
@@ -64,17 +66,17 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
         return (
             <>
                 <FlexRow padding="24">
-                    <FlexCell grow={1}>
+                    <FlexCell grow={ 1 }>
                         <RichTextView>
                             <b>Experience</b>
                         </RichTextView>
                     </FlexCell>
-                    <FlexCell grow={1}>
+                    <FlexCell grow={ 1 }>
                         <RichTextView>
                             <b>Work Start</b>
                         </RichTextView>
                     </FlexCell>
-                    <FlexCell grow={1}>
+                    <FlexCell grow={ 1 }>
                         <RichTextView>
                             <b>Work End</b>
                         </RichTextView>
@@ -88,11 +90,11 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
                 )}
                 <FlexRow type="form">
                     <Button
-                        onClick={() => this.props.onValueChange([...value, { experienceName: '', rangeDateValue: { from: '', to: '' } }])}
+                        onClick={ () => this.props.onValueChange([...value, { experienceName: '', rangeDateValue: { from: '', to: '' } }]) }
                         caption="add"
                         size="30"
                         color="grass"
-                        icon={AddIcon}
+                        icon={ AddIcon }
                     />
                     <FlexSpacer />
                 </FlexRow>

@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import {
+    IHasCX, cx, IHasRawProps, IHasForwardedRef,
+} from '@epam/uui-core';
 import css from './Blocker.scss';
 
 // TBD: move to loveship-specific mods
-//import { EpamColor, SpinnerMods } from '@epam/oswald';
+// import { EpamColor, SpinnerMods } from '@epam/oswald';
 
 export interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     /** Turns the blocker on or off */
@@ -14,7 +16,7 @@ export interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<
     /** Sets the minimal height in px, for cases when blocked content is empty */
     spacerHeight?: number;
     /** Replaces default spinner */
-    renderSpinner?(props: any): React.ReactNode; //React.ComponentClass<SpinnerMods>;
+    renderSpinner?(props: any): React.ReactNode; // React.ComponentClass<SpinnerMods>;
 }
 
 const uuiBlocker = {
@@ -32,15 +34,15 @@ export class Blocker extends React.Component<BlockerProps> {
     render() {
         return (
             <div
-                className={cx(css.container, uuiBlocker.container, this.props.cx)}
-                style={{ minHeight: this.props.isEnabled && this.props.spacerHeight ? `${this.props.spacerHeight}px` : undefined }}
-                ref={this.props.forwardedRef}
-                {...this.props.rawProps}
+                className={ cx(css.container, uuiBlocker.container, this.props.cx) }
+                style={ { minHeight: this.props.isEnabled && this.props.spacerHeight ? `${this.props.spacerHeight}px` : undefined } }
+                ref={ this.props.forwardedRef }
+                { ...this.props.rawProps }
             >
                 <TransitionGroup>
                     {this.props.isEnabled && (
-                        <CSSTransition nodeRef={this.transitionRef} classNames={uuiBlocker} timeout={{ enter: 2000, exit: 1000 }}>
-                            <div ref={this.transitionRef} className={uuiBlocker.blocker}>
+                        <CSSTransition nodeRef={ this.transitionRef } classNames={ uuiBlocker } timeout={ { enter: 2000, exit: 1000 } }>
+                            <div ref={ this.transitionRef } className={ uuiBlocker.blocker }>
                                 {!this.props.hideSpinner && this.props.renderSpinner && this.props.renderSpinner(this.props)}
                             </div>
                         </CSSTransition>

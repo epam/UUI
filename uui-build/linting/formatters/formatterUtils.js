@@ -219,7 +219,8 @@ function singleFileResultsToHtml(fileRow, kind) {
     }
 
     function htmlEsc(t) {
-        return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
     }
 
     function msgToHtml(msg) {

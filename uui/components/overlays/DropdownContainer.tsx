@@ -10,7 +10,11 @@ export interface DropdownContainerMods {
 export interface DropdownContainerProps extends uuiDropdownContainerProps, DropdownContainerMods {}
 
 function applyDropdownContainerMods(mods: DropdownContainerMods) {
-    return [css.root, mods.vPadding && `vPadding-${mods.vPadding}`, mods.padding && `padding-${mods.padding}`];
+    return [
+        css.root,
+        mods.vPadding && `vPadding-${mods.vPadding}`,
+        mods.padding && `padding-${mods.padding}`,
+    ];
 }
 
 export const DropdownContainer = withMods<uuiDropdownContainerProps, DropdownContainerMods>(uuiDropdownListContainer, applyDropdownContainerMods);

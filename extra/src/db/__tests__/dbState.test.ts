@@ -1,4 +1,6 @@
-import { emptyDb, sampleDb, taskDbSchema, sampleData } from './TaskDb';
+import {
+    emptyDb, sampleDb, taskDbSchema, sampleData,
+} from './TaskDb';
 import { DbRef } from '../index';
 
 describe('DB State', () => {

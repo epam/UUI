@@ -32,7 +32,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
     getView(
         value: DataSourceState<any, TId>,
         onValueChange: (val: DataSourceState<any, TId>) => any,
-        options?: Partial<BaseArrayListViewProps<TItem, TId, TFilter>>
+        options?: Partial<BaseArrayListViewProps<TItem, TId, TFilter>>,
     ): IDataSourceView<TItem, TId, TFilter> {
         const view = this.views.get(onValueChange) as AsyncListView<TItem, TId, TFilter>;
         const { items, ...props } = this.props;

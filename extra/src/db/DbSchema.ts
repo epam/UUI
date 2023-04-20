@@ -1,4 +1,6 @@
-import { Db, DbState, DbEntityFieldsSchema, DbFieldSchema } from './types';
+import {
+    Db, DbState, DbEntityFieldsSchema, DbFieldSchema,
+} from './types';
 import { QueryBuilder } from './QueryBuilder';
 import { dbWith } from './updateApis';
 import * as I from 'immutable';
@@ -6,7 +8,9 @@ import { objectKeys } from './helpers';
 
 export class DbSchema<T> {
     public entitiesType: T;
+
     private dbProto: any = {};
+
     private blankState: DbState = null;
 
     private reducerToMethod(fn: Function) {
@@ -52,7 +56,7 @@ export class DbSchema<T> {
     //     return this.newDb(); // TBD
     // }
 
-    //WIP API
+    // WIP API
     // public fk<TFrom extends keyof T, TTo extends keyof T>(
     //     fromEntityName: TFrom, fromKey: keyof T[TFrom], toEntityName: TTo, toKey: keyof T[TTo]
     // ) {
@@ -64,8 +68,11 @@ type DbFieldSchemaRec<T> = { name: Extract<keyof T, string> } & DbFieldSchema<T>
 
 export class DbEntitySchema<T> {
     public fieldsList: DbFieldSchemaRec<T>[];
+
     public fkFields: DbFieldSchemaRec<T>[];
+
     public pkFields: DbFieldSchemaRec<T>[];
+
     public keyFields: DbFieldSchemaRec<T>[];
 
     constructor(public fields: DbEntityFieldsSchema<T>) {
@@ -86,5 +93,6 @@ export class DbEntitySchema<T> {
     }
 
     public getKey: (entity: T) => any;
+
     public argsToKey: (args: any) => any;
 }

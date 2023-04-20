@@ -20,10 +20,14 @@ function applyTextMods(mods: TextMods) {
             lineHeight: mods.lineHeight,
             fontSize: mods.fontSize,
         },
-        false
+        false,
     );
 
-    return [`uui-font-${mods.font || 'regular'}`, `uui-text-${mods.color || 'primary'}`, css.root].concat(textClasses);
+    return [
+        `uui-font-${mods.font || 'regular'}`,
+        `uui-text-${mods.color || 'primary'}`,
+        css.root,
+    ].concat(textClasses);
 }
 
 export const Text = withMods<UuiTextProps, TextMods>(uuiText, applyTextMods);

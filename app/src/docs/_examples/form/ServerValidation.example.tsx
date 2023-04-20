@@ -1,6 +1,8 @@
 import React from 'react';
 import { FormSaveResponse, useUuiContext, UuiContexts } from '@epam/uui-core';
-import { FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, useForm } from '@epam/promo';
+import {
+    FlexCell, FlexRow, FlexSpacer, Text, Button, LabeledInput, TextInput, SuccessNotification, useForm,
+} from '@epam/promo';
 import type { TApi } from '../../../data';
 
 interface Login {
@@ -47,7 +49,7 @@ export default function ServerValidationExample() {
         onSave,
         onSuccess: () =>
             svc.uuiNotifications.show((props) => (
-                <SuccessNotification {...props}>
+                <SuccessNotification { ...props }>
                     <Text>Form saved</Text>
                 </SuccessNotification>
             )),
@@ -62,23 +64,23 @@ export default function ServerValidationExample() {
     return (
         <FlexCell width="100%">
             <FlexRow vPadding="12">
-                <FlexCell grow={1}>
-                    <LabeledInput label="Email" {...lens.prop('email').toProps()}>
-                        <TextInput placeholder="Email" {...lens.prop('email').toProps()} />
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label="Email" { ...lens.prop('email').toProps() }>
+                        <TextInput placeholder="Email" { ...lens.prop('email').toProps() } />
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <FlexRow vPadding="12">
-                <FlexCell grow={1}>
-                    <LabeledInput label="Password" {...lens.prop('password').toProps()}>
-                        <TextInput placeholder="Password" type="password" {...lens.prop('password').toProps()} />
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label="Password" { ...lens.prop('password').toProps() }>
+                        <TextInput placeholder="Password" type="password" { ...lens.prop('password').toProps() } />
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <FlexRow vPadding="12" spacing="12">
                 <FlexSpacer />
-                <Button caption="Validate" onClick={validate} />
-                <Button caption="Save" onClick={save} color="green" />
+                <Button caption="Validate" onClick={ validate } />
+                <Button caption="Save" onClick={ save } color="green" />
             </FlexRow>
         </FlexCell>
     );

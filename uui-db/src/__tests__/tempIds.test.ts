@@ -3,7 +3,7 @@ import { TempIdMap, getTempId, isTempId } from '../tempIds';
 
 describe('tempIds', () => {
     beforeEach(() => {
-        //testTask.mockReset();
+        // testTask.mockReset();
     });
 
     it('generates ids', () => {
@@ -40,7 +40,11 @@ describe('tempIds', () => {
         const ids = new TempIdMap(emptyDb);
 
         const patch = ids.serverToClientPatch({
-            tasks: [{ id: 1, name: 'Test', assignedTo: 'J', isDone: false }],
+            tasks: [
+                {
+                    id: 1, name: 'Test', assignedTo: 'J', isDone: false,
+                },
+            ],
             users: [{ id: 'J', name: 'John' }],
         });
 
@@ -75,13 +79,12 @@ describe('tempIds', () => {
 
         const initialPatch = {
             tasks: [
-                { id: 1, estimate: '1' as any, assignedTo: 'JS', isDone: true },
+                {
+                    id: 1, estimate: '1' as any, assignedTo: 'JS', isDone: true,
+                },
                 { id: 2, estimate: '2' as any, isDone: false },
             ],
-            users: [
-                { id: 'JS', name: 'John Snow' },
-                { id: 'DT', name: 'Daenerys Targaryen' },
-            ],
+            users: [{ id: 'JS', name: 'John Snow' }, { id: 'DT', name: 'Daenerys Targaryen' }],
             managers: [{ subordinateId: 'JS', managerId: 'DT' }],
         };
 

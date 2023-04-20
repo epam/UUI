@@ -14,10 +14,16 @@ import {
 
 export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
 
-export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
+export const uuiInputElements = [
+    uuiElement.checkbox,
+    uuiElement.inputLabel,
+    uuiElement.radioInput,
+    uuiElement.switchBody,
+];
 
 export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps> {
     static contextType = UuiContext;
+
     context: UuiContexts;
 
     clickHandler = (e: any) => {
@@ -85,7 +91,7 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             !this.props.isDisabled && uuiMod.enabled,
             (this.props.isLinkActive !== undefined ? this.props.isLinkActive : isLinkActive) && uuiMod.active,
             (this.props.onClick || isAnchor) && uuiMarkers.clickable,
-            this.props.cx
+            this.props.cx,
         );
 
         const commonProps = {
@@ -104,7 +110,9 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             const { target } = this.props;
             const relProp = target === '_blank' ? { rel: 'noopener noreferrer' } : {};
 
-            return React.createElement('a', { role: 'link', href, target, ...relProp, ...commonProps }, this.getChildren());
+            return React.createElement('a', {
+                role: 'link', href, target, ...relProp, ...commonProps,
+            }, this.getChildren());
         }
 
         return React.createElement('button', { type: 'button', ...commonProps }, this.getChildren());

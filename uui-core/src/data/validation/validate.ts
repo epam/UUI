@@ -7,7 +7,7 @@ export const blankValidationState: ICanBeInvalid = {};
 
 export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateOn: ValidationMode): ICanBeInvalid => {
     const validateRec = <T>(value: T, path: T[], meta: Metadata<T>, initValue: T): ICanBeInvalid => {
-        let itemResult: ICanBeInvalid = validateValue(value, path, meta, initValue);
+        const itemResult: ICanBeInvalid = validateValue(value, path, meta, initValue);
         const validateItem = (key: string, meta: Metadata<any>) => {
             const childValue = value && (value as any)[key];
             const newPath = [childValue, ...path];
@@ -31,7 +31,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
         };
 
         if (meta.props) {
-            for (let key in meta.props) {
+            for (const key in meta.props) {
                 const childMeta = meta.props[key];
                 if (childMeta) {
                     validateItem(key, childMeta);
@@ -40,7 +40,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
         }
 
         if (meta.all && value != null) {
-            for (let key in value) {
+            for (const key in value) {
                 validateItem(key, meta.all);
             }
         }

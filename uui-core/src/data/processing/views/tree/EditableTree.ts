@@ -1,6 +1,8 @@
 import { IMap } from '../../../../types';
 import { BaseTree } from './BaseTree';
-import { ItemsComparator, ITree, ROOT_ID, TreeNodeInfo } from './ITree';
+import {
+    ItemsComparator, ITree, ROOT_ID, TreeNodeInfo,
+} from './ITree';
 import { CascadeSelection, CascadeSelectionTypes } from '../../../../types';
 import { CompositeKeysMap } from './CompositeKeysMap';
 
@@ -53,7 +55,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
 
         const newNodeInfoById = this.newMap<TId, TreeNodeInfo>();
 
-        for (let [parentId, ids] of newByParentId) {
+        for (const [parentId, ids] of newByParentId) {
             newNodeInfoById.set(parentId, { count: ids.length });
         }
 
@@ -67,7 +69,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         options: {
             isSelectable?: (item: TItem) => boolean;
             cascade?: CascadeSelection;
-        } = {}
+        } = {},
     ) {
         const isImplicitMode = options.cascade === CascadeSelectionTypes.IMPLICIT;
         let selectedIdsMap = this.newMap<TId, boolean>();
@@ -103,7 +105,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
                     action(id);
                 }
             },
-            { parentId: parentId, includeParent }
+            { parentId: parentId, includeParent },
         );
     }
 
@@ -111,13 +113,13 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
         selectedId: TId,
         isSelected: boolean,
-        isSelectable: (item: TItem) => boolean
+        isSelectable: (item: TItem) => boolean,
     ) {
         if (isSelected) {
             if (selectedId !== ROOT_ID) {
                 selectedIdsMap.set(selectedId, true);
             } else {
-                for (let [id, item] of this.byId) {
+                for (const [id, item] of this.byId) {
                     if (isSelectable(item)) {
                         selectedIdsMap.set(id, true);
                     }
@@ -136,7 +138,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
         selectedId: TId,
         isSelected: boolean,
-        isSelectable: (item: TItem) => boolean
+        isSelectable: (item: TItem) => boolean,
     ) {
         if (isSelected) {
             if (selectedId !== ROOT_ID) {
@@ -165,7 +167,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
         selectedId: TId,
         isSelected: boolean,
-        isSelectable: (item: TItem) => boolean
+        isSelectable: (item: TItem) => boolean,
     ) {
         if (isSelected) {
             if (selectedId !== ROOT_ID) {
@@ -214,7 +216,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         selectedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>,
         selectedId: TId,
         isSelectable: (item: TItem) => boolean,
-        removeExplicitChildrenSelection?: boolean
+        removeExplicitChildrenSelection?: boolean,
     ) {
         this.getParentIdsRecursive(selectedId)
             .reverse()
@@ -245,7 +247,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         children: TId[] | undefined,
         { existingItem, newItem }: { existingItem: TItem | undefined; newItem: TItem },
         comparator: ItemsComparator<TItem>,
-        byId: IMap<TId, TItem>
+        byId: IMap<TId, TItem>,
     ) {
         const id = this.getId(newItem);
         const parentId = this.getParentId(newItem);

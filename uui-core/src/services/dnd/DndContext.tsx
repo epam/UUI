@@ -3,17 +3,23 @@ import * as React from 'react';
 import { IDndContext, DndContextState } from '../../types';
 import { BaseContext } from '../BaseContext';
 
-let maxScrollSpeed = 2000; // px/second
+const maxScrollSpeed = 2000; // px/second
 
 export class DndContext extends BaseContext<DndContextState> implements IDndContext {
     public isDragging = false;
+
     public dragData: any;
 
     private scrollZoneSize = 85;
+
     private ghostOffsetX: number = 0;
+
     private ghostOffsetY: number = 0;
+
     private ghostWidth: number = 300;
+
     private renderGhostCallback: () => React.ReactNode = null;
+
     private lastScrollTime = new Date().getTime();
 
     constructor() {
@@ -65,6 +71,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     }
 
     xScrollNode: HTMLElement = null;
+
     yScrollNode: HTMLElement = null;
 
     private windowPointerMoveHandler = (e: PointerEvent) => {
@@ -112,7 +119,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
                 getOffset(this.xScrollNode).left,
                 this.xScrollNode.scrollLeft,
                 mouseCoords.mousePageX,
-                mouseCoords.mouseDxSmooth
+                mouseCoords.mouseDxSmooth,
             );
 
             if (scrollX !== undefined && scrollX !== 0) {
@@ -126,7 +133,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
                 getOffset(this.yScrollNode).top,
                 this.yScrollNode.scrollTop,
                 mouseCoords.mousePageY,
-                mouseCoords.mouseDySmooth
+                mouseCoords.mouseDySmooth,
             );
 
             if (scrollY !== undefined && scrollY !== 0) {

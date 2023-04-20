@@ -25,31 +25,31 @@ export default function LanguagesMultiPicker() {
         {
             items: languageLevels,
         },
-        []
+        [],
     );
 
     return (
-        <FlexCell width={612}>
+        <FlexCell width={ 612 }>
             <FlexRow spacing="12">
                 <PickerInput
-                    dataSource={dataSource}
-                    value={multiPickerValue}
-                    onValueChange={multiOnValueChange}
-                    getName={(item) => item.level}
+                    dataSource={ dataSource }
+                    value={ multiPickerValue }
+                    onValueChange={ multiOnValueChange }
+                    getName={ (item) => item.level }
                     entityName="Language level"
                     selectionMode="multi"
-                    valueType={'id'}
-                    sorting={{ field: 'level', direction: 'asc' }}
+                    valueType="id"
+                    sorting={ { field: 'level', direction: 'asc' } }
                 />
                 <PickerInput
-                    dataSource={dataSource}
-                    value={singlePickerValue}
-                    onValueChange={singleOnValueChange}
-                    getName={(item) => item.level}
+                    dataSource={ dataSource }
+                    value={ singlePickerValue }
+                    onValueChange={ singleOnValueChange }
+                    getName={ (item) => item.level }
                     entityName="Language level"
                     selectionMode="single"
-                    valueType={'id'}
-                    sorting={{ field: 'level', direction: 'asc' }}
+                    valueType="id"
+                    sorting={ { field: 'level', direction: 'asc' } }
                 />
             </FlexRow>
         </FlexCell>

@@ -1,6 +1,8 @@
 import { getSearchFilter } from '../../../querying';
 import { LoadableTree } from './LoadableTree';
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree } from './ITree';
+import {
+    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree,
+} from './ITree';
 
 export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
     public filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId> {

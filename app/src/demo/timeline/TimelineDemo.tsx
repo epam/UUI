@@ -5,7 +5,7 @@ import { Timeline } from './Timeline';
 
 export function TimelineDemo() {
     return (
-        <div id="root" className={css.root}>
+        <div id="root" className={ css.root }>
             <Timeline />
         </div>
     );

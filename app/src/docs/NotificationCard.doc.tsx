@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI } from '../common';
+import {
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI,
+} from '../common';
 
 export class NotificationCardDoc extends BaseDocsBlock {
     title = 'Notification Card';

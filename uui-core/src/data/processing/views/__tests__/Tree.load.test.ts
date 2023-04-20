@@ -48,13 +48,13 @@ describe('Tree - load', () => {
 
     const testApi = jest.fn(testApiFn);
 
-    let loadParams: LoadTreeOptions<TestItem, number, DataQueryFilter<TestItem>> = {
+    const loadParams: LoadTreeOptions<TestItem, number, DataQueryFilter<TestItem>> = {
         api: testApi,
         getChildCount: (i) => i.childrenCount,
         isFolded: (i) => true,
     };
 
-    let value: DataSourceState = { topIndex: 0, visibleCount: 100 };
+    const value: DataSourceState = { topIndex: 0, visibleCount: 100 };
 
     beforeEach(() => {
         testApi.mockClear();
@@ -64,7 +64,7 @@ describe('Tree - load', () => {
         actual: Tree<TestItem, number>,
         expectedById: Record<any, TestItem>,
         expectedByParentId: Record<any, number[]>,
-        expectedNodeInfos: Record<any, TreeNodeInfo>
+        expectedNodeInfos: Record<any, TreeNodeInfo>,
     ) {
         expect(Object.fromEntries(actual.byId)).toEqual(expectedById);
         expect(Object.fromEntries(actual.byParentId)).toEqual(expectedByParentId);
@@ -72,7 +72,7 @@ describe('Tree - load', () => {
     }
 
     it('Can load items (folded)', async () => {
-        let tree = await blankTree.load(loadParams, value);
+        const tree = await blankTree.load(loadParams, value);
         expectTreeToLookLike(
             tree,
             {
@@ -81,43 +81,55 @@ describe('Tree - load', () => {
                 300: itemsById[300],
             },
             {
-                undefined: [100, 200, 300],
+                undefined: [
+                    100,
+                    200,
+                    300,
+                ],
             },
             {
                 undefined: { count: 3 },
-            }
+            },
         );
 
         // expect(tree.getTotalRecursiveCount()).toBe(undefined);
     });
 
     it('Can load items (unfolded)', async () => {
-        let tree = await blankTree.load({ ...loadParams, isFolded: (i) => false }, value);
+        const tree = await blankTree.load({ ...loadParams, isFolded: (i) => false }, value);
         expectTreeToLookLike(
             tree,
             testDataById,
             {
-                undefined: [100, 200, 300],
+                undefined: [
+                    100,
+                    200,
+                    300,
+                ],
                 100: [110, 120],
                 120: [121, 122],
-                300: [310, 320, 330],
+                300: [
+                    310,
+                    320,
+                    330,
+                ],
             },
             {
                 undefined: { count: 3 },
                 100: { count: 2 },
                 120: { count: 2 },
                 300: { count: 3 },
-            }
+            },
         );
         expect(tree.getTotalRecursiveCount()).toBe(10);
 
-        let tree2 = await tree.load(loadParams, value);
+        const tree2 = await tree.load(loadParams, value);
         expect(tree2).toEqual(tree);
         expect(tree2).toBe(tree); // everything is loaded, should return exact same instance
     });
 
     it('should load to cache items from selection and their parents', async () => {
-        let tree = await blankTree.load(loadParams, { ...value, checked: [121, 200] });
+        const tree = await blankTree.load(loadParams, { ...value, checked: [121, 200] });
 
         expectTreeToLookLike(
             tree,
@@ -129,11 +141,15 @@ describe('Tree - load', () => {
                 300: itemsById[300],
             },
             {
-                undefined: [100, 200, 300],
+                undefined: [
+                    100,
+                    200,
+                    300,
+                ],
             },
             {
                 undefined: { count: 3 },
-            }
+            },
         );
     });
 });

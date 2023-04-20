@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
+import {
+    Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag,
+} from '@epam/promo';
 import { DataColumnProps } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './DemoTablePaged.scss';
@@ -20,7 +22,7 @@ export const personColumns = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={p.profileStatus.toLowerCase() as EpamAdditionalColor} caption={p.profileStatus} />
+                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         grow: 0,
@@ -63,7 +65,7 @@ export const personColumns = [
     {
         key: 'managerName',
         caption: 'Manager',
-        render: (p) => <LinkButton caption={p.managerName} captionCX={css.managerCell} href="#" />,
+        render: (p) => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#" />,
         grow: 0,
         shrink: 0,
         width: 150,
@@ -129,7 +131,7 @@ export const personColumns = [
     },
     {
         key: 'detailed',
-        render: (p) => <IconButton cx={css.detailedIcon} icon={ViewIcon} />,
+        render: (p) => <IconButton cx={ css.detailedIcon } icon={ ViewIcon } />,
         width: 54,
         alignSelf: 'center',
         fix: 'right',

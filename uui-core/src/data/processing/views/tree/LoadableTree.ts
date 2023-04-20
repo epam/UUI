@@ -1,4 +1,6 @@
-import { DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '../../../../types';
+import {
+    DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange,
+} from '../../../../types';
 import { EditableTree } from './EditableTree';
 import { ITree, LoadTreeOptions, TreeNodeInfo } from './ITree';
 
@@ -13,7 +15,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
         let byId = this.byId;
         let iteration = 0;
         while (true) {
-            let missingIds = new Set<TId>();
+            const missingIds = new Set<TId>();
 
             if (idsToLoad && idsToLoad.length > 0) {
                 idsToLoad.forEach((id) => {
@@ -24,7 +26,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             }
 
             if (this.params.getParentId) {
-                for (let [, item] of byId) {
+                for (const [, item] of byId) {
                     const parentId = this.getParentId(item);
                     if (parentId != null && !byId.has(parentId)) {
                         missingIds.add(parentId);
@@ -65,7 +67,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
     public async loadMissing<TFilter>(
         options: LoadTreeOptions<TItem, TId, TFilter>,
         value: Readonly<DataSourceState>,
-        withNestedChildren: boolean = true
+        withNestedChildren: boolean = true,
     ): Promise<ITree<TItem, TId>> {
         const requiredRowsCount = value.topIndex + value.visibleCount;
 
@@ -112,7 +114,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
                     if (options.getChildCount) {
                         // not a root node
-                        let childrenCount = options.getChildCount(item);
+                        const childrenCount = options.getChildCount(item);
                         if (childrenCount) {
                             // foldable
                             isFolded = options.isFolded(item);
@@ -121,7 +123,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                     }
 
                     const loadAllChildren = hasChildren && options.loadAllChildren && options.loadAllChildren(id);
-                    let loadAll = withNestedChildren ? parentLoadAll || loadAllChildren : loadAllChildren;
+                    const loadAll = withNestedChildren ? parentLoadAll || loadAllChildren : loadAllChildren;
 
                     remainingRowsCount--;
 
@@ -162,11 +164,11 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
         parent: TItem,
         value: Readonly<DataSourceState>,
         requiredRowsCount: number,
-        loadAll: boolean
+        loadAll: boolean,
     ) {
         let ids = inputIds || [];
         let nodeInfo = inputNodeInfo || {};
-        let loadedItems: TItem[] = [];
+        const loadedItems: TItem[] = [];
 
         const flatten = value.search && options.flattenSearchResults;
 
@@ -175,9 +177,9 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             requiredRowsCount = Number.MAX_SAFE_INTEGER;
         }
 
-        let missingCount = requiredRowsCount - ids.length;
+        const missingCount = requiredRowsCount - ids.length;
 
-        let availableCount = nodeInfo.count != null ? nodeInfo.count - ids.length : missingCount;
+        const availableCount = nodeInfo.count != null ? nodeInfo.count - ids.length : missingCount;
 
         const range: LazyDataSourceApiRequestRange = { from: ids.length };
 
@@ -187,7 +189,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
         if (missingCount > 0 && availableCount > 0) {
             // Need to load additional items in the current layer
-            let requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
+            const requestContext: LazyDataSourceApiRequestContext<TItem, TId> = {};
 
             if (!flatten) {
                 if (parent != null) {
@@ -209,7 +211,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                     page: value.page,
                     pageSize: value.pageSize,
                 },
-                requestContext
+                requestContext,
             );
 
             const from = response.from == null ? range.from : response.from;

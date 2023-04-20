@@ -7,5 +7,5 @@ import { Spinner } from '../widgets/Spinner';
 export const Blocker = withMods<BlockerProps>(
     uuiBlocker,
     () => [css.root],
-    (cmpProps) => ({ renderSpinner: cmpProps.renderSpinner || (() => <Spinner />) })
+    (cmpProps) => ({ renderSpinner: cmpProps.renderSpinner || (() => <Spinner />) }),
 );

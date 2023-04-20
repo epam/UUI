@@ -1,9 +1,13 @@
 import * as React from 'react';
-import { DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, DatePickerCoreProps } from '@epam/uui-core';
+import {
+    DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, DatePickerCoreProps,
+} from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import utc from 'dayjs/plugin/utc.js';
-import { PickerBodyValue, defaultFormat, valueFormat, ViewType, supportedDateFormats } from '../';
+import {
+    PickerBodyValue, defaultFormat, valueFormat, ViewType, supportedDateFormats,
+} from '../';
 import { toValueDateFormat, toCustomDateFormat } from './helpers';
 import { Dropdown } from '../../';
 
@@ -25,7 +29,7 @@ const getStateFromValue = (value: string | null, format: string) => {
     }
 
     const inputFormat = format || defaultFormat;
-    let inputValue = toCustomDateFormat(value, inputFormat);
+    const inputValue = toCustomDateFormat(value, inputFormat);
 
     return {
         inputValue,
@@ -36,6 +40,7 @@ const getStateFromValue = (value: string | null, format: string) => {
 
 export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends React.Component<TProps, DatePickerState> {
     static contextType = UuiContext;
+
     context: UuiContexts;
 
     state: DatePickerState = {
@@ -79,7 +84,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
         if (isChildFocusable(e)) return;
         this.onToggle(false);
         if (this.getIsValidDate(this.state.inputValue)) {
-            let inputValue = toCustomDateFormat(this.state.inputValue, this.getFormat());
+            const inputValue = toCustomDateFormat(this.state.inputValue, this.getFormat());
             this.setState({ inputValue });
         } else {
             this.handleValueChange(null);
@@ -143,12 +148,12 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     render() {
         return (
             <Dropdown
-                renderTarget={(props) => (this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props))}
-                renderBody={(props) => !this.props.isDisabled && !this.props.isReadonly && this.renderBody(props)}
-                onValueChange={!this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null}
-                value={this.state.isOpen}
-                modifiers={[{ name: 'offset', options: { offset: [0, 6] } }]}
-                placement={this.props.placement}
+                renderTarget={ (props) => (this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props)) }
+                renderBody={ (props) => !this.props.isDisabled && !this.props.isReadonly && this.renderBody(props) }
+                onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
+                value={ this.state.isOpen }
+                modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
+                placement={ this.props.placement }
             />
         );
     }

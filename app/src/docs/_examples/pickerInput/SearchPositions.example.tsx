@@ -15,25 +15,25 @@ export default function SearchPositionsExample() {
 
     return (
         <FlexRow spacing="12">
-            <FlexCell minWidth={300}>
-                <PickerInput dataSource={dataSource} value={value} onValueChange={onValueChange} entityName="person" selectionMode="multi" valueType="id" />
+            <FlexCell minWidth={ 300 }>
+                <PickerInput dataSource={ dataSource } value={ value } onValueChange={ onValueChange } entityName="person" selectionMode="multi" valueType="id" />
             </FlexCell>
-            <FlexCell minWidth={300}>
+            <FlexCell minWidth={ 300 }>
                 <PickerInput
-                    dataSource={dataSource}
-                    value={value}
-                    onValueChange={onValueChange}
+                    dataSource={ dataSource }
+                    value={ value }
+                    onValueChange={ onValueChange }
                     entityName="person"
                     selectionMode="multi"
                     searchPosition="input"
                     valueType="id"
                 />
             </FlexCell>
-            <FlexCell minWidth={295}>
+            <FlexCell minWidth={ 295 }>
                 <PickerInput
-                    dataSource={dataSource}
-                    value={value}
-                    onValueChange={onValueChange}
+                    dataSource={ dataSource }
+                    value={ value }
+                    onValueChange={ onValueChange }
                     entityName="person"
                     selectionMode="multi"
                     searchPosition="none"

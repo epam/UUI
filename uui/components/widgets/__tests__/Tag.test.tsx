@@ -11,7 +11,7 @@ describe('Tag', () => {
 
     it('should be rendered correctly with props', () => {
         const tree = renderer
-            .create(<Tag caption="Test badge" icon={CalendarIcon} count={12} onIconClick={() => {}} onClick={() => {}} onClear={() => {}} size="36" />)
+            .create(<Tag caption="Test badge" icon={ CalendarIcon } count={ 12 } onIconClick={ () => {} } onClick={ () => {} } onClear={ () => {} } size="36" />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });

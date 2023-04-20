@@ -14,5 +14,5 @@ export const Badge = withMods<Omit<UuiBadgeProps, 'color'>, BadgeMods>(
     (props) =>
         ({
             color: props.color || 'blue',
-        } as BadgeProps)
+        } as BadgeProps),
 );

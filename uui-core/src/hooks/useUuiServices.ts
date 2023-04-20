@@ -20,7 +20,9 @@ export interface IUseUuiServicesProps<TApi, TAppContext> extends IUuiServicesPro
 }
 
 export const useUuiServices = <TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAppContext>) => {
-    const { router, appContext, skinContext, apiDefinition } = props;
+    const {
+        router, appContext, skinContext, apiDefinition,
+    } = props;
 
     const uuiLayout = new LayoutContext();
     const uuiModals = new ModalContext(uuiLayout);
@@ -55,7 +57,7 @@ export const useUuiServices = <TApi, TAppContext>(props: IUseUuiServicesProps<TA
             uuiApp: appContext || ({} as TAppContext),
             uuiSkin: uuiSkin,
         }),
-        []
+        [],
     );
 
     // Workaround to discard all errors on navigation. Need to find a better way. YakovZh

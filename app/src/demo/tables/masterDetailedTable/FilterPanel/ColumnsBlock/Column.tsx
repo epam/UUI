@@ -22,17 +22,21 @@ const Column: React.FC<IColumnProps> = ({ value, onValueChange, columnInfo }) =>
             };
             onValueChange(newColumnsConfig);
         },
-        [value, onValueChange, columnInfo]
+        [
+            value,
+            onValueChange,
+            columnInfo,
+        ],
     );
 
     return (
         <Checkbox
-            value={columnInfo.isVisible}
-            onValueChange={handleChange}
-            label={columnInfo.caption}
-            isDisabled={columnInfo.isDisabled}
-            key={columnInfo.key}
-            cx={css.item}
+            value={ columnInfo.isVisible }
+            onValueChange={ handleChange }
+            label={ columnInfo.caption }
+            isDisabled={ columnInfo.isDisabled }
+            key={ columnInfo.key }
+            cx={ css.item }
         />
     );
 };

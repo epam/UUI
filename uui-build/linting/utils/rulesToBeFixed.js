@@ -33,7 +33,6 @@ const eslintRulesToBeFixed = [
     'jest/no-identical-title',
     'jsx-a11y/alt-text',
     'jsx-a11y/click-events-have-key-events',
-    'jsx-a11y/iframe-has-title',
     'jsx-a11y/img-redundant-alt',
     'jsx-a11y/mouse-events-have-key-events',
     'jsx-a11y/no-noninteractive-element-interactions',
@@ -48,7 +47,6 @@ const eslintRulesToBeFixed = [
     'no-restricted-syntax',
     'no-return-assign',
     'no-throw-literal',
-    'no-undef',
     'no-unused-vars',
     'no-useless-concat',
     'no-useless-escape',
@@ -62,7 +60,6 @@ const eslintRulesToBeFixed = [
     'react/function-component-definition',
     'react/jsx-no-useless-fragment',
     'react/no-access-state-in-setstate',
-    'react/no-find-dom-node',
     'react/prefer-stateless-function',
 ];
 

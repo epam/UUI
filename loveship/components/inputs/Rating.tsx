@@ -11,7 +11,11 @@ export interface RatingMods {
 }
 
 function applyRatingMods(mods: RatingMods & RatingProps) {
-    return [css.root, styles['color-sun'], css['size-' + (mods.size || '18')]];
+    return [
+        css.root,
+        styles['color-sun'],
+        css['size-' + (mods.size || '18')],
+    ];
 }
 
 export const Rating = withMods<RatingProps, RatingMods>(uuiRating, applyRatingMods, () => ({ filledStarIcon: FilledStarIcon, emptyStarIcon: EmptyStarIcon, Tooltip }));

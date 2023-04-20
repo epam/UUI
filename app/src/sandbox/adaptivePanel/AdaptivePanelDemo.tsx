@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Dropdown, FlexRow, Text, DropdownContainer } from '@epam/promo';
+import {
+    Button, Dropdown, FlexRow, Text, DropdownContainer,
+} from '@epam/promo';
 import { FlexCell, AdaptivePanel, AdaptiveItemProps } from '@epam/uui-components';
 
 const items: AdaptiveItemProps<{ data?: { name: string } }>[] = [
@@ -18,12 +20,12 @@ const items: AdaptiveItemProps<{ data?: { name: string } }>[] = [
         id: '5',
         render: (item, hiddenItems) => (
             <Dropdown
-                renderTarget={(props) => <Button caption="More-10" {...props} />}
-                renderBody={() => (
+                renderTarget={ (props) => <Button caption="More-10" { ...props } /> }
+                renderBody={ () => (
                     <DropdownContainer>
                         <Text>{hiddenItems.map((i) => i.render(item, hiddenItems))}</Text>
                     </DropdownContainer>
-                )}
+                ) }
             />
         ),
         priority: 10,
@@ -31,30 +33,30 @@ const items: AdaptiveItemProps<{ data?: { name: string } }>[] = [
     },
 ];
 
-export const AdaptivePanelDemo = () => {
+export function AdaptivePanelDemo() {
     const addNewHandler = () => {
         // setChangeState(prev => !prev);
     };
 
     const addNewButtonEl = (
         <Button
-            rawProps={{ style: { flexShrink: '0', minWidth: 'initial' } }}
-            key={Math.random()}
-            data-priority={100}
-            caption={`+ Add New`}
+            rawProps={ { style: { flexShrink: '0', minWidth: 'initial' } } }
+            key={ Math.random() }
+            data-priority={ 100 }
+            caption="+ Add New"
             color="blue"
-            onClick={addNewHandler}
+            onClick={ addNewHandler }
         />
     );
 
     return (
-        <FlexCell grow={1}>
+        <FlexCell grow={ 1 }>
             <FlexRow vPadding="24" padding="6">
                 <Text font="sans-semibold" size="48">
                     Adaptive Panel MVP
                 </Text>
             </FlexRow>
-            <AdaptivePanel items={items} />
+            <AdaptivePanel items={ items } />
         </FlexCell>
     );
-};
+}

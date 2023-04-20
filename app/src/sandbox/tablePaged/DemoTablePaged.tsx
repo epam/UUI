@@ -1,7 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+    useCallback, useEffect, useMemo, useState,
+} from 'react';
 import css from './DemoTablePaged.scss';
-import { DataTable, FlexRow, Paginator, FlexSpacer, Button } from '@epam/promo';
-import { DataRowOptions, LazyDataSourceApi, useTableState, useList } from '@epam/uui-core';
+import {
+    DataTable, FlexRow, Paginator, FlexSpacer, Button,
+} from '@epam/promo';
+import {
+    DataRowOptions, LazyDataSourceApi, useTableState, useList,
+} from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import { svc } from '../../services';
 import { getFilters } from './filters';
@@ -58,7 +64,7 @@ export const DemoTablePaged: React.FC = () => {
             ...tableState,
             filter: appliedFilter,
         }),
-        [tableState, appliedFilter]
+        [tableState, appliedFilter],
     );
 
     const { rows, listProps } = useList(
@@ -71,32 +77,32 @@ export const DemoTablePaged: React.FC = () => {
             getId: ({ id }) => id,
             isFoldedByDefault: () => true,
         },
-        [api]
+        [api],
     );
 
     return (
-        <div className={css.container}>
+        <div className={ css.container }>
             <DataTable
                 headerTextCase="upper"
-                getRows={() => rows}
-                columns={personColumns}
-                filters={filters}
+                getRows={ () => rows }
+                columns={ personColumns }
+                filters={ filters }
                 showColumnsConfig
-                value={tableState}
-                onValueChange={setTableState}
+                value={ tableState }
+                onValueChange={ setTableState }
                 allowColumnsResizing
-                {...listProps}
+                { ...listProps }
             />
 
             <FlexRow size="36" padding="12" background="gray5">
                 <FlexCell width="auto">
-                    <Button caption="Apply filter" onClick={applyFilter} cx={css.apply} />
+                    <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply } />
                 </FlexCell>
                 <FlexSpacer />
                 <Paginator
-                    value={tableState.page}
-                    onValueChange={(page: number) => setTableState({ ...tableState, page, indexToScroll: 0 })}
-                    totalPages={Math.ceil(totalCount / tableState.pageSize)}
+                    value={ tableState.page }
+                    onValueChange={ (page: number) => setTableState({ ...tableState, page, indexToScroll: 0 }) }
+                    totalPages={ Math.ceil(totalCount / tableState.pageSize) }
                     size="30"
                 />
                 <FlexSpacer />

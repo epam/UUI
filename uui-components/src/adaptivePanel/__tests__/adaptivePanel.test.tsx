@@ -1,5 +1,7 @@
 import { AdaptiveItemProps, AdaptivePanel } from '../AdaptivePanel';
-import { renderSnapshotWithContextAsync, renderToJsdomWithContextAsync, mockAdaptivePanelLayout, screen } from '@epam/test-utils';
+import {
+    renderSnapshotWithContextAsync, renderToJsdomWithContextAsync, mockAdaptivePanelLayout, screen,
+} from '@epam/test-utils';
 import React from 'react';
 
 type TestItemType = AdaptiveItemProps<{ data?: { label: string } }>;
@@ -11,7 +13,7 @@ function getNItems(baseId: string, n: number, priority: number = 1): TestItemTyp
             priority: params.priority,
             collapsedContainer: false,
             data: { label: `Item ${params.id}` },
-            render: (item) => <div data-testid="adaptive-item" data-label={item.data.label} key={item.id} />,
+            render: (item) => <div data-testid="adaptive-item" data-label={ item.data.label } key={ item.id } />,
         };
     };
     const items: TestItemType[] = [];
@@ -29,7 +31,7 @@ async function setupAdaptivePanel({ width, itemWidth }: { width: number; itemWid
             collapsedContainer: true,
             data: { label: `Collapsed Container Item ${id}` },
             render: (item, hiddenItems) => (
-                <div key={id} data-testid="adaptive-item-cc" data-label={item.data.label} data-hiddenitems={hiddenItems.map((i) => i.id).join(',')} />
+                <div key={ id } data-testid="adaptive-item-cc" data-label={ item.data.label } data-hiddenitems={ hiddenItems.map((i) => i.id).join(',') } />
             ),
         };
     };
@@ -42,7 +44,7 @@ async function setupAdaptivePanel({ width, itemWidth }: { width: number; itemWid
         genContainerItem({ id: 'small-screen', priority: 6 }),
     ];
     mockAdaptivePanelLayout({ width, itemWidth });
-    const result = await renderToJsdomWithContextAsync(<AdaptivePanel items={items} rawProps={{ 'data-testid': 'adaptive-panel' }} />);
+    const result = await renderToJsdomWithContextAsync(<AdaptivePanel items={ items } rawProps={ { 'data-testid': 'adaptive-panel' } } />);
     const visibleItems = screen
         .queryAllByTestId('adaptive-item')
         .map((i) => i.getAttribute('data-label'))
@@ -59,12 +61,12 @@ async function setupAdaptivePanel({ width, itemWidth }: { width: number; itemWid
 
 describe('AdaptivePanel', () => {
     it('should render no items provided', async () => {
-        const tree = await renderSnapshotWithContextAsync(<AdaptivePanel items={[]} />);
+        const tree = await renderSnapshotWithContextAsync(<AdaptivePanel items={ [] } />);
         expect(tree).toMatchSnapshot();
     });
 
     it('should render some items', async () => {
-        const tree = await renderSnapshotWithContextAsync(<AdaptivePanel items={getNItems('snapshot', 5)} />);
+        const tree = await renderSnapshotWithContextAsync(<AdaptivePanel items={ getNItems('snapshot', 5) } />);
         expect(tree).toMatchSnapshot();
     });
 

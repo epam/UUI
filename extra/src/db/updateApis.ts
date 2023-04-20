@@ -1,4 +1,6 @@
-import { DbState, DbPatch, EntitiesState, EntityState, Db } from './types';
+import {
+    DbState, DbPatch, EntitiesState, EntityState, Db,
+} from './types';
 import { DbEntitySchema } from './DbSchema';
 import { Map, Seq, Set } from 'immutable';
 import { DbSchema } from './DbSchema';
@@ -45,7 +47,7 @@ function entitiesMerge(
         );
         return {
             byKey
-        }    
+        }
     })
 }
 
@@ -64,7 +66,7 @@ export function dbMerge<T>(schema: DbSchema<T>, states: DbState[]): DbState {
                 } else {
                     patch[entityName] = state.entities[entityName];
                 }
-            });       
+            });
         }
     })
 

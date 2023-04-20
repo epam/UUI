@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+    createContext, useContext, useEffect, useState,
+} from 'react';
 import { CommonContexts, IHasChildren } from '../types';
 import { LegacyContextProvider, IProcessRequest } from './index';
 import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from './routing';
@@ -28,9 +30,11 @@ export interface ContextProviderProps<TApi, TAppContext> extends IUuiServicesPro
 
 export const UuiContext = createContext({} as CommonContexts<any, any>);
 
-export const ContextProvider = <TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>) => {
+export function ContextProvider<TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>) {
     const [isLoaded, setIsLoaded] = useState(false);
-    const { loadAppContext, onInitCompleted, enableLegacyContext, children: propsChildren, history, gaCode, ...restProps } = props;
+    const {
+        loadAppContext, onInitCompleted, enableLegacyContext, children: propsChildren, history, gaCode, ...restProps
+    } = props;
 
     const router = !!history ? new HistoryAdaptedRouter(history) : new StubAdaptedRouter();
 
@@ -54,9 +58,9 @@ export const ContextProvider = <TApi, TAppContext>(props: ContextProviderProps<T
     const isEnableLegacyContexts = enableLegacyContext ?? true;
 
     return (
-        <UuiContext.Provider value={services}>
+        <UuiContext.Provider value={ services }>
             {isEnableLegacyContexts ? (
-                <LegacyContextProvider {...props} uuiContexts={services}>
+                <LegacyContextProvider { ...props } uuiContexts={ services }>
                     {children}
                 </LegacyContextProvider>
             ) : (
@@ -67,7 +71,7 @@ export const ContextProvider = <TApi, TAppContext>(props: ContextProviderProps<T
             )}
         </UuiContext.Provider>
     );
-};
+}
 
 export function useUuiContext<TApi = any, TAppContext = any>(): CommonContexts<TApi, TAppContext> {
     const context = useContext(UuiContext);

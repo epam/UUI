@@ -21,16 +21,17 @@ import css from './Anchor.scss';
 
 export interface AnchorProps
     extends IHasCX,
-        ICanRedirect,
-        IHasChildren,
-        IDisableable,
-        IClickable,
-        IAnalyticableClick,
-        IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>,
-        IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> {}
+    ICanRedirect,
+    IHasChildren,
+    IDisableable,
+    IClickable,
+    IAnalyticableClick,
+    IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>>,
+    IHasForwardedRef<HTMLAnchorElement | HTMLButtonElement> {}
 
 export class AnchorImpl extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
+
     context: UuiContexts;
 
     handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
@@ -60,7 +61,7 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
                     this.props.isDisabled ? uuiMod.disabled : uuiMod.enabled,
                     (this.props.isLinkActive || isActive) && uuiMod.active,
                     uuiMarkers.clickable,
-                    this.props.cx
+                    this.props.cx,
                 ),
                 tabIndex: this.props.isDisabled ? -1 : 0,
                 href,
@@ -74,11 +75,11 @@ export class AnchorImpl extends ButtonBase<AnchorProps> {
                 'aria-disabled': this.props.isDisabled,
                 ...this.props.rawProps,
             },
-            this.props.children
+            this.props.children,
         );
     }
 }
 
-export const Anchor = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, AnchorProps>((props, ref) => <AnchorImpl {...props} forwardedRef={ref} />);
+export const Anchor = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, AnchorProps>((props, ref) => <AnchorImpl { ...props } forwardedRef={ ref } />);
 
 Anchor.displayName = 'Anchor';

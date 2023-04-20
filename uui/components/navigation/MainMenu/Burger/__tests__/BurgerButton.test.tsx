@@ -11,7 +11,7 @@ describe('BurgerButton', () => {
 
     it('should be rendered correctly', () => {
         const tree = renderer
-            .create(<BurgerButton caption="Test button" icon={CalendarIcon} href={'#'} target="_blank" type="secondary" isDropdown isOpen={false} />)
+            .create(<BurgerButton caption="Test button" icon={ CalendarIcon } href="#" target="_blank" type="secondary" isDropdown isOpen={ false } />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });

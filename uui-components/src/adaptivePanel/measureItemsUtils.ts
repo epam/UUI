@@ -38,7 +38,7 @@ export const measureAdaptiveItems = (items: AdaptiveItemProps[], containerWidth:
         while (collapsedContainer === null || result.maxHiddenItemPriority >= collapsedContainer.priority) {
             collapsedContainer = sortBy(
                 items.filter((i) => i.collapsedContainer && i.priority > result.maxHiddenItemPriority),
-                (i) => i.priority
+                (i) => i.priority,
             )[0];
             if (!collapsedContainer) {
                 return result;

@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { IHasChildren, IHasCX, IHasRawProps, IModal, VPanelProps, IHasForwardedRef } from '../props';
+import {
+    IHasChildren, IHasCX, IHasRawProps, IModal, VPanelProps, IHasForwardedRef,
+} from '../props';
 
 export interface ModalWindowProps extends VPanelProps, IHasForwardedRef<HTMLDivElement> {}
 

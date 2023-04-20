@@ -5,7 +5,7 @@ import { LoveshipPickerInput } from './LoveshipPickerInput';
 
 export const Responsive: React.FC = () => {
     return (
-        <div className={css.wrapper}>
+        <div className={ css.wrapper }>
             promo:
             <PromoPickerInput type="single" />
             <PromoPickerInput type="multi" />

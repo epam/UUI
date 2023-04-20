@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3 } from '../common';
+import {
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3,
+} from '../common';
 
 export class AnchorDoc extends BaseDocsBlock {
     title = 'Anchor';

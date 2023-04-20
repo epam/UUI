@@ -10,10 +10,10 @@ export default function DatePickerBaseExample() {
     return (
         <FlexRow>
             <RangeDatePicker
-                value={value}
-                onValueChange={onValueChange}
+                value={ value }
+                onValueChange={ onValueChange }
                 format="MMM D, YYYY"
-                presets={{
+                presets={ {
                     ...rangeDatePickerPresets,
                     last3Days: {
                         name: 'Last 3 days',
@@ -27,14 +27,17 @@ export default function DatePickerBaseExample() {
                             return { from: dayjs().subtract(7, 'day').toString(), to: dayjs().toString(), order: 12 };
                         },
                     },
-                }}
-                renderFooter={(value: RangeDatePickerValue) => (
-                    <div className={css.container}>
+                } }
+                renderFooter={ (value: RangeDatePickerValue) => (
+                    <div className={ css.container }>
                         <FlexRow padding="24">
-                            <Text>Range days count: {getRangeLength(value)}</Text>
+                            <Text>
+                                Range days count:
+                                {getRangeLength(value)}
+                            </Text>
                         </FlexRow>
                     </div>
-                )}
+                ) }
             />
         </FlexRow>
     );

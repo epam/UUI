@@ -1,5 +1,7 @@
 import React from 'react';
-import { Switch, FlexRow, IconButton, Button } from '@epam/promo';
+import {
+    Switch, FlexRow, IconButton, Button,
+} from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
@@ -88,7 +90,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     };
 
     private renderCode(): React.ReactNode {
-        return <pre className={css.code} dangerouslySetInnerHTML={{ __html: this.state.code }} />;
+        return <pre className={ css.code } dangerouslySetInnerHTML={ { __html: this.state.code } } />;
     }
 
     private renderPreview() {
@@ -98,19 +100,19 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
         return (
             <>
-                <FlexRow size={null} vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
+                <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
                     {this.state.component && React.createElement(this.state.component)}
                 </FlexRow>
-                <FlexRow padding="12" vPadding="12" cx={css.containerFooter}>
-                    <Switch value={this.state.showCode} onValueChange={this.onSwitchValueChange} label="View code" />
+                <FlexRow padding="12" vPadding="12" cx={ css.containerFooter }>
+                    <Switch value={ this.state.showCode } onValueChange={ this.onSwitchValueChange } label="View code" />
                     {codesandboxLink && (
-                        <form action={codesandboxLink} method="POST" target="_blank">
-                            <input type="hidden" name="parameters" value={codesandboxParameters} />
+                        <form action={ codesandboxLink } method="POST" target="_blank">
+                            <input type="hidden" name="parameters" value={ codesandboxParameters } />
                             <Button
-                                cx={css.externalLink}
-                                rawProps={{ type: 'submit' }}
+                                cx={ css.externalLink }
+                                rawProps={ { type: 'submit' } }
                                 fill="light"
-                                icon={CodesandboxIcon}
+                                icon={ CodesandboxIcon }
                                 iconPosition="right"
                                 caption="Open in Codesandbox"
                             />
@@ -124,18 +126,18 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
     render() {
         return (
-            <div className={css.container}>
+            <div className={ css.container }>
                 {this.props.title && (
-                    <FlexRow cx={css.titleRow}>
-                        <div id={this.props.title.split(' ').join('_').toLowerCase()} className={css.title}>
+                    <FlexRow cx={ css.titleRow }>
+                        <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title }>
                             {this.props.title}
                         </div>
-                        <IconButton cx={css.anchor} icon={AnchorIcon} color="blue" href={`#${this.props.title.split(' ').join('_').toLowerCase()}`} />
+                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="blue" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
                     </FlexRow>
                 )}
-                <EditableDocContent fileName={this.getDescriptionFileName()} />
+                <EditableDocContent fileName={ this.getDescriptionFileName() } />
 
-                <div className={css.previewContainer} style={{ width: this.props.width }}>
+                <div className={ css.previewContainer } style={ { width: this.props.width } }>
                     {this.props.onlyCode ? this.renderCode() : this.renderPreview()}
                 </div>
             </div>

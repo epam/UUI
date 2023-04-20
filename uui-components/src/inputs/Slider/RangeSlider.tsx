@@ -82,69 +82,69 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
     }
 
     render() {
-        let from = this.props.value && this.props.value.from != null ? this.props.value.from : this.props.min;
-        let to = this.props.value && this.props.value.to != null ? this.props.value.to : this.props.max;
-        let normValueFrom = this.roundToStep(this.normalize(from), this.props.step);
-        let normValueTo = this.roundToStep(this.normalize(to), this.props.step);
-        let valueWidth = this.getValueWidth();
+        const from = this.props.value && this.props.value.from != null ? this.props.value.from : this.props.min;
+        const to = this.props.value && this.props.value.to != null ? this.props.value.to : this.props.max;
+        const normValueFrom = this.roundToStep(this.normalize(from), this.props.step);
+        const normValueTo = this.roundToStep(this.normalize(to), this.props.step);
+        const valueWidth = this.getValueWidth();
 
         const fromHandleOffset = (normValueFrom - this.props.min) * valueWidth;
         const toHandleOffset = (normValueTo - this.props.min) * valueWidth;
 
         return (
             <div
-                className={cx(uuiSlider.container, css.root, this.props.isDisabled && uuiMod.disabled, this.props.cx)}
-                onClick={this.handleMouseClick}
-                ref={this.props.forwardedRef}
-                {...this.props.rawProps}
+                className={ cx(uuiSlider.container, css.root, this.props.isDisabled && uuiMod.disabled, this.props.cx) }
+                onClick={ this.handleMouseClick }
+                ref={ this.props.forwardedRef }
+                { ...this.props.rawProps }
             >
-                <div ref={(slider) => (this.slider = slider)} className={cx(uuiSlider.slider, this.state.activeHandle && uuiMod.active)} />
+                <div ref={ (slider) => (this.slider = slider) } className={ cx(uuiSlider.slider, this.state.activeHandle && uuiMod.active) } />
                 <div
-                    className={uuiSlider.filled}
-                    style={{
+                    className={ uuiSlider.filled }
+                    style={ {
                         width: (normValueFrom < normValueTo ? normValueTo - normValueFrom : normValueFrom - normValueTo) * valueWidth,
                         left: (normValueFrom < normValueTo ? normValueFrom - this.props.min : normValueTo - this.props.min) * valueWidth,
-                    }}
+                    } }
                 />
                 <RangeSliderScale
-                    handleOffset={{ from: fromHandleOffset, to: toHandleOffset }}
-                    slider={this.slider}
-                    min={this.props.min}
-                    max={this.props.max}
-                    splitAt={this.props.splitAt}
-                    valueWidth={valueWidth}
+                    handleOffset={ { from: fromHandleOffset, to: toHandleOffset } }
+                    slider={ this.slider }
+                    min={ this.props.min }
+                    max={ this.props.max }
+                    splitAt={ this.props.splitAt }
+                    valueWidth={ valueWidth }
                 />
                 <SliderHandle
-                    cx={this.props.cx}
-                    isActive={this.state.activeHandle === 'from'}
-                    offset={fromHandleOffset}
-                    tooltipContent={normValueFrom}
-                    onUpdate={(mouseX) => this.onHandleValueChange(mouseX, 'from', valueWidth)}
-                    onKeyDownUpdate={(type) => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo })}
-                    handleActiveState={(isActive) => this.setState({ activeHandle: isActive ? 'from' : null })}
-                    rawProps={{
+                    cx={ this.props.cx }
+                    isActive={ this.state.activeHandle === 'from' }
+                    offset={ fromHandleOffset }
+                    tooltipContent={ normValueFrom }
+                    onUpdate={ (mouseX) => this.onHandleValueChange(mouseX, 'from', valueWidth) }
+                    onKeyDownUpdate={ (type) => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
+                    handleActiveState={ (isActive) => this.setState({ activeHandle: isActive ? 'from' : null }) }
+                    rawProps={ {
                         'aria-label': this.props.rawProps && this.props.rawProps['aria-label'] ? this.props.rawProps['aria-label'] : 'From',
                         'aria-valuenow': this.props.value?.from,
                         'aria-valuemax': this.props.max,
                         'aria-valuemin': this.props.min,
                         role: 'slider',
-                    }}
+                    } }
                 />
                 <SliderHandle
-                    cx={this.props.cx}
-                    isActive={this.state.activeHandle === 'to'}
-                    offset={toHandleOffset}
-                    tooltipContent={normValueTo}
-                    onUpdate={(mouseX: number) => this.onHandleValueChange(mouseX, 'to', valueWidth)}
-                    handleActiveState={(isActive) => this.setState({ activeHandle: isActive ? 'to' : null })}
-                    onKeyDownUpdate={(type) => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo })}
-                    rawProps={{
+                    cx={ this.props.cx }
+                    isActive={ this.state.activeHandle === 'to' }
+                    offset={ toHandleOffset }
+                    tooltipContent={ normValueTo }
+                    onUpdate={ (mouseX: number) => this.onHandleValueChange(mouseX, 'to', valueWidth) }
+                    handleActiveState={ (isActive) => this.setState({ activeHandle: isActive ? 'to' : null }) }
+                    onKeyDownUpdate={ (type) => this.handleKeyDown(type, { from: normValueFrom, to: normValueTo }) }
+                    rawProps={ {
                         'aria-label': this.props.rawProps && this.props.rawProps['aria-label'] ? this.props.rawProps['aria-label'] : 'To',
                         'aria-valuenow': this.props.value?.to,
                         'aria-valuemax': this.props.max,
                         'aria-valuemin': this.props.min,
                         role: 'slider',
-                    }}
+                    } }
                 />
             </div>
         );

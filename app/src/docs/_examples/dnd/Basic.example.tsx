@@ -1,6 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams } from '@epam/uui-core';
-import { FlexRow, DropMarker, FlexCell, Text, IconContainer, Panel } from '@epam/promo';
+import {
+    DndActor, IEditable, cx, DropParams, uuiDndState, getOrderBetween, DndActorRenderParams,
+} from '@epam/uui-core';
+import {
+    FlexRow, DropMarker, FlexCell, Text, IconContainer, Panel,
+} from '@epam/promo';
 import sortBy from 'lodash.sortby';
 import { DragHandle } from '@epam/uui-components';
 import { ReactComponent as FileIcon } from '@epam/assets/icons/common/file-file-24.svg';
@@ -64,41 +68,41 @@ export default function DndMaterial() {
 
     const renderMaterial = (item: MaterialItem, prevItem: MaterialItem, nextItem: MaterialItem) => (
         <DndActor
-            key={item.id}
-            srcData={item}
-            dstData={item}
-            canAcceptDrop={canAcceptDrop}
-            onDrop={(params) => handleOnDrop(params, prevItem, nextItem)}
-            render={(params: DndActorRenderParams) => (
-                <div ref={params.ref} {...params.eventHandlers} className={cx(css.dragElement, params.classNames)}>
+            key={ item.id }
+            srcData={ item }
+            dstData={ item }
+            canAcceptDrop={ canAcceptDrop }
+            onDrop={ (params) => handleOnDrop(params, prevItem, nextItem) }
+            render={ (params: DndActorRenderParams) => (
+                <div ref={ params.ref } { ...params.eventHandlers } className={ cx(css.dragElement, params.classNames) }>
                     <Panel
                         background="white"
-                        cx={cx(css.dndItem, {
+                        cx={ cx(css.dndItem, {
                             [uuiDndState.dragGhost]: params.isDragGhost,
-                        })}
+                        }) }
                     >
-                        <FlexRow cx={css.materialRow}>
-                            <FlexCell width="auto" shrink={0} cx={css.iconWrapper}>
-                                <DragHandle cx={[css.dragHandle]} />
-                                <IconContainer size={48} icon={FileIcon} />
+                        <FlexRow cx={ css.materialRow }>
+                            <FlexCell width="auto" shrink={ 0 } cx={ css.iconWrapper }>
+                                <DragHandle cx={ [css.dragHandle] } />
+                                <IconContainer size={ 48 } icon={ FileIcon } />
                             </FlexCell>
-                            <FlexCell width="100%" cx={css.textWrapper}>
-                                <Text cx={css.text} size="24" lineHeight="24" fontSize="16" font="sans-semibold">
+                            <FlexCell width="100%" cx={ css.textWrapper }>
+                                <Text cx={ css.text } size="24" lineHeight="24" fontSize="16" font="sans-semibold">
                                     {item.name}
                                 </Text>
-                                <Text cx={css.text} size="24" lineHeight="24" fontSize="14" color="gray60">
+                                <Text cx={ css.text } size="24" lineHeight="24" fontSize="14" color="gray60">
                                     {item.description}
                                 </Text>
                             </FlexCell>
                         </FlexRow>
                     </Panel>
-                    <DropMarker {...params} />
+                    <DropMarker { ...params } />
                 </div>
-            )}
+            ) }
         />
     );
 
     const sortedItems = useMemo(() => sortBy(items, ['order']), [items]);
 
-    return <FlexCell grow={1}>{sortedItems.map((i, index) => renderMaterial(i, sortedItems[index - 1], sortedItems[index + 1]))}</FlexCell>;
+    return <FlexCell grow={ 1 }>{sortedItems.map((i, index) => renderMaterial(i, sortedItems[index - 1], sortedItems[index + 1]))}</FlexCell>;
 }

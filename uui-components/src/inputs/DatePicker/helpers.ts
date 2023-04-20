@@ -1,5 +1,7 @@
 import dayjs from 'dayjs';
-import { RangeDatePickerValue, defaultFormat, valueFormat, supportedDateFormats } from '..';
+import {
+    RangeDatePickerValue, defaultFormat, valueFormat, supportedDateFormats,
+} from '..';
 
 export const toValueDateRangeFormat = (value: RangeDatePickerValue, format?: string): RangeDatePickerValue => {
     const from = value.from;

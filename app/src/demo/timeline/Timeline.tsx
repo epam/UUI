@@ -1,6 +1,8 @@
 import * as React from 'react';
 import css from './Timeline.scss';
-import { msPerDay, TimelineController, TimelineScale, TimelineNav, TimelineGrid, Item } from '@epam/uui-timeline';
+import {
+    msPerDay, TimelineController, TimelineScale, TimelineNav, TimelineGrid, Item,
+} from '@epam/uui-timeline';
 import { DemoCanvasBars } from './DemoCanvasBars';
 import { Button } from '@epam/loveship';
 import { svc } from '../../services';
@@ -13,7 +15,9 @@ const selectedDay = new Date(2018, 7, 9, 12, 0, 0);
 
 export class Timeline extends React.Component {
     timeline: any = null;
+
     timelineController = new TimelineController({ center: new Date(2018, 7, 15), pxPerMs: 32 / msPerDay, widthPx: 0 });
+
     dataRows: Row[] = [];
 
     constructor(props: {}, context: {}) {
@@ -48,7 +52,7 @@ export class Timeline extends React.Component {
                     pxPerMs: this.timeline.clientWidth / msPerDay,
                     widthPx: this.timeline.clientWidth,
                 },
-                false
+                false,
             );
             this.forceUpdate();
         };
@@ -71,29 +75,29 @@ export class Timeline extends React.Component {
     render() {
         return (
             <div
-                ref={(el) => {
+                ref={ (el) => {
                     this.timeline = el;
-                }}
-                className={css.timeline}
-                onWheel={(e) => this.timelineController.handleWheelEvent(e.nativeEvent as WheelEvent)}
+                } }
+                className={ css.timeline }
+                onWheel={ (e) => this.timelineController.handleWheelEvent(e.nativeEvent as WheelEvent) }
             >
-                <div className={css.layer} onMouseDown={this.timelineController.startDrag}>
-                    <TimelineGrid className={css.grid} timelineController={this.timelineController} />
+                <div className={ css.layer } onMouseDown={ this.timelineController.startDrag }>
+                    <TimelineGrid className={ css.grid } timelineController={ this.timelineController } />
                 </div>
-                <div className={css.layer} onMouseDown={this.timelineController.startDrag}>
-                    <div className={css.header}>
-                        <TimelineScale timelineController={this.timelineController} />
+                <div className={ css.layer } onMouseDown={ this.timelineController.startDrag }>
+                    <div className={ css.header }>
+                        <TimelineScale timelineController={ this.timelineController } />
                     </div>
                     {this.dataRows.map((row, index) => (
-                        <div className={css.row} key={'row-' + index}>
-                            <DemoCanvasBars timelineController={this.timelineController} items={row.items} />
+                        <div className={ css.row } key={ 'row-' + index }>
+                            <DemoCanvasBars timelineController={ this.timelineController } items={ row.items } />
                         </div>
                     ))}
                 </div>
-                <div className={css.nav}>
-                    <TimelineNav timelineController={this.timelineController} />
-                    <Button fill="white" size="30" caption="Zoom to day" cx={css.zoomButton} onClick={this.handleZoomToDay} />
-                    <Button fill="white" size="30" caption="Zoom to month" cx={css.zoomButton} onClick={this.handleZoomToMonth} />
+                <div className={ css.nav }>
+                    <TimelineNav timelineController={ this.timelineController } />
+                    <Button fill="white" size="30" caption="Zoom to day" cx={ css.zoomButton } onClick={ this.handleZoomToDay } />
+                    <Button fill="white" size="30" caption="Zoom to month" cx={ css.zoomButton } onClick={ this.handleZoomToMonth } />
                 </div>
             </div>
         );

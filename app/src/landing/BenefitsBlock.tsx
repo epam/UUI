@@ -30,8 +30,8 @@ const benefits: any = {
         caption: 'Work in Cooperation',
         points: [
             'Continuous development: dedicated coordinator, several design teams regularly contribute while working on their projects.',
-            'Continuous collaboration: common set of design elements for many different products encourages teams to communicate more and closer.\n' +
-                'As a result, the most applicable common UX patterns for all EPAM products are developed.',
+            'Continuous collaboration: common set of design elements for many different products encourages teams to communicate more and closer.\n'
+                + 'As a result, the most applicable common UX patterns for all EPAM products are developed.',
             'Design & Front-End close cooperation: teams build together EPAM UX/UI standards complying with business & technical constraints.',
             "Happy & motivated team: we encourage contribution, we've got challenges, and we are happy to help newcomers.",
         ],
@@ -60,30 +60,30 @@ export class BenefitsBlock extends React.Component<{}, BenefitsBlockState> {
 
     render() {
         return (
-            <div className={css.layout}>
-                <FlexRow cx={css.benefits} borderBottom>
-                    <div className={css.wrapper}>
-                        <Text font="museo-sans" cx={css.header}>
+            <div className={ css.layout }>
+                <FlexRow cx={ css.benefits } borderBottom>
+                    <div className={ css.wrapper }>
+                        <Text font="museo-sans" cx={ css.header }>
                             Why to Use
                         </Text>
-                        <div className={css.content}>
-                            <div className={css.actionsWrapper}>
-                                <ul role="tablist" className={css.actionsContainer}>
+                        <div className={ css.content }>
+                            <div className={ css.actionsWrapper }>
+                                <ul role="tablist" className={ css.actionsContainer }>
                                     {Object.keys(benefits).map((reason: any) => (
                                         <li
                                             role="tab"
-                                            tabIndex={0}
-                                            aria-controls={this.state.reason}
-                                            aria-current={this.state.reason === reason}
-                                            key={reason}
-                                            onKeyDown={({ key }) => (key === ' ' || key === 'Enter') && this.handleChangeReason(reason)}
-                                            onClick={() => this.handleChangeReason(reason)}
-                                            className={cx(css.reason, this.state.reason === reason && css.reasonActive)}
+                                            tabIndex={ 0 }
+                                            aria-controls={ this.state.reason }
+                                            aria-current={ this.state.reason === reason }
+                                            key={ reason }
+                                            onKeyDown={ ({ key }) => (key === ' ' || key === 'Enter') && this.handleChangeReason(reason) }
+                                            onClick={ () => this.handleChangeReason(reason) }
+                                            className={ cx(css.reason, this.state.reason === reason && css.reasonActive) }
                                         >
                                             <Text
-                                                cx={css.reasonCaption}
+                                                cx={ css.reasonCaption }
                                                 font="museo-sans"
-                                                color={this.state.reason === reason ? 'gray80' : 'gray60'}
+                                                color={ this.state.reason === reason ? 'gray80' : 'gray60' }
                                                 fontSize="24"
                                                 lineHeight="30"
                                             >
@@ -93,10 +93,10 @@ export class BenefitsBlock extends React.Component<{}, BenefitsBlockState> {
                                     ))}
                                 </ul>
                             </div>
-                            <ul id={this.state.reason}>
+                            <ul id={ this.state.reason }>
                                 {benefits[this.state.reason].points.map((point: string, index: number) => (
-                                    <li key={index} className={css.pointWrapper}>
-                                        <Text font="sans" fontSize="24" cx={css.point}>
+                                    <li key={ index } className={ css.pointWrapper }>
+                                        <Text font="sans" fontSize="24" cx={ css.point }>
                                             {point}
                                         </Text>
                                     </li>

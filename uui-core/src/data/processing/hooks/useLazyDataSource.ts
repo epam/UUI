@@ -6,6 +6,6 @@ export function useLazyDataSource<TItem, TId, TFilter>(props: LazyDataSourceProp
         () => new LazyDataSource({ ...props }),
         (dataSource) => dataSource.setProps(props),
         (dataSource) => dataSource.destroy(),
-        deps
+        deps,
     );
 }

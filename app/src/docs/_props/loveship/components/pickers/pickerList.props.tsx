@@ -11,7 +11,11 @@ import { Text } from '@epam/loveship';
 import { FlexRow } from '@epam/loveship';
 
 const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseProps<any, any>>({ name: 'PickerList', component: PickerList })
-    .implements([/*sizeDoc, */ isDisabledDoc, iEditable, pickerBaseOptionsDoc /*iconDoc, , */])
+    .implements([
+        /* sizeDoc, */ isDisabledDoc,
+        iEditable,
+        pickerBaseOptionsDoc,
+    ])
     .prop('value', {
         examples: [
             { name: '1', value: 1 },
@@ -25,20 +29,51 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
     .prop('defaultIds', {
         examples: [
             { value: ['en', 'ru'], name: 'Languages' },
-            { value: ['500096', '625144', '2759794'], name: 'Locations' },
-            { value: [1, 2, 3, 4], name: 'Language Levels' },
+            {
+                value: [
+                    '500096',
+                    '625144',
+                    '2759794',
+                ],
+                name: 'Locations',
+            },
+            {
+                value: [
+                    1,
+                    2,
+                    3,
+                    4,
+                ],
+                name: 'Language Levels',
+            },
         ],
     })
     .prop('settingsKey', { examples: ['demoPickerList'] })
-    .prop('maxDefaultItems', { examples: [2, 5, 10, 20], defaultValue: 10 })
-    .prop('maxTotalItems', { examples: [10, 20, 50, 1000], defaultValue: 50 })
+    .prop('maxDefaultItems', {
+        examples: [
+            2,
+            5,
+            10,
+            20,
+        ],
+        defaultValue: 10,
+    })
+    .prop('maxTotalItems', {
+        examples: [
+            10,
+            20,
+            50,
+            1000,
+        ],
+        defaultValue: 50,
+    })
     .prop('isInvalid', { examples: [true] })
     .prop('placeholder', { examples: ['Select Country', 'Select Person'], type: 'string', defaultValue: 'Please select' })
     .prop('renderModalToggler', {
         examples: [
             {
                 name: 'Green Button',
-                value: (props) => <LinkButton {...props} />,
+                value: (props) => <LinkButton { ...props } />,
             },
         ],
     })
@@ -49,7 +84,7 @@ const PickerListDoc = new DocBuilder<PickerListProps<any, any> & PickerListBaseP
                 value: (
                     <FlexRow spacing="12">
                         <Text>No results found</Text>
-                        <Button onClick={() => {}} size="24" caption="Search" />
+                        <Button onClick={ () => {} } size="24" caption="Search" />
                     </FlexRow>
                 ),
                 name: '<Text/><Button/>',

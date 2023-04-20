@@ -80,22 +80,43 @@ module.exports = {
                         caseSensitive: true,
                     },
                 ],
-                'import/extensions': [2, 'always', { ignorePackages: true }],
+                'import/extensions': [
+                    2,
+                    'always',
+                    { ignorePackages: true },
+                ],
                 ...turnOffEslintRulesToBeFixed(),
             },
         },
     ],
     settings: {
         'import/parsers': {
-            '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
+            '@typescript-eslint/parser': [
+                '.ts',
+                '.tsx',
+                '.d.ts',
+            ],
         },
         'import/resolver': {
             node: {
-                extensions: ['.js', '.ts', '.tsx', '.d.ts', '.css', '.scss', '.svg'],
+                extensions: [
+                    '.js',
+                    '.ts',
+                    '.tsx',
+                    '.d.ts',
+                    '.css',
+                    '.scss',
+                    '.svg',
+                ],
             },
             alias: { map: [['@epam/test-utils', './test-utils/index.ts']] },
         },
-        'import/extensions': ['.js', '.ts', '.tsx', '.d.ts'],
+        'import/extensions': [
+            '.js',
+            '.ts',
+            '.tsx',
+            '.d.ts',
+        ],
         'import/external-module-folders': ['node_modules', 'node_modules/@types'],
     },
 };
@@ -153,7 +174,11 @@ function uuiJsRules() {
         'import/no-unresolved': [
             2,
             {
-                ignore: ['^@epam/uui-[\\w]+/styles.css$', '@epam/promo/styles.css', '@epam/loveship/styles.css'],
+                ignore: [
+                    '^@epam/uui-[\\w]+/styles.css$',
+                    '@epam/promo/styles.css',
+                    '@epam/loveship/styles.css',
+                ],
             },
         ],
         'no-console': [1, { allow: ['error', 'warn'] }],
@@ -185,7 +210,11 @@ function uuiJsRules() {
         ],
         'array-element-newline': [2, { multiline: true, minItems: 3 }],
         'array-bracket-newline': [2, { multiline: true, minItems: 3 }],
-        indent: [2, 4, { SwitchCase: 1 }],
+        indent: [
+            2,
+            4,
+            { SwitchCase: 1 },
+        ],
         'comma-dangle': [
             2,
             {
@@ -227,7 +256,11 @@ function uuiReactRules() {
                 declaration: 'parens-new-line',
             },
         ],
-        'react/jsx-curly-spacing': [2, 'always', { allowMultiline: true }],
+        'react/jsx-curly-spacing': [
+            2,
+            'always',
+            { allowMultiline: true },
+        ],
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
         // stylistic - end

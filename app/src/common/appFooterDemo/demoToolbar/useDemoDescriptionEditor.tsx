@@ -29,13 +29,13 @@ export function useDemoDescriptionEditor(demoItemName: string) {
         return svc.uuiNotifications
             .show(
                 (props: INotification) => (
-                    <SuccessNotification {...props}>
+                    <SuccessNotification { ...props }>
                         <Text size="36" font="sans" fontSize="14">
                             Description has been updated.
                         </Text>
                     </SuccessNotification>
                 ),
-                { position: 'bot-left', duration: 1 }
+                { position: 'bot-left', duration: 1 },
             )
             .catch(() => null);
     };
@@ -43,7 +43,7 @@ export function useDemoDescriptionEditor(demoItemName: string) {
     const openModal = React.useCallback(async () => {
         try {
             const content = await loadDocContentByDemoName(demoItemName);
-            const newContent = await svc.uuiModals.show<Value>((props) => <DescriptionModal demoItemName={demoItemName} modalProps={props} value={content} />);
+            const newContent = await svc.uuiModals.show<Value>((props) => <DescriptionModal demoItemName={ demoItemName } modalProps={ props } value={ content } />);
             await saveDocContentByDemoName(demoItemName, newContent);
             await showSuccess();
         } catch (err) {}

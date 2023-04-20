@@ -1,5 +1,7 @@
 import { SortingOption } from './dataQuery';
-import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from './props';
+import {
+    FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable,
+} from './props';
 import { IDndActor } from './dnd';
 import { Link } from './objects';
 
@@ -103,93 +105,93 @@ export interface DataRowOptions<TItem, TId> extends IDisableable, Partial<IEdita
  * DataSources primary job is to convert various data stores into arrays of DataRowProps.
  */
 export type DataRowProps<TItem, TId> = FlexRowProps &
-    DataRowOptions<TItem, TId> & {
-        /** ID of the TItem rows displays */
-        id: TId;
+DataRowOptions<TItem, TId> & {
+    /** ID of the TItem rows displays */
+    id: TId;
 
-        /** Key to be used as component's key when rendering. Usually, it's stringified ID */
-        rowKey: string;
+    /** Key to be used as component's key when rendering. Usually, it's stringified ID */
+    rowKey: string;
 
-        /** Index of the row, from the top of the list. This doesn't account any hierarchy. */
-        index: number;
+    /** Index of the row, from the top of the list. This doesn't account any hierarchy. */
+    index: number;
 
-        /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
-        value?: TItem;
+    /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
+    value?: TItem;
 
-        /** ID of the parent TItem */
-        parentId?: TId;
+    /** ID of the parent TItem */
+    parentId?: TId;
 
-        /** Hierarchical path from the root node to the item (excluding the item itself) */
-        path?: DataRowPathItem<TId, TItem>[];
+    /** Hierarchical path from the root node to the item (excluding the item itself) */
+    path?: DataRowPathItem<TId, TItem>[];
 
-        /* visual */
+    /* visual */
 
-        /** Depth of the row in tree, 0 for the top-level */
-        depth?: number;
+    /** Depth of the row in tree, 0 for the top-level */
+    depth?: number;
 
-        /** Indent of the item, to show hierarchy.
+    /** Indent of the item, to show hierarchy.
          *  Unlike depth, it contains additional logic, to not add unnecessary indents:
          *  if all children of node has no children, all nodes would get the same indent as parent.
          */
-        indent?: number;
+    indent?: number;
 
-        /** True if row is in loading state. 'value' is empty in this case */
-        isLoading?: boolean;
+    /** True if row is in loading state. 'value' is empty in this case */
+    isLoading?: boolean;
 
-        /** True if row be folded or unfolded (usually because it contains children) */
-        isFoldable?: boolean;
+    /** True if row be folded or unfolded (usually because it contains children) */
+    isFoldable?: boolean;
 
-        /** True if row is currently folded */
-        isFolded?: boolean;
+    /** True if row is currently folded */
+    isFolded?: boolean;
 
-        /** True if row is checked with checkbox */
-        isChecked?: boolean;
+    /** True if row is checked with checkbox */
+    isChecked?: boolean;
 
-        /** True if row has checkbox and can be checkable */
-        isCheckable?: boolean;
+    /** True if row has checkbox and can be checkable */
+    isCheckable?: boolean;
 
-        /** True if some of row's children are checked.
+    /** True if some of row's children are checked.
          * Used to show 'indefinite' checkbox state, to show user that something inside is checked */
-        isChildrenChecked?: boolean;
+    isChildrenChecked?: boolean;
 
-        /** True if row is selected (in single-select mode, or in case when interface use both single row selection and checkboxes) */
-        isSelected?: boolean;
+    /** True if row is selected (in single-select mode, or in case when interface use both single row selection and checkboxes) */
+    isSelected?: boolean;
 
-        /** True if any of row's children is selected. */
-        isChildrenSelected?: boolean;
+    /** True if any of row's children is selected. */
+    isChildrenSelected?: boolean;
 
-        /** True if row is focused. Focus can be changed via keyboard arrow keys, or by hovering mouse on top of the row */
-        isFocused?: boolean;
+    /** True if row is focused. Focus can be changed via keyboard arrow keys, or by hovering mouse on top of the row */
+    isFocused?: boolean;
 
-        /** True if row is the last child of his parent */
-        isLastChild?: boolean;
+    /** True if row is the last child of his parent */
+    isLastChild?: boolean;
 
-        /* events */
+    /* events */
 
-        /** Handles row folding change.
+    /** Handles row folding change.
          * We demand to pass the row as well, to avoid creating closures for each row.
          */
-        onFold?(rowProps: DataRowProps<TItem, TId>): void;
+    onFold?(rowProps: DataRowProps<TItem, TId>): void;
 
-        /** Handles row click.
+    /** Handles row click.
          * We demand to pass the row as well, to avoid creating closures for each row.
          */
-        onClick?(rowProps: DataRowProps<TItem, TId>): void;
+    onClick?(rowProps: DataRowProps<TItem, TId>): void;
 
-        /** Handles row checkbox change.
+    /** Handles row checkbox change.
          * We demand to pass the row as well, to avoid creating closures for each row.
          */
-        onCheck?(rowProps: DataRowProps<TItem, TId>): void;
+    onCheck?(rowProps: DataRowProps<TItem, TId>): void;
 
-        /** Handles row selection.
+    /** Handles row selection.
          * We demand to pass the row as well, to avoid creating closures for each row.
          */
-        onSelect?(rowProps: DataRowProps<TItem, TId>): void;
+    onSelect?(rowProps: DataRowProps<TItem, TId>): void;
 
-        /** Handles row focusing.
+    /** Handles row focusing.
          */
-        onFocus?(focusedIndex: number): void;
-    };
+    onFocus?(focusedIndex: number): void;
+};
 
 export interface BaseListViewProps<TItem, TId, TFilter> {
     /**

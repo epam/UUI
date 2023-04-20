@@ -2,7 +2,9 @@ import * as React from 'react';
 import { INotification, Metadata, IFormApi } from '@epam/uui-core';
 import { Spinner } from '@epam/uui-components';
 import { PersonDetails } from '@epam/uui-docs';
-import { LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpacer, SuccessNotification, Form, MultiSwitch } from '@epam/loveship';
+import {
+    LabeledInput, Button, Switch, FlexRow, FlexCell, Panel, Text, FlexSpacer, SuccessNotification, Form, MultiSwitch,
+} from '@epam/loveship';
 import { svc } from '../../services';
 import { PersonDetailEditor } from './PersonDetailEditor';
 import { PersonDetailView } from './PersonDetailView';
@@ -37,8 +39,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
             this.setState({
                 person,
                 isBlocked: false,
-            })
-        );
+            }));
     }
 
     loadDefaultPerson() {
@@ -47,8 +48,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
             this.setState({
                 person,
                 isBlocked: false,
-            })
-        );
+            }));
     }
 
     getMetaData = (state: PersonDetails): Metadata<PersonDetails> => {
@@ -89,19 +89,18 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
             <>
                 <FlexCell width="auto">
                     <MultiSwitch
-                        items={[
+                        items={ [
                             { id: 'Edit', caption: 'Edit' },
                             { id: 'isDisabled', caption: 'Disabled' },
                             { id: 'isReadOnly', caption: 'ReadOnly' },
-                        ]}
-                        value={this.state.isDisabled ? 'isDisabled' : this.state.isReadOnly ? 'isReadOnly' : 'Edit'}
-                        onValueChange={(val: string) =>
+                        ] }
+                        value={ this.state.isDisabled ? 'isDisabled' : this.state.isReadOnly ? 'isReadOnly' : 'Edit' }
+                        onValueChange={ (val: string) =>
                             val === 'Edit'
                                 ? this.setState({ isDisabled: false, isReadOnly: false })
                                 : val === 'isDisabled'
-                                ? this.setState({ isDisabled: true, isReadOnly: false })
-                                : this.setState({ isReadOnly: true, isDisabled: false })
-                        }
+                                    ? this.setState({ isDisabled: true, isReadOnly: false })
+                                    : this.setState({ isReadOnly: true, isDisabled: false }) }
                         color="sky"
                         size="24"
                     />
@@ -110,15 +109,15 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
                     <LabeledInput htmlFor="haveBackground" label="Have background" labelPosition="left">
                         <Switch
                             id="haveBackground"
-                            isDisabled={this.state.isDisabled}
-                            value={this.state.hasBackground}
-                            onValueChange={(newVal: boolean) => this.setState({ ...this.state, hasBackground: newVal })}
+                            isDisabled={ this.state.isDisabled }
+                            value={ this.state.hasBackground }
+                            onValueChange={ (newVal: boolean) => this.setState({ ...this.state, hasBackground: newVal }) }
                         />
                     </LabeledInput>
                 </FlexCell>
                 <FlexCell width="auto">
                     <LabeledInput htmlFor="viewMode" label="View mode" labelPosition="left">
-                        <Switch id="viewMode" value={!this.state.isEditMode} onValueChange={(newVal: boolean) => this.setState({ ...this.state, isEditMode: !newVal })} />
+                        <Switch id="viewMode" value={ !this.state.isEditMode } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, isEditMode: !newVal }) } />
                     </LabeledInput>
                 </FlexCell>
                 {props.isChanged && (
@@ -133,26 +132,26 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
     renderSavePanel(props: IFormApi<PersonDetails>) {
         return (
             <>
-                <FlexCell minWidth={100}>
-                    <Button onClick={() => props.save()} isDisabled={this.state.isDisabled || !props.isChanged} caption="Save" color="grass" />
+                <FlexCell minWidth={ 100 }>
+                    <Button onClick={ () => props.save() } isDisabled={ this.state.isDisabled || !props.isChanged } caption="Save" color="grass" />
                 </FlexCell>
-                <FlexCell minWidth={100}>
-                    <Button caption="Undo" color="night500" isDisabled={!props.canUndo} onClick={props.undo} />
+                <FlexCell minWidth={ 100 }>
+                    <Button caption="Undo" color="night500" isDisabled={ !props.canUndo } onClick={ props.undo } />
                 </FlexCell>
-                <FlexCell minWidth={100}>
-                    <Button caption="Redo" color="night500" isDisabled={!props.canRedo} onClick={props.redo} />
+                <FlexCell minWidth={ 100 }>
+                    <Button caption="Redo" color="night500" isDisabled={ !props.canRedo } onClick={ props.redo } />
                 </FlexCell>
-                <FlexCell minWidth={100}>
-                    <Button caption="Revert" color="sun" fill="none" isDisabled={!props.canRevert} onClick={props.revert} />
+                <FlexCell minWidth={ 100 }>
+                    <Button caption="Revert" color="sun" fill="none" isDisabled={ !props.canRevert } onClick={ props.revert } />
                 </FlexCell>
-                <FlexCell minWidth={100}>
-                    <Button caption="Reload" color="lavanda" onClick={() => this.loadForm()} />
+                <FlexCell minWidth={ 100 }>
+                    <Button caption="Reload" color="lavanda" onClick={ () => this.loadForm() } />
                 </FlexCell>
-                <FlexCell minWidth={100}>
-                    <Button caption="Load default" color="fire" onClick={() => this.loadDefaultPerson} />
+                <FlexCell minWidth={ 100 }>
+                    <Button caption="Load default" color="fire" onClick={ () => this.loadDefaultPerson } />
                 </FlexCell>
-                <FlexCell minWidth={100}>
-                    <Button caption="Clear" fill="none" color="fire" isDisabled={this.state.isDisabled} onClick={() => this.setState({ person: {} })} />
+                <FlexCell minWidth={ 100 }>
+                    <Button caption="Clear" fill="none" color="fire" isDisabled={ this.state.isDisabled } onClick={ () => this.setState({ person: {} }) } />
                 </FlexCell>
             </>
         );
@@ -162,7 +161,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         const background = this.state.hasBackground ? 'white' : 'night50';
 
         return (
-            <Panel margin="24" background={background} cx={css.formPanel}>
+            <Panel margin="24" background={ background } cx={ css.formPanel }>
                 <FlexRow size="48" padding="24">
                     <Text size="48" font="sans-semibold">
                         Complex Form
@@ -179,16 +178,16 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
     };
 
     renderViewForm = (props: IFormApi<PersonDetails>) => {
-        return <PersonDetailView isBlocked={this.state.isBlocked} lens={props.lens} isDisabled={this.state.isDisabled} value={props.value} />;
+        return <PersonDetailView isBlocked={ this.state.isBlocked } lens={ props.lens } isDisabled={ this.state.isDisabled } value={ props.value } />;
     };
 
     renderEditForm = (props: IFormApi<PersonDetails>) => {
         return (
             <PersonDetailEditor
-                isBlocked={this.state.isBlocked || props.isInProgress}
-                lens={props.lens}
-                isDisabled={this.state.isDisabled}
-                isReadOnly={this.state.isReadOnly}
+                isBlocked={ this.state.isBlocked || props.isInProgress }
+                lens={ props.lens }
+                isDisabled={ this.state.isDisabled }
+                isReadOnly={ this.state.isReadOnly }
             />
         );
     };
@@ -199,26 +198,26 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
         ) : (
             <Form<PersonDetails>
                 settingsKey="complex-form"
-                value={this.state.person}
-                onSave={async (person) => {
+                value={ this.state.person }
+                onSave={ async (person) => {
                     const result = await svc.api.demo.personDetails.save(person);
                     return { form: result };
-                }}
-                onSuccess={(person) => {
+                } }
+                onSuccess={ (person) => {
                     this.setState({ person: person });
                     svc.uuiNotifications.show(
                         (props: INotification) => (
-                            <SuccessNotification {...props}>
+                            <SuccessNotification { ...props }>
                                 <Text size="24" font="sans" fontSize="14">
                                     Data has been saved!
                                 </Text>
                             </SuccessNotification>
                         ),
-                        { duration: 2 }
+                        { duration: 2 },
                     );
-                }}
-                renderForm={this.renderForm}
-                getMetadata={this.getMetaData}
+                } }
+                renderForm={ this.renderForm }
+                getMetadata={ this.getMetaData }
             />
         );
     }

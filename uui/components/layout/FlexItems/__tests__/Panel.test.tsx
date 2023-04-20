@@ -9,7 +9,7 @@ describe('Panel', () => {
     });
 
     it('should be rendered correctly with props', () => {
-        const tree = renderer.create(<Panel onClick={() => {}} margin="24" shadow />).toJSON();
+        const tree = renderer.create(<Panel onClick={ () => {} } margin="24" shadow />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

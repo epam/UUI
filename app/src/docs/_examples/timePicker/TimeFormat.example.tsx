@@ -6,7 +6,7 @@ export default function TimePickerTimeFormatExample() {
 
     return (
         <FlexRow>
-            <TimePicker value={value} onValueChange={onValueChange} format={24} />
+            <TimePicker value={ value } onValueChange={ onValueChange } format={ 24 } />
         </FlexRow>
     );
 }

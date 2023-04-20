@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import css from './PresetActionsDropdown.scss';
-import { IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState } from '@epam/uui-core';
+import {
+    IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState,
+} from '@epam/uui-core';
 import { Dropdown, DropdownMenuButton, SuccessNotification } from '../../overlays';
 import { IconButton } from '../../buttons';
 import { Text } from '../../typography';
@@ -21,7 +23,7 @@ interface ITubButtonDropdownProps extends Omit<IPresetsApi, 'presets'> {
     renamePreset: () => void;
 }
 
-export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
+export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
     const { uuiNotifications } = useUuiContext();
 
     const copyUrlToClipboard = useCallback(async () => {
@@ -42,20 +44,24 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
             await props.updatePreset(newPreset);
             successNotificationHandler('Changes saved!');
         },
-        [props.tableState.filter, props.tableState.columnsConfig, props.tableState.filtersConfig]
+        [
+            props.tableState.filter,
+            props.tableState.columnsConfig,
+            props.tableState.filtersConfig,
+        ],
     );
 
     const successNotificationHandler = useCallback((text: string) => {
         uuiNotifications
             .show(
                 (props) => (
-                    <SuccessNotification {...props}>
+                    <SuccessNotification { ...props }>
                         <Text size="36" font="regular" fontSize="14">
                             {text}
                         </Text>
                     </SuccessNotification>
                 ),
-                { duration: 3 }
+                { duration: 3 },
             )
             .catch(() => null);
     }, []);
@@ -74,41 +80,45 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
 
     const deleteHandler = useCallback(async () => {
         await props.deletePreset(props.preset);
-    }, [props.activePresetId, props.deletePreset, props.preset]);
+    }, [
+        props.activePresetId,
+        props.deletePreset,
+        props.preset,
+    ]);
 
     const renderBody = () => {
         const isReadonlyPreset = props.preset.isReadonly;
         return (
-            <Panel shadow={true} cx={css.presetDropdownPanel}>
+            <Panel shadow={ true } cx={ css.presetDropdownPanel }>
                 {props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset) && (
                     <>
                         {!isReadonlyPreset && (
-                            <FlexRow key={`${props.preset.id}-save-in-current`}>
-                                <DropdownMenuButton icon={SaveInCurrentIcon} caption="Save in current" onClick={saveInCurrentHandler} />
+                            <FlexRow key={ `${props.preset.id}-save-in-current` }>
+                                <DropdownMenuButton icon={ SaveInCurrentIcon } caption="Save in current" onClick={ saveInCurrentHandler } />
                             </FlexRow>
                         )}
-                        <FlexRow key={`${props.preset.id}-save-as-new`}>
-                            <DropdownMenuButton icon={SaveAsNewIcon} caption="Save as new" onClick={props.addPreset} />
+                        <FlexRow key={ `${props.preset.id}-save-as-new` }>
+                            <DropdownMenuButton icon={ SaveAsNewIcon } caption="Save as new" onClick={ props.addPreset } />
                         </FlexRow>
-                        <FlexRow key={`${props.preset.id}-discard`} borderBottom={true}>
-                            <DropdownMenuButton icon={DiscardChangesIcon} caption="Discard all changes" onClick={discardAllChangesHandler} />
+                        <FlexRow key={ `${props.preset.id}-discard` } borderBottom={ true }>
+                            <DropdownMenuButton icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ discardAllChangesHandler } />
                         </FlexRow>
                     </>
                 )}
                 {props.preset.id === props.activePresetId && !isReadonlyPreset && (
-                    <FlexRow key={`${props.preset.id}-rename`}>
-                        <DropdownMenuButton icon={RenameIcon} caption="Rename" onClick={props.renamePreset} />
+                    <FlexRow key={ `${props.preset.id}-rename` }>
+                        <DropdownMenuButton icon={ RenameIcon } caption="Rename" onClick={ props.renamePreset } />
                     </FlexRow>
                 )}
-                <FlexRow key={`${props.preset.id}-duplicate`}>
-                    <DropdownMenuButton icon={CopyIcon} caption="Duplicate" onClick={duplicateHandler} />
+                <FlexRow key={ `${props.preset.id}-duplicate` }>
+                    <DropdownMenuButton icon={ CopyIcon } caption="Duplicate" onClick={ duplicateHandler } />
                 </FlexRow>
-                <FlexRow borderBottom={true} key={`${props.preset.id}-copyLink`}>
-                    <DropdownMenuButton icon={CopyLinkIcon} caption="Copy Link" onClick={copyUrlToClipboard} />
+                <FlexRow borderBottom={ true } key={ `${props.preset.id}-copyLink` }>
+                    <DropdownMenuButton icon={ CopyLinkIcon } caption="Copy Link" onClick={ copyUrlToClipboard } />
                 </FlexRow>
                 {!isReadonlyPreset && (
-                    <FlexRow key={`${props.preset.id}-delete`} cx={css.deleteRow}>
-                        <DropdownMenuButton icon={DeleteIcon} caption="Delete" cx={css.deleteButton} onClick={deleteHandler} />
+                    <FlexRow key={ `${props.preset.id}-delete` } cx={ css.deleteRow }>
+                        <DropdownMenuButton icon={ DeleteIcon } caption="Delete" cx={ css.deleteButton } onClick={ deleteHandler } />
                     </FlexRow>
                 )}
             </Panel>
@@ -118,17 +128,15 @@ export const PresetActionsDropdown = (props: ITubButtonDropdownProps) => {
     const renderTarget = useCallback((dropdownProps: IDropdownToggler) => {
         return (
             <IconButton
-                cx={dropdownProps.isOpen && css.targetOpen}
-                color={props.preset.id === props.activePresetId ? 'info' : 'default'}
-                {...dropdownProps}
-                icon={menuIcon}
+                cx={ dropdownProps.isOpen && css.targetOpen }
+                color={ props.preset.id === props.activePresetId ? 'info' : 'default' }
+                { ...dropdownProps }
+                icon={ menuIcon }
             />
         );
     }, []);
 
     return (
-        <>
-            <Dropdown renderBody={renderBody} renderTarget={renderTarget} placement="bottom-end" modifiers={[{ name: 'offset', options: { offset: [0, 22] } }]} />
-        </>
+        <Dropdown renderBody={ renderBody } renderTarget={ renderTarget } placement="bottom-end" modifiers={ [{ name: 'offset', options: { offset: [0, 22] } }] } />
     );
-};
+}

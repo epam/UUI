@@ -13,9 +13,9 @@ export interface ListLoadingTrackerOptions<TItem, TResponse> {
 }
 
 export class ListLoadingTracker<TItem, TRequest extends DataQuery<TItem> = DataQuery<TItem>, TResponse = LazyDataSourceApiResponse<TItem>>
-    implements ILoadingTracker<TRequest, TResponse>
-{
+implements ILoadingTracker<TRequest, TResponse> {
     private cache: Map<string, ListRecord<TItem>> = new Map();
+
     private extractList: (res: TResponse) => LazyDataSourceApiResponse<TItem>;
 
     constructor(private options?: ListLoadingTrackerOptions<TItem, TResponse>) {
@@ -23,7 +23,9 @@ export class ListLoadingTracker<TItem, TRequest extends DataQuery<TItem> = DataQ
     }
 
     private prepare(request: DataQuery<TItem>) {
-        const { filter, sorting, search, range, ...unknownFields } = request;
+        const {
+            filter, sorting, search, range, ...unknownFields
+        } = request;
         const options: DataQuery<TItem> = {};
 
         if (filter) {
@@ -38,20 +40,26 @@ export class ListLoadingTracker<TItem, TRequest extends DataQuery<TItem> = DataQ
             options.search = search;
         }
 
-        let keyObject = { ...options, ...unknownFields };
+        const keyObject = { ...options, ...unknownFields };
 
         const key = JSON.stringify(keyObject);
         let entry = this.cache.get(key);
         if (!entry) {
-            entry = { options, count: 0, maxCount: null, isComplete: false };
+            entry = {
+                options, count: 0, maxCount: null, isComplete: false,
+            };
             this.cache.set(key, entry);
         }
 
-        return { options, range, unknownFields, entry };
+        return {
+            options, range, unknownFields, entry,
+        };
     }
 
     public diff(request: TRequest): TRequest {
-        const { options, range, unknownFields, entry } = this.prepare(request);
+        const {
+            options, range, unknownFields, entry,
+        } = this.prepare(request);
 
         if (entry.isComplete) {
             return null;
@@ -86,7 +94,9 @@ export class ListLoadingTracker<TItem, TRequest extends DataQuery<TItem> = DataQ
     }
 
     public append(request: TRequest, response?: TResponse) {
-        const { options, range, unknownFields, entry } = this.prepare(request);
+        const {
+            options, range, unknownFields, entry,
+        } = this.prepare(request);
 
         if (response) {
             const list = this.extractList(response);

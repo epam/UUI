@@ -11,7 +11,7 @@ export default function ArrayDataTableExample() {
         {
             items: demoData.featureClasses,
         },
-        []
+        [],
     );
 
     const view = dataSource.useView(value, onValueChange, {});
@@ -41,17 +41,17 @@ export default function ArrayDataTableExample() {
                 width: 300,
             },
         ],
-        []
+        [],
     );
 
     return (
-        <Panel shadow cx={css.container}>
+        <Panel shadow cx={ css.container }>
             <DataTable
-                {...view.getListProps()}
-                getRows={view.getVisibleRows}
-                value={value}
-                onValueChange={onValueChange}
-                columns={productColumns}
+                { ...view.getListProps() }
+                getRows={ view.getVisibleRows }
+                value={ value }
+                onValueChange={ onValueChange }
+                columns={ productColumns }
                 headerTextCase="upper"
             />
         </Panel>

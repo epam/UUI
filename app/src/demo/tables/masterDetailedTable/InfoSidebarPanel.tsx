@@ -1,6 +1,8 @@
 import React from 'react';
 import css from './InfoSidebarPanel.scss';
-import { Badge, EpamAdditionalColor, FlexCell, FlexRow, FlexSpacer, IconButton, Panel, ScrollBars, Text } from '@epam/promo';
+import {
+    Badge, EpamAdditionalColor, FlexCell, FlexRow, FlexSpacer, IconButton, Panel, ScrollBars, Text,
+} from '@epam/promo';
 import { Person } from '@epam/uui-docs';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/common/navigation-close-24.svg';
 import { cx } from '@epam/uui-core';
@@ -15,24 +17,24 @@ export const InfoSidebarPanel: React.FC<SidebarPanelProps> = ({ data, isVisible,
     const renderInfoRow = (title: string, value: any) => {
         return (
             <FlexRow padding="24">
-                <FlexCell shrink={0} width={162}>
+                <FlexCell shrink={ 0 } width={ 162 }>
                     <Text color="gray60">{title}</Text>
                 </FlexCell>
-                <Text cx={css.noWrap}>{value}</Text>
+                <Text cx={ css.noWrap }>{value}</Text>
             </FlexRow>
         );
     };
 
     return (
-        <div className={cx(css.infoSidebarPanelWrapper, isVisible ? 'show' : 'hide')}>
-            <Panel cx={css.wrapper} background="white">
+        <div className={ cx(css.infoSidebarPanelWrapper, isVisible ? 'show' : 'hide') }>
+            <Panel cx={ css.wrapper } background="white">
                 <FlexRow borderBottom padding="24">
                     <Text size="48" font="sans-semibold">
                         Detailed Information
                     </Text>
                     <FlexSpacer />
-                    <FlexCell shrink={0} width="auto">
-                        <IconButton icon={CrossIcon} onClick={onClose} />
+                    <FlexCell shrink={ 0 } width="auto">
+                        <IconButton icon={ CrossIcon } onClick={ onClose } />
                     </FlexCell>
                 </FlexRow>
                 {data && (
@@ -40,7 +42,7 @@ export const InfoSidebarPanel: React.FC<SidebarPanelProps> = ({ data, isVisible,
                         {renderInfoRow('Name', data.name)}
                         {renderInfoRow(
                             'Status',
-                            <Badge cx={css.status} caption={data.profileStatus} fill="transparent" color={data.profileStatus.toLowerCase() as EpamAdditionalColor} />
+                            <Badge cx={ css.status } caption={ data.profileStatus } fill="transparent" color={ data.profileStatus.toLowerCase() as EpamAdditionalColor } />,
                         )}
                         {renderInfoRow('Job Title', data.jobTitle)}
                         {renderInfoRow('Title Level', data.titleLevel)}

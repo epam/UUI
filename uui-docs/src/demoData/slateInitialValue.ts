@@ -889,7 +889,12 @@ export const slateInitialValue = {
                         object: 'block',
                         type: 'table',
                         data: {
-                            cellSizes: [200, 200, 183, 161],
+                            cellSizes: [
+                                200,
+                                200,
+                                183,
+                                161,
+                            ],
                         },
                         nodes: [
                             {

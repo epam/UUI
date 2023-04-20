@@ -7,6 +7,7 @@ export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListVi
 
 export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     private isloading: boolean = false;
+
     private isloaded: boolean = false;
 
     constructor(protected editable: IEditable<DataSourceState<TFilter, TId>>, protected props: AsyncListViewProps<TItem, TId, TFilter>) {

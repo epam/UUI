@@ -12,9 +12,9 @@ const controlGroupDoc = new DocBuilder<ControlGroupProps>({ name: 'ControlGroup'
                 name: '<Button/>, <Button/>, <Button/>',
                 value: (
                     <React.Fragment>
-                        <Button color="grass" caption="Submit" onClick={() => null} />
-                        <Button caption="Help" onClick={() => null} />
-                        <Button fill="none" color="night500" caption="Cancel" onClick={() => null} />
+                        <Button color="grass" caption="Submit" onClick={ () => null } />
+                        <Button caption="Help" onClick={ () => null } />
+                        <Button fill="none" color="night500" caption="Cancel" onClick={ () => null } />
                     </React.Fragment>
                 ),
                 isDefault: true,
@@ -23,9 +23,9 @@ const controlGroupDoc = new DocBuilder<ControlGroupProps>({ name: 'ControlGroup'
                 name: '<TextInput/>, <TextInput/>, <TextInput/>',
                 value: (
                     <React.Fragment>
-                        <TextInput value="Alex" onValueChange={null} />
-                        <TextInput value="Minsk" onValueChange={null} />
-                        <TextInput value="Belarus" onValueChange={null} />
+                        <TextInput value="Alex" onValueChange={ null } />
+                        <TextInput value="Minsk" onValueChange={ null } />
+                        <TextInput value="Belarus" onValueChange={ null } />
                     </React.Fragment>
                 ),
             },

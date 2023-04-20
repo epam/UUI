@@ -1,5 +1,7 @@
 import React from 'react';
-import { FlexCell, FlexRow, LabeledInput, TextInput, Form, Text, SuccessNotification, ErrorNotification, FlexSpacer, Button } from '@epam/promo';
+import {
+    FlexCell, FlexRow, LabeledInput, TextInput, Form, Text, SuccessNotification, ErrorNotification, FlexSpacer, Button,
+} from '@epam/promo';
 import { IFormApi } from '@epam/uui-core';
 import { svc } from '../../../services';
 
@@ -19,47 +21,45 @@ export default function FormWIthClassesExample() {
     const renderForm = ({ lens, save, validate }: IFormApi<Person>) => (
         <FlexCell width="100%">
             <FlexRow vPadding="12">
-                <FlexCell grow={1}>
-                    <LabeledInput label="First Name" {...lens.prop('firstName').toProps()}>
-                        <TextInput placeholder="First Name" {...lens.prop('firstName').toProps()} />
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label="First Name" { ...lens.prop('firstName').toProps() }>
+                        <TextInput placeholder="First Name" { ...lens.prop('firstName').toProps() } />
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <FlexRow vPadding="12">
-                <FlexCell grow={1}>
-                    <LabeledInput label="Last Name" {...lens.prop('lastName').toProps()}>
-                        <TextInput placeholder="Last Name" {...lens.prop('lastName').toProps()} />
+                <FlexCell grow={ 1 }>
+                    <LabeledInput label="Last Name" { ...lens.prop('lastName').toProps() }>
+                        <TextInput placeholder="Last Name" { ...lens.prop('lastName').toProps() } />
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
             <FlexRow vPadding="12" spacing="12">
                 <FlexSpacer />
-                <Button caption="Validate" onClick={validate} color="blue" />
-                <Button caption="Save" onClick={save} color="green" />
+                <Button caption="Validate" onClick={ validate } color="blue" />
+                <Button caption="Save" onClick={ save } color="green" />
             </FlexRow>
         </FlexCell>
     );
 
     return (
         <Form
-            onSave={(person) => Promise.resolve({ form: person }) /* place your save api call here */}
-            onSuccess={(result) =>
+            onSave={ (person) => Promise.resolve({ form: person }) /* place your save api call here */ }
+            onSuccess={ (result) =>
                 svc.uuiNotifications.show((props) => (
-                    <SuccessNotification {...props}>
+                    <SuccessNotification { ...props }>
                         <Text>Form saved</Text>
                     </SuccessNotification>
-                ))
-            }
-            onError={(error) =>
+                )) }
+            onError={ (error) =>
                 svc.uuiNotifications.show((props) => (
-                    <ErrorNotification {...props}>
+                    <ErrorNotification { ...props }>
                         <Text>Error on save</Text>
                     </ErrorNotification>
-                ))
-            }
-            value={{}}
-            getMetadata={getMetadata}
-            renderForm={renderForm}
+                )) }
+            value={ {} }
+            getMetadata={ getMetadata }
+            renderForm={ renderForm }
             settingsKey="legacy-form-example"
         />
     );

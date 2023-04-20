@@ -1,4 +1,6 @@
-import { emptyDb, sampleDb, sampleData, TasksDbRef } from './TaskDb';
+import {
+    emptyDb, sampleDb, sampleData, TasksDbRef,
+} from './TaskDb';
 import { DbRef } from '../index';
 import { delay } from '@epam/test-utils';
 

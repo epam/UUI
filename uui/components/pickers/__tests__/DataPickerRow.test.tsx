@@ -4,7 +4,7 @@ import { DataPickerRow } from '../DataPickerRow';
 
 describe('DataPickerRow', () => {
     it('should be rendered correctly', () => {
-        const tree = renderer.create(<DataPickerRow id="test" index={1} renderItem={(item: React.ReactNode) => <div>{item}</div>} rowKey="test" />).toJSON();
+        const tree = renderer.create(<DataPickerRow id="test" index={ 1 } renderItem={ (item: React.ReactNode) => <div>{item}</div> } rowKey="test" />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
@@ -13,8 +13,8 @@ describe('DataPickerRow', () => {
             .create(
                 <DataPickerRow
                     id="test"
-                    index={1}
-                    renderItem={(item: React.ReactNode) => <div>{item}</div>}
+                    index={ 1 }
+                    renderItem={ (item: React.ReactNode) => <div>{item}</div> }
                     rowKey="test"
                     borderBottom="gray20"
                     padding="24"
@@ -26,12 +26,12 @@ describe('DataPickerRow', () => {
                     isFolded
                     isSelectable
                     isSelected
-                    onSelect={jest.fn}
-                    onFold={jest.fn}
-                    onCheck={jest.fn}
-                    onClick={jest.fn}
-                    onFocus={jest.fn}
-                />
+                    onSelect={ jest.fn }
+                    onFold={ jest.fn }
+                    onCheck={ jest.fn }
+                    onClick={ jest.fn }
+                    onFocus={ jest.fn }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

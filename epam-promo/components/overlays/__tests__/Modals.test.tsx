@@ -1,17 +1,19 @@
 import React from 'react';
-import { ModalBlocker, ModalHeader, ModalFooter, ModalWindow } from '../Modals';
+import {
+    ModalBlocker, ModalHeader, ModalFooter, ModalWindow,
+} from '../Modals';
 import renderer from 'react-test-renderer';
 
 describe('Modals', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(
-                <ModalBlocker key="blocker" isActive zIndex={1} abort={jest.fn} success={jest.fn}>
+                <ModalBlocker key="blocker" isActive zIndex={ 1 } abort={ jest.fn } success={ jest.fn }>
                     <ModalWindow>
                         <ModalHeader />
                         <ModalFooter />
                     </ModalWindow>
-                </ModalBlocker>
+                </ModalBlocker>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();
@@ -20,11 +22,11 @@ describe('Modals', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(
-                <ModalBlocker key="blocker" isActive zIndex={1} abort={jest.fn} success={jest.fn} blockerShadow="dark" disallowClickOutside>
-                    <ModalWindow height="300" width="300" onClick={jest.fn}>
+                <ModalBlocker key="blocker" isActive zIndex={ 1 } abort={ jest.fn } success={ jest.fn } blockerShadow="dark" disallowClickOutside>
+                    <ModalWindow height="300" width="300" onClick={ jest.fn }>
                         <ModalHeader
                             title="Test header"
-                            onClose={jest.fn}
+                            onClose={ jest.fn }
                             borderBottom
                             margin="12"
                             background="gray5"
@@ -36,7 +38,7 @@ describe('Modals', () => {
                         />
                         <ModalFooter borderBottom margin="12" background="white" size="48" spacing="12" padding="18" topShadow vPadding="24" />
                     </ModalWindow>
-                </ModalBlocker>
+                </ModalBlocker>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

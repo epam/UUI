@@ -14,12 +14,12 @@ describe('MainMenuAvatar', () => {
                 <MainMenuAvatar
                     avatarUrl="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg"
                     isDropdown
-                    isOpen={false}
+                    isOpen={ false }
                     collapseToMore
-                    estimatedWidth={120}
+                    estimatedWidth={ 120 }
                     showInBurgerMenu
-                    priority={6}
-                />
+                    priority={ 6 }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

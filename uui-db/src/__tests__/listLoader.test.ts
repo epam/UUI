@@ -1,4 +1,6 @@
-import { emptyDb, TaskDb, Task, TaskDbTables } from './TaskDb';
+import {
+    emptyDb, TaskDb, Task, TaskDbTables,
+} from './TaskDb';
 import { DbRef } from '../DbRef';
 import { DbSaveResponse, DbPatch } from '../types';
 import { DataQuery, runDataQuery } from '@epam/uui-core';

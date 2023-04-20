@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Location } from '@epam/uui-docs';
-import { DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
-import { Text, LinkButton, DataTable, Panel } from '@epam/promo';
+import {
+    DataSourceState, DataColumnProps, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse,
+} from '@epam/uui-core';
+import {
+    Text, LinkButton, DataTable, Panel,
+} from '@epam/promo';
 import css from './TablesExamples.scss';
 
 export default function TreeTableExample() {
@@ -41,9 +45,9 @@ export default function TreeTableExample() {
                 render: (location) =>
                     location.lat && (
                         <LinkButton
-                            caption={`${location.lat}/${location.lon}`}
+                            caption={ `${location.lat}/${location.lon}` }
                             color="blue"
-                            href={`https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lon}`}
+                            href={ `https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lon}` }
                             target="_blank"
                         />
                     ),
@@ -59,14 +63,14 @@ export default function TreeTableExample() {
                 textAlign: 'right',
             },
         ],
-        []
+        [],
     );
 
     const locationsDS = useAsyncDataSource<Location, string, unknown>(
         {
             api: () => svc.api.demo.locations({}).then((r: LazyDataSourceApiResponse<Location>) => r.items),
         },
-        []
+        [],
     );
 
     useEffect(() => {
@@ -97,15 +101,15 @@ export default function TreeTableExample() {
     });
 
     return (
-        <Panel shadow cx={css.container} rawProps={{ role: 'tree_grid' }}>
+        <Panel shadow cx={ css.container } rawProps={ { role: 'tree_grid' } }>
             <DataTable
-                getRows={view.getVisibleRows}
-                {...view.getListProps()}
-                value={tableState}
-                onValueChange={(newVal) => setTableState(newVal)}
-                columns={locationColumns}
+                getRows={ view.getVisibleRows }
+                { ...view.getListProps() }
+                value={ tableState }
+                onValueChange={ (newVal) => setTableState(newVal) }
+                columns={ locationColumns }
                 headerTextCase="upper"
-                border={false}
+                border={ false }
             />
         </Panel>
     );

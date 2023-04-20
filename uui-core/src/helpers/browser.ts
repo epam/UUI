@@ -5,7 +5,7 @@ export enum Browser {
     Edge,
     Chrome,
     Safari,
-    Other,
+    Other
 }
 
 export function getBrowser() {

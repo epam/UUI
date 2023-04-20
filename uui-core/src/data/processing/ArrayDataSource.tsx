@@ -8,6 +8,7 @@ export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListView
 
 export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: ArrayDataSourceProps<TItem, TId, TFilter>;
+
     tree: ITree<TItem, TId>;
 
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
@@ -28,7 +29,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
                     getId: this.getId,
                     getParentId: props?.getParentId ?? this.defaultGetParentId,
                 },
-                this.props.items
+                this.props.items,
             );
         }
     }
@@ -48,7 +49,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     getView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>
+        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
     ): IDataSourceView<TItem, TId, TFilter> {
         const view = this.views.get(onValueChange) as ArrayListView<TItem, TId, TFilter>;
         const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
@@ -74,7 +75,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     useView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>
+        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
     ): IDataSourceView<TItem, TId, TFilter> {
         useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
 

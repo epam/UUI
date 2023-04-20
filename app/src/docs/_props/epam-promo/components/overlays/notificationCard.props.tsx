@@ -9,7 +9,7 @@ import { allEpamPrimaryColors } from '@epam/promo';
 const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'NotificationCard', component: NotificationCard })
     .implements([iconWithInfoDoc])
     .prop('color', {
-        renderEditor: (editable, examples) => <ColorPicker colors={examples.map((i) => ({ value: i, hex: colors[i] }))} {...editable} />,
+        renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
         examples: [...allEpamPrimaryColors, 'gray60'],
     })
     .prop('children', {

@@ -9,7 +9,13 @@ import { getFilterPredicate, getOrderComparer } from '@epam/uui-core';
 import { string } from 'prop-types';
 import { DbTable } from '..';
 
-[1e1, 1e2, 1e3, 1e4, 1e5].forEach((size) => {
+[
+    1e1,
+    1e2,
+    1e3,
+    1e4,
+    1e5,
+].forEach((size) => {
     const testPersons = range(0, size).map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor((Math.random() * size) / 10) }));
     const pairs = testPersons.map((p) => [p.id, p] as [number, Person]);
     const person = testPersons[0];
@@ -36,7 +42,7 @@ import { DbTable } from '..';
             return () =>
                 orderBy(
                     testPersons.filter((p) => p.departmentId == 5),
-                    'name'
+                    'name',
                 );
         }),
 
@@ -98,6 +104,6 @@ import { DbTable } from '..';
 
         b.cycle(),
         b.complete(),
-        b.save({ file: `query-${size}`, version: '1.0.0' })
+        b.save({ file: `query-${size}`, version: '1.0.0' }),
     );
 });

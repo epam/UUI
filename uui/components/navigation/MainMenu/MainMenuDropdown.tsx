@@ -8,29 +8,29 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
     render() {
         return (
             <Dropdown
-                renderTarget={(props) => (
-                    <MainMenuButton caption={this.props.caption} {...props} rawProps={this.props.rawProps} isLinkActive={this.props.isLinkActive} isDropdown />
-                )}
-                renderBody={(props) => {
+                renderTarget={ (props) => (
+                    <MainMenuButton caption={ this.props.caption } { ...props } rawProps={ this.props.rawProps } isLinkActive={ this.props.isLinkActive } isDropdown />
+                ) }
+                renderBody={ (props) => {
                     return (
-                        <div className={cx(css.dropdownBody)}>
+                        <div className={ cx(css.dropdownBody) }>
                             {this.props.renderBody
                                 ? this.props.renderBody({ ...props })
                                 : React.Children.map<React.ReactElement, React.ReactElement>(this.props.children as React.ReactElement[], (item) => {
-                                      if (!item) return item;
-                                      return React.createElement(item.type, {
-                                          ...item.props,
-                                          onClick: item.props.onClick
-                                              ? () => {
-                                                    item.props.onClick();
-                                                    props.onClose();
-                                                }
-                                              : null,
-                                      });
-                                  })}
+                                    if (!item) return item;
+                                    return React.createElement(item.type, {
+                                        ...item.props,
+                                        onClick: item.props.onClick
+                                            ? () => {
+                                                item.props.onClick();
+                                                props.onClose();
+                                            }
+                                            : null,
+                                    });
+                                })}
                         </div>
                     );
-                }}
+                } }
                 placement="bottom-start"
             />
         );

@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider } from '@epam/uui-components';
+import {
+    PositionValues, VirtualListRenderRowsParams, IconContainer, DataTableSelectionProvider,
+} from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
 import {
     ColumnsConfig,
@@ -17,7 +19,9 @@ import {
     DataTableRowProps,
     DataTableSelectedCellData,
 } from '@epam/uui-core';
-import { DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal, DataTableRowMods } from './';
+import {
+    DataTableHeaderRow, DataTableRow, DataTableMods, ColumnsConfigurationModal, DataTableRowMods,
+} from './';
 import { VirtualList } from '../';
 import { ReactComponent as EmptyTableIcon } from '../../icons/empty-table.svg';
 import { Text } from '../typography';
@@ -41,7 +45,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
     const renderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
-        return <DataTableRow key={rowProps.rowKey} size={props.size} borderBottom={props.border} {...rowProps} />;
+        return <DataTableRow key={ rowProps.rowKey } size={ props.size } borderBottom={ props.border } { ...rowProps } />;
     }, []);
 
     const rows = props.getRows();
@@ -49,13 +53,13 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
 
     const renderNoResultsBlock = React.useCallback(() => {
         return (
-            <div className={css.noResults}>
+            <div className={ css.noResults }>
                 {props.renderNoResultsBlock ? (
                     props.renderNoResultsBlock?.()
                 ) : (
                     <>
-                        <IconContainer cx={css.noResultsIcon} icon={EmptyTableIcon} />
-                        <Text cx={css.noResultsTitle} fontSize="24" lineHeight="30" color="primary" font="semibold">
+                        <IconContainer cx={ css.noResultsIcon } icon={ EmptyTableIcon } />
+                        <Text cx={ css.noResultsTitle } fontSize="24" lineHeight="30" color="primary" font="semibold">
                             {i18n.tables.noResultsBlock.title}
                         </Text>
                         <Text fontSize="16" lineHeight="24" font="regular" color="primary">
@@ -70,60 +74,74 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const onConfigurationButtonClick = React.useCallback(() => {
         uuiModals
             .show<ColumnsConfig>((modalProps) => (
-                <ColumnsConfigurationModal {...modalProps} columns={props.columns} columnsConfig={config} defaultConfig={defaultConfig} />
-            ))
+                <ColumnsConfigurationModal { ...modalProps } columns={ props.columns } columnsConfig={ config } defaultConfig={ defaultConfig } />
+        ))
             .then((columnsConfig) => props.onValueChange({ ...props.value, columnsConfig }))
             .catch(() => null);
-    }, [props.columns, config, defaultConfig, props.value, props.onValueChange]);
+    }, [
+        props.columns,
+        config,
+        defaultConfig,
+        props.value,
+        props.onValueChange,
+    ]);
 
     const renderRowsContainer = React.useCallback(
-        ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
+        ({
+            listContainerRef, estimatedHeight, offsetY, scrollShadows,
+        }: VirtualListRenderRowsParams) => (
             <>
-                <div className={css.stickyHeader}>
+                <div className={ css.stickyHeader }>
                     <DataTableHeaderRow
-                        columns={columns}
-                        onConfigButtonClick={props.showColumnsConfig && onConfigurationButtonClick}
-                        selectAll={props.selectAll}
-                        size={props.size}
-                        textCase={props.headerTextCase}
-                        allowColumnsReordering={props.allowColumnsReordering}
-                        allowColumnsResizing={props.allowColumnsResizing}
-                        value={props.value}
-                        onValueChange={props.onValueChange}
+                        columns={ columns }
+                        onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
+                        selectAll={ props.selectAll }
+                        size={ props.size }
+                        textCase={ props.headerTextCase }
+                        allowColumnsReordering={ props.allowColumnsReordering }
+                        allowColumnsResizing={ props.allowColumnsResizing }
+                        value={ props.value }
+                        onValueChange={ props.onValueChange }
                     />
                     <div
-                        className={cx(uuiScrollShadows.top, {
+                        className={ cx(uuiScrollShadows.top, {
                             [uuiScrollShadows.topVisible]: scrollShadows.verticalTop,
-                        })}
+                        }) }
                     />
                 </div>
                 {props.exactRowsCount !== 0 ? (
-                    <div className={css.listContainer} style={{ minHeight: `${estimatedHeight}px` }}>
-                        <div ref={listContainerRef} role="rowgroup" style={{ marginTop: offsetY }} children={renderedRows} />
+                    <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
+                        <div ref={ listContainerRef } role="rowgroup" style={ { marginTop: offsetY } } children={ renderedRows } />
                     </div>
                 ) : (
                     renderNoResultsBlock?.()
                 )}
             </>
         ),
-        [props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick]
+        [
+            props,
+            columns,
+            rows,
+            renderNoResultsBlock,
+            onConfigurationButtonClick,
+        ],
     );
 
     return (
-        <DataTableSelectionProvider onCopy={props.onCopy} rows={rows} columns={columns}>
+        <DataTableSelectionProvider onCopy={ props.onCopy } rows={ rows } columns={ columns }>
             <VirtualList
-                value={props.value}
-                onValueChange={props.onValueChange}
-                onScroll={props.onScroll}
-                rows={renderedRows}
-                rowsCount={props.rowsCount}
-                renderRows={renderRowsContainer}
-                cx={cx(css.table)}
-                rawProps={{
+                value={ props.value }
+                onValueChange={ props.onValueChange }
+                onScroll={ props.onScroll }
+                rows={ renderedRows }
+                rowsCount={ props.rowsCount }
+                renderRows={ renderRowsContainer }
+                cx={ cx(css.table) }
+                rawProps={ {
                     role: 'table',
                     'aria-colcount': columns.length,
                     'aria-rowcount': props.rowsCount,
-                }}
+                } }
             />
         </DataTableSelectionProvider>
     );

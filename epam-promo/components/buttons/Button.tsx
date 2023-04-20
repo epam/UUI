@@ -3,7 +3,12 @@ import { withMods } from '@epam/uui-core';
 import { FillStyle } from '../types';
 
 export type ButtonColor = 'blue' | 'green' | 'red' | 'gray50';
-export const allButtonColors: ButtonColor[] = ['blue', 'green', 'red', 'gray50'];
+export const allButtonColors: ButtonColor[] = [
+    'blue',
+    'green',
+    'red',
+    'gray50',
+];
 
 export interface ButtonMods {
     fill?: FillStyle;
@@ -24,5 +29,5 @@ export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(
     () => [],
     (props) => ({
         mode: mapFillToMod[props.fill] || mapFillToMod.solid,
-    })
+    }),
 );

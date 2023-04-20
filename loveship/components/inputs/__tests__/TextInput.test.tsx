@@ -8,7 +8,7 @@ describe('TextInput', () => {
     const onChange = jest.fn();
 
     it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(<TextInput value={value} onValueChange={onChange} />);
+        const tree = await renderSnapshotWithContextAsync(<TextInput value={ value } onValueChange={ onChange } />);
 
         expect(tree).toMatchSnapshot();
     });
@@ -16,16 +16,16 @@ describe('TextInput', () => {
     it('should be rendered correctly with extra props', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <TextInput
-                value={value}
-                onValueChange={onChange}
-                onAccept={jest.fn()}
-                onCancel={jest.fn()}
-                icon={AcceptIcon}
+                value={ value }
+                onValueChange={ onChange }
+                onAccept={ jest.fn() }
+                onCancel={ jest.fn() }
+                icon={ AcceptIcon }
                 iconPosition="right"
                 isDropdown
                 isOpen
                 size="60"
-            />
+            />,
         );
 
         expect(tree).toMatchSnapshot();

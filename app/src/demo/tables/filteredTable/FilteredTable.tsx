@@ -1,8 +1,14 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+    useCallback, useEffect, useMemo, useState,
+} from 'react';
 import css from './FilteredTable.scss';
-import { Button, DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text } from '@epam/promo';
+import {
+    Button, DataTable, FiltersPanel, FlexCell, FlexRow, PresetsPanel, Text,
+} from '@epam/promo';
 import { getFilters } from './filters';
-import { useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset, DataQueryFilter, DataTableState } from '@epam/uui-core';
+import {
+    useLazyDataSource, useUuiContext, UuiContexts, useTableState, LazyDataSourceApiRequest, ITablePreset, DataQueryFilter, DataTableState,
+} from '@epam/uui-core';
 import { FilteredTableFooter } from './FilteredTableFooter';
 import { Person } from '@epam/uui-docs';
 import { personColumns } from './columns';
@@ -59,7 +65,7 @@ export const FilteredTable: React.FC = () => {
             api: api,
             selectAll: false,
         },
-        []
+        [],
     );
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
@@ -70,36 +76,38 @@ export const FilteredTable: React.FC = () => {
 
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({ ...tableStateApi.tableState, search: val });
 
-    const { setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi } = tableStateApi;
+    const {
+        setTableState, setFilter, setColumnsConfig, setFiltersConfig, ...presetsApi
+    } = tableStateApi;
 
     return (
-        <div className={css.container}>
-            <div className={css.presetsPanel}>
-                <Text fontSize="24" lineHeight="30" font="museo-sans" cx={css.presetsTitle}>
+        <div className={ css.container }>
+            <div className={ css.presetsPanel }>
+                <Text fontSize="24" lineHeight="30" font="museo-sans" cx={ css.presetsTitle }>
                     Users Dashboard
                 </Text>
-                <PresetsPanel {...presetsApi} />
+                <PresetsPanel { ...presetsApi } />
             </div>
-            <FlexRow cx={css.filterPanelWrapper} background="white" borderBottom={true}>
-                <FlexRow cx={css.filterPanel}>
-                    <FiltersPanel filters={filters} tableState={tableStateApi.tableState} setTableState={tableStateApi.setTableState} />
+            <FlexRow cx={ css.filterPanelWrapper } background="white" borderBottom={ true }>
+                <FlexRow cx={ css.filterPanel }>
+                    <FiltersPanel filters={ filters } tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } />
                 </FlexRow>
-                <FlexCell cx={css.search} width={295}>
-                    <SearchInput value={tableStateApi.tableState.search} onValueChange={searchHandler} placeholder="Search" debounceDelay={1000} />
+                <FlexCell cx={ css.search } width={ 295 }>
+                    <SearchInput value={ tableStateApi.tableState.search } onValueChange={ searchHandler } placeholder="Search" debounceDelay={ 1000 } />
                 </FlexCell>
             </FlexRow>
             <DataTable
-                headerTextCase={'upper' as 'upper' | 'normal'}
-                getRows={view.getVisibleRows}
-                columns={personColumns}
-                value={tableStateApi.tableState}
-                onValueChange={tableStateApi.setTableState}
-                showColumnsConfig={true}
-                allowColumnsResizing={true}
-                allowColumnsReordering={true}
-                {...view.getListProps()}
+                headerTextCase={ 'upper' as 'upper' | 'normal' }
+                getRows={ view.getVisibleRows }
+                columns={ personColumns }
+                value={ tableStateApi.tableState }
+                onValueChange={ tableStateApi.setTableState }
+                showColumnsConfig={ true }
+                allowColumnsResizing={ true }
+                allowColumnsReordering={ true }
+                { ...view.getListProps() }
             />
-            <FilteredTableFooter tableState={tableStateApi.tableState} setTableState={tableStateApi.setTableState} totalCount={totalCount} />
+            <FilteredTableFooter tableState={ tableStateApi.tableState } setTableState={ tableStateApi.setTableState } totalCount={ totalCount } />
         </div>
     );
 };

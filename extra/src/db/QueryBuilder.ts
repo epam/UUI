@@ -21,7 +21,7 @@ export class QueryBuilder<T = any> implements IQueryable<T> {
         /* Broken implementation. person.find({ isDeleted: false }).byId('123') will return person with ID = 123, even if it is deleted.
         At the other hand, this method should be very fast, and it's hard to make it fast with current API design.
         */
-        let key = this.db.schema.entitySchemas[this.query.entityName].argsToKey(id);
+        const key = this.db.schema.entitySchemas[this.query.entityName].argsToKey(id);
         return this.db.entities[this.query.entityName].byKey.get(key);
     }
 

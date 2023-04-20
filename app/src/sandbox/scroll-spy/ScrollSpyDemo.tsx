@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { FlexRow, FlexSpacer, Panel, ScrollBars, TabButton, Text } from '@epam/promo';
+import {
+    FlexRow, FlexSpacer, Panel, ScrollBars, TabButton, Text,
+} from '@epam/promo';
 import { ScrollSpyForm } from './ScrollSpyForm';
 import { ScrollSpyModal } from './ScrollSpyModal';
 import { ScrollSpyAnchor } from './ScrollSpyAnchor';
@@ -8,7 +10,7 @@ import css from './ScrollSpyDemo.scss';
 enum Pages {
     Form = 'Form',
     Modal = 'Modal',
-    Anchor = 'Anchor',
+    Anchor = 'Anchor'
 }
 
 export function ScrollSpyDemo() {
@@ -26,7 +28,7 @@ export function ScrollSpyDemo() {
     };
 
     return (
-        <Panel cx={css.panel} background="white" margin="24">
+        <Panel cx={ css.panel } background="white" margin="24">
             <FlexRow size="48" padding="24">
                 <Text size="48" font="sans-semibold">
                     Scroll Spy
@@ -34,9 +36,9 @@ export function ScrollSpyDemo() {
                 <FlexSpacer />
             </FlexRow>
             <FlexRow padding="24" borderBottom background="none">
-                <TabButton caption={Pages.Form} isLinkActive={page === Pages.Form} onClick={page !== Pages.Form ? () => setPage(Pages.Form) : null} size="60" />
-                <TabButton caption={Pages.Modal} isLinkActive={page === Pages.Modal} onClick={page !== Pages.Modal ? () => setPage(Pages.Modal) : null} size="60" />
-                <TabButton caption={Pages.Anchor} isLinkActive={page === Pages.Anchor} onClick={page !== Pages.Anchor ? () => setPage(Pages.Anchor) : null} size="60" />
+                <TabButton caption={ Pages.Form } isLinkActive={ page === Pages.Form } onClick={ page !== Pages.Form ? () => setPage(Pages.Form) : null } size="60" />
+                <TabButton caption={ Pages.Modal } isLinkActive={ page === Pages.Modal } onClick={ page !== Pages.Modal ? () => setPage(Pages.Modal) : null } size="60" />
+                <TabButton caption={ Pages.Anchor } isLinkActive={ page === Pages.Anchor } onClick={ page !== Pages.Anchor ? () => setPage(Pages.Anchor) : null } size="60" />
             </FlexRow>
             <ScrollBars>{getScrollSpyDemoPage()}</ScrollBars>
         </Panel>

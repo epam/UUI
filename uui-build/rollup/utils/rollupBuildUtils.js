@@ -83,7 +83,9 @@ async function watchUsingRollup(params) {
  * @returns {Promise<import('rollup').RollupOptions[]>}
  */
 async function getConfigEffective(params) {
-    const { moduleRootDir, external, isWatch, packageJsonTransform, copyAsIs } = params;
+    const {
+        moduleRootDir, external, isWatch, packageJsonTransform, copyAsIs,
+    } = params;
     const indexFileRelativePath = await getIndexFileRelativePath(moduleRootDir);
     return await createRollupConfigForModule({
         moduleRootDir,

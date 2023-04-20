@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
-import { Dropdown, DropdownMenuButton, FlexRow, LinkButton, Panel, Text } from '@epam/promo';
+import {
+    Dropdown, DropdownMenuButton, FlexRow, LinkButton, Panel, Text,
+} from '@epam/promo';
 
 const dropdownMenuItems = [
     { id: 1, caption: 'Relevance' },
@@ -19,12 +21,12 @@ export default function SortingLinkButtonExample() {
             <Panel background="white" shadow>
                 {dropdownMenuItems.map((item) => (
                     <DropdownMenuButton
-                        key={item.id}
-                        caption={item.caption}
-                        onClick={() => {
+                        key={ item.id }
+                        caption={ item.caption }
+                        onClick={ () => {
                             handleDropdown(item.id);
                             props.onClose();
-                        }}
+                        } }
                     />
                 ))}
             </Panel>
@@ -32,9 +34,9 @@ export default function SortingLinkButtonExample() {
     };
 
     return (
-        <FlexRow columnGap={3}>
+        <FlexRow columnGap={ 3 }>
             <Text>Sort by</Text>
-            <Dropdown renderBody={renderDropdownBody} renderTarget={(props: IDropdownToggler) => <LinkButton caption={selectedItem.caption} {...props} />} />
+            <Dropdown renderBody={ renderDropdownBody } renderTarget={ (props: IDropdownToggler) => <LinkButton caption={ selectedItem.caption } { ...props } /> } />
         </FlexRow>
     );
 }

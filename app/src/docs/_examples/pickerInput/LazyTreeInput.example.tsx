@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { DataPickerRow, FlexCell, PickerInput, PickerItem } from '@epam/promo';
-import { DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import {
+    DataPickerRow, FlexCell, PickerInput, PickerItem,
+} from '@epam/promo';
+import {
+    DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext,
+} from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 export default function LazyTreePicker() {
@@ -21,7 +25,7 @@ export default function LazyTreePicker() {
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
         },
-        []
+        [],
     );
 
     const getSubtitle = ({ path }: DataRowProps<Location, string>, { search }: DataSourceState) => {
@@ -34,23 +38,23 @@ export default function LazyTreePicker() {
     };
 
     return (
-        <FlexCell width={300}>
+        <FlexCell width={ 300 }>
             <PickerInput
-                dataSource={dataSource}
-                value={value}
-                onValueChange={onValueChange}
+                dataSource={ dataSource }
+                value={ value }
+                onValueChange={ onValueChange }
                 entityName="location"
                 selectionMode="multi"
                 valueType="id"
-                cascadeSelection={'explicit'}
-                renderRow={(props: DataRowProps<Location, string>, dataSourceState) => (
+                cascadeSelection="explicit"
+                renderRow={ (props: DataRowProps<Location, string>, dataSourceState) => (
                     <DataPickerRow
-                        {...props}
-                        key={props.rowKey}
+                        { ...props }
+                        key={ props.rowKey }
                         padding="12"
-                        renderItem={(item) => <PickerItem {...props} title={item.name} subtitle={getSubtitle(props, dataSourceState)} />}
+                        renderItem={ (item) => <PickerItem { ...props } title={ item.name } subtitle={ getSubtitle(props, dataSourceState) } /> }
                     />
-                )}
+                ) }
             />
         </FlexCell>
     );

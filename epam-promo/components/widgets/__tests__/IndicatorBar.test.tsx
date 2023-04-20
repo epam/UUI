@@ -9,7 +9,7 @@ describe('IndicatorBar', () => {
     });
 
     it('should be rendered correctly with props', () => {
-        const tree = renderer.create(<IndicatorBar progress={20} />).toJSON();
+        const tree = renderer.create(<IndicatorBar progress={ 20 } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

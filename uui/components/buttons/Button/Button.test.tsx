@@ -17,16 +17,16 @@ describe('Button', () => {
                     color="accent"
                     mode="outline"
                     caption="Click me"
-                    onClick={jest.fn}
-                    icon={CalendarIcon}
-                    isDisabled={false}
-                    isDropdown={true}
-                    count={10}
+                    onClick={ jest.fn }
+                    icon={ CalendarIcon }
+                    isDisabled={ false }
+                    isDropdown={ true }
+                    count={ 10 }
                     iconPosition="right"
-                    onClear={jest.fn}
+                    onClear={ jest.fn }
                     isOpen
-                    clearIcon={ClearIcon}
-                />
+                    clearIcon={ ClearIcon }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

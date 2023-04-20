@@ -22,27 +22,27 @@ export class TabButtonContext extends React.Component<DemoComponentProps<ButtonP
     render() {
         const { DemoComponent, props } = this.props;
         return (
-            <Panel margin="24" style={{ padding: '6px' }}>
+            <Panel margin="24" style={ { padding: '6px' } }>
                 <FlexRow borderBottom size="36">
-                    <DemoComponent caption={'Main'} onClick={() => this.setTab('Main', props.onClick)} size={props.size} isLinkActive={this.state.activeTab === 'Main'} />
+                    <DemoComponent caption="Main" onClick={ () => this.setTab('Main', props.onClick) } size={ props.size } isLinkActive={ this.state.activeTab === 'Main' } />
                     <DemoComponent
-                        {...props}
-                        caption={props.caption}
-                        onClick={() => this.setTab('demoTab', props.onClick)}
-                        size={props.size}
-                        isLinkActive={this.state.activeTab === 'demoTab'}
+                        { ...props }
+                        caption={ props.caption }
+                        onClick={ () => this.setTab('demoTab', props.onClick) }
+                        size={ props.size }
+                        isLinkActive={ this.state.activeTab === 'demoTab' }
                     />
                     <DemoComponent
-                        caption={'Tools'}
-                        onClick={() => this.setTab('Tools', props.onClick)}
-                        size={props.size}
-                        isLinkActive={this.state.activeTab === 'Tools'}
+                        caption="Tools"
+                        onClick={ () => this.setTab('Tools', props.onClick) }
+                        size={ props.size }
+                        isLinkActive={ this.state.activeTab === 'Tools' }
                     />
                     <DemoComponent
-                        caption={'Options'}
-                        onClick={() => this.setTab('Options', props.onClick)}
-                        size={props.size}
-                        isLinkActive={this.state.activeTab === 'Options'}
+                        caption="Options"
+                        onClick={ () => this.setTab('Options', props.onClick) }
+                        size={ props.size }
+                        isLinkActive={ this.state.activeTab === 'Options' }
                     />
                 </FlexRow>
             </Panel>

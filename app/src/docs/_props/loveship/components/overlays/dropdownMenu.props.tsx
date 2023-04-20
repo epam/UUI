@@ -2,7 +2,9 @@ import React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownProps } from '@epam/uui-core';
-import { DropdownMenuItemMods, DropdownMenuButton, MainMenuButton, DropdownMenuSplitter, DropdownMenuBody, DropdownMenuHeader } from '@epam/loveship';
+import {
+    DropdownMenuItemMods, DropdownMenuButton, MainMenuButton, DropdownMenuSplitter, DropdownMenuBody, DropdownMenuHeader,
+} from '@epam/loveship';
 import { DefaultContext, MainMenuContext } from '../../docs';
 
 const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ name: 'DropdownMenu', component: Dropdown })
@@ -27,7 +29,7 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ n
     .prop('renderTarget', {
         examples: [
             {
-                value: (props) => <MainMenuButton caption="Toggler" {...props} />,
+                value: (props) => <MainMenuButton caption="Toggler" { ...props } />,
                 isDefault: true,
             },
         ],

@@ -20,7 +20,7 @@ describe('MainMenu', () => {
         const tree = await renderSnapshotWithContextAsync(
             <MainMenu>
                 <MainMenuButton />
-            </MainMenu>
+            </MainMenu>,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -28,16 +28,16 @@ describe('MainMenu', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <MainMenu
-                renderBurger={() => <BurgerButton />}
-                logoLink={{ pathname: '/' }}
+                renderBurger={ () => <BurgerButton /> }
+                logoLink={ { pathname: '/' } }
                 appLogoUrl=""
-                logoWidth={120}
+                logoWidth={ 120 }
                 isTransparent
                 serverBadge="Dev"
                 tooltipTechInfo="Tech Info"
             >
                 <MainMenuButton />
-            </MainMenu>
+            </MainMenu>,
         );
 
         expect(tree).toMatchSnapshot();

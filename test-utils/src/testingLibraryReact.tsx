@@ -1,4 +1,6 @@
-import { render, queries, within, screen } from '@testing-library/react';
+import {
+    render, queries, within, screen,
+} from '@testing-library/react';
 import customQueries from './customQueries';
 
 // re-export some useful stuff for convenience

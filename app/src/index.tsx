@@ -2,7 +2,9 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui-core';
+import {
+    ApiCallOptions, ContextProvider, CommonContexts, UuiContexts,
+} from '@epam/uui-core';
 import { Snackbar, Modals } from '@epam/uui-components';
 import { skinContext as promoSkinContext } from '@epam/promo';
 import { AmplitudeListener } from './analyticsEvents';
@@ -28,16 +30,14 @@ export class UuiEnhancedApp extends React.Component {
 
         return (
             <ContextProvider<TApi, UuiContexts>
-                apiDefinition={(processRequest) =>
+                apiDefinition={ (processRequest) =>
                     getApi((url: string, method: string, data?: any, options?: ApiCallOptions) =>
-                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options })
-                    )
-                }
-                onInitCompleted={(context) => this.onInitCompleted(context, ampCode)}
-                history={history}
+                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options })) }
+                onInitCompleted={ (context) => this.onInitCompleted(context, ampCode) }
+                history={ history }
                 gaCode="UA-132675234-1"
-                skinContext={promoSkinContext}
-                enableLegacyContext={false}
+                skinContext={ promoSkinContext }
+                enableLegacyContext={ false }
             >
                 <App />
                 <Snackbar />
@@ -49,9 +49,9 @@ export class UuiEnhancedApp extends React.Component {
 
 render(
     <React.StrictMode>
-        <Router history={history}>
+        <Router history={ history }>
             <UuiEnhancedApp />
         </Router>
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById('root'),
 );

@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { IHasCX, IEditable, IDisableable, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import {
+    IHasCX, IEditable, IDisableable, IHasRawProps, IHasForwardedRef,
+} from '@epam/uui-core';
 
 export interface SliderBaseProps<TSelection>
     extends IHasCX,
-        IEditable<TSelection>,
-        IDisableable,
-        IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
-        IHasForwardedRef<HTMLDivElement> {
+    IEditable<TSelection>,
+    IDisableable,
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
+    IHasForwardedRef<HTMLDivElement> {
     /** Min value (when slider is at leftmost position) */
     min: number;
     /** Max value (when slider is at rightmost position) */
@@ -55,7 +57,7 @@ export abstract class SliderBase<TSelection, TState extends SliderBaseState> ext
     }
 
     roundToStep(value: number, step: number) {
-        let normalized = this.props.min + Math.round(Math.abs((value - this.props.min) / step)) * step;
+        const normalized = this.props.min + Math.round(Math.abs((value - this.props.min) / step)) * step;
         return normalized > this.props.max ? this.props.max : normalized;
     }
 

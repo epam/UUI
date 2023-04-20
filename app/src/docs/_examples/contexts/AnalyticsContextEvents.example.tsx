@@ -12,7 +12,7 @@ export default function AnalyticsContextEvents() {
             category: 'docs',
             label: 'static_event',
         }),
-        []
+        [],
     );
 
     const getValueChangeAnalyticsEvent = useCallback(
@@ -23,7 +23,7 @@ export default function AnalyticsContextEvents() {
             newValue,
             oldValue,
         }),
-        []
+        [],
     );
 
     const sendEventDirectly = useCallback(() => {
@@ -36,11 +36,11 @@ export default function AnalyticsContextEvents() {
 
     return (
         <div>
-            <Button clickAnalyticsEvent={clickAnalyticsEvent} />
+            <Button clickAnalyticsEvent={ clickAnalyticsEvent } />
 
-            <Switch value={switchValue} onValueChange={setSwitchValue} getValueChangeAnalyticsEvent={getValueChangeAnalyticsEvent} />
+            <Switch value={ switchValue } onValueChange={ setSwitchValue } getValueChangeAnalyticsEvent={ getValueChangeAnalyticsEvent } />
 
-            <Button onClick={sendEventDirectly} />
+            <Button onClick={ sendEventDirectly } />
         </div>
     );
 }

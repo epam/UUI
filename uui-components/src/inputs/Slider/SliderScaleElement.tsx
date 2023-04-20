@@ -18,6 +18,7 @@ interface SliderScaleElementState {
 
 export class SliderScaleElement extends React.Component<SliderScaleElementProps, SliderScaleElementState> {
     scaleNumber: HTMLElement | null;
+
     scaleDot: HTMLElement | null;
 
     componentDidMount() {
@@ -38,19 +39,19 @@ export class SliderScaleElement extends React.Component<SliderScaleElementProps,
 
     render() {
         const dotOffset = this.props.offset + this.props.sliderMargin - (this.scaleDot ? this.state.scaleDotWidth / 2 : 0);
-        let numberOffset = this.calculateLabelPosition();
+        const numberOffset = this.calculateLabelPosition();
 
         return (
             <>
                 <div
-                    className={cx(uuiSlider.scaleDot, this.props.isFilledDot && uuiSlider.scaleFilledDot)}
-                    ref={(scaleDotRef) => (this.scaleDot = scaleDotRef)}
-                    style={{ transform: `translateX(${dotOffset}px)` }}
+                    className={ cx(uuiSlider.scaleDot, this.props.isFilledDot && uuiSlider.scaleFilledDot) }
+                    ref={ (scaleDotRef) => (this.scaleDot = scaleDotRef) }
+                    style={ { transform: `translateX(${dotOffset}px)` } }
                 />
                 <div
-                    className={uuiSlider.scaleNumber}
-                    ref={(scaleNumberRef) => (this.scaleNumber = scaleNumberRef)}
-                    style={{ transform: `translateX(${numberOffset}px)` }}
+                    className={ uuiSlider.scaleNumber }
+                    ref={ (scaleNumberRef) => (this.scaleNumber = scaleNumberRef) }
+                    style={ { transform: `translateX(${numberOffset}px)` } }
                 >
                     {this.props.label}
                 </div>

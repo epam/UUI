@@ -9,12 +9,16 @@ export interface SchedulerTask {
 
 export class Scheduler {
     scheduled: SchedulerTask[] = [];
+
     running: SchedulerTask[] = [];
+
     complete: SchedulerTask[] = [];
 
     public run(run: () => Promise<any>, isConcurrent = false) {
         return new Promise((resolve, reject) => {
-            this.scheduled.push({ run, isConcurrent, resolve, reject });
+            this.scheduled.push({
+                run, isConcurrent, resolve, reject,
+            });
             this.scheduleRun();
         });
     }

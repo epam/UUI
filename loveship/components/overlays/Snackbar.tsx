@@ -5,6 +5,7 @@ import { ClearNotification } from '@epam/uui';
 
 export class Snackbar extends React.Component<SnackbarProps> {
     public static contextType = UuiContext;
+
     public context: UuiContexts;
 
     public componentDidMount() {
@@ -24,6 +25,6 @@ export class Snackbar extends React.Component<SnackbarProps> {
             items = [clearOperation].concat(items);
         }
 
-        return <UuiSnackbar forwardedRef={this.props.forwardedRef} notifications={items} />;
+        return <UuiSnackbar forwardedRef={ this.props.forwardedRef } notifications={ items } />;
     }
 }

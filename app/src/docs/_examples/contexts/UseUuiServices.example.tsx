@@ -18,7 +18,7 @@ export default function UuiEnhancedApp() {
     });
 
     return (
-        <UuiContext.Provider value={services}>
+        <UuiContext.Provider value={ services }>
             <ErrorHandler>Your App component</ErrorHandler>
             <Snackbar />
             <Modals />

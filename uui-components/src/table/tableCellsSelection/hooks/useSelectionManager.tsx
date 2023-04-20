@@ -1,14 +1,23 @@
 import { useCallback, useMemo, useState } from 'react';
 import { DataTableSelectedCellData } from '@epam/uui-core';
-import type { SelectionManager, SelectionManagerProps, DataTableSelectionRange, CopyOptions } from '../types';
-import { getCell, getCellPosition, getStartCell, getNormalizedLimits } from './helpers';
+import type {
+    SelectionManager, SelectionManagerProps, DataTableSelectionRange, CopyOptions,
+} from '../types';
+import {
+    getCell, getCellPosition, getStartCell, getNormalizedLimits,
+} from './helpers';
 
 export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: SelectionManagerProps<TItem, TId>): SelectionManager<TItem> => {
     const [selectionRange, setSelectionRange] = useState<DataTableSelectionRange>(null);
 
     const startCell = useMemo(
         () => getStartCell<TItem, TId, TFilter>(selectionRange, rows, columns),
-        [selectionRange?.startColumnIndex, selectionRange?.startRowIndex, rows, columns]
+        [
+            selectionRange?.startColumnIndex,
+            selectionRange?.startRowIndex,
+            rows,
+            columns,
+        ],
     );
 
     const canBeSelected = useCallback(
@@ -19,7 +28,11 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
 
             return !!cell.column.canAcceptCopy?.(startCell, cell);
         },
-        [startCell, columns, rows]
+        [
+            startCell,
+            columns,
+            rows,
+        ],
     );
 
     const shouldSelectCell = useCallback(
@@ -29,13 +42,15 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
             }
             return canBeSelected(rowIndex, columnIndex, { copyTo: true });
         },
-        [canBeSelected, selectionRange]
+        [canBeSelected, selectionRange],
     );
 
     const getSelectedCells = useCallback((): DataTableSelectedCellData<TItem>[] => {
         if (!selectionRange) return [];
 
-        const { startRowIndex, startColumnIndex, endRowIndex, endColumnIndex } = selectionRange;
+        const {
+            startRowIndex, startColumnIndex, endRowIndex, endColumnIndex,
+        } = selectionRange;
         const [startRow, endRow] = getNormalizedLimits(startRowIndex, endRowIndex);
         const [startColumn, endColumn] = getNormalizedLimits(startColumnIndex, endColumnIndex);
 
@@ -50,12 +65,19 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         }
 
         return selectedCells;
-    }, [selectionRange, columns, shouldSelectCell, rows]);
+    }, [
+        selectionRange,
+        columns,
+        shouldSelectCell,
+        rows,
+    ]);
 
     const getCellSelectionInfo = useCallback(
         (rowIndex: number, columnIndex: number) => {
             const { isCopying } = selectionRange || {};
-            const { isTop, isBottom, isLeft, isRight, isSelected, isStartCell } = getCellPosition(rowIndex, columnIndex, selectionRange);
+            const {
+                isTop, isBottom, isLeft, isRight, isSelected, isStartCell,
+            } = getCellPosition(rowIndex, columnIndex, selectionRange);
             const canCopyFrom = canBeSelected?.(rowIndex, columnIndex, { copyFrom: true });
             const canAcceptCopy = canBeSelected?.(rowIndex, columnIndex, { copyTo: true });
 
@@ -84,8 +106,10 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
                 showLeftBorder,
             };
         },
-        [selectionRange, canBeSelected]
+        [selectionRange, canBeSelected],
     );
 
-    return { selectionRange, setSelectionRange, getSelectedCells, startCell, getCellSelectionInfo };
+    return {
+        selectionRange, setSelectionRange, getSelectedCells, startCell, getCellSelectionInfo,
+    };
 };

@@ -14,7 +14,11 @@ export interface CheckboxMods {
 export type CheckboxProps = CheckboxMods & UuiCheckboxProps;
 
 export function applyCheckboxMods(mods: CheckboxProps) {
-    return [css.root, css['size-' + (mods.size || '18')], css['mode-' + (mods.mode || 'form')]];
+    return [
+        css.root,
+        css['size-' + (mods.size || '18')],
+        css['mode-' + (mods.mode || 'form')],
+    ];
 }
 
 const applyUUICheckboxProps = (props: UuiCheckboxProps & CheckboxMods) => ({

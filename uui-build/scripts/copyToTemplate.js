@@ -11,8 +11,8 @@ const modules = {
 const outDir = '../ui-template/node_modules/@epam';
 
 Object.keys(modules).forEach((srcName) => {
-    var srcDir = path.join(srcName, 'build');
-    var dstDir = path.join(outDir, modules[srcName]);
+    const srcDir = path.join(srcName, 'build');
+    const dstDir = path.join(outDir, modules[srcName]);
     fs.removeSync(dstDir);
     fs.copySync(srcDir, dstDir);
 });

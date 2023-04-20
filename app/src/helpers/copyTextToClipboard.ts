@@ -5,6 +5,6 @@ export function copyTextToClipboard(text: string, cb: any) {
         },
         function (err) {
             console.error('Async: Could not copy text: ', err);
-        }
+        },
     );
 }

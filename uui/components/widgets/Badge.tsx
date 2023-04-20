@@ -9,12 +9,12 @@ import css from './Badge.scss';
 const defaultSize = '36';
 
 const mapSize = {
-    '48': '48',
-    '42': '48',
-    '36': '36',
-    '30': '30',
-    '24': '30',
-    '18': '18',
+    48: '48',
+    42: '48',
+    36: '36',
+    30: '30',
+    24: '30',
+    18: '18',
 };
 export type BadgeColor = EpamBadgeSemanticColor;
 export type BadgeFill = 'solid' | 'semitransparent' | 'transparent';
@@ -29,7 +29,13 @@ export interface BadgeMods {
 export type BadgeProps = ButtonProps & BadgeMods;
 
 export function applyBadgeMods(mods: BadgeMods) {
-    return [css.root, buttonCss.root, css['size-' + (mods.size || defaultSize)], css['fill-' + (mods.fill || 'solid')], mods.color && `badge-${mods.color}`];
+    return [
+        css.root,
+        buttonCss.root,
+        css['size-' + (mods.size || defaultSize)],
+        css['fill-' + (mods.fill || 'solid')],
+        mods.color && `badge-${mods.color}`,
+    ];
 }
 
 export const Badge = withMods<ButtonProps, BadgeMods>(Button, applyBadgeMods, (props) => ({

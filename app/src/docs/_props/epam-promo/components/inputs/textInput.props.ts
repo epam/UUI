@@ -16,10 +16,38 @@ import {
     ResizableContext,
     TableContext,
 } from '../../docs';
+
 const TextInputDoc = new DocBuilder<TextInputProps>({ name: 'TextInput', component: TextInput })
-    .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
-    .implements([onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, IHasEditModeDoc])
-    .prop('maxLength', { examples: [10, 20, 30], type: 'number' })
+    .prop('size', {
+        examples: [
+            '24',
+            '30',
+            '36',
+            '42',
+            '48',
+        ],
+        defaultValue: '36',
+    })
+    .implements([
+        onClickDoc,
+        isDisabledDoc,
+        isReadonlyDoc,
+        isInvalidDoc,
+        iconDoc,
+        iconOptionsDoc,
+        iEditable,
+        iHasPlaceholder,
+        dropdownTogglerDoc,
+        IHasEditModeDoc,
+    ])
+    .prop('maxLength', {
+        examples: [
+            10,
+            20,
+            30,
+        ],
+        type: 'number',
+    })
     .prop('suffix', { examples: [{ value: 'Suffix' }], type: 'string' })
     .prop('prefix', { examples: [{ value: 'Prefix: ' }], type: 'string' })
     .prop('value', {

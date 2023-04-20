@@ -1,6 +1,8 @@
 import React from 'react';
 import { NumericInput, NumericInputProps } from '../NumericInput';
-import { renderSnapshotWithContextAsync, setupComponentForTest, screen, fireEvent } from '@epam/test-utils';
+import {
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, fireEvent,
+} from '@epam/test-utils';
 import { i18n } from '@epam/uui-core';
 
 async function setupNumericInput(params: Partial<NumericInputProps>) {
@@ -20,7 +22,7 @@ async function setupNumericInput(params: Partial<NumericInputProps>) {
                 onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
             };
         },
-        (props) => <NumericInput {...props} />
+        (props) => <NumericInput { ...props } />,
     );
 
     const dom = {
@@ -33,12 +35,12 @@ async function setupNumericInput(params: Partial<NumericInputProps>) {
 describe('NumericInput', () => {
     describe('snapshots', () => {
         it('should be rendered with minimum props', async () => {
-            const tree = await renderSnapshotWithContextAsync(<NumericInput value={null} onValueChange={jest.fn} min={0} max={50} />);
+            const tree = await renderSnapshotWithContextAsync(<NumericInput value={ null } onValueChange={ jest.fn } min={ 0 } max={ 50 } />);
             expect(tree).toMatchSnapshot();
         });
 
         it('should be rendered with maximum props', async () => {
-            const tree = await renderSnapshotWithContextAsync(<NumericInput value={null} onValueChange={jest.fn} min={0} max={50} size="36" mode="inline" />);
+            const tree = await renderSnapshotWithContextAsync(<NumericInput value={ null } onValueChange={ jest.fn } min={ 0 } max={ 50 } size="36" mode="inline" />);
             expect(tree).toMatchSnapshot();
         });
     });

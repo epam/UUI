@@ -16,7 +16,15 @@ import {
 } from '../../docs';
 
 const TextareaDoc = new DocBuilder<TextAreaProps>({ name: 'TextArea', component: TextArea })
-    .implements([iEditable, sizeDoc, iHasPlaceholder, isDisabledDoc, isReadonlyDoc, isInvalidDoc, IHasEditModeDoc])
+    .implements([
+        iEditable,
+        sizeDoc,
+        iHasPlaceholder,
+        isDisabledDoc,
+        isReadonlyDoc,
+        isInvalidDoc,
+        IHasEditModeDoc,
+    ])
     .prop('value', {
         examples: [
             'Hello, World!',
@@ -25,8 +33,21 @@ const TextareaDoc = new DocBuilder<TextAreaProps>({ name: 'TextArea', component:
         ],
         type: 'string',
     })
-    .prop('rows', { examples: [1, 10, 20, 30] })
-    .prop('maxLength', { examples: [30, 50, 120] })
+    .prop('rows', {
+        examples: [
+            1,
+            10,
+            20,
+            30,
+        ],
+    })
+    .prop('maxLength', {
+        examples: [
+            30,
+            50,
+            120,
+        ],
+    })
     .prop('autoSize', { examples: [true, false], defaultValue: false })
     .withContexts(DefaultContext, FormContext, TableContext, ResizableContext);
 

@@ -1,10 +1,12 @@
 import React from 'react';
-import { FlexRow, Badge, Panel, Text } from '@epam/promo';
+import {
+    FlexRow, Badge, Panel, Text,
+} from '@epam/promo';
 
 export default function ColorsExample() {
     return (
         <>
-            <Panel style={{ rowGap: '18px', marginRight: '42px' }}>
+            <Panel style={ { rowGap: '18px', marginRight: '42px' } }>
                 <Text fontSize="14">Semantic colors, use for appropriate sense</Text>
                 <FlexRow spacing="12">
                     <Badge color="blue" fill="solid" caption="Info" />
@@ -14,7 +16,7 @@ export default function ColorsExample() {
                     <Badge color="amber" fill="solid" caption="Warning" />
                 </FlexRow>
             </Panel>
-            <Panel style={{ rowGap: '18px' }}>
+            <Panel style={ { rowGap: '18px' } }>
                 <Text fontSize="14">Additional colors, use for extra cases, when semantic does not enough</Text>
                 <FlexRow spacing="12">
                     <Badge color="orange" fill="solid" caption="Orange" />

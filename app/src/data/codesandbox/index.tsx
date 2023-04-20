@@ -19,16 +19,15 @@ const history = createBrowserHistory();
 
 render(
     <ContextProvider<TApi, UuiContexts>
-        apiDefinition={(processRequest) =>
+        apiDefinition={ (processRequest) =>
             getApi(
                 (url: string, method: string, data?: any, options?: ApiCallOptions) =>
                     processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options }),
-                origin
-            )
-        }
-        onInitCompleted={(context) => Object.assign(svc, context)}
-        skinContext={promoSkinContext}
-        history={history}
+                origin,
+            ) }
+        onInitCompleted={ (context) => Object.assign(svc, context) }
+        skinContext={ promoSkinContext }
+        history={ history }
     >
         <ErrorHandler>
             <FlexRow vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
@@ -38,5 +37,5 @@ render(
             <Modals />
         </ErrorHandler>
     </ContextProvider>,
-    rootElement
+    rootElement,
 );

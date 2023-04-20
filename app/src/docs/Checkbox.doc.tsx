@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI } from '../common';
+import {
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4, UUI,
+} from '../common';
 
 export class CheckboxDoc extends BaseDocsBlock {
     title = 'Checkbox';

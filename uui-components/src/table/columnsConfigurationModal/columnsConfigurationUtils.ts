@@ -1,5 +1,9 @@
-import { AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, IColumnConfig } from '@epam/uui-core';
-import { ColumnsConfigurationRowProps, DndDataType, GroupedColumnsType, GroupedDataColumnProps } from './types';
+import {
+    AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, IColumnConfig,
+} from '@epam/uui-core';
+import {
+    ColumnsConfigurationRowProps, DndDataType, GroupedColumnsType, GroupedDataColumnProps,
+} from './types';
 import sortBy from 'lodash.sortby';
 import React from 'react';
 
@@ -23,7 +27,9 @@ export function canAcceptDrop(props: AcceptDropParams<DndDataType, DndDataType>)
 }
 
 export function getNewColumnOrder(props: { targetOrder: string; targetPrevOrder?: string; targetNextOrder?: string; position: DropPosition }) {
-    const { position, targetOrder, targetPrevOrder, targetNextOrder } = props;
+    const {
+        position, targetOrder, targetPrevOrder, targetNextOrder,
+    } = props;
     return position === 'bottom' ? getOrderBetween(targetOrder, targetNextOrder || null) : getOrderBetween(targetPrevOrder || null, targetOrder);
 }
 

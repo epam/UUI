@@ -1,4 +1,6 @@
-import { DbPatch, DbTablesSet, DbTableEntityByTable, DbView, DbRelationType, ViewCacheItem } from './types';
+import {
+    DbPatch, DbTablesSet, DbTableEntityByTable, DbView, DbRelationType, ViewCacheItem,
+} from './types';
 import { objectKeys, defaultCompareViewDependencies, difference } from './utils';
 import isEqual from 'lodash.isequal';
 
@@ -66,14 +68,14 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
             shouldUpdate = !compare(cacheItem.dependencies, dependencies);
         }
 
-        let previousValue = cacheItem.currentValue;
+        const previousValue = cacheItem.currentValue;
 
         if (shouldUpdate) {
             cacheItem.dependencies = dependencies;
-            let newValue = view.compute(this, params, dependencies);
+            const newValue = view.compute(this, params, dependencies);
             cacheItem.computedOnDb = this;
 
-            let compareResults = view.compareResults || isEqual;
+            const compareResults = view.compareResults || isEqual;
 
             if (!compareResults(previousValue, newValue)) {
                 if (view.traceDiff) {

@@ -24,23 +24,23 @@ export default function ErrorsExample() {
             throw new UuiError({
                 status: 403,
                 title: 'This error was produced intentionally for demo purposes',
-                subtitle: <LinkButton caption="Reload page" onClick={() => window.location.reload()} />,
+                subtitle: <LinkButton caption="Reload page" onClick={ () => window.location.reload() } />,
                 imageUrl: 'http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/uui-react/error-images/maintenance.svg',
             });
     }
 
     return (
         <div>
-            <LinkButton caption="Plain Error" onClick={() => setState(1)} />
-            <LinkButton caption="UUI Error" onClick={() => setState(2)} />
-            <LinkButton caption="UUI Error - custom" onClick={() => setState(3)} />
+            <LinkButton caption="Plain Error" onClick={ () => setState(1) } />
+            <LinkButton caption="UUI Error" onClick={ () => setState(2) } />
+            <LinkButton caption="UUI Error - custom" onClick={ () => setState(3) } />
             <LinkButton
                 caption="Error in callback"
-                onClick={() => {
+                onClick={ () => {
                     // Errors in callbacks can't be caught automatically by React.
                     // In such cases, you can set error state manually via uuiError context
                     uuiErrors.reportError(new UuiError({ status: 404 }));
-                }}
+                } }
             />
         </div>
     );

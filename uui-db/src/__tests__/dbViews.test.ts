@@ -1,4 +1,6 @@
-import { emptyDb, sampleDb, TaskDbView, TaskDb, Task } from './TaskDb';
+import {
+    emptyDb, sampleDb, TaskDbView, TaskDb, Task,
+} from './TaskDb';
 
 describe('db - Views', () => {
     it('Should work with whole db as a view', () => {

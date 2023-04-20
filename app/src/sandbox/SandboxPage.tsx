@@ -20,7 +20,7 @@ import { Skills } from './skills';
 import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 
-export const SandboxPage = () => {
+export function SandboxPage() {
     const items = useMemo(
         () => [
             { id: 'complexForm', name: 'Complex Form', component: ComplexForm },
@@ -38,7 +38,7 @@ export const SandboxPage = () => {
             { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
         ],
-        []
+        [],
     );
 
     if (!items.map((item) => item.id).includes(getQuery('id'))) {
@@ -50,21 +50,20 @@ export const SandboxPage = () => {
     };
 
     return (
-        <Page renderHeader={() => <AppHeader />}>
-            <FlexRow alignItems="stretch" rawProps={{ style: { height: 'calc(100vh - 60px)' } }}>
+        <Page renderHeader={ () => <AppHeader /> }>
+            <FlexRow alignItems="stretch" rawProps={ { style: { height: 'calc(100vh - 60px)' } } }>
                 <Sidebar
-                    value={getQuery('id')}
-                    onValueChange={onChange}
-                    getItemLink={(item) =>
+                    value={ getQuery('id') }
+                    onValueChange={ onChange }
+                    getItemLink={ (item) =>
                         !item.isFoldable && {
                             pathname: 'sandbox',
                             query: { id: item.id },
-                        }
-                    }
-                    items={items}
+                        } }
+                    items={ items }
                 />
                 {createElement(items.find((item) => item.id === getQuery('id')).component)}
             </FlexRow>
         </Page>
     );
-};
+}

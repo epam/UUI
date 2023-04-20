@@ -3,8 +3,8 @@ import { ICanBeReadonly, ICanBeRequired, IDisableable } from './props';
 type ElementType<ArrayOrObject> = ArrayOrObject extends readonly (infer ElementType)[]
     ? ElementType
     : ArrayOrObject extends Record<any, infer ValueType>
-    ? ValueType
-    : never;
+        ? ValueType
+        : never;
 
 export interface Metadata<T> extends IDisableable, ICanBeReadonly, ICanBeRequired {
     props?: {

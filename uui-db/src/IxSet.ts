@@ -1,6 +1,8 @@
 import BTree from 'sorted-btree';
 import { DbQuery } from './types';
-import { SortingOption, DataQueryFilterCondition, DataQueryFilter, getFilterPredicate } from '@epam/uui-core';
+import {
+    SortingOption, DataQueryFilterCondition, DataQueryFilter, getFilterPredicate,
+} from '@epam/uui-core';
 import orderBy from 'lodash.orderby';
 
 export interface IxSetIndexDefinition<TEntity> {
@@ -19,7 +21,7 @@ export interface IxSetIndex<TEntity> extends IxSetIndexDefinition<TEntity> {
 // Filter condition types
 enum FilterConditionType {
     Single = 1,
-    Multi = 2,
+    Multi = 2
 }
 
 function defaultComparator(a: any, b: any) {
@@ -52,7 +54,7 @@ export class IxSet<TEntity, TId> {
         this.pk = this.empty;
         this.indexes = indexesDefinition.map((definition) => {
             const fields = definition.fields;
-            let compare = (a: IndexKey<TEntity>, b: IndexKey<TEntity>) => {
+            const compare = (a: IndexKey<TEntity>, b: IndexKey<TEntity>) => {
                 if (a === b) return 0;
                 if (a == null) return -1;
                 if (b == null) return 1;
@@ -102,12 +104,14 @@ export class IxSet<TEntity, TId> {
             if (existing) {
                 updated = { ...existing, ...patch };
             }
-            let existingIndexEntry = { ...existing, [ID]: id };
-            let updatedIndexEntry = { ...updated, [ID]: id };
+            const existingIndexEntry = { ...existing, [ID]: id };
+            const updatedIndexEntry = { ...updated, [ID]: id };
             Object.keys(patch).forEach((f) => {
                 updatedFields[f] = true;
             });
-            return { id, patch, existing, updated, existingIndexEntry, updatedIndexEntry };
+            return {
+                id, patch, existing, updated, existingIndexEntry, updatedIndexEntry,
+            };
         });
 
         updates.forEach((update) => newSet.pk.set(update.id, update.updated));
@@ -184,7 +188,9 @@ export class IxSet<TEntity, TId> {
 
                     const score = matchCount;
                     if (matchCount > 0) {
-                        return { score, index, from, to, remainingFilter };
+                        return {
+                            score, index, from, to, remainingFilter,
+                        };
                     }
                 }
 
@@ -193,9 +199,9 @@ export class IxSet<TEntity, TId> {
             .filter((p) => p != null);
 
         plans = orderBy(plans, 'score', 'desc');
-        let plan = plans[0];
+        const plan = plans[0];
 
-        //const indexEntities = plan.index.tree.entries();
+        // const indexEntities = plan.index.tree.entries();
 
         let treeIterator: IterableIterator<TEntity>;
 
@@ -226,8 +232,8 @@ export class IxSet<TEntity, TId> {
         let current;
         let index = 0;
         let count = 0;
-        let rangeFrom = (query.range && query.range.from) || 0;
-        let rangeCount = (query.range && query.range.count) || Number.MAX_SAFE_INTEGER;
+        const rangeFrom = (query.range && query.range.from) || 0;
+        const rangeCount = (query.range && query.range.count) || Number.MAX_SAFE_INTEGER;
         while (!(current = treeIterator.next()).done && count < rangeCount) {
             const entity: TEntity = current.value;
             const passedFilter = !filterPredicate || filterPredicate(entity);

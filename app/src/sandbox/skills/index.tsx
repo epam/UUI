@@ -36,18 +36,24 @@ const trainingAndDev: ISkill = {
     comment: '',
     description: 'At this level, user can understand the main points of clear texts in standard language.',
     options: {
-        isProfile: { icon: personIconFilledSmall, activeColor: 'cyan', prefix: 'Created at', date: new Date('2019,Jun,10'), status: true },
-        isRecommended: { icon: medalLogo, activeColor: 'amber', prefix: 'Last updated', date: new Date('2021,May,10'), status: true },
-        isConfirmed: { icon: doneIcon, activeColor: 'blue', prefix: 'Confirmed by Assessment', date: new Date('2020,Jan,06'), status: true },
-        isOutdated: { icon: clockIconSmall, activeColor: 'gray40', prefix: 'Skill outdated', date: new Date('2020,Sep,18'), status: true },
+        isProfile: {
+            icon: personIconFilledSmall, activeColor: 'cyan', prefix: 'Created at', date: new Date('2019,Jun,10'), status: true,
+        },
+        isRecommended: {
+            icon: medalLogo, activeColor: 'amber', prefix: 'Last updated', date: new Date('2021,May,10'), status: true,
+        },
+        isConfirmed: {
+            icon: doneIcon, activeColor: 'blue', prefix: 'Confirmed by Assessment', date: new Date('2020,Jan,06'), status: true,
+        },
+        isOutdated: {
+            icon: clockIconSmall, activeColor: 'gray40', prefix: 'Skill outdated', date: new Date('2020,Sep,18'), status: true,
+        },
     },
     lastUpdated: new Date('2021,Mar,03'),
 };
 
-export const Skills = () => {
+export function Skills() {
     return (
-        <>
-            <SkillsBatteryPopover data={trainingAndDev} />
-        </>
+        <SkillsBatteryPopover data={ trainingAndDev } />
     );
-};
+}

@@ -3,9 +3,11 @@ import { ListLoadingTracker } from '../ListLoadingTracker';
 import { DataQuery, LazyDataSourceApiResponse, runDataQuery } from '@epam/uui-core';
 import range from 'lodash.range';
 
-describe('db - ListLoadingTracker ', () => {
+describe('db - ListLoadingTracker', () => {
     const testItems = range(200).map((id) => {
-        return { id, name: 'Task', isDone: false, createdBy: 'JS', isDraft: false, assignedTo: 'DT' } as Task;
+        return {
+            id, name: 'Task', isDone: false, createdBy: 'JS', isDraft: false, assignedTo: 'DT',
+        } as Task;
     });
 
     function getMockResponse(request: DataQuery<Task>): LazyDataSourceApiResponse<Task> {

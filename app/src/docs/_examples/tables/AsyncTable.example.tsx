@@ -14,7 +14,7 @@ export default function ProductTable() {
             api: () => svc.api.demo.products({}).then((r: any) => r.items),
             getId: (p) => p.ProductID, // Default: p => p.id
         },
-        []
+        [],
     );
 
     const view = dataSource.useView(value, onValueChange, {
@@ -73,17 +73,17 @@ export default function ProductTable() {
                 width: 156,
             },
         ],
-        []
+        [],
     );
 
     return (
-        <Panel shadow cx={css.container}>
+        <Panel shadow cx={ css.container }>
             <DataTable
-                {...view.getListProps()}
-                getRows={view.getVisibleRows}
-                value={value}
-                onValueChange={onValueChange}
-                columns={productColumns}
+                { ...view.getListProps() }
+                getRows={ view.getVisibleRows }
+                value={ value }
+                onValueChange={ onValueChange }
+                columns={ productColumns }
                 headerTextCase="upper"
             />
         </Panel>

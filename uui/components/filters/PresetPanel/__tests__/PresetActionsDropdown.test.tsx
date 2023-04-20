@@ -22,7 +22,7 @@ const mockPresetActionsDropdownApi = {
 
 describe('PresetActionsDropdown', () => {
     it('should render correctly', async () => {
-        const component = await renderSnapshotWithContextAsync(<PresetActionsDropdown {...mockPresetActionsDropdownApi} />);
+        const component = await renderSnapshotWithContextAsync(<PresetActionsDropdown { ...mockPresetActionsDropdownApi } />);
         expect(component).toMatchSnapshot();
     });
 });

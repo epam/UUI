@@ -1,6 +1,8 @@
 import { DataSourceState, IMap, DataRowPathItem } from '../../../../types';
 import { CompositeKeysMap } from './CompositeKeysMap';
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo } from './ITree';
+import {
+    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo,
+} from './ITree';
 import { TreeParams } from './ITree';
 
 export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
@@ -13,13 +15,14 @@ export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
 
 export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     protected getId: (item: TItem) => TId;
+
     protected getParentId: (item: TItem) => TId;
 
     protected constructor(
         protected params: TreeParams<TItem, TId>,
         protected readonly byId: IMap<TId, TItem>,
         protected readonly byParentId: IMap<TId, TId[]>,
-        protected readonly nodeInfoById: IMap<TId, TreeNodeInfo>
+        protected readonly nodeInfoById: IMap<TId, TreeNodeInfo>,
     ) {
         this.getId = params.getId;
         this.getParentId = params.getParentId ? (item: TItem) => params.getParentId(item) ?? undefined : () => undefined;
@@ -30,7 +33,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
             this.params,
             this.byId,
             this.newMap(), // add empty children list for root to avoid corner-cases
-            this.newMap()
+            this.newMap(),
         );
     }
 
@@ -38,7 +41,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         params: TreeParams<TItem, TId>,
         byId: IMap<TId, TItem>,
         byParentId: IMap<TId, TId[]>,
-        nodeInfoById: IMap<TId, TreeNodeInfo>
+        nodeInfoById: IMap<TId, TreeNodeInfo>,
     ): ITree<TItem, TId> {
         if (byId === this.byId && byParentId === this.byParentId && nodeInfoById === this.nodeInfoById) {
             return this;
@@ -81,7 +84,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     public getParentIdsRecursive(id: TId) {
         const parentIds: TId[] = [];
         while (true) {
-            let item = this.byId.get(id);
+            const item = this.byId.get(id);
             if (!item) {
                 break;
             }
@@ -105,6 +108,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
         return parents;
     }
+
     public getPathById(id: TId): DataRowPathItem<TId, TItem>[] {
         const foundParents = this.getParents(id);
         const path: DataRowPathItem<TId, TItem>[] = [];
@@ -159,7 +163,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
             direction?: 'bottom-up' | 'top-down';
             parentId?: TId;
             includeParent?: boolean;
-        }
+        },
     ) {
         let shouldStop = false;
         const stop = () => {
@@ -223,7 +227,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
                 }
                 subtotalsMap.set(parentId, parentSubtotals);
             },
-            { direction: 'bottom-up' }
+            { direction: 'bottom-up' },
         );
         return subtotalsMap;
     }
@@ -239,7 +243,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
             params,
             newMap(params),
             newMap(params), // add empty children list for root to avoid corner-cases
-            newMap(params)
+            newMap(params),
         ) as ITree<TItem, TId>;
     }
 

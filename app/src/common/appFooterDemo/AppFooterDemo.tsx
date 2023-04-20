@@ -12,9 +12,9 @@ interface IAppFooterDemoProps {
 export function AppFooterDemo(props: IAppFooterDemoProps) {
     const { demoItem, isFullScreenSupported, onOpenFullScreen } = props;
     return (
-        <div className={css.layout}>
-            <FlexRow cx={css.footer}>
-                <DemoToolbar demoItem={demoItem} isFullScreenSupported={isFullScreenSupported} onOpenFullScreen={onOpenFullScreen} />
+        <div className={ css.layout }>
+            <FlexRow cx={ css.footer }>
+                <DemoToolbar demoItem={ demoItem } isFullScreenSupported={ isFullScreenSupported } onOpenFullScreen={ onOpenFullScreen } />
             </FlexRow>
         </div>
     );

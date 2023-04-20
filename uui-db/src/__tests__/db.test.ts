@@ -10,7 +10,7 @@ describe('db - DB queries and updates', () => {
                     .find({ id: { in: ['AS', 'JS'] } })
                     .orderBy('id')
                     .toArray()
-                    .map((u) => u.id)
+                    .map((u) => u.id),
             ).toEqual(['AS', 'JS']));
         it('user by name', () => expect(sampleDb.users.find({ name: 'Arya Stark' }).one().id).toEqual('AS'));
         it('user by [null] name', () => expect(sampleDb.users.find({ name: null }).one()).toBeNull());
@@ -19,15 +19,23 @@ describe('db - DB queries and updates', () => {
                 sampleDb.users
                     .orderBy('name')
                     .toArray()
-                    .map((e) => e.name)
-            ).toEqual(['Arya Stark', 'Daenerys Targaryen', 'John Snow']));
+                    .map((e) => e.name),
+            ).toEqual([
+                'Arya Stark',
+                'Daenerys Targaryen',
+                'John Snow',
+            ]));
         it('sort by name and sex', () =>
             expect(
                 sampleDb.users
                     .orderBy('sex', 'desc')
                     .thenBy('name')
-                    .map((e) => e.name)
-            ).toEqual(['John Snow', 'Arya Stark', 'Daenerys Targaryen']));
+                    .map((e) => e.name),
+            ).toEqual([
+                'John Snow',
+                'Arya Stark',
+                'Daenerys Targaryen',
+            ]));
         it('sort by name and sex via order', () =>
             expect(sampleDb.users.order([{ field: 'sex' }, { field: 'name', direction: 'desc' }]).map((e) => e.name)).toEqual([
                 'Daenerys Targaryen',
@@ -39,7 +47,7 @@ describe('db - DB queries and updates', () => {
                 sampleDb.tasks
                     .find({ createdBy: { in: ['AS', 'JS'] } })
                     .orderBy('id')
-                    .map((t) => t.id)
+                    .map((t) => t.id),
             ).toEqual([6, 7]));
 
         it('find tasks by both indexed and non-indexed fields', () =>
@@ -47,7 +55,7 @@ describe('db - DB queries and updates', () => {
                 sampleDb.tasks
                     .find({ createdBy: { in: ['DT'] }, assignedTo: 'JS', isDone: false })
                     .orderBy('id')
-                    .map((t) => t.id)
+                    .map((t) => t.id),
             ).toEqual([4]));
 
         it('non-indexable filter criteria should work', () =>
@@ -55,7 +63,7 @@ describe('db - DB queries and updates', () => {
                 sampleDb.tasks
                     .find({ id: { gte: 4 }, assignedTo: 'AS', isDone: false })
                     .orderBy('id')
-                    .map((t) => t.id)
+                    .map((t) => t.id),
             ).toEqual([5, 7]));
 
         it('non-indexable and indexable criteria for the same field', () =>
@@ -70,29 +78,50 @@ describe('db - DB queries and updates', () => {
                     .orderBy('assignedTo')
                     .thenBy('id')
                     .range(1, 3)
-                    .map((i) => i.id)
-            ).toEqual([1, 3, 4]));
+                    .map((i) => i.id),
+            ).toEqual([
+                1,
+                3,
+                4,
+            ]));
     });
 
     describe('Indexes and updates', () => {
         it('query after insert', () => {
-            let db = sampleDb.with({ tasks: [{ id: 100, name: 'Test', assignedTo: 'QQ', createdBy: 'WW', isDone: false, isDraft: false }] });
+            const db = sampleDb.with({
+                tasks: [
+                    {
+                        id: 100, name: 'Test', assignedTo: 'QQ', createdBy: 'WW', isDone: false, isDraft: false,
+                    },
+                ],
+            });
             expect(db.tasks.find({ assignedTo: 'QQ', createdBy: 'WW' }).one().id).toBe(100);
         });
 
         it('query after update', () => {
-            let db = sampleDb.with({ tasks: [{ id: 1, name: 'Test', createdBy: 'QQ', isDone: false, isDraft: false }] });
+            const db = sampleDb.with({
+                tasks: [
+                    {
+                        id: 1, name: 'Test', createdBy: 'QQ', isDone: false, isDraft: false,
+                    },
+                ],
+            });
             expect(db.tasks.find({ createdBy: 'QQ' }).one().id).toBe(1);
             expect(
                 db.tasks
                     .find({ createdBy: 'DT' })
                     .orderBy('id')
-                    .map((u) => u.id)
-            ).toEqual([2, 3, 4, 5]);
+                    .map((u) => u.id),
+            ).toEqual([
+                2,
+                3,
+                4,
+                5,
+            ]);
         });
 
         it('query after delete', () => {
-            let db = sampleDb.with({ tasks: [{ id: 1, isDeleted: true }] });
+            const db = sampleDb.with({ tasks: [{ id: 1, isDeleted: true }] });
             expect(db.tasks.byId(1)).toBeFalsy();
             expect(db.tasks.find({ createdBy: 'AS' }).map((i) => i.id)).not.toContain(1);
         });
@@ -108,7 +137,13 @@ describe('db - DB queries and updates', () => {
         });
 
         it('Should return updated record if index is not touched', () => {
-            let db = sampleDb.with({ tasks: [{ id: 7, name: 'Test', isDone: true, isDraft: false }] });
+            const db = sampleDb.with({
+                tasks: [
+                    {
+                        id: 7, name: 'Test', isDone: true, isDraft: false,
+                    },
+                ],
+            });
             expect(db.tasks.find({ createdBy: 'AS' }).one().id).toBe(7);
             expect(db.tasks.find({ createdBy: 'AS' }).one().name).toBe('Test');
         });
@@ -122,116 +157,122 @@ describe('db - DB queries and updates', () => {
                 testDb.tasks
                     .find({ isDone: null })
                     .toArray()
-                    .map((i) => i.id)
+                    .map((i) => i.id),
             ).toEqual([1]);
             expect(
                 testDb.tasks
                     .find({ isDone: undefined })
                     .toArray()
-                    .map((i) => i.id)
+                    .map((i) => i.id),
             ).toEqual([2]);
             expect(
                 testDb.tasks
                     .find({ isDone: { isNull: true } })
                     .toArray()
-                    .map((i) => i.id)
+                    .map((i) => i.id),
             ).toEqual([1, 2]);
 
             expect(
                 testDb.tasks
                     .find({ assignedTo: null })
                     .toArray()
-                    .map((i) => i.id)
+                    .map((i) => i.id),
             ).toEqual([1]);
             expect(
                 testDb.tasks
                     .find({ assignedTo: undefined })
                     .toArray()
-                    .map((i) => i.id)
+                    .map((i) => i.id),
             ).toEqual([2]);
             expect(
                 testDb.tasks
                     .find({ assignedTo: { isNull: true } })
                     .toArray()
-                    .map((i) => i.id)
+                    .map((i) => i.id),
             ).toEqual([1, 2]);
         });
 
         it('Should correctly handle changes from undefined to non-undefined and reverse (non-indexed)', () => {
-            let db1 = sampleDb.with({ tasks: [{ id: 100 }] }); // initial - undefined
+            const db1 = sampleDb.with({ tasks: [{ id: 100 }] }); // initial - undefined
             expect(db1.tasks.find({ name: { isNull: true } }).one().id).toBe(100);
             expect(db1.tasks.find({ name: undefined }).one().id).toBe(100);
             expect(db1.tasks.find({ name: { in: [undefined] } }).one().id).toBe(100);
-            let db2 = db1.with({ tasks: [{ id: 100, name: 'Test' }] }); // set value
+            const db2 = db1.with({ tasks: [{ id: 100, name: 'Test' }] }); // set value
             expect(db2.tasks.find({ name: 'Test' }).one().id).toBe(100);
-            let db3 = db2.with({ tasks: [{ id: 100, isDone: true }] }); // keep value
+            const db3 = db2.with({ tasks: [{ id: 100, isDone: true }] }); // keep value
             expect(db2.tasks.find({ name: 'Test' }).one().id).toBe(100);
-            let db4 = db3.with({ tasks: [{ id: 100, name: undefined }] }); // set to undefined
+            const db4 = db3.with({ tasks: [{ id: 100, name: undefined }] }); // set to undefined
             expect(db4.tasks.find({ name: { isNull: true } }).one().id).toBe(100);
             expect(db4.tasks.find({ name: undefined }).one().id).toBe(100);
             expect(db4.tasks.find({ name: { in: [undefined] } }).one().id).toBe(100);
         });
 
         it('Should correctly handle changes from null to non-null and reverse (non-indexed)', () => {
-            let db1 = sampleDb.with({ tasks: [{ id: 100, name: null }] }); // initial - null
+            const db1 = sampleDb.with({ tasks: [{ id: 100, name: null }] }); // initial - null
             expect(db1.tasks.find({ name: { isNull: true } }).one().id).toBe(100);
             expect(db1.tasks.find({ name: null }).one().id).toBe(100);
             expect(db1.tasks.find({ name: { in: [null] } }).one().id).toBe(100);
-            let db2 = db1.with({ tasks: [{ id: 100, name: 'Test' }] }); // set value
+            const db2 = db1.with({ tasks: [{ id: 100, name: 'Test' }] }); // set value
             expect(db2.tasks.find({ name: 'Test' }).one().id).toBe(100);
-            let db3 = db2.with({ tasks: [{ id: 100, isDone: true }] }); // keep value
+            const db3 = db2.with({ tasks: [{ id: 100, isDone: true }] }); // keep value
             expect(db2.tasks.find({ name: 'Test' }).one().id).toBe(100);
-            let db4 = db3.with({ tasks: [{ id: 100, name: null }] }); // set to null
+            const db4 = db3.with({ tasks: [{ id: 100, name: null }] }); // set to null
             expect(db4.tasks.find({ name: { isNull: true } }).one().id).toBe(100);
             expect(db4.tasks.find({ name: null }).one().id).toBe(100);
             expect(db4.tasks.find({ name: { in: [null] } }).one().id).toBe(100);
         });
 
         it('Should correctly handle changes from null to non-null and reverse (indexed)', () => {
-            let db1 = sampleDb.with({ tasks: [{ id: 100, name: 'Test', createdBy: null }] }); // initial - null
+            const db1 = sampleDb.with({ tasks: [{ id: 100, name: 'Test', createdBy: null }] }); // initial - null
             expect(db1.tasks.find({ createdBy: { isNull: true } }).one().id).toBe(100);
             expect(db1.tasks.find({ createdBy: null }).one().id).toBe(100);
             expect(db1.tasks.find({ createdBy: { in: [null] } }).one().id).toBe(100);
-            let db2 = db1.with({ tasks: [{ id: 100, createdBy: 'QQ' }] }); // set value
+            const db2 = db1.with({ tasks: [{ id: 100, createdBy: 'QQ' }] }); // set value
             expect(db2.tasks.find({ createdBy: 'QQ' }).one().id).toBe(100);
-            let db3 = db2.with({ tasks: [{ id: 100, isDone: true }] }); // keep value
+            const db3 = db2.with({ tasks: [{ id: 100, isDone: true }] }); // keep value
             expect(db2.tasks.find({ createdBy: 'QQ' }).one().id).toBe(100);
-            let db4 = db3.with({ tasks: [{ id: 100, createdBy: null }] }); // set to null
+            const db4 = db3.with({ tasks: [{ id: 100, createdBy: null }] }); // set to null
             expect(db4.tasks.find({ createdBy: { isNull: true } }).one().id).toBe(100);
             expect(db4.tasks.find({ createdBy: null }).one().id).toBe(100);
             expect(db4.tasks.find({ createdBy: { in: [null] } }).one().id).toBe(100);
         });
 
         it('Should correctly handle changes from undefined to non-undefined and reverse (indexed)', () => {
-            let db1 = sampleDb.with({ tasks: [{ id: 100, name: 'Test' }] }); // initial - undefined
+            const db1 = sampleDb.with({ tasks: [{ id: 100, name: 'Test' }] }); // initial - undefined
             expect(db1.tasks.find({ createdBy: { isNull: true } }).one().id).toBe(100);
             expect(db1.tasks.find({ createdBy: undefined }).one().id).toBe(100);
             expect(db1.tasks.find({ createdBy: { in: [undefined] } }).one().id).toBe(100);
-            let db2 = db1.with({ tasks: [{ id: 100, createdBy: 'QQ' }] }); // set value
+            const db2 = db1.with({ tasks: [{ id: 100, createdBy: 'QQ' }] }); // set value
             expect(db2.tasks.find({ createdBy: 'QQ' }).one().id).toBe(100);
-            let db3 = db2.with({ tasks: [{ id: 100, isDone: true }] }); // keep value
+            const db3 = db2.with({ tasks: [{ id: 100, isDone: true }] }); // keep value
             expect(db2.tasks.find({ createdBy: 'QQ' }).one().id).toBe(100);
-            let db4 = db3.with({ tasks: [{ id: 100, createdBy: undefined }] }); // set to undefined
+            const db4 = db3.with({ tasks: [{ id: 100, createdBy: undefined }] }); // set to undefined
             expect(db4.tasks.find({ createdBy: { isNull: true } }).one().id).toBe(100);
             expect(db4.tasks.find({ createdBy: undefined }).one().id).toBe(100);
             expect(db4.tasks.find({ createdBy: { in: [undefined] } }).one().id).toBe(100);
         });
 
         it("Should work with update which doesn't touch indexed field", () => {
-            let db = sampleDb.with({
+            const db = sampleDb.with({
                 tasks: [
                     // existing, index field exists, should update index
-                    { id: 6, name: 'Test', isDone: true, isDraft: false, createdBy: 'XX' },
+                    {
+                        id: 6, name: 'Test', isDone: true, isDraft: false, createdBy: 'XX',
+                    },
                     // existing, index field omitted, should skip index update
-                    { id: 7, name: 'Test', isDone: true, isDraft: false },
+                    {
+                        id: 7, name: 'Test', isDone: true, isDraft: false,
+                    },
                     // new, index field omitted, should be indexed as undefined
-                    { id: 123, name: 'Test', isDone: true, isDraft: false },
+                    {
+                        id: 123, name: 'Test', isDone: true, isDraft: false,
+                    },
                 ],
             });
             expect(db.tasks.find({ createdBy: 'XX' }).one().id).toBe(6);
             expect(db.tasks.find({ createdBy: 'AS' }).one().id).toBe(7);
             expect(db.tasks.find({ createdBy: undefined }).one().id).toBe(123);
-            let db2 = sampleDb.with({ tasks: [{ id: 123, createdBy: 'ZZ' }] });
+            const db2 = sampleDb.with({ tasks: [{ id: 123, createdBy: 'ZZ' }] });
             expect(db2.tasks.find({ createdBy: 'ZZ' }).one().id).toBe(123);
         });
     });

@@ -28,13 +28,13 @@ describe('LazyListView - can work with id like [string, number]', () => {
     ];
 
     let value: DataSourceState<DataQueryFilter<TestItem>, TestItemId>;
-    let onValueChanged = (newValue: typeof value) => {
+    const onValueChanged = (newValue: typeof value) => {
         value = newValue;
     };
 
-    let treeDataSource = new LazyDataSource<TestItem, TestItemId, DataQueryFilter<TestItem>>({
+    const treeDataSource = new LazyDataSource<TestItem, TestItemId, DataQueryFilter<TestItem>>({
         api: async ({ ids: clientIds, filter, range }, ctx) => {
-            let ids = clientIds && clientIds.map((id) => id[1]);
+            const ids = clientIds && clientIds.map((id) => id[1]);
             if (ctx.parent) {
                 return runDataQuery(testData, { filter: { type: 'child', parentId: ctx.parent.id } });
             } else {
@@ -53,16 +53,20 @@ describe('LazyListView - can work with id like [string, number]', () => {
     });
 
     function expectViewToLookLike(view: LazyListView<TestItem, TestItemId>, rows: Partial<DataRowProps<TestItem, TestItemId>>[], rowsCount?: number) {
-        let viewRows = view.getVisibleRows();
+        const viewRows = view.getVisibleRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
-        let listProps = view.getListProps();
+        const listProps = view.getListProps();
         rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can load tree, unfold nodes, and scroll down', async () => {
-        let ds = treeDataSource;
-        let view = ds.getView(value, onValueChanged, {});
-        expectViewToLookLike(view, [{ isLoading: true }, { isLoading: true }, { isLoading: true }]);
+        const ds = treeDataSource;
+        const view = ds.getView(value, onValueChanged, {});
+        expectViewToLookLike(view, [
+            { isLoading: true },
+            { isLoading: true },
+            { isLoading: true },
+        ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
         await delay();
@@ -71,7 +75,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
     });
 
     it('can unfold nodes', async () => {
-        let ds = treeDataSource;
+        const ds = treeDataSource;
         let view = ds.getView(value, onValueChanged, {});
         await delay();
 
@@ -88,15 +92,19 @@ describe('LazyListView - can work with id like [string, number]', () => {
 
         await delay();
 
-        expectViewToLookLike(view, [{ id: ['parent', 1] }, { id: ['child', 1] }, { id: ['child', 2] }], 3);
+        expectViewToLookLike(view, [
+            { id: ['parent', 1] },
+            { id: ['child', 1] },
+            { id: ['child', 2] },
+        ], 3);
     });
 
     it('Checkboxes works', async () => {
-        let ds = treeDataSource;
+        const ds = treeDataSource;
         value.visibleCount = 3;
         value.checked = [['child', 1]];
 
-        let view = ds.getView(value, onValueChanged, {
+        const view = ds.getView(value, onValueChanged, {
             cascadeSelection: true,
             getRowOptions: (_) => ({ checkbox: { isVisible: true } }),
             isFoldedByDefault: (_) => false,
@@ -112,7 +120,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
                 { id: ['child', 1], isChecked: true },
                 { id: ['child', 2], isChecked: false },
             ],
-            3
+            3,
         );
 
         let row = view.getVisibleRows()[2]; // -> all children checked = parent checked
@@ -129,7 +137,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
                 { id: ['child', 1], isChecked: true },
                 { id: ['child', 2], isChecked: true },
             ],
-            3
+            3,
         );
 
         row = view.getVisibleRows()[0];
@@ -146,21 +154,21 @@ describe('LazyListView - can work with id like [string, number]', () => {
                 { id: ['child', 1], isChecked: false },
                 { id: ['child', 2], isChecked: false },
             ],
-            3
+            3,
         );
     });
 
     // ListApiCache can't work with complex ids.
     // However, it looks we
     it.skip('should receive item by id', async () => {
-        let ds = treeDataSource;
-        let view = ds.getView(value, onValueChanged, {});
+        const ds = treeDataSource;
+        const view = ds.getView(value, onValueChanged, {});
 
         view.getVisibleRows();
 
         await delay();
 
-        let firstRow = view.getVisibleRows()[0];
+        const firstRow = view.getVisibleRows()[0];
 
         const item = view.getById(firstRow.id, 0);
 

@@ -5,11 +5,15 @@ import { isDisabledDoc, isInvalidDoc, iEditable } from '../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../docs';
 
 const radioGroupDoc = new DocBuilder<RadioGroupProps<any>>({ name: 'RadioGroup', component: RadioGroup })
-    .implements([isDisabledDoc, isInvalidDoc, iEditable])
+    .implements([
+        isDisabledDoc,
+        isInvalidDoc,
+        iEditable,
+    ])
     .prop('items', {
         examples: [
             {
-                name: `Languages`,
+                name: 'Languages',
                 value: [
                     { name: 'English', id: 1 },
                     { name: 'Russian', id: 2 },

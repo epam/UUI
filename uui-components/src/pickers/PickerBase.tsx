@@ -1,5 +1,7 @@
 import React from 'react';
-import { DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts } from '@epam/uui-core';
+import {
+    DataSourceState, DataRowOptions, Lens, IDataSourceView, DataSourceListProps, PickerBaseProps, PickerFooterProps, UuiContexts,
+} from '@epam/uui-core';
 import { dataSourceStateToValue, applyValueToDataSourceState } from './bindingHelpers';
 import isEqual from 'lodash.isequal';
 
@@ -10,7 +12,9 @@ export interface PickerBaseState {
 
 export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<TProps, TState> {
     public context: UuiContexts;
+
     state: TState = this.getInitialState();
+
     lens = Lens.onState<PickerBaseState>(this);
 
     componentWillUnmount(): void {
@@ -101,7 +105,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         }
 
         this.setState((s) => ({ ...s, showSelected, dataSourceState: newDataSourceState }));
-        let newValue = dataSourceStateToValue(this.props, newDataSourceState, this.props.dataSource);
+        const newValue = dataSourceStateToValue(this.props, newDataSourceState, this.props.dataSource);
 
         if (!isEqual(this.props.value, newValue)) {
             this.handleSelectionValueChange(newValue);
@@ -113,7 +117,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     };
 
     getRowOptions = (item: TItem, index: number) => {
-        let options: DataRowOptions<TItem, TId> = {};
+        const options: DataRowOptions<TItem, TId> = {};
         if (this.isSingleSelect()) {
             options.isSelectable = true;
         } else {

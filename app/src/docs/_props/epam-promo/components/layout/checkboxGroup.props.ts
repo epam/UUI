@@ -1,14 +1,20 @@
 import { DocBuilder } from '@epam/uui-docs';
 import { CheckboxGroupProps } from '@epam/uui-components';
 import { CheckboxGroup } from '@epam/promo';
-import { isDisabledDoc, isInvalidDoc, iEditable, FormContext, DefaultContext, ResizableContext } from '../../docs';
+import {
+    isDisabledDoc, isInvalidDoc, iEditable, FormContext, DefaultContext, ResizableContext,
+} from '../../docs';
 
 const checkboxGroupDoc = new DocBuilder<CheckboxGroupProps<any>>({ name: 'CheckboxGroup', component: CheckboxGroup })
-    .implements([isDisabledDoc, isInvalidDoc, iEditable])
+    .implements([
+        isDisabledDoc,
+        isInvalidDoc,
+        iEditable,
+    ])
     .prop('items', {
         examples: [
             {
-                name: `Roles`,
+                name: 'Roles',
                 value: [
                     { name: 'Mentee', id: 1 },
                     { name: 'Direct Subordinates', id: 2 },

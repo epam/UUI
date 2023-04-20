@@ -6,9 +6,7 @@ export class GettingStartedDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <>
-                <EditableDocContent fileName="overview" />
-            </>
+            <EditableDocContent fileName="overview" />
         );
     }
 }

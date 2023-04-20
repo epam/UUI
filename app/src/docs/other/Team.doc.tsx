@@ -1,6 +1,8 @@
 import * as React from 'react';
 import css from './TeamDoc.scss';
-import { Button, FlexRow, IconContainer, LinkButton, RichTextView, Text } from '@epam/promo';
+import {
+    Button, FlexRow, IconContainer, LinkButton, RichTextView, Text,
+} from '@epam/promo';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-24.svg';
 import { ContentSection } from '../../common';
 
@@ -176,16 +178,18 @@ export class TeamDoc extends React.Component {
     render() {
         return (
             <ContentSection>
-                <div className={css.title}>Team</div>
-                <RichTextView cx={css.headerWrapper}>
+                <div className={ css.title }>Team</div>
+                <RichTextView cx={ css.headerWrapper }>
                     <h2>Core Members</h2>
                 </RichTextView>
-                <FlexRow cx={css.teamLayout} alignItems="top">
-                    {team.map(({ name, position, src, link }, index) => {
+                <FlexRow cx={ css.teamLayout } alignItems="top">
+                    {team.map(({
+                        name, position, src, link,
+                    }, index) => {
                         return (
-                            <div key={index} className={css.card}>
-                                <img alt={name} src={src} width="222" height="222" />
-                                <LinkButton size="24" caption={name} target="_blank" href={link} />
+                            <div key={ index } className={ css.card }>
+                                <img alt={ name } src={ src } width="222" height="222" />
+                                <LinkButton size="24" caption={ name } target="_blank" href={ link } />
                                 <Text font="sans" lineHeight="24" fontSize="16" size="none">
                                     {position}
                                 </Text>
@@ -193,24 +197,26 @@ export class TeamDoc extends React.Component {
                         );
                     })}
                 </FlexRow>
-                <RichTextView cx={css.headerWrapper}>
+                <RichTextView cx={ css.headerWrapper }>
                     <h2>Top Contributors</h2>
                 </RichTextView>
-                <FlexRow cx={css.teamLayout} alignItems="top">
-                    {contributors.map(({ name, position, src, link }, index) => {
+                <FlexRow cx={ css.teamLayout } alignItems="top">
+                    {contributors.map(({
+                        name, position, src, link,
+                    }, index) => {
                         return (
-                            <div key={index} className={css.card}>
-                                <img alt={name} src={src} width="222" height="222" />
-                                <LinkButton size="24" caption={name} target="_blank" href={link} />
+                            <div key={ index } className={ css.card }>
+                                <img alt={ name } src={ src } width="222" height="222" />
+                                <LinkButton size="24" caption={ name } target="_blank" href={ link } />
                                 <Text font="sans" lineHeight="24" fontSize="16" size="none">
                                     {position}
                                 </Text>
                             </div>
                         );
                     })}
-                    <div className={css.contributeCard}>
-                        <IconContainer cx={[css.iconContainer, css.iconBlue]} icon={AddIcon} size={48} />
-                        <Button cx={css.link} size="48" fill="light" caption="Contribute" target="_blank" href="https://github.com/epam/UUI/blob/main/CONTRIBUTING.md" />
+                    <div className={ css.contributeCard }>
+                        <IconContainer cx={ [css.iconContainer, css.iconBlue] } icon={ AddIcon } size={ 48 } />
+                        <Button cx={ css.link } size="48" fill="light" caption="Contribute" target="_blank" href="https://github.com/epam/UUI/blob/main/CONTRIBUTING.md" />
                     </div>
                 </FlexRow>
             </ContentSection>

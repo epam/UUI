@@ -1,5 +1,7 @@
 import * as models from '../models';
-import { LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, ApiCallOptions } from '@epam/uui-core';
+import {
+    LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, ApiCallOptions,
+} from '@epam/uui-core';
 import { personDetailsApi } from './personDetails';
 
 export function getDemoApi(processRequest: (request: string, requestMethod: string, data?: any, options?: ApiCallOptions) => any, origin: string = '') {

@@ -17,5 +17,5 @@ export const BurgerButton = withMods<ButtonProps, BurgerButtonMods>(
         props.isDropdown && css.dropdown,
         props.icon && css.hasIcon,
     ],
-    () => ({ dropdownIcon: SvgTriangle, dropdownIconPosition: 'left', role: 'menuitem' })
+    () => ({ dropdownIcon: SvgTriangle, dropdownIconPosition: 'left', role: 'menuitem' }),
 );

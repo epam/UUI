@@ -17,5 +17,5 @@ export const IconButton = withMods<Omit<UuiIconButtonProps, 'color'>, IconButton
     (props) =>
         ({
             color: props.color ?? 'night600',
-        } as IconButtonProps)
+        } as IconButtonProps),
 );

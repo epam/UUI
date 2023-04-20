@@ -16,5 +16,5 @@ export const Text = withMods<Omit<UuiTextProps, 'color' | 'font'>, TextMods>(
         ({
             color: props.color ?? 'gray80',
             font: props.font ?? 'sans',
-        } as TextProps)
+        } as TextProps),
 );

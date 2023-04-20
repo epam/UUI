@@ -12,10 +12,10 @@ export type ListViewProps<TItem, TId, TFilter> = LazyListProps<TItem, TId, TFilt
 export type UnboxListProps<T extends ListViewProps<any, any, any>> = T extends LazyListProps<infer TItem, infer TId, infer TFilter>
     ? LazyListProps<TItem, TId, TFilter>
     : T extends AsyncListProps<infer TItem, infer TId, infer TFilter>
-    ? AsyncListProps<TItem, TId, TFilter>
-    : T extends ArrayListProps<infer TItem, infer TId, infer TFilter>
-    ? ArrayListProps<TItem, TId, TFilter>
-    : never;
+        ? AsyncListProps<TItem, TId, TFilter>
+        : T extends ArrayListProps<infer TItem, infer TId, infer TFilter>
+            ? ArrayListProps<TItem, TId, TFilter>
+            : never;
 
 export interface IView<TItem, TId, TFilter, Props extends ListViewProps<TItem, TId, TFilter>> extends IDataSourceView<TItem, TId, TFilter> {
     update(newValue: DataSourceState<TFilter, TId>, props: Props): void;
@@ -31,11 +31,11 @@ type ListProps<TItem, TId, TFilter> = Exclude<ListViewProps<TItem, TId, TFilter>
 };
 
 export type UseListProps<TItem, TId, TFilter> = ListProps<TItem, TId, TFilter> &
-    ListState<TId, TFilter> & {
-        /**
+ListState<TId, TFilter> & {
+    /**
          * If data loading has to be postponed, this flag has to be set to false.
          * Changing the flag to `true` will trigger data loading.
          * @default true
          */
-        loadData?: boolean;
-    };
+    loadData?: boolean;
+};

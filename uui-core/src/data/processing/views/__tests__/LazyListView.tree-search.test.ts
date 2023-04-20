@@ -40,7 +40,7 @@ describe('LazyListView', () => {
     });
 
     let value: DataSourceState = { visibleCount: 5 };
-    let onValueChanged = (newValue: DataSourceState) => {
+    const onValueChanged = (newValue: DataSourceState) => {
         value = newValue;
     };
 
@@ -51,7 +51,7 @@ describe('LazyListView', () => {
         return testApi({ ...rq, filter, search });
     };
 
-    let ds = new LazyDataSource({ api, getChildCount: (i) => i.childrenCount });
+    const ds = new LazyDataSource({ api, getChildCount: (i) => i.childrenCount });
     const viewProps = {
         flattenSearchResults: true,
         getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
@@ -63,7 +63,7 @@ describe('LazyListView', () => {
 
     const getView = () => ds.getView(value, onValueChanged, viewProps);
 
-    let view = getView();
+    const view = getView();
 
     it('should search for nested children and build correct path, indent, depth, isLastChild', async () => {
         view.update({ search: 'ABC5', topIndex: 0, visibleCount: 20 }, viewProps);
@@ -82,10 +82,18 @@ describe('LazyListView', () => {
                 parentId: 120,
                 path: [
                     { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } },
-                    { id: 120, isLastChild: false, value: { childrenCount: 5, id: 120, name: 'AB9', parentId: 100 } },
+                    {
+                        id: 120,
+                        isLastChild: false,
+                        value: {
+                            childrenCount: 5, id: 120, name: 'AB9', parentId: 100,
+                        },
+                    },
                 ],
                 isLastChild: true,
-                value: { childrenCount: 0, id: 125, name: 'ABC5', parentId: 120 },
+                value: {
+                    childrenCount: 0, id: 125, name: 'ABC5', parentId: 120,
+                },
             }),
         ]);
     });
@@ -100,7 +108,13 @@ describe('LazyListView', () => {
         expect(rows).toHaveLength(5);
         const path = [
             { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } },
-            { id: 120, isLastChild: false, value: { childrenCount: 5, id: 120, name: 'AB9', parentId: 100 } },
+            {
+                id: 120,
+                isLastChild: false,
+                value: {
+                    childrenCount: 5, id: 120, name: 'AB9', parentId: 100,
+                },
+            },
         ];
         expect(rows).toEqual(
             [
@@ -112,7 +126,9 @@ describe('LazyListView', () => {
                     parentId: 120,
                     path,
                     isLastChild: false,
-                    value: { childrenCount: 0, id: 121, name: 'ABC1', parentId: 120 },
+                    value: {
+                        childrenCount: 0, id: 121, name: 'ABC1', parentId: 120,
+                    },
                 },
                 {
                     id: 122,
@@ -122,7 +138,9 @@ describe('LazyListView', () => {
                     parentId: 120,
                     path,
                     isLastChild: false,
-                    value: { childrenCount: 0, id: 122, name: 'ABC2', parentId: 120 },
+                    value: {
+                        childrenCount: 0, id: 122, name: 'ABC2', parentId: 120,
+                    },
                 },
                 {
                     id: 123,
@@ -132,7 +150,9 @@ describe('LazyListView', () => {
                     parentId: 120,
                     path,
                     isLastChild: false,
-                    value: { childrenCount: 0, id: 123, name: 'ABC3', parentId: 120 },
+                    value: {
+                        childrenCount: 0, id: 123, name: 'ABC3', parentId: 120,
+                    },
                 },
                 {
                     id: 124,
@@ -142,7 +162,9 @@ describe('LazyListView', () => {
                     parentId: 120,
                     path,
                     isLastChild: false,
-                    value: { childrenCount: 0, id: 124, name: 'ABC4', parentId: 120 },
+                    value: {
+                        childrenCount: 0, id: 124, name: 'ABC4', parentId: 120,
+                    },
                 },
                 {
                     id: 125,
@@ -152,9 +174,11 @@ describe('LazyListView', () => {
                     parentId: 120,
                     path,
                     isLastChild: true,
-                    value: { childrenCount: 0, id: 125, name: 'ABC5', parentId: 120 },
+                    value: {
+                        childrenCount: 0, id: 125, name: 'ABC5', parentId: 120,
+                    },
                 },
-            ].map(expect.objectContaining)
+            ].map(expect.objectContaining),
         );
     });
 });

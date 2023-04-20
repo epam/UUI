@@ -1,7 +1,9 @@
 import { Task, ColumnsProps } from './types';
 import { resources } from './demoData';
 import React from 'react';
-import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, DataPickerRow, PickerItem } from '@epam/uui';
+import {
+    DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, Checkbox, DataPickerRow, PickerItem,
+} from '@epam/uui';
 import { TextArea } from '@epam/promo';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from '@epam/uui-core';
 import { RowKebabButton } from './RowKebabButton';
@@ -16,7 +18,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             width: 400,
             fix: 'left',
             isSortable: true,
-            renderCell: (props) => <DataTableCell padding="12" {...props.rowLens.prop('name').toProps()} renderEditor={(props) => <TextInput {...props} />} {...props} />,
+            renderCell: (props) => <DataTableCell padding="12" { ...props.rowLens.prop('name').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />,
         },
         {
             key: 'estimate',
@@ -27,9 +29,9 @@ export function getColumns(columnsProps: ColumnsProps) {
             isSortable: true,
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('estimate').toProps()}
-                    renderEditor={(props) => <NumericInput {...props} formatOptions={{ maximumFractionDigits: 1 }} />}
-                    {...props}
+                    { ...props.rowLens.prop('estimate').toProps() }
+                    renderEditor={ (props) => <NumericInput { ...props } formatOptions={ { maximumFractionDigits: 1 } } /> }
+                    { ...props }
                 />
             ),
         },
@@ -40,20 +42,20 @@ export function getColumns(columnsProps: ColumnsProps) {
             isSortable: true,
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('resources').toProps()}
-                    renderEditor={(props) => (
+                    { ...props.rowLens.prop('resources').toProps() }
+                    renderEditor={ (props) => (
                         <PickerInput
                             valueType="id"
                             selectionMode="multi"
-                            dataSource={resourceDataSource}
-                            renderRow={(props) => (
-                                <DataPickerRow {...props} renderItem={(item) => <PickerItem title={item.name} subtitle={item.fullName} {...props} />} />
-                            )}
+                            dataSource={ resourceDataSource }
+                            renderRow={ (props) => (
+                                <DataPickerRow { ...props } renderItem={ (item) => <PickerItem title={ item.name } subtitle={ item.fullName } { ...props } /> } />
+                            ) }
                             placeholder=""
-                            {...props}
+                            { ...props }
                         />
-                    )}
-                    {...props}
+                    ) }
+                    { ...props }
                 />
             ),
         },
@@ -64,9 +66,9 @@ export function getColumns(columnsProps: ColumnsProps) {
             isSortable: true,
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('startDate').toProps()}
-                    renderEditor={(props) => <DatePicker format="MMM D, YYYY" placeholder="" {...props} />}
-                    {...props}
+                    { ...props.rowLens.prop('startDate').toProps() }
+                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    { ...props }
                 />
             ),
         },
@@ -76,7 +78,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             width: 100,
             isSortable: true,
             justifyContent: 'center',
-            renderCell: (props) => <DataTableCell {...props.rowLens.prop('isDone').toProps()} renderEditor={(props) => <Checkbox {...props} />} {...props} />,
+            renderCell: (props) => <DataTableCell { ...props.rowLens.prop('isDone').toProps() } renderEditor={ (props) => <Checkbox { ...props } /> } { ...props } />,
         },
         {
             key: 'complete',
@@ -84,9 +86,9 @@ export function getColumns(columnsProps: ColumnsProps) {
             width: 130,
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('complete').toProps()}
-                    renderEditor={(props) => <NumericInput max={100} {...props} formatOptions={{ maximumFractionDigits: 0 }} />}
-                    {...props}
+                    { ...props.rowLens.prop('complete').toProps() }
+                    renderEditor={ (props) => <NumericInput max={ 100 } { ...props } formatOptions={ { maximumFractionDigits: 0 } } /> }
+                    { ...props }
                 />
             ),
         },
@@ -96,12 +98,12 @@ export function getColumns(columnsProps: ColumnsProps) {
             width: 200,
             grow: 1,
             renderCell: (props) => (
-                <DataTableCell {...props.rowLens.prop('description').toProps()} renderEditor={(props) => <TextArea {...props} autoSize={true} />} {...props} />
+                <DataTableCell { ...props.rowLens.prop('description').toProps() } renderEditor={ (props) => <TextArea { ...props } autoSize={ true } /> } { ...props } />
             ),
         },
         {
             key: 'actions',
-            render: (item, row) => <RowKebabButton row={row} {...columnsProps} />,
+            render: (item, row) => <RowKebabButton row={ row } { ...columnsProps } />,
             width: 54,
             fix: 'right',
             alignSelf: 'center',

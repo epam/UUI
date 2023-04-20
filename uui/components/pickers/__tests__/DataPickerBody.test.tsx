@@ -27,7 +27,7 @@ describe('DataPickerBody', () => {
     const requiredProps: DataPickerBodyProps = {
         value: null,
         onValueChange: jest.fn(),
-        rows: rows.map((props) => <DataPickerRow key={props.id} renderItem={(item: string) => <div>{item}</div>} id={props.id} rowKey={props.rowKey} index={props.id} />),
+        rows: rows.map((props) => <DataPickerRow key={ props.id } renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } />),
         search: {
             value: null,
             onValueChange: jest.fn(),
@@ -35,31 +35,31 @@ describe('DataPickerBody', () => {
     };
 
     it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(<DataPickerBody {...requiredProps} />);
+        const tree = await renderSnapshotWithContextAsync(<DataPickerBody { ...requiredProps } />);
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly without rows', async () => {
-        const tree = await renderSnapshotWithContextAsync(<DataPickerBody {...requiredProps} rows={[]} renderNotFound={() => <div>Not found</div>} />);
+        const tree = await renderSnapshotWithContextAsync(<DataPickerBody { ...requiredProps } rows={ [] } renderNotFound={ () => <div>Not found</div> } />);
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <DataPickerBody
-                {...requiredProps}
+                { ...requiredProps }
                 editMode="modal"
                 showSearch="auto"
-                maxHeight={800}
+                maxHeight={ 800 }
                 searchSize="48"
-                rows={rows.map((props) => (
-                    <DataPickerRow key={props.id} renderItem={(item: string) => <div>{item}</div>} id={props.id} rowKey={props.rowKey} index={props.id} />
-                ))}
-                onKeyDown={jest.fn}
-                rowsCount={7}
-                totalCount={11}
-                scheduleUpdate={jest.fn}
-            />
+                rows={ rows.map((props) => (
+                    <DataPickerRow key={ props.id } renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } />
+                )) }
+                onKeyDown={ jest.fn }
+                rowsCount={ 7 }
+                totalCount={ 11 }
+                scheduleUpdate={ jest.fn }
+            />,
         );
         expect(tree).toMatchSnapshot();
     });

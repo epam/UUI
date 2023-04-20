@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { ArrayDataSource, DataColumnProps, DataSourceState } from '@epam/uui-core';
-import { DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars } from '@epam/promo';
+import {
+    DataTable, Text, RichTextView, FlexRow, MultiSwitch, FlexSpacer, TabButton, LinkButton, ScrollBars,
+} from '@epam/promo';
 import { ComponentEditor } from './ComponentEditor';
 import { svc } from '../../services';
 import { getQuery } from '../../helpers';
@@ -41,8 +43,8 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
         if (this.getPropsDocPath() !== null) {
             const propsPromise = svc.api.getProps();
-            propsPromise &&
-                propsPromise.then((res) => {
+            propsPromise
+                && propsPromise.then((res) => {
                     const skin = this.getPropsDocPath()[UUI4] === undefined ? UUI3 : UUI4;
                     const resProps = res.content.props;
                     const docPath = this.getPropsDocPath()[skin];
@@ -93,7 +95,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             caption: 'Type',
             render: (prop) => (
                 <Text color="gray80">
-                    <span style={{ whiteSpace: 'pre-wrap' }}>{prop.value}</span>
+                    <span style={ { whiteSpace: 'pre-wrap' } }>{prop.value}</span>
                 </Text>
             ),
             width: 200,
@@ -102,7 +104,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         {
             key: 'comment',
             caption: 'Description',
-            render: (prop) => <RichTextView htmlContent={prop.comment} />,
+            render: (prop) => <RichTextView htmlContent={ prop.comment } />,
             width: 200,
             grow: 1,
         },
@@ -117,11 +119,11 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                     <h2>Api</h2>
                 </RichTextView>
                 <DataTable
-                    value={this.state.tableState}
-                    onValueChange={this.onTableStateChange}
-                    columns={this.apiColumns}
-                    getRows={view.getVisibleRows}
-                    {...view.getListProps()}
+                    value={ this.state.tableState }
+                    onValueChange={ this.onTableStateChange }
+                    columns={ this.apiColumns }
+                    getRows={ view.getVisibleRows }
+                    { ...view.getListProps() }
                 />
             </>
         );
@@ -131,18 +133,18 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
         return (
             <MultiSwitch<Skin>
                 size="36"
-                items={items.filter((i) => (!window.location.host.includes('localhost') ? i.id !== UUI : true))}
-                value={getQuery('skin') || UUI4}
-                onValueChange={(newValue: Skin) => this.handleChangeSkin(newValue)}
+                items={ items.filter((i) => (!window.location.host.includes('localhost') ? i.id !== UUI : true)) }
+                value={ getQuery('skin') || UUI4 }
+                onValueChange={ (newValue: Skin) => this.handleChangeSkin(newValue) }
             />
         );
     }
 
     renderTabsNav() {
         return (
-            <FlexRow rawProps={{ role: 'tablist' }} background="white" padding="12" cx={css.secondaryNavigation} borderBottom>
-                <TabButton size="60" caption="Documentation" isLinkActive={getQuery('mode') === 'doc'} onClick={() => this.handleChangeMode('doc')} />
-                <TabButton size="60" caption="Property Explorer" isLinkActive={getQuery('mode') === 'propsEditor'} onClick={() => this.handleChangeMode('propsEditor')} />
+            <FlexRow rawProps={ { role: 'tablist' } } background="white" padding="12" cx={ css.secondaryNavigation } borderBottom>
+                <TabButton size="60" caption="Documentation" isLinkActive={ getQuery('mode') === 'doc' } onClick={ () => this.handleChangeMode('doc') } />
+                <TabButton size="60" caption="Property Explorer" isLinkActive={ getQuery('mode') === 'propsEditor' } onClick={ () => this.handleChangeMode('propsEditor') } />
                 <FlexSpacer />
                 {getQuery('mode') !== 'doc' && this.renderMultiSwitch()}
             </FlexRow>
@@ -167,7 +169,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             return this.renderNotSupportPropExplorer();
         }
         return (
-            <ComponentEditor key={this.getPropsDocPath()[getQuery('skin') as Skin]} propsDocPath={this.getPropsDocPath()[getQuery('skin') as Skin]} title={this.title} />
+            <ComponentEditor key={ this.getPropsDocPath()[getQuery('skin') as Skin] } propsDocPath={ this.getPropsDocPath()[getQuery('skin') as Skin] } title={ this.title } />
         );
     }
 
@@ -190,7 +192,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
     renderDoc() {
         return (
             <ScrollBars>
-                <div className={css.widthWrapper}>
+                <div className={ css.widthWrapper }>
                     {this.renderDocTitle()}
                     {this.renderContent()}
                     {this.state.props && this.renderApiBlock()}
@@ -201,15 +203,15 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     renderNotSupportPropExplorer() {
         return (
-            <div className={css.notSupport}>
+            <div className={ css.notSupport }>
                 <Text fontSize="16" lineHeight="24">
                     This component does not support property explorer
                 </Text>
                 <LinkButton
                     size="24"
-                    cx={css.backButton}
+                    cx={ css.backButton }
                     caption="Back to Docs"
-                    onClick={() =>
+                    onClick={ () =>
                         svc.uuiRouter.redirect({
                             pathname: '/documents',
                             query: {
@@ -218,8 +220,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
                                 mode: 'doc',
                                 skin: getQuery('skin'),
                             },
-                        })
-                    }
+                        }) }
                 />
             </div>
         );
@@ -265,7 +266,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     render() {
         return (
-            <div className={css.container}>
+            <div className={ css.container }>
                 {this.getPropsDocPath() && this.renderTabsNav()}
                 {getQuery('mode') === 'propsEditor' ? this.renderPropEditor() : this.renderDoc()}
             </div>

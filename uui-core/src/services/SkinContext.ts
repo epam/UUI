@@ -23,13 +23,13 @@ interface ISkinComponent<TProps, TSemanticProps = {}> {
 }
 
 export type SkinContextComponentProps<TProps, TSemanticProps = {}> = TProps &
-    TSemanticProps & {
-        usageContext?: string[];
-    };
+TSemanticProps & {
+    usageContext?: string[];
+};
 
 export function skinComponent<TProps, TSemanticProps = {}>(
     component: React.ComponentType<TProps>,
-    mapProps?: (props: SkinContextComponentProps<TProps, TSemanticProps>) => TProps
+    mapProps?: (props: SkinContextComponentProps<TProps, TSemanticProps>) => TProps,
 ): ISkinComponent<TProps, TSemanticProps> {
     return {
         component,
@@ -63,18 +63,31 @@ export class SkinContext {
     }
 
     public Button = (props: ButtonCoreProps & ButtonSemanticProps) => this.skin.Button.render(props);
+
     public IconButton = (props: SkinContextComponentProps<ButtonCoreProps>) => this.skin.IconButton.render(props);
+
     public Checkbox = (props: CheckboxCoreProps) => this.skin.Checkbox.render(props);
+
     public FlexRow = (props: FlexRowProps) => this.skin.FlexRow.render(props);
+
     public FlexCell = (props: FlexCellProps) => this.skin.FlexCell.render(props);
+
     public Spinner = (props: SpinnerCoreProps) => this.skin.Spinner.render(props);
+
     public TextInput = (props: TextInputCoreProps) => this.skin.TextInput.render(props);
+
     public ModalWindow = (props: ModalWindowProps) => this.skin.ModalWindow.render(props);
+
     public ModalBlocker = (props: ModalBlockerProps) => this.skin.ModalBlocker.render(props);
+
     public ModalHeader = (props: ModalHeaderCoreProps) => this.skin.ModalHeader.render(props);
+
     public ModalFooter = (props: ModalFooterCoreProps) => this.skin.ModalFooter.render(props);
+
     public LabeledInput = (props: LabeledInputCoreProps) => this.skin.LabeledInput.render(props);
+
     public DatePicker = (props: DatePickerCoreProps) => this.skin.DatePicker.render(props);
+
     public RangeDatePicker = (props: RangeDatePickerCoreProps) => this.skin.RangeDatePicker.render(props);
 }
 

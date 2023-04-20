@@ -5,7 +5,7 @@ import { rangeDatePickerPresets } from '@epam/uui-components';
 
 describe('CalendarPresets', () => {
     it('should be rendered correctly', () => {
-        const tree = renderer.create(<CalendarPresets presets={rangeDatePickerPresets} onPresetSet={jest.fn} />).toJSON();
+        const tree = renderer.create(<CalendarPresets presets={ rangeDatePickerPresets } onPresetSet={ jest.fn } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

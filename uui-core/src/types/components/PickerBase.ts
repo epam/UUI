@@ -1,31 +1,33 @@
 import { ReactNode } from 'react';
 import { IAnalyticableOnChange, IEditable } from '../props';
-import { IDataSource, IDataSourceView, DataRowOptions, DataRowProps, DataSourceState, CascadeSelection } from '../dataSources';
+import {
+    IDataSource, IDataSourceView, DataRowOptions, DataRowProps, DataSourceState, CascadeSelection,
+} from '../dataSources';
 import { SortingOption } from '../dataQuery';
 
 export type SinglePickerProps<TId, TItem> =
     | ({
-          /** 'single' - only one item is selected. 'multi' - multiple items are selected */
-          selectionMode: 'single';
-          /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
-          valueType?: 'id';
-      } & IEditable<TId>)
+        /** 'single' - only one item is selected. 'multi' - multiple items are selected */
+        selectionMode: 'single';
+        /** Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem) */
+        valueType?: 'id';
+    } & IEditable<TId>)
     | ({
-          selectionMode: 'single';
-          valueType: 'entity';
-      } & IEditable<TItem>);
+        selectionMode: 'single';
+        valueType: 'entity';
+    } & IEditable<TItem>);
 
 export type ArrayPickerProps<TId, TItem> =
     | ({
-          selectionMode: 'multi';
-          valueType?: 'id';
-          emptyValue?: [] | null;
-      } & IEditable<TId[]>)
+        selectionMode: 'multi';
+        valueType?: 'id';
+        emptyValue?: [] | null;
+    } & IEditable<TId[]>)
     | ({
-          selectionMode: 'multi';
-          valueType: 'entity';
-          emptyValue?: [] | null;
-      } & IEditable<TItem[]>);
+        selectionMode: 'multi';
+        valueType: 'entity';
+        emptyValue?: [] | null;
+    } & IEditable<TItem[]>);
 
 export type PickerBindingProps<TItem, TId> = SinglePickerProps<TId, TItem> | ArrayPickerProps<TId, TItem>;
 

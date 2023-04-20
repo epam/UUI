@@ -94,15 +94,15 @@ export class DatePickerHeader extends React.Component<DatePickerHeaderProps, any
 
     render() {
         return (
-            <div className={cx(css.container, uuiHeader.container, this.props.cx)}>
-                <header className={uuiHeader.header}>
-                    <IconContainer cx={uuiHeader.navIconLeft} icon={this.props.navIconLeft} onClick={() => this.onLeftNavigationArrow()} />
-                    <div onClick={() => this.onCaptionClick(this.props.value.view)} className={uuiHeader.navTitle} tabIndex={0}>
+            <div className={ cx(css.container, uuiHeader.container, this.props.cx) }>
+                <header className={ uuiHeader.header }>
+                    <IconContainer cx={ uuiHeader.navIconLeft } icon={ this.props.navIconLeft } onClick={ () => this.onLeftNavigationArrow() } />
+                    <div onClick={ () => this.onCaptionClick(this.props.value.view) } className={ uuiHeader.navTitle } tabIndex={ 0 }>
                         {`${
                             this.props.value?.view !== 'MONTH_SELECTION' ? dayjs.months()[this.props.value?.displayedDate.month()] : ''
                         } ${this.props.value?.displayedDate.year()}`}
                     </div>
-                    <IconContainer cx={uuiHeader.navIconRight} icon={this.props.navIconRight} onClick={() => this.onRightNavigationArrow()} />
+                    <IconContainer cx={ uuiHeader.navIconRight } icon={ this.props.navIconRight } onClick={ () => this.onRightNavigationArrow() } />
                 </header>
             </div>
         );

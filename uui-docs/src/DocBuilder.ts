@@ -1,10 +1,15 @@
 import type { ComponentType } from 'react';
-import type { IComponentDocs, DemoComponentProps, DemoContext, PropExample, PropDoc } from './types';
+import type {
+    IComponentDocs, DemoComponentProps, DemoContext, PropExample, PropDoc,
+} from './types';
 
 export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     name: string;
+
     props?: PropDoc<TProps, keyof TProps>[];
+
     contexts?: DemoContext[];
+
     component: IComponentDocs<TProps>['component'];
 
     constructor(docs: IComponentDocs<TProps>) {

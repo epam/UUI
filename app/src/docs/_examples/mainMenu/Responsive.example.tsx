@@ -26,18 +26,18 @@ export default function MainMenuResponsiveExample() {
 
     const renderBurger = (hiddenItems: AdaptiveItemProps<{ caption?: string }>[], onClose?: () => void): ReactNode => (
         <>
-            <BurgerSearch value={burgerSearchQuery} onValueChange={setBurgerSearchQuery} placeholder="Type to search" onCancel={() => setBurgerSearchQuery('')} />
+            <BurgerSearch value={ burgerSearchQuery } onValueChange={ setBurgerSearchQuery } placeholder="Type to search" onCancel={ () => setBurgerSearchQuery('') } />
             {hiddenItems
                 .filter((i) => i.caption)
                 .map((i) => {
                     return (
                         <BurgerButton
                             href="/"
-                            caption={i.caption}
-                            onClick={() => {
-                                //here your code
+                            caption={ i.caption }
+                            onClick={ () => {
+                                // here your code
                                 onClose && onClose();
-                            }}
+                            } }
                         />
                     );
                 })}
@@ -47,16 +47,16 @@ export default function MainMenuResponsiveExample() {
     const renderAvatar = () => {
         return (
             <Dropdown
-                renderTarget={(props) => (
-                    <MainMenuAvatar avatarUrl="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" isDropdown {...props} />
-                )}
-                renderBody={(props) => (
-                    <DropdownMenuBody {...props}>
+                renderTarget={ (props) => (
+                    <MainMenuAvatar avatarUrl="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" isDropdown { ...props } />
+                ) }
+                renderBody={ (props) => (
+                    <DropdownMenuBody { ...props }>
                         <DropdownMenuButton caption="Settings" />
                         <DropdownMenuSplitter />
                         <DropdownMenuButton caption="Log out" />
                     </DropdownMenuBody>
-                )}
+                ) }
                 placement="bottom-end"
             />
         );
@@ -68,20 +68,34 @@ export default function MainMenuResponsiveExample() {
                 id: 'burger',
                 priority: 100,
                 collapsedContainer: true,
-                render: (item, hiddenItems) => <Burger renderBurgerContent={(props) => renderBurger(hiddenItems, props.onClose)} />,
+                render: (item, hiddenItems) => <Burger renderBurgerContent={ (props) => renderBurger(hiddenItems, props.onClose) } />,
             },
             {
                 id: 'logo',
                 priority: 99,
                 render: () => <MainMenuLogo href="https://learn.epam.com/" logoUrl="https://uui.epam.com/static/images/app-logos/learn_logo.svg" />,
             },
-            { id: 'People', priority: 9, render: () => <MainMenuButton href="/" caption="People" />, caption: 'People' },
-            { id: 'Projects', priority: 7, render: () => <MainMenuButton caption="Projects" />, caption: 'Projects' },
-            { id: 'Positions', priority: 6, render: () => <MainMenuButton href="/" caption="Positions" />, caption: 'Positions' },
-            { id: 'Companies', priority: 5, render: () => <MainMenuButton href="/" caption="Companies" />, caption: 'Companies' },
-            { id: 'Processes', priority: 5, render: () => <MainMenuButton href="/" caption="Processes" />, caption: 'Processes' },
-            { id: 'Tasks', priority: 4, render: () => <MainMenuButton href="/" caption="Tasks" />, caption: 'Tasks' },
-            { id: 'Talks', priority: 4, render: () => <MainMenuButton href="/" caption="Talks" />, caption: 'Talks' },
+            {
+                id: 'People', priority: 9, render: () => <MainMenuButton href="/" caption="People" />, caption: 'People',
+            },
+            {
+                id: 'Projects', priority: 7, render: () => <MainMenuButton caption="Projects" />, caption: 'Projects',
+            },
+            {
+                id: 'Positions', priority: 6, render: () => <MainMenuButton href="/" caption="Positions" />, caption: 'Positions',
+            },
+            {
+                id: 'Companies', priority: 5, render: () => <MainMenuButton href="/" caption="Companies" />, caption: 'Companies',
+            },
+            {
+                id: 'Processes', priority: 5, render: () => <MainMenuButton href="/" caption="Processes" />, caption: 'Processes',
+            },
+            {
+                id: 'Tasks', priority: 4, render: () => <MainMenuButton href="/" caption="Tasks" />, caption: 'Tasks',
+            },
+            {
+                id: 'Talks', priority: 4, render: () => <MainMenuButton href="/" caption="Talks" />, caption: 'Talks',
+            },
             {
                 id: 'Action Items',
                 priority: 3,
@@ -89,14 +103,16 @@ export default function MainMenuResponsiveExample() {
                     <MainMenuButton
                         href="/"
                         caption="Action Items"
-                        onClick={() => {
+                        onClick={ () => {
                             item.onClose && item.onClose();
-                        }}
+                        } }
                     />
                 ),
                 caption: 'Action Items',
             },
-            { id: 'Subscriptions', priority: 3, render: () => <MainMenuButton href="/" caption="Subscriptions" />, caption: 'Subscriptions' },
+            {
+                id: 'Subscriptions', priority: 3, render: () => <MainMenuButton href="/" caption="Subscriptions" />, caption: 'Subscriptions',
+            },
             {
                 id: 'moreContainer',
                 priority: 8,
@@ -104,26 +120,26 @@ export default function MainMenuResponsiveExample() {
                 render: (item, hiddenItems) => (
                     <MainMenuDropdown
                         caption="More"
-                        renderBody={(props) => {
+                        renderBody={ (props) => {
                             return hiddenItems?.map((i) => i.render({ ...item, onClose: props.onClose }));
-                        }}
+                        } }
                     />
                 ),
             },
             { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer /> },
-            { id: 'pinIcon', priority: 8, render: () => <MainMenuIcon icon={PinIcon} /> },
-            { id: 'helpIcon', priority: 8, render: () => <MainMenuIcon icon={HelpIcon} /> },
+            { id: 'pinIcon', priority: 8, render: () => <MainMenuIcon icon={ PinIcon } /> },
+            { id: 'helpIcon', priority: 8, render: () => <MainMenuIcon icon={ HelpIcon } /> },
             { id: 'avatar', priority: 9, render: renderAvatar },
             { id: 'globalMenu', priority: 100, render: () => <GlobalMenu /> },
         ];
     };
 
     return (
-        <FlexCell grow={1}>
-            <Slider value={width} onValueChange={setWidth} min={0} max={100} step={1} />
+        <FlexCell grow={ 1 }>
+            <Slider value={ width } onValueChange={ setWidth } min={ 0 } max={ 100 } step={ 1 } />
 
-            <div style={{ width: `${width}%`, marginTop: 12 }}>
-                <MainMenu items={getMenuItems()} />
+            <div style={ { width: `${width}%`, marginTop: 12 } }>
+                <MainMenu items={ getMenuItems() } />
             </div>
         </FlexCell>
     );

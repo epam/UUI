@@ -17,9 +17,9 @@ const SortingPanelImpl: React.FC<SortingPanelProps> = ({ sortDirection, onSort }
     const sortDesc = useCallback(() => onSort(sortDirection === 'desc' ? undefined : 'desc'), [onSort]);
 
     return (
-        <FlexCell cx={css.sortingPanelContainer}>
-            <DropdownMenuButton isActive={sortDirection === 'asc'} caption={i18n.pickerFilterHeader.sortAscending} icon={SortIcon} onClick={sortAsc} />
-            <DropdownMenuButton isActive={sortDirection === 'desc'} caption={i18n.pickerFilterHeader.sortDescending} icon={SortIconDesc} onClick={sortDesc} />
+        <FlexCell cx={ css.sortingPanelContainer }>
+            <DropdownMenuButton isActive={ sortDirection === 'asc' } caption={ i18n.pickerFilterHeader.sortAscending } icon={ SortIcon } onClick={ sortAsc } />
+            <DropdownMenuButton isActive={ sortDirection === 'desc' } caption={ i18n.pickerFilterHeader.sortDescending } icon={ SortIconDesc } onClick={ sortDesc } />
         </FlexCell>
     );
 };

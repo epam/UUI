@@ -1,6 +1,8 @@
 import React from 'react';
 import { PickerBase, PickerBaseState } from './PickerBase';
-import { UuiContexts, DataRowProps, UuiContext, PickerBaseProps } from '@epam/uui-core';
+import {
+    UuiContexts, DataRowProps, UuiContext, PickerBaseProps,
+} from '@epam/uui-core';
 import { i18n } from '../i18n';
 
 export type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
@@ -41,8 +43,11 @@ interface LastUsedRec<TId> {
 
 export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerListBaseProps<TItem, TId> & TProps, PickerListState<TId>> {
     static contextType = UuiContext;
+
     sessionStartTime = new Date().getTime();
+
     context: UuiContexts;
+
     state: PickerListState<TId> = {
         dataSourceState: { focusedIndex: 0, topIndex: 0, visibleCount: this.getMaxDefaultItems() },
         visibleIds: this.getVisibleIds(),
@@ -80,7 +85,7 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
     getVisibleIds() {
         let lastUsedUds: TId[] = [];
         if (this.props.settingsKey) {
-            let settings = this.context.uuiUserSettings.get(this.getSettingsKey(), [] as LastUsedRec<TId>[]);
+            const settings = this.context.uuiUserSettings.get(this.getSettingsKey(), [] as LastUsedRec<TId>[]);
             lastUsedUds = settings.map((r) => r.id);
         }
 
@@ -92,10 +97,10 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
     }
 
     distinct(ids: TId[]): TId[] {
-        let result: TId[] = [];
-        let hash: Record<string, boolean> = {};
+        const result: TId[] = [];
+        const hash: Record<string, boolean> = {};
         ids.forEach((id) => {
-            let key = JSON.stringify(id);
+            const key = JSON.stringify(id);
             if (!hash[key]) {
                 result.push(id);
                 hash[key] = true;
@@ -105,12 +110,12 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
     }
 
     addDistinct(to: TId[], add: TId[], maxItems: number) {
-        let added: Record<string, boolean> = {};
+        const added: Record<string, boolean> = {};
         to.forEach((id) => (added[JSON.stringify(id)] = true));
-        let result = [...to];
+        const result = [...to];
         for (let n = 0; n < add.length && result.length < maxItems; n++) {
-            let id = add[n];
-            let key = JSON.stringify(id);
+            const id = add[n];
+            const key = JSON.stringify(id);
             if (!added[key]) {
                 result.push(id);
                 added[key] = true;
@@ -122,10 +127,10 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
     appendLastSelected(ids: TId[]) {
         if (this.props.settingsKey) {
             let lastUsedIds = this.context.uuiUserSettings.get(this.getSettingsKey(), [] as LastUsedRec<TId>[]);
-            let selectionTime = new Date().getTime();
+            const selectionTime = new Date().getTime();
             lastUsedIds = [...ids.map((id) => ({ id, selectionTime, sessionStartTime: this.sessionStartTime } as LastUsedRec<TId>)).reverse(), ...lastUsedIds].slice(
                 0,
-                100
+                100,
             );
 
             this.context.uuiUserSettings.set(this.getSettingsKey(), lastUsedIds);
@@ -160,8 +165,8 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
         const maxTotalItems = this.getMaxTotalItems();
         const view = this.getView();
 
-        let result: DataRowProps<TItem, TId>[] = [];
-        let added: Record<string, boolean> = {};
+        const result: DataRowProps<TItem, TId>[] = [];
+        const added: Record<string, boolean> = {};
 
         const addRows = (rows: DataRowProps<TItem, TId>[], maxItems: number) => {
             for (let n = 0; n < rows.length && (!maxItems || result.length < maxItems); n++) {
@@ -176,12 +181,12 @@ export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TIte
         addRows(view.getSelectedRows(), this.getMaxTotalItems());
 
         if (this.state.visibleIds && result.length < maxTotalItems) {
-            let rows = this.state.visibleIds.map((id, n) => view.getById(id, n)).filter((r) => !!r);
+            const rows = this.state.visibleIds.map((id, n) => view.getById(id, n)).filter((r) => !!r);
             addRows(rows, maxTotalItems);
         }
 
         if (!this.props.defaultIds && result.length < maxDefaultItems) {
-            let rows = view.getVisibleRows();
+            const rows = view.getVisibleRows();
             addRows(rows, maxDefaultItems);
         }
 

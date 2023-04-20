@@ -6,7 +6,7 @@ export default function DatePickerBaseExample() {
 
     return (
         <FlexRow>
-            <RangeDatePicker value={value} onValueChange={onValueChange} format="MMM D, YYYY" />
+            <RangeDatePicker value={ value } onValueChange={ onValueChange } format="MMM D, YYYY" />
         </FlexRow>
     );
 }

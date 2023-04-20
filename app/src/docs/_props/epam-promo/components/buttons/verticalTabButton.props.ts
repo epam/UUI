@@ -2,11 +2,21 @@ import { VerticalTabButton } from '@epam/promo';
 import { TabButtonMods } from '@epam/uui';
 import { DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
-import { onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iconDoc, iconOptionsDoc } from '../../docs';
+import {
+    onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iconDoc, iconOptionsDoc,
+} from '../../docs';
 import { VerticalTabButtonContext } from '../../docs';
 
 const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'VerticalTabButton', component: VerticalTabButton })
-    .implements([onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iconDoc, iconOptionsDoc])
+    .implements([
+        onClickDoc,
+        dropdownTogglerDoc,
+        isDisabledDoc,
+        basicPickerTogglerDoc,
+        iCanRedirectDoc,
+        iconDoc,
+        iconOptionsDoc,
+    ])
     .prop('caption', {
         examples: [
             { value: 'Click me', isDefault: true },
@@ -15,9 +25,24 @@ const TabButtonDoc = new DocBuilder<TabButtonMods & ButtonProps>({ name: 'Vertic
         ],
         type: 'string',
     })
-    .prop('size', { examples: ['36', '48', '60'], defaultValue: '48' })
+    .prop('size', {
+        examples: [
+            '36',
+            '48',
+            '60',
+        ],
+        defaultValue: '48',
+    })
     .prop('withNotify', { examples: [true, false] })
-    .prop('count', { examples: [0, 1, 5, 88, 123] })
+    .prop('count', {
+        examples: [
+            0,
+            1,
+            5,
+            88,
+            123,
+        ],
+    })
     .withContexts(VerticalTabButtonContext);
 
 export default TabButtonDoc;

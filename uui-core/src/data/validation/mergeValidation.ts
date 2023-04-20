@@ -19,12 +19,12 @@ function mergeValidationProps(validationProps: ICanBeInvalid['validationProps'],
 
         resultPart.validationProps[key] = validationMessage
             ? {
-                  isInvalid,
-                  validationMessage,
-              }
+                isInvalid,
+                validationMessage,
+            }
             : {
-                  isInvalid,
-              };
+                isInvalid,
+            };
 
         if (prop.isInvalid) {
             mergeValidationProps(prop.validationProps, resultPart.validationProps[key]);

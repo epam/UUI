@@ -11,9 +11,9 @@ describe('Anchor', () => {
     it('should rendered with props correctly', () => {
         const tree = renderer
             .create(
-                <Anchor href="https://uui.epam.com" isDisabled={true}>
+                <Anchor href="https://uui.epam.com" isDisabled={ true }>
                     Test Anchor
-                </Anchor>
+                </Anchor>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

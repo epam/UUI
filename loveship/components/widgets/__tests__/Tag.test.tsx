@@ -11,7 +11,7 @@ describe('Tag', () => {
 
     it('should render with all new props', () => {
         const tree = renderer
-            .create(<Tag fill={'white'} size={'24'} caption="Test tag" icon={AcceptIcon} count={12} onIconClick={jest.fn()} onClick={jest.fn()} onClear={jest.fn()} />)
+            .create(<Tag fill="white" size="24" caption="Test tag" icon={ AcceptIcon } count={ 12 } onIconClick={ jest.fn() } onClick={ jest.fn() } onClear={ jest.fn() } />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });

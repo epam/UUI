@@ -59,10 +59,7 @@ export class EmbeddedWidget<TProps = any> extends React.Component<EmbeddedAppPro
             i.json().then((manifest) => {
                 const jsFiles = Object.keys(manifest).filter((f) => f.endsWith('js'));
                 const cssFiles = Object.keys(manifest).filter((f) => f.endsWith('css'));
-                const loadTasks = [
-                    ...jsFiles.map((file) => this.addScript(this.props.publicUrl + manifest[file])),
-                    ...cssFiles.map((file) => this.addStyles(this.props.publicUrl + manifest[file])),
-                ];
+                const loadTasks = [...jsFiles.map((file) => this.addScript(this.props.publicUrl + manifest[file])), ...cssFiles.map((file) => this.addStyles(this.props.publicUrl + manifest[file]))];
                 Promise.all(loadTasks).then(() => {
                     this.setState({ isLoading: false });
                     (window as any)[this.props.widgetName](this.widgetNode, this.props.props);
@@ -76,6 +73,6 @@ export class EmbeddedWidget<TProps = any> extends React.Component<EmbeddedAppPro
             return <Spinner />;
         }
 
-        return <div ref={(node) => (this.widgetNode = node)} />;
+        return <div ref={ (node) => (this.widgetNode = node) } />;
     }
 }

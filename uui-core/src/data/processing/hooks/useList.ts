@@ -5,7 +5,9 @@ import { createView, mergePropsWithDefaults } from './helpers';
 import { usePrevious } from '../../../../src/hooks';
 import isEqual from 'lodash.isequal';
 
-export function useList<TItem, TId, TFilter>({ listState, setListState, loadData = true, ...props }: UseListProps<TItem, TId, TFilter>, deps: any[]) {
+export function useList<TItem, TId, TFilter>({
+    listState, setListState, loadData = true, ...props
+}: UseListProps<TItem, TId, TFilter>, deps: any[]) {
     const prevLoadDataRef = useRef(false);
     const prevListState = usePrevious(listState);
 
@@ -20,7 +22,7 @@ export function useList<TItem, TId, TFilter>({ listState, setListState, loadData
         (current) => {
             current.update(listState, props);
         },
-        deps
+        deps,
     );
 
     const isLoadUpdated = prevLoadDataRef.current !== loadData && loadData;

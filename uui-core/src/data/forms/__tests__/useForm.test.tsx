@@ -34,8 +34,7 @@ describe('useForm', () => {
                     onSave: () => Promise.resolve(),
                     onError: () => Promise.resolve(),
                     value: 'a',
-                })
-            );
+                }));
 
             act(() => result.current.onValueChange('b'));
             expect(result.current.value).toBe('b');
@@ -49,8 +48,7 @@ describe('useForm', () => {
                     onSave: () => Promise.resolve(),
                     onError: () => Promise.resolve(),
                     value: 'a',
-                })
-            );
+                }));
 
             act(() => result.current.setValue('b'));
             expect(result.current.value).toBe('b');
@@ -64,8 +62,7 @@ describe('useForm', () => {
                     onSave: () => Promise.resolve(),
                     onError: () => Promise.resolve(),
                     value: 1,
-                })
-            );
+                }));
 
             act(() => result.current.setValue((x) => x + 1));
             expect(result.current.value).toBe(2);
@@ -79,8 +76,7 @@ describe('useForm', () => {
                     onSave: () => Promise.resolve(),
                     onError: () => Promise.resolve(),
                     value: 1,
-                })
-            );
+                }));
 
             act(() => {
                 result.current.setValue((x) => x + 1);
@@ -116,8 +112,7 @@ describe('useForm', () => {
                     onError: () => Promise.resolve(),
                     value: testData,
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             act(() => result.current.lens.prop('dummy').set('hello'));
             expect(result.current.isChanged).toBe(true);
@@ -132,8 +127,7 @@ describe('useForm', () => {
                     onSave: onSaveSpy,
                     onError: jest.fn(),
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             await handleSave(result.current.save);
             expect(result.current.isInvalid).toBe(true);
@@ -154,8 +148,7 @@ describe('useForm', () => {
                     onSave: Promise.resolve,
                     beforeLeave: () => Promise.resolve(false),
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             expect(result.current.lens.prop('dummy').toProps().isInvalid).toBe(false);
 
@@ -209,8 +202,7 @@ describe('useForm', () => {
                     onSave: Promise.resolve,
                     onError: jest.fn(),
                     getMetadata: () => enhancedMetadata,
-                })
-            );
+                }));
 
             expect(result.current.isInvalid).toBe(false);
 
@@ -231,8 +223,7 @@ describe('useForm', () => {
                     onError: jest.fn(),
                     getMetadata: () => ({ props: { dummy: { isRequired: true }, tummy: { isRequired: true } } }),
                     validationOn: 'change',
-                })
-            );
+                }));
 
             act(() => result.current.lens.prop('dummy').set(null));
             expect(result.current.lens.toProps().validationProps).toStrictEqual({
@@ -305,8 +296,7 @@ describe('useForm', () => {
                     onSave: (form) => Promise.resolve({ form: form }),
                     onError: jest.fn(),
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             act(() => result.current.lens.prop('dummy').set('hello'));
             expect(result.current.isChanged).toBe(true);
@@ -327,8 +317,7 @@ describe('useForm', () => {
                     beforeLeave: beforeLeaveMock,
                     onError: jest.fn(),
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
@@ -347,8 +336,7 @@ describe('useForm', () => {
                     onSave: Promise.resolve,
                     beforeLeave: () => Promise.resolve(false),
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
@@ -368,8 +356,7 @@ describe('useForm', () => {
                     onSave: Promise.resolve,
                     beforeLeave: () => Promise.resolve(false),
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
@@ -447,8 +434,7 @@ describe('useForm', () => {
                     value: 'a',
                     onSave: (form) => Promise.resolve({ form: form }),
                     onError: jest.fn(),
-                })
-            );
+                }));
 
             act(() => result.current.replaceValue('b'));
             expect(result.current.value).toBe('b');
@@ -474,8 +460,7 @@ describe('useForm', () => {
                     onSave: (person) => Promise.resolve({ form: person }),
                     beforeLeave: () => Promise.resolve(false),
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
@@ -493,8 +478,7 @@ describe('useForm', () => {
                     onSave: () => Promise.resolve(),
                     beforeLeave: beforeLeaveMock,
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
@@ -513,8 +497,7 @@ describe('useForm', () => {
                     onSave: Promise.resolve,
                     beforeLeave: () => Promise.resolve(false),
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
@@ -535,8 +518,7 @@ describe('useForm', () => {
                     onSuccess: onSuccessSpy,
                     onError: onErrorSpy,
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
@@ -558,8 +540,7 @@ describe('useForm', () => {
                     onSuccess: onSuccessSpy,
                     onError: onErrorSpy,
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             await handleSave(result.current.save);
             expect(onErrorSpy).toHaveBeenCalled();
@@ -584,8 +565,7 @@ describe('useForm', () => {
                 useForm({
                     ...props,
                     loadUnsavedChanges: jest.fn().mockResolvedValueOnce(true),
-                })
-            );
+                }));
 
             expect(secondRenderResult.current.lens.prop('dummy').get()).toBe('hi');
         });
@@ -630,8 +610,7 @@ describe('useForm', () => {
                     onSuccess: () => '',
                     getMetadata: () => testMetadata,
                     beforeLeave: () => Promise.resolve(false),
-                })
-            );
+                }));
 
             await act(() => handleSave(firstResult.current.save));
             expect(firstResult.current.isInvalid).toBe(false);
@@ -644,20 +623,19 @@ describe('useForm', () => {
                     onSave: () => Promise.resolve(serverResponse),
                     onSuccess: () => '',
                     getMetadata: () => testMetadata,
-                })
-            );
+                }));
 
             await act(() => handleSave(secondResult.current.save));
             expect(secondResult.current.lens.toProps()).toHaveProperty('isInvalid', true);
             expect(secondResult.current.lens.prop('dummy').toProps()).toHaveProperty('isInvalid', true);
             expect(secondResult.current.lens.prop('dummy').toProps()).toHaveProperty(
                 'validationMessage',
-                serverResponse.validation.validationProps.dummy.validationMessage
+                serverResponse.validation.validationProps.dummy.validationMessage,
             );
             expect(secondResult.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty('isInvalid', true);
             expect(secondResult.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty(
                 'validationMessage',
-                serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage
+                serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage,
             );
         });
 
@@ -686,15 +664,14 @@ describe('useForm', () => {
                     onSuccess: () => '',
                     getMetadata: () => testMetadata,
                     beforeLeave: () => Promise.resolve(false),
-                })
-            );
+                }));
 
             await act(() => handleSave(result.current.save));
             expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
             expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty('isInvalid', true);
             expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty(
                 'validationMessage',
-                serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage
+                serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage,
             );
 
             act(() => result.current.lens.prop('dummy').set('changed'));
@@ -741,8 +718,7 @@ describe('useForm', () => {
                     onSuccess: () => '',
                     getMetadata: () => testMetadata,
                     beforeLeave: () => Promise.resolve(false),
-                })
-            );
+                }));
 
             await act(() => handleSave(result.current.save));
 
@@ -750,12 +726,12 @@ describe('useForm', () => {
             expect(result.current.lens.prop('deep').toProps().isInvalid).toBe(true);
             expect(result.current.lens.prop('deep').prop('inner').toProps().isInvalid).toBe(true);
             expect(result.current.lens.prop('deep').prop('inner').toProps().validationMessage).toBe(
-                serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage
+                serverResponse.validation.validationProps.deep.validationProps.inner.validationMessage,
             );
             expect(result.current.lens.prop('deep2').toProps().isInvalid).toBe(true);
             expect(result.current.lens.prop('deep2').prop('inner2').toProps().isInvalid).toBe(true);
             expect(result.current.lens.prop('deep2').prop('inner2').toProps().validationMessage).toBe(
-                serverResponse.validation.validationProps.deep2.validationProps.inner2.validationMessage
+                serverResponse.validation.validationProps.deep2.validationProps.inner2.validationMessage,
             );
 
             act(() => result.current.lens.prop('deep').prop('inner').set('changed'));
@@ -767,7 +743,7 @@ describe('useForm', () => {
             expect(result.current.lens.prop('deep2').toProps().isInvalid).toBe(true);
             expect(result.current.lens.prop('deep2').prop('inner2').toProps().isInvalid).toBe(true);
             expect(result.current.lens.prop('deep2').prop('inner2').toProps().validationMessage).toBe(
-                serverResponse.validation.validationProps.deep2.validationProps.inner2.validationMessage
+                serverResponse.validation.validationProps.deep2.validationProps.inner2.validationMessage,
             );
         });
     });

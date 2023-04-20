@@ -16,8 +16,8 @@ export class LocaleContext extends React.Component<DemoComponentProps> {
         i18n.datePicker.locale = 'ru';
 
         return (
-            <Panel margin="24" style={{ padding: '12px', background: props.theme == 'dark' && '#2c2f3c' }}>
-                <DemoComponent key={i18n.datePicker.locale} {...props} />
+            <Panel margin="24" style={ { padding: '12px', background: props.theme == 'dark' && '#2c2f3c' } }>
+                <DemoComponent key={ i18n.datePicker.locale } { ...props } />
             </Panel>
         );
     }

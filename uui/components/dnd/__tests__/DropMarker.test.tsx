@@ -14,8 +14,8 @@ describe('DropMarker', () => {
         const tree = renderer
             .create(
                 <DropMarker
-                    classNames={['test-class']}
-                    eventHandlers={mockEventHandlers}
+                    classNames={ ['test-class'] }
+                    eventHandlers={ mockEventHandlers }
                     isDndInProgress
                     isDraggable
                     isDraggedOut
@@ -23,7 +23,7 @@ describe('DropMarker', () => {
                     isDragGhost
                     isDropAccepted
                     position="top"
-                />
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

@@ -1,5 +1,9 @@
-import { getId, isClientOnly, unionPatches, mergeEntityPatches, flattenResponse, isNew, hasServerFields, getParentEntities } from '../patchHelpers';
-import { emptyDb, sampleDb, Task, User, Manager, View, TaskDbTables } from './TaskDb';
+import {
+    getId, isClientOnly, unionPatches, mergeEntityPatches, flattenResponse, isNew, hasServerFields, getParentEntities,
+} from '../patchHelpers';
+import {
+    emptyDb, sampleDb, Task, User, Manager, View, TaskDbTables,
+} from './TaskDb';
 import { DbPatch } from '../types';
 import orderBy from 'lodash.orderby';
 import { IClientIdsMap } from '..';
@@ -32,14 +36,14 @@ const clientOnlyView: View = {
 };
 
 describe('db - patchHelpers', () => {
-    let newClientIdsMap: IClientIdsMap = {
+    const newClientIdsMap: IClientIdsMap = {
         clientToServer: (id: number): any => undefined,
         serverToClient: (tableName: string, id: any): any => undefined,
         clientToServerDataFilter: null,
         clientToServerRequest: null,
     };
 
-    let existingClientIdsMap: IClientIdsMap = {
+    const existingClientIdsMap: IClientIdsMap = {
         clientToServer: (id: number): any => id,
         serverToClient: (tableName: string, id: any): any => id,
         clientToServerDataFilter: null,
@@ -96,10 +100,7 @@ describe('db - patchHelpers', () => {
             const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});
 
             const patch: DbPatch<TaskDbTables> = {
-                users: [
-                    { id: 'YZ', name: 'Yakov Zhmurov' },
-                    { id: 'YZ', sex: 'm' },
-                ],
+                users: [{ id: 'YZ', name: 'Yakov Zhmurov' }, { id: 'YZ', sex: 'm' }],
             };
 
             const result = mergeEntityPatches(emptyDb.tables, patch);
@@ -111,10 +112,7 @@ describe('db - patchHelpers', () => {
             const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});
 
             const patch: DbPatch<TaskDbTables> = {
-                users: [
-                    { id: 'YZ', name: 'Yakov Zhmurov' },
-                    { id: 'YZ', name: 'Ilya Kuznetsov' },
-                ],
+                users: [{ id: 'YZ', name: 'Yakov Zhmurov' }, { id: 'YZ', name: 'Ilya Kuznetsov' }],
             };
 
             mergeEntityPatches(emptyDb.tables, patch);
@@ -131,10 +129,7 @@ describe('db - patchHelpers', () => {
                         name: 'Yakov Zhmurov',
                         __typename: 'User',
                         manager: { id: 'AU', name: 'Andrei Urban', __typename: 'User' },
-                        subordinates: [
-                            { id: 'PS', name: 'Pavel Shchur', __typename: 'User' },
-                            { id: 'IK', name: 'Ilya Kuznetsov', __typename: 'User' },
-                        ],
+                        subordinates: [{ id: 'PS', name: 'Pavel Shchur', __typename: 'User' }, { id: 'IK', name: 'Ilya Kuznetsov', __typename: 'User' }],
                     },
                 ],
             };
@@ -202,7 +197,7 @@ describe('db - patchHelpers', () => {
                 {
                     tasks: [{ id: 1 }],
                 },
-                sampleDb.tables
+                sampleDb.tables,
             );
 
             expect(parents.users).toEqual([{ id: 'DT' }]);

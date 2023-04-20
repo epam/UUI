@@ -11,8 +11,8 @@ describe('Tooltip', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <Tooltip color="contrast" content="Test" trigger="click">
-                {'Test'}
-            </Tooltip>
+                Test
+            </Tooltip>,
         );
 
         expect(tree).toMatchSnapshot();

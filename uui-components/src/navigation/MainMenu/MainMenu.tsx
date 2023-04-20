@@ -1,5 +1,7 @@
 import React, { MouseEvent } from 'react';
-import { IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef, DropdownBodyProps } from '@epam/uui-core';
+import {
+    IAdaptiveItem, ICanRedirect, IHasCaption, IHasChildren, IHasCX, Link, IHasRawProps, cx, IHasForwardedRef, DropdownBodyProps,
+} from '@epam/uui-core';
 import { BurgerProps, MainMenuLogo } from './index';
 import { AdaptivePanel, AdaptiveItemProps } from '../../layout';
 import { i18n } from '../../i18n';
@@ -87,9 +89,9 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                 priority: maxCollapseToMorePriority,
                 render: (item, hiddenItems) => (
                     <MainMenuDropdown
-                        key={'moreDropdown'}
-                        caption={i18n.mainMenu.moreButtonCaption}
-                        children={hiddenItems?.filter((i) => i.props.collapseToMore).map((i) => i.render(item, hiddenItems))}
+                        key="moreDropdown"
+                        caption={ i18n.mainMenu.moreButtonCaption }
+                        children={ hiddenItems?.filter((i) => i.props.collapseToMore).map((i) => i.render(item, hiddenItems)) }
                     />
                 ),
                 collapsedContainer: true,
@@ -120,8 +122,8 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
         }
 
         return this.props.serverBadge !== 'Prod' && this.props.serverBadge !== 'Public' && this.props.serverBadge !== 'Demo' ? (
-            <div className={cx(uuiMainMenu.serverBadge)}>
-                <div className={cx(uuiMainMenu.serverBadgeLabel)} style={{ background: serverBadgeColor }}>
+            <div className={ cx(uuiMainMenu.serverBadge) }>
+                <div className={ cx(uuiMainMenu.serverBadgeLabel) } style={ { background: serverBadgeColor } }>
                     {this.props.serverBadge}
                 </div>
             </div>
@@ -138,7 +140,7 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                 id: 'appLogo',
                 priority: 100500,
                 render: () => (
-                    <MainMenuLogo key="logo" logoUrl={this.props.appLogoUrl} link={this.props.logoLink} href={this.props.logoHref} onClick={this.props.onLogoClick} />
+                    <MainMenuLogo key="logo" logoUrl={ this.props.appLogoUrl } link={ this.props.logoLink } href={ this.props.logoHref } onClick={ this.props.onLogoClick } />
                 ),
             });
         }
@@ -149,10 +151,10 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                 priority: 100499,
                 render: () => (
                     <MainMenuLogo
-                        logoUrl={this.props.customerLogoUrl}
-                        logoBgColor={this.props.customerLogoBgColor}
-                        link={this.props.customerLogoLink || this.props.logoLink}
-                        href={this.props.customerLogoHref || this.props.logoHref}
+                        logoUrl={ this.props.customerLogoUrl }
+                        logoBgColor={ this.props.customerLogoBgColor }
+                        link={ this.props.customerLogoLink || this.props.logoLink }
+                        href={ this.props.customerLogoHref || this.props.logoHref }
                         showArrow
                     />
                 ),
@@ -165,11 +167,11 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
             collapsedContainer: !this.props.alwaysShowBurger,
             render: () => (
                 <Burger
-                    key={'burger'}
-                    width={300}
-                    renderBurgerContent={this.props.renderBurger}
-                    logoUrl={this.props.customerLogoUrl || this.props.appLogoUrl}
-                    bg={this.props.customerLogoBgColor || undefined}
+                    key="burger"
+                    width={ 300 }
+                    renderBurgerContent={ this.props.renderBurger }
+                    logoUrl={ this.props.customerLogoUrl || this.props.appLogoUrl }
+                    bg={ this.props.customerLogoBgColor || undefined }
                 />
             ),
         });
@@ -181,10 +183,10 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
         return (
             <nav
                 key="uuiMainMenu"
-                className={cx(this.props.cx, uuiMainMenu.container, css.container, this.props.isTransparent && uuiMainMenu.transparent)}
-                {...this.props.rawProps}
+                className={ cx(this.props.cx, uuiMainMenu.container, css.container, this.props.isTransparent && uuiMainMenu.transparent) }
+                { ...this.props.rawProps }
             >
-                <AdaptivePanel items={this.props.items || this.getMenuItems()} cx={css.itemsContainer} />
+                <AdaptivePanel items={ this.props.items || this.getMenuItems() } cx={ css.itemsContainer } />
                 {this.renderServerBadge()}
             </nav>
         );

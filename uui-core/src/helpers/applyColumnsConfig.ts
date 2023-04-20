@@ -7,8 +7,8 @@ export const applyColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, T
         const { fix, width, ...restColumnProps } = c;
         const cfg = config[c.key];
 
-        cfg.isVisible &&
-            acc.push({
+        cfg.isVisible
+            && acc.push({
                 ...restColumnProps,
                 width: cfg.width,
                 ...(cfg.fix ? { fix: cfg.fix } : {}),

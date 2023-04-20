@@ -1,7 +1,9 @@
 import css from './DemoToolbar.scss';
 import * as React from 'react';
 import { useHistory } from 'react-router';
-import { LinkButton, FlexRow, FlexCell, SuccessNotification, Text } from '@epam/promo';
+import {
+    LinkButton, FlexRow, FlexCell, SuccessNotification, Text,
+} from '@epam/promo';
 import { DemoItem } from '../../../demo/structure';
 import { ReactComponent as BackIcon } from '@epam/assets/icons/common/navigation-back-18.svg';
 import { ReactComponent as ExternalLinkIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
@@ -27,28 +29,28 @@ export function DemoToolbar(props: AppFooterContentDemoProps) {
 
     const renderDivider = () => (
         <FlexCell width="auto">
-            <div className={css.divider} />
+            <div className={ css.divider } />
         </FlexCell>
     );
 
     const demoDescription = useDemoDescriptionEditor(demoItemName);
 
     return (
-        <FlexRow cx={css.container}>
-            <LinkButton cx={css.item} icon={BackIcon} caption="Back to demos" onClick={handleBack} />
+        <FlexRow cx={ css.container }>
+            <LinkButton cx={ css.item } icon={ BackIcon } caption="Back to demos" onClick={ handleBack } />
             {renderDivider()}
-            <LinkButton cx={css.item} icon={DescriptionIcon} caption="Description" onClick={demoDescription.openModal} />
+            <LinkButton cx={ css.item } icon={ DescriptionIcon } caption="Description" onClick={ demoDescription.openModal } />
             {renderDivider()}
             <LinkButton
-                cx={css.item}
-                icon={ExternalLinkIcon}
+                cx={ css.item }
+                icon={ ExternalLinkIcon }
                 caption="View Source Code"
                 target="_blank"
-                href={demoItem.source}
-                clickAnalyticsEvent={analyticsEvents.demo.scenarioGit(demoItem.source)}
+                href={ demoItem.source }
+                clickAnalyticsEvent={ analyticsEvents.demo.scenarioGit(demoItem.source) }
             />
             {isFullScreenSupported && renderDivider()}
-            {isFullScreenSupported && <LinkButton cx={css.item} icon={FullScreenIcon} caption="Fullscreen" onClick={onOpenFullScreen} />}
+            {isFullScreenSupported && <LinkButton cx={ css.item } icon={ FullScreenIcon } caption="Fullscreen" onClick={ onOpenFullScreen } />}
         </FlexRow>
     );
 }

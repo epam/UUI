@@ -8,8 +8,8 @@ const avatarsArray = Array(10)
 
 export default function BasicExample() {
     return (
-        <FlexCell width="auto" cx={css.container}>
-            <AvatarStack urlArray={avatarsArray} avatarsCount={6} direction="right" avatarSize="36" />
+        <FlexCell width="auto" cx={ css.container }>
+            <AvatarStack urlArray={ avatarsArray } avatarsCount={ 6 } direction="right" avatarSize="36" />
         </FlexCell>
     );
 }

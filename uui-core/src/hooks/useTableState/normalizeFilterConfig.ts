@@ -6,8 +6,8 @@ export const normalizeFilterConfig = <TFilter>(filtersConfig: FiltersConfig, fil
         return undefined;
     }
 
-    let result: FiltersConfig = {};
-    let order: string | null = null;
+    const result: FiltersConfig = {};
+    const order: string | null = null;
     filters.forEach((filter) => {
         if (filter.isAlwaysVisible || filterValue?.[filter.field as string] || filtersConfig?.[filter.field]) {
             const newOrder = filtersConfig?.[filter?.field]?.order || getOrderBetween(order, null);

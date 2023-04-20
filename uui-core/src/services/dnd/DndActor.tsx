@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { IDndActor, UuiContexts, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions, DndContextState } from '../../types';
+import {
+    IDndActor, UuiContexts, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions, DndContextState,
+} from '../../types';
 import { mouseCoords } from '../../helpers';
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers, uuiElement } from '../../constants';
@@ -38,6 +40,7 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
     state = initialState;
 
     static contextType = UuiContext;
+
     public context: UuiContexts;
 
     dndRef = React.createRef<HTMLElement>();
@@ -71,11 +74,10 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
 
     windowPointerMoveHandler = (e: MouseEvent) => {
         if (
-            !this.state.isMouseDown ||
-            e.buttons === 0 || // can happen if native drag-n-drop occurs
-            this.state.isDragging
-        )
-            return;
+            !this.state.isMouseDown
+            || e.buttons === 0 // can happen if native drag-n-drop occurs
+            || this.state.isDragging
+        ) return;
 
         if (isChildHasClass(e.target, this.dndRef.current, [uuiElement.input])) {
             return;
@@ -94,8 +96,7 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
                     isDndInProgress: true,
                     eventHandlers: {},
                     classNames: [uuiDndState.dragGhost],
-                })
-            );
+                }));
 
             this.setState((s) => ({
                 ...s,
@@ -106,7 +107,9 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
     };
 
     getDropParams(e: React.MouseEvent<HTMLElement>): AcceptDropParams<TSrcData, TDstData> {
-        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+        const {
+            left, top, width, height,
+        } = e.currentTarget.getBoundingClientRect();
 
         return {
             srcData: this.context.uuiDnD.dragData,
@@ -119,14 +122,46 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
     }
 
     static sectorPositionPriorities: Record<string, DropPosition[]> = {
-        '0': ['top', 'right', 'inside'],
-        '1': ['right', 'top', 'inside'],
-        '2': ['right', 'bottom', 'inside'],
-        '3': ['bottom', 'right', 'inside'],
-        '4': ['bottom', 'left', 'inside'],
-        '5': ['left', 'bottom', 'inside'],
-        '6': ['left', 'top', 'inside'],
-        '7': ['top', 'left', 'inside'],
+        0: [
+            'top',
+            'right',
+            'inside',
+        ],
+        1: [
+            'right',
+            'top',
+            'inside',
+        ],
+        2: [
+            'right',
+            'bottom',
+            'inside',
+        ],
+        3: [
+            'bottom',
+            'right',
+            'inside',
+        ],
+        4: [
+            'bottom',
+            'left',
+            'inside',
+        ],
+        5: [
+            'left',
+            'bottom',
+            'inside',
+        ],
+        6: [
+            'left',
+            'top',
+            'inside',
+        ],
+        7: [
+            'top',
+            'left',
+            'inside',
+        ],
     };
 
     getPosition(params: AcceptDropParams<TSrcData, TDstData>, options: DropPositionOptions): DropPosition {

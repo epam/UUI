@@ -1,5 +1,7 @@
 import React from 'react';
-import { DataTableCellProps, RenderEditorProps, uuiElement, uuiMod } from '@epam/uui-core';
+import {
+    DataTableCellProps, RenderEditorProps, uuiElement, uuiMod,
+} from '@epam/uui-core';
 import css from './DataTableCell.scss';
 import { FlexCell } from '../layout';
 import { DataTableCellOverlay } from './DataTableCellOverlay';
@@ -12,13 +14,13 @@ const uuiDataTableCellMarkers = {
     uuiTableCell: 'uui-table-cell',
 } as const;
 
-export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue>) => {
+export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue>) {
     const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
     const row = props.rowProps;
     const ref = React.useRef<HTMLDivElement>();
 
     let content: React.ReactNode;
-    let isEditable = !!props.onValueChange;
+    const isEditable = !!props.onValueChange;
 
     const handleEditorClick: React.MouseEventHandler<HTMLDivElement> = React.useCallback((e) => {
         props.rowProps.onSelect?.(props.rowProps);
@@ -48,9 +50,9 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         };
 
         content = (
-            <div className={css.editorWrapper} onClick={handleEditorClick}>
+            <div className={ css.editorWrapper } onClick={ handleEditorClick }>
                 {props.renderEditor(editorProps)}
-                <DataTableCellOverlay {...editorProps} renderTooltip={props.renderTooltip} inFocus={state.inFocus} rowIndex={row.index} columnIndex={props.index} />
+                <DataTableCellOverlay { ...editorProps } renderTooltip={ props.renderTooltip } inFocus={ state.inFocus } rowIndex={ row.index } columnIndex={ props.index } />
             </div>
         );
     } else {
@@ -66,25 +68,32 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const styles = { textAlign, alignSelf, justifyContent };
 
     const getWrappedContent = () => (
-        <div style={styles} className={css.contentWrapper}>
+        <div style={ styles } className={ css.contentWrapper }>
             {content}
         </div>
     );
 
     return (
         <FlexCell
-            ref={ref}
-            grow={props.column.grow}
-            width={props.column.width}
-            minWidth={props.column.width}
-            textAlign={props.isFirstColumn ? undefined : props.column.textAlign}
-            alignSelf={props.isFirstColumn ? undefined : props.column.alignSelf}
-            rawProps={{ role: 'cell' }}
-            cx={[uuiDataTableCellMarkers.uuiTableCell, css.cell, props.column.cx, props.cx, props.isInvalid && uuiMod.invalid, state.inFocus && uuiMod.focus]}
-            style={!props.isFirstColumn && { justifyContent: justifyContent }}
+            ref={ ref }
+            grow={ props.column.grow }
+            width={ props.column.width }
+            minWidth={ props.column.width }
+            textAlign={ props.isFirstColumn ? undefined : props.column.textAlign }
+            alignSelf={ props.isFirstColumn ? undefined : props.column.alignSelf }
+            rawProps={ { role: 'cell' } }
+            cx={ [
+                uuiDataTableCellMarkers.uuiTableCell,
+                css.cell,
+                props.column.cx,
+                props.cx,
+                props.isInvalid && uuiMod.invalid,
+                state.inFocus && uuiMod.focus,
+            ] }
+            style={ !props.isFirstColumn && { justifyContent: justifyContent } }
         >
             {props.addons}
             {props.isFirstColumn ? getWrappedContent() : content}
         </FlexCell>
     );
-};
+}

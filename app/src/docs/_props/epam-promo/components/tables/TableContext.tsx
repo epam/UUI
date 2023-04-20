@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { DataSourceState, Lens, DataColumnProps, UuiContext, UuiContexts, ColumnsConfig } from '@epam/uui-core';
+import {
+    DataSourceState, Lens, DataColumnProps, UuiContext, UuiContexts, ColumnsConfig,
+} from '@epam/uui-core';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
-import { Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton } from '@epam/promo';
+import {
+    Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton,
+} from '@epam/promo';
 import { ColumnsConfigurationModal } from '@epam/uui';
 import { ReactComponent as GearIcon } from '@epam/assets/icons/common/action-settings-18.svg';
 
@@ -33,7 +37,9 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
     };
 
     lens = Lens.onState<DataTableCardState>(this);
+
     static contextType = UuiContext;
+
     context: UuiContexts;
 
     public static displayName = 'Table';
@@ -58,14 +64,14 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
 
         return rows.map((item, index) => (
             <DataTableRow
-                key={index}
-                size={this.props.props.size}
-                borderBottom={this.props.props.borderBottom}
-                columns={columns}
-                value={item}
-                id={index}
-                rowKey={index + ''}
-                index={index}
+                key={ index }
+                size={ this.props.props.size }
+                borderBottom={ this.props.props.borderBottom }
+                columns={ columns }
+                value={ item }
+                id={ index }
+                rowKey={ index + '' }
+                index={ index }
             />
         ));
     }
@@ -74,12 +80,12 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
         this.context.uuiModals
             .show<ColumnsConfig>((modalProps) => (
                 <ColumnsConfigurationModal
-                    {...modalProps}
-                    columns={this.props.props.columns}
-                    columnsConfig={this.state.columnsConfig}
-                    defaultConfig={{ gender: { isVisible: false, order: 'f' } }}
-                />
-            ))
+                { ...modalProps }
+                columns={ this.props.props.columns }
+                columnsConfig={ this.state.columnsConfig }
+                defaultConfig={ { gender: { isVisible: false, order: 'f' } } }
+            />
+        ))
             .then((columnsConfig) => this.setState({ columnsConfig }));
     };
 
@@ -90,9 +96,9 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                     <FlexRow size="48" background="white" padding="24">
                         <Text>items</Text>
                         <FlexSpacer />
-                        <IconButton icon={GearIcon} onClick={this.showConfigurationModal} />
+                        <IconButton icon={ GearIcon } onClick={ this.showConfigurationModal } />
                     </FlexRow>
-                    <DataTableHeaderRow columns={this.getVisibleColumns()} size={props.size} {...this.lens.prop('tableState').toProps()} />
+                    <DataTableHeaderRow columns={ this.getVisibleColumns() } size={ props.size } { ...this.lens.prop('tableState').toProps() } />
                     {React.createElement(component, { ...props, columns: this.getVisibleColumns() })}
                     {this.getRows()}
                     {React.createElement(component, { ...props, columns: this.getVisibleColumns() })}
@@ -110,7 +116,7 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
 
     render() {
         return (
-            <Panel margin="24" shadow style={{ width: '50%' }}>
+            <Panel margin="24" shadow style={ { width: '50%' } }>
                 {this.getTable(this.props.DemoComponent, this.props.props)}
             </Panel>
         );

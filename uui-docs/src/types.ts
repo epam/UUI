@@ -29,12 +29,12 @@ export interface PropSamplesCreationContext<TProps = {}> {
 
 export type PropExample<TProp> =
     | {
-          id?: string;
-          name?: string;
-          value: TProp;
-          isDefault?: boolean;
-          color?: string;
-      }
+        id?: string;
+        name?: string;
+        value: TProp;
+        isDefault?: boolean;
+        color?: string;
+    }
     | TProp;
 
 export interface PropDoc<TProps, TProp extends keyof TProps> {

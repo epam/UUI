@@ -1,4 +1,6 @@
-import { MutableRefObject, useCallback, useEffect, useRef, useState, ReactNode } from 'react';
+import {
+    MutableRefObject, useCallback, useEffect, useRef, useState, ReactNode,
+} from 'react';
 
 export interface IScrollSpyProps {
     elements?: Readonly<string[]>;
@@ -23,7 +25,7 @@ export function useScrollSpy(props?: IScrollSpyProps): IScrollSpyApi {
         (id?: string): HTMLElement => {
             return ref.current?.querySelector(`[data-spy=${id}]`);
         },
-        [ref]
+        [ref],
     );
 
     const scrollToElement = useCallback(
@@ -33,7 +35,7 @@ export function useScrollSpy(props?: IScrollSpyProps): IScrollSpyApi {
             if (element) element.scrollIntoView({ block: 'start', behavior: 'smooth' });
             else ref.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
         },
-        [ref]
+        [ref],
     );
 
     useEffect(() => {
@@ -66,7 +68,7 @@ export function useScrollSpy(props?: IScrollSpyProps): IScrollSpyApi {
             {
                 ...props.options,
                 root: props?.options?.root || document.querySelector('body'),
-            }
+            },
         );
 
         observedNodes.forEach((element) => (element ? observer.observe(element) : null));

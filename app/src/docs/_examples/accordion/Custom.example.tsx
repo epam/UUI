@@ -1,9 +1,11 @@
 import React from 'react';
-import { Accordion, FlexCell, FlexRow, Text, Avatar, Badge, FlexSpacer } from '@epam/promo';
+import {
+    Accordion, FlexCell, FlexRow, Text, Avatar, Badge, FlexSpacer,
+} from '@epam/promo';
 import { demoData } from '@epam/uui-docs';
 
 const renderTitle = () => (
-    <FlexCell grow={1}>
+    <FlexCell grow={ 1 }>
         <FlexRow spacing="12" padding="6">
             <Avatar alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" size="30" />
             <Text fontSize="16" font="sans-semibold">
@@ -17,8 +19,8 @@ const renderTitle = () => (
 
 export default function CustomAccordionExample() {
     return (
-        <FlexCell grow={1}>
-            <Accordion renderTitle={renderTitle} mode="block">
+        <FlexCell grow={ 1 }>
+            <Accordion renderTitle={ renderTitle } mode="block">
                 <Text fontSize="16" font="sans">
                     {demoData.loremIpsum}
                 </Text>

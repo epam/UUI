@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked, SortDirection } from '@epam/uui-core';
+import {
+    AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked, SortDirection,
+} from '@epam/uui-core';
 
 interface DataTableRenderProps {
     renderCellContent: (props: HeaderCellContentProps) => React.ReactElement<HeaderCellContentProps>;
@@ -97,12 +99,12 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         if (this.props.allowColumnsReordering) {
             return (
                 <DndActor
-                    key={this.props.column.key + (this.props.value.columnsConfig?.[this.props.column.key]?.order || '')}
-                    dstData={this.props.column}
-                    srcData={this.props.column.fix ? null : this.props.column}
-                    canAcceptDrop={this.canAcceptDrop}
-                    onDrop={this.props.onDrop}
-                    render={this.renderCellContent}
+                    key={ this.props.column.key + (this.props.value.columnsConfig?.[this.props.column.key]?.order || '') }
+                    dstData={ this.props.column }
+                    srcData={ this.props.column.fix ? null : this.props.column }
+                    canAcceptDrop={ this.canAcceptDrop }
+                    onDrop={ this.props.onDrop }
+                    render={ this.renderCellContent }
                 />
             );
         } else return this.renderCellContent();

@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
+import {
+    Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag,
+} from '@epam/promo';
 import { DataColumnProps } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './DemoTable.scss';
@@ -22,7 +24,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={p.profileStatus.toLowerCase() as EpamAdditionalColor} caption={p.profileStatus} />
+                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 140,
@@ -57,7 +59,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'managerName',
         caption: 'Manager',
-        render: (p) => <LinkButton caption={p.managerName} captionCX={css.managerCell} href="#" />,
+        render: (p) => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#" />,
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.managerId,
@@ -110,7 +112,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     },
     {
         key: 'detailed',
-        render: () => <IconButton cx={css.detailedIcon} icon={ViewIcon} />,
+        render: () => <IconButton cx={ css.detailedIcon } icon={ ViewIcon } />,
         width: 54,
         alignSelf: 'center',
         fix: 'right',

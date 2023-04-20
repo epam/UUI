@@ -27,20 +27,20 @@ export const LoveshipPickerInput: React.FC<ILoveshipPickerInputProps> = ({ type 
         {
             items: languageLevels,
         },
-        []
+        [],
     );
 
     return (
         <PickerInput
-            value={value}
-            onValueChange={setValue}
-            dataSource={dataSource}
-            getName={(item) => item.level}
+            value={ value }
+            onValueChange={ setValue }
+            dataSource={ dataSource }
+            getName={ (item) => item.level }
             entityName="Language level"
-            selectionMode={type}
-            valueType={'id'}
-            sorting={{ field: 'level', direction: 'asc' }}
-            placeholder={type}
+            selectionMode={ type }
+            valueType="id"
+            sorting={ { field: 'level', direction: 'asc' } }
+            placeholder={ type }
         />
     );
 };

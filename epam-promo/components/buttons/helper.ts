@@ -1,7 +1,7 @@
 import { ButtonProps } from '@epam/uui-components';
 
 export function getIconClass(props: ButtonProps) {
-    let classList = {
+    const classList = {
         'has-left-icon': false,
         'has-right-icon': false,
     };

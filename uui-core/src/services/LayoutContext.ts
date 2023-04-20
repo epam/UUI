@@ -4,6 +4,7 @@ import { LayoutLayer } from '../types/objects';
 
 export class LayoutContext extends BaseContext {
     layerIdCounter = 0;
+
     layers: LayoutLayer[] = [];
 
     public getLayer(): LayoutLayer {

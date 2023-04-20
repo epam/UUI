@@ -17,7 +17,7 @@ async function setupDatePickerHeader(params: { initialDate: string }) {
                 context.current.setProperty('value', newValue);
             }),
         }),
-        (props) => <DatePickerHeader {...props} />
+        (props) => <DatePickerHeader { ...props } />,
     );
 
     const left = result.container.querySelector('.uui-datepickerheader-nav-icon-left');

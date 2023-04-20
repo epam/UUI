@@ -1,5 +1,7 @@
 import React from 'react';
-import { DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, DataPickerRow, PickerItem } from '@epam/uui';
+import {
+    DataTableCell, TextInput, NumericInput, PickerInput, DatePicker, DataPickerRow, PickerItem,
+} from '@epam/uui';
 import { TextArea } from '@epam/promo';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from '@epam/uui-core';
 import { Task, SelectedCellData } from './types';
@@ -18,7 +20,7 @@ export function getColumns() {
             fix: 'left',
             isSortable: true,
             renderCell: (props) => (
-                <DataTableCell padding="12" {...props.rowLens.prop('title').toProps()} renderEditor={(props) => <TextInput {...props} />} {...props} />
+                <DataTableCell padding="12" { ...props.rowLens.prop('title').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />
             ),
         },
         {
@@ -29,7 +31,7 @@ export function getColumns() {
             canCopy: () => true,
             canAcceptCopy: isSameColumn,
             renderCell: (props) => (
-                <DataTableCell {...props.rowLens.prop('description').toProps()} renderEditor={(props) => <TextArea {...props} autoSize={true} />} {...props} />
+                <DataTableCell { ...props.rowLens.prop('description').toProps() } renderEditor={ (props) => <TextArea { ...props } autoSize={ true } /> } { ...props } />
             ),
         },
         {
@@ -43,9 +45,9 @@ export function getColumns() {
             canAcceptCopy: (from, to) => ['estimate', 'complete'].includes(from.column.key),
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('estimate').toProps()}
-                    renderEditor={(props) => <NumericInput {...props} formatOptions={{ maximumFractionDigits: 1 }} />}
-                    {...props}
+                    { ...props.rowLens.prop('estimate').toProps() }
+                    renderEditor={ (props) => <NumericInput { ...props } formatOptions={ { maximumFractionDigits: 1 } } /> }
+                    { ...props }
                 />
             ),
         },
@@ -60,9 +62,9 @@ export function getColumns() {
             canAcceptCopy: (from, to) => ['estimate', 'complete'].includes(from.column.key),
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('complete').toProps()}
-                    renderEditor={(props) => <NumericInput {...props} formatOptions={{ maximumFractionDigits: 1 }} />}
-                    {...props}
+                    { ...props.rowLens.prop('complete').toProps() }
+                    renderEditor={ (props) => <NumericInput { ...props } formatOptions={ { maximumFractionDigits: 1 } } /> }
+                    { ...props }
                 />
             ),
         },
@@ -75,18 +77,18 @@ export function getColumns() {
             canAcceptCopy: isSameColumn,
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('status').toProps()}
-                    renderEditor={(props) => (
+                    { ...props.rowLens.prop('status').toProps() }
+                    renderEditor={ (props) => (
                         <PickerInput
                             valueType="id"
                             selectionMode="single"
-                            dataSource={resourceDataSource}
-                            renderRow={(props) => <DataPickerRow {...props} renderItem={(item) => <PickerItem title={item.name} subtitle={item.name} {...props} />} />}
+                            dataSource={ resourceDataSource }
+                            renderRow={ (props) => <DataPickerRow { ...props } renderItem={ (item) => <PickerItem title={ item.name } subtitle={ item.name } { ...props } /> } /> }
                             placeholder=""
-                            {...props}
+                            { ...props }
                         />
-                    )}
-                    {...props}
+                    ) }
+                    { ...props }
                 />
             ),
         },
@@ -99,9 +101,9 @@ export function getColumns() {
             canAcceptCopy: (from, to) => ['startDate', 'endDate'].includes(from.column.key),
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('startDate').toProps()}
-                    renderEditor={(props) => <DatePicker format="MMM D, YYYY" placeholder="" {...props} />}
-                    {...props}
+                    { ...props.rowLens.prop('startDate').toProps() }
+                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    { ...props }
                 />
             ),
         },
@@ -114,9 +116,9 @@ export function getColumns() {
             canAcceptCopy: (from, to) => ['startDate', 'endDate'].includes(from.column.key),
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('endDate').toProps()}
-                    renderEditor={(props) => <DatePicker format="MMM D, YYYY" placeholder="" {...props} />}
-                    {...props}
+                    { ...props.rowLens.prop('endDate').toProps() }
+                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    { ...props }
                 />
             ),
         },

@@ -1,4 +1,6 @@
-import React, { ForwardRefExoticComponent, RefAttributes, useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+    ForwardRefExoticComponent, RefAttributes, useCallback, useEffect, useMemo, useState,
+} from 'react';
 import {
     DataColumnProps,
     DataTableRowProps,
@@ -59,11 +61,21 @@ const items: Item[] = [
     { id: id++, ...defaultItem, cellBackground: true },
     { id: id++, ...defaultItem, cellBackground: true },
     { id: id++, ...defaultItem, cellBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
-    { id: id++, ...defaultItem, cellBackground: true, altBackground: true },
+    {
+        id: id++, ...defaultItem, cellBackground: true, altBackground: true,
+    },
+    {
+        id: id++, ...defaultItem, cellBackground: true, altBackground: true,
+    },
+    {
+        id: id++, ...defaultItem, cellBackground: true, altBackground: true,
+    },
+    {
+        id: id++, ...defaultItem, cellBackground: true, altBackground: true,
+    },
+    {
+        id: id++, ...defaultItem, cellBackground: true, altBackground: true,
+    },
     { id: id++, ...defaultItem, meta: { isReadonly: true } },
     { id: id++, ...defaultItem, meta: { isDisabled: true } },
 ];
@@ -103,8 +115,28 @@ const metadata: Metadata<FormState> = {
 };
 
 const skinMods = {
-    promo: { border: 'gray30', altBackground: 'gray5', cellColors: ['gray5', 'red', 'blue', 'green', 'amber'] },
-    loveship: { border: 'night300', altBackground: 'night50', cellColors: ['night50', 'fire', 'sky', 'grass', 'sun'] },
+    promo: {
+        border: 'gray30',
+        altBackground: 'gray5',
+        cellColors: [
+            'gray5',
+            'red',
+            'blue',
+            'green',
+            'amber',
+        ],
+    },
+    loveship: {
+        border: 'night300',
+        altBackground: 'night50',
+        cellColors: [
+            'night50',
+            'fire',
+            'sky',
+            'grass',
+            'sun',
+        ],
+    },
     uui: { border: true, altBackground: 'edited', cellColors: ['edited', 'invalid'] },
 };
 
@@ -155,7 +187,9 @@ export default function TableCellsStylesSandbox() {
                     caption: 'Row Type',
                     render: (item, row) => (
                         <skin.Text>
-                            {Object.entries({ ...item.meta, rowBG: item.altBackground, cellBG: item.cellBackground, isInvalid: row.isInvalid })
+                            {Object.entries({
+                                ...item.meta, rowBG: item.altBackground, cellBG: item.cellBackground, isInvalid: row.isInvalid,
+                            })
                                 .filter(([key, value]) => !!value)
                                 .map((e) => e[0])
                                 .join(', ')}
@@ -171,10 +205,10 @@ export default function TableCellsStylesSandbox() {
                     caption: 'Text',
                     renderCell: (props) => (
                         <SkinDataTableCell
-                            {...props.rowLens.prop('text').toProps()}
-                            renderEditor={(props) => <skin.TextInput {...props} />}
-                            {...props}
-                            background={getCellBackground(props)}
+                            { ...props.rowLens.prop('text').toProps() }
+                            renderEditor={ (props) => <skin.TextInput { ...props } /> }
+                            { ...props }
+                            background={ getCellBackground(props) }
                         />
                     ),
                     isSortable: true,
@@ -185,10 +219,10 @@ export default function TableCellsStylesSandbox() {
                     caption: 'Number',
                     renderCell: (props) => (
                         <SkinDataTableCell
-                            {...props.rowLens.prop('number').toProps()}
-                            renderEditor={(props) => <skin.NumericInput {...props} formatOptions={{ minimumFractionDigits: 2 }} />}
-                            {...props}
-                            background={getCellBackground(props)}
+                            { ...props.rowLens.prop('number').toProps() }
+                            renderEditor={ (props) => <skin.NumericInput { ...props } formatOptions={ { minimumFractionDigits: 2 } } /> }
+                            { ...props }
+                            background={ getCellBackground(props) }
                         />
                     ),
                     isSortable: true,
@@ -200,10 +234,10 @@ export default function TableCellsStylesSandbox() {
                     caption: 'Checkbox',
                     renderCell: (props) => (
                         <SkinDataTableCell
-                            {...props.rowLens.prop('bool').toProps()}
-                            renderEditor={(props) => <skin.Checkbox {...props} />}
-                            {...props}
-                            background={getCellBackground(props)}
+                            { ...props.rowLens.prop('bool').toProps() }
+                            renderEditor={ (props) => <skin.Checkbox { ...props } /> }
+                            { ...props }
+                            background={ getCellBackground(props) }
                         />
                     ),
                     isSortable: true,
@@ -214,10 +248,10 @@ export default function TableCellsStylesSandbox() {
                     caption: 'TextArea',
                     renderCell: (props) => (
                         <SkinDataTableCell
-                            {...props.rowLens.prop('textArea').toProps()}
-                            renderEditor={(props) => <skin.TextInput {...props} />}
-                            {...props}
-                            background={getCellBackground(props)}
+                            { ...props.rowLens.prop('textArea').toProps() }
+                            renderEditor={ (props) => <skin.TextInput { ...props } /> }
+                            { ...props }
+                            background={ getCellBackground(props) }
                         />
                     ),
                     isSortable: true,
@@ -228,10 +262,10 @@ export default function TableCellsStylesSandbox() {
                     caption: 'Date',
                     renderCell: (props) => (
                         <SkinDataTableCell
-                            {...props.rowLens.prop('date').toProps()}
-                            renderEditor={(props) => <SkinDatePicker {...props} />}
-                            {...props}
-                            background={getCellBackground(props)}
+                            { ...props.rowLens.prop('date').toProps() }
+                            renderEditor={ (props) => <SkinDatePicker { ...props } /> }
+                            { ...props }
+                            background={ getCellBackground(props) }
                         />
                     ),
                     isSortable: true,
@@ -242,10 +276,10 @@ export default function TableCellsStylesSandbox() {
                     caption: 'Single Picker',
                     renderCell: (props) => (
                         <SkinDataTableCell
-                            {...props.rowLens.prop('selectedId').toProps()}
-                            renderEditor={(props) => <SkinPickerInput {...props} selectionMode="single" dataSource={pickerDataSource} />}
-                            {...props}
-                            background={getCellBackground(props)}
+                            { ...props.rowLens.prop('selectedId').toProps() }
+                            renderEditor={ (props) => <SkinPickerInput { ...props } selectionMode="single" dataSource={ pickerDataSource } /> }
+                            { ...props }
+                            background={ getCellBackground(props) }
                         />
                     ),
                     isSortable: true,
@@ -256,17 +290,17 @@ export default function TableCellsStylesSandbox() {
                     caption: 'Multi Picker',
                     renderCell: (props) => (
                         <SkinDataTableCell
-                            {...props.rowLens.prop('selectedIds').toProps()}
-                            renderEditor={(props) => <SkinPickerInput {...props} selectionMode="multi" dataSource={pickerDataSource} />}
-                            {...props}
-                            background={getCellBackground(props)}
+                            { ...props.rowLens.prop('selectedIds').toProps() }
+                            renderEditor={ (props) => <SkinPickerInput { ...props } selectionMode="multi" dataSource={ pickerDataSource } /> }
+                            { ...props }
+                            background={ getCellBackground(props) }
                         />
                     ),
                     isSortable: true,
                     width: 250,
                 },
             ] as DataColumnProps<Item>[],
-        [skinName]
+        [skinName],
     );
 
     const { rows, listProps } = useList(
@@ -282,40 +316,40 @@ export default function TableCellsStylesSandbox() {
                 checkbox: { isVisible: true },
             }),
         },
-        []
+        [],
     );
 
     const renderRow = useCallback(
         (props: DataTableRowProps<Item, number>) => {
-            return <skin.DataTableRow {...props} />;
+            return <skin.DataTableRow { ...props } />;
         },
-        [skinName]
+        [skinName],
     );
 
     // Render the table, passing the prepared data to it in form of getVisibleRows callback, list props (e.g. items counts)
     return (
-        <skin.Panel key={skinName}>
+        <skin.Panel key={ skinName }>
             <skin.FlexRow>
                 <skin.FlexCell width="auto">
                     <skin.MultiSwitch
-                        value={skinName}
-                        onValueChange={setSkinName}
-                        items={[
+                        value={ skinName }
+                        onValueChange={ setSkinName }
+                        items={ [
                             { id: 'loveship' as SkinName, caption: 'Loveship' },
                             { id: 'promo' as SkinName, caption: 'Promo' },
                             { id: 'uui' as SkinName, caption: 'UUI' },
-                        ]}
+                        ] }
                     />
                 </skin.FlexCell>
             </skin.FlexRow>
             <skin.DataTable
-                {...listProps}
-                getRows={() => rows}
-                value={tableState}
-                onValueChange={setTableState}
-                columns={columns}
+                { ...listProps }
+                getRows={ () => rows }
+                value={ tableState }
+                onValueChange={ setTableState }
+                columns={ columns }
                 headerTextCase="upper"
-                renderRow={renderRow}
+                renderRow={ renderRow }
             />
         </skin.Panel>
     );

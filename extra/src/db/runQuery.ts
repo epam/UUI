@@ -1,4 +1,6 @@
-import { DbQuery, DbState, EntityState, ColumnOrder } from './types';
+import {
+    DbQuery, DbState, EntityState, ColumnOrder,
+} from './types';
 import * as I from 'immutable';
 
 export const runQuery = runQueryNaive;
@@ -9,7 +11,7 @@ const runFilterSortNaive = cached((p) => {
 }, runFilterSortNaiveImpl);
 
 function runFilterSortNaiveImpl(db: DbState, q: DbQuery): any[] {
-    let e = db.entities[q.entityName];
+    const e = db.entities[q.entityName];
     let result: I.Iterable<any, any> = db.entities[q.entityName].byKey;
 
     result = runFilterNaive(q, result);
@@ -29,11 +31,11 @@ function runFilterNaive(q: DbQuery, result: I.Iterable<any, any>) {
 function runSortNaive(q: DbQuery, result: I.Iterable<any, any>) {
     if (q.order) {
         if (q.order.length > 0) {
-            let comparer = (a: any, b: any) => {
+            const comparer = (a: any, b: any) => {
                 for (let n = 0; n < q.order.length; n++) {
-                    let fieldName = q.order[n].name;
+                    const fieldName = q.order[n].name;
                     if (a[fieldName] != b[fieldName]) {
-                        let cmp = a[fieldName] < b[fieldName] ? -1 : 1;
+                        const cmp = a[fieldName] < b[fieldName] ? -1 : 1;
                         return q.order[n].dir == 'asc' ? cmp : -cmp;
                     }
                 }

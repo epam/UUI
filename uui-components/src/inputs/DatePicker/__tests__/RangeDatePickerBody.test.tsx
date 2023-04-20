@@ -18,17 +18,17 @@ async function setupRangePickerBody(params: { selectedDate: { from: string; to: 
         });
         return (
             <RangeDatePickerBody
-                value={value}
-                onValueChange={(newValue) => {
+                value={ value }
+                onValueChange={ (newValue) => {
                     setValue(newValue);
                     handleChange(newValue);
-                }}
-                changeIsOpen={handleChangeIsOpen}
-                focusPart={focusPart}
+                } }
+                changeIsOpen={ handleChangeIsOpen }
+                focusPart={ focusPart }
             />
         );
     }
-    const result = await renderToJsdomWithContextAsync(<TestRangePickerBody focusPart={focusPart} />);
+    const result = await renderToJsdomWithContextAsync(<TestRangePickerBody focusPart={ focusPart } />);
     const title = result.container.querySelector('.uui-datepickerheader-nav-title');
 
     return {

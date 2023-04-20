@@ -16,7 +16,7 @@ type DocsQuery = {
     category?: string;
 };
 
-export const DocumentsPage = () => {
+export function DocumentsPage() {
     const redirectTo = (query: DocsQuery) =>
         svc.uuiRouter.redirect({
             pathname: '/documents',
@@ -48,14 +48,14 @@ export const DocumentsPage = () => {
     const PageComponent = items.find((item) => item.id === getQuery('id')).component;
 
     return (
-        <Page renderHeader={() => <AppHeader />}>
+        <Page renderHeader={ () => <AppHeader /> }>
             <FlexRow alignItems="stretch">
                 <Sidebar<DocItem>
-                    value={getQuery('id')}
-                    onValueChange={onChange}
-                    items={items}
-                    getSearchFields={(i) => [i.name, ...(i.tags || [])]}
-                    getItemLink={(row) =>
+                    value={ getQuery('id') }
+                    onValueChange={ onChange }
+                    items={ items }
+                    getSearchFields={ (i) => [i.name, ...(i.tags || [])] }
+                    getItemLink={ (row) =>
                         !row.isFoldable && {
                             pathname: 'documents',
                             query: {
@@ -64,11 +64,10 @@ export const DocumentsPage = () => {
                                 skin: (row.parentId && svc.uuiRouter.getCurrentLink().query.skin) || UUI4,
                                 category: row.parentId && row.parentId,
                             },
-                        }
-                    }
+                        } }
                 />
                 <PageComponent />
             </FlexRow>
         </Page>
     );
-};
+}

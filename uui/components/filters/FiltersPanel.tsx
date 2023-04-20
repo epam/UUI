@@ -1,8 +1,14 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+    useCallback, useEffect, useMemo, useState,
+} from 'react';
 import sortBy from 'lodash.sortby';
 import { i18n } from '../../i18n';
-import { Button, PickerInput, PickerItem, DataPickerRow } from '../../index';
-import { DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter, getOrderBetween, DataTableState, useArrayDataSource } from '@epam/uui-core';
+import {
+    Button, PickerInput, PickerItem, DataPickerRow,
+} from '../../index';
+import {
+    DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter, getOrderBetween, DataTableState, useArrayDataSource,
+} from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
 import { ReactComponent as addIcon } from '@epam/assets/icons/common/content-plus_bold-18.svg';
@@ -52,7 +58,7 @@ const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
     return result;
 };
 
-const FiltersToolbarImpl = <TFilter extends object>(props: FiltersPanelProps<TFilter>) => {
+function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFilter>) {
     const { filters, tableState, setTableState } = props;
     const [newFilterId, setNewFilterId] = useState(null);
 
@@ -61,7 +67,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersPanelProps<TFi
             items: filters,
             getId: (item) => item.field,
         },
-        []
+        [],
     );
 
     const onFiltersChange = (filters: TableFiltersConfig<TFilter>[]) => {
@@ -125,10 +131,10 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersPanelProps<TFi
         return (
             <Button
                 size="36"
-                onClick={props.onClick}
-                ref={props.ref}
-                caption={i18n.filterToolbar.addCaption}
-                icon={addIcon}
+                onClick={ props.onClick }
+                ref={ props.ref }
+                caption={ i18n.filterToolbar.addCaption }
+                icon={ addIcon }
                 iconPosition="left"
                 mode="ghost"
                 color="primary"
@@ -144,7 +150,7 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersPanelProps<TFi
                 isDisabled: item.isAlwaysVisible,
             },
         }),
-        []
+        [],
     );
 
     const isAllFiltersAlwaysVisible = props.filters.every((i) => i.isAlwaysVisible);
@@ -157,46 +163,46 @@ const FiltersToolbarImpl = <TFilter extends object>(props: FiltersPanelProps<TFi
     return (
         <>
             {sortedActiveFilters.map((f) => (
-                <FlexCell width="auto" key={f.field as string}>
+                <FlexCell width="auto" key={ f.field as string }>
                     <FiltersPanelItem
-                        {...f}
-                        value={tableState.filter?.[f.field]}
-                        onValueChange={handleFilterChange}
-                        key={f.field as string}
-                        autoFocus={newFilterId === f.field}
-                        removeFilter={removeFilter}
+                        { ...f }
+                        value={ tableState.filter?.[f.field] }
+                        onValueChange={ handleFilterChange }
+                        key={ f.field as string }
+                        autoFocus={ newFilterId === f.field }
+                        removeFilter={ removeFilter }
                     />
                 </FlexCell>
             ))}
             {!isAllFiltersAlwaysVisible && (
                 <PickerInput
-                    dataSource={dataSource}
-                    value={selectedFilters}
-                    onValueChange={onFiltersChange}
+                    dataSource={ dataSource }
+                    value={ selectedFilters }
+                    onValueChange={ onFiltersChange }
                     selectionMode="multi"
                     valueType="entity"
-                    key={newFilterId}
-                    renderRow={(props) => (
+                    key={ newFilterId }
+                    renderRow={ (props) => (
                         <DataPickerRow
-                            {...props}
+                            { ...props }
                             padding="12"
-                            key={props.key}
-                            onCheck={(row) => {
+                            key={ props.key }
+                            onCheck={ (row) => {
                                 props.onCheck(row);
                                 !row.isChecked && setNewFilterId(row.value.field);
-                            }}
-                            renderItem={(item, rowProps) => <PickerItem {...rowProps} title={item.title} />}
+                            } }
+                            renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }
                         />
-                    )}
-                    getName={(i) => i.title}
-                    renderToggler={renderAddFilterToggler}
-                    emptyValue={[]}
-                    getRowOptions={getRowOptions}
-                    fixedBodyPosition={true}
+                    ) }
+                    getName={ (i) => i.title }
+                    renderToggler={ renderAddFilterToggler }
+                    emptyValue={ [] }
+                    getRowOptions={ getRowOptions }
+                    fixedBodyPosition={ true }
                 />
             )}
         </>
     );
-};
+}
 
 export const FiltersPanel = React.memo(FiltersToolbarImpl) as typeof FiltersToolbarImpl;

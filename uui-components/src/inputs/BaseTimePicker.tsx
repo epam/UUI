@@ -14,6 +14,7 @@ import {
 } from '@epam/uui-core';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import { Dropdown } from '../overlays';
+
 dayjs.extend(customParseFormat);
 
 export interface BaseTimePickerProps extends IEditable<TimePickerValue | null>, IDisableable, ICanBeReadonly, IHasPlaceholder {
@@ -50,6 +51,7 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     };
 
     abstract renderInput: (props: IDropdownToggler) => React.ReactNode;
+
     abstract renderBody: (props: DropdownBodyProps) => React.ReactNode;
 
     componentDidUpdate(prevProps: BaseTimePickerProps) {
@@ -102,11 +104,11 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     render() {
         return (
             <Dropdown
-                renderTarget={(props) => (this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props))}
-                renderBody={(props) => !this.props.isDisabled && !this.props.isReadonly && this.renderBody(props)}
-                onValueChange={!this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null}
-                value={this.state.isOpen}
-                modifiers={[{ name: 'offset', options: { offset: [0, 6] } }]}
+                renderTarget={ (props) => (this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props)) }
+                renderBody={ (props) => !this.props.isDisabled && !this.props.isReadonly && this.renderBody(props) }
+                onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
+                value={ this.state.isOpen }
+                modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
             />
         );
     }

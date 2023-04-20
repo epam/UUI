@@ -1,6 +1,8 @@
 import React from 'react';
 import { DropdownMenuButton } from '../overlays';
-import { DataRowProps, getCookie, setCookie, LazyDataSourceApi, LazyDataSource } from '@epam/uui-core';
+import {
+    DataRowProps, getCookie, setCookie, LazyDataSourceApi, LazyDataSource,
+} from '@epam/uui-core';
 import { PickerInput, DataPickerRow } from '@epam/uui';
 import { Avatar } from '@epam/uui-components';
 import { Text } from '../typography';
@@ -35,19 +37,19 @@ export class MakeMeItem extends React.Component<MakeMeItemProps> {
                 valueType="id"
                 selectionMode="single"
                 editMode="modal"
-                value={getCookie(cookie.userId) || '111'}
-                onValueChange={(userId: string) => {
+                value={ getCookie(cookie.userId) || '111' }
+                onValueChange={ (userId: string) => {
                     setCookie(cookie.userId, userId, { path: '/' });
                     window.location.reload();
-                }}
-                dataSource={this.dataSource}
-                renderToggler={(props) => <DropdownMenuButton caption={`Make me ...`} onClick={props.onClick} />}
-                renderRow={(props: DataRowProps<MakeMeUser, number | string>) => (
+                } }
+                dataSource={ this.dataSource }
+                renderToggler={ (props) => <DropdownMenuButton caption="Make me ..." onClick={ props.onClick } /> }
+                renderRow={ (props: DataRowProps<MakeMeUser, number | string>) => (
                     <DataPickerRow
-                        {...props}
+                        { ...props }
                         size="60"
-                        renderItem={(item) => (
-                            <div className={css.row}>
+                        renderItem={ (item) => (
+                            <div className={ css.row }>
                                 <Avatar
                                     size="48"
                                     img={
@@ -56,15 +58,31 @@ export class MakeMeItem extends React.Component<MakeMeItemProps> {
                                             : item.avatarUrl
                                     }
                                 />
-                                <div className={css.text}>
-                                    <Text size="30"> {props.isLoading ? <TextPlaceholder wordsCount={2} /> : item.name} </Text>
-                                    {item.jobTitle && <Text size="24"> {item.jobTitle} </Text>}
-                                    {item.email && <Text size="24"> {item.email} </Text>}
+                                <div className={ css.text }>
+                                    <Text size="30">
+                                        {' '}
+                                        {props.isLoading ? <TextPlaceholder wordsCount={ 2 } /> : item.name}
+                                        {' '}
+                                    </Text>
+                                    {item.jobTitle && (
+                                        <Text size="24">
+                                            {' '}
+                                            {item.jobTitle}
+                                            {' '}
+                                        </Text>
+                                    )}
+                                    {item.email && (
+                                        <Text size="24">
+                                            {' '}
+                                            {item.email}
+                                            {' '}
+                                        </Text>
+                                    )}
                                 </div>
                             </div>
-                        )}
+                        ) }
                     />
-                )}
+                ) }
             />
         );
     }

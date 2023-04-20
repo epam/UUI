@@ -1,4 +1,6 @@
-import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode } from 'react';
+import {
+    Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode,
+} from 'react';
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
 import { DataRowProps } from './dataSources';
@@ -133,10 +135,10 @@ export interface IBasicPickerToggler extends IDropdownToggler {
  */
 export interface IPickerToggler<TItem = any, TId = any>
     extends IBasicPickerToggler,
-        Partial<IEditable<string>>,
-        Partial<IHasPlaceholder>,
-        Partial<IDisableable>,
-        Partial<ICanBeInvalid> {
+    Partial<IEditable<string>>,
+    Partial<IHasPlaceholder>,
+    Partial<IDisableable>,
+    Partial<ICanBeInvalid> {
     selection?: DataRowProps<TItem, TId>[];
     selectedRowsCount?: number;
 }
@@ -215,53 +217,53 @@ export interface IHasForwardedRef<T extends HTMLOrSVGElement> {
 }
 
 export type FlexRowProps = IHasCX &
-    IClickable &
-    Attributes &
-    IHasChildren &
-    IHasRawProps<HTMLAttributes<HTMLDivElement>> & {
-        /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
-        alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
-        /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
-        columnGap?: number | '6' | '12' | '18' | '24' | '36';
-        /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
-        rowGap?: number | '6' | '12' | '18' | '24' | '36';
-    };
+IClickable &
+Attributes &
+IHasChildren &
+IHasRawProps<HTMLAttributes<HTMLDivElement>> & {
+    /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
+    alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
+    /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
+    columnGap?: number | '6' | '12' | '18' | '24' | '36';
+    /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
+    rowGap?: number | '6' | '12' | '18' | '24' | '36';
+};
 
 export type FlexCellProps = IHasCX &
-    IClickable &
-    IHasRawProps<HTMLAttributes<HTMLDivElement>> &
-    Attributes &
-    IHasChildren & {
-        /** CSS width. Set to 'auto' to make FlexCell resize to it's content */
-        width?: number | 'auto' | '100%';
-        /** CSS min-width */
-        minWidth?: number;
-        /** Flexbox flex-grow property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-grow) */
-        grow?: number;
-        /** Flexbox shrink property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-shrink) */
-        shrink?: number;
-        /** CSS text-align property */
-        textAlign?: 'left' | 'center' | 'right';
-        /** Flexbox align-self property. Aligns items vertically for horizontal flexbox. [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-align-self) */
-        alignSelf?: CSS.AlignSelfProperty;
-        /** Standard style attribute. Styles are added to element style, overriding supplied flex styles */
-        style?: React.CSSProperties;
-    };
+IClickable &
+IHasRawProps<HTMLAttributes<HTMLDivElement>> &
+Attributes &
+IHasChildren & {
+    /** CSS width. Set to 'auto' to make FlexCell resize to it's content */
+    width?: number | 'auto' | '100%';
+    /** CSS min-width */
+    minWidth?: number;
+    /** Flexbox flex-grow property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-grow) */
+    grow?: number;
+    /** Flexbox shrink property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-shrink) */
+    shrink?: number;
+    /** CSS text-align property */
+    textAlign?: 'left' | 'center' | 'right';
+    /** Flexbox align-self property. Aligns items vertically for horizontal flexbox. [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-align-self) */
+    alignSelf?: CSS.AlignSelfProperty;
+    /** Standard style attribute. Styles are added to element style, overriding supplied flex styles */
+    style?: React.CSSProperties;
+};
 
 export type VPanelProps = IHasCX &
-    IHasChildren &
-    IClickable &
-    IHasRawProps<HTMLAttributes<HTMLDivElement>> &
-    IHasForwardedRef<HTMLDivElement> &
-    IAnalyticableClick & {
-        style?: CSSProperties;
-    };
+IHasChildren &
+IClickable &
+IHasRawProps<HTMLAttributes<HTMLDivElement>> &
+IHasForwardedRef<HTMLDivElement> &
+IAnalyticableClick & {
+    style?: CSSProperties;
+};
 
 export type ICheckable = IEditable<boolean> &
-    IDisableable & {
-        /** Sets checkbox in indeterminate state (neither checked or unchecked), which usually means that children elements has both values */
-        indeterminate?: boolean;
-    };
+IDisableable & {
+    /** Sets checkbox in indeterminate state (neither checked or unchecked), which usually means that children elements has both values */
+    indeterminate?: boolean;
+};
 
 export interface IAnalyticableClick {
     /**

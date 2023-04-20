@@ -61,9 +61,10 @@ export class DemoDb extends Db<DemoDbTables> {
     public get persons() {
         return this.tables.persons;
     }
+
     public get departments() {
         return this.tables.departments;
     }
 }
 
-export let blankDemoDb = new DemoDb();
+export const blankDemoDb = new DemoDb();

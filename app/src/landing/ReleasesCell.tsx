@@ -43,23 +43,23 @@ export class ReleasesCell extends React.Component<ReleasesCellProps, ReleasesCel
         const releaseNotes = content.substr(content.search(/\*/), content.length);
 
         return (
-            <div className={cx(css.wrapper, `${layout}-width`)}>
-                <div ref={this.cellRef} className={css.column}>
+            <div className={ cx(css.wrapper, `${layout}-width`) }>
+                <div ref={ this.cellRef } className={ css.column }>
                     <RichTextView size="16">
                         <FlexRow spacing="12">
                             <h3>{header}</h3>
-                            <div className={css.releaseDate}>{dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY')}</div>
+                            <div className={ css.releaseDate }>{dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY')}</div>
                         </FlexRow>
-                        <UuiReactMarkdown content={releaseNotes} />
+                        <UuiReactMarkdown content={ releaseNotes } />
                     </RichTextView>
                 </div>
                 {this.state.overflow ? (
-                    <div className={css.buttonWrapper}>
+                    <div className={ css.buttonWrapper }>
                         <LinkButton
                             size="36"
                             caption="Show more"
-                            link={{ pathname: '/documents', query: { id: `releaseNotes`, release: header.split(' ')[1] } }}
-                            clickAnalyticsEvent={analyticsEvents.welcome.releaseNotes()}
+                            link={ { pathname: '/documents', query: { id: 'releaseNotes', release: header.split(' ')[1] } } }
+                            clickAnalyticsEvent={ analyticsEvents.welcome.releaseNotes() }
                         />
                     </div>
                 ) : null}

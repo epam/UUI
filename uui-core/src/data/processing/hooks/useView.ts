@@ -5,7 +5,7 @@ import { usePrevious } from '../../../hooks';
 export function useView<TItem, TId, TFilter, Props extends ListViewProps<TItem, TId, TFilter>>(
     create: () => IView<TItem, TId, TFilter, Props>,
     update: (instance: IView<TItem, TId, TFilter, Props>) => void,
-    deps: any[]
+    deps: any[],
 ): IView<TItem, TId, TFilter, Props> {
     const viewRef = useRef<IView<TItem, TId, TFilter, Props>>(null);
     const prevDeps = usePrevious(deps);

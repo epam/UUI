@@ -11,20 +11,20 @@ export default function BasicPickerListExample() {
         {
             api: () => svc.api.demo.countries({}).then((res: any) => res.items),
         },
-        []
+        [],
     );
 
     return (
         <PickerList<Country, string>
-            dataSource={locationsDataSource}
-            value={countries}
-            onValueChange={setCountries}
+            dataSource={ locationsDataSource }
+            value={ countries }
+            onValueChange={ setCountries }
             entityName="location"
             selectionMode="multi"
             valueType="id"
-            maxDefaultItems={5}
-            maxTotalItems={10}
-            sorting={{ field: 'name', direction: 'asc' }}
+            maxDefaultItems={ 5 }
+            maxTotalItems={ 10 }
+            sorting={ { field: 'name', direction: 'asc' } }
         />
     );
 }

@@ -1,4 +1,6 @@
-import { emptyDb, sampleDb, TaskDbView, TaskDb, Task, TaskDbTables, sampleData, sampleUsers } from './TaskDb';
+import {
+    emptyDb, sampleDb, TaskDbView, TaskDb, Task, TaskDbTables, sampleData, sampleUsers,
+} from './TaskDb';
 import { DbRef } from '../DbRef';
 import { DbSaveResponse, DbPatch } from '../types';
 
@@ -16,8 +18,7 @@ describe('db - loaders', () => {
         public saveCallback = jest.fn(() => Promise.resolve({ submit: {} }));
 
         public apiCallback = jest.fn((rq: { ids: string[]; t?: number }) =>
-            delay(rq?.t).then(() => ({ items: sampleData.users.filter((u) => !rq?.ids || rq.ids.includes(u.id)) }))
-        );
+            delay(rq?.t).then(() => ({ items: sampleData.users.filter((u) => !rq?.ids || rq.ids.includes(u.id)) })));
 
         protected savePatch(patch: DbPatch<TaskDbTables>): Promise<DbSaveResponse<TaskDbTables>> {
             return Promise.resolve({ submit: {} });

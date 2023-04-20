@@ -1,5 +1,7 @@
 import { getDemoApi } from '@epam/uui-docs';
-import type { IProcessRequest, CommonContexts, UuiContexts, ITablePreset } from '@epam/uui-core';
+import type {
+    IProcessRequest, CommonContexts, UuiContexts, ITablePreset,
+} from '@epam/uui-core';
 
 export const delay = (ms: number = 1): Promise<void> =>
     new Promise((resolve) => {
@@ -48,9 +50,9 @@ export function getApi(processRequest: IProcessRequest, origin: string = '') {
                 const presets = (JSON.parse(localStorage.getItem('presets')) ?? []) as ITablePreset[];
                 const newId = presets.length
                     ? Math.max.apply(
-                          null,
-                          presets.map((p) => p.id)
-                      ) + 1
+                        null,
+                        presets.map((p) => p.id),
+                    ) + 1
                     : 1;
                 preset.id = newId;
                 localStorage.setItem('presets', JSON.stringify([...presets, preset]));
@@ -62,7 +64,7 @@ export function getApi(processRequest: IProcessRequest, origin: string = '') {
                 presets.splice(
                     presets.findIndex((p) => p.id === preset.id),
                     1,
-                    preset
+                    preset,
                 );
                 localStorage.setItem('presets', JSON.stringify(presets));
                 return Promise.resolve();
@@ -72,7 +74,7 @@ export function getApi(processRequest: IProcessRequest, origin: string = '') {
                 const presets = (JSON.parse(localStorage.getItem('presets')) ?? []) as ITablePreset[];
                 presets.splice(
                     presets.findIndex((p) => p.id === preset.id),
-                    1
+                    1,
                 );
                 localStorage.setItem('presets', JSON.stringify(presets));
                 return Promise.resolve();

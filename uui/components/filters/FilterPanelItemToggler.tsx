@@ -1,7 +1,9 @@
 import * as React from 'react';
 import css from './FilterPanelItemToggler.scss';
 import cx from 'classnames';
-import { IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
+import {
+    IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod,
+} from '@epam/uui-core';
 import { systemIcons } from '../../icons/icons';
 import { IconContainer, FlexRow } from '@epam/uui-components';
 import { Text } from '../typography';
@@ -29,29 +31,29 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
 
     return (
         <FlexRow
-            {...props}
-            rawProps={{
+            { ...props }
+            rawProps={ {
                 style: { maxWidth: `${props.maxWidth ? props.maxWidth + 'px' : 'auto'}` },
                 role: 'button',
-            }}
-            cx={cx(css.root, uuiElement.inputBox, uuiMarkers.clickable, props.isOpen && uuiMod.opened, ['size-' + (props.size || defaultSize)], props.cx)}
-            onClick={togglerPickerOpened}
-            ref={ref}
+            } }
+            cx={ cx(css.root, uuiElement.inputBox, uuiMarkers.clickable, props.isOpen && uuiMod.opened, ['size-' + (props.size || defaultSize)], props.cx) }
+            onClick={ togglerPickerOpened }
+            ref={ ref }
         >
-            <FlexRow cx={css.titleWrapper}>
-                <Text cx={css.title}>{getTitle}</Text>
-                <div className={css.textWrapper}>
-                    <Text color="brand" cx={css.selection}>
+            <FlexRow cx={ css.titleWrapper }>
+                <Text cx={ css.title }>{getTitle}</Text>
+                <div className={ css.textWrapper }>
+                    <Text color="brand" cx={ css.selection }>
                         {props.selection}
                     </Text>
                     {props.postfix && (
-                        <Text color="brand" cx={css.postfix}>
+                        <Text color="brand" cx={ css.postfix }>
                             {props.postfix}
                         </Text>
                     )}
                 </div>
             </FlexRow>
-            {!props.isDisabled && <IconContainer icon={systemIcons[props.size || defaultSize].foldingArrow} flipY={props.isOpen} cx="uui-icon-dropdown" />}
+            {!props.isDisabled && <IconContainer icon={ systemIcons[props.size || defaultSize].foldingArrow } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
         </FlexRow>
     );
 });

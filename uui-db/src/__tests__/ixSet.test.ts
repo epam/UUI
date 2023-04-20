@@ -7,19 +7,43 @@ interface Person {
     location?: string;
 }
 
-const alice = { id: 1, name: 'Alice', departmentId: 1, location: 'UK' } as Person;
-const bob = { id: 2, name: 'Bob', departmentId: 1, location: 'UK' } as Person;
-const sandra = { id: 3, name: 'Sandra', departmentId: 1, location: 'UK' } as Person;
-const edward = { id: 4, name: 'Edward', departmentId: 1, location: 'UK' } as Person;
-const pete = { id: 5, name: 'Pete', departmentId: 1, location: 'US' } as Person;
-const jack = { id: 6, name: 'Jack', departmentId: 2, location: 'UK' } as Person;
-const william = { id: 7, name: 'William', departmentId: 2, location: 'US' } as Person;
+const alice = {
+    id: 1, name: 'Alice', departmentId: 1, location: 'UK',
+} as Person;
+const bob = {
+    id: 2, name: 'Bob', departmentId: 1, location: 'UK',
+} as Person;
+const sandra = {
+    id: 3, name: 'Sandra', departmentId: 1, location: 'UK',
+} as Person;
+const edward = {
+    id: 4, name: 'Edward', departmentId: 1, location: 'UK',
+} as Person;
+const pete = {
+    id: 5, name: 'Pete', departmentId: 1, location: 'US',
+} as Person;
+const jack = {
+    id: 6, name: 'Jack', departmentId: 2, location: 'UK',
+} as Person;
+const william = {
+    id: 7, name: 'William', departmentId: 2, location: 'US',
+} as Person;
 
-const john = { id: 8, name: 'John', departmentId: 1, location: 'US' } as Person;
+const john = {
+    id: 8, name: 'John', departmentId: 1, location: 'US',
+} as Person;
 
 const blankSet = new IxSet<Person, number>((i) => i.id, [{ fields: ['name'] }, { fields: ['departmentId', 'name'] }]);
 
-const smallSet = blankSet.with([alice, bob, sandra, edward, pete, jack, william]);
+const smallSet = blankSet.with([
+    alice,
+    bob,
+    sandra,
+    edward,
+    pete,
+    jack,
+    william,
+]);
 
 describe('db - IxSet', () => {
     describe('Small data set', () => {

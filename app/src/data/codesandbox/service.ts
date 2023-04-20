@@ -25,10 +25,18 @@ class CodesandboxService {
         return Promise.all(
             Object.keys(CodesandboxFiles).map((name) => {
                 return svc.api.getCode({ path: CodesandboxFiles[name] });
-            })
+            }),
         )
             .then((data) => data.map((file) => file.raw))
-            .then(([indexHTML, indexTSX, packageJSON, tsConfigJSON, api, globalTypings, env]) => {
+            .then(([
+                indexHTML,
+                indexTSX,
+                packageJSON,
+                tsConfigJSON,
+                api,
+                globalTypings,
+                env,
+            ]) => {
                 Object.assign(this.files, {
                     indexHTML,
                     indexTSX,
@@ -65,8 +73,8 @@ class CodesandboxService {
         if (!code) return;
         const separator = '\n';
         const lines = code.split(separator);
-        const iconFiles = lines.filter((line) => line.includes(`.svg';`) || line.includes(`.svg";`));
-        const stylesheetFiles = lines.filter((line) => line.includes(`.scss';`) || line.includes(`.scss";`));
+        const iconFiles = lines.filter((line) => line.includes('.svg\';') || line.includes('.svg";'));
+        const stylesheetFiles = lines.filter((line) => line.includes('.scss\';') || line.includes('.scss";'));
         if (iconFiles.length > 0 || stylesheetFiles.length > 0) {
             return lines
                 .map((line) => {

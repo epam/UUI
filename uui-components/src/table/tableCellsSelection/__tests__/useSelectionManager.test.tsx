@@ -7,7 +7,9 @@ describe('useSelectioManager', () => {
     describe('selectRange', () => {
         it('should select some range', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            const newSelectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 1, endRowIndex: 1, isCopying: true };
+            const newSelectionRange = {
+                startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 1, endRowIndex: 1, isCopying: true,
+            };
             act(() => {
                 result.current.setSelectionRange(newSelectionRange);
             });
@@ -25,7 +27,9 @@ describe('useSelectioManager', () => {
     describe('startCell', () => {
         it('should return cell to copy from', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            const newSelectionRange = { startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 5, isCopying: true };
+            const newSelectionRange = {
+                startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 5, isCopying: true,
+            };
             act(() => {
                 result.current.setSelectionRange(newSelectionRange);
             });
@@ -51,7 +55,9 @@ describe('useSelectioManager', () => {
     describe('getSelectedCells', () => {
         it('should return selected range', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
-            const newSelectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 1, endRowIndex: 3, isCopying: true };
+            const newSelectionRange = {
+                startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 1, endRowIndex: 3, isCopying: true,
+            };
             act(() => {
                 result.current.setSelectionRange(newSelectionRange);
             });
@@ -73,7 +79,9 @@ describe('useSelectioManager', () => {
     });
 
     describe('useCellSelectionInfo', () => {
-        const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 2, endRowIndex: 3, isCopying: true };
+        const selectionRange = {
+            startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 2, endRowIndex: 3, isCopying: true,
+        };
         it('should render borders for start cell', async () => {
             const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
             act(() => {

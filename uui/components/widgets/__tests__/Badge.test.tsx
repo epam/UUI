@@ -16,13 +16,13 @@ describe('Badge', () => {
                     caption="Test badge"
                     fill="semitransparent"
                     color="success"
-                    icon={CalendarIcon}
-                    count={12}
-                    onIconClick={() => {}}
-                    onClick={() => {}}
-                    onClear={() => {}}
+                    icon={ CalendarIcon }
+                    count={ 12 }
+                    onIconClick={ () => {} }
+                    onClick={ () => {} }
+                    onClear={ () => {} }
                     size="36"
-                />
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

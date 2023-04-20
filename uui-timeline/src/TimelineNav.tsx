@@ -27,14 +27,14 @@ export class TimelineNav extends React.Component<TimelineNavProps> {
     };
 
     renderIcon(svgIcon: Icon) {
-        return <Svg svg={svgIcon} />;
+        return <Svg svg={ svgIcon } />;
     }
 
     renderFit() {
         const minScale = this.props.timelineController.options.minScale;
         const maxScale = this.props.timelineController.options.maxScale;
 
-        let shortcuts = [
+        const shortcuts = [
             { text: i18n.timelineNav.Minutes, scale: scales.minute },
             { text: i18n.timelineNav.Hours, scale: scales.hour },
             { text: i18n.timelineNav.Days, scale: scales.day },
@@ -44,22 +44,22 @@ export class TimelineNav extends React.Component<TimelineNavProps> {
         ].filter((i) => (!minScale || i.scale >= minScale) && (!maxScale || i.scale <= maxScale));
 
         return (
-            <div className={css.actions}>
-                <div className={css.button}>
-                    <div className={css.fit}>{this.renderIcon(SvgScales)}</div>
+            <div className={ css.actions }>
+                <div className={ css.button }>
+                    <div className={ css.fit }>{this.renderIcon(SvgScales)}</div>
                 </div>
-                <div className={css.actionsForgivingZone} />
-                <ul className={css.actionsDropdown}>
-                    <li className={css.actionsScale} onClick={() => this.props.timelineController.moveToday()}>
+                <div className={ css.actionsForgivingZone } />
+                <ul className={ css.actionsDropdown }>
+                    <li className={ css.actionsScale } onClick={ () => this.props.timelineController.moveToday() }>
                         {i18n.timelineNav.Today}
                     </li>
                     {shortcuts.map((action, i) => (
                         <li
-                            className={css.actionsScale}
-                            onClick={() => {
+                            className={ css.actionsScale }
+                            onClick={ () => {
                                 this.props.timelineController.zoomTo(action.scale);
-                            }}
-                            key={'action-' + i}
+                            } }
+                            key={ 'action-' + i }
                         >
                             {action.text}
                         </li>
@@ -71,16 +71,16 @@ export class TimelineNav extends React.Component<TimelineNavProps> {
 
     renderZoomIn() {
         return (
-            <div className={`${css.button} ${!this.props.timelineController.canZoomBy(1) && css.disabled}`} onClick={() => this.props.timelineController.zoomBy(1)}>
-                <div className={css.zoomIn}>{this.renderIcon(SvgPlus)}</div>
+            <div className={ `${css.button} ${!this.props.timelineController.canZoomBy(1) && css.disabled}` } onClick={ () => this.props.timelineController.zoomBy(1) }>
+                <div className={ css.zoomIn }>{this.renderIcon(SvgPlus)}</div>
             </div>
         );
     }
 
     renderZoomOut() {
         return (
-            <div className={`${css.button} ${!this.props.timelineController.canZoomBy(-1) && css.disabled}`} onClick={() => this.props.timelineController.zoomBy(-1)}>
-                <div className={css.zoomOut}>{this.renderIcon(SvgMinus)}</div>
+            <div className={ `${css.button} ${!this.props.timelineController.canZoomBy(-1) && css.disabled}` } onClick={ () => this.props.timelineController.zoomBy(-1) }>
+                <div className={ css.zoomOut }>{this.renderIcon(SvgMinus)}</div>
             </div>
         );
     }

@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow } from '@epam/loveship';
+import {
+    FlexRow, FlexCell, FlexSpacer, Text, PickerInput, Button, SearchInput, DataTable, DataTableRow,
+} from '@epam/loveship';
 import { Person, PersonGroup } from '@epam/uui-docs';
 import {
     DataSourceState,
@@ -12,7 +14,9 @@ import {
     DataColumnProps,
     LazyDataSourceApi,
 } from '@epam/uui-core';
-import { PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType } from './types';
+import {
+    PersonTableFilter, PersonTableRecord, PersonTableRecordId, PersonTableRecordType,
+} from './types';
 import { svc } from '../../services';
 import { getColumns } from './columns';
 import { getFilters } from './filters';
@@ -40,7 +44,7 @@ const formatCurrency = (value: number) => {
     }).format(value);
 };
 
-export const PersonsTableDemo = () => {
+export function PersonsTableDemo() {
     const { personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
 
     const [summary, setSummary] = React.useState<PersonsSummary & Pick<PersonsApiResponse, 'totalCount'>>({
@@ -54,14 +58,14 @@ export const PersonsTableDemo = () => {
             { id: 'department', name: 'Department' },
             { id: 'location', name: 'Location' },
         ],
-        []
+        [],
     );
 
     const groupingDataSource = useArrayDataSource(
         {
             items: groupings,
         },
-        []
+        [],
     );
 
     const [value, onValueChange] = React.useState<PersonsTableState>(() => ({
@@ -88,8 +92,7 @@ export const PersonsTableDemo = () => {
 
             const promises = typesToLoad.map(async (type) => {
                 const idsRequest: LazyDataSourceApiRequest<any, any, any> = { ids: idsByType[type] };
-                const api =
-                    type === 'Person' ? svc.api.demo.persons : type == 'PersonGroup' ? svc.api.demo.personGroups : type == 'Location' ? svc.api.demo.locations : null;
+                const api = type === 'Person' ? svc.api.demo.persons : type == 'PersonGroup' ? svc.api.demo.personGroups : type == 'Location' ? svc.api.demo.locations : null;
 
                 const apiResponse = await api(idsRequest);
                 response.items = [...response.items, ...apiResponse.items];
@@ -183,42 +186,42 @@ export const PersonsTableDemo = () => {
             isFoldedByDefault: () => value.isFolded,
             cascadeSelection: true,
         },
-        [value.filter?.groupBy]
+        [value.filter?.groupBy],
     );
 
     return (
-        <div className={cx(css.container)}>
-            <FlexRow spacing="12" padding="24" vPadding="12" borderBottom={true}>
-                <FlexCell width={200}>
-                    <SearchInput {...lens.prop('search').toProps()} size="30" />
+        <div className={ cx(css.container) }>
+            <FlexRow spacing="12" padding="24" vPadding="12" borderBottom={ true }>
+                <FlexCell width={ 200 }>
+                    <SearchInput { ...lens.prop('search').toProps() } size="30" />
                 </FlexCell>
                 <FlexCell width="auto">
                     <Text size="30">Group By:</Text>
                 </FlexCell>
-                <FlexCell width={130}>
-                    <PickerInput {...lens.prop('filter').prop('groupBy').toProps()} dataSource={groupingDataSource} selectionMode="single" valueType="id" size="30" />
+                <FlexCell width={ 130 }>
+                    <PickerInput { ...lens.prop('filter').prop('groupBy').toProps() } dataSource={ groupingDataSource } selectionMode="single" valueType="id" size="30" />
                 </FlexCell>
                 <FlexSpacer />
                 <FlexCell width="auto">
                     <Button
-                        caption={value.isFolded ? 'Unfold All' : 'Fold All'}
-                        onClick={() => onValueChange({ ...value, folded: {}, isFolded: !value.isFolded })}
+                        caption={ value.isFolded ? 'Unfold All' : 'Fold All' }
+                        onClick={ () => onValueChange({ ...value, folded: {}, isFolded: !value.isFolded }) }
                         size="30"
                     />
                 </FlexCell>
                 <FlexCell width="auto">
-                    <Button caption="Reload" onClick={() => reload()} size="30" />
+                    <Button caption="Reload" onClick={ () => reload() } size="30" />
                 </FlexCell>
             </FlexRow>
             <DataTable
-                getRows={() => rows}
-                columns={personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, any>[]}
-                value={value}
-                onValueChange={onValueChange}
-                filters={getFilters()}
-                {...listProps}
+                getRows={ () => rows }
+                columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, any>[] }
+                value={ value }
+                onValueChange={ onValueChange }
+                filters={ getFilters() }
+                { ...listProps }
             />
-            <DataTableRow columns={summaryColumns} cx={css.stickyFooter} id="footer" rowKey="footer" index={100500} value={summary} />
+            <DataTableRow columns={ summaryColumns } cx={ css.stickyFooter } id="footer" rowKey="footer" index={ 100500 } value={ summary } />
         </div>
     );
-};
+}

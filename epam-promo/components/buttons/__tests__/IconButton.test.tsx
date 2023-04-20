@@ -10,7 +10,7 @@ describe('IconButton', () => {
     });
 
     it('should be rendered correctly with props', () => {
-        const tree = renderer.create(<IconButton color="blue" onClick={jest.fn} icon={CalendarIcon} isDisabled={false} />).toJSON();
+        const tree = renderer.create(<IconButton color="blue" onClick={ jest.fn } icon={ CalendarIcon } isDisabled={ false } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+
+const router = express.Router();
 
 let serverStatus = null;
 
@@ -40,7 +41,7 @@ router.get(['/auth/ping', '/error/mock'], function (req, res) {
 });
 
 router.get('/auth/login', function (req, res) {
-    res.send(`<html><script>window.opener && window.opener.postMessage("authSuccess", "*")</script></html>`);
+    res.send('<html><script>window.opener && window.opener.postMessage("authSuccess", "*")</script></html>');
 });
 
 module.exports = router;

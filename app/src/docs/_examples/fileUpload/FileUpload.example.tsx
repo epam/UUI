@@ -29,7 +29,9 @@ export default function FileUploadExample() {
         files.map((file: File) => {
             const tempId = tempIdCount - 1;
             tempIdCount -= 1;
-            const newFile: FileCardItem = { id: tempId, name: file.name, progress: 0, size: file.size };
+            const newFile: FileCardItem = {
+                id: tempId, name: file.name, progress: 0, size: file.size,
+            };
             newAttachments.push(newFile);
 
             uuiApi
@@ -47,11 +49,11 @@ export default function FileUploadExample() {
     };
 
     return (
-        <div className={css.container}>
-            <DropSpot onUploadFiles={uploadFile} infoText="Up to 15 files. Limit for 1 file is 50 Mb" />
-            <div className={css.attachmentBlock}>
+        <div className={ css.container }>
+            <DropSpot onUploadFiles={ uploadFile } infoText="Up to 15 files. Limit for 1 file is 50 Mb" />
+            <div className={ css.attachmentBlock }>
                 {attachments.map((file, index) => (
-                    <FileCard key={index} file={file} onClick={() => deleteFile(file)} />
+                    <FileCard key={ index } file={ file } onClick={ () => deleteFile(file) } />
                 ))}
             </div>
         </div>

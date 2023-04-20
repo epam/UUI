@@ -9,7 +9,7 @@ export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHea
     uuiDataTableHeaderRow,
     (mods) => [css.root],
     (mods) => ({
-        renderCell: (props) => <DataTableHeaderCell {...props} size={mods.size} textCase={mods.textCase || 'normal'} key={props.column.key} />,
-        renderConfigButton: () => <IconButton key="configuration" onClick={mods.onConfigButtonClick} cx={css.configIcon} color="default" icon={MoreIcon} />,
-    })
+        renderCell: (props) => <DataTableHeaderCell { ...props } size={ mods.size } textCase={ mods.textCase || 'normal' } key={ props.column.key } />,
+        renderConfigButton: () => <IconButton key="configuration" onClick={ mods.onConfigButtonClick } cx={ css.configIcon } color="default" icon={ MoreIcon } />,
+    }),
 );

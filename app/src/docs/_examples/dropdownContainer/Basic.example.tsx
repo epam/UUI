@@ -1,5 +1,7 @@
 import React from 'react';
-import { DropdownContainer, LinkButton, Text, Button, FlexRow, FlexCell, Panel, DropdownMenuButton } from '@epam/promo';
+import {
+    DropdownContainer, LinkButton, Text, Button, FlexRow, FlexCell, Panel, DropdownMenuButton,
+} from '@epam/promo';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-delete-12.svg';
@@ -9,7 +11,7 @@ import { ReactComponent as phoneIcon } from '@epam/assets/icons/common/communica
 export default function BasicExample() {
     const renderFirstDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer maxWidth={360} vPadding="12" padding="18" {...props}>
+            <DropdownContainer maxWidth={ 360 } vPadding="12" padding="18" { ...props }>
                 <FlexCell alignSelf="flex-start">
                     <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">
                         Some Title
@@ -20,8 +22,8 @@ export default function BasicExample() {
                 </FlexCell>
                 <FlexCell alignSelf="flex-start">
                     <FlexRow spacing="12">
-                        <Button color="green" size="30" caption="Some Action" onClick={() => null} />
-                        <Button fill="white" size="30" color="gray50" caption="Cancel" onClick={() => null} />
+                        <Button color="green" size="30" caption="Some Action" onClick={ () => null } />
+                        <Button fill="white" size="30" color="gray50" caption="Cancel" onClick={ () => null } />
                     </FlexRow>
                 </FlexCell>
             </DropdownContainer>
@@ -30,11 +32,11 @@ export default function BasicExample() {
 
     const renderSecondDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer showArrow={true} width="auto" {...props}>
+            <DropdownContainer showArrow={ true } width="auto" { ...props }>
                 <Panel>
-                    <DropdownMenuButton caption="Export" icon={ExportIcon} onClick={() => {}} />
-                    <DropdownMenuButton caption="Delete" icon={DeleteIcon} onClick={() => {}} />
-                    <DropdownMenuButton caption="Phone" icon={phoneIcon} onClick={() => {}} />
+                    <DropdownMenuButton caption="Export" icon={ ExportIcon } onClick={ () => {} } />
+                    <DropdownMenuButton caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />
+                    <DropdownMenuButton caption="Phone" icon={ phoneIcon } onClick={ () => {} } />
                 </Panel>
             </DropdownContainer>
         );
@@ -43,14 +45,14 @@ export default function BasicExample() {
     return (
         <>
             <Dropdown
-                renderBody={(props) => renderFirstDropdownBody(props)}
-                renderTarget={(props: IDropdownToggler) => <LinkButton caption="Simple" size="36" {...props} />}
+                renderBody={ (props) => renderFirstDropdownBody(props) }
+                renderTarget={ (props: IDropdownToggler) => <LinkButton caption="Simple" size="36" { ...props } /> }
             />
             <Dropdown
-                renderBody={(props) => renderSecondDropdownBody(props)}
+                renderBody={ (props) => renderSecondDropdownBody(props) }
                 placement="right-start"
-                modifiers={[{ name: 'offset', options: { offset: [0, 6] } }]}
-                renderTarget={(props: IDropdownToggler) => <LinkButton caption="With Arrow" size="36" {...props} />}
+                modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
+                renderTarget={ (props: IDropdownToggler) => <LinkButton caption="With Arrow" size="36" { ...props } /> }
             />
         </>
     );

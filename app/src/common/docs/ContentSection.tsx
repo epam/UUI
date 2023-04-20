@@ -8,9 +8,9 @@ interface ContentSectionProps extends IHasChildren {}
 export class ContentSection extends React.Component<ContentSectionProps> {
     render() {
         return (
-            <div className={css.root}>
+            <div className={ css.root }>
                 <ScrollBars>
-                    <div className={css.widthWrapper}>{this.props.children}</div>
+                    <div className={ css.widthWrapper }>{this.props.children}</div>
                 </ScrollBars>
             </div>
         );

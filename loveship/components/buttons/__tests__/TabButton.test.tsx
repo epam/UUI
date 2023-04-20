@@ -10,7 +10,7 @@ describe('TabButton', () => {
     });
 
     it('should be rendered correctly with props', () => {
-        const tree = renderer.create(<TabButton onClick={jest.fn()} icon={AcceptIcon} isDisabled={false} />).toJSON();
+        const tree = renderer.create(<TabButton onClick={ jest.fn() } icon={ AcceptIcon } isDisabled={ false } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

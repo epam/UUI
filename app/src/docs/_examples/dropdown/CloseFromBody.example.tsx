@@ -1,13 +1,15 @@
 import React from 'react';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownBodyProps } from '@epam/uui-core';
-import { Button, Text, FlexRow, DropdownContainer, FlexCell } from '@epam/promo';
+import {
+    Button, Text, FlexRow, DropdownContainer, FlexCell,
+} from '@epam/promo';
 import { IDropdownToggler } from '@epam/uui-core';
 
 export default function BasicDropdownExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer maxWidth={360} vPadding="24" padding="18" {...props}>
+            <DropdownContainer maxWidth={ 360 } vPadding="24" padding="18" { ...props }>
                 <FlexCell alignSelf="flex-start">
                     <Text fontSize="18" lineHeight="24" color="gray90" font="museo-slab">
                         Some Title
@@ -18,8 +20,8 @@ export default function BasicDropdownExample() {
                 </FlexCell>
                 <FlexCell alignSelf="flex-start">
                     <FlexRow spacing="12">
-                        <Button color="green" size="30" caption="Some Action" onClick={() => null} />
-                        <Button fill="white" size="30" color="gray50" caption="Cancel" onClick={() => props.onClose()} />
+                        <Button color="green" size="30" caption="Some Action" onClick={ () => null } />
+                        <Button fill="white" size="30" color="gray50" caption="Cancel" onClick={ () => props.onClose() } />
                     </FlexRow>
                 </FlexCell>
             </DropdownContainer>
@@ -27,8 +29,6 @@ export default function BasicDropdownExample() {
     };
 
     return (
-        <>
-            <Dropdown renderBody={renderDropdownBody} renderTarget={(props: IDropdownToggler) => <Button caption="Click to open" {...props} />} />
-        </>
+        <Dropdown renderBody={ renderDropdownBody } renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open" { ...props } /> } />
     );
 }

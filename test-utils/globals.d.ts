@@ -1,2 +1,2 @@
-declare module "jsurl";
-declare module "query-string";
+declare module 'jsurl';
+declare module 'query-string';

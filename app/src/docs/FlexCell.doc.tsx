@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI4, UUI3 } from '../common/docs';
+import {
+    BaseDocsBlock, DocExample, EditableDocContent, UUI4, UUI3,
+} from '../common/docs';
 
 export class FlexCellDoc extends BaseDocsBlock {
     title = 'FlexCell';

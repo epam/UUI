@@ -4,7 +4,7 @@ import css from './SizeExample.scss';
 
 export default function SizeExample() {
     return (
-        <div className={css.container}>
+        <div className={ css.container }>
             <Badge size="42" color="blue" fill="solid" caption="Badge" />
             <Badge size="36" color="blue" fill="solid" caption="Badge" />
             <Badge size="30" color="blue" fill="solid" caption="Badge" />

@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps } from '@epam/uui-core';
-import { DatePicker, RangeDatePicker, FlexCell, Spinner } from '@epam/uui';
+import {
+    ISkin, skinComponent, SkinContextComponentProps, ButtonCoreProps,
+} from '@epam/uui-core';
+import {
+    DatePicker, RangeDatePicker, FlexCell, Spinner,
+} from '@epam/uui';
 import {
     Checkbox,
     FlexRow,
