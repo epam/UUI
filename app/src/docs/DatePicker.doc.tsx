@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4 } from '../common';
+import {
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4,
+} from '../common';
 
 export class DatePickerDoc extends BaseDocsBlock {
     title = 'DatePicker';

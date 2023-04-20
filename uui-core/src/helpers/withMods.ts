@@ -5,14 +5,14 @@ import { forwardRef } from './forwardRef';
 export function withMods<TProps, TMods = {}>(
     Component: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>,
     getCx?: (props: Readonly<TProps & TMods>) => CX,
-    getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>
+    getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>,
 ) {
     const wrappedComponent = forwardRef<any, TProps & TMods>((props, ref) => {
         // Most components are wrapped in withMods component.
         // Please keep this method simple, and performant
         // Don't clone objects/arrays if not needed
 
-        let allProps: any = { ...props };
+        const allProps: any = { ...props };
 
         if (getProps) {
             Object.assign(allProps, getProps?.(props));

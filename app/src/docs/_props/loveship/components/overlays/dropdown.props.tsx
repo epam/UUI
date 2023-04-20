@@ -2,7 +2,9 @@ import React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownProps } from '@epam/uui-core';
-import { DropdownMenuItemMods, DropdownMenuButton, Button, DropdownMenuSplitter, DropdownMenuBody, DropdownMenuHeader } from '@epam/loveship';
+import {
+    DropdownMenuItemMods, DropdownMenuButton, Button, DropdownMenuSplitter, DropdownMenuBody, DropdownMenuHeader,
+} from '@epam/loveship';
 import { DefaultContext } from '../../docs';
 
 const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ name: 'Dropdown', component: Dropdown })
@@ -29,7 +31,7 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ n
         isRequired: true,
         examples: [
             {
-                value: (props) => <Button caption="Target" {...props} />,
+                value: (props) => <Button caption="Target" { ...props } />,
                 isDefault: true,
             },
         ],
@@ -55,16 +57,30 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ n
         remountOnChange: true,
     })
     .prop('closeOnMouseLeave', {
-        examples: ['toggler', 'boundary', false],
+        examples: [
+            'toggler',
+            'boundary',
+            false,
+        ],
         defaultValue: false,
         remountOnChange: true,
     })
     .prop('openDelay', {
-        examples: [500, 1000, 1500, 2000],
+        examples: [
+            500,
+            1000,
+            1500,
+            2000,
+        ],
         defaultValue: 0,
     })
     .prop('closeDelay', {
-        examples: [500, 1000, 1500, 2000],
+        examples: [
+            500,
+            1000,
+            1500,
+            2000,
+        ],
         defaultValue: 0,
     })
     .withContexts(DefaultContext);

@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { UuiContexts, IHasCX, IHasChildren, IClickable, IAnalyticableClick, UuiContext, IHasRawProps, cx, IHasForwardedRef } from '@epam/uui-core';
+import {
+    UuiContexts, IHasCX, IHasChildren, IClickable, IAnalyticableClick, UuiContext, IHasRawProps, cx, IHasForwardedRef,
+} from '@epam/uui-core';
 import css from './Text.scss';
 
 export type TextProps = IHasCX & IHasChildren & IClickable & IAnalyticableClick & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & IHasForwardedRef<HTMLDivElement>;
 
 export class Text extends React.Component<TextProps> {
     static contextType = UuiContext;
+
     context: UuiContexts;
 
     onClick = (e: React.MouseEvent) => {
@@ -15,7 +18,7 @@ export class Text extends React.Component<TextProps> {
 
     render() {
         return (
-            <div onClick={this.props.onClick && this.onClick} className={cx(this.props.cx, css.container)} ref={this.props.forwardedRef} {...this.props.rawProps}>
+            <div onClick={ this.props.onClick && this.onClick } className={ cx(this.props.cx, css.container) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
                 {this.props.children}
             </div>
         );

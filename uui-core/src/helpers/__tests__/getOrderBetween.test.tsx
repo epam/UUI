@@ -29,7 +29,7 @@ describe('getOrderBetween', () => {
     // This tests are to check that that's works
 
     it('can insert between 0001 and 0002', () => {
-        let order = getOrderBetween('0001', '0002');
+        const order = getOrderBetween('0001', '0002');
         expect(order > '0001').toBe(true);
         expect(order < '0002').toBe(true);
     });

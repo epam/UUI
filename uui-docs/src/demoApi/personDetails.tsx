@@ -17,7 +17,7 @@ export const personDetailsApi = {
         return randomDelay(details);
     },
     loadDefault: () => {
-        let details = personDetails;
+        const details = personDetails;
 
         return randomDelay(details);
     },

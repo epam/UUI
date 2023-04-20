@@ -33,16 +33,16 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
 
         return (
             <FlexRow
-                onClick={clickHandler && (() => clickHandler(this.props))}
-                rawProps={{
+                onClick={ clickHandler && (() => clickHandler(this.props)) }
+                rawProps={ {
                     role: 'option',
                     'aria-posinset': this.props.index + 1,
                     ...(this.props.checkbox?.isVisible && { 'aria-checked': this.props.isChecked }),
                     ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected }),
                     ...this.props.rawProps,
-                }}
-                ref={this.rowNode}
-                cx={[clickHandler && this.props.isFocused && uuiMod.focus, this.props.cx]}
+                } }
+                ref={ this.rowNode }
+                cx={ [clickHandler && this.props.isFocused && uuiMod.focus, this.props.cx] }
             >
                 {this.props.renderContent()}
             </FlexRow>

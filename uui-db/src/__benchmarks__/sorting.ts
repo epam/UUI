@@ -9,7 +9,7 @@ const testPersons = range(0, 1e4).map((id) => ({ id, name: `Person ${id}`, depar
 const nameComparer = (p1: Person, p2: Person) => (p1.name > p2.name ? 1 : -1);
 
 b.suite(
-    `Sort array`,
+    'Sort array',
 
     b.add('array.sort, hard-coded', () => {
         const arr = [...testPersons];
@@ -29,5 +29,5 @@ b.suite(
 
     b.cycle(),
     b.complete(),
-    b.save({ file: 'sorting', version: '1.0.0' })
+    b.save({ file: 'sorting', version: '1.0.0' }),
 );

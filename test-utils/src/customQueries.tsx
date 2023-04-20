@@ -1,9 +1,8 @@
 import { buildQueries, within } from '@testing-library/react';
 
-
 function buildQueryByRoleAndText() {
     function queryAllByRoleAndText(container: HTMLElement, params: { role: string, text: string }) {
-        return within(container).queryAllByRole(params.role).filter(e => e.textContent === params.text);
+        return within(container).queryAllByRole(params.role).filter((e) => e.textContent === params.text);
     }
 
     const [
@@ -29,7 +28,6 @@ function buildQueryByRoleAndText() {
 }
 
 const buildQueryByRoleAndTextApi = buildQueryByRoleAndText();
-
 
 export default {
     ...buildQueryByRoleAndTextApi,

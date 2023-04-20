@@ -7,26 +7,36 @@ import { Text } from '@epam/promo';
 import { Button } from '@epam/promo';
 
 const ModalFooterDoc = new DocBuilder<ModalFooterProps>({ name: 'ModalFooter', component: ModalFooter })
-    .prop('background', { examples: ['white', 'gray5', 'none'] })
-    .prop('padding', { examples: ['6', '12', '24'] })
+    .prop('background', {
+        examples: [
+            'white',
+            'gray5',
+            'none',
+        ],
+    })
+    .prop('padding', {
+        examples: [
+            '6',
+            '12',
+            '24',
+        ],
+    })
     .prop('children', {
         examples: [
             {
                 isDefault: true,
                 value: (
-                    <React.Fragment>
-                        <FlexRow vPadding="12" spacing="6">
-                            <FlexRow>
-                                <Text size="30" font="sans">
-                                    Modal footer text in children props
-                                </Text>
-                            </FlexRow>
-                            <FlexRow spacing="6">
-                                <Button onClick={() => {}} color="green" caption="Ok" />
-                                <Button onClick={() => {}} fill="none" color="gray50" caption="Cancel" />
-                            </FlexRow>
+                    <FlexRow vPadding="12" spacing="6">
+                        <FlexRow>
+                            <Text size="30" font="sans">
+                                Modal footer text in children props
+                            </Text>
                         </FlexRow>
-                    </React.Fragment>
+                        <FlexRow spacing="6">
+                            <Button onClick={ () => {} } color="green" caption="Ok" />
+                            <Button onClick={ () => {} } fill="none" color="gray50" caption="Cancel" />
+                        </FlexRow>
+                    </FlexRow>
                 ),
                 name: 'Caption with buttons',
             },

@@ -16,7 +16,7 @@ const delay = (ms: number = 0): Promise<void> => {
 /** Creates an async function, which can collect several calls to it, and execute them in a single batch via provided callback. */
 export function batch<TArg = void, TRes = void>(
     runBatch: (batch?: TArg[]) => Promise<TRes[]> | Promise<void> | undefined | void,
-    options?: BatchPromiseOptions
+    options?: BatchPromiseOptions,
 ): { (arg: TArg, options?: BatchPromiseOptions): Promise<TRes>; isBusy: boolean } {
     let delayPromise: Promise<void> = Promise.resolve();
     let batchPromise: any = null;
@@ -30,7 +30,7 @@ export function batch<TArg = void, TRes = void>(
 
         // Enqueue request
         queue.push(arg);
-        let resultIndex = queue.length - 1; // an index of current item in queue. Result should be on the same index in batch.
+        const resultIndex = queue.length - 1; // an index of current item in queue. Result should be on the same index in batch.
         batchedFn.isBusy = true;
 
         // Wait current batch to complete

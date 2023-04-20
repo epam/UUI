@@ -13,6 +13,7 @@ interface DragGhostState extends DndContextState {
 
 export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
     static contextType = UuiContext;
+
     context: UuiContexts;
 
     private layer: LayoutLayer = null;
@@ -67,14 +68,14 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
 
         return (
             <div
-                style={{
+                style={ {
                     position: 'fixed',
                     width: this.state.ghostWidth,
                     left: this.state.pointerX + this.state.ghostOffsetX,
                     top: this.state.pointerY + this.state.ghostOffsetY,
                     pointerEvents: 'none',
                     zIndex: this.layer.zIndex,
-                }}
+                } }
             >
                 {this.state.renderGhost()}
             </div>

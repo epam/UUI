@@ -13,7 +13,11 @@ export interface TextInputMods extends IHasEditMode {
 }
 
 export function applyTextInputMods(mods: TextInputMods) {
-    return [css.root, css['size-' + (mods.size || defaultSize)], css['mode-' + (mods.mode || defaultMode)]];
+    return [
+        css.root,
+        css['size-' + (mods.size || defaultSize)],
+        css['mode-' + (mods.mode || defaultMode)],
+    ];
 }
 
 export interface TextInputProps extends CoreTextInputProps, TextInputMods {}
@@ -31,18 +35,18 @@ export const SearchInput = React.forwardRef<HTMLInputElement, TextInputProps & T
 
     return (
         <IEditableDebouncer
-            {...props}
-            render={(iEditable) => (
+            { ...props }
+            render={ (iEditable) => (
                 <TextInput
-                    icon={systemIcons[props.size || defaultSize].search}
-                    onCancel={!!props.value ? () => iEditable.onValueChange('') : undefined}
+                    icon={ systemIcons[props.size || defaultSize].search }
+                    onCancel={ !!props.value ? () => iEditable.onValueChange('') : undefined }
                     type="search"
                     inputMode="search"
-                    ref={ref}
-                    {...textInputProps}
-                    {...iEditable}
+                    ref={ ref }
+                    { ...textInputProps }
+                    { ...iEditable }
                 />
-            )}
+            ) }
         />
     );
 });

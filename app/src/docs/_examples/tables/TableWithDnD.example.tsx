@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
-import { DataColumnProps, DataTableState, getOrderBetween, useArrayDataSource } from '@epam/uui-core';
+import {
+    DataColumnProps, DataTableState, getOrderBetween, useArrayDataSource,
+} from '@epam/uui-core';
 import { DataTable, Panel, Text } from '@epam/promo';
 import { demoData, FeatureClass } from '@epam/uui-docs';
 import css from './TablesExamples.scss';
@@ -13,7 +15,7 @@ export default function TableWithDnDExample() {
         {
             items: items,
         },
-        [items]
+        [items],
     );
 
     const view = dataSource.useView(value, onValueChange, {
@@ -24,10 +26,9 @@ export default function TableWithDnDExample() {
                 onDrop: (data) => {
                     const arrIndex = index - 1;
 
-                    const newOrder =
-                        data.position === 'top'
-                            ? getOrderBetween(items[arrIndex - 1]?.order, data.dstData.order)
-                            : getOrderBetween(data.dstData.order, items[arrIndex + 1]?.order);
+                    const newOrder = data.position === 'top'
+                        ? getOrderBetween(items[arrIndex - 1]?.order, data.dstData.order)
+                        : getOrderBetween(data.dstData.order, items[arrIndex + 1]?.order);
 
                     const result = items.map((i) => (i === data.srcData ? { ...data.srcData, order: newOrder } : i));
                     const sortedResult = sortBy(result, (i) => i.order);
@@ -67,17 +68,17 @@ export default function TableWithDnDExample() {
                 width: 300,
             },
         ],
-        []
+        [],
     );
 
     return (
-        <Panel shadow cx={css.container}>
+        <Panel shadow cx={ css.container }>
             <DataTable
-                {...view.getListProps()}
-                getRows={view.getVisibleRows}
-                value={value}
-                onValueChange={onValueChange}
-                columns={productColumns}
+                { ...view.getListProps() }
+                getRows={ view.getVisibleRows }
+                value={ value }
+                onValueChange={ onValueChange }
+                columns={ productColumns }
                 headerTextCase="upper"
             />
         </Panel>

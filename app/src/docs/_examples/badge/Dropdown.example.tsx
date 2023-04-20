@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Badge, Dropdown, DropdownMenuButton, FlexCell, FlexRow, Panel, Text } from '@epam/promo';
+import {
+    Badge, Dropdown, DropdownMenuButton, FlexCell, FlexRow, Panel, Text,
+} from '@epam/promo';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 import { DropdownBodyProps } from '@epam/uui-core';
 import css from './DropdownExample.scss';
@@ -16,20 +18,20 @@ export default function TypesExample() {
         setSelectedItem(dropdownMenuItems.filter((item) => item.id === id)[0]);
     };
 
-    const statusDot = (color: string) => <span className={css.dot} style={{ backgroundColor: color }} />;
+    const statusDot = (color: string) => <span className={ css.dot } style={ { backgroundColor: color } } />;
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
             <Panel background="white" shadow>
                 {dropdownMenuItems.map((item) => (
                     <DropdownMenuButton
-                        key={item.id}
-                        caption={item.caption}
-                        icon={() => statusDot(item.color)}
-                        onClick={() => {
+                        key={ item.id }
+                        caption={ item.caption }
+                        icon={ () => statusDot(item.color) }
+                        onClick={ () => {
                             handleDropdown(item.id);
                             props.onClose();
-                        }}
+                        } }
                     />
                 ))}
             </Panel>
@@ -39,18 +41,18 @@ export default function TypesExample() {
     return (
         <FlexRow spacing="18">
             <Dropdown
-                renderBody={renderDropdownBody}
-                renderTarget={(props) => (
+                renderBody={ renderDropdownBody }
+                renderTarget={ (props) => (
                     <Badge
-                        {...props}
-                        dropdownIcon={navigationDownIcon}
+                        { ...props }
+                        dropdownIcon={ navigationDownIcon }
                         dropdownIconPosition="right"
                         color="gray30"
-                        icon={() => statusDot(selectedItem.color)}
+                        icon={ () => statusDot(selectedItem.color) }
                         fill="semitransparent"
-                        caption={selectedItem.caption}
+                        caption={ selectedItem.caption }
                     />
-                )}
+                ) }
                 placement="bottom-end"
             />
         </FlexRow>

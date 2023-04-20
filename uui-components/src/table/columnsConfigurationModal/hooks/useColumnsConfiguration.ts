@@ -1,6 +1,8 @@
 import { useCallback, useMemo, useState } from 'react';
 import { ColumnsConfig, DataColumnProps, DropParams } from '@epam/uui-core';
-import { moveColumnRelativeToAnotherColumn, toggleSingleColumnPin, toggleAllColumnsVisibility, toggleSingleColumnVisibility } from '../columnsConfigurationActions';
+import {
+    moveColumnRelativeToAnotherColumn, toggleSingleColumnPin, toggleAllColumnsVisibility, toggleSingleColumnVisibility,
+} from '../columnsConfigurationActions';
 import { canAcceptDrop, isColumnAlwaysPinned } from '../columnsConfigurationUtils';
 import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps } from '../types';
 import { groupAndFilterSortedColumns, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';
@@ -20,12 +22,12 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
 
     const toggleVisibility = useCallback(
         (columnKey: string) => setColumnsConfig((prevConfig) => toggleSingleColumnVisibility({ prevConfig, columnsSorted, columnKey })),
-        [columnsSorted]
+        [columnsSorted],
     );
 
     const togglePin = useCallback(
         (columnKey: string) => setColumnsConfig((prevConfig) => toggleSingleColumnPin({ prevConfig, columnsSorted, columnKey })),
-        [columnsSorted]
+        [columnsSorted],
     );
 
     const reset = useCallback(() => {
@@ -35,12 +37,12 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
 
     const checkAll = useCallback(
         () => setColumnsConfig((prevConfig) => toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, value: true })),
-        [columnsSorted]
+        [columnsSorted],
     );
 
     const uncheckAll = useCallback(
         () => setColumnsConfig((prevConfig) => toggleAllColumnsVisibility({ prevConfig, columns: columnsSorted, value: false })),
-        [columnsSorted]
+        [columnsSorted],
     );
 
     const sortedColumnsExtended = useMemo(
@@ -80,7 +82,13 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
                     onDrop: handleDrop,
                 };
             }),
-        [columnsSorted, columnsConfig, isDndAllowed, togglePin, toggleVisibility]
+        [
+            columnsSorted,
+            columnsConfig,
+            isDndAllowed,
+            togglePin,
+            toggleVisibility,
+        ],
     );
 
     const groupedColumns = useMemo(() => groupAndFilterSortedColumns(sortedColumnsExtended, searchValue), [sortedColumnsExtended, searchValue]);

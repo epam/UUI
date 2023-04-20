@@ -11,14 +11,14 @@ describe('IEditableDebouncer', () => {
         let lastRenderProps: IEditable<number> = null;
         await renderToJsdomWithContextAsync(
             <IEditableDebouncer
-                value={initialValue}
-                onValueChange={outerOnValueChange}
-                render={(props) => {
+                value={ initialValue }
+                onValueChange={ outerOnValueChange }
+                render={ (props) => {
                     lastRenderProps = props;
                     return null;
-                }}
-                disableDebounce={true}
-            />
+                } }
+                disableDebounce={ true }
+            />,
         );
 
         act(() => lastRenderProps.onValueChange(newValue));
@@ -33,14 +33,14 @@ describe('IEditableDebouncer', () => {
         let lastRenderProps: IEditable<number> = null;
         await renderToJsdomWithContextAsync(
             <IEditableDebouncer
-                value={initialValue}
-                onValueChange={outerOnValueChange}
-                render={(props) => {
+                value={ initialValue }
+                onValueChange={ outerOnValueChange }
+                render={ (props) => {
                     lastRenderProps = props;
                     return null;
-                }}
-                debounceDelay={100}
-            />
+                } }
+                debounceDelay={ 100 }
+            />,
         );
         jest.useFakeTimers();
 
@@ -66,10 +66,10 @@ describe('IEditableDebouncer', () => {
             },
             debounceDelay: 5,
         };
-        const result = await renderToJsdomWithContextAsync(<IEditableDebouncer {...props} />);
+        const result = await renderToJsdomWithContextAsync(<IEditableDebouncer { ...props } />);
         act(() => lastRenderProps.onValueChange(3));
 
-        result.rerender(<IEditableDebouncer {...props} value={2} />);
+        result.rerender(<IEditableDebouncer { ...props } value={ 2 } />);
         expect(lastRenderProps.value).toBe(2);
     });
 });

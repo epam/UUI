@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI } from '../common';
+import {
+    EditableDocContent, DocExample, BaseDocsBlock, UUI4, UUI3, UUI,
+} from '../common';
 
 export class ButtonDoc extends BaseDocsBlock {
     title = 'Button';

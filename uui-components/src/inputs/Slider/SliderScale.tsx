@@ -17,12 +17,12 @@ export class SliderScale extends SliderScaleBase<number> {
             const sliderMargin = isClientSide && this.props.slider && +window.getComputedStyle(this.props.slider).marginLeft.slice(0, -2);
             return (
                 <SliderScaleElement
-                    key={index}
-                    offset={offset}
-                    sliderWidth={sliderWidth}
-                    isFilledDot={this.props.handleOffset > offset}
-                    label={this.props.renderLabel ? this.props.renderLabel(value) : value}
-                    sliderMargin={sliderMargin}
+                    key={ index }
+                    offset={ offset }
+                    sliderWidth={ sliderWidth }
+                    isFilledDot={ this.props.handleOffset > offset }
+                    label={ this.props.renderLabel ? this.props.renderLabel(value) : value }
+                    sliderMargin={ sliderMargin }
                 />
             );
         });

@@ -72,6 +72,6 @@ export function useFullScreenApi(): IFullScreenApi {
             openFullScreen: handleOpenFullScreen,
             closeFullScreen,
         }),
-        [isFullScreen, handleOpenFullScreen]
+        [isFullScreen, handleOpenFullScreen],
     );
 }

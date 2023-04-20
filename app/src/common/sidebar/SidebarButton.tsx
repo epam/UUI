@@ -13,16 +13,16 @@ export class SidebarButton extends React.Component<SidebarButtonProps, any> {
     render() {
         return (
             <VerticalTabButton
-                {...this.props}
-                rawProps={{
+                { ...this.props }
+                rawProps={ {
                     role: this.props.isDropdown ? undefined : 'tab',
                     'aria-expanded': this.props.isDropdown,
                     'aria-disabled': this.props.isDisabled,
                     'aria-current': this.props.isActive,
-                }}
-                isLinkActive={this.props.isActive}
-                cx={cx(css.root, css['indent-' + this.props.indent])}
-                dropdownIcon={DropdownIcon}
+                } }
+                isLinkActive={ this.props.isActive }
+                cx={ cx(css.root, css['indent-' + this.props.indent]) }
+                dropdownIcon={ DropdownIcon }
                 size="36"
             />
         );

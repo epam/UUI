@@ -1,6 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { Badge, DataTable, EpamAdditionalColor, FlexRow, Panel, Text } from '@epam/promo';
-import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
+import {
+    Badge, DataTable, EpamAdditionalColor, FlexRow, Panel, Text,
+} from '@epam/promo';
+import {
+    DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts,
+} from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.scss';
 import { TApi } from '../../../data';
@@ -14,7 +18,7 @@ export default function StyledColumnsExample() {
         {
             api: svc.api.demo.persons,
         },
-        []
+        [],
     );
 
     const view = dataSource.useView(value, onValueChange, {
@@ -37,7 +41,7 @@ export default function StyledColumnsExample() {
                 render: (p) =>
                     p.profileStatus && (
                         <FlexRow>
-                            <Badge fill="transparent" color={p.profileStatus.toLowerCase() as EpamAdditionalColor} caption={p.profileStatus} />
+                            <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
                         </FlexRow>
                     ),
                 width: 140,
@@ -68,20 +72,20 @@ export default function StyledColumnsExample() {
                 fix: 'right',
             },
         ],
-        []
+        [],
     );
 
     return (
-        <Panel shadow cx={css.container}>
+        <Panel shadow cx={ css.container }>
             <DataTable
-                {...view.getListProps()}
-                getRows={view.getVisibleRows}
-                value={value}
-                onValueChange={onValueChange}
-                columns={productColumns}
-                showColumnsConfig={true}
-                allowColumnsResizing={true}
-                allowColumnsReordering={true}
+                { ...view.getListProps() }
+                getRows={ view.getVisibleRows }
+                value={ value }
+                onValueChange={ onValueChange }
+                columns={ productColumns }
+                showColumnsConfig={ true }
+                allowColumnsResizing={ true }
+                allowColumnsReordering={ true }
             />
         </Panel>
     );

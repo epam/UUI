@@ -18,10 +18,26 @@ import {
 import { colors } from '../../docs/helpers/colorMap';
 
 const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', component: Button })
-    .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
-    .implements([onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iCanRedirectDoc, iHasPlaceholder])
+    .prop('size', {
+        examples: [
+            '24',
+            '30',
+            '36',
+            '42',
+            '48',
+        ],
+        defaultValue: '36',
+    })
+    .implements([
+        onClickDoc,
+        dropdownTogglerDoc,
+        isDisabledDoc,
+        basicPickerTogglerDoc,
+        iCanRedirectDoc,
+        iHasPlaceholder,
+    ])
     .prop('color', {
-        renderEditor: (editable, examples) => <ColorPicker colors={examples.map((i) => ({ value: i, hex: colors[i] }))} {...editable} />,
+        renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
         examples: allButtonColors,
     })
     .prop('caption', {

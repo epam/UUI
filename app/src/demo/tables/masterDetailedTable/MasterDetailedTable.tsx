@@ -1,6 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+    useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { Person } from '@epam/uui-docs';
-import { cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps } from '@epam/uui-core';
+import {
+    cx, useLazyDataSource, useUuiContext, UuiContexts, ITablePreset, useTableState, DataRowProps,
+} from '@epam/uui-core';
 import { FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
 import css from './DemoTable.scss';
@@ -37,7 +41,7 @@ export const MasterDetailedTable: React.FC = () => {
         {
             api: (request) => svc.api.demo.persons(request),
         },
-        []
+        [],
     );
 
     const clickHandler = useCallback((rowProps: DataRowProps<Person, number>) => {
@@ -54,34 +58,34 @@ export const MasterDetailedTable: React.FC = () => {
     });
 
     return (
-        <div className={css.wrapper}>
-            <FilterPanelOpener isFilterPanelOpened={isFilterPanelOpened} setIsFilterPanelOpened={setIsFilterPanelOpened} />
+        <div className={ css.wrapper }>
+            <FilterPanelOpener isFilterPanelOpened={ isFilterPanelOpened } setIsFilterPanelOpened={ setIsFilterPanelOpened } />
 
-            <SlidingPanel isVisible={isFilterPanelOpened} width={288} position="left">
-                <FilterPanel {...tableStateApi} filters={filters} columns={personColumns} closePanel={() => setIsFilterPanelOpened(false)} />
+            <SlidingPanel isVisible={ isFilterPanelOpened } width={ 288 } position="left">
+                <FilterPanel { ...tableStateApi } filters={ filters } columns={ personColumns } closePanel={ () => setIsFilterPanelOpened(false) } />
             </SlidingPanel>
 
-            <div className={css.container}>
-                <FlexRow borderBottom cx={cx(css.presets, { [css.presetsWithFilter]: isFilterPanelOpened })}></FlexRow>
+            <div className={ css.container }>
+                <FlexRow borderBottom cx={ cx(css.presets, { [css.presetsWithFilter]: isFilterPanelOpened }) }></FlexRow>
 
                 <DataTable
                     headerTextCase="upper"
-                    getRows={view.getVisibleRows}
-                    columns={personColumns}
-                    filters={filters}
-                    value={tableStateApi.tableState}
-                    onValueChange={tableStateApi.setTableState}
-                    showColumnsConfig={true}
+                    getRows={ view.getVisibleRows }
+                    columns={ personColumns }
+                    filters={ filters }
+                    value={ tableStateApi.tableState }
+                    onValueChange={ tableStateApi.setTableState }
+                    showColumnsConfig={ true }
                     allowColumnsResizing
                     allowColumnsReordering
-                    {...view.getListProps()}
+                    { ...view.getListProps() }
                 />
             </div>
 
             <InfoSidebarPanel
-                data={tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value as Person)}
-                isVisible={isInfoPanelOpened}
-                onClose={closeInfoPanel}
+                data={ tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value as Person) }
+                isVisible={ isInfoPanelOpened }
+                onClose={ closeInfoPanel }
             />
         </div>
     );

@@ -3,13 +3,13 @@ import { ArrayDataSource } from '../ArrayDataSource';
 type Test_ItemIdType = string;
 type Test_ItemType =
     | {
-          _type: 'employee';
-          firstName: string;
-          lastName: string;
-          departmentId: string;
-          city: string;
-          id: Test_ItemIdType;
-      }
+        _type: 'employee';
+        firstName: string;
+        lastName: string;
+        departmentId: string;
+        city: string;
+        id: Test_ItemIdType;
+    }
     | { _type: 'department'; id: Test_ItemIdType; departmentName: string };
 type Test_EmployeeFilterType = {
     onlyFromDepartment_A: boolean;
@@ -99,7 +99,7 @@ describe('ArrayDataSource', () => {
                 focusedIndex: undefined,
             },
             () => {},
-            {}
+            {},
         );
         const viewFromDepAll = ds.getView(
             {
@@ -112,7 +112,7 @@ describe('ArrayDataSource', () => {
                 focusedIndex: undefined,
             },
             () => {},
-            {}
+            {},
         );
         const viewSearchFirst3 = ds.getView(
             {
@@ -125,7 +125,7 @@ describe('ArrayDataSource', () => {
                 focusedIndex: undefined,
             },
             () => {},
-            {}
+            {},
         );
 
         const depAList = viewFromDepA.getListProps();

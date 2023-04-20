@@ -1,6 +1,10 @@
 import { Db } from './Db';
-import { DbPatch, DbTablesSet, ServerError, DbSaveResponse, DbView, ViewCacheItem, DbSubscription, DbPkFieldType } from './types';
-import { makeCumulativePatch, unionPatches, mergeEntityPatches, flattenResponse } from './patchHelpers';
+import {
+    DbPatch, DbTablesSet, ServerError, DbSaveResponse, DbView, ViewCacheItem, DbSubscription, DbPkFieldType,
+} from './types';
+import {
+    makeCumulativePatch, unionPatches, mergeEntityPatches, flattenResponse,
+} from './patchHelpers';
 import { TempIdMap, IClientIdsMap } from './tempIds';
 import { objectKeys, defaultCompareViewDependencies, difference } from './utils';
 import isEmpty from 'lodash.isempty';
@@ -11,13 +15,19 @@ import { ListLoadingTracker, ListLoadingTrackerOptions } from './ListLoadingTrac
 
 export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>> {
     private base: TDb;
+
     private log: { patch: DbPatch<TTables> }[] = [];
+
     private autoSave = true;
+
     private savedPoint = 0;
+
     private tempIdMap: TempIdMap<TTables>;
 
     public db: TDb;
+
     protected throttleSaveMs = 1000;
+
     public readonly idMap: IClientIdsMap;
 
     constructor(public blank: TDb) {
@@ -84,7 +94,7 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
             .forEach((entityName) => {
                 const schema = tables[entityName].schema;
                 const { beforeUpdate } = schema;
-                let context = {
+                const context = {
                     clientIdsMap: this.tempIdMap,
                     schema,
                     tables,
@@ -96,7 +106,11 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
                 const dependentEntityPatchesForUpdate = unionPatches(results.filter((result) => result.dependentEntities).map((result) => result.dependentEntities));
                 const dependentEntityPatches = this.beforeUpdate(dependentEntityPatchesForUpdate, tables, prevTables);
 
-                patchAndDependencies = mergeEntityPatches(tables, unionPatches([patchAndDependencies, updatedPatch, dependentEntityPatches]));
+                patchAndDependencies = mergeEntityPatches(tables, unionPatches([
+                    patchAndDependencies,
+                    updatedPatch,
+                    dependentEntityPatches,
+                ]));
             });
         return patchAndDependencies;
     }
@@ -121,7 +135,7 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
         let cumulativePatch = makeCumulativePatch(
             this.db,
             logEntriesToSave.map((t) => t.patch),
-            this.tempIdMap
+            this.tempIdMap,
         );
         cumulativePatch = this.tempIdMap.clientToServerPatch(cumulativePatch);
 
@@ -141,12 +155,13 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     /* Update subscriptions (aka live views) */
 
     private lastSubscriptionId = 1;
+
     private subscriptions: Map<number, DbSubscription<any, any>> = new Map();
 
     public subscribe<TValue, TParams, TDependencies>(
         view: DbView<TDb, TValue, TParams, TDependencies>,
         params: TParams,
-        onUpdate: (newValue: TValue) => any
+        onUpdate: (newValue: TValue) => any,
     ): DbSubscription<TValue, TParams> {
         const id = this.lastSubscriptionId++;
 
@@ -180,7 +195,7 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
                 compareResults: (a, b) => a === b,
             },
             null,
-            handler
+            handler,
         );
     }
 
@@ -241,7 +256,7 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     }
 
     protected makeListLoader<TItem, TResponse = DataQuery<TItem>, TRequest extends DataQuery<TItem> = DataQuery<TItem>>(
-        options: LoaderOptions<TTables, TResponse, TRequest> & ListLoadingTrackerOptions<TItem, TResponse>
+        options: LoaderOptions<TTables, TResponse, TRequest> & ListLoadingTrackerOptions<TItem, TResponse>,
     ) {
         const loader = new Loader<TTables, TResponse, TRequest>(this as any, () => new ListLoadingTracker<TItem, TRequest, TResponse>(), options);
         this.loaders.push(loader);

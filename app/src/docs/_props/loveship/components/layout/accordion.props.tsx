@@ -1,7 +1,9 @@
 import React from 'react';
 import { DocBuilder, isDisabledDoc } from '@epam/uui-docs';
 import { AccordionProps } from '@epam/uui-components';
-import { Accordion, Button, FlexRow, FlexSpacer, Text } from '@epam/loveship';
+import {
+    Accordion, Button, FlexRow, FlexSpacer, Text,
+} from '@epam/loveship';
 import { AccordionMods } from '@epam/uui';
 import { ResizableContext } from '../../docs';
 
@@ -43,7 +45,7 @@ const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Acc
                 name: 'Marked up content',
                 value: (
                     <React.Fragment>
-                        <Text size={'36'} font="sans">
+                        <Text size="36" font="sans">
                             {' '}
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
@@ -55,8 +57,8 @@ const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Acc
                         </Text>
                         <FlexRow>
                             <FlexSpacer />
-                            <Button fill="white" color="night500" caption="Cancel" onClick={() => {}} />
-                            <Button color="grass" caption="Accept" onClick={() => {}} />
+                            <Button fill="white" color="night500" caption="Cancel" onClick={ () => {} } />
+                            <Button color="grass" caption="Accept" onClick={ () => {} } />
                         </FlexRow>
                     </React.Fragment>
                 ),

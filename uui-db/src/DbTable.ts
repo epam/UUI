@@ -1,6 +1,10 @@
-import { DbTablePatch, DbQuery, DbEntitySchema, DbPkFieldType, DbTablesSet } from './types';
+import {
+    DbTablePatch, DbQuery, DbEntitySchema, DbPkFieldType, DbTablesSet,
+} from './types';
 import * as I from 'immutable';
-import { SortDirection, getFilterPredicate, getOrderComparer, DataQueryFilter, SortingOption, getSearchFilter, DataQuery } from '@epam/uui-core';
+import {
+    SortDirection, getFilterPredicate, getOrderComparer, DataQueryFilter, SortingOption, getSearchFilter, DataQuery,
+} from '@epam/uui-core';
 import { Seq, Iterable } from 'immutable';
 
 interface ApplyQueryOptions {
@@ -77,7 +81,9 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
                 }
             }
 
-            return { id, immId, patch: entityPatch, existing, updated, isNew: !existing, isDeleted };
+            return {
+                id, immId, patch: entityPatch, existing, updated, isNew: !existing, isDeleted,
+            };
         });
 
         const idVal = Seq.Keyed<TId, TEntity>(updates.map((entity) => [entity.immId, entity.updated]));
@@ -94,7 +100,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
             let newMap = index.map;
 
             for (let n = 0; n < updates.length; n++) {
-                let update = updates[n];
+                const update = updates[n];
 
                 const newKey = update.updated[index.field];
 
@@ -173,7 +179,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
         let filter = q.filter;
 
         if (filter) {
-            let indexes = this.state.indexes;
+            const indexes = this.state.indexes;
 
             // Try to use indexes to fulfill filter conditions
             for (let n = 0; n < indexes.length; n++) {
@@ -239,17 +245,17 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
         }
 
         if (filter) {
-            let predicate = getFilterPredicate<TEntity>(q.filter);
+            const predicate = getFilterPredicate<TEntity>(q.filter);
             result = result.filter(predicate);
         }
 
         if (q.search) {
-            let searchFilter = getSearchFilter(q.search);
+            const searchFilter = getSearchFilter(q.search);
             result = result.filter((item) => searchFilter(this.schema.searchBy.map((field) => (item as any)[field])));
         }
 
         if (q.sorting) {
-            let comparer = getOrderComparer(q.sorting);
+            const comparer = getOrderComparer(q.sorting);
             result = result.sort(comparer);
         }
 

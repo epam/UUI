@@ -18,13 +18,13 @@ import css from './TextArea.scss';
 
 export interface TextAreaProps
     extends IHasCX,
-        IEditable<string>,
-        IHasPlaceholder,
-        IDisableable,
-        ICanBeReadonly,
-        IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>,
-        IHasForwardedRef<HTMLDivElement>,
-        ICanFocus<HTMLTextAreaElement> {
+    IEditable<string>,
+    IHasPlaceholder,
+    IDisableable,
+    ICanBeReadonly,
+    IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>,
+    IHasForwardedRef<HTMLDivElement>,
+    ICanFocus<HTMLTextAreaElement> {
     /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;
     /** Enables auto-resizing height to fit text. Rows prop is ignored in this mode */
@@ -112,11 +112,11 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
 
     render() {
         return (
-            <div className={cx(css.container, uuiElement.inputBox, this.props.cx)} ref={this.props.forwardedRef} {...this.props.rawProps}>
+            <div className={ cx(css.container, uuiElement.inputBox, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
                 <textarea
-                    autoFocus={this.props.autoFocus}
-                    placeholder={this.props.placeholder}
-                    className={cx(
+                    autoFocus={ this.props.autoFocus }
+                    placeholder={ this.props.placeholder }
+                    className={ cx(
                         !this.props.isDisabled && uuiMarkers.clickable,
                         this.props.autoSize || this.props.isDisabled || this.props.isReadonly ? css.autoSize : css.noAutoSize,
                         uuiElement.input,
@@ -124,26 +124,26 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                         this.props.isDisabled && uuiMod.disabled,
                         this.props.isReadonly && uuiMod.readonly,
                         this.props.isInvalid && uuiMod.invalid,
-                        this.props.inputCx
-                    )}
-                    rows={this.props.rows != null ? this.props.rows : this.props.autoSize ? 1 : undefined}
-                    id={this.props.id}
-                    readOnly={this.props.isReadonly}
-                    aria-readonly={this.props.isReadonly}
-                    required={this.props.isRequired}
-                    aria-required={this.props.isRequired}
-                    disabled={this.props.isDisabled}
-                    aria-disabled={this.props.isDisabled}
-                    onChange={this.handleChange}
-                    value={this.props.value || ''}
-                    maxLength={this.props.maxLength}
-                    onFocus={this.handleFocus}
-                    onBlur={this.handleBlur}
-                    ref={this.textAreaRef}
-                    onKeyDown={this.props.onKeyDown}
+                        this.props.inputCx,
+                    ) }
+                    rows={ this.props.rows != null ? this.props.rows : this.props.autoSize ? 1 : undefined }
+                    id={ this.props.id }
+                    readOnly={ this.props.isReadonly }
+                    aria-readonly={ this.props.isReadonly }
+                    required={ this.props.isRequired }
+                    aria-required={ this.props.isRequired }
+                    disabled={ this.props.isDisabled }
+                    aria-disabled={ this.props.isDisabled }
+                    onChange={ this.handleChange }
+                    value={ this.props.value || '' }
+                    maxLength={ this.props.maxLength }
+                    onFocus={ this.handleFocus }
+                    onBlur={ this.handleBlur }
+                    ref={ this.textAreaRef }
+                    onKeyDown={ this.props.onKeyDown }
                 />
                 {!this.props.isInvalid && this.props.maxLength && (
-                    <div className={cx(uuiElement.textareaCounter)}>{`${(this.props.value && this.props.value.length) || 0}/${this.props.maxLength}`}</div>
+                    <div className={ cx(uuiElement.textareaCounter) }>{`${(this.props.value && this.props.value.length) || 0}/${this.props.maxLength}`}</div>
                 )}
             </div>
         );

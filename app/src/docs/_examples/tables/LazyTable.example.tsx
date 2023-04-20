@@ -1,6 +1,12 @@
-import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource } from '@epam/uui-core';
-import { Text, DataTable, Panel, IconButton } from '@epam/promo';
+import React, {
+    ReactNode, useCallback, useEffect, useMemo, useState,
+} from 'react';
+import {
+    DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource,
+} from '@epam/uui-core';
+import {
+    Text, DataTable, Panel, IconButton,
+} from '@epam/promo';
 import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from '@epam/loveship';
 import { City } from '@epam/uui-docs';
 import { Dropdown } from '@epam/uui-components';
@@ -14,7 +20,7 @@ export default function CitiesTable() {
 
     const renderMenu = (): ReactNode => (
         <DropdownMenuBody color="white">
-            <DropdownMenuButton caption="Edit" icon={PencilIcon} />
+            <DropdownMenuButton caption="Edit" icon={ PencilIcon } />
             <DropdownMenuButton caption="Remove" />
             <DropdownMenuSplitter />
             <DropdownMenuButton caption="Cancel" />
@@ -83,8 +89,8 @@ export default function CitiesTable() {
                 key: 'actions',
                 render: () => (
                     <Dropdown
-                        renderTarget={(props) => <IconButton icon={MoreIcon} color="gray60" cx={[css.configItem, props.isOpen && css.showButton]} {...props} />}
-                        renderBody={renderMenu}
+                        renderTarget={ (props) => <IconButton icon={ MoreIcon } color="gray60" cx={ [css.configItem, props.isOpen && css.showButton] } { ...props } /> }
+                        renderBody={ renderMenu }
                         placement="bottom-end"
                     />
                 ),
@@ -92,7 +98,7 @@ export default function CitiesTable() {
                 fix: 'right',
             },
         ],
-        []
+        [],
     );
 
     // Create DataSource instance for your table.
@@ -111,22 +117,22 @@ export default function CitiesTable() {
             (item) => ({
                 checkbox: { isVisible: true, isDisabled: item.population && +item.population < 20000 },
             }),
-            []
+            [],
         ),
         cascadeSelection: true,
     });
 
     return (
-        <Panel shadow cx={css.container}>
+        <Panel shadow cx={ css.container }>
             <DataTable
-                value={tableState}
-                onValueChange={setTableState}
+                value={ tableState }
+                onValueChange={ setTableState }
                 // Spread ListProps and provide getVisibleRows function from view to DataTable component.
                 // getRows function will be called every time when table will need more rows.
-                {...view.getListProps()}
-                getRows={view.getVisibleRows}
+                { ...view.getListProps() }
+                getRows={ view.getVisibleRows }
                 headerTextCase="upper"
-                columns={citiesColumns}
+                columns={ citiesColumns }
             />
         </Panel>
     );

@@ -12,11 +12,11 @@ const items = [
 ] as AdaptiveItemProps[];
 
 const itemsWidth = {
-    '1': 200,
-    '2': 200,
-    '3': 200,
-    '4': 200,
-    '5': 200,
+    1: 200,
+    2: 200,
+    3: 200,
+    4: 200,
+    5: 200,
     container1: 200,
     container2: 200,
 };
@@ -54,20 +54,14 @@ describe('measureItemsUtils: measureAdaptiveItems', () => {
                 { id: 'container1', priority: 4, collapsedContainer: true },
                 { id: '5', priority: 5 },
             ],
-            hidden: [
-                { id: '2', priority: 2 },
-                { id: '3', priority: 2 },
-            ],
+            hidden: [{ id: '2', priority: 2 }, { id: '3', priority: 2 }],
             maxHiddenItemPriority: 2,
         });
     });
 
     it('should sown collapsedContainer with priority not lower than max hidden item priority', () => {
         expect(measureAdaptiveItems(items, 400, itemsWidth)).toEqual({
-            displayed: [
-                { id: 'container2', priority: 100, collapsedContainer: true },
-                { id: '1', priority: 10 },
-            ],
+            displayed: [{ id: 'container2', priority: 100, collapsedContainer: true }, { id: '1', priority: 10 }],
             hidden: [
                 { id: '2', priority: 2 },
                 { id: '3', priority: 2 },
@@ -83,13 +77,10 @@ describe('measureItemsUtils: measureAdaptiveItems', () => {
             measureAdaptiveItems(
                 items.filter((i) => !i.collapsedContainer),
                 400,
-                itemsWidth
-            )
+                itemsWidth,
+            ),
         ).toEqual({
-            displayed: [
-                { id: '1', priority: 10 },
-                { id: '5', priority: 5 },
-            ],
+            displayed: [{ id: '1', priority: 10 }, { id: '5', priority: 5 }],
             hidden: [
                 { id: '2', priority: 2 },
                 { id: '3', priority: 2 },

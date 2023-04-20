@@ -2,7 +2,9 @@ import React from 'react';
 import css from './MainMenuAppMultiSwitch.scss';
 import { IAnalyticableOnChange, IEditable } from '@epam/uui-core';
 import { ButtonProps } from '@epam/uui-components';
-import { Button, ControlGroup, ButtonMods, ButtonColor, SizeMod } from '@epam/promo';
+import {
+    Button, ControlGroup, ButtonMods, ButtonColor, SizeMod,
+} from '@epam/promo';
 import { svc } from '../services';
 
 interface MainMenuAppMultiSwitchPropsItem<TValue> extends ButtonProps, ButtonMods {
@@ -28,12 +30,12 @@ export class MainMenuAppMultiSwitch<TValue> extends React.Component<MainMenuAppM
             <ControlGroup>
                 {this.props.items.map((item, index) => (
                     <Button
-                        {...item}
-                        isDisabled={this.props.isDisabled}
-                        key={index + '-' + item.id}
-                        onClick={() => this.handleClick(item.id)}
-                        size={this.props.size}
-                        cx={this.props.value === item.id ? css.activeButton : css.noneButton}
+                        { ...item }
+                        isDisabled={ this.props.isDisabled }
+                        key={ index + '-' + item.id }
+                        onClick={ () => this.handleClick(item.id) }
+                        size={ this.props.size }
+                        cx={ this.props.value === item.id ? css.activeButton : css.noneButton }
                     />
                 ))}
             </ControlGroup>

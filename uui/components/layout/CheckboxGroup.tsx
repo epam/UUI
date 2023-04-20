@@ -6,5 +6,5 @@ import css from './CheckboxGroup.scss';
 export const CheckboxGroup = withMods<CheckboxGroupProps<any>>(
     uuiCheckboxGroup,
     () => [css.root],
-    () => ({ CheckboxInput: Checkbox })
+    () => ({ CheckboxInput: Checkbox }),
 );

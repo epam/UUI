@@ -13,7 +13,11 @@ export interface ProgressBarMods {
 export function applyProgressBarMods(mods: ProgressBarMods) {
     const size = mods.size || defaultSize;
 
-    return [css.root, css[`size-${size}`], mods.striped && css.striped];
+    return [
+        css.root,
+        css[`size-${size}`],
+        mods.striped && css.striped,
+    ];
 }
 
 export const ProgressBar = withMods<IProgressBarProps, ProgressBarMods>(uuiProgressBar, applyProgressBarMods, (props) => ({

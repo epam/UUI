@@ -18,7 +18,18 @@ import {
 import { IEditableDebouncerOptions } from '@epam/uui-core';
 
 const SearchInputDoc = new DocBuilder<TextInputProps & IEditableDebouncerOptions>({ name: 'SearchInput', component: SearchInput })
-    .implements([onClickDoc, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc])
+    .implements([
+        onClickDoc,
+        sizeDoc,
+        isDisabledDoc,
+        isReadonlyDoc,
+        isInvalidDoc,
+        iconDoc,
+        iconOptionsDoc,
+        iEditable,
+        iHasPlaceholder,
+        dropdownTogglerDoc,
+    ])
     .prop('value', {
         examples: [
             { value: 'Hello, World!', isDefault: true },

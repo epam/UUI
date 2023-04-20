@@ -1,6 +1,10 @@
 import React, { FC } from 'react';
-import { ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren, ApiRecoveryReason, ApiCallErrorType } from '@epam/uui-core';
-import { ModalBlocker, ModalHeader, ModalWindow, SnackbarCard } from '../overlays';
+import {
+    ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren, ApiRecoveryReason, ApiCallErrorType,
+} from '@epam/uui-core';
+import {
+    ModalBlocker, ModalHeader, ModalWindow, SnackbarCard,
+} from '../overlays';
 import { FlexRow } from '../layout';
 import { Text } from '../typography';
 import { RichTextView, FlexCell, Spinner } from '@epam/uui';
@@ -25,7 +29,7 @@ const imageUrl = {
     },
 };
 
-const defaultNotificationErrorMessage = `Sorry, there's a temporary problem. Please try again in a few moments`;
+const defaultNotificationErrorMessage = 'Sorry, there\'s a temporary problem. Please try again in a few moments';
 
 export const recoveryWordings: Record<ApiRecoveryReason, { title: string; subtitle: string }> = {
     'auth-lost': {
@@ -98,7 +102,7 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
     const showNotifications = (errors: ApiCallInfo[]) => {
         errors.forEach((c) => {
             uuiNotifications.show((props) => (
-                <SnackbarCard {...props} snackType="danger">
+                <SnackbarCard { ...props } snackType="danger">
                     <FlexRow padding="24" vPadding="12">
                         <Text size="36">{c.responseData?.errorMessage || defaultNotificationErrorMessage}</Text>
                     </FlexRow>
@@ -110,12 +114,12 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
 
     const renderRecoveryBlocker = (errorInfo: UuiRecoveryErrorInfo) => {
         return (
-            <ModalBlocker cx={css.modalBlocker} blockerShadow="dark" key="auth-lost" isActive={true} zIndex={100500} success={() => {}} abort={() => {}}>
+            <ModalBlocker cx={ css.modalBlocker } blockerShadow="dark" key="auth-lost" isActive={ true } zIndex={ 100500 } success={ () => {} } abort={ () => {} }>
                 <ModalWindow>
-                    <ModalHeader borderBottom title={errorInfo.title} />
-                    <Spinner cx={css.recoverySpinner} />
-                    <FlexRow padding="24" cx={css.recoveryMessage}>
-                        <FlexCell grow={1}>
+                    <ModalHeader borderBottom title={ errorInfo.title } />
+                    <Spinner cx={ css.recoverySpinner } />
+                    <FlexRow padding="24" cx={ css.recoveryMessage }>
+                        <FlexCell grow={ 1 }>
                             <RichTextView>{errorInfo.subtitle}</RichTextView>
                         </FlexCell>
                     </FlexRow>
@@ -125,7 +129,7 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
     };
 
     const renderErrorPage = (errorInfo: UuiErrorInfo) => {
-        return <ErrorPage cx={props.cx} theme={props.theme} {...errorInfo} />;
+        return <ErrorPage cx={ props.cx } theme={ props.theme } { ...errorInfo } />;
     };
 
     if (errorType == 'error') {

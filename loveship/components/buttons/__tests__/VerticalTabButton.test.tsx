@@ -10,7 +10,7 @@ describe('VerticalTabButton', () => {
     });
 
     it('should be rendered correctly with props', () => {
-        const tree = renderer.create(<VerticalTabButton onClick={jest.fn()} icon={AcceptIcon} isDisabled={false} />).toJSON();
+        const tree = renderer.create(<VerticalTabButton onClick={ jest.fn() } icon={ AcceptIcon } isDisabled={ false } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

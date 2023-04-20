@@ -44,14 +44,16 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
             return newObject;
         },
         getValidationState(big: ICanBeInvalid) {
-            let validationStateProps = (big || blankValidationState).validationProps || { [name]: { isInvalid: false } };
+            const validationStateProps = (big || blankValidationState).validationProps || { [name]: { isInvalid: false } };
             return validationStateProps[name as string];
         },
         getMetadata(big: Metadata<TObject>) {
-            let metadata: Metadata<TObject> = big || { props: {} };
-            let metadataProps = metadata.props || ({} as any);
-            let { isDisabled, isRequired, isReadonly } = metadata;
-            return { isDisabled, isReadonly, isRequired, ...metadataProps[name] };
+            const metadata: Metadata<TObject> = big || { props: {} };
+            const metadataProps = metadata.props || ({} as any);
+            const { isDisabled, isRequired, isReadonly } = metadata;
+            return {
+                isDisabled, isReadonly, isRequired, ...metadataProps[name],
+            };
         },
     };
 }
@@ -71,14 +73,16 @@ export function index<TItem>(index: number): ILensImpl<TItem[], TItem> {
             return newArray;
         },
         getValidationState(big: ICanBeInvalid) {
-            let validationStateProps = (big || blankValidationState).validationProps || {};
+            const validationStateProps = (big || blankValidationState).validationProps || {};
             return validationStateProps[index];
         },
         getMetadata(big: Metadata<TItem[]>) {
-            let metadata: Metadata<TItem[]> = big || { all: { props: {} } };
-            let metadataProps = metadata.all;
-            let { isDisabled, isRequired, isReadonly } = metadata;
-            return { ...metadataProps, isDisabled, isReadonly, isRequired } as any;
+            const metadata: Metadata<TItem[]> = big || { all: { props: {} } };
+            const metadataProps = metadata.all;
+            const { isDisabled, isRequired, isReadonly } = metadata;
+            return {
+                ...metadataProps, isDisabled, isReadonly, isRequired,
+            } as any;
         },
     };
 }

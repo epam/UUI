@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useUuiContext } from '../services';
-import { ApiCallInfo, ApiRecoveryReason, UuiError, UuiErrorInfo } from '../types';
+import {
+    ApiCallInfo, ApiRecoveryReason, UuiError, UuiErrorInfo,
+} from '../types';
 import { useForceUpdate } from './useForceUpdate';
 import { isClientSide } from '../helpers/ssr';
 
@@ -23,7 +25,9 @@ export interface UseUuiErrorProps {
 
 export const useUuiError = (props: UseUuiErrorProps) => {
     const forceUpdate = useForceUpdate();
-    const { uuiApi, uuiErrors, uuiRouter, uuiModals } = useUuiContext();
+    const {
+        uuiApi, uuiErrors, uuiRouter, uuiModals,
+    } = useUuiContext();
     const { getErrorInfo, options: { errorConfig, recoveryConfig } = {} } = props;
     const apiErrors: ApiCallInfo[] = [];
     const apiNotifications: ApiCallInfo[] = [];

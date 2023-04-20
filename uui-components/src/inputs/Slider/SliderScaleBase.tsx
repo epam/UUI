@@ -20,7 +20,7 @@ export abstract class SliderScaleBase<THandleOffsetValue> extends React.Componen
         const min = this.props.min;
         const max = this.props.max;
         const count = Math.ceil(max - min) / step;
-        let scale: number[] = [min];
+        const scale: number[] = [min];
 
         for (let i = 1; i < count; i += 1) {
             scale.push(scale[i - 1] + step);
@@ -32,6 +32,6 @@ export abstract class SliderScaleBase<THandleOffsetValue> extends React.Componen
     };
 
     render() {
-        return <div className={uuiSlider.scale}>{this.renderSliderScaleElements()}</div>;
+        return <div className={ uuiSlider.scale }>{this.renderSliderScaleElements()}</div>;
     }
 }

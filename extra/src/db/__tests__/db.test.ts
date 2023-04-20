@@ -17,8 +17,12 @@ describe('DB', () => {
                     .users()
                     .thenBy('name')
                     .toArray()
-                    .map((e) => e.name)
-            ).toEqual(['Arya Stark', 'Daenerys Targaryen', 'John Snow']));
+                    .map((e) => e.name),
+            ).toEqual([
+                'Arya Stark',
+                'Daenerys Targaryen',
+                'John Snow',
+            ]));
         it('sort by name and sex', () =>
             expect(
                 sampleDb
@@ -26,8 +30,12 @@ describe('DB', () => {
                     .orderBy('sex', 'desc')
                     .thenBy('name')
                     .toArray()
-                    .map((e) => e.name)
-            ).toEqual(['John Snow', 'Arya Stark', 'Daenerys Targaryen']));
+                    .map((e) => e.name),
+            ).toEqual([
+                'John Snow',
+                'Arya Stark',
+                'Daenerys Targaryen',
+            ]));
     });
 
     describe('Basic updates', () => {

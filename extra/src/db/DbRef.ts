@@ -28,14 +28,23 @@ export interface DbRefStatus {
 
 export class DbRef<T> {
     blank: Db<T>;
+
     base: Db<T>;
+
     current: Db<T>;
+
     log: { patch: DbPatch<T> }[] = [];
+
     savedPoint = 0;
+
     autoSave = false;
+
     throttleSaveMs = 1000;
+
     lastTempId = -1;
+
     tempIdToId: I.Map<number, any> = I.Map();
+
     errors: ServerError[] = [];
 
     constructor(private schema: DbSchema<T>, private onUpdate: () => void = () => {}) {
@@ -94,6 +103,7 @@ export class DbRef<T> {
     // Save logic
 
     private isSaveInProgress = false;
+
     private isSaveThrottled = false;
 
     private enqueueSave() {
@@ -104,7 +114,7 @@ export class DbRef<T> {
             const updatedDb = this.current;
             const cumulativePatch = this.makeCumulativePatch(
                 updatedDb,
-                logEntriesToSave.map((t) => t.patch)
+                logEntriesToSave.map((t) => t.patch),
             );
             this.onUpdate();
             this.save(cumulativePatch)

@@ -1,7 +1,9 @@
 import { Link, LayoutLayer } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
-import { FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, NotificationOperation, IHistory4, Lock } from '../services';
+import {
+    FileUploadOptions, FileUploadResponse, SkinContext, ModalOperation, NotificationOperation, IHistory4, Lock,
+} from '../services';
 
 export interface IBaseContext<TState = {}> {
     subscribe(handler: (state: TState) => void): void;
@@ -79,7 +81,7 @@ export interface UuiErrorInfo {
 
 export class UuiError extends Error {
     constructor(public info: UuiErrorInfo) {
-        super(`UUI Error`);
+        super('UUI Error');
         this.name = 'UuiError';
         // Set the prototype explicitly.
         // https://github.com/Microsoft/TypeScript/wiki/Breaking-Changes#extending-built-ins-like-error-array-and-map-may-no-longer-work

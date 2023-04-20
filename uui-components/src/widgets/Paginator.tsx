@@ -1,6 +1,8 @@
 import * as React from 'react';
 import range from 'lodash.range';
-import { IAnalyticableOnChange, IEditable, IHasRawProps, UuiContext, UuiContexts } from '@epam/uui-core';
+import {
+    IAnalyticableOnChange, IEditable, IHasRawProps, UuiContext, UuiContexts,
+} from '@epam/uui-core';
 
 export interface PaginatorParams extends IHasRawProps<React.ReactHTMLElement<HTMLElement>> {
     size: '24' | '30';
@@ -34,6 +36,7 @@ const SIMPLE_PAGINATION_ITEMS = 7;
 
 export class Paginator extends React.Component<PaginatorProps> {
     static contextType = UuiContext;
+
     context: UuiContexts;
     // size = this.props.size || '36';
 
@@ -62,7 +65,9 @@ export class Paginator extends React.Component<PaginatorProps> {
             if (page !== currentPage) {
                 return paginatorItems.push({ type: 'page', pageNumber: page, onClick: () => onClick(page) });
             }
-            return paginatorItems.push({ type: 'page', pageNumber: page, onClick: () => onClick(page), isActive: true });
+            return paginatorItems.push({
+                type: 'page', pageNumber: page, onClick: () => onClick(page), isActive: true,
+            });
         }
 
         function addSpacer() {

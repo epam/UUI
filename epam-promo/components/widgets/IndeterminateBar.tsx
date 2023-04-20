@@ -7,10 +7,10 @@ export interface IndeterminateBarMods extends IHasCX {
     size?: '12' | '18' | '24';
 }
 
-export const IndeterminateBar = (props: IndeterminateBarMods) => {
+export function IndeterminateBar(props: IndeterminateBarMods) {
     return (
-        <div className={cx(props.cx, css.root, css[`size-${props.size || 12}`])}>
-            <div className={cx(css.bar)} />
+        <div className={ cx(props.cx, css.root, css[`size-${props.size || 12}`]) }>
+            <div className={ cx(css.bar) } />
         </div>
     );
-};
+}

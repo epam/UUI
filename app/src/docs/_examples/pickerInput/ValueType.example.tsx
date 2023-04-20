@@ -14,17 +14,20 @@ export default function ValueTypeExamplePicker() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     return (
-        <FlexCell width={300}>
+        <FlexCell width={ 300 }>
             <PickerInput
-                dataSource={dataSource}
-                value={value}
-                onValueChange={onValueChange}
+                dataSource={ dataSource }
+                value={ value }
+                onValueChange={ onValueChange }
                 entityName="person"
                 selectionMode="multi"
-                emptyValue={[]}
+                emptyValue={ [] }
                 valueType="entity"
             />
-            <Text>Selected users: {value.map((i) => i.name).join(', ')}</Text>
+            <Text>
+                Selected users:
+                {value.map((i) => i.name).join(', ')}
+            </Text>
         </FlexCell>
     );
 }

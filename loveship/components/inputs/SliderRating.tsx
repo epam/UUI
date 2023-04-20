@@ -67,7 +67,7 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
     };
 
     getLeftHandlerIconPosition = (rating: number, from: number, stepWidth: number) => {
-        let left = !!rating ? (rating - from) * stepWidth - this.handlerWidth / 2 : 0;
+        const left = !!rating ? (rating - from) * stepWidth - this.handlerWidth / 2 : 0;
 
         if (rating && rating === from) {
             return left + 2;
@@ -80,7 +80,7 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
 
     renderTooltipBox(rating: number) {
         const tooltipContent = this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}`;
-        return <TooltipBox content={tooltipContent} size={this.props.size || '18'} />;
+        return <TooltipBox content={ tooltipContent } size={ this.props.size || '18' } />;
     }
 
     renderRating = (sliderRating: number, markWidth: number, numberOfMarks: number) => {
@@ -92,19 +92,19 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
 
         return (
             <>
-                <div className={cx(css.scale, css[`size-${size}`], from === 2 && css.shortScale)}>
-                    <IconContainer cx={css.scaleIcon} icon={this.props.getScaleIcon ? this.props.getScaleIcon(rating) : this.getScaleIcon(rating)} />
+                <div className={ cx(css.scale, css[`size-${size}`], from === 2 && css.shortScale) }>
+                    <IconContainer cx={ css.scaleIcon } icon={ this.props.getScaleIcon ? this.props.getScaleIcon(rating) : this.getScaleIcon(rating) } />
                 </div>
                 {this.renderTooltipBox(rating)}
                 <div
-                    className={cx(css.handler, css[`size-${size}`], !rating && css.hidden)}
-                    style={{ left: left }}
-                    ref={(handler) => {
+                    className={ cx(css.handler, css[`size-${size}`], !rating && css.hidden) }
+                    style={ { left: left } }
+                    ref={ (handler) => {
                         this.handlerWidth = handler && handler.offsetWidth;
-                    }}
+                    } }
                 >
-                    <Tooltip cx={css.tooltip} content={this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}`}>
-                        <IconContainer cx={css.handlerIcon} icon={this.props.getHandlerIcon ? this.props.getHandlerIcon(rating) : this.getHandlerIcon(rating)} />
+                    <Tooltip cx={ css.tooltip } content={ this.props.renderTooltip ? this.props.renderTooltip(rating) : `${rating}` }>
+                        <IconContainer cx={ css.handlerIcon } icon={ this.props.getHandlerIcon ? this.props.getHandlerIcon(rating) : this.getHandlerIcon(rating) } />
                     </Tooltip>
                 </div>
             </>
@@ -116,14 +116,14 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
         const size = this.props.size || defaultSize;
 
         if (isReadonly && this.props.value !== 0) {
-            return <IconContainer cx={cx(css.naIcon, css[`size-${size}`], css.disabled)} icon={NaIcon} />;
+            return <IconContainer cx={ cx(css.naIcon, css[`size-${size}`], css.disabled) } icon={ NaIcon } />;
         } else {
             return (
-                <Tooltip content={this.props.renderTooltip ? this.props.renderTooltip(0) : i18n.sliderRating.notAvailableMessage}>
+                <Tooltip content={ this.props.renderTooltip ? this.props.renderTooltip(0) : i18n.sliderRating.notAvailableMessage }>
                     <IconContainer
-                        cx={cx(css.naIcon, css[`size-${size}`], isReadonly && css.disabled)}
-                        icon={this.props.value === 0 ? NaActiveIcon : NaIcon}
-                        onClick={!isReadonly && (() => this.props.onValueChange(0))}
+                        cx={ cx(css.naIcon, css[`size-${size}`], isReadonly && css.disabled) }
+                        icon={ this.props.value === 0 ? NaActiveIcon : NaIcon }
+                        onClick={ !isReadonly && (() => this.props.onValueChange(0)) }
                     />
                 </Tooltip>
             );
@@ -132,17 +132,17 @@ export class SliderRating extends React.Component<SliderRatingProps<number>> {
 
     render() {
         return (
-            <div className={css.container} {...this.props.rawProps}>
+            <div className={ css.container } { ...this.props.rawProps }>
                 <BaseRating
-                    from={this.props.from || 1}
-                    to={maxValue}
-                    step={1}
-                    renderRating={this.renderRating}
-                    {...this.props}
-                    value={this.props.value === 0 ? null : this.props.value}
-                    cx={css.baseRatingContainer}
+                    from={ this.props.from || 1 }
+                    to={ maxValue }
+                    step={ 1 }
+                    renderRating={ this.renderRating }
+                    { ...this.props }
+                    value={ this.props.value === 0 ? null : this.props.value }
+                    cx={ css.baseRatingContainer }
                 />
-                {!this.props.withoutNa && <div className={css.naIconContainer}>{this.renderNa()}</div>}
+                {!this.props.withoutNa && <div className={ css.naIconContainer }>{this.renderNa()}</div>}
             </div>
         );
     }
@@ -153,7 +153,7 @@ type TooltipBoxProps = {
     content: React.ReactNode | string;
 };
 
-const TooltipBox = (props: TooltipBoxProps) => {
+function TooltipBox(props: TooltipBoxProps) {
     const { content, size } = props;
     const tooltipBoxRef = useRef<HTMLDivElement>(null);
     const [left, setLeft] = useState<number>(0);
@@ -161,37 +161,37 @@ const TooltipBox = (props: TooltipBoxProps) => {
     const topPosition = tooltipBoxRef.current?.getBoundingClientRect().y || 0;
 
     return (
-        <div className={css.tooltipsBox} ref={tooltipBoxRef} onMouseMove={(event: React.MouseEvent) => setLeft(event.clientX)}>
-            <Tooltip placement="top" content={content} cx={css.tooltip}>
+        <div className={ css.tooltipsBox } ref={ tooltipBoxRef } onMouseMove={ (event: React.MouseEvent) => setLeft(event.clientX) }>
+            <Tooltip placement="top" content={ content } cx={ css.tooltip }>
                 <div
-                    className={css.tooltipsBoxItem}
-                    style={{
+                    className={ css.tooltipsBoxItem }
+                    style={ {
                         left: `${left - 1}px`,
                         top: `${topPosition}px`,
                         height: `${size}px`,
-                    }}
+                    } }
                 />
             </Tooltip>
-            <Tooltip placement="top" content={content} cx={css.tooltip}>
+            <Tooltip placement="top" content={ content } cx={ css.tooltip }>
                 <div
-                    className={css.tooltipsBoxItem}
-                    style={{
+                    className={ css.tooltipsBoxItem }
+                    style={ {
                         left: `${left}px`,
                         top: `${topPosition}px`,
                         height: `${size}px`,
-                    }}
+                    } }
                 />
             </Tooltip>
-            <Tooltip placement="top" content={content} cx={css.tooltip}>
+            <Tooltip placement="top" content={ content } cx={ css.tooltip }>
                 <div
-                    className={css.tooltipsBoxItem}
-                    style={{
+                    className={ css.tooltipsBoxItem }
+                    style={ {
                         left: `${left + 1}px`,
                         top: `${topPosition}px`,
                         height: `${size}px`,
-                    }}
+                    } }
                 />
             </Tooltip>
         </div>
     );
-};
+}

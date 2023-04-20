@@ -11,27 +11,37 @@ const ModalHeaderDoc = new DocBuilder<ModalHeaderProps>({ name: 'ModalHeader', c
         examples: ['Text', { value: 'Very long text', isDefault: true }],
         type: 'string',
     })
-    .prop('background', { examples: ['white', 'night50', 'none'] })
+    .prop('background', {
+        examples: [
+            'white',
+            'night50',
+            'none',
+        ],
+    })
     .prop('borderBottom', { examples: [true, false], defaultValue: false })
-    .prop('padding', { examples: ['6', '12', '24'] })
+    .prop('padding', {
+        examples: [
+            '6',
+            '12',
+            '24',
+        ],
+    })
     .prop('onClose', { examples: (ctx) => [ctx.getCallback('onClose')] })
     .prop('children', {
         examples: [
             {
                 value: (
-                    <React.Fragment>
-                        <FlexRow padding="24" vPadding="12">
-                            <FlexRow>
-                                <Text size="30" font="sans">
-                                    Modal header text in children props
-                                </Text>
-                            </FlexRow>
-                            <FlexRow>
-                                <Button onClick={() => {}} color="grass" caption="Ok" />
-                                <Button onClick={() => {}} fill="none" color="night600" caption="Cancel" />
-                            </FlexRow>
+                    <FlexRow padding="24" vPadding="12">
+                        <FlexRow>
+                            <Text size="30" font="sans">
+                                Modal header text in children props
+                            </Text>
                         </FlexRow>
-                    </React.Fragment>
+                        <FlexRow>
+                            <Button onClick={ () => {} } color="grass" caption="Ok" />
+                            <Button onClick={ () => {} } fill="none" color="night600" caption="Cancel" />
+                        </FlexRow>
+                    </FlexRow>
                 ),
                 name: 'Base',
             },

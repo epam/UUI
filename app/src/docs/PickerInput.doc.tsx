@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI } from '../common/docs';
+import {
+    BaseDocsBlock, EditableDocContent, DocExample, UUI4, UUI3, UUI,
+} from '../common/docs';
 
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';

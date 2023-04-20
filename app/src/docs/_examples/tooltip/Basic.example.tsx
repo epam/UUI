@@ -5,19 +5,19 @@ export default function BasicTooltipExample() {
     return (
         <FlexRow spacing="12">
             <Tooltip content="Some text">
-                <Button caption="Top" onClick={() => null} />
+                <Button caption="Top" onClick={ () => null } />
             </Tooltip>
 
             <Tooltip content="Some text" placement="bottom">
-                <Button caption="Bottom" onClick={() => null} />
+                <Button caption="Bottom" onClick={ () => null } />
             </Tooltip>
 
             <Tooltip content="Some text" placement="right">
-                <Button caption="Right" onClick={() => null} />
+                <Button caption="Right" onClick={ () => null } />
             </Tooltip>
 
             <Tooltip content="Some text" placement="left">
-                <Button caption="Left" onClick={() => null} />
+                <Button caption="Left" onClick={ () => null } />
             </Tooltip>
         </FlexRow>
     );

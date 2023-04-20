@@ -1,4 +1,6 @@
-import { DataRowProps, SortingOption, IEditable, DataSourceState, DataSourceListProps, IDataSourceView, BaseListViewProps } from '../../../types';
+import {
+    DataRowProps, SortingOption, IEditable, DataSourceState, DataSourceListProps, IDataSourceView, BaseListViewProps,
+} from '../../../types';
 import { BaseListView } from './BaseListView';
 import { ITree, Tree } from './tree';
 
@@ -16,9 +18,13 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     protected props: ArrayListViewProps<TItem, TId, TFilter>;
 
     originalTree: ITree<TItem, TId>;
+
     searchTree: ITree<TItem, TId>;
+
     filteredTree: ITree<TItem, TId>;
+
     sortedTree: ITree<TItem, TId>;
+
     refreshCache: boolean;
 
     constructor(protected editable: IEditable<DataSourceState<TFilter, TId>>, props: ArrayListViewProps<TItem, TId, TFilter>) {
@@ -130,7 +136,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     };
 
     private checkItems(isChecked: boolean, checkedId?: TId) {
-        let checked = (this.value && this.value.checked) ?? [];
+        const checked = (this.value && this.value.checked) ?? [];
         const updatedChecked = this.tree.cascadeSelection(checked, checkedId, isChecked, {
             cascade: this.props.cascadeSelection,
             isSelectable: (item: TItem) => {

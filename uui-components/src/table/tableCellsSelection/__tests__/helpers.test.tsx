@@ -1,4 +1,6 @@
-import { getCell, getCellPosition, getStartCell, getNormalizedLimits } from '../hooks/helpers';
+import {
+    getCell, getCellPosition, getStartCell, getNormalizedLimits,
+} from '../hooks/helpers';
 import { rowsMock, columnsMock } from '../mocks';
 
 describe('getNormalizedLimits', () => {
@@ -31,7 +33,9 @@ describe('getStartCell', () => {
         const copyCellRow = 1;
         const expectedColumn = columnsMock[copyCellColumn];
         const expectedRow = rowsMock[copyCellRow];
-        const selectionRange = { startColumnIndex: copyCellColumn, startRowIndex: copyCellRow, endColumnIndex: 1, endRowIndex: 2 };
+        const selectionRange = {
+            startColumnIndex: copyCellColumn, startRowIndex: copyCellRow, endColumnIndex: 1, endRowIndex: 2,
+        };
 
         const { column, row } = getStartCell(selectionRange, rowsMock, columnsMock);
         expect(column).toEqual(expectedColumn);
@@ -45,7 +49,9 @@ describe('getStartCell', () => {
 
 describe('getCellPosition', () => {
     it('should detect if cell is selected', () => {
-        const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4 };
+        const selectionRange = {
+            startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4,
+        };
         expect(getCellPosition(1, 1, selectionRange)).toEqual({
             isSelected: true,
             isLeft: false,
@@ -56,7 +62,9 @@ describe('getCellPosition', () => {
         });
     });
     it('should detect if cell is a cell to copy from', () => {
-        const selectionRange1 = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4 };
+        const selectionRange1 = {
+            startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4,
+        };
         expect(getCellPosition(0, 0, selectionRange1)).toEqual({
             isLeft: true,
             isTop: true,
@@ -66,7 +74,9 @@ describe('getCellPosition', () => {
             isBottom: false,
         });
 
-        const selectionRange2 = { startColumnIndex: 4, startRowIndex: 4, endColumnIndex: 0, endRowIndex: 0 };
+        const selectionRange2 = {
+            startColumnIndex: 4, startRowIndex: 4, endColumnIndex: 0, endRowIndex: 0,
+        };
         expect(getCellPosition(4, 4, selectionRange2)).toEqual({
             isBottom: true,
             isSelected: true,
@@ -78,7 +88,9 @@ describe('getCellPosition', () => {
     });
 
     it('should detect if cell is on the top', () => {
-        const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4 };
+        const selectionRange = {
+            startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4,
+        };
         expect(getCellPosition(0, 1, selectionRange)).toEqual({
             isTop: true,
             isSelected: true,
@@ -90,7 +102,9 @@ describe('getCellPosition', () => {
     });
 
     it('should detect if cell is at the bottom', () => {
-        const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4 };
+        const selectionRange = {
+            startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4,
+        };
         expect(getCellPosition(4, 1, selectionRange)).toEqual({
             isBottom: true,
             isSelected: true,
@@ -102,7 +116,9 @@ describe('getCellPosition', () => {
     });
 
     it('should detect if cell is on the left side', () => {
-        const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4 };
+        const selectionRange = {
+            startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4,
+        };
         expect(getCellPosition(2, 0, selectionRange)).toEqual({
             isLeft: true,
             isSelected: true,
@@ -114,7 +130,9 @@ describe('getCellPosition', () => {
     });
 
     it('should detect if cell is on the right side', () => {
-        const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4 };
+        const selectionRange = {
+            startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4,
+        };
         expect(getCellPosition(2, 4, selectionRange)).toEqual({
             isRight: true,
             isSelected: true,
@@ -126,7 +144,9 @@ describe('getCellPosition', () => {
     });
 
     it('should detect if cell is in the right bottom corner', () => {
-        const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4 };
+        const selectionRange = {
+            startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4,
+        };
         expect(getCellPosition(4, 4, selectionRange)).toEqual({
             isRight: true,
             isSelected: true,
@@ -138,7 +158,9 @@ describe('getCellPosition', () => {
     });
 
     it('should detect if cell is in the left bottom corner', () => {
-        const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4 };
+        const selectionRange = {
+            startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4,
+        };
         expect(getCellPosition(4, 0, selectionRange)).toEqual({
             isLeft: true,
             isSelected: true,
@@ -150,7 +172,9 @@ describe('getCellPosition', () => {
     });
 
     it('should detect if cell is in the right top corner', () => {
-        const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4 };
+        const selectionRange = {
+            startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 4, endRowIndex: 4,
+        };
         expect(getCellPosition(0, 4, selectionRange)).toEqual({
             isRight: true,
             isTop: true,

@@ -9,7 +9,7 @@ jest.mock('react-dom', () => ({
 
 describe.skip('Burger', () => {
     it('should be rendered correctly', () => {
-        const tree = renderer.create(<Burger width={160} renderBurgerContent={() => <BurgerButton caption="Home" link={{ pathname: '/' }} />} />).toJSON();
+        const tree = renderer.create(<Burger width={ 160 } renderBurgerContent={ () => <BurgerButton caption="Home" link={ { pathname: '/' } } /> } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

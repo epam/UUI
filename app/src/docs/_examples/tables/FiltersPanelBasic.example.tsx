@@ -1,7 +1,11 @@
 import React, { useMemo } from 'react';
-import { FiltersPanel, DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor } from '@epam/promo';
+import {
+    FiltersPanel, DataTable, Panel, FlexRow, Text, Badge, EpamAdditionalColor,
+} from '@epam/promo';
 import { defaultPredicates } from '@epam/uui';
-import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
+import {
+    DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext,
+} from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import dayjs from 'dayjs';
 
@@ -20,7 +24,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={p.profileStatus.toLowerCase() as EpamAdditionalColor} caption={p.profileStatus} />
+                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         width: 140,
@@ -30,7 +34,13 @@ const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'salary',
         caption: 'Salary',
-        render: (p) => <Text>{getSeparatedValue(+p.salary, { style: 'currency', currency: 'USD', maximumFractionDigits: 2, minimumFractionDigits: 2 }, 'en-US')}</Text>,
+        render: (p) => (
+            <Text>
+                {getSeparatedValue(+p.salary, {
+                    style: 'currency', currency: 'USD', maximumFractionDigits: 2, minimumFractionDigits: 2,
+                }, 'en-US')}
+            </Text>
+        ),
         width: 150,
         textAlign: 'right',
         isSortable: true,
@@ -100,7 +110,7 @@ export default function FiltersPanelExample() {
                 predicates: defaultPredicates.rangeDatePicker,
             },
         ],
-        []
+        [],
     );
 
     const { tableState, setTableState } = useTableState({
@@ -112,17 +122,17 @@ export default function FiltersPanelExample() {
         {
             api: svc.api.demo.persons,
         },
-        []
+        [],
     );
 
     const view = dataSource.useView(tableState, setTableState);
 
     return (
-        <Panel style={{ height: '400px' }}>
+        <Panel style={ { height: '400px' } }>
             <FlexRow spacing="6" vPadding="12">
-                <FiltersPanel filters={filtersConfig} tableState={tableState} setTableState={setTableState} />
+                <FiltersPanel filters={ filtersConfig } tableState={ tableState } setTableState={ setTableState } />
             </FlexRow>
-            <DataTable getRows={view.getVisibleRows} columns={personColumns} value={tableState} onValueChange={setTableState} {...view.getListProps()} />
+            <DataTable getRows={ view.getVisibleRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />
         </Panel>
     );
 }

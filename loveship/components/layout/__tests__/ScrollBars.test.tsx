@@ -9,7 +9,7 @@ describe('ScrollBars', () => {
             .create(
                 <ScrollBars theme="dark">
                     <Button />
-                </ScrollBars>
+                </ScrollBars>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

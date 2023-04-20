@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import {
+    IHasCX, IDisableable, uuiMod, IHasChildren, Icon, IEditable, cx, IHasRawProps, IHasForwardedRef,
+} from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './Accordion.scss';
 
@@ -58,20 +60,20 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
 
         return (
             <div
-                onKeyDown={!this.props.isDisabled ? this.handleKeyDown : undefined}
-                onClick={!this.props.isDisabled ? this.toggleAccordion : undefined}
-                tabIndex={!this.props.isDisabled ? 0 : -1}
-                className={cx(uuiAccordion.toggler, isAccordionOpened && uuiMod.opened, this.props.isDisabled && uuiMod.disabled)}
-                ref={this.props.forwardedRef}
-                {...this.props.rawProps}
+                onKeyDown={ !this.props.isDisabled ? this.handleKeyDown : undefined }
+                onClick={ !this.props.isDisabled ? this.toggleAccordion : undefined }
+                tabIndex={ !this.props.isDisabled ? 0 : -1 }
+                className={ cx(uuiAccordion.toggler, isAccordionOpened && uuiMod.opened, this.props.isDisabled && uuiMod.disabled) }
+                ref={ this.props.forwardedRef }
+                { ...this.props.rawProps }
             >
-                <div className={cx(uuiAccordion.toggleContainer)}>
-                    {this.props.renderTitle ? this.props.renderTitle(this.state.opened) : <div className={cx(uuiAccordion.title)}>{this.props.title}</div>}
+                <div className={ cx(uuiAccordion.toggleContainer) }>
+                    {this.props.renderTitle ? this.props.renderTitle(this.state.opened) : <div className={ cx(uuiAccordion.title) }>{this.props.title}</div>}
 
                     {this.props.renderAdditionalItems?.(this.state.opened)}
 
                     {this.props.dropdownIcon !== null && (
-                        <IconContainer icon={this.props.dropdownIcon} flipY={isAccordionOpened} cx={[this.props.isDisabled && uuiMod.disabled, css.arrow]} />
+                        <IconContainer icon={ this.props.dropdownIcon } flipY={ isAccordionOpened } cx={ [this.props.isDisabled && uuiMod.disabled, css.arrow] } />
                     )}
                 </div>
             </div>
@@ -79,7 +81,7 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
     };
 
     renderBody = () => (
-        <div className={uuiAccordion.body} role="region">
+        <div className={ uuiAccordion.body } role="region">
             {this.props.children}
         </div>
     );
@@ -89,15 +91,15 @@ export class Accordion extends React.Component<AccordionProps, AccordionState> {
 
         return (
             <div
-                aria-disabled={this.props.isDisabled}
-                aria-expanded={isAccordionOpened}
-                className={cx(
+                aria-disabled={ this.props.isDisabled }
+                aria-expanded={ isAccordionOpened }
+                className={ cx(
                     uuiAccordion.container,
                     css.container,
                     isAccordionOpened && !this.props.isDisabled && uuiMod.opened,
                     this.props.isDisabled && uuiMod.disabled,
-                    this.props.cx
-                )}
+                    this.props.cx,
+                ) }
             >
                 {this.renderHeader()}
                 {this.props.children && isAccordionOpened ? this.renderBody() : null}

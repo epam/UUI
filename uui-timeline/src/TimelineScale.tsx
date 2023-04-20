@@ -2,7 +2,9 @@ import * as React from 'react';
 import cx from 'classnames';
 import { TimelineTransform } from './TimelineTransform';
 import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from './BaseTimelineCanvasComponent';
-import { addDays, isWeekend, months, msPerDay, Scales, getHoursInFormatAMPM } from './helpers';
+import {
+    addDays, isWeekend, months, msPerDay, Scales, getHoursInFormatAMPM,
+} from './helpers';
 import styles from './TimelineScale.scss';
 
 import { ReactComponent as ArrowLeftSvg } from './arrowLeft.svg';
@@ -69,7 +71,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         isCurrentPeriod: boolean,
         textColor: string = '#525462',
         visibility?: number,
-        superscript?: string
+        superscript?: string,
     ) {
         ctx.fillStyle = textColor;
 
@@ -113,7 +115,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         t: TimelineTransform,
         minPxPerDay: number,
         maxPxPerDay: number,
-        render: (ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) => void
+        render: (ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) => void,
     ) {
         const visibility = t.getScaleVisibility(minPxPerDay, maxPxPerDay);
 
@@ -155,7 +157,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
                     isCurrentPeriod,
                     '#525462',
                     null,
-                    superscript
+                    superscript,
                 );
             });
     }
@@ -178,7 +180,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
                     isCurrentPeriod,
                     '#525462',
                     null,
-                    superscript
+                    superscript,
                 );
             });
     }
@@ -199,20 +201,20 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
     protected renderDays(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleDays().map((w) => {
             this.renderToday(ctx, w.leftDate, w.rightDate, w.left, w.right - w.left);
-            let header = w.leftDate.getDate().toString();
+            const header = w.leftDate.getDate().toString();
             let textColor;
             if (t.isWeekend(w.leftDate) || t.isHoliday(w.leftDate)) {
                 textColor = '#F37B94';
             }
-            let isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
+            const isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
             this.renderHeader(ctx, t, header, w.left, w.right - w.left, 2 + (1 - visibility) * moveAmount, isCurrentPeriod, textColor);
         });
     }
 
     protected renderTopMonths(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleMonths().map((w) => {
-            let header = months[w.leftDate.getMonth()] + ' ' + w.leftDate.getFullYear();
-            let isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
+            const header = months[w.leftDate.getMonth()] + ' ' + w.leftDate.getFullYear();
+            const isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
             this.renderHeader(ctx, t, header.toUpperCase(), w.left, w.right - w.left, 1 - (1 - visibility) * moveAmount, isCurrentPeriod);
         });
     }
@@ -220,8 +222,8 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
     protected renderWeeks(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleWeeks().map((w) => {
             this.renderToday(ctx, w.leftDate, w.rightDate, w.left, w.right - w.left);
-            let header = w.leftDate.getDate() + ' – ' + addDays(w.rightDate, -1).getDate();
-            let isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
+            const header = w.leftDate.getDate() + ' – ' + addDays(w.rightDate, -1).getDate();
+            const isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
             this.renderHeader(ctx, t, header, w.left, w.right - w.left, 2 + (1 - visibility) * moveAmount, isCurrentPeriod);
         });
     }
@@ -229,8 +231,8 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
     protected renderBottomMonths(ctx: CanvasRenderingContext2D, t: TimelineTransform, visibility: number) {
         t.getVisibleMonths().map((w) => {
             this.renderToday(ctx, w.leftDate, w.rightDate, w.left, w.right - w.left);
-            let header = months[w.leftDate.getMonth()].toString();
-            let isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
+            const header = months[w.leftDate.getMonth()].toString();
+            const isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
             this.renderHeader(ctx, t, header, w.left, w.right - w.left, 2 + (1 - visibility) * moveAmount, isCurrentPeriod);
         });
     }
@@ -239,23 +241,23 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
         const isBottom = t.getScaleVisibility(null, 1);
         t.getVisibleYears().map((w) => {
             isBottom && this.renderToday(ctx, w.leftDate, w.rightDate, w.left, w.right - w.left);
-            let header = w.leftDate.getFullYear().toString();
-            let isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
+            const header = w.leftDate.getFullYear().toString();
+            const isCurrentPeriod = this.isCurrentPeriod(w.leftDate, w.rightDate);
             this.renderHeader(ctx, t, header.toUpperCase(), w.left, w.right - w.left, visibility + isBottom, isCurrentPeriod);
         });
     }
 
     protected renderArrow(direction: 'left' | 'right') {
-        let handleClick = () => {
+        const handleClick = () => {
             this.props.timelineController.moveBy(direction == 'left' ? -1 : 1);
         };
 
-        let renderArrowIcon = (svg: Icon) => {
-            return <Svg svg={svg} cx={styles.arrowIcon} />;
+        const renderArrowIcon = (svg: Icon) => {
+            return <Svg svg={ svg } cx={ styles.arrowIcon } />;
         };
 
         return (
-            <div className={cx(styles.arrow, direction == 'left' ? styles.arrowLeft : styles.arrowRight)} onClick={handleClick}>
+            <div className={ cx(styles.arrow, direction == 'left' ? styles.arrowLeft : styles.arrowRight) } onClick={ handleClick }>
                 {renderArrowIcon(direction == 'left' ? ArrowLeftSvg : ArrowRightSvg)}
             </div>
         );
@@ -286,7 +288,7 @@ export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProp
 
     public render() {
         return (
-            <div className={styles.timelineHeader} style={{ width: this.props.timelineController.currentViewport.widthPx }}>
+            <div className={ styles.timelineHeader } style={ { width: this.props.timelineController.currentViewport.widthPx } }>
                 {!this.isMouseDown && this.renderArrow('left')}
                 {!this.isMouseDown && this.renderArrow('right')}
                 {this.renderCanvasElement({

@@ -1,10 +1,14 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
+import {
+    RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer,
+} from '@epam/uui-components';
 import { RangeDatePicker } from '@epam/loveship';
 import css from './RangeDatePicker.doc.scss';
-import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc } from '../../docs';
+import {
+    iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc,
+} from '../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../docs';
 import { Button } from '@epam/loveship';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
@@ -14,7 +18,12 @@ const getCustomDay = (day: Dayjs) => {
     return (
         <>
             {day.format('D')}
-            <IconContainer style={{ fill: '#fcaa00', height: '4px', width: '4px', position: 'absolute', top: '7px', right: '10px' }} icon={Point} />
+            <IconContainer
+                style={ {
+                    fill: '#fcaa00', height: '4px', width: '4px', position: 'absolute', top: '7px', right: '10px',
+                } }
+                icon={ Point }
+            />
         </>
     );
 };
@@ -26,7 +35,14 @@ const getRangeLength = (value: RangeDatePickerValue) => {
 };
 
 const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDatePicker', component: RangeDatePicker })
-    .implements([iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc])
+    .implements([
+        iEditable,
+        sizeDoc,
+        isDisabledDoc,
+        isReadonlyDoc,
+        isInvalidDoc,
+        modeDoc,
+    ])
     .prop('value', { examples: [{ name: "{ from: '2017-01-22', to: '2017-01-28' }", value: { from: '2017-01-22', to: '2017-01-28' } }] })
     .prop('getPlaceholder', {
         examples: [
@@ -36,7 +52,16 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
             },
         ],
     })
-    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY', type: 'string' })
+    .prop('format', {
+        examples: [
+            'MM/DD/YYYY',
+            'MMM D, YYYY',
+            'DD.MM.YYYY',
+            'YYYY-MM-DD',
+        ],
+        defaultValue: 'MMM D, YYYY',
+        type: 'string',
+    })
     .prop('filter', {
         examples: [
             {
@@ -51,13 +76,13 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                 name: 'Render custom day',
                 value: (day: any, onDayClick: (day: Dayjs) => void) => (
                     <Day
-                        renderDayNumber={getCustomDay}
-                        value={day}
-                        onValueChange={onDayClick}
+                        renderDayNumber={ getCustomDay }
+                        value={ day }
+                        onValueChange={ onDayClick }
                         isSelected={
                             day && ctx.getSelectedProps().value && day.isBetween(ctx.getSelectedProps().value.from, ctx.getSelectedProps().value.to, undefined, '[]')
                         }
-                        filter={ctx.getSelectedProps().filter}
+                        filter={ ctx.getSelectedProps().filter }
                     />
                 ),
             },
@@ -110,12 +135,15 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
             {
                 name: 'footer',
                 value: (value) => (
-                    <div className={css.container}>
+                    <div className={ css.container }>
                         <div>
-                            <div className={css.counter}>Days: {getRangeLength(value)}</div>
+                            <div className={ css.counter }>
+                                Days:
+                                {getRangeLength(value)}
+                            </div>
                         </div>
-                        <div className={css.buttonGroup}>
-                            <Button cx={css.buttonContainer} caption="clear" color="night600" fill="none" size="30" />
+                        <div className={ css.buttonGroup }>
+                            <Button cx={ css.buttonContainer } caption="clear" color="night600" fill="none" size="30" />
                         </div>
                     </div>
                 ),

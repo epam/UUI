@@ -7,13 +7,13 @@ describe('TimePicker', () => {
     const onChange = jest.fn();
 
     it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(<TimePicker value={value} onValueChange={onChange} />);
+        const tree = await renderSnapshotWithContextAsync(<TimePicker value={ value } onValueChange={ onChange } />);
 
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly with extra props', async () => {
-        const tree = await renderSnapshotWithContextAsync(<TimePicker value={value} onValueChange={onChange} format={24} minutesStep={5} size="36" isDisabled />);
+        const tree = await renderSnapshotWithContextAsync(<TimePicker value={ value } onValueChange={ onChange } format={ 24 } minutesStep={ 5 } size="36" isDisabled />);
 
         expect(tree).toMatchSnapshot();
     });

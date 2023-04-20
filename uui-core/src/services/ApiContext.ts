@@ -1,6 +1,8 @@
 import { BaseContext } from './BaseContext';
 import { AnalyticsContext } from './AnalyticsContext';
-import { IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo } from '../types';
+import {
+    IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo,
+} from '../types';
 import { getCookie, isClientSide } from '../helpers';
 import { ApiContextProps } from './ContextProvider';
 
@@ -157,7 +159,7 @@ export class ApiContext extends BaseContext implements IApiContext {
                         event_category: window.location.pathname,
                     },
                 },
-                'apiTiming'
+                'apiTiming',
             );
 
             if (response.status == 204) {
@@ -178,13 +180,13 @@ export class ApiContext extends BaseContext implements IApiContext {
                 });
         } else if (
             /* Network and server-related problems. We'll ping the server and then retry the call in this case. */
-            (response.status === 408 /* Request Timeout */ ||
-                response.status === 420 /* Enhance Your Calm */ ||
-                response.status === 429 /* Too Many Requests */ ||
-                response.status === 502 /* Bad Gateway */ ||
-                response.status === 503 /* Service Unavailable */ ||
-                response.status === 504) /* Gateway Timeout */ &&
-            call.attemptsCount < 2 /*
+            (response.status === 408
+                || /* Request Timeout */ response.status === 420
+                || /* Enhance Your Calm */ response.status === 429
+                || /* Too Many Requests */ response.status === 502
+                || /* Bad Gateway */ response.status === 503
+                || /* Service Unavailable */ response.status === 504)
+            && /* Gateway Timeout */ call.attemptsCount < 2 /*
                     There can be cases, when server returns some of these states, while /ping works.
                     To not enter infinite loop in this case, we limit number of retries.
                 */

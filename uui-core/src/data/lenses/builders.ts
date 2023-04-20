@@ -17,8 +17,12 @@ export function onEditableComponent<T>(component: any): ILens<T> {
             return { isInvalid, validationMessage, validationProps };
         },
         getMetadata(big: Metadata<T>) {
-            let { isReadonly, isDisabled, isRequired, props, all } = component.props;
-            return { isReadonly, isDisabled, isRequired, props, all };
+            const {
+                isReadonly, isDisabled, isRequired, props, all,
+            } = component.props;
+            return {
+                isReadonly, isDisabled, isRequired, props, all,
+            };
         },
     });
 }

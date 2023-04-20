@@ -86,7 +86,9 @@ export function getColumns() {
                         Total
                     </Text>
                     <Text fontSize="14" font="sans-semibold" color="night500">
-                        {p.totalCount || 0} records
+                        {p.totalCount || 0}
+                        {' '}
+                        records
                     </Text>
                 </FlexRow>
             ),

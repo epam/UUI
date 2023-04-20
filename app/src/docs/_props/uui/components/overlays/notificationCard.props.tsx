@@ -7,7 +7,7 @@ import { allSemanticColors } from '@epam/uui';
 
 const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'NotificationCard', component: NotificationCard })
     .implements([iconWithInfoDoc])
-    .prop('color', { renderEditor: (editable: any, examples) => <ColorPicker colors={examples.map((i) => ({ value: i }))} {...editable} />, examples: allSemanticColors })
+    .prop('color', { renderEditor: (editable: any, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i })) } { ...editable } />, examples: allSemanticColors })
     .prop('children', {
         examples: [
             {

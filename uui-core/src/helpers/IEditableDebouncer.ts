@@ -2,7 +2,9 @@ import React from 'react';
 import { IEditable, IAnalyticableOnChange } from '../types';
 import debounce from 'lodash.debounce';
 import { useUuiContext } from '../services';
-import { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+    ReactElement, useCallback, useEffect, useMemo, useRef, useState,
+} from 'react';
 
 /**
  * IEditableDebouncer component options.
@@ -47,9 +49,14 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
                 }
             },
             props.debounceDelay != null ? props.debounceDelay : defaultDelay,
-            { leading: false, trailing: true }
+            { leading: false, trailing: true },
         );
-    }, [props.onValueChange, props.getValueChangeAnalyticsEvent, props.debounceDelay, props.value]);
+    }, [
+        props.onValueChange,
+        props.getValueChangeAnalyticsEvent,
+        props.debounceDelay,
+        props.value,
+    ]);
 
     const handleValueChange = useCallback(
         (newValue: T) => {
@@ -60,7 +67,11 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
                 debouncedOnValueChange(newValue);
             }
         },
-        [props.disableDebounce, props.onValueChange, debouncedOnValueChange]
+        [
+            props.disableDebounce,
+            props.onValueChange,
+            debouncedOnValueChange,
+        ],
     );
 
     const propsToRender: IEditable<T> = useMemo(
@@ -68,7 +79,7 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
             value: state.value,
             onValueChange: handleValueChange,
         }),
-        [state.value, handleValueChange]
+        [state.value, handleValueChange],
     );
 
     return props.render?.(propsToRender) as ReactElement;

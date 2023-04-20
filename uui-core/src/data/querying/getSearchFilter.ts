@@ -5,7 +5,7 @@ export function getSearchFilter(searchString: string): (text: string[]) => boole
     searchString = searchString.replace(/[\s\n\r\t\0]+/g, ' ').trim(); // trim and normalize whitespaces
 
     // split by comma-separated groups, then by spaces, and make regex of each word
-    let wordGroups = searchString
+    const wordGroups = searchString
         .split(',')
         .map((words) =>
             words
@@ -13,8 +13,7 @@ export function getSearchFilter(searchString: string): (text: string[]) => boole
                 .map((word) => word.trim())
                 .filter((s) => s.length > 0)
                 .map((word) => word.trim().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')) // esape regex characters inside the string
-                .map((word) => new RegExp(word, 'i'))
-        )
+                .map((word) => new RegExp(word, 'i')))
         .filter((g) => g.length > 0);
 
     return function (texts) {

@@ -7,13 +7,13 @@ describe('FileCard', () => {
         const tree = renderer
             .create(
                 <FileCard
-                    file={{
+                    file={ {
                         id: 1,
                         name: 'Test.xls',
                         size: 12546,
                         progress: 0,
-                    }}
-                />
+                    } }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();
@@ -23,15 +23,15 @@ describe('FileCard', () => {
         const tree = renderer
             .create(
                 <FileCard
-                    file={{
+                    file={ {
                         id: 1,
                         name: 'Test.doc',
                         size: 12546,
                         progress: 0,
-                    }}
-                    width={140}
-                    onClick={jest.fn}
-                />
+                    } }
+                    width={ 140 }
+                    onClick={ jest.fn }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();
@@ -41,15 +41,15 @@ describe('FileCard', () => {
         const tree = renderer
             .create(
                 <FileCard
-                    file={{
+                    file={ {
                         id: 1,
                         name: 'Test.gif',
                         size: 12546,
                         progress: 100,
-                    }}
-                    width={140}
-                    onClick={jest.fn}
-                />
+                    } }
+                    width={ 140 }
+                    onClick={ jest.fn }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

@@ -9,7 +9,7 @@ import { allEpamPrimaryColors } from '@epam/loveship';
 const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: Alert })
     .implements([iconDoc])
     .prop('color', {
-        renderEditor: (editable, examples) => <ColorPicker colors={examples.map((i) => ({ value: i, hex: colors[i] }))} {...editable} />,
+        renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
         examples: allEpamPrimaryColors,
     })
     .prop('children', {

@@ -1,5 +1,9 @@
-import { useRef, useEffect, useMemo, useCallback } from 'react';
-import { mergeValidation, useForceUpdate, UuiContexts, validate as uuiValidate, validateServerErrorState, ICanBeInvalid } from '../../../index';
+import {
+    useRef, useEffect, useMemo, useCallback,
+} from 'react';
+import {
+    mergeValidation, useForceUpdate, UuiContexts, validate as uuiValidate, validateServerErrorState, ICanBeInvalid,
+} from '../../../index';
 import { useUuiContext } from '../../../index';
 import { LensBuilder } from '../lenses/LensBuilder';
 import isEqual from 'lodash.isequal';
@@ -59,10 +63,10 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
 
     const handleLeave = props.beforeLeave
         ? () =>
-              props.beforeLeave().then((res) => {
-                  if (res) return handleSave(true);
-                  removeUnsavedChanges();
-              })
+            props.beforeLeave().then((res) => {
+                if (res) return handleSave(true);
+                removeUnsavedChanges();
+            })
         : null;
 
     const lock = useLock({ isEnabled: formState.current.isChanged, handleLeave });
@@ -76,13 +80,15 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                     return small;
                 },
                 getValidationState: () => {
-                    const { form, lastSentForm, serverValidationState, validationState } = formState.current;
+                    const {
+                        form, lastSentForm, serverValidationState, validationState,
+                    } = formState.current;
                     const serverValidation = validateServerErrorState(form, lastSentForm, serverValidationState);
                     return mergeValidation(validationState, serverValidation);
                 },
                 getMetadata: () => getMetadata(formState.current.form),
             }),
-        []
+        [],
     );
 
     useEffect(() => {
@@ -263,7 +269,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                     return currentState;
                 }
             }),
-        []
+        [],
     );
 
     const handleRedo = useCallback(
@@ -273,7 +279,9 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                 const nextIndex = historyIndex + 1;
                 if (nextIndex < currentState.formHistory.length) {
                     const nextItem = formHistory[nextIndex];
-                    let newState = { ...currentState, form: nextItem, historyIndex: nextIndex, isChanged: true };
+                    let newState = {
+                        ...currentState, form: nextItem, historyIndex: nextIndex, isChanged: true,
+                    };
                     if (currentState.validationState.isInvalid) {
                         newState = updateValidationStates(newState);
                     }
@@ -282,7 +290,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                     return currentState;
                 }
             }),
-        []
+        [],
     );
 
     const validate = useCallback(() => {
@@ -299,7 +307,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
 
     const handleSetValue = useCallback((value: React.SetStateAction<T>) => {
         handleFormUpdate((currentValue) => {
-            let newValue: T = value instanceof Function ? value(currentValue) : value;
+            const newValue: T = value instanceof Function ? value(currentValue) : value;
             return newValue;
         });
     }, []);
@@ -307,10 +315,10 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     const handleReplaceValue = useCallback((value: React.SetStateAction<T>) => {
         handleFormUpdate(
             (currentValue) => {
-                let newValue: T = value instanceof Function ? value(currentValue) : value;
+                const newValue: T = value instanceof Function ? value(currentValue) : value;
                 return newValue;
             },
-            { addCheckpoint: false }
+            { addCheckpoint: false },
         );
     }, []);
 

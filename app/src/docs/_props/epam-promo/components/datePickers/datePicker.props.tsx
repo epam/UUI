@@ -5,23 +5,46 @@ import { Day, IconContainer } from '@epam/uui-components';
 import { DatePicker } from '@epam/promo';
 import { DatePickerProps } from '@epam/uui';
 import { LinkButton, FlexRow } from '@epam/promo';
-import { iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, FormContext, DefaultContext, ResizableContext, TableContext, IHasEditModeDoc } from '../../docs';
+import {
+    iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, FormContext, DefaultContext, ResizableContext, TableContext, IHasEditModeDoc,
+} from '../../docs';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 
 const getCustomDay = (day: Dayjs) => {
     return (
         <>
             {day.format('D')}
-            <IconContainer style={{ fill: '#fcaa00', height: '4px', width: '4px', position: 'absolute', top: '7px', right: '10px' }} icon={Point} />
+            <IconContainer
+                style={ {
+                    fill: '#fcaa00', height: '4px', width: '4px', position: 'absolute', top: '7px', right: '10px',
+                } }
+                icon={ Point }
+            />
         </>
     );
 };
 
 const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', component: DatePicker })
-    .implements([iEditable, sizeDoc, IHasEditModeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc])
+    .implements([
+        iEditable,
+        sizeDoc,
+        IHasEditModeDoc,
+        isDisabledDoc,
+        isReadonlyDoc,
+        isInvalidDoc,
+    ])
     .prop('value', { examples: ['2020-09-03'] })
     .prop('placeholder', { examples: ['Enter start date'] })
-    .prop('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY', type: 'string' })
+    .prop('format', {
+        examples: [
+            'MM/DD/YYYY',
+            'MMM D, YYYY',
+            'DD.MM.YYYY',
+            'YYYY-MM-DD',
+        ],
+        defaultValue: 'MMM D, YYYY',
+        type: 'string',
+    })
     .prop('filter', {
         examples: [
             {
@@ -37,11 +60,11 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
                 value: (day, onDayClick: (day: Dayjs) => void) => {
                     return (
                         <Day
-                            renderDayNumber={getCustomDay}
-                            value={day}
-                            onValueChange={onDayClick}
-                            isSelected={day && day.isSame(ctx.getSelectedProps().value)}
-                            filter={ctx.getSelectedProps().filter}
+                            renderDayNumber={ getCustomDay }
+                            value={ day }
+                            onValueChange={ onDayClick }
+                            isSelected={ day && day.isSame(ctx.getSelectedProps().value) }
+                            filter={ ctx.getSelectedProps().filter }
                         />
                     );
                 },
@@ -75,7 +98,7 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
                 name: 'footer',
                 value: () => (
                     <FlexRow padding="18">
-                        <LinkButton size="42" caption="Today" onClick={() => ctx.getSelectedProps().onValueChange(dayjs().format('MMM D, YYYY'))} />
+                        <LinkButton size="42" caption="Today" onClick={ () => ctx.getSelectedProps().onValueChange(dayjs().format('MMM D, YYYY')) } />
                     </FlexRow>
                 ),
             },

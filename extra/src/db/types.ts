@@ -5,7 +5,7 @@ import { SortDirection } from '@epam/uui-core';
 
 /* Metadata */
 
-//export type DbEntitySchema<E> = {[TField in keyof E]?: DbEntityFieldSchema<E[TField]> }
+// export type DbEntitySchema<E> = {[TField in keyof E]?: DbEntityFieldSchema<E[TField]> }
 
 export interface DbEntityFieldSchema<TField> {
     isKey?: boolean;

@@ -1,6 +1,10 @@
 import React, { useCallback, useState } from 'react';
-import { PickerInput, DataPickerRow, PickerItem, FlexCell } from '@epam/promo';
-import { DataRowProps, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import {
+    PickerInput, DataPickerRow, PickerItem, FlexCell,
+} from '@epam/promo';
+import {
+    DataRowProps, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext,
+} from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 export default function LazyPersonsMultiPickerWithCustomUserRow() {
@@ -15,26 +19,26 @@ export default function LazyPersonsMultiPickerWithCustomUserRow() {
         {
             api: loadPersons,
         },
-        []
+        [],
     );
 
     const renderUserRow = (props: DataRowProps<Person, number>) => (
         <DataPickerRow
-            {...props}
-            key={props.rowKey}
+            { ...props }
+            key={ props.rowKey }
             alignActions="center"
             padding="12"
-            renderItem={(item) => <PickerItem {...props} title={item.name} subtitle={item.jobTitle} avatarUrl={item.avatarUrl} />}
+            renderItem={ (item) => <PickerItem { ...props } title={ item.name } subtitle={ item.jobTitle } avatarUrl={ item.avatarUrl } /> }
         />
     );
 
     return (
-        <FlexCell width={300}>
+        <FlexCell width={ 300 }>
             <PickerInput
-                dataSource={dataSource}
-                value={value}
-                onValueChange={onValueChange}
-                renderRow={renderUserRow}
+                dataSource={ dataSource }
+                value={ value }
+                onValueChange={ onValueChange }
+                renderRow={ renderUserRow }
                 entityName="person"
                 selectionMode="multi"
                 valueType="id"

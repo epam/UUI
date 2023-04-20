@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen } from '@epam/test-utils';
+import {
+    renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen,
+} from '@epam/test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 
 jest.mock('react-popper', () => {
@@ -38,7 +40,7 @@ async function setupDatePicker(params: { value: string | null; format: string })
                 context.current.setProperty('value', newValue);
             }),
         }),
-        (props) => <DatePicker {...props} />
+        (props) => <DatePicker { ...props } />,
     );
 
     const input = screen.queryByRole('textbox') as HTMLInputElement;
@@ -57,20 +59,20 @@ const DATE_FORMAT_CUSTOM = 'DD-MM-YYYY';
 
 describe('DatePicker', () => {
     it('should render with minimum props defined', async () => {
-        const tree = await renderSnapshotWithContextAsync(<DatePicker format={DATE_FORMAT_DEFAULT} value={null} onValueChange={jest.fn} />);
+        const tree = await renderSnapshotWithContextAsync(<DatePicker format={ DATE_FORMAT_DEFAULT } value={ null } onValueChange={ jest.fn } />);
         expect(tree).toMatchSnapshot();
     });
 
     it('should render with maximum props defined', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <DatePicker
-                format={DATE_FORMAT_DEFAULT}
-                value={null}
-                onValueChange={jest.fn}
+                format={ DATE_FORMAT_DEFAULT }
+                value={ null }
+                onValueChange={ jest.fn }
                 placeholder="Test"
-                disableClear={false}
-                renderFooter={() => <div>Test footer</div>}
-            />
+                disableClear={ false }
+                renderFooter={ () => <div>Test footer</div> }
+            />,
         );
         expect(tree).toMatchSnapshot();
     });

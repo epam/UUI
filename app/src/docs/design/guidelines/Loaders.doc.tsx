@@ -6,9 +6,7 @@ export class LoadersDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <>
-                <EditableDocContent key="loaders-for-designers" fileName="loaders-for-designers" />
-            </>
+            <EditableDocContent key="loaders-for-designers" fileName="loaders-for-designers" />
         );
     }
 }

@@ -34,7 +34,7 @@ export class LandingPage extends React.Component {
 
     render() {
         return (
-            <Page renderHeader={this.renderHeader} renderFooter={this.renderFooter}>
+            <Page renderHeader={ this.renderHeader } renderFooter={ this.renderFooter }>
                 <FlexCell cx="app" width="100%">
                     <HeroBlock />
                     <StartedBlock />

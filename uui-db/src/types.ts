@@ -14,7 +14,7 @@ export type DbPatch<TTables extends DbTablesSet<TTables>> = { [TEntityName in ke
 
 export enum DbRelationType {
     Aggregation,
-    Association,
+    Association
 }
 
 export type DbFieldFk<TEntity> = {

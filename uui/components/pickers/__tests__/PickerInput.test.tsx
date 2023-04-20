@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import { ArrayDataSource } from '@epam/uui-core';
-import { renderSnapshotWithContextAsync, setupComponentForTest, screen, fireEvent } from '@epam/test-utils';
+import {
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, fireEvent,
+} from '@epam/test-utils';
 import { PickerInput } from '../PickerInput';
 
 type TestItemType = {
@@ -52,7 +54,7 @@ async function setupPickerInputForTest(params: Partial<PickerInputComponentProps
                 getName: (item) => item.level,
             };
         },
-        (props) => <PickerInput {...props} />
+        (props) => <PickerInput { ...props } />,
     );
     const input = screen.queryByRole('textbox');
 
@@ -66,7 +68,7 @@ async function setupPickerInputForTest(params: Partial<PickerInputComponentProps
 describe('PickerInput', () => {
     it('should render with minimum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <PickerInput value={null} onValueChange={jest.fn} selectionMode="single" dataSource={mockDataSource} disableClear searchPosition="input" />
+            <PickerInput value={ null } onValueChange={ jest.fn } selectionMode="single" dataSource={ mockDataSource } disableClear searchPosition="input" />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -74,33 +76,33 @@ describe('PickerInput', () => {
     it('should render with maximum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <PickerInput
-                value={[2, 3]}
-                onValueChange={jest.fn}
+                value={ [2, 3] }
+                onValueChange={ jest.fn }
                 selectionMode="multi"
-                dataSource={mockDataSource}
+                dataSource={ mockDataSource }
                 size="48"
-                maxItems={20}
+                maxItems={ 20 }
                 editMode="modal"
                 valueType="id"
-                getName={(item) => item.level}
+                getName={ (item) => item.level }
                 autoFocus
                 placeholder="Test placeholder"
-                filter={(item: any) => item.level === 'A1'}
-                sorting={{ direction: 'desc', field: 'level' }}
+                filter={ (item: any) => item.level === 'A1' }
+                sorting={ { direction: 'desc', field: 'level' } }
                 searchPosition="body"
-                minBodyWidth={900}
-                renderNotFound={({ search, onClose = jest.fn }) => {
+                minBodyWidth={ 900 }
+                renderNotFound={ ({ search, onClose = jest.fn }) => {
                     return (
-                        <div onClick={onClose} role="button">
+                        <div onClick={ onClose } role="button">
                             {`No found ${search}`}
                         </div>
                     );
-                }}
-                renderFooter={(props) => <div>{props as unknown as ReactNode}</div>}
+                } }
+                renderFooter={ (props) => <div>{props as unknown as ReactNode}</div> }
                 cascadeSelection
-                dropdownHeight={48}
-                minCharsToSearch={4}
-            />
+                dropdownHeight={ 48 }
+                minCharsToSearch={ 4 }
+            />,
         );
         expect(tree).toMatchSnapshot();
     });

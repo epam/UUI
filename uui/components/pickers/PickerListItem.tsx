@@ -13,7 +13,7 @@ export class PickerListItem<TItem, TId> extends React.Component<PickerListItemPr
         let label: any;
 
         if (this.props.isLoading) {
-            label = <TextPlaceholder wordsCount={2} />;
+            label = <TextPlaceholder wordsCount={ 2 } />;
         } else {
             label = this.props.getName(this.props.value);
         }
@@ -23,24 +23,24 @@ export class PickerListItem<TItem, TId> extends React.Component<PickerListItemPr
         if (this.props.checkbox) {
             component = (
                 <Checkbox
-                    {...this.props.checkbox}
-                    isDisabled={this.props.isLoading || this.props.checkbox.isDisabled || this.props.isDisabled}
-                    label={label}
-                    value={this.props.isChecked}
-                    onValueChange={() => this.props.onCheck(this.props)}
+                    { ...this.props.checkbox }
+                    isDisabled={ this.props.isLoading || this.props.checkbox.isDisabled || this.props.isDisabled }
+                    label={ label }
+                    value={ this.props.isChecked }
+                    onValueChange={ () => this.props.onCheck(this.props) }
                 />
             );
         } else {
             component = (
                 <RadioInput
-                    label={label}
-                    value={this.props.isSelected}
-                    isDisabled={this.props.isLoading || !this.props.isSelectable || this.props.isDisabled}
-                    onValueChange={() => this.props.onSelect(this.props)}
+                    label={ label }
+                    value={ this.props.isSelected }
+                    isDisabled={ this.props.isLoading || !this.props.isSelectable || this.props.isDisabled }
+                    onValueChange={ () => this.props.onSelect(this.props) }
                 />
             );
         }
 
-        return <div className={css.row}>{component}</div>;
+        return <div className={ css.row }>{component}</div>;
     }
 }

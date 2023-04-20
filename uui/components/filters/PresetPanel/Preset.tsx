@@ -12,7 +12,7 @@ interface IPresetProps extends Omit<IPresetsApi, 'presets'> {
     tableState: DataTableState;
 }
 
-export const Preset = (props: IPresetProps) => {
+export function Preset(props: IPresetProps) {
     const [isRenamePreset, setIsRenamePreset] = useState<Boolean>(false);
     const choosePresetHandler = useCallback(() => props.choosePreset(props.preset), [props]);
 
@@ -34,27 +34,27 @@ export const Preset = (props: IPresetProps) => {
             };
             return props.updatePreset(newPreset);
         },
-        [props.preset]
+        [props.preset],
     );
 
     const isPresetActive = props.activePresetId === props.preset.id;
 
     return (
-        <FlexCell key={props.preset.id} alignSelf="center" width="auto">
+        <FlexCell key={ props.preset.id } alignSelf="center" width="auto">
             {isRenamePreset ? (
-                <PresetInput onCancel={cancelRenamePreset} onSuccess={handlePresetRename} preset={props.preset} />
+                <PresetInput onCancel={ cancelRenamePreset } onSuccess={ handlePresetRename } preset={ props.preset } />
             ) : (
                 <TabButton
-                    caption={props.preset.name}
-                    onClick={!isPresetActive && choosePresetHandler}
-                    cx={[css.preset, isPresetActive && css.activePreset]}
+                    caption={ props.preset.name }
+                    onClick={ !isPresetActive && choosePresetHandler }
+                    cx={ [css.preset, isPresetActive && css.activePreset] }
                     size="60"
-                    withNotify={isPresetActive && props.hasPresetChanged(props.preset)}
-                    icon={() => <PresetActionsDropdown renamePreset={setPresetForRename} {...props} />}
+                    withNotify={ isPresetActive && props.hasPresetChanged(props.preset) }
+                    icon={ () => <PresetActionsDropdown renamePreset={ setPresetForRename } { ...props } /> }
                     iconPosition="right"
-                    isLinkActive={isPresetActive}
+                    isLinkActive={ isPresetActive }
                 />
             )}
         </FlexCell>
     );
-};
+}

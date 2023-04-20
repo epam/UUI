@@ -20,12 +20,12 @@ function validateValue(newValue: any, oldValue: any, validationProp: ICanBeInval
 
     return newValue === oldValue
         ? {
-              isInvalid: true,
-              validationMessage: validationProp.validationMessage,
-          }
+            isInvalid: true,
+            validationMessage: validationProp.validationMessage,
+        }
         : {
-              isInvalid: false,
-          };
+            isInvalid: false,
+        };
 }
 
 function validateItem(key: string, currentFormStatePart: any, lastSavedFormStatePart: any, serverValidation: ICanBeInvalid, parentResult: ICanBeInvalid) {

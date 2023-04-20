@@ -33,22 +33,22 @@ type UseListProps<TItem, TId, TFilter> =
         tableState?: DataTableState<TFilter>;
         setTableState?: (state: DataTableState<TFilter>) => void;
     } & // // We need to decide on how to put items/setItems into useList
-        // We want to support several formats:
-        // - items: TItem[] // simple, backward-compatible. Tree manipulation is hard, and we need to re-build the tree on each change
-        // - [maybe] byId: Map<TId, TItem> // a bit more efficient and convenient. However, it can't store the order of items. And we'd need to re-build the tree anyway
-        // - tree: Tree<TItem, TId> // convenient and efficient. But not serializable, and we need to adjust metadata/validate/lenses to support it
-        //
-        // We also need to pass metadata and validationState along with the value. It seems like we are forced to use IEditable here.
-        // Let's try to use IEditable directly:
-        (Partial<IEditable<TItem[]>> | Partial<IEditable<Tree<TItem, TId>>>);
+    // We want to support several formats:
+    // - items: TItem[] // simple, backward-compatible. Tree manipulation is hard, and we need to re-build the tree on each change
+    // - [maybe] byId: Map<TId, TItem> // a bit more efficient and convenient. However, it can't store the order of items. And we'd need to re-build the tree anyway
+    // - tree: Tree<TItem, TId> // convenient and efficient. But not serializable, and we need to adjust metadata/validate/lenses to support it
+    //
+    // We also need to pass metadata and validationState along with the value. It seems like we are forced to use IEditable here.
+    // Let's try to use IEditable directly:
+    (Partial<IEditable<TItem[]>> | Partial<IEditable<Tree<TItem, TId>>>);
 
 interface UseListApi<TItem, TId, TFilter = DataQueryFilter<TItem>>
     extends IDataSourceView<TItem, TId, TFilter>,
-        // pass-through the IEditable<DataTableState> for:
-        // 1. convenience
-        // 2. to allow 'controlled' useView (which holds DataTableState inside)
-        // TBD: maybe we need to pass it as tableState/setTableState, instead of value/onValueChange
-        IEditable<DataTableState> {
+    // pass-through the IEditable<DataTableState> for:
+    // 1. convenience
+    // 2. to allow 'controlled' useView (which holds DataTableState inside)
+    // TBD: maybe we need to pass it as tableState/setTableState, instead of value/onValueChange
+    IEditable<DataTableState> {
     // TBD: deprecate getRows() - which triggers loading as a side-effect.
     // replace it with:
     // rows: DataRowProps<TItem, TId>[] (or visibleRows?)
@@ -61,8 +61,8 @@ interface UseListApi<TItem, TId, TFilter = DataQueryFilter<TItem>>
     reload(): void;
 
     // Pass-through table-state API via these props, instead of value/onValueChange?
-    //tableState?: DataTableState<TFilter>;
-    //setTableState?: (state: DataTableState<TFilter>) => void;
+    // tableState?: DataTableState<TFilter>;
+    // setTableState?: (state: DataTableState<TFilter>) => void;
 
     addItem(): void;
     deleteItem(id: TId): void;
@@ -89,10 +89,10 @@ const columns: DataColumnProps<MyItem, number>[] = [];
 
 // plain list, table state is controlled by useList
 function LazyPlainList() {
-    //const list = useList<MyItem, number>({ api: testApi, getId: i => i.id });
+    // const list = useList<MyItem, number>({ api: testApi, getId: i => i.id });
     const list = useList<MyItem, number>({ api: testApi, getId: (i) => i.id });
 
-    return <DataTable columns={columns} {...list} />;
+    return <DataTable columns={ columns } { ...list } />;
 }
 
 // plain list, table state supplied from useState, editable rows
@@ -106,7 +106,7 @@ function ArrayPlainList() {
         setTableState,
     });
 
-    return <DataTable columns={columns} {...list} />;
+    return <DataTable columns={ columns } { ...list } />;
 }
 
 // Tree, table state is supplied from useTableState
@@ -123,12 +123,12 @@ function TreeTable() {
 
     list.reload();
 
-    return <DataTable columns={columns} {...list} />;
+    return <DataTable columns={ columns } { ...list } />;
 }
 
 // editable tree
 interface FormState {
-    items: MyItem[]; //Tree<MyItem, number>;
+    items: MyItem[]; // Tree<MyItem, number>;
     someOtherField: string;
 }
 
@@ -161,8 +161,9 @@ function EditableTree() {
 
     return (
         <div>
-            <DataTable columns={columns} {...list} />;
-            <Button caption="Add Item" onClick={() => list.addItem()} />
+            <DataTable columns={ columns } { ...list } />
+            ;
+            <Button caption="Add Item" onClick={ () => list.addItem() } />
         </div>
     );
 }

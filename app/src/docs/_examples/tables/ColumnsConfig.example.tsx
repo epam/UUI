@@ -1,6 +1,12 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
-import { DataTableState, DataColumnProps, useLazyDataSource, useUuiContext } from '@epam/uui-core';
-import { Text, DataTable, Panel, IconButton } from '@epam/promo';
+import React, {
+    useCallback, useEffect, useState, useMemo,
+} from 'react';
+import {
+    DataTableState, DataColumnProps, useLazyDataSource, useUuiContext,
+} from '@epam/uui-core';
+import {
+    Text, DataTable, Panel, IconButton,
+} from '@epam/promo';
 import { City } from '@epam/uui-docs';
 import css from './TablesExamples.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
@@ -70,19 +76,19 @@ export default function ColumnsConfigurationDataTableExample() {
             },
             {
                 key: 'actions',
-                render: () => <IconButton icon={MoreIcon} color="gray60" />,
+                render: () => <IconButton icon={ MoreIcon } color="gray60" />,
                 width: 54,
                 fix: 'right',
             },
         ],
-        []
+        [],
     );
 
     const citiesDS = useLazyDataSource<City, string, unknown>(
         {
             api: svc.api.demo.cities,
         },
-        []
+        [],
     );
 
     const handleTableStateChange = useCallback((newState: DataTableState) => {
@@ -102,17 +108,17 @@ export default function ColumnsConfigurationDataTableExample() {
     });
 
     return (
-        <Panel shadow cx={css.container}>
+        <Panel shadow cx={ css.container }>
             <DataTable
-                value={tableState}
-                onValueChange={handleTableStateChange}
-                getRows={view.getVisibleRows}
-                columns={citiesColumns}
+                value={ tableState }
+                onValueChange={ handleTableStateChange }
+                getRows={ view.getVisibleRows }
+                columns={ citiesColumns }
                 headerTextCase="upper"
-                showColumnsConfig={true}
-                allowColumnsReordering={true}
-                allowColumnsResizing={true}
-                {...view.getListProps()}
+                showColumnsConfig={ true }
+                allowColumnsReordering={ true }
+                allowColumnsResizing={ true }
+                { ...view.getListProps() }
             />
         </Panel>
     );

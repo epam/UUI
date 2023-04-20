@@ -9,7 +9,7 @@ describe('DropdownContainer', () => {
             .create(
                 <DropdownContainer>
                     <Button />
-                </DropdownContainer>
+                </DropdownContainer>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();
@@ -18,9 +18,9 @@ describe('DropdownContainer', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(
-                <DropdownContainer color="gray70" width={300} height={600}>
+                <DropdownContainer color="gray70" width={ 300 } height={ 600 }>
                     <Button />
-                </DropdownContainer>
+                </DropdownContainer>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

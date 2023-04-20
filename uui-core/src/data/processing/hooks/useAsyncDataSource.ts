@@ -6,6 +6,6 @@ export function useAsyncDataSource<TItem, TId, TFilter>(props: AsyncDataSourcePr
         () => new AsyncDataSource({ ...props }),
         (dataSource) => dataSource.setProps(props as any /* due to broken inheritance of AsyncDataSource from ArrayDataSource */),
         (dataSource) => dataSource.destroy(),
-        deps
+        deps,
     );
 }

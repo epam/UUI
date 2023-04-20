@@ -23,8 +23,8 @@ export default function CustomLabelProgressBarExample() {
         };
     }, []);
     return (
-        <Panel style={{ flexBasis: '100%' }} cx={css.root}>
-            <IndicatorBar progress={progress} />
+        <Panel style={ { flexBasis: '100%' } } cx={ css.root }>
+            <IndicatorBar progress={ progress } />
             <IndicatorBar />
         </Panel>
     );

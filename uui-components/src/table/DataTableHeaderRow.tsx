@@ -1,5 +1,7 @@
 import React from 'react';
-import { DataSourceState, DataColumnProps, DataTableHeaderRowProps, DropdownBodyProps, Lens, getColumnsConfig, DropParams, getOrderBetween } from '@epam/uui-core';
+import {
+    DataSourceState, DataColumnProps, DataTableHeaderRowProps, DropdownBodyProps, Lens, getColumnsConfig, DropParams, getOrderBetween,
+} from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import css from './DataTableHeaderRow.scss';
 
@@ -9,7 +11,9 @@ const uuiDataTableHeaderRow = {
 
 export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHeaderRowProps<TItem, TId>> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
+
     sortLens = this.lens.prop('sorting');
+
     filterLens = this.lens.prop('filter');
 
     onCellDrop = (params: DropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>, index: number) => {
@@ -61,11 +65,15 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
     render() {
         return (
             <DataTableRowContainer
-                cx={[css.root, this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow]}
-                columns={this.props.columns}
-                renderCell={this.renderCell}
-                rawProps={{ role: 'row' }}
-                renderConfigButton={this.props.onConfigButtonClick && this.props.renderConfigButton}
+                cx={ [
+                    css.root,
+                    this.props.cx,
+                    uuiDataTableHeaderRow.uuiTableHeaderRow,
+                ] }
+                columns={ this.props.columns }
+                renderCell={ this.renderCell }
+                rawProps={ { role: 'row' } }
+                renderConfigButton={ this.props.onConfigButtonClick && this.props.renderConfigButton }
             />
         );
     }

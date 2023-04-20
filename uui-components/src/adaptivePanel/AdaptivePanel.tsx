@@ -16,7 +16,7 @@ export interface AdaptivePanelProps extends IHasCX, IHasRawProps<React.HTMLAttri
     items: AdaptiveItemProps[];
 }
 
-export const AdaptivePanel = (props: AdaptivePanelProps) => {
+export function AdaptivePanel(props: AdaptivePanelProps) {
     const [itemsWidth, setItemsWidth] = useState<Record<string, number>>();
     const [isChanged, setIsChanged] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -68,8 +68,8 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
     };
 
     return (
-        <div {...props.rawProps} className={cx(props.cx, css.mainWrapper)} ref={wrapperRef}>
-            <FlexRow ref={displayedRowRef}>{renderItems()}</FlexRow>
+        <div { ...props.rawProps } className={ cx(props.cx, css.mainWrapper) } ref={ wrapperRef }>
+            <FlexRow ref={ displayedRowRef }>{renderItems()}</FlexRow>
         </div>
     );
-};
+}

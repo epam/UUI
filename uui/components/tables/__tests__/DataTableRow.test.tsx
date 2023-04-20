@@ -8,9 +8,9 @@ describe('DataTableRow', () => {
             .create(
                 <DataTableRow
                     id="test"
-                    index={1}
+                    index={ 1 }
                     rowKey="testRowKey"
-                    columns={[
+                    columns={ [
                         {
                             key: 'id',
                             caption: 'ID',
@@ -21,8 +21,8 @@ describe('DataTableRow', () => {
                             shrink: 0,
                             width: 96,
                         },
-                    ]}
-                />
+                    ] }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

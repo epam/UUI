@@ -78,24 +78,24 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
         const { isLoading } = this.state;
 
         return (
-            <div className={css.wrapper}>
+            <div className={ css.wrapper }>
                 <IEditableDebouncer
-                    value={this.state.content}
-                    onValueChange={this.saveDocContent}
-                    render={(props) => (
+                    value={ this.state.content }
+                    onValueChange={ this.saveDocContent }
+                    render={ (props) => (
                         <SlateEditor
                             placeholder="Please type"
-                            plugins={plugins}
-                            cx={css.container}
+                            plugins={ plugins }
+                            cx={ css.container }
                             mode="inline"
-                            isReadonly={!window.location.host.includes('localhost')}
-                            minHeight={36}
+                            isReadonly={ !window.location.host.includes('localhost') }
+                            minHeight={ 36 }
                             fontSize="16"
-                            {...props}
+                            { ...props }
                         />
-                    )}
+                    ) }
                 />
-                <Blocker isEnabled={isLoading} />
+                <Blocker isEnabled={ isLoading } />
             </div>
         );
     }

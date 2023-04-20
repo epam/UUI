@@ -13,7 +13,12 @@ export interface BadgeMods {
 }
 
 export function applyBadgeMods(mods: BadgeMods) {
-    return [css['style-' + (mods.shape || 'square')], css['fill-' + (mods.fill || 'solid')], css['size-' + (mods.size || defaultSize)], css.root];
+    return [
+        css['style-' + (mods.shape || 'square')],
+        css['fill-' + (mods.fill || 'solid')],
+        css['size-' + (mods.size || defaultSize)],
+        css.root,
+    ];
 }
 
 export type BadgeProps = Omit<UuiBadgeProps, 'color' | 'fill' | 'size'> & BadgeMods;
@@ -25,5 +30,5 @@ export const Badge = withMods<Omit<UuiBadgeProps, 'color' | 'fill' | 'size'>, Ba
         ({
             color: props.color || 'sky',
             size: props.size || defaultSize,
-        } as BadgeProps)
+        } as BadgeProps),
 );

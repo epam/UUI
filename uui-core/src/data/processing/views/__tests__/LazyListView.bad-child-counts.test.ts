@@ -1,6 +1,8 @@
 import { LazyDataSource } from '../../LazyDataSource';
 import { LazyListView } from '../LazyListView';
-import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps } from '../../../../types';
+import {
+    DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps,
+} from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
 import { delay } from '@epam/test-utils';
 
@@ -25,13 +27,13 @@ describe('LazyListView', () => {
     ];
 
     let value: DataSourceState;
-    let onValueChanged = (newValue: DataSourceState) => {
+    const onValueChanged = (newValue: DataSourceState) => {
         value = newValue;
     };
 
     const testApi = (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq));
 
-    let treeDataSource = new LazyDataSource({
+    const treeDataSource = new LazyDataSource({
         api: (rq, ctx) =>
             ctx.parent ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } }) : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
@@ -42,15 +44,15 @@ describe('LazyListView', () => {
     });
 
     function expectViewToLookLike(view: LazyListView<TestItem, number>, rows: Partial<DataRowProps<TestItem, number>>[], rowsCount?: number) {
-        let viewRows = view.getVisibleRows();
+        const viewRows = view.getVisibleRows();
         expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
-        let listProps = view.getListProps();
+        const listProps = view.getListProps();
         rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can load tree, which has incorrect (probably estimated) childrenCounts', async () => {
-        let ds = treeDataSource;
-        let view = ds.getView(value, onValueChanged, { isFoldedByDefault: () => false, getParentId: ({ parentId }) => parentId });
+        const ds = treeDataSource;
+        const view = ds.getView(value, onValueChanged, { isFoldedByDefault: () => false, getParentId: ({ parentId }) => parentId });
         expectViewToLookLike(view, [
             { isLoading: true },
             { isLoading: true },
@@ -70,9 +72,13 @@ describe('LazyListView', () => {
         expectViewToLookLike(
             view,
             [
-                { id: 100, depth: 0, isFoldable: true, isFolded: false }, //  0   100 // less children than specified
+                {
+                    id: 100, depth: 0, isFoldable: true, isFolded: false,
+                }, //  0   100 // less children than specified
                 { id: 110, depth: 1, isFoldable: false }, //  1     110
-                { id: 120, depth: 1, isFoldable: true, isFolded: false }, //  2       120   // more children than specified
+                {
+                    id: 120, depth: 1, isFoldable: true, isFolded: false,
+                }, //  2       120   // more children than specified
                 { id: 121, depth: 2 }, //  3         121
                 { id: 122, depth: 2 }, //  4         122
                 { id: 200, depth: 0, isFoldable: false }, //  5   200 // declared 1 child, but there's none
@@ -81,7 +87,7 @@ describe('LazyListView', () => {
                 { id: 320, depth: 1 }, //  8     320
                 { id: 330, depth: 1 }, //  9     330
             ],
-            10
+            10,
         );
     });
 });

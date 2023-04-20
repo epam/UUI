@@ -15,14 +15,14 @@ export default function BasicExample() {
 
         return (
             <Tooltip content="Some text" placement="bottom">
-                <img src={url} alt="avatar" width={36} height={36} onClick={handleClick} className={uuiMarkers.clickable} />
+                <img src={ url } alt="avatar" width={ 36 } height={ 36 } onClick={ handleClick } className={ uuiMarkers.clickable } />
             </Tooltip>
         );
     };
 
     return (
-        <FlexCell width="auto" cx={css.container}>
-            <AvatarStack urlArray={avatarsArray} avatarsCount={6} direction="right" avatarSize="36" renderItem={renderItem} />
+        <FlexCell width="auto" cx={ css.container }>
+            <AvatarStack urlArray={ avatarsArray } avatarsCount={ 6 } direction="right" avatarSize="36" renderItem={ renderItem } />
         </FlexCell>
     );
 }

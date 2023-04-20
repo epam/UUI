@@ -15,6 +15,6 @@ export class IconButton extends ButtonBase<IconButtonBaseProps> {
     }
 
     getChildren() {
-        return <IconContainer key="icon" icon={this.props.icon} />;
+        return <IconContainer key="icon" icon={ this.props.icon } />;
     }
 }

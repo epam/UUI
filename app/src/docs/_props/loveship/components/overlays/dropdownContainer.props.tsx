@@ -8,10 +8,23 @@ const dropdownContainerDoc = new DocBuilder({
     component: DropdownContainer,
 })
     .prop('vPadding', {
-        examples: ['6', '12', '18', '24', '30', '48'],
+        examples: [
+            '6',
+            '12',
+            '18',
+            '24',
+            '30',
+            '48',
+        ],
     })
     .prop('padding', {
-        examples: ['6', '12', '18', '24', '30'],
+        examples: [
+            '6',
+            '12',
+            '18',
+            '24',
+            '30',
+        ],
     })
     .prop('color', {
         examples: ['white', { name: 'night700', value: 'night700' }],

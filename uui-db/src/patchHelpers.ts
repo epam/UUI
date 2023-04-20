@@ -1,5 +1,7 @@
 import { Db } from './Db';
-import { DbPatch, DbTablesSet, DbRelationType, DbEntitySchema, DbPkFieldType } from './types';
+import {
+    DbPatch, DbTablesSet, DbRelationType, DbEntitySchema, DbPkFieldType,
+} from './types';
 import { DbTable } from './DbTable';
 import * as I from 'immutable';
 import { objectKeys } from './utils';
@@ -39,9 +41,9 @@ export function mergeEntityPatches<TTables extends DbTablesSet<TTables>>(tables:
                         Object.keys(
                             countBy(
                                 entities.filter((entity) => entity[prop as string] !== undefined),
-                                (entity) => entity[prop as string]
-                            )
-                        ).length > 1
+                                (entity) => entity[prop as string],
+                            ),
+                        ).length > 1,
                 );
                 if (props.length) {
                     console.warn('mergeEntityPatches: Different property values found for the same entity.\nProperty names:\n', props, '\nEntities:\n', ...entities);
@@ -73,15 +75,15 @@ function flattenResponseHelper<TTables extends DbTablesSet<any>>(result: DbPatch
             }
         }
 
-        for (let key in object) {
+        for (const key in object) {
             const value = object[key];
             const field = fields[key];
 
             if (
-                (field && !!field.disableFlatten) ||
-                typeof value !== 'object' ||
-                value === null ||
-                (Array.isArray(value) && value.every((item) => typeof item !== 'object'))
+                (field && !!field.disableFlatten)
+                || typeof value !== 'object'
+                || value === null
+                || (Array.isArray(value) && value.every((item) => typeof item !== 'object'))
             ) {
                 clone[key] = value;
             } else {
@@ -98,7 +100,7 @@ function flattenResponseHelper<TTables extends DbTablesSet<any>>(result: DbPatch
 export function flattenResponse<TTables extends DbTablesSet<any>>(response: any, tables: TTables): DbPatch<TTables> {
     const result: DbPatch<TTables> = {};
 
-    let tablesByTypeName: Record<string, DbTable<any, any, any>> = {};
+    const tablesByTypeName: Record<string, DbTable<any, any, any>> = {};
     Object.values(tables).forEach((table) => (tablesByTypeName[table.schema.typeName] = table));
     objectKeys(tables).forEach((tableName) => tablesByTypeName);
 
@@ -118,7 +120,7 @@ export function isPatchBlank<TTables extends DbTablesSet<TTables>>(patch: DbPatc
 export function makeCumulativePatch<TTables extends DbTablesSet<TTables>>(
     updatedDb: Db<TTables>,
     patches: DbPatch<TTables>[],
-    clientIdsMap: IClientIdsMap
+    clientIdsMap: IClientIdsMap,
 ): DbPatch<TTables> {
     const result: DbPatch<TTables> = {};
 
@@ -128,7 +130,7 @@ export function makeCumulativePatch<TTables extends DbTablesSet<TTables>>(
 
         let ids = I.Set();
         patches.forEach((patch) => {
-            let filteredPatch = (patch[entityName] || []).filter((entity) => hasServerFields(entity, schema, clientIdsMap, updatedDb.tables));
+            const filteredPatch = (patch[entityName] || []).filter((entity) => hasServerFields(entity, schema, clientIdsMap, updatedDb.tables));
             ids = ids.union(filteredPatch.map((e) => table.getId(e)));
         });
 
@@ -169,7 +171,7 @@ export function getId<T, TId extends DbPkFieldType, TTables extends DbTablesSet<
 export function isNew<T, TId extends DbPkFieldType, TTables extends DbTablesSet<TTables>>(
     entity: Partial<T>,
     schema: DbEntitySchema<T, TId, TTables>,
-    clientIdsMap: IClientIdsMap
+    clientIdsMap: IClientIdsMap,
 ) {
     const id = getId(entity, schema);
     return !clientIdsMap.clientToServer(id as number);
@@ -179,7 +181,7 @@ export function hasServerFields<T, TId extends DbPkFieldType, TTables extends Db
     entity: Partial<T>,
     schema: DbEntitySchema<T, TId, TTables>,
     clientIdsMap: IClientIdsMap,
-    tables: TTables
+    tables: TTables,
 ) {
     const fullEntity = {
         ...(tables[schema.tableName].byId((entity as any).id) || {}),
@@ -204,7 +206,7 @@ export function getParentEntities<TTables extends DbTablesSet<TTables>>(patch: D
 
         const fields = filter(
             map(tableSchema.fields, (field, name) => ({ ...field, name })),
-            (field) => field.fk && field.fk.relationType == DbRelationType.Aggregation
+            (field) => field.fk && field.fk.relationType == DbRelationType.Aggregation,
         );
 
         const tablePatch = patch[key];
@@ -231,13 +233,13 @@ export function getParentEntities<TTables extends DbTablesSet<TTables>>(patch: D
 export function getEntityParentDependencies<TEntity, TTables extends DbTablesSet<TTables>>(
     entity: Partial<TEntity>,
     entityName: keyof TTables,
-    tables: TTables
+    tables: TTables,
 ): DbPatch<TTables> {
     let patch = { [entityName]: [entity] } as DbPatch<TTables>;
     const resultPatches: DbPatch<TTables>[] = [];
 
     while (true) {
-        let parents = getParentEntities(patch, tables);
+        const parents = getParentEntities(patch, tables);
         if (isPatchBlank(parents)) {
             break;
         }

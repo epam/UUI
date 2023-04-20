@@ -10,7 +10,7 @@ describe('ControlGroup', () => {
                 <ControlGroup>
                     <Button caption="On" />
                     <Button caption="Off" color="primary" />
-                </ControlGroup>
+                </ControlGroup>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

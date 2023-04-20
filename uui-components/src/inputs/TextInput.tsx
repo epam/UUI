@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext } from '@epam/uui-core';
+import {
+    Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
+} from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './TextInput.scss';
 
@@ -89,14 +91,14 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         'aria-readonly': props.isReadonly,
     });
 
-    const icon = props.icon && <IconContainer icon={props.icon} onClick={props.onIconClick} />;
+    const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
     return (
         <div
-            onClick={props.onClick && handleClick}
-            ref={ref}
-            className={cx(
+            onClick={ props.onClick && handleClick }
+            ref={ ref }
+            className={ cx(
                 css.container,
                 uuiElement.inputBox,
                 props.isDisabled && uuiMod.disabled,
@@ -104,33 +106,33 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 props.isInvalid && uuiMod.invalid,
                 !props.isReadonly && !props.isDisabled && uuiMarkers.clickable,
                 !props.isReadonly && inFocus && uuiMod.focus,
-                props.cx
-            )}
-            tabIndex={-1}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            {...props.rawProps}
+                props.cx,
+            ) }
+            tabIndex={ -1 }
+            onFocus={ handleFocus }
+            onBlur={ handleBlur }
+            { ...props.rawProps }
         >
-            {props.prefix && <span className={cx(props.inputCx, uuiElement.prefixInput)}>{props.prefix}</span>}
+            {props.prefix && <span className={ cx(props.inputCx, uuiElement.prefixInput) }>{props.prefix}</span>}
             {props.iconPosition !== 'right' && icon}
-            {props.renderInput ? props.renderInput(getInputProps()) : <input {...getInputProps()} />}
+            {props.renderInput ? props.renderInput(getInputProps()) : <input { ...getInputProps() } />}
             {props.onAccept && showIconsOnAction && (
-                <IconContainer cx={cx('uui-icon-accept')} isDisabled={props.isDisabled} icon={props.acceptIcon} onClick={props.onAccept} rawProps={{ role: 'button' }} />
+                <IconContainer cx={ cx('uui-icon-accept') } isDisabled={ props.isDisabled } icon={ props.acceptIcon } onClick={ props.onAccept } rawProps={ { role: 'button' } } />
             )}
             {props.onCancel && showIconsOnAction && (
                 <IconContainer
-                    cx={cx('uui-icon-cancel', uuiMarkers.clickable)}
-                    isDisabled={props.isDisabled}
-                    icon={props.cancelIcon}
-                    onClick={handleCancel}
-                    rawProps={{ role: 'button' }}
+                    cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
+                    isDisabled={ props.isDisabled }
+                    icon={ props.cancelIcon }
+                    onClick={ handleCancel }
+                    rawProps={ { role: 'button' } }
                 />
             )}
             {props.iconPosition === 'right' && icon}
             {props.isDropdown && (
-                <IconContainer cx={cx((props.isReadonly || props.isDisabled) && css.hidden, css.pointer)} icon={props.dropdownIcon} flipY={props.isOpen} />
+                <IconContainer cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, css.pointer) } icon={ props.dropdownIcon } flipY={ props.isOpen } />
             )}
-            {props.suffix && <span className={cx(props.inputCx, uuiElement.suffixInput)}>{props.suffix}</span>}
+            {props.suffix && <span className={ cx(props.inputCx, uuiElement.suffixInput) }>{props.suffix}</span>}
         </div>
     );
 });

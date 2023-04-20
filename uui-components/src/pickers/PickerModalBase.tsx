@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from '@epam/uui-core';
+import {
+    DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps,
+} from '@epam/uui-core';
 import { PickerBase, PickerBaseState } from './index';
 
 export interface PickerModalOptions<TItem, TId> extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -22,6 +24,7 @@ const initialStateValues: DataSourceState = {
 
 export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerModalImplProps<TItem, TId>, PickerModalState> {
     stateLens = Lens.onState<PickerBaseState & PickerModalState>(this);
+
     showSelectionLens = this.stateLens
         .onChange((oldVal, newVal) => ({
             ...newVal,
@@ -61,9 +64,9 @@ export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerMo
 }
 
 export type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> &
-    IHasCaption &
-    (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) &
-    PickerModalOptions<TItem, TId>;
+IHasCaption &
+(PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) &
+PickerModalOptions<TItem, TId>;
 
 export type PickerModalScalarProps<TId, TItem> =
     | ({ selectionMode: 'single'; valueType: 'id'; initialValue: TId } & IModal<TId>)

@@ -23,7 +23,7 @@ export class LegacyContextProvider<TApi, TAppContext> extends React.Component<Le
         this.props.uuiContexts.uuiErrors.discardError();
         this.props.uuiContexts.uuiApi.reset();
 
-        //this.uuiContexts.uuiDnD.
+        // this.uuiContexts.uuiDnD.
         const children = this.props.children;
 
         return (

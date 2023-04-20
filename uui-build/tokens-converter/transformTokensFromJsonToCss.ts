@@ -1,14 +1,22 @@
-import { readdir, writeFile, realpath, readFile } from 'fs/promises';
+import {
+    readdir, writeFile, realpath, readFile,
+} from 'fs/promises';
 import { EOL } from 'os';
 import { ParsedPath, resolve, parse } from 'path';
 import { transformHandler } from './transformHandlers';
-import { CoreTokens, PaletteToken, ThemesObject, TokenObject, TokensObject, UuiComponent } from './types';
+import {
+    CoreTokens, PaletteToken, ThemesObject, TokenObject, TokensObject, UuiComponent,
+} from './types';
 import { checkTokens } from './checkTokens';
 import { defaultTokens } from './defaults';
 import defaultsDeep from 'lodash.defaultsdeep';
 import { getAllMonorepoPackages } from './../utils/monorepoUtils';
 
-const ignoreDirList = ['public', 'build', 'node_modules'];
+const ignoreDirList = [
+    'public',
+    'build',
+    'node_modules',
+];
 
 export const transformTokensFromJsonToCss = async function () {
     async function getFilesWithTokens(dir: string): Promise<string[]> {

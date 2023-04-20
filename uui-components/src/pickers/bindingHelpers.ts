@@ -1,4 +1,6 @@
-import { IEditable, DataSourceState, IDataSource, PickerBaseProps } from '@epam/uui-core';
+import {
+    IEditable, DataSourceState, IDataSource, PickerBaseProps,
+} from '@epam/uui-core';
 
 export type PickerBindingProps<TItem, TId> = SinglePickerProps<TId, TItem> | ArrayPickerProps<TId, TItem>;
 
@@ -37,7 +39,7 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId, 
         dsState: DataSourceState<any, TId>,
         value: any,
         props: PickerBaseProps<TId, TItem>,
-        dataSource: IDataSource<TItem, TId, any>
+        dataSource: IDataSource<TItem, TId, any>,
     ): DataSourceState<any, TId> {
         value = (Array.isArray(value) && value) || [];
         if (props.valueType === 'entity') {
@@ -65,11 +67,12 @@ class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId,
 
         return dsState.selectedId;
     }
+
     applyValueToDataSourceState(
         dsState: DataSourceState<any, TId>,
         value: any,
         props: PickerBaseProps<TId, TItem>,
-        dataSource: IDataSource<TItem, TId, any>
+        dataSource: IDataSource<TItem, TId, any>,
     ): DataSourceState<any, TId> {
         const id = props.valueType === 'entity' ? dataSource && dataSource.getId(value) : value;
 
@@ -100,7 +103,7 @@ export function applyValueToDataSourceState<TId, TItem>(
     props: any,
     dsState: DataSourceState<any, TItem>,
     value: any,
-    dataSource: IDataSource<TItem, TId, any>
+    dataSource: IDataSource<TItem, TId, any>,
 ): DataSourceState<TItem, any> {
     return lookup[props.selectionMode].applyValueToDataSourceState(dsState, value, props, dataSource);
 }

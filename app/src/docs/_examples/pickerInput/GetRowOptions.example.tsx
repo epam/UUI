@@ -13,37 +13,37 @@ export default function GetRowOptionsExample() {
             api: () => svc.api.demo.products({}).then((r: any) => r.items),
             getId: (item) => item.ProductID,
         },
-        []
+        [],
     );
 
     return (
-        <FlexCell width={612}>
+        <FlexCell width={ 612 }>
             <FlexRow spacing="12">
                 <PickerInput<Product, number>
-                    dataSource={productsDataSource}
-                    value={productID}
-                    onValueChange={setProductID}
-                    getRowOptions={(item) => ({
+                    dataSource={ productsDataSource }
+                    value={ productID }
+                    onValueChange={ setProductID }
+                    getRowOptions={ (item) => ({
                         isDisabled: item.MakeFlag === true,
                         isSelectable: item.MakeFlag !== true,
-                    })}
-                    getName={(item) => item.Name}
+                    }) }
+                    getName={ (item) => item.Name }
                     entityName="Product"
                     selectionMode="single"
                     valueType="id"
                 />
                 <PickerInput<Product, number>
-                    dataSource={productsDataSource}
-                    value={productsIDs}
-                    onValueChange={setProductsIDs}
-                    getRowOptions={(item) => ({
+                    dataSource={ productsDataSource }
+                    value={ productsIDs }
+                    onValueChange={ setProductsIDs }
+                    getRowOptions={ (item) => ({
                         isDisabled: item.MakeFlag === true,
                         checkbox: {
                             isDisabled: item.MakeFlag === true,
                             isVisible: true,
                         },
-                    })}
-                    getName={(item) => item.Name}
+                    }) }
+                    getName={ (item) => item.Name }
                     entityName="Product"
                     selectionMode="multi"
                     valueType="id"

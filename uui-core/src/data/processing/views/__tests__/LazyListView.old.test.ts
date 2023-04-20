@@ -25,8 +25,8 @@ const testItems = [
 ];
 
 describe('LazyListView - old tests', () => {
-    let initialValue: DataSourceState = { topIndex: 0, visibleCount: 20 };
-    let testApi = jest.fn(() => Promise.resolve({ items: testItems }));
+    const initialValue: DataSourceState = { topIndex: 0, visibleCount: 20 };
+    const testApi = jest.fn(() => Promise.resolve({ items: testItems }));
     let viewProps: LazyListViewProps<TItem, number, any>;
     let dataSource: LazyDataSource<TItem, number>;
 
@@ -70,7 +70,7 @@ describe('LazyListView - old tests', () => {
         const view = dataSource.getView(initialValue, () => {}, {});
         let rows = view.getVisibleRows();
 
-        //Should return loading rows for first call
+        // Should return loading rows for first call
         expect(rows).toHaveLength(20);
         expect(rows[5].isLoading).toBe(true);
         expect(rows[5].id).not.toBeNull();

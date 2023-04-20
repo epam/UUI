@@ -10,7 +10,7 @@ describe('IconButton', () => {
     });
 
     it('should be rendered correctly with props', () => {
-        const tree = renderer.create(<IconButton color="sun" onClick={jest.fn()} icon={AcceptIcon} isDisabled={false} />).toJSON();
+        const tree = renderer.create(<IconButton color="sun" onClick={ jest.fn() } icon={ AcceptIcon } isDisabled={ false } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

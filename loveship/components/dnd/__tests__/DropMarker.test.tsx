@@ -20,10 +20,10 @@ describe('Drop Marker', () => {
                     isDraggedOver
                     isDragGhost
                     isDropAccepted
-                    eventHandlers={eventHandlers}
-                    classNames={['test-class']}
+                    eventHandlers={ eventHandlers }
+                    classNames={ ['test-class'] }
                     position="top"
-                />
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

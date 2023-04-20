@@ -19,6 +19,17 @@ type TestProps<TItem, TId> = DataSourceProps<TItem, TId> & {
 
 class Test<TItem, TId> extends React.Component<TestProps<TItem, TId>> {}
 
-const arr = <Test source="array" items={[1, 2, 3]} getId={(i) => i} example={1} />;
+const arr = (
+    <Test
+        source="array"
+        items={ [
+            1,
+            2,
+            3,
+        ] }
+        getId={ (i) => i }
+        example={ 1 }
+    />
+);
 
-const api = <Test source="api" api={(_) => Promise.resolve(['1', '2'])} example={'1'} />;
+const api = <Test source="api" api={ (_) => Promise.resolve(['1', '2']) } example="1" />;

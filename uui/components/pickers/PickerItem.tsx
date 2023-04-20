@@ -22,24 +22,26 @@ export class PickerItem<TItem, TId> extends React.Component<PickerItemProps<TIte
     };
 
     render() {
-        const { size, avatarUrl, title, subtitle, isLoading, isDisabled, icon } = this.props;
+        const {
+            size, avatarUrl, title, subtitle, isLoading, isDisabled, icon,
+        } = this.props;
         const itemSize = size && size !== 'none' ? size : defaultSize;
         const isMultiline = !!(title && subtitle);
 
         return (
-            <FlexCell width="auto" cx={css.root}>
-                <FlexRow size={itemSize} cx={isMultiline && css[`multiline-vertical-padding-${itemSize}`]} spacing="12">
-                    {avatarUrl && <Avatar isLoading={isLoading} img={avatarUrl} size={this.getAvatarSize(itemSize, isMultiline).toString() as AvatarProps['size']} />}
-                    {icon && <IconContainer icon={icon} />}
+            <FlexCell width="auto" cx={ css.root }>
+                <FlexRow size={ itemSize } cx={ isMultiline && css[`multiline-vertical-padding-${itemSize}`] } spacing="12">
+                    {avatarUrl && <Avatar isLoading={ isLoading } img={ avatarUrl } size={ this.getAvatarSize(itemSize, isMultiline).toString() as AvatarProps['size'] } />}
+                    {icon && <IconContainer icon={ icon } />}
                     <FlexCell width="auto">
                         {title && (
-                            <Text size={itemSize} cx={css.text} color={isDisabled ? 'disabled' : 'primary'}>
-                                {isLoading ? <TextPlaceholder wordsCount={2} /> : title}
+                            <Text size={ itemSize } cx={ css.text } color={ isDisabled ? 'disabled' : 'primary' }>
+                                {isLoading ? <TextPlaceholder wordsCount={ 2 } /> : title}
                             </Text>
                         )}
                         {subtitle && (
-                            <Text size={itemSize} color={isDisabled ? 'disabled' : 'secondary'} cx={css.text}>
-                                {isLoading ? <TextPlaceholder wordsCount={2} /> : subtitle}
+                            <Text size={ itemSize } color={ isDisabled ? 'disabled' : 'secondary' } cx={ css.text }>
+                                {isLoading ? <TextPlaceholder wordsCount={ 2 } /> : subtitle}
                             </Text>
                         )}
                     </FlexCell>

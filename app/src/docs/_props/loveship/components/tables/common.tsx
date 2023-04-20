@@ -1,7 +1,9 @@
 import React from 'react';
 import { DataColumnProps, DataTableHeaderRowProps } from '@epam/uui-core';
 import { DocBuilder } from '@epam/uui-docs';
-import { Text, FlexCell, LinkButton, ControlSize } from '@epam/loveship';
+import {
+    Text, FlexCell, LinkButton, ControlSize,
+} from '@epam/loveship';
 import { Avatar } from '@epam/uui-components';
 import css from '../pickers/DataPickerRowDoc.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
@@ -18,13 +20,16 @@ const UserColumns = [
         key: 'person',
         caption: 'ABOUT PERSON',
         render: (data: Person) => (
-            <div style={{ display: 'flex', padding: '6px 0' }}>
-                <Avatar size="48" img={data.avatarUrl} />
-                <div style={{ marginLeft: '12px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <Text size="30" cx={css.userName}>
+            <div style={ { display: 'flex', padding: '6px 0' } }>
+                <Avatar size="48" img={ data.avatarUrl } />
+                <div style={ {
+                    marginLeft: '12px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
+                } }
+                >
+                    <Text size="30" cx={ css.userName }>
                         {data.name}
                     </Text>
-                    <Text size="24" color="night400" cx={css.userTitle}>
+                    <Text size="24" color="night400" cx={ css.userTitle }>
                         {data.jobTitle}
                     </Text>
                 </div>
@@ -36,7 +41,7 @@ const UserColumns = [
     {
         key: 'inProgress',
         caption: 'IN PROGRESS',
-        render: (data: Person) => <LinkButton caption={getRandomInt(1, 10)} icon={CalendarIcon} size="30" />,
+        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ CalendarIcon } size="30" />,
         grow: 1,
         width: 50,
         vPadding: '30',
@@ -45,7 +50,7 @@ const UserColumns = [
     {
         key: 'done',
         caption: 'DONE',
-        render: (data: Person) => <LinkButton caption={getRandomInt(1, 10)} icon={TickIcon} size="30" />,
+        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ TickIcon } size="30" />,
         grow: 1,
         width: 50,
         vPadding: '30',
@@ -54,7 +59,7 @@ const UserColumns = [
     {
         key: 'edited',
         caption: 'EDITED',
-        render: (data: Person) => <LinkButton caption={getRandomInt(1, 10)} icon={PencilIcon} size="30" />,
+        render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ PencilIcon } size="30" />,
         grow: 1,
         width: 50,
         vPadding: '30',
@@ -67,7 +72,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
         {
             key: 'name',
             caption: 'Name',
-            render: (data: Person) => <LinkButton caption={data.name} onClick={() => {}} size={size} />,
+            render: (data: Person) => <LinkButton caption={ data.name } onClick={ () => {} } size={ size } />,
             grow: 1,
             width: 150,
             isSortable: true,
@@ -76,7 +81,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             key: 'phoneNumber',
             caption: 'Phone Number',
             render: (data: Person) => (
-                <Text color="night400" size={size} font="sans-semibold">
+                <Text color="night400" size={ size } font="sans-semibold">
                     {data.phoneNumber}
                 </Text>
             ),
@@ -88,7 +93,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             key: 'gender',
             caption: 'Gender',
             render: (data: Person) => (
-                <Text size={size} font="sans-semibold">
+                <Text size={ size } font="sans-semibold">
                     {data.gender}
                 </Text>
             ),
@@ -100,7 +105,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             key: 'personType',
             caption: 'Person Type',
             render: (data: Person) => (
-                <Text size={size} font="sans-semibold">
+                <Text size={ size } font="sans-semibold">
                     {data.personType}
                 </Text>
             ),
@@ -117,13 +122,13 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             key: 'jobTitle',
             caption: 'Job Title with long long text',
             render: (data: Person) => (
-                <Text size={size} font="sans-semibold">
+                <Text size={ size } font="sans-semibold">
                     {data.jobTitle}
                 </Text>
             ),
             width: 160,
             isSortable: true,
-            //renderFilter: demoFilter,
+            // renderFilter: demoFilter,
             isFilterActive: (filter) => filter.jobTitle && !!filter.jobTitle.length,
             info: (
                 <FlexCell>
@@ -135,7 +140,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             key: 'birthDate',
             caption: 'Birth Date',
             render: (data: Person) => (
-                <Text size={size} font="sans-semibold">
+                <Text size={ size } font="sans-semibold">
                     {data.birthDate}
                 </Text>
             ),
@@ -146,7 +151,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             key: 'hireDate',
             caption: 'Hire Date',
             render: (data: Person) => (
-                <Text size={size} font="sans-semibold">
+                <Text size={ size } font="sans-semibold">
                     {data.hireDate}
                 </Text>
             ),
@@ -157,7 +162,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             key: 'departmentId',
             caption: 'Department Id',
             render: (data: Person) => (
-                <Text size={size} font="sans-semibold">
+                <Text size={ size } font="sans-semibold">
                     {data.departmentId}
                 </Text>
             ),
@@ -168,7 +173,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             key: 'departmentName',
             caption: 'Department Name',
             render: (data: Person) => (
-                <Text size={size} font="sans-semibold">
+                <Text size={ size } font="sans-semibold">
                     {data.departmentName}
                 </Text>
             ),
@@ -178,7 +183,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
         {
             key: 'settings',
             caption: '',
-            render: (data: Person) => <LinkButton icon={MoreIcon} size={size} />,
+            render: (data: Person) => <LinkButton icon={ MoreIcon } size={ size } />,
             width: 18,
             textAlign: 'center',
             alignSelf: 'center',

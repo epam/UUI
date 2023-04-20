@@ -61,9 +61,9 @@ export const i18n = {
                 subText: 'We can’t find any item matching your request',
             },
             enableAtLeastOneColumnMessage: 'Please enable at least one column',
-            pinColumnButton: "Pin column",
-            unPinColumnButton: "Unpin column",
-            lockedColumnPinButton: "You cannot unpin this column",
+            pinColumnButton: 'Pin column',
+            unPinColumnButton: 'Unpin column',
+            lockedColumnPinButton: 'You cannot unpin this column',
         },
     },
     pickerFilterHeader: {
@@ -71,31 +71,31 @@ export const i18n = {
         sortDescending: 'Sort Descending',
     },
     fileUpload: {
-        labelStart: "Drop files to attach or",
-        browse: "browse",
-        labelEnd: "your local files",
+        labelStart: 'Drop files to attach or',
+        browse: 'browse',
+        labelEnd: 'your local files',
     },
     errorHandler: {
         errorPageConfig: {
             notFound: {
-                title: "Oooops! We couldn’t find this page",
-                subtitle: "Sorry for the inconvenience.",
+                title: 'Oooops! We couldn’t find this page',
+                subtitle: 'Sorry for the inconvenience.',
             },
             permissionDenied: {
-                title: "You have no permissions!",
-                subtitle: "Sorry for the inconvenience.",
+                title: 'You have no permissions!',
+                subtitle: 'Sorry for the inconvenience.',
             },
             serverError: {
-                title: "500 Error! Something went wrong",
-                subtitle: "Sorry for the inconvenience, we’ll get it fixed.",
+                title: '500 Error! Something went wrong',
+                subtitle: 'Sorry for the inconvenience, we’ll get it fixed.',
             },
             serviceUnavailable: {
-                title: "The page request was canceled, because it took too long to complete",
-                subtitle: "Sorry for the inconvenience, we’ll get it fixed.",
+                title: 'The page request was canceled, because it took too long to complete',
+                subtitle: 'Sorry for the inconvenience, we’ll get it fixed.',
             },
             default: {
-                title: "Something went wrong",
-                subtitle: "Sorry for the inconvenience, we’ll get it fixed.",
+                title: 'Something went wrong',
+                subtitle: 'Sorry for the inconvenience, we’ll get it fixed.',
             },
         },
         recoveryMessageConfig: {
@@ -107,7 +107,7 @@ export const i18n = {
                 title: 'Network connection down',
                 subtitle: 'Please check your network connection.',
             },
-            'maintenance': {
+            maintenance: {
                 title: 'Server maintenance',
                 subtitle: 'We apologize for the inconvenience. Our site is currently under maintenance. Will come back as soon as possible.',
             },

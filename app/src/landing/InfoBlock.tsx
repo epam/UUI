@@ -14,14 +14,14 @@ const infoData = [
 export class InfoBlock extends React.Component {
     render() {
         return (
-            <div className={css.layout}>
-                <FlexRow cx={css.info}>
+            <div className={ css.layout }>
+                <FlexRow cx={ css.info }>
                     {infoData.map((data) => (
-                        <FlexCell cx={css.infoContainer} key={data.caption} width="auto">
-                            <Text font="museo-sans" cx={css.infoValue}>
+                        <FlexCell cx={ css.infoContainer } key={ data.caption } width="auto">
+                            <Text font="museo-sans" cx={ css.infoValue }>
                                 {data.value}
                             </Text>
-                            <Text font="museo-slab" cx={cx(css.infoCaption, data.pulse && css.pulse)}>
+                            <Text font="museo-slab" cx={ cx(css.infoCaption, data.pulse && css.pulse) }>
                                 {data.caption}
                             </Text>
                         </FlexCell>

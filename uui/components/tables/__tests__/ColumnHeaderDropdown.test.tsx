@@ -11,14 +11,14 @@ describe('ColumnHeaderDropdown', () => {
         const tree = await renderSnapshotWithContextAsync(
             <ColumnHeaderDropdown
                 title=""
-                renderTarget={(props) => <Button caption="Test" {...props} />}
+                renderTarget={ (props) => <Button caption="Test" { ...props } /> }
                 isOpen
-                onOpenChange={jest.fn}
+                onOpenChange={ jest.fn }
                 isSortable
                 sortDirection="asc"
-                onSort={jest.fn}
-                renderFilter={() => <div>Picker</div>}
-            />
+                onSort={ jest.fn }
+                renderFilter={ () => <div>Picker</div> }
+            />,
         );
         expect(tree).toMatchSnapshot();
     });

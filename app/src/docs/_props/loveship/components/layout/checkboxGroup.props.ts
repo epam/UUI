@@ -5,11 +5,15 @@ import { isDisabledDoc, isInvalidDoc, iEditable } from '../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../docs';
 
 const checkboxGroupDoc = new DocBuilder<CheckboxGroupProps<any>>({ name: 'CheckboxGroup', component: CheckboxGroup })
-    .implements([isDisabledDoc, isInvalidDoc, iEditable])
+    .implements([
+        isDisabledDoc,
+        isInvalidDoc,
+        iEditable,
+    ])
     .prop('items', {
         examples: [
             {
-                name: `Roles`,
+                name: 'Roles',
                 value: [
                     { name: 'Mentee', id: 1 },
                     { name: 'Direct Subordinates', id: 2 },

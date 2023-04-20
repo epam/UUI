@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent, UUI3 } from '../common';
+import {
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3,
+} from '../common';
 
 export class SliderDoc extends BaseDocsBlock {
     title = 'Slider';

@@ -7,12 +7,12 @@ export default function BasicExample() {
     return (
         <div>
             <Text>Opens in a new window (target _blank)</Text>
-            <Anchor rawProps={{ 'aria-label': 'ReactJS' }} href={`https://reactjs.org/`} target="_blank">
-                <IconContainer icon={ReactIcon} />
+            <Anchor rawProps={ { 'aria-label': 'ReactJS' } } href="https://reactjs.org/" target="_blank">
+                <IconContainer icon={ ReactIcon } />
             </Anchor>
             <Text>Opens in the same window</Text>
-            <Anchor rawProps={{ 'aria-label': 'TypeScript' }} href={`https://www.typescriptlang.org/`}>
-                <IconContainer icon={TypescriptIcon} />
+            <Anchor rawProps={ { 'aria-label': 'TypeScript' } } href="https://www.typescriptlang.org/">
+                <IconContainer icon={ TypescriptIcon } />
             </Anchor>
         </div>
     );

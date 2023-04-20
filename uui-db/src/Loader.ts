@@ -1,5 +1,7 @@
 import { DbRef } from './DbRef';
-import { DbPatch, DbTablesSet, LoadingState, ILoadingTracker } from './types';
+import {
+    DbPatch, DbTablesSet, LoadingState, ILoadingTracker,
+} from './types';
 
 export interface LoaderOptions<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
     api: (request: TRequest) => Promise<TResult>;
@@ -15,13 +17,15 @@ export interface LoaderResult<TRequest> extends LoadingState<TRequest> {
 
 export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
     private currentRequests: Set<Promise<void>> = new Set();
+
     public loaded: ILoadingTracker<TRequest, TResult>;
+
     private loadedAndLoading: ILoadingTracker<TRequest, TResult>;
 
     constructor(
         private dbRef: DbRef<TTables, any>,
         private getTracker: () => ILoadingTracker<TRequest, TResult>,
-        private options: LoaderOptions<TTables, TResult, TRequest>
+        private options: LoaderOptions<TTables, TResult, TRequest>,
     ) {
         this.loaded = getTracker();
         this.loadedAndLoading = getTracker();

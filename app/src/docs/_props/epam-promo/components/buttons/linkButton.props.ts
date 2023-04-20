@@ -15,7 +15,16 @@ import {
 } from '../../docs';
 
 const LinkButtonDoc = new DocBuilder<ButtonProps & LinkButtonMods>({ name: 'LinkButton', component: LinkButton })
-    .implements([onClickDoc, sizeDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iconWithInfoDoc, iconOptionsDoc, iCanRedirectDoc])
+    .implements([
+        onClickDoc,
+        sizeDoc,
+        dropdownTogglerDoc,
+        isDisabledDoc,
+        basicPickerTogglerDoc,
+        iconWithInfoDoc,
+        iconOptionsDoc,
+        iCanRedirectDoc,
+    ])
     .prop('caption', {
         examples: [
             { value: 'Click Me', isDefault: true },

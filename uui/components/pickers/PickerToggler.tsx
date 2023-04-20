@@ -15,7 +15,11 @@ export interface PickerTogglerMods extends types.IHasEditMode {
 }
 
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
-    return [css.root, css['size-' + (mods.size || defaultSize)], css['mode-' + (mods.mode || defaultMode)]];
+    return [
+        css.root,
+        css['size-' + (mods.size || defaultSize)],
+        css['mode-' + (mods.mode || defaultMode)],
+    ];
 }
 
 function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>) {
@@ -48,27 +52,27 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
 
     const renderItem = (row: DataRowProps<TItem, TId>) => (
         <Tag
-            key={row.rowKey}
-            caption={getCaption(row)}
-            tabIndex={-1}
-            size={props.size ? getPickerTogglerButtonSize(props.size) : '30'}
-            onClear={(e) => {
+            key={ row.rowKey }
+            caption={ getCaption(row) }
+            tabIndex={ -1 }
+            size={ props.size ? getPickerTogglerButtonSize(props.size) : '30' }
+            onClear={ (e) => {
                 row.onCheck?.(row);
                 e.stopPropagation();
-            }}
-            isDisabled={props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled}
+            } }
+            isDisabled={ props.isDisabled || props.isReadonly || row?.checkbox?.isDisabled }
         />
     );
 
     return (
         <UuiPickerToggler
-            {...props}
-            ref={ref}
-            cx={[applyPickerTogglerMods(props), props.cx]}
-            renderItem={!!props.renderItem ? props.renderItem : renderItem}
-            getName={(item) => (props.getName ? props.getName(item) : item)}
-            cancelIcon={systemIcons[props.size || defaultSize].clear}
-            dropdownIcon={systemIcons[props.size || defaultSize].foldingArrow}
+            { ...props }
+            ref={ ref }
+            cx={ [applyPickerTogglerMods(props), props.cx] }
+            renderItem={ !!props.renderItem ? props.renderItem : renderItem }
+            getName={ (item) => (props.getName ? props.getName(item) : item) }
+            cancelIcon={ systemIcons[props.size || defaultSize].clear }
+            dropdownIcon={ systemIcons[props.size || defaultSize].foldingArrow }
         />
     );
 }

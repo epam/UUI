@@ -10,7 +10,7 @@ describe('LinkButton', () => {
     });
 
     it('should be rendered correctly with props', () => {
-        const tree = renderer.create(<LinkButton color="sun" onClick={jest.fn()} icon={AcceptIcon} isDisabled={false} isDropdown onClear={jest.fn()} />).toJSON();
+        const tree = renderer.create(<LinkButton color="sun" onClick={ jest.fn() } icon={ AcceptIcon } isDisabled={ false } isDropdown onClear={ jest.fn() } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

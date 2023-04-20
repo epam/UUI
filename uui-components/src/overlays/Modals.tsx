@@ -3,6 +3,7 @@ import { UuiContexts, UuiContext } from '@epam/uui-core';
 
 export class Modals extends React.Component {
     static contextType = UuiContext;
+
     context: UuiContexts;
 
     constructor(props: {}) {

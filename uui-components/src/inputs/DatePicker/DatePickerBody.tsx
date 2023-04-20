@@ -9,6 +9,7 @@ import { i18n } from '../../i18n';
 import { CalendarPresets } from './CalendarPresets';
 import updateLocale from 'dayjs/plugin/updateLocale.js';
 import { cx } from '@epam/uui-core';
+
 dayjs.extend(updateLocale);
 
 export interface DatePickerBodyProps extends DatePickerBodyBaseProps<string> {
@@ -38,19 +39,19 @@ export class DatePickerBody extends DatePickerBodyBase<string, DatePickerBodyPro
     getView = () => {
         switch (this.props.value?.view) {
             case 'MONTH_SELECTION':
-                return <MonthSelection selectedDate={dayjs(this.props.value.selectedDate)} value={this.props.value.displayedDate} onValueChange={this.onMonthClick} />;
+                return <MonthSelection selectedDate={ dayjs(this.props.value.selectedDate) } value={ this.props.value.displayedDate } onValueChange={ this.onMonthClick } />;
             case 'YEAR_SELECTION':
-                return <YearSelection selectedDate={dayjs(this.props.value.selectedDate)} value={this.props.value.displayedDate} onValueChange={this.onYearClick} />;
+                return <YearSelection selectedDate={ dayjs(this.props.value.selectedDate) } value={ this.props.value.displayedDate } onValueChange={ this.onYearClick } />;
             case 'DAY_SELECTION':
                 return (
                     <Calendar
-                        value={dayjs(this.props.value.selectedDate)}
-                        onValueChange={this.onDayClick}
-                        displayedDate={this.props.value.displayedDate}
-                        filter={this.props.filter}
-                        getDayCX={this.props.getDayCX}
-                        renderDay={this.props.renderDay}
-                        isHoliday={this.props.isHoliday}
+                        value={ dayjs(this.props.value.selectedDate) }
+                        onValueChange={ this.onDayClick }
+                        displayedDate={ this.props.value.displayedDate }
+                        filter={ this.props.filter }
+                        getDayCX={ this.props.getDayCX }
+                        renderDay={ this.props.renderDay }
+                        isHoliday={ this.props.isHoliday }
                     />
                 );
         }
@@ -59,13 +60,13 @@ export class DatePickerBody extends DatePickerBodyBase<string, DatePickerBodyPro
     renderPresets = () => {
         return (
             <>
-                <div className={uuiDatePickerBody.separator} />
+                <div className={ uuiDatePickerBody.separator } />
                 <CalendarPresets
-                    onPresetSet={(presetVal) => {
+                    onPresetSet={ (presetVal) => {
                         // this.props.onValueChange((presetVal) => this.props.setDisplayedDateAndView(presetVal.displayedDate, presetVal.view));
                         this.props.changeIsOpen(false);
-                    }}
-                    presets={this.props.presets}
+                    } }
+                    presets={ this.props.presets }
                 />
             </>
         );
@@ -73,12 +74,12 @@ export class DatePickerBody extends DatePickerBodyBase<string, DatePickerBodyPro
 
     renderDatePicker = () => {
         return (
-            <div className={cx(uuiDatePickerBody.wrapper, this.props.cx)}>
+            <div className={ cx(uuiDatePickerBody.wrapper, this.props.cx) }>
                 <DatePickerHeader
-                    value={this.props.value}
-                    onValueChange={(newValue) => this.props.setDisplayedDateAndView(newValue.displayedDate, newValue.view)}
-                    navIconLeft={this.props.navIconLeft}
-                    navIconRight={this.props.navIconRight}
+                    value={ this.props.value }
+                    onValueChange={ (newValue) => this.props.setDisplayedDateAndView(newValue.displayedDate, newValue.view) }
+                    navIconLeft={ this.props.navIconLeft }
+                    navIconRight={ this.props.navIconRight }
                 />
                 {this.getView()}
             </div>

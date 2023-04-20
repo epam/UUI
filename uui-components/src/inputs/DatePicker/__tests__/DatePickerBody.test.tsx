@@ -8,14 +8,14 @@ describe('DatePickerBody', () => {
         const handleChange = jest.fn();
         const result = await renderToJsdomWithContextAsync(
             <DatePickerBody
-                value={{
+                value={ {
                     view: 'DAY_SELECTION',
                     selectedDate: '',
                     displayedDate: dayjs('2017-01-22').startOf('day'),
-                }}
-                setSelectedDate={handleChange}
-                setDisplayedDateAndView={jest.fn()}
-            />
+                } }
+                setSelectedDate={ handleChange }
+                setDisplayedDateAndView={ jest.fn() }
+            />,
         );
 
         const nextDayElement = result.queryByText('23');

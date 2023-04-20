@@ -13,7 +13,7 @@ describe('DataTableHeaderCell', () => {
             fix: 'left',
         };
         const tree = await renderSnapshotWithContextAsync(
-            <DataTableHeaderCell key="test" column={col} onSort={jest.fn} isFirstColumn isLastColumn={false} value={{}} onValueChange={jest.fn} />
+            <DataTableHeaderCell key="test" column={ col } onSort={ jest.fn } isFirstColumn isLastColumn={ false } value={ {} } onValueChange={ jest.fn } />,
         );
 
         expect(tree).toMatchSnapshot();

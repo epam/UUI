@@ -17,7 +17,7 @@ interface IFilterNumericBodyProps extends DropdownBodyProps {
     selectedPredicate?: string;
 }
 
-export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
+export function FilterNumericBody(props: IFilterNumericBodyProps) {
     const isInRangePredicate = props?.selectedPredicate === 'inRange' || props?.selectedPredicate === 'notInRange';
 
     const rangeValueHandler = (type: 'from' | 'to') => (val: number) => {
@@ -56,7 +56,7 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
             <FlexRow padding="12">
                 <FlexSpacer />
                 <FlexCell width="auto" alignSelf="center">
-                    <LinkButton isDisabled={isClearDisabled} size={size} caption={i18n.pickerInput.clearSelectionButtonSingle} onClick={clearSelection} />
+                    <LinkButton isDisabled={ isClearDisabled } size={ size } caption={ i18n.pickerInput.clearSelectionButtonSingle } onClick={ clearSelection } />
                 </FlexCell>
             </FlexRow>
         );
@@ -66,23 +66,23 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
         const value = props.value as INumericRangeValue;
         return (
             <div>
-                <FlexRow padding="12" vPadding="24" alignItems="center" spacing="12" borderBottom={true}>
-                    <FlexCell width={'100%'}>
+                <FlexRow padding="12" vPadding="24" alignItems="center" spacing="12" borderBottom={ true }>
+                    <FlexCell width="100%">
                         <NumericInput
-                            value={value?.from ?? null}
-                            onValueChange={rangeValueHandler('from')}
+                            value={ value?.from ?? null }
+                            onValueChange={ rangeValueHandler('from') }
                             size="30"
                             placeholder="Min"
-                            formatOptions={{ maximumFractionDigits: 2 }}
+                            formatOptions={ { maximumFractionDigits: 2 } }
                         />
                     </FlexCell>
-                    <FlexCell width={'100%'}>
+                    <FlexCell width="100%">
                         <NumericInput
-                            value={value?.to ?? null}
-                            onValueChange={rangeValueHandler('to')}
+                            value={ value?.to ?? null }
+                            onValueChange={ rangeValueHandler('to') }
                             size="30"
                             placeholder="Max"
-                            formatOptions={{ maximumFractionDigits: 2 }}
+                            formatOptions={ { maximumFractionDigits: 2 } }
                         />
                     </FlexCell>
                 </FlexRow>
@@ -93,18 +93,18 @@ export const FilterNumericBody = (props: IFilterNumericBodyProps) => {
 
     return (
         <div>
-            <FlexRow padding="12" vPadding="24" alignItems="center" borderBottom={true}>
-                <FlexCell width={130}>
+            <FlexRow padding="12" vPadding="24" alignItems="center" borderBottom={ true }>
+                <FlexCell width={ 130 }>
                     <NumericInput
-                        value={typeof props.value === 'number' ? props.value : null}
-                        onValueChange={props.onValueChange}
+                        value={ typeof props.value === 'number' ? props.value : null }
+                        onValueChange={ props.onValueChange }
                         size="30"
-                        placeholder={'Enter a number'}
-                        formatOptions={{ maximumFractionDigits: 2 }}
+                        placeholder="Enter a number"
+                        formatOptions={ { maximumFractionDigits: 2 } }
                     />
                 </FlexCell>
             </FlexRow>
             {renderFooter()}
         </div>
     );
-};
+}

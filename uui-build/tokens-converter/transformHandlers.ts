@@ -1,5 +1,7 @@
 import { ShadowToken, TokenObject } from './types';
-import { isVariable, isGradient, replaceJsonVarsFromGradient, createVariableToken, createSizeString, createShadowString, isObject } from './helpers';
+import {
+    isVariable, isGradient, replaceJsonVarsFromGradient, createVariableToken, createSizeString, createShadowString, isObject,
+} from './helpers';
 
 export const transformHandler = {
     color: (value: string): string => {

@@ -41,5 +41,5 @@ export const FlexRow = withMods<FlexRowProps, RowMods>(
         return {
             ...props,
         } as FlexRowProps;
-    }
+    },
 );

@@ -6,6 +6,6 @@ export function useArrayDataSource<TItem, TId, TFilter>(props: ArrayDataSourcePr
         () => new ArrayDataSource({ ...props }),
         (dataSource) => dataSource.setProps(props),
         (dataSource) => dataSource.destroy(),
-        deps
+        deps,
     );
 }

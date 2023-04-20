@@ -63,7 +63,7 @@ describe('ColumnsConfigurationModal', () => {
     it('should be rendered correctly', async () => {
         const defaultConfig = getDefaultColumnsConfig(mockColumns);
         const tree = await renderSnapshotWithContextAsync(
-            <ColumnsConfigurationModal {...modalProps} columns={mockColumns} columnsConfig={defaultConfig} defaultConfig={defaultConfig} />
+            <ColumnsConfigurationModal { ...modalProps } columns={ mockColumns } columnsConfig={ defaultConfig } defaultConfig={ defaultConfig } />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -71,7 +71,7 @@ describe('ColumnsConfigurationModal', () => {
     it('should disable Apply button if all columns are hidden', async () => {
         const defaultConfig = getDefaultColumnsConfig(mockHiddenColumns);
         const tree = await renderSnapshotWithContextAsync(
-            <ColumnsConfigurationModal {...modalProps} columns={mockHiddenColumns} columnsConfig={defaultConfig} defaultConfig={defaultConfig} />
+            <ColumnsConfigurationModal { ...modalProps } columns={ mockHiddenColumns } columnsConfig={ defaultConfig } defaultConfig={ defaultConfig } />,
         );
         expect(tree).toMatchSnapshot();
     });

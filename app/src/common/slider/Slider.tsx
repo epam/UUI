@@ -12,6 +12,7 @@ export interface SliderProps extends IAnalyticableOnChange<number> {
 
 export class Slider extends React.Component<SliderProps> {
     public static contextType = UuiContext;
+
     public context: UuiContexts;
 
     constructor(props: SliderProps) {
@@ -41,24 +42,24 @@ export class Slider extends React.Component<SliderProps> {
     render() {
         const { slides } = this.props;
         return (
-            <div className={css.slider}>
-                <div className={css.controls}>
+            <div className={ css.slider }>
+                <div className={ css.controls }>
                     <IconButton
-                        rawProps={{ 'aria-label': 'Backward' }}
+                        rawProps={ { 'aria-label': 'Backward' } }
                         color="blue"
-                        isDisabled={this.state.activeSlide === 0}
-                        icon={ArrowPrev}
-                        onClick={this.handlePreviousClick}
+                        isDisabled={ this.state.activeSlide === 0 }
+                        icon={ ArrowPrev }
+                        onClick={ this.handlePreviousClick }
                     />
                     <IconButton
-                        rawProps={{ 'aria-label': 'Forward' }}
+                        rawProps={ { 'aria-label': 'Forward' } }
                         color="blue"
-                        isDisabled={this.state.activeSlide === this.props.slides.length - 1}
-                        icon={ArrowNext}
-                        onClick={this.handleNextClick}
+                        isDisabled={ this.state.activeSlide === this.props.slides.length - 1 }
+                        icon={ ArrowNext }
+                        onClick={ this.handleNextClick }
                     />
                 </div>
-                <Slide {...slides[this.state.activeSlide]} />
+                <Slide { ...slides[this.state.activeSlide] } />
             </div>
         );
     }

@@ -10,7 +10,7 @@ export class GettingStartedForDesignersDoc extends BaseDocsBlock {
     renderDocTitle() {
         return (
             <FlexRow>
-                <div className={css.title}>{this.title}</div>
+                <div className={ css.title }>{this.title}</div>
                 <FlexSpacer />
                 {this.renderMultiSwitch()}
             </FlexRow>

@@ -8,9 +8,9 @@ export default function BasicExample() {
     return (
         <>
             <Tag caption="Simple Tag" />
-            <Tag caption="Simple Tag" onClear={() => null} />
-            <Tag caption="Name Surname" icon={MyIcon} />
-            <Tag caption="items selected" count={value} />
+            <Tag caption="Simple Tag" onClear={ () => null } />
+            <Tag caption="Name Surname" icon={ MyIcon } />
+            <Tag caption="items selected" count={ value } />
         </>
     );
 }

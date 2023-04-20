@@ -22,12 +22,12 @@ export class ResizableContext extends React.Component<DemoComponentProps, DemoCo
         const { DemoComponent, props } = this.props;
 
         return (
-            <div className={css.panel}>
-                <div className={css.slider}>
-                    <Slider value={this.state.widthPercent} onValueChange={this.resizeHandler} min={0} max={100} step={1} />
+            <div className={ css.panel }>
+                <div className={ css.slider }>
+                    <Slider value={ this.state.widthPercent } onValueChange={ this.resizeHandler } min={ 0 } max={ 100 } step={ 1 } />
                 </div>
-                <div style={{ width: `${this.state.widthPercent}%` }}>
-                    <DemoComponent {...props} />
+                <div style={ { width: `${this.state.widthPercent}%` } }>
+                    <DemoComponent { ...props } />
                 </div>
             </div>
         );

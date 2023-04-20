@@ -1,11 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var getCode = require('./getCode');
-var templateEndpoint = require('./templateEndpoint');
-var testDataApis = require('./testDataApis');
-var getChangelog = require('./getChangelog');
-var docsApi = require('./docs');
-var errorApi = require('./error');
+const express = require('express');
+
+const router = express.Router();
+const getCode = require('./getCode');
+const templateEndpoint = require('./templateEndpoint');
+const testDataApis = require('./testDataApis');
+const getChangelog = require('./getChangelog');
+const docsApi = require('./docs');
+const errorApi = require('./error');
 const successApi = require('./success');
 
 const bodyParser = require('body-parser');

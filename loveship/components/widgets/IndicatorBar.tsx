@@ -12,8 +12,8 @@ export const IndicatorBar = React.forwardRef<HTMLDivElement, IIndicatorProps>((p
     const { progress } = props;
 
     return progress || progress === 0 ? (
-        <ProgressBar ref={ref} progress={progress} cx={cx(css.root, props.cx)} hideLabel />
+        <ProgressBar ref={ ref } progress={ progress } cx={ cx(css.root, props.cx) } hideLabel />
     ) : (
-        <IndeterminateBar ref={ref} cx={cx(css.root, props.cx)} />
+        <IndeterminateBar ref={ ref } cx={ cx(css.root, props.cx) } />
     );
 });

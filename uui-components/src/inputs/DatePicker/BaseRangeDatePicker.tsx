@@ -1,7 +1,11 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import { DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType } from '@epam/uui-core';
-import { defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat, supportedDateFormats } from '../../';
+import {
+    DropdownBodyProps, UuiContexts, IDropdownToggler, UuiContext, isChildFocusable, BaseRangeDatePickerProps, RangeDatePickerInputType,
+} from '@epam/uui-core';
+import {
+    defaultFormat, PickerBodyValue, RangeDatePickerValue, Dropdown, valueFormat, supportedDateFormats,
+} from '../../';
 import { toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
@@ -25,7 +29,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
     }
 
     const inputFormat = format || defaultFormat;
-    let inputValue = toCustomDateRangeFormat(value, inputFormat);
+    const inputValue = toCustomDateRangeFormat(value, inputFormat);
 
     return {
         inputValue,
@@ -36,6 +40,7 @@ const getStateFromValue = (value: RangeDatePickerValue, format: string) => {
 
 export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProps> extends React.Component<TProps, RangeDatePickerState> {
     static contextType = UuiContext;
+
     context: UuiContexts;
 
     inFocus: RangeDatePickerInputType;
@@ -220,12 +225,12 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
     render() {
         return (
             <Dropdown
-                renderTarget={(props) => (this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props))}
-                renderBody={(props) => !this.props.isReadonly && !this.props.isDisabled && this.renderBody(props)}
-                onValueChange={!this.props.isReadonly && !this.props.isDisabled ? this.toggleOpening : null}
-                value={this.state.isOpen}
-                modifiers={[{ name: 'offset', options: { offset: [0, 6] } }]}
-                placement={this.props.placement}
+                renderTarget={ (props) => (this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props)) }
+                renderBody={ (props) => !this.props.isReadonly && !this.props.isDisabled && this.renderBody(props) }
+                onValueChange={ !this.props.isReadonly && !this.props.isDisabled ? this.toggleOpening : null }
+                value={ this.state.isOpen }
+                modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
+                placement={ this.props.placement }
             />
         );
     }

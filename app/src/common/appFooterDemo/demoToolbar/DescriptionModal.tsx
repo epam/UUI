@@ -1,4 +1,6 @@
-import { Button, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, ScrollBars } from '@epam/promo';
+import {
+    Button, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, ScrollBars,
+} from '@epam/promo';
 import { FlexSpacer } from '@epam/uui-components';
 import React, { useCallback, useEffect, useState } from 'react';
 import { IModal } from '@epam/uui-core';
@@ -33,25 +35,25 @@ export function DescriptionModal(props: IDemoItemDescriptionModal) {
     }, [modalProps, valueLocal]);
 
     return (
-        <ModalBlocker blockerShadow="dark" {...modalProps}>
+        <ModalBlocker blockerShadow="dark" { ...modalProps }>
             <ModalWindow width="600" height="auto">
-                <ModalHeader borderBottom title={demoItemName} onClose={handleClose} />
+                <ModalHeader borderBottom title={ demoItemName } onClose={ handleClose } />
                 <ScrollBars hasTopShadow hasBottomShadow>
                     <SlateEditor
                         placeholder="Please type"
-                        plugins={EditableDocContent.plugins}
+                        plugins={ EditableDocContent.plugins }
                         mode="inline"
-                        isReadonly={isReadOnly()}
-                        minHeight={400}
+                        isReadonly={ isReadOnly() }
+                        minHeight={ 400 }
                         fontSize="14"
-                        value={valueLocal}
-                        onValueChange={setValueLocal}
+                        value={ valueLocal }
+                        onValueChange={ setValueLocal }
                     />
                 </ScrollBars>
                 <ModalFooter borderTop>
                     <FlexSpacer />
-                    <Button color="gray50" fill="white" caption="Cancel" onClick={handleClose} />
-                    {!isReadOnly() && <Button color="green" caption="Save" onClick={handleSaveAndClose} />}
+                    <Button color="gray50" fill="white" caption="Cancel" onClick={ handleClose } />
+                    {!isReadOnly() && <Button color="green" caption="Save" onClick={ handleSaveAndClose } />}
                 </ModalFooter>
             </ModalWindow>
         </ModalBlocker>

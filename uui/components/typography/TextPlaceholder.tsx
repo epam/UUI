@@ -12,20 +12,28 @@ export interface ITextPlaceholderProps extends IHasRawProps<React.HTMLAttributes
 export type TextPlaceholderProps = PropsWithChildren<ITextPlaceholderProps>;
 
 export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<ITextPlaceholderProps>> = (props) => {
-    const pattern = `&nbsp;`;
+    const pattern = '&nbsp;';
     const text = React.useMemo(() => {
         const words = [];
         for (let i = 0; i < (props.wordsCount || 1); i++) {
-            let lengthWord = Math.floor(Math.random() * 10 + 8);
+            const lengthWord = Math.floor(Math.random() * 10 + 8);
             words.push(pattern.repeat(lengthWord));
         }
         return words;
     }, [props.wordsCount]);
 
     return (
-        <div aria-busy={true} className={css.container} {...props.rawProps}>
+        <div aria-busy={ true } className={ css.container } { ...props.rawProps }>
             {text.map((it: string, index: number) => (
-                <span key={index} className={cx([props.cx, css.loadingWord, !props.isNotAnimated && css.animatedLoading])} dangerouslySetInnerHTML={{ __html: it }} />
+                <span
+                    key={ index }
+                    className={ cx([
+                        props.cx,
+                        css.loadingWord,
+                        !props.isNotAnimated && css.animatedLoading,
+                    ]) }
+                    dangerouslySetInnerHTML={ { __html: it } }
+                />
             ))}
         </div>
     );

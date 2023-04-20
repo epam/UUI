@@ -6,5 +6,5 @@ import css from './TimePicker.scss';
 export const TimePickerBody = withMods<TimePickerBodyProps>(
     uuiTimePickerBody,
     () => [css.root],
-    () => ({ addIcon: ArrowIcon, subtractIcon: ArrowIcon })
+    () => ({ addIcon: ArrowIcon, subtractIcon: ArrowIcon }),
 );

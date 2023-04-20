@@ -1,4 +1,6 @@
-import { DataSourceState, SortingOption, DataRowPathItem, CascadeSelection } from '../../../../types';
+import {
+    DataSourceState, SortingOption, DataRowPathItem, CascadeSelection,
+} from '../../../../types';
 import { LazyListViewProps } from '../LazyListView';
 import { CompositeKeysMap } from './CompositeKeysMap';
 

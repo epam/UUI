@@ -61,7 +61,7 @@ function filterAndSort(request, allItems, typeName) {
 
 function group(request, allItems, typeName) {
     request = request || {};
-    let filter = request.filter || {};
+    const filter = request.filter || {};
 
     let groups = [];
     const items = filterAndSort(request.itemsRequest, allItems).items;
@@ -87,7 +87,12 @@ function group(request, allItems, typeName) {
     return filterAndSort(request, groups, typeName);
 }
 
-['continents', 'countries', 'languages', 'products'].forEach((entitiesName) => {
+[
+    'continents',
+    'countries',
+    'languages',
+    'products',
+].forEach((entitiesName) => {
     router.post(`/${entitiesName}`, async (req, res) => {
         const items = await helpers.getData(entitiesName);
         const result = filterAndSort(req.body, items);

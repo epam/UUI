@@ -82,14 +82,14 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
 
     render() {
         return (
-            <div className={css.container}>
+            <div className={ css.container }>
                 <SlateEditor
-                    value={this.state.value}
-                    onValueChange={this.onChange}
-                    autoFocus={true}
-                    plugins={this.plugins}
+                    value={ this.state.value }
+                    onValueChange={ this.onChange }
+                    autoFocus={ true }
+                    plugins={ this.plugins }
                     placeholder="Add description"
-                    minHeight={'none'}
+                    minHeight="none"
                 />
             </div>
         );

@@ -17,7 +17,7 @@ const ColumnsBlock: React.FC<IColumnsBlockProps> = (props) => {
             props.columns.filter((column) => !!column.caption),
             (i) => {
                 return columnsConfig[i.key]?.order;
-            }
+            },
         );
 
         return sortedColumns.map((column) => ({
@@ -31,7 +31,7 @@ const ColumnsBlock: React.FC<IColumnsBlockProps> = (props) => {
     return (
         <Accordion title="Columns" mode="inline" padding="18">
             {items.map((item) => (
-                <Column value={props.columnsConfig} onValueChange={props.onColumnsConfigChange} columnInfo={item} key={item.key} />
+                <Column value={ props.columnsConfig } onValueChange={ props.onColumnsConfigChange } columnInfo={ item } key={ item.key } />
             ))}
         </Accordion>
     );

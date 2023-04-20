@@ -14,18 +14,20 @@ export interface AvatarStackProps extends IHasCX, IHasRawProps<React.HTMLAttribu
 }
 
 export const AvatarStack = React.forwardRef<HTMLDivElement, AvatarStackProps>((props, ref) => {
-    const { avatarSize, urlArray, direction, avatarsCount, renderItem } = props;
+    const {
+        avatarSize, urlArray, direction, avatarsCount, renderItem,
+    } = props;
 
     const firstElements = avatarsCount && urlArray.length > avatarsCount ? urlArray.slice(0, avatarsCount) : urlArray;
-    const styleObj = { ['--overlap']: `-${+avatarSize / 4}px` } as object;
+    const styleObj = { '--overlap': `-${+avatarSize / 4}px` } as object;
     return (
-        <FlexRow cx={props.cx} ref={ref} rawProps={props.rawProps}>
-            <FlexRow rawProps={{ role: 'group', style: styleObj }} cx={cx('avatars', css.container, css['avatar-' + direction])}>
+        <FlexRow cx={ props.cx } ref={ ref } rawProps={ props.rawProps }>
+            <FlexRow rawProps={ { role: 'group', style: styleObj } } cx={ cx('avatars', css.container, css['avatar-' + direction]) }>
                 {firstElements.map((avatar, index) => {
                     return renderItem ? (
-                        <React.Fragment key={index}>{renderItem(avatar)}</React.Fragment>
+                        <React.Fragment key={ index }>{renderItem(avatar)}</React.Fragment>
                     ) : (
-                        <Avatar key={index} size={avatarSize} img={avatar} alt="avatar" />
+                        <Avatar key={ index } size={ avatarSize } img={ avatar } alt="avatar" />
                     );
                 })}
             </FlexRow>

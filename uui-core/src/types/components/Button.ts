@@ -17,13 +17,13 @@ import { Icon } from '../objects';
 
 export interface ButtonBaseCoreProps
     extends IHasCX,
-        IClickable,
-        ICanRedirect,
-        IDisableable,
-        IHasIcon,
-        IAnalyticableClick,
-        IHasTabIndex,
-        IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {}
+    IClickable,
+    ICanRedirect,
+    IDisableable,
+    IHasIcon,
+    IAnalyticableClick,
+    IHasTabIndex,
+    IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {}
 
 export interface ButtonCoreProps extends ButtonBaseCoreProps, IHasCaption, IBasicPickerToggler, IDropdownToggler, IHasPlaceholder {
     /** Icon for drop-down toggler */

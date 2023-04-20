@@ -7,7 +7,7 @@ export default function DatePickerFilterExample() {
 
     return (
         <FlexRow>
-            <DatePicker value={value} onValueChange={onValueChange} format="MMM D, YYYY" filter={(day: Dayjs) => day.valueOf() >= dayjs().subtract(1, 'day').valueOf()} />
+            <DatePicker value={ value } onValueChange={ onValueChange } format="MMM D, YYYY" filter={ (day: Dayjs) => day.valueOf() >= dayjs().subtract(1, 'day').valueOf() } />
         </FlexRow>
     );
 }

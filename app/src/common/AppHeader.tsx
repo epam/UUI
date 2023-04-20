@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, DropdownMenuSplitter, MainMenuDropdown } from '@epam/promo';
+import {
+    BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, DropdownMenuSplitter, MainMenuDropdown,
+} from '@epam/promo';
 import { Anchor, MainMenuLogo } from '@epam/uui-components';
 import { UUI4 } from './docs';
 import { svc } from '../services';
@@ -11,7 +13,7 @@ type Theme = 'promo' | 'loveship' | 'vanilla_thunder';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
-export const AppHeader = () => {
+export function AppHeader() {
     const [theme, setTheme] = useState(document.body.classList.value.match(/uui-theme-(\S+)\s*/)[1]);
 
     const sendEvent = (link: string) => {
@@ -29,26 +31,31 @@ export const AppHeader = () => {
         const pathName = svc.uuiRouter.getCurrentLink().pathname;
         return (
             <>
-                <BurgerButton caption="Home" link={{ pathname: '/' }} clickAnalyticsEvent={() => sendEvent('Welcome')} />
+                <BurgerButton caption="Home" link={ { pathname: '/' } } clickAnalyticsEvent={ () => sendEvent('Welcome') } />
                 <BurgerButton
                     caption="Documents"
-                    link={{ pathname: '/documents', query: { id: 'gettingStarted' } }}
-                    isLinkActive={pathName === 'documents' && !category}
-                    clickAnalyticsEvent={() => sendEvent('Documents')}
+                    link={ { pathname: '/documents', query: { id: 'gettingStarted' } } }
+                    isLinkActive={ pathName === 'documents' && !category }
+                    clickAnalyticsEvent={ () => sendEvent('Documents') }
                 />
                 <BurgerButton
                     caption="Assets"
-                    link={{ pathname: '/documents', query: { id: 'icons', category: 'assets' } }}
-                    isLinkActive={pathName === '/documents' && category === 'assets'}
-                    clickAnalyticsEvent={() => sendEvent('Assets')}
+                    link={ { pathname: '/documents', query: { id: 'icons', category: 'assets' } } }
+                    isLinkActive={ pathName === '/documents' && category === 'assets' }
+                    clickAnalyticsEvent={ () => sendEvent('Assets') }
                 />
                 <BurgerButton
                     caption="Components"
-                    link={{ pathname: '/documents', query: { id: 'accordion', mode: 'doc', skin: UUI4, category: 'components' } }}
-                    isLinkActive={pathName === '/documents' && category === 'components'}
-                    clickAnalyticsEvent={() => sendEvent('Components')}
+                    link={ {
+                        pathname: '/documents',
+                        query: {
+                            id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
+                        },
+                    } }
+                    isLinkActive={ pathName === '/documents' && category === 'components' }
+                    clickAnalyticsEvent={ () => sendEvent('Components') }
                 />
-                <BurgerButton caption="Demo" link={{ pathname: '/demo' }} isLinkActive={pathName === '/demo'} clickAnalyticsEvent={() => sendEvent('Demo')} />
+                <BurgerButton caption="Demo" link={ { pathname: '/demo' } } isLinkActive={ pathName === '/demo' } clickAnalyticsEvent={ () => sendEvent('Demo') } />
             </>
         );
     };
@@ -56,14 +63,14 @@ export const AppHeader = () => {
     const renderThemeSwitcher = () => {
         const renderBodyItems = () => (
             <>
-                <MainMenuButton caption="Promo" isLinkActive={theme === 'promo'} iconPosition="right" onClick={() => updateTheme('promo')} />
-                <MainMenuButton caption="Loveship" isLinkActive={theme === 'loveship'} iconPosition="right" onClick={() => updateTheme('loveship')} />
+                <MainMenuButton caption="Promo" isLinkActive={ theme === 'promo' } iconPosition="right" onClick={ () => updateTheme('promo') } />
+                <MainMenuButton caption="Loveship" isLinkActive={ theme === 'loveship' } iconPosition="right" onClick={ () => updateTheme('loveship') } />
                 <DropdownMenuSplitter />
-                <MainMenuButton caption="RD Portal" isLinkActive={theme === 'vanilla_thunder'} iconPosition="right" onClick={() => updateTheme('vanilla_thunder')} />
+                <MainMenuButton caption="RD Portal" isLinkActive={ theme === 'vanilla_thunder' } iconPosition="right" onClick={ () => updateTheme('vanilla_thunder') } />
             </>
         );
 
-        return <MainMenuDropdown caption={'Select Theme'} renderBody={renderBodyItems} />;
+        return <MainMenuDropdown caption="Select Theme" renderBody={ renderBodyItems } />;
     };
 
     const getMainMenuItems = () => {
@@ -75,12 +82,12 @@ export const AppHeader = () => {
                 id: 'burger',
                 priority: 100500,
                 collapsedContainer: true,
-                render: () => <Burger renderBurgerContent={renderBurger} logoUrl="/static/logo.svg" key="burger" />,
+                render: () => <Burger renderBurgerContent={ renderBurger } logoUrl="/static/logo.svg" key="burger" />,
             },
             {
                 id: 'logo',
                 priority: 100499,
-                render: () => <MainMenuLogo link={{ pathname: '/' }} onClick={() => sendEvent('Welcome')} logoUrl="/static/logo.svg" key="logo" />,
+                render: () => <MainMenuLogo link={ { pathname: '/' } } onClick={ () => sendEvent('Welcome') } logoUrl="/static/logo.svg" key="logo" />,
             },
             {
                 id: 'documents',
@@ -88,10 +95,10 @@ export const AppHeader = () => {
                 render: () => (
                     <MainMenuButton
                         caption="Documents"
-                        link={{ pathname: '/documents', query: { id: 'gettingStarted' } }}
-                        isLinkActive={pathName === '/documents' && category !== 'components' && category !== 'assets'}
+                        link={ { pathname: '/documents', query: { id: 'gettingStarted' } } }
+                        isLinkActive={ pathName === '/documents' && category !== 'components' && category !== 'assets' }
                         showInBurgerMenu
-                        clickAnalyticsEvent={analyticsEvents.header.link('Documents')}
+                        clickAnalyticsEvent={ analyticsEvents.header.link('Documents') }
                         key="documents"
                     />
                 ),
@@ -102,10 +109,10 @@ export const AppHeader = () => {
                 render: () => (
                     <MainMenuButton
                         caption="Assets"
-                        link={{ pathname: '/documents', query: { id: 'icons', category: 'assets' } }}
-                        isLinkActive={pathName === '/documents' && category === 'assets'}
+                        link={ { pathname: '/documents', query: { id: 'icons', category: 'assets' } } }
+                        isLinkActive={ pathName === '/documents' && category === 'assets' }
                         showInBurgerMenu
-                        clickAnalyticsEvent={analyticsEvents.header.link('Assets')}
+                        clickAnalyticsEvent={ analyticsEvents.header.link('Assets') }
                         key="assets"
                     />
                 ),
@@ -116,10 +123,15 @@ export const AppHeader = () => {
                 render: () => (
                     <MainMenuButton
                         caption="Components"
-                        link={{ pathname: '/documents', query: { id: 'accordion', mode: 'doc', skin: UUI4, category: 'components' } }}
-                        isLinkActive={pathName === '/documents' && category === 'components'}
+                        link={ {
+                            pathname: '/documents',
+                            query: {
+                                id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
+                            },
+                        } }
+                        isLinkActive={ pathName === '/documents' && category === 'components' }
                         showInBurgerMenu
-                        clickAnalyticsEvent={analyticsEvents.header.link('Components')}
+                        clickAnalyticsEvent={ analyticsEvents.header.link('Components') }
                         key="components"
                     />
                 ),
@@ -130,10 +142,10 @@ export const AppHeader = () => {
                 render: () => (
                     <MainMenuButton
                         caption="Demo"
-                        link={{ pathname: '/demo' }}
-                        isLinkActive={pathName === '/demo'}
+                        link={ { pathname: '/demo' } }
+                        isLinkActive={ pathName === '/demo' }
                         showInBurgerMenu
-                        clickAnalyticsEvent={analyticsEvents.header.link('Demo')}
+                        clickAnalyticsEvent={ analyticsEvents.header.link('Demo') }
                         key="demo"
                     />
                 ),
@@ -141,17 +153,17 @@ export const AppHeader = () => {
             window.location.host.includes('localhost') && {
                 id: 'Sandbox',
                 priority: 1,
-                render: () => <MainMenuButton caption="Sandbox" link={{ pathname: '/sandbox' }} isLinkActive={pathName === '/sandbox'} key="sandbox" />,
+                render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
             },
-            { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={100500} key="spacer" /> },
+            { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
             window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: renderThemeSwitcher },
             {
                 id: 'survey',
                 priority: 0,
                 render: () => (
                     <Anchor
-                        rawProps={{ style: { height: '60px' } }}
-                        target={'_blank'}
+                        rawProps={ { style: { height: '60px' } } }
+                        target="_blank"
                         href="https://forms.office.com/pages/responsepage.aspx?id=0HIbtJ9OJkyKaflJ82fJHe0Hoi0jIyFGmBEkXWrhi8lURTY3WkFaOUNLR0JMR1UzQjRIUlFYQ1QzNi4u"
                     >
                         <img height="60px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
@@ -162,9 +174,9 @@ export const AppHeader = () => {
                 id: 'git',
                 priority: 0,
                 render: () => (
-                    <Anchor cx={css.linkContainer} href={GIT_LINK} target="_blank" onClick={() => sendEvent(GIT_LINK)} key="git">
-                        <IconContainer icon={GitIcon} cx={css.gitIcon} />
-                        <Text font="sans-semibold" fontSize="14" lineHeight="24" cx={css.linkCaption}>
+                    <Anchor cx={ css.linkContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="git">
+                        <IconContainer icon={ GitIcon } cx={ css.gitIcon } />
+                        <Text font="sans-semibold" fontSize="14" lineHeight="24" cx={ css.linkCaption }>
                             Open Git
                         </Text>
                     </Anchor>
@@ -174,5 +186,5 @@ export const AppHeader = () => {
         ].filter((i) => !!i);
     };
 
-    return <MainMenu cx={css.root} items={getMainMenuItems()}></MainMenu>;
-};
+    return <MainMenu cx={ css.root } items={ getMainMenuItems() }></MainMenu>;
+}

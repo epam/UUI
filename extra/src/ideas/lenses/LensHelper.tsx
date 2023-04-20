@@ -6,6 +6,7 @@ type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? Element
 
 class EditableLensHelper<T> {
     public value: T;
+
     public onValueChange: (newVal: T) => void;
 
     constructor(editable: IEditable<T>) {
@@ -67,8 +68,8 @@ class SomeComponent extends React.Component<IEditable<SomeComponentState>> {
         const lens = Lens.onEditableComponent<SomeComponentState>(this);
         return (
             <>
-                <TextInput {...lens.prop('name')} />
-                <TextInput {...lens.prop('arr').index(10).prop('itemName')} />
+                <TextInput { ...lens.prop('name') } />
+                <TextInput { ...lens.prop('arr').index(10).prop('itemName') } />
             </>
         );
     }

@@ -18,7 +18,9 @@ const i18nLocal = i18n.tables.columnsConfigurationModal;
 export function PinIconButton(props: IPinIconButton) {
     const [isHovered, setIsHovered] = useState(false);
 
-    const { id, onTogglePin, isPinned, canUnpin } = props;
+    const {
+        id, onTogglePin, isPinned, canUnpin,
+    } = props;
     const isPinnedAlways = isPinned && !canUnpin;
 
     const tooltipText = useMemo(() => {
@@ -36,14 +38,18 @@ export function PinIconButton(props: IPinIconButton) {
             return isHovered ? PinOffIcon : PinOnIcon;
         }
         return PinOnIcon;
-    }, [isPinnedAlways, isHovered, isPinned]);
+    }, [
+        isPinnedAlways,
+        isHovered,
+        isPinned,
+    ]);
 
     const pinClickHandler = isPinnedAlways ? undefined : () => onTogglePin(id);
 
     return (
-        <span onMouseOver={() => setIsHovered(true)} onMouseOut={() => setIsHovered(false)}>
-            <Tooltip content={tooltipText} placement="bottom" color="contrast">
-                <IconButton icon={pinIcon} onClick={pinClickHandler} isDisabled={isPinnedAlways} color={isPinned ? 'info' : undefined} />
+        <span onMouseOver={ () => setIsHovered(true) } onMouseOut={ () => setIsHovered(false) }>
+            <Tooltip content={ tooltipText } placement="bottom" color="contrast">
+                <IconButton icon={ pinIcon } onClick={ pinClickHandler } isDisabled={ isPinnedAlways } color={ isPinned ? 'info' : undefined } />
             </Tooltip>
         </span>
     );

@@ -14,19 +14,19 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, IProgressBarProps>((
     const barLabel = label || `${props.progress || 0}%`;
 
     return (
-        <div ref={ref} className={cx(props.cx, css.container)} {...props.rawProps}>
+        <div ref={ ref } className={ cx(props.cx, css.container) } { ...props.rawProps }>
             <div
                 role="progressbar"
-                className={cx(css.bar, 'bar')}
-                style={{ width: `${props.progress || 0}%` }}
-                aria-valuenow={progress}
-                aria-valuemin={0}
-                aria-valuemax={100}
+                className={ cx(css.bar, 'bar') }
+                style={ { width: `${props.progress || 0}%` } }
+                aria-valuenow={ progress }
+                aria-valuemin={ 0 }
+                aria-valuemax={ 100 }
             />
             {!hideLabel && (
                 <>
-                    <div className={cx(css.label, 'label')}>{barLabel}</div>
-                    <div className={cx(css.label, 'topLabel')} style={{ clipPath: `inset(0 0 0 ${props.progress}%)` }}>
+                    <div className={ cx(css.label, 'label') }>{barLabel}</div>
+                    <div className={ cx(css.label, 'topLabel') } style={ { clipPath: `inset(0 0 0 ${props.progress}%)` } }>
                         {barLabel}
                     </div>
                 </>

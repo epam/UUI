@@ -34,14 +34,14 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
             ...t.transformSegment(stage.startDate, stage.endDate),
         };
 
-        let thickness = 2;
+        const thickness = 2;
         ctx.fillStyle = '#fff';
         ctx.fillRect(stageSegment.leftTrimmed - thickness, 0, stageSegment.widthTrimmed + thickness * 2, this.canvasHeight + thickness * 2 - thickness);
 
         ctx.fillStyle = stage.color;
         ctx.fillRect(stageSegment.leftTrimmed, 0, stageSegment.widthTrimmed, this.canvasHeight - thickness);
 
-        let padding = 12;
+        const padding = 12;
         let text = stage.eventName + ' ' + stage.name;
         let textWidth = ctx.measureText(text).width;
         let left = getleftXforCentering(stageSegment, textWidth, padding);

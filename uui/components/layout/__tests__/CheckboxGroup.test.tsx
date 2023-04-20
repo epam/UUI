@@ -7,13 +7,10 @@ describe('CheckboxGroup', () => {
         const tree = renderer
             .create(
                 <CheckboxGroup
-                    value={null}
-                    onValueChange={() => {}}
-                    items={[
-                        { id: 1, name: 'Test1' },
-                        { id: 2, name: 'Test2' },
-                    ]}
-                />
+                    value={ null }
+                    onValueChange={ () => {} }
+                    items={ [{ id: 1, name: 'Test1' }, { id: 2, name: 'Test2' }] }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();
@@ -23,15 +20,12 @@ describe('CheckboxGroup', () => {
         const tree = renderer
             .create(
                 <CheckboxGroup
-                    value={null}
-                    onValueChange={() => {}}
-                    items={[
-                        { id: 1, name: 'Test1' },
-                        { id: 2, name: 'Test2' },
-                    ]}
+                    value={ null }
+                    onValueChange={ () => {} }
+                    items={ [{ id: 1, name: 'Test1' }, { id: 2, name: 'Test2' }] }
                     direction="horizontal"
                     isDisabled
-                />
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

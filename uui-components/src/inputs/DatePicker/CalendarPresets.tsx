@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { IHasCX, cx, IHasRawProps, IHasForwardedRef, RangeDatePickerPresets, RangeDatePickerPresetValue } from '@epam/uui-core';
+import {
+    IHasCX, cx, IHasRawProps, IHasForwardedRef, RangeDatePickerPresets, RangeDatePickerPresetValue,
+} from '@epam/uui-core';
 
 export const uuiPresets = {
     container: 'uui-presets-container',
@@ -30,10 +32,10 @@ export class CalendarPresets extends React.Component<CalendarPresetsProps> {
 
     render() {
         return (
-            <div ref={this.props.forwardedRef} className={cx(uuiPresets.container, this.props.cx)} {...this.props.rawProps}>
-                <div className={uuiPresets.header}>Presets</div>
+            <div ref={ this.props.forwardedRef } className={ cx(uuiPresets.container, this.props.cx) } { ...this.props.rawProps }>
+                <div className={ uuiPresets.header }>Presets</div>
                 {this.getPresets().map((item) => (
-                    <div key={item.name} className={uuiPresets.item} onClick={() => this.props.onPresetSet(item)}>
+                    <div key={ item.name } className={ uuiPresets.item } onClick={ () => this.props.onPresetSet(item) }>
                         {item.name}
                     </div>
                 ))}

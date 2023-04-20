@@ -1,5 +1,7 @@
 import { FillStyle, ControlShape, ColorMod } from '../types';
-import { Button as uuiButton, ButtonMode, ButtonProps as UuiButtonProps, ControlSize } from '@epam/uui';
+import {
+    Button as uuiButton, ButtonMode, ButtonProps as UuiButtonProps, ControlSize,
+} from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import css from './Button.scss';

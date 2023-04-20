@@ -8,8 +8,8 @@ interface IIndicatorProps extends IHasCX {
     progress?: number;
 }
 
-export const IndicatorBar = (props: IIndicatorProps) => {
+export function IndicatorBar(props: IIndicatorProps) {
     const { progress } = props;
 
-    return progress || progress === 0 ? <ProgressBar progress={progress} cx={cx(css.root, props.cx)} hideLabel /> : <IndeterminateBar cx={cx(css.root, props.cx)} />;
-};
+    return progress || progress === 0 ? <ProgressBar progress={ progress } cx={ cx(css.root, props.cx) } hideLabel /> : <IndeterminateBar cx={ cx(css.root, props.cx) } />;
+}

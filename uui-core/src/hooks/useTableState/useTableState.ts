@@ -1,6 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+    useCallback, useEffect, useMemo, useState,
+} from 'react';
 import isEqual from 'lodash.isequal';
-import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig } from '../../types';
+import {
+    ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,
+} from '../../types';
 import { getOrderBetween } from '../../helpers';
 import { useUuiContext } from '../../services';
 import sortBy from 'lodash.sortby';
@@ -117,7 +121,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
                 columnsConfig,
             });
         },
-        [getTableStateValue]
+        [getTableStateValue],
     );
 
     const setFiltersConfig = useCallback(
@@ -127,7 +131,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
                 filtersConfig,
             });
         },
-        [getTableStateValue]
+        [getTableStateValue],
     );
 
     const setFilter = useCallback(
@@ -137,7 +141,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
                 filter,
             });
         },
-        [getTableStateValue]
+        [getTableStateValue],
     );
 
     const getActivePresetId = () => {
@@ -157,7 +161,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
                 viewState: preset.viewState,
             });
         },
-        [getTableStateValue]
+        [getTableStateValue],
     );
 
     const getNewPresetOrder = useCallback(() => {
@@ -174,7 +178,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
             return preset.id;
         },
-        [choosePreset, params?.onPresetCreate]
+        [choosePreset, params?.onPresetCreate],
     );
 
     const createNewPreset = useCallback(
@@ -194,20 +198,20 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
             return createPreset(newPreset);
         },
-        [getTableStateValue, getNewPresetOrder]
+        [getTableStateValue, getNewPresetOrder],
     );
 
     const hasPresetChanged = useCallback(
         (preset: ITablePreset<TFilter, TViewState>) => {
             const tableStateValue = getTableStateValue();
             return (
-                !isEqual(preset.filter, tableStateValue.filter) ||
-                !isEqual(preset.columnsConfig, tableStateValue.columnsConfig) ||
-                !isEqual(preset.sorting, tableStateValue.sorting) ||
-                !isEqual(preset.viewState, tableStateValue.viewState)
+                !isEqual(preset.filter, tableStateValue.filter)
+                || !isEqual(preset.columnsConfig, tableStateValue.columnsConfig)
+                || !isEqual(preset.sorting, tableStateValue.sorting)
+                || !isEqual(preset.viewState, tableStateValue.viewState)
             );
         },
-        [getTableStateValue]
+        [getTableStateValue],
     );
 
     const duplicatePreset = useCallback(
@@ -222,7 +226,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
             return createPreset(newPreset);
         },
-        [createPreset, getNewPresetOrder]
+        [createPreset, getNewPresetOrder],
     );
 
     const deletePreset = useCallback(
@@ -234,7 +238,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
             });
             setPresets((prevValue) => prevValue.filter((p) => p.id !== preset.id));
         },
-        [getTableStateValue]
+        [getTableStateValue],
     );
 
     const updatePreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
@@ -243,7 +247,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
             newPresets.splice(
                 prevValue.findIndex((p) => p.id === preset.id),
                 1,
-                preset
+                preset,
             );
             return newPresets;
         });
@@ -253,8 +257,8 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
 
     const getPresetLink = useCallback((preset: ITablePreset<TFilter, TViewState>) => {
         return (
-            window.location.origin +
-            context.uuiRouter.createHref({
+            window.location.origin
+            + context.uuiRouter.createHref({
                 pathname: context.uuiRouter.getCurrentLink().pathname,
                 query: stateToQueryObject({
                     ...preset,

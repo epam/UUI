@@ -25,7 +25,7 @@ export function UuiReactMarkdown(props: UuiReactMarkdownProps) {
         return c;
     }, [isReplaceStrongToBold]);
     return (
-        <ReactMarkdown remarkPlugins={[RemarkGfm]} components={comp}>
+        <ReactMarkdown remarkPlugins={ [RemarkGfm] } components={ comp }>
             {props.content}
         </ReactMarkdown>
     );

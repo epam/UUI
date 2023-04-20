@@ -22,22 +22,22 @@ const mockTableState = {};
 
 describe('Preset', () => {
     it('renders correctly when not in rename mode and not active', async () => {
-        const tree = await renderSnapshotWithContextAsync(<Preset preset={mockPreset} addPreset={jest.fn()} tableState={mockTableState} {...mockPresetsApi} />);
+        const tree = await renderSnapshotWithContextAsync(<Preset preset={ mockPreset } addPreset={ jest.fn() } tableState={ mockTableState } { ...mockPresetsApi } />);
         expect(tree).toMatchSnapshot();
     });
 
     it('renders correctly when not in rename mode and active', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <Preset
-                preset={mockPreset}
-                addPreset={jest.fn()}
-                tableState={mockTableState}
-                activePresetId={mockPreset.id}
-                hasPresetChanged={jest.fn()}
-                choosePreset={jest.fn()}
-                updatePreset={jest.fn()}
-                {...mockPresetsApi}
-            />
+                preset={ mockPreset }
+                addPreset={ jest.fn() }
+                tableState={ mockTableState }
+                activePresetId={ mockPreset.id }
+                hasPresetChanged={ jest.fn() }
+                choosePreset={ jest.fn() }
+                updatePreset={ jest.fn() }
+                { ...mockPresetsApi }
+            />,
         );
         expect(tree).toMatchSnapshot();
     });

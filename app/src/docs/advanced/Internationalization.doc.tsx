@@ -6,9 +6,7 @@ export class InternationalizationDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <>
-                <EditableDocContent fileName="internationalization-intro" />
-            </>
+            <EditableDocContent fileName="internationalization-intro" />
         );
     }
 }

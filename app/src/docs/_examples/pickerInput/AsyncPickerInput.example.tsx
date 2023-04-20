@@ -12,15 +12,15 @@ export default function AsyncPickerInputExample() {
         {
             api: () => svc.api.demo.locations({}).then((res) => res.items),
         },
-        []
+        [],
     );
 
     return (
-        <FlexCell width={300}>
+        <FlexCell width={ 300 }>
             <PickerInput<Location, string>
-                dataSource={locationsDataSource}
-                value={locations}
-                onValueChange={setLocations}
+                dataSource={ locationsDataSource }
+                value={ locations }
+                onValueChange={ setLocations }
                 entityName="location"
                 selectionMode="multi"
                 valueType="id"

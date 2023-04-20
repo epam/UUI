@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { DataPickerRow, FlexRow, MultiSwitch, FlexCell, PickerInput, PickerItem } from '@epam/promo';
-import { DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import {
+    DataPickerRow, FlexRow, MultiSwitch, FlexCell, PickerInput, PickerItem,
+} from '@epam/promo';
+import {
+    DataQueryFilter, DataRowProps, DataSourceState, useLazyDataSource, useUuiContext,
+} from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
 
 const cascadeSelectionModes: Array<{ id: 'explicit' | 'implicit'; caption: string }> = [
@@ -32,7 +36,7 @@ export default function CascadeSelectionModesExample() {
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
         },
-        []
+        [],
     );
 
     const getSubtitle = ({ path }: DataRowProps<Location, string>, { search }: DataSourceState) => {
@@ -45,27 +49,27 @@ export default function CascadeSelectionModesExample() {
     };
 
     return (
-        <FlexCell width={350}>
+        <FlexCell width={ 350 }>
             <FlexRow vPadding="12">
-                <MultiSwitch size="24" value={cascadeSelection} onValueChange={setCascadeSelection} items={cascadeSelectionModes} />
+                <MultiSwitch size="24" value={ cascadeSelection } onValueChange={ setCascadeSelection } items={ cascadeSelectionModes } />
             </FlexRow>
 
             <PickerInput
-                dataSource={dataSource}
-                value={value}
-                onValueChange={onValueChange}
+                dataSource={ dataSource }
+                value={ value }
+                onValueChange={ onValueChange }
                 entityName="location"
                 selectionMode="multi"
                 valueType="id"
-                cascadeSelection={cascadeSelection}
-                renderRow={(props: DataRowProps<Location, string>, dataSourceState) => (
+                cascadeSelection={ cascadeSelection }
+                renderRow={ (props: DataRowProps<Location, string>, dataSourceState) => (
                     <DataPickerRow
-                        {...props}
-                        key={props.rowKey}
+                        { ...props }
+                        key={ props.rowKey }
                         padding="12"
-                        renderItem={(item) => <PickerItem {...props} title={item.name} subtitle={getSubtitle(props, dataSourceState)} />}
+                        renderItem={ (item) => <PickerItem { ...props } title={ item.name } subtitle={ getSubtitle(props, dataSourceState) } /> }
                     />
-                )}
+                ) }
             />
         </FlexCell>
     );

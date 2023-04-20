@@ -26,20 +26,20 @@ export class ModuleItems extends React.Component<ModuleItemsProps> {
     };
 
     renderDivs(items: Item[]) {
-        let t = this.props.timelineController.getTransform();
+        const t = this.props.timelineController.getTransform();
 
         return items.map((i) => {
-            let transformedItem = t.transformSegment(i.from, i.to);
-            let left = transformedItem.leftTrimmed;
-            let right = transformedItem.rightTrimmed;
-            let width = right - left;
+            const transformedItem = t.transformSegment(i.from, i.to);
+            const left = transformedItem.leftTrimmed;
+            const right = transformedItem.rightTrimmed;
+            const width = right - left;
 
-            //let transform = `translate3d(${left}px, 0, 0)`;
-            let transform = `translateX(${left}px)`;
+            // let transform = `translate3d(${left}px, 0, 0)`;
+            const transform = `translateX(${left}px)`;
 
             return (
                 width > 0 && (
-                    <div key={i.id} className={styles.moduleItem} style={{ transform, width }}>
+                    <div key={ i.id } className={ styles.moduleItem } style={ { transform, width } }>
                         {i.name}
                     </div>
                 )
@@ -48,6 +48,6 @@ export class ModuleItems extends React.Component<ModuleItemsProps> {
     }
 
     render() {
-        return <div className={styles.moduleItems}>{this.renderDivs(this.props.items)}</div>;
+        return <div className={ styles.moduleItems }>{this.renderDivs(this.props.items)}</div>;
     }
 }

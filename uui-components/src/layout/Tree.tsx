@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { IHasCX, IHasChildren, IEditable, useArrayDataSource, DataSourceState, DataRowProps } from '@epam/uui-core';
+import {
+    IHasCX, IHasChildren, IEditable, useArrayDataSource, DataSourceState, DataRowProps,
+} from '@epam/uui-core';
 
 export interface TreeListItem {
     id: string;
@@ -21,7 +23,7 @@ export function Tree<TItem extends TreeListItem>(props: TreeProps<TItem>) {
             items: props.items as TItem[],
             getId: (i) => i.id,
         },
-        [props.items]
+        [props.items],
     );
 
     const view = dataSource.useView({ ...props.value, topIndex: 0, visibleCount: Number.MAX_SAFE_INTEGER }, props.onValueChange, {

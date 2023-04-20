@@ -16,7 +16,9 @@ export class ScrollManager {
     };
 
     private scrollWidth?: number;
+
     private clientWidth?: number;
+
     private offsetLeft?: number;
 
     private markersStatus = {
@@ -26,6 +28,7 @@ export class ScrollManager {
     };
 
     subscribers: { node: HTMLElement }[] = [];
+
     scrollNodes: { node: HTMLElement; scrollHandler: any }[] = [];
 
     updateScrollPosition(scrollPosition: ScrollPosition) {
@@ -33,7 +36,7 @@ export class ScrollManager {
             return;
         }
 
-        let xScrollChanged = scrollPosition.x !== this.scrollPosition.x;
+        const xScrollChanged = scrollPosition.x !== this.scrollPosition.x;
 
         this.scrollPosition = scrollPosition;
         if (xScrollChanged) {
@@ -116,10 +119,9 @@ export class ScrollManager {
         }
     }
 
-    resizeObserver =
-        isClientSide &&
-        new ResizeObserver((entries) => {
-            for (let entry of entries) {
+    resizeObserver = isClientSide
+        && new ResizeObserver((entries) => {
+            for (const entry of entries) {
                 const contentRect = entry.contentRect;
 
                 if (contentRect.width !== this.scrollWidth || contentRect.width < this.scrollWidth) {

@@ -8,6 +8,7 @@ export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewPr
 
 export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: LazyDataSourceProps<TItem, TId, TFilter>;
+
     cache: ListApiCache<TItem, TId, TFilter> = null;
 
     constructor(props: LazyDataSourceProps<TItem, TId, TFilter>) {
@@ -42,7 +43,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     public getView = <TState extends DataSourceState<any, TId>>(
         value: TState,
         onValueChange: (value: TState) => void,
-        props?: Partial<LazyListViewProps<TItem, TId, TFilter>>
+        props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
     ): LazyListView<TItem, TId, TFilter> => {
         const view = this.views.get(onValueChange) as LazyListView<TItem, TId, TFilter>;
         const viewProps: LazyListViewProps<TItem, TId, TFilter> = {
@@ -64,7 +65,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     useView<TState extends DataSourceState<any, TId>>(
         value: TState,
         onValueChange: (value: TState) => any,
-        props?: Partial<LazyListViewProps<TItem, TId, TFilter>>
+        props?: Partial<LazyListViewProps<TItem, TId, TFilter>>,
     ): LazyListView<TItem, TId, TFilter> {
         useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
 

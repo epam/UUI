@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
-import { renderSnapshotWithContextAsync, setupComponentForTest, fireEvent, screen, within } from '@epam/test-utils';
+import {
+    renderSnapshotWithContextAsync, setupComponentForTest, fireEvent, screen, within,
+} from '@epam/test-utils';
 
 jest.mock('react-popper', () => ({
     ...jest.requireActual('react-popper'),
@@ -28,7 +30,7 @@ async function setupRangeDatePicker(params: { value: { from: string; to: string 
                 context.current.setProperty('value', newValue);
             }),
         }),
-        (props) => <RangeDatePicker {...props} />
+        (props) => <RangeDatePicker { ...props } />,
     );
 
     const from = within(screen.getByTestId('from')).getByRole('textbox') as HTMLInputElement;
@@ -44,7 +46,7 @@ async function setupRangeDatePicker(params: { value: { from: string; to: string 
 
 describe('RangeDataPicker', () => {
     it('should be rendered if minimum params and custom format defined', async () => {
-        const tree = await renderSnapshotWithContextAsync(<RangeDatePicker format="MMM D, YYYY" value={null} onValueChange={jest.fn} />);
+        const tree = await renderSnapshotWithContextAsync(<RangeDatePicker format="MMM D, YYYY" value={ null } onValueChange={ jest.fn } />);
         expect(tree).toMatchSnapshot();
     });
 
@@ -52,15 +54,15 @@ describe('RangeDataPicker', () => {
         const tree = await renderSnapshotWithContextAsync(
             <RangeDatePicker
                 format="MMM D, YYYY"
-                value={null}
-                onValueChange={jest.fn}
-                renderFooter={((value: any) => jest.fn(value)) as any}
-                disableClear={false}
-                getPlaceholder={() => ''}
+                value={ null }
+                onValueChange={ jest.fn }
+                renderFooter={ ((value: any) => jest.fn(value)) as any }
+                disableClear={ false }
+                getPlaceholder={ () => '' }
                 isDisabled
                 isReadonly
                 isInvalid
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });

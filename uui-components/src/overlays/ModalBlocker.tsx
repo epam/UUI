@@ -32,9 +32,9 @@ export class ModalBlocker extends React.Component<ModalBlockerProps> {
 
     render() {
         return (
-            <div className={cx(css.container, this.props.cx)} style={{ zIndex: this.props.zIndex }} ref={this.props.forwardedRef} {...this.props.rawProps}>
-                <div className={uuiElement.modalBlocker} onClick={this.handleBlockerClick} />
-                <FocusLock autoFocus={false} returnFocus disabled={this.props.disableFocusLock}>
+            <div className={ cx(css.container, this.props.cx) } style={ { zIndex: this.props.zIndex } } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
+                <div className={ uuiElement.modalBlocker } onClick={ this.handleBlockerClick } />
+                <FocusLock autoFocus={ false } returnFocus disabled={ this.props.disableFocusLock }>
                     {this.props.children}
                 </FocusLock>
             </div>

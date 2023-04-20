@@ -27,14 +27,14 @@ describe('PickerModal', () => {
             <PickerModal
                 key="test"
                 valueType="id"
-                dataSource={mockDataSource}
-                success={jest.fn}
-                abort={jest.fn}
-                zIndex={1}
+                dataSource={ mockDataSource }
+                success={ jest.fn }
+                abort={ jest.fn }
+                zIndex={ 1 }
                 selectionMode="single"
-                initialValue={null}
+                initialValue={ null }
                 isActive
-            />
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -44,17 +44,17 @@ describe('PickerModal', () => {
             <PickerModal
                 key="test"
                 valueType="id"
-                dataSource={mockDataSource}
-                success={jest.fn}
-                abort={jest.fn}
-                zIndex={1}
+                dataSource={ mockDataSource }
+                success={ jest.fn }
+                abort={ jest.fn }
+                zIndex={ 1 }
                 selectionMode="multi"
-                initialValue={[]}
+                initialValue={ [] }
                 isActive
-                getName={(item) => item.level}
-                filter={(item: any) => item.level === 'A1'}
-                sorting={{ direction: 'desc', field: 'level' }}
-            />
+                getName={ (item) => item.level }
+                filter={ (item: any) => item.level === 'A1' }
+                sorting={ { direction: 'desc', field: 'level' } }
+            />,
         );
         expect(tree).toMatchSnapshot();
     });

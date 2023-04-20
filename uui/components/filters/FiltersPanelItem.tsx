@@ -1,4 +1,6 @@
-import React, { useCallback, useState, useEffect, useMemo } from 'react';
+import React, {
+    useCallback, useState, useEffect, useMemo,
+} from 'react';
 import dayjs from 'dayjs';
 import cx from 'classnames';
 import {
@@ -27,12 +29,12 @@ import { MobileDropdownWrapper } from '../pickers';
 import { Modifier } from 'react-popper';
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> &
-    IEditable<any> & {
-        autoFocus?: boolean;
-        removeFilter?: (field: any) => void;
-    };
+IEditable<any> & {
+    autoFocus?: boolean;
+    removeFilter?: (field: any) => void;
+};
 
-const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
+function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
     const isMobileScreen = isMobile();
 
@@ -85,7 +87,7 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 props.onValueChange({ [props.field]: value });
             }
         },
-        [props.field, props.onValueChange]
+        [props.field, props.onValueChange],
     );
 
     const removeOnclickHandler = () => {
@@ -113,33 +115,33 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
     };
 
     const renderHeader = () => (
-        <div className={cx(css.header)}>
+        <div className={ cx(css.header) }>
             {props.predicates ? (
-                <MultiSwitch items={props.predicates.map((i) => ({ id: i.predicate, caption: i.name }))} value={predicate} onValueChange={changePredicate} size="24" />
+                <MultiSwitch items={ props.predicates.map((i) => ({ id: i.predicate, caption: i.name })) } value={ predicate } onValueChange={ changePredicate } size="24" />
             ) : (
                 <Text color="secondary" fontSize="12">
                     {props.title}
                 </Text>
             )}
             {!props?.isAlwaysVisible && (
-                <LinkButton cx={css.removeButton} caption={i18n.filterToolbar.datePicker.removeCaption} onClick={removeOnclickHandler} size="24" icon={RemoveIcon} />
+                <LinkButton cx={ css.removeButton } caption={ i18n.filterToolbar.datePicker.removeCaption } onClick={ removeOnclickHandler } size="24" icon={ RemoveIcon } />
             )}
         </div>
     );
 
     const renderBody = (dropdownProps: DropdownBodyProps) => (
-        <DropdownContainer {...dropdownProps}>
-            <Panel cx={css.panel}>
+        <DropdownContainer { ...dropdownProps }>
+            <Panel cx={ css.panel }>
                 <>
                     {isPickersType ? (
-                        <MobileDropdownWrapper close={() => isOpenChange(false)}>
+                        <MobileDropdownWrapper close={ () => isOpenChange(false) }>
                             {renderHeader()}
-                            {<FilterItemBody {...props} {...dropdownProps} selectedPredicate={predicate} value={getValue()} onValueChange={onValueChange} />}
+                            <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
                         </MobileDropdownWrapper>
                     ) : (
                         <>
                             {renderHeader()}
-                            {<FilterItemBody {...props} {...dropdownProps} selectedPredicate={predicate} value={getValue()} onValueChange={onValueChange} />}
+                            <FilterItemBody { ...props } { ...dropdownProps } selectedPredicate={ predicate } value={ getValue() } onValueChange={ onValueChange } />
                         </>
                     )}
                 </>
@@ -158,15 +160,15 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
         switch (props.type) {
             case 'multiPicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
-                let postfix = currentValue?.length > 2 ? ` +${(currentValue.length - 2).toString()} ${i18n.filterToolbar.pickerInput.itemsPlaceholder}` : null;
+                const postfix = currentValue?.length > 2 ? ` +${(currentValue.length - 2).toString()} ${i18n.filterToolbar.pickerInput.itemsPlaceholder}` : null;
                 let isLoading = false;
 
                 const selection = currentValue
                     ? currentValue?.slice(0, 2).map((i: any) => {
-                          const item = view.getById(i, null);
-                          isLoading = item.isLoading;
-                          return item.isLoading ? <TextPlaceholder /> : props.getName ? props.getName(item.value) : item.value.name;
-                      })
+                        const item = view.getById(i, null);
+                        isLoading = item.isLoading;
+                        return item.isLoading ? <TextPlaceholder /> : props.getName ? props.getName(item.value) : item.value.name;
+                    })
                     : [i18n.filterToolbar.pickerInput.emptyValueCaption];
 
                 const selectionText = isLoading ? selection : selection.join(', ');
@@ -180,8 +182,8 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
                 }
                 const selection = isRangePredicate
                     ? `${!currentValue?.from && currentValue?.from !== 0 ? 'Min' : decimalFormat(currentValue?.from)} - ${
-                          !currentValue?.to && currentValue?.to !== 0 ? 'Max' : decimalFormat(currentValue?.to)
-                      }`
+                        !currentValue?.to && currentValue?.to !== 0 ? 'Max' : decimalFormat(currentValue?.to)
+                    }`
                     : `${!currentValue && currentValue !== 0 ? 'ALL' : decimalFormat(currentValue)}`;
                 return { selection };
             }
@@ -215,24 +217,24 @@ const FiltersToolbarItemImpl = (props: FiltersToolbarItemProps) => {
 
     const renderTarget = (dropdownProps: IDropdownToggler) => (
         <FilterPanelItemToggler
-            {...dropdownProps}
-            {...getTogglerValue()}
-            title={props.title}
-            predicateName={props.value ? predicateName : null}
-            maxWidth={props.type === 'datePicker' || props.type === 'rangeDatePicker' ? null : '300'}
+            { ...dropdownProps }
+            { ...getTogglerValue() }
+            title={ props.title }
+            predicateName={ props.value ? predicateName : null }
+            maxWidth={ props.type === 'datePicker' || props.type === 'rangeDatePicker' ? null : '300' }
         />
     );
 
     return (
         <Dropdown
-            renderTarget={renderTarget}
-            renderBody={renderBody}
-            closeBodyOnTogglerHidden={!isMobile()}
-            value={isOpen}
-            onValueChange={isOpenChange}
-            modifiers={popperModifiers}
+            renderTarget={ renderTarget }
+            renderBody={ renderBody }
+            closeBodyOnTogglerHidden={ !isMobile() }
+            value={ isOpen }
+            onValueChange={ isOpenChange }
+            modifiers={ popperModifiers }
         />
     );
-};
+}
 
 export const FiltersPanelItem = React.memo(FiltersToolbarItemImpl);

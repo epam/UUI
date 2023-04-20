@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps } from 'react-popper';
+import {
+    Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps,
+} from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
-import { isClickableChildClicked, LayoutLayer, UuiContexts, UuiContext, closest, DropdownProps, DropdownState } from '@epam/uui-core';
+import {
+    isClickableChildClicked, LayoutLayer, UuiContexts, UuiContext, closest, DropdownProps, DropdownState,
+} from '@epam/uui-core';
 import { Portal } from './Portal';
 
 const isInteractedOutsideDropdown = (e: Event, stopNodes: HTMLElement[]) => {
@@ -17,20 +21,30 @@ const isInteractedOutsideDropdown = (e: Event, stopNodes: HTMLElement[]) => {
 
 export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private targetNode: HTMLElement | null = null;
+
     private bodyNode: HTMLElement | null = null;
+
     private lastOpenedMs: number;
+
     private togglerWidth: number;
+
     private togglerHeight: number;
 
     static contextType = UuiContext;
+
     public context: UuiContexts;
+
     private layer: LayoutLayer;
+
     private openDropdownTimerId: NodeJS.Timeout = null;
+
     private closeDropdownTimerId: NodeJS.Timeout = null;
 
     state: DropdownState = {
         opened: this.props.value || false,
-        bodyBoundingRect: { y: null, x: null, height: null, width: null },
+        bodyBoundingRect: {
+            y: null, x: null, height: null, width: null,
+        },
     };
 
     constructor(props: DropdownProps) {
@@ -118,7 +132,9 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     isClientInArea(e: MouseEvent) {
         const areaPadding = 30;
-        const { y, x, height, width } = this.state.bodyBoundingRect;
+        const {
+            y, x, height, width,
+        } = this.state.bodyBoundingRect;
 
         if (y && x && width && height) {
             return x - areaPadding <= e.clientX && e.clientX <= x + areaPadding + width && y - areaPadding <= e.clientY && e.clientY <= y + height + areaPadding;
@@ -159,7 +175,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             this.clearOpenDropdownTimer();
             this.setCloseDropdownTimer(this.props.closeDelay ?? 1500);
         } else if (this.isInteractedOutside(e) && !this.isClientInArea(e)) {
-            //User leave boundary area, close dropdown immediately or with this.props.closeDelay
+            // User leave boundary area, close dropdown immediately or with this.props.closeDelay
             if (this.props.closeDelay && !this.closeDropdownTimerId) {
                 this.isOpened() && this.setCloseDropdownTimer(this.props.closeDelay);
             } else if (!this.props.closeDelay) {
@@ -196,14 +212,22 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         });
     }
 
-    private renderDropdownBody = ({ ref, placement, style, update, isReferenceHidden, arrowProps }: PopperChildrenProps) => {
+    private renderDropdownBody = ({
+        ref, placement, style, update, isReferenceHidden, arrowProps,
+    }: PopperChildrenProps) => {
         const setRef = (node: HTMLElement) => {
             (ref as React.RefCallback<HTMLElement>)(node);
             this.bodyNode = node;
             if (this.bodyNode && this.props.closeOnMouseLeave === 'boundary') {
-                const { x, y, height, width } = this.bodyNode.getBoundingClientRect();
+                const {
+                    x, y, height, width,
+                } = this.bodyNode.getBoundingClientRect();
                 if (x && y && !this.state.bodyBoundingRect.y && !this.state.bodyBoundingRect.x) {
-                    this.setState({ bodyBoundingRect: { y, height, width, x } });
+                    this.setState({
+                        bodyBoundingRect: {
+                            y, height, width, x,
+                        },
+                    });
                 }
             }
         };
@@ -220,11 +244,11 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                 <div
                     role="dialog"
                     className="uui-popper"
-                    aria-hidden={!this.isOpened()}
-                    aria-expanded={this.isOpened()}
-                    ref={setRef}
-                    style={{ ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex }}
-                    data-placement={placement}
+                    aria-hidden={ !this.isOpened() }
+                    aria-expanded={ this.isOpened() }
+                    ref={ setRef }
+                    style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
+                    data-placement={ placement }
                 >
                     {this.props.renderBody({
                         onClose: this.onClose,
@@ -283,8 +307,8 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
             <Manager>
                 <Reference>{(targetProps) => this.renderTarget(targetProps)}</Reference>
                 {shouldShowBody && (
-                    <Portal target={this.props.portalTarget}>
-                        <Popper placement={this.props.placement || 'bottom-start'} strategy={'fixed'} modifiers={[...defaultModifiers, ...(this.props.modifiers || [])]}>
+                    <Portal target={ this.props.portalTarget }>
+                        <Popper placement={ this.props.placement || 'bottom-start' } strategy="fixed" modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }>
                             {this.renderDropdownBody}
                         </Popper>
                     </Portal>

@@ -5,12 +5,13 @@ import css from './MainMenuContext.scss';
 
 export class MainMenuContext extends React.Component<DemoComponentProps> {
     public static displayName = 'Main Menu';
+
     render() {
         const { DemoComponent, props } = this.props;
 
         return (
-            <MainMenu cx={css.container}>
-                <DemoComponent {...props} />
+            <MainMenu cx={ css.container }>
+                <DemoComponent { ...props } />
             </MainMenu>
         );
     }

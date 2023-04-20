@@ -30,7 +30,11 @@ export const taskDbSchema = new DbSchema({
 export const emptyDb = taskDbSchema.newDb();
 
 export const sampleData = {
-    tasks: [{ id: 1, name: 'Implement DB', isDone: false, createdBy: 'dt', assignedTo: 'js' }] as Task[],
+    tasks: [
+        {
+            id: 1, name: 'Implement DB', isDone: false, createdBy: 'dt', assignedTo: 'js',
+        },
+    ] as Task[],
     users: [
         { id: 'JS', name: 'John Snow', sex: 'm' },
         { id: 'DT', name: 'Daenerys Targaryen', sex: 'f' },

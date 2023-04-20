@@ -12,39 +12,39 @@ export default function ArrayLinkedPickers() {
         {
             api: () => svc.api.demo.countries({}).then((r: any) => r.items),
         },
-        []
+        [],
     );
 
     const citiesDataSource = useLazyDataSource<City, string, unknown>(
         {
             api: svc.api.demo.cities,
         },
-        []
+        [],
     );
 
     return (
-        <FlexCell width={300}>
+        <FlexCell width={ 300 }>
             <LabeledInput label="Select country">
                 <PickerInput<Country, string>
-                    dataSource={countryDataSource}
-                    value={country}
-                    onValueChange={setCountry}
+                    dataSource={ countryDataSource }
+                    value={ country }
+                    onValueChange={ setCountry }
                     entityName="Country"
                     selectionMode="single"
                     valueType="entity"
                 />
             </LabeledInput>
 
-            <LabeledInput label={country ? `Select city from ${country.name}` : 'Select city'}>
+            <LabeledInput label={ country ? `Select city from ${country.name}` : 'Select city' }>
                 <PickerInput<City, string>
-                    dataSource={citiesDataSource}
-                    value={cities}
-                    onValueChange={setCities}
-                    isDisabled={!country}
+                    dataSource={ citiesDataSource }
+                    value={ cities }
+                    onValueChange={ setCities }
+                    isDisabled={ !country }
                     entityName="City"
                     selectionMode="multi"
                     valueType="id"
-                    filter={{ country: country?.id }} // Your filter object, which will be send to the server
+                    filter={ { country: country?.id } } // Your filter object, which will be send to the server
                 />
             </LabeledInput>
         </FlexCell>

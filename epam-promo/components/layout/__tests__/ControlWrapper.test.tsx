@@ -10,7 +10,7 @@ describe('ControlWrapper', () => {
                 <ControlWrapper size="36">
                     <Button caption="On" />
                     <Button caption="Off" color="green" />
-                </ControlWrapper>
+                </ControlWrapper>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

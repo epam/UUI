@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { IHasCX, uuiElement, cx, IHasRawProps } from '@epam/uui-core';
+import {
+    IHasCX, uuiElement, cx, IHasRawProps,
+} from '@epam/uui-core';
 import css from './SliderHandle.scss';
 import { Manager, Reference, Popper } from 'react-popper';
 import { Portal } from '../../overlays/Portal';
@@ -88,7 +90,7 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
     renderTooltip() {
         const content = this.props.tooltipContent;
 
-        return <div className={uuiElement.tooltipBody}>{content}</div>;
+        return <div className={ uuiElement.tooltipBody }>{content}</div>;
     }
 
     render() {
@@ -97,35 +99,35 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
                 <Reference>
                     {(targetProps) => (
                         <div
-                            tabIndex={0}
-                            ref={(SliderHandle) => {
+                            tabIndex={ 0 }
+                            ref={ (SliderHandle) => {
                                 this.sliderHandle = SliderHandle;
                                 (targetProps.ref as React.RefCallback<any>)(SliderHandle);
-                            }}
-                            className={cx(uuiSlider.handle, this.props.cx)}
-                            style={{ transform: `translateX(${this.props.offset || 0}px)` }}
-                            onMouseDown={this.handleMouseDown}
-                            onMouseUp={this.handleMouseUp}
-                            onKeyDown={this.handleKeyDown}
-                            onFocus={this.handleFocus}
-                            onBlur={this.handleBlur}
-                            {...this.props.rawProps}
+                            } }
+                            className={ cx(uuiSlider.handle, this.props.cx) }
+                            style={ { transform: `translateX(${this.props.offset || 0}px)` } }
+                            onMouseDown={ this.handleMouseDown }
+                            onMouseUp={ this.handleMouseUp }
+                            onKeyDown={ this.handleKeyDown }
+                            onFocus={ this.handleFocus }
+                            onBlur={ this.handleBlur }
+                            { ...this.props.rawProps }
                         />
                     )}
                 </Reference>
                 <Portal>
-                    <Popper placement={'top'} key={this.props.offset}>
+                    <Popper placement="top" key={ this.props.offset }>
                         {({ ref, style, placement }) => {
                             return (
                                 (this.props.isActive || this.state.isHovered) && (
                                     <div
-                                        ref={ref}
-                                        style={style}
-                                        data-placement={placement}
-                                        className={cx(this.props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper)}
+                                        ref={ ref }
+                                        style={ style }
+                                        data-placement={ placement }
+                                        className={ cx(this.props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
                                     >
                                         {this.props.showTooltip && this.renderTooltip()}
-                                        <div className={uuiElement.tooltipArrow} />
+                                        <div className={ uuiElement.tooltipArrow } />
                                     </div>
                                 )
                             );

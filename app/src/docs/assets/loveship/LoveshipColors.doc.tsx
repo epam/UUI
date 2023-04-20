@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip } from '@epam/promo';
+import {
+    FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip,
+} from '@epam/promo';
 import { cx, INotification } from '@epam/uui-core';
 import { copyTextToClipboard } from './../../../helpers';
 import { svc } from './../../../services';
@@ -42,21 +44,39 @@ const basicColors = {
 };
 
 const grayscaleColors = [
-    { name: 'night50', hasVariable: true, hex: '#FAFAFC', context: 'Table Header' },
-    { name: 'night100', hasVariable: true, hex: '#F5F6FA', context: 'Background' },
-    { name: 'night200', hasVariable: true, hex: '#EBEDF5', context: 'Table (Hover)' },
+    {
+        name: 'night50', hasVariable: true, hex: '#FAFAFC', context: 'Table Header',
+    },
+    {
+        name: 'night100', hasVariable: true, hex: '#F5F6FA', context: 'Background',
+    },
+    {
+        name: 'night200', hasVariable: true, hex: '#EBEDF5', context: 'Table (Hover)',
+    },
     {
         name: 'night300',
         hasVariable: true,
         hex: '#E1E3EB',
         context: 'Table Divider, Button (Disabled), Input Border (Disabled), Cancel Button Border (Disabled), Informer, Tag',
     },
-    { name: 'night400', hasVariable: true, hex: '#CED0DB', context: 'Divider, Input Border' },
-    { name: 'night500', hasVariable: true, hex: '#ACAFBF', context: 'Disabled Text, Cancel Button Border' },
-    { name: 'night600', hasVariable: true, hex: '#6C6F80', context: 'Icon (Disabled), Input Border (Hover), Secondary Text, Placeholder' },
-    { name: 'night700', hasVariable: true, hex: '#474A59', context: 'Icon' },
-    { name: 'night800', hasVariable: true, hex: '#303240', context: 'Text, Icon (Hover), Primary Text' },
-    { name: 'night900', hasVariable: true, hex: '#1D1E26', context: 'Text' },
+    {
+        name: 'night400', hasVariable: true, hex: '#CED0DB', context: 'Divider, Input Border',
+    },
+    {
+        name: 'night500', hasVariable: true, hex: '#ACAFBF', context: 'Disabled Text, Cancel Button Border',
+    },
+    {
+        name: 'night600', hasVariable: true, hex: '#6C6F80', context: 'Icon (Disabled), Input Border (Hover), Secondary Text, Placeholder',
+    },
+    {
+        name: 'night700', hasVariable: true, hex: '#474A59', context: 'Icon',
+    },
+    {
+        name: 'night800', hasVariable: true, hex: '#303240', context: 'Text, Icon (Hover), Primary Text',
+    },
+    {
+        name: 'night900', hasVariable: true, hex: '#1D1E26', context: 'Text',
+    },
 ];
 
 const additionalColors = {
@@ -210,35 +230,35 @@ export class LoveshipColorsDoc extends React.Component {
     showNotification() {
         svc.uuiNotifications.show(
             (props: INotification) => (
-                <NotificationCard {...props} icon={NotificationIcon} color="gray60" onClose={null}>
+                <NotificationCard { ...props } icon={ NotificationIcon } color="gray60" onClose={ null }>
                     <Text size="36" font="sans">
                         HEX code was copied to the clipboard
                     </Text>
                 </NotificationCard>
             ),
-            { duration: 3 }
+            { duration: 3 },
         );
     }
 
     renderBasicColors() {
         return (
-            <RichTextView size="16" cx={css.container}>
+            <RichTextView size="16" cx={ css.container }>
                 <h2>Basics</h2>
                 <FlexRow>
                     {(Object.keys(basicColors) as Array<BasicColorsTypes>).map((nameColor, index) => {
                         return (
-                            <FlexCell key={index} minWidth={120}>
+                            <FlexCell key={ index } minWidth={ 120 }>
                                 {basicColors[nameColor].map((color, index) => {
                                     return (
-                                        <div key={index} className={cx(css.box, css.basicColorBox, style[`color-${nameColor}`])}>
+                                        <div key={ index } className={ cx(css.box, css.basicColorBox, style[`color-${nameColor}`]) }>
                                             <div
-                                                className={cx(css.hexText, color.contrastText && css.contrastText)}
-                                                onClick={() => copyTextToClipboard(color.hex, this.showNotification)}
+                                                className={ cx(css.hexText, color.contrastText && css.contrastText) }
+                                                onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }
                                             >
                                                 {color.hex}
                                             </div>
                                             {color.hasVariable && (
-                                                <div className={cx(css.colorName, color.contrastText && css.contrastText)} onClick={() => {}}>{`$${nameColor}`}</div>
+                                                <div className={ cx(css.colorName, color.contrastText && css.contrastText) } onClick={ () => {} }>{`$${nameColor}`}</div>
                                             )}
                                         </div>
                                     );
@@ -246,18 +266,18 @@ export class LoveshipColorsDoc extends React.Component {
                             </FlexCell>
                         );
                     })}
-                    <FlexCell minWidth={100} alignSelf="flex-end">
-                        <div className={cx(css.box, css.captionColorBox)}>
+                    <FlexCell minWidth={ 100 } alignSelf="flex-end">
+                        <div className={ cx(css.box, css.captionColorBox) }>
                             <Text color="gray60" font="sans-italic" fontSize="12" lineHeight="18">
                                 Rested
                             </Text>
                         </div>
-                        <div className={cx(css.box, css.captionColorBox)}>
+                        <div className={ cx(css.box, css.captionColorBox) }>
                             <Text color="gray60" font="sans-italic" fontSize="12" lineHeight="18">
                                 Hovered
                             </Text>
                         </div>
-                        <div className={cx(css.box, css.captionColorBox)}>
+                        <div className={ cx(css.box, css.captionColorBox) }>
                             <Text color="gray60" font="sans-italic" fontSize="12" lineHeight="18">
                                 Pressed
                             </Text>
@@ -271,17 +291,17 @@ export class LoveshipColorsDoc extends React.Component {
 
     renderGrayscaleColors() {
         return (
-            <RichTextView size="16" cx={css.container}>
+            <RichTextView size="16" cx={ css.container }>
                 <h2>Grayscale</h2>
                 <FlexRow>
                     {grayscaleColors.map((color) => {
                         return (
-                            <Tooltip key={color.name} content={false && color.context}>
-                                <div className={cx(css.box, css.grayscaleColorBox, style[`color-${color.name}`])}>
-                                    <div className={css.hexText} onClick={() => copyTextToClipboard(color.hex, this.showNotification)}>
+                            <Tooltip key={ color.name } content={ false && color.context }>
+                                <div className={ cx(css.box, css.grayscaleColorBox, style[`color-${color.name}`]) }>
+                                    <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }>
                                         {color.hex}
                                     </div>
-                                    {color.hasVariable && <div className={css.colorName} onClick={() => {}}>{`$${color.name}`}</div>}
+                                    {color.hasVariable && <div className={ css.colorName } onClick={ () => {} }>{`$${color.name}`}</div>}
                                 </div>
                             </Tooltip>
                         );
@@ -297,18 +317,18 @@ export class LoveshipColorsDoc extends React.Component {
 
     renderAdditionalColors() {
         return (
-            <RichTextView size="16" cx={css.container}>
+            <RichTextView size="16" cx={ css.container }>
                 <h2>Additional</h2>
                 <FlexRow>
                     {(Object.keys(additionalColors) as Array<AdditionalColorsTypes>).map((nameColor: AdditionalColorsTypes, index: number) => {
                         return (
-                            <FlexCell key={index} minWidth={80}>
+                            <FlexCell key={ index } minWidth={ 80 }>
                                 {additionalColors[nameColor].map((color, index: number) => {
                                     return (
-                                        <div key={index} className={cx(css.box, css.additionalColorBox)} style={{ backgroundColor: color.hex }}>
+                                        <div key={ index } className={ cx(css.box, css.additionalColorBox) } style={ { backgroundColor: color.hex } }>
                                             <div
-                                                className={cx(css.hexText, color.contrastText && css.contrastText)}
-                                                onClick={() => copyTextToClipboard(color.hex, this.showNotification)}
+                                                className={ cx(css.hexText, color.contrastText && css.contrastText) }
+                                                onClick={ () => copyTextToClipboard(color.hex, this.showNotification) }
                                             >
                                                 {color.hex}
                                             </div>

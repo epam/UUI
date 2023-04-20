@@ -1,7 +1,9 @@
 import React from 'react';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
 import { ArrayDataSource, DataColumnProps, Metadata } from '@epam/uui-core';
-import { Panel, DataTable, DataTableCell, useForm, FlexRow, Button, FlexSpacer, FlexCell } from '@epam/loveship';
+import {
+    Panel, DataTable, DataTableCell, useForm, FlexRow, Button, FlexSpacer, FlexCell,
+} from '@epam/loveship';
 import { Text } from '@epam/promo';
 
 interface Person {
@@ -40,10 +42,12 @@ const metadata: Metadata<FormState> = {
 
 let savedValue: FormState = { items: {} };
 
-export const TableContext = (contextProps: DemoComponentProps) => {
+export function TableContext(contextProps: DemoComponentProps) {
     const { DemoComponent } = contextProps;
 
-    const { lens, save, isChanged, revert, undo, canUndo, redo, canRedo } = useForm<FormState>({
+    const {
+        lens, save, isChanged, revert, undo, canUndo, redo, canRedo,
+    } = useForm<FormState>({
         value: savedValue,
         onSave: async (value) => {
             savedValue = value;
@@ -71,9 +75,9 @@ export const TableContext = (contextProps: DemoComponentProps) => {
             caption: 'Name',
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('name').toProps()}
-                    renderEditor={(props) => <DemoComponent valueType="id" selectionMode="single" dataSource={dataSource} {...props} />}
-                    {...props}
+                    { ...props.rowLens.prop('name').toProps() }
+                    renderEditor={ (props) => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props } /> }
+                    { ...props }
                 />
             ),
             isSortable: true,
@@ -86,9 +90,9 @@ export const TableContext = (contextProps: DemoComponentProps) => {
             caption: 'Years In Company',
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('yearsInCompany').toProps()}
-                    renderEditor={(props) => <DemoComponent valueType="id" selectionMode="single" dataSource={dataSource} {...props} />}
-                    {...props}
+                    { ...props.rowLens.prop('yearsInCompany').toProps() }
+                    renderEditor={ (props) => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props } /> }
+                    { ...props }
                 />
             ),
             isSortable: true,
@@ -108,9 +112,9 @@ export const TableContext = (contextProps: DemoComponentProps) => {
             caption: 'Birth Date',
             renderCell: (props) => (
                 <DataTableCell
-                    {...props.rowLens.prop('birthDate').toProps()}
-                    renderEditor={(props) => <DemoComponent valueType="id" selectionMode="single" dataSource={dataSource} {...props} />}
-                    {...props}
+                    { ...props.rowLens.prop('birthDate').toProps() }
+                    renderEditor={ (props) => <DemoComponent valueType="id" selectionMode="single" dataSource={ dataSource } { ...props } /> }
+                    { ...props }
                 />
             ),
             isSortable: true,
@@ -121,27 +125,27 @@ export const TableContext = (contextProps: DemoComponentProps) => {
 
     return (
         <>
-            <Panel style={{ width: '100%', paddingLeft: '3px' }}>
+            <Panel style={ { width: '100%', paddingLeft: '3px' } }>
                 <DataTable
                     headerTextCase="upper"
-                    getRows={dataView.getVisibleRows}
-                    columns={personColumns}
-                    value={tableState}
-                    onValueChange={setTableState}
+                    getRows={ dataView.getVisibleRows }
+                    columns={ personColumns }
+                    value={ tableState }
+                    onValueChange={ setTableState }
                     showColumnsConfig
                     allowColumnsResizing
                     allowColumnsReordering
-                    {...dataView.getListProps()}
+                    { ...dataView.getListProps() }
                 />
             </Panel>
             <FlexRow spacing="12" margin="12">
                 <FlexSpacer />
                 <FlexCell width="auto">
-                    <Button color="grass" caption="Save" onClick={save} />
+                    <Button color="grass" caption="Save" onClick={ save } />
                 </FlexCell>
             </FlexRow>
         </>
     );
-};
+}
 
 TableContext.displayName = 'Table';

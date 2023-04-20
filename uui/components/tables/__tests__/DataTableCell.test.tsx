@@ -7,14 +7,14 @@ describe('DataTableCell', () => {
         const tree = renderer
             .create(
                 <DataTableCell
-                    column={{
+                    column={ {
                         key: 'test',
                         caption: 'Test',
                         render: () => <div>Test</div>,
                         width: 150,
                         fix: 'left',
-                    }}
-                    rowProps={{
+                    } }
+                    rowProps={ {
                         id: '1',
                         rowKey: '1',
                         index: 1,
@@ -24,8 +24,8 @@ describe('DataTableCell', () => {
                             srcData: {},
                             dstData: {},
                         },
-                    }}
-                />
+                    } }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();
@@ -35,7 +35,7 @@ describe('DataTableCell', () => {
         const tree = renderer
             .create(
                 <DataTableCell
-                    column={{
+                    column={ {
                         key: 'test',
                         caption: 'Test',
                         render: () => <div>Test</div>,
@@ -43,8 +43,8 @@ describe('DataTableCell', () => {
                         fix: 'left',
                         info: 'test',
                         isSortable: true,
-                    }}
-                    rowProps={{
+                    } }
+                    rowProps={ {
                         id: '1',
                         rowKey: '1',
                         index: 1,
@@ -54,11 +54,11 @@ describe('DataTableCell', () => {
                             srcData: {},
                             dstData: {},
                         },
-                    }}
+                    } }
                     isLastColumn
                     padding="24"
                     size="48"
-                />
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

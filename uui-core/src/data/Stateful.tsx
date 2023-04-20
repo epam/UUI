@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { IEditable } from '../types/props';
-import { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+    ReactElement, useCallback, useEffect, useMemo, useRef, useState,
+} from 'react';
 import { useUuiContext } from '../services';
 
-const reduxDevTools: any = null; //(window as any).__REDUX_DEVTOOLS_EXTENSION__;
+const reduxDevTools: any = null; // (window as any).__REDUX_DEVTOOLS_EXTENSION__;
 
 type StatefulStorageType = 'state' | 'query';
 type StatefulStorageSettings<T> = StatefulStorageType; // TBD: allow per-field settings
@@ -33,7 +35,12 @@ const StatefulImpl = <T extends unknown = any>(props: StatefulProps<T>) => {
             const query = context.uuiRouter.getCurrentLink().query;
             return { ...props.initialState, ...query };
         }
-    }, [props.storage, props.initialState, state, context]);
+    }, [
+        props.storage,
+        props.initialState,
+        state,
+        context,
+    ]);
 
     const handleStateUpdate = useCallback(
         (newState: T) => {
@@ -48,7 +55,12 @@ const StatefulImpl = <T extends unknown = any>(props: StatefulProps<T>) => {
                 context.uuiRouter.redirect({ ...link, query: newState });
             }
         },
-        [reduxDevTools, devTools, props.storage, context]
+        [
+            reduxDevTools,
+            devTools,
+            props.storage,
+            context,
+        ],
     );
 
     return props.render({

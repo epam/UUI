@@ -15,7 +15,15 @@ const pete = { name: 'Pete', departmentId: 3, age: 45 } as Person;
 const sandra = { name: 'Sandra', departmentId: 3, age: 35 } as Person;
 const william = { name: 'William', departmentId: 4 } as Person;
 
-const persons = [alice, bob, edward, jack, pete, sandra, william];
+const persons = [
+    alice,
+    bob,
+    edward,
+    jack,
+    pete,
+    sandra,
+    william,
+];
 
 const run = (filter: DataQueryFilter<Person>) => {
     const filterPredicate = getFilterPredicate(filter as any);
@@ -44,7 +52,11 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ departmentId: { in: [3, 4] } }', () => {
-        expect(run({ departmentId: { in: [3, 4] } })).toEqual([pete, sandra, william]);
+        expect(run({ departmentId: { in: [3, 4] } })).toEqual([
+            pete,
+            sandra,
+            william,
+        ]);
     });
 
     it('{ name: { in: ["Jack", "Pete"] }, departmentId: { in: [1, 2]} }', () => {
@@ -60,12 +72,23 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ age: { isNull: false } }', () => {
-        expect(run({ age: { isNull: false } })).toEqual([alice, bob, edward, pete, sandra]);
+        expect(run({ age: { isNull: false } })).toEqual([
+            alice,
+            bob,
+            edward,
+            pete,
+            sandra,
+        ]);
     });
 
     it('{ age: { gte: 40 } }', () => {
         // Should include null values as well, filter non-null values with explicit isNull: false
-        expect(run({ age: { gte: 40 } })).toEqual([edward, jack, pete, william]);
+        expect(run({ age: { gte: 40 } })).toEqual([
+            edward,
+            jack,
+            pete,
+            william,
+        ]);
     });
 
     it('{ age: { gte: 40, isNull: false } }', () => {
@@ -74,7 +97,12 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ age: { lte: 30 } }', () => {
-        expect(run({ age: { lte: 30 } })).toEqual([alice, bob, jack, william]);
+        expect(run({ age: { lte: 30 } })).toEqual([
+            alice,
+            bob,
+            jack,
+            william,
+        ]);
     });
 
     it('{ age: { lte: 30, isNull: false } }', () => {
@@ -91,7 +119,11 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ age: { lt: 40, isNull: false }}', () => {
-        expect(run({ age: { lt: 40, isNull: false } })).toEqual([alice, bob, sandra]);
+        expect(run({ age: { lt: 40, isNull: false } })).toEqual([
+            alice,
+            bob,
+            sandra,
+        ]);
     });
 
     it('{ name: { lte: "Bob" } }', () => {
@@ -113,7 +145,19 @@ describe('getPatternPredicate', () => {
     });
 
     it('{ age: { in: [null, 40] } }', () => {
-        expect(run({ age: { in: [undefined, null, 40] } })).toEqual([edward, jack, william]);
+        expect(run({
+            age: {
+                in: [
+                    undefined,
+                    null,
+                    40,
+                ],
+            },
+        })).toEqual([
+            edward,
+            jack,
+            william,
+        ]);
     });
 
     it('{ age: { in: [null, "40" as any] } }', () => {

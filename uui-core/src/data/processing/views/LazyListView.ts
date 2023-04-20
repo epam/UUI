@@ -11,7 +11,9 @@ import {
 import isEqual from 'lodash.isequal';
 import { BaseListView } from './BaseListView';
 import { ListApiCache } from '../ListApiCache';
-import { Tree, LoadTreeOptions, ITree, ROOT_ID } from './tree';
+import {
+    Tree, LoadTreeOptions, ITree, ROOT_ID,
+} from './tree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
@@ -82,17 +84,23 @@ interface LoadResult<TItem, TId, TFilter> {
 
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
+
     public value: DataSourceState<TFilter, TId> = null;
+
     private cache: ListApiCache<TItem, TId, TFilter>;
+
     private isUpdatePending = false;
+
     private loadedValue: DataSourceState<TFilter, TId> = null;
+
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
+
     private reloading: boolean = false;
 
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
         { legacyLoadDataBehavior = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
-        cache?: ListApiCache<TItem, TId, TFilter>
+        cache?: ListApiCache<TItem, TId, TFilter>,
     ) {
         const newProps = { legacyLoadDataBehavior, ...props };
         super(editable, newProps);
@@ -159,7 +167,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             this.reloading = false;
         }
 
-        let isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
+        const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
 
         const moreRowsNeeded = this.areMoreRowsNeeded(prevValue, this.value);
         if (completeReset || this.shouldRebuildRows(this.value, prevValue)) {
@@ -167,12 +175,12 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         if (
-            completeReset ||
-            this.shouldRebuildRows(this.value, prevValue) ||
-            !isEqual(this.props.rowOptions, prevProps.rowOptions) ||
-            isFoldingChanged ||
-            this.props.getRowOptions !== prevProps.getRowOptions ||
-            moreRowsNeeded
+            completeReset
+            || this.shouldRebuildRows(this.value, prevValue)
+            || !isEqual(this.props.rowOptions, prevProps.rowOptions)
+            || isFoldingChanged
+            || this.props.getRowOptions !== prevProps.getRowOptions
+            || moreRowsNeeded
         ) {
             this.rebuildRows();
         }
@@ -266,7 +274,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     private loadMissing(
         abortInProgress: boolean,
         options?: Partial<LoadTreeOptions<TItem, TId, TFilter>>,
-        withNestedChildren?: boolean
+        withNestedChildren?: boolean,
     ): Promise<LoadResult<TItem, TId, TFilter>> {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
 
@@ -292,7 +300,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                     filter: { ...{}, ...this.props.filter, ...this.value.filter },
                 },
                 this.value,
-                withNestedChildren
+                withNestedChildren,
             );
 
             const newTree = await newTreePromise;
@@ -315,8 +323,8 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
-        let id = rowProps.id;
-        let isChecked = !rowProps.isChecked;
+        const id = rowProps.id;
+        const isChecked = !rowProps.isChecked;
 
         this.checkItems(isChecked, false, id);
     };
@@ -344,7 +352,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         // Otherwise, should be loaded only checked element and all its nested children.
                         loadAllChildren: (id) => (isImplicitMode ? id === ROOT_ID || parents.includes(id) : isRoot || id === checkedId),
                     },
-                    loadNestedLayersChildren
+                    loadNestedLayersChildren,
                 );
                 tree = result.tree;
             }
@@ -400,9 +408,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         let rowsCount: number;
         let totalCount: number;
-        let lastVisibleIndex = this.getLastRecordIndex();
-        let rootInfo = this.tree.getNodeInfo(undefined);
-        let rootCount = rootInfo.count;
+        const lastVisibleIndex = this.getLastRecordIndex();
+        const rootInfo = this.tree.getNodeInfo(undefined);
+        const rootCount = rootInfo.count;
 
         if (!this.props.getChildCount && rootCount) {
             // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.

@@ -24,7 +24,7 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
                 this.setState((state) => ({
                     showAnimation: !state.showAnimation,
                 })),
-            timeout
+            timeout,
         );
     };
 
@@ -35,50 +35,50 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
     renderAnimatedImage = () => {
         return (
             <>
-                <div style={{ width: '100%' }}>
+                <div style={ { width: '100%' } }>
                     <img alt="image" src="/static/images/Background.png" width="100%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.search} alt="image" src="/static/images/120_192.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.search } alt="image" src="/static/images/120_192.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_1} alt="image" src="/static/images/120_390.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_1 } alt="image" src="/static/images/120_390.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_2} alt="image" src="/static/images/426_444.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_2 } alt="image" src="/static/images/426_444.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_3} alt="image" src="/static/images/732_444.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_3 } alt="image" src="/static/images/732_444.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_4} alt="image" src="/static/images/1038_444.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_4 } alt="image" src="/static/images/1038_444.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_5} alt="image" src="/static/images/426_744.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_5 } alt="image" src="/static/images/426_744.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_6} alt="image" src="/static/images/732_744.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_6 } alt="image" src="/static/images/732_744.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_7} alt="image" src="/static/images/1038_744.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_7 } alt="image" src="/static/images/1038_744.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_8} alt="image" src="/static/images/426_1044.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_8 } alt="image" src="/static/images/426_1044.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_9} alt="image" src="/static/images/732_1044.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_9 } alt="image" src="/static/images/732_1044.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_10} alt="image" src="/static/images/1038_1044.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_10 } alt="image" src="/static/images/1038_1044.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_11} alt="image" src="/static/images/426_1344.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_11 } alt="image" src="/static/images/426_1344.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_12} alt="image" src="/static/images/732_1344.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_12 } alt="image" src="/static/images/732_1344.png" width="20%" />
                 </div>
-                <div style={{ width: '100%' }}>
-                    <img className={css.layer_13} alt="image" src="/static/images/1038_1344.png" width="20%" />
+                <div style={ { width: '100%' } }>
+                    <img className={ css.layer_13 } alt="image" src="/static/images/1038_1344.png" width="20%" />
                 </div>
             </>
         );
@@ -96,22 +96,22 @@ export class HeroBlock extends React.Component<HeroBlockProps, HeroBlockState> {
                     const containerWidth = window ? window.innerWidth : contentRect.bounds.width;
 
                     return (
-                        <div className={css.layout} ref={measureRef}>
-                            <FlexRow cx={css.hero}>
-                                <div className={css.heroText}>
-                                    <Text rawProps={{ role: 'heading', 'aria-level': 1 }} font="museo-slab" cx={css.heroHeader}>
+                        <div className={ css.layout } ref={ measureRef }>
+                            <FlexRow cx={ css.hero }>
+                                <div className={ css.heroText }>
+                                    <Text rawProps={ { role: 'heading', 'aria-level': 1 } } font="museo-slab" cx={ css.heroHeader }>
                                         Unified UI
                                     </Text>
-                                    <Text font="sans" fontSize="24" cx={css.heroSecondary}>
+                                    <Text font="sans" fontSize="24" cx={ css.heroSecondary }>
                                         Digital Platform UX/UI accelerator used to build all EPAM internal products in one effective & consistent way.
                                     </Text>
-                                    <Text font="sans" fontSize="24" cx={css.heroSecondary}>
+                                    <Text font="sans" fontSize="24" cx={ css.heroSecondary }>
                                         No more need to build user interface from scratch every time. Just use "lego blocks" to assemble new pages in a quick way for any
                                         current or new EPAM product.
                                     </Text>
                                 </div>
-                                <div className={cx(css.heroWrapper, this.state.showAnimation && containerWidth > 1280 && 'show-animation')}>
-                                    <div className={css.heroImage} style={{ ['--height']: `${containerWidth / 2}px` } as React.CSSProperties}>
+                                <div className={ cx(css.heroWrapper, this.state.showAnimation && containerWidth > 1280 && 'show-animation') }>
+                                    <div className={ css.heroImage } style={ { '--height': `${containerWidth / 2}px` } as React.CSSProperties }>
                                         {containerWidth > 1280 ? this.renderAnimatedImage() : this.renderStaticImage()}
                                     </div>
                                 </div>

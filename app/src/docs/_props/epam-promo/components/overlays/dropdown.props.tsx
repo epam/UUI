@@ -2,7 +2,9 @@ import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownProps } from '@epam/uui-core';
-import { Button, Panel, FlexRow, Text } from '@epam/promo';
+import {
+    Button, Panel, FlexRow, Text,
+} from '@epam/promo';
 import { DefaultContext } from '../../docs';
 
 const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', component: Dropdown })
@@ -12,7 +14,7 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', compon
             {
                 value: () => {
                     return (
-                        <Panel background="white" shadow={true}>
+                        <Panel background="white" shadow={ true }>
                             <FlexRow padding="12" vPadding="12">
                                 <Text>Dropdown body content. You can use any components as a dropdown body.</Text>
                             </FlexRow>
@@ -27,7 +29,7 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', compon
         isRequired: true,
         examples: [
             {
-                value: (props) => <Button caption="Target" {...props} />,
+                value: (props) => <Button caption="Target" { ...props } />,
                 isDefault: true,
             },
         ],
@@ -53,16 +55,30 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', compon
         remountOnChange: true,
     })
     .prop('closeOnMouseLeave', {
-        examples: ['toggler', 'boundary', false],
+        examples: [
+            'toggler',
+            'boundary',
+            false,
+        ],
         defaultValue: false,
         remountOnChange: true,
     })
     .prop('openDelay', {
-        examples: [500, 1000, 1500, 2000],
+        examples: [
+            500,
+            1000,
+            1500,
+            2000,
+        ],
         defaultValue: 0,
     })
     .prop('closeDelay', {
-        examples: [500, 1000, 1500, 2000],
+        examples: [
+            500,
+            1000,
+            1500,
+            2000,
+        ],
         defaultValue: 0,
     })
     .prop('onValueChange', { examples: (ctx) => [{ value: ctx.getChangeHandler('onValueChange'), name: '(newValue) => { ... }' }] })

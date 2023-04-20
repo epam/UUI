@@ -18,10 +18,10 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
             renderRow: (props) => (
                 <DataPickerRow
-                    {...props}
+                    { ...props }
                     size="36"
-                    key={props.rowKey}
-                    renderItem={(item: any) => <Badge fill="transparent" color={item.name.toLowerCase()} caption={item.name} />}
+                    key={ props.rowKey }
+                    renderItem={ (item: any) => <Badge fill="transparent" color={ item.name.toLowerCase() } caption={ item.name } /> }
                 />
             ),
             predicates: defaultPredicates.multiPicker,
@@ -34,10 +34,10 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             dataSource: new LazyDataSource({ api: svc.api.demo.countries }),
             renderRow: (props) => (
                 <DataPickerRow
-                    {...props}
+                    { ...props }
                     size="36"
-                    key={props.rowKey}
-                    renderItem={(item: Country, rowProps) => <PickerItem {...rowProps} title={item.name} subtitle={item.capital} />}
+                    key={ props.rowKey }
+                    renderItem={ (item: Country, rowProps) => <PickerItem { ...rowProps } title={ item.name } subtitle={ item.capital } /> }
                 />
             ),
         },
@@ -54,10 +54,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             title: 'Department',
             type: 'singlePicker',
             dataSource: new LazyDataSource({ api: svc.api.demo.departments }),
-            predicates: [
-                { predicate: 'eq', name: 'is' },
-                { predicate: 'neq', name: 'is not' },
-            ],
+            predicates: [{ predicate: 'eq', name: 'is' }, { predicate: 'neq', name: 'is not' }],
         },
         {
             field: 'officeId',

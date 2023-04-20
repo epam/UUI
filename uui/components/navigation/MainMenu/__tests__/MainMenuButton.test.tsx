@@ -15,14 +15,14 @@ describe('MainMenuButton', () => {
                     caption="Test button"
                     type="primary"
                     target="_blank"
-                    link={{ pathname: '/' }}
+                    link={ { pathname: '/' } }
                     isDropdown
-                    isOpen={false}
+                    isOpen={ false }
                     collapseToMore
-                    estimatedWidth={120}
+                    estimatedWidth={ 120 }
                     showInBurgerMenu
-                    priority={6}
-                />
+                    priority={ 6 }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

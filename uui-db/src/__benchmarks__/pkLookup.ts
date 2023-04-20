@@ -5,7 +5,7 @@ import * as I from 'immutable';
 b.suite(
     'Find 1 entity by number ID in 100k dataset',
 
-    //b.add('Array.filter', () => test100KPersons.find(p => p.id == 5)),
+    // b.add('Array.filter', () => test100KPersons.find(p => p.id == 5)),
 
     b.add('IxSet.byId', () => {
         const set = blankIxSet.with(test100KPersons);
@@ -29,5 +29,5 @@ b.suite(
 
     b.cycle(),
     b.complete(),
-    b.save({ file: 'pkLookup', version: '1.0.0' })
+    b.save({ file: 'pkLookup', version: '1.0.0' }),
 );

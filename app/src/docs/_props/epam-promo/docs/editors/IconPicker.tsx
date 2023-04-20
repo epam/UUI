@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { IEditable, IHasIcon, Icon, cx, ArrayDataSource } from '@epam/uui-core';
+import {
+    IEditable, IHasIcon, Icon, cx, ArrayDataSource,
+} from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
-import { Button, DataPickerRow, IconButton, PickerInput, Text, Tooltip } from '@epam/promo';
+import {
+    Button, DataPickerRow, IconButton, PickerInput, Text, Tooltip,
+} from '@epam/promo';
 import { SizeInfo } from './index';
 import css from './IconPicker.scss';
 import { IconList } from '../../../../../documents/iconListHelpers';
@@ -26,7 +30,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
         if (item.parentId) {
             itemText = (
                 <>
-                    <Text size="18" fontSize="14" cx={css.itemName}>
+                    <Text size="18" fontSize="14" cx={ css.itemName }>
                         {item.size}
                     </Text>
                     <Text size="18" color="gray80">
@@ -35,13 +39,13 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
                 </>
             );
         } else {
-            itemText = <Text cx={css.itemName}>{item.name}</Text>;
+            itemText = <Text cx={ css.itemName }>{item.name}</Text>;
         }
 
         return (
-            <div key={item.id} className={css.item}>
-                <IconContainer icon={item.icon} cx={cx(css.itemIcon, !item.parentId && css.customSize)} />
-                <div className={css.itemText} onClick={(e) => e.stopPropagation()}>
+            <div key={ item.id } className={ css.item }>
+                <IconContainer icon={ item.icon } cx={ cx(css.itemIcon, !item.parentId && css.customSize) } />
+                <div className={ css.itemText } onClick={ (e) => e.stopPropagation() }>
                     {itemText}
                 </div>
             </div>
@@ -50,17 +54,17 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
 
     renderTooltip() {
         return (
-            <div className={css.contentTooltip}>
-                <SizeInfo size={(this.props as any).size || '36'} caption={(this.props as any).caption || ''} showHorizontalHighlight={true} />
+            <div className={ css.contentTooltip }>
+                <SizeInfo size={ (this.props as any).size || '36' } caption={ (this.props as any).caption || '' } showHorizontalHighlight={ true } />
             </div>
         );
     }
 
     renderInfo() {
         return (
-            <div className={css.infoContainer}>
-                <Tooltip cx={css.tooltip} placement="top" content={this.renderTooltip()} color="gray90">
-                    <IconButton icon={InfoIcon} color="gray60" />
+            <div className={ css.infoContainer }>
+                <Tooltip cx={ css.tooltip } placement="top" content={ this.renderTooltip() } color="gray90">
+                    <IconButton icon={ InfoIcon } color="gray60" />
                 </Tooltip>
             </div>
         );
@@ -76,36 +80,36 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
     };
 
     render() {
-        let icons: { [key: string]: IconList<Icon> } = {};
+        const icons: { [key: string]: IconList<Icon> } = {};
         this.props.icons.forEach((icon) => {
             icons[icon.id] = icon;
         });
 
         return (
-            <div className={css.container}>
-                <div className={css.selectContainer}>
+            <div className={ css.container }>
+                <div className={ css.selectContainer }>
                     <PickerInput<any, string>
                         selectionMode="single"
-                        value={this.state.iconId}
-                        onValueChange={(id: string) => {
+                        value={ this.state.iconId }
+                        onValueChange={ (id: string) => {
                             this.props.onValueChange(icons[id].icon as IHasIcon);
                             this.setState({ iconId: id, iconName: icons[id].parentId });
-                        }}
-                        dataSource={this.dataSource}
+                        } }
+                        dataSource={ this.dataSource }
                         searchPosition="body"
-                        renderToggler={(props) => (
+                        renderToggler={ (props) => (
                             <Button
-                                {...props}
-                                placeholder={this.props.value ? this.state.iconName : 'Select icon'}
-                                icon={this.props.value as any}
+                                { ...props }
+                                placeholder={ this.props.value ? this.state.iconName : 'Select icon' }
+                                icon={ this.props.value as any }
                                 fill="none"
                                 color="gray50"
                                 size="24"
-                                onClear={this.props.value && this.handleClear}
+                                onClear={ this.props.value && this.handleClear }
                             />
-                        )}
-                        renderRow={(props) => <DataPickerRow {...props} key={props.id} size="48" renderItem={this.renderItem} />}
-                        getRowOptions={(item) => ({ isSelectable: item.parentId })}
+                        ) }
+                        renderRow={ (props) => <DataPickerRow { ...props } key={ props.id } size="48" renderItem={ this.renderItem } /> }
+                        getRowOptions={ (item) => ({ isSelectable: item.parentId }) }
                     />
                     {this.props.enableInfo && this.renderInfo()}
                 </div>

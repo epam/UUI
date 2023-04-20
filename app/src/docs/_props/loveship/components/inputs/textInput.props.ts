@@ -19,9 +19,37 @@ import {
 } from '../../docs';
 
 const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'TextInput', component: TextInput })
-    .prop('size', { examples: ['60', '48', '42', '36', '30', '24'], defaultValue: '36' })
-    .implements([onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, modeDoc])
-    .prop('maxLength', { examples: [10, 20, 30], type: 'number' })
+    .prop('size', {
+        examples: [
+            '60',
+            '48',
+            '42',
+            '36',
+            '30',
+            '24',
+        ],
+        defaultValue: '36',
+    })
+    .implements([
+        onClickDoc,
+        isDisabledDoc,
+        isReadonlyDoc,
+        isInvalidDoc,
+        iconDoc,
+        iconOptionsDoc,
+        iEditable,
+        iHasPlaceholder,
+        dropdownTogglerDoc,
+        modeDoc,
+    ])
+    .prop('maxLength', {
+        examples: [
+            10,
+            20,
+            30,
+        ],
+        type: 'number',
+    })
     .prop('prefix', { examples: [{ value: 'Prefix: ' }] })
     .prop('suffix', { examples: [{ value: 'Suffix' }] })
     .prop('value', {

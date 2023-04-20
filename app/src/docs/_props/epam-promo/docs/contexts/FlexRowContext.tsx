@@ -10,11 +10,11 @@ export class FlexRowContext extends React.Component<DemoComponentProps> {
         const { DemoComponent, props } = this.props;
 
         return (
-            <FlexRow cx={css.root} background="white" spacing="18">
-                <FlexCell width={150} grow={1}>
-                    <TextInput value={null} onValueChange={null} placeholder="Placeholder" />
+            <FlexRow cx={ css.root } background="white" spacing="18">
+                <FlexCell width={ 150 } grow={ 1 }>
+                    <TextInput value={ null } onValueChange={ null } placeholder="Placeholder" />
                 </FlexCell>
-                <DemoComponent {...props} />
+                <DemoComponent { ...props } />
             </FlexRow>
         );
     }

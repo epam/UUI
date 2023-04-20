@@ -11,9 +11,9 @@ describe('Text', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
             .create(
-                <Text color="gray60" size="48" font="museo-slab" fontSize="24" lineHeight="30" onClick={jest.fn}>
+                <Text color="gray60" size="48" font="museo-slab" fontSize="24" lineHeight="30" onClick={ jest.fn }>
                     Test
-                </Text>
+                </Text>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

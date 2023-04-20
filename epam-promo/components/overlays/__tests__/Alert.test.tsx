@@ -1,5 +1,7 @@
 import React from 'react';
-import { Alert, ErrorAlert, HintAlert, SuccessAlert, WarningAlert } from '../Alert';
+import {
+    Alert, ErrorAlert, HintAlert, SuccessAlert, WarningAlert,
+} from '../Alert';
 import renderer from 'react-test-renderer';
 import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
@@ -13,16 +15,16 @@ describe('Alert', () => {
         const tree = renderer
             .create(
                 <Alert
-                    icon={CalendarIcon}
+                    icon={ CalendarIcon }
                     color="amber"
-                    actions={[
+                    actions={ [
                         {
                             name: 'ACTION 1',
                             action: jest.fn,
                         },
-                    ]}
-                    onClose={jest.fn}
-                />
+                    ] }
+                    onClose={ jest.fn }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

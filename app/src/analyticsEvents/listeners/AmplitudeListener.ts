@@ -3,6 +3,7 @@ import amplitude from 'amplitude-js';
 
 export class AmplitudeListener implements IAnalyticsListener {
     public ampCode: string;
+
     public client: amplitude.AmplitudeClient;
 
     constructor(ampCode: string) {

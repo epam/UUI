@@ -19,11 +19,11 @@ export const MobileDropdownWrapper: React.FC<IMobileDropdownWrapperProps> = (pro
 
     return (
         <>
-            {isVisible && <DataPickerHeader title={props.title} close={props.close} />}
+            {isVisible && <DataPickerHeader title={ props.title } close={ props.close } />}
 
             {props.children}
 
-            {isVisible && <LinkButton caption="DONE" onClick={() => props.close?.()} cx={css.done} size="48" />}
+            {isVisible && <LinkButton caption="DONE" onClick={ () => props.close?.() } cx={ css.done } size="48" />}
         </>
     );
 };

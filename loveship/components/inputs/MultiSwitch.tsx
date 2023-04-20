@@ -20,5 +20,5 @@ export const MultiSwitch = withMods<UuiMultiSwitchProps<any>, MultiSwitchMods>(
     () => [],
     (props) => ({
         color: colorToMod[props.color ?? 'sky'],
-    })
+    }),
 ) as <TValue>(props: MultiSwitchProps<TValue>) => JSX.Element;

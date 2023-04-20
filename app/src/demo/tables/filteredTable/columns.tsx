@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Text, Badge, EpamAdditionalColor, FlexRow, LinkButton } from '@epam/promo';
+import {
+    Text, Badge, EpamAdditionalColor, FlexRow, LinkButton,
+} from '@epam/promo';
 import { DataColumnProps, getSeparatedValue } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './FilteredTable.scss';
@@ -20,7 +22,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
-                    <Badge fill="transparent" color={p.profileStatus.toLowerCase() as EpamAdditionalColor} caption={p.profileStatus} />
+                    <Badge fill="transparent" color={ p.profileStatus.toLowerCase() as EpamAdditionalColor } caption={ p.profileStatus } />
                 </FlexRow>
             ),
         grow: 0,
@@ -32,7 +34,13 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'salary',
         caption: 'salary',
-        render: (p) => <Text>{getSeparatedValue(+p.salary, { style: 'currency', currency: 'USD', maximumFractionDigits: 2, minimumFractionDigits: 2 }, 'en-US')}</Text>,
+        render: (p) => (
+            <Text>
+                {getSeparatedValue(+p.salary, {
+                    style: 'currency', currency: 'USD', maximumFractionDigits: 2, minimumFractionDigits: 2,
+                }, 'en-US')}
+            </Text>
+        ),
         width: 150,
         textAlign: 'right',
         isSortable: true,
@@ -69,7 +77,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'managerName',
         caption: 'Manager',
-        render: (p) => <LinkButton caption={p.managerName} captionCX={css.managerCell} href="#" />,
+        render: (p) => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#" />,
         grow: 0,
         shrink: 0,
         width: 150,
@@ -136,7 +144,12 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'workload',
         caption: 'Workload',
-        render: (p) => <Text>{p.workload}%</Text>,
+        render: (p) => (
+            <Text>
+                {p.workload}
+                %
+            </Text>
+        ),
         width: 120,
         textAlign: 'right',
         isSortable: true,

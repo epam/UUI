@@ -1,10 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import sortBy from 'lodash.sortby';
 import { i18n } from '../../../i18n';
-import { DataTableState, IHasRawProps, IPresetsApi, ITablePreset } from '@epam/uui-core';
+import {
+    DataTableState, IHasRawProps, IPresetsApi, ITablePreset,
+} from '@epam/uui-core';
 import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
 import css from './PresetsPanel.scss';
-import { Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow } from '../../index';
+import {
+    Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow,
+} from '../../index';
 import { Preset } from './Preset';
 import { PresetInput } from './PresetInput';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/common/action-deleteforever-18.svg';
@@ -16,7 +20,7 @@ export interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLA
 
 type PresetAdaptiveItem = AdaptiveItemProps<{ preset?: ITablePreset }>;
 
-export const PresetsPanel = (props: PresetsPanelProps) => {
+export function PresetsPanel(props: PresetsPanelProps) {
     const [isAddingPreset, setIsAddingPreset] = useState(false);
 
     const setAddingPreset = useCallback(() => {
@@ -30,16 +34,16 @@ export const PresetsPanel = (props: PresetsPanelProps) => {
     const { presets, ...presetApi } = props;
 
     const renderPreset = (preset: ITablePreset) => {
-        return <Preset key={preset.id} preset={preset} addPreset={setAddingPreset} {...presetApi} />;
+        return <Preset key={ preset.id } preset={ preset } addPreset={ setAddingPreset } { ...presetApi } />;
     };
 
     const renderAddPresetButton = useCallback(() => {
         return (
-            <div key="addingPresetBlock" className={css.addPresetContainer}>
+            <div key="addingPresetBlock" className={ css.addPresetContainer }>
                 {!isAddingPreset ? (
-                    <Button size="36" onClick={setAddingPreset} caption={i18n.presetPanel.addCaption} icon={addIcon} iconPosition="left" mode="ghost" color="primary" />
+                    <Button size="36" onClick={ setAddingPreset } caption={ i18n.presetPanel.addCaption } icon={ addIcon } iconPosition="left" mode="ghost" color="primary" />
                 ) : (
-                    <PresetInput onCancel={cancelAddingPreset} onSuccess={props.createNewPreset} />
+                    <PresetInput onCancel={ cancelAddingPreset } onSuccess={ props.createNewPreset } />
                 )}
             </div>
         );
@@ -54,27 +58,27 @@ export const PresetsPanel = (props: PresetsPanelProps) => {
         return (
             <Dropdown
                 key="more"
-                renderTarget={(props) => (
+                renderTarget={ (props) => (
                     <FlexRow>
-                        <div className={css.divider} />
-                        <Button mode="ghost" color="secondary" caption={`${hiddenItems?.length || ''} more`} {...props} />
+                        <div className={ css.divider } />
+                        <Button mode="ghost" color="secondary" caption={ `${hiddenItems?.length || ''} more` } { ...props } />
                     </FlexRow>
-                )}
-                renderBody={() => (
-                    <DropdownContainer width={230}>
+                ) }
+                renderBody={ () => (
+                    <DropdownContainer width={ 230 }>
                         {hiddenItems.map((item) => (
                             <DropdownMenuButton
-                                key={item.preset.id}
-                                onClick={() => onPresetDropdownSelect(item)}
-                                caption={item.preset.name}
-                                icon={!item.preset.isReadonly && DeleteIcon}
+                                key={ item.preset.id }
+                                onClick={ () => onPresetDropdownSelect(item) }
+                                caption={ item.preset.name }
+                                icon={ !item.preset.isReadonly && DeleteIcon }
                                 iconPosition="right"
-                                cx={css.dropdownDeleteIcon}
-                                onIconClick={!item.preset.isReadonly && (() => props.deletePreset(item.preset))}
+                                cx={ css.dropdownDeleteIcon }
+                                onIconClick={ !item.preset.isReadonly && (() => props.deletePreset(item.preset)) }
                             />
                         ))}
                     </DropdownContainer>
-                )}
+                ) }
             />
         );
     };
@@ -91,16 +95,18 @@ export const PresetsPanel = (props: PresetsPanelProps) => {
                 priority: getPresetPriority(preset, index),
                 preset: preset,
             })),
-            { id: 'collapsedContainer', render: renderMoreButtonDropdown, priority: 100501, collapsedContainer: true },
+            {
+                id: 'collapsedContainer', render: renderMoreButtonDropdown, priority: 100501, collapsedContainer: true,
+            },
             { id: 'addPreset', render: renderAddPresetButton, priority: 100501 },
         ];
     };
 
     return (
-        <FlexCell grow={1} minWidth={310} rawProps={props.rawProps}>
-            <FlexRow size={null} spacing="12" cx={css.presetsWrapper}>
-                <AdaptivePanel items={getPanelItems()} />
+        <FlexCell grow={ 1 } minWidth={ 310 } rawProps={ props.rawProps }>
+            <FlexRow size={ null } spacing="12" cx={ css.presetsWrapper }>
+                <AdaptivePanel items={ getPanelItems() } />
             </FlexRow>
         </FlexCell>
     );
-};
+}

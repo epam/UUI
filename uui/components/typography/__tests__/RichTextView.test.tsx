@@ -8,7 +8,7 @@ describe('RichTextView', () => {
             .create(
                 <RichTextView>
                     <p>Test</p>
-                </RichTextView>
+                </RichTextView>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();
@@ -19,7 +19,7 @@ describe('RichTextView', () => {
             .create(
                 <RichTextView size="16">
                     <div>Test</div>
-                </RichTextView>
+                </RichTextView>,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

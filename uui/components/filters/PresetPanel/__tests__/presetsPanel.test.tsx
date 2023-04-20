@@ -9,7 +9,9 @@ import {
     waitForElementToBeRemoved,
 } from '@epam/test-utils';
 import { PresetsPanel, PresetsPanelProps } from '../PresetsPanel';
-import { ColumnsConfig, DataTableState, FiltersConfig, ITablePreset } from '@epam/uui-core';
+import {
+    ColumnsConfig, DataTableState, FiltersConfig, ITablePreset,
+} from '@epam/uui-core';
 
 jest.mock('react-popper', () => ({
     ...jest.requireActual('react-popper'),
@@ -106,7 +108,7 @@ async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps
             'data-testid': 'presets-panel',
         },
     };
-    const result = await renderToJsdomWithContextAsync(<PresetsPanel {...panelProps} />);
+    const result = await renderToJsdomWithContextAsync(<PresetsPanel { ...panelProps } />);
     const tabs = await screen.findAllByRole('tab');
     const dom = {
         tabs,
@@ -122,17 +124,17 @@ describe('PresetsPanel', () => {
     it('should render with minimum props', async () => {
         const component = await renderSnapshotWithContextAsync(
             <PresetsPanel
-                activePresetId={1}
-                choosePreset={jest.fn()}
-                createNewPreset={jest.fn()}
-                tableState={{}}
-                hasPresetChanged={jest.fn()}
-                duplicatePreset={jest.fn()}
-                deletePreset={jest.fn()}
-                updatePreset={jest.fn()}
-                getPresetLink={jest.fn()}
-                presets={[]}
-            />
+                activePresetId={ 1 }
+                choosePreset={ jest.fn() }
+                createNewPreset={ jest.fn() }
+                tableState={ {} }
+                hasPresetChanged={ jest.fn() }
+                duplicatePreset={ jest.fn() }
+                deletePreset={ jest.fn() }
+                updatePreset={ jest.fn() }
+                getPresetLink={ jest.fn() }
+                presets={ [] }
+            />,
         );
         expect(component).toMatchSnapshot();
     });
@@ -151,8 +153,17 @@ describe('PresetsPanel', () => {
         expect(addPresetBtn).toBeInTheDocument();
         // 2. check that menu of each tab contains correct options
         await expectPresetTabHasOptions(tabs[0], ['Duplicate', 'Copy Link']);
-        await expectPresetTabHasOptions(tabs[1], ['Rename', 'Duplicate', 'Copy Link', 'Delete']);
-        await expectPresetTabHasOptions(tabs[2], ['Duplicate', 'Copy Link', 'Delete']);
+        await expectPresetTabHasOptions(tabs[1], [
+            'Rename',
+            'Duplicate',
+            'Copy Link',
+            'Delete',
+        ]);
+        await expectPresetTabHasOptions(tabs[2], [
+            'Duplicate',
+            'Copy Link',
+            'Delete',
+        ]);
     });
 
     it('should create new preset using "Add preset" button', async () => {
@@ -257,7 +268,15 @@ describe('PresetsPanel', () => {
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
         expect(tabs[1]).toHaveClass('uui-has-right-icon');
-        await expectPresetTabHasOptions(tabs[1], ['Save in current', 'Save as new', 'Discard all changes', 'Rename', 'Duplicate', 'Copy Link', 'Delete']);
+        await expectPresetTabHasOptions(tabs[1], [
+            'Save in current',
+            'Save as new',
+            'Discard all changes',
+            'Rename',
+            'Duplicate',
+            'Copy Link',
+            'Delete',
+        ]);
     });
 
     it('should save modified preset', async () => {

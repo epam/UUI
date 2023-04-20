@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { Badge } from '../Badge';
 import { systemIcons } from '../../icons/icons';
+
 const acceptIcon = systemIcons[18].accept;
 
 describe('Badge', () => {
@@ -18,12 +19,12 @@ describe('Badge', () => {
                     fill="light"
                     size="12"
                     caption="Test badge"
-                    icon={acceptIcon}
-                    count={12}
-                    onIconClick={jest.fn()}
-                    onClick={jest.fn()}
-                    onClear={jest.fn()}
-                />
+                    icon={ acceptIcon }
+                    count={ 12 }
+                    onIconClick={ jest.fn() }
+                    onClick={ jest.fn() }
+                    onClear={ jest.fn() }
+                />,
             )
             .toJSON();
         expect(tree).toMatchSnapshot();

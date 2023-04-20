@@ -16,14 +16,14 @@ afterEach(() => {
 
 describe('TimePickerBody', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(<TimePickerBody value={{ hours: 12, minutes: 30 }} onValueChange={jest.fn} />);
+        const tree = await renderSnapshotWithContextAsync(<TimePickerBody value={ { hours: 12, minutes: 30 } } onValueChange={ jest.fn } />);
 
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly with extra props', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <TimePickerBody value={{ hours: 12, minutes: 30 }} onValueChange={jest.fn} format={12} minutesStep={5} addIcon={acceptIcon} subtractIcon={acceptIcon} />
+            <TimePickerBody value={ { hours: 12, minutes: 30 } } onValueChange={ jest.fn } format={ 12 } minutesStep={ 5 } addIcon={ acceptIcon } subtractIcon={ acceptIcon } />,
         );
 
         expect(tree).toMatchSnapshot();

@@ -10,7 +10,7 @@ interface IPresetInputProps {
     preset?: ITablePreset;
 }
 
-export const PresetInput = (props: IPresetInputProps) => {
+export function PresetInput(props: IPresetInputProps) {
     const [presetCaption, setPresetCaption] = useState(props.preset?.name || '');
 
     const cancelActionHandler = useCallback(() => {
@@ -33,16 +33,16 @@ export const PresetInput = (props: IPresetInputProps) => {
     }, [presetCaption.length, props.onCancel]);
 
     return (
-        <FlexCell cx={css.presetInputCell} minWidth={180}>
+        <FlexCell cx={ css.presetInputCell } minWidth={ 180 }>
             <TextInput
-                cx={css.presetInput}
-                onValueChange={setPresetCaption}
-                value={presetCaption}
-                onCancel={cancelActionHandler}
-                onAccept={acceptActionHandler}
-                onBlur={newPresetOnBlurHandler}
+                cx={ css.presetInput }
+                onValueChange={ setPresetCaption }
+                value={ presetCaption }
+                onCancel={ cancelActionHandler }
+                onAccept={ acceptActionHandler }
+                onBlur={ newPresetOnBlurHandler }
                 autoFocus
             />
         </FlexCell>
     );
-};
+}

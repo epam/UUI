@@ -1,14 +1,28 @@
 const replaceInFiles = require('replace-in-files');
 
 const options = {
-    files: ['./**/*.ts', './**/*.tsx', './**/*.less'],
+    files: [
+        './**/*.ts',
+        './**/*.tsx',
+        './**/*.less',
+    ],
     optionsForFiles: {
         // default
         ignore: ['**/node_modules/**'],
     },
 };
 
-const modules = ['edu-bo-components', 'edu-core', 'edu-core-routing', 'edu-ui-base', 'edu-utils', 'uui', 'uui-build', 'uui-core', 'uui-timeline'];
+const modules = [
+    'edu-bo-components',
+    'edu-core',
+    'edu-core-routing',
+    'edu-ui-base',
+    'edu-utils',
+    'uui',
+    'uui-build',
+    'uui-core',
+    'uui-timeline',
+];
 
 const modulesReplacements = {};
 modules.forEach((m) => (modulesReplacements[m] = '@epam/' + m));
@@ -46,7 +60,7 @@ async function main() {
         console.log(`Replacing module reference ${from} => ${modulesReplacements[from]}`);
         await replace(
             new RegExp(`import([^]*?)from\\s*['"](?:${from}|ui/${from})(\\/.*?)?['"]`, 'gm'),
-            (c, imports, path) => `import${imports}from '${modulesReplacements[from]}${path || ''}'`
+            (c, imports, path) => `import${imports}from '${modulesReplacements[from]}${path || ''}'`,
         );
     }
 

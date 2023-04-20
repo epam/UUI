@@ -8,7 +8,12 @@ import { Text } from '@epam/loveship';
 
 const SnackbarCardDoc = new DocBuilder<SnackbarCardProps>({ name: 'SnackbarCard', component: SnackbarCard })
     .prop('snackType', {
-        examples: [{ value: 'success' }, { value: 'warning' }, { value: 'info' }, { value: 'danger' }],
+        examples: [
+            { value: 'success' },
+            { value: 'warning' },
+            { value: 'info' },
+            { value: 'danger' },
+        ],
         defaultValue: 'success',
         isRequired: true,
     })
