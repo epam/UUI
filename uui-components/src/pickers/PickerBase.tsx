@@ -121,7 +121,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         }
 
         return { checkbox: { isVisible: true } };
-    }
+    };
 
     clearSelection = () => {
         this.handleDataSourceValueChange({
