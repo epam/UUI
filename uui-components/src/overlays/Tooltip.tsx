@@ -10,7 +10,7 @@ export interface TooltipState {
 export interface TooltipProps extends TooltipCoreProps {}
 
 export function Tooltip(props: TooltipProps) {
-    const { cx: tooltipCX, maxWidth, children, closeOnMouseLeave } = props;
+    const { cx: tooltipCX, maxWidth, children, closeOnMouseLeave, rawProps } = props;
 
     const isTooltipExist = () => !!props.content || !!props.renderContent;
 
@@ -19,6 +19,7 @@ export function Tooltip(props: TooltipProps) {
             role="tooltip"
             aria-hidden={ isTooltipExist() }
             className={ uuiElement.tooltipBody }
+            { ...rawProps }
         >
             { props.content || props.renderContent?.() }
         </div>

@@ -11,6 +11,7 @@
 * [Dropdown]: added a 400ms delay to the submenu's close and open triggers
 * [FiltersPanel]: hide 'Add filter' button, if all filters `isAlwaysVisible`
 * [TimePicker]: added max values to hours and minutes inputs
+* [Tooltip]: added possibility to pass raw-props to the tooltip body
   
 
 **What's Fixed**
