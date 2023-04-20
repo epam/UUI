@@ -1,12 +1,12 @@
 import React from "react";
 import type { Options } from '@popperjs/core/lib/modifiers/offset';
 import { DropdownProps } from './index';
-import { IHasChildren, IHasCX } from "../props";
+import { IHasChildren, IHasCX, IHasRawProps } from "../props";
 import {IEditable} from '../../../src/types/props';
 
-export interface TooltipCoreProps extends IHasCX, IHasChildren, Partial<IEditable<boolean>>, Pick<DropdownProps, 'onClose' | 'placement' |
-    'modifiers' | 'openDelay' | 'closeDelay' | 'closeOnMouseLeave' | 'portalTarget' | 'boundaryElement' |
-    'closeBodyOnTogglerHidden'> {
+export interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
+    Partial<IEditable<boolean>>, Pick<DropdownProps, 'onClose' | 'placement' | 'modifiers' | 'openDelay' |
+    'closeDelay' | 'closeOnMouseLeave' | 'portalTarget' | 'boundaryElement' | 'closeBodyOnTogglerHidden'> {
     /** Content to show in the tooltip (ReactNode) */
     content?: any;
 
