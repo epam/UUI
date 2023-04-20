@@ -1,11 +1,10 @@
 .root {
     --uui-dt-cell-editor-border-width: 1px;
+    position: absolute;
 
     &:global(.uui-focus) {
         --uui-dt-cell-editor-border-width: 2px;
     }
-
-    position: absolute;
 
     &:not(:global(.uui-table-cell-selection-in-progress)) {
         pointer-events: none;
@@ -22,7 +21,7 @@
     pointer-events: all;
 
     &::after {
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         bottom: 0;
@@ -41,11 +40,9 @@
     bottom: calc(var(--uui-dt-row-border-width) * -1);
     left: calc(var(--uui-dt-row-border-width) * -1);
     right: calc(var(--uui-dt-row-border-width) * -1);
-
     border-width: var(--uui-dt-cell-editor-border-width);
     border-style: solid;
     border-color: transparent;
-
     visibility: hidden;
 
     &:global(.uui-focus) {
@@ -104,6 +101,7 @@
             &:not(:global(.uui-table-cell-selected-right)) {
                 border-right: 0;
             }
+
             &:not(:global(.uui-table-cell-selected-left)) {
                 border-left: 0;
             }
@@ -114,6 +112,7 @@
             &:not(:global(.uui-table-cell-selected-bottom)) {
                 border-bottom: 0;
             }
+
             &:not(:global(.uui-table-cell-selected-top)) {
                 border-top: 0;
             }

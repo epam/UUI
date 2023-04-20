@@ -1,10 +1,11 @@
-$shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
+$shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1);
 
 .container {
     margin-top: 24px;
     display: flex;
     flex-direction: row;
     box-shadow: $shadow;
+
     &:hover {
         .nav-card {
             background-size: 350%;
@@ -39,6 +40,7 @@ $shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 1px 3px 0 rgba(29, 30, 38, 0.10);
         .title {
             margin: 18px 24px 0 24px;
         }
+
         .description {
             position: relative;
             margin: -8px 24px 24px 24px;

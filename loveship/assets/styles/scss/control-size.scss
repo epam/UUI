@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 @mixin control-size($size, $borderWidth) {
     $padding: math.div($size, 6) - $borderWidth;
