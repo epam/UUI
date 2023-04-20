@@ -1,6 +1,6 @@
 !.*.js
-**/build
-**/node_modules
+build
+node_modules
 templates
 next-app
 
