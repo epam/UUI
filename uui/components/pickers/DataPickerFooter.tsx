@@ -21,7 +21,7 @@ const switchSizes = {
 function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFooterProps<TItem, TId>>) {
     const { clearSelection, view, showSelected } = props;
     const size = isMobile() ? '48' : props.size || '36';
-    const switchSize = switchSizes[size as keyof typeof switchSizes];
+    const switchSize = switchSizes[size as unknown as (keyof typeof switchSizes)];
     const hasSelection = view.getSelectedRowsCount() > 0;
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
