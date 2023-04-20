@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    DataRowProps, DataSourceListProps, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers,
-} from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile, uuiMarkers } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/uui-components';
 import { PickerModal } from './PickerModal';
 import { Panel } from '../layout';
@@ -20,21 +18,19 @@ const pickerHeight = 300;
 const pickerWidth = 360;
 
 export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
-    toggleModalOpening() {
+    toggleModalOpening(opened: boolean) {
         const { renderFooter, rawProps, ...restProps } = this.props;
-        this.context.uuiModals.show((props) => (
-            <PickerModal<TItem, TId>
-                { ...restProps }
-                rawProps={ rawProps?.body }
-                { ...props }
-                caption={ this.getPlaceholder() }
-                initialValue={ this.props.value as any }
-                renderRow={ this.renderRow }
-                selectionMode={ this.props.selectionMode }
-                valueType={ this.props.valueType }
-            />
-        ))
-            .then((newSelection) => {
+        this.context.uuiModals.show(props => <PickerModal<TItem, TId>
+            { ...restProps }
+            rawProps={ rawProps?.body }
+            { ...props }
+            caption={ this.getPlaceholder() }
+            initialValue={ this.props.value as any }
+            renderRow={ this.renderRow }
+            selectionMode={ this.props.selectionMode }
+            valueType={ this.props.valueType }
+        />)
+            .then(newSelection => {
                 this.handleSelectionValueChange(newSelection);
                 this.returnFocusToInput();
             })
@@ -44,29 +40,29 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     getRowSize() {
-        if (isMobile()) {
-            return '48';
-        }
-
-        return this.props.editMode === 'modal' ? '36' : this.props.size;
+        return isMobile()
+            ? '48'
+            : this.props.editMode === 'modal'
+                ? '36'
+                : this.props.size;
     }
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
         return <PickerItem title={ this.getName(item) } size={ this.getRowSize() } { ...rowProps } />;
-    };
+    }
 
     renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         return this.props.renderRow ? this.props.renderRow(rowProps, this.state.dataSourceState) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                borderBottom="none"
+                borderBottom='none'
                 size={ this.getRowSize() }
                 padding={ this.props.editMode === 'modal' ? '24' : '12' }
                 renderItem={ this.renderItem }
             />
         );
-    };
+    }
 
     getTogglerMods(): PickerTogglerMods {
         return {
@@ -78,31 +74,25 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     renderFooter() {
         const footerProps = this.getFooterProps();
 
-        if (this.props.renderFooter) {
-            return this.props.renderFooter(footerProps);
-        }
-
-        if (!this.isSingleSelect()) {
-            return <DataPickerFooter { ...footerProps } size={ this.props.size } />;
-        }
-
-        return;
+        return this.props.renderFooter
+            ? this.props.renderFooter(footerProps)
+            : <DataPickerFooter { ...footerProps } size={ this.props.size } />;
     }
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
-        const renderTarget = this.props.renderToggler || ((props) => <PickerToggler { ...props } />);
+        const renderTarget = this.props.renderToggler || (props => <PickerToggler { ...props } />);
 
         return (
             <IEditableDebouncer
                 value={ targetProps.value }
                 onValueChange={ this.handleTogglerSearchChange }
-                render={ (editableProps) => renderTarget({ ...this.getTogglerMods(), ...targetProps, ...editableProps }) }
+                render={ editableProps => renderTarget({ ...this.getTogglerMods(), ...targetProps, ...editableProps }) }
             />
         );
     }
 
     renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) {
-        const renderedDataRows = rows.map((row) => this.renderRow(row));
+        const renderedDataRows = rows.map((props) => this.renderRow(props));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : (this.props.dropdownHeight || pickerHeight);
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : (this.props.minBodyWidth || pickerWidth);
 
@@ -110,11 +100,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
             <Panel
                 style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
                 rawProps={ { tabIndex: -1 } }
-                cx={ [
-                    css.panel,
-                    uuiMarkers.lockFocus,
-                    this.props.bodyCx,
-                ] }
+                cx={ [css.panel, uuiMarkers.lockFocus, this.props.bodyCx] }
             >
                 <MobileDropdownWrapper
                     title={ this.props.entityName }
@@ -128,14 +114,14 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                         rows={ renderedDataRows }
                         maxHeight={ maxHeight }
                         searchSize={ this.props.size }
-                        editMode="dropdown"
+                        editMode='dropdown'
                         selectionMode={ this.props.selectionMode }
-                        renderNotFound={ this.props.renderNotFound
-                            ? () => this.props.renderNotFound({
+                        renderNotFound={ this.props.renderNotFound ?
+                            () => this.props.renderNotFound({
                                 search: this.state.dataSourceState.search,
                                 onClose: () => this.toggleBodyOpening(false),
-                            })
-                            : undefined }
+                            }) : undefined
+                        }
                     />
                     { !this.isSingleSelect() && this.renderFooter() }
                 </MobileDropdownWrapper>
