@@ -132,7 +132,7 @@ describe('DatePickerBody', () => {
         });
         expect(dom.title.innerHTML).toEqual('October 2019');
         fireEvent.click(dom.title);
-        expect(screen.getAllByText('2019')).toBeInTheDocument();
+        expect(screen.getByText('2019')).toBeInTheDocument();
         expect(screen.getByText('Oct').classList.contains('uui-monthselection-current-month')).toBeTruthy();
         fireEvent.click(dom.title);
         expect(screen.getByText('October 2019')).toBeTruthy();
