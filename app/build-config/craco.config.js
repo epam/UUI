@@ -25,8 +25,8 @@ function getIsUseBuildFolderOfDeps() {
     return flag;
 }
 const isUseBuildFolderOfDeps = getIsUseBuildFolderOfDeps();
-const isEnableEslint = whenDev(() => false, false);
-const isEnableStylelint = whenDev(() => false, false);
+const isEnableEslint = whenDev(() => true, false);
+const isEnableStylelint = whenDev(() => true, false);
 
 /**
  * See https://craco.js.org/

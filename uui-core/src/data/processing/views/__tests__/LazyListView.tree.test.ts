@@ -27,7 +27,7 @@ describe('LazyListView', () => {
     ];
 
     testData.forEach((i) => {
-        i.childrenCount = testData.filter((x) => x.parentId == i.id).length;
+        i.childrenCount = testData.filter((x) => x.parentId === i.id).length;
     });
 
     const testDataById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));
@@ -113,7 +113,7 @@ describe('LazyListView', () => {
         // Unfold some rows
         let rows = view.getVisibleRows();
         value.visibleCount = 6;
-        view = ds.getView(value, onValueChanged, {});
+        ds.getView(value, onValueChanged, {});
         rows[0].onFold(rows[0]);
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(
@@ -204,8 +204,8 @@ describe('LazyListView', () => {
         const getView = () =>
             ds.getView(value, onValueChanged, {
                 cascadeSelection: true,
-                getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: (i) => false,
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
             });
 
         let ds = treeDataSource;
@@ -266,7 +266,7 @@ describe('LazyListView', () => {
 
     it('load children lazily', async () => {
         const ds = treeDataSource;
-        const getView = () => ds.getView(value, onValueChanged, { isFoldedByDefault: (i) => false });
+        const getView = () => ds.getView(value, onValueChanged, { isFoldedByDefault: () => false });
 
         let view = getView();
         view.getListProps(); // trigger loading
@@ -304,8 +304,8 @@ describe('LazyListView', () => {
     it('Checkboxes works', async () => {
         const getView = () =>
             ds.getView(value, onValueChanged, {
-                getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: (i) => false,
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
             });
 
         let ds = treeDataSource;
@@ -348,8 +348,8 @@ describe('LazyListView', () => {
         const mockOnValueChanged = jest.fn();
         const getView = () =>
             ds.getView(value, mockOnValueChanged, {
-                getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: (i) => false,
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
             });
 
         let ds = treeDataSource;
@@ -396,8 +396,8 @@ describe('LazyListView', () => {
         ];
         const view = ds.getView(value, onValueChanged, {
             cascadeSelection: true,
-            getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-            isFoldedByDefault: (i) => false,
+            getRowOptions: () => ({ checkbox: { isVisible: true } }),
+            isFoldedByDefault: () => false,
         });
         view.getListProps(); // trigger loading
         await delay();
@@ -420,8 +420,8 @@ describe('LazyListView', () => {
         it('Cascade selection works', async () => {
             const getView = () =>
                 ds.getView(value, onValueChanged, {
-                    getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                    isFoldedByDefault: (i) => false,
+                    getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: () => false,
                     cascadeSelection: true,
                 });
 
@@ -472,15 +472,15 @@ describe('LazyListView', () => {
             let view: LazyListView<TestItem, number> = null;
             value.visibleCount = 10;
 
-            const onValueChanged = (newValue: DataSourceState) => {
+            const onValueChangedLocal = (newValue: DataSourceState) => {
                 value = newValue;
                 view = getView();
             };
 
             function getView() {
-                return ds.getView(value, onValueChanged, {
-                    getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                    isFoldedByDefault: (i) => false,
+                return ds.getView(value, onValueChangedLocal, {
+                    getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: () => false,
                     cascadeSelection: true,
                 });
             }
@@ -519,8 +519,8 @@ describe('LazyListView', () => {
             const getView = () =>
                 ds.getView(value, onValueChanged, {
                     cascadeSelection: true,
-                    getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                    isFoldedByDefault: (i) => false,
+                    getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: () => false,
                 });
 
             let ds = treeDataSource;
@@ -598,8 +598,8 @@ describe('LazyListView', () => {
         it('Cascade selection works', async () => {
             const getView = () =>
                 ds.getView(value, onValueChanged, {
-                    getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                    isFoldedByDefault: (i) => false,
+                    getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: () => false,
                     cascadeSelection: 'implicit',
                 });
 
@@ -654,15 +654,15 @@ describe('LazyListView', () => {
             let view: LazyListView<TestItem, number> = null;
             value.visibleCount = 10;
 
-            const onValueChanged = (newValue: DataSourceState) => {
+            const onValueChangedLocal = (newValue: DataSourceState) => {
                 value = newValue;
                 view = getView();
             };
 
             function getView() {
-                return ds.getView(value, onValueChanged, {
-                    getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                    isFoldedByDefault: (i) => false,
+                return ds.getView(value, onValueChangedLocal, {
+                    getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: () => false,
                     cascadeSelection: 'implicit',
                 });
             }
@@ -703,8 +703,8 @@ describe('LazyListView', () => {
             const getView = () =>
                 ds.getView(value, onValueChanged, {
                     cascadeSelection: 'implicit',
-                    getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                    isFoldedByDefault: (i) => false,
+                    getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                    isFoldedByDefault: () => false,
                 });
 
             let ds = treeDataSource;
@@ -790,15 +790,15 @@ describe('LazyListView', () => {
         let view: LazyListView<TestItem, number> = null;
         value.visibleCount = 3;
 
-        const onValueChanged = (newValue: DataSourceState) => {
+        const onValueChangedLocal = (newValue: DataSourceState) => {
             value = newValue;
             view = getView();
         };
 
         function getView() {
-            return ds.getView(value, onValueChanged, {
-                getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: (i) => false,
+            return ds.getView(value, onValueChangedLocal, {
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
                 cascadeSelection: true,
             });
         }
@@ -840,8 +840,8 @@ describe('LazyListView', () => {
         const getView = () =>
             ds.getView(value, onValueChanged, {
                 cascadeSelection: true,
-                getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: (i) => false,
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
             });
 
         let ds = treeDataSource;
@@ -910,7 +910,7 @@ describe('LazyListView', () => {
     });
 
     it('Correctly fold inner children in hierarchy', async () => {
-        const testData: TestItem[] = [
+        const testDataLocal: TestItem[] = [
             { id: 100 },
             { id: 110, parentId: 100 }, // we add a lot of row here, to prevent loading some rows on initial load
             { id: 111, parentId: 110 },
@@ -935,30 +935,30 @@ describe('LazyListView', () => {
             { id: 900 },
         ];
 
-        testData.forEach((i) => {
-            i.childrenCount = testData.filter((x) => x.parentId == i.id).length;
+        testDataLocal.forEach((i) => {
+            i.childrenCount = testDataLocal.filter((x) => x.parentId === i.id).length;
         });
 
-        let value: DataSourceState = { visibleCount: 5 };
-        const onValueChanged = (newValue: DataSourceState) => {
-            value = newValue;
+        let valueLocal: DataSourceState = { visibleCount: 5 };
+        const onValueChangedLocal = (newValue: DataSourceState) => {
+            valueLocal = newValue;
         };
 
-        const testApi = jest.fn((rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq)));
+        const testApiLocal = jest.fn((rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testDataLocal, rq)));
 
         const ds = new LazyDataSource({
             api: (rq, ctx) =>
                 ctx.parent
-                    ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
-                    : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
+                    ? testApiLocal({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
+                    : testApiLocal({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
             getChildCount: (i) => i.childrenCount,
         });
 
         const getView = () =>
-            ds.getView(value, onValueChanged, {
+            ds.getView(valueLocal, onValueChangedLocal, {
                 cascadeSelection: true,
-                getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: (i) => false,
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
                 getParentId: (i) => i.parentId,
             });
 
@@ -983,7 +983,6 @@ describe('LazyListView', () => {
         await delay();
 
         rows = view.getVisibleRows();
-        view = getView();
 
         expect(rows).toEqual([
             { id: 100 },
@@ -999,15 +998,15 @@ describe('LazyListView', () => {
         value.visibleCount = 10;
         let view: LazyListView<TestItem, number> = null;
 
-        const onValueChanged = (newValue: DataSourceState) => {
+        const onValueChangedLocal = (newValue: DataSourceState) => {
             value = newValue;
             view = getView();
         };
 
         const getView = () =>
-            ds.getView(value, onValueChanged, {
-                getRowOptions: (i) => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: (i) => false,
+            ds.getView(value, onValueChangedLocal, {
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
                 cascadeSelection: true,
             });
 
@@ -1055,8 +1054,7 @@ describe('LazyListView', () => {
     });
 
     it('should return selected rows in selection order', async () => {
-        const ds = treeDataSource;
-        const view = ds.getView({
+        const view = treeDataSource.getView({
             ...value,
             checked: [
                 320,
@@ -1068,7 +1066,7 @@ describe('LazyListView', () => {
         view.getListProps(); // trigger loading
         await delay();
 
-        const selectedRows = view.getSelectedRows(0);
+        const selectedRows = view.getSelectedRows();
         expect(selectedRows.map(({ id }) => id)).toEqual([
             320,
             310,
