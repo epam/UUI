@@ -1,19 +1,28 @@
-import { readdir, writeFile, realpath, readFile } from 'fs/promises';
+import {
+    readdir, writeFile, realpath, readFile,
+} from 'fs/promises';
 import { EOL } from 'os';
 import { ParsedPath, resolve, parse } from 'path';
 import { transformHandler } from './transformHandlers';
-import { CoreTokens, PaletteToken, ThemesObject, TokenObject, TokensObject, UuiComponent } from './types';
+import {
+    CoreTokens, PaletteToken, ThemesObject, TokenObject, TokensObject, UuiComponent,
+} from './types';
 import { checkTokens } from './checkTokens';
 import { defaultTokens } from './defaults';
 import defaultsDeep from 'lodash.defaultsdeep';
+import { getAllMonorepoPackages } from './../utils/monorepoUtils';
 
-const ignoreDirList = ['public', 'build', 'node_modules'];
+const ignoreDirList = [
+    'public',
+    'build',
+    'node_modules',
+];
 
 export const transformTokensFromJsonToCss = async function () {
     async function getFilesWithTokens(dir: string): Promise<string[]> {
         const dirents = await readdir(dir, { withFileTypes: true });
         const files = [];
-        for await(const dirent of dirents) {
+        for await (const dirent of dirents) {
             const res = resolve(dir, dirent.name);
             if (dirent.isDirectory()) {
                 !ignoreDirList.includes(dirent.name) && files.push(...await getFilesWithTokens(res));
@@ -23,7 +32,7 @@ export const transformTokensFromJsonToCss = async function () {
             }
         }
 
-        return files.filter(v => v !== undefined);
+        return files.filter((v) => v !== undefined);
     }
 
     async function writeCssFile(file: string, data: string) {
@@ -58,7 +67,7 @@ export const transformTokensFromJsonToCss = async function () {
         const tokens: string[] = [];
         Object.entries(coreObj).forEach(([key, token]) => {
             if ('type' in token) {
-                tokens.push(`\t--${ key }: ${ transformHandler[token.type as keyof typeof transformHandler](token.value as any) };${ EOL }`);
+                tokens.push(`\t--${key}: ${transformHandler[token.type as keyof typeof transformHandler](token.value as any)};${EOL}`);
             } else {
                 tokens.push(...createCssVariables(token));
             }
@@ -71,12 +80,12 @@ export const transformTokensFromJsonToCss = async function () {
         const { palette, core, ...components } = themeObj;
 
         let data = `.uui-theme-${themeName} {${EOL}`;
-        createCssVariables(palette).forEach(value => data += value);
-        createCoreTokens(core).forEach(value => data += value);
+        createCssVariables(palette).forEach((value) => data += value);
+        createCoreTokens(core).forEach((value) => data += value);
         data += `}${EOL}`;
 
-        Object.values(components).forEach(value => {
-            createCssClasses(value as UuiComponent).forEach(value => {
+        Object.values(components).forEach((value) => {
+            createCssClasses(value as UuiComponent).forEach((value) => {
                 data += value;
             });
         });
@@ -88,12 +97,12 @@ export const transformTokensFromJsonToCss = async function () {
         const { default: defaultTheme, ...restThemes } = obj;
 
         const checkedTheme = checkTokens(defaultTheme, defaultTokens, 'default');
-        const defaultThemeFile = resolve(pathObj.dir, `default-theme.css`);
+        const defaultThemeFile = resolve(pathObj.dir, 'default-theme.css');
 
         createThemeCssFile(defaultThemeFile, 'default', checkedTheme);
 
         Object.entries(restThemes).forEach(([key, value]) => {
-            const themeFile = resolve(pathObj.dir, `${ key }-theme.css`);
+            const themeFile = resolve(pathObj.dir, `${key}-theme.css`);
             const mergedTheme = defaultsDeep(value, defaultTheme);
 
             const checkedTheme = checkTokens(mergedTheme, defaultTokens, key);
@@ -102,9 +111,10 @@ export const transformTokensFromJsonToCss = async function () {
         });
     }
 
-    const tokensFiles = await getFilesWithTokens(resolve(await realpath(process.cwd()), 'app'));
+    const appRootDir = getAllMonorepoPackages()['@epam/app'].moduleRootDir;
+    const tokensFiles = await getFilesWithTokens(appRootDir);
 
-    tokensFiles.map(async filePath => {
+    tokensFiles.map(async (filePath) => {
         const pathObj: ParsedPath = parse(filePath);
         const obj: ThemesObject = JSON.parse(await readFile(filePath, 'utf8'));
         transformTokensToCssFiles(pathObj, obj);

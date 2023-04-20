@@ -1,4 +1,4 @@
-const { createCodeFrameFormatter } = require('../../../node_modules/fork-ts-checker-webpack-plugin/lib/formatter/CodeFrameFormatter.js')
+const { createCodeFrameFormatter } = require('../../../node_modules/fork-ts-checker-webpack-plugin/lib/formatter/CodeFrameFormatter.js');
 const path = require('path');
 const os = require('os');
 
@@ -11,7 +11,7 @@ function uuiCustomFormatter(issue) {
         return `${location.start.line}:${location.start.column}`;
     }
     function norm(p) {
-        return path.normalize(p).replace(/\\+/g, '/')
+        return path.normalize(p).replace(/\\+/g, '/');
     }
     const formattedIssue = defaultFormatter(issue);
     if (issue.file) {
@@ -24,7 +24,7 @@ function uuiCustomFormatter(issue) {
         if (issue.location) {
             location += `:${formatIssueLocation(issue.location)}`;
         }
-        return `${location}${os.EOL}${formattedIssue}`
+        return `${location}${os.EOL}${formattedIssue}`;
     }
     return formattedIssue;
 }
