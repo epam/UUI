@@ -1,11 +1,19 @@
 import {
-    DataRowProps, IEditable, DataSourceState,
-    LazyDataSourceApi, DataSourceListProps, IDataSourceView, BaseListViewProps, CascadeSelectionTypes,
-} from "../../../types";
+    DataRowProps,
+    IEditable,
+    DataSourceState,
+    LazyDataSourceApi,
+    DataSourceListProps,
+    IDataSourceView,
+    BaseListViewProps,
+    CascadeSelectionTypes,
+} from '../../../types';
 import isEqual from 'lodash.isequal';
-import { BaseListView } from "./BaseListView";
+import { BaseListView } from './BaseListView';
 import { ListApiCache } from '../ListApiCache';
-import { Tree, LoadTreeOptions, ITree, ROOT_ID } from './tree';
+import {
+    Tree, LoadTreeOptions, ITree, ROOT_ID,
+} from './tree';
 
 export type SearchResultItem<TItem> = TItem & { parents?: [TItem] };
 
@@ -76,11 +84,17 @@ interface LoadResult<TItem, TId, TFilter> {
 
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
+
     public value: DataSourceState<TFilter, TId> = null;
+
     private cache: ListApiCache<TItem, TId, TFilter>;
+
     private isUpdatePending = false;
+
     private loadedValue: DataSourceState<TFilter, TId> = null;
+
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
+
     private reloading: boolean = false;
 
     constructor(
@@ -107,7 +121,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     protected applyDefaultsToProps(props: LazyListViewProps<TItem, TId, TFilter>): LazyListViewProps<TItem, TId, TFilter> {
         if ((props.cascadeSelection || props.flattenSearchResults) && !props.getParentId) {
-            console.warn("LazyListView: getParentId prop is mandatory if cascadeSelection or flattenSearchResults are enabled");
+            console.warn('LazyListView: getParentId prop is mandatory if cascadeSelection or flattenSearchResults are enabled');
         }
 
         return {
@@ -147,25 +161,21 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.isUpdatePending = false;
 
         let completeReset = false;
-        if (prevValue == null
-            || prevProps == null
-            || this.reloading
-            || this.shouldRebuildTree(this.value, prevValue)
-            || !isEqual(this.props.filter, prevProps.filter)
-        ) {
+        if (prevValue == null || prevProps == null || this.reloading || this.shouldRebuildTree(this.value, prevValue) || !isEqual(this.props.filter, prevProps.filter)) {
             this.tree = this.tree.clearStructure();
             completeReset = true;
             this.reloading = false;
         }
 
-        let isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
+        const isFoldingChanged = !prevValue || this.value.folded !== prevValue.folded;
 
         const moreRowsNeeded = this.areMoreRowsNeeded(prevValue, this.value);
         if (completeReset || this.shouldRebuildRows(this.value, prevValue)) {
             this.updateCheckedLookup(this.value.checked);
         }
 
-        if (completeReset
+        if (
+            completeReset
             || this.shouldRebuildRows(this.value, prevValue)
             || !isEqual(this.props.rowOptions, prevProps.rowOptions)
             || isFoldingChanged
@@ -180,19 +190,18 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         if (completeReset || isFoldingChanged || moreRowsNeeded) {
-            this.loadMissing(completeReset)
-                .then(({ isUpdated, isOutdated }) => {
-                    if (isUpdated && !isOutdated) {
-                        this.updateCheckedLookup(this.value.checked);
-                        this.rebuildRows();
-                        this._forceUpdate();
-                    }
-                });
+            this.loadMissing(completeReset).then(({ isUpdated, isOutdated }) => {
+                if (isUpdated && !isOutdated) {
+                    this.updateCheckedLookup(this.value.checked);
+                    this.rebuildRows();
+                    this._forceUpdate();
+                }
+            });
         }
     }
 
     private updateFocusedItem() {
-        this.rows.forEach(row => {
+        this.rows.forEach((row) => {
             row.isFocused = this.value.focusedIndex === row.index;
             return row;
         });
@@ -212,7 +221,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         this.initCache();
         this.update(this.value, this.props);
         this._forceUpdate();
-    }
+    };
 
     public getById = (id: TId, index: number) => {
         const item = this.cache.byId(id);
@@ -221,14 +230,14 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         } else {
             return this.getLoadingRow('_loading_' + id, index, []);
         }
-    }
+    };
 
     // Wrap props.api to update items in the items store
     private api: LazyDataSourceApi<TItem, TId, TFilter> = async (rq, ctx) => {
         const cachedItems: TItem[] = [];
         if (this.cache && rq.ids && rq.ids.length > 0) {
             const missingIds: TId[] = [];
-            rq.ids.forEach(id => {
+            rq.ids.forEach((id) => {
                 const cachedItem = this.cache.byId(id, false);
                 if (cachedItem) {
                     cachedItems.push(cachedItem);
@@ -248,7 +257,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         const response = await this.props.api(rq, ctx);
 
         if (this.cache && response.items) {
-            response.items.forEach(item => {
+            response.items.forEach((item) => {
                 this.cache.setItem(item);
             });
         }
@@ -256,7 +265,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         response.items = [...response.items, ...cachedItems];
 
         return response;
-    }
+    };
 
     // Loads node. Returns promise to a loaded node.
 
@@ -306,34 +315,33 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             }
 
             return { isUpdated, isOutdated, tree: newTree };
-
         } catch (e) {
             // TBD - correct error handling
-            console.error("LazyListView: Error while loading items.", e);
+            console.error('LazyListView: Error while loading items.', e);
             return { isUpdated: false, isOutdated: false, tree: loadingTree };
         }
     }
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
-        let id = rowProps.id;
-        let isChecked = !rowProps.isChecked;
+        const id = rowProps.id;
+        const isChecked = !rowProps.isChecked;
 
         this.checkItems(isChecked, false, id);
-    }
+    };
 
     protected handleSelectAll = (value: boolean) => {
         this.checkItems(value, true);
-    }
+    };
 
     private async checkItems(isChecked: boolean, isRoot: boolean, checkedId?: TId) {
-        let checked = this.value && this.value.checked || [];
+        let checked = (this.value && this.value.checked) || [];
 
         let tree = this.tree;
 
         const isImplicitMode = this.props.cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
         if (this.props.cascadeSelection || isRoot) {
-            if ((!isImplicitMode || !isChecked) || (isImplicitMode && isChecked && checkedId === ROOT_ID)) {
+            if (!isImplicitMode || !isChecked || (isImplicitMode && isChecked && checkedId === ROOT_ID)) {
                 const loadNestedLayersChildren = !isImplicitMode;
                 const parents = this.tree.getParentIdsRecursive(checkedId);
                 const result = await this.loadMissing(
@@ -342,11 +350,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
                         // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
                         // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
                         // Otherwise, should be loaded only checked element and all its nested children.
-                        loadAllChildren: id => (
-                            isImplicitMode
-                                ? (id === ROOT_ID || parents.includes(id))
-                                : (isRoot || id === checkedId)
-                        )
+                        loadAllChildren: (id) => (isImplicitMode ? id === ROOT_ID || parents.includes(id) : isRoot || id === checkedId),
                     },
                     loadNestedLayersChildren,
                 );
@@ -354,18 +358,13 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             }
         }
 
-        checked = tree.cascadeSelection(
-            checked,
-            checkedId,
-            isChecked,
-            {
-                cascade: isImplicitMode ? this.props.cascadeSelection : (isRoot || this.props.cascadeSelection),
-                isSelectable: (item: TItem) => {
-                    const { isCheckable } = this.getRowProps(item, null);
-                    return isCheckable;
-                },
+        checked = tree.cascadeSelection(checked, checkedId, isChecked, {
+            cascade: isImplicitMode ? this.props.cascadeSelection : isRoot || this.props.cascadeSelection,
+            isSelectable: (item: TItem) => {
+                const { isCheckable } = this.getRowProps(item, null);
+                return isCheckable;
             },
-        );
+        });
 
         this.handleCheckedChange(checked);
     }
@@ -389,7 +388,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
             const lastRow = this.rows[this.rows.length - 1];
 
-            while (rows.length < count && (from + rows.length) < listProps.rowsCount) {
+            while (rows.length < count && from + rows.length < listProps.rowsCount) {
                 const index = from + rows.length;
                 const row = this.getLoadingRow('_loading_' + index, index);
                 row.indent = lastRow.indent;
@@ -400,7 +399,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         return rows;
-    }
+    };
 
     public getListProps = (): DataSourceListProps => {
         if (this.props.legacyLoadDataBehavior) {
@@ -409,9 +408,9 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         let rowsCount: number;
         let totalCount: number;
-        let lastVisibleIndex = this.getLastRecordIndex();
-        let rootInfo = this.tree.getNodeInfo(undefined);
-        let rootCount = rootInfo.count;
+        const lastVisibleIndex = this.getLastRecordIndex();
+        const rootInfo = this.tree.getNodeInfo(undefined);
+        const rootCount = rootInfo.count;
 
         if (!this.props.getChildCount && rootCount) {
             // We have a flat list, and know exact count of items on top level. So, we can have an exact number of rows w/o iterating the whole tree.
@@ -441,15 +440,15 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             totalCount,
             selectAll: this.selectAll,
         };
-    }
+    };
 
     protected getChildCount = (item: TItem): number | undefined => {
         return this.props.getChildCount?.(item);
-    }
+    };
 
     protected isFlattenSearch = () => {
         return this.value.search && this.props.flattenSearchResults;
-    }
+    };
 
     protected isPartialLoad = () => true;
 

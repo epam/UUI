@@ -18,7 +18,7 @@ export class UploadFileToggler extends React.Component<UploadFileTogglerProps> {
 
     onClick = () => {
         this.fileInput.current?.click();
-    }
+    };
 
     render() {
         return (
@@ -26,7 +26,7 @@ export class UploadFileToggler extends React.Component<UploadFileTogglerProps> {
                 <input
                     className={ css.fileInput }
                     ref={ this.fileInput }
-                    onChange={ e => {
+                    onChange={ (e) => {
                         this.props.onFilesAdded(Array.prototype.slice.call(e.currentTarget.files, 0));
                         e.currentTarget.value = null;
                     } }
@@ -34,7 +34,7 @@ export class UploadFileToggler extends React.Component<UploadFileTogglerProps> {
                     multiple={ !this.props.single }
                     accept={ this.props.accept }
                 />
-                { this.props.render({ onClick: this.onClick }) }
+                {this.props.render({ onClick: this.onClick })}
             </div>
         );
     }

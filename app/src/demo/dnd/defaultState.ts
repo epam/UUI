@@ -2,15 +2,15 @@ import { ModuleItem } from './DndModule';
 import { SectionItem } from './DndSection';
 import { getOrderBetween } from '@epam/uui-core';
 
-const demoText = 'So you have your new digital camera and clicking away to glory anything and\n' +
-    ' everything in sight. Now you want to print them and you need the best photo printers to\n' +
-    ' print your fantastic photos. Let us talk about the various printers in the market and some\n' +
-    ' tips on choosing the best photo printers. Most of the printers could easily be purchased\n' +
-    ' under $500. While all of them have similar features, it is better to be aware of certain\n' +
-    ' key features that determines their price and print quality. First to look out for is the\n' +
-    ' printing width. It differs among printers. Normally they are available with a width of\n' +
-    ' either 8.5 inches or 13 inches. A 6 color printer is adequate but if you want good black\n' +
-    ' and white images as well it is better to go for 8-color printer.';
+const demoText = 'So you have your new digital camera and clicking away to glory anything and\n'
+    + ' everything in sight. Now you want to print them and you need the best photo printers to\n'
+    + ' print your fantastic photos. Let us talk about the various printers in the market and some\n'
+    + ' tips on choosing the best photo printers. Most of the printers could easily be purchased\n'
+    + ' under $500. While all of them have similar features, it is better to be aware of certain\n'
+    + ' key features that determines their price and print quality. First to look out for is the\n'
+    + ' printing width. It differs among printers. Normally they are available with a width of\n'
+    + ' either 8.5 inches or 13 inches. A 6 color printer is adequate but if you want good black\n'
+    + ' and white images as well it is better to go for 8-color printer.';
 
 const defaultModuleItems: ModuleItem[] = [
     {
@@ -357,11 +357,11 @@ const defaultSectionItems: SectionItem[] = [
 ];
 
 const getDefaultOrderConfig = <TItem, TId>(items: any[], initialOrder: string = 'a'): [any[], string] => {
-    let config: any[] = [];
+    const config: any[] = [];
     let prevOrder = initialOrder;
 
     items.forEach((item, index) => {
-        let order = getOrderBetween(prevOrder, null);
+        const order = getOrderBetween(prevOrder, null);
         config[index] = { ...item };
         config[index].order = prevOrder;
         prevOrder = order;

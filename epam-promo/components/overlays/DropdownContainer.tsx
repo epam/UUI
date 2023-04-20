@@ -5,11 +5,7 @@ export interface DropdownContainerMods {
     color?: 'white' | 'gray70';
 }
 
-export
-
-function applyDropdownContainerMods(mods: DropdownContainerMods) {
-    return [
-        `dropdown-container-${(mods.color || 'white')}`,
-    ];
+export function applyDropdownContainerMods(mods: DropdownContainerMods) {
+    return [`dropdown-container-${mods.color || 'white'}`];
 }
 export const DropdownContainer = withMods<DropdownContainerProps, DropdownContainerMods>(uuiDropdownListContainer, applyDropdownContainerMods);

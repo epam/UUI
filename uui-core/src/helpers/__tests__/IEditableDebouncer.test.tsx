@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderToJsdomWithContextAsync, act } from "@epam/test-utils";
+import { renderToJsdomWithContextAsync, act } from '@epam/test-utils';
 import { IEditable } from '../../types';
 import { IEditableDebouncer } from '../IEditableDebouncer';
 
@@ -55,8 +55,7 @@ describe('IEditableDebouncer', () => {
     });
 
     it('should change inner value immediately if outer value is changed outside', async () => {
-        const outerOnValueChange = jest.fn(() => {
-        });
+        const outerOnValueChange = jest.fn(() => {});
         let lastRenderProps: IEditable<number> = null;
         const props = {
             value: 1,

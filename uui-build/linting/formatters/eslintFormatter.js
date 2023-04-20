@@ -1,7 +1,5 @@
 const {
-    createSummaryFromMessages, convertSummaryToHtml,
-    sumComparator, convertResultsToHtml,
-    getReportLocationPath, logSummary,
+    createSummaryFromMessages, convertSummaryToHtml, sumComparator, convertResultsToHtml, getReportLocationPath, logSummary,
 } = require('./formatterUtils.js');
 const { reportUnnecessaryRulesToBeFixed } = require('./formatterUtils.js');
 const { eslintRulesToBeFixed } = require('../utils/rulesToBeFixed.js');

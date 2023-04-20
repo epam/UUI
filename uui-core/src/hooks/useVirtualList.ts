@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 import type { IEditable, VirtualListState } from '../types';
-import { useLayoutEffectSafeForSsr } from "../ssr";
+import { useLayoutEffectSafeForSsr } from '../ssr';
 
 interface UuiScrollPositionValues {
     scrollTop: number;
@@ -58,11 +58,11 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (!scrollContainer.current || !value) return;
         const { scrollTop, clientHeight } = scrollContainer.current;
         const focusedIndexOffset = rowOffsets.current[value.focusedIndex] || 0;
-        const focusedIndexHeight =  rowHeights.current[value.focusedIndex] || 0;
+        const focusedIndexHeight = rowHeights.current[value.focusedIndex] || 0;
         const scrollBottom = scrollTop + clientHeight - listOffset;
-        if (focusedIndexOffset < (scrollTop - focusedIndexHeight) || scrollBottom < focusedIndexOffset) {
+        if (focusedIndexOffset < scrollTop - focusedIndexHeight || scrollBottom < focusedIndexOffset) {
             const middleOffset = focusedIndexOffset - clientHeight / 2 + focusedIndexHeight / 2;
-            const indexToScroll = rowOffsets.current.findIndex(rowOffset => middleOffset <= rowOffset);
+            const indexToScroll = rowOffsets.current.findIndex((rowOffset) => middleOffset <= rowOffset);
             scrollToIndex(indexToScroll, 'smooth');
         }
     };
@@ -82,7 +82,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         topIndex = Math.max(0, topIndex);
 
         let bottomIndex = topIndex;
-        let scrollBottom = scrollTop + clientHeight;
+        const scrollBottom = scrollTop + clientHeight;
         while (bottomIndex < rowsCount && rowOffsets.current[bottomIndex] < scrollBottom) {
             bottomIndex++;
         }
@@ -96,23 +96,33 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const visibleCount = Math.max(value.visibleCount ?? blockSize, bottomIndex - topIndex);
 
         if (topIndex !== value.topIndex || visibleCount > value.visibleCount || value.indexToScroll != null) {
-            onValueChange({ ...value, topIndex, visibleCount, indexToScroll: null });
+            onValueChange({
+                ...value, topIndex, visibleCount, indexToScroll: null,
+            });
         }
-    }, [onValueChange, blockSize, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current]);
+    }, [
+        onValueChange,
+        blockSize,
+        rowOffsets.current,
+        rowsCount,
+        value,
+        onScroll,
+        scrollContainer.current,
+    ]);
 
     const updateRowHeights = React.useCallback(() => {
         if (!scrollContainer.current || !listContainer.current || listOffset == null || !value) return;
 
         Array.from(listContainer.current.children).forEach((node, index) => {
             const topIndex = value.topIndex || 0;
-            const { height } =  node.getBoundingClientRect();
+            const { height } = node.getBoundingClientRect();
             if (!height) return;
             rowHeights.current[topIndex + index] = height;
         });
 
-        const averageHeight = rowHeights.current.length === 0 ?
-            rowHeights.current.length + 1 :
-            rowHeights.current.reduce((sum, next) => sum + next, 0) / rowHeights.current.length;
+        const averageHeight = rowHeights.current.length === 0
+            ? rowHeights.current.length + 1
+            : rowHeights.current.reduce((sum, next) => sum + next, 0) / rowHeights.current.length;
 
         rowOffsets.current = [];
         let lastOffset = listOffset;
@@ -124,7 +134,15 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const newEstimatedHeight = lastOffset - listOffset;
         if (estimatedHeight === newEstimatedHeight) return;
         setEstimatedHeight(newEstimatedHeight);
-    }, [estimatedHeight, rowOffsets.current, rowsCount, value, listContainer.current, scrollContainer.current, listOffset]);
+    }, [
+        estimatedHeight,
+        rowOffsets.current,
+        rowsCount,
+        value,
+        listContainer.current,
+        scrollContainer.current,
+        listOffset,
+    ]);
 
     useLayoutEffectSafeForSsr(() => {
         if (process.env.JEST_WORKER_ID) return;
@@ -133,19 +151,18 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     });
 
     const handleScrollToIndex = () => {
-        if (
-            !scrollContainer.current ||
-            !value ||
-            value.indexToScroll == null
-        ) return;
+        if (!scrollContainer.current || !value || value.indexToScroll == null) return;
         scrollToIndex(value.indexToScroll);
     };
 
-    const scrollToIndex = React.useCallback((index: number, behavior?: ScrollBehavior) => {
-        const indexToScroll = Math.min(index, rowsCount - 1);
-        const topCoordinate = rowOffsets.current[indexToScroll] - listOffset;
-        scrollContainer.current.scrollTo({ top: topCoordinate, behavior});
-    }, [scrollContainer.current, rowOffsets.current]);
+    const scrollToIndex = React.useCallback(
+        (index: number, behavior?: ScrollBehavior) => {
+            const indexToScroll = Math.min(index, rowsCount - 1);
+            const topCoordinate = rowOffsets.current[indexToScroll] - listOffset;
+            scrollContainer.current.scrollTo({ top: topCoordinate, behavior });
+        },
+        [scrollContainer.current, rowOffsets.current],
+    );
 
     useLayoutEffectSafeForSsr(handleScrollToIndex, [value?.indexToScroll]);
     useLayoutEffectSafeForSsr(handleScrollToFocus, [value?.focusedIndex]);
@@ -160,7 +177,11 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const offsetY = React.useMemo(() => {
         if (rowOffsets.current.length === 0) return 0;
         return rowOffsets.current[value.topIndex] - listOffset;
-    }, [rowOffsets.current, listOffset, value?.topIndex]);
+    }, [
+        rowOffsets.current,
+        listOffset,
+        value?.topIndex,
+    ]);
 
     return {
         estimatedHeight,

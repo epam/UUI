@@ -1,7 +1,7 @@
-import { ArrayDataSource, ArrayDataSourceProps } from "./ArrayDataSource";
+import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { BaseArrayListViewProps } from './views/ArrayListView';
-import { DataSourceState, IDataSourceView } from "../../types";
-import { AsyncListView, AsyncListViewProps } from "./views/AsyncListView";
+import { DataSourceState, IDataSourceView } from '../../types';
+import { AsyncListView, AsyncListViewProps } from './views/AsyncListView';
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 

@@ -1,4 +1,4 @@
-import { getOrderBetween, maxOrderStr, minOrderStr } from "@epam/uui-core";
+import { getOrderBetween, maxOrderStr, minOrderStr } from '@epam/uui-core';
 
 /**
  * Finds a string, which is placed alphabetically in desired position of the list.
@@ -21,15 +21,15 @@ export function getInsertionOrder(existingOrders: string[], position: 'before' |
 
     if (position == 'before') {
         let maxOrder = minOrderStr;
-        existingOrders.forEach(order => {
+        existingOrders.forEach((order) => {
             if (order < relativeTo && order > maxOrder) {
                 maxOrder = order;
             }
-        })
+        });
         return getOrderBetween(maxOrder, relativeTo);
     } else {
         let minOrder = maxOrderStr;
-        existingOrders.forEach(order => {
+        existingOrders.forEach((order) => {
             if (order > relativeTo && order < minOrder) {
                 minOrder = order;
             }

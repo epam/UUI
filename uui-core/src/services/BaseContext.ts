@@ -8,12 +8,12 @@ export class BaseContext<TState = {}> {
     }
 
     unsubscribe(handler: (state: TState) => void) {
-        this.handlers = this.handlers.filter(h => h !== handler);
+        this.handlers = this.handlers.filter((h) => h !== handler);
     }
 
     update(state: TState) {
         ReactDOM.unstable_batchedUpdates(() => {
-            this.handlers.forEach(h => h && h(state));
+            this.handlers.forEach((h) => h && h(state));
         });
     }
 }

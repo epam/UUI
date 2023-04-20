@@ -30,7 +30,7 @@ export function getColumns(dbRef: DemoDbRef) {
         {
             key: 'jobTitle',
             caption: 'Job Title',
-            render: (r) => <Text>{ r.jobTitle }</Text>,
+            render: (r) => <Text>{r.jobTitle}</Text>,
             width: 200,
             isSortable: true,
             isFilterActive: (f) => !!f.jobTitle,
@@ -38,7 +38,7 @@ export function getColumns(dbRef: DemoDbRef) {
         {
             key: 'departmentName',
             caption: 'Department',
-            render: (r) => <Text>{ r.departmentName }</Text>,
+            render: (r) => <Text>{r.departmentName}</Text>,
             width: 200,
             isSortable: true,
             isFilterActive: (f) => !!f.departmentId,
@@ -46,14 +46,14 @@ export function getColumns(dbRef: DemoDbRef) {
         {
             key: 'birthDate',
             caption: 'Birth Date',
-            render: (r) => <Text>{ r?.birthDate?.toLocaleDateString() }</Text>,
+            render: (r) => <Text>{r?.birthDate?.toLocaleDateString()}</Text>,
             width: 120,
             isSortable: true,
         },
         {
             key: 'hireDate',
             caption: 'Hire Date',
-            render: (r) => <Text>{ r?.hireDate?.toLocaleDateString() }</Text>,
+            render: (r) => <Text>{r?.hireDate?.toLocaleDateString()}</Text>,
             width: 120,
             isSortable: true,
         },
@@ -70,7 +70,7 @@ export function getColumns(dbRef: DemoDbRef) {
         {
             key: 'name',
             caption: 'Name',
-            render: (p) => <Text>{ p.name }</Text>,
+            render: (p) => <Text>{p.name}</Text>,
             fix: 'left',
             width: 250,
         },

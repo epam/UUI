@@ -6,9 +6,7 @@ export class EmptyStatesDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <>
-                <EditableDocContent key='emptyStates-for-designers' fileName='emptyStates-for-designers' />
-            </>
+            <EditableDocContent key="emptyStates-for-designers" fileName="emptyStates-for-designers" />
         );
     }
 }

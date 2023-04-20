@@ -1,9 +1,11 @@
-import { emptyDb, sampleDb, TaskDbView, TaskDb, Task } from './TaskDb';
+import {
+    emptyDb, sampleDb, TaskDbView, TaskDb, Task,
+} from './TaskDb';
 
-describe("db - Views", () => {
+describe('db - Views', () => {
     it('Should work with whole db as a view', () => {
         const view: TaskDbView<TaskDb, void> = {
-            compute: db => db,
+            compute: (db) => db,
         };
 
         const baseResult = sampleDb.runView(view);

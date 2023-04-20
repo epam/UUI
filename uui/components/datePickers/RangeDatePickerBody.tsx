@@ -15,8 +15,7 @@ export function applyRangeDatePickerBodyMods() {
     ];
 }
 
-export const RangeDatePickerBody = withMods<RangeDatePickerBodyProps<RangeDatePickerValue>>(
-    uuiRangeDatePickerBody,
-    applyRangeDatePickerBodyMods,
-    () => ({ navIconLeft: ArrowIcon, navIconRight: ArrowIcon }),
-);
+export const RangeDatePickerBody = withMods<RangeDatePickerBodyProps<RangeDatePickerValue>>(uuiRangeDatePickerBody, applyRangeDatePickerBodyMods, () => ({
+    navIconLeft: ArrowIcon,
+    navIconRight: ArrowIcon,
+}));

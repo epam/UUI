@@ -5,7 +5,12 @@ import { systemIcons } from '../../../icons/icons';
 import css from './Button.scss';
 
 export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'negative';
-export const allButtonColors: ButtonColor[] = ['accent', 'primary', 'secondary', 'negative'];
+export const allButtonColors: ButtonColor[] = [
+    'accent',
+    'primary',
+    'secondary',
+    'negative',
+];
 
 const defaultSize = '36';
 
@@ -26,11 +31,7 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<uuiButtonProps, ButtonMods>(
-    uuiButton,
-    applyButtonMods,
-    (props) => ({
-        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-        clearIcon: systemIcons[props.size || defaultSize].clear,
-    }),
-);
+export const Button = withMods<uuiButtonProps, ButtonMods>(uuiButton, applyButtonMods, (props) => ({
+    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+    clearIcon: systemIcons[props.size || defaultSize].clear,
+}));
