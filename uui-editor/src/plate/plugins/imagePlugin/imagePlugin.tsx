@@ -25,33 +25,19 @@ import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 export const IMAGE_PLUGIN_KEY = 'image';
 
 export const imagePlugin = () => {
-
     const createImagePlugin = createPluginFactory<ImagePlugin>({
         key: IMAGE_PLUGIN_KEY,
         type: 'image',
         isElement: true,
         isVoid: true,
         component: Image,
-        handlers: {
-            onKeyDown: (editor) => (e) => {
-                // focus caption from image
-                const entry = getBlockAbove(editor, {
-                    match: { type: getPluginType(editor, IMAGE_PLUGIN_KEY) },
-                });
-                if (!entry) return;
-            },
-        },
         then: (editor, { type }) => ({
             deserializeHtml: {
-                rules: [
-                    {
-                        validNodeName: 'IMG',
-                    },
-                ],
-                getNode: (el) => ({
-                    type,
-                    url: el.getAttribute('src'),
-                }),
+                rules: [{ validNodeName: 'IMG' }],
+                getNode: (el) => {
+                    const url = el.getAttribute('src');
+                    return { type, url };
+                },
             },
         }),
         plugins: [
@@ -71,9 +57,7 @@ interface IImageButton {
     editor: PlateEditor;
 }
 
-export const ImageButton = ({
-   editor,
-}: IImageButton) => {
+export const ImageButton = ({ editor }: IImageButton) => {
     const context = useUuiContext();
 
     const handleImageInsert = (url: string) => {
@@ -94,7 +78,7 @@ export const ImageButton = ({
 
     return (
         <PlateToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
             onMouseDown={ async (event) => {
                 if (!editor) return;
 
