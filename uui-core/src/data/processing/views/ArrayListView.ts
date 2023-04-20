@@ -1,9 +1,6 @@
-import {
-    DataRowProps, SortingOption, IEditable, DataSourceState,
-    DataSourceListProps, IDataSourceView, BaseListViewProps,
-} from "../../../types";
+import { DataRowProps, SortingOption, IEditable, DataSourceState, DataSourceListProps, IDataSourceView, BaseListViewProps } from '../../../types';
 import { BaseListView } from './BaseListView';
-import { ITree, Tree } from "./tree";
+import { ITree, Tree } from './tree';
 
 export interface BaseArrayListViewProps<TItem, TId, TFilter> extends BaseListViewProps<TItem, TId, TFilter> {
     getSearchFields?(item: TItem): string[];
@@ -24,10 +21,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     sortedTree: ITree<TItem, TId>;
     refreshCache: boolean;
 
-    constructor(
-        protected editable: IEditable<DataSourceState<TFilter, TId>>,
-        props: ArrayListViewProps<TItem, TId, TFilter>,
-    ) {
+    constructor(protected editable: IEditable<DataSourceState<TFilter, TId>>, props: ArrayListViewProps<TItem, TId, TFilter>) {
         super(editable, props);
         this.props = props;
         this.tree = Tree.blank(props);
@@ -42,7 +36,8 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         this.props = { ...newProps, items: newItems };
 
         const prevTree = this.tree;
-        if (this.props.items) { // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
+        if (this.props.items) {
+            // Legacy behavior support: there was no items prop, and the view is expected to keep items passes in constructor on updates
             if (prevItems !== newItems || !this.originalTree) {
                 this.originalTree = Tree.create(this.props, this.props.items);
                 this.tree = this.originalTree;
@@ -65,7 +60,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
     public reload = () => {
         this.update(this.editable.value, { ...this.props, items: [] });
         this._forceUpdate();
-    }
+    };
 
     private isCacheIsOutdated(newValue: DataSourceState<TFilter, TId>, prevValue: DataSourceState<TFilter, TId>) {
         return this.shouldRebuildTree(newValue, prevValue) || this.shouldRebuildRows(newValue, prevValue);
@@ -79,14 +74,14 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         }
 
         return this.getLoadingRow('_loading_' + id, index, []);
-    }
+    };
 
     private updateFocusedItem = () => {
-        this.rows.forEach(row => {
+        this.rows.forEach((row) => {
             row.isFocused = this.value.focusedIndex === row.index;
             return row;
         });
-    }
+    };
 
     private updateTree(prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) {
         const { filter, search, sorting } = newValue;
@@ -114,7 +109,7 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
     public getVisibleRows = () => {
         return this.rows.slice(this.value.topIndex, this.getLastRecordIndex());
-    }
+    };
 
     public getListProps = (): DataSourceListProps => {
         return {
@@ -124,37 +119,32 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
             totalCount: this.originalTree?.getTotalRecursiveCount() ?? 0,
             selectAll: this.selectAll,
         };
-    }
+    };
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
         this.checkItems(!rowProps.isChecked, rowProps.id);
-    }
+    };
 
     protected handleSelectAll = (checked: boolean) => {
         this.checkItems(checked);
-    }
+    };
 
     private checkItems(isChecked: boolean, checkedId?: TId) {
         let checked = (this.value && this.value.checked) ?? [];
-        const updatedChecked = this.tree.cascadeSelection(
-            checked,
-            checkedId,
-            isChecked,
-            {
-                cascade: this.props.cascadeSelection,
-                isSelectable: (item: TItem) => {
-                    const { isCheckable } = this.getRowProps(item, null);
-                    return isCheckable;
-                },
+        const updatedChecked = this.tree.cascadeSelection(checked, checkedId, isChecked, {
+            cascade: this.props.cascadeSelection,
+            isSelectable: (item: TItem) => {
+                const { isCheckable } = this.getRowProps(item, null);
+                return isCheckable;
             },
-        );
+        });
 
         this.handleCheckedChange(updatedChecked);
     }
 
     protected getChildCount = (item: TItem): number | undefined => {
         return this.tree.getChildrenByParentId(this.props.getId(item)).length;
-    }
+    };
 
     protected getLastRecordIndex = () => {
         const lastIndex = this.value.topIndex + this.value.visibleCount;
@@ -162,5 +152,5 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
 
         if (actualCount < lastIndex) return actualCount;
         return lastIndex;
-    }
+    };
 }

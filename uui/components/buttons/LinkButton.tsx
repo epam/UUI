@@ -14,11 +14,7 @@ export interface LinkButtonMods {
 export type LinkButtonProps = LinkButtonMods & ButtonProps;
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
-    return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        ...getIconClass(mods),
-    ];
+    return [css.root, css['size-' + (mods.size || defaultSize)], ...getIconClass(mods)];
 }
 
 export const LinkButton = withMods<ButtonProps, LinkButtonMods>(Button, applyLinkButtonMods, (props) => ({

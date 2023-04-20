@@ -1,4 +1,4 @@
-import { DataSourceState, LazyDataSourceApi, DataQueryFilter } from "../../../../types";
+import { DataSourceState, LazyDataSourceApi, DataQueryFilter } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
 import { LoadTreeOptions, Tree, TreeNodeInfo } from '../tree';
 
@@ -23,39 +23,35 @@ const testData: TestItem[] = [
 
 const testDataById: Record<number, TestItem> = {};
 
-testData.forEach(i => {
-    i.childrenCount = testData.filter(x => x.parentId == i.id).length;
+testData.forEach((i) => {
+    i.childrenCount = testData.filter((x) => x.parentId == i.id).length;
     testDataById[i.id] = i;
 });
 
-
 const blankTree = Tree.blank<TestItem, number>({
-    getId: i => i.id,
-    getParentId: i => i.parentId,
-})
+    getId: (i) => i.id,
+    getParentId: (i) => i.parentId,
+});
 
 describe('Tree - load', () => {
-    const itemsById = (Object as any).fromEntries(testData.map(i => [i.id, i]));
+    const itemsById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));
 
-    const testApiFn: LazyDataSourceApi<TestItem, number, DataQueryFilter<TestItem>> =
-        (rq, ctx) => {
-            rq.filter = rq.filter || {};
-            if (rq.ids) {
-                rq.filter.id = { in: rq.ids };
-            }
-            rq.filter.parentId = ctx?.parent ? ctx.parent.id : undefined;
-            const result = runDataQuery(testData, rq);
-            return Promise.resolve(result);
-        };
+    const testApiFn: LazyDataSourceApi<TestItem, number, DataQueryFilter<TestItem>> = (rq, ctx) => {
+        rq.filter = rq.filter || {};
+        if (rq.ids) {
+            rq.filter.id = { in: rq.ids };
+        }
+        rq.filter.parentId = ctx?.parent ? ctx.parent.id : undefined;
+        const result = runDataQuery(testData, rq);
+        return Promise.resolve(result);
+    };
 
     const testApi = jest.fn(testApiFn);
 
-
-
     let loadParams: LoadTreeOptions<TestItem, number, DataQueryFilter<TestItem>> = {
         api: testApi,
-        getChildCount: i => i.childrenCount,
-        isFolded: i => true,
+        getChildCount: (i) => i.childrenCount,
+        isFolded: (i) => true,
     };
 
     let value: DataSourceState = { topIndex: 0, visibleCount: 100 };
@@ -68,7 +64,7 @@ describe('Tree - load', () => {
         actual: Tree<TestItem, number>,
         expectedById: Record<any, TestItem>,
         expectedByParentId: Record<any, number[]>,
-        expectedNodeInfos: Record<any, TreeNodeInfo>,
+        expectedNodeInfos: Record<any, TreeNodeInfo>
     ) {
         expect(Object.fromEntries(actual.byId)).toEqual(expectedById);
         expect(Object.fromEntries(actual.byParentId)).toEqual(expectedByParentId);
@@ -77,17 +73,18 @@ describe('Tree - load', () => {
 
     it('Can load items (folded)', async () => {
         let tree = await blankTree.load(loadParams, value);
-        expectTreeToLookLike(tree,
+        expectTreeToLookLike(
+            tree,
             {
                 100: itemsById[100],
                 200: itemsById[200],
                 300: itemsById[300],
             },
             {
-                "undefined": [100, 200, 300],
+                undefined: [100, 200, 300],
             },
             {
-                "undefined": { count: 3 },
+                undefined: { count: 3 },
             }
         );
 
@@ -95,17 +92,18 @@ describe('Tree - load', () => {
     });
 
     it('Can load items (unfolded)', async () => {
-        let tree = await blankTree.load({ ...loadParams, isFolded: i => false }, value);
-        expectTreeToLookLike(tree,
+        let tree = await blankTree.load({ ...loadParams, isFolded: (i) => false }, value);
+        expectTreeToLookLike(
+            tree,
             testDataById,
             {
-                "undefined": [100, 200, 300],
+                undefined: [100, 200, 300],
                 100: [110, 120],
                 120: [121, 122],
                 300: [310, 320, 330],
             },
             {
-                "undefined": { count: 3 },
+                undefined: { count: 3 },
                 100: { count: 2 },
                 120: { count: 2 },
                 300: { count: 3 },
@@ -121,7 +119,8 @@ describe('Tree - load', () => {
     it('should load to cache items from selection and their parents', async () => {
         let tree = await blankTree.load(loadParams, { ...value, checked: [121, 200] });
 
-        expectTreeToLookLike(tree,
+        expectTreeToLookLike(
+            tree,
             {
                 100: itemsById[100],
                 120: itemsById[120],
@@ -133,7 +132,7 @@ describe('Tree - load', () => {
                 undefined: [100, 200, 300],
             },
             {
-                "undefined": { count: 3 },
+                undefined: { count: 3 },
             }
         );
     });

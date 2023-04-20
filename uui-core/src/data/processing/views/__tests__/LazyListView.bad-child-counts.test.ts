@@ -1,9 +1,8 @@
-import { LazyDataSource } from "../../LazyDataSource";
-import { LazyListView } from "../LazyListView";
-import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps } from "../../../../types";
+import { LazyDataSource } from '../../LazyDataSource';
+import { LazyListView } from '../LazyListView';
+import { DataSourceState, LazyDataSourceApiRequest, DataQueryFilter, DataRowProps } from '../../../../types';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay } from "@epam/test-utils";
-
+import { delay } from '@epam/test-utils';
 
 interface TestItem {
     id: number;
@@ -13,27 +12,28 @@ interface TestItem {
 
 describe('LazyListView', () => {
     const testData: TestItem[] = [
-        { id: 100, childrenCount: 3 },                //  0   100 // less children than specified
-        { id: 110, parentId: 100 },                   //  1     110
+        { id: 100, childrenCount: 3 }, //  0   100 // less children than specified
+        { id: 110, parentId: 100 }, //  1     110
         { id: 120, parentId: 100, childrenCount: 1 }, //  2     120    // more actual children than specified
-        { id: 121, parentId: 120 },                   //  3       121
-        { id: 122, parentId: 120 },                   //  4       122
-        { id: 200, childrenCount: 1 },                //  5   200 // declared 1 child, but there's none
-        { id: 300, childrenCount: 1 },                //  6   300 //
-        { id: 310, parentId: 300 },                   //  7     310
-        { id: 320, parentId: 300 },                   //  8     320
-        { id: 330, parentId: 300 },                   //  9     330
+        { id: 121, parentId: 120 }, //  3       121
+        { id: 122, parentId: 120 }, //  4       122
+        { id: 200, childrenCount: 1 }, //  5   200 // declared 1 child, but there's none
+        { id: 300, childrenCount: 1 }, //  6   300 //
+        { id: 310, parentId: 300 }, //  7     310
+        { id: 320, parentId: 300 }, //  8     320
+        { id: 330, parentId: 300 }, //  9     330
     ];
 
     let value: DataSourceState;
-    let onValueChanged = (newValue: DataSourceState) => { value = newValue; };
+    let onValueChanged = (newValue: DataSourceState) => {
+        value = newValue;
+    };
 
     const testApi = (rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq));
 
     let treeDataSource = new LazyDataSource({
-        api: (rq, ctx) => ctx.parent
-            ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } })
-            : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
+        api: (rq, ctx) =>
+            ctx.parent ? testApi({ ...rq, filter: { ...rq.filter, parentId: ctx.parentId } }) : testApi({ ...rq, filter: { ...rq.filter, parentId: { isNull: true } } }),
         getChildCount: (i) => i.childrenCount,
     });
 
@@ -41,20 +41,16 @@ describe('LazyListView', () => {
         value = { topIndex: 0, visibleCount: 10 };
     });
 
-    function expectViewToLookLike(
-        view: LazyListView<TestItem, number>,
-        rows: Partial<DataRowProps<TestItem, number>>[],
-        rowsCount?: number,
-    ) {
+    function expectViewToLookLike(view: LazyListView<TestItem, number>, rows: Partial<DataRowProps<TestItem, number>>[], rowsCount?: number) {
         let viewRows = view.getVisibleRows();
-        expect(viewRows).toEqual(rows.map(r => expect.objectContaining(r)));
+        expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
         let listProps = view.getListProps();
         rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
 
     it('can load tree, which has incorrect (probably estimated) childrenCounts', async () => {
         let ds = treeDataSource;
-        let view = ds.getView(value, onValueChanged, { isFoldedByDefault: () => false, getParentId: (({ parentId }) => parentId) });
+        let view = ds.getView(value, onValueChanged, { isFoldedByDefault: () => false, getParentId: ({ parentId }) => parentId });
         expectViewToLookLike(view, [
             { isLoading: true },
             { isLoading: true },
@@ -71,17 +67,21 @@ describe('LazyListView', () => {
 
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: 100, depth: 0, isFoldable: true, isFolded: false },       //  0   100 // less children than specified
-            { id: 110, depth: 1, isFoldable: false },       //  1     110
-            { id: 120, depth: 1, isFoldable: true, isFolded: false },       //  2       120   // more children than specified
-            { id: 121, depth: 2 },                                          //  3         121
-            { id: 122, depth: 2 },                                          //  4         122
-            { id: 200, depth: 0, isFoldable: false },                       //  5   200 // declared 1 child, but there's none
-            { id: 300, depth: 0 },                                          //  6   300
-            { id: 310, depth: 1 },                                          //  7     310
-            { id: 320, depth: 1 },                                          //  8     320
-            { id: 330, depth: 1 },                                          //  9     330
-        ], 10);
+        expectViewToLookLike(
+            view,
+            [
+                { id: 100, depth: 0, isFoldable: true, isFolded: false }, //  0   100 // less children than specified
+                { id: 110, depth: 1, isFoldable: false }, //  1     110
+                { id: 120, depth: 1, isFoldable: true, isFolded: false }, //  2       120   // more children than specified
+                { id: 121, depth: 2 }, //  3         121
+                { id: 122, depth: 2 }, //  4         122
+                { id: 200, depth: 0, isFoldable: false }, //  5   200 // declared 1 child, but there's none
+                { id: 300, depth: 0 }, //  6   300
+                { id: 310, depth: 1 }, //  7     310
+                { id: 320, depth: 1 }, //  8     320
+                { id: 330, depth: 1 }, //  9     330
+            ],
+            10
+        );
     });
 });

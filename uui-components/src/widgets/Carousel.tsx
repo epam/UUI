@@ -36,7 +36,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
         } else {
             this.setState({ activeSlide: 0 });
         }
-    }
+    };
 
     prevPage = (maxPage: number) => (event: any) => {
         if (this.state.activeSlide > 0) {
@@ -44,17 +44,13 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
         } else {
             this.setState({ activeSlide: maxPage });
         }
-    }
+    };
 
     renderCarouselBar = (slidesCount: number) => {
-        return range(slidesCount).map((x, idx) =>
-            <div
-                onClick={ () => this.setState({ activeSlide: idx }) }
-                key={ idx }
-                className={ cx(uuiCarousel.barItem, this.state.activeSlide === idx && uuiMod.active) }
-            />,
-        );
-    }
+        return range(slidesCount).map((x, idx) => (
+            <div onClick={() => this.setState({ activeSlide: idx })} key={idx} className={cx(uuiCarousel.barItem, this.state.activeSlide === idx && uuiMod.active)} />
+        ));
+    };
 
     render() {
         const { activeSlide } = this.state;
@@ -63,29 +59,22 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
         const maxPage = slidesCount - 1;
 
         return (
-            <VPanel
-                cx={ cx(css.container, uuiCarousel.container, this.props.cx) }
-                rawProps={ this.props.rawProps }
-                forwardedRef={ this.props.forwardedRef }
-            >
+            <VPanel cx={cx(css.container, uuiCarousel.container, this.props.cx)} rawProps={this.props.rawProps} forwardedRef={this.props.forwardedRef}>
                 <FlexRow>
-                    <div className={ uuiCarousel.bar }>
-                        { this.renderCarouselBar(slidesCount) }
-                    </div>
+                    <div className={uuiCarousel.bar}>{this.renderCarouselBar(slidesCount)}</div>
                 </FlexRow>
                 <FlexRow>
-                    <IconContainer cx={ uuiCarousel.leftArrow } onClick={ this.prevPage(maxPage) } icon={ this.props.arrowIcon } />
-                    <div className={ uuiCarousel.itemsContainer }>
-                        { this.props.items?.slice(activeSlide * divideBy, (activeSlide + 1) * divideBy).map((item, index) => (
-                            <FlexCell cx={ uuiCarousel.item } key={ index } grow={ 1 }>
-                                { this.props.renderItem(item) }
+                    <IconContainer cx={uuiCarousel.leftArrow} onClick={this.prevPage(maxPage)} icon={this.props.arrowIcon} />
+                    <div className={uuiCarousel.itemsContainer}>
+                        {this.props.items?.slice(activeSlide * divideBy, (activeSlide + 1) * divideBy).map((item, index) => (
+                            <FlexCell cx={uuiCarousel.item} key={index} grow={1}>
+                                {this.props.renderItem(item)}
                             </FlexCell>
-                        )) }
+                        ))}
                     </div>
-                    <IconContainer cx={ uuiCarousel.rightArrow } onClick={ this.nextPage(maxPage) } icon={ this.props.arrowIcon } />
+                    <IconContainer cx={uuiCarousel.rightArrow} onClick={this.nextPage(maxPage)} icon={this.props.arrowIcon} />
                 </FlexRow>
             </VPanel>
         );
     }
-
 }

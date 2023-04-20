@@ -34,10 +34,13 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             this.setState({ component: module.default });
         });
 
-        svc.api.getCode({ path }).then(r => {
-            this.setState({ code: r.highlighted, raw: r.raw });
-            return r.raw;
-        }).then(raw => this.getComponentStylesheet(raw));
+        svc.api
+            .getCode({ path })
+            .then((r) => {
+                this.setState({ code: r.highlighted, raw: r.raw });
+                return r.raw;
+            })
+            .then((raw) => this.getComponentStylesheet(raw));
     }
 
     state: DocExampleState = {
@@ -62,13 +65,13 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         const matcher = /\.\/\w+(?:.example)?.scss/;
         const stylesheets = raw.match(matcher);
         if (stylesheets !== null) {
-            stylesheets.forEach(match => {
+            stylesheets.forEach((match) => {
                 // Compose path from match and current directory path
                 const [, filePath] = match.split('/');
                 const dirPath = this.props.path.split('/').slice(0, -1);
                 const path = dirPath.concat(filePath).join('/');
-                svc.api.getCode({ path }).then(stylesheet => {
-                    this.setState(prevState => ({
+                svc.api.getCode({ path }).then((stylesheet) => {
+                    this.setState((prevState) => ({
                         ...prevState,
                         stylesheets: {
                             ...prevState.stylesheets,
@@ -82,10 +85,10 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
     private onSwitchValueChange = (val: boolean) => {
         this.setState({ showCode: val });
-    }
+    };
 
     private renderCode(): React.ReactNode {
-        return <pre className={ css.code } dangerouslySetInnerHTML={ { __html: this.state.code } } />;
+        return <pre className={css.code} dangerouslySetInnerHTML={{ __html: this.state.code }} />;
     }
 
     private renderPreview() {
@@ -95,47 +98,45 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
         return (
             <>
-                <FlexRow size={ null } vPadding='48' padding='24' borderBottom alignItems='top' spacing='12' >
-                    { this.state.component && React.createElement(this.state.component) }
+                <FlexRow size={null} vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
+                    {this.state.component && React.createElement(this.state.component)}
                 </FlexRow>
-                <FlexRow padding='12' vPadding='12' cx={ css.containerFooter }>
-                    <Switch
-                        value={ this.state.showCode }
-                        onValueChange={ this.onSwitchValueChange }
-                        label='View code'
-                    />
-                    { codesandboxLink && (
-                        <form action={ codesandboxLink } method="POST" target="_blank">
-                            <input type="hidden" name="parameters" value={ codesandboxParameters } />
+                <FlexRow padding="12" vPadding="12" cx={css.containerFooter}>
+                    <Switch value={this.state.showCode} onValueChange={this.onSwitchValueChange} label="View code" />
+                    {codesandboxLink && (
+                        <form action={codesandboxLink} method="POST" target="_blank">
+                            <input type="hidden" name="parameters" value={codesandboxParameters} />
                             <Button
-                                cx={ css.externalLink }
-                                rawProps={ { type: 'submit' } }
-                                fill='light'
-                                icon={ CodesandboxIcon }
-                                iconPosition='right'
+                                cx={css.externalLink}
+                                rawProps={{ type: 'submit' }}
+                                fill="light"
+                                icon={CodesandboxIcon}
+                                iconPosition="right"
                                 caption="Open in Codesandbox"
                             />
                         </form>
-                    ) }
+                    )}
                 </FlexRow>
-                { this.state.showCode && this.renderCode() }
+                {this.state.showCode && this.renderCode()}
             </>
         );
     }
 
     render() {
         return (
-            <div className={ css.container }>
-                { this.props.title && (
-                    <FlexRow cx={ css.titleRow }>
-                        <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title }>{ this.props.title }</div>
-                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color='blue' href={ `#${ this.props.title.split(' ').join('_').toLowerCase() }` } />
+            <div className={css.container}>
+                {this.props.title && (
+                    <FlexRow cx={css.titleRow}>
+                        <div id={this.props.title.split(' ').join('_').toLowerCase()} className={css.title}>
+                            {this.props.title}
+                        </div>
+                        <IconButton cx={css.anchor} icon={AnchorIcon} color="blue" href={`#${this.props.title.split(' ').join('_').toLowerCase()}`} />
                     </FlexRow>
-                ) }
-                <EditableDocContent fileName={ this.getDescriptionFileName() } />
+                )}
+                <EditableDocContent fileName={this.getDescriptionFileName()} />
 
-                <div className={ css.previewContainer } style={ { width: this.props.width } }>
-                    { this.props.onlyCode ? this.renderCode() : this.renderPreview() }
+                <div className={css.previewContainer} style={{ width: this.props.width }}>
+                    {this.props.onlyCode ? this.renderCode() : this.renderPreview()}
                 </div>
             </div>
         );

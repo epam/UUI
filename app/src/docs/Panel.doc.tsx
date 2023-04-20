@@ -14,12 +14,10 @@ export class PanelDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='panel-description' />
+                <EditableDocContent fileName="panel-description" />
 
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    path='./_examples/flexItems/Panel.example.tsx'
-                />
+                {this.renderSectionTitle('Examples')}
+                <DocExample path="./_examples/flexItems/Panel.example.tsx" />
             </>
         );
     }

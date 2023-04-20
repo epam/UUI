@@ -14,12 +14,9 @@ export class RatingDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='rating-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/rating/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="rating-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/rating/Basic.example.tsx" />
             </>
         );
     }

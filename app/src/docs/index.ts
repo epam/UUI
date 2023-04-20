@@ -24,7 +24,7 @@ export * from './TabButton.doc';
 export * from './TextArea.doc';
 export * from './TextInput.doc';
 export * from './Dropdown.doc';
-export * from "./DropdownMenu.doc";
+export * from './DropdownMenu.doc';
 export * from './MainMenu.doc';
 export * from './Badge.doc';
 export * from './Modals.doc';

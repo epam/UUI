@@ -15,26 +15,17 @@ export function Tooltip(props: TooltipProps) {
     const isTooltipExist = () => !!props.content || !!props.renderContent;
 
     const renderTooltip = () => (
-        <div
-            role="tooltip"
-            aria-hidden={ isTooltipExist() }
-            className={ uuiElement.tooltipBody }
+        <div role="tooltip" aria-hidden={isTooltipExist()} className={uuiElement.tooltipBody}>
             { ...rawProps }
-        >
-            { props.content || props.renderContent?.() }
+            {props.content || props.renderContent?.()}
         </div>
     );
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         if (isTooltipExist()) {
             return (
-                <DropdownContainer
-                    showArrow={ true }
-                    maxWidth={ maxWidth ?? 300 }
-                    cx={ cx(tooltipCX, uuiElement.tooltipContainer) }
-                    { ...props }
-                >
-                    { renderTooltip() }
+                <DropdownContainer showArrow={true} maxWidth={maxWidth ?? 300} cx={cx(tooltipCX, uuiElement.tooltipContainer)} {...props}>
+                    {renderTooltip()}
                 </DropdownContainer>
             );
         } else {
@@ -42,25 +33,21 @@ export function Tooltip(props: TooltipProps) {
         }
     };
 
-
-    const renderTarget = (props: IDropdownToggler) => (
+    const renderTarget = (props: IDropdownToggler) =>
         React.Children.map(children, (child, idx) => {
             if (idx > 0 || !React.isValidElement(child)) return child;
-            return React.cloneElement<React.ComponentPropsWithRef<any>>(child, {ref: props.ref});
-        })
-    );
+            return React.cloneElement<React.ComponentPropsWithRef<any>>(child, { ref: props.ref });
+        });
 
     return (
         <Dropdown
-            { ...props }
-            renderBody={ (props) => renderDropdownBody(props) }
-            openOnHover={ true }
-            closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
-            placement={ props.placement || 'top' }
-            modifiers={ [
-                { name: 'offset', options: { offset: props.offset || [0, 12] } },
-            ] }
-            renderTarget={ (props: IDropdownToggler) => renderTarget(props) }
+            {...props}
+            renderBody={(props) => renderDropdownBody(props)}
+            openOnHover={true}
+            closeOnMouseLeave={closeOnMouseLeave ?? 'toggler'}
+            placement={props.placement || 'top'}
+            modifiers={[{ name: 'offset', options: { offset: props.offset || [0, 12] } }]}
+            renderTarget={(props: IDropdownToggler) => renderTarget(props)}
         />
     );
 }

@@ -27,7 +27,7 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
         ctx.lineTo(t.getX(new Date()), yTo);
         ctx.lineWidth = 2;
         ctx.stroke();
-    }
+    };
 
     renderStage(ctx: CanvasRenderingContext2D, t: TimelineTransform, stage: Stage) {
         const stageSegment = {
@@ -36,12 +36,7 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
 
         let thickness = 2;
         ctx.fillStyle = '#fff';
-        ctx.fillRect(
-            stageSegment.leftTrimmed - thickness,
-            0,
-            stageSegment.widthTrimmed + thickness * 2,
-            this.canvasHeight + thickness * 2 - thickness,
-        );
+        ctx.fillRect(stageSegment.leftTrimmed - thickness, 0, stageSegment.widthTrimmed + thickness * 2, this.canvasHeight + thickness * 2 - thickness);
 
         ctx.fillStyle = stage.color;
         ctx.fillRect(stageSegment.leftTrimmed, 0, stageSegment.widthTrimmed, this.canvasHeight - thickness);
@@ -67,7 +62,7 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
 
     protected renderCanvas(ctx: CanvasRenderingContext2D, t: TimelineTransform): void {
         ctx.clearRect(0, 0, t.widthMs, this.canvasHeight);
-        this.props.stages.forEach(stage => this.renderStage(ctx, t, stage));
+        this.props.stages.forEach((stage) => this.renderStage(ctx, t, stage));
         // render today line on border
         this.renderTodayLine(ctx, t, this.canvasHeight - 2, this.canvasHeight);
     }

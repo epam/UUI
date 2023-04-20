@@ -13,12 +13,9 @@ export class SliderDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='slider-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/slider/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="slider-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/slider/Basic.example.tsx" />
             </>
         );
     }

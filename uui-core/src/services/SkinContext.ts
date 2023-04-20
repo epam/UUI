@@ -1,28 +1,40 @@
 import {
-    ButtonCoreProps, CheckboxCoreProps, FlexCellProps, FlexRowProps, TextInputCoreProps, SpinnerCoreProps, ModalWindowProps,
-    ModalBlockerProps, ModalFooterCoreProps, ModalHeaderCoreProps, ButtonSemanticProps, LabeledInputCoreProps, DatePickerCoreProps, RangeDatePickerCoreProps,
-} from "../types";
+    ButtonCoreProps,
+    CheckboxCoreProps,
+    FlexCellProps,
+    FlexRowProps,
+    TextInputCoreProps,
+    SpinnerCoreProps,
+    ModalWindowProps,
+    ModalBlockerProps,
+    ModalFooterCoreProps,
+    ModalHeaderCoreProps,
+    ButtonSemanticProps,
+    LabeledInputCoreProps,
+    DatePickerCoreProps,
+    RangeDatePickerCoreProps,
+} from '../types';
 import * as React from 'react';
 
-interface ISkinComponent<TProps, TSemanticProps= {}> {
+interface ISkinComponent<TProps, TSemanticProps = {}> {
     component: React.ComponentType<TProps>;
     mapProps?(props: SkinContextComponentProps<TProps, TSemanticProps>): TProps;
     render(props: SkinContextComponentProps<TProps, TSemanticProps>): React.ReactElement<SkinContextComponentProps<TProps, TSemanticProps>>;
 }
 
-export type SkinContextComponentProps<TProps, TSemanticProps = {}> = TProps & TSemanticProps & {
-    usageContext?: string[];
-};
-
+export type SkinContextComponentProps<TProps, TSemanticProps = {}> = TProps &
+    TSemanticProps & {
+        usageContext?: string[];
+    };
 
 export function skinComponent<TProps, TSemanticProps = {}>(
     component: React.ComponentType<TProps>,
-    mapProps?: (props: SkinContextComponentProps<TProps, TSemanticProps>) => TProps,
+    mapProps?: (props: SkinContextComponentProps<TProps, TSemanticProps>) => TProps
 ): ISkinComponent<TProps, TSemanticProps> {
     return {
         component,
         mapProps,
-        render: props => (React.createElement(component, mapProps ? mapProps(props) : props) as any),
+        render: (props) => React.createElement(component, mapProps ? mapProps(props) : props) as any,
     };
 }
 

@@ -10,7 +10,7 @@ const RatingDoc = new DocBuilder<RatingProps & RatingMods>({ name: 'Rating', com
     .prop('step', { examples: [0.5, 1], defaultValue: 1 })
     .prop('isReadonly', { examples: [true] })
     .prop('hideTooltip', { examples: [true] })
-    .prop('hint', { examples: [{ name: 'hint', value: val => `now is ${val} stars` }] })
+    .prop('hint', { examples: [{ name: 'hint', value: (val) => `now is ${val} stars` }] })
     .withContexts(DefaultContext, FormContext);
 
 export default RatingDoc;

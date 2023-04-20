@@ -18,19 +18,10 @@ export interface ButtonMods {
 export type ButtonProps = ButtonMods & uuiButtonProps;
 
 export function applyButtonMods(mods: ButtonProps) {
-    return [
-        `button-${mods.color || 'primary'}`,
-        css.root,
-        css[`size-${mods.size || defaultSize}`],
-        css[`mode-${mods.mode || 'solid'}`],
-    ];
+    return [`button-${mods.color || 'primary'}`, css.root, css[`size-${mods.size || defaultSize}`], css[`mode-${mods.mode || 'solid'}`]];
 }
 
-export const Button = withMods<uuiButtonProps, ButtonMods>(
-    uuiButton,
-    applyButtonMods,
-    (props) => ({
-        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-        clearIcon: systemIcons[props.size || defaultSize].clear,
-    }),
-);
+export const Button = withMods<uuiButtonProps, ButtonMods>(uuiButton, applyButtonMods, (props) => ({
+    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+    clearIcon: systemIcons[props.size || defaultSize].clear,
+}));

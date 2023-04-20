@@ -7,8 +7,8 @@ describe('LabeledInput', () => {
     it('should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <LabeledInput>
-                <TextInput value={ null } onValueChange={ () => {} } />
-            </LabeledInput>,
+                <TextInput value={null} onValueChange={() => {}} />
+            </LabeledInput>
         );
 
         expect(tree).toMatchSnapshot();
@@ -16,16 +16,9 @@ describe('LabeledInput', () => {
 
     it('should be rendered correctly with props', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <LabeledInput
-                label='Test label'
-                size='36'
-                info='Test'
-                isInvalid
-                validationMessage='Test invalid message'
-                labelPosition='left'
-            >
-                <TextInput value={ null } onValueChange={ () => {} } />
-            </LabeledInput>,
+            <LabeledInput label="Test label" size="36" info="Test" isInvalid validationMessage="Test invalid message" labelPosition="left">
+                <TextInput value={null} onValueChange={() => {}} />
+            </LabeledInput>
         );
 
         expect(tree).toMatchSnapshot();

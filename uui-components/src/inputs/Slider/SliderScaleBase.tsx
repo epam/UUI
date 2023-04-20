@@ -14,13 +14,12 @@ interface SliderScaleProps<THandleOffsetValue> {
 }
 
 export abstract class SliderScaleBase<THandleOffsetValue> extends React.Component<SliderScaleProps<THandleOffsetValue>> {
-
     abstract renderSliderScaleElements(): React.ReactElement<SliderScaleElement>[];
 
     generateScale = (step: number): number[] => {
         const min = this.props.min;
         const max = this.props.max;
-        const count = (Math.ceil(max - min)) / step;
+        const count = Math.ceil(max - min) / step;
         let scale: number[] = [min];
 
         for (let i = 1; i < count; i += 1) {
@@ -30,13 +29,9 @@ export abstract class SliderScaleBase<THandleOffsetValue> extends React.Componen
         scale.push(max);
 
         return scale;
-    }
+    };
 
     render() {
-        return (
-            <div className={ uuiSlider.scale }>
-                { this.renderSliderScaleElements() }
-            </div>
-        );
+        return <div className={uuiSlider.scale}>{this.renderSliderScaleElements()}</div>;
     }
 }

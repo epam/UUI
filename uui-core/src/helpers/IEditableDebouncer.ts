@@ -1,8 +1,8 @@
 import React from 'react';
-import { IEditable, IAnalyticableOnChange } from "../types";
+import { IEditable, IAnalyticableOnChange } from '../types';
 import debounce from 'lodash.debounce';
-import { useUuiContext } from "../services";
-import { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useUuiContext } from '../services';
+import { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 /**
  * IEditableDebouncer component options.
@@ -26,19 +26,18 @@ export interface IEditableDebouncerProps<T> extends IEditable<T>, IEditableDebou
 
 const defaultDelay = 500;
 
-
 const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
     const [state, setState] = useState({ value: props.value });
     const lastSentValue = useRef(props.value);
     const context = useUuiContext();
-    
+
     useEffect(() => {
-        if (props.value !== lastSentValue.current) setState({value: props.value});
+        if (props.value !== lastSentValue.current) setState({ value: props.value });
     }, [props.value]);
-    
+
     const debouncedOnValueChange = useMemo(() => {
         return debounce(
-            value => {
+            (value) => {
                 lastSentValue.current = value;
                 props.onValueChange(value);
 
@@ -48,23 +47,29 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
                 }
             },
             props.debounceDelay != null ? props.debounceDelay : defaultDelay,
-            { leading: false, trailing: true },
+            { leading: false, trailing: true }
         );
     }, [props.onValueChange, props.getValueChangeAnalyticsEvent, props.debounceDelay, props.value]);
-    
-    const handleValueChange = useCallback((newValue: T) => {
-        setState({ value: newValue });
-        if (props.disableDebounce) {
-            props.onValueChange(newValue);
-        } else {
-            debouncedOnValueChange(newValue);
-        }
-    }, [props.disableDebounce, props.onValueChange, debouncedOnValueChange]);
 
-    const propsToRender: IEditable<T> = useMemo(() => ({
-        value: state.value,
-        onValueChange: handleValueChange,
-    }), [state.value, handleValueChange]);
+    const handleValueChange = useCallback(
+        (newValue: T) => {
+            setState({ value: newValue });
+            if (props.disableDebounce) {
+                props.onValueChange(newValue);
+            } else {
+                debouncedOnValueChange(newValue);
+            }
+        },
+        [props.disableDebounce, props.onValueChange, debouncedOnValueChange]
+    );
+
+    const propsToRender: IEditable<T> = useMemo(
+        () => ({
+            value: state.value,
+            onValueChange: handleValueChange,
+        }),
+        [state.value, handleValueChange]
+    );
 
     return props.render?.(propsToRender) as ReactElement;
 };

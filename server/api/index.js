@@ -8,7 +8,7 @@ var docsApi = require('./docs');
 var errorApi = require('./error');
 const successApi = require('./success');
 
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 
 const jsonParser = bodyParser.json();
 router.use(jsonParser);

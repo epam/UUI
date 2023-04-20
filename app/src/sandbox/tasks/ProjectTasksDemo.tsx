@@ -43,9 +43,7 @@ export const ProjectTasksDemo = () => {
 
     // Insert new/exiting top/bottom or above/below relative to other task
     const insertTask = (position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
-        const task: Task = existingTask
-            ? { ...existingTask }
-            : { id: lastId--, title: '', description: '', estimate: 0, complete: 0, status: { id: 0, name: 'To do' } };
+        const task: Task = existingTask ? { ...existingTask } : { id: lastId--, title: '', description: '', estimate: 0, complete: 0, status: { id: 0, name: 'To do' } };
 
         onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
     };
@@ -53,11 +51,13 @@ export const ProjectTasksDemo = () => {
     //const { tableState, setTableState } = useTableState<any>({ columns });
     const { tableState, setTableState } = useTableState({ columns });
 
-    const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>({
-        items: Object.values(value.items),
-        getId: i => i.id,
-    }, []);
-
+    const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>(
+        {
+            items: Object.values(value.items),
+            getId: (i) => i.id,
+        },
+        []
+    );
 
     const dataView = dataSource.useView(tableState, setTableState, {
         getRowOptions: (task) => ({
@@ -76,38 +76,40 @@ export const ProjectTasksDemo = () => {
         onValueChange({ ...value, items: newItems });
     };
 
-    return <Panel style={ { width: '100%' } }>
-        <FlexRow spacing='12' margin='12'>
-            <FlexCell width='auto'>
-                <IconButton icon={ insertAfter } onClick={ () => insertTask('top') } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <IconButton icon={ insertBefore } onClick={ () => insertTask('bottom') } />
-            </FlexCell>
-            <FlexSpacer />
-            <FlexCell width='auto'>
-                <Button size='30' icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button size='30' icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button size='30' caption="Save" onClick={ save } isDisabled={ !isChanged } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button size='30' caption="Revert" onClick={ revert } isDisabled={ !isChanged } />
-            </FlexCell>
-        </FlexRow>
-        <DataTable
-            headerTextCase='upper'
-            showColumnsConfig
-            getRows={ dataView.getVisibleRows }
-            columns={ columns }
-            value={ tableState }
-            onValueChange={ setTableState }
-            onCopy={ onCopy }
-            allowColumnsResizing
-            { ...dataView.getListProps() }
-        />
-    </Panel>;
+    return (
+        <Panel style={{ width: '100%' }}>
+            <FlexRow spacing="12" margin="12">
+                <FlexCell width="auto">
+                    <IconButton icon={insertAfter} onClick={() => insertTask('top')} />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <IconButton icon={insertBefore} onClick={() => insertTask('bottom')} />
+                </FlexCell>
+                <FlexSpacer />
+                <FlexCell width="auto">
+                    <Button size="30" icon={undoIcon} onClick={undo} isDisabled={!canUndo} />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Button size="30" icon={redoIcon} onClick={redo} isDisabled={!canRedo} />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Button size="30" caption="Save" onClick={save} isDisabled={!isChanged} />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Button size="30" caption="Revert" onClick={revert} isDisabled={!isChanged} />
+                </FlexCell>
+            </FlexRow>
+            <DataTable
+                headerTextCase="upper"
+                showColumnsConfig
+                getRows={dataView.getVisibleRows}
+                columns={columns}
+                value={tableState}
+                onValueChange={setTableState}
+                onCopy={onCopy}
+                allowColumnsResizing
+                {...dataView.getListProps()}
+            />
+        </Panel>
+    );
 };

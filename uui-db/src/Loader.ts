@@ -21,7 +21,7 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
     constructor(
         private dbRef: DbRef<TTables, any>,
         private getTracker: () => ILoadingTracker<TRequest, TResult>,
-        private options: LoaderOptions<TTables, TResult, TRequest>,
+        private options: LoaderOptions<TTables, TResult, TRequest>
     ) {
         this.loaded = getTracker();
         this.loadedAndLoading = getTracker();
@@ -34,7 +34,7 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
         if (this.options.clientToServerRequest) {
             serverRequest = this.options.clientToServerRequest(serverRequest);
         }
-        state.promise = this.options.api(serverRequest).then(result => {
+        state.promise = this.options.api(serverRequest).then((result) => {
             this.loaded.append(state.missing, result);
             this.loadedAndLoading.append(state.missing, result);
             state.missing = null;
@@ -91,5 +91,5 @@ export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
                 return result;
             }
         }
-    }
+    };
 }

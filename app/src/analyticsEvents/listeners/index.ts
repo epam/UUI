@@ -1,1 +1,1 @@
-export * from "./AmplitudeListener";
+export * from './AmplitudeListener';

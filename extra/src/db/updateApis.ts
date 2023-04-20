@@ -4,16 +4,9 @@ import { Map, Seq, Set } from 'immutable';
 import { DbSchema } from './DbSchema';
 import { objectKeys } from './helpers';
 
-function entitiesWith(
-    input: object[],
-    state: EntityState,
-    schema: DbEntitySchema<any>,
-): EntityState {
-    const idVal = Seq.Keyed(input.map(entity => [schema.getKey(entity), entity]));
-    const byKey = state.byKey.mergeWith(
-        (existing, update) => ({ ...existing, ...update }),
-        idVal,
-    );
+function entitiesWith(input: object[], state: EntityState, schema: DbEntitySchema<any>): EntityState {
+    const idVal = Seq.Keyed(input.map((entity) => [schema.getKey(entity), entity]));
+    const byKey = state.byKey.mergeWith((existing, update) => ({ ...existing, ...update }), idVal);
     return {
         byKey,
     };
@@ -22,7 +15,7 @@ function entitiesWith(
 export const dbWith = (input: DbPatch<any>) => (state: DbState) => {
     const entities: EntitiesState = {};
     const schema = state.schema;
-    objectKeys(schema.entitySchemas).forEach(entityName => {
+    objectKeys(schema.entitySchemas).forEach((entityName) => {
         if (input[entityName]) {
             entities[entityName] = entitiesWith(input[entityName], state.entities[entityName], schema.entitySchemas[entityName]);
         } else {

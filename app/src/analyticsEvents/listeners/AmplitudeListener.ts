@@ -1,5 +1,5 @@
-import { IAnalyticsListener, AnalyticsEvent } from "@epam/uui-core";
-import amplitude from "amplitude-js";
+import { IAnalyticsListener, AnalyticsEvent } from '@epam/uui-core';
+import amplitude from 'amplitude-js';
 
 export class AmplitudeListener implements IAnalyticsListener {
     public ampCode: string;
@@ -12,12 +12,12 @@ export class AmplitudeListener implements IAnalyticsListener {
 
     private getAmplitudeClient(): amplitude.AmplitudeClient {
         const ampclient = amplitude.getInstance();
-        ampclient.init(this.ampCode, undefined, {includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false});
+        ampclient.init(this.ampCode, undefined, { includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false });
         return ampclient;
     }
 
-    public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, "name">, eventType: string) {
-        if (eventType !== "event") return;
+    public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, 'name'>, eventType: string) {
+        if (eventType !== 'event') return;
         this.client.logEvent(event.name, parameters);
     }
 }

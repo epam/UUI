@@ -7,12 +7,9 @@ export class AdaptivePanelDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='adaptivePanel-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/adaptivePanel/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="adaptivePanel-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/adaptivePanel/Basic.example.tsx" />
             </>
         );
     }

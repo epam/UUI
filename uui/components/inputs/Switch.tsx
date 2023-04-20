@@ -7,11 +7,7 @@ export interface SwitchMods {
 }
 
 export function applySwitchMods(mods: SwitchMods & SwitchProps) {
-    return [
-        'switch-vars',
-        css.root,
-        css['size-' + (mods.size || '18')],
-    ];
+    return ['switch-vars', css.root, css['size-' + (mods.size || '18')]];
 }
 
 export const Switch = withMods<SwitchProps, SwitchMods>(uuiSwitch, applySwitchMods);

@@ -3,14 +3,10 @@ export function parseStringToCSSProperties(styles: string) {
     if (styles) {
         styles.split(';').map((item: any) => {
             let [name, value] = item.trim().split(':');
-            parsedStyle[name] = !name || erasedStyleProps.includes(name)
-                ? null
-                : value.trim();
+            parsedStyle[name] = !name || erasedStyleProps.includes(name) ? null : value.trim();
         });
     }
     return parsedStyle;
 }
 
-const erasedStyleProps = [
-    "background-color", "font-family", "font-style",  
-];
+const erasedStyleProps = ['background-color', 'font-family', 'font-style'];

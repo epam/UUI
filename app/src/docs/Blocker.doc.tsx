@@ -15,17 +15,11 @@ export class BlockerDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='blocker-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/blocker/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="blocker-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/blocker/Basic.example.tsx" />
 
-                <DocExample
-                    title='Advanced'
-                    path='./_examples/blocker/Advanced.example.tsx'
-                />
+                <DocExample title="Advanced" path="./_examples/blocker/Advanced.example.tsx" />
             </>
         );
     }

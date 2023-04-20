@@ -1,4 +1,4 @@
-import React, { forwardRef as reactForwardRef } from "react";
+import React, { forwardRef as reactForwardRef } from 'react';
 
 /**
  * React forward-ref function, with a patched type, allowed generic types to pass-thru
@@ -6,5 +6,5 @@ import React, { forwardRef as reactForwardRef } from "react";
  * We go with re-export this way, instead of patching React typings, to not break typings in dependent projects.
  */
 export const forwardRef = reactForwardRef as <T, P = {}>(
-    render: (props: P, ref: React.Ref<T>) => React.ReactElement | null,
+    render: (props: P, ref: React.Ref<T>) => React.ReactElement | null
 ) => (props: P & React.RefAttributes<T>) => React.ReactElement | null;

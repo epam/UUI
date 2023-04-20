@@ -1,5 +1,5 @@
 import * as React from 'react';
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 import { fireEvent, setupComponentForTest } from '@epam/test-utils';
 import { DatePickerHeader, DatePickerHeaderProps } from '../DatePickerHeader';
 
@@ -17,7 +17,7 @@ async function setupDatePickerHeader(params: { initialDate: string }) {
                 context.current.setProperty('value', newValue);
             }),
         }),
-        (props) => (<DatePickerHeader { ...props } />),
+        (props) => <DatePickerHeader {...props} />
     );
 
     const left = result.container.querySelector('.uui-datepickerheader-nav-icon-left');
@@ -32,7 +32,7 @@ async function setupDatePickerHeader(params: { initialDate: string }) {
 
 describe('DatePickerHeader', () => {
     it('should change date on arrow click', async () => {
-        const  { result, dom } = await setupDatePickerHeader({ initialDate: '2017-01-22' });
+        const { result, dom } = await setupDatePickerHeader({ initialDate: '2017-01-22' });
 
         expect(result.queryByText('January 2017')).toBeTruthy();
 
@@ -47,7 +47,7 @@ describe('DatePickerHeader', () => {
     });
 
     it('should change view on header caption click', async () => {
-        const  { result, dom } = await setupDatePickerHeader({ initialDate: '2017-01-22' });
+        const { result, dom } = await setupDatePickerHeader({ initialDate: '2017-01-22' });
         expect(result.queryByText('January 2017')).toBeTruthy();
 
         fireEvent.click(dom.title);
@@ -55,6 +55,5 @@ describe('DatePickerHeader', () => {
 
         fireEvent.click(dom.title);
         expect(result.queryByText('January 2017')).toBeTruthy();
-
     });
 });

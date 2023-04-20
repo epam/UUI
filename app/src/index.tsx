@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history';
 import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui-core';
 import { Snackbar, Modals } from '@epam/uui-components';
 import { skinContext as promoSkinContext } from '@epam/promo';
-import { AmplitudeListener } from "./analyticsEvents";
+import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';
 import { getApi, TApi } from './data';
@@ -16,12 +16,11 @@ import './index.scss';
 const history = createBrowserHistory();
 
 export class UuiEnhancedApp extends React.Component {
-
     onInitCompleted = (context: CommonContexts<TApi, UuiContexts>, ampCode: string) => {
         Object.assign(svc, context);
         const listener = new AmplitudeListener(ampCode);
         context.uuiAnalytics.addListener(listener);
-    }
+    };
 
     render() {
         const isProduction = /uui.epam.com/.test(window.location.hostname);
@@ -29,15 +28,16 @@ export class UuiEnhancedApp extends React.Component {
 
         return (
             <ContextProvider<TApi, UuiContexts>
-                apiDefinition={ (processRequest) =>
+                apiDefinition={(processRequest) =>
                     getApi((url: string, method: string, data?: any, options?: ApiCallOptions) =>
-                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options  }))
+                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options })
+                    )
                 }
-                onInitCompleted={ (context) => this.onInitCompleted(context, ampCode) }
-                history={ history }
-                gaCode='UA-132675234-1'
-                skinContext={ promoSkinContext }
-                enableLegacyContext={ false }
+                onInitCompleted={(context) => this.onInitCompleted(context, ampCode)}
+                history={history}
+                gaCode="UA-132675234-1"
+                skinContext={promoSkinContext}
+                enableLegacyContext={false}
             >
                 <App />
                 <Snackbar />
@@ -49,9 +49,9 @@ export class UuiEnhancedApp extends React.Component {
 
 render(
     <React.StrictMode>
-        <Router history={ history }>
+        <Router history={history}>
             <UuiEnhancedApp />
         </Router>
     </React.StrictMode>,
-    document.getElementById('root'),
+    document.getElementById('root')
 );

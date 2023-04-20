@@ -14,9 +14,13 @@ const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: 
                 value: 'At EPAM, we believe that technology defines business success, and we relentscssly pursue the best solution for every client to solve where others fail.',
                 name: 'long text',
             },
-        ], type: 'string',
+        ],
+        type: 'string',
     })
-    .prop('color', { examples: ['night50', 'night300', 'night400', 'night500', 'night600', 'night700', 'night800', 'night900'], renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } /> })
+    .prop('color', {
+        examples: ['night50', 'night300', 'night400', 'night500', 'night600', 'night700', 'night800', 'night900'],
+        renderEditor: (editable, examples) => <ColorPicker colors={examples.map((i) => ({ value: i, hex: colors[i] }))} {...editable} />,
+    })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
 export default textDoc;

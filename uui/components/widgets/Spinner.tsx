@@ -6,9 +6,7 @@ import css from './Spinner.scss';
 export type SpinnerProps = UuiSpinnerProps;
 
 export function applySpinnerMods() {
-    return [
-        css.root,
-    ];
+    return [css.root];
 }
 
 export const Spinner = withMods<UuiSpinnerProps>(uuiSpinner, applySpinnerMods);

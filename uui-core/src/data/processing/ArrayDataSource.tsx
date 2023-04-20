@@ -20,25 +20,26 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         if (this.props.items instanceof Tree) {
             this.tree = this.props.items;
         } else {
-            this.tree = Tree.create({
-                ...this.props,
-                // These defaults are added for compatibility reasons.
-                // We'll require getId and getParentId callbacks in other APIs, including the views.
-                getId: this.getId,
-                getParentId: props?.getParentId ?? this.defaultGetParentId,
-            },
-                this.props.items,
+            this.tree = Tree.create(
+                {
+                    ...this.props,
+                    // These defaults are added for compatibility reasons.
+                    // We'll require getId and getParentId callbacks in other APIs, including the views.
+                    getId: this.getId,
+                    getParentId: props?.getParentId ?? this.defaultGetParentId,
+                },
+                this.props.items
             );
         }
     }
 
     public getById = (id: TId) => {
         return this.tree.getById(id);
-    }
+    };
 
     protected defaultGetParentId = (item: TItem) => {
         return (item as any)['parentId'];
-    }
+    };
 
     setItem(item: TItem): void {
         // TODO
@@ -47,7 +48,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     getView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
+        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>
     ): IDataSourceView<TItem, TId, TFilter> {
         const view = this.views.get(onValueChange) as ArrayListView<TItem, TId, TFilter>;
         const viewProps: ArrayListViewProps<TItem, TId, TFilter> = {
@@ -73,7 +74,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     useView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
-        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>,
+        options?: Partial<ArrayListViewProps<TItem, TId, TFilter>>
     ): IDataSourceView<TItem, TId, TFilter> {
         useEffect(() => () => this.unsubscribeView(onValueChange), [this]);
 

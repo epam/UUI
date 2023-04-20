@@ -68,12 +68,12 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
         const isValidDate = parsedDate.isValid();
         if (!isValidDate) return false;
         return this.props.filter ? this.props.filter(parsedDate) : true;
-    }
+    };
 
     handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         this.onToggle(true);
         this.props.onFocus?.(e);
-    }
+    };
 
     handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (isChildFocusable(e)) return;
@@ -85,7 +85,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
             this.handleValueChange(null);
             this.setState({ inputValue: null, selectedDate: null });
         }
-    }
+    };
 
     handleInputChange = (value: string) => {
         const resultValue = toValueDateFormat(value, this.getFormat());
@@ -95,20 +95,20 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
         } else {
             this.setState({ inputValue: value });
         }
-    }
+    };
 
     setSelectedDate = (value: string) => {
         this.props.value !== value && this.handleValueChange(value);
 
         this.setState({ selectedDate: value, inputValue: toCustomDateFormat(value, this.getFormat()) });
-    }
+    };
 
-    setDisplayedDateAndView = (displayedDate: Dayjs, view: ViewType) => this.setState({...this.state, displayedDate: displayedDate, view: view});
+    setDisplayedDateAndView = (displayedDate: Dayjs, view: ViewType) => this.setState({ ...this.state, displayedDate: displayedDate, view: view });
 
     handleCancel = () => {
         this.handleValueChange(null);
         this.setState({ inputValue: null, selectedDate: null });
-    }
+    };
 
     getValue(): PickerBodyValue<string> {
         return {
@@ -125,7 +125,7 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
             displayedDate: this.state.selectedDate ? dayjs(this.state.selectedDate) : dayjs(),
         });
         if (!value) this.props.onBlur?.();
-    }
+    };
 
     handleValueChange = (newValue: string | null) => {
         this.props.onValueChange(newValue);
@@ -138,17 +138,17 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
             const event = this.props.getValueChangeAnalyticsEvent(newValue, this.props.value);
             this.context.uuiAnalytics.sendEvent(event);
         }
-    }
+    };
 
     render() {
         return (
             <Dropdown
-                renderTarget={ props => this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props) }
-                renderBody={ (props) => !this.props.isDisabled && !this.props.isReadonly && this.renderBody(props) }
-                onValueChange={ !this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null }
-                value={ this.state.isOpen }
-                modifiers={ [{ name: 'offset', options: {offset: [0, 6]}}] }
-                placement={ this.props.placement }
+                renderTarget={(props) => (this.props.renderTarget ? this.props.renderTarget(props) : this.renderInput(props))}
+                renderBody={(props) => !this.props.isDisabled && !this.props.isReadonly && this.renderBody(props)}
+                onValueChange={!this.props.isDisabled && !this.props.isReadonly ? this.onToggle : null}
+                value={this.state.isOpen}
+                modifiers={[{ name: 'offset', options: { offset: [0, 6] } }]}
+                placement={this.props.placement}
             />
         );
     }

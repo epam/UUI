@@ -11,20 +11,21 @@ const infoData = [
     { caption: 'Downloads pre month', value: '25K+', pulse: false },
 ];
 
-
 export class InfoBlock extends React.Component {
     render() {
         return (
-            <div className={ css.layout } >
-                <FlexRow cx={ css.info } >
-                    {
-                        infoData.map((data) => (
-                            <FlexCell cx={ css.infoContainer } key={ data.caption } width='auto'  >
-                                <Text font='museo-sans' cx={ css.infoValue } >{ data.value }</Text>
-                                <Text font='museo-slab' cx={ cx(css.infoCaption, data.pulse && css.pulse) } >{ data.caption }</Text>
-                            </FlexCell>
-                        ))
-                    }
+            <div className={css.layout}>
+                <FlexRow cx={css.info}>
+                    {infoData.map((data) => (
+                        <FlexCell cx={css.infoContainer} key={data.caption} width="auto">
+                            <Text font="museo-sans" cx={css.infoValue}>
+                                {data.value}
+                            </Text>
+                            <Text font="museo-slab" cx={cx(css.infoCaption, data.pulse && css.pulse)}>
+                                {data.caption}
+                            </Text>
+                        </FlexCell>
+                    ))}
                 </FlexRow>
             </div>
         );

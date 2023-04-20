@@ -11,8 +11,8 @@ const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ n
     .prop('step', { examples: [2, 5, 10] })
     .prop('min', { examples: [0, 10], defaultValue: 0 })
     .prop('max', { examples: [20, 50] })
-    .prop('mode', { examples: ["form", "cell"] })
-    .prop('align', { examples: ["left", "right"] })
+    .prop('mode', { examples: ['form', 'cell'] })
+    .prop('align', { examples: ['left', 'right'] })
     .prop('disableArrows', { examples: [true, false] })
     .prop('disableLocaleFormatting', { defaultValue: false, examples: [true, false] })
     .withContexts(DefaultContext, FormContext, TableContext, ResizableContext);

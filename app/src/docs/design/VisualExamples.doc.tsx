@@ -7,7 +7,7 @@ export class VisualExamplesDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent key='visualExamples-for-designers' fileName='visualExamples-for-designers' />
+                <EditableDocContent key="visualExamples-for-designers" fileName="visualExamples-for-designers" />
             </>
         );
     }

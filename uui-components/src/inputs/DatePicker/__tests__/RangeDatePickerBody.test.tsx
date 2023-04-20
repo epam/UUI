@@ -1,14 +1,11 @@
 import * as React from 'react';
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 import { RangeDatePickerBody } from '../RangeDatePickerBody';
 import { renderToJsdomWithContextAsync, fireEvent } from '@epam/test-utils';
-import { useState } from "react";
+import { useState } from 'react';
 
-async function setupRangePickerBody(params: { selectedDate: { from: string, to: string }, focusPart: any }) {
-    const {
-        selectedDate,
-        focusPart,
-    } = params;
+async function setupRangePickerBody(params: { selectedDate: { from: string; to: string }; focusPart: any }) {
+    const { selectedDate, focusPart } = params;
     const handleChange = jest.fn();
     const handleChangeIsOpen = jest.fn();
     function TestRangePickerBody({ focusPart }: { focusPart: any }) {
@@ -21,19 +18,17 @@ async function setupRangePickerBody(params: { selectedDate: { from: string, to: 
         });
         return (
             <RangeDatePickerBody
-                value={ value }
-                onValueChange={
-                    (newValue) => {
-                        setValue(newValue);
-                        handleChange(newValue);
-                    }
-                }
-                changeIsOpen={ handleChangeIsOpen }
-                focusPart={ focusPart }
+                value={value}
+                onValueChange={(newValue) => {
+                    setValue(newValue);
+                    handleChange(newValue);
+                }}
+                changeIsOpen={handleChangeIsOpen}
+                focusPart={focusPart}
             />
         );
     }
-    const result = await renderToJsdomWithContextAsync(<TestRangePickerBody focusPart={ focusPart } />);
+    const result = await renderToJsdomWithContextAsync(<TestRangePickerBody focusPart={focusPart} />);
     const title = result.container.querySelector('.uui-datepickerheader-nav-title');
 
     return {

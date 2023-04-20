@@ -7,13 +7,13 @@ interface Person {
     birthday?: Date;
 }
 
-const alice = { id: 1, name: "Alice", departmentId: 3, birthday: new Date(2000, 1, 1) } as Person;
-const bob = { id: 2, name: "Bob", departmentId: 2, birthday: new Date(1980, 4, 3) } as Person;
-const edward = { id: 3, name: "Edward", departmentId: 1, birthday: new Date(1990, 2, 5) } as Person;
-const jack = { id: 4, name: "Jack", departmentId: null, birthday: new Date(1995, 4, 3) } as Person;
-const pete = { id: 5, name: "Pete", departmentId: 1, birthday: new Date(1970, 10, 20) } as Person;
-const sandra = { id: 6, name: "Sandra", departmentId: 2, birthday: new Date(2000, 11, 30) } as Person;
-const william = { id: 7, name: "William" } as Person;
+const alice = { id: 1, name: 'Alice', departmentId: 3, birthday: new Date(2000, 1, 1) } as Person;
+const bob = { id: 2, name: 'Bob', departmentId: 2, birthday: new Date(1980, 4, 3) } as Person;
+const edward = { id: 3, name: 'Edward', departmentId: 1, birthday: new Date(1990, 2, 5) } as Person;
+const jack = { id: 4, name: 'Jack', departmentId: null, birthday: new Date(1995, 4, 3) } as Person;
+const pete = { id: 5, name: 'Pete', departmentId: 1, birthday: new Date(1970, 10, 20) } as Person;
+const sandra = { id: 6, name: 'Sandra', departmentId: 2, birthday: new Date(2000, 11, 30) } as Person;
+const william = { id: 7, name: 'William' } as Person;
 
 const persons = [alice, bob, edward, jack, pete, sandra, william];
 

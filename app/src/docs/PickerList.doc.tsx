@@ -15,12 +15,9 @@ export class PickerListDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='pickerList-description' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/pickerList/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="pickerList-description" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/pickerList/Basic.example.tsx" />
             </>
         );
     }

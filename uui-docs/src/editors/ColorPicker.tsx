@@ -14,23 +14,25 @@ interface ColorPickerProps extends IEditable<string> {
 }
 
 export class ColorPicker extends React.Component<ColorPickerProps, any> {
-
     render() {
         return (
-            <div className={ css.container }>
-                { this.props.colors.map((color: Color) => <Tooltip cx={ css.tooltip } renderContent={ () => <div className={ css.tooltipContent }>{ color.value }</div> } key={ color.value }>
-                    <div
-                        className={ cx(css.colorItem) }
-                        onClick={ () => this.props.onValueChange(color.value) }
-                        style={ {
-                            borderColor: this.props.value === color.value && 'white' || color.hex || `var(--uui-${color.value})`,
-                            borderWidth: this.props.value === color.value && '2px',
-                            backgroundColor: color.hex || `var(--uui-${color.value})`,
-                            width: this.props.value === color.value && '14px',
-                            height: this.props.value === color.value && '14px',
-                            boxShadow: this.props.value === color.value && `0 0 0 1px ${ color.hex || `var(--uui-${color.value})` }` } }
-                    />
-                </Tooltip>) }
+            <div className={css.container}>
+                {this.props.colors.map((color: Color) => (
+                    <Tooltip cx={css.tooltip} renderContent={() => <div className={css.tooltipContent}>{color.value}</div>} key={color.value}>
+                        <div
+                            className={cx(css.colorItem)}
+                            onClick={() => this.props.onValueChange(color.value)}
+                            style={{
+                                borderColor: (this.props.value === color.value && 'white') || color.hex || `var(--uui-${color.value})`,
+                                borderWidth: this.props.value === color.value && '2px',
+                                backgroundColor: color.hex || `var(--uui-${color.value})`,
+                                width: this.props.value === color.value && '14px',
+                                height: this.props.value === color.value && '14px',
+                                boxShadow: this.props.value === color.value && `0 0 0 1px ${color.hex || `var(--uui-${color.value})`}`,
+                            }}
+                        />
+                    </Tooltip>
+                ))}
             </div>
         );
     }

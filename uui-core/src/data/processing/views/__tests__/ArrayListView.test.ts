@@ -1,6 +1,6 @@
 import { ArrayListView, ArrayListViewProps } from '../ArrayListView';
 import { ArrayDataSource } from '../../ArrayDataSource';
-import { DataSourceState, SortDirection } from "../../../../types";
+import { DataSourceState, SortDirection } from '../../../../types';
 
 interface TItem {
     id: number;
@@ -11,30 +11,29 @@ interface TItem {
 type View = ArrayListView<TItem, number, any>;
 
 const testItems: TItem[] = [
-    { "id": 2, "level": "A1" },
-    { "id": 5, "level": "A2+" },
-    { "id": 1, "level": "A0" },
-    { "id": 3, "level": "A1+" },
-    { "id": 4, "level": "A2" },
-    { "id": 6, "level": "B" },
-    { "id": 7, "level": "B1+", parentId: 6 },
-    { "id": 8, "level": "B2", parentId: 6 },
-    { "id": 9, "level": "B2+", parentId: 6 },
-    { "id": 10, "level": "C1" },
-    { "id": 11, "level": "C1+" },
-    { "id": 12, "level": "C2" },
+    { id: 2, level: 'A1' },
+    { id: 5, level: 'A2+' },
+    { id: 1, level: 'A0' },
+    { id: 3, level: 'A1+' },
+    { id: 4, level: 'A2' },
+    { id: 6, level: 'B' },
+    { id: 7, level: 'B1+', parentId: 6 },
+    { id: 8, level: 'B2', parentId: 6 },
+    { id: 9, level: 'B2+', parentId: 6 },
+    { id: 10, level: 'C1' },
+    { id: 11, level: 'C1+' },
+    { id: 12, level: 'C2' },
 ];
 
 const totalRowsCount = 12;
 const rootNodesCount = 9;
 
-let dataSource: ArrayDataSource<{ id: number, level: string }, number, any> = null;
+let dataSource: ArrayDataSource<{ id: number; level: string }, number, any> = null;
 let view: View = null;
 
 let onValueChange: () => any = null;
 let initialValue: DataSourceState = { topIndex: 0, visibleCount: totalRowsCount };
 let viewProps: ArrayListViewProps<TItem, number, any>;
-
 
 describe('ArrayListView', () => {
     beforeEach(() => {
@@ -42,12 +41,12 @@ describe('ArrayListView', () => {
 
         dataSource = new ArrayDataSource<TItem, number>({
             items: testItems,
-            getId: i => i.id,
-            getParentId: i => i.parentId,
+            getId: (i) => i.id,
+            getParentId: (i) => i.parentId,
         });
 
         viewProps = {
-            getId: i => i.id,
+            getId: (i) => i.id,
             getSearchFields: (item) => [item.level],
             getRowOptions: (item, index) => ({
                 checkbox: {
@@ -102,22 +101,18 @@ describe('ArrayListView', () => {
         const topIndex = 2;
         view.update({ ...initialValue, topIndex, visibleCount: 15 }, viewProps);
         const rows = view.getVisibleRows();
-        const rootTestItems = testItems.filter(i => i.parentId == null).slice(topIndex);
-        expect(rows).toMatchObject(rootTestItems.map(i => ({ id: i.id, value: i })));
+        const rootTestItems = testItems.filter((i) => i.parentId == null).slice(topIndex);
+        expect(rows).toMatchObject(rootTestItems.map((i) => ({ id: i.id, value: i })));
         expect(view.getVisibleRows()).toHaveLength(rootTestItems.length);
     });
 
     it('should return all nodes, if isFoldedByDefault is false', () => {
-        view = dataSource.getView(
-            initialValue,
-            () => {},
-            {
-                getId: i => i.id,
-                isFoldedByDefault: () => false,
-            },
-        ) as View;
+        view = dataSource.getView(initialValue, () => {}, {
+            getId: (i) => i.id,
+            isFoldedByDefault: () => false,
+        }) as View;
         const rows = view.getVisibleRows();
-        expect(rows).toMatchObject(testItems.map(i => ({ id: i.id, value: i })));
+        expect(rows).toMatchObject(testItems.map((i) => ({ id: i.id, value: i })));
         expect(view.getVisibleRows()).toHaveLength(testItems.length);
     });
 
@@ -141,13 +136,12 @@ describe('ArrayListView', () => {
         it('should search items', () => {
             view.update({ ...initialValue, search: 'C1', topIndex: 0, visibleCount: 20 }, viewProps);
             const rows = view.getVisibleRows();
-            const rowsIds = rows.map(i => i.id);
+            const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(2);
             expect(rowsIds).toEqual([10, 11]);
         });
     });
-
 
     describe('updateTree', () => {
         const getFilter = (filter) => (item) => filter(item);
@@ -162,7 +156,7 @@ describe('ArrayListView', () => {
             const realView = dataSource.getView(value, onValueChange, viewProps) as View;
             realView.update({ ...value, topIndex: 0, visibleCount: 20, filter }, { ...viewProps, getFilter });
             const rows = realView.getVisibleRows();
-            const rowsIds = rows.map(i => i.id);
+            const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(1);
             expect(rowsIds).toEqual([6]);
@@ -172,7 +166,7 @@ describe('ArrayListView', () => {
             realView.update({ ...value, topIndex: 0, visibleCount: 20, filter }, { ...viewProps, getFilter });
 
             const unfoldedRows = realView.getVisibleRows();
-            const unfoldedRowsIds = unfoldedRows.map(i => i.id);
+            const unfoldedRowsIds = unfoldedRows.map((i) => i.id);
             expect(unfoldedRows).toHaveLength(4);
             expect(unfoldedRowsIds).toEqual([6, 7, 8, 9]);
         });
@@ -182,7 +176,7 @@ describe('ArrayListView', () => {
             const dataSourceState = { ...value, topIndex: 0, visibleCount: 20, filter, search: 'B1' };
             realView.update(dataSourceState, { ...viewProps, getFilter });
             const rows = realView.getVisibleRows();
-            const rowsIds = rows.map(i => i.id);
+            const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(2);
             expect(rowsIds).toEqual([6, 7]);
@@ -191,12 +185,16 @@ describe('ArrayListView', () => {
         it('should update tree if filter, search and sorting was changed', () => {
             const realView = dataSource.getView(value, onValueChange, viewProps) as View;
             const dataSourceState = {
-                ...value, topIndex: 0, visibleCount: 20, filter, search: 'B',
+                ...value,
+                topIndex: 0,
+                visibleCount: 20,
+                filter,
+                search: 'B',
                 sorting: [{ field: 'level', direction: 'desc' as SortDirection }],
             };
             realView.update(dataSourceState, { ...viewProps, getFilter });
             const rows = realView.getVisibleRows();
-            const rowsIds = rows.map(i => i.id);
+            const rowsIds = rows.map((i) => i.id);
 
             expect(rows).toHaveLength(4);
             expect(rowsIds).toEqual([6, 9, 8, 7]);
@@ -227,106 +225,85 @@ describe('ArrayListView', () => {
         });
 
         describe("cascadeSelection = true | cascadeSelection = 'explicit'", () => {
-            it.each([[true], ['explicit']])
-                ('should check all children when parent checked with cascadeSelection = %s', (cascadeSelection) => {
-                    view = dataSource.getView(
-                        initialValue,
-                        onValueChange,
-                        {
-                            getId: i => i.id,
-                            cascadeSelection,
-                            getRowOptions: () => ({
-                                checkbox: { isVisible: true },
-                            }),
-                        },
-                    ) as View;
+            it.each([[true], ['explicit']])('should check all children when parent checked with cascadeSelection = %s', (cascadeSelection) => {
+                view = dataSource.getView(initialValue, onValueChange, {
+                    getId: (i) => i.id,
+                    cascadeSelection,
+                    getRowOptions: () => ({
+                        checkbox: { isVisible: true },
+                    }),
+                }) as View;
 
-                    const row1 = view.getById(6, 6);
-                    row1.onCheck(row1);
+                const row1 = view.getById(6, 6);
+                row1.onCheck(row1);
 
-                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [6, 7, 8, 9] });
-                });
+                expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [6, 7, 8, 9] });
+            });
 
-            it.each([[true], ['explicit']])
-                ('should check parent if all siblings checked with cascadeSelection = %s', (cascadeSelection) => {
-                    view = dataSource.getView(
-                        { ...initialValue, checked: [7, 8] },
-                        onValueChange,
-                        {
-                            getId: i => i.id,
-                            cascadeSelection,
-                            getRowOptions: () => ({
-                                checkbox: { isVisible: true },
-                            }),
-                        },
-                    ) as View;
+            it.each([[true], ['explicit']])('should check parent if all siblings checked with cascadeSelection = %s', (cascadeSelection) => {
+                view = dataSource.getView({ ...initialValue, checked: [7, 8] }, onValueChange, {
+                    getId: (i) => i.id,
+                    cascadeSelection,
+                    getRowOptions: () => ({
+                        checkbox: { isVisible: true },
+                    }),
+                }) as View;
 
-                    const row = view.getById(9, 9);
-                    row.onCheck(row);
+                const row = view.getById(9, 9);
+                row.onCheck(row);
 
-                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [7, 8, 9, 6] });
-                });
+                expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [7, 8, 9, 6] });
+            });
 
-            it.each([[true], ['explicit']])
-                ('should not update internal state itself on onCheck call but only on update call with cascadeSelection = %s', (cascadeSelection) => {
-                    const view = dataSource.getView(
-                        { ...initialValue, checked: [] },
-                        onValueChange,
-                        {
-                            getId: i => i.id,
-                            cascadeSelection,
-                            getRowOptions: () => ({
-                                checkbox: { isVisible: true },
-                            }),
-                        },
-                    ) as View;
+            it.each([[true], ['explicit']])(
+                'should not update internal state itself on onCheck call but only on update call with cascadeSelection = %s',
+                (cascadeSelection) => {
+                    const view = dataSource.getView({ ...initialValue, checked: [] }, onValueChange, {
+                        getId: (i) => i.id,
+                        cascadeSelection,
+                        getRowOptions: () => ({
+                            checkbox: { isVisible: true },
+                        }),
+                    }) as View;
 
                     const row = view.getById(9, 9);
                     row.onCheck(row);
 
-                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] })
+                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] });
                     expect(view['checkedByKey']).toEqual({});
 
                     view.update({ ...initialValue, checked: [9] }, viewProps);
-                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] })
+                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [9] });
 
                     expect(view['checkedByKey']).toEqual({ 9: true });
-                });
+                }
+            );
 
-            it.each([[true], ['explicit']])
-                ('should select all top items with cascadeSelection = %s', (cascadeSelection) => {
-                    view = dataSource.getView(
-                        { ...initialValue, checked: [7, 8] },
-                        onValueChange,
-                        {
-                            getId: i => i.id,
-                            cascadeSelection,
-                            getRowOptions: () => ({
-                                checkbox: { isVisible: true },
-                            }),
-                        },
-                    ) as View;
+            it.each([[true], ['explicit']])('should select all top items with cascadeSelection = %s', (cascadeSelection) => {
+                view = dataSource.getView({ ...initialValue, checked: [7, 8] }, onValueChange, {
+                    getId: (i) => i.id,
+                    cascadeSelection,
+                    getRowOptions: () => ({
+                        checkbox: { isVisible: true },
+                    }),
+                }) as View;
 
-                    const selectAll = view.selectAll;
-                    selectAll.onValueChange(true);
+                const selectAll = view.selectAll;
+                selectAll.onValueChange(true);
 
-                    expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [7, 8, 2, 5, 1, 3, 4, 6, 9, 10, 11, 12] });
-                });
+                expect(onValueChange).toBeCalledWith({ ...initialValue, checked: [7, 8, 2, 5, 1, 3, 4, 6, 9, 10, 11, 12] });
+            });
         });
 
         describe("cascadeSelection = 'implicit'", () => {
             it('should check only parent when parent checked with cascadeSelection = implicit', () => {
-                view = dataSource.getView(
-                    initialValue,
-                    onValueChange,
-                    {
-                        getId: i => i.id,
-                        cascadeSelection: 'implicit',
-                        getRowOptions: () => ({
-                            checkbox: { isVisible: true },
-                        }),
-                    },
-                ) as View;
+                view = dataSource.getView(initialValue, onValueChange, {
+                    getId: (i) => i.id,
+                    cascadeSelection: 'implicit',
+                    getRowOptions: () => ({
+                        checkbox: { isVisible: true },
+                    }),
+                }) as View;
 
                 const row1 = view.getById(6, 6);
                 row1.onCheck(row1);
@@ -335,17 +312,13 @@ describe('ArrayListView', () => {
             });
 
             it('should check parent if all siblings checked with cascadeSelection = implicit', () => {
-                view = dataSource.getView(
-                    { ...initialValue, checked: [7, 8] },
-                    onValueChange,
-                    {
-                        getId: i => i.id,
-                        cascadeSelection: 'implicit',
-                        getRowOptions: () => ({
-                            checkbox: { isVisible: true },
-                        }),
-                    },
-                ) as View;
+                view = dataSource.getView({ ...initialValue, checked: [7, 8] }, onValueChange, {
+                    getId: (i) => i.id,
+                    cascadeSelection: 'implicit',
+                    getRowOptions: () => ({
+                        checkbox: { isVisible: true },
+                    }),
+                }) as View;
 
                 const row = view.getById(9, 9);
                 row.onCheck(row);
@@ -354,17 +327,13 @@ describe('ArrayListView', () => {
             });
 
             it('should select all top items with cascadeSelection = implicit', () => {
-                view = dataSource.getView(
-                    { ...initialValue, checked: [7, 8] },
-                    onValueChange,
-                    {
-                        getId: i => i.id,
-                        cascadeSelection: 'implicit',
-                        getRowOptions: () => ({
-                            checkbox: { isVisible: true },
-                        }),
-                    },
-                ) as View;
+                view = dataSource.getView({ ...initialValue, checked: [7, 8] }, onValueChange, {
+                    getId: (i) => i.id,
+                    cascadeSelection: 'implicit',
+                    getRowOptions: () => ({
+                        checkbox: { isVisible: true },
+                    }),
+                }) as View;
 
                 const selectAll = view.selectAll;
                 selectAll.onValueChange(true);

@@ -11,16 +11,12 @@ export class LabeledInputDoc extends BaseDocsBlock {
         };
     }
 
-
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='labeledInput-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/labeledInput/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="labeledInput-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/labeledInput/Basic.example.tsx" />
             </>
         );
     }

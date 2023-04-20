@@ -4,25 +4,17 @@ import { renderSnapshotWithContextAsync } from '@epam/test-utils';
 
 describe('Tooltip', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(
-            <Tooltip>Test</Tooltip>
-        );
+        const tree = await renderSnapshotWithContextAsync(<Tooltip>Test</Tooltip>);
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <Tooltip
-                color='gray90'
-                content='Test'
-                trigger='click'
-            >
-                { 'Test' }
+            <Tooltip color="gray90" content="Test" trigger="click">
+                {'Test'}
             </Tooltip>
         );
 
         expect(tree).toMatchSnapshot();
     });
 });
-
-

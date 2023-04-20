@@ -14,12 +14,9 @@ export class IconContainerDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='iconContainer-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/iconContainer/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="iconContainer-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/iconContainer/Basic.example.tsx" />
             </>
         );
     }

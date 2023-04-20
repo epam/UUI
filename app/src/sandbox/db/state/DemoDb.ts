@@ -8,32 +8,32 @@ export type DemoDbTypes = {
 const demoDbTables = {
     persons: new DbTable<docs.Person, number, any>({
         tableName: 'persons',
-        typeName: "Person",
+        typeName: 'Person',
         searchBy: ['name'],
         primaryKey: 'id',
         fields: {
             id: { isGenerated: true },
-            departmentId: { fk: { tableName: 'departments', relationType: DbRelationType.Association }},
-            jobTitleId: { fk: { tableName: 'jobTitles', relationType: DbRelationType.Association }},
-            hireDate: { toClient: d => new Date(d) as any, toServer: d => d.toISOString() as any },
-            birthDate: { toClient: d => new Date(d) as any, toServer: d => d.toISOString() as any },
+            departmentId: { fk: { tableName: 'departments', relationType: DbRelationType.Association } },
+            jobTitleId: { fk: { tableName: 'jobTitles', relationType: DbRelationType.Association } },
+            hireDate: { toClient: (d) => new Date(d) as any, toServer: (d) => d.toISOString() as any },
+            birthDate: { toClient: (d) => new Date(d) as any, toServer: (d) => d.toISOString() as any },
         },
         indexes: ['departmentId', 'jobTitleId'],
     }),
     personGroups: new DbTable<docs.PersonGroup, number, any>({
         tableName: 'personGroups',
-        typeName: "PersonGroup",
+        typeName: 'PersonGroup',
         searchBy: ['name'],
         primaryKey: 'id',
         fields: {
             id: { isGenerated: true },
-            departmentId: { fk: { tableName: 'departments', relationType: DbRelationType.Association }},
-            jobTitleId: { fk: { tableName: 'jobTitles', relationType: DbRelationType.Association }},
+            departmentId: { fk: { tableName: 'departments', relationType: DbRelationType.Association } },
+            jobTitleId: { fk: { tableName: 'jobTitles', relationType: DbRelationType.Association } },
         },
     }),
     departments: new DbTable<docs.Department, number, any>({
         tableName: 'departments',
-        typeName: "Department",
+        typeName: 'Department',
         searchBy: ['name'],
         primaryKey: 'id',
         fields: {
@@ -42,7 +42,7 @@ const demoDbTables = {
     }),
     jobTitles: new DbTable<docs.JobTitle, number, any>({
         tableName: 'jobTitles',
-        typeName: "JobTitle",
+        typeName: 'JobTitle',
         searchBy: ['name'],
         primaryKey: 'id',
         fields: {
@@ -58,8 +58,12 @@ export class DemoDb extends Db<DemoDbTables> {
         super(demoDbTables);
     }
 
-    public get persons() { return this.tables.persons; }
-    public get departments() { return this.tables.departments; }
+    public get persons() {
+        return this.tables.persons;
+    }
+    public get departments() {
+        return this.tables.departments;
+    }
 }
 
 export let blankDemoDb = new DemoDb();

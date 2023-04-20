@@ -6,19 +6,15 @@ import css from './AttributesExample.scss';
 
 export default function AttributesExample() {
     return (
-        <Panel shadow cx={ css.container }>
-            <FlexRow cx={ css.containerItem }>
-                <Avatar
-                    size="60"
-                    alt="avatar"
-                    img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50"
-                />
-                <FlexRow padding='12'>
-                    <FlexCell width='auto'>
-                        <Text cx={ css.text } lineHeight="24" fontSize="18" color="gray80" font="sans-semibold">
+        <Panel shadow cx={css.container}>
+            <FlexRow cx={css.containerItem}>
+                <Avatar size="60" alt="avatar" img="https://avatars.dicebear.com/api/human/avatar12.svg?background=%23EBEDF5&radius=50" />
+                <FlexRow padding="12">
+                    <FlexCell width="auto">
+                        <Text cx={css.text} lineHeight="24" fontSize="18" color="gray80" font="sans-semibold">
                             John Doe
                         </Text>
-                        <Text cx={ css.text } lineHeight="18" fontSize="12" color="gray60">
+                        <Text cx={css.text} lineHeight="18" fontSize="12" color="gray60">
                             Corporate Function Management | L3
                         </Text>
                     </FlexCell>
@@ -27,12 +23,9 @@ export default function AttributesExample() {
             <FlexRow>
                 <Panel>
                     <FlexRow alignItems="center" spacing="6">
-                        <Badge color="green" size="24" fill="semitransparent"
-                                icon={ notificationIcon } caption="Available"/>
-                        <Badge color="blue" size="24" fill="semitransparent"
-                                caption="Bench"/>
-                        <Badge color="cyan" size="24" fill="semitransparent"
-                                caption="Remote"/>
+                        <Badge color="green" size="24" fill="semitransparent" icon={notificationIcon} caption="Available" />
+                        <Badge color="blue" size="24" fill="semitransparent" caption="Bench" />
+                        <Badge color="cyan" size="24" fill="semitransparent" caption="Remote" />
                     </FlexRow>
                 </Panel>
             </FlexRow>

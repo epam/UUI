@@ -23,8 +23,8 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
     }
 
     public with(patch: DbPatch<TTables>): this {
-        return this.update(db => {
-            objectKeys(db.tables).forEach(entityName => {
+        return this.update((db) => {
+            objectKeys(db.tables).forEach((entityName) => {
                 if (patch[entityName]) {
                     db.tables[entityName] = db.tables[entityName].with(patch[entityName]);
                 }
@@ -34,7 +34,7 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
 
     /* Views (cached db projections) */
 
-    valueAbsent = Symbol("ValueAbsent");
+    valueAbsent = Symbol('ValueAbsent');
 
     public runView<TResult, TParams = void, TDependencies = void>(view: DbView<this, TResult, TParams, TDependencies>, params?: TParams) {
         let cache = this.viewCache.get(view);
@@ -86,5 +86,4 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
 
         return cacheItem.currentValue as TResult;
     }
-
 }

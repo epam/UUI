@@ -1,7 +1,11 @@
 const {
-    convertSummaryToHtml, createSummaryFromMessages,
-    sumComparator, convertResultsToHtml, getReportLocationPath,
-    reportUnnecessaryRulesToBeFixed, logSummary,
+    convertSummaryToHtml,
+    createSummaryFromMessages,
+    sumComparator,
+    convertResultsToHtml,
+    getReportLocationPath,
+    reportUnnecessaryRulesToBeFixed,
+    logSummary,
 } = require('./formatterUtils.js');
 const path = require('path');
 const fs = require('fs');

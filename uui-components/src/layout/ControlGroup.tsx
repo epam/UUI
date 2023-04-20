@@ -7,8 +7,8 @@ export interface ControlGroupProps extends IHasCX, IHasChildren, IHasRawProps<Re
 export class ControlGroup extends React.Component<ControlGroupProps> {
     render() {
         return (
-            <div role="group" className={ cx(css.container, this.props.cx) } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
-                { this.props.children }
+            <div role="group" className={cx(css.container, this.props.cx)} ref={this.props.forwardedRef} {...this.props.rawProps}>
+                {this.props.children}
             </div>
         );
     }

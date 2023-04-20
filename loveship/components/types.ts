@@ -20,12 +20,33 @@ export type EpamAdditionalColor = 'cobalt' | 'lavanda' | 'fuchsia';
 export const allEpamAdditionalColors: EpamAdditionalColor[] = ['cobalt', 'lavanda', 'fuchsia'];
 
 export type EpamGrayscaleColor = 'white' | 'night50' | 'night100' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600' | 'night700' | 'night800' | 'night900';
-export const allEpamGrayscaleColors: EpamGrayscaleColor[] = ['white', 'night50', 'night100', 'night200', 'night300', 'night400', 'night500', 'night600', 'night700', 'night800', 'night900'];
+export const allEpamGrayscaleColors: EpamGrayscaleColor[] = [
+    'white',
+    'night50',
+    'night100',
+    'night200',
+    'night300',
+    'night400',
+    'night500',
+    'night600',
+    'night700',
+    'night800',
+    'night900',
+];
 
 export type EpamColor = EpamPrimaryColor | EpamAdditionalColor | EpamGrayscaleColor;
-export const commonControlColors: EpamColor[] = [...allEpamPrimaryColors, ...allEpamAdditionalColors, 'white', 'night200', 'night300', 'night400', 'night500', 'night600'];
+export const commonControlColors: EpamColor[] = [
+    ...allEpamPrimaryColors,
+    ...allEpamAdditionalColors,
+    'white',
+    'night200',
+    'night300',
+    'night400',
+    'night500',
+    'night600',
+];
 
-export type FontStyle = 'sans' | 'sans-semibold' | 'sans-light' ;
+export type FontStyle = 'sans' | 'sans-semibold' | 'sans-light';
 export const allFontStyles: FontStyle[] = ['sans', 'sans-semibold', 'sans-light'];
 
 // Mod interfaces

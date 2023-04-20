@@ -12,48 +12,50 @@ export class StartedBlock extends React.Component {
 
     render() {
         return (
-            <div className={ css.layout }>
-                <FlexRow borderBottom cx={ css.landingStarted }>
+            <div className={css.layout}>
+                <FlexRow borderBottom cx={css.landingStarted}>
                     <RichTextView>
-                        <h2 className={ css.header }>Getting Started</h2>
+                        <h2 className={css.header}>Getting Started</h2>
                     </RichTextView>
-                    <FlexRow spacing='18' cx={ css.content }>
-                        <div className={ css.contentColumn }>
-                            <div className={ css.contentColumnWrapper }>
-                                <div className={ css.contentIcon } style={ {backgroundColor: '#E3FCFC'} }>
-                                    <IconContainer icon={ ReactIcon }/>
+                    <FlexRow spacing="18" cx={css.content}>
+                        <div className={css.contentColumn}>
+                            <div className={css.contentColumnWrapper}>
+                                <div className={css.contentIcon} style={{ backgroundColor: '#E3FCFC' }}>
+                                    <IconContainer icon={ReactIcon} />
                                 </div>
-                                <Text fontSize='24' lineHeight='30'
-                                      cx={ css.contentText }>{ 'Learn more about React Components, Demos, Packages & Documentation' }</Text>
-                                <FlexRow alignItems='center'>
+                                <Text fontSize="24" lineHeight="30" cx={css.contentText}>
+                                    {'Learn more about React Components, Demos, Packages & Documentation'}
+                                </Text>
+                                <FlexRow alignItems="center">
                                     <Button
-                                        rawProps={ { 'aria-label': 'For Developers' } }
-                                        caption='FOR DEVELOPERS'
-                                        fill='white'
-                                        size='48'
-                                        color='blue'
-                                        clickAnalyticsEvent={ this.forDevelopersEvent }
-                                        link={ { pathname: 'documents', query: { id: 'gettingStarted' } } }
+                                        rawProps={{ 'aria-label': 'For Developers' }}
+                                        caption="FOR DEVELOPERS"
+                                        fill="white"
+                                        size="48"
+                                        color="blue"
+                                        clickAnalyticsEvent={this.forDevelopersEvent}
+                                        link={{ pathname: 'documents', query: { id: 'gettingStarted' } }}
                                     />
                                 </FlexRow>
                             </div>
                         </div>
 
-                        <div className={ css.contentColumn }>
-                            <div className={ css.contentColumnWrapper }>
-                                <div className={ css.contentIcon } style={ {backgroundColor: '#FAE4CF'} }>
-                                    <IconContainer icon={ CrystalIcon }/>
+                        <div className={css.contentColumn}>
+                            <div className={css.contentColumnWrapper}>
+                                <div className={css.contentIcon} style={{ backgroundColor: '#FAE4CF' }}>
+                                    <IconContainer icon={CrystalIcon} />
                                 </div>
-                                <Text fontSize='24' lineHeight='30'
-                                      cx={ css.contentText }>{ 'Learn more about Design Library, Specifications, Palettes & Typography' }</Text>
-                                <FlexRow alignItems='center'>
+                                <Text fontSize="24" lineHeight="30" cx={css.contentText}>
+                                    {'Learn more about Design Library, Specifications, Palettes & Typography'}
+                                </Text>
+                                <FlexRow alignItems="center">
                                     <Button
-                                        rawProps={ { 'aria-label': 'For Designers' } }
-                                        caption='FOR DESIGNERS'
-                                        fill='white'
-                                        size='48'
-                                        color='blue'
-                                        link={ {
+                                        rawProps={{ 'aria-label': 'For Designers' }}
+                                        caption="FOR DESIGNERS"
+                                        fill="white"
+                                        size="48"
+                                        color="blue"
+                                        link={{
                                             pathname: 'documents',
                                             query: {
                                                 id: 'gettingStartedForDesigners',
@@ -61,8 +63,8 @@ export class StartedBlock extends React.Component {
                                                 mode: 'doc',
                                                 skin: UUI4,
                                             },
-                                        } }
-                                        clickAnalyticsEvent={ this.forDesignersEvent }
+                                        }}
+                                        clickAnalyticsEvent={this.forDesignersEvent}
                                     />
                                 </FlexRow>
                             </div>

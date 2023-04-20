@@ -1,11 +1,11 @@
 import * as React from 'react';
-import dayjs, { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from 'dayjs';
 import { DatePickerBodyBaseOptions, uuiDatePickerBodyBase, PickerBodyValue, valueFormat, ViewType } from './DatePickerBodyBase';
 import { uuiDaySelection } from './Calendar';
 import { FlexCell, FlexRow } from '../../layout';
 import { DatePickerBody } from './DatePickerBody';
 import { CalendarPresets } from './CalendarPresets';
-import { arrayToMatrix, cx, IEditable, RangeDatePickerPresets } from "@epam/uui-core";
+import { arrayToMatrix, cx, IEditable, RangeDatePickerPresets } from '@epam/uui-core';
 import isoWeek from 'dayjs/plugin/isoWeek.js';
 import css from './RangeDatePickerBody.scss';
 dayjs.extend(isoWeek);
@@ -108,7 +108,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
             !inRange && isLast && uuiRangeDatePickerBody.firstDayInRangeWrapper,
             (dayValue === fromValue || dayValue === toValue) && uuiDaySelection.selectedDay,
         ];
-    }
+    };
 
     getRange(selectedDate: string) {
         const newRange: RangeDatePickerValue = { from: null, to: null };
@@ -172,16 +172,16 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
 
         if (numberWeeksOfFirstMonth > numberWeeksOfSecondMonth) {
             //
-            height = 96 + (36 * numberWeeksOfFirstMonth);
+            height = 96 + 36 * numberWeeksOfFirstMonth;
         } else if (numberWeeksOfFirstMonth === numberWeeksOfSecondMonth) {
-            height = 96 + (36 * numberWeeksOfFirstMonth);
+            height = 96 + 36 * numberWeeksOfFirstMonth;
         } else {
-            height = 96 + (36 * numberWeeksOfSecondMonth);
+            height = 96 + 36 * numberWeeksOfSecondMonth;
         }
         if (height !== this.state.height) {
             this.setState({ ...this.state, height: height });
         }
-    }
+    };
 
     getFromValue = (): PickerBodyValue<string> => {
         return {
@@ -189,7 +189,7 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
             view: this.state.activePart === 'from' ? this.props.value.view : 'DAY_SELECTION',
             selectedDate: this.props.value?.selectedDate.from,
         };
-    }
+    };
 
     getToValue = (): PickerBodyValue<string> => {
         if (!this.props.value) return;
@@ -199,80 +199,80 @@ export class RangeDatePickerBody extends React.Component<RangeDatePickerBodyProp
             displayedDate: this.props.value.displayedDate.add(1, 'month'),
             selectedDate: this.props.value.selectedDate.to,
         };
-    }
+    };
 
     renderPresets = () => {
         return (
             <>
-                <div className={ uuiRangeDatePickerBody.separator } />
+                <div className={uuiRangeDatePickerBody.separator} />
                 <CalendarPresets
-                    forwardedRef={ this.props.forwardedRef }
-                    onPresetSet={ (presetVal) => {
+                    forwardedRef={this.props.forwardedRef}
+                    onPresetSet={(presetVal) => {
                         this.props.onValueChange({
                             view: 'DAY_SELECTION',
                             selectedDate: { from: dayjs(presetVal.from).format(valueFormat), to: dayjs(presetVal.to).format(valueFormat) },
                             displayedDate: dayjs(presetVal.from),
                         });
                         this.props.changeIsOpen(false);
-                    } }
-                    presets={ this.props.presets }
+                    }}
+                    presets={this.props.presets}
                 />
             </>
         );
-    }
+    };
 
     renderDatePicker = () => {
         return (
-            <FlexRow cx={ [this.props.value?.view == 'DAY_SELECTION' && css.daySelection, css.container] } alignItems='top'>
-                <FlexRow cx={ css.pickerWrapper }>
-                    <FlexCell width='auto' >
-                        <FlexRow cx={ css.bodesWrapper } alignItems='top' rawProps={ this.state.height ? { style: { 'height': `${ this.state.height }px` } } : null }>
+            <FlexRow cx={[this.props.value?.view == 'DAY_SELECTION' && css.daySelection, css.container]} alignItems="top">
+                <FlexRow cx={css.pickerWrapper}>
+                    <FlexCell width="auto">
+                        <FlexRow cx={css.bodesWrapper} alignItems="top" rawProps={this.state.height ? { style: { height: `${this.state.height}px` } } : null}>
                             <DatePickerBody
-                                cx={ cx(css.fromPicker) }
-                                setSelectedDate={ nv => this.setSelectedDate(nv) }
-                                value={ this.getFromValue() }
-                                setDisplayedDateAndView={ (displayedDate, view) => this.setDisplayedDateAndView(displayedDate, view, 'from') }
-                                getDayCX={ this.getDayCX }
-                                filter={ this.props.filter }
-                                navIconLeft={ this.props.navIconLeft }
-                                navIconRight={ this.props.navIconRight }
-                                renderDay={ this.props.renderDay }
-                                isHoliday={ this.props.isHoliday }
+                                cx={cx(css.fromPicker)}
+                                setSelectedDate={(nv) => this.setSelectedDate(nv)}
+                                value={this.getFromValue()}
+                                setDisplayedDateAndView={(displayedDate, view) => this.setDisplayedDateAndView(displayedDate, view, 'from')}
+                                getDayCX={this.getDayCX}
+                                filter={this.props.filter}
+                                navIconLeft={this.props.navIconLeft}
+                                navIconRight={this.props.navIconRight}
+                                renderDay={this.props.renderDay}
+                                isHoliday={this.props.isHoliday}
                             />
                             <DatePickerBody
-                                cx={ cx(css.toPicker) }
-                                setSelectedDate={ nv => this.setSelectedDate(nv) }
-                                value={ this.getToValue() }
-                                setDisplayedDateAndView={ (displayedDate, view) => this.setDisplayedDateAndView(displayedDate, view, 'to') }
-                                getDayCX={ this.getDayCX }
-                                filter={ this.props.filter }
-                                navIconLeft={ this.props.navIconLeft }
-                                navIconRight={ this.props.navIconRight }
-                                renderDay={ this.props.renderDay }
-                                isHoliday={ this.props.isHoliday }
+                                cx={cx(css.toPicker)}
+                                setSelectedDate={(nv) => this.setSelectedDate(nv)}
+                                value={this.getToValue()}
+                                setDisplayedDateAndView={(displayedDate, view) => this.setDisplayedDateAndView(displayedDate, view, 'to')}
+                                getDayCX={this.getDayCX}
+                                filter={this.props.filter}
+                                navIconLeft={this.props.navIconLeft}
+                                navIconRight={this.props.navIconRight}
+                                renderDay={this.props.renderDay}
+                                isHoliday={this.props.isHoliday}
                             />
                         </FlexRow>
-                        { this.props.value?.view !== 'DAY_SELECTION' &&
-                        <div
-                            style={ {
-                                left: this.state.activePart === 'from' && '50%',
-                                right: this.state.activePart === 'to' && '50%',
-                            } }
-                            className={ css.blocker }
-                        />
-                        }
-                        { this.props.renderFooter && this.props.renderFooter() }
+                        {this.props.value?.view !== 'DAY_SELECTION' && (
+                            <div
+                                style={{
+                                    left: this.state.activePart === 'from' && '50%',
+                                    right: this.state.activePart === 'to' && '50%',
+                                }}
+                                className={css.blocker}
+                            />
+                        )}
+                        {this.props.renderFooter && this.props.renderFooter()}
                     </FlexCell>
                 </FlexRow>
-                { this.props.presets && this.renderPresets() }
+                {this.props.presets && this.renderPresets()}
             </FlexRow>
         );
-    }
+    };
 
     render() {
         return (
-            <div className={ cx(uuiDatePickerBodyBase.container, this.props.cx) } { ...this.props.rawProps } >
-                { this.renderDatePicker() }
+            <div className={cx(uuiDatePickerBodyBase.container, this.props.cx)} {...this.props.rawProps}>
+                {this.renderDatePicker()}
             </div>
         );
     }

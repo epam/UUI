@@ -33,18 +33,22 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
 
     loadForm() {
         this.setState({ isBlocked: true });
-        svc.api.demo.personDetails.load().then(person => this.setState({
-            person,
-            isBlocked: false,
-        }));
+        svc.api.demo.personDetails.load().then((person) =>
+            this.setState({
+                person,
+                isBlocked: false,
+            })
+        );
     }
 
     loadDefaultPerson() {
         this.setState({ isBlocked: true });
-        svc.api.demo.personDetails.loadDefault().then(person => this.setState({
-            person,
-            isBlocked: false,
-        }));
+        svc.api.demo.personDetails.loadDefault().then((person) =>
+            this.setState({
+                person,
+                isBlocked: false,
+            })
+        );
     }
 
     getMetaData = (state: PersonDetails): Metadata<PersonDetails> => {
@@ -72,127 +76,150 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
                 bracket: { isRequired: true },
                 sex: { isRequired: true },
                 roles: {
-                    validators: [
-                        (roles) => [(!roles || roles.length < 1) && "Please specify at least one role"],
-                    ],
+                    validators: [(roles) => [(!roles || roles.length < 1) && 'Please specify at least one role']],
                 },
                 rating: { isRequired: true },
                 notes: { isRequired: true },
             },
         };
-    }
+    };
 
     renderSettings(props: IFormApi<PersonDetails>) {
-        return <>
-            <FlexCell width='auto'>
-                <MultiSwitch
-                    items={ [{ id: 'Edit', caption: 'Edit' }, { id: 'isDisabled', caption: 'Disabled' }, { id: 'isReadOnly', caption: 'ReadOnly' }] }
-                    value={ this.state.isDisabled ? 'isDisabled' : this.state.isReadOnly ? 'isReadOnly' : 'Edit' }
-                    onValueChange={ (val: string) => val === 'Edit' ? this.setState({ isDisabled: false, isReadOnly: false }) : val === 'isDisabled' ? this.setState({ isDisabled: true, isReadOnly: false }) : this.setState({ isReadOnly: true, isDisabled: false }) }
-                    color='sky'
-                    size='24'
-                />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <LabeledInput htmlFor='haveBackground' label='Have background' labelPosition='left'>
-                    <Switch id='haveBackground' isDisabled={ this.state.isDisabled } value={ this.state.hasBackground } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, hasBackground: newVal }) } />
-                </LabeledInput>
-            </FlexCell>
-            <FlexCell width='auto'>
-                <LabeledInput htmlFor="viewMode" label='View mode' labelPosition='left'>
-                    <Switch id="viewMode" value={ !this.state.isEditMode } onValueChange={ (newVal: boolean) => this.setState({ ...this.state, isEditMode: !newVal }) } />
-                </LabeledInput>
-            </FlexCell>
-            { props.isChanged && <FlexCell width='auto'>
-                <Text color="night700">Form was changed</Text>
-            </FlexCell> }
-        </>;
+        return (
+            <>
+                <FlexCell width="auto">
+                    <MultiSwitch
+                        items={[
+                            { id: 'Edit', caption: 'Edit' },
+                            { id: 'isDisabled', caption: 'Disabled' },
+                            { id: 'isReadOnly', caption: 'ReadOnly' },
+                        ]}
+                        value={this.state.isDisabled ? 'isDisabled' : this.state.isReadOnly ? 'isReadOnly' : 'Edit'}
+                        onValueChange={(val: string) =>
+                            val === 'Edit'
+                                ? this.setState({ isDisabled: false, isReadOnly: false })
+                                : val === 'isDisabled'
+                                ? this.setState({ isDisabled: true, isReadOnly: false })
+                                : this.setState({ isReadOnly: true, isDisabled: false })
+                        }
+                        color="sky"
+                        size="24"
+                    />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <LabeledInput htmlFor="haveBackground" label="Have background" labelPosition="left">
+                        <Switch
+                            id="haveBackground"
+                            isDisabled={this.state.isDisabled}
+                            value={this.state.hasBackground}
+                            onValueChange={(newVal: boolean) => this.setState({ ...this.state, hasBackground: newVal })}
+                        />
+                    </LabeledInput>
+                </FlexCell>
+                <FlexCell width="auto">
+                    <LabeledInput htmlFor="viewMode" label="View mode" labelPosition="left">
+                        <Switch id="viewMode" value={!this.state.isEditMode} onValueChange={(newVal: boolean) => this.setState({ ...this.state, isEditMode: !newVal })} />
+                    </LabeledInput>
+                </FlexCell>
+                {props.isChanged && (
+                    <FlexCell width="auto">
+                        <Text color="night700">Form was changed</Text>
+                    </FlexCell>
+                )}
+            </>
+        );
     }
 
     renderSavePanel(props: IFormApi<PersonDetails>) {
-        return <>
-            <FlexCell minWidth={ 100 }>
-                <Button
-                    onClick={ () => props.save() }
-                    isDisabled={ this.state.isDisabled || !props.isChanged }
-                    caption='Save'
-                    color='grass'
-                />
-            </FlexCell>
-            <FlexCell minWidth={ 100 }>
-                <Button caption='Undo' color='night500' isDisabled={ !props.canUndo } onClick={ props.undo } />
-            </FlexCell>
-            <FlexCell minWidth={ 100 }>
-                <Button caption='Redo' color='night500' isDisabled={ !props.canRedo } onClick={ props.redo } />
-            </FlexCell>
-            <FlexCell minWidth={ 100 }>
-                <Button caption='Revert' color='sun' fill='none' isDisabled={ !props.canRevert } onClick={ props.revert } />
-            </FlexCell>
-            <FlexCell minWidth={ 100 }>
-                <Button caption='Reload' color='lavanda'
-                    onClick={ () => this.loadForm() }
-                />
-            </FlexCell>
-            <FlexCell minWidth={ 100 }>
-                <Button caption='Load default' color='fire'
-                    onClick={ () => this.loadDefaultPerson }
-                />
-            </FlexCell>
-            <FlexCell minWidth={ 100 }>
-                <Button caption='Clear' fill='none' color='fire' isDisabled={ this.state.isDisabled }
-                    onClick={ () => this.setState({ person: {} }) }
-                />
-            </FlexCell>
-        </>;
+        return (
+            <>
+                <FlexCell minWidth={100}>
+                    <Button onClick={() => props.save()} isDisabled={this.state.isDisabled || !props.isChanged} caption="Save" color="grass" />
+                </FlexCell>
+                <FlexCell minWidth={100}>
+                    <Button caption="Undo" color="night500" isDisabled={!props.canUndo} onClick={props.undo} />
+                </FlexCell>
+                <FlexCell minWidth={100}>
+                    <Button caption="Redo" color="night500" isDisabled={!props.canRedo} onClick={props.redo} />
+                </FlexCell>
+                <FlexCell minWidth={100}>
+                    <Button caption="Revert" color="sun" fill="none" isDisabled={!props.canRevert} onClick={props.revert} />
+                </FlexCell>
+                <FlexCell minWidth={100}>
+                    <Button caption="Reload" color="lavanda" onClick={() => this.loadForm()} />
+                </FlexCell>
+                <FlexCell minWidth={100}>
+                    <Button caption="Load default" color="fire" onClick={() => this.loadDefaultPerson} />
+                </FlexCell>
+                <FlexCell minWidth={100}>
+                    <Button caption="Clear" fill="none" color="fire" isDisabled={this.state.isDisabled} onClick={() => this.setState({ person: {} })} />
+                </FlexCell>
+            </>
+        );
     }
 
     renderForm = (props: IFormApi<PersonDetails>) => {
         const background = this.state.hasBackground ? 'white' : 'night50';
 
         return (
-            <Panel margin='24' background={ background } cx={ css.formPanel }>
-                <FlexRow size='48' padding='24'>
-                    <Text size='48' font='sans-semibold'>Complex Form</Text>
+            <Panel margin="24" background={background} cx={css.formPanel}>
+                <FlexRow size="48" padding="24">
+                    <Text size="48" font="sans-semibold">
+                        Complex Form
+                    </Text>
                     <FlexSpacer />
-                    { this.renderSavePanel(props) }
+                    {this.renderSavePanel(props)}
                 </FlexRow>
-                <FlexRow type='panel' padding='24' background='night50'>
-                    { this.renderSettings(props) }
+                <FlexRow type="panel" padding="24" background="night50">
+                    {this.renderSettings(props)}
                 </FlexRow>
-                { this.state.isEditMode ? this.renderEditForm(props) : this.renderViewForm(props) }
+                {this.state.isEditMode ? this.renderEditForm(props) : this.renderViewForm(props)}
             </Panel>
         );
-    }
+    };
 
     renderViewForm = (props: IFormApi<PersonDetails>) => {
-        return <PersonDetailView isBlocked={ this.state.isBlocked } lens={ props.lens } isDisabled={ this.state.isDisabled } value={ props.value } />;
-    }
+        return <PersonDetailView isBlocked={this.state.isBlocked} lens={props.lens} isDisabled={this.state.isDisabled} value={props.value} />;
+    };
 
     renderEditForm = (props: IFormApi<PersonDetails>) => {
-        return <PersonDetailEditor isBlocked={ this.state.isBlocked || props.isInProgress } lens={ props.lens } isDisabled={ this.state.isDisabled } isReadOnly={ this.state.isReadOnly } />;
-    }
+        return (
+            <PersonDetailEditor
+                isBlocked={this.state.isBlocked || props.isInProgress}
+                lens={props.lens}
+                isDisabled={this.state.isDisabled}
+                isReadOnly={this.state.isReadOnly}
+            />
+        );
+    };
 
     render() {
-        return (
-            this.state.isBlocked
-                ? <Spinner />
-                : <Form<PersonDetails>
-                    settingsKey='complex-form'
-                    value={ this.state.person }
-                    onSave={ async (person) => {
-                        const result = await svc.api.demo.personDetails.save(person);
-                        return {form: result};
-                    } }
-                    onSuccess={ (person) => {
-                        this.setState({ person: person });
-                        svc.uuiNotifications.show((props: INotification) =>
-                            <SuccessNotification { ...props } >
-                                <Text size="24" font='sans' fontSize='14'>Data has been saved!</Text>
-                            </SuccessNotification>, { duration: 2 });
-                    } }
-                    renderForm={ this.renderForm }
-                    getMetadata={ this.getMetaData }
-                />
+        return this.state.isBlocked ? (
+            <Spinner />
+        ) : (
+            <Form<PersonDetails>
+                settingsKey="complex-form"
+                value={this.state.person}
+                onSave={async (person) => {
+                    const result = await svc.api.demo.personDetails.save(person);
+                    return { form: result };
+                }}
+                onSuccess={(person) => {
+                    this.setState({ person: person });
+                    svc.uuiNotifications.show(
+                        (props: INotification) => (
+                            <SuccessNotification {...props}>
+                                <Text size="24" font="sans" fontSize="14">
+                                    Data has been saved!
+                                </Text>
+                            </SuccessNotification>
+                        ),
+                        { duration: 2 }
+                    );
+                }}
+                renderForm={this.renderForm}
+                getMetadata={this.getMetaData}
+            />
         );
     }
 }

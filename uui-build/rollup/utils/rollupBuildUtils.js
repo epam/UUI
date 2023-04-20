@@ -20,7 +20,7 @@ async function buildUsingRollup(params) {
     const { output: outputConfig, ...inputConfig } = cfg[0];
     let bundle;
     const cleanup = async () => {
-        bundle && await bundle.close();
+        bundle && (await bundle.close());
     };
     try {
         bundle = await rollup.rollup({ ...inputConfig });
@@ -83,9 +83,7 @@ async function watchUsingRollup(params) {
  * @returns {Promise<import('rollup').RollupOptions[]>}
  */
 async function getConfigEffective(params) {
-    const {
-        moduleRootDir, external, isWatch, packageJsonTransform, copyAsIs,
-    } = params;
+    const { moduleRootDir, external, isWatch, packageJsonTransform, copyAsIs } = params;
     const indexFileRelativePath = await getIndexFileRelativePath(moduleRootDir);
     return await createRollupConfigForModule({
         moduleRootDir,

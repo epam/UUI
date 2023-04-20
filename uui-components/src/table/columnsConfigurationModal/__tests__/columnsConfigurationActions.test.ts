@@ -1,10 +1,6 @@
-import {
-    moveColumnRelativeToAnotherColumn, toggleAllColumnsVisibility,
-    toggleSingleColumnPin,
-    toggleSingleColumnVisibility,
-} from '../columnsConfigurationActions';
+import { moveColumnRelativeToAnotherColumn, toggleAllColumnsVisibility, toggleSingleColumnPin, toggleSingleColumnVisibility } from '../columnsConfigurationActions';
 import { ColumnsConfig, DataColumnProps, IColumnConfig } from '@epam/uui-core';
-import { GroupedDataColumnProps } from "../types";
+import { GroupedDataColumnProps } from '../types';
 
 function getTestDataSet1() {
     const A: GroupedDataColumnProps = { key: '1', fix: 'left', caption: 'a', isAlwaysVisible: false, width: 10, groupKey: 'displayedPinned' };

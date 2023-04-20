@@ -6,27 +6,34 @@ import { DropdownMenuItemMods, DropdownMenuButton, Button, DropdownMenuSplitter,
 import { DefaultContext } from '../../docs';
 
 const dropdownMenuDoc = new DocBuilder<DropdownProps & DropdownMenuItemMods>({ name: 'Dropdown', component: Dropdown })
-    .prop('renderBody', { isRequired: true, examples: [{
-        value:
-            () =>
-                (
+    .prop('renderBody', {
+        isRequired: true,
+        examples: [
+            {
+                value: () => (
                     <DropdownMenuBody>
                         <DropdownMenuHeader title="Tools" />
-                        <DropdownMenuButton caption='Button111'/>
-                        <DropdownMenuButton caption='Button2'/>
-                        <DropdownMenuButton caption='Button3232'/>
-                        <DropdownMenuSplitter/>
-                        <DropdownMenuButton caption='Button2'/>
-                        <DropdownMenuButton caption='Button323442'/>
+                        <DropdownMenuButton caption="Button111" />
+                        <DropdownMenuButton caption="Button2" />
+                        <DropdownMenuButton caption="Button3232" />
+                        <DropdownMenuSplitter />
+                        <DropdownMenuButton caption="Button2" />
+                        <DropdownMenuButton caption="Button323442" />
                     </DropdownMenuBody>
-                )
-        ,
-        isDefault: true,
-    }] })
-    .prop('renderTarget', { isRequired: true, examples: [{
-        value: props => <Button caption='Target' { ...props } />,
-        isDefault: true,
-    }] })
+                ),
+                isDefault: true,
+            },
+        ],
+    })
+    .prop('renderTarget', {
+        isRequired: true,
+        examples: [
+            {
+                value: (props) => <Button caption="Target" {...props} />,
+                isDefault: true,
+            },
+        ],
+    })
     .prop('openOnClick', {
         examples: [true, false],
         defaultValue: true,

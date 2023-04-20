@@ -16,6 +16,6 @@ router.get('/get-changelog', async (req, res) => {
     } catch {
         res.statusCode(500);
     }
-})
+});
 
 module.exports = router;

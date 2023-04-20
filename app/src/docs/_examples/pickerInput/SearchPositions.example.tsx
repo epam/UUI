@@ -14,37 +14,30 @@ export default function SearchPositionsExample() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     return (
-        <FlexRow spacing='12'>
-            <FlexCell minWidth={ 300 }>
+        <FlexRow spacing="12">
+            <FlexCell minWidth={300}>
+                <PickerInput dataSource={dataSource} value={value} onValueChange={onValueChange} entityName="person" selectionMode="multi" valueType="id" />
+            </FlexCell>
+            <FlexCell minWidth={300}>
                 <PickerInput
-                    dataSource={ dataSource }
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    entityName='person'
-                    selectionMode='multi'
-                    valueType='id'
+                    dataSource={dataSource}
+                    value={value}
+                    onValueChange={onValueChange}
+                    entityName="person"
+                    selectionMode="multi"
+                    searchPosition="input"
+                    valueType="id"
                 />
             </FlexCell>
-            <FlexCell minWidth={ 300 }>
+            <FlexCell minWidth={295}>
                 <PickerInput
-                    dataSource={ dataSource }
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    entityName='person'
-                    selectionMode='multi'
-                    searchPosition='input'
-                    valueType='id'
-                />
-            </FlexCell>
-            <FlexCell minWidth={ 295 }>
-                <PickerInput
-                    dataSource={ dataSource }
-                    value={ value }
-                    onValueChange={ onValueChange }
-                    entityName='person'
-                    selectionMode='multi'
-                    searchPosition='none'
-                    valueType='id'
+                    dataSource={dataSource}
+                    value={value}
+                    onValueChange={onValueChange}
+                    entityName="person"
+                    selectionMode="multi"
+                    searchPosition="none"
+                    valueType="id"
                 />
             </FlexCell>
         </FlexRow>

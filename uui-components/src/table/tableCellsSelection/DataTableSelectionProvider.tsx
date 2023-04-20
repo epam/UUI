@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo } from "react";
-import { DataColumnProps, DataRowProps, DataTableSelectedCellData } from "@epam/uui-core";
-import { DataTableSelectionContext } from "./DataTableSelectionContext";
-import { useSelectionManager } from "./hooks";
+import React, { useEffect, useMemo } from 'react';
+import { DataColumnProps, DataRowProps, DataTableSelectedCellData } from '@epam/uui-core';
+import { DataTableSelectionContext } from './DataTableSelectionContext';
+import { useSelectionManager } from './hooks';
 
 export interface DataTableSelectionProviderProps<TItem, TId, TFilter> extends React.PropsWithChildren {
     rows: DataRowProps<TItem, TId>[];
@@ -10,9 +10,7 @@ export interface DataTableSelectionProviderProps<TItem, TId, TFilter> extends Re
 }
 
 export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, columns, children }: DataTableSelectionProviderProps<TItem, TId, TFilter>) => {
-    const {
-        selectionRange, setSelectionRange, getSelectedCells, startCell, getCellSelectionInfo,
-    } = useSelectionManager<TItem, TId, TFilter>({ rows, columns });
+    const { selectionRange, setSelectionRange, getSelectedCells, startCell, getCellSelectionInfo } = useSelectionManager<TItem, TId, TFilter>({ rows, columns });
 
     useEffect(() => {
         if (!selectionRange || !onCopy) return;
@@ -29,17 +27,10 @@ export const DataTableSelectionProvider = <TItem, TId, TFilter>({ onCopy, rows, 
     }, [selectionRange, startCell, getSelectedCells]);
 
     if (!onCopy) {
-        return <>{ children }</>;
+        return <>{children}</>;
     }
 
-    const value = useMemo(
-        () => ({ selectionRange, setSelectionRange, getCellSelectionInfo }),
-        [selectionRange, getCellSelectionInfo],
-    );
+    const value = useMemo(() => ({ selectionRange, setSelectionRange, getCellSelectionInfo }), [selectionRange, getCellSelectionInfo]);
 
-    return (
-        <DataTableSelectionContext.Provider value={ value }>
-            { children }
-        </DataTableSelectionContext.Provider>
-    );
+    return <DataTableSelectionContext.Provider value={value}>{children}</DataTableSelectionContext.Provider>;
 };

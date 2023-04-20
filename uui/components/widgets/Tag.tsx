@@ -21,19 +21,12 @@ export interface TagMods {
 }
 
 export function applyTagMods(mods: TagMods) {
-    return [
-        css['size-' + (mods.size || defaultSize)],
-        css.root,
-    ];
+    return [css['size-' + (mods.size || defaultSize)], css.root];
 }
 
 export type TagProps = ButtonProps & TagMods;
 
-export const Tag = withMods<ButtonProps, TagMods>(
-    Button,
-    applyTagMods,
-    (props) => ({
-        dropdownIcon: systemIcons[mapSize[props.size] || defaultSize].foldingArrow,
-        clearIcon: systemIcons[mapSize[props.size] || defaultSize].clear,
-    }),
-);
+export const Tag = withMods<ButtonProps, TagMods>(Button, applyTagMods, (props) => ({
+    dropdownIcon: systemIcons[mapSize[props.size] || defaultSize].foldingArrow,
+    clearIcon: systemIcons[mapSize[props.size] || defaultSize].clear,
+}));

@@ -1,4 +1,4 @@
-const { Lens } = require("../index");
+const { Lens } = require('../index');
 const { LensBuilder } = require('../LensBuilder');
 
 describe('LensBuilder - lenses are cached', () => {
@@ -35,13 +35,13 @@ describe('LensBuilder - lenses are cached', () => {
         expect(l1).toBe(l2);
     });
     it('chained prop/index lens is cached', () => {
-        var lens = Lens.onEditable({ value: { obj: { arr: [1] }} });
+        var lens = Lens.onEditable({ value: { obj: { arr: [1] } } });
         var l1 = lens.prop('obj').default(0).prop('arr').index(0).prop('test');
         var l2 = lens.prop('obj').default(0).prop('arr').index(0).prop('test');
         expect(l1).toBe(l2);
     });
     it('clears cache if limit is hit', () => {
-        var lens = Lens.onEditable({ value: ["test"] });
+        var lens = Lens.onEditable({ value: ['test'] });
         const prevCacheSize = LensBuilder.MAX_CACHE_SIZE;
         LensBuilder.MAX_CACHE_SIZE = 2;
         var lensA = lens.prop('a');
@@ -57,5 +57,4 @@ describe('LensBuilder - lenses are cached', () => {
 
         LensBuilder.MAX_CACHE_SIZE = prevCacheSize;
     });
-
 });

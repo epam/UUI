@@ -1,8 +1,8 @@
 import { ICanBeInvalid } from '../../types';
-import { i18n } from "../../i18n";
-import { Metadata } from "../../types";
+import { i18n } from '../../i18n';
+import { Metadata } from '../../types';
 
-export type ValidationMode = "change" | "save";
+export type ValidationMode = 'change' | 'save';
 export const blankValidationState: ICanBeInvalid = {};
 
 export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateOn: ValidationMode): ICanBeInvalid => {
@@ -16,11 +16,11 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
 
             let childResult;
             switch (validateOn) {
-                case "change": {
+                case 'change': {
                     childResult = isChildChanged ? validateRec(childValue, newPath, meta, initChildValue) : {};
                     break;
                 }
-                case "save": {
+                case 'save': {
                     childResult = validateRec(childValue, newPath, meta, initChildValue);
                 }
             }
@@ -52,7 +52,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
 const validateValue = (value: any, path: any[], meta: Metadata<any>, initValue: any): ICanBeInvalid => {
     if (meta.validators) {
         const customValidationMessages = meta.validators
-            .map(validator => validator.apply(null, path))
+            .map((validator) => validator.apply(null, path))
             .reduce((a, b) => a.concat(b), [])
             .filter((msg: string | null) => !!msg);
 
@@ -65,10 +65,7 @@ const validateValue = (value: any, path: any[], meta: Metadata<any>, initValue: 
     }
 
     if (meta.isRequired) {
-        if (value == null
-            || (typeof value === "string" && value.trim() === "")
-            || (Array.isArray(value) && value.length == 0)
-        ) {
+        if (value == null || (typeof value === 'string' && value.trim() === '') || (Array.isArray(value) && value.length == 0)) {
             return {
                 isInvalid: true,
                 validationMessage: i18n.lenses.validation.isRequiredMessage,

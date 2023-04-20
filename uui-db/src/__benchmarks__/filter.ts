@@ -3,14 +3,13 @@ import { Person } from './testData';
 import range from 'lodash.range';
 import { getFilterPredicate } from '@epam/uui-core';
 
-const testPersons = range(0, 1e4).
-    map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * 100) }));
+const testPersons = range(0, 1e4).map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * 100) }));
 
 b.suite(
     `Filter array`,
 
     b.add('array.filter, hard-coded', () => {
-        return () => testPersons.filter(p => p.departmentId == 5);
+        return () => testPersons.filter((p) => p.departmentId == 5);
     }),
 
     b.add('for-loop, array.push, hard-coded', () => {
@@ -47,5 +46,5 @@ b.suite(
 
     b.cycle(),
     b.complete(),
-    b.save({ file: 'filter', version: '1.0.0' }),
+    b.save({ file: 'filter', version: '1.0.0' })
 );

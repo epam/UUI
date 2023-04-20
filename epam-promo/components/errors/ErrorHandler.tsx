@@ -18,10 +18,14 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
     });
 
     const showNotifications = (errors: ApiCallInfo[]) => {
-        errors.forEach(c => {
-            uuiNotifications.show((notificationProps: INotification) => <ErrorNotification { ...notificationProps } >
-                <Text size='36' fontSize='14'>{ c.responseData && c.responseData.errorMessage }</Text>
-            </ErrorNotification>);
+        errors.forEach((c) => {
+            uuiNotifications.show((notificationProps: INotification) => (
+                <ErrorNotification {...notificationProps}>
+                    <Text size="36" fontSize="14">
+                        {c.responseData && c.responseData.errorMessage}
+                    </Text>
+                </ErrorNotification>
+            ));
             c.dismissError();
         });
     };
@@ -30,13 +34,13 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         const { title, subtitle } = errorInfo;
 
         return (
-            <ModalBlocker key='recovery-blocker' cx={ css.modalBlocker } blockerShadow='dark' isActive={ true } zIndex={ 100500 } success={ () => { } } abort={ () => { } }>
+            <ModalBlocker key="recovery-blocker" cx={css.modalBlocker} blockerShadow="dark" isActive={true} zIndex={100500} success={() => {}} abort={() => {}}>
                 <ModalWindow>
-                    <ModalHeader borderBottom title={ title } />
-                    <Spinner cx={ css.recoverySpinner } />
-                    <FlexRow padding='24' cx={ css.recoveryMessage }>
-                        <FlexCell grow={ 1 }>
-                            <RichTextView>{ subtitle }</RichTextView>
+                    <ModalHeader borderBottom title={title} />
+                    <Spinner cx={css.recoverySpinner} />
+                    <FlexRow padding="24" cx={css.recoveryMessage}>
+                        <FlexCell grow={1}>
+                            <RichTextView>{subtitle}</RichTextView>
                         </FlexCell>
                     </FlexRow>
                 </ModalWindow>
@@ -45,7 +49,7 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
     };
 
     const renderErrorPage = (errorInfo: UuiErrorInfo) => {
-        return <ErrorPage cx={ props.cx } { ...errorInfo } />;
+        return <ErrorPage cx={props.cx} {...errorInfo} />;
     };
 
     if (errorType == 'error') {
@@ -57,8 +61,10 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         showNotifications(errorInfo as ApiCallInfo[]);
     }
 
-    return <ErrorCatch>
-        { props.children }
-        { errorType == 'recovery' && renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo) }
-    </ErrorCatch>;
+    return (
+        <ErrorCatch>
+            {props.children}
+            {errorType == 'recovery' && renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo)}
+        </ErrorCatch>
+    );
 };

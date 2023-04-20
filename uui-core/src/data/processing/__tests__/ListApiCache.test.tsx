@@ -1,6 +1,6 @@
 import { ListApiCache, ListApiSettings } from '../ListApiCache';
 import { LazyDataSourceApiRequest, LazyDataSourceApiResponse } from '../../../types';
-import { delay } from "@epam/test-utils";
+import { delay } from '@epam/test-utils';
 
 interface TestItem {
     id: number;
@@ -25,12 +25,11 @@ const testApi = (r: LazyDataSourceApiRequest<TestItem, number, TestFilter>) => {
     let count: number;
 
     if (r.ids) {
-        items = items.filter(i => r.ids.indexOf(i.id) >= 0);
+        items = items.filter((i) => r.ids.indexOf(i.id) >= 0);
     }
 
     return Promise.resolve<LazyDataSourceApiResponse<TestItem>>({ items });
 };
-
 
 describe('ListApiCache', () => {
     const apiFn = jest.fn(testApi);

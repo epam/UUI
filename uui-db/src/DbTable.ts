@@ -8,7 +8,7 @@ interface ApplyQueryOptions {
 }
 
 interface DbIndex<TEntity, TId> {
-    field: (keyof TEntity);
+    field: keyof TEntity;
     map: I.Map<any, I.Set<any>>;
 }
 
@@ -18,13 +18,9 @@ interface DbTableState<TEntity, TId extends DbPkFieldType, TTables extends DbTab
 }
 
 export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTablesSet<TTables>> {
-    constructor(
-        public readonly schema: DbEntitySchema<TEntity, TId, TTables>,
-        private state?: DbTableState<TEntity, TId, TTables>,
-        private q?: DbQuery<TEntity>,
-    ) {
+    constructor(public readonly schema: DbEntitySchema<TEntity, TId, TTables>, private state?: DbTableState<TEntity, TId, TTables>, private q?: DbQuery<TEntity>) {
         if (!state) {
-            const indexes: DbIndex<TEntity, TId>[] = (schema.indexes || []).map(indexDef => {
+            const indexes: DbIndex<TEntity, TId>[] = (schema.indexes || []).map((indexDef) => {
                 return {
                     field: indexDef,
                     map: I.Map(),
@@ -67,7 +63,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
     /* Mutation */
 
     public with(patch: DbTablePatch<TEntity>) {
-        const updates = patch.map(entityPatch => {
+        const updates = patch.map((entityPatch) => {
             const id = this.getId(entityPatch);
             const immId = this.keyToImmutable(id);
             const existing = this.state.pk.get(immId);
@@ -84,15 +80,17 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
             return { id, immId, patch: entityPatch, existing, updated, isNew: !existing, isDeleted };
         });
 
-        const idVal = Seq.Keyed<TId, TEntity>(updates.map(entity => [entity.immId, entity.updated]));
+        const idVal = Seq.Keyed<TId, TEntity>(updates.map((entity) => [entity.immId, entity.updated]));
         let newPk = this.state.pk.merge(idVal);
 
         // TBD: replace with deleteAll after migrating to immutable 4
-        updates.filter(u => u.isDeleted).forEach(u => {
-            newPk = newPk.delete(u.immId);
-        });
+        updates
+            .filter((u) => u.isDeleted)
+            .forEach((u) => {
+                newPk = newPk.delete(u.immId);
+            });
 
-        const newIndexes = this.state.indexes.map(index => {
+        const newIndexes = this.state.indexes.map((index) => {
             let newMap = index.map;
 
             for (let n = 0; n < updates.length; n++) {
@@ -104,12 +102,12 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
                     const oldKey = update.existing[index.field];
 
                     if (oldKey !== newKey || update.isDeleted) {
-                        newMap = newMap.update(oldKey, set => set.remove(update.immId));
+                        newMap = newMap.update(oldKey, (set) => set.remove(update.immId));
                     }
                 }
 
                 if (!update.isDeleted) {
-                    newMap = newMap.update(newKey, I.Set(), set => set.add(update.immId));
+                    newMap = newMap.update(newKey, I.Set(), (set) => set.add(update.immId));
                 }
             }
 
@@ -118,38 +116,38 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
 
         const newState: DbTableState<TEntity, TId, TTables> = { pk: newPk, indexes: newIndexes };
 
-        return this.update(t => t.state = newState);
+        return this.update((t) => (t.state = newState));
     }
 
     /* Query */
 
     public find(filter: DataQueryFilter<TEntity>): DbTable<TEntity, TId, TTables> {
-        return this.update(t => t.q = { ...t.q, filter: { ...this.q.filter as any, ...filter as any } });
+        return this.update((t) => (t.q = { ...t.q, filter: { ...(this.q.filter as any), ...(filter as any) } }));
     }
 
     public order(order: SortingOption[]) {
-        return this.update(t => t.q = { ...t.q, sorting: order });
+        return this.update((t) => (t.q = { ...t.q, sorting: order }));
     }
 
     public orderBy(field: Extract<keyof TEntity, string>, direction: SortDirection = 'asc') {
-        return this.update(t => t.q = { ...t.q, sorting: [{ field, direction }] });
+        return this.update((t) => (t.q = { ...t.q, sorting: [{ field, direction }] }));
     }
 
     public thenBy(field: Extract<keyof TEntity, string>, direction?: SortDirection) {
-        return this.update(t => t.q = { ...t.q, sorting: [...t.q.sorting, { field, direction }] });
+        return this.update((t) => (t.q = { ...t.q, sorting: [...t.q.sorting, { field, direction }] }));
     }
 
     public search(text: string) {
         if (!this.schema.searchBy) {
             throw new Error(`Can't search in the ${this.schema.typeName} table - searchBy is not defined in the schema.`);
         }
-        return this.update(t => t.q = { ...t.q, search: text });
+        return this.update((t) => (t.q = { ...t.q, search: text }));
     }
 
     /* Materializing */
 
     public range(from: number, count: number): TEntity[] {
-        return this.runQuery({ ...this.q, range: { from, count }});
+        return this.runQuery({ ...this.q, range: { from, count } });
     }
 
     public count() {
@@ -185,7 +183,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
                     const { [index.field]: condition, ...rest } = filter as any;
                     let conditionValues: any[] = null;
 
-                    if (condition != null && typeof condition === "object") {
+                    if (condition != null && typeof condition === 'object') {
                         // Attempt to use index for 'in' and 'isNull' criteria.
                         // We need to be very conservative here, indexed field should work the same way as getPatternPredicate. So
                         // - it's better to leave corner cases to getPatternPredicate
@@ -229,7 +227,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
                             }
                         }
 
-                        filter = Object.keys(rest).length > 0 ? rest as any : null;
+                        filter = Object.keys(rest).length > 0 ? (rest as any) : null;
                         break;
                     }
                 }
@@ -247,7 +245,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
 
         if (q.search) {
             let searchFilter = getSearchFilter(q.search);
-            result = result.filter(item => searchFilter(this.schema.searchBy.map(field => (item as any)[field])));
+            result = result.filter((item) => searchFilter(this.schema.searchBy.map((field) => (item as any)[field])));
         }
 
         if (q.sorting) {

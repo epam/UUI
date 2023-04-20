@@ -31,7 +31,7 @@ import { ReactComponent as TrainingCenterIcon } from '../../icons/training-cente
 import { ReactComponent as RewardsIcon } from '../../icons/rewards-logo.svg';
 import { ReactComponent as InviteIcon } from '../../icons/Invite-logo.svg';
 
-export const projectsList: Array<{ projectName: string, projectCode: string, icon: Icon, url: string }> = [
+export const projectsList: Array<{ projectName: string; projectCode: string; icon: Icon; url: string }> = [
     { projectName: 'Learn', projectCode: 'EPM-TMC', icon: LearnIcon, url: 'https://learn.epam.com' },
     { projectName: 'Heroes', projectCode: 'EPM-HERO', icon: HeroesIcon, url: 'https://heroes.epam.com' },
     { projectName: 'People', projectCode: 'EPM-HRMS', icon: PeopleIcon, url: 'https://people.epam.com/' },
@@ -67,37 +67,45 @@ export const projectsList: Array<{ projectName: string, projectCode: string, ico
 
 export class ProjectsDoc extends React.Component {
     getTeamLink = (projectCode: string): string => {
-        const encodedQuery = btoa(JSON.stringify({ text: `project:${ projectCode }` }));
-        return `https://telescope.epam.com/search/people?h=${ encodedQuery }`;
-    }
+        const encodedQuery = btoa(JSON.stringify({ text: `project:${projectCode}` }));
+        return `https://telescope.epam.com/search/people?h=${encodedQuery}`;
+    };
 
     render() {
         return (
             <ContentSection>
-                <div className={ css.title }>Projects</div>
+                <div className={css.title}>Projects</div>
 
-                <div className={ css.layout }>
-                    { projectsList.map((project) => (
-                        <div key={ project.projectName } className={ css.projectContainer }>
-                            <FlexRow cx={ css.projectRow } padding='18'>
-                                <IconContainer icon={ project.icon } size={ 72 }/>
-                                <FlexCell width='auto' cx={ css.projectDescription }>
-                                    {
-                                        project.url
-                                            ? <LinkButton size='30' caption={ project.projectName } target='_blank'
-                                                        href={ project.url } icon={ LinkIcon } iconPosition='right'
-                                                        cx={ css.projectLink }/>
-                                            : <Text font='museo-sans' fontSize='24' lineHeight='30'
-                                                  cx={ css.projectName }>{ project.projectName }</Text>
-                                    }
-                                    <Text color='gray60' cx={ css.projectCode }>{ project.projectCode }</Text>
+                <div className={css.layout}>
+                    {projectsList.map((project) => (
+                        <div key={project.projectName} className={css.projectContainer}>
+                            <FlexRow cx={css.projectRow} padding="18">
+                                <IconContainer icon={project.icon} size={72} />
+                                <FlexCell width="auto" cx={css.projectDescription}>
+                                    {project.url ? (
+                                        <LinkButton
+                                            size="30"
+                                            caption={project.projectName}
+                                            target="_blank"
+                                            href={project.url}
+                                            icon={LinkIcon}
+                                            iconPosition="right"
+                                            cx={css.projectLink}
+                                        />
+                                    ) : (
+                                        <Text font="museo-sans" fontSize="24" lineHeight="30" cx={css.projectName}>
+                                            {project.projectName}
+                                        </Text>
+                                    )}
+                                    <Text color="gray60" cx={css.projectCode}>
+                                        {project.projectCode}
+                                    </Text>
                                 </FlexCell>
-                                <FlexSpacer/>
-                                <LinkButton cx={ css.teamLink } target='_blank' icon={ TelescopeIcon } caption='View Team' href={ this.getTeamLink(project.projectCode) }/>
+                                <FlexSpacer />
+                                <LinkButton cx={css.teamLink} target="_blank" icon={TelescopeIcon} caption="View Team" href={this.getTeamLink(project.projectCode)} />
                             </FlexRow>
                         </div>
-                    ))
-                    }
+                    ))}
                 </div>
             </ContentSection>
         );

@@ -3,12 +3,15 @@ import { ColorPicker, DocBuilder } from '@epam/uui-docs';
 import { ResizableContext, iconDoc } from '../../docs';
 import { Text } from '@epam/loveship';
 import { AlertProps, Alert } from '@epam/loveship';
-import { colors } from "../../docs/helpers/colorMap";
-import { allEpamPrimaryColors } from "@epam/loveship";
+import { colors } from '../../docs/helpers/colorMap';
+import { allEpamPrimaryColors } from '@epam/loveship';
 
 const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: Alert })
     .implements([iconDoc])
-    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: allEpamPrimaryColors })
+    .prop('color', {
+        renderEditor: (editable, examples) => <ColorPicker colors={examples.map((i) => ({ value: i, hex: colors[i] }))} {...editable} />,
+        examples: allEpamPrimaryColors,
+    })
     .prop('children', {
         examples: [
             {
@@ -28,7 +31,7 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
                 value: [
                     {
                         name: 'ACTION 1',
-                        action: () => { },
+                        action: () => {},
                     },
                 ],
                 name: '1 action',
@@ -37,22 +40,21 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
                 value: [
                     {
                         name: 'ACTION 1',
-                        action: () => { },
+                        action: () => {},
                     },
                     {
                         name: 'ACTION 2',
-                        action: () => { },
+                        action: () => {},
                     },
                 ],
                 name: '2 actions',
             },
         ],
-
     })
     .prop('onClose', {
         examples: [
             {
-                value: () => { },
+                value: () => {},
                 name: 'OnClose',
             },
         ],

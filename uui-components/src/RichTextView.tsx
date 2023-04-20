@@ -7,17 +7,15 @@ export interface RichTextViewProps extends IHasCX, IHasChildren, IHasRawProps<Re
 
 export class RichTextView extends React.Component<RichTextViewProps> {
     getViewByProps(content: string) {
-        return <div
-            dangerouslySetInnerHTML={ { __html: content } }
-            className={ cx(this.props.cx) }
-            { ...this.props.rawProps }
-        />;
+        return <div dangerouslySetInnerHTML={{ __html: content }} className={cx(this.props.cx)} {...this.props.rawProps} />;
     }
 
     getViewByChildren(content: React.ReactNode) {
-        return <div className={ cx(this.props.cx) } { ...this.props.rawProps }>
-            { content }
-        </div>;
+        return (
+            <div className={cx(this.props.cx)} {...this.props.rawProps}>
+                {content}
+            </div>
+        );
     }
 
     render() {

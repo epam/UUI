@@ -7,14 +7,11 @@ export class DragAndDropDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='DragAndDrop-intro' />
+                <EditableDocContent fileName="DragAndDrop-intro" />
 
-                <DocExample
-                    title='Basic'
-                    path='./_examples/dnd/Basic.example.tsx'
-                />
+                <DocExample title="Basic" path="./_examples/dnd/Basic.example.tsx" />
 
-                <EditableDocContent fileName='DragAndDrop-stateManagement' />
+                <EditableDocContent fileName="DragAndDrop-stateManagement" />
             </>
         );
     }

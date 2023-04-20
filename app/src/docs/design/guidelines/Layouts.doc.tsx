@@ -7,7 +7,7 @@ export class LayoutsDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent key='layouts-for-designers' fileName='layouts-for-designers' />
+                <EditableDocContent key="layouts-for-designers" fileName="layouts-for-designers" />
             </>
         );
     }

@@ -7,11 +7,24 @@ import { PickerToggler, PickerTogglerMods } from '@epam/uui';
 const PickerTogglerDoc = new DocBuilder<PickerTogglerProps<any, any> & PickerTogglerMods>({ name: 'PickerToggler', component: PickerToggler })
     .prop('size', { examples: ['24', '30', '36', '42'], defaultValue: '36' })
     .implements([isDisabledDoc, isReadonlyDoc, iconOptionsDoc, dropdownTogglerDoc, iEditable, IHasEditModeDoc])
-    .prop('selection', { examples: [
-        { name: 'Tags', value: [{ value: '.Net' }, { value: 'JS' }, { value: 'React' }], isDefault: true },
-        { name: 'Names', value: [{ value: 'Alvaro De Matos Miranda Filho' }, { value: 'Janaina Barreiro Gambaro Bueno' }, { value: 'Mindaugas Krapauskas' }, { value: 'Patrick Magenheimer' }] },
-        { name: 'Languages', value: [{ value: 'Belarusian' }, { value: 'Russian' }, { value: 'German' }, { value: 'Spanish' }, { value: 'English' }, { value: 'French' }] },
-    ] as any })
+    .prop('selection', {
+        examples: [
+            { name: 'Tags', value: [{ value: '.Net' }, { value: 'JS' }, { value: 'React' }], isDefault: true },
+            {
+                name: 'Names',
+                value: [
+                    { value: 'Alvaro De Matos Miranda Filho' },
+                    { value: 'Janaina Barreiro Gambaro Bueno' },
+                    { value: 'Mindaugas Krapauskas' },
+                    { value: 'Patrick Magenheimer' },
+                ],
+            },
+            {
+                name: 'Languages',
+                value: [{ value: 'Belarusian' }, { value: 'Russian' }, { value: 'German' }, { value: 'Spanish' }, { value: 'English' }, { value: 'French' }],
+            },
+        ] as any,
+    })
     .prop('pickerMode', { examples: ['single'], defaultValue: 'multi' })
     .prop('maxItems', { examples: [0, 1, 5, 10, 50, 100, 1000] })
     .prop('isInvalid', { examples: [true] })

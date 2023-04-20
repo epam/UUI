@@ -1,8 +1,5 @@
 import React, { Attributes, ReactNode } from 'react';
-import {
-    IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps,
-    ICanBeInvalid, ICanFocus, IDropdownBodyProps,
-} from './props';
+import { IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps } from './props';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
@@ -22,8 +19,7 @@ export type ICanBeFixed = {
     fix?: 'left' | 'right';
 };
 
-export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
-    extends ICanBeFixed, IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes {
+export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends ICanBeFixed, IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes {
     /**
      * Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
      * Also, used as React key for cells, header cells, and other components inside tables.
@@ -193,7 +189,7 @@ export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOp
 }
 
 export type ColumnsConfig = {
-    [key: string]: IColumnConfig,
+    [key: string]: IColumnConfig;
 };
 
 export type IColumnConfig = {
@@ -212,7 +208,7 @@ export type IFilterConfig = {
 };
 
 export type DataTableConfigModalParams = IEditable<DataSourceState> & {
-    columns: DataColumnProps<any, any>[],
+    columns: DataColumnProps<any, any>[];
 };
 
 export type IFilterPredicate = {
@@ -230,24 +226,23 @@ type FilterConfigBase<TFilter> = {
 };
 
 type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
-    type: "singlePicker" | "multiPicker";
+    type: 'singlePicker' | 'multiPicker';
     dataSource: IDataSource<any, any, any>;
     getName?: (item: any) => string;
     renderRow?: (props: DataRowProps<any, any>) => ReactNode;
-    valueType?: "id";
+    valueType?: 'id';
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
-    type: "datePicker" | "rangeDatePicker";
+    type: 'datePicker' | 'rangeDatePicker';
     format?: string;
 };
 
 type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
-    type: "numeric";
+    type: 'numeric';
 };
 
-export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter>
-    | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter>;
+export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = any, TViewState = any> {
     name: string;
@@ -281,7 +276,7 @@ export interface ITableState<TFilter = Record<string, any>, TViewState = any> ex
     setFiltersConfig(filtersConfig: FiltersConfig): void;
 }
 
-export interface DataTableSelectedCellData <TItem = any, TId = any, TFilter = any> {
+export interface DataTableSelectedCellData<TItem = any, TId = any, TFilter = any> {
     column: DataColumnProps<TItem, TId, TFilter>;
     row: DataRowProps<TItem, TId>;
 }

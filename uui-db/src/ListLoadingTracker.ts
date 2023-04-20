@@ -12,7 +12,9 @@ export interface ListLoadingTrackerOptions<TItem, TResponse> {
     extractList?: (response: TResponse) => LazyDataSourceApiResponse<TItem>;
 }
 
-export class ListLoadingTracker<TItem, TRequest extends DataQuery<TItem> = DataQuery<TItem>, TResponse = LazyDataSourceApiResponse<TItem>> implements ILoadingTracker<TRequest, TResponse> {
+export class ListLoadingTracker<TItem, TRequest extends DataQuery<TItem> = DataQuery<TItem>, TResponse = LazyDataSourceApiResponse<TItem>>
+    implements ILoadingTracker<TRequest, TResponse>
+{
     private cache: Map<string, ListRecord<TItem>> = new Map();
     private extractList: (res: TResponse) => LazyDataSourceApiResponse<TItem>;
 
@@ -98,7 +100,7 @@ export class ListLoadingTracker<TItem, TRequest extends DataQuery<TItem> = DataQ
                 entry.maxCount = list.items.length;
                 entry.isComplete = true;
             } else {
-                const from = (list.from == null) ? range.from : list.from;
+                const from = list.from == null ? range.from : list.from;
 
                 if (list.items.length > 0) {
                     entry.count = Math.max(entry.count, from + list.items.length);

@@ -32,18 +32,19 @@ export class Blocker extends React.Component<BlockerProps> {
     render() {
         return (
             <div
-                className={ cx(css.container, uuiBlocker.container, this.props.cx) }
-                style={ { minHeight: this.props.isEnabled && this.props.spacerHeight ? `${this.props.spacerHeight}px` : undefined } }
-                ref={ this.props.forwardedRef }
-                { ...this.props.rawProps }
+                className={cx(css.container, uuiBlocker.container, this.props.cx)}
+                style={{ minHeight: this.props.isEnabled && this.props.spacerHeight ? `${this.props.spacerHeight}px` : undefined }}
+                ref={this.props.forwardedRef}
+                {...this.props.rawProps}
             >
                 <TransitionGroup>
-                    { this.props.isEnabled && <CSSTransition nodeRef={ this.transitionRef } classNames={ uuiBlocker } timeout={ { enter: 2000, exit: 1000 } }>
-                        <div ref={ this.transitionRef } className={ uuiBlocker.blocker }>
-                            { !this.props.hideSpinner && this.props.renderSpinner && this.props.renderSpinner(this.props) }
-                        </div>
-                    </CSSTransition>
-                    }
+                    {this.props.isEnabled && (
+                        <CSSTransition nodeRef={this.transitionRef} classNames={uuiBlocker} timeout={{ enter: 2000, exit: 1000 }}>
+                            <div ref={this.transitionRef} className={uuiBlocker.blocker}>
+                                {!this.props.hideSpinner && this.props.renderSpinner && this.props.renderSpinner(this.props)}
+                            </div>
+                        </CSSTransition>
+                    )}
                 </TransitionGroup>
             </div>
         );

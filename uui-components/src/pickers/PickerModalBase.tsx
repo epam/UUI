@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from "@epam/uui-core";
+import { DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, Lens, PickerBaseOptions, PickerBaseProps, PickerFooterProps } from '@epam/uui-core';
 import { PickerBase, PickerBaseState } from './index';
 
 export interface PickerModalOptions<TItem, TId> extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -46,9 +46,7 @@ export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerMo
     getRows() {
         const view = this.getView();
         const { topIndex, visibleCount } = this.state.dataSourceState;
-        return this.state.showSelected
-            ? view.getSelectedRows({ topIndex, visibleCount })
-            : view.getVisibleRows();
+        return this.state.showSelected ? view.getSelectedRows({ topIndex, visibleCount }) : view.getVisibleRows();
     }
 
     getFooterProps(): PickerFooterProps<TItem, TId> & Partial<IModal<any>> {
@@ -62,13 +60,14 @@ export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerMo
     }
 }
 
-export type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId>
-    & IHasCaption
-    & (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>)
-    & PickerModalOptions<TItem, TId>;
+export type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> &
+    IHasCaption &
+    (PickerModalScalarProps<TId, TItem> | PickerModalArrayProps<TId, TItem>) &
+    PickerModalOptions<TItem, TId>;
 
-export type PickerModalScalarProps<TId, TItem> = { selectionMode: 'single', valueType: 'id', initialValue: TId } & IModal<TId>
-    | { selectionMode: 'single', valueType: 'entity', initialValue: TItem } & IModal<TItem>;
-export type PickerModalArrayProps<TId, TItem> = { selectionMode: 'multi', valueType: 'id', initialValue: TId[] } & IModal<TId[]>
-    | { selectionMode: 'multi', valueType: 'entity', initialValue: TItem[] } & IModal<TItem[]>;
-
+export type PickerModalScalarProps<TId, TItem> =
+    | ({ selectionMode: 'single'; valueType: 'id'; initialValue: TId } & IModal<TId>)
+    | ({ selectionMode: 'single'; valueType: 'entity'; initialValue: TItem } & IModal<TItem>);
+export type PickerModalArrayProps<TId, TItem> =
+    | ({ selectionMode: 'multi'; valueType: 'id'; initialValue: TId[] } & IModal<TId[]>)
+    | ({ selectionMode: 'multi'; valueType: 'entity'; initialValue: TItem[] } & IModal<TItem[]>);

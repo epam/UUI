@@ -37,12 +37,7 @@ async function createRollupConfigForModule(options) {
     const isWatchDefault = !!process.argv.find((a) => a === '--watch');
     const moduleRootDirDefault = process.cwd();
     //
-    const {
-        moduleRootDir = moduleRootDirDefault, indexFileRelativePath,
-        external, isWatch = isWatchDefault,
-        packageJsonTransform,
-        copyAsIs,
-    } = options;
+    const { moduleRootDir = moduleRootDirDefault, indexFileRelativePath, external, isWatch = isWatchDefault, packageJsonTransform, copyAsIs } = options;
     const externalEffective = external ? external({ moduleRootDir }) : getExternalDeps({ moduleRootDir });
     const tsconfigFile = getTsConfigFile(moduleRootDir);
     const { default: postcss } = await postCssDynamicImport;
