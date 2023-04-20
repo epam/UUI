@@ -5,25 +5,12 @@ import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('LinkButton', () => {
     it('should be rendered correctly', () => {
-
-        const tree = renderer
-            .create(<LinkButton />)
-            .toJSON();
+        const tree = renderer.create(<LinkButton />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it('should be rendered correctly with props', () => {
-
-        const tree = renderer
-            .create(<LinkButton
-                color='blue'
-                onClick={ jest.fn }
-                icon={ CalendarIcon }
-                isDisabled={ false }
-                isDropdown
-                onClear={ jest.fn }
-            />)
-            .toJSON();
+        const tree = renderer.create(<LinkButton color="blue" onClick={ jest.fn } icon={ CalendarIcon } isDisabled={ false } isDropdown onClear={ jest.fn } />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

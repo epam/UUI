@@ -6,11 +6,7 @@ export default function DatePickerBaseExample() {
 
     return (
         <FlexRow>
-            <DatePicker
-                value={ value }
-                onValueChange={ onValueChange }
-                format='MMM D, YYYY'
-            />
+            <DatePicker value={ value } onValueChange={ onValueChange } format="MMM D, YYYY" />
         </FlexRow>
     );
 }

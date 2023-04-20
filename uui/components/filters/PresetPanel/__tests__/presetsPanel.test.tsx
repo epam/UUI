@@ -10,16 +10,19 @@ import {
 } from '@epam/test-utils';
 import { PresetsPanel, PresetsPanelProps } from '../PresetsPanel';
 import {
-    ColumnsConfig,
-    DataTableState, FiltersConfig,
-    ITablePreset,
+    ColumnsConfig, DataTableState, FiltersConfig, ITablePreset,
 } from '@epam/uui-core';
 
 jest.mock('react-popper', () => ({
     ...jest.requireActual('react-popper'),
     Popper: function PopperMock({ children }: any) {
         return children({
-            ref: jest.fn, update: jest.fn(), style: {}, arrowProps: { ref: jest.fn }, placement: 'bottom-start', isReferenceHidden: false,
+            ref: jest.fn,
+            update: jest.fn(),
+            style: {},
+            arrowProps: { ref: jest.fn },
+            placement: 'bottom-start',
+            isReferenceHidden: false,
         });
     },
 }));
@@ -62,13 +65,22 @@ async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps
     };
     const initialPresets: ITablePreset<TestFilterType, TestViewStateType>[] = [
         {
-            id: -1, name: 'All items', order: 'a', isReadonly: true,
+            id: -1,
+            name: 'All items',
+            order: 'a',
+            isReadonly: true,
         },
         {
-            id: -2, name: 'Items with green status', order: 'b', filter: { status: 1 },
+            id: -2,
+            name: 'Items with green status',
+            order: 'b',
+            filter: { status: 1 },
         },
         {
-            id: -3, name: 'Items with red status', order: 'c', filter: { status: 2 },
+            id: -3,
+            name: 'Items with red status',
+            order: 'c',
+            filter: { status: 2 },
         },
     ];
     const filtersConfig: FiltersConfig<TestFilterType> = {
@@ -96,9 +108,7 @@ async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps
             'data-testid': 'presets-panel',
         },
     };
-    const result = await renderToJsdomWithContextAsync(
-        <PresetsPanel { ...panelProps } />,
-    );
+    const result = await renderToJsdomWithContextAsync(<PresetsPanel { ...panelProps } />);
     const tabs = await screen.findAllByRole('tab');
     const dom = {
         tabs,
@@ -117,7 +127,7 @@ describe('PresetsPanel', () => {
                 activePresetId={ 1 }
                 choosePreset={ jest.fn() }
                 createNewPreset={ jest.fn() }
-                tableState={ { } }
+                tableState={ {} }
                 hasPresetChanged={ jest.fn() }
                 duplicatePreset={ jest.fn() }
                 deletePreset={ jest.fn() }
@@ -130,7 +140,9 @@ describe('PresetsPanel', () => {
     });
 
     it('should render presets panel with all tabs and options', async () => {
-        const { dom: { tabs } } = await setupPresetsPanel();
+        const {
+            dom: { tabs },
+        } = await setupPresetsPanel();
         // 1. check that it's rendered and active element is correct
         expect(tabs.length).toBe(3);
         expect(tabs[0]).toHaveTextContent('All items');
@@ -172,23 +184,38 @@ describe('PresetsPanel', () => {
     });
 
     it('should create new preset using "Duplicate" button', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel();
+        const {
+            mocks,
+            dom: { tabs },
+        } = await setupPresetsPanel();
         await openTabMenuAndClickOption(tabs[1], 'Duplicate');
         expect(mocks.duplicatePreset).toHaveBeenCalledWith({
-            filter: { status: 1 }, id: -2, name: 'Items with green status', order: 'b',
+            filter: { status: 1 },
+            id: -2,
+            name: 'Items with green status',
+            order: 'b',
         });
     });
 
     it('should delete preset using "Delete" button', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel();
+        const {
+            mocks,
+            dom: { tabs },
+        } = await setupPresetsPanel();
         await openTabMenuAndClickOption(tabs[1], 'Delete');
         expect(mocks.deletePreset).toHaveBeenCalledWith({
-            filter: { status: 1 }, id: -2, name: 'Items with green status', order: 'b',
+            filter: { status: 1 },
+            id: -2,
+            name: 'Items with green status',
+            order: 'b',
         });
     });
 
     it('should rename preset using "Rename" button', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel();
+        const {
+            mocks,
+            dom: { tabs },
+        } = await setupPresetsPanel();
         await openTabMenuAndClickOption(tabs[1], 'Rename');
         const input = await screen.findByRole('textbox');
         expect(input).toHaveValue('Items with green status');
@@ -198,29 +225,46 @@ describe('PresetsPanel', () => {
         fireEvent.change(input, { target: { value: 'This is new name' } });
         fireEvent.click(first);
         expect(mocks.updatePreset).toHaveBeenCalledWith({
-            filter: { status: 1 }, id: -2, name: 'This is new name', order: 'b',
+            filter: { status: 1 },
+            id: -2,
+            name: 'This is new name',
+            order: 'b',
         });
         await waitForElementToBeRemoved(() => screen.queryByRole('textbox'));
     });
 
     it('should copy link using "Copy Link" button', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel();
+        const {
+            mocks,
+            dom: { tabs },
+        } = await setupPresetsPanel();
         await openTabMenuAndClickOption(tabs[1], 'Copy Link');
         expect(mocks.getPresetLink).toHaveBeenCalledWith({
-            filter: { status: 1 }, id: -2, name: 'Items with green status', order: 'b',
+            filter: { status: 1 },
+            id: -2,
+            name: 'Items with green status',
+            order: 'b',
         });
     });
 
     it('should choose another preset by click on it', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel();
+        const {
+            mocks,
+            dom: { tabs },
+        } = await setupPresetsPanel();
         fireEvent.click(tabs[2]);
         expect(mocks.choosePreset).toHaveBeenCalledWith({
-            filter: { status: 2 }, id: -3, name: 'Items with red status', order: 'c',
+            filter: { status: 2 },
+            id: -3,
+            name: 'Items with red status',
+            order: 'c',
         });
     });
 
     it('should mark modified preset with special css class and extra options should become available', async () => {
-        const { dom: { tabs } } = await setupPresetsPanel({
+        const {
+            dom: { tabs },
+        } = await setupPresetsPanel({
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
         expect(tabs[1]).toHaveClass('uui-has-right-icon');
@@ -236,7 +280,10 @@ describe('PresetsPanel', () => {
     });
 
     it('should save modified preset', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel({
+        const {
+            mocks,
+            dom: { tabs },
+        } = await setupPresetsPanel({
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
         await openTabMenuAndClickOption(tabs[1], 'Save in current');
@@ -266,7 +313,10 @@ describe('PresetsPanel', () => {
     });
 
     it('should save modified preset as current', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel({
+        const {
+            mocks,
+            dom: { tabs },
+        } = await setupPresetsPanel({
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
         await openTabMenuAndClickOption(tabs[1], 'Save in current');
@@ -296,7 +346,10 @@ describe('PresetsPanel', () => {
     });
 
     it('should save modified preset as new', async () => {
-        const { mocks, dom: { tabs } } = await setupPresetsPanel({
+        const {
+            mocks,
+            dom: { tabs },
+        } = await setupPresetsPanel({
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
         await openTabMenuAndClickOption(tabs[1], 'Save as new');
@@ -312,7 +365,9 @@ describe('PresetsPanel', () => {
     });
 
     it('should cancel saving modified preset as new', async () => {
-        const { dom: { tabs } } = await setupPresetsPanel({
+        const {
+            dom: { tabs },
+        } = await setupPresetsPanel({
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
         await openTabMenuAndClickOption(tabs[1], 'Save as new');
@@ -337,7 +392,9 @@ describe('PresetsPanel', () => {
             width: 50,
             itemWidth: 15,
         });
-        const { dom: { tabs } } = await setupPresetsPanel();
+        const {
+            dom: { tabs },
+        } = await setupPresetsPanel();
         expect(tabs.length).toBe(1);
 
         const btn = screen.queryByText('2 more');

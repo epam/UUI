@@ -13,7 +13,6 @@ export interface AlertMods {
 
 export interface AlertProps extends Omit<uuiAlertProps, 'color'>, AlertMods {}
 
-
 export const Alert = withMods<Omit<uuiAlertProps, 'color'>, AlertMods>(
     uuiAlert,
     () => [],
@@ -23,18 +22,10 @@ export const Alert = withMods<Omit<uuiAlertProps, 'color'>, AlertMods>(
     }),
 );
 
-export const WarningAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =>
-    <Alert icon={ WarningIcon } color='sun' ref={ ref } { ...props } />,
-);
+export const WarningAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => <Alert icon={ WarningIcon } color="sun" ref={ ref } { ...props } />);
 
-export const SuccessAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =>
-    <Alert icon={ SuccessIcon } color='grass' ref={ ref } { ...props } />,
-);
+export const SuccessAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => <Alert icon={ SuccessIcon } color="grass" ref={ ref } { ...props } />);
 
-export const HintAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =>
-    <Alert icon={ HintIcon } color='sky' ref={ ref } { ...props } />,
-);
+export const HintAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => <Alert icon={ HintIcon } color="sky" ref={ ref } { ...props } />);
 
-export const ErrorAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =>
-    <Alert icon={ ErrorIcon } color='fire' ref={ ref } { ...props } />,
-);
+export const ErrorAlert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => <Alert icon={ ErrorIcon } color="fire" ref={ ref } { ...props } />);

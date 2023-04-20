@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI } from '../common';
+import {
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI,
+} from '../common';
 
 export class NotificationCardDoc extends BaseDocsBlock {
     title = 'Notification Card';
@@ -15,16 +17,10 @@ export class NotificationCardDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='notificationCard-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/notificationCard/Basic.example.tsx'
-                />
-                <DocExample
-                    title='Advanced'
-                    path='./_examples/notificationCard/Advanced.example.tsx'
-                />
+                <EditableDocContent fileName="notificationCard-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/notificationCard/Basic.example.tsx" />
+                <DocExample title="Advanced" path="./_examples/notificationCard/Advanced.example.tsx" />
             </>
         );
     }

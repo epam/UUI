@@ -1,10 +1,27 @@
-import React, { useRef, useContext, useState, useEffect } from 'react';
+import React, {
+    useRef, useContext, useState, useEffect,
+} from 'react';
 import FocusLock from 'react-focus-lock';
 import {
-    cx, IDropdownToggler, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption,
-    IDisableable, IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps,
+    cx,
+    IDropdownToggler,
+    withMods,
+    uuiMod,
+    UuiContext,
+    IHasChildren,
+    VPanelProps,
+    IHasIcon,
+    ICanRedirect,
+    IHasCaption,
+    IDisableable,
+    IAnalyticableClick,
+    IHasCX,
+    IClickable,
+    DropdownBodyProps,
 } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer } from '@epam/uui-components';
+import {
+    Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainer,
+} from '@epam/uui-components';
 import { Switch } from '../inputs';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
@@ -26,13 +43,13 @@ export enum IDropdownControlKeys {
     LEFT_ARROW = 'ArrowLeft',
     RIGHT_ARROW = 'ArrowRight',
     UP_ARROW = 'ArrowUp',
-    DOWN_ARROW = 'ArrowDown',
+    DOWN_ARROW = 'ArrowDown'
 }
 
-const DropdownMenuContainer = (props: IDropdownMenuContainer) => {
+function DropdownMenuContainer(props: IDropdownMenuContainer) {
     const menuRef = useRef<HTMLMenuElement>(null);
     const [currentlyFocused, setFocused] = useState<number>(-1);
-    const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${ uuiMod.disabled })`)) : [];
+    const menuItems: HTMLElement[] = menuRef.current ? Array.from(menuRef.current.querySelectorAll(`[role="menuitem"]:not(.${uuiMod.disabled})`)) : [];
 
     useEffect(() => {
         menuRef.current?.focus();
@@ -60,17 +77,11 @@ const DropdownMenuContainer = (props: IDropdownMenuContainer) => {
     };
 
     return (
-        <FocusLock
-            as="menu"
-            className={ css.menuRoot }
-            returnFocus
-            autoFocus={ false }
-            ref={ menuRef }
-            lockProps={ { onKeyDown: handleArrowKeys, tabIndex: -1 } }>
+        <FocusLock as="menu" className={ css.menuRoot } returnFocus autoFocus={ false } ref={ menuRef } lockProps={ { onKeyDown: handleArrowKeys, tabIndex: -1 } }>
             <DropdownContainer { ...props } rawProps={ { tabIndex: -1 } } />
         </FocusLock>
     );
-};
+}
 
 export const DropdownMenuBody = withMods<IDropdownMenuContainer>(
     DropdownMenuContainer,
@@ -82,20 +93,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
     const context = useContext(UuiContext);
 
     const {
-        icon,
-        iconPosition,
-        onIconClick,
-        caption,
-        isDisabled,
-        isSelected,
-        isActive,
-        link,
-        href,
-        onClick,
-        toggleDropdownOpening,
-        isDropdown,
-        isOpen,
-        target,
+        icon, iconPosition, onIconClick, caption, isDisabled, isSelected, isActive, link, href, onClick, toggleDropdownOpening, isDropdown, isOpen, target,
     } = props;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -113,29 +111,34 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
     };
 
     const getMenuButtonContent = () => {
-        const isIconBefore = Boolean(icon && iconPosition !== "right");
-        const isIconAfter = Boolean(icon && iconPosition === "right");
-        const iconElement = <IconButton icon={ icon } color={ isActive ? 'info' : 'default' } onClick={ onIconClick } cx={ cx(css.icon, iconPosition === "right" ? css.iconAfter : css.iconBefore) } />;
+        const isIconBefore = Boolean(icon && iconPosition !== 'right');
+        const isIconAfter = Boolean(icon && iconPosition === 'right');
+        const iconElement = (
+            <IconButton
+                icon={ icon }
+                color={ isActive ? 'info' : 'default' }
+                onClick={ onIconClick }
+                cx={ cx(css.icon, iconPosition === 'right' ? css.iconAfter : css.iconBefore) }
+            />
+        );
 
-        return <>
-            { isIconBefore && iconElement }
-            { <Text cx={ css.caption }>{ caption }</Text> }
-            { isIconAfter && <>
-                <FlexSpacer />
-                { iconElement }
-            </> }
-        </>;
+        return (
+            <>
+                {isIconBefore && iconElement}
+                <Text cx={ css.caption }>{caption}</Text>
+                {isIconAfter && (
+                    <>
+                        <FlexSpacer />
+                        {iconElement}
+                    </>
+                )}
+            </>
+        );
     };
 
     const isAnchor = Boolean(link || href);
 
-    const itemClassNames = cx(
-        props.cx,
-        css.itemRoot,
-        isDisabled && uuiMod.disabled,
-        isActive && uuiMod.active,
-        isOpen && uuiMod.opened,
-    );
+    const itemClassNames = cx(props.cx, css.itemRoot, isDisabled && uuiMod.disabled, isActive && uuiMod.active, isOpen && uuiMod.opened);
 
     return isAnchor ? (
         <Anchor
@@ -148,7 +151,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             forwardedRef={ ref }
             target={ target }
         >
-            { getMenuButtonContent() }
+            {getMenuButtonContent()}
         </Anchor>
     ) : (
         <FlexRow
@@ -161,33 +164,37 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             onClick={ handleClick }
             ref={ ref }
         >
-            { getMenuButtonContent() }
-            { isSelected && <IconContainer icon={ icons.accept } cx={ css.selectedCheckmark } /> }
+            {getMenuButtonContent()}
+            {isSelected && <IconContainer icon={ icons.accept } cx={ css.selectedCheckmark } />}
         </FlexRow>
     );
 });
 
 DropdownMenuButton.displayName = 'DropdownMenuButton';
 
-export const DropdownMenuSplitter = (props: IHasCX) => (
-    <div className={ cx(props.cx, css.splitterRoot) }>
-        <hr className={ css.splitter } />
-    </div>
-);
+export function DropdownMenuSplitter(props: IHasCX) {
+    return (
+        <div className={ cx(props.cx, css.splitterRoot) }>
+            <hr className={ css.splitter } />
+        </div>
+    );
+}
 
-interface IDropdownMenuHeader extends IHasCX, IHasCaption { }
+interface IDropdownMenuHeader extends IHasCX, IHasCaption {}
 
-export const DropdownMenuHeader = (props: IDropdownMenuHeader) => (
-    <div className={ cx(props.cx, css.headerRoot) }>
-        <span className={ css.header }>{ props.caption }</span>
-    </div>
-);
+export function DropdownMenuHeader(props: IDropdownMenuHeader) {
+    return (
+        <div className={ cx(props.cx, css.headerRoot) }>
+            <span className={ css.header }>{props.caption}</span>
+        </div>
+    );
+}
 
 interface IDropdownSubMenu extends IHasChildren, IHasCaption, IHasIcon, IDropdownMenuItemProps {
     openOnHover?: boolean;
 }
 
-export const DropdownSubMenu = (props: IDropdownSubMenu) => {
+export function DropdownSubMenu(props: IDropdownSubMenu) {
     return (
         <Dropdown
             openOnHover={ props.openOnHover || true }
@@ -195,13 +202,7 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
             openDelay={ 400 }
             closeDelay={ 400 }
             placement="right-start"
-            renderBody={ (dropdownProps) => (
-                <DropdownMenuBody
-                    closeOnKey={ IDropdownControlKeys.LEFT_ARROW }
-                    { ...props }
-                    { ...dropdownProps }
-                />
-            ) }
+            renderBody={ (dropdownProps) => <DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } /> }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
                     cx={ cx(css.submenuRootItem) }
@@ -215,22 +216,18 @@ export const DropdownSubMenu = (props: IDropdownSubMenu) => {
             ) }
         />
     );
-};
+}
 
 interface IDropdownMenuSwitchButton extends IHasCX, IHasCaption, IHasIcon, IDisableable, IAnalyticableClick, IClickable {
     onValueChange: (value: boolean) => void;
     isSelected: boolean;
 }
 
-export const DropdownMenuSwitchButton = (props: IDropdownMenuSwitchButton) => {
+export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
     const context = useContext(UuiContext);
 
     const {
-        icon,
-        caption,
-        isDisabled,
-        isSelected,
-        onValueChange,
+        icon, caption, isDisabled, isSelected, onValueChange,
     } = props;
 
     const onHandleValueChange = (value: boolean) => {
@@ -251,10 +248,10 @@ export const DropdownMenuSwitchButton = (props: IDropdownMenuSwitchButton) => {
             onClick={ () => onHandleValueChange(!isSelected) }
             rawProps={ { role: 'menuitem', onKeyDown: handleKeySelect, tabIndex: isDisabled ? -1 : 0 } }
         >
-            { icon && <IconContainer icon={ icon } cx={ css.iconBefore } /> }
-            <Text cx={ css.caption }>{ caption }</Text>
+            {icon && <IconContainer icon={ icon } cx={ css.iconBefore } />}
+            <Text cx={ css.caption }>{caption}</Text>
             <FlexSpacer />
             <Switch value={ isSelected } tabIndex={ -1 } onValueChange={ onHandleValueChange } />
         </FlexRow>
     );
-};
+}

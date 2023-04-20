@@ -1,4 +1,4 @@
-﻿export class UserSettingsContext {
+export class UserSettingsContext {
     get<TValue>(key: any, initial?: TValue): TValue {
         if (!key) {
             return initial || null;

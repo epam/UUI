@@ -10,10 +10,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
 
     private isloaded: boolean = false;
 
-    constructor(
-        protected editable: IEditable<DataSourceState<TFilter, TId>>,
-        protected props: AsyncListViewProps<TItem, TId, TFilter>,
-    ) {
+    constructor(protected editable: IEditable<DataSourceState<TFilter, TId>>, protected props: AsyncListViewProps<TItem, TId, TFilter>) {
         super(editable, props);
         this.props = props;
         this.update(editable.value, props);

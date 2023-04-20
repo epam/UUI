@@ -6,7 +6,7 @@ export interface TextSettings {
     fontSize?: '10' | '12' | '14' | '16' | '18' | '24';
 }
 
-const defaultTextSettings  = {
+const defaultTextSettings = {
     18: { lineHeight: 12, fontSize: 10 },
     24: { lineHeight: 18, fontSize: 12 },
     30: { lineHeight: 18, fontSize: 14 },
@@ -17,12 +17,8 @@ const defaultTextSettings  = {
 };
 
 export function getTextClasses(props: TextSettings & { size: '18' | ControlSize | '60' }, border: boolean) {
-
     if (props.size === 'none') {
-        return [
-            css['line-height-' + props.lineHeight],
-            css['font-size-' + props.fontSize],
-        ];
+        return [css['line-height-' + props.lineHeight], css['font-size-' + props.fontSize]];
     }
 
     const setting = {

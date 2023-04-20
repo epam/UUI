@@ -7,11 +7,11 @@ const delay = (ms: number = 0): Promise<void> => {
     if (ms <= 0) {
         return Promise.resolve();
     } else {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
             setTimeout(resolve, ms);
         });
     }
-}
+};
 
 /** Creates an async function, which can collect several calls to it, and execute them in a single batch via provided callback. */
 export function batch<TArg = void, TRes = void>(
@@ -22,7 +22,7 @@ export function batch<TArg = void, TRes = void>(
     let batchPromise: any = null;
     let queue: TArg[] = [];
 
-    let nextCallPossibleAtMs = (new Date()).getTime();
+    let nextCallPossibleAtMs = new Date().getTime();
 
     async function batchedFn(arg: TArg, callOptions?: BatchPromiseOptions) {
         options = { ...options, ...callOptions };
@@ -30,7 +30,7 @@ export function batch<TArg = void, TRes = void>(
 
         // Enqueue request
         queue.push(arg);
-        let resultIndex = queue.length - 1; // an index of current item in queue. Result should be on the same index in batch.
+        const resultIndex = queue.length - 1; // an index of current item in queue. Result should be on the same index in batch.
         batchedFn.isBusy = true;
 
         // Wait current batch to complete
@@ -49,7 +49,7 @@ export function batch<TArg = void, TRes = void>(
             // Only the first call will run batch, immediately clear the queue, and set batchPromise value
             // Other calls will just await results of this call
             if (queue.length > 0) {
-                nextCallPossibleAtMs = (new Date()).getTime() + options.throttleMs;
+                nextCallPossibleAtMs = new Date().getTime() + options.throttleMs;
                 batchPromise = runBatch(queue);
                 queue = [];
             }
@@ -57,15 +57,14 @@ export function batch<TArg = void, TRes = void>(
             const results = await batchPromise;
 
             return results?.[resultIndex];
-        }
-        finally {
-            const nowMs = (new Date()).getTime();
+        } finally {
+            const nowMs = new Date().getTime();
             const delayMs = Math.max(0, nextCallPossibleAtMs - nowMs);
             // It's safe to replace currentPromise here. All other requests are already awaiting
             delayPromise = delay(delayMs);
             batchedFn.isBusy = queue.length > 0;
         }
-    };
+    }
 
     batchedFn.isBusy = false;
 

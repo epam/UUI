@@ -14,9 +14,6 @@ const ROOT_DIR = path.resolve(`${__dirname}/../../.`);
 
 function main() {
     const isFromCI = isCI();
-    if (isFromCI) {
-        return; // TODO: remove this condition after autofix applied to all files. it's temp. to allow CI not to fail.
-    }
     const args = [];
     let cmd;
     hasArg('--fix') && args.push('--fix');

@@ -39,8 +39,6 @@ export interface TypographyObject {
     textDecoration?: string;
 }
 
-
-
 export interface TokenObject {
     value?: string | TypographyObject | ShadowToken[] | ShadowToken | number;
     type: TokenType | string | 'undefined';

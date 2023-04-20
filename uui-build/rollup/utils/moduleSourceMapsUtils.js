@@ -2,7 +2,9 @@ const path = require('path');
 
 module.exports = { getSourceMapTransform };
 
-function forwardSlashes(pathStr) { return pathStr.replace(/\\/g, '/'); }
+function forwardSlashes(pathStr) {
+    return pathStr.replace(/\\/g, '/');
+}
 
 /**
  * It's needed to fix sources location path in "build/index.js.map" and "build/styles.css.map".

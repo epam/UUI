@@ -1,7 +1,9 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import objectSupport from 'dayjs/plugin/objectSupport.js';
-import { Icon, cx, IHasCX, IEditable, TimePickerValue, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import {
+    Icon, cx, IHasCX, IEditable, TimePickerValue, IHasRawProps, IHasForwardedRef,
+} from '@epam/uui-core';
 import { NumericInput } from './NumericInput';
 import { TextInput } from './TextInput';
 import { IconContainer } from '../layout/IconContainer';
@@ -30,21 +32,21 @@ export interface TimePickerBodyProps extends IHasCX, IEditable<TimePickerValue>,
 export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePickerValue> {
     setValue = (newTime: Dayjs) => {
         this.props.onValueChange({ hours: newTime.hour(), minutes: newTime.minute() });
-    }
+    };
 
     onHoursChange = (newHours: number) => {
         if (newHours > this.props.format) newHours = this.props.format;
         this.setValue(dayjs().set(this.props.value).hour(newHours));
-    }
+    };
 
     onMinutesChange = (newMinutes: number) => {
         if (newMinutes > MAX_MINUTES) newMinutes = MAX_MINUTES;
         this.setValue(dayjs().set(this.props.value).minute(newMinutes));
-    }
+    };
 
     onTimeTypeChange = () => {
         this.setValue(dayjs().set(this.props.value).add(12, 'h'));
-    }
+    };
 
     render() {
         const minutesStep = this.props.minutesStep || 5;
@@ -62,7 +64,11 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
                     <NumericInput
                         cx={ uuiTimePicker.input }
                         onValueChange={ this.onHoursChange }
-                        value={ +dayjs().set(this.props.value).format(MAX_HOURS === FORMAT_12H ? 'hh' : 'HH') }
+                        value={
+                            +dayjs()
+                                .set(this.props.value)
+                                .format(MAX_HOURS === FORMAT_12H ? 'hh' : 'HH')
+                        }
                         min={ MIN_HOURS }
                         max={ MAX_HOURS }
                     />
@@ -91,26 +97,13 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
                         onClick={ () => this.onMinutesChange(dayjs().set(this.props.value).subtract(minutesStep, 'm').minute()) }
                     />
                 </div>
-                { MAX_HOURS === FORMAT_12H && (
+                {MAX_HOURS === FORMAT_12H && (
                     <div className={ uuiTimePicker.elementContainer }>
-                        <IconContainer
-                            cx={ uuiTimePicker.iconUp }
-                            icon={ this.props.addIcon }
-                            onClick={ this.onTimeTypeChange }
-                        />
-                        <TextInput
-                            cx={ uuiTimePicker.input }
-                            onValueChange={ () => {} }
-                            isReadonly={ true }
-                            value={ dayjs().set(this.props.value).format('A') }
-                        />
-                        <IconContainer
-                            cx={ uuiTimePicker.iconDown }
-                            icon={ this.props.subtractIcon }
-                            onClick={ this.onTimeTypeChange }
-                        />
+                        <IconContainer cx={ uuiTimePicker.iconUp } icon={ this.props.addIcon } onClick={ this.onTimeTypeChange } />
+                        <TextInput cx={ uuiTimePicker.input } onValueChange={ () => {} } isReadonly={ true } value={ dayjs().set(this.props.value).format('A') } />
+                        <IconContainer cx={ uuiTimePicker.iconDown } icon={ this.props.subtractIcon } onClick={ this.onTimeTypeChange } />
                     </div>
-                ) }
+                )}
             </div>
         );
     }

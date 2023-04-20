@@ -147,7 +147,7 @@
 
     &:global(.uui-opened) {
         background-color: var(--uui-dropdown-menu-item-active);
-        fill: var(--uui-text-primary)
+        fill: var(--uui-text-primary);
     }
 
     & > *:not(:last-child) {

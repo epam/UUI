@@ -6,11 +6,11 @@ export default function SizeExample() {
 
     return (
         <>
-            <NumericInput size='48' value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
-            <NumericInput size='42' value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
-            <NumericInput size='36' value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
-            <NumericInput size='30' value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
-            <NumericInput size='24' value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
+            <NumericInput size="48" value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
+            <NumericInput size="42" value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
+            <NumericInput size="36" value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
+            <NumericInput size="30" value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
+            <NumericInput size="24" value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
         </>
     );
 }

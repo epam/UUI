@@ -7,7 +7,4 @@ export interface RichTextViewMods {
     size?: '12' | '14' | '16';
 }
 
-export const RichTextView = withMods<RichTextViewProps, RichTextViewMods>(uuiRichTextView, (mods: RichTextViewMods) => [
-    style.typographyPromo,
-    style['typography-' + (mods.size || '14')],
-]);
+export const RichTextView = withMods<RichTextViewProps, RichTextViewMods>(uuiRichTextView, (mods: RichTextViewMods) => [style.typographyPromo, style['typography-' + (mods.size || '14')]]);

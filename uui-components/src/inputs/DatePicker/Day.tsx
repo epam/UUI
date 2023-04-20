@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { cx, CX, IEditable, uuiMarkers, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import {
+    cx, CX, IEditable, uuiMarkers, IHasRawProps, IHasForwardedRef,
+} from '@epam/uui-core';
 import dayjs, { Dayjs } from 'dayjs';
 import { uuiDaySelection } from './Calendar';
-import isToday from "dayjs/plugin/isToday.js";
+import isToday from 'dayjs/plugin/isToday.js';
+
 dayjs.extend(isToday);
 
 export interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
@@ -21,7 +24,7 @@ export class Day extends React.Component<DayProps> {
 
         return (
             <div
-                onClick={ isPassedFilter ? (() => this.props.onValueChange(this.props.value)) : undefined }
+                onClick={ isPassedFilter ? () => this.props.onValueChange(this.props.value) : undefined }
                 className={ cx([
                     isPassedFilter && uuiDaySelection.clickable,
                     isPassedFilter && uuiMarkers.clickable,
@@ -35,9 +38,7 @@ export class Day extends React.Component<DayProps> {
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
-                <div className={ uuiDaySelection.day }>
-                    { this.props.renderDayNumber ? this.props.renderDayNumber(this.props.value) : this.props.value.format('D') }
-                </div>
+                <div className={ uuiDaySelection.day }>{this.props.renderDayNumber ? this.props.renderDayNumber(this.props.value) : this.props.value.format('D')}</div>
             </div>
         );
     }

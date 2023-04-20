@@ -3,17 +3,23 @@ import * as React from 'react';
 import { IDndContext, DndContextState } from '../../types';
 import { BaseContext } from '../BaseContext';
 
-let maxScrollSpeed = 2000; // px/second
+const maxScrollSpeed = 2000; // px/second
 
 export class DndContext extends BaseContext<DndContextState> implements IDndContext {
     public isDragging = false;
+
     public dragData: any;
 
     private scrollZoneSize = 85;
+
     private ghostOffsetX: number = 0;
+
     private ghostOffsetY: number = 0;
+
     private ghostWidth: number = 300;
+
     private renderGhostCallback: () => React.ReactNode = null;
+
     private lastScrollTime = new Date().getTime();
 
     constructor() {
@@ -62,10 +68,10 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             this.dragData = null;
             this.isDragging = false;
         });
-
     }
 
     xScrollNode: HTMLElement = null;
+
     yScrollNode: HTMLElement = null;
 
     private windowPointerMoveHandler = (e: PointerEvent) => {
@@ -73,11 +79,11 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             this.xScrollNode = getScrollParent(e.target as HTMLElement, 'x');
             this.yScrollNode = getScrollParent(e.target as HTMLElement, 'y');
         }
-    }
+    };
 
     private windowPointerUpHandler = (e: PointerEvent) => {
         this.isDragging && this.endDrag();
-    }
+    };
 
     private getScrollStep(nodeSize: number, nodeOffset: number, nodeScroll: number, mousePageCoord: number, mouseDelta: number) {
         const now = new Date().getTime();
@@ -99,7 +105,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         }
 
         if (scrollDir != 0) {
-            const step = (now - this.lastScrollTime) / 1000 * maxScrollSpeed * scrollDir;
+            const step = ((now - this.lastScrollTime) / 1000) * maxScrollSpeed * scrollDir;
             return nodeScroll + step;
         }
     }

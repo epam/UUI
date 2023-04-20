@@ -1,5 +1,7 @@
 import * as React from 'react';
-import {BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4} from '../common';
+import {
+    BaseDocsBlock, DocExample, EditableDocContent, UUI3, UUI4,
+} from '../common';
 
 export class TimePickerDoc extends BaseDocsBlock {
     title = 'TimePicker';
@@ -14,17 +16,11 @@ export class TimePickerDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='timePicker-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/timePicker/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="timePicker-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/timePicker/Basic.example.tsx" />
 
-                <DocExample
-                    title=' 24-hour format'
-                    path='./_examples/timePicker/TimeFormat.example.tsx'
-                />
+                <DocExample title=" 24-hour format" path="./_examples/timePicker/TimeFormat.example.tsx" />
             </>
         );
     }

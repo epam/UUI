@@ -7,11 +7,7 @@ export interface CheckboxMods extends UuiCheckboxMods {
 }
 
 export function applyCheckboxMods(mods: CheckboxMods & CheckboxProps) {
-    return [
-        mods.theme === 'dark' && css['theme-dark'],
-    ];
+    return [mods.theme === 'dark' && css['theme-dark']];
 }
 
-export const Checkbox = withMods<CheckboxProps, CheckboxMods>(
-    uuiCheckbox,
-    applyCheckboxMods);
+export const Checkbox = withMods<CheckboxProps, CheckboxMods>(uuiCheckbox, applyCheckboxMods);

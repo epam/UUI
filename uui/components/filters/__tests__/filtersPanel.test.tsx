@@ -107,7 +107,7 @@ async function setupFilterPanelComponent({ filtersConfig }: { filtersConfig: Tab
                 setTableState: jest.fn().mockImplementation((newTableState) => contextRef.current.setProperty('tableState', newTableState)),
             };
         },
-        (props) => (<FiltersPanel { ...props } />),
+        (props) => <FiltersPanel { ...props } />,
     );
     const dom = {
         add: screen.getByText('Add filter'),
@@ -211,7 +211,11 @@ describe('FiltersPanel', () => {
             const positionOption = withinDialog().queryByRoleAndText({ role: 'option', text: 'Position' });
             expect(positionOption).toBeInTheDocument();
             fireEvent.click(positionOption);
-            expect(withinDialog().queryAllByRole('tab').map((t) => t.textContent)).toEqual(['is', 'is not']);
+            expect(
+                withinDialog()
+                    .queryAllByRole('tab')
+                    .map((t) => t.textContent),
+            ).toEqual(['is', 'is not']);
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'option', text: 'QA' }));
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'option', text: 'Dev' }));
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'tab', text: 'is not' }));
@@ -265,7 +269,11 @@ describe('FiltersPanel', () => {
             const ageOption = withinDialog().queryByRoleAndText({ role: 'option', text: 'Age' });
             expect(ageOption).toBeInTheDocument();
             fireEvent.click(ageOption);
-            expect(withinDialog().queryAllByRole('tab').map((t) => t.textContent)).toEqual([
+            expect(
+                withinDialog()
+                    .queryAllByRole('tab')
+                    .map((t) => t.textContent),
+            ).toEqual([
                 '=',
                 '≠',
                 '≤',
@@ -323,7 +331,11 @@ describe('FiltersPanel', () => {
             const hireDateOption = withinDialog().queryByRoleAndText({ role: 'option', text: 'Hire Date' });
             expect(hireDateOption).toBeInTheDocument();
             fireEvent.click(hireDateOption);
-            expect(withinDialog().queryAllByRole('tab').map((t) => t.textContent)).toEqual(['In Range', 'Not in Range']);
+            expect(
+                withinDialog()
+                    .queryAllByRole('tab')
+                    .map((t) => t.textContent),
+            ).toEqual(['In Range', 'Not in Range']);
             fireEvent.click(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0]);
             fireEvent.click(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0]);
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'tab', text: 'Not in Range' }));

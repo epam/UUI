@@ -19,13 +19,14 @@ export default function ValueTypeExamplePicker() {
                 dataSource={ dataSource }
                 value={ value }
                 onValueChange={ onValueChange }
-                entityName='person'
-                selectionMode='multi'
+                entityName="person"
+                selectionMode="multi"
                 emptyValue={ [] }
-                valueType='entity'
+                valueType="entity"
             />
             <Text>
-                Selected users: { value.map(i => i.name).join(', ') }
+                Selected users:
+                {value.map((i) => i.name).join(', ')}
             </Text>
         </FlexCell>
     );

@@ -1,4 +1,6 @@
-import { DbPatch, DbTablesSet, DbTableEntityByTable, DbView, DbRelationType, ViewCacheItem } from './types';
+import {
+    DbPatch, DbTablesSet, DbTableEntityByTable, DbView, DbRelationType, ViewCacheItem,
+} from './types';
 import { objectKeys, defaultCompareViewDependencies, difference } from './utils';
 import isEqual from 'lodash.isequal';
 
@@ -23,8 +25,8 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
     }
 
     public with(patch: DbPatch<TTables>): this {
-        return this.update(db => {
-            objectKeys(db.tables).forEach(entityName => {
+        return this.update((db) => {
+            objectKeys(db.tables).forEach((entityName) => {
                 if (patch[entityName]) {
                     db.tables[entityName] = db.tables[entityName].with(patch[entityName]);
                 }
@@ -34,7 +36,7 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
 
     /* Views (cached db projections) */
 
-    valueAbsent = Symbol("ValueAbsent");
+    valueAbsent = Symbol('ValueAbsent');
 
     public runView<TResult, TParams = void, TDependencies = void>(view: DbView<this, TResult, TParams, TDependencies>, params?: TParams) {
         let cache = this.viewCache.get(view);
@@ -66,14 +68,14 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
             shouldUpdate = !compare(cacheItem.dependencies, dependencies);
         }
 
-        let previousValue = cacheItem.currentValue;
+        const previousValue = cacheItem.currentValue;
 
         if (shouldUpdate) {
             cacheItem.dependencies = dependencies;
-            let newValue = view.compute(this, params, dependencies);
+            const newValue = view.compute(this, params, dependencies);
             cacheItem.computedOnDb = this;
 
-            let compareResults = view.compareResults || isEqual;
+            const compareResults = view.compareResults || isEqual;
 
             if (!compareResults(previousValue, newValue)) {
                 if (view.traceDiff) {
@@ -86,5 +88,4 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
 
         return cacheItem.currentValue as TResult;
     }
-
 }
