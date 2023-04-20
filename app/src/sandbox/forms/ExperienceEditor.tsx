@@ -10,7 +10,10 @@ export interface ExperienceEditorProps extends IEditable<PersonExperienceItem[]>
     isReadOnly?: boolean;
 }
 
-let years = (new Array(50)).fill(0).map((item, index) => (2018 - index).toString()).map(name => ({ id: name, name: name }));
+let years = new Array(50)
+    .fill(0)
+    .map((item, index) => (2018 - index).toString())
+    .map((name) => ({ id: name, name: name }));
 
 export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
     lens = Lens.onEditableComponent<PersonExperienceItem[]>(this).default([]);
@@ -21,14 +24,14 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
 
     renderYearPicker(editable: IEditable<string>) {
         return (
-            <LabeledInput { ...editable }>
+            <LabeledInput {...editable}>
                 <PickerInput<{ name: string }, string>
-                    { ...editable }
-                    dataSource={ this.yearsDataSource }
-                    selectionMode='single'
-                    valueType='id'
-                    getName={ (val) => val.name }
-                    size='36'
+                    {...editable}
+                    dataSource={this.yearsDataSource}
+                    selectionMode="single"
+                    valueType="id"
+                    getName={(val) => val.name}
+                    size="36"
                 />
             </LabeledInput>
         );
@@ -36,67 +39,64 @@ export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
 
     renderItem(item: PersonExperienceItem, index: number) {
         let lens = this.lens.index(index);
-        return <FlexRow type='form' key={ `experienceName${index}` }>
-            <FlexCell grow={ 1 }>
-                <LabeledInput { ...lens.prop('experienceName').toProps() }>
-                    <TextInput
-                        { ...lens.prop('experienceName').toProps() }
-                        placeholder='Experience'
+        return (
+            <FlexRow type="form" key={`experienceName${index}`}>
+                <FlexCell grow={1}>
+                    <LabeledInput {...lens.prop('experienceName').toProps()}>
+                        <TextInput {...lens.prop('experienceName').toProps()} placeholder="Experience" />
+                    </LabeledInput>
+                </FlexCell>
+                <FlexCell grow={1}>{this.renderYearPicker(lens.prop('startRange').toProps())}</FlexCell>
+                <FlexCell grow={1}>{this.renderYearPicker(lens.prop('endRange').toProps())}</FlexCell>
+                <FlexCell width="auto">
+                    <LinkButton
+                        rawProps={{ 'aria-label': 'Remove' }}
+                        icon={RemoveIcon}
+                        onClick={() => this.props.onValueChange(this.props.value.filter((item, i) => index != i))}
                     />
-                </LabeledInput>
-            </FlexCell>
-            <FlexCell grow={ 1 }>
-                { this.renderYearPicker(lens.prop('startRange').toProps()) }
-            </FlexCell>
-            <FlexCell grow={ 1 }>
-                { this.renderYearPicker(lens.prop('endRange').toProps()) }
-            </FlexCell>
-            <FlexCell width='auto'>
-                <LinkButton
-                    rawProps={ { "aria-label": 'Remove' } }
-                    icon={ RemoveIcon }
-                    onClick={ () => this.props.onValueChange(this.props.value.filter((item, i) => index != i)) }
-                />
-            </FlexCell>
-        </FlexRow>;
+                </FlexCell>
+            </FlexRow>
+        );
     }
 
     render() {
         const value = this.lens.get();
-        return <>
-            <FlexRow padding='24'>
-                <FlexCell grow={ 1 }>
-                    <RichTextView>
-                        <b>Experience</b>
-                    </RichTextView>
-                </FlexCell>
-                <FlexCell grow={ 1 }>
-                    <RichTextView>
-                        <b>Work Start</b>
-                    </RichTextView>
-                </FlexCell>
-                <FlexCell grow={ 1 }>
-                    <RichTextView>
-                        <b>Work End</b>
-                    </RichTextView>
-                </FlexCell>
-            </FlexRow>
-            { value.map((item, index) => this.renderItem(item, index)) }
-            { (value.length == 0)
-                && <FlexRow padding='24'>
-                    <RichTextView>No Experience defined</RichTextView>
+        return (
+            <>
+                <FlexRow padding="24">
+                    <FlexCell grow={1}>
+                        <RichTextView>
+                            <b>Experience</b>
+                        </RichTextView>
+                    </FlexCell>
+                    <FlexCell grow={1}>
+                        <RichTextView>
+                            <b>Work Start</b>
+                        </RichTextView>
+                    </FlexCell>
+                    <FlexCell grow={1}>
+                        <RichTextView>
+                            <b>Work End</b>
+                        </RichTextView>
+                    </FlexCell>
                 </FlexRow>
-            }
-            <FlexRow type='form'>
-                <Button
-                    onClick={ () => this.props.onValueChange([...value, { experienceName: '', rangeDateValue: { from: '', to: '' } }]) }
-                    caption='add'
-                    size='30'
-                    color='grass'
-                    icon={ AddIcon }
-                />
-                <FlexSpacer />
-            </FlexRow>
-        </>;
+                {value.map((item, index) => this.renderItem(item, index))}
+                {value.length == 0 && (
+                    <FlexRow padding="24">
+                        <RichTextView>No Experience defined</RichTextView>
+                    </FlexRow>
+                )}
+                <FlexRow type="form">
+                    <Button
+                        onClick={() => this.props.onValueChange([...value, { experienceName: '', rangeDateValue: { from: '', to: '' } }])}
+                        caption="add"
+                        size="30"
+                        color="grass"
+                        icon={AddIcon}
+                    />
+                    <FlexSpacer />
+                </FlexRow>
+            </>
+        );
     }
 }

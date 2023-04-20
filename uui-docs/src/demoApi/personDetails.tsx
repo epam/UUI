@@ -1,12 +1,9 @@
-import { personDetails } from "../demoData/personDetails";
-import { PersonDetails } from "../models";
+import { personDetails } from '../demoData/personDetails';
+import { PersonDetails } from '../models';
 
 function randomDelay<T>(result: T): Promise<T> {
-    return new Promise<T>(resolve => {
-        setTimeout(
-            () => resolve(result),
-            Math.random() * 1000 + 20,
-        );
+    return new Promise<T>((resolve) => {
+        setTimeout(() => resolve(result), Math.random() * 1000 + 20);
     });
 }
 

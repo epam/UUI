@@ -14,12 +14,10 @@ export class FlexRowDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='flexRow-description' />
+                <EditableDocContent fileName="flexRow-description" />
 
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    path='./_examples/common/Card.example.tsx'
-                />
+                {this.renderSectionTitle('Examples')}
+                <DocExample path="./_examples/common/Card.example.tsx" />
             </>
         );
     }

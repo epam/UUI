@@ -1,5 +1,5 @@
 import { ArrayDataSource, ArrayDataSourceProps } from '../ArrayDataSource';
-import { useMemoWithDestructor } from "../../../helpers/useMemoWithDestructor";
+import { useMemoWithDestructor } from '../../../helpers/useMemoWithDestructor';
 
 export function useArrayDataSource<TItem, TId, TFilter>(props: ArrayDataSourceProps<TItem, TId, TFilter>, deps: any[]) {
     return useMemoWithDestructor(

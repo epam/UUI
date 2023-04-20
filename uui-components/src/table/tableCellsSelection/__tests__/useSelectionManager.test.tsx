@@ -1,4 +1,4 @@
-import { act } from "react-dom/test-utils";
+import { act } from 'react-dom/test-utils';
 import { renderHook } from '@testing-library/react';
 import { useSelectionManager } from '../hooks';
 import { columnsMock, rowsMock } from '../mocks';
@@ -56,7 +56,6 @@ describe('useSelectioManager', () => {
                 result.current.setSelectionRange(newSelectionRange);
             });
 
-
             expect(result.current.getSelectedCells()).toEqual([
                 { column: columnsMock[0], row: rowsMock[0] },
                 { column: columnsMock[1], row: rowsMock[0] },
@@ -73,8 +72,6 @@ describe('useSelectioManager', () => {
         });
     });
 
-
-
     describe('useCellSelectionInfo', () => {
         const selectionRange = { startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 2, endRowIndex: 3, isCopying: true };
         it('should render borders for start cell', async () => {
@@ -84,8 +81,14 @@ describe('useSelectioManager', () => {
             });
 
             expect(result.current.getCellSelectionInfo(0, 0)).toEqual({
-                isSelected: true, showTopBorder: true, showRightBorder: true, showBottomBorder: true, showLeftBorder: true, canCopyFrom: true,
-                canAcceptCopy: true, isStartCell: true,
+                isSelected: true,
+                showTopBorder: true,
+                showRightBorder: true,
+                showBottomBorder: true,
+                showLeftBorder: true,
+                canCopyFrom: true,
+                canAcceptCopy: true,
+                isStartCell: true,
             });
         });
 
@@ -96,13 +99,25 @@ describe('useSelectioManager', () => {
             });
 
             expect(result.current.getCellSelectionInfo(0, 2)).toEqual({
-                isSelected: true, showTopBorder: true, showRightBorder: true, canCopyFrom: true, canAcceptCopy: true,
-                showBottomBorder: false, showLeftBorder: false, isStartCell: false,
+                isSelected: true,
+                showTopBorder: true,
+                showRightBorder: true,
+                canCopyFrom: true,
+                canAcceptCopy: true,
+                showBottomBorder: false,
+                showLeftBorder: false,
+                isStartCell: false,
             });
 
             expect(result.current.getCellSelectionInfo(3, 1)).toEqual({
-                isSelected: true, showBottomBorder: true, showLeftBorder: true, canCopyFrom: true, canAcceptCopy: true,
-                showTopBorder: false, showRightBorder: false, isStartCell: false,
+                isSelected: true,
+                showBottomBorder: true,
+                showLeftBorder: true,
+                canCopyFrom: true,
+                canAcceptCopy: true,
+                showTopBorder: false,
+                showRightBorder: false,
+                isStartCell: false,
             });
         });
 
@@ -113,8 +128,14 @@ describe('useSelectioManager', () => {
             });
 
             expect(result.current.getCellSelectionInfo(2, 1)).toEqual({
-                isSelected: true, canCopyFrom: true, canAcceptCopy: true,
-                showTopBorder: false, showRightBorder: false, showBottomBorder: false, showLeftBorder: false, isStartCell: false,
+                isSelected: true,
+                canCopyFrom: true,
+                canAcceptCopy: true,
+                showTopBorder: false,
+                showRightBorder: false,
+                showBottomBorder: false,
+                showLeftBorder: false,
+                isStartCell: false,
             });
         });
     });

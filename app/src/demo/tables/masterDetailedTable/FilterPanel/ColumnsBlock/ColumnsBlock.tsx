@@ -13,11 +13,14 @@ interface IColumnsBlockProps {
 const ColumnsBlock: React.FC<IColumnsBlockProps> = (props) => {
     const items = useMemo(() => {
         const columnsConfig = props.columnsConfig || {};
-        const sortedColumns = sortBy(props.columns.filter(column => !!column.caption), i => {
-            return columnsConfig[i.key]?.order;
-        });
+        const sortedColumns = sortBy(
+            props.columns.filter((column) => !!column.caption),
+            (i) => {
+                return columnsConfig[i.key]?.order;
+            }
+        );
 
-        return sortedColumns.map(column => ({
+        return sortedColumns.map((column) => ({
             key: column.key,
             caption: column.caption,
             isVisible: columnsConfig[column.key]?.isVisible,
@@ -26,15 +29,10 @@ const ColumnsBlock: React.FC<IColumnsBlockProps> = (props) => {
     }, [props.columns, props.columnsConfig]);
 
     return (
-        <Accordion title='Columns' mode='inline' padding='18'>
-            { items.map(item => (
-                <Column
-                    value={ props.columnsConfig }
-                    onValueChange={ props.onColumnsConfigChange }
-                    columnInfo={ item }
-                    key={ item.key }
-                />
-            )) }
+        <Accordion title="Columns" mode="inline" padding="18">
+            {items.map((item) => (
+                <Column value={props.columnsConfig} onValueChange={props.onColumnsConfigChange} columnInfo={item} key={item.key} />
+            ))}
         </Accordion>
     );
 };

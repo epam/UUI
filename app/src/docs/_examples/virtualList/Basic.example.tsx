@@ -7,18 +7,22 @@ import css from './BasicExample.scss';
 
 const MyListItem: FC<{ index: number }> = (props) => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
-    return <div className={ css.itemContainer }>
-        <Panel cx={ css.item } shadow background='white'>
-            <FlexRow cx={ css.header } onClick={ () => setIsFolded(!isFolded) }>
-                <IconButton icon={ isFolded ? FoldedIcon : UnfoldedIcon } />
-                <Text>Row #{ props.index }</Text>
-            </FlexRow>
-            { !isFolded && <FlexRow cx={ css.body }>
-                <TextPlaceholder wordsCount={ (props.index % 20) * 10 } isNotAnimated={ true } />
-            </FlexRow>}
-        </Panel>
-    </div>;
-}
+    return (
+        <div className={css.itemContainer}>
+            <Panel cx={css.item} shadow background="white">
+                <FlexRow cx={css.header} onClick={() => setIsFolded(!isFolded)}>
+                    <IconButton icon={isFolded ? FoldedIcon : UnfoldedIcon} />
+                    <Text>Row #{props.index}</Text>
+                </FlexRow>
+                {!isFolded && (
+                    <FlexRow cx={css.body}>
+                        <TextPlaceholder wordsCount={(props.index % 20) * 10} isNotAnimated={true} />
+                    </FlexRow>
+                )}
+            </Panel>
+        </div>
+    );
+};
 
 // Generate some data. In the real app data items are retrieved from the server.
 const someData: number[] = [];
@@ -35,19 +39,18 @@ export default function VirtualListExample() {
     // Map visible data to some components. Passing key is critical in this case!
     // Invisible components will be unmounted, and, thus, lose their state.
     // So it's a good idea to keep their state externally. We are not doing this in this demo for simplicity sake.
-    const visibleRows = visibleItems.map(index => <MyListItem index={ index } key={ index } />);
+    const visibleRows = visibleItems.map((index) => <MyListItem index={index} key={index} />);
 
     return (
         <VirtualList
-            cx={ css.list } // User needs to define height for container, otherwise it would extend to fit the whole content
-            rows={ visibleRows }
+            cx={css.list} // User needs to define height for container, otherwise it would extend to fit the whole content
+            rows={visibleRows}
             role="listbox"
-            value={ state }
-            onValueChange={ setState }
-
+            value={state}
+            onValueChange={setState}
             // Total number of items, to estimate total height
             // If total count in unknown, you can just pass knownCount + 1 to have some space to trigger loading
-            rowsCount={ someData.length }
+            rowsCount={someData.length}
         />
     );
 }

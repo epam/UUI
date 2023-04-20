@@ -13,25 +13,18 @@ export const SvgCircleProgress = React.forwardRef<SVGSVGElement, SvgCircleProgre
     const circumference = insetRadius * Math.PI;
 
     return (
-        <svg className={ css.root } width={ props.size } height={ props.size } ref={ ref } { ...props.rawProps }>
+        <svg className={css.root} width={props.size} height={props.size} ref={ref} {...props.rawProps}>
             <circle
-                stroke={ '#ACAFBF' }
-                strokeDasharray={ circumference }
-                strokeDashoffset={ circumference - (props.progress / 100 * circumference) }
-                strokeWidth={ insetRadius }
-                fill='transparent'
-                r={ insetRadius / 2 }
-                cx={ props.size / 2 }
-                cy={ props.size / 2 }
+                stroke={'#ACAFBF'}
+                strokeDasharray={circumference}
+                strokeDashoffset={circumference - (props.progress / 100) * circumference}
+                strokeWidth={insetRadius}
+                fill="transparent"
+                r={insetRadius / 2}
+                cx={props.size / 2}
+                cy={props.size / 2}
             />
-            <circle
-                stroke={ '#ACAFBF' }
-                strokeWidth={ 1 }
-                fill='transparent'
-                r={ outsetRadius }
-                cx={ props.size / 2 }
-                cy={ props.size / 2 }
-            />
+            <circle stroke={'#ACAFBF'} strokeWidth={1} fill="transparent" r={outsetRadius} cx={props.size / 2} cy={props.size / 2} />
         </svg>
     );
 });

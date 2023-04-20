@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cx from "classnames";
+import cx from 'classnames';
 import { Icon, IHasCX, IHasForwardedRef, IHasRawProps } from '@epam/uui-core';
 
 interface ISvgProps {

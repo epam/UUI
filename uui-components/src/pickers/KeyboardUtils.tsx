@@ -1,4 +1,4 @@
-import { DataSourceState, DataRowProps, IEditable, IDataSourceView } from "@epam/uui-core";
+import { DataSourceState, DataRowProps, IEditable, IDataSourceView } from '@epam/uui-core';
 
 export interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
     listView: IDataSourceView<any, any, any>;
@@ -53,7 +53,8 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             }
             break;
         }
-        default: return;
+        default:
+            return;
     }
 
     if (value.focusedIndex != focusedIndex || value.search != search) {

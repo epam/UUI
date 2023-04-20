@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Text, Badge, EpamAdditionalColor, FlexRow, IconButton, LinkButton, Tag } from '@epam/promo';
 import { DataColumnProps } from '@epam/uui-core';
-import {  Person } from '@epam/uui-docs';
+import { Person } from '@epam/uui-docs';
 import css from './DemoTablePaged.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 
 export const personColumns = [
     {
         key: 'name',
-        caption: "Name",
-        render: p => <Text>{ p.name }</Text>,
+        caption: 'Name',
+        render: (p) => <Text>{p.name}</Text>,
         width: 200,
         fix: 'left',
         isSortable: true,
@@ -17,91 +17,91 @@ export const personColumns = [
     {
         key: 'profileStatus',
         caption: 'Profile Status',
-        render: p => p.profileStatus && <FlexRow>
-            <Badge
-                fill="transparent"
-                color={ p.profileStatus.toLowerCase() as EpamAdditionalColor }
-                caption={ p.profileStatus }/>
-        </FlexRow>,
+        render: (p) =>
+            p.profileStatus && (
+                <FlexRow>
+                    <Badge fill="transparent" color={p.profileStatus.toLowerCase() as EpamAdditionalColor} caption={p.profileStatus} />
+                </FlexRow>
+            ),
         grow: 0,
         shrink: 0,
         width: 140,
         isSortable: true,
-        isFilterActive: f => !!f.profileStatusId,
+        isFilterActive: (f) => !!f.profileStatusId,
     },
     {
         key: 'jobTitle',
-        caption: "Title",
-        render: r => <Text>{ r.jobTitle }</Text>,
+        caption: 'Title',
+        render: (r) => <Text>{r.jobTitle}</Text>,
         grow: 0,
         shrink: 0,
         width: 200,
         isSortable: true,
-        isFilterActive: f => !!f.jobTitleId,
+        isFilterActive: (f) => !!f.jobTitleId,
     },
     {
         key: 'departmentName',
-        caption: "Department",
-        render: p => <Text>{ p.departmentName }</Text>,
+        caption: 'Department',
+        render: (p) => <Text>{p.departmentName}</Text>,
         grow: 0,
         shrink: 0,
         width: 200,
         isSortable: true,
-        isFilterActive: f => !!f.departmentId,
+        isFilterActive: (f) => !!f.departmentId,
         isHiddenByDefault: true,
     },
     {
         key: 'officeAddress',
-        caption: "Office",
-        render: p => <Text>{ p.officeAddress }</Text>,
+        caption: 'Office',
+        render: (p) => <Text>{p.officeAddress}</Text>,
         grow: 0,
         shrink: 0,
         width: 150,
         isSortable: true,
-        isFilterActive: f => !!f.officeId,
+        isFilterActive: (f) => !!f.officeId,
     },
     {
         key: 'managerName',
-        caption: "Manager",
-        render: p => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#"/>,
+        caption: 'Manager',
+        render: (p) => <LinkButton caption={p.managerName} captionCX={css.managerCell} href="#" />,
         grow: 0,
         shrink: 0,
         width: 150,
         isSortable: true,
-        isFilterActive: f => !!f.managerId,
+        isFilterActive: (f) => !!f.managerId,
     },
     {
         key: 'countryName',
         caption: 'Country',
-        render: p => <Text>{ p.countryName }</Text>,
+        render: (p) => <Text>{p.countryName}</Text>,
         grow: 0,
         shrink: 0,
         width: 150,
         isSortable: true,
-        isFilterActive: f => !!f.countryId,
+        isFilterActive: (f) => !!f.countryId,
     },
     {
         key: 'cityName',
         caption: 'City',
-        render: p => <Text>{ p.cityName }</Text>,
+        render: (p) => <Text>{p.cityName}</Text>,
         grow: 0,
         shrink: 0,
         width: 150,
         isSortable: true,
-        isFilterActive: f => !!f.cityId,
+        isFilterActive: (f) => !!f.cityId,
     },
     {
         key: 'profileType',
         caption: 'Profile Type',
-        render: p => <Text>{ p.hireDate ? 'Employee' : 'Student' }</Text>,
+        render: (p) => <Text>{p.hireDate ? 'Employee' : 'Student'}</Text>,
         grow: 0,
         shrink: 0,
         width: 150,
     },
     {
         key: 'birthDate',
-        caption: "Birth Date",
-        render: p => p?.birthDate && <Text>{ new Date(p.birthDate).toLocaleDateString() }</Text>,
+        caption: 'Birth Date',
+        render: (p) => p?.birthDate && <Text>{new Date(p.birthDate).toLocaleDateString()}</Text>,
         grow: 0,
         shrink: 0,
         width: 120,
@@ -109,8 +109,8 @@ export const personColumns = [
     },
     {
         key: 'relatedNPR',
-        caption: "Related NPR",
-        render: p => <Text>{ p.relatedNPR ? 'Completed' : 'Uncompleted' }</Text>,
+        caption: 'Related NPR',
+        render: (p) => <Text>{p.relatedNPR ? 'Completed' : 'Uncompleted'}</Text>,
         grow: 0,
         shrink: 0,
         width: 120,
@@ -120,7 +120,7 @@ export const personColumns = [
     {
         key: 'titleLevel',
         caption: 'Track & Level',
-        render: p => <Text>{ p.titleLevel }</Text>,
+        render: (p) => <Text>{p.titleLevel}</Text>,
         grow: 0,
         shrink: 0,
         width: 100,
@@ -129,10 +129,7 @@ export const personColumns = [
     },
     {
         key: 'detailed',
-        render: (p) => <IconButton
-            cx={ css.detailedIcon }
-            icon={ ViewIcon }
-        />,
+        render: (p) => <IconButton cx={css.detailedIcon} icon={ViewIcon} />,
         width: 54,
         alignSelf: 'center',
         fix: 'right',

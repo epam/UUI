@@ -33,7 +33,12 @@ const grayscaleColors = [
     { name: 'gray5', hasVariable: true, hex: '#FAFAFC', context: 'Table Header' },
     { name: 'gray10', hasVariable: true, hex: '#F5F6FA', context: 'Background' },
     { name: 'gray20', hasVariable: true, hex: '#EBEDF5', context: 'Table (Hover)' },
-    { name: 'gray30', hasVariable: true, hex: '#E1E3EB', context: 'Table Divider, Button (Disabled), Input Border (Disabled), Cancel Button Border (Disabled), Informer, Tag' },
+    {
+        name: 'gray30',
+        hasVariable: true,
+        hex: '#E1E3EB',
+        context: 'Table Divider, Button (Disabled), Input Border (Disabled), Cancel Button Border (Disabled), Informer, Tag',
+    },
     { name: 'gray40', hasVariable: true, hex: '#CED0DB', context: 'Divider, Input Border' },
     { name: 'gray50', hasVariable: true, hex: '#ACAFBF', context: 'Disabled Text, Cancel Button Border' },
     { name: 'gray60', hasVariable: true, hex: '#6C6F80', context: 'Icon (Disabled), Input Border (Hover), Secondary Text, Placeholder' },
@@ -87,44 +92,57 @@ const additionalColors = [
 
 export class PromoColorsDoc extends React.Component {
     showNotification() {
-        svc.uuiNotifications.show((props: INotification) =>
-            <NotificationCard { ...props } icon={ NotificationIcon } color='gray60' onClose={ null } >
-                <Text size='36' font='sans'>HEX code was copied to the clipboard</Text>
-            </NotificationCard>, { duration: 3 });
+        svc.uuiNotifications.show(
+            (props: INotification) => (
+                <NotificationCard {...props} icon={NotificationIcon} color="gray60" onClose={null}>
+                    <Text size="36" font="sans">
+                        HEX code was copied to the clipboard
+                    </Text>
+                </NotificationCard>
+            ),
+            { duration: 3 }
+        );
     }
 
     renderBasicColors() {
         let colorMatrix = arrayToMatrix(basicColors, 5);
         return (
-            <RichTextView size='16' cx={ css.container } >
+            <RichTextView size="16" cx={css.container}>
                 <h2>Basics</h2>
                 <FlexRow>
-                    { colorMatrix.map((column, index) => {
+                    {colorMatrix.map((column, index) => {
                         return (
-                            <FlexCell key={ index } minWidth={ 120 } >
-                                { column.map((color, index) => {
+                            <FlexCell key={index} minWidth={120}>
+                                {column.map((color, index) => {
                                     return (
-                                        <Tooltip content={ color.context } key={ index } >
-                                            <div className={ cx(css.box, css.basicColorBox, css[`basic-color-${color.name}`]) } >
-                                                <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) } >{ color.hex }</div>
-                                                { color.hasVariable && <div className={ css.colorName } onClick={ () => {} } >{ `$${ color.name }` }</div> }
+                                        <Tooltip content={color.context} key={index}>
+                                            <div className={cx(css.box, css.basicColorBox, css[`basic-color-${color.name}`])}>
+                                                <div className={css.hexText} onClick={() => copyTextToClipboard(color.hex, this.showNotification)}>
+                                                    {color.hex}
+                                                </div>
+                                                {color.hasVariable && <div className={css.colorName} onClick={() => {}}>{`$${color.name}`}</div>}
                                             </div>
                                         </Tooltip>
                                     );
-                                }) }
+                                })}
                             </FlexCell>
                         );
-                    })
-                    }
-                    <FlexCell minWidth={ 100 } alignSelf='flex-end' >
-                        <div className={ cx(css.box, css.captionColorBox) }>
-                            <Text color='gray60' font='sans-italic' fontSize='12' lineHeight='18' >Rested</Text>
+                    })}
+                    <FlexCell minWidth={100} alignSelf="flex-end">
+                        <div className={cx(css.box, css.captionColorBox)}>
+                            <Text color="gray60" font="sans-italic" fontSize="12" lineHeight="18">
+                                Rested
+                            </Text>
                         </div>
-                        <div className={ cx(css.box, css.captionColorBox) }>
-                            <Text color='gray60' font='sans-italic' fontSize='12' lineHeight='18' >Hovered</Text>
+                        <div className={cx(css.box, css.captionColorBox)}>
+                            <Text color="gray60" font="sans-italic" fontSize="12" lineHeight="18">
+                                Hovered
+                            </Text>
                         </div>
-                        <div className={ cx(css.box, css.captionColorBox) }>
-                            <Text color='gray60' font='sans-italic' fontSize='12' lineHeight='18' >Pressed</Text>
+                        <div className={cx(css.box, css.captionColorBox)}>
+                            <Text color="gray60" font="sans-italic" fontSize="12" lineHeight="18">
+                                Pressed
+                            </Text>
                         </div>
                     </FlexCell>
                 </FlexRow>
@@ -135,23 +153,26 @@ export class PromoColorsDoc extends React.Component {
 
     renderGrayscaleColors() {
         return (
-            <RichTextView size='16' cx={ css.container } >
+            <RichTextView size="16" cx={css.container}>
                 <h2>Grayscale</h2>
                 <FlexRow>
-                    { grayscaleColors.map((color) => {
+                    {grayscaleColors.map((color) => {
                         return (
-                            <Tooltip key={ color.name } content={ color.context } >
-                                <div className={ cx(css.box, css.grayscaleColorBox, css[`grayscale-color-${color.name}`]) } >
-                                    <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) } >{ color.hex }</div>
-                                    { color.hasVariable && <div className={ css.colorName } onClick={ () => {} } >{ `$${ color.name }` }</div> }
+                            <Tooltip key={color.name} content={color.context}>
+                                <div className={cx(css.box, css.grayscaleColorBox, css[`grayscale-color-${color.name}`])}>
+                                    <div className={css.hexText} onClick={() => copyTextToClipboard(color.hex, this.showNotification)}>
+                                        {color.hex}
+                                    </div>
+                                    {color.hasVariable && <div className={css.colorName} onClick={() => {}}>{`$${color.name}`}</div>}
                                 </div>
                             </Tooltip>
                         );
-                    })
-                    }
+                    })}
                 </FlexRow>
-                <p>These colors are used for borders, separators, icons, text, and backgrounds.
-                    Each grayscale has its specific purpose. Please do not change the purpose of the shades.</p>
+                <p>
+                    These colors are used for borders, separators, icons, text, and backgrounds. Each grayscale has its specific purpose. Please do not change the purpose
+                    of the shades.
+                </p>
             </RichTextView>
         );
     }
@@ -159,26 +180,27 @@ export class PromoColorsDoc extends React.Component {
     renderAdditionalColors() {
         let colorMatrix = arrayToMatrix(additionalColors, 5);
         return (
-            <RichTextView size='16' cx={ css.container } >
+            <RichTextView size="16" cx={css.container}>
                 <h2>Additional</h2>
                 <FlexRow>
-                    { colorMatrix.map((column, index) => {
+                    {colorMatrix.map((column, index) => {
                         return (
-                            <FlexCell key={ index } minWidth={ 120 } >
-                                { column.map((color, index) => {
+                            <FlexCell key={index} minWidth={120}>
+                                {column.map((color, index) => {
                                     return (
-                                        <Tooltip content={ color.context } key={ index } >
-                                            <div className={ cx(css.box, css.additionalColorBox, css[`additional-color-${color.name}`]) } >
-                                                <div className={ css.hexText } onClick={ () => copyTextToClipboard(color.hex, this.showNotification) } >{ color.hex }</div>
-                                                { color.hasVariable && <div className={ css.colorName } onClick={ () => {} } >{ `$${ color.name }` }</div> }
+                                        <Tooltip content={color.context} key={index}>
+                                            <div className={cx(css.box, css.additionalColorBox, css[`additional-color-${color.name}`])}>
+                                                <div className={css.hexText} onClick={() => copyTextToClipboard(color.hex, this.showNotification)}>
+                                                    {color.hex}
+                                                </div>
+                                                {color.hasVariable && <div className={css.colorName} onClick={() => {}}>{`$${color.name}`}</div>}
                                             </div>
                                         </Tooltip>
                                     );
-                                }) }
+                                })}
                             </FlexCell>
                         );
-                    })
-                    }
+                    })}
                 </FlexRow>
                 <p>These colors are used in all other cases: for illustrations, accents and so on.</p>
             </RichTextView>
@@ -188,9 +210,9 @@ export class PromoColorsDoc extends React.Component {
     render() {
         return (
             <>
-                { this.renderBasicColors() }
-                { this.renderGrayscaleColors() }
-                { this.renderAdditionalColors() }
+                {this.renderBasicColors()}
+                {this.renderGrayscaleColors()}
+                {this.renderAdditionalColors()}
             </>
         );
     }

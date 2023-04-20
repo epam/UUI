@@ -1,5 +1,5 @@
-import { DataTableState, ITablePreset } from "@epam/uui-core";
-import { Person } from "@epam/uui-docs";
+import { DataTableState, ITablePreset } from '@epam/uui-core';
+import { Person } from '@epam/uui-docs';
 
 type PersonTableRecord = Person;
 
@@ -10,6 +10,6 @@ interface PersonsTableState extends DataTableState {
     presets?: ITablePreset[];
 }
 
-type ILocalStoragePresets = (Omit<ITablePreset, "isActive">)[];
+type ILocalStoragePresets = Omit<ITablePreset, 'isActive'>[];
 
 export type { PersonTableRecord, PersonTableFilter, PersonsTableState, ILocalStoragePresets };

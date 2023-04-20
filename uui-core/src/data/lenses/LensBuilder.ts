@@ -6,9 +6,7 @@ import { ILens, ArrayElement } from './types';
 export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused> {
     public readonly handleValueChange: (newValue: TFocused) => void = null;
 
-    constructor(
-        public readonly lens: ILensImpl<TRoot, TFocused>,
-    ) {
+    constructor(public readonly lens: ILensImpl<TRoot, TFocused>) {
         this.handleValueChange = (newValue: TFocused) => {
             this.lens.set(null, newValue);
         };
@@ -57,7 +55,7 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
     }
 
     public onChange(fn: (oldValue: TFocused, newValue: TFocused) => TFocused): LensBuilder<TRoot, TFocused> {
-        return this.compose({ get: i => i, set: fn, getValidationState: this.lens.getValidationState, getMetadata: this.lens.getMetadata as any }, fn);
+        return this.compose({ get: (i) => i, set: fn, getValidationState: this.lens.getValidationState, getMetadata: this.lens.getMetadata as any }, fn);
     }
 
     public default(value: TFocused): LensBuilder<TRoot, TFocused> {

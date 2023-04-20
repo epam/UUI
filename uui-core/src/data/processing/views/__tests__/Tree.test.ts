@@ -1,5 +1,5 @@
-import { SortingOption } from "../../../../types";
-import { Tree } from "../tree";
+import { SortingOption } from '../../../../types';
+import { Tree } from '../tree';
 
 interface TestItem {
     id: number;
@@ -21,7 +21,7 @@ const testData: TestItem[] = [
     { id: 330, parentId: 300, value: 1, name: 'item32' }, //  9     330
 ];
 
-const blankTree = Tree.blank<TestItem, number>({ getId: i => i.id, getParentId: i => i.parentId });
+const blankTree = Tree.blank<TestItem, number>({ getId: (i) => i.id, getParentId: (i) => i.parentId });
 
 const testTree = blankTree.patch(testData);
 
@@ -40,7 +40,7 @@ describe('Tree', () => {
 
         it('getRootItems', () => {
             const parents = testTree.getRootItems();
-            const parentIds = parents.map(item => item.id);
+            const parentIds = parents.map((item) => item.id);
             expect(parentIds).toEqual([100, 200, 300]);
         });
 
@@ -87,14 +87,14 @@ describe('Tree', () => {
         it('can append new root item by id', () => {
             const newTree = testTree.patch([{ id: 400 }]);
             expect(newTree.getById(400)).toEqual({ id: 400 });
-            expect(newTree.getRootItems().map(n => n.id)).toEqual([100, 200, 300, 400]);
-        })
+            expect(newTree.getRootItems().map((n) => n.id)).toEqual([100, 200, 300, 400]);
+        });
 
         it('can append new child item by id', () => {
             const newTree = testTree.patch([{ id: 130, parentId: 100 }]);
             expect(newTree.getById(130)).toEqual({ id: 130, parentId: 100 });
-            expect(newTree.getChildrenByParentId(100).map(n => n.id)).toEqual([110, 120, 130]);
-        })
+            expect(newTree.getChildrenByParentId(100).map((n) => n.id)).toEqual([110, 120, 130]);
+        });
 
         it('can move node to a new parent', () => {
             const newTree = testTree.patch([{ id: 110, parentId: 100 }]);
@@ -103,83 +103,78 @@ describe('Tree', () => {
             //     { id: 130, key: '130', parentId: 100, index: 2, item: { id: 130, parentId: 100 }}
             // );
             // expect(newTree.getNodesByParentId(100).map(n => n.id)).toEqual([110, 120, 130]);
-        })
+        });
     });
 
     describe('forEach', () => {
-        const testForeach = (tree: (typeof blankTree), options: Parameters<typeof blankTree.forEach>[1], resultIds: number[]) => {
-            const visited: { item: TestItem, id: number, parentId: number }[] = [];
-            tree.forEach((item, id, parentId) => { visited.push({ item, id, parentId }) }, options);
-            const reference = resultIds
-                .map(id => tree.getById(id))
-                .map(item => ({ id: item?.id, item, parentId: item?.parentId }))
+        const testForeach = (tree: typeof blankTree, options: Parameters<typeof blankTree.forEach>[1], resultIds: number[]) => {
+            const visited: { item: TestItem; id: number; parentId: number }[] = [];
+            tree.forEach((item, id, parentId) => {
+                visited.push({ item, id, parentId });
+            }, options);
+            const reference = resultIds.map((id) => tree.getById(id)).map((item) => ({ id: item?.id, item, parentId: item?.parentId }));
             expect(visited).toEqual(reference);
-        }
+        };
 
         it('can iterate empty tree', () => {
             testForeach(blankTree, {}, []);
-        })
+        });
 
         it('can iterate top-down a node', () => {
             testForeach(testTree, { parentId: 100 }, [100, 110, 120, 121, 122]);
-        })
+        });
 
         it('can iterate top-down a node (exclude parent)', () => {
             testForeach(testTree, { parentId: 100, includeParent: false }, [110, 120, 121, 122]);
-        })
+        });
 
         it('can iterate bottom-up a node', () => {
             testForeach(testTree, { parentId: 100, direction: 'bottom-up' }, [110, 121, 122, 120, 100]);
-        })
+        });
 
         it('can iterate bottom-up a node (exclude parent)', () => {
-            testForeach(
-                testTree,
-                { parentId: 100, direction: 'bottom-up', includeParent: false },
-                [110, 121, 122, 120]);
-        })
+            testForeach(testTree, { parentId: 100, direction: 'bottom-up', includeParent: false }, [110, 121, 122, 120]);
+        });
 
         it('can iterate top-down whole tree', () => {
-            testForeach(
-                testTree,
-                null,
-                [100, 110, 120, 121, 122, 200, 300, 310, 320, 330],
-            );
-        })
+            testForeach(testTree, null, [100, 110, 120, 121, 122, 200, 300, 310, 320, 330]);
+        });
 
         it('can iterate bottom-up whole tree', () => {
-            testForeach(
-                testTree,
-                { direction: 'bottom-up' },
-                [110, 121, 122, 120, 100, 200, 310, 320, 330, 300],
-            );
-        })
-    })
+            testForeach(testTree, { direction: 'bottom-up' }, [110, 121, 122, 120, 100, 200, 310, 320, 330, 300]);
+        });
+    });
 
     describe('computeSubtotals', () => {
         it('can calculate child counts', () => {
-            const subtotals = testTree.computeSubtotals(_ => 1, (a, b) => a + b);
+            const subtotals = testTree.computeSubtotals(
+                (_) => 1,
+                (a, b) => a + b
+            );
             expect(subtotals.get(100)).toBe(5);
             expect(subtotals.get(120)).toBe(3);
             expect(subtotals.get(121)).toBe(1);
             expect(subtotals.get(200)).toBe(1);
             expect(subtotals.get(300)).toBe(4);
             expect(subtotals.get(undefined)).toBe(10);
-        })
+        });
 
         it('can sum values', () => {
-            const subtotals = testTree.computeSubtotals(item => item.value || 0, (a, b) => a + b);
+            const subtotals = testTree.computeSubtotals(
+                (item) => item.value || 0,
+                (a, b) => a + b
+            );
             expect(subtotals.get(100)).toBe(13);
             expect(subtotals.get(120)).toBe(9);
             expect(subtotals.get(121)).toBe(3);
             expect(subtotals.get(200)).toBe(5);
             expect(subtotals.get(300)).toBe(7);
             expect(subtotals.get(undefined)).toBe(25);
-        })
+        });
 
         it('can sum values (children only)', () => {
             const subtotals = testTree.computeSubtotals(
-                (item, hasChildren) => hasChildren ? 0 : (item.value || 0),
+                (item, hasChildren) => (hasChildren ? 0 : item.value || 0),
                 (a, b) => a + b
             );
             expect(subtotals.get(100)).toBe(8);
@@ -188,7 +183,7 @@ describe('Tree', () => {
             expect(subtotals.get(200)).toBe(5);
             expect(subtotals.get(300)).toBe(6);
             expect(subtotals.get(undefined)).toBe(19);
-        })
+        });
     });
 
     describe('cascadeSelection', () => {
@@ -252,13 +247,13 @@ describe('Tree', () => {
 
             it('can select all (cascade = true)', () => {
                 const selection = testTree.cascadeSelection([200], undefined, true, { cascade: true }).sort();
-                const allTestTreeIds = testData.map(i => i.id).sort();
+                const allTestTreeIds = testData.map((i) => i.id).sort();
                 expect(selection).toEqual(allTestTreeIds);
             });
 
             it("can select all (cascade = 'explicit')", () => {
                 const selection = testTree.cascadeSelection([100], undefined, true, { cascade: 'explicit' }).sort();
-                const allTestTreeIds = testData.map(i => i.id).sort();
+                const allTestTreeIds = testData.map((i) => i.id).sort();
                 expect(selection).toEqual(allTestTreeIds);
             });
         });
@@ -295,21 +290,20 @@ describe('Tree', () => {
         it('should return sorted tree', () => {
             const sortedTree = testTree.sort({ sorting: [{ field: 'value', direction: 'asc' }] });
             expect(sortedTree.getRootIds()).toEqual([300, 100, 200]);
-            expect(sortedTree.getChildrenByParentId(100).map(n => n.id)).toEqual([110, 120]);
-            expect(sortedTree.getChildrenByParentId(120).map(n => n.id)).toEqual([121, 122]);
-            expect(sortedTree.getChildrenByParentId(300).map(n => n.id)).toEqual([330, 320, 310]);
+            expect(sortedTree.getChildrenByParentId(100).map((n) => n.id)).toEqual([110, 120]);
+            expect(sortedTree.getChildrenByParentId(120).map((n) => n.id)).toEqual([121, 122]);
+            expect(sortedTree.getChildrenByParentId(300).map((n) => n.id)).toEqual([330, 320, 310]);
         });
 
         it('should return sorted tree by sortBy function', () => {
-            const sortBy = ((i: TestItem, sorting: SortingOption) => i[sorting.field as keyof TestItem] || '');
+            const sortBy = (i: TestItem, sorting: SortingOption) => i[sorting.field as keyof TestItem] || '';
 
             const sortedTree = testTree.sort({ sorting: [{ field: 'value', direction: 'asc' }], sortBy });
             expect(sortedTree.getRootIds()).toEqual([300, 100, 200]);
-            expect(sortedTree.getChildrenByParentId(100).map(n => n.id)).toEqual([110, 120]);
-            expect(sortedTree.getChildrenByParentId(120).map(n => n.id)).toEqual([121, 122]);
-            expect(sortedTree.getChildrenByParentId(300).map(n => n.id)).toEqual([330, 320, 310]);
+            expect(sortedTree.getChildrenByParentId(100).map((n) => n.id)).toEqual([110, 120]);
+            expect(sortedTree.getChildrenByParentId(120).map((n) => n.id)).toEqual([121, 122]);
+            expect(sortedTree.getChildrenByParentId(300).map((n) => n.id)).toEqual([330, 320, 310]);
         });
-
     });
 
     describe('search', () => {
@@ -317,7 +311,7 @@ describe('Tree', () => {
             const searchTree = testTree.search({ search: 'item3', getSearchFields: ({ name }) => [name] });
 
             expect(searchTree.getRootIds()).toEqual([300]);
-            expect(searchTree.getChildrenByParentId(300).map(n => n.id)).toEqual([310, 320, 330]);
+            expect(searchTree.getChildrenByParentId(300).map((n) => n.id)).toEqual([310, 320, 330]);
         });
     });
 
@@ -329,8 +323,8 @@ describe('Tree', () => {
             });
 
             expect(searchTree.getRootIds()).toEqual([100, 200]);
-            expect(searchTree.getChildrenByParentId(100).map(n => n.id)).toEqual([120]);
-            expect(searchTree.getChildrenByParentId(120).map(n => n.id)).toEqual([122]);
+            expect(searchTree.getChildrenByParentId(100).map((n) => n.id)).toEqual([120]);
+            expect(searchTree.getChildrenByParentId(120).map((n) => n.id)).toEqual([122]);
         });
     });
 });

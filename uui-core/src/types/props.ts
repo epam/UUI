@@ -1,9 +1,9 @@
-import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode } from "react";
+import { Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode } from 'react';
 import { Link, CX, Icon } from './objects';
 import * as CSS from 'csstype';
-import { DataRowProps } from "./dataSources";
-import { AnalyticsEvent } from "./contexts";
-import { PopperArrowProps } from "react-popper";
+import { DataRowProps } from './dataSources';
+import { AnalyticsEvent } from './contexts';
+import { PopperArrowProps } from 'react-popper';
 import { Placement } from '@popperjs/core';
 
 /** Component value can be invalid */
@@ -131,7 +131,12 @@ export interface IBasicPickerToggler extends IDropdownToggler {
  * Only IDropdownToggler implementation is necessary for the picker to function.
  * Other props can be implemented for full-featured picker togglers.
  */
-export interface IPickerToggler<TItem = any, TId = any> extends IBasicPickerToggler, Partial<IEditable<string>>, Partial<IHasPlaceholder>, Partial<IDisableable>, Partial<ICanBeInvalid> {
+export interface IPickerToggler<TItem = any, TId = any>
+    extends IBasicPickerToggler,
+        Partial<IEditable<string>>,
+        Partial<IHasPlaceholder>,
+        Partial<IDisableable>,
+        Partial<ICanBeInvalid> {
     selection?: DataRowProps<TItem, TId>[];
     selectedRowsCount?: number;
 }
@@ -201,7 +206,7 @@ export interface INotification {
 
 export type IHasRawProps<T> = {
     /** Any HTML attributes (native or 'data-') to put on the underlying component */
-    rawProps?: T & Record<`data-${ string }`, string>;
+    rawProps?: T & Record<`data-${string}`, string>;
 };
 
 export interface IHasForwardedRef<T extends HTMLOrSVGElement> {
@@ -209,12 +214,11 @@ export interface IHasForwardedRef<T extends HTMLOrSVGElement> {
     forwardedRef?: ForwardedRef<T>;
 }
 
-export type FlexRowProps = IHasCX
-    & IClickable
-    & Attributes
-    & IHasChildren
-    & IHasRawProps<HTMLAttributes<HTMLDivElement>>
-    & {
+export type FlexRowProps = IHasCX &
+    IClickable &
+    Attributes &
+    IHasChildren &
+    IHasRawProps<HTMLAttributes<HTMLDivElement>> & {
         /** Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) */
         alignItems?: 'top' | 'center' | 'bottom' | 'stretch';
         /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
@@ -223,12 +227,11 @@ export type FlexRowProps = IHasCX
         rowGap?: number | '6' | '12' | '18' | '24' | '36';
     };
 
-export type FlexCellProps = IHasCX
-    & IClickable
-    & IHasRawProps<HTMLAttributes<HTMLDivElement>>
-    & Attributes
-    & IHasChildren
-    & {
+export type FlexCellProps = IHasCX &
+    IClickable &
+    IHasRawProps<HTMLAttributes<HTMLDivElement>> &
+    Attributes &
+    IHasChildren & {
         /** CSS width. Set to 'auto' to make FlexCell resize to it's content */
         width?: number | 'auto' | '100%';
         /** CSS min-width */
@@ -245,14 +248,20 @@ export type FlexCellProps = IHasCX
         style?: React.CSSProperties;
     };
 
-export type VPanelProps = IHasCX & IHasChildren & IClickable & IHasRawProps<HTMLAttributes<HTMLDivElement>> & IHasForwardedRef<HTMLDivElement> & IAnalyticableClick & {
-    style?: CSSProperties;
-};
+export type VPanelProps = IHasCX &
+    IHasChildren &
+    IClickable &
+    IHasRawProps<HTMLAttributes<HTMLDivElement>> &
+    IHasForwardedRef<HTMLDivElement> &
+    IAnalyticableClick & {
+        style?: CSSProperties;
+    };
 
-export type ICheckable = IEditable<boolean> & IDisableable & {
-    /** Sets checkbox in indeterminate state (neither checked or unchecked), which usually means that children elements has both values */
-    indeterminate?: boolean;
-};
+export type ICheckable = IEditable<boolean> &
+    IDisableable & {
+        /** Sets checkbox in indeterminate state (neither checked or unchecked), which usually means that children elements has both values */
+        indeterminate?: boolean;
+    };
 
 export interface IAnalyticableClick {
     /**

@@ -22,17 +22,17 @@ export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends
             this.needFocusSearch = false;
         }
 
-        if (prevProps.rows.length !== this.props.rows.length || !isEqual(prevProps.value.checked, this.props.value.checked) && !this.props.fixedBodyPosition) {
+        if (prevProps.rows.length !== this.props.rows.length || (!isEqual(prevProps.value.checked, this.props.value.checked) && !this.props.fixedBodyPosition)) {
             this.props.scheduleUpdate?.();
         }
     }
 
     showSearch() {
-        return this.props.showSearch === 'auto' ? (this.props.totalCount > 10) : Boolean(this.props.showSearch);
+        return this.props.showSearch === 'auto' ? this.props.totalCount > 10 : Boolean(this.props.showSearch);
     }
 
     searchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         this.props.onKeyDown?.(e);
         if (e.shiftKey && e.key === 'Tab') e.preventDefault();
-    }
+    };
 }

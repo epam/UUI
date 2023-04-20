@@ -8,11 +8,14 @@ const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'Tex
     .prop('size', { examples: ['24', '30', '36', '42', '48'], defaultValue: '36' })
     .implements([onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, IHasEditModeDoc] as any)
     .prop('maxLength', { examples: [10, 20, 30], type: 'number' })
-    .prop('value', { examples: [
+    .prop('value', {
+        examples: [
             { value: 'Hello, World!', isDefault: true },
             { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
             { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
-        ], type: 'string' })
+        ],
+        type: 'string',
+    })
     .prop('onAccept', { examples: (ctx: PropSamplesCreationContext) => [ctx.getCallback('onAccept')] })
     .prop('onCancel', { examples: (ctx: PropSamplesCreationContext) => [ctx.getCallback('onCancel')] })
     .prop('type', { examples: ['text', 'password'], type: 'string', defaultValue: 'text' })

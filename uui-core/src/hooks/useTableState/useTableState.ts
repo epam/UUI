@@ -1,14 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import isEqual from "lodash.isequal";
-import {
-    ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState,
-    TableFiltersConfig,
-} from "../../types";
-import { getOrderBetween } from "../../helpers";
-import { useUuiContext } from "../../services";
-import sortBy from "lodash.sortby";
-import { normalizeFilterConfig } from "./normalizeFilterConfig";
-import { clearEmptyValueFromRecord } from "./clearEmptyValueFromRecord";
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import isEqual from 'lodash.isequal';
+import { ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig } from '../../types';
+import { getOrderBetween } from '../../helpers';
+import { useUuiContext } from '../../services';
+import sortBy from 'lodash.sortby';
+import { normalizeFilterConfig } from './normalizeFilterConfig';
+import { clearEmptyValueFromRecord } from './clearEmptyValueFromRecord';
 
 export const useTableState = <TFilter = Record<string, any>, TViewState = any>(params: TableStateParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
     const context = useUuiContext();
@@ -113,109 +110,141 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
         }
     }, []);
 
-    const setColumnsConfig = useCallback((columnsConfig: ColumnsConfig) => {
-        setTableState({
-            ...getTableStateValue(),
-            columnsConfig,
-        });
-    }, [getTableStateValue]);
+    const setColumnsConfig = useCallback(
+        (columnsConfig: ColumnsConfig) => {
+            setTableState({
+                ...getTableStateValue(),
+                columnsConfig,
+            });
+        },
+        [getTableStateValue]
+    );
 
-    const setFiltersConfig = useCallback((filtersConfig: FiltersConfig) => {
-        setTableState({
-            ...getTableStateValue(),
-            filtersConfig,
-        });
-    }, [getTableStateValue]);
+    const setFiltersConfig = useCallback(
+        (filtersConfig: FiltersConfig) => {
+            setTableState({
+                ...getTableStateValue(),
+                filtersConfig,
+            });
+        },
+        [getTableStateValue]
+    );
 
-    const setFilter = useCallback((filter: TFilter) => {
-        setTableState({
-            ...getTableStateValue(),
-            filter,
-        });
-    }, [getTableStateValue]);
+    const setFilter = useCallback(
+        (filter: TFilter) => {
+            setTableState({
+                ...getTableStateValue(),
+                filter,
+            });
+        },
+        [getTableStateValue]
+    );
 
     const getActivePresetId = () => {
         const presetId = getTableStateValue().presetId;
         return presetId ? +presetId : undefined;
     };
 
-    const choosePreset = useCallback((preset: ITablePreset<TFilter, TViewState>) => {
-        setTableState({
-            ...getTableStateValue(),
-            filter: preset.filter,
-            columnsConfig: preset.columnsConfig,
-            filtersConfig: preset.filtersConfig,
-            sorting: preset.sorting,
-            presetId: preset.id,
-            viewState: preset.viewState,
-        });
-    }, [getTableStateValue]);
+    const choosePreset = useCallback(
+        (preset: ITablePreset<TFilter, TViewState>) => {
+            setTableState({
+                ...getTableStateValue(),
+                filter: preset.filter,
+                columnsConfig: preset.columnsConfig,
+                filtersConfig: preset.filtersConfig,
+                sorting: preset.sorting,
+                presetId: preset.id,
+                viewState: preset.viewState,
+            });
+        },
+        [getTableStateValue]
+    );
 
     const getNewPresetOrder = useCallback(() => {
         const maxOrder = sortBy(presets, (i) => i.order).reverse()[0]?.order;
         return getOrderBetween(maxOrder, null);
     }, [presets]);
 
-    const createPreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
-        preset.id = await params?.onPresetCreate?.(preset);
+    const createPreset = useCallback(
+        async (preset: ITablePreset<TFilter, TViewState>) => {
+            preset.id = await params?.onPresetCreate?.(preset);
 
-        setPresets(prevValue => [...prevValue, preset]);
-        choosePreset(preset);
+            setPresets((prevValue) => [...prevValue, preset]);
+            choosePreset(preset);
 
-        return preset.id;
-    }, [choosePreset, params?.onPresetCreate]);
+            return preset.id;
+        },
+        [choosePreset, params?.onPresetCreate]
+    );
 
+    const createNewPreset = useCallback(
+        (name: string) => {
+            const tableStateValue = getTableStateValue();
+            const newPreset: ITablePreset<TFilter, TViewState> = {
+                id: null,
+                name: name,
+                filter: tableStateValue.filter,
+                columnsConfig: tableStateValue.columnsConfig,
+                filtersConfig: tableStateValue.filtersConfig,
+                sorting: tableStateValue.sorting,
+                viewState: tableStateValue.viewState,
+                isReadonly: false,
+                order: getNewPresetOrder(),
+            };
 
-    const createNewPreset = useCallback((name: string) => {
-        const tableStateValue = getTableStateValue();
-        const newPreset: ITablePreset<TFilter, TViewState> = {
-            id: null,
-            name: name,
-            filter: tableStateValue.filter,
-            columnsConfig: tableStateValue.columnsConfig,
-            filtersConfig: tableStateValue.filtersConfig,
-            sorting: tableStateValue.sorting,
-            viewState: tableStateValue.viewState,
-            isReadonly: false,
-            order: getNewPresetOrder(),
-        };
+            return createPreset(newPreset);
+        },
+        [getTableStateValue, getNewPresetOrder]
+    );
 
-        return createPreset(newPreset);
-    }, [getTableStateValue, getNewPresetOrder]);
+    const hasPresetChanged = useCallback(
+        (preset: ITablePreset<TFilter, TViewState>) => {
+            const tableStateValue = getTableStateValue();
+            return (
+                !isEqual(preset.filter, tableStateValue.filter) ||
+                !isEqual(preset.columnsConfig, tableStateValue.columnsConfig) ||
+                !isEqual(preset.sorting, tableStateValue.sorting) ||
+                !isEqual(preset.viewState, tableStateValue.viewState)
+            );
+        },
+        [getTableStateValue]
+    );
 
-    const hasPresetChanged = useCallback((preset: ITablePreset<TFilter, TViewState>) => {
-        const tableStateValue = getTableStateValue();
-        return !isEqual(preset.filter, tableStateValue.filter)
-            || !isEqual(preset.columnsConfig, tableStateValue.columnsConfig)
-            || !isEqual(preset.sorting, tableStateValue.sorting)
-            || !isEqual(preset.viewState, tableStateValue.viewState);
-    }, [getTableStateValue]);
+    const duplicatePreset = useCallback(
+        async (preset: ITablePreset<TFilter, TViewState>) => {
+            const newPreset: ITablePreset<TFilter, TViewState> = {
+                ...preset,
+                isReadonly: false,
+                id: null,
+                name: preset.name + '_copy',
+                order: getNewPresetOrder(),
+            };
 
-    const duplicatePreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
-        const newPreset: ITablePreset<TFilter, TViewState> = {
-            ...preset,
-            isReadonly: false,
-            id: null,
-            name: preset.name + '_copy',
-            order: getNewPresetOrder(),
-        };
+            return createPreset(newPreset);
+        },
+        [createPreset, getNewPresetOrder]
+    );
 
-        return createPreset(newPreset);
-    }, [createPreset, getNewPresetOrder]);
-
-    const deletePreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
-        await params?.onPresetDelete(preset);
-        setTableState({
-            ...getTableStateValue(),
-            presetId: undefined,
-        });
-        setPresets(prevValue => prevValue.filter(p => p.id !== preset.id));
-    }, [getTableStateValue]);
+    const deletePreset = useCallback(
+        async (preset: ITablePreset<TFilter, TViewState>) => {
+            await params?.onPresetDelete(preset);
+            setTableState({
+                ...getTableStateValue(),
+                presetId: undefined,
+            });
+            setPresets((prevValue) => prevValue.filter((p) => p.id !== preset.id));
+        },
+        [getTableStateValue]
+    );
 
     const updatePreset = useCallback(async (preset: ITablePreset<TFilter, TViewState>) => {
-        setPresets(prevValue => {
+        setPresets((prevValue) => {
             const newPresets = [...prevValue];
-            newPresets.splice(prevValue.findIndex(p => p.id === preset.id), 1, preset);
+            newPresets.splice(
+                prevValue.findIndex((p) => p.id === preset.id),
+                1,
+                preset
+            );
             return newPresets;
         });
 
@@ -223,13 +252,16 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
     }, []);
 
     const getPresetLink = useCallback((preset: ITablePreset<TFilter, TViewState>) => {
-        return window.location.origin + context.uuiRouter.createHref({
-            pathname: context.uuiRouter.getCurrentLink().pathname,
-            query: stateToQueryObject({
-                ...preset,
-                presetId: preset.id,
-            }),
-        });
+        return (
+            window.location.origin +
+            context.uuiRouter.createHref({
+                pathname: context.uuiRouter.getCurrentLink().pathname,
+                query: stateToQueryObject({
+                    ...preset,
+                    presetId: preset.id,
+                }),
+            })
+        );
     }, []);
 
     return {
@@ -250,8 +282,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>(p
     };
 };
 
-interface TableStateParams<TFilter = Record<string, any>, TViewState = any>
-    extends Partial<IEditable<DataTableState<TFilter, TViewState>>> {
+interface TableStateParams<TFilter = Record<string, any>, TViewState = any> extends Partial<IEditable<DataTableState<TFilter, TViewState>>> {
     columns?: DataColumnProps[];
     filters?: TableFiltersConfig<TFilter>[];
     initialPresets?: ITablePreset<TFilter, TViewState>[];

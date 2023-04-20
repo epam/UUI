@@ -52,12 +52,12 @@ export class TimelineTransform {
         let leftDate = this.getDate(mouseX - widthCircle / 2);
         let rightDate = this.getDate(mouseX + widthCircle / 2);
 
-        return listDates.filter(d => leftDate <= d.date && d.date <= rightDate);
+        return listDates.filter((d) => leftDate <= d.date && d.date <= rightDate);
     }
 
     isVisible(date: Date): boolean {
         let ms = date.getTime();
-        return (this.leftMs <= ms) || (ms <= this.rightMs);
+        return this.leftMs <= ms || ms <= this.rightMs;
     }
 
     isHoliday(date: Date): boolean {
@@ -82,7 +82,7 @@ export class TimelineTransform {
             leftTrimmed: this.getX(leftBorder, 'left'),
             rightTrimmed: this.getX(rightBorder, 'right'),
             widthTrimmed: 0,
-            isVisible: (leftBorder.getTime() < this.rightMs) && (rightBorder.getTime() > this.leftMs),
+            isVisible: leftBorder.getTime() < this.rightMs && rightBorder.getTime() > this.leftMs,
         };
 
         result.width = result.right - result.left;
@@ -91,11 +91,7 @@ export class TimelineTransform {
         return result;
     }
 
-    getScaleBars(
-        alignStartDate: (nonAligned: Date) => Date,
-        getNthDate: (baseDate: Date, n: number) => Date,
-        keyPrefix: string,
-    ) {
+    getScaleBars(alignStartDate: (nonAligned: Date) => Date, getNthDate: (baseDate: Date, n: number) => Date, keyPrefix: string) {
         let fromDate = new Date(this.leftMs);
         let toDate = new Date(this.rightMs);
         const baseDate = alignStartDate(fromDate);
@@ -127,57 +123,57 @@ export class TimelineTransform {
 
     public getVisibleMonths() {
         return this.getScaleBars(
-            baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), 1),
+            (baseDate) => new Date(baseDate.getFullYear(), baseDate.getMonth(), 1),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth() + n),
-            "M",
+            'M'
         );
     }
 
     public getVisibleWeeks() {
         return this.getScaleBars(
-            baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate() - baseDate.getDay() + 1),
+            (baseDate) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate() - baseDate.getDay() + 1),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate() + n * 7),
-            "W",
+            'W'
         );
     }
 
     public getVisibleYears() {
         return this.getScaleBars(
-            baseDate => new Date(baseDate.getFullYear(), 0, 1),
+            (baseDate) => new Date(baseDate.getFullYear(), 0, 1),
             (baseDate, n) => new Date(baseDate.getFullYear() + n, 0, 1),
-            "Y",
+            'Y'
         );
     }
 
     public getVisibleDays() {
         return this.getScaleBars(
-            baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate()),
+            (baseDate) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate()),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate() + n * 1),
-            "D",
+            'D'
         );
     }
 
     public getVisibleHours() {
         return this.getScaleBars(
-            baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours()),
+            (baseDate) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours()),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours() + n * 1),
-            "H",
+            'H'
         );
     }
 
     public getVisibleQuoterHours() {
         return this.getScaleBars(
-            baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours()),
+            (baseDate) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours()),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes() + n * 15),
-            "Q",
+            'Q'
         );
     }
 
     public getVisibleMinutes() {
         return this.getScaleBars(
-            baseDate => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes()),
+            (baseDate) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes()),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes() + n),
-            "m",
+            'm'
         );
     }
 
@@ -199,5 +195,4 @@ export class TimelineTransform {
     public getScaleVisibility(minPxPerDay: number, maxPxPerDay: number) {
         return this.controller.getScaleVisibility(minPxPerDay, maxPxPerDay);
     }
-
 }

@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 import css from './AdaptivePanel.scss';
-import { FlexRow } from "../layout/flexItems";
+import { FlexRow } from '../layout/flexItems';
 import { measureAdaptiveItems } from './measureItemsUtils';
-import { IHasCX, IHasRawProps, useLayoutEffectSafeForSsr } from "@epam/uui-core";
+import { IHasCX, IHasRawProps, useLayoutEffectSafeForSsr } from '@epam/uui-core';
 import cx from 'classnames';
 
 export type AdaptiveItemProps<T = unknown> = T & {
@@ -30,7 +30,9 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
 
         if (!children.length) return;
         const itemsWidth: Record<string, number> = {};
-        children.forEach((child, index) => { itemsWidth[props.items[index].id] = child.getBoundingClientRect().width; });
+        children.forEach((child, index) => {
+            itemsWidth[props.items[index].id] = child.getBoundingClientRect().width;
+        });
 
         return itemsWidth;
     };
@@ -57,19 +59,17 @@ export const AdaptivePanel = (props: AdaptivePanelProps) => {
 
     const renderItems = () => {
         if (isChanged || !itemsWidth) {
-            return props.items.map(i => i.render(i, [], props.items));
+            return props.items.map((i) => i.render(i, [], props.items));
         }
         const wrapperWidth = wrapperRef?.current ? wrapperRef.current.getBoundingClientRect().width : 0;
 
         const measuredItems = measureAdaptiveItems(props.items, wrapperWidth, itemsWidth);
-        return measuredItems.displayed.map(i => i.render(i, measuredItems.hidden, measuredItems.displayed));
+        return measuredItems.displayed.map((i) => i.render(i, measuredItems.hidden, measuredItems.displayed));
     };
 
     return (
-        <div { ...props.rawProps } className={ cx(props.cx, css.mainWrapper) } ref={ wrapperRef }>
-            <FlexRow ref={ displayedRowRef }>
-                { renderItems() }
-            </FlexRow>
+        <div {...props.rawProps} className={cx(props.cx, css.mainWrapper)} ref={wrapperRef}>
+            <FlexRow ref={displayedRowRef}>{renderItems()}</FlexRow>
         </div>
     );
 };

@@ -1,5 +1,5 @@
-import { DataColumnProps, DataRowProps, DataTableSelectedCellData } from "@epam/uui-core";
-import { DataTableSelectionRange } from "../types";
+import { DataColumnProps, DataRowProps, DataTableSelectedCellData } from '@epam/uui-core';
+import { DataTableSelectionRange } from '../types';
 
 export const getCell = <TItem, TId>(rowIndex: number, columnIndex: number, rows: DataRowProps<TItem, TId>[], columns: DataColumnProps<TItem, TId>[]) => {
     const row = rows[rowIndex];
@@ -14,7 +14,7 @@ export const getCell = <TItem, TId>(rowIndex: number, columnIndex: number, rows:
 export const getStartCell = <TItem, TId, TFilter>(
     selectionRange: DataTableSelectionRange | null,
     rows: DataRowProps<TItem, TId>[],
-    columns: DataColumnProps<TItem, TId>[],
+    columns: DataColumnProps<TItem, TId>[]
 ): DataTableSelectedCellData<TItem, TId, TFilter> | null => {
     if (selectionRange === null) {
         return null;
@@ -24,8 +24,7 @@ export const getStartCell = <TItem, TId, TFilter>(
     return getCell(startRowIndex, startColumnIndex, rows, columns);
 };
 
-export const getNormalizedLimits = (startIndex: number, endIndex: number) =>
-    startIndex < endIndex ? [startIndex, endIndex] : [endIndex, startIndex];
+export const getNormalizedLimits = (startIndex: number, endIndex: number) => (startIndex < endIndex ? [startIndex, endIndex] : [endIndex, startIndex]);
 
 export const getCellPosition = (row: number, column: number, selectionRange: DataTableSelectionRange) => {
     const { startColumnIndex, startRowIndex, endColumnIndex, endRowIndex } = selectionRange || {};
@@ -33,7 +32,7 @@ export const getCellPosition = (row: number, column: number, selectionRange: Dat
     const [leftColumn, rightColumn] = getNormalizedLimits(startColumnIndex, endColumnIndex);
     const [topRow, bottomRow] = getNormalizedLimits(startRowIndex, endRowIndex);
 
-    const isSelected = (column >= leftColumn && column <= rightColumn) && (row >= topRow && row <= bottomRow);
+    const isSelected = column >= leftColumn && column <= rightColumn && row >= topRow && row <= bottomRow;
     const isStartCell = row === startRowIndex && column === startColumnIndex;
 
     return {

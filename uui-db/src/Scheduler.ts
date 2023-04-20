@@ -48,15 +48,15 @@ export class Scheduler {
             const task = this.scheduled.shift();
             this.running.push(task);
             task.run()
-                .then(r => {
+                .then((r) => {
                     task.result = r;
                 })
-                .catch(err => {
+                .catch((err) => {
                     task.error = err;
                 })
                 .finally(() => {
                     this.complete.push(task);
-                    this.running = this.running.filter(t => t !== task);
+                    this.running = this.running.filter((t) => t !== task);
                     this.scheduleRun();
                 });
         }

@@ -8,7 +8,7 @@ const RadioInputDoc = new DocBuilder<RadioInputProps & RadioInputMods>({ name: '
     .implements([isDisabledDoc, isReadonlyDoc, isInvalidDoc, iHasLabelDoc, iEditable])
     .prop('value', { examples: [true, false] })
     .prop('size', { examples: ['12', '18'] })
-    .prop('theme', { examples: (['light', 'dark']), defaultValue: 'light' })
+    .prop('theme', { examples: ['light', 'dark'], defaultValue: 'light' })
     .withContexts(DefaultContext, ResizableContext, FormContext);
 
 export default RadioInputDoc;

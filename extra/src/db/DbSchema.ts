@@ -9,7 +9,7 @@ export class DbSchema<T> {
     private dbProto: any = {};
     private blankState: DbState = null;
 
-    private reducerToMethod(fn: Function) {        
+    private reducerToMethod(fn: Function) {
         const proto = this.dbProto;
         return function (this: any) {
             const newState = fn.apply(null, arguments).call(null, this.state);
@@ -26,7 +26,7 @@ export class DbSchema<T> {
             cache: {},
         };
 
-        Object.keys(this.entitySchemas).forEach(entityName => {
+        Object.keys(this.entitySchemas).forEach((entityName) => {
             this.dbProto[entityName] = function (pattern: any) {
                 return new QueryBuilder(this.state, { entityName, pattern });
             };
@@ -43,8 +43,7 @@ export class DbSchema<T> {
         const db = Object.create(this.dbProto);
         db.state = this.blankState;
 
-        Object.keys(this.entitySchemas).forEach(entityName => {
-        });
+        Object.keys(this.entitySchemas).forEach((entityName) => {});
 
         return db;
     }
@@ -70,19 +69,19 @@ export class DbEntitySchema<T> {
     public keyFields: DbFieldSchemaRec<T>[];
 
     constructor(public fields: DbEntityFieldsSchema<T>) {
-        this.fieldsList = objectKeys(fields).map(name => ({ name, ...fields[name] as any}));
-        this.fkFields = this.fieldsList.filter(f => f.fk);
-        this.pkFields = this.fieldsList.filter(f => f.pk);
-        this.keyFields = this.fieldsList.filter(f => f.pk || f.fk);
-        const key = this.pkFields.map(f => f.name);
+        this.fieldsList = objectKeys(fields).map((name) => ({ name, ...(fields[name] as any) }));
+        this.fkFields = this.fieldsList.filter((f) => f.fk);
+        this.pkFields = this.fieldsList.filter((f) => f.pk);
+        this.keyFields = this.fieldsList.filter((f) => f.pk || f.fk);
+        const key = this.pkFields.map((f) => f.name);
 
         if (key.length == 1) {
             const singleKey = key[0];
-            this.getKey = entity => entity[singleKey];
-            this.argsToKey = args => args[0];
+            this.getKey = (entity) => entity[singleKey];
+            this.argsToKey = (args) => args[0];
         } else {
-            this.getKey = entity => I.List(key.map(field => entity[field]));
-            this.argsToKey = args => I.List(args);
+            this.getKey = (entity) => I.List(key.map((field) => entity[field]));
+            this.argsToKey = (args) => I.List(args);
         }
     }
 

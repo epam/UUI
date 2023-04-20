@@ -1,5 +1,5 @@
-import { FiltersConfig, TableFiltersConfig } from "../../types";
-import { getOrderBetween } from "../../helpers";
+import { FiltersConfig, TableFiltersConfig } from '../../types';
+import { getOrderBetween } from '../../helpers';
 
 export const normalizeFilterConfig = <TFilter>(filtersConfig: FiltersConfig, filterValue: Record<string, any> | undefined, filters: TableFiltersConfig<TFilter>[]) => {
     if (!filters) {
@@ -8,7 +8,7 @@ export const normalizeFilterConfig = <TFilter>(filtersConfig: FiltersConfig, fil
 
     let result: FiltersConfig = {};
     let order: string | null = null;
-    filters.forEach(filter => {
+    filters.forEach((filter) => {
         if (filter.isAlwaysVisible || filterValue?.[filter.field as string] || filtersConfig?.[filter.field]) {
             const newOrder = filtersConfig?.[filter?.field]?.order || getOrderBetween(order, null);
             result[filter.field] = {

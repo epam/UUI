@@ -36,7 +36,7 @@ export interface View {
 
 const tasks = new DbTable<Task, number, any>({
     tableName: 'tasks',
-    typeName: "Task",
+    typeName: 'Task',
     primaryKey: 'id',
     fields: {
         id: { isGenerated: true },
@@ -55,18 +55,18 @@ const tasks = new DbTable<Task, number, any>({
         },
         estimate: {
             toClient: (value: any) => value && parseInt(value),
-            toServer: (value: number) => value && (value + '' as any),
+            toServer: (value: number) => value && ((value + '') as any),
         },
         isDone: { default: false },
         isDraft: { isClientOnly: true },
     },
-    indexes:  ['createdBy', 'assignedTo'],
+    indexes: ['createdBy', 'assignedTo'],
     deleteFlag: 'isDeleted',
 });
 
 const users = new DbTable<User, string, any>({
     tableName: 'users',
-    typeName: "User",
+    typeName: 'User',
     primaryKey: 'id',
     fields: {
         id: { isGenerated: true },
@@ -76,7 +76,7 @@ const users = new DbTable<User, string, any>({
 
 const managers = new DbTable<Manager, [string, string], any>({
     tableName: 'managers',
-    typeName: "Manager",
+    typeName: 'Manager',
     primaryKey: ['subordinateId', 'managerId'],
     fields: {
         subordinateId: { isGenerated: true },
@@ -102,38 +102,47 @@ const viewsFn = new DbTable<View, number, any>({
     fields: {
         id: { isGenerated: true },
     },
-    isClientOnly: view => view.id < 0,
+    isClientOnly: (view) => view.id < 0,
 });
-
 
 const taskDbTables = { tasks, users, managers, views, viewsFn };
 export type TaskDbTables = typeof taskDbTables;
 
 export class TaskDb extends Db<TaskDbTables> {
-    public get tasks() { return this.tables.tasks; }
-    public get users() { return this.tables.users; }
-    public get managers() { return this.tables.managers; }
-    public get views() { return this.tables.views; }
-    public get viewsFn() { return this.tables.viewsFn; }
+    public get tasks() {
+        return this.tables.tasks;
+    }
+    public get users() {
+        return this.tables.users;
+    }
+    public get managers() {
+        return this.tables.managers;
+    }
+    public get views() {
+        return this.tables.views;
+    }
+    public get viewsFn() {
+        return this.tables.viewsFn;
+    }
 }
 
 export const emptyDb = new TaskDb(taskDbTables);
 
 export const sampleUsers = {
-    daenerys: { id: 'DT', name: "Daenerys Targaryen", sex: 'f', orderStr: "b" } as User,
-    john: { id: 'JS', name: "John Snow", sex: "m", orderStr: "a" } as User,
-    arya: { id: 'AS', name: "Arya Stark", sex: 'f', orderStr: "c" } as User,
+    daenerys: { id: 'DT', name: 'Daenerys Targaryen', sex: 'f', orderStr: 'b' } as User,
+    john: { id: 'JS', name: 'John Snow', sex: 'm', orderStr: 'a' } as User,
+    arya: { id: 'AS', name: 'Arya Stark', sex: 'f', orderStr: 'c' } as User,
 };
 
 export const sampleData = {
     tasks: [
-        { id: 1, name: "Implement DB", isDone: true, createdBy: 'DT', assignedTo: 'JS' },
-        { id: 2, name: "Write Some Tests", isDone: true, createdBy: 'DT', assignedTo: null },
-        { id: 3, name: "Basic Indexes", isDone: true, createdBy: 'DT', assignedTo: 'JS' },
-        { id: 4, name: "Views", isDone: false, createdBy: 'DT', assignedTo: 'JS' },
-        { id: 5, name: "IO Scheduling", isDone: false, createdBy: 'DT', assignedTo: 'AS' },
-        { id: 6, name: "DataSources", isDone: false, createdBy: 'JS', assignedTo: 'JS' },
-        { id: 7, name: "Loaders", isDone: false, createdBy: 'AS', assignedTo: 'AS' },
+        { id: 1, name: 'Implement DB', isDone: true, createdBy: 'DT', assignedTo: 'JS' },
+        { id: 2, name: 'Write Some Tests', isDone: true, createdBy: 'DT', assignedTo: null },
+        { id: 3, name: 'Basic Indexes', isDone: true, createdBy: 'DT', assignedTo: 'JS' },
+        { id: 4, name: 'Views', isDone: false, createdBy: 'DT', assignedTo: 'JS' },
+        { id: 5, name: 'IO Scheduling', isDone: false, createdBy: 'DT', assignedTo: 'AS' },
+        { id: 6, name: 'DataSources', isDone: false, createdBy: 'JS', assignedTo: 'JS' },
+        { id: 7, name: 'Loaders', isDone: false, createdBy: 'AS', assignedTo: 'AS' },
     ] as Task[],
     users: [sampleUsers.daenerys, sampleUsers.john, sampleUsers.arya] as User[],
 };

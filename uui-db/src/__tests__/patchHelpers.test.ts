@@ -32,7 +32,6 @@ const clientOnlyView: View = {
 };
 
 describe('db - patchHelpers', () => {
-
     let newClientIdsMap: IClientIdsMap = {
         clientToServer: (id: number): any => undefined,
         serverToClient: (tableName: string, id: any): any => undefined,
@@ -78,14 +77,17 @@ describe('db - patchHelpers', () => {
 
     describe('unionPatches', () => {
         it('should union patches', () => {
-            const patches: DbPatch<TaskDbTables>[] = [{
-                'users': [{ id: 'AB' }],
-            }, {
-                'users': [{ id: 'CD' }],
-            }];
+            const patches: DbPatch<TaskDbTables>[] = [
+                {
+                    users: [{ id: 'AB' }],
+                },
+                {
+                    users: [{ id: 'CD' }],
+                },
+            ];
 
             const result = unionPatches(patches);
-            expect(result).toEqual({ 'users': [{ id: 'AB' }, { id: 'CD' }] });
+            expect(result).toEqual({ users: [{ id: 'AB' }, { id: 'CD' }] });
         });
     });
 
@@ -94,14 +96,14 @@ describe('db - patchHelpers', () => {
             const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});
 
             const patch: DbPatch<TaskDbTables> = {
-                'users': [
+                users: [
                     { id: 'YZ', name: 'Yakov Zhmurov' },
-                    { id: 'YZ', sex: 'm'},
+                    { id: 'YZ', sex: 'm' },
                 ],
             };
 
             const result = mergeEntityPatches(emptyDb.tables, patch);
-            expect(result).toEqual({ 'users': [{ id: 'YZ', name: 'Yakov Zhmurov', sex: 'm' }] });
+            expect(result).toEqual({ users: [{ id: 'YZ', name: 'Yakov Zhmurov', sex: 'm' }] });
             expect(spy).not.toHaveBeenCalled();
         });
 
@@ -109,7 +111,7 @@ describe('db - patchHelpers', () => {
             const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});
 
             const patch: DbPatch<TaskDbTables> = {
-                'users': [
+                users: [
                     { id: 'YZ', name: 'Yakov Zhmurov' },
                     { id: 'YZ', name: 'Ilya Kuznetsov' },
                 ],
@@ -123,16 +125,18 @@ describe('db - patchHelpers', () => {
     describe('flattenResponse', () => {
         it('should flatten provided object', () => {
             const response: any = {
-                'users': [{
-                    id: 'YZ',
-                    name: 'Yakov Zhmurov',
-                    __typename: 'User',
-                    manager: { id: 'AU', name: 'Andrei Urban', __typename: 'User' },
-                    subordinates: [
-                        { id: 'PS', name: 'Pavel Shchur', __typename: 'User' },
-                        { id: 'IK', name: 'Ilya Kuznetsov', __typename: 'User' },
-                    ],
-                }],
+                users: [
+                    {
+                        id: 'YZ',
+                        name: 'Yakov Zhmurov',
+                        __typename: 'User',
+                        manager: { id: 'AU', name: 'Andrei Urban', __typename: 'User' },
+                        subordinates: [
+                            { id: 'PS', name: 'Pavel Shchur', __typename: 'User' },
+                            { id: 'IK', name: 'Ilya Kuznetsov', __typename: 'User' },
+                        ],
+                    },
+                ],
             };
 
             const users = orderBy(flattenResponse(response, emptyDb.tables).users, 'id');
@@ -153,7 +157,7 @@ describe('db - patchHelpers', () => {
             };
 
             const result = flattenResponse(task, emptyDb.tables);
-            expect(result.tasks).toEqual([ task ]);
+            expect(result.tasks).toEqual([task]);
         });
     });
 
@@ -184,7 +188,7 @@ describe('db - patchHelpers', () => {
         });
 
         it('should return false if entity has readonly fields only', () => {
-            expect(hasServerFields({ id: 100, createdBy: "Ilya Kuznetsov" }, emptyDb.tables.tasks.schema, existingClientIdsMap, emptyDb.tables)).toEqual(false);
+            expect(hasServerFields({ id: 100, createdBy: 'Ilya Kuznetsov' }, emptyDb.tables.tasks.schema, existingClientIdsMap, emptyDb.tables)).toEqual(false);
         });
 
         it('should return false if entity has client-only fields only', () => {
@@ -194,9 +198,12 @@ describe('db - patchHelpers', () => {
 
     describe('getParentEntities', () => {
         it('should return parent aggregate entities only', () => {
-            const parents = getParentEntities({
-                'tasks': [{ id: 1 }],
-            }, sampleDb.tables);
+            const parents = getParentEntities(
+                {
+                    tasks: [{ id: 1 }],
+                },
+                sampleDb.tables
+            );
 
             expect(parents.users).toEqual([{ id: 'DT' }]);
         });

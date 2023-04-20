@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { cx, ICanBeInvalid, IHasCX, TooltipCoreProps, uuiMod } from '@epam/uui-core';
 import css from './DataTableCellOverlay.scss';
-import { DataTableSelectionContext } from "./tableCellsSelection";
-import { PointerEventHandler, useContext } from "react";
+import { DataTableSelectionContext } from './tableCellsSelection';
+import { PointerEventHandler, useContext } from 'react';
 
 export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid {
     inFocus: boolean;
@@ -26,41 +26,45 @@ const uuiDataTableCellOverlayMarkers = {
 export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
     const { columnIndex, rowIndex } = props;
     const { selectionRange, setSelectionRange, getCellSelectionInfo } = useContext(DataTableSelectionContext);
-    const {
-        isSelected, showBottomBorder, showLeftBorder, showRightBorder, showTopBorder, canCopyFrom, isStartCell,
-    } = getCellSelectionInfo?.(rowIndex, columnIndex) ?? {};
+    const { isSelected, showBottomBorder, showLeftBorder, showRightBorder, showTopBorder, canCopyFrom, isStartCell } =
+        getCellSelectionInfo?.(rowIndex, columnIndex) ?? {};
 
     const { isCopying } = selectionRange ?? {};
 
-    const handleCopyingMarkerPointerDown: PointerEventHandler = useCallback((e) => {
-        e.preventDefault();
-        e.stopPropagation();
+    const handleCopyingMarkerPointerDown: PointerEventHandler = useCallback(
+        (e) => {
+            e.preventDefault();
+            e.stopPropagation();
 
-        (document.activeElement as HTMLElement)?.blur();
+            (document.activeElement as HTMLElement)?.blur();
 
-        setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true });
-    }, [setSelectionRange, columnIndex, rowIndex]);
+            setSelectionRange({ startColumnIndex: columnIndex, startRowIndex: rowIndex, endColumnIndex: columnIndex, endRowIndex: rowIndex, isCopying: true });
+        },
+        [setSelectionRange, columnIndex, rowIndex]
+    );
 
     const handlePointerEnter: PointerEventHandler = useCallback(() => {
         if (!selectionRange) return;
-        setSelectionRange(prevState => ({ ...prevState, endRowIndex: rowIndex, endColumnIndex: columnIndex }));
+        setSelectionRange((prevState) => ({ ...prevState, endRowIndex: rowIndex, endColumnIndex: columnIndex }));
     }, [selectionRange, rowIndex, columnIndex]);
 
-    const borderClassNames = isSelected && cx(
-        uuiDataTableCellOverlayMarkers.uuiTableCellSelected,
-        showTopBorder && uuiDataTableCellOverlayMarkers.uuiTableCellSelectedTop,
-        showRightBorder && uuiDataTableCellOverlayMarkers.uuiTableCellSelectedRight,
-        showBottomBorder && uuiDataTableCellOverlayMarkers.uuiTableCellSelectedBottom,
-        showLeftBorder && uuiDataTableCellOverlayMarkers.uuiTableCellSelectedLeft,
-    );
+    const borderClassNames =
+        isSelected &&
+        cx(
+            uuiDataTableCellOverlayMarkers.uuiTableCellSelected,
+            showTopBorder && uuiDataTableCellOverlayMarkers.uuiTableCellSelectedTop,
+            showRightBorder && uuiDataTableCellOverlayMarkers.uuiTableCellSelectedRight,
+            showBottomBorder && uuiDataTableCellOverlayMarkers.uuiTableCellSelectedBottom,
+            showLeftBorder && uuiDataTableCellOverlayMarkers.uuiTableCellSelectedLeft
+        );
 
     const showMarkerHover = !isCopying && canCopyFrom && !props.inFocus;
     const showMarker = (isCopying && isStartCell) || (props.inFocus && canCopyFrom) || showMarkerHover;
 
     const overlay = (
         <div
-            onPointerEnter={ handlePointerEnter }
-            className={ cx(
+            onPointerEnter={handlePointerEnter}
+            className={cx(
                 uuiDataTableCellOverlayMarkers.uuiTableCellOverlay,
                 selectionRange && uuiDataTableCellOverlayMarkers.uuiTableCellSelectionInProgress,
                 props.cx,
@@ -68,19 +72,19 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
                 css.overlay,
                 borderClassNames,
                 props.inFocus && uuiMod.focus,
-                props.isInvalid && uuiMod.invalid,
-            ) }
+                props.isInvalid && uuiMod.invalid
+            )}
         >
-            { showMarker && <div
-                className={
-                    cx(
+            {showMarker && (
+                <div
+                    className={cx(
                         css.copyingMarker,
-                        showMarkerHover
-                            ? uuiDataTableCellOverlayMarkers.uuiCopyingMarkerHover
-                            : uuiDataTableCellOverlayMarkers.uuiCopyingMarker,
-                    ) }
-                onPointerDown={ handleCopyingMarkerPointerDown } onClick={ e => e.stopPropagation() }
-            /> }
+                        showMarkerHover ? uuiDataTableCellOverlayMarkers.uuiCopyingMarkerHover : uuiDataTableCellOverlayMarkers.uuiCopyingMarker
+                    )}
+                    onPointerDown={handleCopyingMarkerPointerDown}
+                    onClick={(e) => e.stopPropagation()}
+                />
+            )}
         </div>
     );
 

@@ -10,10 +10,7 @@ export interface CarouselMods {
 }
 
 function applyCarouselMods(mods: CarouselMods) {
-    return [
-        css.root,
-        styles['color-' + (mods.color || 'sky')],
-    ];
+    return [css.root, styles['color-' + (mods.color || 'sky')]];
 }
 
 export const Carousel = withMods<CarouselProps, CarouselMods>(uuiCarousel, applyCarouselMods, () => ({ arrowIcon: ArrowIcon }));

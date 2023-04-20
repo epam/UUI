@@ -40,7 +40,7 @@ export interface DbQuery {
     entityName: string;
     pattern?: object;
     order?: ColumnOrder[];
-    range?: { from: number, count: number };
+    range?: { from: number; count: number };
 }
 
 export interface IQueryable<T = any> {
@@ -49,24 +49,22 @@ export interface IQueryable<T = any> {
     count(): number;
     one(): T;
     toArray(): T[];
-    find(pattern: Partial<T>): IQueryable<T>;    
+    find(pattern: Partial<T>): IQueryable<T>;
     orderBy(name: keyof T, dir?: SortDirection): IQueryable<T>;
     thenBy(name: keyof T, dir?: SortDirection): IQueryable<T>;
 }
 
 /* Db API */
 
-export type EntityApi<TEntity> = {    
+export type EntityApi<TEntity> = {
     (pattern?: Partial<TEntity>): QueryBuilder<TEntity>;
     schema: DbEntitySchema<TEntity>;
     // byId(...id: any[]): TEntity;
 };
 
-export type Db<T> = 
-    { [TEntity in keyof T]: EntityApi<T[TEntity]> }
-    & { 
-        with(input: DbPatch<T>): Db<T>;
-    };
+export type Db<T> = { [TEntity in keyof T]: EntityApi<T[TEntity]> } & {
+    with(input: DbPatch<T>): Db<T>;
+};
 
 export interface DbFieldSchema<T> {
     pk?: boolean;

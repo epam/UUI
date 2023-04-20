@@ -7,9 +7,9 @@ export interface BurgerGroupHeaderProps {
 
 export const BurgerGroupHeader = (props: BurgerGroupHeaderProps) => {
     return (
-        <div className={ css.groupHeader }>
-            <hr className={ css.line } />
-            <span className={ css.groupName }>{ props.caption }</span>
+        <div className={css.groupHeader}>
+            <hr className={css.line} />
+            <span className={css.groupName}>{props.caption}</span>
         </div>
     );
 };

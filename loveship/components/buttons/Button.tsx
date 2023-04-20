@@ -1,4 +1,4 @@
-import { FillStyle, ControlShape, ColorMod } from "../types";
+import { FillStyle, ControlShape, ColorMod } from '../types';
 import { Button as uuiButton, ButtonMode, ButtonProps as UuiButtonProps, ControlSize } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
@@ -19,21 +19,14 @@ const mapFillToMod: Record<FillStyle, ButtonMode> = {
     none: 'none',
 };
 
-export type ButtonProps = Omit<UuiButtonProps, "color"> & ButtonMods;
+export type ButtonProps = Omit<UuiButtonProps, 'color'> & ButtonMods;
 
 export function applyButtonMods(mods: ButtonProps) {
-    return [
-        css['size-' + (mods.size || defaultSize)],
-        css['style-' + (mods.shape || 'square')],
-    ];
+    return [css['size-' + (mods.size || defaultSize)], css['style-' + (mods.shape || 'square')]];
 }
 
-export const Button = withMods<Omit<UuiButtonProps, "color">, ButtonMods>(
-    uuiButton,
-    applyButtonMods,
-    (props) => ({
-        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-        clearIcon: systemIcons[props.size || defaultSize].clear,
-        mode: mapFillToMod[props.fill] || mapFillToMod.solid,
-    }),
-);
+export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(uuiButton, applyButtonMods, (props) => ({
+    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+    clearIcon: systemIcons[props.size || defaultSize].clear,
+    mode: mapFillToMod[props.fill] || mapFillToMod.solid,
+}));

@@ -15,16 +15,10 @@ export class NotificationCardDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='notificationCard-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/notificationCard/Basic.example.tsx'
-                />
-                <DocExample
-                    title='Advanced'
-                    path='./_examples/notificationCard/Advanced.example.tsx'
-                />
+                <EditableDocContent fileName="notificationCard-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/notificationCard/Basic.example.tsx" />
+                <DocExample title="Advanced" path="./_examples/notificationCard/Advanced.example.tsx" />
             </>
         );
     }

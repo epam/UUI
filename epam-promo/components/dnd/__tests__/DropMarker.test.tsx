@@ -12,17 +12,19 @@ describe('DropMarker', () => {
         mockEventHandlers.onMouseUp = jest.fn();
 
         const tree = renderer
-            .create(<DropMarker
-                classNames={ ['test-class'] }
-                eventHandlers={ mockEventHandlers }
-                isDndInProgress
-                isDraggable
-                isDraggedOut
-                isDraggedOver
-                isDragGhost
-                isDropAccepted
-                position='top'
-            />)
+            .create(
+                <DropMarker
+                    classNames={['test-class']}
+                    eventHandlers={mockEventHandlers}
+                    isDndInProgress
+                    isDraggable
+                    isDraggedOut
+                    isDraggedOver
+                    isDragGhost
+                    isDropAccepted
+                    position="top"
+                />
+            )
             .toJSON();
         expect(tree).toMatchSnapshot();
     });

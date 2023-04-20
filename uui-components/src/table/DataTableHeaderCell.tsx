@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked, SortDirection } from "@epam/uui-core";
+import { AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isClickableChildClicked, SortDirection } from '@epam/uui-core';
 
 interface DataTableRenderProps {
     renderCellContent: (props: HeaderCellContentProps) => React.ReactElement<HeaderCellContentProps>;
@@ -31,7 +31,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         else if (this.props.sortDirection === 'asc') dir = 'desc';
         else if (this.props.sortDirection === 'desc') dir = undefined;
         this.props.onSort(dir);
-    }
+    };
 
     canAcceptDrop(params: AcceptDropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>) {
         if (!params.dstData.fix) {
@@ -50,18 +50,18 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
         e.preventDefault();
         e.stopPropagation(); // to prevent column sorting/dnd/ect. handlers while resizing
-    }
+    };
 
     onResizeEnd = () => {
         this.setState({ isResizing: false });
 
         document.removeEventListener('mousemove', this.onResize);
         document.removeEventListener('mouseup', this.onResizeEnd);
-    }
+    };
 
     onResize = (e: MouseEvent) => {
         if (this.state.isResizing) {
-            const columnsConfig = { ...(this.props.value.columnsConfig || {}) } ;
+            const columnsConfig = { ...(this.props.value.columnsConfig || {}) };
             const cellRect = this.cellRef.current.getBoundingClientRect();
             const newWidth = e.clientX - cellRect.left;
 
@@ -76,7 +76,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
             e.preventDefault();
         }
-    }
+    };
 
     renderCellContent = (dndProps?: DndActorRenderParams) => {
         return this.props.renderCellContent({
@@ -85,24 +85,24 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             onResizeStart: this.onResizeStart,
             toggleSort: this.toggleSort,
             ...dndProps,
-            ref: node => {
+            ref: (node) => {
                 (this.cellRef.current as unknown as React.Ref<HTMLElement>) = node;
                 if (!dndProps?.ref) return;
                 (dndProps.ref as React.MutableRefObject<HTMLElement>).current = node;
             },
         });
-    }
+    };
 
     render() {
         if (this.props.allowColumnsReordering) {
             return (
                 <DndActor
-                    key={ this.props.column.key + (this.props.value.columnsConfig?.[this.props.column.key]?.order || '') }
-                    dstData={ this.props.column }
-                    srcData={ this.props.column.fix ? null : this.props.column }
-                    canAcceptDrop={ this.canAcceptDrop }
-                    onDrop={ this.props.onDrop }
-                    render={ this.renderCellContent }
+                    key={this.props.column.key + (this.props.value.columnsConfig?.[this.props.column.key]?.order || '')}
+                    dstData={this.props.column}
+                    srcData={this.props.column.fix ? null : this.props.column}
+                    canAcceptDrop={this.canAcceptDrop}
+                    onDrop={this.props.onDrop}
+                    render={this.renderCellContent}
                 />
             );
         } else return this.renderCellContent();

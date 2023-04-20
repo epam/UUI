@@ -14,12 +14,9 @@ export class VerticalTabButtonDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='vertical-tab-button-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/verticalTabButton/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="vertical-tab-button-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/verticalTabButton/Basic.example.tsx" />
             </>
         );
     }

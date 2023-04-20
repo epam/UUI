@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { DefaultContext } from '../../docs';
-import { DropdownContainer, Text } from "@epam/loveship";
+import { DropdownContainer, Text } from '@epam/loveship';
 
 const dropdownContainerDoc = new DocBuilder({
     name: 'DropdownContainer',
@@ -17,16 +17,19 @@ const dropdownContainerDoc = new DocBuilder({
         examples: ['white', { name: 'night700', value: 'night700' }],
     })
     .prop('children', {
-        examples: ctx => {
+        examples: (ctx) => {
             const color = ctx.getSelectedProps().color;
             const textContent = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, pariatur!';
 
-            return [{
-                value: (color === 'white' || !color) ? <Text color="night700">{ textContent }</Text> : <Text color="night50">{ textContent }</Text>,
-                name: 'Basic',
-            }];
+            return [
+                {
+                    value: color === 'white' || !color ? <Text color="night700">{textContent}</Text> : <Text color="night50">{textContent}</Text>,
+                    name: 'Basic',
+                },
+            ];
         },
         isRequired: true,
-    }).withContexts(DefaultContext);
+    })
+    .withContexts(DefaultContext);
 
 export default dropdownContainerDoc;

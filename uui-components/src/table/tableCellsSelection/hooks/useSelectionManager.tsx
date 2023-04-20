@@ -8,23 +8,29 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
 
     const startCell = useMemo(
         () => getStartCell<TItem, TId, TFilter>(selectionRange, rows, columns),
-        [selectionRange?.startColumnIndex, selectionRange?.startRowIndex, rows, columns],
+        [selectionRange?.startColumnIndex, selectionRange?.startRowIndex, rows, columns]
     );
 
-    const canBeSelected = useCallback((rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => {
-        const cell = getCell(rowIndex, columnIndex, rows, columns);
-        if (!startCell && copyTo) return false;
-        if (copyFrom) return !!cell.column.canCopy?.(cell);
+    const canBeSelected = useCallback(
+        (rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => {
+            const cell = getCell(rowIndex, columnIndex, rows, columns);
+            if (!startCell && copyTo) return false;
+            if (copyFrom) return !!cell.column.canCopy?.(cell);
 
-        return !!cell.column.canAcceptCopy?.(startCell, cell);
-    }, [startCell, columns, rows]);
+            return !!cell.column.canAcceptCopy?.(startCell, cell);
+        },
+        [startCell, columns, rows]
+    );
 
-    const shouldSelectCell = useCallback((rowIndex: number, columnIndex: number) => {
-        if (selectionRange.startRowIndex === rowIndex && selectionRange.startColumnIndex === columnIndex) {
-            return canBeSelected(rowIndex, columnIndex, { copyFrom: true });
-        }
-        return canBeSelected(rowIndex, columnIndex, { copyTo: true });
-    }, [canBeSelected, selectionRange]);
+    const shouldSelectCell = useCallback(
+        (rowIndex: number, columnIndex: number) => {
+            if (selectionRange.startRowIndex === rowIndex && selectionRange.startColumnIndex === columnIndex) {
+                return canBeSelected(rowIndex, columnIndex, { copyFrom: true });
+            }
+            return canBeSelected(rowIndex, columnIndex, { copyTo: true });
+        },
+        [canBeSelected, selectionRange]
+    );
 
     const getSelectedCells = useCallback((): DataTableSelectedCellData<TItem>[] => {
         if (!selectionRange) return [];
@@ -46,31 +52,40 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         return selectedCells;
     }, [selectionRange, columns, shouldSelectCell, rows]);
 
-    const getCellSelectionInfo = useCallback((rowIndex: number, columnIndex: number) => {
-        const { isCopying } = selectionRange || {};
-        const { isTop, isBottom, isLeft, isRight, isSelected, isStartCell } = getCellPosition(rowIndex, columnIndex, selectionRange);
-        const canCopyFrom = canBeSelected?.(rowIndex, columnIndex, { copyFrom: true });
-        const canAcceptCopy = canBeSelected?.(rowIndex, columnIndex, { copyTo: true });
+    const getCellSelectionInfo = useCallback(
+        (rowIndex: number, columnIndex: number) => {
+            const { isCopying } = selectionRange || {};
+            const { isTop, isBottom, isLeft, isRight, isSelected, isStartCell } = getCellPosition(rowIndex, columnIndex, selectionRange);
+            const canCopyFrom = canBeSelected?.(rowIndex, columnIndex, { copyFrom: true });
+            const canAcceptCopy = canBeSelected?.(rowIndex, columnIndex, { copyTo: true });
 
-        const showBorder = (isBorderPosition: boolean, neighborRow: number, neighborColumn: number) => {
-            if (isStartCell) return true;
-            if (!isSelected) return false;
-            if (!isCopying) {
-                return isBorderPosition;
-            }
-            return canAcceptCopy && (isBorderPosition || !canBeSelected?.(neighborRow, neighborColumn, { copyTo: true }));
-        };
+            const showBorder = (isBorderPosition: boolean, neighborRow: number, neighborColumn: number) => {
+                if (isStartCell) return true;
+                if (!isSelected) return false;
+                if (!isCopying) {
+                    return isBorderPosition;
+                }
+                return canAcceptCopy && (isBorderPosition || !canBeSelected?.(neighborRow, neighborColumn, { copyTo: true }));
+            };
 
-        const showTopBorder = showBorder(isTop, rowIndex - 1, columnIndex);
-        const showRightBorder = showBorder(isRight, rowIndex, columnIndex + 1);
-        const showBottomBorder = showBorder(isBottom, rowIndex + 1, columnIndex);
-        const showLeftBorder = showBorder(isLeft, rowIndex, columnIndex - 1);
+            const showTopBorder = showBorder(isTop, rowIndex - 1, columnIndex);
+            const showRightBorder = showBorder(isRight, rowIndex, columnIndex + 1);
+            const showBottomBorder = showBorder(isBottom, rowIndex + 1, columnIndex);
+            const showLeftBorder = showBorder(isLeft, rowIndex, columnIndex - 1);
 
-        return {
-            isSelected, canCopyFrom, canAcceptCopy, isStartCell,
-            showTopBorder, showRightBorder, showBottomBorder, showLeftBorder,
-        };
-    }, [selectionRange, canBeSelected]);
+            return {
+                isSelected,
+                canCopyFrom,
+                canAcceptCopy,
+                isStartCell,
+                showTopBorder,
+                showRightBorder,
+                showBottomBorder,
+                showLeftBorder,
+            };
+        },
+        [selectionRange, canBeSelected]
+    );
 
     return { selectionRange, setSelectionRange, getSelectedCells, startCell, getCellSelectionInfo };
 };

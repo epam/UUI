@@ -27,13 +27,15 @@ export interface PropSamplesCreationContext<TProps = {}> {
     forceUpdate: () => void;
 }
 
-export type PropExample<TProp> = {
-    id?: string;
-    name?: string;
-    value: TProp;
-    isDefault?: boolean;
-    color?: string;
-} | TProp;
+export type PropExample<TProp> =
+    | {
+          id?: string;
+          name?: string;
+          value: TProp;
+          isDefault?: boolean;
+          color?: string;
+      }
+    | TProp;
 
 export interface PropDoc<TProps, TProp extends keyof TProps> {
     name: Extract<keyof TProps, string>;

@@ -1,7 +1,31 @@
-import { ICanBeReadonly, IClickable, IDisableable, IDropdownToggler, IEditable, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableOnChange, IHasRawProps, ICanFocus, IHasTabIndex } from "../props";
+import {
+    ICanBeReadonly,
+    IClickable,
+    IDisableable,
+    IDropdownToggler,
+    IEditable,
+    IHasCX,
+    IHasIcon,
+    IHasPlaceholder,
+    IAnalyticableOnChange,
+    IHasRawProps,
+    ICanFocus,
+    IHasTabIndex,
+} from '../props';
 
-export interface TextInputCoreProps extends IHasCX, IClickable, IDisableable, IEditable<string | undefined>, IHasPlaceholder,
-    IHasIcon, ICanBeReadonly, IDropdownToggler, IAnalyticableOnChange<string>, IHasRawProps<React.HTMLAttributes<HTMLInputElement>>, ICanFocus<HTMLInputElement>, IHasTabIndex {
+export interface TextInputCoreProps
+    extends IHasCX,
+        IClickable,
+        IDisableable,
+        IEditable<string | undefined>,
+        IHasPlaceholder,
+        IHasIcon,
+        ICanBeReadonly,
+        IDropdownToggler,
+        IAnalyticableOnChange<string>,
+        IHasRawProps<React.HTMLAttributes<HTMLInputElement>>,
+        ICanFocus<HTMLInputElement>,
+        IHasTabIndex {
     /** Enables cancel (cross) icon, and fires when the icon is clicked */
     onCancel?(): void;
     /** Enables accept (check) icon, and fires when the icon is clicked */

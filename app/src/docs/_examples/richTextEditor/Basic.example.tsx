@@ -3,11 +3,25 @@ import { Value } from 'slate';
 import { useUuiContext } from '@epam/uui-core';
 import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
 import {
-    SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin,
-    toDoListPlugin, baseMarksPlugin,
-    linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin,
-    tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin,
+    SlateEditor,
+    defaultPlugins,
+    imagePlugin,
+    videoPlugin,
+    attachmentPlugin,
+    toDoListPlugin,
+    baseMarksPlugin,
+    linkPlugin,
+    iframePlugin,
+    notePlugin,
+    separatorPlugin,
+    uploadFilePlugin,
+    tablePlugin,
+    quotePlugin,
+    colorPlugin,
+    superscriptPlugin,
+    headerPlugin,
+    listPlugin,
+    placeholderPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.scss';
@@ -62,37 +76,32 @@ export default function SlateEditorBasicExample() {
     ];
 
     return (
-        <Panel cx={ css.root }>
-            <FlexRow spacing='18' vPadding='12'>
+        <Panel cx={css.root}>
+            <FlexRow spacing="18" vPadding="12">
                 <MultiSwitch
-                    items={ [{ id: '14', caption: '14' }, { id: '16', caption: '16' }] }
-                    value={ fontSize }
-                    onValueChange={ (value: EditorFontSize) => setFontSize(value) }
-                    color='blue'
+                    items={[
+                        { id: '14', caption: '14' },
+                        { id: '16', caption: '16' },
+                    ]}
+                    value={fontSize}
+                    onValueChange={(value: EditorFontSize) => setFontSize(value)}
+                    color="blue"
                 />
                 <FlexSpacer />
-                <Switch
-                    value={ mode === 'inline' }
-                    onValueChange={ (val: boolean) => setMode(val ? 'inline' : 'form') }
-                    label='Inline mode'
-                />
-                <Switch
-                    value={ isReadonly }
-                    onValueChange={ setIsReadonly }
-                    label='View mode'
-                />
+                <Switch value={mode === 'inline'} onValueChange={(val: boolean) => setMode(val ? 'inline' : 'form')} label="Inline mode" />
+                <Switch value={isReadonly} onValueChange={setIsReadonly} label="View mode" />
             </FlexRow>
 
             <SlateEditor
-                value={ value }
-                onValueChange={ setValue }
-                isReadonly={ isReadonly }
-                autoFocus={ true }
-                plugins={ plugins }
-                mode={ mode }
-                placeholder='Add description'
-                minHeight={ 'none' }
-                fontSize={ fontSize }
+                value={value}
+                onValueChange={setValue}
+                isReadonly={isReadonly}
+                autoFocus={true}
+                plugins={plugins}
+                mode={mode}
+                placeholder="Add description"
+                minHeight={'none'}
+                fontSize={fontSize}
             />
         </Panel>
     );

@@ -11,17 +11,12 @@ export class Text extends React.Component<TextProps> {
     onClick = (e: React.MouseEvent) => {
         this.props.onClick && this.props.onClick(e);
         this.context.uuiAnalytics.sendEvent(this.props.clickAnalyticsEvent);
-    }
+    };
 
     render() {
         return (
-            <div
-                onClick={ this.props.onClick && this.onClick }
-                className={ cx(this.props.cx, css.container) }
-                ref={ this.props.forwardedRef }
-                { ...this.props.rawProps }
-            >
-                { this.props.children }
+            <div onClick={this.props.onClick && this.onClick} className={cx(this.props.cx, css.container)} ref={this.props.forwardedRef} {...this.props.rawProps}>
+                {this.props.children}
             </div>
         );
     }

@@ -25,22 +25,22 @@ const getYears = (currentYear: number) => {
 export class YearSelection extends React.Component<YearSelectionProps> {
     render() {
         return (
-            <div className={ cx(css.container, uuiYearSelection.container, this.props.cx) } { ...this.props.rawProps }>
-                <div className={ uuiYearSelection.content }>
-                    <div className={ uuiYearSelection.yearContainer }>
-                        { arrayToMatrix(getYears(this.props.value.year()), MONTH_ROW_LENGTH).map((yearRow, index) =>
-                            <div key={ index } className={ uuiYearSelection.yearRow }>
-                                { yearRow.map(year =>
+            <div className={cx(css.container, uuiYearSelection.container, this.props.cx)} {...this.props.rawProps}>
+                <div className={uuiYearSelection.content}>
+                    <div className={uuiYearSelection.yearContainer}>
+                        {arrayToMatrix(getYears(this.props.value.year()), MONTH_ROW_LENGTH).map((yearRow, index) => (
+                            <div key={index} className={uuiYearSelection.yearRow}>
+                                {yearRow.map((year) => (
                                     <div
-                                        key={ year }
-                                        className={ cx(year === this.props.selectedDate.year() && uuiYearSelection.currentYear, uuiYearSelection.year) }
-                                        onClick={ () => this.props.onValueChange(this.props.value.year(year)) }
+                                        key={year}
+                                        className={cx(year === this.props.selectedDate.year() && uuiYearSelection.currentYear, uuiYearSelection.year)}
+                                        onClick={() => this.props.onValueChange(this.props.value.year(year))}
                                     >
-                                        { year }
-                                    </div>,
-                                ) }
-                            </div>,
-                        ) }
+                                        {year}
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

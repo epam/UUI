@@ -1,22 +1,14 @@
-import {
-    readdir, writeFile, realpath, readFile,
-} from 'fs/promises';
+import { readdir, writeFile, realpath, readFile } from 'fs/promises';
 import { EOL } from 'os';
 import { ParsedPath, resolve, parse } from 'path';
 import { transformHandler } from './transformHandlers';
-import {
-    CoreTokens, PaletteToken, ThemesObject, TokenObject, TokensObject, UuiComponent,
-} from './types';
+import { CoreTokens, PaletteToken, ThemesObject, TokenObject, TokensObject, UuiComponent } from './types';
 import { checkTokens } from './checkTokens';
 import { defaultTokens } from './defaults';
 import defaultsDeep from 'lodash.defaultsdeep';
 import { getAllMonorepoPackages } from './../utils/monorepoUtils';
 
-const ignoreDirList = [
-    'public',
-    'build',
-    'node_modules',
-];
+const ignoreDirList = ['public', 'build', 'node_modules'];
 
 export const transformTokensFromJsonToCss = async function () {
     async function getFilesWithTokens(dir: string): Promise<string[]> {
@@ -25,7 +17,7 @@ export const transformTokensFromJsonToCss = async function () {
         for await (const dirent of dirents) {
             const res = resolve(dir, dirent.name);
             if (dirent.isDirectory()) {
-                !ignoreDirList.includes(dirent.name) && files.push(...await getFilesWithTokens(res));
+                !ignoreDirList.includes(dirent.name) && files.push(...(await getFilesWithTokens(res)));
             } else {
                 const pathBase = parse(res).base;
                 files.push(pathBase.includes('tokens.json') ? res : undefined);
@@ -42,7 +34,7 @@ export const transformTokensFromJsonToCss = async function () {
     function createCssVariables(palletObj: UuiComponent | PaletteToken | CoreTokens | TokenObject) {
         const vars: string[] = [];
         Object.entries(palletObj).forEach(([key, value]) => {
-            if (!value.type && Array.isArray(value) || typeof value === 'string') return;
+            if ((!value.type && Array.isArray(value)) || typeof value === 'string') return;
 
             if ('type' in value) {
                 vars.push(`\t--${key}: ${transformHandler[value.type as keyof typeof transformHandler](value.value as any)};${EOL}`);
@@ -80,8 +72,8 @@ export const transformTokensFromJsonToCss = async function () {
         const { palette, core, ...components } = themeObj;
 
         let data = `.uui-theme-${themeName} {${EOL}`;
-        createCssVariables(palette).forEach((value) => data += value);
-        createCoreTokens(core).forEach((value) => data += value);
+        createCssVariables(palette).forEach((value) => (data += value));
+        createCoreTokens(core).forEach((value) => (data += value));
         data += `}${EOL}`;
 
         Object.values(components).forEach((value) => {

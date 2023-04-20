@@ -55,9 +55,11 @@ export const ProjectDemo = () => {
         }
 
         task.order = getInsertionOrder(
-            Object.values(value.items).filter(i => i.parentId === task.parentId).map(i => i.order),
+            Object.values(value.items)
+                .filter((i) => i.parentId === task.parentId)
+                .map((i) => i.order),
             position == 'bottom' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-            relativeTask?.order,
+            relativeTask?.order
         );
 
         onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
@@ -75,60 +77,65 @@ export const ProjectDemo = () => {
 
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }] });
 
-    const { rows, listProps } = useList({
-        type: 'array',
-        listState: tableState,
-        setListState: setTableState,
-        items: Object.values(value.items),
-        getId: i => i.id,
-        getParentId: i => i.parentId,
-        getRowOptions: (task) => ({
-            ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
-            //checkbox: { isVisible: true },
-            isSelectable: true,
-            dnd: {
-                srcData: { ...task, isTask: true },
-                dstData: { ...task, isTask: true },
-                canAcceptDrop: handleCanAcceptDrop,
-                onDrop: handleDrop,
-            },
-        }),
-    }, []);
+    const { rows, listProps } = useList(
+        {
+            type: 'array',
+            listState: tableState,
+            setListState: setTableState,
+            items: Object.values(value.items),
+            getId: (i) => i.id,
+            getParentId: (i) => i.parentId,
+            getRowOptions: (task) => ({
+                ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
+                //checkbox: { isVisible: true },
+                isSelectable: true,
+                dnd: {
+                    srcData: { ...task, isTask: true },
+                    dstData: { ...task, isTask: true },
+                    canAcceptDrop: handleCanAcceptDrop,
+                    onDrop: handleDrop,
+                },
+            }),
+        },
+        []
+    );
 
     const columns = useMemo(() => getColumns({ insertTask: () => {}, deleteTask: () => {} }), []);
 
-    return <Panel style={ { width: '100%' } }>
-        <FlexRow spacing='12' margin='12'>
-            <FlexCell width='auto'>
-                <IconButton icon={ insertAfter } onClick={ () => insertTask('top') } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <IconButton icon={ insertBefore } onClick={ () => insertTask('bottom') } />
-            </FlexCell>
-            <FlexSpacer />
-            <FlexCell width='auto'>
-                <Button size='30' icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button size='30' icon={ redoIcon } onClick={ redo } isDisabled={ !canRedo } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button size='30' caption="Save" onClick={ save } isDisabled={ !isChanged } />
-            </FlexCell>
-            <FlexCell width='auto'>
-                <Button size='30' caption="Revert" onClick={ revert } isDisabled={ !isChanged } />
-            </FlexCell>
-        </FlexRow>
-        <DataTable
-            headerTextCase='upper'
-            getRows={ () => rows }
-            columns={ columns }
-            value={ tableState }
-            onValueChange={ setTableState }
-            showColumnsConfig
-            allowColumnsResizing
-            allowColumnsReordering
-            { ...listProps }
-        />
-    </Panel>;
+    return (
+        <Panel style={{ width: '100%' }}>
+            <FlexRow spacing="12" margin="12">
+                <FlexCell width="auto">
+                    <IconButton icon={insertAfter} onClick={() => insertTask('top')} />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <IconButton icon={insertBefore} onClick={() => insertTask('bottom')} />
+                </FlexCell>
+                <FlexSpacer />
+                <FlexCell width="auto">
+                    <Button size="30" icon={undoIcon} onClick={undo} isDisabled={!canUndo} />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Button size="30" icon={redoIcon} onClick={redo} isDisabled={!canRedo} />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Button size="30" caption="Save" onClick={save} isDisabled={!isChanged} />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Button size="30" caption="Revert" onClick={revert} isDisabled={!isChanged} />
+                </FlexCell>
+            </FlexRow>
+            <DataTable
+                headerTextCase="upper"
+                getRows={() => rows}
+                columns={columns}
+                value={tableState}
+                onValueChange={setTableState}
+                showColumnsConfig
+                allowColumnsResizing
+                allowColumnsReordering
+                {...listProps}
+            />
+        </Panel>
+    );
 };

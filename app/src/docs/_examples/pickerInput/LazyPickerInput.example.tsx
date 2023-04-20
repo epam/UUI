@@ -14,15 +14,8 @@ export default function LazyPersonsMultiPicker() {
     const dataSource = useLazyDataSource({ api: loadPersons, selectAll: false }, []);
 
     return (
-        <FlexCell width={ 300 }>
-            <PickerInput
-                dataSource={ dataSource }
-                value={ value }
-                onValueChange={ onValueChange }
-                entityName='person'
-                selectionMode='multi'
-                valueType='id'
-            />
+        <FlexCell width={300}>
+            <PickerInput dataSource={dataSource} value={value} onValueChange={onValueChange} entityName="person" selectionMode="multi" valueType="id" />
         </FlexCell>
     );
 }

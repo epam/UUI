@@ -1,7 +1,7 @@
-import { DataQueryFilter, DataQueryFilterCondition } from "../../types/dataQuery";
-import dayjs from "dayjs";
-import isSameOrBefore from "dayjs/plugin/isSameOrBefore.js";
-import isSameOrAfter from "dayjs/plugin/isSameOrAfter.js";
+import { DataQueryFilter, DataQueryFilterCondition } from '../../types/dataQuery';
+import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore.js';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter.js';
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
 
@@ -14,7 +14,7 @@ export function simplifyPredicates<T>(filter: DataQueryFilter<T>) {
     for (let n = 0; n < keys.length; n++) {
         const key = keys[n];
         const condition = filter[key] as DataQueryFilterCondition<T, any>;
-        if (condition != null && typeof condition === "object") {
+        if (condition != null && typeof condition === 'object') {
             if ('inRange' in condition) {
                 const value = condition.inRange;
                 result[key] = {
@@ -38,7 +38,6 @@ export function simplifyPredicates<T>(filter: DataQueryFilter<T>) {
                 };
             }
         }
-
     }
     return result;
 }
@@ -63,7 +62,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
         const key = keys[n];
         const condition = filter[key] as DataQueryFilterCondition<T, any>;
 
-        if (condition != null && typeof condition === "object") {
+        if (condition != null && typeof condition === 'object') {
             if ('isNull' in condition) {
                 if (condition.isNull) {
                     predicates.push((item: T) => item[key] == null);
@@ -73,12 +72,12 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
             }
 
             if ('in' in condition && Array.isArray(condition.in)) {
-                const values = condition.in as (any[]);
+                const values = condition.in as any[];
                 predicates.push((item: T) => values.includes(item[key]));
             }
 
             if ('nin' in condition && Array.isArray(condition.nin)) {
-                const values = condition.nin as (any[]);
+                const values = condition.nin as any[];
                 predicates.push((item: T) => !values.includes(item[key]));
             }
 
@@ -86,7 +85,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 const conditionValue = condition.gte;
                 predicates.push((item: T) => {
                     const value = item[key];
-                    if (typeof value === "string" && isDate(conditionValue)) {
+                    if (typeof value === 'string' && isDate(conditionValue)) {
                         return dayjs(value).isSameOrAfter(conditionValue);
                     }
                     return !(value !== null && value !== undefined) || value >= conditionValue;
@@ -97,7 +96,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 const conditionValue = condition.lte;
                 predicates.push((item: T) => {
                     const value = item[key];
-                    if (typeof value === "string" && isDate(conditionValue)) {
+                    if (typeof value === 'string' && isDate(conditionValue)) {
                         return dayjs(value).isSameOrBefore(conditionValue);
                     }
                     return !(value !== null && value !== undefined) || value <= conditionValue;
@@ -108,7 +107,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 const conditionValue = condition.gt;
                 predicates.push((item: T) => {
                     const value = item[key];
-                    if (typeof value === "string" && isDate(conditionValue)) {
+                    if (typeof value === 'string' && isDate(conditionValue)) {
                         return dayjs(value).isAfter(conditionValue);
                     }
                     return !(value !== null && value !== undefined) || value > conditionValue;
@@ -119,7 +118,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 const conditionValue = condition.lt;
                 predicates.push((item: T) => {
                     const value = item[key];
-                    if (typeof value === "string" && isDate(conditionValue)) {
+                    if (typeof value === 'string' && isDate(conditionValue)) {
                         return dayjs(value).isBefore(conditionValue);
                     }
                     return !(value !== null && value !== undefined) || value < conditionValue;
@@ -138,11 +137,11 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
 
             if ('not' in condition) {
                 const predicate = getFilterPredicate({ [key]: condition.not });
-                predicates.push(i => !predicate(i));
+                predicates.push((i) => !predicate(i));
             }
         } else {
             predicates.push((item: T) => {
-                if (typeof condition === "string" && isDate(condition)) {
+                if (typeof condition === 'string' && isDate(condition)) {
                     return dayjs(item[key] as any).isSame(condition);
                 } else {
                     return item[key] === condition;

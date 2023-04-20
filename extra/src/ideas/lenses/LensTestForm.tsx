@@ -15,8 +15,8 @@ const initialState: FormState = {
 class PureTextEditor extends React.PureComponent<IEditable<string>> {
     render() {
         return (
-            <LabeledInput label='Text' { ...this.props } >
-                <TextInput { ...this.props } />
+            <LabeledInput label="Text" {...this.props}>
+                <TextInput {...this.props} />
             </LabeledInput>
         );
     }
@@ -31,25 +31,22 @@ class Editor extends React.Component<IEditable<FormState>> {
 
     render() {
         return (
-            <Panel margin='24' background='white' shadow>
-                <FlexRow type='form' padding='24'>
-                    <PureTextEditor { ...this.text1Lens.toProps() } />
-                    <PureTextEditor { ...this.text1Lens.toProps() } />
+            <Panel margin="24" background="white" shadow>
+                <FlexRow type="form" padding="24">
+                    <PureTextEditor {...this.text1Lens.toProps()} />
+                    <PureTextEditor {...this.text1Lens.toProps()} />
                 </FlexRow>
-                <FlexRow type='form' padding='24'>
-                    <PureTextEditor { ...this.text2Lens.toProps() } />
-                    <PureTextEditor { ...this.text2Lens.toProps() } />
+                <FlexRow type="form" padding="24">
+                    <PureTextEditor {...this.text2Lens.toProps()} />
+                    <PureTextEditor {...this.text2Lens.toProps()} />
                 </FlexRow>
-                <FlexRow type='form' padding='24'>
-                    <Button caption='Reset' onClick={ this.handleReset } />
-                    <Button caption='Clear' onClick={ this.handleClear } />
+                <FlexRow type="form" padding="24">
+                    <Button caption="Reset" onClick={this.handleReset} />
+                    <Button caption="Clear" onClick={this.handleClear} />
                 </FlexRow>
             </Panel>
         );
     }
 }
 
-export const LensTestForm = () => <Stateful
-    initialState={ initialState }
-    render={ props => <Editor { ...props } /> }
-/>;
+export const LensTestForm = () => <Stateful initialState={initialState} render={(props) => <Editor {...props} />} />;

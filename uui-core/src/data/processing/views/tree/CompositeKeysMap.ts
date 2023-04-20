@@ -1,4 +1,4 @@
-import { IMap } from "../../../../types";
+import { IMap } from '../../../../types';
 
 export class CompositeKeysMap<TKey, TValue> implements IMap<TKey, TValue> {
     map: Map<string, TValue>;

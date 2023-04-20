@@ -1,7 +1,7 @@
-import { i18n } from "./i18n";
+import { i18n } from './i18n';
 
 export let baseDate = new Date(2000, 1, 1);
-export let msPerMinute = 60 /*sec*/ * 1000 /*ms*/;
+export let msPerMinute = 60 /*sec*/ * 1000; /*ms*/
 export let msPerHour = 60 /*min*/ * msPerMinute;
 export let msPerDay = 24 /*hour*/ * msPerHour;
 export let msPerYear = 365 * msPerDay;
@@ -51,15 +51,15 @@ export function getleftXforCentering(stageSegment: any, textWidth: number, paddi
     let leftX = left;
     let trimmedOnlyLeft = stageSegment.left != stageSegment.leftTrimmed && stageSegment.right == stageSegment.rightTrimmed;
 
-    if ((left + textWidth + padding) > stageSegment.rightTrimmed  && !trimmedOnlyLeft) {
+    if (left + textWidth + padding > stageSegment.rightTrimmed && !trimmedOnlyLeft) {
         leftX = stageSegment.rightTrimmed - textWidth - padding;
     }
 
-    if ((left + textWidth + padding) > stageSegment.rightTrimmed && trimmedOnlyLeft) {
+    if (left + textWidth + padding > stageSegment.rightTrimmed && trimmedOnlyLeft) {
         leftX = stageSegment.rightTrimmed - textWidth - padding;
     }
 
-    if ((stageSegment.left + textWidth + padding * 2) > stageSegment.rightTrimmed) {
+    if (stageSegment.left + textWidth + padding * 2 > stageSegment.rightTrimmed) {
         leftX = stageSegment.left + padding;
     }
 
@@ -74,7 +74,7 @@ export enum Scales {
     Week,
     Day,
     Hour,
-    Minute
+    Minute,
 }
 
 export let scaleSteps: Scales[] = [];
@@ -92,7 +92,7 @@ export let scales = {
     weekWide: 80 / (7 * msPerDay),
     day: 24 / msPerDay,
     dayWide: 300 / msPerDay,
-    hour: 37 / msPerHour,//ok
+    hour: 37 / msPerHour, //ok
     hourWide: 300 / msPerHour,
     minute: 60 / msPerMinute,
     minuteWide: 120 / msPerMinute,

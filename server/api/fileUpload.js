@@ -8,8 +8,12 @@ router.post('/uploadFileMock', function uploadFileMock(req, res) {
     const file = req.files.file;
 
     let fileType = 'attachment';
-    if (file.name.search(/pdf$/) > -1) { fileType = 'iframe'; }
-    if (file.name.search(/svg|png|jpg$/) > -1) { fileType = 'image'; }
+    if (file.name.search(/pdf$/) > -1) {
+        fileType = 'iframe';
+    }
+    if (file.name.search(/svg|png|jpg$/) > -1) {
+        fileType = 'image';
+    }
 
     const newId = idCounter;
     idCounter += 1;

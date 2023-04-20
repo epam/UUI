@@ -26,11 +26,11 @@ export class MonthSelection extends React.Component<MonthSelectionProps> {
         const isSelected = this.props.selectedDate.year() === this.props.value.year() && month === this.props.selectedDate.format('MMM');
         return (
             <div
-                key={ month }
-                className={ cx(isSelected && uuiMonthSelection.currentMonth, uuiMonthSelection.month) }
-                onClick={ () => this.props.onValueChange(this.props.value.month(index)) }
+                key={month}
+                className={cx(isSelected && uuiMonthSelection.currentMonth, uuiMonthSelection.month)}
+                onClick={() => this.props.onValueChange(this.props.value.month(index))}
             >
-                { month }
+                {month}
             </div>
         );
     }
@@ -38,17 +38,17 @@ export class MonthSelection extends React.Component<MonthSelectionProps> {
     render() {
         const MONTHS_SHORT_ARRAY = dayjs.monthsShort();
         return (
-            <div ref={ this.props.forwardedRef } className={ cx(css.container, uuiMonthSelection.container, this.props.cx) } { ...this.props.rawProps } >
-                <div className={ uuiMonthSelection.content }>
-                    <div className={ uuiMonthSelection.monthContainer }>
-                        { arrayToMatrix(MONTHS_SHORT_ARRAY, MONTH_ROW_LENGTH).map((monthsRow, index) =>
-                            <div key={ index } className={ uuiMonthSelection.monthsRow }>
-                                { monthsRow.map(month => {
-                                    const monthIndex = MONTHS_SHORT_ARRAY.findIndex(it => it === month);
+            <div ref={this.props.forwardedRef} className={cx(css.container, uuiMonthSelection.container, this.props.cx)} {...this.props.rawProps}>
+                <div className={uuiMonthSelection.content}>
+                    <div className={uuiMonthSelection.monthContainer}>
+                        {arrayToMatrix(MONTHS_SHORT_ARRAY, MONTH_ROW_LENGTH).map((monthsRow, index) => (
+                            <div key={index} className={uuiMonthSelection.monthsRow}>
+                                {monthsRow.map((month) => {
+                                    const monthIndex = MONTHS_SHORT_ARRAY.findIndex((it) => it === month);
                                     return this.renderMonth(month, monthIndex);
-                                }) }
-                            </div>,
-                        ) }
+                                })}
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

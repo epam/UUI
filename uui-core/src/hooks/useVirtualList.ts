@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 import type { IEditable, VirtualListState } from '../types';
-import { useLayoutEffectSafeForSsr } from "../ssr";
+import { useLayoutEffectSafeForSsr } from '../ssr';
 
 interface UuiScrollPositionValues {
     scrollTop: number;
@@ -58,11 +58,11 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (!scrollContainer.current || !value) return;
         const { scrollTop, clientHeight } = scrollContainer.current;
         const focusedIndexOffset = rowOffsets.current[value.focusedIndex] || 0;
-        const focusedIndexHeight =  rowHeights.current[value.focusedIndex] || 0;
+        const focusedIndexHeight = rowHeights.current[value.focusedIndex] || 0;
         const scrollBottom = scrollTop + clientHeight - listOffset;
-        if (focusedIndexOffset < (scrollTop - focusedIndexHeight) || scrollBottom < focusedIndexOffset) {
+        if (focusedIndexOffset < scrollTop - focusedIndexHeight || scrollBottom < focusedIndexOffset) {
             const middleOffset = focusedIndexOffset - clientHeight / 2 + focusedIndexHeight / 2;
-            const indexToScroll = rowOffsets.current.findIndex(rowOffset => middleOffset <= rowOffset);
+            const indexToScroll = rowOffsets.current.findIndex((rowOffset) => middleOffset <= rowOffset);
             scrollToIndex(indexToScroll, 'smooth');
         }
     };
@@ -105,14 +105,13 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
         Array.from(listContainer.current.children).forEach((node, index) => {
             const topIndex = value.topIndex || 0;
-            const { height } =  node.getBoundingClientRect();
+            const { height } = node.getBoundingClientRect();
             if (!height) return;
             rowHeights.current[topIndex + index] = height;
         });
 
-        const averageHeight = rowHeights.current.length === 0 ?
-            rowHeights.current.length + 1 :
-            rowHeights.current.reduce((sum, next) => sum + next, 0) / rowHeights.current.length;
+        const averageHeight =
+            rowHeights.current.length === 0 ? rowHeights.current.length + 1 : rowHeights.current.reduce((sum, next) => sum + next, 0) / rowHeights.current.length;
 
         rowOffsets.current = [];
         let lastOffset = listOffset;
@@ -133,19 +132,18 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     });
 
     const handleScrollToIndex = () => {
-        if (
-            !scrollContainer.current ||
-            !value ||
-            value.indexToScroll == null
-        ) return;
+        if (!scrollContainer.current || !value || value.indexToScroll == null) return;
         scrollToIndex(value.indexToScroll);
     };
 
-    const scrollToIndex = React.useCallback((index: number, behavior?: ScrollBehavior) => {
-        const indexToScroll = Math.min(index, rowsCount - 1);
-        const topCoordinate = rowOffsets.current[indexToScroll] - listOffset;
-        scrollContainer.current.scrollTo({ top: topCoordinate, behavior});
-    }, [scrollContainer.current, rowOffsets.current]);
+    const scrollToIndex = React.useCallback(
+        (index: number, behavior?: ScrollBehavior) => {
+            const indexToScroll = Math.min(index, rowsCount - 1);
+            const topCoordinate = rowOffsets.current[indexToScroll] - listOffset;
+            scrollContainer.current.scrollTo({ top: topCoordinate, behavior });
+        },
+        [scrollContainer.current, rowOffsets.current]
+    );
 
     useLayoutEffectSafeForSsr(handleScrollToIndex, [value?.indexToScroll]);
     useLayoutEffectSafeForSsr(handleScrollToFocus, [value?.focusedIndex]);

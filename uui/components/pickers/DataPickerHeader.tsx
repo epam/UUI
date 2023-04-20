@@ -10,19 +10,13 @@ interface DataPickerHeaderProps {
     close?: () => void;
 }
 
-const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = props => {
-    const title = props.title && typeof props.title === 'string'
-        ? props.title.charAt(0).toUpperCase() + props.title.slice(1)
-        : '';
-    
+const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = (props) => {
+    const title = props.title && typeof props.title === 'string' ? props.title.charAt(0).toUpperCase() + props.title.slice(1) : '';
+
     return (
-        <FlexRow alignItems='center' borderBottom size="48" cx={ css.header }>
-            <Text font='semibold'>{ title }</Text>
-            <IconButton
-                icon={ CloseIcon }
-                onClick={ () => props.close?.() }
-                cx={ css.close }
-            />
+        <FlexRow alignItems="center" borderBottom size="48" cx={css.header}>
+            <Text font="semibold">{title}</Text>
+            <IconButton icon={CloseIcon} onClick={() => props.close?.()} cx={css.close} />
         </FlexRow>
     );
 };

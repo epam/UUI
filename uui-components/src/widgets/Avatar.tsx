@@ -28,17 +28,21 @@ const AvatarComponent = (props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
         }
     }
     return (
-            <img
-                onClick={ props.onClick }
-                ref={ ref }
-                className={ cx(css.avatar, props.cx) }
-                width={ props.size }
-                height={ props.size }
-                src={ (props.isLoading || !props.img || isError) ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg' : props.img }
-                alt={ props.alt }
-                onError={ onError }
-                { ...props.rawProps }
-            />
+        <img
+            onClick={props.onClick}
+            ref={ref}
+            className={cx(css.avatar, props.cx)}
+            width={props.size}
+            height={props.size}
+            src={
+                props.isLoading || !props.img || isError
+                    ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg'
+                    : props.img
+            }
+            alt={props.alt}
+            onError={onError}
+            {...props.rawProps}
+        />
     );
 };
 

@@ -18,8 +18,5 @@ export function getIconClass(props: ButtonProps) {
         classList[props.iconPosition !== 'right' ? 'has-left-icon' : 'has-right-icon'] = true;
     }
 
-    return [
-        classList['has-left-icon'] ? 'uui-has-left-icon' : 'uui-no-left-icon',
-        classList['has-right-icon'] ? 'uui-has-right-icon' : 'uui-no-right-icon',
-    ];
+    return [classList['has-left-icon'] ? 'uui-has-left-icon' : 'uui-no-left-icon', classList['has-right-icon'] ? 'uui-has-right-icon' : 'uui-no-right-icon'];
 }

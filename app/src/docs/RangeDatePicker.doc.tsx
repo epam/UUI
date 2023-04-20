@@ -14,20 +14,14 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='rangeDatePicker-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/rangeDatePicker/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="rangeDatePicker-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/rangeDatePicker/Basic.example.tsx" />
 
-                <DocExample
-                    title='Presets and Footer'
-                    path='./_examples/rangeDatePicker/PresetsAndFooter.example.tsx'
-                />
+                <DocExample title="Presets and Footer" path="./_examples/rangeDatePicker/PresetsAndFooter.example.tsx" />
 
-                { this.renderSectionTitle('Localization') }
-                <EditableDocContent fileName='datePicker-localization' />
+                {this.renderSectionTitle('Localization')}
+                <EditableDocContent fileName="datePicker-localization" />
             </>
         );
     }

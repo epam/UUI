@@ -1,20 +1,18 @@
 declare var require: any;
 type IconBase<TIcon> = {
-    id: string,
-    icon: TIcon,
-    name: string,
-    groupName: string,
-    size: number,
+    id: string;
+    icon: TIcon;
+    name: string;
+    groupName: string;
+    size: number;
 };
 type IconGroup<TIcon> = { [key: string]: IconBase<TIcon>[] };
 export type IconList<TIcon> = IconBase<TIcon> & {
-    parentId?: string,
+    parentId?: string;
 };
-const groupsLoader: { ctx: any, iPath: string, delimiter: string }[] = [
-    { ctx: require.context('@epam/assets/icons/loaders', true, /.svg$/),
-        iPath: '@epam/assets/icons/loaders', delimiter: '_' },
-    { ctx: require.context('@epam/assets/icons/common', true, /.svg$/),
-        iPath: '@epam/assets/icons/common', delimiter: '-' },
+const groupsLoader: { ctx: any; iPath: string; delimiter: string }[] = [
+    { ctx: require.context('@epam/assets/icons/loaders', true, /.svg$/), iPath: '@epam/assets/icons/loaders', delimiter: '_' },
+    { ctx: require.context('@epam/assets/icons/common', true, /.svg$/), iPath: '@epam/assets/icons/common', delimiter: '-' },
 ];
 function getAllIconsGrouped<TIcon>(): IconGroup<TIcon> {
     const acc: IconGroup<TIcon> = {};
@@ -49,7 +47,7 @@ export function getIconList<TIcon>(includeChildren?: boolean) {
         const first = groupedIcons[key][0];
         acc.push({ ...first, name: key, id: key });
         if (includeChildren) {
-            groupedIcons[key].forEach(item => {
+            groupedIcons[key].forEach((item) => {
                 acc.push({ ...item, parentId: key });
             });
         }

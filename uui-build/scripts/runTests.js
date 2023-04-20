@@ -5,7 +5,7 @@ process.env.NODE_ENV = 'test';
 
 const jest = require('jest');
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
     // Makes the script crash on unhandled rejections instead of silently
     // ignoring them. In the future, promise rejections that are not handled will
     // terminate the Node.js process with a non-zero exit code.
@@ -14,11 +14,8 @@ process.on('unhandledRejection', err => {
 
 const argv = process.argv.slice(2);
 
-if (
-  !process.env.CI &&
-  argv.indexOf('--collectCoverage') === -1
-) {
-  argv.push('--watch');
+if (!process.env.CI && argv.indexOf('--collectCoverage') === -1) {
+    argv.push('--watch');
 }
 
 jest.run(argv);

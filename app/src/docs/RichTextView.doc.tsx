@@ -14,12 +14,9 @@ export class RichTextViewDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='richTextView-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/richTextView/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="richTextView-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/richTextView/Basic.example.tsx" />
             </>
         );
     }

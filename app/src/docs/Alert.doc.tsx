@@ -14,12 +14,9 @@ export class AlertDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='alert-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/alert/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="alert-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/alert/Basic.example.tsx" />
             </>
         );
     }

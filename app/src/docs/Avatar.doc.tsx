@@ -14,12 +14,9 @@ export class AvatarDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='avatar-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/avatar/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="avatar-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/avatar/Basic.example.tsx" />
             </>
         );
     }

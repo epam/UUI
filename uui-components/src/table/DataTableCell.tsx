@@ -30,7 +30,6 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     if (props.rowProps.isLoading) {
         content = props.renderPlaceholder(props);
     } else if (isEditable) {
-
         // Copy all attributes explicitly, to avoid bypassing unnecessary DataTableCell props
         // We don't use any helpers and/or deconstruction syntax, as this is performance-sensitive part of code
         const editorProps: RenderEditorProps<TItem, TId, any> = {
@@ -48,19 +47,12 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
             mode: 'cell',
         };
 
-        content = <div
-            className={ css.editorWrapper }
-            onClick={ handleEditorClick }
-        >
-            { props.renderEditor(editorProps) }
-            <DataTableCellOverlay
-                { ...editorProps }
-                renderTooltip={ props.renderTooltip }
-                inFocus={ state.inFocus }
-                rowIndex={ row.index }
-                columnIndex={ props.index }
-            />
-        </div>;
+        content = (
+            <div className={css.editorWrapper} onClick={handleEditorClick}>
+                {props.renderEditor(editorProps)}
+                <DataTableCellOverlay {...editorProps} renderTooltip={props.renderTooltip} inFocus={state.inFocus} rowIndex={row.index} columnIndex={props.index} />
+            </div>
+        );
     } else {
         content = props.column.render(props.rowProps.value, props.rowProps);
     }
@@ -74,32 +66,25 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
     const styles = { textAlign, alignSelf, justifyContent };
 
     const getWrappedContent = () => (
-        <div style={ styles } className={ css.contentWrapper }>
-            { content }
+        <div style={styles} className={css.contentWrapper}>
+            {content}
         </div>
     );
 
     return (
         <FlexCell
-            ref={ ref }
-            grow={ props.column.grow }
-            width={ props.column.width }
-            minWidth={ props.column.width }
-            textAlign={ props.isFirstColumn ? undefined : props.column.textAlign }
-            alignSelf={ props.isFirstColumn ? undefined : props.column.alignSelf }
-            rawProps={ { role: 'cell' } }
-            cx={ [
-                uuiDataTableCellMarkers.uuiTableCell,
-                css.cell,
-                props.column.cx,
-                props.cx,
-                props.isInvalid && uuiMod.invalid,
-                state.inFocus && uuiMod.focus,
-            ] }
-            style={ !props.isFirstColumn && { justifyContent: justifyContent } }
+            ref={ref}
+            grow={props.column.grow}
+            width={props.column.width}
+            minWidth={props.column.width}
+            textAlign={props.isFirstColumn ? undefined : props.column.textAlign}
+            alignSelf={props.isFirstColumn ? undefined : props.column.alignSelf}
+            rawProps={{ role: 'cell' }}
+            cx={[uuiDataTableCellMarkers.uuiTableCell, css.cell, props.column.cx, props.cx, props.isInvalid && uuiMod.invalid, state.inFocus && uuiMod.focus]}
+            style={!props.isFirstColumn && { justifyContent: justifyContent }}
         >
-            { props.addons }
-            { props.isFirstColumn ? getWrappedContent() : content }
+            {props.addons}
+            {props.isFirstColumn ? getWrappedContent() : content}
         </FlexCell>
     );
 };

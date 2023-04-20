@@ -3,6 +3,8 @@ import { RadioGroup as uuiRadioGroup, RadioGroupProps } from '@epam/uui-componen
 import { RadioInput } from '../inputs';
 import css from './RadioGroup.scss';
 
-export const RadioGroup = withMods<RadioGroupProps<any>>(uuiRadioGroup, () => [css.root],
-    () => ({ RadioInput }),
+export const RadioGroup = withMods<RadioGroupProps<any>>(
+    uuiRadioGroup,
+    () => [css.root],
+    () => ({ RadioInput })
 );

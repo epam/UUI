@@ -14,16 +14,8 @@ export default function EditModePickerExample() {
     const dataSource = useLazyDataSource({ api: loadPersons }, []);
 
     return (
-        <FlexCell width={ 300 }>
-            <PickerInput
-                dataSource={ dataSource }
-                value={ value }
-                onValueChange={ onValueChange }
-                entityName='person'
-                selectionMode='multi'
-                valueType='id'
-                editMode='modal'
-            />
+        <FlexCell width={300}>
+            <PickerInput dataSource={dataSource} value={value} onValueChange={onValueChange} entityName="person" selectionMode="multi" valueType="id" editMode="modal" />
         </FlexCell>
     );
 }

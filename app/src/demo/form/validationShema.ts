@@ -1,6 +1,6 @@
 import { Metadata } from '@epam/uui-core';
 import { PersonDetails } from './types';
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
 const fullNameRegExp = /^[a-zA-Z0-9\s'-]+$/;
 
@@ -10,15 +10,11 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
             props: {
                 fullName: {
                     isRequired: true,
-                    validators: [
-                        (value: string) => [!fullNameRegExp.exec(value)?.length && 'Full Name should contain only Latin alphabet characters and numbers!'],
-                    ],
+                    validators: [(value: string) => [!fullNameRegExp.exec(value)?.length && 'Full Name should contain only Latin alphabet characters and numbers!']],
                 },
                 birthdayDate: {
                     isRequired: true,
-                    validators: [
-                        (value: string) => [!(dayjs(value).valueOf() <= dayjs().subtract(16, 'year').valueOf()) && 'User cannot be under 16 years old!'],
-                    ],
+                    validators: [(value: string) => [!(dayjs(value).valueOf() <= dayjs().subtract(16, 'year').valueOf()) && 'User cannot be under 16 years old!']],
                 },
             },
         },
@@ -43,9 +39,7 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                 speciality: { isRequired: false },
                 graduationYear: {
                     isRequired: false,
-                    validators: [
-                        (value: number | null) => [(value !== null && value < 1950) && 'The year of graduation can not be less than 1950!'],
-                    ],
+                    validators: [(value: number | null) => [value !== null && value < 1950 && 'The year of graduation can not be less than 1950!']],
                 },
             },
         },

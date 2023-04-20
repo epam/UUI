@@ -3,7 +3,7 @@ import { Viewport } from './types';
 import { msPerDay, scaleSteps } from './helpers';
 import { TimelineTransform } from '../index';
 import sortedIndex from 'lodash.sortedindex';
-import { isClientSide } from "@epam/uui-core";
+import { isClientSide } from '@epam/uui-core';
 
 type TimelineRenderHandler = (transform: TimelineTransform) => void;
 
@@ -31,19 +31,19 @@ export class TimelineController {
     dragStartMouseX = 0;
     isDragging = false;
     isFrameScheduled = false;
-    scalesVisibility: { [key: string ]: ScaleState } = {};
+    scalesVisibility: { [key: string]: ScaleState } = {};
     shiftPercent: number = 0.3;
     onViewportChange: (newViewport: Viewport) => void;
 
     constructor(viewport?: Viewport, options?: TimelineControllerOptions, onViewportChange?: (newViewport: Viewport) => void) {
         if (!viewport) {
-            let viewportValue = localStorage.getItem('timeline') ?
-                JSON.parse(localStorage.getItem('timeline')) :
-            {
-                center: new Date(),
-                pxPerMs: 1 / msPerDay,
-                widthPx: 586,
-            };
+            let viewportValue = localStorage.getItem('timeline')
+                ? JSON.parse(localStorage.getItem('timeline'))
+                : {
+                      center: new Date(),
+                      pxPerMs: 1 / msPerDay,
+                      widthPx: 586,
+                  };
 
             viewport = {
                 ...viewportValue,
@@ -70,7 +70,7 @@ export class TimelineController {
     }
 
     public unsubscribe(handler: TimelineRenderHandler) {
-        this.handlers = this.handlers.filter(h => h != handler);
+        this.handlers = this.handlers.filter((h) => h != handler);
     }
 
     public setViewport(newViewport: Viewport, doAnimation: boolean) {
@@ -97,12 +97,13 @@ export class TimelineController {
                 ...this.currentViewport,
                 widthPx: width,
             },
-            false,
+            false
         );
     }
 
     public startDrag = (e: React.MouseEvent<HTMLElement>) => {
-        if (e.nativeEvent.which === 1) { //If left click
+        if (e.nativeEvent.which === 1) {
+            //If left click
             this.isDragging = true;
             this.dragStartViewport = this.currentViewport;
             this.dragStartMouseX = this.screenMouseX;
@@ -110,21 +111,23 @@ export class TimelineController {
 
         //Prevent text selection of drag start
         e.preventDefault();
-    }
+    };
 
     public handleWheelEvent = (e: WheelEvent) => {
-
         let vp = this.currentViewport;
-        let sign = e.deltaY ? e.deltaY < 0 ? 1 : -1 : 0;
+        let sign = e.deltaY ? (e.deltaY < 0 ? 1 : -1) : 0;
         let pxPerMs = this.changeZoomStep(sign);
 
-        this.setViewport({
-            ...vp,
-            center: new Date(this.getNewCenter({...vp, pxPerMs}, vp.center.getTime() + (1 / vp.pxPerMs - 1 / pxPerMs) * ((e as any).layerX - vp.widthPx / 2))),
-            pxPerMs,
-        }, true);
+        this.setViewport(
+            {
+                ...vp,
+                center: new Date(this.getNewCenter({ ...vp, pxPerMs }, vp.center.getTime() + (1 / vp.pxPerMs - 1 / pxPerMs) * ((e as any).layerX - vp.widthPx / 2))),
+                pxPerMs,
+            },
+            true
+        );
         e.preventDefault();
-    }
+    };
 
     private changeZoomStep(steps: number) {
         let currentStep = sortedIndex(scaleSteps, this.targetViewport.pxPerMs);
@@ -145,10 +148,13 @@ export class TimelineController {
     }
 
     public moveToday() {
-        this.setViewport({
-            ...this.targetViewport,
-            center: new Date(),
-        }, true);
+        this.setViewport(
+            {
+                ...this.targetViewport,
+                center: new Date(),
+            },
+            true
+        );
     }
 
     public moveBy(dir: -1 | 1, shiftPercent: number = this.shiftPercent) {
@@ -156,30 +162,39 @@ export class TimelineController {
         const newCenterMs = this.getNewCenter(this.targetViewport, this.targetViewport.center.getTime() + screenWidthMs * shiftPercent * dir);
 
         if (newCenterMs !== this.targetViewport.center.getTime()) {
-            this.setViewport({
-                ...this.targetViewport,
-                center: new Date(newCenterMs),
-            }, true);
+            this.setViewport(
+                {
+                    ...this.targetViewport,
+                    center: new Date(newCenterMs),
+                },
+                true
+            );
         }
     }
 
     public zoomTo(pxPerMs: number) {
         let vp = this.targetViewport;
 
-        this.setViewport({
-            ...vp,
-            pxPerMs,
-        }, true);
+        this.setViewport(
+            {
+                ...vp,
+                pxPerMs,
+            },
+            true
+        );
     }
 
     public zoomBy(steps: number) {
         let vp = this.targetViewport;
         let pxPerMs = this.changeZoomStep(steps);
 
-        this.setViewport({
-            ...vp,
-            pxPerMs,
-        }, true);
+        this.setViewport(
+            {
+                ...vp,
+                pxPerMs,
+            },
+            true
+        );
     }
 
     public canZoomBy(steps: number) {
@@ -192,7 +207,7 @@ export class TimelineController {
 
     private doRender() {
         const transform = new TimelineTransform(this, this.currentViewport);
-        this.handlers.forEach(h => h && h(transform));
+        this.handlers.forEach((h) => h && h(transform));
     }
 
     private interpolate(current: number, target: number, dt: number, force: number = 0.01) {
@@ -230,11 +245,11 @@ export class TimelineController {
 
         const getX = (ms: number, vp: Viewport) => (ms - vp.center.getTime()) * vp.pxPerMs + vp.widthPx / 2;
 
-        let screenLeftX = (vp2.center.getTime() - (vp2.widthPx / vp2.pxPerMs / 2) - vp2.center.getTime()) * vp2.pxPerMs - vp2.widthPx / 2;
+        let screenLeftX = (vp2.center.getTime() - vp2.widthPx / vp2.pxPerMs / 2 - vp2.center.getTime()) * vp2.pxPerMs - vp2.widthPx / 2;
 
         let deltaPx = Math.max(
             Math.abs(getX(screenLeftMs, nextViewport) - getX(screenLeftMs, vp2)),
-            Math.abs(getX(screenRightMs, nextViewport) - getX(screenRightMs, vp2)),
+            Math.abs(getX(screenRightMs, nextViewport) - getX(screenRightMs, vp2))
         );
 
         return { nextViewport, deltaPx };
@@ -242,7 +257,7 @@ export class TimelineController {
 
     private isScaleVisible(minPxPerDay?: number, maxPxPerDay?: number) {
         let pxPerDay = this.currentViewport.pxPerMs * msPerDay;
-        return ((!minPxPerDay || minPxPerDay <= pxPerDay) && (!maxPxPerDay || pxPerDay < maxPxPerDay)) ? 1 : 0;
+        return (!minPxPerDay || minPxPerDay <= pxPerDay) && (!maxPxPerDay || pxPerDay < maxPxPerDay) ? 1 : 0;
     }
 
     public getScaleVisibility(minPxPerDay?: number, maxPxPerDay?: number) {
@@ -260,7 +275,7 @@ export class TimelineController {
     public updateScalesVisibility(dt: number, animate: boolean) {
         const sigma = 0.05;
         let maxDelta = 0;
-        Object.keys(this.scalesVisibility).forEach(key => {
+        Object.keys(this.scalesVisibility).forEach((key) => {
             const scale = this.scalesVisibility[key];
             const currentVisibility = this.isScaleVisible(scale.minPxPerDay, scale.maxPxPerDay);
             if (animate) {
@@ -271,7 +286,7 @@ export class TimelineController {
                 if (scale.visibility < sigma) {
                     scale.visibility = 0;
                 }
-                if (scale.visibility > (1 - sigma)) {
+                if (scale.visibility > 1 - sigma) {
                     scale.visibility = 1;
                 }
             } else {
@@ -295,7 +310,7 @@ export class TimelineController {
         this.isFrameScheduled = true;
 
         window.requestAnimationFrame(() => {
-            let t = (new Date()).getTime();
+            let t = new Date().getTime();
             let dt = 16;
             if (this.lastRenderTimestamp) {
                 dt = t - this.lastRenderTimestamp;
@@ -342,19 +357,22 @@ export class TimelineController {
             const newCenterMs = this.getNewCenter(vp, vp.center.getTime() + dt);
 
             if (newCenterMs !== vp.center.getTime()) {
-                this.setViewport({
-                    ...vp,
-                    center: new Date(newCenterMs),
-                }, false);
+                this.setViewport(
+                    {
+                        ...vp,
+                        center: new Date(newCenterMs),
+                    },
+                    false
+                );
             }
         }
-    }
+    };
 
     private handleMouseUp = (e: MouseEvent) => {
         this.isDragging = false;
-    }
+    };
 
     private handleMouseLeave = (e: MouseEvent) => {
         this.isDragging = false;
-    }
+    };
 }

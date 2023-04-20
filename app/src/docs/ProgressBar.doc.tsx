@@ -7,20 +7,11 @@ export class ProgressBarDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='progressBar-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic ProgressBar'
-                    path='./_examples/progressBar/Basic.example.tsx'
-                />
-                <DocExample
-                    title='IndeterminateBar example'
-                    path='./_examples/progressBar/IndeterminateBar.example.tsx'
-                />
-                <DocExample
-                    title='IndicatorBar example'
-                    path='./_examples/progressBar/IndicatorBar.example.tsx'
-                />
+                <EditableDocContent fileName="progressBar-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic ProgressBar" path="./_examples/progressBar/Basic.example.tsx" />
+                <DocExample title="IndeterminateBar example" path="./_examples/progressBar/IndeterminateBar.example.tsx" />
+                <DocExample title="IndicatorBar example" path="./_examples/progressBar/IndicatorBar.example.tsx" />
             </>
         );
     }

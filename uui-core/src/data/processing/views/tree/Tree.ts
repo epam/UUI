@@ -1,6 +1,6 @@
-import { getSearchFilter } from "../../../querying";
-import { LoadableTree } from "./LoadableTree";
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree } from "./ITree";
+import { getSearchFilter } from '../../../querying';
+import { LoadableTree } from './LoadableTree';
+import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree } from './ITree';
 
 export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
     public filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
@@ -32,20 +32,19 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
         if (!search) return null;
 
         if (!getSearchFields) {
-            console.warn("[Tree] Search value is set, but options.getSearchField is not specified. Nothing to search on.");
+            console.warn('[Tree] Search value is set, but options.getSearchField is not specified. Nothing to search on.');
             return null;
         }
         const searchFilter = getSearchFilter(search);
         return (i: TItem) => searchFilter(getSearchFields(i));
     }
 
-
     private buildSorter<TFilter>({ sorting, sortBy }: ApplySortOptions<TItem, TId, TFilter>) {
-        const compareScalars = (new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' })).compare;
+        const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
         const comparers: ((a: TItem, b: TItem) => number)[] = [];
 
         if (sorting) {
-            sorting.forEach(sortingOption => {
+            sorting.forEach((sortingOption) => {
                 const sortByFn = sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
                 const sign = sortingOption.direction === 'desc' ? -1 : 1;
                 comparers.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
@@ -96,7 +95,6 @@ export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
                 if (!isSomeMatching) {
                     isSomeMatching = isMatching;
                 }
-
             });
 
             return isSomeMatching;

@@ -5,7 +5,7 @@ export const getDefaultColumnsConfig = <TItem, TId>(columns: DataColumnProps<TIt
     let config: ColumnsConfig = {};
     let prevOrder = 'a';
 
-    columns.forEach(column => {
+    columns.forEach((column) => {
         const order = getOrderBetween(prevOrder, null);
         config[column.key] = { isVisible: !column.isHiddenByDefault, order: prevOrder, width: column.width };
         prevOrder = order;

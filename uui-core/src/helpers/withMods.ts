@@ -5,7 +5,7 @@ import { forwardRef } from './forwardRef';
 export function withMods<TProps, TMods = {}>(
     Component: React.ComponentType<TProps> | React.NamedExoticComponent<TProps>,
     getCx?: (props: Readonly<TProps & TMods>) => CX,
-    getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>,
+    getProps?: (props: Readonly<TProps & TMods>) => Partial<TProps>
 ) {
     const wrappedComponent = forwardRef<any, TProps & TMods>((props, ref) => {
         // Most components are wrapped in withMods component.
@@ -23,7 +23,6 @@ export function withMods<TProps, TMods = {}>(
         if (getCxResult) {
             allProps.cx = [getCxResult, (props as any).cx];
         }
-
 
         if (Component.prototype instanceof React.Component) {
             allProps.forwardedRef = ref;

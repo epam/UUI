@@ -1,7 +1,7 @@
-import { DataSourceState, IMap, DataRowPathItem } from "../../../../types";
-import { CompositeKeysMap } from "./CompositeKeysMap";
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo } from "./ITree";
-import { TreeParams } from "./ITree";
+import { DataSourceState, IMap, DataRowPathItem } from '../../../../types';
+import { CompositeKeysMap } from './CompositeKeysMap';
+import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo } from './ITree';
+import { TreeParams } from './ITree';
 
 export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
     if (params.complexIds) {
@@ -19,12 +19,10 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         protected params: TreeParams<TItem, TId>,
         protected readonly byId: IMap<TId, TItem>,
         protected readonly byParentId: IMap<TId, TId[]>,
-        protected readonly nodeInfoById: IMap<TId, TreeNodeInfo>,
+        protected readonly nodeInfoById: IMap<TId, TreeNodeInfo>
     ) {
         this.getId = params.getId;
-        this.getParentId = params.getParentId
-            ? ((item: TItem) => (params.getParentId(item) ?? undefined))
-            : () => undefined;
+        this.getParentId = params.getParentId ? (item: TItem) => params.getParentId(item) ?? undefined : () => undefined;
     }
 
     public clearStructure(): ITree<TItem, TId> {
@@ -32,7 +30,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
             this.params,
             this.byId,
             this.newMap(), // add empty children list for root to avoid corner-cases
-            this.newMap(),
+            this.newMap()
         );
     }
 
@@ -40,7 +38,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         params: TreeParams<TItem, TId>,
         byId: IMap<TId, TItem>,
         byParentId: IMap<TId, TId[]>,
-        nodeInfoById: IMap<TId, TreeNodeInfo>,
+        nodeInfoById: IMap<TId, TreeNodeInfo>
     ): ITree<TItem, TId> {
         if (byId === this.byId && byParentId === this.byParentId && nodeInfoById === this.nodeInfoById) {
             return this;
@@ -58,7 +56,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     public getRootItems() {
-        return this.getRootIds().map(id => this.byId.get(id)!);
+        return this.getRootIds().map((id) => this.byId.get(id)!);
     }
 
     public getById(id: TId) {
@@ -72,7 +70,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getChildrenByParentId(parentId: TId) {
         const ids = this.getChildrenIdsByParentId(parentId);
-        const children = ids.map(id => this.byId.get(id));
+        const children = ids.map((id) => this.byId.get(id));
         return children;
     }
 
@@ -125,9 +123,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         const nodeInfo = this.getNodeInfo(parentId);
         const lastId = ids[ids.length - 1];
 
-        const isLastChild =
-            lastId !== undefined && lastId === id
-            && nodeInfo.count === ids.length;
+        const isLastChild = lastId !== undefined && lastId === id && nodeInfo.count === ids.length;
 
         return {
             id: this.getId(item),
@@ -160,10 +156,10 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     public forEach(
         action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void,
         options?: {
-            direction?: 'bottom-up' | 'top-down',
-            parentId?: TId,
-            includeParent?: boolean,
-        },
+            direction?: 'bottom-up' | 'top-down';
+            parentId?: TId;
+            includeParent?: boolean;
+        }
     ) {
         let shouldStop = false;
         const stop = () => {
@@ -177,7 +173,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
         const iterateNodes = (ids: TId[]) => {
             if (shouldStop) return;
-            ids.forEach(id => {
+            ids.forEach((id) => {
                 if (shouldStop) return;
                 const item = this.byId.get(id);
                 const parentId = item ? this.getParentId(item) : undefined;
@@ -203,32 +199,32 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         }
     }
 
-    public computeSubtotals<TSubtotals>(
-        get: (item: TItem, hasChildren: boolean) => TSubtotals,
-        add: (a: TSubtotals, b: TSubtotals) => TSubtotals,
-    ) {
+    public computeSubtotals<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals) {
         const subtotalsMap = this.newMap<TId | undefined, TSubtotals>();
 
-        this.forEach((item, id, parentId) => {
-            let itemSubtotals = get(item, this.byParentId.has(id));
+        this.forEach(
+            (item, id, parentId) => {
+                let itemSubtotals = get(item, this.byParentId.has(id));
 
-            // add already computed children subtotals
-            if (subtotalsMap.has(id)) {
-                itemSubtotals = add(itemSubtotals, subtotalsMap.get(id));
-            }
+                // add already computed children subtotals
+                if (subtotalsMap.has(id)) {
+                    itemSubtotals = add(itemSubtotals, subtotalsMap.get(id));
+                }
 
-            // store
-            subtotalsMap.set(id, itemSubtotals);
+                // store
+                subtotalsMap.set(id, itemSubtotals);
 
-            // add value to parent
-            let parentSubtotals: TSubtotals;
-            if (!subtotalsMap.has(parentId)) {
-                parentSubtotals = itemSubtotals;
-            } else {
-                parentSubtotals = add(itemSubtotals, subtotalsMap.get(parentId));
-            }
-            subtotalsMap.set(parentId, parentSubtotals);
-        }, { direction: 'bottom-up' });
+                // add value to parent
+                let parentSubtotals: TSubtotals;
+                if (!subtotalsMap.has(parentId)) {
+                    parentSubtotals = itemSubtotals;
+                } else {
+                    parentSubtotals = add(itemSubtotals, subtotalsMap.get(parentId));
+                }
+                subtotalsMap.set(parentId, parentSubtotals);
+            },
+            { direction: 'bottom-up' }
+        );
         return subtotalsMap;
     }
 
@@ -243,7 +239,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
             params,
             newMap(params),
             newMap(params), // add empty children list for root to avoid corner-cases
-            newMap(params),
+            newMap(params)
         ) as ITree<TItem, TId>;
     }
 
@@ -258,36 +254,23 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         }
     }
 
-    abstract patch(
-        items: TItem[],
-        isDeletedProp?: keyof TItem,
-        comparator?: (newItem: TItem, existingItem: TItem) => number,
-    ): ITree<TItem, TId>;
+    abstract patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: (newItem: TItem, existingItem: TItem) => number): ITree<TItem, TId>;
 
     abstract cascadeSelection(
         currentSelection: TId[],
         selectedId: TId,
         isSelected: boolean,
         options: {
-            isSelectable: (item: TItem) => boolean,
-            cascade: boolean,
-        },
+            isSelectable: (item: TItem) => boolean;
+            cascade: boolean;
+        }
     ): TId[];
 
-    abstract load<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        value: Readonly<DataSourceState>,
-    ): Promise<ITree<TItem, TId>>;
+    abstract load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
 
-    abstract loadMissing<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        value: Readonly<DataSourceState>,
-    ): Promise<ITree<TItem, TId>>;
+    abstract loadMissing<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
 
-    abstract loadMissingIdsAndParents<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        idsToLoad: TId[],
-    ): Promise<ITree<TItem, TId>>;
+    abstract loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<ITree<TItem, TId>>;
 
     abstract filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
     abstract search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId>;

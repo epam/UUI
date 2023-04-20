@@ -1,19 +1,23 @@
-import {
-    emptyDb, TaskDb, Task, TaskDbTables,
-} from './TaskDb';
+import { emptyDb, TaskDb, Task, TaskDbTables } from './TaskDb';
 import { DbRef } from '../DbRef';
 import { DbSaveResponse, DbPatch } from '../types';
 import { DataQuery, runDataQuery } from '@epam/uui-core';
 import range from 'lodash.range';
 
-const delay = (t: number) => new Promise((resolve) => {
-    setTimeout(resolve, t || 1);
-});
+const delay = (t: number) =>
+    new Promise((resolve) => {
+        setTimeout(resolve, t || 1);
+    });
 
 describe('db - list loaders', () => {
     const testItems = range(200).map((id) => {
         return {
-            id, name: 'Task', isDone: false, createdBy: 'JS', isDraft: false, assignedTo: 'DT',
+            id,
+            name: 'Task',
+            isDone: false,
+            createdBy: 'JS',
+            isDraft: false,
+            assignedTo: 'DT',
         } as Task;
     });
 

@@ -1,9 +1,8 @@
-import { LazyDataSource } from "../../LazyDataSource";
-import { LazyListView } from "../LazyListView";
+import { LazyDataSource } from '../../LazyDataSource';
+import { LazyListView } from '../LazyListView';
 import { runDataQuery } from '../../../querying/runDataQuery';
-import { delay } from "@epam/test-utils";
-import { DataQueryFilter, DataRowProps, DataSourceState } from "../../../../types";
-
+import { delay } from '@epam/test-utils';
+import { DataQueryFilter, DataRowProps, DataSourceState } from '../../../../types';
 
 interface TestParent {
     type: 'parent';
@@ -29,20 +28,22 @@ describe('LazyListView - can work with id like [string, number]', () => {
     ];
 
     let value: DataSourceState<DataQueryFilter<TestItem>, TestItemId>;
-    let onValueChanged = (newValue: typeof value) => { value = newValue; };
+    let onValueChanged = (newValue: typeof value) => {
+        value = newValue;
+    };
 
     let treeDataSource = new LazyDataSource<TestItem, TestItemId, DataQueryFilter<TestItem>>({
         api: async ({ ids: clientIds, filter, range }, ctx) => {
-            let ids = clientIds && clientIds.map(id => id[1]);
+            let ids = clientIds && clientIds.map((id) => id[1]);
             if (ctx.parent) {
                 return runDataQuery(testData, { filter: { type: 'child', parentId: ctx.parent.id } });
             } else {
                 return runDataQuery(testData, { filter: { type: 'parent' } });
             }
         },
-        getChildCount: (i) => i.type == 'parent' ? i.childrenCount : 0,
-        getId: i => [i.type, i.id],
-        getParentId: i => i.parentId ? ['parent', i.parentId] : null,
+        getChildCount: (i) => (i.type == 'parent' ? i.childrenCount : 0),
+        getId: (i) => [i.type, i.id],
+        getParentId: (i) => (i.parentId ? ['parent', i.parentId] : null),
         cascadeSelection: true,
         complexIds: true,
     });
@@ -51,13 +52,9 @@ describe('LazyListView - can work with id like [string, number]', () => {
         value = { topIndex: 0, visibleCount: 3 };
     });
 
-    function expectViewToLookLike(
-        view: LazyListView<TestItem, TestItemId>,
-        rows: Partial<DataRowProps<TestItem, TestItemId>>[],
-        rowsCount?: number,
-    ) {
+    function expectViewToLookLike(view: LazyListView<TestItem, TestItemId>, rows: Partial<DataRowProps<TestItem, TestItemId>>[], rowsCount?: number) {
         let viewRows = view.getVisibleRows();
-        expect(viewRows).toEqual(rows.map(r => expect.objectContaining(r)));
+        expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
         let listProps = view.getListProps();
         rowsCount != null && expect(listProps.rowsCount).toEqual(rowsCount);
     }
@@ -65,18 +62,12 @@ describe('LazyListView - can work with id like [string, number]', () => {
     it('can load tree, unfold nodes, and scroll down', async () => {
         let ds = treeDataSource;
         let view = ds.getView(value, onValueChanged, {});
-        expectViewToLookLike(view, [
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
-        ]);
+        expectViewToLookLike(view, [{ isLoading: true }, { isLoading: true }, { isLoading: true }]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: ['parent', 1], isFoldable: true, isFolded: true },
-        ], 1);
+        expectViewToLookLike(view, [{ id: ['parent', 1], isFoldable: true, isFolded: true }], 1);
     });
 
     it('can unfold nodes', async () => {
@@ -84,9 +75,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
         let view = ds.getView(value, onValueChanged, {});
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: ['parent', 1], isFoldable: true, isFolded: true },
-        ], 1);
+        expectViewToLookLike(view, [{ id: ['parent', 1], isFoldable: true, isFolded: true }], 1);
 
         // Unfold a row
         let rows = view.getVisibleRows();
@@ -99,11 +88,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
 
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: ['parent', 1] },
-            { id: ['child', 1] },
-            { id: ['child', 2] },
-        ], 3);
+        expectViewToLookLike(view, [{ id: ['parent', 1] }, { id: ['child', 1] }, { id: ['child', 2] }], 3);
     });
 
     it('Checkboxes works', async () => {
@@ -111,24 +96,24 @@ describe('LazyListView - can work with id like [string, number]', () => {
         value.visibleCount = 3;
         value.checked = [['child', 1]];
 
-        let view = ds.getView(
-            value,
-            onValueChanged,
-            {
-                cascadeSelection: true,
-                getRowOptions: _ => ({ checkbox: { isVisible: true } }),
-                isFoldedByDefault: _ => false,
-            },
-        );
+        let view = ds.getView(value, onValueChanged, {
+            cascadeSelection: true,
+            getRowOptions: (_) => ({ checkbox: { isVisible: true } }),
+            isFoldedByDefault: (_) => false,
+        });
 
         view.getVisibleRows(); // load;
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: ['parent', 1], isChildrenChecked: true, isChecked: false },
-            { id: ['child', 1], isChecked: true },
-            { id: ['child', 2], isChecked: false },
-        ], 3);
+        expectViewToLookLike(
+            view,
+            [
+                { id: ['parent', 1], isChildrenChecked: true, isChecked: false },
+                { id: ['child', 1], isChecked: true },
+                { id: ['child', 2], isChecked: false },
+            ],
+            3
+        );
 
         let row = view.getVisibleRows()[2]; // -> all children checked = parent checked
         row.onCheck(row);
@@ -137,11 +122,15 @@ describe('LazyListView - can work with id like [string, number]', () => {
         view.update(value, view.props);
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: ['parent', 1], isChildrenChecked: true, isChecked: true },
-            { id: ['child', 1], isChecked: true },
-            { id: ['child', 2], isChecked: true },
-        ], 3);
+        expectViewToLookLike(
+            view,
+            [
+                { id: ['parent', 1], isChildrenChecked: true, isChecked: true },
+                { id: ['child', 1], isChecked: true },
+                { id: ['child', 2], isChecked: true },
+            ],
+            3
+        );
 
         row = view.getVisibleRows()[0];
         row.onCheck(row);
@@ -150,11 +139,15 @@ describe('LazyListView - can work with id like [string, number]', () => {
         view.update(value, view.props);
         await delay();
 
-        expectViewToLookLike(view, [
-            { id: ['parent', 1], isChildrenChecked: false, isChecked: false },
-            { id: ['child', 1], isChecked: false },
-            { id: ['child', 2], isChecked: false },
-        ], 3);
+        expectViewToLookLike(
+            view,
+            [
+                { id: ['parent', 1], isChildrenChecked: false, isChecked: false },
+                { id: ['child', 1], isChecked: false },
+                { id: ['child', 2], isChecked: false },
+            ],
+            3
+        );
     });
 
     // ListApiCache can't work with complex ids.

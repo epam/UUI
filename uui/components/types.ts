@@ -25,7 +25,8 @@ export const allTextSizes: TextSize[] = ['18', '24', '30', '36', '48'];
 export type FontStyle = 'regular' | 'semibold' | 'italic' | 'primary' | 'promo';
 export const allFontStyles: FontStyle[] = ['regular', 'semibold', 'italic', 'primary', 'promo'];
 
-export interface ColorMod { // TODO remove
+export interface ColorMod {
+    // TODO remove
     /** Component color */
     color?: SemanticColor;
 }

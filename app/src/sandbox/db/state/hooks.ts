@@ -5,7 +5,7 @@ import { DemoDbRef } from './DemoDbRef';
 export function useDemoDbView<TResult, TParams = void>(
     fn: (db: DemoDb, params: TParams) => TResult,
     params?: TParams,
-    options?: DbViewOptions<DemoDb, TResult, TParams>,
+    options?: DbViewOptions<DemoDb, TResult, TParams>
 ): TResult {
     return useDbView(fn, params, options);
 }

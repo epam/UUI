@@ -6,22 +6,22 @@ import { ColumnsConfigurationModal } from '@epam/uui';
 import { ReactComponent as GearIcon } from '@epam/assets/icons/common/action-settings-18.svg';
 
 export type Person = {
-    id: number,
-    name: string,
-    phoneNumber: string,
-    gender: string,
-    avatarUrl?: string,
-    personType?: string,
-    jobTitle?: string,
-    birthDate?: string,
-    hireDate?: string,
-    departmentId?: number,
-    departmentName?: string,
+    id: number;
+    name: string;
+    phoneNumber: string;
+    gender: string;
+    avatarUrl?: string;
+    personType?: string;
+    jobTitle?: string;
+    birthDate?: string;
+    hireDate?: string;
+    departmentId?: number;
+    departmentName?: string;
 };
 
 type DataTableCardState = {
-    tableState: DataSourceState,
-    items: Person[],
+    tableState: DataSourceState;
+    items: Person[];
     columnsConfig: ColumnsConfig;
 };
 
@@ -36,7 +36,7 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
     static contextType = UuiContext;
     context: UuiContexts;
 
-    public static displayName = "Table";
+    public static displayName = 'Table';
 
     getVisibleColumns() {
         return this.props.props.columns.filter((i: DataColumnProps<DemoComponentProps['props']>) => this.state.columnsConfig[i.key]?.isVisible || true);
@@ -52,68 +52,66 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 const fieldKey = sort?.[0].field as keyof Person;
                 if (fieldKey !== key) return;
                 if (sort[0].direction === 'desc') rows.reverse();
-                rows.sort((a, b) =>
-                    (key === 'id' || key === 'departmentId') ?
-                    a[key] - b[key] :
-                    a[key].localeCompare(b[key]),
-                );
+                rows.sort((a, b) => (key === 'id' || key === 'departmentId' ? a[key] - b[key] : a[key].localeCompare(b[key])));
             });
         }
 
         return rows.map((item, index) => (
             <DataTableRow
-                key={ index }
-                size={ this.props.props.size }
-                borderBottom={ this.props.props.borderBottom }
-                columns={ columns }
-                value={ item }
-                id={ index }
-                rowKey={ index + '' }
-                index={ index }
+                key={index}
+                size={this.props.props.size}
+                borderBottom={this.props.props.borderBottom}
+                columns={columns}
+                value={item}
+                id={index}
+                rowKey={index + ''}
+                index={index}
             />
         ));
     }
 
     showConfigurationModal = () => {
-        this.context.uuiModals.show<ColumnsConfig>(modalProps => (
-            <ColumnsConfigurationModal
-                { ...modalProps }
-                columns={ this.props.props.columns }
-                columnsConfig={ this.state.columnsConfig }
-                defaultConfig={ { gender: { isVisible: false, order: 'f' }} }
-            />
-        )).then(columnsConfig => this.setState({ columnsConfig }));
-    }
+        this.context.uuiModals
+            .show<ColumnsConfig>((modalProps) => (
+                <ColumnsConfigurationModal
+                    {...modalProps}
+                    columns={this.props.props.columns}
+                    columnsConfig={this.state.columnsConfig}
+                    defaultConfig={{ gender: { isVisible: false, order: 'f' } }}
+                />
+            ))
+            .then((columnsConfig) => this.setState({ columnsConfig }));
+    };
 
     getTable(component: DemoComponentProps['DemoComponent'], props: DemoComponentProps['props']) {
         if (component === DataTableRow) {
-            return <>
-                <FlexRow size="48" background="white" padding="24">
-                    <Text>items</Text>
-                    <FlexSpacer />
-                    <IconButton icon={ GearIcon } onClick={ this.showConfigurationModal } />
-                </FlexRow>
-                <DataTableHeaderRow
-                    columns={ this.getVisibleColumns() }
-                    size={ props.size }
-                    { ...this.lens.prop('tableState').toProps() }
-                />
-                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
-                { this.getRows() }
-                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
-            </>;
+            return (
+                <>
+                    <FlexRow size="48" background="white" padding="24">
+                        <Text>items</Text>
+                        <FlexSpacer />
+                        <IconButton icon={GearIcon} onClick={this.showConfigurationModal} />
+                    </FlexRow>
+                    <DataTableHeaderRow columns={this.getVisibleColumns()} size={props.size} {...this.lens.prop('tableState').toProps()} />
+                    {React.createElement(component, { ...props, columns: this.getVisibleColumns() })}
+                    {this.getRows()}
+                    {React.createElement(component, { ...props, columns: this.getVisibleColumns() })}
+                </>
+            );
         } else if (component === DataTableHeaderRow) {
-            return <>
-                { React.createElement(component, { ...props, columns: this.getVisibleColumns() }) }
-                { this.getRows() }
-            </>;
+            return (
+                <>
+                    {React.createElement(component, { ...props, columns: this.getVisibleColumns() })}
+                    {this.getRows()}
+                </>
+            );
         }
     }
 
     render() {
         return (
-            <Panel margin='24' shadow style={ { 'width': '50%' } }>
-                { this.getTable(this.props.DemoComponent, this.props.props) }
+            <Panel margin="24" shadow style={{ width: '50%' }}>
+                {this.getTable(this.props.DemoComponent, this.props.props)}
             </Panel>
         );
     }

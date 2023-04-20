@@ -1,7 +1,7 @@
 import React from 'react';
 import { DataColumnProps, DataRowProps } from '@epam/uui-core';
 
-type Row = { salary: number, age: number; name: string, phone: string };
+type Row = { salary: number; age: number; name: string; phone: string };
 export const rowsMock: DataRowProps<Row, number>[] = [
     { id: 1, rowKey: '1', index: 0, value: { age: 10, salary: 1000, name: 'first', phone: 'some phone 1' } },
     { id: 2, rowKey: '2', index: 1, value: { age: 20, salary: 2000, name: 'second', phone: 'some phone 2' } },
@@ -13,28 +13,28 @@ export const columnsMock: DataColumnProps<Row, number>[] = [
     {
         key: 'age',
         width: 1,
-        renderCell: () => (<div>1</div>),
+        renderCell: () => <div>1</div>,
         canAcceptCopy: (from, to) => to.row.index % 2 === 0,
         canCopy: (cell) => cell.row.index % 2 === 0,
     },
     {
         key: 'salary',
         width: 1,
-        renderCell: () => (<div>1</div>),
+        renderCell: () => <div>1</div>,
         canAcceptCopy: (from, to) => true,
         canCopy: () => true,
     },
     {
         key: 'rate',
         width: 1,
-        renderCell: () => (<div>1</div>),
+        renderCell: () => <div>1</div>,
         canAcceptCopy: (from, to) => true,
         canCopy: (cell) => true,
     },
     {
         key: 'denyCopyCol',
         width: 1,
-        renderCell: () => (<div>1</div>),
+        renderCell: () => <div>1</div>,
         canAcceptCopy: (from, to) => false,
         canCopy: (cell) => false,
     },
