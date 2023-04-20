@@ -5,6 +5,8 @@ import { Switch } from '../inputs';
 import { FlexCell, FlexRow, FlexSpacer } from '../layout';
 import { LinkButton } from '../buttons';
 import { SizeMod } from '../types';
+import cx from 'classnames';
+import css from './DataPickerFooter.scss';
 
 type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> &
 SizeMod & {
@@ -37,7 +39,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     };
 
     return (
-        <FlexRow padding="12">
+        <FlexRow padding="12" cx={ cx(css.footerWrapper) }>
             {!props.hideShowOnlySelected && (
                 <Switch
                     size={ switchSize }
@@ -50,13 +52,24 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
 
             <FlexSpacer />
 
-            {(view.selectAll || isSinglePicker) && (
+            {view.selectAll && (
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
-                        isDisabled={ !hasSelection && !view.selectAll }
                         size={ size }
-                        caption={ hasSelection || isSinglePicker ? i18n.pickerInput.clearSelectionButton : i18n.pickerInput.selectAllButton }
-                        onClick={ hasSelection || isSinglePicker ? clearSelection : () => view.selectAll.onValueChange(true) }
+                        caption={ hasSelection ? i18n.pickerInput.clearSelectionButton : i18n.pickerInput.selectAllButton }
+                        onClick={ hasSelection ? clearSelection : () => view.selectAll.onValueChange(true) }
+                        rawProps={ { onKeyDown: handleKeyDown } }
+                    />
+                </FlexCell>
+            )}
+
+            {isSinglePicker && (
+                <FlexCell width="auto" alignSelf="center">
+                    <LinkButton
+                        isDisabled={ !hasSelection }
+                        size={ size }
+                        caption={ i18n.pickerInput.clearSelectionButtonSingle }
+                        onClick={ clearSelection }
                         rawProps={ { onKeyDown: handleKeyDown } }
                     />
                 </FlexCell>
