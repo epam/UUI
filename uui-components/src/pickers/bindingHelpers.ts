@@ -5,7 +5,7 @@ export type PickerBindingProps<TItem, TId> =
 
 export type PickerBindingValueType = 'scalar' | 'array';
 
-export type SinglePickerProps<TId, TItem> = ({ selectionMode: 'single', valueType: 'id'} & IEditable<TId>) | ({ selectionMode: 'single', valueType?: 'entity' } & IEditable<TItem>);
+export type SinglePickerProps<TId, TItem> = ({ selectionMode: 'single', valueType: 'id' } & IEditable<TId>) | ({ selectionMode: 'single', valueType?: 'entity' } & IEditable<TItem>);
 export type ArrayPickerProps<TId, TItem> = ({ selectionMode: 'multi', valueType: 'id', emptyValue?: [] | null } & IEditable<TId[]>)
     | ({ selectionMode: 'multi', valueType: 'entity', emptyValue?: [] | null } & IEditable<TItem[]>);
 
