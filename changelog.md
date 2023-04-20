@@ -10,7 +10,8 @@
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
 * [Dropdown]: added a 400ms delay to the submenu's close and open triggers
 * [FiltersPanel]: hide 'Add filter' button, if all filters `isAlwaysVisible`
-
+* [TimePicker]: added max values to hours and minutes inputs
+  
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
