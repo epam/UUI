@@ -41,7 +41,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
     };
 
     renderFooter = () => {
-        return <DataPickerFooter { ...this.getFooterProps() } { ...this.props } size="36" />;
+        return <DataPickerFooter { ...this.getFooterProps() } size="36" />;
     };
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {

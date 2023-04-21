@@ -30,7 +30,7 @@
 
 **What's Fixed**
 * [PickerInput]: fixes Hover doesn't appear on "parent" when pointing the mouse.
-* [FilterPanel]: fix show only selected toggle.
+* [FilterPanel]: fixed issue with "show only selected" toggle not being visible.
 
 # 4.10.2 - 24.03.2023
 
