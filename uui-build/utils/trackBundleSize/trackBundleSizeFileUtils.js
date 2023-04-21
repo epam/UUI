@@ -6,6 +6,7 @@ const { BASE_LINE_PATH, TRACK_BUNDLE_SIZE_REPORT_MD } = require('./bundleStatsCo
 const fs = require('fs');
 
 const pathToBaselineResolved = path.resolve(uuiRoot, BASE_LINE_PATH);
+const uuiVersion = readJsonFileSync(path.resolve(uuiRoot, 'lerna.json')).version;
 
 module.exports = {
     overrideBaseLineFileSync,
@@ -13,26 +14,14 @@ module.exports = {
     saveComparisonResultsMd,
 };
 
-function incrementSemverPatch(version) {
-    const [
-        major,
-        minor,
-        patch,
-    ] = version.split('.').map(Number);
-    return `${major}.${minor}.${patch + 1}`;
-}
-
 /**
  * Creates new file if it doesn't exist.
  * @param sizes
  */
 function overrideBaseLineFileSync(sizes) {
-    const currentBaseLine = getCurrentBaseLineSync();
-    const version = currentBaseLine ? incrementSemverPatch(currentBaseLine.version) : '1.0.0';
     const timestamp = new Date().toISOString().split('T')[0];
-
     const newBaseline = {
-        version,
+        version: uuiVersion,
         timestamp,
         sizes,
     };

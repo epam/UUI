@@ -1,19 +1,18 @@
 import React from 'react';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync, SvgMock } from '@epam/test-utils';
 import { NotificationCard } from '../NotificationCard';
 import {
     ClearNotification, ErrorNotification, HintNotification, SuccessNotification, WarningNotification,
 } from '../../../components';
-import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('NotificationCard', () => {
-    it('should be rendered correctly', async () => {
+    it('should render with minimum props', async () => {
         const tree = await renderSnapshotWithContextAsync(<NotificationCard id={ 1 } key="test" color="red" onClose={ jest.fn } onSuccess={ jest.fn } />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(<NotificationCard icon={ CalendarIcon } id={ 1 } key="test" color="red" onClose={ jest.fn } onSuccess={ jest.fn } />);
+    it('should render with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<NotificationCard icon={ SvgMock } id={ 1 } key="test" color="red" onClose={ jest.fn } onSuccess={ jest.fn } />);
         expect(tree).toMatchSnapshot();
     });
 });
