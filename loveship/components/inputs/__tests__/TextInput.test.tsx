@@ -1,7 +1,6 @@
 import React from 'react';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync, SvgMock } from '@epam/test-utils';
 import { TextInput } from '../TextInput';
-import { ReactComponent as AcceptIcon } from '../../icons/accept-12.svg';
 
 describe('TextInput', () => {
     const value = 'test';
@@ -20,7 +19,7 @@ describe('TextInput', () => {
                 onValueChange={ onChange }
                 onAccept={ jest.fn() }
                 onCancel={ jest.fn() }
-                icon={ AcceptIcon }
+                icon={ SvgMock }
                 iconPosition="right"
                 isDropdown
                 isOpen
