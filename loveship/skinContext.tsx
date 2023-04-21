@@ -16,11 +16,11 @@ import {
     ModalHeader,
     LabeledInput,
     IconButton,
-    EpamColor,
+    EpamButtonColorType,
     IconButtonProps,
 } from './components';
 
-const buttonTypeToColor: { [key: string]: EpamColor } = {
+const buttonTypeToColor: { [key: string]: EpamButtonColorType } = {
     success: 'grass',
     cancel: 'night500',
     action: 'sky',

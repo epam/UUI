@@ -16,7 +16,6 @@ import {
     ResizableContext,
     sizeDoc,
     TableContext,
-    textSettingsDoc,
 } from '../../docs';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 
@@ -38,7 +37,6 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
     .implements([
         iEditable,
         sizeDoc,
-        textSettingsDoc,
         modeDoc,
         isDisabledDoc,
         isReadonlyDoc,

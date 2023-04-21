@@ -87,7 +87,7 @@ const panelDoc = new DocBuilder<VPanelProps & PanelMods>({ name: 'Panel', compon
                         </FlexRow>
                         <ModalFooter borderTop>
                             <FlexSpacer />
-                            <Button caption="Cancel" onClick={ () => {} } color="night400" />
+                            <Button caption="Cancel" onClick={ () => {} } color="night500" />
                             <Button caption="Ok" onClick={ () => {} } color="grass" />
                         </ModalFooter>
                     </>

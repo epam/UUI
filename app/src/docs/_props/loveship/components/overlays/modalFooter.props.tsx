@@ -35,7 +35,7 @@ const ModalFooterDoc = new DocBuilder<ModalFooterProps>({ name: 'ModalFooter', c
                         </FlexRow>
                         <FlexRow>
                             <Button onClick={ () => {} } color="grass" caption="Ok" />
-                            <Button onClick={ () => {} } fill="none" color="night400" caption="Cancel" />
+                            <Button onClick={ () => {} } fill="none" color="night500" caption="Cancel" />
                         </FlexRow>
                     </FlexRow>
                 ),

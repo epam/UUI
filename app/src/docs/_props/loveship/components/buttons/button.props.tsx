@@ -43,7 +43,7 @@ const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', com
         examples: [
             ...allEpamPrimaryColors.filter((color) => color !== 'sun'),
             'white',
-            'night500',
+            'night600',
         ],
     })
     .prop('caption', {

@@ -6,7 +6,7 @@ import css from './Badge.scss';
 const defaultSize = '18';
 
 export interface BadgeMods {
-    color?: types.EpamColor;
+    color?: types.EpamBadgeColorType;
     shape?: types.ControlShape;
     fill?: UuiBadgeMods['fill'] | 'white' | 'light' | 'none';
     size?: UuiBadgeMods['size'] | '12';

@@ -19,6 +19,7 @@
 * [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
 * [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
 * [PickerInput]: fixed single select dropdown body closing by the collapse icon if any value was selected.
+* [Carousel]:  the old component has been deleted from loveship.
 
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.
