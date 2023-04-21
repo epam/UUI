@@ -9,18 +9,12 @@ import { LabeledInputMods } from '@epam/uui';
 
 const labeledInputDoc = new DocBuilder<LabeledInputProps & LabeledInputMods>({ name: 'LabeledInput', component: LabeledInput })
     .implements([
-        isInvalidDoc,
-        iHasLabelDoc,
-        sizeDoc,
+        isInvalidDoc, iHasLabelDoc, sizeDoc,
     ])
     .prop('labelPosition', { examples: [{ value: 'top', isDefault: true }, 'left'] })
     .prop('children', {
         examples: [
-            { name: 'TextInput 48', value: <TextInput value="text" size="48" onValueChange={ null } />, isDefault: true },
-            { name: 'TextInput 36', value: <TextInput value="text" onValueChange={ null } />, isDefault: true },
-            { name: 'TextInput 30', value: <TextInput value="text" size="30" onValueChange={ null } /> },
-            { name: 'TextInput 24', value: <TextInput value="text" size="24" onValueChange={ null } /> },
-            { name: 'Checkbox', value: <Checkbox value={ true } onValueChange={ null } /> },
+            { name: 'TextInput 48', value: <TextInput value="text" size="48" onValueChange={ null } />, isDefault: true }, { name: 'TextInput 36', value: <TextInput value="text" onValueChange={ null } />, isDefault: true }, { name: 'TextInput 30', value: <TextInput value="text" size="30" onValueChange={ null } /> }, { name: 'TextInput 24', value: <TextInput value="text" size="24" onValueChange={ null } /> }, { name: 'Checkbox', value: <Checkbox value={ true } onValueChange={ null } /> },
         ],
     })
     .prop('info', { examples: [{ value: 'This tooltip can be helpful' }] })

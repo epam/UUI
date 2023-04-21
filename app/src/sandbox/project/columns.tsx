@@ -19,8 +19,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             fix: 'left',
             isSortable: true,
             renderCell: (props) => <DataTableCell padding="12" { ...props.rowLens.prop('name').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />,
-        },
-        {
+        }, {
             key: 'estimate',
             textAlign: 'right',
             caption: 'Estimate',
@@ -34,8 +33,7 @@ export function getColumns(columnsProps: ColumnsProps) {
                     { ...props }
                 />
             ),
-        },
-        {
+        }, {
             key: 'resource',
             caption: 'Resources',
             width: 300,
@@ -58,8 +56,7 @@ export function getColumns(columnsProps: ColumnsProps) {
                     { ...props }
                 />
             ),
-        },
-        {
+        }, {
             key: 'startDate',
             caption: 'Start date',
             width: 150,
@@ -71,16 +68,14 @@ export function getColumns(columnsProps: ColumnsProps) {
                     { ...props }
                 />
             ),
-        },
-        {
+        }, {
             key: 'isDone',
             caption: 'Done',
             width: 100,
             isSortable: true,
             justifyContent: 'center',
             renderCell: (props) => <DataTableCell { ...props.rowLens.prop('isDone').toProps() } renderEditor={ (props) => <Checkbox { ...props } /> } { ...props } />,
-        },
-        {
+        }, {
             key: 'complete',
             caption: '% Complete',
             width: 130,
@@ -91,8 +86,7 @@ export function getColumns(columnsProps: ColumnsProps) {
                     { ...props }
                 />
             ),
-        },
-        {
+        }, {
             key: 'description',
             caption: 'Description',
             width: 200,
@@ -100,8 +94,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell { ...props.rowLens.prop('description').toProps() } renderEditor={ (props) => <TextArea { ...props } autoSize={ true } /> } { ...props } />
             ),
-        },
-        {
+        }, {
             key: 'actions',
             render: (item, row) => <RowKebabButton row={ row } { ...columnsProps } />,
             width: 54,

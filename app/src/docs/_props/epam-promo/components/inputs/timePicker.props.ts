@@ -6,19 +6,12 @@ import {
 
 const TimePickerDoc = new DocBuilder<TimePickerProps>({ name: 'TimePicker', component: TimePicker })
     .implements([
-        iEditable,
-        sizeDoc,
-        isDisabledDoc,
-        isReadonlyDoc,
-        isInvalidDoc,
-        IHasEditModeDoc,
+        iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, IHasEditModeDoc,
     ])
     .prop('value', { examples: [{ name: '6:20', value: { hours: 6, minutes: 20 }, isDefault: true }] })
     .prop('minutesStep', {
         examples: [
-            5,
-            10,
-            15,
+            5, 10, 15,
         ],
         defaultValue: 5,
     })

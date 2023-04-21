@@ -56,28 +56,20 @@ const dropdownMenuDoc = new DocBuilder<DropdownProps>({ name: 'Dropdown', compon
     })
     .prop('closeOnMouseLeave', {
         examples: [
-            'toggler',
-            'boundary',
-            false,
+            'toggler', 'boundary', false,
         ],
         defaultValue: false,
         remountOnChange: true,
     })
     .prop('openDelay', {
         examples: [
-            500,
-            1000,
-            1500,
-            2000,
+            500, 1000, 1500, 2000,
         ],
         defaultValue: 0,
     })
     .prop('closeDelay', {
         examples: [
-            500,
-            1000,
-            1500,
-            2000,
+            500, 1000, 1500, 2000,
         ],
         defaultValue: 0,
     })

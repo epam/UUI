@@ -66,9 +66,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
         return (
             <DataTableRowContainer
                 cx={ [
-                    css.root,
-                    this.props.cx,
-                    uuiDataTableHeaderRow.uuiTableHeaderRow,
+                    css.root, this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow,
                 ] }
                 columns={ this.props.columns }
                 renderCell={ this.renderCell }

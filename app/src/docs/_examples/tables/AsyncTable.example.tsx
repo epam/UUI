@@ -47,8 +47,7 @@ export default function ProductTable() {
                 isSortable: true,
                 isAlwaysVisible: true,
                 width: 96,
-            },
-            {
+            }, {
                 key: 'name',
                 caption: 'NAME',
                 render: (product) => (
@@ -59,14 +58,12 @@ export default function ProductTable() {
                 isSortable: true,
                 grow: 1,
                 width: 224,
-            },
-            {
+            }, {
                 key: 'productNumber',
                 caption: 'PRODUCT NUMBER',
                 render: (product) => <Text>{product.ProductNumber}</Text>,
                 width: 144,
-            },
-            {
+            }, {
                 key: 'color',
                 caption: 'COLOR',
                 render: (product) => <Text>{product.Color}</Text>,

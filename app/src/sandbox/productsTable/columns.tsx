@@ -8,10 +8,7 @@ import {
 import { Product } from '@epam/uui-docs';
 
 const colors = [
-    { id: 'RED', name: 'Red' },
-    { id: 'GREEN', name: 'Green' },
-    { id: 'BLUE', name: 'Blue' },
-    { id: 'BLACK', name: 'Black' },
+    { id: 'RED', name: 'Red' }, { id: 'GREEN', name: 'Green' }, { id: 'BLUE', name: 'Blue' }, { id: 'BLACK', name: 'Black' },
 ];
 
 const colorsDataSource = new ArrayDataSource({ items: colors });
@@ -24,15 +21,13 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         fix: 'left',
         isSortable: true,
         renderCell: (props) => <DataTableCell padding="12" { ...props.rowLens.prop('Name').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />,
-    },
-    {
+    }, {
         key: 'Class',
         caption: 'Class',
         width: 85,
         isSortable: true,
         renderCell: (props) => <DataTableCell { ...props.rowLens.prop('Class').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />,
-    },
-    {
+    }, {
         key: 'Color',
         caption: 'Color',
         width: 120,
@@ -44,8 +39,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
                 { ...props }
             />
         ),
-    },
-    {
+    }, {
         key: 'DaysToManufacture',
         textAlign: 'right',
         caption: 'Days To Manufacture',
@@ -54,8 +48,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         renderCell: (props) => (
             <DataTableCell { ...props.rowLens.prop('DaysToManufacture').toProps() } renderEditor={ (props) => <NumericInput { ...props } min={ 0 } /> } { ...props } />
         ),
-    },
-    {
+    }, {
         key: 'DiscontinuedDate',
         caption: 'Discontinued Date',
         width: 200,
@@ -63,16 +56,14 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         renderCell: (props) => (
             <DataTableCell { ...props.rowLens.prop('DiscontinuedDate').toProps() } renderEditor={ (props) => <DatePicker format="MMM D, YYYY" { ...props } /> } { ...props } />
         ),
-    },
-    {
+    }, {
         key: 'FinishedGoodsFlag',
         caption: 'Finished',
         width: 100,
         isSortable: true,
         textAlign: 'center',
         renderCell: (props) => <DataTableCell { ...props.rowLens.prop('FinishedGoodsFlag').toProps() } renderEditor={ (props) => <Checkbox { ...props } /> } { ...props } />,
-    },
-    {
+    }, {
         key: 'ListPrice',
         caption: 'List Price',
         width: 100,
@@ -84,16 +75,14 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
                 { ...props }
             />
         ),
-    },
-    {
+    }, {
         key: 'MakeFlag',
         caption: 'In Production',
         width: 120,
         isSortable: true,
         textAlign: 'center',
         renderCell: (props) => <DataTableCell { ...props.rowLens.prop('MakeFlag').toProps() } renderEditor={ (props) => <Checkbox { ...props } /> } { ...props } />,
-    },
-    {
+    }, {
         key: 'ModifiedDate',
         caption: 'Modified Date',
         render: (p) => <DatePicker value={ p.ModifiedDate } onValueChange={ () => {} } format="MMM D, YYYY" />,
@@ -102,8 +91,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         renderCell: (props) => (
             <DataTableCell { ...props.rowLens.prop('ModifiedDate').toProps() } renderEditor={ (props) => <DatePicker format="MMM D, YYYY" { ...props } /> } { ...props } />
         ),
-    },
-    {
+    }, {
         key: 'ID',
         caption: 'ID',
         render: (p) => <Text>{p.ProductID}</Text>,

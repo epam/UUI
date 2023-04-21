@@ -2,9 +2,7 @@ const replaceInFiles = require('replace-in-files');
 
 const options = {
     files: [
-        './**/*.ts',
-        './**/*.tsx',
-        './**/*.less',
+        './**/*.ts', './**/*.tsx', './**/*.less',
     ],
     optionsForFiles: {
         // default
@@ -13,15 +11,7 @@ const options = {
 };
 
 const modules = [
-    'edu-bo-components',
-    'edu-core',
-    'edu-core-routing',
-    'edu-ui-base',
-    'edu-utils',
-    'uui',
-    'uui-build',
-    'uui-core',
-    'uui-timeline',
+    'edu-bo-components', 'edu-core', 'edu-core-routing', 'edu-ui-base', 'edu-utils', 'uui', 'uui-build', 'uui-core', 'uui-timeline',
 ];
 
 const modulesReplacements = {};

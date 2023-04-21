@@ -8,10 +8,7 @@ import { ReactComponent as ArrowIcon } from '../../icons/folding-arrow-18.svg';
 
 export function applyRangeDatePickerBodyMods() {
     return [
-        css.root,
-        rangeCss.root,
-        calendarCss.root,
-        calendarPresetsCss.root,
+        css.root, rangeCss.root, calendarCss.root, calendarPresetsCss.root,
     ];
 }
 

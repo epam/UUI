@@ -23,9 +23,7 @@ const arr = (
     <Test
         source="array"
         items={ [
-            1,
-            2,
-            3,
+            1, 2, 3,
         ] }
         getId={ (i) => i }
         example={ 1 }

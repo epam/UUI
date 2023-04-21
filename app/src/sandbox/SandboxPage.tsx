@@ -23,20 +23,7 @@ import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 export function SandboxPage() {
     const items = useMemo(
         () => [
-            { id: 'complexForm', name: 'Complex Form', component: ComplexForm },
-            { id: 'dbDemo', name: 'DB demo', component: DbDemo },
-            { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
-            { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
-            { id: 'projectDemo', name: 'Project Table', component: ProjectDemo },
-            { id: 'projectTasksDemo', name: 'Project Tasks Demo', component: ProjectTasksDemo },
-            { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
-            { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
-            { id: 'responsive', name: 'Responsive', component: Responsive },
-            { id: 'uui_theming', name: 'UUI Theming', component: ThemeDemo },
-            { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
-            { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
-            { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
-            { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
+            { id: 'complexForm', name: 'Complex Form', component: ComplexForm }, { id: 'dbDemo', name: 'DB demo', component: DbDemo }, { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo }, { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo }, { id: 'projectDemo', name: 'Project Table', component: ProjectDemo }, { id: 'projectTasksDemo', name: 'Project Tasks Demo', component: ProjectTasksDemo }, { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo }, { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo }, { id: 'responsive', name: 'Responsive', component: Responsive }, { id: 'uui_theming', name: 'UUI Theming', component: ThemeDemo }, { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged }, { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills }, { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox }, { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
         ],
         [],
     );

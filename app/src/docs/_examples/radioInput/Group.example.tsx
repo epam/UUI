@@ -9,9 +9,7 @@ export default function GroupExample() {
         <FlexCell width="auto" cx={ css.container }>
             <RadioGroup
                 items={ [
-                    { id: 1, name: 'Mentee' },
-                    { id: 2, name: 'Mentor' },
-                    { id: 3, name: 'Coordinator' },
+                    { id: 1, name: 'Mentee' }, { id: 2, name: 'Mentor' }, { id: 3, name: 'Coordinator' },
                 ] }
                 value={ value }
                 onValueChange={ onValueChange }
@@ -19,9 +17,7 @@ export default function GroupExample() {
             />
             <RadioGroup
                 items={ [
-                    { id: 4, name: 'Mentee' },
-                    { id: 5, name: 'Mentor' },
-                    { id: 6, name: 'Coordinator' },
+                    { id: 4, name: 'Mentee' }, { id: 5, name: 'Mentor' }, { id: 6, name: 'Coordinator' },
                 ] }
                 value={ value }
                 onValueChange={ onValueChange }

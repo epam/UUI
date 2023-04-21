@@ -2,13 +2,7 @@ import { measureAdaptiveItems } from '../measureItemsUtils';
 import type { AdaptiveItemProps } from '../AdaptivePanel';
 
 const items = [
-    { id: 'container2', priority: 100, collapsedContainer: true },
-    { id: '1', priority: 10 },
-    { id: '2', priority: 2 },
-    { id: '3', priority: 2 },
-    { id: '4', priority: 3 },
-    { id: 'container1', priority: 4, collapsedContainer: true },
-    { id: '5', priority: 5 },
+    { id: 'container2', priority: 100, collapsedContainer: true }, { id: '1', priority: 10 }, { id: '2', priority: 2 }, { id: '3', priority: 2 }, { id: '4', priority: 3 }, { id: 'container1', priority: 4, collapsedContainer: true }, { id: '5', priority: 5 },
 ] as AdaptiveItemProps[];
 
 const itemsWidth = {
@@ -33,14 +27,10 @@ describe('measureItemsUtils: measureAdaptiveItems', () => {
     it('should hide items with lower priorities when container width is not enough', () => {
         expect(measureAdaptiveItems(items, 600, itemsWidth)).toEqual({
             displayed: [
-                { id: '1', priority: 10 },
-                { id: 'container1', priority: 4, collapsedContainer: true },
-                { id: '5', priority: 5 },
+                { id: '1', priority: 10 }, { id: 'container1', priority: 4, collapsedContainer: true }, { id: '5', priority: 5 },
             ],
             hidden: [
-                { id: '2', priority: 2 },
-                { id: '3', priority: 2 },
-                { id: '4', priority: 3 },
+                { id: '2', priority: 2 }, { id: '3', priority: 2 }, { id: '4', priority: 3 },
             ],
             maxHiddenItemPriority: 3,
         });
@@ -49,10 +39,7 @@ describe('measureItemsUtils: measureAdaptiveItems', () => {
     it('should hide all items with the same priority, if it least one item not fit', () => {
         expect(measureAdaptiveItems(items, 999, itemsWidth)).toEqual({
             displayed: [
-                { id: '1', priority: 10 },
-                { id: '4', priority: 3 },
-                { id: 'container1', priority: 4, collapsedContainer: true },
-                { id: '5', priority: 5 },
+                { id: '1', priority: 10 }, { id: '4', priority: 3 }, { id: 'container1', priority: 4, collapsedContainer: true }, { id: '5', priority: 5 },
             ],
             hidden: [{ id: '2', priority: 2 }, { id: '3', priority: 2 }],
             maxHiddenItemPriority: 2,
@@ -63,10 +50,7 @@ describe('measureItemsUtils: measureAdaptiveItems', () => {
         expect(measureAdaptiveItems(items, 400, itemsWidth)).toEqual({
             displayed: [{ id: 'container2', priority: 100, collapsedContainer: true }, { id: '1', priority: 10 }],
             hidden: [
-                { id: '2', priority: 2 },
-                { id: '3', priority: 2 },
-                { id: '4', priority: 3 },
-                { id: '5', priority: 5 },
+                { id: '2', priority: 2 }, { id: '3', priority: 2 }, { id: '4', priority: 3 }, { id: '5', priority: 5 },
             ],
             maxHiddenItemPriority: 5,
         });
@@ -82,9 +66,7 @@ describe('measureItemsUtils: measureAdaptiveItems', () => {
         ).toEqual({
             displayed: [{ id: '1', priority: 10 }, { id: '5', priority: 5 }],
             hidden: [
-                { id: '2', priority: 2 },
-                { id: '3', priority: 2 },
-                { id: '4', priority: 3 },
+                { id: '2', priority: 2 }, { id: '3', priority: 2 }, { id: '4', priority: 3 },
             ],
             maxHiddenItemPriority: 3,
         });

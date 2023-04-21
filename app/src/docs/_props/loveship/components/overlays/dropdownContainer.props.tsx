@@ -9,21 +9,12 @@ const dropdownContainerDoc = new DocBuilder({
 })
     .prop('vPadding', {
         examples: [
-            '6',
-            '12',
-            '18',
-            '24',
-            '30',
-            '48',
+            '6', '12', '18', '24', '30', '48',
         ],
     })
     .prop('padding', {
         examples: [
-            '6',
-            '12',
-            '18',
-            '24',
-            '30',
+            '6', '12', '18', '24', '30',
         ],
     })
     .prop('color', {

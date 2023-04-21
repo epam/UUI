@@ -2,10 +2,7 @@ const BASE_CONFIG = {
     testPathIgnorePatterns: ['node_modules'],
     modulePathIgnorePatterns: ['/build/'],
     moduleFileExtensions: [
-        'js',
-        'ts',
-        'tsx',
-        'json',
+        'js', 'ts', 'tsx', 'json',
     ],
     moduleNameMapper: {
         '@epam/test-utils': '<rootDir>/test-utils',
@@ -66,10 +63,8 @@ const argv = process.argv.slice(2);
 const createHtmlReport = argv.indexOf('--collectCoverage') !== -1;
 
 const reporters = createHtmlReport ? [
-    'default',
-    [
-        'jest-html-reporter',
-        {
+    'default', [
+        'jest-html-reporter', {
             pageTitle: 'UUI Unit Tests Results',
             outputPath: '.reports/unit-tests/results.html',
             executionTimeWarningThreshold: 3,
@@ -88,11 +83,7 @@ module.exports = {
     coverageDirectory: '<rootDir>/.reports/unit-tests/coverage',
     coverageReporters: ['lcov'],
     collectCoverageFrom: [
-        ...JSDOM_TESTS_ROOTS.map((dir) => `${dir}/**/*.{js,ts,tsx}`),
-        ...NODEJS_TESTS_ROOTS.map((dir) => `${dir}/**/*.{js,ts}`),
-        '!**/__tests__/**',
-        '!**/node_modules/**',
-        '!**/build/**',
+        ...JSDOM_TESTS_ROOTS.map((dir) => `${dir}/**/*.{js,ts,tsx}`), ...NODEJS_TESTS_ROOTS.map((dir) => `${dir}/**/*.{js,ts}`), '!**/__tests__/**', '!**/node_modules/**', '!**/build/**',
     ],
     reporters,
     projects: [
@@ -100,8 +91,7 @@ module.exports = {
             displayName: 'jsdom',
             roots: [...JSDOM_TESTS_ROOTS],
             ...JSDOM_ENV_CONFIG,
-        },
-        ...(NODEJS_TESTS_ROOTS.length > 0 ? [
+        }, ...(NODEJS_TESTS_ROOTS.length > 0 ? [
             {
                 displayName: 'nodejs',
                 roots: [...NODEJS_TESTS_ROOTS],

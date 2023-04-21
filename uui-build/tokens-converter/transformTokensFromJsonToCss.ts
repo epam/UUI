@@ -13,9 +13,7 @@ import defaultsDeep from 'lodash.defaultsdeep';
 import { getAllMonorepoPackages } from './../utils/monorepoUtils';
 
 const ignoreDirList = [
-    'public',
-    'build',
-    'node_modules',
+    'public', 'build', 'node_modules',
 ];
 
 export const transformTokensFromJsonToCss = async function () {

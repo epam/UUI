@@ -21,9 +21,7 @@ describe('db - DB queries and updates', () => {
                     .toArray()
                     .map((e) => e.name),
             ).toEqual([
-                'Arya Stark',
-                'Daenerys Targaryen',
-                'John Snow',
+                'Arya Stark', 'Daenerys Targaryen', 'John Snow',
             ]));
         it('sort by name and sex', () =>
             expect(
@@ -32,15 +30,11 @@ describe('db - DB queries and updates', () => {
                     .thenBy('name')
                     .map((e) => e.name),
             ).toEqual([
-                'John Snow',
-                'Arya Stark',
-                'Daenerys Targaryen',
+                'John Snow', 'Arya Stark', 'Daenerys Targaryen',
             ]));
         it('sort by name and sex via order', () =>
             expect(sampleDb.users.order([{ field: 'sex' }, { field: 'name', direction: 'desc' }]).map((e) => e.name)).toEqual([
-                'Daenerys Targaryen',
-                'Arya Stark',
-                'John Snow',
+                'Daenerys Targaryen', 'Arya Stark', 'John Snow',
             ]));
         it("find tasks by multiple values with 'in'", () =>
             expect(
@@ -80,9 +74,7 @@ describe('db - DB queries and updates', () => {
                     .range(1, 3)
                     .map((i) => i.id),
             ).toEqual([
-                1,
-                3,
-                4,
+                1, 3, 4,
             ]));
     });
 
@@ -113,10 +105,7 @@ describe('db - DB queries and updates', () => {
                     .orderBy('id')
                     .map((u) => u.id),
             ).toEqual([
-                2,
-                3,
-                4,
-                5,
+                2, 3, 4, 5,
             ]);
         });
 

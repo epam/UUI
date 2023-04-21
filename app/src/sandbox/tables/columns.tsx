@@ -15,8 +15,7 @@ export function getColumns() {
             grow: 1,
             fix: 'left',
             isSortable: true,
-        },
-        {
+        }, {
             key: 'jobTitle',
             caption: 'Job Title',
             render: (r) => <Text>{r.jobTitle}</Text>,
@@ -24,8 +23,7 @@ export function getColumns() {
             grow: 1,
             isSortable: true,
             isFilterActive: (f) => !!f.jobTitle,
-        },
-        {
+        }, {
             key: 'departmentName',
             caption: 'Department',
             render: (p) => <Text>{p.departmentName}</Text>,
@@ -33,38 +31,33 @@ export function getColumns() {
             grow: 1,
             isSortable: true,
             isFilterActive: (f) => !!f.departmentId,
-        },
-        {
+        }, {
             key: 'birthDate',
             caption: 'Birth Date',
             render: (p) => p?.birthDate && <Text>{new Date(p.birthDate).toLocaleDateString()}</Text>,
             width: 120,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'hireDate',
             caption: 'Hire Date',
             render: (p) => p?.hireDate && <Text>{new Date(p.hireDate).toLocaleDateString()}</Text>,
             width: 120,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'locationName',
             caption: 'Location',
             render: (p) => <Text>{p.locationName}</Text>,
             width: 180,
             grow: 1,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'salary',
             caption: 'Salary',
             render: (p) => <Text color="night900">{p.salary}</Text>,
             width: 150,
             isSortable: true,
             textAlign: 'right',
-        },
-        {
+        }, {
             key: 'сonfig',
             render: (p) => null,
             width: 48,
@@ -92,14 +85,12 @@ export function getColumns() {
                     </Text>
                 </FlexRow>
             ),
-        },
-        {
+        }, {
             key: 'jobTitle',
             width: 200,
             grow: 1,
             render: () => <Text fontSize="14">-</Text>,
-        },
-        {
+        }, {
             key: 'departmentName',
             width: 200,
             grow: 1,
@@ -108,24 +99,20 @@ export function getColumns() {
                     -
                 </Text>
             ),
-        },
-        {
+        }, {
             key: 'birthDate',
             render: () => <Text fontSize="14">-</Text>,
             width: 120,
-        },
-        {
+        }, {
             key: 'hireDate',
             render: () => <Text fontSize="14">-</Text>,
             width: 120,
-        },
-        {
+        }, {
             key: 'locationName',
             render: () => <Text fontSize="14">-</Text>,
             width: 180,
             grow: 1,
-        },
-        {
+        }, {
             key: 'salary',
             caption: 'Total Salary',
             render: (p) => (
@@ -135,8 +122,7 @@ export function getColumns() {
             ),
             width: 150,
             textAlign: 'right',
-        },
-        {
+        }, {
             key: 'сonfig',
             render: (p) => null,
             width: 48,

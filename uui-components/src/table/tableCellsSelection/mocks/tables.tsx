@@ -10,24 +10,21 @@ export const rowsMock: DataRowProps<Row, number>[] = [
         value: {
             age: 10, salary: 1000, name: 'first', phone: 'some phone 1',
         },
-    },
-    {
+    }, {
         id: 2,
         rowKey: '2',
         index: 1,
         value: {
             age: 20, salary: 2000, name: 'second', phone: 'some phone 2',
         },
-    },
-    {
+    }, {
         id: 3,
         rowKey: '3',
         index: 2,
         value: {
             age: 30, salary: 3000, name: 'third', phone: 'some phone 3',
         },
-    },
-    {
+    }, {
         id: 4,
         rowKey: '4',
         index: 3,
@@ -44,22 +41,19 @@ export const columnsMock: DataColumnProps<Row, number>[] = [
         renderCell: () => <div>1</div>,
         canAcceptCopy: (from, to) => to.row.index % 2 === 0,
         canCopy: (cell) => cell.row.index % 2 === 0,
-    },
-    {
+    }, {
         key: 'salary',
         width: 1,
         renderCell: () => <div>1</div>,
         canAcceptCopy: (from, to) => true,
         canCopy: () => true,
-    },
-    {
+    }, {
         key: 'rate',
         width: 1,
         renderCell: () => <div>1</div>,
         canAcceptCopy: (from, to) => true,
         canCopy: (cell) => true,
-    },
-    {
+    }, {
         key: 'denyCopyCol',
         width: 1,
         renderCell: () => <div>1</div>,

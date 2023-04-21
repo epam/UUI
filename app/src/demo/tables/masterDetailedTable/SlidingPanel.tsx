@@ -33,9 +33,7 @@ const SlidingPanelImpl: React.FC<ISlidingPanelProps> = ({
             '--sliding-panel-margin': -width + 'px',
         }),
         [
-            width,
-            position,
-            isVisible,
+            width, position, isVisible,
         ],
     );
 

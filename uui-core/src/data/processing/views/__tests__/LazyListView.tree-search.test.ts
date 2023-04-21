@@ -11,28 +11,7 @@ interface TestItem {
 }
 describe('LazyListView', () => {
     const testData: TestItem[] = [
-        { id: 100, name: 'A1' },
-        { id: 110, name: 'AA2', parentId: 100 },
-        { id: 111, name: 'AA3', parentId: 110 },
-        { id: 112, name: 'AA4', parentId: 110 },
-        { id: 113, name: 'AA5', parentId: 110 },
-        { id: 114, name: 'AA6', parentId: 110 },
-        { id: 115, name: 'AA7', parentId: 110 },
-        { id: 116, name: 'AA8', parentId: 110 },
-        { id: 120, name: 'AB9', parentId: 100 },
-        { id: 121, name: 'ABC1', parentId: 120 },
-        { id: 122, name: 'ABC2', parentId: 120 },
-        { id: 123, name: 'ABC3', parentId: 120 },
-        { id: 124, name: 'ABC4', parentId: 120 },
-        { id: 125, name: 'ABC5', parentId: 120 },
-        { id: 200, name: 'B1' },
-        { id: 300, name: 'C1' },
-        { id: 400, name: 'D1' },
-        { id: 500, name: 'E1' },
-        { id: 600, name: 'F1' },
-        { id: 700, name: 'G1' },
-        { id: 800, name: 'H1' },
-        { id: 900, name: 'I1' },
+        { id: 100, name: 'A1' }, { id: 110, name: 'AA2', parentId: 100 }, { id: 111, name: 'AA3', parentId: 110 }, { id: 112, name: 'AA4', parentId: 110 }, { id: 113, name: 'AA5', parentId: 110 }, { id: 114, name: 'AA6', parentId: 110 }, { id: 115, name: 'AA7', parentId: 110 }, { id: 116, name: 'AA8', parentId: 110 }, { id: 120, name: 'AB9', parentId: 100 }, { id: 121, name: 'ABC1', parentId: 120 }, { id: 122, name: 'ABC2', parentId: 120 }, { id: 123, name: 'ABC3', parentId: 120 }, { id: 124, name: 'ABC4', parentId: 120 }, { id: 125, name: 'ABC5', parentId: 120 }, { id: 200, name: 'B1' }, { id: 300, name: 'C1' }, { id: 400, name: 'D1' }, { id: 500, name: 'E1' }, { id: 600, name: 'F1' }, { id: 700, name: 'G1' }, { id: 800, name: 'H1' }, { id: 900, name: 'I1' },
     ];
 
     testData.forEach((i) => {
@@ -81,8 +60,7 @@ describe('LazyListView', () => {
                 index: 0,
                 parentId: 120,
                 path: [
-                    { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } },
-                    {
+                    { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } }, {
                         id: 120,
                         isLastChild: false,
                         value: {
@@ -107,8 +85,7 @@ describe('LazyListView', () => {
 
         expect(rows).toHaveLength(5);
         const path = [
-            { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } },
-            {
+            { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } }, {
                 id: 120,
                 isLastChild: false,
                 value: {
@@ -129,8 +106,7 @@ describe('LazyListView', () => {
                     value: {
                         childrenCount: 0, id: 121, name: 'ABC1', parentId: 120,
                     },
-                },
-                {
+                }, {
                     id: 122,
                     depth: 2,
                     indent: 0,
@@ -141,8 +117,7 @@ describe('LazyListView', () => {
                     value: {
                         childrenCount: 0, id: 122, name: 'ABC2', parentId: 120,
                     },
-                },
-                {
+                }, {
                     id: 123,
                     depth: 2,
                     indent: 0,
@@ -153,8 +128,7 @@ describe('LazyListView', () => {
                     value: {
                         childrenCount: 0, id: 123, name: 'ABC3', parentId: 120,
                     },
-                },
-                {
+                }, {
                     id: 124,
                     depth: 2,
                     indent: 0,
@@ -165,8 +139,7 @@ describe('LazyListView', () => {
                     value: {
                         childrenCount: 0, id: 124, name: 'ABC4', parentId: 120,
                     },
-                },
-                {
+                }, {
                     id: 125,
                     depth: 2,
                     indent: 0,

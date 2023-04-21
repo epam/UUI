@@ -292,8 +292,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     rootBoundary: 'viewport',
                     boundary: this.props.boundaryElement,
                 },
-            },
-            {
+            }, {
                 name: 'hide',
                 enabled: true,
             },

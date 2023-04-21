@@ -20,31 +20,16 @@ import {
 const TextInputDoc = new DocBuilder<TextInputProps>({ name: 'TextInput', component: TextInput })
     .prop('size', {
         examples: [
-            '24',
-            '30',
-            '36',
-            '42',
-            '48',
+            '24', '30', '36', '42', '48',
         ],
         defaultValue: '36',
     })
     .implements([
-        onClickDoc,
-        isDisabledDoc,
-        isReadonlyDoc,
-        isInvalidDoc,
-        iconDoc,
-        iconOptionsDoc,
-        iEditable,
-        iHasPlaceholder,
-        dropdownTogglerDoc,
-        IHasEditModeDoc,
+        onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, IHasEditModeDoc,
     ])
     .prop('maxLength', {
         examples: [
-            10,
-            20,
-            30,
+            10, 20, 30,
         ],
         type: 'number',
     })
@@ -52,9 +37,7 @@ const TextInputDoc = new DocBuilder<TextInputProps>({ name: 'TextInput', compone
     .prop('prefix', { examples: [{ value: 'Prefix: ' }], type: 'string' })
     .prop('value', {
         examples: [
-            { value: 'Hello, World!', isDefault: true },
-            { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
-            { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
+            { value: 'Hello, World!', isDefault: true }, { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' }, { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
         ],
         type: 'string',
     })

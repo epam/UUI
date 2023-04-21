@@ -88,10 +88,7 @@ function group(request, allItems, typeName) {
 }
 
 [
-    'continents',
-    'countries',
-    'languages',
-    'products',
+    'continents', 'countries', 'languages', 'products',
 ].forEach((entitiesName) => {
     router.post(`/${entitiesName}`, async (req, res) => {
         const items = await helpers.getData(entitiesName);

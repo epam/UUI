@@ -22,9 +22,7 @@ export interface ModalWindowMods {
 }
 
 export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(uuiModalWindow, (mods) => [
-    css.modal,
-    css['width-' + (mods.width || '420')],
-    css['height-' + (mods.height || 'auto')],
+    css.modal, css['width-' + (mods.width || '420')], css['height-' + (mods.height || 'auto')],
 ]);
 
 export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {}
@@ -60,9 +58,7 @@ export const ModalFooter = React.forwardRef<HTMLDivElement, ModalFooterProps>((p
     <FlexRow
         spacing="12"
         cx={ [
-            css.modalFooter,
-            props.borderTop && css.borderTop,
-            props.cx,
+            css.modalFooter, props.borderTop && css.borderTop, props.cx,
         ] }
         padding={ props.padding || '24' }
         vPadding="24"
