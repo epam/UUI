@@ -77,7 +77,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     renderFooter() {
         const footerProps = this.getFooterProps();
 
-        return this.props.renderFooter ? this.props.renderFooter(footerProps) : <DataPickerFooter { ...footerProps } size={ this.props.size } />;
+        return this.props.renderFooter ? (
+            this.props.renderFooter(footerProps)
+        ) : (
+            <DataPickerFooter selectionMode={ this.props?.selectionMode } { ...footerProps } size={ this.props.size } />
+        );
     }
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
@@ -129,7 +133,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                 : undefined
                         }
                     />
-                    {!this.isSingleSelect() && this.renderFooter()}
+                    {this.renderFooter()}
                 </MobileDropdownWrapper>
             </Panel>
         );
