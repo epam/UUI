@@ -6,9 +6,6 @@ import { PickerBodyBaseProps, PickerInputBase, PickerTogglerProps } from '@epam/
 import {
     Panel, DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, MobileDropdownWrapper, FlexRow, FlexCell, LinkButton,
 } from '../../index';
-import { i18n } from '../../i18n';
-import cx from 'classnames';
-import css from './FilterPickerBody.scss';
 
 const pickerHeight = 300;
 const pickerWidth = 360;
@@ -43,32 +40,8 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
         );
     };
 
-    renderFooter = (isSelectAll: (IEditable<boolean> & IDisableable & { indeterminate?: boolean }) | undefined) => {
-        if (isSelectAll) {
-            return <DataPickerFooter { ...this.getFooterProps() } hideShowOnlySelected={ this.isSingleSelect() } size="36" />;
-        }
-
-        const { clearSelection, view } = this.getFooterProps();
-        const size = isMobile() ? '48' : '36';
-        const hasSelection = view.getSelectedRowsCount() > 0;
-
-        const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-            if (!e.shiftKey && e.key === 'Tab') e.preventDefault();
-        };
-
-        return (
-            <FlexRow padding="12" cx={ cx(css.footerWrapper) }>
-                <FlexCell width="auto" alignSelf="center">
-                    <LinkButton
-                        isDisabled={ !hasSelection }
-                        size={ size }
-                        caption={ i18n.pickerInput.clearSelectionButtonSingle }
-                        onClick={ clearSelection }
-                        rawProps={ { onKeyDown: handleKeyDown } }
-                    />
-                </FlexCell>
-            </FlexRow>
-        );
+    renderFooter = () => {
+        return <DataPickerFooter { ...this.getFooterProps() } size="36" />;
     };
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
@@ -91,7 +64,7 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
                     editMode="dropdown"
                     showSearch={ true }
                 />
-                {this.renderFooter(props.selectAll)}
+                {this.renderFooter()}
             </Panel>
         );
     }

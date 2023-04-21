@@ -195,6 +195,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
                 onValueChange: this.onShowSelectedChange,
             },
             clearSelection: this.clearSelection,
+            selectionMode: this.props.selectionMode,
         };
     }
 }
