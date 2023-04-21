@@ -7,10 +7,8 @@
     align-self: stretch;
     width: 100%;
 
-    &.multi {
-        :global(.-scrolled-bottom) {
-            border-bottom: 1px solid var(--uui-divider);
-        }
+    :global(.-scrolled-bottom) {
+        border-bottom: 1px solid var(--uui-divider);
     }
 
     &.modal {
