@@ -51,8 +51,7 @@ export default function NotificationContextExample() {
                             {
                                 name: 'Ok',
                                 action: props.onSuccess,
-                            },
-                            {
+                            }, {
                                 name: 'Cancel',
                                 action: props.onClose,
                             },
@@ -201,12 +200,7 @@ export default function NotificationContextExample() {
                         dataSource={
                             new ArrayDataSource({
                                 items: [
-                                    'bot-left',
-                                    'top-left',
-                                    'bot-right',
-                                    'top-right',
-                                    'top-center',
-                                    'bot-center',
+                                    'bot-left', 'top-left', 'bot-right', 'top-right', 'top-center', 'bot-center',
                                 ].map((name) => ({ id: name, name })),
                             })
                         }

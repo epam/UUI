@@ -76,10 +76,7 @@ describe('Tree - patch', () => {
         expect(patchedTree['byId'].has(320)).toBeFalsy();
         expect(patchedTree['byParentId'].has(320)).toBeFalsy();
         expect(patchedTree['byParentId'].get(300)).toEqual([
-            310,
-            330,
-            340,
-            350,
+            310, 330, 340, 350,
         ]);
         expect(patchedTree === tree).toBeFalsy();
     });
@@ -99,11 +96,7 @@ describe('Tree - patch', () => {
         expect(patchedTree['byId'].has(320)).toBeTruthy();
         expect(patchedTree['byParentId'].has(300)).toBeTruthy();
         expect(patchedTree['byParentId'].get(300)).toEqual([
-            310,
-            320,
-            330,
-            340,
-            350,
+            310, 320, 330, 340, 350,
         ]);
         expect(patchedTree === tree).toBeFalsy();
         expect(patchedTree['byId'].get(320)).toEqual(patchedItem);
@@ -116,10 +109,7 @@ describe('Tree - patch', () => {
         expect(patchedTree['byParentId'].has(200)).toBeTruthy();
         expect(patchedTree['byParentId'].get(200)).toEqual([320]);
         expect(patchedTree['byParentId'].get(300)).toEqual([
-            310,
-            330,
-            340,
-            350,
+            310, 330, 340, 350,
         ]);
         expect(patchedTree === tree).toBeFalsy();
         expect(patchedTree['byId'].get(320)).toEqual(patchedItem);
@@ -131,15 +121,10 @@ describe('Tree - patch', () => {
         expect(patchedTree['byId'].has(320)).toBeTruthy();
         expect(patchedTree['byParentId'].has(100)).toBeTruthy();
         expect(patchedTree['byParentId'].get(100)).toEqual([
-            320,
-            110,
-            120,
+            320, 110, 120,
         ]);
         expect(patchedTree['byParentId'].get(300)).toEqual([
-            310,
-            330,
-            340,
-            350,
+            310, 330, 340, 350,
         ]);
         expect(patchedTree === tree).toBeFalsy();
         expect(patchedTree['byId'].get(320)).toEqual(patchedItem);
@@ -154,10 +139,7 @@ describe('Tree - patch', () => {
         expect(patchedTree['byId'].has(140)).toBeTruthy();
         expect(patchedTree['byParentId'].has(100)).toBeTruthy();
         expect(patchedTree['byParentId'].get(100)).toEqual([
-            140,
-            130,
-            110,
-            120,
+            140, 130, 110, 120,
         ]);
         expect(patchedTree === tree).toBeFalsy();
         expect(patchedTree['byId'].get(130)).toEqual(patchedItem1);
@@ -173,10 +155,7 @@ describe('Tree - patch', () => {
         expect(patchedTree['byId'].has(140)).toBeTruthy();
         expect(patchedTree['byParentId'].has(100)).toBeTruthy();
         expect(patchedTree['byParentId'].get(100)).toEqual([
-            110,
-            120,
-            130,
-            140,
+            110, 120, 130, 140,
         ]);
         expect(patchedTree === tree).toBeFalsy();
         expect(patchedTree['byId'].get(130)).toEqual(patchedItem1);
@@ -189,15 +168,10 @@ describe('Tree - patch', () => {
         expect(patchedTree['byId'].has(320)).toBeTruthy();
         expect(patchedTree['byParentId'].has(100)).toBeTruthy();
         expect(patchedTree['byParentId'].get(100)).toEqual([
-            110,
-            320,
-            120,
+            110, 320, 120,
         ]);
         expect(patchedTree['byParentId'].get(300)).toEqual([
-            310,
-            330,
-            340,
-            350,
+            310, 330, 340, 350,
         ]);
         expect(patchedTree === tree).toBeFalsy();
         expect(patchedTree['byId'].get(320)).toEqual(patchedItem);
@@ -218,12 +192,7 @@ describe('Tree - patch', () => {
         expect(patchedTree === tree).toBeFalsy();
         expect(patchedTree['byId'].get(335)).toEqual(newItem);
         expect(patchedTree['byParentId'].get(300)).toEqual([
-            310,
-            320,
-            330,
-            335,
-            340,
-            350,
+            310, 320, 330, 335, 340, 350,
         ]);
     });
 
@@ -232,9 +201,7 @@ describe('Tree - patch', () => {
         const updatedItem = { id: 310, parentId: 300, name: 'new name' };
         const newItem = { id: 335, name: 'some new item', parentId: 300 };
         const patchedTree = tree.patch([
-            deletedItem,
-            updatedItem,
-            newItem,
+            deletedItem, updatedItem, newItem,
         ], 'isDeleted', ({ id }, { id: existingId }) => (id > existingId ? 1 : -1));
         expect(patchedTree['byId'].has(deletedItem.id)).toBeFalsy();
         expect(patchedTree['byId'].has(updatedItem.id)).toBeTruthy();
@@ -245,11 +212,7 @@ describe('Tree - patch', () => {
         expect(patchedTree === tree).toBeFalsy();
 
         expect(patchedTree['byParentId'].get(newItem.parentId)).toEqual([
-            310,
-            320,
-            330,
-            335,
-            340,
+            310, 320, 330, 335, 340,
         ]);
     });
 

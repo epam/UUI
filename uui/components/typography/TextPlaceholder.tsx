@@ -28,9 +28,7 @@ export const TextPlaceholder: React.FunctionComponent<PropsWithChildren<ITextPla
                 <span
                     key={ index }
                     className={ cx([
-                        props.cx,
-                        css.loadingWord,
-                        !props.isNotAnimated && css.animatedLoading,
+                        props.cx, css.loadingWord, !props.isNotAnimated && css.animatedLoading,
                     ]) }
                     dangerouslySetInnerHTML={ { __html: it } }
                 />

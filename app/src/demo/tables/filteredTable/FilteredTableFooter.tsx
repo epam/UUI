@@ -23,10 +23,7 @@ export function FilteredTableFooter(props: IFilteredTableFooterProps) {
     const itemsPerPageDataSource = useArrayDataSource(
         {
             items: [
-                { id: 40, page: '40' },
-                { id: 80, page: '80' },
-                { id: 120, page: '120' },
-                { id: 160, page: '160' },
+                { id: 40, page: '40' }, { id: 80, page: '80' }, { id: 120, page: '120' }, { id: 160, page: '160' },
             ],
         },
         [],

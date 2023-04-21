@@ -13,8 +13,7 @@ const flexCellDoc = new DocBuilder<FlexCellProps & RowMods>({ name: 'FlexCell', 
             {
                 name: 'Text',
                 value: <Text rawProps={ { style: { width: '100%' } } }>Some text</Text>,
-            },
-            {
+            }, {
                 name: 'Button',
                 value: <Button color="grass" caption="Submit" rawProps={ { style: { width: '100%' } } } />,
                 isDefault: true,
@@ -23,38 +22,28 @@ const flexCellDoc = new DocBuilder<FlexCellProps & RowMods>({ name: 'FlexCell', 
     })
     .prop('width', {
         examples: [
-            '100%',
-            'auto',
-            { value: 150, isDefault: true },
+            '100%', 'auto', { value: 150, isDefault: true },
         ],
     })
     .prop('minWidth', {
         examples: [
-            100,
-            200,
-            300,
+            100, 200, 300,
         ],
     })
     .prop('grow', {
         examples: [
-            { value: 1, isDefault: true },
-            2,
-            3,
+            { value: 1, isDefault: true }, 2, 3,
         ],
     })
     .prop('shrink', { examples: [0, 1] })
     .prop('alignSelf', {
         examples: [
-            'flex-start',
-            'center',
-            'flex-end',
+            'flex-start', 'center', 'flex-end',
         ],
     })
     .prop('textAlign', {
         examples: [
-            'left',
-            'center',
-            'right',
+            'left', 'center', 'right',
         ],
     })
     .withContexts(FlexRowContext);

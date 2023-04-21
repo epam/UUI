@@ -5,9 +5,7 @@ import {
 } from '@epam/promo';
 
 const dropdownMenuItems = [
-    { id: 1, caption: 'Relevance' },
-    { id: 2, caption: 'Price' },
-    { id: 3, caption: 'Size' },
+    { id: 1, caption: 'Relevance' }, { id: 2, caption: 'Price' }, { id: 3, caption: 'Size' },
 ];
 
 export default function SortingLinkButtonExample() {

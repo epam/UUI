@@ -18,8 +18,7 @@ const controlGroupDoc = new DocBuilder<ControlGroupProps>({ name: 'ControlGroup'
                     </React.Fragment>
                 ),
                 isDefault: true,
-            },
-            {
+            }, {
                 name: '<TextInput/>, <TextInput/>, <TextInput/>',
                 value: (
                     <React.Fragment>

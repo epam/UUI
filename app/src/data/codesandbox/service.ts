@@ -30,13 +30,7 @@ class CodesandboxService {
         )
             .then((data) => data.map((file) => file.raw))
             .then(([
-                indexHTML,
-                indexTSX,
-                packageJSON,
-                tsConfigJSON,
-                api,
-                globalTypings,
-                env,
+                indexHTML, indexTSX, packageJSON, tsConfigJSON, api, globalTypings, env,
             ]) => {
                 Object.assign(this.files, {
                     indexHTML,

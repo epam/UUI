@@ -17,41 +17,35 @@ type Test_EmployeeFilterType = {
 
 function setupArrayDatasource() {
     const items: Test_ItemType[] = [
-        { _type: 'department', id: 'Department-A', departmentName: 'Department A' },
-        {
+        { _type: 'department', id: 'Department-A', departmentName: 'Department A' }, {
             _type: 'employee',
             id: 'Emp-1',
             firstName: 'First-1',
             lastName: 'Last-1',
             departmentId: 'Department-A',
             city: 'City-A',
-        },
-        {
+        }, {
             _type: 'employee',
             id: 'Emp-2',
             firstName: 'First-2',
             lastName: 'Last-2',
             departmentId: 'Department-A',
             city: 'City-A',
-        },
-        { _type: 'department', id: 'Department-B', departmentName: 'Department B' },
-        {
+        }, { _type: 'department', id: 'Department-B', departmentName: 'Department B' }, {
             _type: 'employee',
             id: 'Emp-3',
             firstName: 'First-3',
             lastName: 'Last-3',
             departmentId: 'Department-B',
             city: 'City-A',
-        },
-        {
+        }, {
             _type: 'employee',
             id: 'Emp-4',
             firstName: 'First-4',
             lastName: 'Last-4',
             departmentId: 'Department-B',
             city: 'City-A',
-        },
-        {
+        }, {
             _type: 'employee',
             id: 'Emp-5',
             firstName: 'First-5',

@@ -36,13 +36,7 @@ const john = {
 const blankSet = new IxSet<Person, number>((i) => i.id, [{ fields: ['name'] }, { fields: ['departmentId', 'name'] }]);
 
 const smallSet = blankSet.with([
-    alice,
-    bob,
-    sandra,
-    edward,
-    pete,
-    jack,
-    william,
+    alice, bob, sandra, edward, pete, jack, william,
 ]);
 
 describe('db - IxSet', () => {

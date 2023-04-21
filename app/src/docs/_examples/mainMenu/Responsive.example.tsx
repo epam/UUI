@@ -69,34 +69,25 @@ export default function MainMenuResponsiveExample() {
                 priority: 100,
                 collapsedContainer: true,
                 render: (item, hiddenItems) => <Burger renderBurgerContent={ (props) => renderBurger(hiddenItems, props.onClose) } />,
-            },
-            {
+            }, {
                 id: 'logo',
                 priority: 99,
                 render: () => <MainMenuLogo href="https://learn.epam.com/" logoUrl="https://uui.epam.com/static/images/app-logos/learn_logo.svg" />,
-            },
-            {
+            }, {
                 id: 'People', priority: 9, render: () => <MainMenuButton href="/" caption="People" />, caption: 'People',
-            },
-            {
+            }, {
                 id: 'Projects', priority: 7, render: () => <MainMenuButton caption="Projects" />, caption: 'Projects',
-            },
-            {
+            }, {
                 id: 'Positions', priority: 6, render: () => <MainMenuButton href="/" caption="Positions" />, caption: 'Positions',
-            },
-            {
+            }, {
                 id: 'Companies', priority: 5, render: () => <MainMenuButton href="/" caption="Companies" />, caption: 'Companies',
-            },
-            {
+            }, {
                 id: 'Processes', priority: 5, render: () => <MainMenuButton href="/" caption="Processes" />, caption: 'Processes',
-            },
-            {
+            }, {
                 id: 'Tasks', priority: 4, render: () => <MainMenuButton href="/" caption="Tasks" />, caption: 'Tasks',
-            },
-            {
+            }, {
                 id: 'Talks', priority: 4, render: () => <MainMenuButton href="/" caption="Talks" />, caption: 'Talks',
-            },
-            {
+            }, {
                 id: 'Action Items',
                 priority: 3,
                 render: (item) => (
@@ -109,11 +100,9 @@ export default function MainMenuResponsiveExample() {
                     />
                 ),
                 caption: 'Action Items',
-            },
-            {
+            }, {
                 id: 'Subscriptions', priority: 3, render: () => <MainMenuButton href="/" caption="Subscriptions" />, caption: 'Subscriptions',
-            },
-            {
+            }, {
                 id: 'moreContainer',
                 priority: 8,
                 collapsedContainer: true,
@@ -125,12 +114,7 @@ export default function MainMenuResponsiveExample() {
                         } }
                     />
                 ),
-            },
-            { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer /> },
-            { id: 'pinIcon', priority: 8, render: () => <MainMenuIcon icon={ PinIcon } /> },
-            { id: 'helpIcon', priority: 8, render: () => <MainMenuIcon icon={ HelpIcon } /> },
-            { id: 'avatar', priority: 9, render: renderAvatar },
-            { id: 'globalMenu', priority: 100, render: () => <GlobalMenu /> },
+            }, { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer /> }, { id: 'pinIcon', priority: 8, render: () => <MainMenuIcon icon={ PinIcon } /> }, { id: 'helpIcon', priority: 8, render: () => <MainMenuIcon icon={ HelpIcon } /> }, { id: 'avatar', priority: 9, render: renderAvatar }, { id: 'globalMenu', priority: 100, render: () => <GlobalMenu /> },
         ];
     };
 

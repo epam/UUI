@@ -29,9 +29,7 @@ export function DataTableSelectionProvider<TItem, TId, TFilter>({
         document.addEventListener('pointerup', handlePointerUp);
         return () => document.removeEventListener('pointerup', handlePointerUp);
     }, [
-        selectionRange,
-        startCell,
-        getSelectedCells,
+        selectionRange, startCell, getSelectedCells,
     ]);
 
     if (!onCopy) {

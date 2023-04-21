@@ -7,15 +7,11 @@ import { DefaultContext, FormContext } from '../../docs';
 
 const SwitchDoc = new DocBuilder<SwitchProps & SwitchMods>({ name: 'Switch', component: Switch })
     .implements([
-        isDisabledDoc,
-        iHasLabelDoc,
-        iEditable,
+        isDisabledDoc, iHasLabelDoc, iEditable,
     ])
     .prop('size', {
         examples: [
-            '12',
-            '18',
-            '24',
+            '12', '18', '24',
         ],
         defaultValue: '18',
     })

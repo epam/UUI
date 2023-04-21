@@ -31,15 +31,7 @@ interface FormState {
 type SelectedCellData = DataTableSelectedCellData<ProjectReport, number, DataQueryFilter<ProjectReport>>;
 
 export const projectReports: Partial<ProjectReport>[] = [
-    { id: 1, name: 'Learn' },
-    { id: 2, name: 'Heroes' },
-    { id: 3, name: 'People' },
-    { id: 4, name: 'Assessment' },
-    { id: 5, name: 'Level Up' },
-    { id: 6, name: 'Grow' },
-    { id: 7, name: 'Time' },
-    { id: 8, name: 'Onboarding' },
-    { id: 9, name: 'Vacations' },
+    { id: 1, name: 'Learn' }, { id: 2, name: 'Heroes' }, { id: 3, name: 'People' }, { id: 4, name: 'Assessment' }, { id: 5, name: 'Level Up' }, { id: 6, name: 'Grow' }, { id: 7, name: 'Time' }, { id: 8, name: 'Onboarding' }, { id: 9, name: 'Vacations' },
 ];
 
 export const getDemoTasks = () => projectReports.reduce((acc, task) => ({ ...acc, [task.id]: task }), {});
@@ -68,7 +60,7 @@ const getWeekendColumn = (day: Day): DataColumnProps<ProjectReport, number, Data
     caption: day,
     width: 80,
     canCopy: () => false, // `canCopy` and `canAcceptCopy` functions can be undefined
-    canAcceptCopy: (from, to) => false,
+    canAcceptCopy: () => false,
     renderCell: (props) => (
         <DataTableCell
             cx={ css.weekendDay }

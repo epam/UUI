@@ -6,11 +6,7 @@ import css from './CustomMarkupExample.scss';
 
 export default function CustomMarkupExample() {
     const months = [
-        'MAY',
-        'JUN',
-        'JUL',
-        'AUG',
-        'SEP',
+        'MAY', 'JUN', 'JUL', 'AUG', 'SEP',
     ];
     const renderCustomMarkup = () => (
         <>

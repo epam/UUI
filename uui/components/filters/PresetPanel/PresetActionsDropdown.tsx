@@ -45,9 +45,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
             successNotificationHandler('Changes saved!');
         },
         [
-            props.tableState.filter,
-            props.tableState.columnsConfig,
-            props.tableState.filtersConfig,
+            props.tableState.filter, props.tableState.columnsConfig, props.tableState.filtersConfig,
         ],
     );
 
@@ -81,9 +79,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
     const deleteHandler = useCallback(async () => {
         await props.deletePreset(props.preset);
     }, [
-        props.activePresetId,
-        props.deletePreset,
-        props.preset,
+        props.activePresetId, props.deletePreset, props.preset,
     ]);
 
     const renderBody = () => {

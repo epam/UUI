@@ -7,51 +7,35 @@ import {
 
 const sliderDoc = new DocBuilder<SliderBaseProps<number> & SliderMods>({ name: 'Slider', component: Slider })
     .implements([
-        colorDoc,
-        iEditable,
-        isDisabledDoc,
+        colorDoc, iEditable, isDisabledDoc,
     ])
     .prop('value', {
         examples: [
-            10,
-            20,
-            50,
+            10, 20, 50,
         ],
         isRequired: true,
     })
     .prop('min', {
         examples: [
-            { value: 0, isDefault: true },
-            1,
-            50,
+            { value: 0, isDefault: true }, 1, 50,
         ],
         isRequired: true,
     })
     .prop('max', {
         examples: [
-            100,
-            200,
-            300,
+            100, 200, 300,
         ],
         isRequired: true,
     })
     .prop('step', {
         examples: [
-            1,
-            5,
-            10,
-            25,
-            50,
+            1, 5, 10, 25, 50,
         ],
         isRequired: true,
     })
     .prop('splitAt', {
         examples: [
-            2,
-            10,
-            20,
-            { value: 25, isDefault: true },
-            50,
+            2, 10, 20, { value: 25, isDefault: true }, 50,
         ],
         defaultValue: 50,
     })

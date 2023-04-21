@@ -84,8 +84,7 @@ describe('db - patchHelpers', () => {
             const patches: DbPatch<TaskDbTables>[] = [
                 {
                     users: [{ id: 'AB' }],
-                },
-                {
+                }, {
                     users: [{ id: 'CD' }],
                 },
             ];
@@ -136,10 +135,7 @@ describe('db - patchHelpers', () => {
 
             const users = orderBy(flattenResponse(response, emptyDb.tables).users, 'id');
             expect(users).toEqual([
-                { id: 'AU', name: 'Andrei Urban', __typename: 'User' },
-                { id: 'IK', name: 'Ilya Kuznetsov', __typename: 'User' },
-                { id: 'PS', name: 'Pavel Shchur', __typename: 'User' },
-                { id: 'YZ', name: 'Yakov Zhmurov', __typename: 'User' },
+                { id: 'AU', name: 'Andrei Urban', __typename: 'User' }, { id: 'IK', name: 'Ilya Kuznetsov', __typename: 'User' }, { id: 'PS', name: 'Pavel Shchur', __typename: 'User' }, { id: 'YZ', name: 'Yakov Zhmurov', __typename: 'User' },
             ]);
         });
 

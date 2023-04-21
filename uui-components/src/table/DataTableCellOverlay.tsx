@@ -46,9 +46,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
             });
         },
         [
-            setSelectionRange,
-            columnIndex,
-            rowIndex,
+            setSelectionRange, columnIndex, rowIndex,
         ],
     );
 
@@ -56,9 +54,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
         if (!selectionRange) return;
         setSelectionRange((prevState) => ({ ...prevState, endRowIndex: rowIndex, endColumnIndex: columnIndex }));
     }, [
-        selectionRange,
-        rowIndex,
-        columnIndex,
+        selectionRange, rowIndex, columnIndex,
     ]);
 
     const borderClassNames = isSelected

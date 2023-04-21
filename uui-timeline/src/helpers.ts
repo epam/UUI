@@ -99,16 +99,6 @@ export const scales = {
 };
 
 scaleSteps = [
-    scales.year,
-    scales.yearWide,
-    scales.month,
-    scales.monthWide,
-    scales.week,
-    scales.weekWide,
-    scales.day,
-    scales.dayWide,
-    scales.hour,
-    scales.hourWide,
-    scales.minute,
+    scales.year, scales.yearWide, scales.month, scales.monthWide, scales.week, scales.weekWide, scales.day, scales.dayWide, scales.hour, scales.hourWide, scales.minute,
     // scales.minuteWide
 ];

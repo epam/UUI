@@ -152,30 +152,22 @@ export const sampleData = {
     tasks: [
         {
             id: 1, name: 'Implement DB', isDone: true, createdBy: 'DT', assignedTo: 'JS',
-        },
-        {
+        }, {
             id: 2, name: 'Write Some Tests', isDone: true, createdBy: 'DT', assignedTo: null,
-        },
-        {
+        }, {
             id: 3, name: 'Basic Indexes', isDone: true, createdBy: 'DT', assignedTo: 'JS',
-        },
-        {
+        }, {
             id: 4, name: 'Views', isDone: false, createdBy: 'DT', assignedTo: 'JS',
-        },
-        {
+        }, {
             id: 5, name: 'IO Scheduling', isDone: false, createdBy: 'DT', assignedTo: 'AS',
-        },
-        {
+        }, {
             id: 6, name: 'DataSources', isDone: false, createdBy: 'JS', assignedTo: 'JS',
-        },
-        {
+        }, {
             id: 7, name: 'Loaders', isDone: false, createdBy: 'AS', assignedTo: 'AS',
         },
     ] as Task[],
     users: [
-        sampleUsers.daenerys,
-        sampleUsers.john,
-        sampleUsers.arya,
+        sampleUsers.daenerys, sampleUsers.john, sampleUsers.arya,
     ] as User[],
 };
 

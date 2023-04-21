@@ -46,10 +46,7 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
     .prop('placeholder', { examples: ['Enter start date'] })
     .prop('format', {
         examples: [
-            'MM/DD/YYYY',
-            'MMM D, YYYY',
-            'DD.MM.YYYY',
-            'YYYY-MM-DD',
+            'MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD',
         ],
         defaultValue: 'MMM D, YYYY',
         type: 'string',
@@ -82,21 +79,7 @@ const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', comp
     })
     .prop('placement', {
         examples: [
-            'auto-start',
-            'auto',
-            'auto-end',
-            'top-start',
-            'top',
-            'top-end',
-            'right-start',
-            'right',
-            'right-end',
-            'bottom-end',
-            'bottom',
-            { value: 'bottom-start', isDefault: true },
-            'left-end',
-            'left',
-            'left-start',
+            'auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', { value: 'bottom-start', isDefault: true }, 'left-end', 'left', 'left-start',
         ],
     })
     .prop('disableClear', { examples: [true], defaultValue: false })

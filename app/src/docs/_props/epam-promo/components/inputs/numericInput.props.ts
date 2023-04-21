@@ -18,24 +18,18 @@ const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ n
     .prop('value', { examples: [{ value: 0, isDefault: true }, 111] })
     .prop('step', {
         examples: [
-            5,
-            10,
-            100,
+            5, 10, 100,
         ],
     })
     .prop('min', {
         examples: [
-            -10,
-            0,
-            10,
+            -10, 0, 10,
         ],
         defaultValue: 0,
     })
     .prop('max', {
         examples: [
-            20,
-            50,
-            500,
+            20, 50, 500,
         ],
     })
     .prop('align', { examples: ['left', 'right'] })

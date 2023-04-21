@@ -15,47 +15,29 @@ const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', compone
         examples: [...allEpamAdditionalColors, 'gray30'],
     })
     .implements([
-        iconDoc,
-        iconOptionsDoc,
-        dropdownTogglerDoc,
-        onClickDoc,
-        basicPickerTogglerDoc,
+        iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc,
     ])
     .prop('caption', {
         examples: [
-            { value: 'Badge', isDefault: true },
-            { value: 'Status' },
-            { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
-            { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
+            { value: 'Badge', isDefault: true }, { value: 'Status' }, { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' }, { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
         ],
         type: 'string',
     })
     .prop('count', {
         examples: [
-            0,
-            1,
-            5,
-            88,
-            123,
+            0, 1, 5, 88, 123,
         ],
         defaultValue: 123,
     })
     .prop('fill', {
         examples: [
-            'solid',
-            'semitransparent',
-            'transparent',
+            'solid', 'semitransparent', 'transparent',
         ],
         defaultValue: 'solid',
     })
     .prop('size', {
         examples: [
-            '18',
-            '24',
-            '30',
-            '36',
-            '42',
-            '48',
+            '18', '24', '30', '36', '42', '48',
         ],
         defaultValue: '36',
     })

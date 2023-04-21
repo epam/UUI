@@ -16,8 +16,7 @@ const flexRowDoc = new DocBuilder<FlexRowProps & RowMods>({ name: 'FlexRow', com
                     <Text size="24">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pharetra vitae felis in malesuada.</Text>
                 ),
                 isDefault: true,
-            },
-            {
+            }, {
                 name: 'Text, TextInput, Button',
                 value: (
                     <React.Fragment>
@@ -38,11 +37,7 @@ const flexRowDoc = new DocBuilder<FlexRowProps & RowMods>({ name: 'FlexRow', com
     })
     .prop('size', {
         examples: [
-            '24',
-            '30',
-            '36',
-            '42',
-            '48',
+            '24', '30', '36', '42', '48',
         ],
         defaultValue: '36',
     })
@@ -51,25 +46,19 @@ const flexRowDoc = new DocBuilder<FlexRowProps & RowMods>({ name: 'FlexRow', com
     .prop('margin', { examples: ['12', '24'] })
     .prop('background', {
         examples: [
-            'white',
-            'gray5',
-            'none',
+            'white', 'gray5', 'none',
         ],
         defaultValue: 'none',
     })
     .prop('padding', {
         examples: [
-            '12',
-            '18',
-            '24',
+            '12', '18', '24',
         ],
     })
     .prop('vPadding', { examples: ['12', '24'] })
     .prop('spacing', {
         examples: [
-            '6',
-            '12',
-            '18',
+            '6', '12', '18',
         ],
     })
     .prop('alignItems', { examples: ['top', 'center'] })

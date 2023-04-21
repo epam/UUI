@@ -16,9 +16,7 @@ export interface PickerTogglerMods extends types.IHasEditMode {
 
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        css['mode-' + (mods.mode || defaultMode)],
+        css.root, css['size-' + (mods.size || defaultSize)], css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 

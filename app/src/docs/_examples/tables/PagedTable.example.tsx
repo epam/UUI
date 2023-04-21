@@ -34,8 +34,7 @@ export default function PagedTable() {
                 isSortable: true,
                 grow: 1,
                 width: 224,
-            },
-            {
+            }, {
                 key: 'location',
                 caption: 'LOCATION',
                 render: (person) => <Text>{person.locationName}</Text>,

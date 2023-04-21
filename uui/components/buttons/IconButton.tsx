@@ -4,12 +4,7 @@ import css from './IconButton.scss';
 
 export type IconColor = 'info' | 'success' | 'warning' | 'error' | 'secondary' | 'default';
 export const allIconColors: IconColor[] = [
-    'info',
-    'success',
-    'warning',
-    'error',
-    'secondary',
-    'default',
+    'info', 'success', 'warning', 'error', 'secondary', 'default',
 ];
 
 export interface IconButtonMods {
