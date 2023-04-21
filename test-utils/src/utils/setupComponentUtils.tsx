@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useImperativeHandle, useState } from 'react';
-import { act, renderToJsdomWithContextAsync } from './renderingHelpers';
+import { renderToJsdomWithContextAsync } from './renderingWithContextUtils';
+import { act } from '../extensions/testingLibraryReactExt';
 
 type PropsContextType<TProps> = { setProperty: (name: keyof TProps, value: TProps[keyof TProps]) => void; };
 export type PropsInitializerCallbackType<TProps> = (contextRef: React.RefObject<PropsContextType<TProps>>) => PropsAll<TProps>;

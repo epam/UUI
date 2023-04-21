@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import {
-    FlexCell, PickerInput, Button, FlexRow, TextInput,
+    FlexCell, PickerInput, SearchInput, FlexRow,
 } from '@epam/promo';
 import { LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { City } from '@epam/uui-docs';
@@ -48,7 +48,14 @@ export default function PickerTogglerConfigurationExample() {
                     selectionMode="multi"
                     valueType="id"
                     searchPosition="input"
-                    renderToggler={ (props) => <TextInput { ...props } value={ props.value ?? '' } onValueChange={ (e) => props.onValueChange?.(e) } /> }
+                    renderToggler={ (props) => (
+                        <SearchInput
+                            { ...props }
+                            value={ props.value ?? '' }
+                            onValueChange={ props.onValueChange }
+                            placeholder="Custom toggler"
+                        />
+                    ) }
                 />
             </FlexRow>
         </FlexCell>

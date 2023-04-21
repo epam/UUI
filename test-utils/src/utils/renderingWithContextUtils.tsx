@@ -1,17 +1,8 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { render, renderHook } from './testingLibraryReact';
-import renderer, { act } from 'react-test-renderer';
+import { render, renderHook } from '../extensions/testingLibraryReactExt';
+import renderer from 'react-test-renderer';
 import { ContextProvider, UuiContexts } from '@epam/uui-core';
-
-export * from './testingLibraryReact';
-
-export const delay = (ms: number = 1): Promise<void> => new Promise((resolve) => {
-    setTimeout(resolve, ms);
-});
-
-export async function delayWrapInAct(ms: number = 1) {
-    await act(() => delay(ms));
-}
+import { delayWrapInAct } from './timerUtils';
 
 export const testSvc = {} as UuiContexts;
 
@@ -44,7 +35,7 @@ export const renderToJsdomWithContextAsync = async (reactElement: ReactElement) 
     await delayWrapInAct();
     return {
         ...result,
-        rerender: (reactElement: ReactElement) => result.rerender(wrapElementWithUuiContext(reactElement)),
+        rerender: (reactElementInner: ReactElement) => result.rerender(wrapElementWithUuiContext(reactElementInner)),
     };
 };
 

@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule"
+    "build": "node ../uui-build/scripts/buildModule",
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@epam/uui-core": "5.0.0-alpha.0",

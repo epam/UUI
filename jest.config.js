@@ -31,7 +31,7 @@ const JSDOM_ENV_CONFIG = {
     moduleNameMapper: {
         ...BASE_CONFIG.moduleNameMapper,
         '^.+\\.(sass|scss|less)$': '<rootDir>/uui-build/jest/cssModuleTransform.js',
-        '\\.svg': '<rootDir>/uui-build/jest/svgrMock.js',
+        '^.+\\.svg$': '<rootDir>/uui-build/jest/svgrMock.js',
     },
 };
 
