@@ -89,7 +89,6 @@ export default function SlateEditorBasicExample() {
                 value={ value }
                 onValueChange={ setValue }
                 isReadonly={ isReadonly }
-                autoFocus={ true }
                 plugins={ plugins }
                 mode={ mode }
                 placeholder='Add description'
