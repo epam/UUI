@@ -135,7 +135,7 @@ const Editor = ({ initialValue, ...props }: any) => {
 
 export function SlateEditor(props: SlateEditorProps) {
     const {
-        autoFocus,
+        autoFocus = false,
         isReadonly,
         placeholder,
     } = props;
@@ -149,7 +149,7 @@ export function SlateEditor(props: SlateEditorProps) {
     });
 
     const editableProps: TEditableProps = {
-        autoFocus: false,
+        autoFocus,
         readOnly: isReadonly,
         placeholder,
     };
