@@ -8,7 +8,7 @@ import { SizeMod } from '../types';
 
 type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> &
 SizeMod & {
-    selectionMode: string;
+    selectionMode: 'single' | 'multi';
 };
 
 const switchSizes = {

@@ -80,7 +80,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
         return this.props.renderFooter ? (
             this.props.renderFooter(footerProps)
         ) : (
-            <DataPickerFooter selectionMode={ this.props?.selectionMode } { ...footerProps } size={ this.props.size } />
+            <DataPickerFooter { ...footerProps } size={ this.props.size } />
         );
     }
 
