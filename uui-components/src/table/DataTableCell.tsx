@@ -89,12 +89,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
             alignSelf={ props.isFirstColumn ? undefined : props.column.alignSelf }
             rawProps={ { role: 'cell' } }
             cx={ [
-                uuiDataTableCellMarkers.uuiTableCell,
-                css.cell,
-                props.column.cx,
-                props.cx,
-                props.isInvalid && uuiMod.invalid,
-                state.inFocus && uuiMod.focus,
+                uuiDataTableCellMarkers.uuiTableCell, css.cell, props.column.cx, props.cx, props.isInvalid && uuiMod.invalid, state.inFocus && uuiMod.focus,
             ] }
             style={ !props.isFirstColumn && { justifyContent: justifyContent } }
         >

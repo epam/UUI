@@ -29,20 +29,17 @@ export default function DndMaterial() {
             name: 'File_Name_1.suffix',
             description: 'Additional information 1',
             order: 'a',
-        },
-        {
+        }, {
             id: 2,
             name: 'File_Name_2.suffix',
             description: 'Additional information 2',
             order: 'b',
-        },
-        {
+        }, {
             id: 3,
             name: 'File_Name_3.suffix',
             description: 'Additional information 3',
             order: 'c',
-        },
-        {
+        }, {
             id: 4,
             name: 'File_Name_4.suffix',
             description: 'Additional information 4',

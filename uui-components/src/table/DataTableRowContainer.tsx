@@ -126,10 +126,7 @@ export const DataTableRowContainer = React.forwardRef(
             <Anchor
                 link={ props.link }
                 cx={ [
-                    css.container,
-                    uuiDataTableRowCssMarkers.uuiTableRowContainer,
-                    props.onClick && uuiMarkers.clickable,
-                    props.cx,
+                    css.container, uuiDataTableRowCssMarkers.uuiTableRowContainer, props.onClick && uuiMarkers.clickable, props.cx,
                 ] }
                 rawProps={ rawProps }
             >
@@ -139,10 +136,7 @@ export const DataTableRowContainer = React.forwardRef(
             <FlexRow
                 onClick={ props.onClick }
                 cx={ [
-                    css.container,
-                    uuiDataTableRowCssMarkers.uuiTableRowContainer,
-                    props.onClick && uuiMarkers.clickable,
-                    props.cx,
+                    css.container, uuiDataTableRowCssMarkers.uuiTableRowContainer, props.onClick && uuiMarkers.clickable, props.cx,
                 ] }
                 rawProps={ rawProps }
                 ref={ ref }

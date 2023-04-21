@@ -17,8 +17,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         width: 180,
         isSortable: true,
         isAlwaysVisible: true,
-    },
-    {
+    }, {
         key: 'profileStatus',
         caption: 'Profile Status',
         render: (p) =>
@@ -30,8 +29,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         width: 140,
         isSortable: true,
         isFilterActive: (f) => !!f.profileStatusId,
-    },
-    {
+    }, {
         key: 'salary',
         caption: 'Salary',
         render: (p) => (
@@ -44,22 +42,19 @@ const personColumns: DataColumnProps<Person, number>[] = [
         width: 150,
         textAlign: 'right',
         isSortable: true,
-    },
-    {
+    }, {
         key: 'jobTitle',
         caption: 'Title',
         render: (r) => <Text>{r.jobTitle}</Text>,
         width: 200,
         isFilterActive: (f) => !!f.jobTitleId,
-    },
-    {
+    }, {
         key: 'birthDate',
         caption: 'Birth Date',
         render: (p) => p?.birthDate && <Text>{dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
-    },
-    {
+    }, {
         key: 'hireDate',
         caption: 'Hire Date',
         render: (p) => p?.hireDate && <Text>{dayjs(p.hireDate).format('MMM D, YYYY')}</Text>,
@@ -81,28 +76,24 @@ export default function FiltersPanelExample() {
                 isAlwaysVisible: true,
                 dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
                 predicates: defaultPredicates.multiPicker,
-            },
-            {
+            }, {
                 field: 'jobTitleId',
                 columnKey: 'jobTitle',
                 title: 'Title',
                 type: 'multiPicker',
                 dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
-            },
-            {
+            }, {
                 field: 'salary',
                 columnKey: 'salary',
                 title: 'Salary',
                 type: 'numeric',
                 predicates: defaultPredicates.numeric,
-            },
-            {
+            }, {
                 field: 'birthDate',
                 columnKey: 'birthDate',
                 title: 'Birth Date',
                 type: 'datePicker',
-            },
-            {
+            }, {
                 field: 'hireDate',
                 columnKey: 'hireDate',
                 title: 'Hire Date',

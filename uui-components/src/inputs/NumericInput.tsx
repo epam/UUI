@@ -185,10 +185,7 @@ export function NumericInput(props: NumericInputProps) {
 
         return props.disableLocaleFormatting ? value.toString() : getSeparatedValue(value, formatOptions, i18n.locale);
     }, [
-        props.placeholder,
-        props.value,
-        props.formatOptions,
-        props.disableLocaleFormatting,
+        props.placeholder, props.value, props.formatOptions, props.disableLocaleFormatting,
     ]);
 
     const showArrows = !props.disableArrows && !props.isReadonly && !props.isDisabled;

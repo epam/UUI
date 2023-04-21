@@ -12,8 +12,7 @@ export const personDemoData = [
         hireDate: '2009-01-14',
         departmentId: 16,
         departmentName: 'Executive',
-    },
-    {
+    }, {
         id: 2,
         name: 'Terri Duffy',
         yearsInCompany: 2,
@@ -26,8 +25,7 @@ export const personDemoData = [
         hireDate: '2008-01-31',
         departmentId: 1,
         departmentName: 'Engineering',
-    },
-    {
+    }, {
         id: 3,
         name: 'Roberto Tamburello',
         yearsInCompany: 5,
@@ -40,8 +38,7 @@ export const personDemoData = [
         hireDate: '2007-11-11',
         departmentId: 1,
         departmentName: 'Engineering',
-    },
-    {
+    }, {
         id: 4,
         name: 'Rob Walters',
         yearsInCompany: 15,
@@ -54,8 +51,7 @@ export const personDemoData = [
         hireDate: '2007-12-05',
         departmentId: 2,
         departmentName: 'Tool Design',
-    },
-    {
+    }, {
         id: 5,
         name: 'Gail Erickson',
         yearsInCompany: 54,
@@ -68,8 +64,7 @@ export const personDemoData = [
         hireDate: '2008-01-06',
         departmentId: 1,
         departmentName: 'Engineering',
-    },
-    {
+    }, {
         id: 6,
         name: 'Jossef Goldberg',
         yearsInCompany: 3,
@@ -82,8 +77,7 @@ export const personDemoData = [
         hireDate: '2008-01-24',
         departmentId: 1,
         departmentName: 'Engineering',
-    },
-    {
+    }, {
         id: 7,
         name: 'Dylan Miller',
         yearsInCompany: 8,
@@ -96,8 +90,7 @@ export const personDemoData = [
         hireDate: '2009-02-08',
         departmentId: 6,
         departmentName: 'Research and Development',
-    },
-    {
+    }, {
         id: 8,
         name: 'Diane Margheim',
         yearsInCompany: 22,
@@ -110,8 +103,7 @@ export const personDemoData = [
         hireDate: '2008-12-29',
         departmentId: 6,
         departmentName: 'Research and Development',
-    },
-    {
+    }, {
         id: 9,
         name: 'Gigi Matthew',
         yearsInCompany: 10,
@@ -124,8 +116,7 @@ export const personDemoData = [
         hireDate: '2009-01-16',
         departmentId: 6,
         departmentName: 'Research and Development',
-    },
-    {
+    }, {
         id: 10,
         name: 'Michael Raheem',
         yearsInCompany: 15,

@@ -13,11 +13,7 @@ export interface NumericInputMods extends types.SizeMod, IHasEditMode {}
 
 export function applyNumericInputMods(mods: NumericInputMods) {
     return [
-        textInputCss.root,
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        textInputCss['size-' + (mods.size || defaultSize)],
-        textInputCss['mode-' + (mods.mode || defaultMode)],
+        textInputCss.root, css.root, css['size-' + (mods.size || defaultSize)], textInputCss['size-' + (mods.size || defaultSize)], textInputCss['mode-' + (mods.mode || defaultMode)],
     ];
 }
 

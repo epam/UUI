@@ -15,8 +15,7 @@ export const personColumns = [
         width: 200,
         fix: 'left',
         isSortable: true,
-    },
-    {
+    }, {
         key: 'profileStatus',
         caption: 'Profile Status',
         render: (p) =>
@@ -30,8 +29,7 @@ export const personColumns = [
         width: 140,
         isSortable: true,
         isFilterActive: (f) => !!f.profileStatusId,
-    },
-    {
+    }, {
         key: 'jobTitle',
         caption: 'Title',
         render: (r) => <Text>{r.jobTitle}</Text>,
@@ -40,8 +38,7 @@ export const personColumns = [
         width: 200,
         isSortable: true,
         isFilterActive: (f) => !!f.jobTitleId,
-    },
-    {
+    }, {
         key: 'departmentName',
         caption: 'Department',
         render: (p) => <Text>{p.departmentName}</Text>,
@@ -51,8 +48,7 @@ export const personColumns = [
         isSortable: true,
         isFilterActive: (f) => !!f.departmentId,
         isHiddenByDefault: true,
-    },
-    {
+    }, {
         key: 'officeAddress',
         caption: 'Office',
         render: (p) => <Text>{p.officeAddress}</Text>,
@@ -61,8 +57,7 @@ export const personColumns = [
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.officeId,
-    },
-    {
+    }, {
         key: 'managerName',
         caption: 'Manager',
         render: (p) => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#" />,
@@ -71,8 +66,7 @@ export const personColumns = [
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.managerId,
-    },
-    {
+    }, {
         key: 'countryName',
         caption: 'Country',
         render: (p) => <Text>{p.countryName}</Text>,
@@ -81,8 +75,7 @@ export const personColumns = [
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.countryId,
-    },
-    {
+    }, {
         key: 'cityName',
         caption: 'City',
         render: (p) => <Text>{p.cityName}</Text>,
@@ -91,16 +84,14 @@ export const personColumns = [
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.cityId,
-    },
-    {
+    }, {
         key: 'profileType',
         caption: 'Profile Type',
         render: (p) => <Text>{p.hireDate ? 'Employee' : 'Student'}</Text>,
         grow: 0,
         shrink: 0,
         width: 150,
-    },
-    {
+    }, {
         key: 'birthDate',
         caption: 'Birth Date',
         render: (p) => p?.birthDate && <Text>{new Date(p.birthDate).toLocaleDateString()}</Text>,
@@ -108,8 +99,7 @@ export const personColumns = [
         shrink: 0,
         width: 120,
         isSortable: true,
-    },
-    {
+    }, {
         key: 'relatedNPR',
         caption: 'Related NPR',
         render: (p) => <Text>{p.relatedNPR ? 'Completed' : 'Uncompleted'}</Text>,
@@ -118,8 +108,7 @@ export const personColumns = [
         width: 120,
         isSortable: true,
         isHiddenByDefault: true,
-    },
-    {
+    }, {
         key: 'titleLevel',
         caption: 'Track & Level',
         render: (p) => <Text>{p.titleLevel}</Text>,
@@ -128,8 +117,7 @@ export const personColumns = [
         width: 100,
         isSortable: true,
         isHiddenByDefault: true,
-    },
-    {
+    }, {
         key: 'detailed',
         render: (p) => <IconButton cx={ css.detailedIcon } icon={ ViewIcon } />,
         width: 54,

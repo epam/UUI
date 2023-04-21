@@ -16,8 +16,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         width: 180,
         isSortable: true,
         isAlwaysVisible: true,
-    },
-    {
+    }, {
         key: 'profileStatus',
         caption: 'Profile Status',
         render: (p) =>
@@ -29,24 +28,21 @@ const personColumns: DataColumnProps<Person, number>[] = [
         width: 160,
         isSortable: true,
         isFilterActive: (f) => !!f.profileStatusId,
-    },
-    {
+    }, {
         key: 'departmentName',
         caption: 'Department',
         render: (p) => <Text>{p.departmentName}</Text>,
         width: 200,
         isSortable: true,
         isFilterActive: (f) => !!f.departmentId,
-    },
-    {
+    }, {
         key: 'jobTitle',
         caption: 'Title',
         render: (r) => <Text>{r.jobTitle}</Text>,
         width: 220,
         isSortable: true,
         isFilterActive: (f) => !!f.jobTitleId,
-    },
-    {
+    }, {
         key: 'birthDate',
         caption: 'Birth Date',
         render: (p) => p?.birthDate && <Text>{dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
@@ -61,16 +57,14 @@ const initialPresets: ITablePreset[] = [
         name: 'All',
         order: 'a',
         isReadonly: true,
-    },
-    {
+    }, {
         id: -2,
         name: 'Green status',
         order: 'b',
         filter: {
             profileStatusId: [3],
         },
-    },
-    {
+    }, {
         id: -3,
         name: 'Red status',
         order: 'c',
@@ -91,22 +85,19 @@ export default function PresetsPanelExample() {
                 title: 'Profile Status',
                 type: 'multiPicker',
                 dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
-            },
-            {
+            }, {
                 field: 'jobTitleId',
                 columnKey: 'jobTitle',
                 title: 'Title',
                 type: 'multiPicker',
                 dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
-            },
-            {
+            }, {
                 field: 'departmentId',
                 columnKey: 'departmentName',
                 title: 'Department',
                 type: 'multiPicker',
                 dataSource: new LazyDataSource({ api: svc.api.demo.departments }),
-            },
-            {
+            }, {
                 field: 'birthDate',
                 columnKey: 'birthDate',
                 title: 'Birth Date',

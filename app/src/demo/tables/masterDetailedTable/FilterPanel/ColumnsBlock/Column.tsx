@@ -23,9 +23,7 @@ const Column: React.FC<IColumnProps> = ({ value, onValueChange, columnInfo }) =>
             onValueChange(newColumnsConfig);
         },
         [
-            value,
-            onValueChange,
-            columnInfo,
+            value, onValueChange, columnInfo,
         ],
     );
 

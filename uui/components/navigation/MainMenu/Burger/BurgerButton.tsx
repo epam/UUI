@@ -11,11 +11,7 @@ export interface BurgerButtonMods extends IHasIcon, IDropdownToggler {
 export const BurgerButton = withMods<ButtonProps, BurgerButtonMods>(
     Button,
     (props) => [
-        css.root,
-        css['button-' + (props.type || 'primary')],
-        css['indent-' + (props.indentLevel || 0)],
-        props.isDropdown && css.dropdown,
-        props.icon && css.hasIcon,
+        css.root, css['button-' + (props.type || 'primary')], css['indent-' + (props.indentLevel || 0)], props.isDropdown && css.dropdown, props.icon && css.hasIcon,
     ],
     () => ({ dropdownIcon: SvgTriangle, dropdownIconPosition: 'left', role: 'menuitem' }),
 );

@@ -39,9 +39,7 @@ export function PinIconButton(props: IPinIconButton) {
         }
         return PinOnIcon;
     }, [
-        isPinnedAlways,
-        isHovered,
-        isPinned,
+        isPinnedAlways, isHovered, isPinned,
     ]);
 
     const pinClickHandler = isPinnedAlways ? undefined : () => onTogglePin(id);

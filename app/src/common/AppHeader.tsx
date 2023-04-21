@@ -83,13 +83,11 @@ export function AppHeader() {
                 priority: 100500,
                 collapsedContainer: true,
                 render: () => <Burger renderBurgerContent={ renderBurger } logoUrl="/static/logo.svg" key="burger" />,
-            },
-            {
+            }, {
                 id: 'logo',
                 priority: 100499,
                 render: () => <MainMenuLogo link={ { pathname: '/' } } onClick={ () => sendEvent('Welcome') } logoUrl="/static/logo.svg" key="logo" />,
-            },
-            {
+            }, {
                 id: 'documents',
                 priority: 3,
                 render: () => (
@@ -102,8 +100,7 @@ export function AppHeader() {
                         key="documents"
                     />
                 ),
-            },
-            {
+            }, {
                 id: 'assets',
                 priority: 2,
                 render: () => (
@@ -116,8 +113,7 @@ export function AppHeader() {
                         key="assets"
                     />
                 ),
-            },
-            {
+            }, {
                 id: 'components',
                 priority: 2,
                 render: () => (
@@ -135,8 +131,7 @@ export function AppHeader() {
                         key="components"
                     />
                 ),
-            },
-            {
+            }, {
                 id: 'demo',
                 priority: 2,
                 render: () => (
@@ -149,15 +144,11 @@ export function AppHeader() {
                         key="demo"
                     />
                 ),
-            },
-            window.location.host.includes('localhost') && {
+            }, window.location.host.includes('localhost') && {
                 id: 'Sandbox',
                 priority: 1,
                 render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
-            },
-            { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
-            window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: renderThemeSwitcher },
-            {
+            }, { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> }, window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: renderThemeSwitcher }, {
                 id: 'survey',
                 priority: 0,
                 render: () => (
@@ -169,8 +160,7 @@ export function AppHeader() {
                         <img height="60px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
                     </Anchor>
                 ),
-            },
-            {
+            }, {
                 id: 'git',
                 priority: 0,
                 render: () => (
@@ -181,8 +171,7 @@ export function AppHeader() {
                         </Text>
                     </Anchor>
                 ),
-            },
-            { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key="globalMenu" /> },
+            }, { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key="globalMenu" /> },
         ].filter((i) => !!i);
     };
 

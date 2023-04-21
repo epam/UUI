@@ -11,18 +11,7 @@ interface TItem {
 type View = ArrayListView<TItem, number, any>;
 
 const testItems: TItem[] = [
-    { id: 2, level: 'A1' },
-    { id: 5, level: 'A2+' },
-    { id: 1, level: 'A0' },
-    { id: 3, level: 'A1+' },
-    { id: 4, level: 'A2' },
-    { id: 6, level: 'B' },
-    { id: 7, level: 'B1+', parentId: 6 },
-    { id: 8, level: 'B2', parentId: 6 },
-    { id: 9, level: 'B2+', parentId: 6 },
-    { id: 10, level: 'C1' },
-    { id: 11, level: 'C1+' },
-    { id: 12, level: 'C2' },
+    { id: 2, level: 'A1' }, { id: 5, level: 'A2+' }, { id: 1, level: 'A0' }, { id: 3, level: 'A1+' }, { id: 4, level: 'A2' }, { id: 6, level: 'B' }, { id: 7, level: 'B1+', parentId: 6 }, { id: 8, level: 'B2', parentId: 6 }, { id: 9, level: 'B2+', parentId: 6 }, { id: 10, level: 'C1' }, { id: 11, level: 'C1+' }, { id: 12, level: 'C2' },
 ];
 
 const totalRowsCount = 12;
@@ -177,10 +166,7 @@ describe('ArrayListView', () => {
             const unfoldedRowsIds = unfoldedRows.map((i) => i.id);
             expect(unfoldedRows).toHaveLength(4);
             expect(unfoldedRowsIds).toEqual([
-                6,
-                7,
-                8,
-                9,
+                6, 7, 8, 9,
             ]);
         });
 
@@ -213,10 +199,7 @@ describe('ArrayListView', () => {
 
             expect(rows).toHaveLength(4);
             expect(rowsIds).toEqual([
-                6,
-                9,
-                8,
-                7,
+                6, 9, 8, 7,
             ]);
         });
     });
@@ -260,10 +243,7 @@ describe('ArrayListView', () => {
                 expect(onValueChange).toBeCalledWith({
                     ...initialValue,
                     checked: [
-                        6,
-                        7,
-                        8,
-                        9,
+                        6, 7, 8, 9,
                     ],
                 });
             });
@@ -283,10 +263,7 @@ describe('ArrayListView', () => {
                 expect(onValueChange).toBeCalledWith({
                     ...initialValue,
                     checked: [
-                        7,
-                        8,
-                        9,
-                        6,
+                        7, 8, 9, 6,
                     ],
                 });
             });
@@ -330,18 +307,7 @@ describe('ArrayListView', () => {
                 expect(onValueChange).toBeCalledWith({
                     ...initialValue,
                     checked: [
-                        7,
-                        8,
-                        2,
-                        5,
-                        1,
-                        3,
-                        4,
-                        6,
-                        9,
-                        10,
-                        11,
-                        12,
+                        7, 8, 2, 5, 1, 3, 4, 6, 9, 10, 11, 12,
                     ],
                 });
             });
@@ -393,15 +359,7 @@ describe('ArrayListView', () => {
                 expect(onValueChange).toBeCalledWith({
                     ...initialValue,
                     checked: [
-                        2,
-                        5,
-                        1,
-                        3,
-                        4,
-                        6,
-                        10,
-                        11,
-                        12,
+                        2, 5, 1, 3, 4, 6, 10, 11, 12,
                     ],
                 });
             });
@@ -426,17 +384,13 @@ describe('ArrayListView', () => {
         view.update({
             ...initialValue,
             checked: [
-                6,
-                5,
-                4,
+                6, 5, 4,
             ],
         }, viewProps);
 
         const selectedRows = view.getSelectedRows(0);
         expect(selectedRows.map(({ id }) => id)).toEqual([
-            6,
-            5,
-            4,
+            6, 5, 4,
         ]);
     });
 });

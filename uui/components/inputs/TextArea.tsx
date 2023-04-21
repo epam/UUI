@@ -13,9 +13,7 @@ export interface TextAreaMods extends types.IHasEditMode {
 
 export function applyTextAreaMods(mods: TextAreaMods) {
     return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        css['mode-' + (mods.mode || defaultMode)],
+        css.root, css['size-' + (mods.size || defaultSize)], css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 

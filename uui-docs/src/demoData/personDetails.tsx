@@ -12,8 +12,7 @@ export const personDetails: PersonDetails = {
             experienceName: 'MIT',
             startRange: '2006',
             endRange: '2011',
-        },
-        {
+        }, {
             experienceName: 'EPAM',
             startRange: '2012',
             endRange: '2018',

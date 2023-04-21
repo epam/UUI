@@ -18,20 +18,12 @@ interface TextSettings {
 export const textSettingsDoc = new DocBuilder<TextSettings>({ name: 'Text' })
     .prop('lineHeight', {
         examples: [
-            '12',
-            '18',
-            '24',
-            '30',
+            '12', '18', '24', '30',
         ],
     })
     .prop('fontSize', {
         examples: [
-            '10',
-            '12',
-            '14',
-            '16',
-            '18',
-            '24',
+            '10', '12', '14', '16', '18', '24',
         ],
     });
 
@@ -58,9 +50,7 @@ export const iconOptionsDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
 
 export const IHasEditModeDoc = new DocBuilder<IHasEditMode>({ name: 'mode' }).prop('mode', {
     examples: [
-        'form',
-        'inline',
-        'cell',
+        'form', 'inline', 'cell',
     ],
     defaultValue: 'form',
 });

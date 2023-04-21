@@ -26,8 +26,7 @@ const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Acc
                     </Text>
                 ),
                 isDefault: true,
-            },
-            {
+            }, {
                 name: 'Simple text 12px',
                 value: (
                     <Text fontSize="12">
@@ -40,8 +39,7 @@ const accordionDoc = new DocBuilder<AccordionProps & AccordionMods>({ name: 'Acc
                         mollit anim id est laborum.
                     </Text>
                 ),
-            },
-            {
+            }, {
                 name: 'Marked up content',
                 value: (
                     <React.Fragment>

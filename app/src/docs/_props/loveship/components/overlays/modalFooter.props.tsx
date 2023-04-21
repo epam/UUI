@@ -9,17 +9,13 @@ import { Button } from '@epam/loveship';
 const ModalFooterDoc = new DocBuilder<ModalFooterProps>({ name: 'ModalFooter', component: ModalFooter })
     .prop('background', {
         examples: [
-            'white',
-            'night50',
-            'none',
+            'white', 'night50', 'none',
         ],
     })
     .prop('borderTop', { examples: [true] })
     .prop('padding', {
         examples: [
-            '6',
-            '12',
-            '24',
+            '6', '12', '24',
         ],
     })
     .prop('children', {

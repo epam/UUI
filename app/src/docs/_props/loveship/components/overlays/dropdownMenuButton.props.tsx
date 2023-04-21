@@ -8,19 +8,11 @@ import {
 
 const dropdownMenuButtonDoc = new DocBuilder<ButtonProps & DropdownMenuItemMods>({ name: 'DropdownMenuButton', component: DropdownMenuButton })
     .implements([
-        onClickDoc,
-        dropdownTogglerDoc,
-        isDisabledDoc,
-        basicPickerTogglerDoc,
-        iconDoc,
-        iconOptionsDoc,
-        iCanRedirectDoc,
+        onClickDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iconDoc, iconOptionsDoc, iCanRedirectDoc,
     ])
     .prop('caption', {
         examples: [
-            { value: 'Click Me', isDefault: true },
-            { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
-            { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
+            { value: 'Click Me', isDefault: true }, { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' }, { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
         ],
         type: 'string',
     })
