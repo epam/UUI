@@ -58,7 +58,6 @@ const AIRBNB_PICK_RULES = {
             'space-in-parens',
             'template-curly-spacing',
             //
-            'object-curly-newline',
             'object-property-newline',
             'arrow-parens',
         ],
