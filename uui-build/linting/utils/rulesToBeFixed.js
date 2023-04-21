@@ -12,7 +12,7 @@
  */
 const { isCI, isDevServer, isLintStaged } = require('../../utils/envUtils.js');
 
-// Only CI & DEV server should disable it.
+// Only CI & pre-commit hooks should ignore these rules.
 const shouldTurnOffRulesToBeFixed = isCI() || isDevServer() || isLintStaged();
 
 /**
