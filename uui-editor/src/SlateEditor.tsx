@@ -135,7 +135,7 @@ const Editor = ({ initialValue, ...props }: any) => {
 
 export function SlateEditor(props: SlateEditorProps) {
     const {
-        autoFocus = false,
+        autoFocus,
         isReadonly,
         placeholder,
     } = props;
