@@ -1,16 +1,17 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { IconButton } from '../IconButton';
-import { ReactComponent as AcceptIcon } from '../../icons/accept-12.svg';
+import { renderSnapshotWithContextAsync, SvgMock } from '@epam/test-utils';
 
 describe('IconButton', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<IconButton />).toJSON();
+    it('should render with minimum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<IconButton />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-        const tree = renderer.create(<IconButton color="sun" onClick={ jest.fn() } icon={ AcceptIcon } isDisabled={ false } />).toJSON();
+    it('should render with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <IconButton color="sun" onClick={ jest.fn() } icon={ SvgMock } isDisabled={ false } />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });
