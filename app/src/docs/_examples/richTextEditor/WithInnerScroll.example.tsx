@@ -62,7 +62,6 @@ export default function WithInnerScrollExample() {
                 value={ value }
                 onValueChange={ setValue }
                 isReadonly={ false }
-                autoFocus={ true }
                 plugins={ plugins }
                 mode='form'
                 placeholder='Add description'
