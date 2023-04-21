@@ -11,8 +11,7 @@ const multiSwitchItems = [
     {
         id: fullLevelsList,
         caption: 'Full levels list',
-    },
-    {
+    }, {
         id: shortLevelsList,
         caption: 'Short levels list',
     },

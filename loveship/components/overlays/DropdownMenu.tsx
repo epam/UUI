@@ -26,18 +26,13 @@ export interface DropdownMenuHeaderProps extends DropdownMenuItemMods {
 export interface DropdownMenuSearchProps extends TextInputProps, IHasIcon {}
 
 export const DropdownMenuBody = withMods<VPanelProps, DropdownMenuItemMods>(VPanel, (mods: DropdownMenuItemMods) => [
-    css.bodyRoot,
-    css['color-' + (mods.color || 'white')],
-    mods.inMainMenu && css.inMainMenu,
+    css.bodyRoot, css['color-' + (mods.color || 'white')], mods.inMainMenu && css.inMainMenu,
 ]);
 
 export const DropdownMenuButton = withMods<ButtonProps, DropdownMenuItemMods>(
     Button,
     (props) => [
-        css.buttonRoot,
-        props.noIcon && !props.icon && !props.isDropdown && css.noIcon,
-        css['color-' + (props.color || 'white')],
-        !props.icon && !props.isDropdown && css.noIcon,
+        css.buttonRoot, props.noIcon && !props.icon && !props.isDropdown && css.noIcon, css['color-' + (props.color || 'white')], !props.icon && !props.isDropdown && css.noIcon,
     ],
     () => ({ dropdownIcon: BtnTriangle, clearIcon: BtnCross, dropdownIconPosition: 'left' }),
 );

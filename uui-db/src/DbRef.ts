@@ -107,9 +107,7 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
                 const dependentEntityPatches = this.beforeUpdate(dependentEntityPatchesForUpdate, tables, prevTables);
 
                 patchAndDependencies = mergeEntityPatches(tables, unionPatches([
-                    patchAndDependencies,
-                    updatedPatch,
-                    dependentEntityPatches,
+                    patchAndDependencies, updatedPatch, dependentEntityPatches,
                 ]));
             });
         return patchAndDependencies;

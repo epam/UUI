@@ -22,9 +22,7 @@ type TestItemId = [TestItem['type'], number];
 
 describe('LazyListView - can work with id like [string, number]', () => {
     const testData: TestItem[] = [
-        { type: 'parent', id: 1, childrenCount: 1 },
-        { type: 'child', id: 1, parentId: 1 },
-        { type: 'child', id: 2, parentId: 1 },
+        { type: 'parent', id: 1, childrenCount: 1 }, { type: 'child', id: 1, parentId: 1 }, { type: 'child', id: 2, parentId: 1 },
     ];
 
     let value: DataSourceState<DataQueryFilter<TestItem>, TestItemId>;
@@ -63,9 +61,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
         const ds = treeDataSource;
         const view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
+            { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
@@ -93,9 +89,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
         await delay();
 
         expectViewToLookLike(view, [
-            { id: ['parent', 1] },
-            { id: ['child', 1] },
-            { id: ['child', 2] },
+            { id: ['parent', 1] }, { id: ['child', 1] }, { id: ['child', 2] },
         ], 3);
     });
 
@@ -116,9 +110,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
         expectViewToLookLike(
             view,
             [
-                { id: ['parent', 1], isChildrenChecked: true, isChecked: false },
-                { id: ['child', 1], isChecked: true },
-                { id: ['child', 2], isChecked: false },
+                { id: ['parent', 1], isChildrenChecked: true, isChecked: false }, { id: ['child', 1], isChecked: true }, { id: ['child', 2], isChecked: false },
             ],
             3,
         );
@@ -133,9 +125,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
         expectViewToLookLike(
             view,
             [
-                { id: ['parent', 1], isChildrenChecked: true, isChecked: true },
-                { id: ['child', 1], isChecked: true },
-                { id: ['child', 2], isChecked: true },
+                { id: ['parent', 1], isChildrenChecked: true, isChecked: true }, { id: ['child', 1], isChecked: true }, { id: ['child', 2], isChecked: true },
             ],
             3,
         );
@@ -150,9 +140,7 @@ describe('LazyListView - can work with id like [string, number]', () => {
         expectViewToLookLike(
             view,
             [
-                { id: ['parent', 1], isChildrenChecked: false, isChecked: false },
-                { id: ['child', 1], isChecked: false },
-                { id: ['child', 2], isChecked: false },
+                { id: ['parent', 1], isChildrenChecked: false, isChecked: false }, { id: ['child', 1], isChecked: false }, { id: ['child', 2], isChecked: false },
             ],
             3,
         );

@@ -90,9 +90,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
                 <FlexCell width="auto">
                     <MultiSwitch
                         items={ [
-                            { id: 'Edit', caption: 'Edit' },
-                            { id: 'isDisabled', caption: 'Disabled' },
-                            { id: 'isReadOnly', caption: 'ReadOnly' },
+                            { id: 'Edit', caption: 'Edit' }, { id: 'isDisabled', caption: 'Disabled' }, { id: 'isReadOnly', caption: 'ReadOnly' },
                         ] }
                         value={ this.state.isDisabled ? 'isDisabled' : this.state.isReadOnly ? 'isReadOnly' : 'Edit' }
                         onValueChange={ (val: string) =>

@@ -16,9 +16,7 @@ export default function BasicExample() {
             <MultiSwitch
                 size="36"
                 items={ [
-                    { id: 1, caption: 'Mentee' },
-                    { id: 2, caption: 'Mentor' },
-                    { id: 3, caption: 'Coordinator' },
+                    { id: 1, caption: 'Mentee' }, { id: 2, caption: 'Mentor' }, { id: 3, caption: 'Coordinator' },
                 ] }
                 value={ value }
                 onValueChange={ onValueChange }
@@ -27,9 +25,7 @@ export default function BasicExample() {
             <MultiSwitch
                 size="36"
                 items={ [
-                    { id: 1, caption: 'Mentee' },
-                    { id: 2, caption: 'Mentor' },
-                    { id: 3, caption: 'Coordinator' },
+                    { id: 1, caption: 'Mentee' }, { id: 2, caption: 'Mentor' }, { id: 3, caption: 'Coordinator' },
                 ] }
                 color="gray50"
                 value={ value }
@@ -38,9 +34,7 @@ export default function BasicExample() {
             <Text>Disabled</Text>
             <MultiSwitch
                 items={ [
-                    { id: 1, caption: 'Mentee' },
-                    { id: 2, caption: 'Mentor' },
-                    { id: 3, caption: 'Coordinator' },
+                    { id: 1, caption: 'Mentee' }, { id: 2, caption: 'Mentor' }, { id: 3, caption: 'Coordinator' },
                 ] }
                 value={ value }
                 onValueChange={ onValueChange }

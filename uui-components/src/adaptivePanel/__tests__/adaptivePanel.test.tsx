@@ -36,12 +36,7 @@ async function setupAdaptivePanel({ width, itemWidth }: { width: number; itemWid
         };
     };
     const items: TestItemType[] = [
-        ...getNItems('p1', 3, 1),
-        ...getNItems('p2', 3, 3),
-        ...getNItems('p3', 3, 5),
-        genContainerItem({ id: 'wide-screen', priority: 2 }),
-        genContainerItem({ id: 'medium-screen', priority: 4 }),
-        genContainerItem({ id: 'small-screen', priority: 6 }),
+        ...getNItems('p1', 3, 1), ...getNItems('p2', 3, 3), ...getNItems('p3', 3, 5), genContainerItem({ id: 'wide-screen', priority: 2 }), genContainerItem({ id: 'medium-screen', priority: 4 }), genContainerItem({ id: 'small-screen', priority: 6 }),
     ];
     mockAdaptivePanelLayout({ width, itemWidth });
     const result = await renderToJsdomWithContextAsync(<AdaptivePanel items={ items } rawProps={ { 'data-testid': 'adaptive-panel' } } />);

@@ -9,16 +9,12 @@ import { Button } from '@epam/promo';
 const ModalFooterDoc = new DocBuilder<ModalFooterProps>({ name: 'ModalFooter', component: ModalFooter })
     .prop('background', {
         examples: [
-            'white',
-            'gray5',
-            'none',
+            'white', 'gray5', 'none',
         ],
     })
     .prop('padding', {
         examples: [
-            '6',
-            '12',
-            '24',
+            '6', '12', '24',
         ],
     })
     .prop('children', {

@@ -16,8 +16,7 @@ import style from './richTextViewDoc.scss';
 const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
     .prop('htmlContent', {
         examples: [
-            { value: '<h1>Hello</h1>', isDefault: false, name: '<h1>' },
-            {
+            { value: '<h1>Hello</h1>', isDefault: false, name: '<h1>' }, {
                 value: ' <h2>Hello</h2>',
                 name: '<h2>',
             },
@@ -26,9 +25,7 @@ const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'Ri
     })
     .prop('size', {
         examples: [
-            { value: '12', isDefault: false, name: '12' },
-            { value: '14', isDefault: true, name: '14' },
-            { value: '16', isDefault: false, name: '16' },
+            { value: '12', isDefault: false, name: '12' }, { value: '14', isDefault: true, name: '14' }, { value: '16', isDefault: false, name: '16' },
         ],
     })
     .prop('children', {
@@ -239,8 +236,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 ),
                 isDefault: true,
                 name: 'Demo',
-            },
-            {
+            }, {
                 value: (
                     <>
                         You can use it for

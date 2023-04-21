@@ -85,14 +85,7 @@ interface FormState {
 }
 
 const pickerItems = [
-    { id: 1, name: 'Red' },
-    { id: 2, name: 'Green' },
-    { id: 3, name: 'Blue' },
-    { id: 4, name: 'Cyan' },
-    { id: 5, name: 'Magenta' },
-    { id: 6, name: 'Yellow' },
-    { id: 7, name: 'White' },
-    { id: 8, name: 'Black' },
+    { id: 1, name: 'Red' }, { id: 2, name: 'Green' }, { id: 3, name: 'Blue' }, { id: 4, name: 'Cyan' }, { id: 5, name: 'Magenta' }, { id: 6, name: 'Yellow' }, { id: 7, name: 'White' }, { id: 8, name: 'Black' },
 ];
 
 const metadata: Metadata<FormState> = {
@@ -119,22 +112,14 @@ const skinMods = {
         border: 'gray30',
         altBackground: 'gray5',
         cellColors: [
-            'gray5',
-            'red',
-            'blue',
-            'green',
-            'amber',
+            'gray5', 'red', 'blue', 'green', 'amber',
         ],
     },
     loveship: {
         border: 'night300',
         altBackground: 'night50',
         cellColors: [
-            'night50',
-            'fire',
-            'sky',
-            'grass',
-            'sun',
+            'night50', 'fire', 'sky', 'grass', 'sun',
         ],
     },
     uui: { border: true, altBackground: 'edited', cellColors: ['edited', 'invalid'] },
@@ -199,8 +184,7 @@ export default function TableCellsStylesSandbox() {
                     isAlwaysVisible: true,
                     width: 140,
                     fix: 'left',
-                },
-                {
+                }, {
                     key: 'text',
                     caption: 'Text',
                     renderCell: (props) => (
@@ -213,8 +197,7 @@ export default function TableCellsStylesSandbox() {
                     ),
                     isSortable: true,
                     width: 120,
-                },
-                {
+                }, {
                     key: 'number',
                     caption: 'Number',
                     renderCell: (props) => (
@@ -228,8 +211,7 @@ export default function TableCellsStylesSandbox() {
                     isSortable: true,
                     textAlign: 'right',
                     width: 120,
-                },
-                {
+                }, {
                     key: 'checkbox',
                     caption: 'Checkbox',
                     renderCell: (props) => (
@@ -242,8 +224,7 @@ export default function TableCellsStylesSandbox() {
                     ),
                     isSortable: true,
                     width: 120,
-                },
-                {
+                }, {
                     key: 'textarea',
                     caption: 'TextArea',
                     renderCell: (props) => (
@@ -256,8 +237,7 @@ export default function TableCellsStylesSandbox() {
                     ),
                     isSortable: true,
                     width: 120,
-                },
-                {
+                }, {
                     key: 'date',
                     caption: 'Date',
                     renderCell: (props) => (
@@ -270,8 +250,7 @@ export default function TableCellsStylesSandbox() {
                     ),
                     isSortable: true,
                     width: 200,
-                },
-                {
+                }, {
                     key: 'singlePicker',
                     caption: 'Single Picker',
                     renderCell: (props) => (
@@ -284,8 +263,7 @@ export default function TableCellsStylesSandbox() {
                     ),
                     isSortable: true,
                     width: 200,
-                },
-                {
+                }, {
                     key: 'multiPicker',
                     caption: 'Multi Picker',
                     renderCell: (props) => (
@@ -335,9 +313,7 @@ export default function TableCellsStylesSandbox() {
                         value={ skinName }
                         onValueChange={ setSkinName }
                         items={ [
-                            { id: 'loveship' as SkinName, caption: 'Loveship' },
-                            { id: 'promo' as SkinName, caption: 'Promo' },
-                            { id: 'uui' as SkinName, caption: 'UUI' },
+                            { id: 'loveship' as SkinName, caption: 'Loveship' }, { id: 'promo' as SkinName, caption: 'Promo' }, { id: 'uui' as SkinName, caption: 'UUI' },
                         ] }
                     />
                 </skin.FlexCell>

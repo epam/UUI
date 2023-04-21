@@ -13,10 +13,7 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
     const startCell = useMemo(
         () => getStartCell<TItem, TId, TFilter>(selectionRange, rows, columns),
         [
-            selectionRange?.startColumnIndex,
-            selectionRange?.startRowIndex,
-            rows,
-            columns,
+            selectionRange?.startColumnIndex, selectionRange?.startRowIndex, rows, columns,
         ],
     );
 
@@ -29,9 +26,7 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
             return !!cell.column.canAcceptCopy?.(startCell, cell);
         },
         [
-            startCell,
-            columns,
-            rows,
+            startCell, columns, rows,
         ],
     );
 
@@ -66,10 +61,7 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
 
         return selectedCells;
     }, [
-        selectionRange,
-        columns,
-        shouldSelectCell,
-        rows,
+        selectionRange, columns, shouldSelectCell, rows,
     ]);
 
     const getCellSelectionInfo = useCallback(

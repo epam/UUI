@@ -383,6 +383,8 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         if (!id) return undefined;
 
         const item = this.tree.getById(id);
+        if (!item) return undefined;
+
         const childCount = this.getChildCount(item);
         if (childCount === undefined) return undefined;
 

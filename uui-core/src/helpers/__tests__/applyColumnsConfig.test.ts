@@ -4,9 +4,7 @@ import { ColumnsConfig, DataColumnProps } from '../../types';
 describe('applyColumnsConfig', () => {
     it('applyColumnsConfig - should exclude invisible columns & sort by order', () => {
         const columns: DataColumnProps[] = [
-            { key: '2', width: 20 },
-            { key: '1', width: 10 },
-            { key: '3', width: 30 },
+            { key: '2', width: 20 }, { key: '1', width: 10 }, { key: '3', width: 30 },
         ];
         const config: ColumnsConfig = {
             1: { isVisible: true, order: 'c', width: 10 },
@@ -45,9 +43,7 @@ describe('applyColumnsConfig', () => {
 
     it('getColumnsConfig - should build columns config from scratch', () => {
         const columns: DataColumnProps[] = [
-            { key: '3', width: 30, fix: 'left' },
-            { key: '2', width: 20, isHiddenByDefault: true },
-            { key: '1', width: 10 },
+            { key: '3', width: 30, fix: 'left' }, { key: '2', width: 20, isHiddenByDefault: true }, { key: '1', width: 10 },
         ];
         const config: ColumnsConfig = {};
 

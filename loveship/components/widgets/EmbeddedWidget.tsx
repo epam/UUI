@@ -62,8 +62,7 @@ export class EmbeddedWidget<TProps = any> extends React.Component<EmbeddedAppPro
                 const loadTasks = [
                     ...jsFiles.map(
                         (file) => this.addScript(this.props.publicUrl + manifest[file]),
-                    ),
-                    ...cssFiles.map((file) => this.addStyles(this.props.publicUrl + manifest[file])),
+                    ), ...cssFiles.map((file) => this.addStyles(this.props.publicUrl + manifest[file])),
                 ];
                 Promise.all(loadTasks).then(() => {
                     this.setState({ isLoading: false });

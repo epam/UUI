@@ -17,42 +17,23 @@ import { Text } from '@epam/loveship';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([
-        sizeDoc,
-        isDisabledDoc,
-        isReadonlyDoc,
-        iEditable,
-        pickerBaseOptionsDoc,
-        modeDoc,
-        iconDoc,
-        iconOptionsDoc,
+        sizeDoc, isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, modeDoc, iconDoc, iconOptionsDoc,
     ])
     .prop('value', {
         examples: [
-            { name: '1', value: 1 },
-            { name: '[1, 2]', value: [1, 2] },
-            { name: '{ id: 1, name: "Test"}', value: { id: 1, name: 'Test' } },
-            { name: '[{ id: 1, name: "Test"}]', value: [{ id: 1, name: 'Test' }] },
+            { name: '1', value: 1 }, { name: '[1, 2]', value: [1, 2] }, { name: '{ id: 1, name: "Test"}', value: { id: 1, name: 'Test' } }, { name: '[{ id: 1, name: "Test"}]', value: [{ id: 1, name: 'Test' }] },
         ],
     })
     .prop('valueType', { examples: ['id', 'entity'], isRequired: true })
     .prop('selectionMode', { examples: ['single', 'multi'], isRequired: true })
     .prop('maxItems', {
         examples: [
-            0,
-            1,
-            5,
-            10,
-            50,
-            100,
-            1000,
+            0, 1, 5, 10, 50, 100, 1000,
         ],
     })
     .prop('minCharsToSearch', {
         examples: [
-            0,
-            1,
-            3,
-            5,
+            0, 1, 3, 5,
         ],
     })
     .prop('prefix', { examples: [{ value: 'Prefix: ' }] })
@@ -64,21 +45,13 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('placeholder', { examples: ['Select Country', 'Select Person'], type: 'string', defaultValue: 'Please select' })
     .prop('minBodyWidth', {
         examples: [
-            100,
-            150,
-            200,
-            250,
-            300,
-            360,
-            400,
+            100, 150, 200, 250, 300, 360, 400,
         ],
         defaultValue: 360,
     })
     .prop('dropdownHeight', {
         examples: [
-            100,
-            200,
-            300,
+            100, 200, 300,
         ],
         defaultValue: 300,
     })
@@ -87,12 +60,10 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
             {
                 name: 'Button',
                 value: (props) => <Button { ...props } caption={ props.selection.map((s) => s.value.name).join(', ') } />,
-            },
-            {
+            }, {
                 name: 'LinkButton',
                 value: (props) => <LinkButton { ...props } caption={ props.selection.map((s) => s.value.name).join(', ') } />,
-            },
-            {
+            }, {
                 name: 'Search',
                 value: (props) => <SearchInput value="" onValueChange={ null } { ...props } />,
             },
@@ -101,9 +72,7 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
     .prop('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true }) }] })
     .prop('searchPosition', {
         examples: [
-            'input',
-            'body',
-            'none',
+            'input', 'body', 'none',
         ],
         defaultValue: 'input',
     })

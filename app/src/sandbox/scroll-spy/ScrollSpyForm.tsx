@@ -49,9 +49,7 @@ export function ScrollSpyForm() {
     const languagesDataSource = useArrayDataSource(
         {
             items: [
-                { name: 'English', id: 'English' },
-                { name: 'Spanish', id: 'Spanish' },
-                { name: 'Russian', id: 'Russian' },
+                { name: 'English', id: 'English' }, { name: 'Spanish', id: 'Spanish' }, { name: 'Russian', id: 'Russian' },
             ],
         },
         [],

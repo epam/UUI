@@ -28,13 +28,7 @@ const sandra = {
 const william = { id: 7, name: 'William' } as Person;
 
 const persons = [
-    alice,
-    bob,
-    edward,
-    jack,
-    pete,
-    sandra,
-    william,
+    alice, bob, edward, jack, pete, sandra, william,
 ];
 
 const run = (sorting: SortingOption<Person>[]) => {
@@ -54,50 +48,26 @@ describe('getPatternPredicate', () => {
 
     it('by birthday', () => {
         expect(run([{ field: 'birthday' }])).toEqual([
-            william,
-            pete,
-            bob,
-            edward,
-            jack,
-            alice,
-            sandra,
+            william, pete, bob, edward, jack, alice, sandra,
         ]);
     });
 
     it('by birthday desc', () => {
         expect(run([{ field: 'birthday', direction: 'desc' }])).toEqual([
-            sandra,
-            alice,
-            jack,
-            edward,
-            bob,
-            pete,
-            william,
+            sandra, alice, jack, edward, bob, pete, william,
         ]);
     });
 
     it('by departmentId, then by name', () => {
         // Null and undefined should be treated as equal
         expect(run([{ field: 'departmentId' }, { field: 'name' }])).toEqual([
-            jack,
-            william,
-            edward,
-            pete,
-            bob,
-            sandra,
-            alice,
+            jack, william, edward, pete, bob, sandra, alice,
         ]);
     });
 
     it('by departmentId desc, then by name', () => {
         expect(run([{ field: 'departmentId', direction: 'desc' }, { field: 'name' }])).toEqual([
-            alice,
-            bob,
-            sandra,
-            edward,
-            pete,
-            jack,
-            william,
+            alice, bob, sandra, edward, pete, jack, william,
         ]);
     });
 });

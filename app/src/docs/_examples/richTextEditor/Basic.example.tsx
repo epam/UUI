@@ -68,8 +68,7 @@ export default function SlateEditorBasicExample() {
                 {
                     name: 'Name',
                     field: 'name',
-                },
-                {
+                }, {
                     name: 'Email',
                     field: 'email',
                 },

@@ -30,19 +30,13 @@ import { ReactComponent as NotificationIcon } from '../../icons/notification-che
 import { ReactComponent as WarningIcon } from '../../icons/notification-error-fill-24.svg';
 
 const sizeList = [
-    '24',
-    '30',
-    '36',
-    '42',
-    '48',
+    '24', '30', '36', '42', '48',
 ];
 
 const recommendedSizes: { [key: string]: string[] } = {
     12: ['24'],
     18: [
-        '30',
-        '36',
-        '42',
+        '30', '36', '42',
     ],
     24: ['48'],
 };

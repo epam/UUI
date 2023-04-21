@@ -69,9 +69,7 @@ export class ModalFooter extends React.Component<ModalFooterProps> {
             <FlexRow
                 spacing={ this.props.spacing || '12' }
                 cx={ [
-                    css.modalFooter,
-                    this.props.borderTop && css.borderTop,
-                    this.props.cx,
+                    css.modalFooter, this.props.borderTop && css.borderTop, this.props.cx,
                 ] }
                 padding={ this.props.padding || '24' }
                 vPadding={ this.props.vPadding || '24' }

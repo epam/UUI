@@ -9,14 +9,11 @@ import { colors } from '../../docs/helpers/colorMap';
 
 const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: Text })
     .implements([
-        sizeDoc,
-        textSettingsDoc,
-        fontDoc,
+        sizeDoc, textSettingsDoc, fontDoc,
     ])
     .prop('children', {
         examples: [
-            { value: 'Hello World', isDefault: true },
-            {
+            { value: 'Hello World', isDefault: true }, {
                 value: 'At EPAM, we believe that technology defines business success, and we relentscssly pursue the best solution for every client to solve where others fail.',
                 name: 'long text',
             },
@@ -25,14 +22,7 @@ const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: 
     })
     .prop('color', {
         examples: [
-            'night50',
-            'night300',
-            'night400',
-            'night500',
-            'night600',
-            'night700',
-            'night800',
-            'night900',
+            'night50', 'night300', 'night400', 'night500', 'night600', 'night700', 'night800', 'night900',
         ],
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
     })

@@ -46,21 +46,11 @@ describe('columnsConfigurationUtils', () => {
                 prevConfig, A, B, C, D, E, F,
             } = getTestDataSet1();
             const columns = [
-                F,
-                A,
-                E,
-                B,
-                D,
-                C,
+                F, A, E, B, D, C,
             ];
             const result = sortColumnsAndAddGroupKey({ columns, prevConfig });
             const expected: GroupedDataColumnProps[] = [
-                { ...A, groupKey: 'displayedPinned' },
-                { ...B, groupKey: 'displayedUnpinned' },
-                { ...C, groupKey: 'displayedPinned' },
-                { ...D, groupKey: 'hidden' },
-                { ...E, groupKey: 'hidden' },
-                { ...F, groupKey: 'displayedUnpinned' },
+                { ...A, groupKey: 'displayedPinned' }, { ...B, groupKey: 'displayedUnpinned' }, { ...C, groupKey: 'displayedPinned' }, { ...D, groupKey: 'hidden' }, { ...E, groupKey: 'hidden' }, { ...F, groupKey: 'displayedUnpinned' },
             ];
             expect(result).toEqual(expected);
         });
