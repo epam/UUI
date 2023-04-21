@@ -145,7 +145,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`NotificationCard should be rendered correctly 2`] = `
+exports[`NotificationCard should render with maximum props 1`] = `
 <div
   className="notification-card-error root"
   role="alert"

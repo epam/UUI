@@ -1,19 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button should be rendered correctly 1`] = `
-<button
-  className="container uui-button-box uui-enabled button-primary root size-36 mode-solid"
-  onClick={[Function]}
-  tabIndex={-1}
-  type="button"
-/>
-`;
-
-exports[`Button should be rendered correctly with props 1`] = `
+exports[`Button should render with maximum props 1`] = `
 <button
   aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-outline"
-  disabled={false}
   onClick={[Function]}
   tabIndex={0}
   type="button"
@@ -54,4 +44,13 @@ exports[`Button should be rendered correctly with props 1`] = `
     />
   </div>
 </button>
+`;
+
+exports[`Button should render with minimum props 1`] = `
+<button
+  className="container uui-button-box uui-enabled button-primary root size-36 mode-solid"
+  onClick={[Function]}
+  tabIndex={-1}
+  type="button"
+/>
 `;
