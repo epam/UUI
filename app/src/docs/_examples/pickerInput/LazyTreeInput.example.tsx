@@ -15,9 +15,12 @@ export default function LazyTreePicker() {
         {
             api: (request, ctx) => {
                 const { search } = request;
+                const usualFilter = { parentId: ctx?.parentId };
                 // if search is specified, it is required to search over all the children,
                 // and since parentId is meaningful value, it is required to exclude it from the filter.
-                const filter = search ? {} : { parentId: ctx?.parentId };
+                const searchFilter = ctx?.parentId ? usualFilter : {};
+                const filter = search ? searchFilter : usualFilter;
+
                 return svc.api.demo.locations({ ...request, search, filter });
             },
             cascadeSelection: true,
