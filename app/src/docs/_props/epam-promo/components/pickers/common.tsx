@@ -38,7 +38,10 @@ export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
         || new LazyDataSource({
             api: (request, context) => {
                 const { search } = request;
-                const filter = search ? {} : { parentId: context?.parentId };
+                const usualFilter = { parentId: context?.parentId };
+                const searchFilter = context?.parentId ? usualFilter : {};
+                const filter = search ? searchFilter : usualFilter;
+
                 return ctx.demoApi.locations({ ...request, search, filter });
             },
             getId: (i) => i.id,
@@ -127,7 +130,7 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
                             isFocused={ isParent ? false : rowProps.isFocused }
                             borderBottom="none"
                             size="36"
-                            renderItem={ (i) => <Text size="36">{i.name}</Text> }
+                            renderItem={ (i) => <Text size="36">{ i.name }</Text> }
                         />
                     );
                 },
