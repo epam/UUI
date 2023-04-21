@@ -51,7 +51,7 @@ const { FlexRow, Spinner } = uuiSkin;
 
 const IMAGE_STYLES = { paddingTop: 0, paddingBottom: 0 };
 const MIN_CAPTION_WIDTH = 92;
-const MIN_IMG_WIDTH = 12;
+const RESIZABLE_PROPS = { minWidth: 12 };
 const PLATE_TO_SLATE_IMG_ALIGN = {
     'left': 'align-left',
     'right': 'align-right',
@@ -75,12 +75,11 @@ const getUpdatedElement = (
     },
 });
 
-const debounced = debounce((exec: () => void) => exec(), 50, { leading: true, trailing: false });
+const debounced = debounce((exec: () => void) => exec(), 100, { leading: true, trailing: false });
 
 const isImgElem = (editor?: PlateEditor, element?: ImageElement) => editor && element.type === 'image';
 
 const useUpdatingElement = ({ element, editor }: { element: ImageElement, editor: PlateEditor }) => {
-    const [align, setAlign] = useState<PlateImgAlign>(toPlateAlign(element.data?.align) || 'left');
     const prevNodeWidthRef = useRef(element.width);
 
     // initialize image width
@@ -92,23 +91,20 @@ const useUpdatingElement = ({ element, editor }: { element: ImageElement, editor
         }
     }
 
-    // update slate structure
     useEffect(() =>
         debounced(() => {
             const prevWidth = prevNodeWidthRef.current;
             const path = findNodePath(editor, element!);
             if (isImgElem(editor, element) && !!path && !!element.width && prevWidth !== element.width) {
-                setElements(editor, getUpdatedElement(element, { width: element.width }));
+                setElements(
+                    editor,
+                    getUpdatedElement(element, { width: element.width }),
+                    { at: path }
+                );
                 prevNodeWidthRef.current = element.width;
             }
         }), [element.width]
     );
-
-    const resizableProps = { minWidth: MIN_IMG_WIDTH };
-    const isCaptionEnabled = !!element.data && element.data?.imageSize?.width >= MIN_CAPTION_WIDTH;
-    const caption = isCaptionEnabled ? { disabled: false } : { disabled: true };
-
-    return { align, setAlign, resizableProps, caption, style: IMAGE_STYLES };
 }
 
 export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageElement>> = (props) => {
@@ -117,33 +113,45 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
     const isFocused = useFocused();
     const isSelected = useSelected();
 
-    const { align, setAlign, ...imageSizeProps } = useUpdatingElement({ element, editor });
+    const [align, setAlign] = useState<PlateImgAlign>(toPlateAlign(element.data?.align) || 'left');
     const [showToolbar, setShowToolbar] = useState(false);
 
+    // controls slate element structure
+    useUpdatingElement({ element, editor });
+
+    // toolbar
     useEffect(() => {
         const block = getBlockAbove(editor);
         setShowToolbar(isSelected && isFocused && block?.length && block[0].type === 'image');
     }, [isSelected, isFocused]);
 
-    const onChangeDropDownValue = (value: boolean) => setShowToolbar(value);
+    const onChangeDropDownValue = useCallback((value: boolean) => () => setShowToolbar(value), []);
 
-    const toggleBlockAlignment = (align: PlateImgAlign) => {
+    // align
+    const toggleBlockAlignment = useCallback((align: PlateImgAlign) => {
         setAlign(align);
         setElements(editor, getUpdatedElement(element, { align: toSlateAlign(align) }));
-    }
+    }, [editor, element]);
 
-    const setMaxWidth = () => {
+    // width
+    const setMaxWidth = useCallback(() => {
         const newWidth = ref?.current?.clientWidth;
         if (newWidth) {
             element.width = newWidth;
             setElements(editor, getUpdatedElement(element, { width: newWidth }));
         }
-    };
+    }, [editor, element]);
 
-    const isFullWidth = () => {
+    const isFullWidth = useCallback(() => {
         const clientWidth = ref?.current?.clientWidth;
         return !clientWidth || (clientWidth === element.width);
-    };
+    }, [element.width]);
+
+    // caption
+    const caption = useMemo(() => {
+        const isCaptionEnabled = !!element.data && element.data?.imageSize?.width >= MIN_CAPTION_WIDTH;
+        return isCaptionEnabled ? { disabled: false } : { disabled: true }
+    }, [element.data]);
 
     if (!editor) {
         return null;
@@ -167,8 +175,10 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
                         className={ cx(css.slateImage) }>
                         <ImageElement
                             { ...props }
-                            { ...imageSizeProps }
                             align={ align }
+                            caption={ caption }
+                            style={ IMAGE_STYLES }
+                            resizableProps={ RESIZABLE_PROPS }
                         />
                     </div>
                 </div>
