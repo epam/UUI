@@ -208,8 +208,8 @@ function uuiJsRules() {
                 ignoreStrings: true,
             },
         ],
-        'array-element-newline': [2, { multiline: true, minItems: 3 }],
-        'array-bracket-newline': [2, { multiline: true, minItems: 3 }],
+        'array-element-newline': [2, 'consistent'],
+        'array-bracket-newline': [2, 'consistent'],
         indent: [
             2,
             4,
