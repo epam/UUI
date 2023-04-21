@@ -15,19 +15,12 @@ type TextSettings = Pick<TextMods, 'lineHeight' | 'fontSize'>;
 export const textSettingsDoc = new DocBuilder<TextSettings>({ name: 'Text' })
     .prop('lineHeight', {
         examples: [
-            '12',
-            '18',
-            '24',
-            '30',
+            '12', '18', '24', '30',
         ],
     })
     .prop('fontSize', {
         examples: [
-            '10',
-            '12',
-            '14',
-            '16',
-            '18',
+            '10', '12', '14', '16', '18',
         ],
     });
 
@@ -54,9 +47,7 @@ export const iconOptionsDoc = new DocBuilder<IHasIcon>({ name: 'Icon' })
 
 export const modeDoc = new DocBuilder<IHasEditMode>({ name: 'Mode' }).prop('mode', {
     examples: [
-        'form',
-        'inline',
-        'cell',
+        'form', 'inline', 'cell',
     ],
     defaultValue: 'form',
 });

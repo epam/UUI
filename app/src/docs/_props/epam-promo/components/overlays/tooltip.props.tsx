@@ -17,44 +17,24 @@ const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip',
     })
     .prop('placement', {
         examples: [
-            'auto-start',
-            'auto',
-            'auto-end',
-            'top-start',
-            { value: 'top', isDefault: true },
-            'top-end',
-            'right-start',
-            'right',
-            'right-end',
-            'bottom-end',
-            'bottom',
-            'bottom-start',
-            'left-end',
-            'left',
-            'left-start',
+            'auto-start', 'auto', 'auto-end', 'top-start', { value: 'top', isDefault: true }, 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start',
         ],
     })
     .prop('renderContent', { examples: [() => <div style={ { width: '80px', height: '32px', border: '1px dashed black' } }>Component</div>] })
     .prop('closeOnMouseLeave', { examples: [{ name: 'toggler', value: 'toggler', isDefault: true }, 'boundary'] })
     .prop('color', {
         examples: [
-            'white',
-            { name: 'gray90', value: 'gray90', isDefault: true },
-            'red',
+            'white', { name: 'gray90', value: 'gray90', isDefault: true }, 'red',
         ],
     })
     .prop('closeDelay', {
         examples: [
-            { value: 0, isDefault: true },
-            { value: 500 },
-            { value: 1000 },
+            { value: 0, isDefault: true }, { value: 500 }, { value: 1000 },
         ],
     })
     .prop('openDelay', {
         examples: [
-            { value: 0, isDefault: true },
-            { value: 500 },
-            { value: 1000 },
+            { value: 0, isDefault: true }, { value: 500 }, { value: 1000 },
         ],
     })
     .prop('onValueChange', { examples: (ctx) => [{ value: ctx.getChangeHandler('onValueChange'), name: '(newValue) => { ... }' }] })

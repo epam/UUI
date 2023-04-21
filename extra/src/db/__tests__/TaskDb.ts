@@ -36,9 +36,7 @@ export const sampleData = {
         },
     ] as Task[],
     users: [
-        { id: 'JS', name: 'John Snow', sex: 'm' },
-        { id: 'DT', name: 'Daenerys Targaryen', sex: 'f' },
-        { id: 'AS', name: 'Arya Stark', sex: 'f' },
+        { id: 'JS', name: 'John Snow', sex: 'm' }, { id: 'DT', name: 'Daenerys Targaryen', sex: 'f' }, { id: 'AS', name: 'Arya Stark', sex: 'f' },
     ] as User[],
 };
 

@@ -34,8 +34,7 @@ export default function StyledColumnsExample() {
                 width: 200,
                 fix: 'left',
                 isSortable: true,
-            },
-            {
+            }, {
                 key: 'profileStatus',
                 caption: 'Profile Status',
                 render: (p) =>
@@ -47,24 +46,21 @@ export default function StyledColumnsExample() {
                 width: 140,
                 isSortable: true,
                 alignSelf: 'center',
-            },
-            {
+            }, {
                 key: 'salary',
                 caption: 'Salary',
                 render: (p) => <Text>{p.salary}</Text>,
                 isSortable: true,
                 width: 100,
                 textAlign: 'right',
-            },
-            {
+            }, {
                 key: 'jobTitle',
                 caption: 'Title',
                 render: (r) => <Text>{r.jobTitle}</Text>,
                 width: 200,
                 grow: 1,
                 isSortable: true,
-            },
-            {
+            }, {
                 key: 'detailed',
                 render: () => {},
                 width: 54,

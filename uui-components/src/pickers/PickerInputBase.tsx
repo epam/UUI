@@ -126,8 +126,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         {
             name: 'offset',
             options: { offset: [0, 6] },
-        },
-        mobilePopperModifier,
+        }, mobilePopperModifier,
     ];
 
     abstract toggleModalOpening(opened: boolean): void;

@@ -19,9 +19,7 @@ describe('DB', () => {
                     .toArray()
                     .map((e) => e.name),
             ).toEqual([
-                'Arya Stark',
-                'Daenerys Targaryen',
-                'John Snow',
+                'Arya Stark', 'Daenerys Targaryen', 'John Snow',
             ]));
         it('sort by name and sex', () =>
             expect(
@@ -32,9 +30,7 @@ describe('DB', () => {
                     .toArray()
                     .map((e) => e.name),
             ).toEqual([
-                'John Snow',
-                'Arya Stark',
-                'Daenerys Targaryen',
+                'John Snow', 'Arya Stark', 'Daenerys Targaryen',
             ]));
     });
 

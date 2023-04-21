@@ -21,8 +21,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'uui-richTextEditor-header-3',
                 data: {},
@@ -39,8 +38,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {},
@@ -55,8 +53,7 @@ export const slateInitialValue = {
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'inline',
                         type: 'link',
                         data: {
@@ -75,13 +72,11 @@ export const slateInitialValue = {
                                 ],
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: '',
                         marks: [],
-                    },
-                    {
+                    }, {
                         object: 'inline',
                         type: 'link',
                         data: {
@@ -92,8 +87,7 @@ export const slateInitialValue = {
                                 object: 'text',
                                 text: '',
                                 marks: [],
-                            },
-                            {
+                            }, {
                                 object: 'inline',
                                 type: 'link',
                                 data: {
@@ -112,8 +106,7 @@ export const slateInitialValue = {
                                         ],
                                     },
                                 ],
-                            },
-                            {
+                            }, {
                                 object: 'text',
                                 text: '.js',
                                 marks: [
@@ -125,8 +118,7 @@ export const slateInitialValue = {
                                 ],
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: " library. Slate.JS is a framework to build editors, and it's highly configurable with plugins. In UUI, we picked and tuned dozen of plugins, build several plugins ourselves, added common styles and UX on top of it. One can pick from our default set of plugins, or even introduce new, app-specific plugins, on top.",
                         marks: [
@@ -138,8 +130,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {},
@@ -154,8 +145,7 @@ export const slateInitialValue = {
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'inline',
                         type: 'link',
                         data: {
@@ -174,8 +164,7 @@ export const slateInitialValue = {
                                 ],
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: '):',
                         marks: [
@@ -187,8 +176,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'toDoItem',
                 data: {
@@ -207,8 +195,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {
@@ -227,8 +214,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'uui-richTextEditor-header-2',
                 data: {
@@ -247,8 +233,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'uui-richTextEditor-header-3',
                 data: {
@@ -267,8 +252,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {
@@ -285,8 +269,7 @@ export const slateInitialValue = {
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: 'bold',
                         marks: [
@@ -294,15 +277,13 @@ export const slateInitialValue = {
                                 object: 'mark',
                                 type: 'uui-richTextEditor-span-mark',
                                 data: {},
-                            },
-                            {
+                            }, {
                                 object: 'mark',
                                 type: 'uui-richTextEditor-bold',
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: ', ',
                         marks: [
@@ -312,8 +293,7 @@ export const slateInitialValue = {
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: 'italic',
                         marks: [
@@ -321,15 +301,13 @@ export const slateInitialValue = {
                                 object: 'mark',
                                 type: 'uui-richTextEditor-span-mark',
                                 data: {},
-                            },
-                            {
+                            }, {
                                 object: 'mark',
                                 type: 'uui-richTextEditor-italic',
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: ', ',
                         marks: [
@@ -339,8 +317,7 @@ export const slateInitialValue = {
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: 'underlined,',
                         marks: [
@@ -348,15 +325,13 @@ export const slateInitialValue = {
                                 object: 'mark',
                                 type: 'uui-richTextEditor-span-mark',
                                 data: {},
-                            },
-                            {
+                            }, {
                                 object: 'mark',
                                 type: 'uui-richTextEditor-underlined',
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: ' several UUI-friendly text colors: ',
                         marks: [
@@ -366,8 +341,7 @@ export const slateInitialValue = {
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: 'red',
                         marks: [
@@ -381,8 +355,7 @@ export const slateInitialValue = {
                                 },
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: ', ',
                         marks: [
@@ -392,8 +365,7 @@ export const slateInitialValue = {
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: 'yellow',
                         marks: [
@@ -407,8 +379,7 @@ export const slateInitialValue = {
                                 },
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: ', and ',
                         marks: [
@@ -418,8 +389,7 @@ export const slateInitialValue = {
                                 data: {},
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: 'green.',
                         marks: [
@@ -435,8 +405,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {
@@ -455,8 +424,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'ordered-list',
                 data: {},
@@ -487,8 +455,7 @@ export const slateInitialValue = {
                                 ],
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'block',
                         type: 'list-item',
                         data: {},
@@ -516,8 +483,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {
@@ -536,8 +502,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'unordered-list',
                 data: {},
@@ -568,8 +533,7 @@ export const slateInitialValue = {
                                 ],
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'block',
                         type: 'list-item',
                         data: {},
@@ -593,8 +557,7 @@ export const slateInitialValue = {
                                         ],
                                     },
                                 ],
-                            },
-                            {
+                            }, {
                                 object: 'block',
                                 type: 'unordered-list',
                                 data: {},
@@ -623,8 +586,7 @@ export const slateInitialValue = {
                                                         ],
                                                     },
                                                 ],
-                                            },
-                                            {
+                                            }, {
                                                 object: 'block',
                                                 type: 'unordered-list',
                                                 data: {},
@@ -665,8 +627,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {
@@ -685,8 +646,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'uui-richTextEditor-header-3',
                 data: {
@@ -705,8 +665,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {
@@ -725,8 +684,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'image',
                 data: {
@@ -756,8 +714,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {
@@ -776,8 +733,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'iframe',
                 data: {
@@ -796,8 +752,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {
@@ -816,8 +771,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'attachment',
                 data: {
@@ -843,8 +797,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {},
@@ -855,8 +808,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'uui-richTextEditor-header-3',
                 data: {},
@@ -867,8 +819,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {},
@@ -879,8 +830,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {},
@@ -890,10 +840,7 @@ export const slateInitialValue = {
                         type: 'table',
                         data: {
                             cellSizes: [
-                                200,
-                                200,
-                                183,
-                                161,
+                                200, 200, 183, 161,
                             ],
                         },
                         nodes: [
@@ -920,8 +867,7 @@ export const slateInitialValue = {
                                                 ],
                                             },
                                         ],
-                                    },
-                                    {
+                                    }, {
                                         object: 'block',
                                         type: 'table_header_cell',
                                         data: {},
@@ -939,8 +885,7 @@ export const slateInitialValue = {
                                                 ],
                                             },
                                         ],
-                                    },
-                                    {
+                                    }, {
                                         object: 'block',
                                         type: 'table_header_cell',
                                         data: {},
@@ -958,8 +903,7 @@ export const slateInitialValue = {
                                                 ],
                                             },
                                         ],
-                                    },
-                                    {
+                                    }, {
                                         object: 'block',
                                         type: 'table_header_cell',
                                         data: {},
@@ -979,8 +923,7 @@ export const slateInitialValue = {
                                         ],
                                     },
                                 ],
-                            },
-                            {
+                            }, {
                                 object: 'block',
                                 type: 'table_row',
                                 data: {},
@@ -1003,8 +946,7 @@ export const slateInitialValue = {
                                                 ],
                                             },
                                         ],
-                                    },
-                                    {
+                                    }, {
                                         object: 'block',
                                         type: 'table_cell',
                                         data: {},
@@ -1022,8 +964,7 @@ export const slateInitialValue = {
                                                 ],
                                             },
                                         ],
-                                    },
-                                    {
+                                    }, {
                                         object: 'block',
                                         type: 'table_cell',
                                         data: {},
@@ -1041,8 +982,7 @@ export const slateInitialValue = {
                                                 ],
                                             },
                                         ],
-                                    },
-                                    {
+                                    }, {
                                         object: 'block',
                                         type: 'table_cell',
                                         data: {},
@@ -1064,8 +1004,7 @@ export const slateInitialValue = {
                                                                         color: '#9BC837',
                                                                     },
                                                                 },
-                                                            },
-                                                            {
+                                                            }, {
                                                                 object: 'mark',
                                                                 type: 'uui-richTextEditor-bold',
                                                                 data: {},
@@ -1077,8 +1016,7 @@ export const slateInitialValue = {
                                         ],
                                     },
                                 ],
-                            },
-                            {
+                            }, {
                                 object: 'block',
                                 type: 'table_row',
                                 data: {},
@@ -1101,8 +1039,7 @@ export const slateInitialValue = {
                                                 ],
                                             },
                                         ],
-                                    },
-                                    {
+                                    }, {
                                         object: 'block',
                                         type: 'table_cell',
                                         data: {},
@@ -1120,8 +1057,7 @@ export const slateInitialValue = {
                                                 ],
                                             },
                                         ],
-                                    },
-                                    {
+                                    }, {
                                         object: 'block',
                                         type: 'table_cell',
                                         data: {},
@@ -1139,8 +1075,7 @@ export const slateInitialValue = {
                                                 ],
                                             },
                                         ],
-                                    },
-                                    {
+                                    }, {
                                         object: 'block',
                                         type: 'table_cell',
                                         data: {},
@@ -1162,8 +1097,7 @@ export const slateInitialValue = {
                                                                         color: '#9BC837',
                                                                     },
                                                                 },
-                                                            },
-                                                            {
+                                                            }, {
                                                                 object: 'mark',
                                                                 type: 'uui-richTextEditor-bold',
                                                                 data: {},
@@ -1179,8 +1113,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'uui-richTextEditor-header-3',
                 data: {},
@@ -1191,8 +1124,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {},
@@ -1201,8 +1133,7 @@ export const slateInitialValue = {
                         object: 'text',
                         text: 'Allows to insert ',
                         marks: [],
-                    },
-                    {
+                    }, {
                         object: 'inline',
                         type: 'placeholder',
                         data: {
@@ -1216,15 +1147,13 @@ export const slateInitialValue = {
                                 marks: [],
                             },
                         ],
-                    },
-                    {
+                    }, {
                         object: 'text',
                         text: " into text. Can be used for editing templates, for example for emails. Placeholders can be then replaced with real values programmatically (currently that's done by some apps in back-end code).",
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {},
@@ -1235,8 +1164,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'uui-richTextEditor-header-2',
                 data: {},
@@ -1247,8 +1175,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {},
@@ -1259,8 +1186,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'note-error',
                 data: {},
@@ -1277,8 +1203,7 @@ export const slateInitialValue = {
                         ],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'note-link',
                 data: {},
@@ -1289,8 +1214,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'note-warning',
                 data: {},
@@ -1301,8 +1225,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'note-quote',
                 data: {},
@@ -1313,8 +1236,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {},
@@ -1325,8 +1247,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'separatorBLock',
                 data: {},
@@ -1337,8 +1258,7 @@ export const slateInitialValue = {
                         marks: [],
                     },
                 ],
-            },
-            {
+            }, {
                 object: 'block',
                 type: 'paragraph',
                 data: {},

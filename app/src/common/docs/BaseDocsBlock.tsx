@@ -19,9 +19,7 @@ export const UUI4: UUI4 = 'UUI4_promo';
 export const UUI: UUI = 'UUI';
 
 const items: { id: Skin; caption: string }[] = [
-    { caption: 'UUI3 [Loveship]', id: UUI3 },
-    { caption: 'UUI4 [Promo]', id: UUI4 },
-    { caption: 'UUI [Themebale]', id: UUI },
+    { caption: 'UUI3 [Loveship]', id: UUI3 }, { caption: 'UUI4 [Promo]', id: UUI4 }, { caption: 'UUI [Themebale]', id: UUI },
 ];
 
 interface DocPath {
@@ -89,8 +87,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             render: (prop) => <Text color="gray80">{prop.name}</Text>,
             width: 200,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'value',
             caption: 'Type',
             render: (prop) => (
@@ -100,8 +97,7 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
             ),
             width: 200,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'comment',
             caption: 'Description',
             render: (prop) => <RichTextView htmlContent={ prop.comment } />,

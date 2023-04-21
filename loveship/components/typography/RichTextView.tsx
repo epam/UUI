@@ -9,8 +9,5 @@ export interface RichTextViewMods {
 }
 
 export const RichTextView = withMods<RichTextViewProps, RichTextViewMods>(uuiRichTextView, (mods: RichTextViewMods) => [
-    css.text,
-    css['theme-' + (mods.theme || 'light')],
-    style.typographyLoveship,
-    style['typography-' + (mods.size || '14')],
+    css.text, css['theme-' + (mods.theme || 'light')], style.typographyLoveship, style['typography-' + (mods.size || '14')],
 ]);

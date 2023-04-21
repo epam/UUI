@@ -24,9 +24,7 @@ function applyTextMods(mods: TextMods) {
     );
 
     return [
-        `uui-font-${mods.font || 'regular'}`,
-        `uui-text-${mods.color || 'primary'}`,
-        css.root,
+        `uui-font-${mods.font || 'regular'}`, `uui-text-${mods.color || 'primary'}`, css.root,
     ].concat(textClasses);
 }
 

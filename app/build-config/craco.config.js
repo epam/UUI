@@ -102,10 +102,7 @@ function configureWebpack(config, { paths }) {
 
     if (isUseBuildFolderOfDeps) {
         config.resolve.mainFields = [
-            'epam:uui:main',
-            'browser',
-            'module',
-            'main',
+            'epam:uui:main', 'browser', 'module', 'main',
         ];
     }
 

@@ -54,9 +54,7 @@ export function PersonsTableDemo() {
 
     const groupings = React.useMemo(
         () => [
-            { id: 'jobTitle', name: 'Job Title' },
-            { id: 'department', name: 'Department' },
-            { id: 'location', name: 'Location' },
+            { id: 'jobTitle', name: 'Job Title' }, { id: 'department', name: 'Department' }, { id: 'location', name: 'Location' },
         ],
         [],
     );

@@ -48,18 +48,13 @@ let id = 1;
 const demoItems: ToDoItem[] = [
     {
         ...blankItem, id: id++, name: 'Complete data sources re-work', comments: 'The plan is to unite all dataSources into a single "useList" hook',
-    },
-    {
+    }, {
         ...blankItem, id: id++, name: 'Implement editable cells', isDone: true,
-    },
-    {
+    }, {
         ...blankItem, id: id++, name: 'Find better ways to add/remove rows', dueDate: '01-09-2022', priority: 2,
-    },
-    {
+    }, {
         ...blankItem, id: id++, name: 'Finalize the "Project" table demo', comments: 'We first need to build the add/remove rows helpers, and rows drag-n-drop',
-    },
-    { ...blankItem, id: id++, name: 'Complete cells replication' },
-    {
+    }, { ...blankItem, id: id++, name: 'Complete cells replication' }, {
         ...blankItem, id: id++, name: 'Better rows drag-n-drop support', comments: 'With state-management helpers, and tree/hierarchy support',
     },
 ];
@@ -72,10 +67,7 @@ interface FormState {
 
 // Define priorities to use in PickerInput
 const tags = [
-    { id: 0, name: 'Low' },
-    { id: 1, name: 'Normal' },
-    { id: 2, name: 'High' },
-    { id: 3, name: 'Critical' },
+    { id: 0, name: 'Low' }, { id: 1, name: 'Normal' }, { id: 2, name: 'High' }, { id: 3, name: 'Critical' },
 ];
 
 // Define form metadata to validate form data
@@ -140,22 +132,19 @@ export default function EditableTableExample() {
                     ),
                     fix: 'left',
                     width: 300,
-                },
-                {
+                }, {
                     key: 'isDone',
                     caption: 'Done',
                     renderCell: (props) => <DataTableCell { ...props.rowLens.prop('isDone').toProps() } renderEditor={ (props) => <Checkbox { ...props } /> } { ...props } />,
                     textAlign: 'center',
                     fix: 'left',
                     width: 80,
-                },
-                {
+                }, {
                     key: 'dueDate',
                     caption: 'Due Date',
                     renderCell: (props) => <DataTableCell { ...props.rowLens.prop('dueDate').toProps() } renderEditor={ (props) => <DatePicker { ...props } /> } { ...props } />,
                     width: 150,
-                },
-                {
+                }, {
                     key: 'priority',
                     caption: 'Priority',
                     renderCell: (props) => (
@@ -166,8 +155,7 @@ export default function EditableTableExample() {
                         />
                     ),
                     width: 130,
-                },
-                {
+                }, {
                     key: 'comments',
                     caption: 'Comments',
                     renderCell: (props) => (
@@ -175,8 +163,7 @@ export default function EditableTableExample() {
                     ),
                     width: 120,
                     grow: 1,
-                },
-                {
+                }, {
                     key: 'actions',
                     render: () => <IconButton icon={ deleteIcon } onClick={ () => null } color="gray50" />,
                     width: 55,

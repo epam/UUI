@@ -52,8 +52,7 @@ module.exports = {
                  */
                 'react-hooks/exhaustive-deps': 0,
             },
-        },
-        {
+        }, {
             files: ['**/__tests__/**/*', '**/*.{test}.ts?(x)'],
             extends: ['react-app/jest'],
             env: { 'jest/globals': true },
@@ -62,8 +61,7 @@ module.exports = {
                 'import/no-extraneous-dependencies': 0,
                 ...turnOffEslintRulesToBeFixed(),
             },
-        },
-        {
+        }, {
             files: ['./server/**/*.js', './uui-build/**/*.js'],
             env: {
                 es6: true,
@@ -74,16 +72,13 @@ module.exports = {
             rules: {
                 ...uuiJsRules(),
                 'import/no-unresolved': [
-                    2,
-                    {
+                    2, {
                         commonjs: true,
                         caseSensitive: true,
                     },
                 ],
                 'import/extensions': [
-                    2,
-                    'always',
-                    { ignorePackages: true },
+                    2, 'always', { ignorePackages: true },
                 ],
                 ...turnOffEslintRulesToBeFixed(),
             },
@@ -92,30 +87,19 @@ module.exports = {
     settings: {
         'import/parsers': {
             '@typescript-eslint/parser': [
-                '.ts',
-                '.tsx',
-                '.d.ts',
+                '.ts', '.tsx', '.d.ts',
             ],
         },
         'import/resolver': {
             node: {
                 extensions: [
-                    '.js',
-                    '.ts',
-                    '.tsx',
-                    '.d.ts',
-                    '.css',
-                    '.scss',
-                    '.svg',
+                    '.js', '.ts', '.tsx', '.d.ts', '.css', '.scss', '.svg',
                 ],
             },
             alias: { map: [['@epam/test-utils', './test-utils/index.ts']] },
         },
         'import/extensions': [
-            '.js',
-            '.ts',
-            '.tsx',
-            '.d.ts',
+            '.js', '.ts', '.tsx', '.d.ts',
         ],
         'import/external-module-folders': ['node_modules', 'node_modules/@types'],
     },
@@ -134,8 +118,7 @@ function uuiTsRules() {
         '@typescript-eslint/indent': uuiJsRules()['indent'],
         'comma-dangle': 0,
         '@typescript-eslint/comma-dangle': [
-            2,
-            {
+            2, {
                 arrays: 'always-multiline',
                 objects: 'always-multiline',
                 imports: 'always-multiline',
@@ -156,8 +139,7 @@ function uuiJsRules() {
         'no-use-before-define': 0,
         'guard-for-in': 0, // we disallow for-in statement by another rule, so this rule not needed.
         'no-restricted-syntax': [
-            2,
-            {
+            2, {
                 selector: 'ForInStatement',
                 message:
                     'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
@@ -172,12 +154,9 @@ function uuiJsRules() {
         'import/no-cycle': [1, { maxDepth: 4 }],
         'import/no-extraneous-dependencies': ['error', {}],
         'import/no-unresolved': [
-            2,
-            {
+            2, {
                 ignore: [
-                    '^@epam/uui-[\\w]+/styles.css$',
-                    '@epam/promo/styles.css',
-                    '@epam/loveship/styles.css',
+                    '^@epam/uui-[\\w]+/styles.css$', '@epam/promo/styles.css', '@epam/loveship/styles.css',
                 ],
             },
         ],
@@ -188,8 +167,7 @@ function uuiJsRules() {
         'no-unused-expressions': [1, { allowShortCircuit: true }],
         eqeqeq: [2, 'smart'],
         'prefer-const': [
-            1,
-            {
+            1, {
                 destructuring: 'any',
                 ignoreReadBeforeAssign: true,
             },
@@ -198,8 +176,7 @@ function uuiJsRules() {
         // stylistic - start
         ...pickFromAirbnb.base.stylistic,
         'max-len': [
-            2,
-            {
+            2, {
                 code: 170,
                 ignoreUrls: true,
                 ignoreComments: true,
@@ -211,13 +188,10 @@ function uuiJsRules() {
         'array-element-newline': [2, 'consistent'],
         'array-bracket-newline': [2, 'consistent'],
         indent: [
-            2,
-            4,
-            { SwitchCase: 1 },
+            2, 4, { SwitchCase: 1 },
         ],
         'comma-dangle': [
-            2,
-            {
+            2, {
                 arrays: 'always-multiline',
                 objects: 'always-multiline',
                 imports: 'always-multiline',
@@ -236,8 +210,7 @@ function uuiReactRules() {
         'react/no-unescaped-entities': [2, { forbid: ['>', '}'] }],
         'react/jsx-no-useless-fragment': 1,
         'react/function-component-definition': [
-            2,
-            {
+            2, {
                 namedComponents: ['function-declaration', 'function-expression'],
                 unnamedComponents: 'function-expression',
             },
@@ -246,8 +219,7 @@ function uuiReactRules() {
         // stylistic - start
         ...pickFromAirbnb.react.stylistic,
         'react/jsx-wrap-multilines': [
-            2,
-            {
+            2, {
                 condition: 'parens-new-line',
                 logical: 'parens-new-line',
                 arrow: 'parens-new-line',
@@ -257,9 +229,7 @@ function uuiReactRules() {
             },
         ],
         'react/jsx-curly-spacing': [
-            2,
-            'always',
-            { allowMultiline: true },
+            2, 'always', { allowMultiline: true },
         ],
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],

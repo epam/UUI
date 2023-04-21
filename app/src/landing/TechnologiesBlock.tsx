@@ -10,13 +10,7 @@ import { ReactComponent as WebpackIcon } from '../icons/webpack.svg';
 import { ReactComponent as JestIcon } from '../icons/jest.svg';
 
 const technologies = [
-    { icon: CssModulesIcon, link: 'https://github.com/css-modules/css-modules', label: 'CSS Modules' },
-    { icon: SassIcon, link: 'https://sass-lang.com', label: 'SASS' },
-    { icon: TsIcon, link: 'https://www.typescriptlang.org', label: 'Typescript' },
-    { icon: ReactIcon, link: 'https://reactjs.org', label: 'React' },
-    { icon: CraIcon, link: 'https://create-react-app.dev', label: 'Create React App' },
-    { icon: WebpackIcon, link: 'https://webpack.js.org', label: 'Webpack' },
-    { icon: JestIcon, link: 'https://jestjs.io', label: 'Jest' },
+    { icon: CssModulesIcon, link: 'https://github.com/css-modules/css-modules', label: 'CSS Modules' }, { icon: SassIcon, link: 'https://sass-lang.com', label: 'SASS' }, { icon: TsIcon, link: 'https://www.typescriptlang.org', label: 'Typescript' }, { icon: ReactIcon, link: 'https://reactjs.org', label: 'React' }, { icon: CraIcon, link: 'https://create-react-app.dev', label: 'Create React App' }, { icon: WebpackIcon, link: 'https://webpack.js.org', label: 'Webpack' }, { icon: JestIcon, link: 'https://jestjs.io', label: 'Jest' },
 ];
 
 export class TechnologiesBlock extends React.Component {

@@ -25,15 +25,13 @@ export default function ArrayDataTableExample() {
                 isSortable: true,
                 isAlwaysVisible: true,
                 width: 100,
-            },
-            {
+            }, {
                 key: 'name',
                 caption: 'Name',
                 render: (item) => <Text color="gray80">{item.name}</Text>,
                 isSortable: true,
                 width: 300,
-            },
-            {
+            }, {
                 key: 'description',
                 caption: 'Description',
                 render: (item) => <Text color="gray80">{item.description}</Text>,

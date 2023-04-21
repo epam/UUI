@@ -9,38 +9,22 @@ import { DefaultContext, IHasEditModeDoc } from '../../docs';
 const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'TextInput', component: TextInput })
     .prop('size', {
         examples: [
-            '24',
-            '30',
-            '36',
-            '42',
-            '48',
+            '24', '30', '36', '42', '48',
         ],
         defaultValue: '36',
     })
     .implements([
-        onClickDoc,
-        isDisabledDoc,
-        isReadonlyDoc,
-        isInvalidDoc,
-        iconOptionsDoc,
-        iEditable,
-        iHasPlaceholder,
-        dropdownTogglerDoc,
-        IHasEditModeDoc,
+        onClickDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc, IHasEditModeDoc,
     ] as any)
     .prop('maxLength', {
         examples: [
-            10,
-            20,
-            30,
+            10, 20, 30,
         ],
         type: 'number',
     })
     .prop('value', {
         examples: [
-            { value: 'Hello, World!', isDefault: true },
-            { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
-            { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
+            { value: 'Hello, World!', isDefault: true }, { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' }, { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
         ],
         type: 'string',
     })
