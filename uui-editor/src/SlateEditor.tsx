@@ -149,7 +149,7 @@ export function SlateEditor(props: SlateEditorProps) {
     });
 
     const editableProps: TEditableProps = {
-        autoFocus,
+        autoFocus: false,
         readOnly: isReadonly,
         placeholder,
     };
