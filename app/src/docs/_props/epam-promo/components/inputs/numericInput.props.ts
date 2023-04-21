@@ -3,7 +3,7 @@ import { NumericInputProps } from '@epam/uui-components';
 import { NumericInput } from '@epam/promo';
 import { NumericInputMods } from '@epam/uui';
 import {
-    DefaultContext, FormContext, iEditable, iHasPlaceholder, isDisabledDoc, sizeDoc, TableContext,
+    DefaultContext, FormContext, iEditable, iHasPlaceholder, isDisabledDoc, sizeDoc, TableContext, IHasEditModeDoc,
 } from '../../docs';
 
 const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ name: 'NumericInput', component: NumericInput })
@@ -13,6 +13,7 @@ const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ n
         sizeDoc,
         isDisabledDoc,
         isReadonlyDoc,
+        IHasEditModeDoc,
     ])
     .prop('value', { examples: [{ value: 0, isDefault: true }, 111] })
     .prop('step', {
@@ -37,7 +38,6 @@ const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ n
             500,
         ],
     })
-    .prop('mode', { examples: ['form', 'cell'] })
     .prop('align', { examples: ['left', 'right'] })
     .prop('disableArrows', { examples: [true, false] })
     .prop('disableLocaleFormatting', { defaultValue: false, examples: [true, false] })

@@ -3,14 +3,13 @@ import { DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import { DefaultContext, FormContext } from '../../docs';
 import {
-    onClickDoc, sizeDoc, fontDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iconWithInfoDoc, iconOptionsDoc, iCanRedirectDoc,
+    onClickDoc, sizeDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iconWithInfoDoc, iconOptionsDoc, iCanRedirectDoc,
 } from '../../docs';
 
 const LinkButtonDoc = new DocBuilder<ButtonProps & LinkButtonMods>({ name: 'LinkButton', component: LinkButton })
     .implements([
         onClickDoc,
         sizeDoc,
-        fontDoc,
         dropdownTogglerDoc,
         isDisabledDoc,
         basicPickerTogglerDoc,

@@ -1,4 +1,4 @@
-import { FillStyle, ControlShape, ColorMod } from '../types';
+import { FillStyle, ControlShape, ButtonColorMod } from '../types';
 import {
     Button as uuiButton, ButtonMode, ButtonProps as UuiButtonProps, ControlSize,
 } from '@epam/uui';
@@ -8,7 +8,7 @@ import css from './Button.scss';
 
 const defaultSize = '36';
 
-export interface ButtonMods extends ColorMod {
+export interface ButtonMods extends ButtonColorMod {
     size?: ControlSize | '42' | '18';
     shape?: ControlShape;
     fill?: FillStyle;
