@@ -9,10 +9,7 @@ import css from './TogglerConfiguration.scss';
 export default function PickerTogglerConfigurationExample() {
     const svc = useUuiContext();
     const [value, onValueChange] = useState<string[]>([
-        '225284',
-        '2747351',
-        '3119841',
-        '3119746',
+        '225284', '2747351', '3119841', '3119746',
     ]);
 
     const loadCities = useCallback((request: LazyDataSourceApiRequest<City, string>) => {

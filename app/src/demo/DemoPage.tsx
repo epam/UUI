@@ -41,9 +41,7 @@ export function DemoPage() {
         }
         return null;
     }, [
-        demoItem,
-        fullScreenApi.isSupported,
-        fullScreenApi.openFullScreen,
+        demoItem, fullScreenApi.isSupported, fullScreenApi.openFullScreen,
     ]);
 
     const renderHeader = React.useCallback(() => {

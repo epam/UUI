@@ -41,8 +41,7 @@ export default function CitiesTable() {
                 isSortable: true,
                 fix: 'left',
                 width: 120,
-            },
-            {
+            }, {
                 key: 'name',
                 caption: 'NAME',
                 render: (city) => (
@@ -53,8 +52,7 @@ export default function CitiesTable() {
                 isSortable: true,
                 width: 162,
                 grow: 1,
-            },
-            {
+            }, {
                 key: 'countryName',
                 caption: 'COUNTRY',
                 render: (city) => (
@@ -65,8 +63,7 @@ export default function CitiesTable() {
                 isSortable: true,
                 width: 128,
                 isFilterActive: (filter) => filter.country && filter.country.$in && !!filter.country.$in.length,
-            },
-            {
+            }, {
                 key: 'population',
                 caption: 'POPULATION',
                 render: (city) => (
@@ -77,15 +74,13 @@ export default function CitiesTable() {
                 width: 136,
                 isSortable: true,
                 textAlign: 'right',
-            },
-            {
+            }, {
                 key: 'altname',
                 caption: 'Alt. names',
                 render: (city) => <Text color="gray80">{city.alternativeNames.join(', ')}</Text>,
                 info: 'Alternative city names',
                 width: 1200,
-            },
-            {
+            }, {
                 key: 'actions',
                 render: () => (
                     <Dropdown

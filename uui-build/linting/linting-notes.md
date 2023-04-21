@@ -5,10 +5,10 @@ Use ```yarn eslint``` and ```yarn stylelint``` tasks to check for issues. <br>
 Rules mentioned in "uui-build/linting/utils/rulesToBeFixed.js" aren't checked in certain cases. This is done by purpose, 
 so that we have opportunity to fix such rules iteratively.
 
-| Rules checked                                         | Use cases                                                                                                 |
-|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|
-| All                                                   | <ul><li>eslint/stylelint yarn tasks (not in CI)</li><li>in IDE</li></ul>                                  |
-| Partially<br/>(except rules from "rulesToBeFixed.js") | <ul><li>eslint/stylelint yarn tasks (in CI)</li><li>pre-commit hook</li><li>in local Dev server</li></ul> |
+| Rules checked                                         | Use cases                                                                     |
+|:------------------------------------------------------|:------------------------------------------------------------------------------|
+| All                                                   | <ul><li>eslint/stylelint yarn tasks (not in CI)</li><li>in IDE</li></ul>      |
+| Partially<br/>(except rules from "rulesToBeFixed.js") | <ul><li>eslint/stylelint yarn tasks (in CI)</li><li>pre-commit hook</li></ul> |
  
 ### Fixing issues related rules from "rulesToBeFixed.js"
 - Remove the rule from "rulesToBeFixed.js"

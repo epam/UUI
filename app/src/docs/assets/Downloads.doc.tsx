@@ -24,36 +24,31 @@ const libraries = {
             link: 'sketch://add-library?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyaroslav-zonov%2FUUIDesign%2Fmain%2FUUI%25203.0%2FLight%2FUUI3.xml',
             image: Sketch,
             libraryType: 'sketch',
-        },
-        {
+        }, {
             title: 'UUI3 Library(Dark)',
             additionalInfo: 'Requires Sketch 70 or greater',
             link: 'sketch://add-library?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyaroslav-zonov%2FUUIDesign%2Fmain%2FUUI%25203.0%2FDark%2FUUI3%255BDark%255D.xml',
             image: Sketch,
             libraryType: 'sketch',
-        },
-        {
+        }, {
             title: 'UUI3 Components Library',
             additionalInfo: 'Requires Figma 97 or greater',
             link: 'https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/UUI3-(Components)?node-id=280%3A85528',
             image: Artbord,
             libraryType: 'figma',
-        },
-        {
+        }, {
             title: 'UUI Assets Library',
             additionalInfo: 'Requires Figma 97 or greater',
             link: 'https://www.figma.com/file/3mpAy3BEZ75n5GJEZ5UV8z/UUI-(Assets)?node-id=0%3A2097',
             image: Artbord,
             libraryType: 'figma',
-        },
-        {
+        }, {
             title: 'UUI Patterns',
             additionalInfo: 'Requires Figma 97 or greater',
             link: 'https://www.figma.com/file/qb7WHgBkyBpovFlOZRe30p/UUI-Patterns',
             image: Artbord,
             libraryType: 'figma',
-        },
-        {
+        }, {
             title: 'UUI Illustrations',
             additionalInfo: 'Requires Figma 97 or greater',
             link: 'https://epam.sharepoint.com/:f:/r/sites/EPAMDesignPlatform/Shared%20Documents/General/Projects/CG%20ART%20STREAM?csf=1&web=1&e=V3vkJK',
@@ -68,29 +63,25 @@ const libraries = {
             link: 'sketch://add-library?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyaroslav-zonov%2FUUIDesign%2Fmain%2FUUI%25204.0%2FUUI4.xml',
             image: Sketch,
             libraryType: 'sketch',
-        },
-        {
+        }, {
             title: 'UUI4 Components Library',
             additionalInfo: 'Requires Figma 97 or greater',
             link: 'https://www.figma.com/file/UyChXPLmyv5zMrOU37KdUL/UUI4-(Components)?node-id=280%3A85528',
             image: Artbord,
             libraryType: 'figma',
-        },
-        {
+        }, {
             title: 'UUI Assets Library',
             additionalInfo: 'Requires Figma 97 or greater',
             link: 'https://www.figma.com/file/3mpAy3BEZ75n5GJEZ5UV8z/UUI-(Assets)?node-id=0%3A2097',
             image: Artbord,
             libraryType: 'figma',
-        },
-        {
+        }, {
             title: 'UUI Patterns',
             additionalInfo: 'Requires Figma 97 or greater',
             link: 'https://www.figma.com/file/qb7WHgBkyBpovFlOZRe30p/UUI-Patterns',
             image: Artbord,
             libraryType: 'figma',
-        },
-        {
+        }, {
             title: 'UUI Illustrations',
             additionalInfo: 'Requires Figma 97 or greater',
             link: 'https://epam.sharepoint.com/:f:/r/sites/EPAMDesignPlatform/Shared%20Documents/General/Projects/CG%20ART%20STREAM?csf=1&web=1&e=V3vkJK',

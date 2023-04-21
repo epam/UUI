@@ -23,9 +23,7 @@ export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
     uuiDataTableRow,
     ({ borderBottom = true, size }) => {
         return [
-            css.root,
-            borderBottom && 'uui-dt-row-border',
-            css['size-' + (size || '36')],
+            css.root, borderBottom && 'uui-dt-row-border', css['size-' + (size || '36')],
         ];
     },
     () => propsMods,

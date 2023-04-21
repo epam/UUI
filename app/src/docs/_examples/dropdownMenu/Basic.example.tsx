@@ -25,19 +25,11 @@ function DropdownMenuSwitchButtonElement(props: IDropdownMenuItemProps) {
 }
 
 const initialStatusState = [
-    { id: 1, caption: 'Available', checked: false },
-    { id: 2, caption: 'Busy', checked: false },
-    { id: 3, caption: 'Do not disturb', checked: false },
-    { id: 4, caption: 'Be right back', checked: false },
-    { id: 5, caption: 'Appear away', checked: false },
+    { id: 1, caption: 'Available', checked: false }, { id: 2, caption: 'Busy', checked: false }, { id: 3, caption: 'Do not disturb', checked: false }, { id: 4, caption: 'Be right back', checked: false }, { id: 5, caption: 'Appear away', checked: false },
 ];
 
 const initialLayerState = [
-    { id: 1, caption: '[Link Button] Tokens', checked: false },
-    { id: 2, caption: '[User Card] Create as a global component', checked: false },
-    { id: 3, caption: '[Input] Rework & Improve components', checked: false },
-    { id: 4, caption: '[Colors] Create accessible palette', checked: false },
-    { id: 5, caption: '[Colors & Styles] Add Specification', checked: false },
+    { id: 1, caption: '[Link Button] Tokens', checked: false }, { id: 2, caption: '[User Card] Create as a global component', checked: false }, { id: 3, caption: '[Input] Rework & Improve components', checked: false }, { id: 4, caption: '[Colors] Create accessible palette', checked: false }, { id: 5, caption: '[Colors & Styles] Add Specification', checked: false },
 ];
 
 export default function BasicDropdownMenuExample() {

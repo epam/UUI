@@ -21,10 +21,7 @@ export default function FlexSpacerExample() {
             <FlexRow padding="12" vPadding="24">
                 <CheckboxGroup
                     items={ [
-                        { id: 1, name: 'Receive email notifications' },
-                        { id: 2, name: 'Receive notifications via SMS' },
-                        { id: 3, name: 'Receive notifications via WhatsApp' },
-                        { id: 4, name: 'Receive notifications via Twitter' },
+                        { id: 1, name: 'Receive email notifications' }, { id: 2, name: 'Receive notifications via SMS' }, { id: 3, name: 'Receive notifications via WhatsApp' }, { id: 4, name: 'Receive notifications via Twitter' },
                     ] }
                     value={ value }
                     onValueChange={ onValueChange }

@@ -36,10 +36,7 @@ const StatefulImpl = <T extends unknown = any>(props: StatefulProps<T>) => {
             return { ...props.initialState, ...query };
         }
     }, [
-        props.storage,
-        props.initialState,
-        state,
-        context,
+        props.storage, props.initialState, state, context,
     ]);
 
     const handleStateUpdate = useCallback(
@@ -56,10 +53,7 @@ const StatefulImpl = <T extends unknown = any>(props: StatefulProps<T>) => {
             }
         },
         [
-            reduxDevTools,
-            devTools,
-            props.storage,
-            context,
+            reduxDevTools, devTools, props.storage, context,
         ],
     );
 

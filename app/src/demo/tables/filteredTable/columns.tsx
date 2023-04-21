@@ -15,8 +15,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         fix: 'left',
         isSortable: true,
         isAlwaysVisible: true,
-    },
-    {
+    }, {
         key: 'profileStatus',
         caption: 'Profile Status',
         render: (p) =>
@@ -30,8 +29,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 140,
         isSortable: true,
         isFilterActive: (f) => !!f.profileStatusId,
-    },
-    {
+    }, {
         key: 'salary',
         caption: 'salary',
         render: (p) => (
@@ -44,16 +42,14 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 150,
         textAlign: 'right',
         isSortable: true,
-    },
-    {
+    }, {
         key: 'jobTitle',
         caption: 'Title',
         render: (r) => <Text>{r.jobTitle}</Text>,
         width: 200,
         isSortable: true,
         isFilterActive: (f) => !!f.jobTitleId,
-    },
-    {
+    }, {
         key: 'departmentName',
         caption: 'Department',
         render: (p) => <Text>{p.departmentName}</Text>,
@@ -63,8 +59,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         isSortable: true,
         isFilterActive: (f) => !!f.departmentId,
         isHiddenByDefault: true,
-    },
-    {
+    }, {
         key: 'officeAddress',
         caption: 'Office',
         render: (p) => <Text>{p.officeAddress}</Text>,
@@ -73,8 +68,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.officeId,
-    },
-    {
+    }, {
         key: 'managerName',
         caption: 'Manager',
         render: (p) => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#" />,
@@ -83,8 +77,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.managerId,
-    },
-    {
+    }, {
         key: 'countryName',
         caption: 'Country',
         render: (p) => <Text>{p.countryName}</Text>,
@@ -93,8 +86,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.countryId,
-    },
-    {
+    }, {
         key: 'cityName',
         caption: 'City',
         render: (p) => <Text>{p.cityName}</Text>,
@@ -103,16 +95,14 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.cityId,
-    },
-    {
+    }, {
         key: 'profileType',
         caption: 'Profile Type',
         render: (p) => <Text>{p.hireDate ? 'Employee' : 'Student'}</Text>,
         grow: 0,
         shrink: 0,
         width: 150,
-    },
-    {
+    }, {
         key: 'birthDate',
         caption: 'Birth Date',
         render: (p) => p?.birthDate && <Text>{new Date(p.birthDate).toLocaleDateString()}</Text>,
@@ -120,8 +110,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         shrink: 0,
         width: 120,
         isSortable: true,
-    },
-    {
+    }, {
         key: 'relatedNPR',
         caption: 'Related NPR',
         render: (p) => <Text>{p.relatedNPR ? 'Completed' : 'Uncompleted'}</Text>,
@@ -130,8 +119,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 120,
         isSortable: true,
         isHiddenByDefault: true,
-    },
-    {
+    }, {
         key: 'titleLevel',
         caption: 'Track & Level',
         render: (p) => <Text>{p.titleLevel}</Text>,
@@ -140,8 +128,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 100,
         isSortable: true,
         isHiddenByDefault: true,
-    },
-    {
+    }, {
         key: 'workload',
         caption: 'Workload',
         render: (p) => (
@@ -153,8 +140,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 120,
         textAlign: 'right',
         isSortable: true,
-    },
-    {
+    }, {
         key: 'detailed',
         render: () => {},
         width: 54,

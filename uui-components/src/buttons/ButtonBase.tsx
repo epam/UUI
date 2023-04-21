@@ -15,10 +15,7 @@ import {
 export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
 
 export const uuiInputElements = [
-    uuiElement.checkbox,
-    uuiElement.inputLabel,
-    uuiElement.radioInput,
-    uuiElement.switchBody,
+    uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody,
 ];
 
 export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps> {

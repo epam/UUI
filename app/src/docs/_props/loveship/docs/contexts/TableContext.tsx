@@ -84,8 +84,7 @@ export function TableContext(contextProps: DemoComponentProps) {
             isAlwaysVisible: true,
             width: 200,
             fix: 'left',
-        },
-        {
+        }, {
             key: 'yearsInCompany',
             caption: 'Years In Company',
             renderCell: (props) => (
@@ -98,16 +97,14 @@ export function TableContext(contextProps: DemoComponentProps) {
             isSortable: true,
             isAlwaysVisible: true,
             width: 120,
-        },
-        {
+        }, {
             key: 'departmentName',
             caption: 'Department Name',
             render: (props) => <Text>{props.departmentName}</Text>,
             isSortable: true,
             isAlwaysVisible: true,
             width: 200,
-        },
-        {
+        }, {
             key: 'birthDate',
             caption: 'Birth Date',
             renderCell: (props) => (

@@ -31,10 +31,7 @@ export default function FlexCellExample() {
                 <FlexCell width="auto" grow={ 1 } cx={ css.checkboxGroup }>
                     <CheckboxGroup
                         items={ [
-                            { id: 1, name: 'Mentee' },
-                            { id: 2, name: 'Mentor' },
-                            { id: 3, name: 'Coordinator' },
-                            { id: 4, name: 'Moderator' },
+                            { id: 1, name: 'Mentee' }, { id: 2, name: 'Mentor' }, { id: 3, name: 'Coordinator' }, { id: 4, name: 'Moderator' },
                         ] }
                         value={ value }
                         onValueChange={ onValueChange }

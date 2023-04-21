@@ -12,8 +12,7 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
                 value: <Text size="30">Notification Text</Text>,
                 name: 'Short',
                 isDefault: true,
-            },
-            {
+            }, {
                 value: <Text size="30">Notification with some buttons and long long text</Text>,
                 name: 'Long',
             },
@@ -29,14 +28,12 @@ const SnackbarCardDoc = new DocBuilder<AlertProps>({ name: 'Alert', component: A
                     },
                 ],
                 name: '1 action',
-            },
-            {
+            }, {
                 value: [
                     {
                         name: 'ACTION 1',
                         action: () => {},
-                    },
-                    {
+                    }, {
                         name: 'ACTION 2',
                         action: () => {},
                     },

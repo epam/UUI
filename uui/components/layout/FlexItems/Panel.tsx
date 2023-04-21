@@ -8,8 +8,5 @@ export interface PanelMods {
 }
 
 export const Panel = withMods<VPanelProps, PanelMods>(VPanel, (props) => [
-    'uui-panel',
-    css.root,
-    props.shadow && css.shadow,
-    props.margin && css['margin-' + props.margin],
+    'uui-panel', css.root, props.shadow && css.shadow, props.margin && css['margin-' + props.margin],
 ]);

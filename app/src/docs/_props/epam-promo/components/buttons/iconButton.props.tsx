@@ -9,11 +9,7 @@ import { colors } from '../../docs/helpers/colorMap';
 
 const IconButtonDoc = new DocBuilder<IconButtonProps>({ name: 'IconButton', component: IconButton })
     .implements([
-        onClickDoc,
-        isDisabledDoc,
-        isInvalidDoc,
-        iCanRedirectDoc,
-        iconDoc,
+        onClickDoc, isDisabledDoc, isInvalidDoc, iCanRedirectDoc, iconDoc,
     ])
     .prop('color', {
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,

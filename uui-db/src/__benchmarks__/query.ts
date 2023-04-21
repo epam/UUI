@@ -10,11 +10,7 @@ import { string } from 'prop-types';
 import { DbTable } from '..';
 
 [
-    1e1,
-    1e2,
-    1e3,
-    1e4,
-    1e5,
+    1e1, 1e2, 1e3, 1e4, 1e5,
 ].forEach((size) => {
     const testPersons = range(0, size).map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor((Math.random() * size) / 10) }));
     const pairs = testPersons.map((p) => [p.id, p] as [number, Person]);

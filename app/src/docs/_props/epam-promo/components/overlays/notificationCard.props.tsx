@@ -21,8 +21,7 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
                     </Text>
                 ),
                 name: 'Short',
-            },
-            {
+            }, {
                 value: (
                     <Text size="36" font="sans" fontSize="14">
                         Warning notification with some buttons and long long text with blaaaaaa blaaaaaaaaaa
@@ -42,14 +41,12 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
                     },
                 ],
                 name: '1 action',
-            },
-            {
+            }, {
                 value: [
                     {
                         name: 'ACTION 1',
                         action: () => {},
-                    },
-                    {
+                    }, {
                         name: 'ACTION 2',
                         action: () => {},
                     },

@@ -80,9 +80,7 @@ describe('LazyListView', () => {
         const ds = treeDataSource;
         let view = ds.getView(value, onValueChanged, { getParentId: ({ parentId }) => parentId });
         expectViewToLookLike(view, [
-            { isLoading: true },
-            { isLoading: true },
-            { isLoading: true },
+            { isLoading: true }, { isLoading: true }, { isLoading: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3);
 
@@ -91,9 +89,7 @@ describe('LazyListView', () => {
         testApi.mockClear();
 
         expectViewToLookLike(view, [
-            { id: 100, isFoldable: true, isFolded: true },
-            { id: 200, isFoldable: false },
-            { id: 300, isFoldable: true, isFolded: true },
+            { id: 100, isFoldable: true, isFolded: true }, { id: 200, isFoldable: false }, { id: 300, isFoldable: true, isFolded: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(3); // actually read all items, but we don't know if that's the end of the list
 
@@ -101,9 +97,7 @@ describe('LazyListView', () => {
         value.topIndex = 1;
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
-            { id: 200, isFoldable: false },
-            { id: 300, isFoldable: true, isFolded: true },
-            { isLoading: true },
+            { id: 200, isFoldable: false }, { id: 300, isFoldable: true, isFolded: true }, { isLoading: true },
         ]);
         expect(view.getListProps().rowsCount).toBeGreaterThan(4);
 
@@ -124,11 +118,7 @@ describe('LazyListView', () => {
         rows[0].onFold(rows[0]);
         view = ds.getView(value, onValueChanged, {});
         expectViewToLookLike(view, [
-            { id: 100 },
-            { isLoading: true },
-            { isLoading: true },
-            { id: 200 },
-            { id: 300 },
+            { id: 100 }, { isLoading: true }, { isLoading: true }, { id: 200 }, { id: 300 },
         ], 5); // even we don't know if there are children of a children of #100, we understand that there's no row below 300, so we need to recieve exact rows count here
 
         await delay();
@@ -138,11 +128,7 @@ describe('LazyListView', () => {
             [
                 {
                     id: 100, isFolded: false, depth: 0, isFoldable: true,
-                },
-                { id: 110, depth: 1, isFoldable: false },
-                { id: 120, depth: 1, isFoldable: true },
-                { id: 200, depth: 0 },
-                { id: 300, depth: 0 },
+                }, { id: 110, depth: 1, isFoldable: false }, { id: 120, depth: 1, isFoldable: true }, { id: 200, depth: 0 }, { id: 300, depth: 0 },
             ],
             5,
         );

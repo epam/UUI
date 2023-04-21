@@ -5,10 +5,7 @@ import { IconButton as uuiIconButton, IconButtonProps as UuiIconButtonProps } fr
 
 export type IconColor = EpamPrimaryColor | 'gray30' | 'gray50' | 'gray60';
 export const allIconColors: IconColor[] = [
-    ...allEpamPrimaryColors,
-    'gray30',
-    'gray50',
-    'gray60',
+    ...allEpamPrimaryColors, 'gray30', 'gray50', 'gray60',
 ];
 
 export interface IconButtonMods {

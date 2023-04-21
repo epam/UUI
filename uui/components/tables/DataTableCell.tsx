@@ -36,10 +36,7 @@ function DataTableRowAddons<TItem, TId, TCellValue>(props: DataTableCellProps<TI
                             key="icon"
                             icon={ FoldingArrow }
                             cx={ [
-                                css.foldingArrow,
-                                css[`folding-arrow-${additionalItemSize}`],
-                                uuiMarkers.clickable,
-                                css.iconContainer,
+                                css.foldingArrow, css[`folding-arrow-${additionalItemSize}`], uuiMarkers.clickable, css.iconContainer,
                             ] }
                             rotate={ row.isFolded ? '90ccw' : '0' }
                             onClick={ () => row.onFold(row) }
@@ -70,15 +67,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const isEditable = !!props.onValueChange;
 
     props.cx = [
-        'data-table-cell',
-        props.cx,
-        css.cell,
-        css['size-' + (props.size || '36')],
-        css[`padding-${props.padding || (isEditable && !props.rowProps.isLoading && '0') || '12'}`],
-        props.isFirstColumn && css[`padding-left-${props.padding || '24'}`],
-        props.isLastColumn && css['padding-right-24'],
-        css[`align-widgets-${props.alignActions || 'top'}`],
-        (props.border || isEditable) && 'uui-dt-vertical-cell-border',
+        'data-table-cell', props.cx, css.cell, css['size-' + (props.size || '36')], css[`padding-${props.padding || (isEditable && !props.rowProps.isLoading && '0') || '12'}`], props.isFirstColumn && css[`padding-left-${props.padding || '24'}`], props.isLastColumn && css['padding-right-24'], css[`align-widgets-${props.alignActions || 'top'}`], (props.border || isEditable) && 'uui-dt-vertical-cell-border',
     ];
 
     return <UuiDataTableCell { ...props } />;

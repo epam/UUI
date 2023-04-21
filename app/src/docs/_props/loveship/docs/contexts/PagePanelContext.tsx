@@ -6,15 +6,7 @@ import {
 import css from './PagePanelContext.scss';
 
 const items: Array<{ country: string }> = [
-    { country: 'Belarus' },
-    { country: 'Russia' },
-    { country: 'China' },
-    { country: 'USA' },
-    { country: 'Japan' },
-    { country: 'Poland' },
-    { country: 'Italy' },
-    { country: 'France' },
-    { country: 'Germany' },
+    { country: 'Belarus' }, { country: 'Russia' }, { country: 'China' }, { country: 'USA' }, { country: 'Japan' }, { country: 'Poland' }, { country: 'Italy' }, { country: 'France' }, { country: 'Germany' },
 ];
 
 interface DemoComponentState {

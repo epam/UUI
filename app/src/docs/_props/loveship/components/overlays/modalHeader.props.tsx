@@ -13,17 +13,13 @@ const ModalHeaderDoc = new DocBuilder<ModalHeaderProps>({ name: 'ModalHeader', c
     })
     .prop('background', {
         examples: [
-            'white',
-            'night50',
-            'none',
+            'white', 'night50', 'none',
         ],
     })
     .prop('borderBottom', { examples: [true, false], defaultValue: false })
     .prop('padding', {
         examples: [
-            '6',
-            '12',
-            '24',
+            '6', '12', '24',
         ],
     })
     .prop('onClose', { examples: (ctx) => [ctx.getCallback('onClose')] })

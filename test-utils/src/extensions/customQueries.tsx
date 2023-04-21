@@ -6,11 +6,7 @@ function queryAllByRoleAndText(container: HTMLElement, params: { role: string, t
 
 function buildQueryByRoleAndText() {
     const [
-        queryByRoleAndText,
-        getAllByRoleAndText,
-        getByRoleAndText,
-        findAllByRoleAndText,
-        findByRoleAndText,
+        queryByRoleAndText, getAllByRoleAndText, getByRoleAndText, findAllByRoleAndText, findByRoleAndText,
     ] = buildQueries(
         queryAllByRoleAndText,
         (c, { role, text }) => `Found multiple elements with role=${role} and text=${text}`,
