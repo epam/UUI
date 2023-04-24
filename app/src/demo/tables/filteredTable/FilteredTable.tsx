@@ -21,8 +21,7 @@ const defaultPresets: ITablePreset[] = [
         id: -1,
         isReadonly: true,
         order: 'a',
-    },
-    {
+    }, {
         name: 'My Team',
         id: -2,
         order: 'b',

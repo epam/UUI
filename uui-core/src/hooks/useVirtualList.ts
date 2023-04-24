@@ -101,13 +101,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             });
         }
     }, [
-        onValueChange,
-        blockSize,
-        rowOffsets.current,
-        rowsCount,
-        value,
-        onScroll,
-        scrollContainer.current,
+        onValueChange, blockSize, rowOffsets.current, rowsCount, value, onScroll, scrollContainer.current,
     ]);
 
     const updateRowHeights = React.useCallback(() => {
@@ -135,13 +129,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (estimatedHeight === newEstimatedHeight) return;
         setEstimatedHeight(newEstimatedHeight);
     }, [
-        estimatedHeight,
-        rowOffsets.current,
-        rowsCount,
-        value,
-        listContainer.current,
-        scrollContainer.current,
-        listOffset,
+        estimatedHeight, rowOffsets.current, rowsCount, value, listContainer.current, scrollContainer.current, listOffset,
     ]);
 
     useLayoutEffectSafeForSsr(() => {
@@ -178,9 +166,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (rowOffsets.current.length === 0) return 0;
         return rowOffsets.current[value.topIndex] - listOffset;
     }, [
-        rowOffsets.current,
-        listOffset,
-        value?.topIndex,
+        rowOffsets.current, listOffset, value?.topIndex,
     ]);
 
     return {

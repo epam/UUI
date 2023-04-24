@@ -19,23 +19,17 @@ export default function BasicAdaptivePanelExample() {
     const items: AdaptiveItemProps<{ data?: { caption: string } }>[] = [
         {
             id: '2', render: renderItem, priority: 1, data: { caption: 'Administrators' },
-        },
-        {
+        }, {
             id: '3', render: renderItem, priority: 1, data: { caption: 'Developers' },
-        },
-        {
+        }, {
             id: '4', render: renderItem, priority: 2, data: { caption: 'Managers' },
-        },
-        {
+        }, {
             id: '6', render: renderItem, priority: 3, data: { caption: 'Senior Admins' },
-        },
-        {
+        }, {
             id: '7', render: renderItem, priority: 4, data: { caption: 'Consultants' },
-        },
-        {
+        }, {
             id: '8', render: renderItem, priority: 5, data: { caption: 'Architects' },
-        },
-        {
+        }, {
             id: '5',
             render: (item, hiddenItems) => (
                 <Dropdown

@@ -6,10 +6,7 @@ import css from './Button.scss';
 
 export type ButtonColor = 'accent' | 'primary' | 'secondary' | 'negative';
 export const allButtonColors: ButtonColor[] = [
-    'accent',
-    'primary',
-    'secondary',
-    'negative',
+    'accent', 'primary', 'secondary', 'negative',
 ];
 
 const defaultSize = '36';
@@ -24,10 +21,7 @@ export type ButtonProps = ButtonMods & uuiButtonProps;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
-        `button-${mods.color || 'primary'}`,
-        css.root,
-        css[`size-${mods.size || defaultSize}`],
-        css[`mode-${mods.mode || 'solid'}`],
+        `button-${mods.color || 'primary'}`, css.root, css[`size-${mods.size || defaultSize}`], css[`mode-${mods.mode || 'solid'}`],
     ];
 }
 

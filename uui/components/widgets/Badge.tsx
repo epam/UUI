@@ -30,11 +30,7 @@ export type BadgeProps = ButtonProps & BadgeMods;
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
-        css.root,
-        buttonCss.root,
-        css['size-' + (mods.size || defaultSize)],
-        css['fill-' + (mods.fill || 'solid')],
-        mods.color && `badge-${mods.color}`,
+        css.root, buttonCss.root, css['size-' + (mods.size || defaultSize)], css['fill-' + (mods.fill || 'solid')], mods.color && `badge-${mods.color}`,
     ];
 }
 

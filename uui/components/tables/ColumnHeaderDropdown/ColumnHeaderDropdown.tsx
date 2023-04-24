@@ -24,8 +24,7 @@ const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = (props) =>
             {
                 name: 'offset',
                 options: { offset: [0, 1] },
-            },
-            mobilePopperModifier,
+            }, mobilePopperModifier,
         ],
         [],
     );

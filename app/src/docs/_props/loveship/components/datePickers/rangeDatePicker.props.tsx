@@ -36,12 +36,7 @@ const getRangeLength = (value: RangeDatePickerValue) => {
 
 const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDatePicker', component: RangeDatePicker })
     .implements([
-        iEditable,
-        sizeDoc,
-        isDisabledDoc,
-        isReadonlyDoc,
-        isInvalidDoc,
-        modeDoc,
+        iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc,
     ])
     .prop('value', { examples: [{ name: "{ from: '2017-01-22', to: '2017-01-28' }", value: { from: '2017-01-22', to: '2017-01-28' } }] })
     .prop('getPlaceholder', {
@@ -54,10 +49,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
     })
     .prop('format', {
         examples: [
-            'MM/DD/YYYY',
-            'MMM D, YYYY',
-            'DD.MM.YYYY',
-            'YYYY-MM-DD',
+            'MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD',
         ],
         defaultValue: 'MMM D, YYYY',
         type: 'string',
@@ -90,21 +82,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
     })
     .prop('placement', {
         examples: [
-            'auto-start',
-            'auto',
-            'auto-end',
-            'top-start',
-            'top',
-            'top-end',
-            'right-start',
-            'right',
-            'right-end',
-            'bottom-end',
-            'bottom',
-            { value: 'bottom-start', isDefault: true },
-            'left-end',
-            'left',
-            'left-start',
+            'auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', { value: 'bottom-start', isDefault: true }, 'left-end', 'left', 'left-start',
         ],
     })
     .prop('presets', {
@@ -112,8 +90,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
             {
                 name: 'default',
                 value: rangeDatePickerPresets,
-            },
-            {
+            }, {
                 name: 'custom',
                 value: {
                     ...rangeDatePickerPresets,

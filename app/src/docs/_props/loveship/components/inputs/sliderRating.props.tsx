@@ -6,18 +6,11 @@ import { RichTextView } from '@epam/loveship';
 
 const SliderRatingDoc = new DocBuilder<SliderRatingProps<number>>({ name: 'SliderRating', component: SliderRating })
     .implements([
-        iEditable,
-        isReadonlyDoc,
-        isDisabledDoc,
+        iEditable, isReadonlyDoc, isDisabledDoc,
     ])
     .prop('value', {
         examples: [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
+            0, 1, 2, 3, 4, 5,
         ],
     })
     .prop('from', { examples: [1, 2] })

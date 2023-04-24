@@ -16,20 +16,12 @@ interface TextSettings {
 export const textSettingsDoc = new DocBuilder<TextSettings>({ name: 'Text' })
     .prop('lineHeight', {
         examples: [
-            '12',
-            '18',
-            '24',
-            '30',
+            '12', '18', '24', '30',
         ],
     })
     .prop('fontSize', {
         examples: [
-            '10',
-            '12',
-            '14',
-            '16',
-            '18',
-            '24',
+            '10', '12', '14', '16', '18', '24',
         ],
     });
 

@@ -3,86 +3,47 @@ export const allBorderStyles: ControlShape[] = ['square', 'round'];
 
 export type FillStyle = 'solid' | 'white' | 'light' | 'none';
 export const allFillStyles: FillStyle[] = [
-    'solid',
-    'white',
-    'light',
-    'none',
+    'solid', 'white', 'light', 'none',
 ];
 
 export type ControlSize = 'none' | '24' | '30' | '36' | '42' | '48';
 export const allSizes: ControlSize[] = [
-    '24',
-    '30',
-    '36',
-    '42',
-    '48',
+    '24', '30', '36', '42', '48',
 ];
 
 export type TextSize = 'none' | '18' | '24' | '30' | '36' | '48';
 export const allTextSizes: TextSize[] = [
-    '18',
-    '24',
-    '30',
-    '36',
-    '48',
+    '18', '24', '30', '36', '48',
 ];
 
 export type RowSize = null | '24' | '30' | '36' | '42' | '48';
 export const allRowSizes: RowSize[] = [
-    null,
-    '24',
-    '30',
-    '36',
-    '42',
-    '48',
+    null, '24', '30', '36', '42', '48',
 ];
 
 export type EpamPrimaryColor = 'blue' | 'green' | 'amber' | 'red';
 export const allEpamPrimaryColors: EpamPrimaryColor[] = [
-    'blue',
-    'green',
-    'amber',
-    'red',
+    'blue', 'green', 'amber', 'red',
 ];
 
 export type EpamAdditionalColor = EpamPrimaryColor | 'cyan' | 'orange' | 'purple' | 'violet';
 export const allEpamAdditionalColors: EpamAdditionalColor[] = [
-    ...allEpamPrimaryColors,
-    'cyan',
-    'orange',
-    'purple',
-    'violet',
+    ...allEpamPrimaryColors, 'cyan', 'orange', 'purple', 'violet',
 ];
 
 export type EpamGrayscaleColor = 'white' | 'gray5' | 'gray10' | 'gray20' | 'gray30' | 'gray40' | 'gray50' | 'gray60' | 'gray70' | 'gray80' | 'gray90';
 export const allEpamGrayscaleColors: EpamGrayscaleColor[] = [
-    'white',
-    'gray5',
-    'gray10',
-    'gray20',
-    'gray30',
-    'gray40',
-    'gray50',
-    'gray60',
-    'gray70',
-    'gray80',
-    'gray90',
+    'white', 'gray5', 'gray10', 'gray20', 'gray30', 'gray40', 'gray50', 'gray60', 'gray70', 'gray80', 'gray90',
 ];
 
 export type EpamColor = EpamPrimaryColor | EpamGrayscaleColor | EpamAdditionalColor;
 export const commonControlColors: EpamColor[] = [
-    'blue',
-    'green',
-    'white',
+    'blue', 'green', 'white',
 ];
 
 export type FontStyle = 'sans' | 'sans-semibold' | 'sans-italic' | 'museo-sans' | 'museo-slab';
 export const allFontStyles: FontStyle[] = [
-    'sans',
-    'sans-semibold',
-    'sans-italic',
-    'museo-sans',
-    'museo-slab',
+    'sans', 'sans-semibold', 'sans-italic', 'museo-sans', 'museo-slab',
 ];
 
 // Mod interfaces

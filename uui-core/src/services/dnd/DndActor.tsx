@@ -123,44 +123,28 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
 
     static sectorPositionPriorities: Record<string, DropPosition[]> = {
         0: [
-            'top',
-            'right',
-            'inside',
+            'top', 'right', 'inside',
         ],
         1: [
-            'right',
-            'top',
-            'inside',
+            'right', 'top', 'inside',
         ],
         2: [
-            'right',
-            'bottom',
-            'inside',
+            'right', 'bottom', 'inside',
         ],
         3: [
-            'bottom',
-            'right',
-            'inside',
+            'bottom', 'right', 'inside',
         ],
         4: [
-            'bottom',
-            'left',
-            'inside',
+            'bottom', 'left', 'inside',
         ],
         5: [
-            'left',
-            'bottom',
-            'inside',
+            'left', 'bottom', 'inside',
         ],
         6: [
-            'left',
-            'top',
-            'inside',
+            'left', 'top', 'inside',
         ],
         7: [
-            'top',
-            'left',
-            'inside',
+            'top', 'left', 'inside',
         ],
     };
 
@@ -223,9 +207,7 @@ export class DndActor<TSrcData = any, TDstData = any> extends React.Component<Dn
         };
 
         params.classNames = [
-            params.isDropAccepted && uuiDndState.dropAccepted,
-            params.isDraggedOut && uuiDndState.draggedOut,
-            params.isDraggable && uuiMarkers.draggable,
+            params.isDropAccepted && uuiDndState.dropAccepted, params.isDraggedOut && uuiDndState.draggedOut, params.isDraggable && uuiMarkers.draggable,
         ].filter(Boolean);
 
         if (!!this.props.srcData) {

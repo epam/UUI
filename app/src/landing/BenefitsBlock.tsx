@@ -13,35 +13,26 @@ const benefits: any = {
     BattleTestedSolution: {
         caption: 'Battle-Tested Solution',
         points: [
-            '15+ products are already built, 10+ products are currently in development.',
-            'UUI design skins comply with EPAM branding. So, every internal product promotes EPAM in that way.',
-            '50 person-years of experience baked in. UUI is the product of 5 years developing 20+ apps.',
+            '15+ products are already built, 10+ products are currently in development.', 'UUI design skins comply with EPAM branding. So, every internal product promotes EPAM in that way.', '50 person-years of experience baked in. UUI is the product of 5 years developing 20+ apps.',
         ],
     },
     SavesEfforts: {
         caption: 'Saves Efforts & Speeds Up Work',
         points: [
-            'Ready set of design elements allows designers and developers to create user interface 3-4x faster. More features in less time.',
-            'Allows spending more time on research, making new features and user testing.',
-            'Safe & easy on-boarding/rotation process: newcomers quickly dive into UX/UI on any internal project.',
+            'Ready set of design elements allows designers and developers to create user interface 3-4x faster. More features in less time.', 'Allows spending more time on research, making new features and user testing.', 'Safe & easy on-boarding/rotation process: newcomers quickly dive into UX/UI on any internal project.',
         ],
     },
     WorkInCooperation: {
         caption: 'Work in Cooperation',
         points: [
-            'Continuous development: dedicated coordinator, several design teams regularly contribute while working on their projects.',
-            'Continuous collaboration: common set of design elements for many different products encourages teams to communicate more and closer.\n'
-                + 'As a result, the most applicable common UX patterns for all EPAM products are developed.',
-            'Design & Front-End close cooperation: teams build together EPAM UX/UI standards complying with business & technical constraints.',
-            "Happy & motivated team: we encourage contribution, we've got challenges, and we are happy to help newcomers.",
+            'Continuous development: dedicated coordinator, several design teams regularly contribute while working on their projects.', 'Continuous collaboration: common set of design elements for many different products encourages teams to communicate more and closer.\n'
+                + 'As a result, the most applicable common UX patterns for all EPAM products are developed.', 'Design & Front-End close cooperation: teams build together EPAM UX/UI standards complying with business & technical constraints.', "Happy & motivated team: we encourage contribution, we've got challenges, and we are happy to help newcomers.",
         ],
     },
     CuttingEdgeStack: {
         caption: 'Cutting-edge Stack',
         points: [
-            'Rich set of components: from buttons, to spinners.',
-            'Common services: modals, notifications, error recovery, forms and data binding, monitoring, and more.',
-            "Not opinionated, you don't have to go all in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.",
+            'Rich set of components: from buttons, to spinners.', 'Common services: modals, notifications, error recovery, forms and data binding, monitoring, and more.', "Not opinionated, you don't have to go all in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.",
         ],
     },
 };

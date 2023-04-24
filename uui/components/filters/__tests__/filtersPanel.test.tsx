@@ -28,38 +28,30 @@ const filtersConfigWithoutPredicatesAll: TableFiltersConfig<TestItemType>[] = [
         type: 'singlePicker',
         dataSource: new ArrayDataSource({
             items: [
-                { id: 1, name: 'Green' },
-                { id: 2, name: 'Red' },
-                { id: 3, name: 'White' },
+                { id: 1, name: 'Green' }, { id: 2, name: 'Red' }, { id: 3, name: 'White' },
             ],
         }),
-    },
-    {
+    }, {
         field: 'position',
         columnKey: 'position',
         title: 'Position',
         type: 'multiPicker',
         dataSource: new ArrayDataSource({
             items: [
-                { id: 1, name: 'Designer' },
-                { id: 2, name: 'QA' },
-                { id: 3, name: 'Dev' },
+                { id: 1, name: 'Designer' }, { id: 2, name: 'QA' }, { id: 3, name: 'Dev' },
             ],
         }),
-    },
-    {
+    }, {
         field: 'age',
         columnKey: 'age',
         title: 'Age',
         type: 'numeric',
-    },
-    {
+    }, {
         field: 'hireDate',
         columnKey: 'hireDate',
         title: 'Hire Date',
         type: 'rangeDatePicker',
-    },
-    {
+    }, {
         field: 'exitDate',
         columnKey: 'exitDate',
         title: 'Exit Date',
@@ -76,20 +68,16 @@ const filtersConfigWithPredicatesAll: TableFiltersConfig<TestItemType>[] = [
         predicates: defaultPredicates.multiPicker,
         dataSource: new ArrayDataSource({
             items: [
-                { id: 1, name: 'Designer' },
-                { id: 2, name: 'QA' },
-                { id: 3, name: 'Dev' },
+                { id: 1, name: 'Designer' }, { id: 2, name: 'QA' }, { id: 3, name: 'Dev' },
             ],
         }),
-    },
-    {
+    }, {
         field: 'age',
         columnKey: 'age',
         title: 'Age',
         type: 'numeric',
         predicates: defaultPredicates.numeric,
-    },
-    {
+    }, {
         field: 'hireDate',
         columnKey: 'hireDate',
         title: 'Hire Date',
@@ -274,11 +262,7 @@ describe('FiltersPanel', () => {
                     .queryAllByRole('tab')
                     .map((t) => t.textContent),
             ).toEqual([
-                '=',
-                '≠',
-                '≤',
-                '≥',
-                'In Range',
+                '=', '≠', '≤', '≥', 'In Range',
             ]);
             fireEvent.change(withinDialog().getByRole('spinbutton'), { target: { value: 20 } });
             fireEvent.click(withinDialog().getByRoleAndText({ role: 'tab', text: '≠' }));

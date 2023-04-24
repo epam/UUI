@@ -38,13 +38,7 @@ const john = {
 const blankSet = new IxSet<Person, number>((i) => i.id, [{ fields: ['name'] }, { fields: ['departmentId', 'name'] }]);
 
 const smallSet = blankSet.with([
-    alice,
-    bob,
-    sandra,
-    edward,
-    pete,
-    jack,
-    william,
+    alice, bob, sandra, edward, pete, jack, william,
 ]);
 
 describe.skip('db - IxSet Performance', () => {
@@ -66,11 +60,7 @@ describe.skip('db - IxSet Performance', () => {
         // test1MPersons = range(200000, 1200000).map((id) => ({ id, name: 'Person ' + id, departmentId: 4 }));
 
         completeTestSetInArray = [
-            ...smallSet.query({}),
-            ...test100Persons,
-            ...test1KPersons,
-            ...test10KPersons,
-            ...test100KPersons,
+            ...smallSet.query({}), ...test100Persons, ...test1KPersons, ...test10KPersons, ...test100KPersons,
         ];
     });
 
@@ -89,10 +79,7 @@ describe.skip('db - IxSet Performance', () => {
     // it("Can load 1M Persons", () => { hugeSet = hugeSet.with(test1MPersons); });
 
     [
-        200,
-        1000,
-        100000,
-        111109,
+        200, 1000, 100000, 111109,
     ].forEach((id) => {
         it(`Can find Person ${id} by name`, () => {
             const result = hugeSet.queryOne({ filter: { name: `Person ${id}` } });
@@ -113,11 +100,7 @@ describe.skip('db - IxSet Performance', () => {
                 sorting: [{ field: 'name' }],
             }),
         ).toEqual([
-            alice,
-            bob,
-            edward,
-            pete,
-            sandra,
+            alice, bob, edward, pete, sandra,
         ]);
     });
 
@@ -125,11 +108,7 @@ describe.skip('db - IxSet Performance', () => {
         let result = completeTestSetInArray.filter((p) => p.departmentId === 1);
         result = sortBy(result, 'name');
         expect(result).toEqual([
-            alice,
-            bob,
-            edward,
-            pete,
-            sandra,
+            alice, bob, edward, pete, sandra,
         ]);
     });
 

@@ -9,20 +9,12 @@ import { FormContext, ResizableContext, DefaultContext } from '../../docs';
 
 const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ name: 'NumericInput', component: NumericInput })
     .implements([
-        iEditable,
-        iHasPlaceholder,
-        sizeDoc,
-        textSettingsDoc,
-        isDisabledDoc,
-        isReadonlyDoc,
-        modeDoc,
+        iEditable, iHasPlaceholder, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, modeDoc,
     ])
     .prop('value', { examples: [{ value: 0, isDefault: true }, 11] })
     .prop('step', {
         examples: [
-            2,
-            5,
-            10,
+            2, 5, 10,
         ],
     })
     .prop('min', { examples: [0, 10], defaultValue: 0 })

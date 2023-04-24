@@ -22,8 +22,7 @@ export function getColumns() {
             renderCell: (props) => (
                 <DataTableCell padding="12" { ...props.rowLens.prop('title').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />
             ),
-        },
-        {
+        }, {
             key: 'description',
             caption: 'Description',
             width: 200,
@@ -33,8 +32,7 @@ export function getColumns() {
             renderCell: (props) => (
                 <DataTableCell { ...props.rowLens.prop('description').toProps() } renderEditor={ (props) => <TextArea { ...props } autoSize={ true } /> } { ...props } />
             ),
-        },
-        {
+        }, {
             key: 'estimate',
             textAlign: 'right',
             caption: 'Estimate',
@@ -50,8 +48,7 @@ export function getColumns() {
                     { ...props }
                 />
             ),
-        },
-        {
+        }, {
             key: 'complete',
             textAlign: 'right',
             caption: 'Complete',
@@ -67,8 +64,7 @@ export function getColumns() {
                     { ...props }
                 />
             ),
-        },
-        {
+        }, {
             key: 'status',
             caption: 'Status',
             width: 150,
@@ -93,8 +89,7 @@ export function getColumns() {
                     { ...props }
                 />
             ),
-        },
-        {
+        }, {
             key: 'startDate',
             caption: 'Start date',
             width: 200,
@@ -108,8 +103,7 @@ export function getColumns() {
                     { ...props }
                 />
             ),
-        },
-        {
+        }, {
             key: 'endDate',
             caption: 'End date',
             width: 200,
@@ -123,8 +117,7 @@ export function getColumns() {
                     { ...props }
                 />
             ),
-        },
-        {
+        }, {
             key: 'detailed',
             render: (p) => <></>,
             width: 54,

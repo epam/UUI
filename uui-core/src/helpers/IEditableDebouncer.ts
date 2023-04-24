@@ -52,10 +52,7 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
             { leading: false, trailing: true },
         );
     }, [
-        props.onValueChange,
-        props.getValueChangeAnalyticsEvent,
-        props.debounceDelay,
-        props.value,
+        props.onValueChange, props.getValueChangeAnalyticsEvent, props.debounceDelay, props.value,
     ]);
 
     const handleValueChange = useCallback(
@@ -68,9 +65,7 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
             }
         },
         [
-            props.disableDebounce,
-            props.onValueChange,
-            debouncedOnValueChange,
+            props.disableDebounce, props.onValueChange, debouncedOnValueChange,
         ],
     );
 

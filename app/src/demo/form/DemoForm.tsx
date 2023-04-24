@@ -42,11 +42,7 @@ import { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 
 const tShirtSizes = [
-    { id: 1, caption: 'XS' },
-    { id: 2, caption: 'S' },
-    { id: 3, caption: 'M' },
-    { id: 4, caption: 'L' },
-    { id: 5, caption: 'XL' },
+    { id: 1, caption: 'XS' }, { id: 2, caption: 'S' }, { id: 3, caption: 'M' }, { id: 4, caption: 'L' }, { id: 5, caption: 'XL' },
 ];
 
 function removeLensItemHandler<T>(lens: ILens<T[]>, index: number) {

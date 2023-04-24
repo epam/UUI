@@ -38,13 +38,7 @@ const renderItem = (item: Record<string, any>) => {
 };
 
 const items = [
-    { country: 'Belarus' },
-    { country: 'Russia' },
-    { country: 'China' },
-    { country: 'USA' },
-    { country: 'Japan' },
-    { country: 'Poland' },
-    { country: 'Italy' },
+    { country: 'Belarus' }, { country: 'Russia' }, { country: 'China' }, { country: 'USA' }, { country: 'Japan' }, { country: 'Poland' }, { country: 'Italy' },
 ];
 
 const textDoc = new DocBuilder<CarouselProps & CarouselMods>({ name: 'Carousel', component: Carousel })
@@ -71,8 +65,7 @@ const textDoc = new DocBuilder<CarouselProps & CarouselMods>({ name: 'Carousel',
     })
     .prop('divideBy', {
         examples: [
-            2,
-            {
+            2, {
                 value: 3,
                 isDefault: true,
             },

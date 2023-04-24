@@ -10,7 +10,5 @@ export function parseStringToCSSProperties(styles: string) {
 }
 
 const erasedStyleProps = [
-    'background-color',
-    'font-family',
-    'font-style',
+    'background-color', 'font-family', 'font-style',
 ];

@@ -83,11 +83,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps) {
                 };
             }),
         [
-            columnsSorted,
-            columnsConfig,
-            isDndAllowed,
-            togglePin,
-            toggleVisibility,
+            columnsSorted, columnsConfig, isDndAllowed, togglePin, toggleVisibility,
         ],
     );
 

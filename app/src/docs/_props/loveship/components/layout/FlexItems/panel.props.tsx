@@ -76,8 +76,7 @@ const panelDoc = new DocBuilder<VPanelProps & PanelMods>({ name: 'Panel', compon
                     </>
                 ),
                 isDefault: true,
-            },
-            {
+            }, {
                 name: 'modal',
                 value: (
                     <>

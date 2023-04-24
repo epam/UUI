@@ -7,44 +7,28 @@ import {
 
 const TextareaDoc = new DocBuilder<TextAreaProps>({ name: 'TextArea', component: TextArea })
     .implements([
-        iEditable,
-        iHasPlaceholder,
-        isDisabledDoc,
-        isReadonlyDoc,
-        isInvalidDoc,
-        modeDoc,
+        iEditable, iHasPlaceholder, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc,
     ])
     .prop('value', {
         examples: [
-            'Hello, World!',
-            { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
-            { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
+            'Hello, World!', { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' }, { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
         ],
         type: 'string',
     })
     .prop('size', {
         examples: [
-            '24',
-            '30',
-            '36',
-            '42',
-            '48',
+            '24', '30', '36', '42', '48',
         ],
         defaultValue: '36',
     })
     .prop('rows', {
         examples: [
-            1,
-            10,
-            20,
-            30,
+            1, 10, 20, 30,
         ],
     })
     .prop('maxLength', {
         examples: [
-            30,
-            50,
-            120,
+            30, 50, 120,
         ],
     })
     .prop('autoSize', { examples: [true, false], defaultValue: false })

@@ -32,8 +32,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 ),
                 isSortable: true,
                 width: 120,
-            },
-            {
+            }, {
                 key: 'name',
                 caption: 'NAME',
                 render: (city) => (
@@ -43,8 +42,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 ),
                 isSortable: true,
                 width: 200,
-            },
-            {
+            }, {
                 key: 'countryName',
                 caption: 'COUNTRY',
                 render: (city) => (
@@ -54,8 +52,7 @@ export default function ColumnsConfigurationDataTableExample() {
                 ),
                 isSortable: true,
                 width: 140,
-            },
-            {
+            }, {
                 key: 'population',
                 caption: 'POPULATION',
                 render: (city) => (
@@ -66,15 +63,13 @@ export default function ColumnsConfigurationDataTableExample() {
                 width: 140,
                 isSortable: true,
                 textAlign: 'right',
-            },
-            {
+            }, {
                 key: 'altname',
                 caption: 'Alt. names',
                 render: (city) => <Text color="gray80">{city.alternativeNames.join(', ')}</Text>,
                 info: 'Alternative city names',
                 width: 300,
-            },
-            {
+            }, {
                 key: 'actions',
                 render: () => <IconButton icon={ MoreIcon } color="gray60" />,
                 width: 54,

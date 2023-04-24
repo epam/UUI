@@ -16,13 +16,7 @@ const sandra = { name: 'Sandra', departmentId: 3, age: 35 } as Person;
 const william = { name: 'William', departmentId: 4 } as Person;
 
 const persons = [
-    alice,
-    bob,
-    edward,
-    jack,
-    pete,
-    sandra,
-    william,
+    alice, bob, edward, jack, pete, sandra, william,
 ];
 
 const run = (filter: DataQueryFilter<Person>) => {
@@ -53,9 +47,7 @@ describe('getPatternPredicate', () => {
 
     it('{ departmentId: { in: [3, 4] } }', () => {
         expect(run({ departmentId: { in: [3, 4] } })).toEqual([
-            pete,
-            sandra,
-            william,
+            pete, sandra, william,
         ]);
     });
 
@@ -73,21 +65,14 @@ describe('getPatternPredicate', () => {
 
     it('{ age: { isNull: false } }', () => {
         expect(run({ age: { isNull: false } })).toEqual([
-            alice,
-            bob,
-            edward,
-            pete,
-            sandra,
+            alice, bob, edward, pete, sandra,
         ]);
     });
 
     it('{ age: { gte: 40 } }', () => {
         // Should include null values as well, filter non-null values with explicit isNull: false
         expect(run({ age: { gte: 40 } })).toEqual([
-            edward,
-            jack,
-            pete,
-            william,
+            edward, jack, pete, william,
         ]);
     });
 
@@ -98,10 +83,7 @@ describe('getPatternPredicate', () => {
 
     it('{ age: { lte: 30 } }', () => {
         expect(run({ age: { lte: 30 } })).toEqual([
-            alice,
-            bob,
-            jack,
-            william,
+            alice, bob, jack, william,
         ]);
     });
 
@@ -120,9 +102,7 @@ describe('getPatternPredicate', () => {
 
     it('{ age: { lt: 40, isNull: false }}', () => {
         expect(run({ age: { lt: 40, isNull: false } })).toEqual([
-            alice,
-            bob,
-            sandra,
+            alice, bob, sandra,
         ]);
     });
 
@@ -148,15 +128,11 @@ describe('getPatternPredicate', () => {
         expect(run({
             age: {
                 in: [
-                    undefined,
-                    null,
-                    40,
+                    undefined, null, 40,
                 ],
             },
         })).toEqual([
-            edward,
-            jack,
-            william,
+            edward, jack, william,
         ]);
     });
 
