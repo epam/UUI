@@ -8,7 +8,7 @@ import { SizeMod } from '../types';
 
 type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> &
 SizeMod & {
-    hideShowOnlySelected?: boolean;
+    selectionMode: 'single' | 'multi';
 };
 
 const switchSizes = {
@@ -19,10 +19,21 @@ const switchSizes = {
 } as const;
 
 function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFooterProps<TItem, TId>>) {
-    const { clearSelection, view, showSelected } = props;
+    const {
+        clearSelection,
+        view,
+        showSelected,
+        selectionMode,
+    } = props;
     const size = isMobile() ? '48' : props.size || '36';
     const switchSize = switchSizes[size as unknown as (keyof typeof switchSizes)];
     const hasSelection = view.getSelectedRowsCount() > 0;
+
+    const isSinglePicker = selectionMode === 'single';
+
+    const clearAllText = i18n.pickerInput.clearSelectionButton;
+    const clearSingleText = i18n.pickerInput.clearSelectionButtonSingle;
+    const selectAllText = i18n.pickerInput.selectAllButton;
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
         if (!e.shiftKey && e.key === 'Tab') e.preventDefault();
@@ -30,7 +41,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
 
     return (
         <FlexRow padding="12">
-            {!props.hideShowOnlySelected && (
+            {!isSinglePicker && (
                 <Switch
                     size={ switchSize }
                     value={ showSelected.value }
@@ -42,16 +53,25 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
 
             <FlexSpacer />
 
-            {view.selectAll && (
-                <FlexCell width="auto" alignSelf="center">
+            <FlexCell width="auto" alignSelf="center">
+                {view.selectAll && (
                     <LinkButton
                         size={ size }
-                        caption={ hasSelection ? i18n.pickerInput.clearSelectionButton : i18n.pickerInput.selectAllButton }
+                        caption={ hasSelection ? clearAllText : selectAllText }
                         onClick={ hasSelection ? clearSelection : () => view.selectAll.onValueChange(true) }
                         rawProps={ { onKeyDown: handleKeyDown } }
                     />
-                </FlexCell>
-            )}
+                )}
+                {!view.selectAll && (
+                    <LinkButton
+                        isDisabled={ !hasSelection }
+                        size={ size }
+                        caption={ isSinglePicker ? clearSingleText : clearAllText }
+                        onClick={ clearSelection }
+                        rawProps={ { onKeyDown: handleKeyDown } }
+                    />
+                )}
+            </FlexCell>
         </FlexRow>
     );
 }
