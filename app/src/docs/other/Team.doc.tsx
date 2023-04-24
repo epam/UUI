@@ -35,7 +35,7 @@ export const team = [
         name: 'Ihor Korenets',
         position: 'Developer',
         isDefault: true,
-        src: 'http://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/team-avatars/Ihor_Korenets.jfif',
+        src: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/team-avatars/Ihor_Korenets.jfif',
         link: 'https://telescope.epam.com/who/Ihor_Korenets',
     }, {
         name: 'Dzmitry Zevakou',
