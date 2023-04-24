@@ -55,9 +55,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                                 <RadioGroup
                                     onValueChange={ (value: ControlSize) => this.setState({ size: value }) }
                                     items={ [
-                                        { name: '36', id: '36' },
-                                        { name: '30', id: '30' },
-                                        { name: '24', id: '24' },
+                                        { name: '36', id: '36' }, { name: '30', id: '30' }, { name: '24', id: '24' },
                                     ] }
                                     direction="horizontal"
                                     value={ this.state.size }
@@ -140,10 +138,7 @@ export class FormContext extends React.Component<DemoComponentProps, FormContext
                                     isDisabled={ this.state.isDisabled }
                                     onValueChange={ (newValue) => this.setState({ checkboxGroupValue: newValue }) }
                                     items={ [
-                                        { name: 'label', id: 1 },
-                                        { name: 'label label', id: 2 },
-                                        { name: 'label label label label label label label label ', id: 3 },
-                                        { name: 'label label label', id: 4 },
+                                        { name: 'label', id: 1 }, { name: 'label label', id: 2 }, { name: 'label label label label label label label label ', id: 3 }, { name: 'label label label', id: 4 },
                                     ] }
                                     value={ this.state.checkboxGroupValue }
                                 />

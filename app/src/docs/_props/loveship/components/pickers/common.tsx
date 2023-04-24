@@ -62,24 +62,19 @@ export const getDataSourceExamples = (ctx: PropSamplesCreationContext) => {
             name: 'Languages',
             isDefault: true,
             value: dataSourcesMap.languages,
-        },
-        {
+        }, {
             name: 'Language Levels',
             value: dataSourcesMap.languageLevels,
-        },
-        {
+        }, {
             name: 'Cities',
             value: dataSourcesMap.cities,
-        },
-        {
+        }, {
             name: 'Locations',
             value: dataSourcesMap.locations,
-        },
-        {
+        }, {
             name: 'Lazy locations',
             value: dataSourcesMap.lazyLocations,
-        },
-        {
+        }, {
             name: 'Persons',
             value: dataSourcesMap.persons,
         },
@@ -90,16 +85,12 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
     .prop('dataSource', { examples: getDataSourceExamples })
     .prop('sorting', {
         examples: [
-            { value: { field: 'name', direction: 'asc' }, name: 'name' },
-            { value: { field: 'id', direction: 'asc' }, name: 'id' },
-            { value: { field: 'population', direction: 'asc' }, name: 'population' },
+            { value: { field: 'name', direction: 'asc' }, name: 'name' }, { value: { field: 'id', direction: 'asc' }, name: 'id' }, { value: { field: 'population', direction: 'asc' }, name: 'population' },
         ],
     })
     .prop('emptyValue', {
         examples: [
-            { name: 'undefined', value: undefined },
-            { name: 'null', value: null },
-            { name: '[]', value: [] },
+            { name: 'undefined', value: undefined }, { name: 'null', value: null }, { name: '[]', value: [] },
         ],
     })
     .prop('getName', {
@@ -107,11 +98,7 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
     })
     .prop('entityName', {
         examples: [
-            'Language',
-            'City',
-            'Role',
-            'Location',
-            'Person',
+            'Language', 'City', 'Role', 'Location', 'Person',
         ],
     })
     .prop('entityPluralName', { examples: ['Cities'] })
@@ -128,8 +115,7 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
                         renderItem={ (item, rowProps) => <PickerItem { ...rowProps } avatarUrl={ item.avatarUrl } title={ item.name } subtitle={ item.jobTitle } /> }
                     />
                 ),
-            },
-            {
+            }, {
                 name: 'Skills',
                 value: (rowProps) => {
                     const isParent = !rowProps.value.parentId;
@@ -154,8 +140,6 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
     })
     .prop('cascadeSelection', {
         examples: [
-            true,
-            'explicit',
-            'implicit',
+            true, 'explicit', 'implicit',
         ],
     });

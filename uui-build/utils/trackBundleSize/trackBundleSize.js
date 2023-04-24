@@ -34,10 +34,7 @@ const CLI = {
     createAppFromTemplate: {
         cmd: 'npx',
         args: [
-            'create-react-app',
-            TEMPLATE_APP_TARGET_DIR,
-            '--template',
-            `file:${APP_TEMPLATE_DIR}`,
+            'create-react-app', TEMPLATE_APP_TARGET_DIR, '--template', `file:${APP_TEMPLATE_DIR}`,
         ],
     },
 };
@@ -130,9 +127,7 @@ async function symlinkAppDependencies() {
             cmd,
             cwd,
             args: [
-                'link',
-                dirName,
-                '--save',
+                'link', dirName, '--save',
             ],
         });
         logger.info(`Symlink created for "${name}".`);

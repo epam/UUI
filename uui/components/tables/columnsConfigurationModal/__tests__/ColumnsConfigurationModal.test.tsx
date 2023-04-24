@@ -13,8 +13,7 @@ const mockColumns: DataColumnProps[] = [
         grow: 0,
         shrink: 0,
         width: 96,
-    },
-    {
+    }, {
         key: 'level',
         caption: 'Level',
         render: (product: any) => <div>{product}</div>,
@@ -37,8 +36,7 @@ const mockHiddenColumns: DataColumnProps[] = [
         shrink: 0,
         width: 96,
         isHiddenByDefault: true,
-    },
-    {
+    }, {
         key: 'level',
         caption: 'Level',
         render: (product: any) => <div>{product}</div>,

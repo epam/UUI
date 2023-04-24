@@ -15,9 +15,7 @@ function getTestDataSet1() {
         key: '3', caption: 'c', isAlwaysVisible: false, width: 10, groupKey: 'hidden',
     };
     const columnsSorted: GroupedDataColumnProps[] = [
-        A,
-        B,
-        C,
+        A, B, C,
     ];
     const prevConfig: ColumnsConfig = {
         [A.key]: {
@@ -45,10 +43,7 @@ function getTestDataSet2() {
         key: '4', fix: 'right', caption: '', width: 10,
     };
     const columnsSorted: DataColumnProps[] = [
-        A,
-        B,
-        C,
-        D,
+        A, B, C, D,
     ];
     const prevConfig: ColumnsConfig = {
         [A.key]: {

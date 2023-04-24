@@ -126,8 +126,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
         {
             name: 'offset',
             options: { offset: [0, 6] },
-        },
-        mobilePopperModifier,
+        }, mobilePopperModifier,
     ];
 
     abstract toggleModalOpening(opened: boolean): void;
@@ -419,7 +418,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     getFooterProps(): PickerFooterProps<TItem, TId> & { onClose: () => void } {
         const footerProps = super.getFooterProps();
-        return { ...footerProps, onClose: this.handleCloseBody };
+        return { ...footerProps, onClose: this.handleCloseBody, selectionMode: this.props.selectionMode };
     }
 
     returnFocusToInput(): void {

@@ -11,8 +11,7 @@ const cascadeSelectionModes: Array<{ id: 'explicit' | 'implicit'; caption: strin
     {
         id: 'explicit',
         caption: 'Explicit cascade selection',
-    },
-    {
+    }, {
         id: 'implicit',
         caption: 'Implicit cascade selection',
     },

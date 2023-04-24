@@ -86,11 +86,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             .then((columnsConfig) => props.onValueChange({ ...props.value, columnsConfig }))
             .catch(() => null);
     }, [
-        props.columns,
-        config,
-        defaultConfig,
-        props.value,
-        props.onValueChange,
+        props.columns, config, defaultConfig, props.value, props.onValueChange,
     ]);
 
     const renderRowsContainer = React.useCallback(
@@ -126,11 +122,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
             </>
         ),
         [
-            props,
-            columns,
-            rows,
-            renderNoResultsBlock,
-            onConfigurationButtonClick,
+            props, columns, rows, renderNoResultsBlock, onConfigurationButtonClick,
         ],
     );
 

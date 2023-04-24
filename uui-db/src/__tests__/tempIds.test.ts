@@ -81,8 +81,7 @@ describe('tempIds', () => {
             tasks: [
                 {
                     id: 1, estimate: '1' as any, assignedTo: 'JS', isDone: true,
-                },
-                { id: 2, estimate: '2' as any, isDone: false },
+                }, { id: 2, estimate: '2' as any, isDone: false },
             ],
             users: [{ id: 'JS', name: 'John Snow' }, { id: 'DT', name: 'Daenerys Targaryen' }],
             managers: [{ subordinateId: 'JS', managerId: 'DT' }],

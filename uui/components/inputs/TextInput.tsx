@@ -14,9 +14,7 @@ export interface TextInputMods extends IHasEditMode {
 
 export function applyTextInputMods(mods: TextInputMods) {
     return [
-        css.root,
-        css['size-' + (mods.size || defaultSize)],
-        css['mode-' + (mods.mode || defaultMode)],
+        css.root, css['size-' + (mods.size || defaultSize)], css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 

@@ -79,18 +79,11 @@ export default function MainMenuBasicExample() {
         return [
             {
                 id: 'burger', priority: 100, collapsedContainer: true, render: (hiddenItems) => <Burger key="burger" width={ 300 } renderBurgerContent={ renderBurger } />,
-            },
-            {
+            }, {
                 id: 'logo',
                 priority: 99,
                 render: () => <MainMenuLogo href="https://learn.epam.com/" logoUrl="https://uui.epam.com/static/images/app-logos/learn_logo.svg" />,
-            },
-            { id: 'trainingCatalog', priority: 3, render: () => <MainMenuButton href="/" caption="Training Catalog" /> },
-            { id: 'requests', priority: 3, render: () => <MainMenuButton href="/" caption="Requests" /> },
-            { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer /> },
-            { id: 'help', priority: 1, render: () => <MainMenuIcon href="https://support.epam.com" target="_blank" icon={ HelpIcon } /> },
-            { id: 'avatar', priority: 2, render: renderAvatar },
-            { id: 'globalMenu', priority: 100, render: () => <GlobalMenu /> },
+            }, { id: 'trainingCatalog', priority: 3, render: () => <MainMenuButton href="/" caption="Training Catalog" /> }, { id: 'requests', priority: 3, render: () => <MainMenuButton href="/" caption="Requests" /> }, { id: 'flexSpacer', priority: 100, render: () => <FlexSpacer /> }, { id: 'help', priority: 1, render: () => <MainMenuIcon href="https://support.epam.com" target="_blank" icon={ HelpIcon } /> }, { id: 'avatar', priority: 2, render: renderAvatar }, { id: 'globalMenu', priority: 100, render: () => <GlobalMenu /> },
         ];
     };
 

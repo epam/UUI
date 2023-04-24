@@ -14,10 +14,7 @@ export interface BadgeMods {
 
 export function applyBadgeMods(mods: BadgeMods) {
     return [
-        css['style-' + (mods.shape || 'square')],
-        css['fill-' + (mods.fill || 'solid')],
-        css['size-' + (mods.size || defaultSize)],
-        css.root,
+        css['style-' + (mods.shape || 'square')], css['fill-' + (mods.fill || 'solid')], css['size-' + (mods.size || defaultSize)], css.root,
     ];
 }
 

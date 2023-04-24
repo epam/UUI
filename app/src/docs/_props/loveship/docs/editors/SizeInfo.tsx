@@ -13,20 +13,10 @@ export class SizeInfo extends React.Component<SizeInfoProps, any> {
     render() {
         const iconSizes: string[][] = [
             [
-                '18',
-                '24',
-                '30',
-                '36',
-                '42',
-                '48',
+                '18', '24', '30', '36', '42', '48',
             ], // control size
             [
-                '12',
-                '12',
-                '18',
-                '18',
-                '18',
-                '24',
+                '12', '12', '18', '18', '18', '24',
             ], // icon size with caption
         ];
 

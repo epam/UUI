@@ -538,8 +538,7 @@ export const defaultTokens: TokensObject = {
                     spread: '0',
                     color: 'rgba(29, 30, 38, 0.10)',
                     type: 'dropShadow',
-                },
-                {
+                }, {
                     x: '0',
                     y: '1',
                     blur: '3',

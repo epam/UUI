@@ -31,8 +31,7 @@ export const isInvalidDoc = new DocBuilder<ICanBeInvalid>({ name: 'isInvalid' })
 
 export const validationMessageDoc = new DocBuilder<ICanBeInvalid>({ name: 'validationMessage' }).prop('validationMessage', {
     examples: [
-        { name: 'Default', value: 'This field is mandatory' },
-        {
+        { name: 'Default', value: 'This field is mandatory' }, {
             name: 'Long Message',
             value: "Sometimes messages are really long. It's expected that they will wrap to another line correctly. Wrapped text should still fit to grid.",
         },
@@ -47,9 +46,7 @@ export const iCanRedirectDoc = new DocBuilder<ICanRedirect>({ name: 'Icon' })
 
 export const iHasLabelDoc = new DocBuilder<IHasLabel>({ name: 'Label' }).prop('label', {
     examples: [
-        { value: 'Some label', isDefault: true },
-        { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' },
-        { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
+        { value: 'Some label', isDefault: true }, { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' }, { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },
     ],
     type: 'string',
 });

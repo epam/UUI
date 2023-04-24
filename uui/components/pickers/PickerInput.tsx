@@ -45,7 +45,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     getRowSize() {
-        return isMobile() ? '48' : this.props.editMode === 'modal' ? '36' : this.props.size;
+        if (isMobile()) {
+            return '48';
+        }
+
+        return this.props.editMode === 'modal' ? '36' : this.props.size;
     }
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
@@ -77,15 +81,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     renderFooter() {
         const footerProps = this.getFooterProps();
 
-        if (this.props.renderFooter) {
-            return this.props.renderFooter(footerProps);
-        }
-
-        if (!this.isSingleSelect()) {
-            return <DataPickerFooter { ...footerProps } size={ this.props.size } />;
-        }
-
-        return;
+        return this.props.renderFooter ? (
+            this.props.renderFooter(footerProps)
+        ) : (
+            <DataPickerFooter { ...footerProps } size={ this.props.size } />
+        );
     }
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
@@ -110,9 +110,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                 style={ { width: props.togglerWidth > minBodyWidth ? props.togglerWidth : minBodyWidth } }
                 rawProps={ { tabIndex: -1 } }
                 cx={ [
-                    css.panel,
-                    uuiMarkers.lockFocus,
-                    this.props.bodyCx,
+                    css.panel, uuiMarkers.lockFocus, this.props.bodyCx,
                 ] }
             >
                 <MobileDropdownWrapper

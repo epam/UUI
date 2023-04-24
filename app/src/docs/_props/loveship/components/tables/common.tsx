@@ -37,8 +37,7 @@ const UserColumns = [
         ),
         grow: 1,
         width: 300,
-    },
-    {
+    }, {
         key: 'inProgress',
         caption: 'IN PROGRESS',
         render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ CalendarIcon } size="30" />,
@@ -46,8 +45,7 @@ const UserColumns = [
         width: 50,
         vPadding: '30',
         size: '30',
-    },
-    {
+    }, {
         key: 'done',
         caption: 'DONE',
         render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ TickIcon } size="30" />,
@@ -55,8 +53,7 @@ const UserColumns = [
         width: 50,
         vPadding: '30',
         size: '30',
-    },
-    {
+    }, {
         key: 'edited',
         caption: 'EDITED',
         render: (data: Person) => <LinkButton caption={ getRandomInt(1, 10) } icon={ PencilIcon } size="30" />,
@@ -76,8 +73,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             grow: 1,
             width: 150,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'phoneNumber',
             caption: 'Phone Number',
             render: (data: Person) => (
@@ -88,8 +84,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             width: 140,
             isSortable: true,
             textAlign: 'right',
-        },
-        {
+        }, {
             key: 'gender',
             caption: 'Gender',
             render: (data: Person) => (
@@ -100,8 +95,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             width: 60,
             isSortable: true,
             textAlign: 'center',
-        },
-        {
+        }, {
             key: 'personType',
             caption: 'Person Type',
             render: (data: Person) => (
@@ -117,8 +111,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
                     <Text>this column has info prop</Text>
                 </FlexCell>
             ),
-        },
-        {
+        }, {
             key: 'jobTitle',
             caption: 'Job Title with long long text',
             render: (data: Person) => (
@@ -135,8 +128,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
                     <Text font="sans-semibold">Job Title with long long text</Text>
                 </FlexCell>
             ),
-        },
-        {
+        }, {
             key: 'birthDate',
             caption: 'Birth Date',
             render: (data: Person) => (
@@ -146,8 +138,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             ),
             width: 120,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'hireDate',
             caption: 'Hire Date',
             render: (data: Person) => (
@@ -157,8 +148,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             ),
             width: 120,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'departmentId',
             caption: 'Department Id',
             render: (data: Person) => (
@@ -168,8 +158,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             ),
             width: 100,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'departmentName',
             caption: 'Department Name',
             render: (data: Person) => (
@@ -179,8 +168,7 @@ function getColumns(size: ControlSize, addFixed: boolean, count?: number) {
             ),
             width: 120,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'settings',
             caption: '',
             render: (data: Person) => <LinkButton icon={ MoreIcon } size={ size } />,
@@ -208,26 +196,21 @@ export const ColumnsHeaderRowDoc = new DocBuilder<DataTableHeaderRowProps & Data
             {
                 name: 'basic (30)',
                 value: getColumns('30', false, 3),
-            },
-            {
+            }, {
                 name: 'advanced (24)',
                 value: getColumns('24', true),
-            },
-            {
+            }, {
                 name: 'advanced (30)',
                 value: getColumns('30', true),
                 isDefault: true,
-            },
-            {
+            }, {
                 name: 'advanced (36)',
                 value: getColumns('36', true),
                 isDefault: true,
-            },
-            {
+            }, {
                 name: 'all scrollable (30)',
                 value: getColumns('30', false),
-            },
-            {
+            }, {
                 name: 'custom (30)',
                 value: UserColumns,
             },

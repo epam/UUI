@@ -69,14 +69,12 @@ async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps
             name: 'All items',
             order: 'a',
             isReadonly: true,
-        },
-        {
+        }, {
             id: -2,
             name: 'Items with green status',
             order: 'b',
             filter: { status: 1 },
-        },
-        {
+        }, {
             id: -3,
             name: 'Items with red status',
             order: 'c',
@@ -154,15 +152,10 @@ describe('PresetsPanel', () => {
         // 2. check that menu of each tab contains correct options
         await expectPresetTabHasOptions(tabs[0], ['Duplicate', 'Copy Link']);
         await expectPresetTabHasOptions(tabs[1], [
-            'Rename',
-            'Duplicate',
-            'Copy Link',
-            'Delete',
+            'Rename', 'Duplicate', 'Copy Link', 'Delete',
         ]);
         await expectPresetTabHasOptions(tabs[2], [
-            'Duplicate',
-            'Copy Link',
-            'Delete',
+            'Duplicate', 'Copy Link', 'Delete',
         ]);
     });
 
@@ -269,13 +262,7 @@ describe('PresetsPanel', () => {
         });
         expect(tabs[1]).toHaveClass('uui-has-right-icon');
         await expectPresetTabHasOptions(tabs[1], [
-            'Save in current',
-            'Save as new',
-            'Discard all changes',
-            'Rename',
-            'Duplicate',
-            'Copy Link',
-            'Delete',
+            'Save in current', 'Save as new', 'Discard all changes', 'Rename', 'Duplicate', 'Copy Link', 'Delete',
         ]);
     });
 

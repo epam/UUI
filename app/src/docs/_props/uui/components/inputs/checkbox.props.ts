@@ -8,10 +8,7 @@ import { DefaultContext } from '../../docs';
 
 const CheckboxDoc = new DocBuilder<CheckboxProps & CheckboxMods>({ name: 'Checkbox', component: Checkbox })
     .implements([
-        isDisabledDoc,
-        isInvalidDoc,
-        iHasLabelDoc,
-        iEditable,
+        isDisabledDoc, isInvalidDoc, iHasLabelDoc, iEditable,
     ] as any)
     .prop('value', { examples: [true, false] })
     .prop('size', { examples: ['12', '18'], defaultValue: '18' })

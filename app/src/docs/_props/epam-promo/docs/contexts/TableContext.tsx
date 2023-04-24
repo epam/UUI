@@ -82,8 +82,7 @@ export function TableContext(contextProps: DemoComponentProps) {
             isSortable: true,
             width: 300,
             fix: 'left',
-        },
-        {
+        }, {
             key: 'yearsInCompany',
             caption: 'Years In Company',
             renderCell: (props) => (
@@ -97,15 +96,13 @@ export function TableContext(contextProps: DemoComponentProps) {
             ),
             isSortable: true,
             width: 120,
-        },
-        {
+        }, {
             key: 'departmentName',
             caption: 'Department Name',
             render: (props) => <Text>{props.departmentName}</Text>,
             isSortable: true,
             width: 200,
-        },
-        {
+        }, {
             key: 'birthDate',
             caption: 'Birth Date',
             renderCell: (props) => (

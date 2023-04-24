@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TimelineController } from './TimelineController';
 import css from './TimelineNav.scss';
-import { Scales, scales, scaleSteps } from './helpers';
+import { scales } from './helpers';
 import { ReactComponent as SvgScales } from './fit.svg';
 import { ReactComponent as SvgPlus } from './plus.svg';
 import { ReactComponent as SvgMinus } from './minus.svg';

@@ -4,10 +4,7 @@ import { FillStyle } from '../types';
 
 export type ButtonColor = 'blue' | 'green' | 'red' | 'gray50';
 export const allButtonColors: ButtonColor[] = [
-    'blue',
-    'green',
-    'red',
-    'gray50',
+    'blue', 'green', 'red', 'gray50',
 ];
 
 export interface ButtonMods {
