@@ -91,6 +91,7 @@ export type PickerFooterProps<TItem, TId> = {
     view: IDataSourceView<TItem, TId, any>;
     showSelected: IEditable<boolean>;
     clearSelection: () => void;
+    selectionMode: 'single' | 'multi';
 };
 
 export type PickerBaseProps<TItem, TId> = PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;
