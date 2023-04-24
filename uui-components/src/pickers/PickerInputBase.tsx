@@ -33,9 +33,10 @@ import {
 } from './index';
 import { Dropdown } from '../overlays';
 import { i18n } from '../i18n';
+import { getMaxItems } from './helpers';
 
-export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> &
-ICanFocus<HTMLElement> &
+export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId>
+& ICanFocus<HTMLElement> &
 IHasPlaceholder &
 IDisableable &
 ICanBeReadonly &
@@ -59,11 +60,11 @@ IHasIcon & {
     renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
 
     /**
-         *  Defines where search field is:
-         * 'input' - try to place search inside the toggler (default for single-select),
-         * 'body' - put search inside the dropdown (default for multi-select)
-         * 'none' - disables search completely
-         */
+      *  Defines where search field is:
+      * 'input' - try to place search inside the toggler (default for single-select),
+      * 'body' - put search inside the dropdown (default for multi-select)
+      * 'none' - disables search completely
+      */
     searchPosition?: 'input' | 'body' | 'none';
 
     /** Disallow to clear Picker value (cross icon) */
@@ -264,7 +265,8 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
     getTogglerProps(rows: DataRowProps<TItem, TId>[], dropdownProps: DropdownBodyProps): PickerTogglerProps<TItem, TId> {
         const view = this.getView();
         const selectedRowsCount = view.getSelectedRowsCount();
-        const itemsToTake = selectedRowsCount > this.props.maxItems && this.props.maxItems !== undefined ? this.props.maxItems : 10;
+        const allowedMaxItems = getMaxItems(this.props.maxItems);
+        const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
         const selectedRows = this.getSelectedRows(itemsToTake);
         const {
             isDisabled,
