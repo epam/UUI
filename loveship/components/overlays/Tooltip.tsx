@@ -1,15 +1,18 @@
-import * as types from '../types';
-import css from './Tooltip.scss';
-import styles from '../../assets/styles/scss/loveship-color-vars.scss';
 import { withMods } from '@epam/uui-core';
-import { Tooltip as uuiTooltip, TooltipProps } from '@epam/uui-components';
+import { Tooltip as uuiTooltip, TooltipProps as UuiTooltipProps } from '@epam/uui';
 
 export interface TooltipMods {
-    color?: types.EpamColor;
+    /**
+     * Tooltip color
+     * Note that 'night900' is deprecated and will be removed in future versions, please use 'night800' instead.
+     */
+    color?: 'white' | 'fire' | 'night800' | 'night900';
 }
 
-function applyTooltipMods(mods: TooltipMods) {
-    return [css.root, styles['color-' + (mods.color || 'night900')]];
-}
+export type TooltipProps = Omit<UuiTooltipProps, 'color'> & TooltipMods;
 
-export const Tooltip = withMods<TooltipProps, TooltipMods>(uuiTooltip, applyTooltipMods);
+export const Tooltip = withMods< Omit<UuiTooltipProps, 'color'>, TooltipMods>(
+    uuiTooltip,
+    () => [],
+    (props) => ({ color: props.color ?? 'night800' } as TooltipProps),
+);

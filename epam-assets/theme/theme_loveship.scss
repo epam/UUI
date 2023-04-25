@@ -169,13 +169,11 @@
     --uui-primary-dark: var(--sky-dark);
     --uui-primary-darkest: var(--sky-darkest);
 
-    --uui-secondary: var(--night500);
+    --uui-secondary: var(--night600);
     --uui-secondary-light: var(--night300);
     --uui-secondary-lightest: var(--night200);
-    --uui-secondary-dark: var(--night600);
-    --uui-secondary-darkest: var(--night700);
-    --uui-secondary-hover: var(--night600);
-    --uui-secondary-active: var(--night700);
+    --uui-secondary-dark: var(--night700);
+    --uui-secondary-darkest: var(--night800);
 
     --uui-negative: var(--fire);
     --uui-negative-light: var(--fire-light);
@@ -366,7 +364,6 @@
     --uui-calendar-weekends-weekdates: var(--uui-control-placeholder);
     --uui-calendar-text: var(--uui-control-text);
     --uui-calendar-text-filtered: var(--uui-control-text-disabled);
-    --uui-calendar-bg-selected: var(--uui-secondary);
 
     --uui-calendar-content-font: var(--font-regular);
     --uui-calendar-weekday-font: var(--font-regular);
@@ -748,17 +745,26 @@
 
     /* ------------------------------------ */
 
-    :global(.tooltip-contrast) {
+    /** tooltip-night900 is deprecated and will be removed in future */
+    :global(.tooltip-night900) {
         --uui-tooltip-bg: var(--uui-surface-inverted);
         --uui-tooltip-text: var(--uui-contrast);
     }
 
-    :global(.tooltip-default) {
+    :global(.tooltip-contrast),
+    :global(.tooltip-night800) {
+        --uui-tooltip-bg: var(--uui-surface-contrast);
+        --uui-tooltip-text: var(--uui-contrast);
+    }
+
+    :global(.tooltip-default),
+    :global(.tooltip-white) {
         --uui-tooltip-bg: var(--uui-surface);
         --uui-tooltip-text: var(--uui-text-primary);
     }
 
-    :global(.tooltip-critical) {
+    :global(.tooltip-critical),
+    :global(.tooltip-fire) {
         --uui-tooltip-bg: var(--uui-error-dark);
         --uui-tooltip-text: var(--uui-contrast);
     }
@@ -814,7 +820,24 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
-    :global(.button-night500), :global(.button-secondary) {
+    :global(.button-night500) {
+        --uui-btn-bg: var(--night500);
+        --uui-btn-bg-hover: var(--night600);
+        --uui-btn-bg-active: var(--night700);
+        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
+        --uui-btn-bg-halftone-hover: var(--uui-secondary-lightest);
+        --uui-btn-bg-halftone-active: var(--uui-secondary-light);
+        --uui-btn-border: var(--night500);
+        --uui-btn-border-hover: var(--night600);
+        --uui-btn-border-active: var(--night700);
+        --uui-btn-bg-disabled: var(--uui-disabled);
+        --uui-btn-border-disabled: var(--uui-disabled);
+        --uui-btn-caption: var(--uui-contrast);
+        --uui-btn-caption-halftone: var(--night600);
+        --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
+    }
+
+    :global(.button-night600), :global(.button-secondary) {
         --uui-btn-bg: var(--uui-secondary);
         --uui-btn-bg-hover: var(--uui-secondary-dark);
         --uui-btn-bg-active: var(--uui-secondary-darkest);

@@ -2,10 +2,7 @@ import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
 import { TooltipProps } from '@epam/uui-components';
 import { Button, Tooltip, TooltipMods } from '@epam/promo';
-import { DefaultContext, iEditable } from '../../docs';
-import { ForwardedRef, forwardRef } from 'react';
-
-const Sfc = forwardRef((props: any, ref: ForwardedRef<HTMLDivElement>) => <div ref={ ref }>123</div>);
+import { DefaultContext } from '../../docs';
 
 const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip', component: Tooltip })
     .prop('content', {
@@ -24,7 +21,7 @@ const tooltipDoc = new DocBuilder<TooltipProps & TooltipMods>({ name: 'Tooltip',
     .prop('closeOnMouseLeave', { examples: [{ name: 'toggler', value: 'toggler', isDefault: true }, 'boundary'] })
     .prop('color', {
         examples: [
-            'white', { name: 'gray90', value: 'gray90', isDefault: true }, 'red',
+            'white', { name: 'gray80', value: 'gray80', isDefault: true }, 'red',
         ],
     })
     .prop('closeDelay', {
