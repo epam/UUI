@@ -1,7 +1,6 @@
 export * from './dnd';
 export * from './ScrollManager';
 export * from './LayoutContext';
-export * from './LegacyContextProvider';
 export * from './ContextProvider';
 export * from './AnalyticsContext';
 export * from './ApiContext';

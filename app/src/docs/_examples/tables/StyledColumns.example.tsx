@@ -44,6 +44,7 @@ export default function StyledColumnsExample() {
                         </FlexRow>
                     ),
                 width: 140,
+                minWidth: 80,
                 isSortable: true,
                 alignSelf: 'center',
             }, {

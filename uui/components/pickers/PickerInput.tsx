@@ -20,7 +20,7 @@ const pickerHeight = 300;
 const pickerWidth = 360;
 
 export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerInputProps> {
-    toggleModalOpening(opened: boolean) {
+    toggleModalOpening() {
         const { renderFooter, rawProps, ...restProps } = this.props;
         this.context.uuiModals
             .show((props) => (
@@ -45,7 +45,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     getRowSize() {
-        return isMobile() ? '48' : this.props.editMode === 'modal' ? '36' : this.props.size;
+        if (isMobile()) {
+            return '48';
+        }
+
+        return this.props.editMode === 'modal' ? '36' : this.props.size;
     }
 
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
@@ -77,7 +81,11 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     renderFooter() {
         const footerProps = this.getFooterProps();
 
-        return this.props.renderFooter ? this.props.renderFooter(footerProps) : <DataPickerFooter { ...footerProps } size={ this.props.size } />;
+        return this.props.renderFooter ? (
+            this.props.renderFooter(footerProps)
+        ) : (
+            <DataPickerFooter { ...footerProps } size={ this.props.size } />
+        );
     }
 
     renderTarget(targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) {
@@ -93,7 +101,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
     }
 
     renderBody(props: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) {
-        const renderedDataRows = rows.map((props) => this.renderRow(props));
+        const renderedDataRows = rows.map((row) => this.renderRow(row));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : this.props.dropdownHeight || pickerHeight;
         const minBodyWidth = isMobile() ? document.documentElement.clientWidth : this.props.minBodyWidth || pickerWidth;
 
@@ -129,7 +137,7 @@ export class PickerInput<TItem, TId> extends PickerInputBase<TItem, TId, PickerI
                                 : undefined
                         }
                     />
-                    {!this.isSingleSelect() && this.renderFooter()}
+                    { this.renderFooter() }
                 </MobileDropdownWrapper>
             </Panel>
         );

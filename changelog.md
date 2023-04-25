@@ -1,7 +1,7 @@
 # 5.0.0 - xx.xx.20203
 **What's New**
 * "EcmaScript" modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
-
+* [ContextProvider]: removed support of legacy React context API, as it were announced in 4.1.0 version. `enableLegacyContext` prop was deleted.
 * [useTableState]:
   - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
   - added storing of sorting, columns config, and paging state into url
@@ -12,7 +12,7 @@
 * [FiltersPanel]: hide 'Add filter' button, if all filters `isAlwaysVisible`
 * [TimePicker]: added max values to hours and minutes inputs
 * [Tooltip]: added possibility to pass raw-props to the tooltip body
-  
+
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
@@ -31,6 +31,8 @@
 
 **What's Fixed**
 * [PickerInput]: fixes Hover doesn't appear on "parent" when pointing the mouse.
+* [FilterPanel]: fixed issue with "show only selected" toggle not being visible, when selectAll was disabled via DataSource
+* [PickerInput]: added a default footer component for single pickers that includes a "Clear" button
 
 # 4.10.2 - 24.03.2023
 
