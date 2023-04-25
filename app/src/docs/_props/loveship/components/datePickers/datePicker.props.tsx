@@ -5,18 +5,7 @@ import { Day, IconContainer } from '@epam/uui-components';
 import { DatePicker } from '@epam/loveship';
 import { DatePickerProps } from '@epam/uui';
 import { LinkButton, FlexRow } from '@epam/loveship';
-import {
-    DefaultContext,
-    FormContext,
-    iEditable,
-    isDisabledDoc,
-    isInvalidDoc,
-    isReadonlyDoc,
-    modeDoc,
-    ResizableContext,
-    sizeDoc,
-    TableContext,
-} from '../../docs';
+import { DefaultContext, FormContext, iEditable, isDisabledDoc, isInvalidDoc, isReadonlyDoc, modeDoc, ResizableContext, sizeDoc, TableContext } from '../../docs';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 
 const getCustomDay = (day: Dayjs) => {
@@ -34,14 +23,7 @@ const getCustomDay = (day: Dayjs) => {
 };
 
 const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', component: DatePicker })
-    .implements([
-        iEditable,
-        sizeDoc,
-        modeDoc,
-        isDisabledDoc,
-        isReadonlyDoc,
-        isInvalidDoc,
-    ])
+    .implements([iEditable, sizeDoc, modeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc])
     .prop('value', { examples: ['2020-09-03'] })
     .prop('placeholder', { examples: ['Enter start date'] })
     .prop('format', {
