@@ -758,13 +758,13 @@
     }
 
     :global(.tooltip-default),
-    :global(.tooltip-white)  {
+    :global(.tooltip-white) {
         --uui-tooltip-bg: var(--uui-surface);
         --uui-tooltip-text: var(--uui-text-primary);
     }
 
     :global(.tooltip-critical),
-    :global(.tooltip-fire)  {
+    :global(.tooltip-fire) {
         --uui-tooltip-bg: var(--uui-error-dark);
         --uui-tooltip-text: var(--uui-contrast);
     }
