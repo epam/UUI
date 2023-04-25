@@ -3,13 +3,18 @@ import {
     basicPickerTogglerDoc, DocBuilder, dropdownTogglerDoc, onClickDoc,
 } from '@epam/uui-docs';
 import {
-    colorDoc, DefaultContext, FormContext, iconDoc, iconOptionsDoc, ResizableContext,
+    badgeColorDoc, DefaultContext, FormContext, iconDoc, iconOptionsDoc, ResizableContext,
 } from '../../docs';
 import { allBorderStyles } from '@epam/loveship';
 
 const badgeDoc = new DocBuilder<BadgeProps & BadgeMods>({ name: 'Badge', component: Badge })
     .implements([
-        colorDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, onClickDoc, basicPickerTogglerDoc,
+        badgeColorDoc,
+        iconDoc,
+        iconOptionsDoc,
+        dropdownTogglerDoc,
+        onClickDoc,
+        basicPickerTogglerDoc,
     ])
     .prop('caption', {
         examples: [

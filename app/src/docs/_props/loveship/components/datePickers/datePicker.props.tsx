@@ -16,7 +16,6 @@ import {
     ResizableContext,
     sizeDoc,
     TableContext,
-    textSettingsDoc,
 } from '../../docs';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
 
@@ -36,7 +35,12 @@ const getCustomDay = (day: Dayjs) => {
 
 const DatePickerDoc = new DocBuilder<DatePickerProps>({ name: 'DatePicker', component: DatePicker })
     .implements([
-        iEditable, sizeDoc, textSettingsDoc, modeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc,
+        iEditable,
+        sizeDoc,
+        modeDoc,
+        isDisabledDoc,
+        isReadonlyDoc,
+        isInvalidDoc,
     ])
     .prop('value', { examples: ['2020-09-03'] })
     .prop('placeholder', { examples: ['Enter start date'] })
