@@ -1,4 +1,4 @@
-# 5.0.0 - xx.xx.20203
+# 5.0.0 - xx.xx.2023
 **What's New**
 * "EcmaScript" modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
 * [ContextProvider]: removed support of legacy React context API, as it were announced in 4.1.0 version. `enableLegacyContext` prop was deleted.
@@ -6,6 +6,16 @@
   - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
   - added storing of sorting, columns config, and paging state into url
   - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
+
+* [ApiContext]: removed the code which handles `/auth/login` for the apps, which doesn't handle this themselves.
+  If an app doesn't handle `/auth/login correctly`, this needs to be implemented implicitly. There are several options:
+
+  - Handle /auth/login path server-side. Server should log in user (via redirects to SSO), and - after success, return the following HTML:
+    `<script>window.opener && window.opener.postMessage("authSuccess", "*")</script>`
+  - Handle /auth/login path client-side. The simplest method is to add the following to the index.js:
+    `window.opener && window.location.pathname === '/auth/login' && window.opener.postMessage("authSuccess", "*");`
+  - If an app implements UUI-based login pages, they need to run the following code after successful login: 
+    `window.opener && window.opener.postMessage("authSuccess", "*")`
 
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
 * [Dropdown]: added a 400ms delay to the submenu's close and open triggers
