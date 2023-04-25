@@ -6,6 +6,7 @@ import { IconContainer } from '../layout';
 import css from './PickerToggler.scss';
 import { i18n } from '../i18n';
 import { useCallback } from 'react';
+import { getMaxItems } from './helpers';
 
 export interface PickerTogglerProps<TItem = any, TId = any>
     extends IPickerToggler<TItem, TId>,
@@ -92,7 +93,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const renderItems = () => {
-        const maxItems = props.maxItems || props.maxItems === 0 ? props.maxItems : 100;
+        const maxItems = getMaxItems(props.maxItems);
         if (props.selectedRowsCount > maxItems) {
             return props.renderItem?.({
                 value: i18n.pickerToggler.createItemValue(props.selectedRowsCount, props.entityName || ''),

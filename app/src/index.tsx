@@ -37,7 +37,6 @@ export class UuiEnhancedApp extends React.Component {
                 history={ history }
                 gaCode="UA-132675234-1"
                 skinContext={ promoSkinContext }
-                enableLegacyContext={ false }
             >
                 <App />
                 <Snackbar />
