@@ -41,26 +41,6 @@ export const commonControlColors: EpamColor[] = [
     ...allEpamPrimaryColors, ...allEpamAdditionalColors, 'white', 'night200', 'night300', 'night400', 'night500', 'night600',
 ];
 
-export type EpamButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600';
-export const allEpamButtonColors: EpamButtonColorType[] = [
-    ...allEpamPrimaryColors,
-    'white',
-    'night500',
-    'night600',
-];
-
-export type EpamBadgeColorType = EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
-export const allEpamBadgeColors: EpamBadgeColorType[] = [
-    ...allEpamPrimaryColors,
-    ...allEpamAdditionalColors,
-    'white',
-    'night200',
-    'night300',
-    'night400',
-    'night500',
-    'night600',
-];
-
 export type FontStyle = 'sans' | 'sans-semibold' | 'sans-light';
 export const allFontStyles: FontStyle[] = [
     'sans', 'sans-semibold', 'sans-light',
@@ -70,11 +50,6 @@ export const allFontStyles: FontStyle[] = [
 export interface ColorMod {
     /** Component color */
     color?: EpamColor;
-}
-
-export interface ButtonColorMod {
-    /** Component color */
-    color?: EpamButtonColorType;
 }
 
 export interface SizeMod {
