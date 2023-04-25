@@ -1,12 +1,16 @@
 import { withMods } from '@epam/uui-core';
 import * as types from '../../components/types';
 import { Badge as UuiBadge, BadgeMods as UuiBadgeMods, BadgeProps as UuiBadgeProps } from '@epam/uui';
+import { EpamAdditionalColor, EpamPrimaryColor, allEpamAdditionalColors, allEpamPrimaryColors } from '../types';
 import css from './Badge.scss';
 
 const defaultSize = '18';
 
+export type EpamBadgeColorType = EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night200' | 'night300' | 'night400' | 'night500' | 'night600';
+export const allEpamBadgeColors: EpamBadgeColorType[] = [...allEpamPrimaryColors, ...allEpamAdditionalColors, 'white', 'night200', 'night300', 'night400', 'night500', 'night600'];
+
 export interface BadgeMods {
-    color?: types.EpamBadgeColorType;
+    color?: EpamBadgeColorType;
     shape?: types.ControlShape;
     fill?: UuiBadgeMods['fill'] | 'white' | 'light' | 'none';
     size?: UuiBadgeMods['size'] | '12';

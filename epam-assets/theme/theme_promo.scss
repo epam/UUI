@@ -681,17 +681,26 @@
 
     /* ------------------------------------ */
 
-    :global(.tooltip-contrast) {
+    /** tooltip-gray90 is deprecated and will be removed in future */
+    :global(.tooltip-gray90) {
         --uui-tooltip-bg: var(--uui-surface-inverted);
         --uui-tooltip-text: var(--uui-contrast);
     }
 
-    :global(.tooltip-default) {
+    :global(.tooltip-contrast),
+    :global(.tooltip-gray80) {
+        --uui-tooltip-bg: var(--uui-surface-contrast);
+        --uui-tooltip-text: var(--uui-contrast);
+    }
+
+    :global(.tooltip-default),
+    :global(.tooltip-white)  {
         --uui-tooltip-bg: var(--uui-surface);
         --uui-tooltip-text: var(--uui-text-primary);
     }
 
-    :global(.tooltip-critical) {
+    :global(.tooltip-critical),
+    :global(.tooltip-red)  {
         --uui-tooltip-bg: var(--uui-error-dark);
         --uui-tooltip-text: var(--uui-contrast);
     }
