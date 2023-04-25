@@ -57,9 +57,6 @@ export class ApiContext extends BaseContext implements IApiContext {
     }
 
     private runListeners() {
-        // If this window is opened by another app in another window to re-login, tell it that Auth was passed ok
-        window.opener && window.location.pathname === this.props.apiReloginPath && window.opener.postMessage('authSuccess', '*');
-
         // If we opened another window to relogin and check auth - close this window and resume
         window.addEventListener('message', (e) => {
             if (e.data == 'authSuccess') {
