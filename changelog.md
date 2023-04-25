@@ -17,6 +17,8 @@
   - If an app implements UUI-based login pages, they need to run the following code after successful login: 
     `window.opener && window.opener.postMessage("authSuccess", "*")`
 
+* [DataTable]: deprecated column `shrink` property was removed, as it were announced in 4.9.0 version.
+
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
 * [Dropdown]: added a 400ms delay to the submenu's close and open triggers
 * [FiltersPanel]: hide 'Add filter' button, if all filters `isAlwaysVisible`
