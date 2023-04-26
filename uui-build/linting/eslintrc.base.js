@@ -57,8 +57,16 @@ module.exports = {
             extends: ['react-app/jest'],
             env: { 'jest/globals': true },
             rules: {
-                'testing-library/render-result-naming-convention': 0,
                 'import/no-extraneous-dependencies': 0,
+                /**
+                 * Don't want to force usage of userEvent because it slows down the performance of tests (with user-event it's ~3 times slower).
+                 * https://github.com/testing-library/user-event/issues/650
+                 */
+                'testing-library/prefer-user-event': 0,
+                'testing-library/render-result-naming-convention': 0,
+                'testing-library/no-node-access': 1,
+                'testing-library/no-manual-cleanup': 2,
+                'testing-library/prefer-explicit-assert': 2,
                 ...turnOffEslintRulesToBeFixed(),
             },
         }, {
