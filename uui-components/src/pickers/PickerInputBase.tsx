@@ -1,36 +1,8 @@
 import * as React from 'react';
 import { Placement } from '@popperjs/core';
 import { Modifier } from 'react-popper';
-import {
-    DropdownBodyProps,
-    DropdownState,
-    UuiContexts,
-    UuiContext,
-    IHasPlaceholder,
-    IDisableable,
-    DataRowProps,
-    ICanBeReadonly,
-    isMobile,
-    mobilePopperModifier,
-    IDropdownToggler,
-    DataSourceListProps,
-    IHasIcon,
-    IHasRawProps,
-    PickerBaseProps,
-    PickerFooterProps,
-    ICanFocus,
-    CX,
-} from '@epam/uui-core';
-import {
-    PickerBase,
-    PickerBaseState,
-    handleDataSourceKeyboard,
-    PickerTogglerProps,
-    DataSourceKeyboardParams,
-    PickerBodyBaseProps,
-    dataSourceStateToValue,
-    applyValueToDataSourceState,
-} from './index';
+import { DropdownBodyProps, DropdownState, UuiContexts, UuiContext, IHasPlaceholder, IDisableable, DataRowProps, ICanBeReadonly, isMobile, mobilePopperModifier, IDropdownToggler, DataSourceListProps, IHasIcon, IHasRawProps, PickerBaseProps, PickerFooterProps, ICanFocus, CX } from '@epam/uui-core';
+import { PickerBase, PickerBaseState, handleDataSourceKeyboard, PickerTogglerProps, DataSourceKeyboardParams, PickerBodyBaseProps, dataSourceStateToValue, applyValueToDataSourceState } from './index';
 import { Dropdown } from '../overlays';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
@@ -162,7 +134,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     toggleBodyOpening = (opened: boolean) => {
         if (this.state.opened === opened || (this.props.minCharsToSearch && (this.state.dataSourceState.search?.length ?? 0) < this.props.minCharsToSearch)) return;
-        if (this.props.editMode == 'modal') {
+        if (this.props.editMode === 'modal') {
             this.toggleModalOpening(opened);
         } else {
             this.toggleDropdownOpening(opened);
@@ -278,8 +250,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: propDisableClear,
             icon,
             iconPosition,
-            prefix,
-            suffix,
         } = this.props;
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
@@ -297,8 +267,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             autoFocus,
             icon,
             iconPosition,
-            prefix,
-            suffix,
             onFocus: this.props.onFocus,
             onClear: this.handleClearSelection,
             onBlur: this.props.onBlur,

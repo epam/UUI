@@ -40,8 +40,6 @@ const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInp
             0, 1, 3, 5,
         ],
     })
-    .prop('prefix', { examples: [{ value: 'Prefix: ' }] })
-    .prop('suffix', { examples: [{ value: 'Suffix' }] })
     .prop('editMode', { examples: ['dropdown', 'modal'], isRequired: false, defaultValue: 'dropdown' })
     .prop('isInvalid', { examples: [true] })
     .prop('isSingleLine', { examples: [true] })
