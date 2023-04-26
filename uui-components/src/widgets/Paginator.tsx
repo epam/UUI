@@ -36,10 +36,8 @@ const SIMPLE_PAGINATION_ITEMS = 7;
 
 export class Paginator extends React.Component<PaginatorProps> {
     static contextType = UuiContext;
-
     context: UuiContexts;
     // size = this.props.size || '36';
-
     isFirst = () => {
         return this.props.value === FIRST_PAGE;
     };

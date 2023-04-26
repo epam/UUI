@@ -23,7 +23,6 @@ interface IconPickerState {
 
 export class IconPicker extends React.Component<IconPickerProps, IconPickerState> {
     state: IconPickerState = {};
-
     renderItem(item: IconList<Icon>) {
         let itemText;
 

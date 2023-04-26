@@ -14,9 +14,7 @@ const GIT_LINK = 'https://github.com/epam/UUI/issues';
 
 export class ContactsBlock extends React.Component {
     private emailClickEvent = analyticsEvents.welcome.email();
-
     private submitIssueClickEvent = analyticsEvents.welcome.submitIssue();
-
     render() {
         return (
             <Measure bounds>

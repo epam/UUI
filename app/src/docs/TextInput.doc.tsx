@@ -5,7 +5,6 @@ import {
 
 export class TextInputDoc extends BaseDocsBlock {
     title = 'Text Input';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/textInput.props.ts',

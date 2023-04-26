@@ -3,7 +3,6 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class FileUploadDoc extends BaseDocsBlock {
     title = 'File Upload';
-
     renderContent() {
         return (
             <>

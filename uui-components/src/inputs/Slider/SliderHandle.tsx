@@ -27,7 +27,6 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
     };
 
     sliderHandle: HTMLElement | null;
-
     componentDidMount() {
         document.addEventListener('mousemove', this.handleMouseMove as React.EventHandler<any>);
         document.addEventListener('mouseup', this.handleMouseUp as React.EventHandler<any>);

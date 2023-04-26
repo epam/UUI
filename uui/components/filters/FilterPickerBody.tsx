@@ -18,7 +18,6 @@ export class FilterPickerBody<TItem, TId> extends PickerInputBase<TItem, TId, Fi
     }
 
     toggleModalOpening(opened: boolean) {}
-
     renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
         return <PickerItem title={ this.getName(item) } size="36" { ...rowProps } />;
     };

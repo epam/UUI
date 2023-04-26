@@ -8,9 +8,7 @@ export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListView
 
 export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: ArrayDataSourceProps<TItem, TId, TFilter>;
-
     tree: ITree<TItem, TId>;
-
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         super(props);
         this.setProps(props);

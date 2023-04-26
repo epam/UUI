@@ -23,29 +23,17 @@ interface ScaleState {
 
 export class TimelineController {
     dragStartViewport: Viewport;
-
     currentViewport: Viewport;
-
     targetViewport: Viewport;
-
     options: TimelineControllerOptions;
-
     screenMouseX = 0;
-
     screenMouseY = 0;
-
     dragStartMouseX = 0;
-
     isDragging = false;
-
     isFrameScheduled = false;
-
     scalesVisibility: { [key: string]: ScaleState } = {};
-
     shiftPercent: number = 0.3;
-
     onViewportChange: (newViewport: Viewport) => void;
-
     constructor(viewport?: Viewport, options?: TimelineControllerOptions, onViewportChange?: (newViewport: Viewport) => void) {
         if (!viewport) {
             const viewportValue = localStorage.getItem('timeline')
@@ -75,7 +63,6 @@ export class TimelineController {
     }
 
     handlers: TimelineRenderHandler[] = [];
-
     public subscribe(handler: TimelineRenderHandler) {
         this.handlers.push(handler);
     }
@@ -313,7 +300,6 @@ export class TimelineController {
     }
 
     private lastRenderTimestamp = 0;
-
     private scheduleUpdate() {
         if (this.isFrameScheduled) {
             return;

@@ -5,7 +5,6 @@ import {
 
 export class NumericInputDoc extends BaseDocsBlock {
     title = 'NumericInput';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/numericInput.props.ts',

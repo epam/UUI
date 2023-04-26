@@ -5,7 +5,6 @@ import {
 
 export class TextPlaceholderDoc extends BaseDocsBlock {
     title = 'TextPlaceholder';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/typography/textPlaceholder.props.tsx',

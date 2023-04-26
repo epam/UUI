@@ -5,7 +5,6 @@ import {
 
 export class PanelDoc extends BaseDocsBlock {
     title = 'Panel';
-
     getPropsDocPath() {
         return {
             [UUI4]: './app/src/docs/_props/epam-promo/components/layout/FlexItems/panel.props.tsx',

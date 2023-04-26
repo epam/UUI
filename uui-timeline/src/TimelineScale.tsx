@@ -22,7 +22,6 @@ const moveAmount = 0.7;
 
 export class TimelineScale extends BaseTimelineCanvasComponent<TimelineScaleProps> {
     private isMouseDown: boolean = false;
-
     componentDidMount() {
         super.componentDidMount();
         window.addEventListener('mouseup', this.handleWindowMouseUp);

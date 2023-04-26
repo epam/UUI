@@ -19,9 +19,7 @@ export interface DataPickerBodyProps extends PickerBodyBaseProps {
 
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
-
     searchLens = this.lens.prop('search');
-
     renderNotFound() {
         if (this.props.renderNotFound) {
             return this.props.renderNotFound();

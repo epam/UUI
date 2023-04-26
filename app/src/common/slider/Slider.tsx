@@ -12,15 +12,12 @@ export interface SliderProps extends IAnalyticableOnChange<number> {
 
 export class Slider extends React.Component<SliderProps> {
     public static contextType = UuiContext;
-
     public context: UuiContexts;
-
     constructor(props: SliderProps) {
         super(props);
     }
 
     state = { activeSlide: 0 };
-
     handlePreviousClick = () => {
         this.setState({ activeSlide: this.state.activeSlide - 1 });
 

@@ -8,7 +8,6 @@ type ViewCache = Map<DbView<any, any, any, any>, Map<string, ViewCacheItem>>;
 
 export abstract class Db<TTables extends DbTablesSet<TTables>> {
     private viewCache: ViewCache = new Map();
-
     constructor(public tables: TTables, reusedCache?: ViewCache) {
         if (reusedCache) {
             this.viewCache = new Map(reusedCache);
@@ -37,7 +36,6 @@ export abstract class Db<TTables extends DbTablesSet<TTables>> {
     /* Views (cached db projections) */
 
     valueAbsent = Symbol('ValueAbsent');
-
     public runView<TResult, TParams = void, TDependencies = void>(view: DbView<this, TResult, TParams, TDependencies>, params?: TParams) {
         let cache = this.viewCache.get(view);
 

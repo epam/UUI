@@ -5,7 +5,6 @@ import {
 
 export class TimePickerDoc extends BaseDocsBlock {
     title = 'TimePicker';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/timePicker.props.ts',

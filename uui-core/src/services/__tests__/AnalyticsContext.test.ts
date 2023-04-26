@@ -2,7 +2,6 @@ import { AnalyticsContext } from '../AnalyticsContext';
 
 class RouterMock {
     listeners = [] as Function[];
-
     listen(listener: Function) {
         this.listeners.push(listener);
     }
