@@ -133,7 +133,8 @@ it('should render with maximum props', async () => {
 
 ### Reference implementation
 - uui-core/src/helpers/\__tests__/IEditableDebouncer.test.tsx (fake timers)
-- uui/components/datePickers/\__tests__/DatePicker.test.tsx
+- uui-components/src/table/columnsConfigurationModal/\__tests__/columnsConfigurationActions.test.ts (make component testable by extracting state management logic)
+- uui/components/datePickers/\__tests__/DatePicker.test.tsx (react-popper mock usage)
 - uui/components/inputs/\__tests__/NumericInput.test.tsx
 - uui/components/filters/\__tests__/filtersPanel.test.tsx (complex component)
 - uui/components/filters/PresetPanel/\__tests__/presetsPanel.test.tsx (complex component, adaptive panel mock)
