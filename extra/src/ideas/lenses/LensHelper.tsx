@@ -6,9 +6,7 @@ type ArrayElement<ArrayType> = ArrayType extends (infer ElementType)[] ? Element
 
 class EditableLensHelper<T> {
     public value: T;
-
     public onValueChange: (newVal: T) => void;
-
     constructor(editable: IEditable<T>) {
         this.value = editable.value;
         this.onValueChange = editable.onValueChange;

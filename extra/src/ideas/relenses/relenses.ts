@@ -12,13 +12,11 @@ type ActionDispatcherSet<TActions> = { [TActionName in keyof TActions]: ActionDi
 
 class Optic<TState, TActions = {}> {
     actions: TActions;
-
     get() {
         return null as TState;
     }
 
     set(e: TActions) {}
-
     prop<TKey extends keyof TState>(name: TKey): Optic<TState[TKey], {}> {
         return null;
     }
@@ -32,7 +30,6 @@ class Optic<TState, TActions = {}> {
     // }
 
     views<TNewViews>() {}
-
     reducers<TNewActions>(reducersSet: ReducersSet<TNewActions, TState>): Optic<TState, TActions & ActionDispatcherSet<TNewActions>> {
         return null;
     }

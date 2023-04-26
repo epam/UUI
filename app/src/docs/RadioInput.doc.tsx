@@ -5,7 +5,6 @@ import {
 
 export class RadioInputDoc extends BaseDocsBlock {
     title = 'RadioInput';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/radioInput.props.tsx',

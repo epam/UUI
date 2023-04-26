@@ -5,7 +5,6 @@ import {
 
 export class SpinnerDoc extends BaseDocsBlock {
     title = 'Spinner';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/widgets/spinner.props.ts',

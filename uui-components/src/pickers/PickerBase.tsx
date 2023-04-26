@@ -12,11 +12,8 @@ export interface PickerBaseState {
 
 export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TItem, TId>, TState extends PickerBaseState> extends React.Component<TProps, TState> {
     public context: UuiContexts;
-
     state: TState = this.getInitialState();
-
     lens = Lens.onState<PickerBaseState>(this);
-
     componentWillUnmount(): void {
         this.props.dataSource.unsubscribeView(this.handleDataSourceValueChange);
     }

@@ -9,11 +9,8 @@ export interface SchedulerTask {
 
 export class Scheduler {
     scheduled: SchedulerTask[] = [];
-
     running: SchedulerTask[] = [];
-
     complete: SchedulerTask[] = [];
-
     public run(run: () => Promise<any>, isConcurrent = false) {
         return new Promise((resolve, reject) => {
             this.scheduled.push({
@@ -24,7 +21,6 @@ export class Scheduler {
     }
 
     isRunScheduled = false;
-
     private scheduleRun() {
         if (this.isRunScheduled) {
             return;
@@ -37,7 +33,6 @@ export class Scheduler {
     }
 
     tasksRunning = 0;
-
     private runQueues() {
         while (this.scheduled.length > 0) {
             const pendingTask = this.scheduled[0];

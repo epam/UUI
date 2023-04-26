@@ -5,13 +5,9 @@ import type {
 
 export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     name: string;
-
     props?: PropDoc<TProps, keyof TProps>[];
-
     contexts?: DemoContext[];
-
     component: IComponentDocs<TProps>['component'];
-
     constructor(docs: IComponentDocs<TProps>) {
         this.name = docs.name;
         this.props = docs.props || [];

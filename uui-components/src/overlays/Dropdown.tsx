@@ -21,25 +21,15 @@ const isInteractedOutsideDropdown = (e: Event, stopNodes: HTMLElement[]) => {
 
 export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private targetNode: HTMLElement | null = null;
-
     private bodyNode: HTMLElement | null = null;
-
     private lastOpenedMs: number;
-
     private togglerWidth: number;
-
     private togglerHeight: number;
-
     static contextType = UuiContext;
-
     public context: UuiContexts;
-
     private layer: LayoutLayer;
-
     private openDropdownTimerId: NodeJS.Timeout = null;
-
     private closeDropdownTimerId: NodeJS.Timeout = null;
-
     state: DropdownState = {
         opened: this.props.value || false,
         bodyBoundingRect: {

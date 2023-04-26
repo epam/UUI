@@ -3,7 +3,6 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 
 export class AdvancedTablesDoc extends BaseDocsBlock {
     title = 'Advanced Tables';
-
     renderContent() {
         return (
             <>

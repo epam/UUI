@@ -26,15 +26,10 @@ class PureTextEditor extends React.PureComponent<IEditable<string>> {
 
 class Editor extends React.Component<IEditable<FormState>> {
     lens = Lens.onEditableComponent<FormState>(this);
-
     text1Lens = this.lens.prop('text1');
-
     text2Lens = this.lens.prop('text2');
-
     handleReset = () => this.lens.set(initialState);
-
     handleClear = () => this.lens.set(null);
-
     render() {
         return (
             <Panel margin="24" background="white" shadow>

@@ -10,9 +10,7 @@ import { analyticsEvents } from '../analyticsEvents';
 
 export class StartedBlock extends React.Component {
     private forDevelopersEvent = analyticsEvents.welcome.gettingStarted('For developers');
-
     private forDesignersEvent = analyticsEvents.welcome.gettingStarted('For designers');
-
     render() {
         return (
             <div className={ css.layout }>

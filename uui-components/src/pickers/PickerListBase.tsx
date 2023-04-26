@@ -43,11 +43,8 @@ interface LastUsedRec<TId> {
 
 export abstract class PickerListBase<TItem, TId, TProps> extends PickerBase<TItem, TId, PickerListBaseProps<TItem, TId> & TProps, PickerListState<TId>> {
     static contextType = UuiContext;
-
     sessionStartTime = new Date().getTime();
-
     context: UuiContexts;
-
     state: PickerListState<TId> = {
         dataSourceState: { focusedIndex: 0, topIndex: 0, visibleCount: this.getMaxDefaultItems() },
         visibleIds: this.getVisibleIds(),

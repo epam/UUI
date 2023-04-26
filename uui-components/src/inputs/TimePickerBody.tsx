@@ -35,7 +35,8 @@ export class TimePickerBody extends React.Component<TimePickerBodyProps, TimePic
     };
 
     onHoursChange = (newHours: number) => {
-        if (newHours > this.props.format) newHours = this.props.format;
+        const MAX_HOURS = this.props.format || FORMAT_12H;
+        if (newHours > MAX_HOURS) newHours = MAX_HOURS;
         this.setValue(dayjs().set(this.props.value).hour(newHours));
     };
 

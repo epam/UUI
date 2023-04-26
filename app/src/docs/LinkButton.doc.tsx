@@ -5,7 +5,6 @@ import {
 
 export class LinkButtonDoc extends BaseDocsBlock {
     title = 'Link Button';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/buttons/linkButton.props.tsx',

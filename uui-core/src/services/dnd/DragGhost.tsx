@@ -13,11 +13,8 @@ interface DragGhostState extends DndContextState {
 
 export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     private layer: LayoutLayer = null;
-
     state: DragGhostState = {
         isDragging: false,
     };

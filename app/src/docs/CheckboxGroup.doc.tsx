@@ -5,7 +5,6 @@ import {
 
 export class CheckboxGroupDoc extends BaseDocsBlock {
     title = 'CheckboxGroup';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/checkboxGroup.props.ts',

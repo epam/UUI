@@ -6,9 +6,7 @@ import {
 
 export class VPanel extends React.Component<VPanelProps> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     handleClick = (e: React.SyntheticEvent<HTMLDivElement>) => {
         this.props.onClick && !isClickableChildClicked(e) && this.props.onClick(e);
         this.context.uuiAnalytics.sendEvent(this.props.clickAnalyticsEvent);

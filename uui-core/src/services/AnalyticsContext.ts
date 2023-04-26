@@ -8,9 +8,7 @@ interface AnalyticsContextOptions {
 
 export class AnalyticsContext extends BaseContext {
     private readonly router: IRouterContext;
-
     public listeners: IAnalyticsListener[] = [];
-
     constructor(options: AnalyticsContextOptions) {
         super();
 

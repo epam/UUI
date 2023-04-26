@@ -5,7 +5,6 @@ import css from './PanelContext.scss';
 
 export class PanelContext extends React.Component<DemoComponentProps> {
     public static displayName = 'Panel';
-
     render() {
         const { DemoComponent, props } = this.props;
         return (

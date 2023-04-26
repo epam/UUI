@@ -127,6 +127,7 @@ function uuiTsRules() {
                 generics: 'ignore', // ts-specific
             },
         ],
+        '@typescript-eslint/lines-between-class-members': uuiJsRules()['lines-between-class-members'],
         // stylistic - end
     };
 }
@@ -199,6 +200,7 @@ function uuiJsRules() {
                 functions: 'always-multiline',
             },
         ],
+        'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
         // stylistic - end
     };
 }

@@ -2,7 +2,6 @@ import { IMap } from '../../../../types';
 
 export class CompositeKeysMap<TKey, TValue> implements IMap<TKey, TValue> {
     map: Map<string, TValue>;
-
     constructor(original?: CompositeKeysMap<TKey, TValue>) {
         if (original) {
             this.map = new Map(original.map);

@@ -5,9 +5,7 @@ import { ClearNotification } from '@epam/uui';
 
 export class Snackbar extends React.Component<SnackbarProps> {
     public static contextType = UuiContext;
-
     public context: UuiContexts;
-
     public componentDidMount() {
         this.context.uuiNotifications.subscribe(() => this.forceUpdate());
     }

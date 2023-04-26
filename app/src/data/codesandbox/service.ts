@@ -17,7 +17,6 @@ export type CodesandboxFilesRecord = Record<string, string>;
 
 class CodesandboxService {
     files: CodesandboxFilesRecord;
-
     constructor() {
         this.files = {};
     }

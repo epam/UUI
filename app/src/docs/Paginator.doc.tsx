@@ -5,7 +5,6 @@ import {
 
 export class PaginatorDoc extends BaseDocsBlock {
     title = 'Paginator';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/widgets/paginator.props.tsx',

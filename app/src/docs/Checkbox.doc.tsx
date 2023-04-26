@@ -5,7 +5,6 @@ import {
 
 export class CheckboxDoc extends BaseDocsBlock {
     title = 'Checkbox';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/checkbox.props.tsx',

@@ -24,7 +24,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     };
 
     cellRef = React.createRef<HTMLElement>();
-
     toggleSort = (e: React.MouseEvent) => {
         if (isClickableChildClicked(e) || !this.props.column.isSortable) return;
 
