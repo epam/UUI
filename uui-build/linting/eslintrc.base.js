@@ -64,7 +64,7 @@ module.exports = {
                  */
                 'testing-library/prefer-user-event': 0,
                 'testing-library/render-result-naming-convention': 0,
-                'testing-library/no-node-access': 0,
+                'testing-library/no-node-access': 1,
                 'testing-library/no-manual-cleanup': 2,
                 'testing-library/prefer-explicit-assert': 2,
                 ...turnOffEslintRulesToBeFixed(),
