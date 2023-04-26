@@ -11,9 +11,7 @@ export interface BaseTimelineCanvasComponentProps {
 
 export abstract class BaseTimelineCanvasComponent<TProps extends BaseTimelineCanvasComponentProps, TState = {}> extends React.Component<TProps, TState> {
     canvas: HTMLCanvasElement | null;
-
     protected canvasHeight = 60;
-
     componentDidMount() {
         this.props.timelineController.subscribe(this.handleRenderCanvas);
         this.handleRenderCanvas(this.props.timelineController.getTransform());
@@ -37,7 +35,6 @@ export abstract class BaseTimelineCanvasComponent<TProps extends BaseTimelineCan
     };
 
     protected abstract renderCanvas(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
-
     protected renderCanvasElement(props?: any): JSX.Element {
         const width = this.props.timelineController.currentViewport.widthPx;
         return (

@@ -8,9 +8,7 @@ export type TextProps = IHasCX & IHasChildren & IClickable & IAnalyticableClick 
 
 export class Text extends React.Component<TextProps> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     onClick = (e: React.MouseEvent) => {
         this.props.onClick && this.props.onClick(e);
         this.context.uuiAnalytics.sendEvent(this.props.clickAnalyticsEvent);

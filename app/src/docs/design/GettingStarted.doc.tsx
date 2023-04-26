@@ -6,7 +6,6 @@ import css from '../assets/DownloadsDoc.scss';
 
 export class GettingStartedForDesignersDoc extends BaseDocsBlock {
     title = 'Getting Started';
-
     renderDocTitle() {
         return (
             <FlexRow>

@@ -3,7 +3,6 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 
 export class PresetsPanelDoc extends BaseDocsBlock {
     title = 'Presets Panel';
-
     renderContent() {
         return (
             <>

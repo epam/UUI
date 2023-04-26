@@ -5,7 +5,6 @@ import {
 
 export class LabeledInputDoc extends BaseDocsBlock {
     title = 'Labeled Input';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/labeledInput.props.tsx',

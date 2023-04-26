@@ -3,7 +3,6 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 
 export class DropdownMenuDoc extends BaseDocsBlock {
     title = 'DropdownMenu';
-
     renderContent() {
         return (
             <>

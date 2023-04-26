@@ -10,7 +10,6 @@ interface DemoComponentState {
 
 export class VerticalTabButtonContext extends React.Component<DemoComponentProps<ButtonProps & TabButtonMods>, DemoComponentState> {
     public static displayName = 'VerticalTabButtonContext';
-
     state: DemoComponentState = {
         activeTab: 'Main',
     };

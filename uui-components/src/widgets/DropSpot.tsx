@@ -23,7 +23,6 @@ interface DropSpotState {
 
 export class DropSpot extends React.Component<DropSpotProps, DropSpotState> {
     entriesCount = 0;
-
     componentDidMount() {
         window.addEventListener('dragenter', this.onDragStart);
         window.addEventListener('dragleave', this.onDragEnd);

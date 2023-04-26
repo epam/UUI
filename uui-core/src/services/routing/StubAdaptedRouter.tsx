@@ -2,7 +2,6 @@ import { IRouterContext, Link } from '../../types';
 
 export class StubAdaptedRouter implements IRouterContext {
     private warningMessage = 'Warning: [RouterContext] there is not Router Adapter provided. StubAdapter is used';
-
     throwError() {
         if (process.env.NODE_ENV !== 'test') {
             console.error(this.warningMessage);

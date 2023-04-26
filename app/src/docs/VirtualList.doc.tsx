@@ -5,7 +5,6 @@ import {
 
 export class VirtualListDoc extends BaseDocsBlock {
     title = 'VirtualList';
-
     renderContent() {
         return (
             <>

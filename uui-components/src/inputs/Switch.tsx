@@ -31,9 +31,7 @@ export interface SwitchProps
 
 export class Switch extends React.Component<SwitchProps> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     toggle = () => {
         this.props.onValueChange(!this.props.value);
 

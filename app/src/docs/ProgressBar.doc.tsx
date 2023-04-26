@@ -5,7 +5,6 @@ import {
 
 export class ProgressBarDoc extends BaseDocsBlock {
     title = 'Loaders';
-
     renderContent() {
         return (
             <>

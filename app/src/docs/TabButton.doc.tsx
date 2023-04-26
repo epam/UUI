@@ -5,7 +5,6 @@ import {
 
 export class TabButtonDoc extends BaseDocsBlock {
     title = 'Tab Button';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/buttons/tabButton.props.ts',

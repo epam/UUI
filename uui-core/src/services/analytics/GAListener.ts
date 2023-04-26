@@ -2,7 +2,6 @@ import { AnalyticsEvent, IAnalyticsListener } from '../../types/contexts';
 
 export class GAListener implements IAnalyticsListener {
     public gaCode: string;
-
     constructor(gaCode: string) {
         this.gaCode = gaCode;
 

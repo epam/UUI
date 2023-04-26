@@ -5,7 +5,6 @@ import {
 
 export class IconContainerDoc extends BaseDocsBlock {
     title = 'Icon Container';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/iconContainer.props.tsx',

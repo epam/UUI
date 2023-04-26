@@ -26,7 +26,6 @@ export class ModalOperationCancelled {}
 
 export class ModalContext extends BaseContext implements IModalContext {
     private operations: ModalOperation[] = [];
-
     constructor(private layoutCtx: LayoutContext) {
         super();
     }

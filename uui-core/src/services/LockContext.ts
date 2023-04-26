@@ -8,9 +8,7 @@ export class Lock {
 
 export class LockContext extends BaseContext {
     private currentLock: Lock | null;
-
     private unblock: any;
-
     constructor(private router: IRouterContext) {
         super();
     }

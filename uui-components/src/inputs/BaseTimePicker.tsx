@@ -51,9 +51,7 @@ export abstract class BaseTimePicker<TProps extends BaseTimePickerProps> extends
     };
 
     abstract renderInput: (props: IDropdownToggler) => React.ReactNode;
-
     abstract renderBody: (props: DropdownBodyProps) => React.ReactNode;
-
     componentDidUpdate(prevProps: BaseTimePickerProps) {
         if (this.props.value !== prevProps.value) {
             this.setState({ ...this.state, value: valueToTimeString(this.props.value, this.props.format) });

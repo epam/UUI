@@ -5,7 +5,6 @@ import css from './DefaultContext.scss';
 
 export class DefaultContext extends React.Component<DemoComponentProps, any> {
     public static displayName = 'Default';
-
     render() {
         const { DemoComponent, props } = this.props;
 

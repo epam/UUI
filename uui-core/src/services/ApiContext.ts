@@ -41,13 +41,9 @@ export type BlockTypes = 'attachment' | 'iframe' | 'image';
 
 export class ApiContext extends BaseContext implements IApiContext {
     private queue: ApiCall[] = [];
-
     private isRunScheduled = false;
-
     public status: ApiStatus = 'idle';
-
     public recoveryReason: ApiRecoveryReason | null = null;
-
     constructor(private props: ApiContextProps, private analyticsCtx?: AnalyticsContext) {
         super();
         this.props.apiReloginPath = this.props.apiReloginPath ?? '/auth/login';

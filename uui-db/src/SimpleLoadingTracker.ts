@@ -2,9 +2,7 @@ import { ILoadingTracker } from './types';
 
 export class SimpleLoadingTracker<TRequest, TResult> implements ILoadingTracker<TRequest, TResult> {
     private set: Set<string> = new Set();
-
     constructor() {}
-
     private getKey(request: TRequest) {
         return JSON.stringify(request);
     }

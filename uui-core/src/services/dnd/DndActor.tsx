@@ -38,13 +38,9 @@ const initialState: DndActorState = {
 
 export class DndActor<TSrcData = any, TDstData = any> extends React.Component<DndActorProps<TSrcData, TDstData>, DndActorState> {
     state = initialState;
-
     static contextType = UuiContext;
-
     public context: UuiContexts;
-
     dndRef = React.createRef<HTMLElement>();
-
     constructor(props: DndActorProps<TSrcData, TDstData>) {
         super(props);
     }

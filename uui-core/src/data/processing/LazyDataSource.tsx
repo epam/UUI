@@ -8,9 +8,7 @@ export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewPr
 
 export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: LazyDataSourceProps<TItem, TId, TFilter>;
-
     cache: ListApiCache<TItem, TId, TFilter> = null;
-
     constructor(props: LazyDataSourceProps<TItem, TId, TFilter>) {
         super(props);
         this.props = props;
@@ -18,7 +16,6 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     }
 
     public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {}
-
     public getById = (id: TId) => {
         return this.cache.byId(id);
     };

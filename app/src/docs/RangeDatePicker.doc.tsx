@@ -5,7 +5,6 @@ import {
 
 export class RangeDatePickerDoc extends BaseDocsBlock {
     title = 'RangeDatePicker';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/datePickers/rangeDatePicker.props.tsx',
