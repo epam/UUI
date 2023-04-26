@@ -46,7 +46,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         return (item as any)['parentId'];
     };
 
-    setItem(): void {
+    setItem(item: TItem): void {
         // TODO
     }
 
