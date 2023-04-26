@@ -81,13 +81,7 @@ describe('PickerInput', () => {
                 sorting={ { direction: 'desc', field: 'level' } }
                 searchPosition="body"
                 minBodyWidth={ 900 }
-                renderNotFound={ ({ search, onClose = jest.fn }) => {
-                    return (
-                        <div onClick={ onClose } role="button">
-                            {`No found ${search}`}
-                        </div>
-                    );
-                } }
+                renderNotFound={ () => null }
                 renderFooter={ (props) => <div>{props as unknown as ReactNode}</div> }
                 cascadeSelection
                 dropdownHeight={ 48 }
