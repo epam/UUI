@@ -1,1 +1,21 @@
-"[{\"data\":{},\"type\":\"paragraph\",\"children\":[{\"text\":\"Basic Accordion usage`sd\"}]}]"
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Basic Accordion usage",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
