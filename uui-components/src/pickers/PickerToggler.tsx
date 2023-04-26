@@ -30,8 +30,6 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     disableSearch?: boolean;
     disableClear?: boolean;
     minCharsToSearch?: number;
-    prefix?: React.ReactNode;
-    suffix?: React.ReactNode;
 }
 
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
@@ -176,7 +174,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             onKeyDown={ props.onKeyDown }
             { ...props.rawProps }
         >
-            {props.prefix && <span className={ uuiElement.prefixInput }>{props.prefix}</span>}
             <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }>
                 {props.iconPosition !== 'right' && icon}
                 {props.pickerMode !== 'single' && renderItems()}
@@ -198,7 +195,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                     {props.isDropdown && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" onClick={ closeOpenedPickerBody } />}
                 </div>
             )}
-            {props.suffix && <span className={ uuiElement.suffixInput }>{props.suffix}</span>}
         </div>
     );
 }
