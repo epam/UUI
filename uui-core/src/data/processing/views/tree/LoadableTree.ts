@@ -12,7 +12,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
     }
 
     public async loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<ITree<TItem, TId>> {
-        let byId = this.byId;
+        let byId = this.cloneMap(this.byId);
         let iteration = 0;
         while (true) {
             const missingIds = new Set<TId>();
@@ -39,12 +39,12 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             } else {
                 const ids = Array.from(missingIds);
                 const response = await options.api({ ids });
-                if (response.items.length != ids.length) {
+                if (response.items.length !== ids.length) {
                     throw new Error("LazyTree: api does not returned requested items. Check that you handle 'ids' argument correctly.");
                 }
 
                 // Clone before first update
-                byId = byId == this.byId ? this.cloneMap(byId) : byId;
+                byId = byId === this.byId ? this.cloneMap(byId) : byId;
 
                 response.items.forEach((item) => {
                     byId.set(this.getId(item), item);
@@ -57,7 +57,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             }
         }
 
-        if (byId == this.byId) {
+        if (byId === this.byId) {
             return this;
         } else {
             return this.newInstance(this.params, byId, this.byParentId, this.nodeInfoById);
@@ -83,10 +83,10 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             const currentNodeInfo = this.nodeInfoById.get(parentId);
             const { ids, nodeInfo, loadedItems } = await this.loadItems(currentIds, currentNodeInfo, options, parentId, parent, value, remainingRowsCount, parentLoadAll);
 
-            if (ids != currentIds || nodeInfo != currentNodeInfo) {
-                byParentId = byParentId == this.byParentId ? this.cloneMap(byParentId) : byParentId;
+            if (ids !== currentIds || nodeInfo !== currentNodeInfo) {
+                byParentId = byParentId === this.byParentId ? this.cloneMap(byParentId) : byParentId;
                 byParentId.set(parentId, ids);
-                nodeInfoById = nodeInfoById == this.nodeInfoById ? this.cloneMap(nodeInfoById) : nodeInfoById;
+                nodeInfoById = nodeInfoById === this.nodeInfoById ? this.cloneMap(nodeInfoById) : nodeInfoById;
                 nodeInfoById.set(parentId, nodeInfo);
             }
 
@@ -94,7 +94,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
             if (loadedItems.length > 0) {
                 // Clone the map if it's not cloned yet
-                byId = byId == this.byId ? this.cloneMap(byId) : byId;
+                byId = byId === this.byId ? this.cloneMap(byId) : byId;
 
                 loadedItems.forEach((item) => {
                     const id = this.getId(item);
@@ -132,7 +132,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
 
                         childrenPromises.push(childPromise);
 
-                        if (options.fetchStrategy == 'sequential') {
+                        if (options.fetchStrategy === 'sequential') {
                             const loadedCount = await childPromise;
                             remainingRowsCount -= loadedCount;
                             recursiveLoadedCount += loadedCount;
@@ -141,7 +141,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                 }
 
                 const childCounts = await Promise.all(childrenPromises);
-                if (options.fetchStrategy == 'parallel') {
+                if (options.fetchStrategy === 'parallel') {
                     const recursiveChildrenCount = childCounts.reduce((a, b) => a + b, 0);
                     recursiveLoadedCount += recursiveChildrenCount;
                     remainingRowsCount -= recursiveChildrenCount;
