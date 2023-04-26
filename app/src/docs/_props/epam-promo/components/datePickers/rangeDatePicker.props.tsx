@@ -132,6 +132,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
     })
     .prop('disableClear', { examples: [true], defaultValue: false })
     .prop('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] })
+    .prop('onOpenChange', { examples: (ctx) => [ctx.getCallback('onOpenChange')] })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export default RangeDatePickerDoc;

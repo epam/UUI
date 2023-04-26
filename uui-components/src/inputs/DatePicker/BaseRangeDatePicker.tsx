@@ -153,6 +153,8 @@ export abstract class BaseRangeDatePicker<TProps extends BaseRangeDatePickerProp
             inFocus: value ? focus : null,
         });
 
+        this.props?.onOpenChange?.(value);
+
         // if (this.props.getValueChangeAnalyticsEvent) {
         //     const event = this.props.getValueChangeAnalyticsEvent(value, this.state.isOpen);
         //     this.context.uuiAnalytics.sendEvent(event);
