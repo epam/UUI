@@ -11,11 +11,8 @@ const uuiDataTableHeaderRow = {
 
 export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHeaderRowProps<TItem, TId>> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
-
     sortLens = this.lens.prop('sorting');
-
     filterLens = this.lens.prop('filter');
-
     onCellDrop = (params: DropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>, index: number) => {
         const columnsConfig = getColumnsConfig(this.props.columns, this.props.value.columnsConfig);
 

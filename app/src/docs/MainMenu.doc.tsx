@@ -5,7 +5,6 @@ import {
 
 export class MainMenuDoc extends BaseDocsBlock {
     title = 'Main Menu';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/navigation/mainMenu.props.tsx',

@@ -88,9 +88,7 @@ export const ErrorNotification = React.forwardRef<HTMLDivElement, DefaultNotific
 
 export class ClearNotification extends React.Component<{}> {
     public static contextType = UuiContext;
-
     public context: UuiContexts;
-
     render() {
         return (
             <div className={ cx(css.notificationWrapper, css.clearButton) }>

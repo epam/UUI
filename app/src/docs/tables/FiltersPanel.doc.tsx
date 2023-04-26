@@ -3,7 +3,6 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 
 export class FiltersPanelDoc extends BaseDocsBlock {
     title = 'Filters Panel';
-
     renderContent() {
         return (
             <>

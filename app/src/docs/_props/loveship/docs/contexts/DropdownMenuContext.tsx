@@ -14,7 +14,6 @@ interface DropdownComponentState {
 
 export class DropdownMenuContext extends React.Component<DemoComponentProps, DropdownComponentState> {
     public static displayName = 'DropdownMenu';
-
     state = {
         checkboxValue: false,
         searchValue: '',

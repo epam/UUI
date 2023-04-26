@@ -33,7 +33,6 @@ const maxValue = 5;
 
 export class SliderRating extends React.Component<SliderRatingProps<number>> {
     handlerWidth: number;
-
     getScaleIcon = (rating: number) => {
         switch (rating) {
             case 1:

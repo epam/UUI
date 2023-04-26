@@ -4,9 +4,7 @@ import {
 
 export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IDataSource<TItem, TId, TFilter> {
     protected views = new Map<any, IDataSourceView<TItem, TId, TFilter>>();
-
     constructor(public props: BaseListViewProps<TItem, TId, TFilter>) {}
-
     abstract getById(id: TId): TItem;
     abstract setItem(item: TItem): void;
     abstract getView(
@@ -14,6 +12,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
         options?: Partial<BaseListViewProps<TItem, TId, TFilter>>
     ): IDataSourceView<TItem, TId, TFilter>;
+
     abstract useView(
         value: DataSourceState<TFilter, TId>,
         onValueChange: (val: DataSourceState<TFilter, TId>) => void,
@@ -25,7 +24,6 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
     };
 
     public abstract setProps(newProps: BaseListViewProps<TItem, TId, TFilter>): void;
-
     public unsubscribeView(onValueChange: (val: any) => void) {
         this.views.delete(onValueChange);
     }

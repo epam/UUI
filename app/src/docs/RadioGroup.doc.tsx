@@ -5,7 +5,6 @@ import {
 
 export class RadioGroupDoc extends BaseDocsBlock {
     title = 'RadioGroup';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/radioGroup.props.ts',

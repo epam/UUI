@@ -5,7 +5,6 @@ import {
 
 export class AdaptivePanelDoc extends BaseDocsBlock {
     title = 'Adaptive panel';
-
     renderContent() {
         return (
             <>

@@ -5,7 +5,6 @@ import {
 
 export class TextAreaDoc extends BaseDocsBlock {
     title = 'TextArea';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/textArea.props.ts',

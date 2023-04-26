@@ -4,7 +4,6 @@ import { IEditable } from '@epam/uui-core';
 
 export class DbEntityLens<TEntities, TEntityName extends keyof TEntities> {
     constructor(private ref: DbRef<TEntities>, private entityName: TEntityName, private pattern: Partial<TEntities[TEntityName]>) {}
-
     get(): TEntities[TEntityName] {
         const query: IQueryable<TEntities[TEntityName]> = (this.ref.current as any)[this.entityName](this.pattern);
         return query.one();

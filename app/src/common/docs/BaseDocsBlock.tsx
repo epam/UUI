@@ -35,7 +35,6 @@ interface BaseDocsBlockState {
 
 export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockState> {
     propsDS: ArrayDataSource;
-
     constructor(props: any) {
         super(props);
 
@@ -73,13 +72,11 @@ export abstract class BaseDocsBlock extends React.Component<any, BaseDocsBlockSt
 
     abstract title: string;
     abstract renderContent(): React.ReactNode;
-
     getPropsDocPath(): DocPath {
         return null;
     }
 
     onTableStateChange = (newState: DataSourceState) => this.setState({ tableState: newState });
-
     apiColumns: DataColumnProps<{ name: string; value: string; comment: string }>[] = [
         {
             key: 'name',

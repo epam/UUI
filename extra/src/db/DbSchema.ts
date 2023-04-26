@@ -8,11 +8,8 @@ import { objectKeys } from './helpers';
 
 export class DbSchema<T> {
     public entitiesType: T;
-
     private dbProto: any = {};
-
     private blankState: DbState = null;
-
     private reducerToMethod(fn: Function) {
         const proto = this.dbProto;
         return function (this: any) {
@@ -68,13 +65,9 @@ type DbFieldSchemaRec<T> = { name: Extract<keyof T, string> } & DbFieldSchema<T>
 
 export class DbEntitySchema<T> {
     public fieldsList: DbFieldSchemaRec<T>[];
-
     public fkFields: DbFieldSchemaRec<T>[];
-
     public pkFields: DbFieldSchemaRec<T>[];
-
     public keyFields: DbFieldSchemaRec<T>[];
-
     constructor(public fields: DbEntityFieldsSchema<T>) {
         this.fieldsList = objectKeys(fields).map((name) => ({ name, ...(fields[name] as any) }));
         this.fkFields = this.fieldsList.filter((f) => f.fk);
@@ -93,6 +86,5 @@ export class DbEntitySchema<T> {
     }
 
     public getKey: (entity: T) => any;
-
     public argsToKey: (args: any) => any;
 }

@@ -41,7 +41,6 @@ export interface PickerBodyValue<TSelection> {
 
 export abstract class DatePickerBodyBase<TSelection, TProps> extends React.Component<DatePickerBodyBaseProps<TSelection> & TProps> {
     abstract renderDatePicker: () => React.ReactElement<Element>;
-
     onMonthClick = (newDate: Dayjs) => {
         this.props.setDisplayedDateAndView(newDate, 'DAY_SELECTION');
     };

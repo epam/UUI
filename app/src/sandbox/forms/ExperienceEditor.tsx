@@ -19,7 +19,6 @@ const years = new Array(50)
 
 export class ExperienceEditor extends React.Component<ExperienceEditorProps> {
     lens = Lens.onEditableComponent<PersonExperienceItem[]>(this).default([]);
-
     yearsDataSource = new ArrayDataSource<{ name: string }, string>({
         items: years,
     });

@@ -5,7 +5,6 @@ import {
 
 export class AvatarDoc extends BaseDocsBlock {
     title = 'Avatar';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/widgets/avatar.props.tsx',
