@@ -229,6 +229,10 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
             return this.getUnknownRow(id, index, []);
         }
 
+        if (item === null) {
+            return this.getLoadingRow('_loading_' + id, index, []);
+        }
+
         return this.getRowProps(item, index);
     };
 

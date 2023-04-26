@@ -40,7 +40,7 @@ export class LazyLoadedMap<TKey, TValue> {
      * Pass false to understand if element is fetched, without forcing it to fetch.
      */
     public get(key: TKey, fetchIfAbsent: boolean = true): MapRecord<TValue | null | undefined> {
-        let item: MapRecord<TValue> = this.map.get(key) ?? { status: UNKNOWN, value: null };
+        let item: MapRecord<TValue> = this.map.get(key) || { status: UNKNOWN, value: null };
 
         if (fetchIfAbsent && item.status === UNKNOWN) {
             item = { status: PENDING, value: null };
@@ -71,8 +71,16 @@ export class LazyLoadedMap<TKey, TValue> {
 
         return this.runBatch(keys)
             .then((result) => {
+                const resultKeys: any[] = [];
                 result.forEach(([key, value]) => {
                     this.set(key, value);
+                    resultKeys.push(key);
+                });
+
+                keys.forEach((key) => {
+                    if (!resultKeys.includes(key)) {
+                        this.map.set(key, { status: FAILED, value: null });
+                    }
                 });
                 this.onBatchComplete && this.onBatchComplete();
             })
