@@ -3,7 +3,6 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 
 export class ModalContextDoc extends BaseDocsBlock {
     title = 'Modal Context';
-
     renderContent() {
         return (
             <>

@@ -140,9 +140,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
     }
 
     propExamples: { [propName: string]: PropExample<any>[] } = {};
-
     initialProps: any;
-
     componentDidUpdate(prevProps: any, prevState: any) {
         if (this.state.selectedPropsIds !== prevState.selectedPropsIds) {
             this.setState({

@@ -13,7 +13,6 @@ interface EmbeddedAppProps<TProps = any> {
 
 export class EmbeddedWidget<TProps = any> extends React.Component<EmbeddedAppProps<TProps>, EmbeddedAppState> {
     widgetNode: HTMLElement;
-
     state: EmbeddedAppState = {
         isLoading: true,
     };

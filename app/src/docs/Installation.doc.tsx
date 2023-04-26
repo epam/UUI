@@ -3,7 +3,6 @@ import { EditableDocContent, BaseDocsBlock } from '../common';
 
 export class InstallationDoc extends BaseDocsBlock {
     title = 'Installation';
-
     renderContent() {
         return (
             <>

@@ -24,14 +24,12 @@ export type LoadingStatus = typeof UNKNOWN | typeof LOADING | typeof PENDING | t
  */
 export class LazyLoadedMap<TKey, TValue> {
     map: Map<TKey, MapRecord<TValue>> = new Map();
-
     /**
      * Creates new LazyLoadedMap
      * @param runBatch Will be called with all missing Keys was requested with get() method on previous JS tick.
      * @param onBatchComplete Will be called each time another batch is completed, and result is added to the map.
      */
     constructor(private runBatch: LazyLoadedMapLoadCallback<TKey, TValue>, private onBatchComplete?: () => void) {}
-
     /**
      * Gets an element from map.
      * If the element is missing, it will be scheduled for loading at the next JS tick, and null will be returned.

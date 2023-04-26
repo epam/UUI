@@ -9,7 +9,6 @@ import { LoveshipColorsDoc } from './loveship/LoveshipColors.doc';
 
 export class ColorsPageDoc extends BaseDocsBlock {
     title = 'Colors';
-
     renderDocTitle() {
         return (
             <FlexRow>

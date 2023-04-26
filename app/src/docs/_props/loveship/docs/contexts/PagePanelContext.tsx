@@ -15,7 +15,6 @@ interface DemoComponentState {
 
 export class PagePanelContext extends React.Component<DemoComponentProps, DemoComponentState> {
     public static displayName = 'Page panel';
-
     state = {
         totalPages: items.length,
     };

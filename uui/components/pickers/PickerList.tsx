@@ -18,11 +18,8 @@ PickerModalOptions<TItem, TId> & {
 
 export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerListProps<TItem, TId>> {
     static contextType = UuiContext;
-
     sessionStartTime = new Date().getTime();
-
     context: UuiContexts;
-
     renderRow = (row: DataRowProps<TItem, TId>) => {
         return <PickerListItem getName={ (item) => this.getName(item) } { ...row } key={ row.rowKey } />;
     };
@@ -46,7 +43,6 @@ export class PickerList<TItem, TId> extends PickerListBase<TItem, TId, PickerLis
     };
 
     defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props } />;
-
     render() {
         const view = this.getView();
         const viewProps = view.getListProps();

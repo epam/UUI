@@ -15,7 +15,6 @@ interface UploadFileTogglerProps extends IHasRawProps<React.HTMLAttributes<HTMLD
 
 export class UploadFileToggler extends React.Component<UploadFileTogglerProps> {
     fileInput = React.createRef<HTMLInputElement>();
-
     onClick = () => {
         this.fileInput.current?.click();
     };

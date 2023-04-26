@@ -7,7 +7,6 @@ import {
 
 export class TabButtonContext extends React.Component<DemoComponentProps<ButtonProps & TabButtonMods>, any> {
     public static displayName = 'TabButtonContext';
-
     state = {
         activeTab: 'Main',
     };

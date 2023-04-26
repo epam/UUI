@@ -31,9 +31,7 @@ export interface AnchorProps
 
 export class AnchorImpl extends ButtonBase<AnchorProps> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
         !this.props.isDisabled && handleSpaceKey(e, this.clickHandler);
     };

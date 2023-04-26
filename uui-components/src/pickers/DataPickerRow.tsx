@@ -9,7 +9,6 @@ interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
 
 export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProps<TItem, TId>> {
     rowNode = React.createRef<HTMLDivElement>();
-
     componentDidMount() {
         if (this.props.onFocus) {
             this.rowNode.current?.addEventListener('mouseenter', this.handleMouseEnter);

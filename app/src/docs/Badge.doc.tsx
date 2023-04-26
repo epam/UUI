@@ -5,7 +5,6 @@ import {
 
 export class BadgeDoc extends BaseDocsBlock {
     title = 'Badge';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/widgets/badge.props.ts',

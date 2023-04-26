@@ -17,7 +17,6 @@ export class ResizableContext extends React.Component<DemoComponentProps, DemoCo
     };
 
     public static displayName = 'Resizable';
-
     render() {
         const { DemoComponent, props } = this.props;
 

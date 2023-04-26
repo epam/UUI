@@ -13,6 +13,5 @@ export interface IxSetQuery<T> {
 
 export class IxSet<T> {
     constructor(private items: T[], prev?: IxSet<T>) {}
-
     public query(q: IxSetQuery<T>) {}
 }

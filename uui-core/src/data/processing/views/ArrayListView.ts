@@ -16,17 +16,11 @@ export interface ArrayListViewProps<TItem, TId, TFilter> extends BaseArrayListVi
 
 export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     protected props: ArrayListViewProps<TItem, TId, TFilter>;
-
     originalTree: ITree<TItem, TId>;
-
     searchTree: ITree<TItem, TId>;
-
     filteredTree: ITree<TItem, TId>;
-
     sortedTree: ITree<TItem, TId>;
-
     refreshCache: boolean;
-
     constructor(protected editable: IEditable<DataSourceState<TFilter, TId>>, props: ArrayListViewProps<TItem, TId, TFilter>) {
         super(editable, props);
         this.props = props;

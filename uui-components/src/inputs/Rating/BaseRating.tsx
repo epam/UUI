@@ -24,7 +24,6 @@ interface BaseRatingState {
 
 export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRatingState> {
     container: HTMLElement | null;
-
     constructor(props: BaseRatingProps<number>) {
         super(props);
         this.state = {};

@@ -5,7 +5,6 @@ import {
 
 export class MultiSwitchDoc extends BaseDocsBlock {
     title = 'MultiSwitch';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/multiSwitch.props.tsx',

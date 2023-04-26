@@ -26,7 +26,6 @@ interface TextOverflowProps extends IHasCX {
 
 export class TextOverflow extends React.Component<TextOverflowProps> {
     textContainer: HTMLElement | null = null;
-
     render() {
         let content = '';
         if (this.textContainer) {

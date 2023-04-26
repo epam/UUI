@@ -15,21 +15,13 @@ import { ListLoadingTracker, ListLoadingTrackerOptions } from './ListLoadingTrac
 
 export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>> {
     private base: TDb;
-
     private log: { patch: DbPatch<TTables> }[] = [];
-
     private autoSave = true;
-
     private savedPoint = 0;
-
     private tempIdMap: TempIdMap<TTables>;
-
     public db: TDb;
-
     protected throttleSaveMs = 1000;
-
     public readonly idMap: IClientIdsMap;
-
     constructor(public blank: TDb) {
         this.db = blank;
         this.base = blank;
@@ -153,9 +145,7 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     /* Update subscriptions (aka live views) */
 
     private lastSubscriptionId = 1;
-
     private subscriptions: Map<number, DbSubscription<any, any>> = new Map();
-
     public subscribe<TValue, TParams, TDependencies>(
         view: DbView<TDb, TValue, TParams, TDependencies>,
         params: TParams,
@@ -185,7 +175,6 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     }
 
     updateHandlers: (() => any)[] = [];
-
     public onUpdate(handler: () => any) {
         this.subscribe(
             {
@@ -210,7 +199,6 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     /* Error Subscriptions */
 
     public saveErrorHandlers: ((request: DbPatch<TTables>, error: any) => void)[] = [];
-
     public onSaveError(handler: (request: DbPatch<TTables>, error: any) => void) {
         this.saveErrorHandlers.push(handler);
     }
@@ -246,7 +234,6 @@ export class DbRef<TTables extends DbTablesSet<TTables>, TDb extends Db<TTables>
     };
 
     loaders: Loader<TTables, any, any>[] = [];
-
     protected makeLoader<TResponse, TRequest>(options: LoaderOptions<TTables, TResponse, TRequest>) {
         const loader = new Loader<TTables, TResponse, TRequest>(this as any, () => new SimpleLoadingTracker<TRequest, TResponse>(), options);
         this.loaders.push(loader);

@@ -5,7 +5,6 @@ import {
 
 export class DatePickerDoc extends BaseDocsBlock {
     title = 'DatePicker';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/datePickers/datePicker.props.tsx',
