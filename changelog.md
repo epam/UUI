@@ -30,8 +30,9 @@
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
 * [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
 * [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
-* [PickerInput]: fixed single select dropdown body closing by the collapse icon if any value was selected and removed deprecated suffix & prefix
-* [TextInput]: removed deprecated suffix & prefix.
+* [PickerInput]: fixed single select dropdown body closing by the collapse icon if any value was selected.
+* [PickerInput]: removed deprecated suffix & prefix props
+* [TextInput]: removed deprecated suffix & prefix props.
 * [Carousel]:  the old component has been deleted from loveship.
 * [Tooltip]: colors 'night900' and 'gray90' are deprecated and will be removed in the future release. Use 'night800' and 'gray80' instead.
 
