@@ -34,8 +34,6 @@ const TextInputDoc = new DocBuilder<TextInputProps & TextInputMods>({ name: 'Tex
         ],
         type: 'number',
     })
-    .prop('prefix', { examples: [{ value: 'Prefix: ' }] })
-    .prop('suffix', { examples: [{ value: 'Suffix' }] })
     .prop('value', {
         examples: [
             { value: 'Hello, World!', isDefault: true }, { name: 'long text', value: 'kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa kolbasa' }, { name: 'long word', value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' },

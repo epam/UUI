@@ -166,7 +166,7 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
 
     toggleBodyOpening = (opened: boolean) => {
         if (this.state.opened === opened || (this.props.minCharsToSearch && (this.state.dataSourceState.search?.length ?? 0) < this.props.minCharsToSearch)) return;
-        if (this.props.editMode == 'modal') {
+        if (this.props.editMode === 'modal') {
             this.toggleModalOpening(opened);
         } else {
             this.toggleDropdownOpening(opened);
@@ -282,8 +282,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             disableClear: propDisableClear,
             icon,
             iconPosition,
-            prefix,
-            suffix,
         } = this.props;
         const searchPosition = this.getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
@@ -301,8 +299,6 @@ export abstract class PickerInputBase<TItem, TId, TProps> extends PickerBase<TIt
             autoFocus,
             icon,
             iconPosition,
-            prefix,
-            suffix,
             onFocus: this.props.onFocus,
             onClear: this.handleClearSelection,
             onBlur: this.props.onBlur,

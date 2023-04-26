@@ -46,8 +46,4 @@ export interface TextInputCoreProps
     inputMode?: React.InputHTMLAttributes<HTMLInputElement>['inputMode'];
     /** HTML ID attribute for input */
     id?: string;
-    /** Prefix to render before the input. Can be used to display in-place labels */
-    prefix?: React.ReactNode;
-    /** Suffix to render after the input. Can be used to display unit or currency */
-    suffix?: React.ReactNode;
 }
