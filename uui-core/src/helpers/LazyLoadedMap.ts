@@ -39,8 +39,8 @@ export class LazyLoadedMap<TKey, TValue> {
      * @param fetchIfAbsent Should we enqueue the key for loading, if it's missing. True by default.
      * Pass false to understand if element is fetched, without forcing it to fetch.
      */
-    public get(key: TKey, fetchIfAbsent: boolean = true): TValue | null | undefined {
-        let item: MapRecord<TValue> = this.map.get(key) || { status: UNKNOWN, value: null };
+    public get(key: TKey, fetchIfAbsent: boolean = true): MapRecord<TValue | null | undefined> {
+        let item: MapRecord<TValue> = this.map.get(key) ?? { status: UNKNOWN, value: null };
 
         if (fetchIfAbsent && item.status === UNKNOWN) {
             item = { status: PENDING, value: null };
@@ -48,7 +48,7 @@ export class LazyLoadedMap<TKey, TValue> {
             this.fetch();
         }
 
-        return item.value;
+        return item;
     }
 
     /**
@@ -71,8 +71,8 @@ export class LazyLoadedMap<TKey, TValue> {
 
         return this.runBatch(keys)
             .then((result) => {
-                result.forEach((entry) => {
-                    this.set(entry[0], entry[1]);
+                result.forEach(([key, value]) => {
+                    this.set(key, value);
                 });
                 this.onBatchComplete && this.onBatchComplete();
             })

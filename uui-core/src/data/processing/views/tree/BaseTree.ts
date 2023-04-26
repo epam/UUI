@@ -92,11 +92,11 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
             if (!item) {
                 break;
             }
-            id = this.getParentId(item);
-            if (!id) {
+            const parentId = this.getParentId(item);
+            if (!parentId) {
                 break;
             }
-            parentIds.unshift(id);
+            parentIds.unshift(parentId);
         }
         return parentIds;
     }
@@ -150,7 +150,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getTotalRecursiveCount() {
         let count = 0;
-        for (const [id, info] of this.nodeInfoById) {
+        for (const [, info] of this.nodeInfoById) {
             if (info.count == null) {
                 // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
                 // return;

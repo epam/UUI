@@ -1,4 +1,4 @@
-import { LazyListView, LazyListViewProps } from './views';
+import { LazyListView, LazyListViewProps, NOT_FOUND_RECORD } from './views';
 import { ListApiCache } from './ListApiCache';
 import { BaseDataSource } from './BaseDataSource';
 import { useEffect } from 'react';
@@ -17,10 +17,14 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         this.initCache();
     }
 
-    public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {}
+    public setProps() {}
 
     public getById = (id: TId): TItem | void => {
-        return this.cache.byId(id);
+        const item = this.cache.byId(id);
+        if (item === NOT_FOUND_RECORD) {
+            return;
+        }
+        return item;
     };
 
     private initCache() {
