@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus,
-} from '@epam/uui-core';
+import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, DataRowProps, cx, IHasRawProps, ICanFocus } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './PickerToggler.scss';
 import { i18n } from '../i18n';
@@ -9,12 +7,7 @@ import { useCallback } from 'react';
 import { getMaxItems } from './helpers';
 
 export interface PickerTogglerProps<TItem = any, TId = any>
-    extends IPickerToggler<TItem, TId>,
-    ICanFocus<HTMLElement>,
-    IHasIcon,
-    IHasCX,
-    ICanBeReadonly,
-    IHasRawProps<React.HTMLAttributes<HTMLElement>> {
+    extends IPickerToggler<TItem, TId>, ICanFocus<HTMLElement>, IHasIcon, IHasCX, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     cancelIcon?: Icon;
     dropdownIcon?: Icon;
     autoFocus?: boolean;
