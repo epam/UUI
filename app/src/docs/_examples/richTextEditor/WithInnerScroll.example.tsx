@@ -57,7 +57,7 @@ export default function WithInnerScrollExample() {
     ];
 
     return (
-        <Panel rawProps={ { style: { height: '350px' } } }>
+        <Panel rawProps={ { style: { width: '100%', height: '350px' } } }>
             <SlateEditor
                 value={ value }
                 onValueChange={ setValue }
