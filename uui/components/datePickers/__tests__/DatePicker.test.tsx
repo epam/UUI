@@ -4,31 +4,20 @@ import {
 } from '@epam/test-utils';
 import { DatePicker, DatePickerProps } from '../DatePicker';
 
-jest.mock('react-popper', () => {
-    const PopperJS = jest.requireActual('react-popper');
-    const Popper = function PopperMock({ children }: any) {
+jest.mock('react-popper', () => ({
+    ...jest.requireActual('react-popper'),
+    Popper: function PopperMock({ children }: any) {
         return children({
             ref: jest.fn,
-            placement: 'bottom-start',
-            style: {
-                position: 'fixed',
-                top: 0,
-                right: 'auto',
-                bottom: 'auto',
-                left: 0,
-            },
             update: jest.fn(),
+            style: {},
+            arrowProps: { ref: jest.fn },
+            placement: 'bottom-start',
             isReferenceHidden: false,
-            arrowProps: {
-                ref: jest.fn,
-            },
         });
-    };
-    return {
-        ...PopperJS,
-        Popper,
-    };
-});
+    },
+}));
+
 async function setupDatePicker(params: { value: string | null; format: string }) {
     const { format, value } = params;
 
