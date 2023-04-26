@@ -39,6 +39,7 @@
    - Arrange - setup any prerequisites (prepare test data, render components, prepare mocks)
    - Act - fire some actions, invoke functions, etc.
    - Assert - verify the result using "expect" statements.
+7. It's often useful to create test plan or test matrix before writing any actual tests. It will help to create better tests for a component with minimum effort.
 
 ### Writing testable code
 1. Follow software development best practices and avoid anti-patterns. Code which follows best practices isn't only maintainable and reliable, but it's also testable.
@@ -127,9 +128,6 @@ it('should render with maximum props', async () => {
 | 2 | How do I test only part of the object/array?                                                        | Use partial matchers like "objectContaining", "arrayContaining", etc. More details here: https://jestjs.io/docs/expect#expectobjectcontainingobject                                    |
 | 3 | How to test component which requires svg as an input?                                               | Use SvgMock:<br/>  import { SvgMock } from '@epam/test-utils';<br/><Test icon={ SvgMock } />                                                                                           |
 | 4 | Can I use DOM api such as querySelector for testing?                                                | It's strongly not recommended. Such tests are more fragile, e.g. it may fail after some internal changes which doesn't affect functionality of the component (e.g. css class renaming) |
-
-### Hints
-1. It's often useful to create test plan or test matrix before writing any actual tests. It will help to create better tests for a component with minimum effort.
 
 ### Reference implementation
 - uui-core/src/helpers/\__tests__/IEditableDebouncer.test.tsx (fake timers)
