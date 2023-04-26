@@ -62,6 +62,9 @@ export interface BaseRangeDatePickerProps extends IEditable<RangeDatePickerValue
     /** Called when component looses input focus */
     onBlur?: (e: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => void;
 
+    /** Called when component is opened/closed */
+    onOpenChange?: (isOpen: boolean) => void
+
     /** rawProps as HTML attributes */
     rawProps?: {
         from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
