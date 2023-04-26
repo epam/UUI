@@ -115,8 +115,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                     <div className={ css.container }>
                         <div>
                             <div className={ css.counter }>
-                                Days:
-                                {getRangeLength(value)}
+                                {`Days: ${getRangeLength(value)}`}
                             </div>
                         </div>
                         <div className={ css.buttonGroup }>
