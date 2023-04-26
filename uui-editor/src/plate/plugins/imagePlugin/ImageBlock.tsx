@@ -17,6 +17,7 @@ import {
     TElement,
     PlateEditor,
     findNodePath,
+    useResizableStore,
 } from '@udecode/plate';
 
 import { FileUploadResponse } from "@epam/uui-core";
@@ -147,11 +148,23 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
         return !clientWidth || (clientWidth === element.width);
     }, [element.width]);
 
-    // caption
+    const [currentWidth, setCurrentWidth] = useResizableStore().use.width();
+
     const caption = useMemo(() => {
-        const isCaptionEnabled = !!element.data && element.data?.imageSize?.width >= MIN_CAPTION_WIDTH;
+        let isCaptionEnabled = false;
+        if (currentWidth && typeof currentWidth === 'number') {
+            isCaptionEnabled = currentWidth >= MIN_CAPTION_WIDTH;
+        }
+
         return isCaptionEnabled ? { disabled: false } : { disabled: true }
-    }, [element.data]);
+    }, [currentWidth]);
+
+    const resizableProps = useMemo(() => ({
+        ...RESIZABLE_PROPS,
+        onLoad: (event: any) => {
+            setCurrentWidth((event.target as HTMLImageElement).width);
+        }
+    }), []);
 
     if (!editor) {
         return null;
@@ -178,7 +191,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, ImageEle
                             align={ align }
                             caption={ caption }
                             style={ IMAGE_STYLES }
-                            resizableProps={ RESIZABLE_PROPS }
+                            resizableProps={ resizableProps }
                         />
                     </div>
                 </div>
