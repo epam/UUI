@@ -5,7 +5,6 @@ import {
 
 export class AccordionDoc extends BaseDocsBlock {
     title = 'Accordion';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/accordion.props.tsx',

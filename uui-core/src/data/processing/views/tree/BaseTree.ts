@@ -15,9 +15,7 @@ export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
 
 export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     protected getId: (item: TItem) => TId;
-
     protected getParentId: (item: TItem) => TId;
-
     protected constructor(
         protected params: TreeParams<TItem, TId>,
         protected readonly byId: IMap<TId, TItem>,
@@ -237,7 +235,6 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     protected static truePredicate = () => true;
-
     public static blank<TItem, TId>(params: TreeParams<TItem, TId>) {
         return new (this as any)(
             params,
@@ -259,7 +256,6 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     abstract patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: (newItem: TItem, existingItem: TItem) => number): ITree<TItem, TId>;
-
     abstract cascadeSelection(
         currentSelection: TId[],
         selectedId: TId,
@@ -271,11 +267,8 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     ): TId[];
 
     abstract load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
-
     abstract loadMissing<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
-
     abstract loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<ITree<TItem, TId>>;
-
     abstract filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
     abstract search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
     abstract sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>): ITree<TItem, TId>;

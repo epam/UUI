@@ -40,9 +40,7 @@ const getStateFromValue = (value: string | null, format: string) => {
 
 export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends React.Component<TProps, DatePickerState> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     state: DatePickerState = {
         isOpen: false,
         view: 'DAY_SELECTION',
@@ -51,7 +49,6 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
 
     abstract renderInput(props: IDropdownToggler): React.ReactNode;
     abstract renderBody(props: DropdownBodyProps): React.ReactNode;
-
     static getDerivedStateFromProps(props: any, state: DatePickerState): DatePickerState | null {
         if (props.value !== state.selectedDate) {
             return {
@@ -109,7 +106,6 @@ export abstract class BaseDatePicker<TProps extends DatePickerCoreProps> extends
     };
 
     setDisplayedDateAndView = (displayedDate: Dayjs, view: ViewType) => this.setState({ ...this.state, displayedDate: displayedDate, view: view });
-
     handleCancel = () => {
         this.handleValueChange(null);
         this.setState({ inputValue: null, selectedDate: null });

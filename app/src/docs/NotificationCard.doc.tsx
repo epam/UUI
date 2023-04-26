@@ -5,7 +5,6 @@ import {
 
 export class NotificationCardDoc extends BaseDocsBlock {
     title = 'Notification Card';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/overlays/notificationCard.props.tsx',

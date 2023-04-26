@@ -23,13 +23,9 @@ export interface ListApiResponse<TItem> {
  */
 export class ListApiCache<TItem, TId, TFilter> {
     itemsById: LazyLoadedMap<string, TItem>;
-
     api: LazyDataSourceApi<TItem, TId, TFilter>;
-
     getId: (item: TItem) => TId;
-
     onUpdate: () => void;
-
     constructor(options: ListApiSettings<TItem, TId, TFilter>) {
         this.api = options.api;
         this.getId = options.getId;

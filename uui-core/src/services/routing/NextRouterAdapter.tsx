@@ -28,9 +28,7 @@ const parseQuery = (link: Link): Link => {
 
 export class NextRouterAdapter implements IRouterContext {
     private isBlockRun: boolean;
-
     private blockedUrl: Link | null;
-
     constructor(private router: any) {
         this.isBlockRun = false;
         this.blockedUrl = null;

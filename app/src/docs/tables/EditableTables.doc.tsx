@@ -3,7 +3,6 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 
 export class EditableTablesDoc extends BaseDocsBlock {
     title = 'Editable Tables';
-
     renderContent() {
         return (
             <>

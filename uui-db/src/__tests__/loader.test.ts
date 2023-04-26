@@ -16,7 +16,6 @@ describe('db - loaders', () => {
         }
 
         public saveCallback = jest.fn(() => Promise.resolve({ submit: {} }));
-
         public apiCallback = jest.fn((rq: { ids: string[]; t?: number }) =>
             delay(rq?.t).then(() => ({ items: sampleData.users.filter((u) => !rq?.ids || rq.ids.includes(u.id)) })));
 

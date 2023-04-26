@@ -54,7 +54,6 @@ const plugins = [
 
 export class EditableDocContent extends React.Component<EditableDocContentProps, EditableDocContentState> {
     static plugins = plugins;
-
     state: EditableDocContentState = {
         content: null,
         isLoading: true,

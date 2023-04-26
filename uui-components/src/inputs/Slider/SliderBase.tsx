@@ -44,7 +44,6 @@ export const uuiSlider = {
 
 export abstract class SliderBase<TSelection, TState extends SliderBaseState> extends React.Component<SliderBaseProps<TSelection>, TState> {
     slider: HTMLElement | null;
-
     componentDidMount() {
         this.setState({ valueWidth: this.slider && this.slider.offsetWidth / (this.props.max - this.props.min) });
         document.addEventListener('mouseup', this.handleMouseUp);

@@ -17,11 +17,8 @@ export interface LoaderResult<TRequest> extends LoadingState<TRequest> {
 
 export class Loader<TTables extends DbTablesSet<TTables>, TResult, TRequest> {
     private currentRequests: Set<Promise<void>> = new Set();
-
     public loaded: ILoadingTracker<TRequest, TResult>;
-
     private loadedAndLoading: ILoadingTracker<TRequest, TResult>;
-
     constructor(
         private dbRef: DbRef<TTables, any>,
         private getTracker: () => ILoadingTracker<TRequest, TResult>,

@@ -5,9 +5,7 @@ interface ErrorCatchProps extends IHasChildren {}
 
 export class ErrorCatch extends React.Component<ErrorCatchProps> {
     static contextType = UuiContext;
-
     public context: UuiContexts;
-
     constructor(props: ErrorCatchProps) {
         super(props);
     }

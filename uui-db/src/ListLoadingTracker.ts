@@ -15,9 +15,7 @@ export interface ListLoadingTrackerOptions<TItem, TResponse> {
 export class ListLoadingTracker<TItem, TRequest extends DataQuery<TItem> = DataQuery<TItem>, TResponse = LazyDataSourceApiResponse<TItem>>
 implements ILoadingTracker<TRequest, TResponse> {
     private cache: Map<string, ListRecord<TItem>> = new Map();
-
     private extractList: (res: TResponse) => LazyDataSourceApiResponse<TItem>;
-
     constructor(private options?: ListLoadingTrackerOptions<TItem, TResponse>) {
         this.extractList = options?.extractList || ((r: any) => r);
     }

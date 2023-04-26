@@ -8,7 +8,6 @@ export interface DemoCanvasBarsProps extends BaseTimelineCanvasComponentProps {
 
 export class DemoCanvasBars extends BaseTimelineCanvasComponent<DemoCanvasBarsProps> {
     canvasHeight = 30;
-
     protected renderCanvas(ctx: CanvasRenderingContext2D, t: TimelineTransform): void {
         ctx.clearRect(0, 0, t.widthMs, this.canvasHeight);
 

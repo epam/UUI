@@ -108,7 +108,6 @@ const assets = {
 
 export class DownloadsDoc extends BaseDocsBlock {
     title = 'Downloads';
-
     renderDocTitle() {
         return (
             <FlexRow>

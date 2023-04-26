@@ -5,7 +5,6 @@ import {
 
 export class PickerListDoc extends BaseDocsBlock {
     title = 'PickerList';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/pickers/pickerList.props.tsx',

@@ -5,7 +5,6 @@ import {
 
 export class PickerInputDoc extends BaseDocsBlock {
     title = 'Picker Input';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/pickers/pickerInput.props.tsx',

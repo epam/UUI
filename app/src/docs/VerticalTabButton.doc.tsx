@@ -5,7 +5,6 @@ import {
 
 export class VerticalTabButtonDoc extends BaseDocsBlock {
     title = 'Vertical Tab Button';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/buttons/verticalTabButton.props.ts',

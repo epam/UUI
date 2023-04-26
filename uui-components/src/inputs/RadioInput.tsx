@@ -36,9 +36,7 @@ export interface RadioInputProps
 
 export class RadioInput extends React.Component<RadioInputProps> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.props.onValueChange(!this.props.value);
 
