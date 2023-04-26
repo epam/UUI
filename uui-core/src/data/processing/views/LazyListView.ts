@@ -225,11 +225,11 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
     public getById = (id: TId, index: number) => {
         const item = this.cache.byId(id);
-        if (item !== null) {
+        if (item !== null) { // TODO: fix check for null, it can be a valid value, replace with NOT_FOUND_RECORD inside lazy cache
             return this.getRowProps(item, index);
-        } else {
-            return this.getLoadingRow('_loading_' + id, index, []);
         }
+
+        return this.getUnknownRow(id, index, []);
     };
 
     // Wrap props.api to update items in the items store

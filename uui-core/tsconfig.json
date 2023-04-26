@@ -1,5 +1,6 @@
 {
   "extends": "../tsconfig.json",
+  "strictNullChecks": true,
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "./build"

@@ -42,7 +42,7 @@ export class ListApiCache<TItem, TId, TFilter> {
      * @param id Item ID
      * @param fetchIfAbsent Pass false to avoid auto-fetching missing item.
      */
-    public byId(id: TId, fetchIfAbsent: boolean = true) {
+    public byId(id: TId, fetchIfAbsent: boolean = true): TItem | null | undefined {
         return this.itemsById.get(JSON.stringify(id), fetchIfAbsent);
     }
 

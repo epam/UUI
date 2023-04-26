@@ -39,7 +39,7 @@ export class LazyLoadedMap<TKey, TValue> {
      * @param fetchIfAbsent Should we enqueue the key for loading, if it's missing. True by default.
      * Pass false to understand if element is fetched, without forcing it to fetch.
      */
-    public get(key: TKey, fetchIfAbsent: boolean = true): TValue | null {
+    public get(key: TKey, fetchIfAbsent: boolean = true): TValue | null | undefined {
         let item: MapRecord<TValue> = this.map.get(key) || { status: UNKNOWN, value: null };
 
         if (fetchIfAbsent && item.status === UNKNOWN) {

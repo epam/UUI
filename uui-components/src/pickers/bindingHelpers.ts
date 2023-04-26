@@ -27,7 +27,7 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId, 
     dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) {
         if (dsState && Array.isArray(dsState.checked) && dsState.checked && dsState.checked.length > 0) {
             if (props.valueType === 'entity') {
-                return dsState.checked.map((id) => dataSource && dataSource.getById(id));
+                return dsState.checked.map((id) => dataSource && dataSource.getById(id)); // TODO: discuss !
             }
             return dsState.checked;
         } else {

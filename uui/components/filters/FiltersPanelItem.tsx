@@ -13,6 +13,8 @@ import {
     FilterPredicateName,
     getSeparatedValue,
     mobilePopperModifier,
+    DataRowProps,
+    PickerFilterConfig,
 } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
@@ -153,6 +155,18 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         return predicate ? props.value?.[predicate] : props.value;
     };
 
+    const getName = (item: DataRowProps<any, any>, footerProps: PickerFilterConfig<any>) => {
+        if (item.isUnknown) {
+            return 'Unknown';
+        }
+
+        if (item.isLoading) {
+            return <TextPlaceholder />;
+        }
+
+        return footerProps.getName ? footerProps.getName(item.value) : item.value.name;
+    };
+
     const getTogglerValue = () => {
         const currentValue = getValue();
         const defaultFormat = 'MMM DD, YYYY';
@@ -167,7 +181,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                     ? currentValue?.slice(0, 2).map((i: any) => {
                         const item = view.getById(i, null);
                         isLoading = item.isLoading;
-                        return item.isLoading ? <TextPlaceholder /> : props.getName ? props.getName(item.value) : item.value.name;
+                        return getName(item, props);
                     })
                     : [i18n.filterToolbar.pickerInput.emptyValueCaption];
 
@@ -189,11 +203,13 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             }
             case 'singlePicker': {
                 const view = props.dataSource.getView({}, forceUpdate);
-                const item = currentValue !== null && currentValue !== undefined && view.getById(currentValue, null);
-                if (!item) {
+                if (currentValue === null || currentValue === undefined) {
                     return { selection: i18n.filterToolbar.pickerInput.emptyValueCaption };
                 }
-                const selection = item.isLoading ? <TextPlaceholder /> : props.getName ? props.getName(item.value) : item.value.name;
+
+                const item = view.getById(currentValue, null);
+                const selection = getName(item, props);
+
                 return { selection };
             }
             case 'datePicker': {

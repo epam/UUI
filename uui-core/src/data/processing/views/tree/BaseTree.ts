@@ -1,7 +1,7 @@
 import { DataSourceState, IMap, DataRowPathItem } from '../../../../types';
 import { CompositeKeysMap } from './CompositeKeysMap';
 import {
-    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo,
+    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, NOT_FOUND_RECORD, TreeNodeInfo,
 } from './ITree';
 import { TreeParams } from './ITree';
 
@@ -62,7 +62,11 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         return this.getRootIds().map((id) => this.byId.get(id)!);
     }
 
-    public getById(id: TId) {
+    public getById(id: TId): TItem | typeof NOT_FOUND_RECORD {
+        if (!this.byId.has(id)) {
+            return NOT_FOUND_RECORD;
+        }
+
         return this.byId.get(id);
     }
 
