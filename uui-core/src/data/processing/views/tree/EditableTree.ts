@@ -32,7 +32,6 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
 
             if (!existingItem || existingItem !== item) {
                 newById.set(id, item);
-
                 const existingItemParentId = existingItem ? this.getParentId(existingItem) : undefined;
                 if (!existingItem || parentId !== existingItemParentId) {
                     const children = newByParentId.get(parentId) ?? [];
@@ -254,17 +253,16 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         const parentId = this.getParentId(newItem);
         const prevParentId = existingItem ? this.getParentId(existingItem) : undefined;
 
-        let patchedChildren: TId[] = [];
         if (!children || children === this.byParentId.get(parentId)) {
-            patchedChildren = children ? [...children] : [];
+            children = children ? [...children] : [];
         }
 
         if ((!existingItem || (existingItem && parentId !== prevParentId)) && comparator) {
-            return this.pasteItemIntoChildrenList(newItem, patchedChildren, comparator, byId);
+            return this.pasteItemIntoChildrenList(newItem, children, comparator, byId);
         }
 
-        patchedChildren.push(id);
-        return patchedChildren;
+        children.push(id);
+        return children;
     }
 
     private pasteItemIntoChildrenList(item: TItem, children: TId[], comparator: ItemsComparator<TItem>, byId: IMap<TId, TItem>) {

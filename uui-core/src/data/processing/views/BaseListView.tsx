@@ -263,8 +263,16 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+        const rowOptions = this.props.rowOptions;
+
         return {
-            ...this.getUnknownRow(id, index, path),
+            id,
+            rowKey: this.idToKey(id),
+            value: undefined,
+            index,
+            depth: path ? path.length : 0,
+            path: path ?? [],
+            checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
             isLoading: true,
         };
     }

@@ -1,3 +1,4 @@
+import isEqual from 'lodash.isequal';
 import {
     DataSourceState, IMap, LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange,
 } from '../../../../types';
@@ -12,8 +13,9 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
     }
 
     public async loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<ITree<TItem, TId>> {
-        let byId = this.cloneMap(this.byId);
+        let byId = this.byId;
         let iteration = 0;
+        let prevMissingIds = new Set<TId>();
         while (true) {
             const missingIds = new Set<TId>();
 
@@ -24,7 +26,6 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                     }
                 });
             }
-
             if (this.params.getParentId) {
                 for (const [, item] of byId) {
                     const parentId = this.getParentId(item);
@@ -39,6 +40,9 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
             } else {
                 const ids = Array.from(missingIds);
                 const response = await options.api({ ids });
+
+                // TODO: think about this code, because if some IDS are missing, datasource should work normally
+                // possibly, it is worth to throw warning...
                 if (response.items.length !== ids.length) {
                     throw new Error("LazyTree: api does not returned requested items. Check that you handle 'ids' argument correctly.");
                 }
@@ -47,8 +51,17 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                 byId = byId === this.byId ? this.cloneMap(byId) : byId;
 
                 response.items.forEach((item) => {
-                    byId.set(this.getId(item), item);
+                    const id = item ? this.getId(item) : null;
+                    if (id !== null) {
+                        byId.set(id, item);
+                    }
                 });
+
+                if (prevMissingIds.size === missingIds.size && isEqual(prevMissingIds, missingIds)) {
+                    break;
+                }
+
+                prevMissingIds = new Set([...missingIds]);
             }
             iteration++;
 

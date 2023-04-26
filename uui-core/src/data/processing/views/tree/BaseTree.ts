@@ -87,12 +87,13 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getParentIdsRecursive(id: TId) {
         const parentIds: TId[] = [];
+        let parentId = id;
         while (true) {
-            const item = this.byId.get(id);
+            const item = this.byId.get(parentId);
             if (!item) {
                 break;
             }
-            const parentId = this.getParentId(item);
+            parentId = this.getParentId(item);
             if (!parentId) {
                 break;
             }
