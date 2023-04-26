@@ -2,25 +2,11 @@ import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { TextInputProps } from '@epam/uui-components';
 import { SearchInput, TextInputMods } from '@epam/loveship';
 import { IEditableDebouncerOptions } from '@epam/uui-core';
-import {
-    iEditable,
-    sizeDoc,
-    textSettingsDoc,
-    iHasPlaceholder,
-    onClickDoc,
-    isDisabledDoc,
-    isInvalidDoc,
-    iconDoc,
-    iconOptionsDoc,
-    dropdownTogglerDoc,
-    FormContext,
-    ResizableContext,
-    DefaultContext,
-} from '../../docs';
+import { iEditable, sizeDoc, iHasPlaceholder, onClickDoc, isDisabledDoc, isInvalidDoc, iconDoc, iconOptionsDoc, dropdownTogglerDoc, FormContext, ResizableContext, DefaultContext } from '../../docs';
 
 const SearchInputDoc = new DocBuilder<TextInputProps & TextInputMods & IEditableDebouncerOptions>({ name: 'SearchInput', component: SearchInput })
     .implements([
-        onClickDoc, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc,
+        onClickDoc, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, iconDoc, iconOptionsDoc, iEditable, iHasPlaceholder, dropdownTogglerDoc,
     ])
     .prop('value', {
         examples: [
