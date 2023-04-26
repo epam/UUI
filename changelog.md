@@ -1,3 +1,9 @@
+# RTE update changelog
+* [RTE]: UUI `SlateEditor` component was updated and reworked to work with latest Slate.js version.
+  * SlateEditor became uncontrolled component, now `value` prop worked only as initial value, if you need to update it after component mount, please set another `key` prop.
+  * Changed Slate JSON format, now it's works with array instead of immutable.js object, therefore no needed to convert value via `value.toJSON()` and `Value.fromJSON(value)`.
+
+
 # 5.0.0 - xx.xx.20203
 **What's New**
 * "EcmaScript" modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.

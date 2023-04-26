@@ -62,17 +62,19 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
 
     componentDidMount() {
         svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: this.props.fileName })
-            .then(res => this.setState({
-                content: res.content && (typeof res.content === 'string' ? JSON.parse(res.content) : res.content),
-                isLoading: !this.state.isLoading,
-            }));
+            .then(res => {
+                this.setState({
+                    content: res.content,
+                    isLoading: !this.state.isLoading,
+                });
+            });
     }
 
     saveDocContent = (content: any) => {
         this.setState({ content: content });
         svc.uuiApi.processRequest('/api/save-doc-content', 'POST', {
             name: this.props.fileName,
-            content: Array.isArray(content) ? JSON.stringify(content) : content.toJSON(),
+            content: content,
         });
     }
 

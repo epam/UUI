@@ -1,1 +1,21 @@
-"[{\"data\":{},\"type\":\"paragraph\",\"children\":[{\"text\":\"RichTextView is used to display html markup according to design typography specification. \"}]}]"
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "RichTextView is used to display HTML markup according to a design typography specification. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

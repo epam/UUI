@@ -1,1 +1,21 @@
-"[{\"data\":{},\"type\":\"paragraph\",\"children\":[{\"text\":\"Accordion is a UI element represented by a vertically stacked list of items (labels/titles/thumbnails). Each item is associated with a data container that can be expanded or collapsed.\"}]}]"
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Accordion is a UI element represented by a vertically stacked list of items (labels/titles/thumbnails). Each item is associated with a data container that can be expanded or collapsed.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
