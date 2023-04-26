@@ -7,7 +7,7 @@ export abstract class BaseDataSource<TItem, TId, TFilter = any> implements IData
 
     constructor(public props: BaseListViewProps<TItem, TId, TFilter>) {}
 
-    abstract getById(id: TId): TItem;
+    abstract getById(id: TId): TItem | void;
     abstract setItem(item: TItem): void;
     abstract getView(
         value: DataSourceState<TFilter, TId>,

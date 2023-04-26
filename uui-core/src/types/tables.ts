@@ -227,7 +227,7 @@ type FilterConfigBase<TFilter> = {
     predicates?: IFilterPredicate[];
 };
 
-type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: 'singlePicker' | 'multiPicker';
     dataSource: IDataSource<any, any, any>;
     getName?: (item: any) => string;

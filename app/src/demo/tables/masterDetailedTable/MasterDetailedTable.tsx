@@ -16,7 +16,7 @@ import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
 import { FilterPanelOpener } from './FilterPanelOpener';
 
-export const MasterDetailedTable: React.FC = () => {
+export function MasterDetailedTable() {
     const svc = useUuiContext<TApi, UuiContexts>();
     const [isFilterPanelOpened, setIsFilterPanelOpened] = useState(false);
     const [isInfoPanelOpened, setIsInfoPanelOpened] = useState(false);
@@ -83,10 +83,10 @@ export const MasterDetailedTable: React.FC = () => {
             </div>
 
             <InfoSidebarPanel
-                data={ tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value as Person) }
+                data={ tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value as Person) } // TODO: make it safe
                 isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
             />
         </div>
     );
-};
+}
