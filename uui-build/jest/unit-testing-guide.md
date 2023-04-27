@@ -148,8 +148,8 @@ It's needed only for snapshots. Use it for components which use React portals in
     ```jsx
     <Test rawProps={ { 'data-testid': '...' } } />
     ```
-6. Q: How can I test a use cases like this:
-      - when props which are passed to the component are changed from outside (without unmounting the component)
+6. Q: How can I test use cases like this?
+      - props which are passed to the component are changed from outside (without unmounting the component)
       - on-change workflow, when a callback prop (e.g. "onValueChange") updates some other props (e.g. "value")<br />
 
    A: Use "setupComponentForTest". E.g.:<br />
