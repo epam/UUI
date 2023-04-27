@@ -6755,7 +6755,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "// File testComponent.test.tsx",
+                "text": "// File: testComponent.test.tsx",
                 "marks": [
                   {
                     "object": "mark",
@@ -7194,7 +7194,43 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "        // ...\r",
+                "text": "        ",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-superscript",
+                    "data": {}
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "// ...",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-superscript",
+                    "data": {}
+                  },
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-bold",
+                    "data": {}
+                  },
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "color": "#669900"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "object": "text",
+                "text": "\r",
                 "marks": [
                   {
                     "object": "mark",
