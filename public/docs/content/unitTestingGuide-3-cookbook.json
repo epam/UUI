@@ -2002,6 +2002,24 @@
                         "nodes": [
                           {
                             "object": "text",
+                            "text": "import { mockReactPortalsForSnapshots } from '@epam/test-utils';",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-superscript",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
                             "text": "it",
                             "marks": [
                               {
@@ -3702,7 +3720,165 @@
           },
           {
             "object": "text",
-            "text": "Use partial matchers like \"objectContaining\", \"arrayContaining\", etc. (",
+            "text": "Use partial matchers like \"",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "objectContaining",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\", \"",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "arrayContaining",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "color": "rgb(31, 35, 40)",
+                    "font-family": null,
+                    "font-size": "16px",
+                    "font-style": null,
+                    "font-variant-ligatures": "normal",
+                    "font-variant-caps": "normal",
+                    "font-weight": "400",
+                    "letter-spacing": "normal",
+                    "orphans": "2",
+                    "text-align": "left",
+                    "text-indent": "0px",
+                    "text-transform": "none",
+                    "white-space": "normal",
+                    "widows": "2",
+                    "word-spacing": "0px",
+                    "-webkit-text-stroke-width": "0px",
+                    "background-color": null,
+                    "text-decoration-thickness": "initial",
+                    "text-decoration-style": "initial",
+                    "text-decoration-color": "initial",
+                    "display": "inline !important",
+                    "float": "none",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "\", etc. (",
             "marks": [
               {
                 "object": "mark",
