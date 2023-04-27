@@ -119,6 +119,8 @@ function uuiTsRules() {
         ...pickFromAirbnb.typescript.nonStylistic,
         'no-unused-expressions': 0,
         '@typescript-eslint/no-unused-expressions': uuiJsRules()['no-unused-expressions'],
+        'no-shadow': 0,
+        '@typescript-eslint/no-shadow': uuiJsRules()['no-shadow'],
         // non-stylistic - end
         // stylistic - start
         ...pickFromAirbnb.typescript.stylistic,
@@ -181,6 +183,7 @@ function uuiJsRules() {
                 ignoreReadBeforeAssign: true,
             },
         ],
+        'no-shadow': [2, { allow: ['props'] }],
         // non-stylistic- end
         // stylistic - start
         ...pickFromAirbnb.base.stylistic,

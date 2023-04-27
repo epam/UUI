@@ -7,9 +7,10 @@ import {
 import React from 'react';
 import dayjs from 'dayjs';
 
-const TODAY_DAY_OF_MONTH = dayjs().date().toString();
-const TODAY_DATE_ISO = dayjs().toISOString().split('T')[0]; // should be "YYYY-MM-DD"
-const TODAY_DATE_FORMATTED = dayjs().format('MMM DD, YYYY');
+const now = dayjs();
+const TODAY_DAY_OF_MONTH = now.date().toString();
+const TODAY_DATE_ISO = now.format('YYYY-MM-DD');
+const TODAY_DATE_FORMATTED = now.format('MMM DD, YYYY');
 
 type TestItemType = {
     name: string;
