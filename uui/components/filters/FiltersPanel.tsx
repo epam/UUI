@@ -44,7 +44,7 @@ const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
                 }
             }
             if ('notInRange' in filterValue) {
-                if (!filterValue.notInRange.from && !filterValue.notInRange.to) {
+                if (!filterValue.notInRange || (!filterValue.notInRange.from && !filterValue.notInRange.to)) {
                     delete filter[key];
                 }
             }
