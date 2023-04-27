@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
     createTablePlugin,
     ELEMENT_TABLE,
@@ -25,6 +25,7 @@ import {
     getStartPoint,
 } from "@udecode/plate";
 import cx from "classnames";
+import { Dropdown } from '@epam/uui-components';
 
 import { ReactComponent as InsertColumnBefore } from "../../icons/table-add-column-left.svg";
 import { ReactComponent as InsertColumnAfter } from "../../../icons/table-add-column-right.svg";
@@ -49,10 +50,12 @@ import { TableRow } from "./TableRow";
 import { TableCell } from "./TableCell";
 
 import tableCSS from './Table.scss';
+import { useFocused, useSelected } from 'slate-react';
 
 const TableRenderer = (props: any) => {
     const editor = usePlateEditorState();
     const { cell, row } = getTableEntries(editor) || {};
+    const ref = useRef(null);
 
     const { element } = props;
 
@@ -60,6 +63,20 @@ const TableRenderer = (props: any) => {
 
     const cellPath = useMemo(() => cell && cell[1], [cell]);
     const rowPath = useMemo(() => row && row[1][2] !== 0 && row[1], [row]);
+
+    const hasEntries = !!cellEntries?.length;
+    const [showToolbar, setShowToolbar] = useState(hasEntries);
+
+    const isFocused = useFocused();
+    const isSelected = useSelected();
+    useEffect(() => {
+        const block = getBlockAbove(editor);
+        setShowToolbar(isSelected && isFocused && block?.length && block[0].type === 'table');
+    }, [isSelected, isFocused]);
+
+    useEffect(() => setShowToolbar(hasEntries), [hasEntries]);
+
+    const onChangeDropDownValue = useCallback((value: boolean) => () => setShowToolbar(value), []);
 
     const mergeCells = () => {
         const rowArray: any[] = [];
@@ -213,15 +230,26 @@ const TableRenderer = (props: any) => {
     }, [element, cellPath, rowPath, cellEntries]);
 
     return (
-        <div className={ cx(tableCSS.tableWrapper) }>
-            <Table { ...props } />
-            { !!cellEntries?.length && <Toolbar
-                placement='bottom'
-                children={ cellEntries.length > 1 ? renderMergeToolbar() : renderToolbar() }
-                editor={ editor }
-                isTable
-            /> }
-        </div>
+        <Dropdown
+            renderTarget={ (innerProps: any) => (
+                <div ref={ innerProps.ref } >
+                    <div ref={ ref } className={ cx(tableCSS.tableWrapper) }>
+                        <Table { ...props } />
+                    </div>
+                </div>
+            ) }
+            renderBody={ () => (
+                <Toolbar
+                    placement='bottom'
+                    children={ cellEntries.length > 1 ? renderMergeToolbar() : renderToolbar() }
+                    editor={ editor }
+                    isTable
+                />
+            ) }
+            onValueChange={ onChangeDropDownValue }
+            value={ showToolbar }
+            placement='top'
+        />
     );
 };
 
