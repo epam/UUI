@@ -5,7 +5,6 @@ import {
 
 export class TagDoc extends BaseDocsBlock {
     title = 'Tag';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/widgets/tag.props.ts',

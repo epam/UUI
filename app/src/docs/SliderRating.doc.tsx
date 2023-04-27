@@ -5,7 +5,6 @@ import {
 
 export class SliderRatingDoc extends BaseDocsBlock {
     title = 'SliderRating';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/sliderRating.props.tsx',

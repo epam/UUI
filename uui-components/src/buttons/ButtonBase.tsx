@@ -20,9 +20,7 @@ export const uuiInputElements = [
 
 export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     clickHandler = (e: any) => {
         if (!isClickableChildClicked(e) && !this.props.isDisabled) {
             if (this.props.onClick) {
@@ -50,7 +48,6 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
     };
 
     getClassName?(): string[];
-
     getChildren?(): React.ReactNode {
         return null;
     }

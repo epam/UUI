@@ -44,9 +44,6 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
     /** The flex grow for the column. Allows column to grow in width if there's spare horizontal space */
     grow?: number;
 
-    /** @deprecated Shrink prop doesn't affect anything in table columns. This prop will be removed in future versions. */
-    shrink?: number;
-
     /** Aligns cell content horizontally */
     textAlign?: 'left' | 'center' | 'right';
 

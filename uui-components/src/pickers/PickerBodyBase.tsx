@@ -16,9 +16,7 @@ export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<Data
 
 export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends React.Component<TProps> {
     needFocusSearch = this.showSearch();
-
     searchRef = React.createRef<HTMLInputElement>();
-
     componentDidUpdate(prevProps: PickerBodyBaseProps) {
         if (this.needFocusSearch && !isMobile()) {
             this.searchRef.current?.focus({ preventScroll: true });

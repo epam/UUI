@@ -5,7 +5,6 @@ import {
 
 export class BlockerDoc extends BaseDocsBlock {
     title = 'Blocker';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/blocker.props.ts',

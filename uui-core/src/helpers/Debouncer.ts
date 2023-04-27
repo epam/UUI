@@ -1,18 +1,11 @@
 export class Debouncer<Request, Response> {
     constructor(private execute: (rq: Request) => Promise<Response>, private handleResult: (res: Response, rq: Request) => void) {}
-
     private isLoading = false;
-
     private isPending = false;
-
     public pendingRequest: Request;
-
     private lastPendingRequestTime: Date | null = null;
-
     private debounceDelay = 500;
-
     private timer: any = null;
-
     public run(rq: Request): void {
         this.isPending = true;
         this.pendingRequest = rq;

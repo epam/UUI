@@ -8,31 +8,3 @@ $font-oswald-light: 'Oswald Light', Arial, sans-serif;
 $font-oswald-bold: 'Oswald Bold', Arial, sans-serif;
 $font-roboto-condensed: 'Roboto Condensed', Arial, sans-serif;
 $font-redacted: 'Redacted', Arial, sans-serif;
-
-@mixin epam-uui-fonts() {
-    &.font-oswald {
-        font-family: $font-oswald;
-        text-transform: uppercase;
-        font-weight: normal;
-    }
-
-    &.font-sans {
-        font-family: $font-sans;
-        font-weight: normal;
-    }
-
-    &.font-sans-semibold {
-        font-family: $font-sans-semibold;
-        font-weight: normal;
-    }
-
-    &.font-sans-light {
-        font-family: $font-sans-light;
-        font-weight: normal;
-    }
-
-    &.font-roboto-condensed {
-        font-family: $font-roboto-condensed;
-        font-weight: normal;
-    }
-}

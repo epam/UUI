@@ -1,14 +1,15 @@
-import { FillStyle, ControlShape, ColorMod } from '../types';
-import {
-    Button as uuiButton, ButtonMode, ButtonProps as UuiButtonProps, ControlSize,
-} from '@epam/uui';
+import { FillStyle, ControlShape, EpamPrimaryColor } from '../types';
+import { Button as uuiButton, ButtonMode, ButtonProps as UuiButtonProps, ControlSize } from '@epam/uui';
 import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import css from './Button.scss';
 
 const defaultSize = '36';
 
-export interface ButtonMods extends ColorMod {
+export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600';
+
+export interface ButtonMods {
+    color?: ButtonColorType;
     size?: ControlSize | '42' | '18';
     shape?: ControlShape;
     fill?: FillStyle;
@@ -24,7 +25,10 @@ const mapFillToMod: Record<FillStyle, ButtonMode> = {
 export type ButtonProps = Omit<UuiButtonProps, 'color'> & ButtonMods;
 
 export function applyButtonMods(mods: ButtonProps) {
-    return [css['size-' + (mods.size || defaultSize)], css['style-' + (mods.shape || 'square')]];
+    return [
+        css['size-' + (mods.size || defaultSize)],
+        css['style-' + (mods.shape || 'square')],
+    ];
 }
 
 export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(uuiButton, applyButtonMods, (props) => ({

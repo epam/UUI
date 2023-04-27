@@ -57,8 +57,16 @@ module.exports = {
             extends: ['react-app/jest'],
             env: { 'jest/globals': true },
             rules: {
-                'testing-library/render-result-naming-convention': 0,
                 'import/no-extraneous-dependencies': 0,
+                /**
+                 * Don't want to force usage of userEvent because it slows down the performance of tests (with user-event it's ~3 times slower).
+                 * https://github.com/testing-library/user-event/issues/650
+                 */
+                'testing-library/prefer-user-event': 0,
+                'testing-library/render-result-naming-convention': 0,
+                'testing-library/no-node-access': 1,
+                'testing-library/no-manual-cleanup': 2,
+                'testing-library/prefer-explicit-assert': 2,
                 ...turnOffEslintRulesToBeFixed(),
             },
         }, {
@@ -111,6 +119,8 @@ function uuiTsRules() {
         ...pickFromAirbnb.typescript.nonStylistic,
         'no-unused-expressions': 0,
         '@typescript-eslint/no-unused-expressions': uuiJsRules()['no-unused-expressions'],
+        'no-shadow': 0,
+        '@typescript-eslint/no-shadow': uuiJsRules()['no-shadow'],
         // non-stylistic - end
         // stylistic - start
         ...pickFromAirbnb.typescript.stylistic,
@@ -127,6 +137,7 @@ function uuiTsRules() {
                 generics: 'ignore', // ts-specific
             },
         ],
+        '@typescript-eslint/lines-between-class-members': uuiJsRules()['lines-between-class-members'],
         // stylistic - end
     };
 }
@@ -172,6 +183,7 @@ function uuiJsRules() {
                 ignoreReadBeforeAssign: true,
             },
         ],
+        'no-shadow': [2, { allow: ['props'] }],
         // non-stylistic- end
         // stylistic - start
         ...pickFromAirbnb.base.stylistic,
@@ -199,6 +211,7 @@ function uuiJsRules() {
                 functions: 'always-multiline',
             },
         ],
+        'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
         // stylistic - end
     };
 }

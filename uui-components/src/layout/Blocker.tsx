@@ -30,7 +30,6 @@ const uuiBlocker = {
 
 export class Blocker extends React.Component<BlockerProps> {
     private transitionRef = React.createRef<HTMLDivElement>();
-
     render() {
         return (
             <div

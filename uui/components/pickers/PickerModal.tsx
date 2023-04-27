@@ -126,9 +126,7 @@ export class PickerModalImpl<TItem, TId> extends PickerModalBase<TItem, TId> {
 
 export class PickerModal<TItem, TId> extends React.Component<PickerModalProps<TItem, TId>> {
     state = { selection: this.props.initialValue };
-
     lens = Lens.onState<any>(this);
-
     render() {
         return <PickerModalImpl { ...this.props } { ...this.lens.prop('selection').toProps() } success={ () => this.props.success(this.state.selection as any) } />;
     }

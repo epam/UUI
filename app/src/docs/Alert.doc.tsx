@@ -5,7 +5,6 @@ import {
 
 export class AlertDoc extends BaseDocsBlock {
     title = 'Alert';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/overlays/alert.props.tsx',

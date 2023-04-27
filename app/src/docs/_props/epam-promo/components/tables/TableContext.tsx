@@ -37,13 +37,9 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
     };
 
     lens = Lens.onState<DataTableCardState>(this);
-
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     public static displayName = 'Table';
-
     getVisibleColumns() {
         return this.props.props.columns.filter((i: DataColumnProps<DemoComponentProps['props']>) => this.state.columnsConfig[i.key]?.isVisible || true);
     }

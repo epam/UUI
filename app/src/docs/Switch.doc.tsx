@@ -5,7 +5,6 @@ import {
 
 export class SwitchDoc extends BaseDocsBlock {
     title = 'Switch';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/switch.props.ts',

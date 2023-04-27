@@ -5,7 +5,6 @@ import { i18n } from '@epam/loveship';
 
 export class LocaleContext extends React.Component<DemoComponentProps> {
     public static displayName = 'RU locale';
-
     componentWillUnmount() {
         i18n.datePicker.locale = 'en';
     }

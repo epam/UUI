@@ -43,12 +43,9 @@ function iterator<T>(next: () => { done: boolean; value?: T } = () => ({ done: t
 
 export class IxSet<TEntity, TId> {
     empty: BTree<TId, TEntity>;
-
     /** Primary key - a b-tree with entity ID as a key, and entity itself as a value */
     pk: BTree<TId, TEntity>;
-
     indexes: IxSetIndex<TEntity>[];
-
     constructor(private getId: (e: Partial<TEntity>) => TId, indexesDefinition: IxSetIndexDefinition<TEntity>[]) {
         this.empty = new BTree([]);
         this.pk = this.empty;

@@ -84,19 +84,12 @@ interface LoadResult<TItem, TId> {
 
 export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     public props: LazyListViewProps<TItem, TId, TFilter>;
-
     public value: DataSourceState<TFilter, TId> = null;
-
     private cache: ListApiCache<TItem, TId, TFilter>;
-
     private isUpdatePending = false;
-
     private loadedValue: DataSourceState<TFilter, TId> = null;
-
     private loadedProps: LazyListViewProps<TItem, TId, TFilter>;
-
     private reloading: boolean = false;
-
     constructor(
         editable: IEditable<DataSourceState<TFilter, TId>>,
         { legacyLoadDataBehavior = true, ...props }: LazyListViewProps<TItem, TId, TFilter>,
@@ -118,7 +111,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     }
 
     private defaultGetId = (i: any) => i.id;
-
     protected applyDefaultsToProps(props: LazyListViewProps<TItem, TId, TFilter>): LazyListViewProps<TItem, TId, TFilter> {
         if ((props.cascadeSelection || props.flattenSearchResults) && !props.getParentId) {
             console.warn('LazyListView: getParentId prop is mandatory if cascadeSelection or flattenSearchResults are enabled');
@@ -455,7 +447,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
     };
 
     protected isPartialLoad = () => true;
-
     private areMoreRowsNeeded = (prevValue?: DataSourceState<TFilter, TId>, newValue?: DataSourceState<TFilter, TId>) => {
         const isFetchPositionAndAmountChanged = prevValue?.topIndex !== newValue?.topIndex || prevValue?.visibleCount !== newValue?.visibleCount;
         const lastIndex = this.getLastRecordIndex();

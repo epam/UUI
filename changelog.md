@@ -1,4 +1,4 @@
-# 5.0.0 - xx.xx.20203
+# 5.0.0 - xx.xx.2023
 **What's New**
 * "EcmaScript" modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
 * [ContextProvider]: removed support of legacy React context API, as it were announced in 4.1.0 version. `enableLegacyContext` prop was deleted.
@@ -7,11 +7,24 @@
   - added storing of sorting, columns config, and paging state into url
   - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
 
+* [ApiContext]: removed the code which handles `/auth/login` for the apps, which doesn't handle this themselves.
+  If an app doesn't handle `/auth/login correctly`, this needs to be implemented implicitly. There are several options:
+
+  - Handle /auth/login path server-side. Server should log in user (via redirects to SSO), and - after success, return the following HTML:
+    `<script>window.opener && window.opener.postMessage("authSuccess", "*")</script>`
+  - Handle /auth/login path client-side. The simplest method is to add the following to the index.js:
+    `window.opener && window.location.pathname === '/auth/login' && window.opener.postMessage("authSuccess", "*");`
+  - If an app implements UUI-based login pages, they need to run the following code after successful login: 
+    `window.opener && window.opener.postMessage("authSuccess", "*")`
+
+* [DataTable]: deprecated column `shrink` property was removed, as it were announced in 4.9.0 version.
+
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
 * [Dropdown]: added a 400ms delay to the submenu's close and open triggers
 * [FiltersPanel]: hide 'Add filter' button, if all filters `isAlwaysVisible`
 * [TimePicker]: added max values to hours and minutes inputs
 * [Tooltip]: added possibility to pass raw-props to the tooltip body
+* [RangeDatePicker]: added new 'onOpenChange' prop
 
 
 **What's Fixed**
@@ -19,6 +32,10 @@
 * [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
 * [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
 * [PickerInput]: fixed single select dropdown body closing by the collapse icon if any value was selected.
+* [PickerInput]: removed deprecated suffix & prefix props
+* [TextInput]: removed deprecated suffix & prefix props.
+* [Carousel]:  the old component has been deleted from loveship.
+* [Tooltip]: colors 'night900' and 'gray90' are deprecated and will be removed in the future release. Use 'night800' and 'gray80' instead.
 
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.

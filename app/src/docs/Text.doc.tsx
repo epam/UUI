@@ -5,7 +5,6 @@ import {
 
 export class TextDoc extends BaseDocsBlock {
     title = 'Text';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/typography/text.props.tsx',

@@ -143,7 +143,7 @@ export class ComplexForm extends React.Component<any, ComplexFormState> {
                     <Button caption="Revert" color="sun" fill="none" isDisabled={ !props.canRevert } onClick={ props.revert } />
                 </FlexCell>
                 <FlexCell minWidth={ 100 }>
-                    <Button caption="Reload" color="lavanda" onClick={ () => this.loadForm() } />
+                    <Button caption="Reload" color="sky" onClick={ () => this.loadForm() } />
                 </FlexCell>
                 <FlexCell minWidth={ 100 }>
                     <Button caption="Load default" color="fire" onClick={ () => this.loadDefaultPerson } />
