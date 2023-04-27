@@ -3230,7 +3230,65 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "          import { SvgMock } from '@epam/test-utils';// ...<Test icon={ SvgMock } />",
+                "text": "     import { SvgMock } from '@epam/test-utils';",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "box-sizing": "border-box",
+                        "color": "var(--color-prettylights-syntax-keyword)",
+                        "": null
+                      }
+                    }
+                  },
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-superscript",
+                    "data": {}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "paragraph",
+            "data": {},
+            "nodes": [
+              {
+                "object": "text",
+                "text": "     // ...",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-span-mark",
+                    "data": {
+                      "style": {
+                        "box-sizing": "border-box",
+                        "color": "var(--color-prettylights-syntax-keyword)",
+                        "": null
+                      }
+                    }
+                  },
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-superscript",
+                    "data": {}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "paragraph",
+            "data": {},
+            "nodes": [
+              {
+                "object": "text",
+                "text": "    <Test icon={ SvgMock } />",
                 "marks": [
                   {
                     "object": "mark",
