@@ -122,7 +122,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             selectedRows.push(row);
         });
         if (missingIds.length) {
-            console.warn(`DataSource can't find selected/checked items with following IDs: ${missingIds.join(', ')}.
+            console.error(`DataSource can't find selected/checked items with following IDs: ${missingIds.join(', ')}.
                 Read more here: https://github.com/epam/UUI/issues/89`);
         }
 
