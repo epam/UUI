@@ -44,7 +44,7 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                 // TODO: think about this code, because if some IDS are missing, datasource should work normally
                 // possibly, it is worth to throw warning...
                 if (response.items.length !== ids.length) {
-                    throw new Error("LazyTree: api does not returned requested items. Check that you handle 'ids' argument correctly.");
+                    console.error("LazyTree: api does not returned requested items. Check that you handle 'ids' argument correctly.");
                 }
 
                 // Clone before first update
