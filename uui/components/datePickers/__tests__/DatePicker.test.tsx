@@ -18,10 +18,10 @@ jest.mock('react-popper', () => ({
     },
 }));
 
-async function setupDatePicker(params: { value: string | null; format: string }) {
+async function setupDatePicker(params: Partial<DatePickerProps>) {
     const { format, value } = params;
 
-    const { result, mocks, setProps } = await setupComponentForTest<DatePickerProps>(
+    const { mocks, setProps } = await setupComponentForTest<DatePickerProps>(
         (context) => ({
             value,
             format,
@@ -34,12 +34,12 @@ async function setupDatePicker(params: { value: string | null; format: string })
 
     const input = screen.queryByRole('textbox') as HTMLInputElement;
     const clear = screen.queryByRole('button');
+    const dom = { input, clear };
 
     return {
-        result,
         setProps,
-        mocks: { onValueChange: mocks.onValueChange },
-        dom: { input, clear },
+        mocks,
+        dom,
     };
 }
 

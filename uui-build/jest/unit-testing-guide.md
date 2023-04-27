@@ -75,7 +75,7 @@
     // logs markup to console.
     screen.debug();
     ```
-4. Usage of userEvent vs fireEvent: https://testing-library.com/docs/user-event/intro We don't push to use one or another.<br/>The userEvent simulates full interaction, but it's slower than fireEvent. On the other hand, the fireEvent is very fast, but it doesn't resemble the way how user interacts with real page. Choose wisely.
+4. Usage of userEvent vs fireEvent: https://testing-library.com/docs/user-event/intro We don't push to use one or another.<br/>The userEvent simulates full interaction, but it's very slow (up to x10 times slower than fireEvent). On the other hand, the fireEvent is very fast, but it doesn't fully resemble the way how user interacts with real page. Choose wisely.
 5. Use "within" to limit queries to a specific node: https://testing-library.com/docs/dom-testing-library/api-within
 6. Testing appearance & disappearance: https://testing-library.com/docs/guide-disappearance/
 
@@ -126,32 +126,85 @@ It's needed only for snapshots. Use it for components which use React portals in
     ```
 
 ### Frequent questions
-1. Q: How to fix errors like this? *Warning: An update to <component> inside a test was not wrapped in act*
+1. Q: How to fix errors like this? *Warning: An update to <component> inside a test was not wrapped in act*<br/>
    A: Good summary is here: https://davidwcai.medium.com/react-testing-library-and-the-not-wrapped-in-act-errors-491a5629193b
-2. Q: How do I test only part of the object/array?
-   A: Use partial matchers like "objectContaining", "arrayContaining", etc. More details here: https://jestjs.io/docs/expect#expectobjectcontainingobject
-3. Q: How to test component which requires svg as an input?
+2. Q: How do I test only part of the object/array?<br/>
+   A: Use partial matchers like "objectContaining", "arrayContaining", etc. More details here: https://jestjs.io/docs/expect#expectobjectcontainingobject E.g.:<br />
+      ```javascript
+      expect(mocks.setTableState).lastCalledWith(expect.objectContaining({ filter: { position: [2, 3] } }));
+      ```
+3. Q: How to test component which requires svg as an input?<br/>
    A: Use SvgMock:
-    ```javascript 
+    ```jsx 
     import { SvgMock } from '@epam/test-utils';
-    ...
+    // ...
     <Test icon={ SvgMock } />
     ```
-4. Q: Can I use DOM api such as querySelector for testing?
-   A: It's strongly not recommended. Such tests are more fragile, e.g. it may fail after some internal changes which doesn't affect functionality of the component (e.g. css class renaming).<br />
-      Try other options instead, e.g.: adjust internal implementation of the component (assign role, add title, add label, etc.)
-5. Q: How can I add *data\-testid* attribute to UUI component?
+4. Q: Can I use DOM api such as querySelector for testing?<br/>
+   A: It's strongly not recommended. Such tests are fragile, e.g. it may fail after some internal changes which doesn't affect functionality of the component (e.g. css class renaming).<br />
+      Try other options instead, e.g.: adjust internal implementation of the component (assign role, add title, add label, etc.) or add "data-testid" attribute (less preferrable).
+5. Q: How can I add *data\-testid* attribute to UUI component?<br/>
    A: Use "rawProps". E.g.:
-    ```javascript
+    ```jsx
     <Test rawProps={ { 'data-testid': '...' } } />
+    ```
+6. Q: How can I test a use cases like this:
+      - when props which are passed to the component are changed from outside (without unmounting the component)
+      - on-change workflow, when a callback prop (e.g. "onValueChange") updates some other props (e.g. "value")<br />
+
+   A: Use "setupComponentForTest". E.g.:<br />
+    ```typescript jsx
+    // File: testComponent.tsx
+    // Let's say we want to test a component like this
+    export interface TestComponentProps {
+        value: string;
+        onValueChange: (value: string) => void;
+    }
+    export function TestComponent(props: TestComponentProps) {
+        return (
+            <TextInput value={ props.value } onValueChange={ props.onValueChange } />
+        );
+    }
+    ```
+    ```typescript jsx
+    // File testComponent.test.tsx
+    import { setupComponentForTest } from '@epam/test-utils';
+    async function setupTestComponent(params: Partial<TestComponentProps>) {
+        const { mocks, setProps } = await setupComponentForTest<DatePickerProps>(
+            (context) => ({
+                value: params.value,
+                onValueChange: jest.fn().mockImplementation((newValue) => {
+                    context.current.setProperty('value', newValue);
+                }),
+            }),
+            (props) => <TestComponent { ...props } />,
+        );
+        const input = screen.queryByRole('textbox') as HTMLInputElement;
+        const dom = { input };
+        return {
+            setProps,
+            mocks,
+            dom,
+        };
+    }
+    describe('TestComponent', () => {
+        it('should change displayed value when props changed', async () => {
+            const { setProps, mocks, dom } = await setupTestComponent({ value: 'monday' });
+            // ...
+            expect(dom.input.value).toEqual('monday');
+            setProps({ value: 'tuesday' });
+            expect(dom.input.value).toEqual('tuesday');
+            expect(mocks.onValueChange).not.toHaveBeenCalled();
+        });
+    });
     ```
 
 ### Reference implementation
-- uui-core/src/helpers/\__tests__/IEditableDebouncer.test.tsx (fake timers)
-- uui-components/src/table/columnsConfigurationModal/\__tests__/columnsConfigurationActions.test.ts (make component testable by extracting state management logic)
-- uui/components/datePickers/\__tests__/DatePicker.test.tsx (react-popper mock usage)
-- uui/components/inputs/\__tests__/NumericInput.test.tsx
-- uui/components/filters/\__tests__/filtersPanel.test.tsx (complex component)
-- uui/components/filters/PresetPanel/\__tests__/presetsPanel.test.tsx (complex component, adaptive panel mock)
-- uui/components/pickers/\__tests__/PickerInput.test.tsx
-- uui-components/src/adaptivePanel/\__tests__/adaptivePanel.test.tsx ("data-testid" usage)
+- (fake timers) ```uui-core/src/helpers/\__tests__/IEditableDebouncer.test.tsx``` 
+- (make component testable by extracting state management logic) ```uui-components/src/table/columnsConfigurationModal/\__tests__/columnsConfigurationActions.test.ts``` 
+- (react-popper mock usage) ```uui/components/datePickers/\__tests__/DatePicker.test.tsx```
+- (snapshot) ```uui/components/inputs/\__tests__/NumericInput.test.tsx```
+- (complex component) ```uui/components/filters/\__tests__/filtersPanel.test.tsx``` 
+- (complex component, adaptive panel mock) ```uui/components/filters/PresetPanel/\__tests__/presetsPanel.test.tsx```
+- (complex component) ```uui/components/pickers/\__tests__/PickerInput.test.tsx```
+- ("data-testid" usage) ```uui-components/src/adaptivePanel/\__tests__/adaptivePanel.test.tsx``` 
