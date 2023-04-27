@@ -3221,7 +3221,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " mock useful for components which require *.svg as an input",
+                    "text": " is useful for components which require *.svg as an input",
                     "marks": [
                       {
                         "object": "mark",
