@@ -263,32 +263,37 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
-        const rowOptions = this.props.rowOptions;
-
         return {
-            id,
-            rowKey: this.idToKey(id),
-            value: undefined,
-            index,
-            depth: path ? path.length : 0,
-            path: path ?? [],
-            checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
+            ...this.getBaseRow(id, index, path),
             isLoading: true,
         };
     }
 
     protected getUnknownRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+        const baseRow = this.getBaseRow(id, index, path);
         const rowOptions = this.props.rowOptions;
+        const checkbox = (rowOptions?.checkbox?.isVisible || baseRow.isChecked) ? { isVisible: true, isDisabled: false } : undefined;
+        return {
+            ...baseRow,
+            checkbox,
+            isUnknown: true,
+        };
+    }
 
+    private getBaseRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+        const rowOptions = this.props.rowOptions;
+        const checked = this.value?.checked ?? [];
+        const isChecked = checked.includes(id);
         return {
             id,
             rowKey: this.idToKey(id),
             value: undefined,
-            isUnknown: true,
             index,
             depth: path ? path.length : 0,
             path: path ?? [],
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
+            onCheck: this.handleOnCheck,
+            isChecked,
         };
     }
 

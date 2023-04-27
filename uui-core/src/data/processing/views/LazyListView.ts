@@ -230,7 +230,7 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
         }
 
         if (item === null) {
-            return this.getLoadingRow('_loading_' + id, index, []);
+            return this.getLoadingRow(id, index, []);
         }
 
         return this.getRowProps(item, index);

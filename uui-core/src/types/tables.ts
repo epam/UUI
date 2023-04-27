@@ -168,6 +168,8 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     /** Overrides default loading placeholder ('skeleton') rendering  */
     renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
 
+    renderUnknown?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+
     /**
      * If passed, the cell is rendered as editable - receives focus, show validation errors.
      * All necessary props for the editor are passed as argument:
