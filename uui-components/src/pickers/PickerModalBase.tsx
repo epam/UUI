@@ -24,7 +24,6 @@ const initialStateValues: DataSourceState = {
 
 export class PickerModalBase<TItem, TId> extends PickerBase<TItem, TId, PickerModalImplProps<TItem, TId>, PickerModalState> {
     stateLens = Lens.onState<PickerBaseState & PickerModalState>(this);
-
     showSelectionLens = this.stateLens
         .onChange((oldVal, newVal) => ({
             ...newVal,

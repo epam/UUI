@@ -7,9 +7,7 @@ import { IAnalyticsListener, AnalyticsEvent } from '@epam/uui-core';
 /** An example of creation AmplitudeClientListener */
 class AmplitudeListener implements IAnalyticsListener {
     public ampCode: string;
-
     public client: amplitude.AmplitudeClient;
-
     constructor(ampCode: string) {
         this.ampCode = ampCode;
         this.client = this.getAmplitudeClient();

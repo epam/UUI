@@ -9,7 +9,6 @@ interface DemoComponentState {
 
 export class TabButtonContext extends React.Component<DemoComponentProps<ButtonProps & TabButtonMods>, DemoComponentState> {
     public static displayName = 'TabButtonContext';
-
     state: DemoComponentState = {
         activeTab: 'Main',
     };

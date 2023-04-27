@@ -117,9 +117,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
                     <div className={ css.container }>
                         <div>
                             <Text color="gray60" size="24">
-                                Days:
-                                {' '}
-                                {getRangeLength(value)}
+                                {`Days: ${getRangeLength(value)}`}
                             </Text>
                         </div>
                         <div className={ css.buttonGroup }>
@@ -132,6 +130,7 @@ const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDa
     })
     .prop('disableClear', { examples: [true], defaultValue: false })
     .prop('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] })
+    .prop('onOpenChange', { examples: (ctx) => [ctx.getCallback('onOpenChange')] })
     .withContexts(DefaultContext, FormContext, ResizableContext);
 
 export default RangeDatePickerDoc;

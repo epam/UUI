@@ -17,9 +17,7 @@ export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex {
 
 export class Checkbox extends React.Component<CheckboxProps> {
     static contextType = UuiContext;
-
     context: UuiContexts;
-
     handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
         !isClickableChildClicked(e) && this.props.onValueChange(!this.props.value);
 

@@ -60,8 +60,8 @@ describe('IEditableDebouncer', () => {
         const props = {
             value: 1,
             onValueChange: outerOnValueChange,
-            render: (props: IEditable<number>): null => {
-                lastRenderProps = props;
+            render: (propsInner: IEditable<number>): null => {
+                lastRenderProps = propsInner;
                 return null;
             },
             debounceDelay: 5,

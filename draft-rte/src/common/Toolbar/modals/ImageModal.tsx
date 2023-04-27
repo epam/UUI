@@ -114,7 +114,7 @@ class ImageModal extends React.Component<ImageModalProps, ImageModalState> {
                     </FlexRow> */ }
                         <FlexRow padding='24' vPadding='24'>
                             <FlexSpacer />
-                            <Button onClick={ () => this.props.abort() } color='night200' caption={ i18n.rte.imageModal.buttonCancel } />
+                            <Button onClick={ () => this.props.abort() } color='white' caption={ i18n.rte.imageModal.buttonCancel } />
                             <Button
                                 onClick={ () => this.props.success({
                                     src: this.state.src,

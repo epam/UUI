@@ -3,7 +3,6 @@ import { EditableDocContent, BaseDocsBlock, DocExample } from '../../common';
 
 export class DragAndDropDoc extends BaseDocsBlock {
     title = 'Drag and Drop';
-
     renderContent() {
         return (
             <>

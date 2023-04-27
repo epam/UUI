@@ -52,11 +52,8 @@ const uuiSnackbar = {
 
 export class Snackbar extends React.Component<SnackbarProps> {
     static contextType = UuiContext;
-
     context: { uuiNotifications: NotificationContext };
-
     private itemsHeights: { [id: number]: number } = {};
-
     public componentDidMount() {
         this.context.uuiNotifications.subscribe(() => this.forceUpdate());
     }

@@ -31,7 +31,9 @@ const ButtonDoc = new DocBuilder<ButtonProps & ButtonMods>({ name: 'Button', com
     .prop('color', {
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
         examples: [
-            ...allEpamPrimaryColors.filter((color) => color !== 'sun'), 'white', 'night500',
+            ...allEpamPrimaryColors.filter((color) => color !== 'sun'),
+            'white',
+            'night600',
         ],
     })
     .prop('caption', {

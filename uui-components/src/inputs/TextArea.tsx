@@ -47,7 +47,6 @@ interface TextAreaState {
 
 export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     textAreaRef = React.createRef<HTMLTextAreaElement>();
-
     state = {
         inFocus: false,
     };

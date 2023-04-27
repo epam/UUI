@@ -24,27 +24,17 @@ interface NodeStats {
 
 export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     protected tree: ITree<TItem, TId>;
-
     protected rows: DataRowProps<TItem, TId>[] = [];
-
     public value: DataSourceState<TFilter, TId> = {};
-
     protected onValueChange: (value: DataSourceState<TFilter, TId>) => void;
-
     protected checkedByKey: Record<string, boolean> = {};
-
     protected someChildCheckedByKey: Record<string, boolean> = {};
-
     public selectAll?: ICheckable;
-
     protected isDestroyed = false;
-
     protected hasMoreRows = false;
-
     abstract getById(id: TId, index: number): DataRowProps<TItem, TId>;
     abstract getVisibleRows(): DataRowProps<TItem, TId>[];
     abstract getListProps(): DataSourceListProps;
-
     _forceUpdate() {
         !this.isDestroyed && this.onValueChange({ ...this.value });
     }
@@ -521,9 +511,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     });
 
     protected canBeSelected = (row: DataRowProps<TItem, TId>) => row.checkbox && row.checkbox.isVisible && !row.checkbox.isDisabled;
-
     protected getLastRecordIndex = () => this.value.topIndex + this.value.visibleCount;
-
     protected shouldRebuildTree = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) =>
         this.searchWasChanged(prevValue, newValue)
         || this.sortingWasChanged(prevValue, newValue)
@@ -535,17 +523,12 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         !prevValue || !isEqual(newValue.checked, prevValue.checked) || newValue.selectedId !== prevValue.selectedId || newValue.folded !== prevValue.folded;
 
     protected sortingWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => !isEqual(newValue.sorting, prevValue.sorting);
-
     protected filterWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => !isEqual(newValue.filter, prevValue.filter);
-
     protected searchWasChanged = (prevValue: DataSourceState<TFilter, TId>, newValue: DataSourceState<TFilter, TId>) => newValue.search !== prevValue.search;
-
     protected abstract handleSelectAll(checked: boolean): void;
     protected abstract getChildCount(item: TItem): number | undefined;
     protected isFlattenSearch = () => false;
-
     protected isPartialLoad = () => false;
-
     public loadData() {}
     public abstract reload(): void;
 }

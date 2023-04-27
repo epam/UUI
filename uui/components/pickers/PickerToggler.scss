@@ -108,6 +108,22 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         }
     }
 
+    &.mode-inline {
+        background-color: initial;
+        border-color: transparent;
+        border-radius: var(--uui-picker-toggler-border-radius);
+        fill: var(--uui-picker-toggler-icon-clickable);
+
+        &:hover {
+            border-color: var(--uui-picker-toggler-border-hover);
+        }
+
+        &:global(.uui-focus) {
+            border-color: var(--uui-picker-toggler-border-active);
+            outline: none;
+        }
+    }
+
     &:global(.uui-invalid) {
         &.mode-form {
             border-color: var(--uui-picker-toggler-border-error);

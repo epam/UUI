@@ -5,7 +5,6 @@ import {
 
 export class TooltipDoc extends BaseDocsBlock {
     title = 'Tooltip';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/overlays/tooltip.props.tsx',

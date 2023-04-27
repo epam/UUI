@@ -29,6 +29,7 @@ async function setupRangeDatePicker(params: { value: { from: string; to: string 
             onValueChange: jest.fn().mockImplementation((newValue) => {
                 context.current.setProperty('value', newValue);
             }),
+            onOpenChange: jest.fn(),
         }),
         (props) => <RangeDatePicker { ...props } />,
     );
@@ -40,7 +41,7 @@ async function setupRangeDatePicker(params: { value: { from: string; to: string 
     return {
         result,
         dom: { from, to, clear },
-        mocks: { onValueChange: mocks.onValueChange },
+        mocks: { onValueChange: mocks.onValueChange, onOpenChange: mocks.onOpenChange },
     };
 }
 
@@ -167,5 +168,14 @@ describe('RangeDataPicker', () => {
         const { dom } = await setupRangeDatePicker({ value });
         expect(dom.from.value).toBe('Sep 10, 2019');
         expect(dom.to.value).toBe('Sep 10, 2019');
+    });
+
+    it('should fire onOpenChange event on open state change', async () => {
+        const value = { from: '2017-01-22', to: '2017-01-28' };
+        const { dom, mocks } = await setupRangeDatePicker({ value });
+        fireEvent.focus(dom.from);
+        expect(mocks.onOpenChange).toBeCalledWith(true);
+        fireEvent.blur(dom.from);
+        expect(mocks.onOpenChange).toBeCalledWith(false);
     });
 });

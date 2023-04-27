@@ -4,10 +4,9 @@ import { Button } from '../../buttons';
 import { ColumnHeaderDropdown } from '../ColumnHeaderDropdown';
 import { mockReactPortalsForSnapshots } from '@epam/test-utils';
 
-mockReactPortalsForSnapshots();
-
 describe('ColumnHeaderDropdown', () => {
     it('should be rendered correctly', async () => {
+        const portalMock = mockReactPortalsForSnapshots();
         const tree = await renderSnapshotWithContextAsync(
             <ColumnHeaderDropdown
                 title=""
@@ -20,6 +19,7 @@ describe('ColumnHeaderDropdown', () => {
                 renderFilter={ () => <div>Picker</div> }
             />,
         );
+        portalMock.mockClear();
         expect(tree).toMatchSnapshot();
     });
 });

@@ -11,7 +11,6 @@ interface DemoComponentState {
 
 export class RelativePanelContext extends React.Component<DemoComponentProps, DemoComponentState> {
     public static displayName = 'Relative panel';
-
     state: DemoComponentState = {
         activeContent: 'form',
     };

@@ -21,7 +21,10 @@ export type ButtonProps = ButtonMods & uuiButtonProps;
 
 export function applyButtonMods(mods: ButtonProps) {
     return [
-        `button-${mods.color || 'primary'}`, css.root, css[`size-${mods.size || defaultSize}`], css[`mode-${mods.mode || 'solid'}`],
+        `button-${mods.color || 'primary'}`,
+        css.root,
+        css[`size-${mods.size || defaultSize}`],
+        css[`mode-${mods.mode || 'solid'}`],
     ];
 }
 

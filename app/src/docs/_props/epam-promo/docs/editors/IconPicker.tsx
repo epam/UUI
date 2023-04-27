@@ -23,7 +23,6 @@ interface IconPickerState {
 
 export class IconPicker extends React.Component<IconPickerProps, IconPickerState> {
     state: IconPickerState = {};
-
     renderItem(item: IconList<Icon>) {
         let itemText;
 
@@ -63,7 +62,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
     renderInfo() {
         return (
             <div className={ css.infoContainer }>
-                <Tooltip cx={ css.tooltip } placement="top" content={ this.renderTooltip() } color="gray90">
+                <Tooltip cx={ css.tooltip } placement="top" content={ this.renderTooltip() } color="gray80">
                     <IconButton icon={ InfoIcon } color="gray60" />
                 </Tooltip>
             </div>

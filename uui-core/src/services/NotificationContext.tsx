@@ -15,7 +15,6 @@ let idCounter = 0;
 
 export class NotificationContext extends BaseContext implements INotificationContext {
     private notifications: NotificationOperation[] = [];
-
     constructor(private layoutCtx: LayoutContext) {
         super();
     }

@@ -28,7 +28,6 @@ interface FormContextState {
 
 export class FormContext extends React.Component<DemoComponentProps, FormContextState> {
     public static displayName = 'Form';
-
     state = {
         textValue: '',
         isInvalid: false,

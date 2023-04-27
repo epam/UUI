@@ -5,7 +5,6 @@ import {
 
 export class ControlGroupDoc extends BaseDocsBlock {
     title = 'Control Group';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/layout/controlGroup.props.tsx',

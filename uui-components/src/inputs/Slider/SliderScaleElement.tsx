@@ -18,9 +18,7 @@ interface SliderScaleElementState {
 
 export class SliderScaleElement extends React.Component<SliderScaleElementProps, SliderScaleElementState> {
     scaleNumber: HTMLElement | null;
-
     scaleDot: HTMLElement | null;
-
     componentDidMount() {
         if (this.scaleNumber && this.scaleDot) {
             this.setState({ scaleDotWidth: this.scaleDot.offsetWidth, scaleNumberWidth: this.scaleNumber.offsetWidth });

@@ -5,7 +5,6 @@ import {
 
 export class RichTextViewDoc extends BaseDocsBlock {
     title = 'RichTextView';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/typography/richTextView.props.tsx',

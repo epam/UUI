@@ -3,7 +3,6 @@ import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 
 export class NotificationContextDoc extends BaseDocsBlock {
     title = 'Notification Context';
-
     renderContent() {
         return (
             <>
