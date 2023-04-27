@@ -70,7 +70,6 @@ const AIRBNB_PICK_RULES = {
             'block-scoped-var',
             'prefer-promise-reject-errors',
             //
-            'no-shadow',
             'no-unused-vars',
             //
             'no-var',
@@ -94,7 +93,7 @@ const AIRBNB_PICK_RULES = {
             '@typescript-eslint/space-before-blocks',
             '@typescript-eslint/space-before-function-paren',
         ],
-        NON_STYLISTIC: ['@typescript-eslint/no-shadow', '@typescript-eslint/no-unused-vars'],
+        NON_STYLISTIC: ['@typescript-eslint/no-unused-vars'],
     },
     REACT: {
         STYLISTIC: [
