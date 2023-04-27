@@ -698,7 +698,7 @@
                     "nodes": [
                       {
                         "object": "text",
-                        "text": "(**) such tests require real browser, real api endpoints, layout, navigation, etc.   ",
+                        "text": "(**) such tests require real browser, real API endpoints, layout, navigation, etc.   ",
                         "marks": []
                       }
                     ]
