@@ -110,7 +110,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "1",
+                    "text": "      1",
                     "marks": []
                   }
                 ]
@@ -263,7 +263,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "2",
+                    "text": "      2",
                     "marks": []
                   }
                 ]
@@ -510,7 +510,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "3",
+                    "text": "      3",
                     "marks": []
                   }
                 ]

@@ -5880,7 +5880,14 @@
                     "data": {}
                   }
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "paragraph",
+            "data": {},
+            "nodes": [
               {
                 "object": "text",
                 "text": "}",
@@ -5901,7 +5908,14 @@
                     "data": {}
                   }
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "paragraph",
+            "data": {},
+            "nodes": [
               {
                 "object": "text",
                 "text": "export",
