@@ -7414,7 +7414,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "(make component testable by extracting state management logic)",
+                    "text": "(testability: test extracted state management logic)",
                     "marks": []
                   },
                   {
