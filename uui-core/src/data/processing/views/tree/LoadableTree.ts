@@ -41,8 +41,6 @@ export abstract class LoadableTree<TItem, TId> extends EditableTree<TItem, TId> 
                 const ids = Array.from(missingIds);
                 const response = await options.api({ ids });
 
-                // TODO: think about this code, because if some IDS are missing, datasource should work normally
-                // possibly, it is worth to throw warning...
                 if (response.items.length !== ids.length) {
                     console.error("LazyTree: api does not returned requested items. Check that you handle 'ids' argument correctly.");
                 }

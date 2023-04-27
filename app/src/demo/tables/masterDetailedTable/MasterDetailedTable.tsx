@@ -83,7 +83,7 @@ export function MasterDetailedTable() {
             </div>
 
             <InfoSidebarPanel
-                data={ tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value as Person) } // TODO: make it safe
+                data={ tableStateApi.tableState.selectedId && (view.getById(tableStateApi.tableState.selectedId, 0).value as Person) }
                 isVisible={ isInfoPanelOpened }
                 onClose={ closeInfoPanel }
             />
