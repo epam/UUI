@@ -14,5 +14,7 @@ export type TooltipProps = Omit<UuiTooltipProps, 'color'> & TooltipMods;
 export const Tooltip = withMods< Omit<UuiTooltipProps, 'color'>, TooltipMods>(
     uuiTooltip,
     () => [],
-    (props) => ({ color: props.color ?? 'night800' } as TooltipProps),
+    (props) => ({
+        color: props.color === 'night900' ? 'night800' : props.color ?? 'night800',
+    } as TooltipProps),
 );
