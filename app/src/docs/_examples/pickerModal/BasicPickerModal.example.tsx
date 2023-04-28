@@ -14,7 +14,7 @@ export default function LanguagesPickerModal() {
     useEffect(() => {
         svc.api.demo.locations({})
             .then((res) => setItems(res.items));
-    });
+    }, []);
 
     const dataSource = useArrayDataSource<Location, string, unknown>(
         {
