@@ -26,6 +26,18 @@ export const iframePlugin = () => {
         isElement: true,
         isVoid: true,
         component: IframeBlock,
+        // paste iframe from clipboard
+        then: (editor, { type }) => ({
+            deserializeHtml: {
+                rules: [{ validNodeName: 'IFRAME' }],
+                getNode: (el: HTMLElement) => {
+                    const url = el.getAttribute('src');
+                    if (url) {
+                        return { type, url, src: url, data: { src: url } };
+                    }
+                },
+            },
+        }),
         handlers: {
             onKeyDown: (editor) => (event) => {
                 const block = getBlockAbove(editor);
