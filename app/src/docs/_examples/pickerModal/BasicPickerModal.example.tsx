@@ -1,58 +1,69 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { DataPickerRow, PickerItem, PickerModal } from '@epam/uui';
 import { FlexRow, FlexCell, Button } from '@epam/promo';
-import { DataQueryFilter, DataRowProps, UuiContext, useLazyDataSource, useUuiContext } from '@epam/uui-core';
-import { Location } from '@epam/uui-docs';
+import { DataRowProps, UuiContext, useArrayDataSource } from '@epam/uui-core';
 
-export default function LanguagesMultiPicker() {
-    const [value, onValueChange] = useState<string[]>(['2395635', 'AO']);
-    const svc = useUuiContext();
+interface Language {
+    id: number;
+    level: string;
+}
+
+const languageLevels: Language[] = [
+    { id: 2, level: 'A1' },
+    { id: 3, level: 'A1+' },
+    { id: 4, level: 'A2' },
+    { id: 5, level: 'A2+' },
+    { id: 6, level: 'B1' },
+    { id: 7, level: 'B1+' },
+    { id: 8, level: 'B2' },
+    { id: 9, level: 'B2+' },
+    { id: 10, level: 'C1' },
+    { id: 11, level: 'C1+' },
+    { id: 12, level: 'C2' },
+];
+
+export default function LanguagesPickerModal() {
+    const [value, onValueChange] = useState<number>(8);
     const context = useContext(UuiContext);
-
-    const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>(
+    // Create DataSource outside the Picker, by calling useArrayDataSource hook
+    const dataSource = useArrayDataSource<Language, number, any>(
         {
-            api: (request, ctx) => {
-                const { search } = request;
-                // if search is specified, it is required to search over all the children,
-                // and since parentId is meaningful value, it is required to exclude it from the filter.
-                const filter = search ? {} : { parentId: ctx?.parentId };
-                return svc.api.demo.locations({ ...request, search, filter });
-            },
-            cascadeSelection: true,
-            getId: (i) => i.id,
-            getParentId: (i) => i.parentId,
-            getChildCount: (l) => l.childCount,
+            items: languageLevels,
         },
         [],
     );
 
-    const renderRow = (rowProps: DataRowProps<Location, string>) => (
+    const renderRow = (rowProps: DataRowProps<Language, number>) => (
         <DataPickerRow
             { ...rowProps }
             key={ rowProps.rowKey }
             borderBottom="none"
             size="36"
             padding="24"
-            renderItem={ (item: Location, pickerItemProps: DataRowProps<Location, string>) => (
-                <PickerItem title={ item.name } size="36" { ...pickerItemProps } />
+            renderItem={ (item: Language, pickerItemProps: DataRowProps<Language, number>) => (
+                <PickerItem title={ item.level } size="36" { ...pickerItemProps } />
             ) }
         />
     );
 
     const handleModalOpening = useCallback(() => {
         context.uuiModals
-            .show((props) => (
-                <PickerModal
-                    initialValue={ value }
-                    dataSource={ dataSource }
-                    selectionMode="multi"
-                    valueType="id"
-                    renderRow={ renderRow }
-                    { ...props }
-                />
-            ))
+            .show<number>(
+            (props) => {
+                return (
+                    <PickerModal
+                        initialValue={ value }
+                        dataSource={ dataSource }
+                        selectionMode="single"
+                        valueType="id"
+                        renderRow={ renderRow }
+                        { ...props }
+                    />
+                );
+            },
+        )
             .then((newSelection) => {
-                onValueChange(newSelection as string[]);
+                onValueChange(newSelection);
             })
             .catch(() => {});
     }, [context.uuiModals, dataSource, value]);
@@ -60,7 +71,7 @@ export default function LanguagesMultiPicker() {
     return (
         <FlexCell width={ 612 }>
             <FlexRow spacing="12">
-                <Button color="blue" caption="Show picker modal" onClick={ handleModalOpening } />
+                <Button color="blue" caption="Show languages" onClick={ handleModalOpening } />
             </FlexRow>
         </FlexCell>
     );
