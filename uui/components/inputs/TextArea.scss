@@ -24,6 +24,7 @@
         border-style: solid;
         border-radius: var(--uui-text-area-border-radius);
         font-family: var(--uui-text-area-font);
+        font-weight: var(--uui-text-area-font-weight, normal);
         box-sizing: border-box;
         padding-right: 18px;
         padding-left: 12px;
@@ -147,6 +148,7 @@
         font-size: 12px;
         color: var(--uui-text-area-icon);
         font-family: var(--uui-text-area-counter-font);
+        font-weight: var(--uui-text-area-counter-font-weight, normal);
     }
 
     //Sizes
