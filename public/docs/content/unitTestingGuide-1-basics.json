@@ -1,0 +1,1665 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Testing pyramid",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "table",
+        "data": {
+          "cellSizes": [
+            60.600006103515625,
+            117.79995727539062,
+            202,
+            459.60003662109375
+          ]
+        },
+        "nodes": [
+          {
+            "object": "block",
+            "type": "table_row",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "table_header_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Level",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_header_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Title",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_header_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "What is tested",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_header_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Tools",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "table_row",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "      1",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Unit",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "unordered-list",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "Pure functions",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "Helpers",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "Utilities",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "unordered-list",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "Jest",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "table_row",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "      2",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Integration",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "(*)",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "unordered-list",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "React component",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "Reusable React hook",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "unordered-list",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "Jest + jsdom",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "@epam/test-utils",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "@testing-library/react",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "react-test-renderer (for snapshots)",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "@testing-library/jest-dom (for custom jest matchers)",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "list-item",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item-child",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "text",
+                                "text": "@testing-library/user-event",
+                                "marks": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "table_row",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "      3",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "E2E",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "(**)",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Not supported in UUI yet.",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": null,
+                  "rowSpan": null
+                },
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "n/a",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "table_row",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": 4,
+                  "rowSpan": 1
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "(*) with React components, the distinction between a “unit” and “integration” test can be blurry. For simplicity, we consider that any test of React component is integration one.",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "style": "none"
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "style": "none"
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "style": "none"
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "table_row",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "colSpan": 4,
+                  "rowSpan": 1
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "(**) such tests require real browser, real API endpoints, layout, navigation, etc.   ",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "style": "none"
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "style": "none"
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_cell",
+                "data": {
+                  "style": "none"
+                },
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "paragraph",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "",
+                        "marks": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#guiding-principles"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Guiding principles",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "ordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Write code which is \"testable\". Don't try to cover \"untestable\" code by unit tests - make it \"testable\" first.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Minimize usage of mocks. Reason: with too many mocks, the test no longer resembles the way how component is used.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Don't overuse snapshots.",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "unordered-list",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Snapshot \"",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "is a",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "\" tool which notifies that",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": " ",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {}
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "something",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " ",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {}
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "is changed without saying whether it's expected change or not.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Snapshot \"",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "is not a",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "\" test. It should never replace real tests.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "It's recommended to add maximum 2 snapshots per component:",
+                            "marks": []
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "unordered-list",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "block",
+                                "type": "list-item-child",
+                                "data": {},
+                                "nodes": [
+                                  {
+                                    "object": "text",
+                                    "text": "snapshot with min amount of props",
+                                    "marks": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "object": "block",
+                            "type": "list-item",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "block",
+                                "type": "list-item-child",
+                                "data": {},
+                                "nodes": [
+                                  {
+                                    "object": "text",
+                                    "text": "snapshot with max amount of props.",
+                                    "marks": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Create tests at the same time (or right after) you create code, if possible. Reasons:",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "unordered-list",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "It helps to avoid refactoring of already working code to make this code testable. Which means no risk to make a regression.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "The developer is still \"in context\" of internal details and corner cases. Which means better quality of tests.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Don't strive to reach certain level of test coverage. It's too easy to reach high coverage with poor quality tests. It should only be used to find places which aren't covered by unit tests.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Recommended structure of a single test:",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "unordered-list",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Arrange - setup any prerequisites (prepare test data, render components, prepare mocks)",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Act - fire some actions, invoke functions, etc.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Assert - verify the result using \"expect\" statements.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "It's often useful to create test plan or test matrix before writing any actual tests. It will help to create better tests for a component with minimum effort.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#writing-testable-code"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Writing testable code",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "ordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Follow software development best practices and avoid anti-patterns. Code which follows best practices isn't only maintainable and reliable, but it's also testable.",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "unordered-list",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Good: Separation of concerns, Single responsibility, etc.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Bad: God object, Spaghetti code, etc.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "For React components/hooks",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "unordered-list",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Extract complex logic (or logic which you need to cover by unit tests) to pure functions/utilities. So that it's possible to test it in isolation (without need to render it, or without need to use complicated/fragile mocks, or without need to depend on any 3rd party libs).",
+                            "marks": []
+                          }
+                        ]
+                      },
+                      {
+                        "object": "block",
+                        "type": "unordered-list",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "block",
+                            "type": "list-item",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "block",
+                                "type": "list-item-child",
+                                "data": {},
+                                "nodes": [
+                                  {
+                                    "object": "text",
+                                    "text": "complex state management logic",
+                                    "marks": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "object": "block",
+                            "type": "list-item",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "block",
+                                "type": "list-item-child",
+                                "data": {},
+                                "nodes": [
+                                  {
+                                    "object": "text",
+                                    "text": "complex calculations",
+                                    "marks": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "object": "block",
+                            "type": "list-item",
+                            "data": {},
+                            "nodes": [
+                              {
+                                "object": "block",
+                                "type": "list-item-child",
+                                "data": {},
+                                "nodes": [
+                                  {
+                                    "object": "text",
+                                    "text": "formatting, etc.",
+                                    "marks": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Create \"unit tests\" for the extracted logic.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Create \"integration tests\" for React component.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Create \"integration tests\" for React hook. But only if this hook is a reusable one (like \"",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "useForm",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "\"). Otherwise - don't add tests for it.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "For utilities/pure functions:",
+                    "marks": []
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "unordered-list",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Organize utilities by purpose, don't put unrelated logic to the same file.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Choose meaningful names for utilities.",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": " ",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {}
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "Bad: ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "'./utils.ts'",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " ",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {}
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "Good:",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": " './numberFormattingUtils.ts'",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "list-item",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "list-item-child",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Create \"unit tests\" for utilities.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
