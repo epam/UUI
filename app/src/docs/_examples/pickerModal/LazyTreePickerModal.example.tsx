@@ -47,7 +47,6 @@ export default function LazyTreePickerModal() {
                     dataSource={ dataSource }
                     selectionMode="multi"
                     valueType="id"
-                    // getName={ (item) => item.name }
                     renderRow={ renderRow }
                     { ...props }
                 />
