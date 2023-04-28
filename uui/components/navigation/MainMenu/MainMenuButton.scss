@@ -10,6 +10,7 @@
         line-height: 16px;
         margin-bottom: -3px;
         font-family: var(--uui-main_menu-font);
+        font-weight: var(--uui-main_menu-font-weight, normal);
     }
 
     &:global(.uui-button-box), &:global(.uui-input-box) {

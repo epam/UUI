@@ -53,6 +53,7 @@
     box-sizing: border-box;
     width: 100%;
     font-family: var(--uui-dropdown-menu-item-font);
+    font-weight: var(--uui-dropdown-menu-item-font-weight, normal);
 
     &:focus {
         outline: none;
@@ -72,6 +73,7 @@
     @include icon-layout(36px);
     @include fillColor(var(--uui-icon), var(--uui-text-primary));
     font-family: var(--uui-dropdown-menu-body-font);
+    font-weight: var(--uui-dropdown-menu-body-font-weight, normal);
     font-size: 14px;
     padding: 0.5em 0;
     background-color: var(--uui-dropdown-menu-bg);
