@@ -160,6 +160,7 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         padding-right: 6px;
         margin-bottom: 2px;
         font-family: var(--uui-picker-toggler-font);
+        font-weight: var(--uui-picker-toggler-font-weight, normal);
         color: var(--uui-picker-toggler-text);
 
         &::placeholder {
@@ -174,6 +175,7 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     :global(.uui-caption) {
         @include overflow-ellipsis();
         font-family: var(--uui-picker-toggler-font);
+        font-weight: var(--uui-picker-toggler-font-weight, normal);
         align-self: center;
         white-space: nowrap;
     }
