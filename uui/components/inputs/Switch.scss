@@ -60,6 +60,7 @@
     :global(.uui-input-label) {
         //@include typography-inline; TODO: ???
         font-family: var(--uui-switch-font);
+        font-weight: var(--uui-switch-font-weight, normal);
         color: var(--uui-switch-label);
         margin-left: 11px;
     }

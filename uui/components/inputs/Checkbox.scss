@@ -40,6 +40,7 @@
     :global(.uui-input-label) {
         // @include typography-inline(); TODO: ???
         font-family: var(--uui-checkbox-font);
+        font-weight: var(--uui-checkbox-font-weigth, normal);
         color: var(--uui-checkbox-label);
         margin-left: 12px;
         flex-grow: 1;
