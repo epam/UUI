@@ -28,53 +28,75 @@ export class HeaderBar extends React.Component<HeaderBarProps> {
         const block = getBlockAbove(this.props.editor);
 
         if (block.length && block[0].type === blockType) {
-            setElements(this.props.editor, { type: 'paragraph' });
+            setElements(this.props.editor, {
+                data: {},
+                type: "p",
+                children: [{ "text": "" }],
+            });
         } else {
             setElements(this.props.editor, { type: blockType });
         }
     }
 
-    clearHeaderStyle = () => {
-        setElements(this.props.editor, { type: 'paragraph' });
+    clearHeaderStyle() {
+        setElements(this.props.editor, {
+            data: {},
+            type: "p",
+            children: [{ "text": "" }],
+        });
     }
 
     renderHeaderMenu() {
         const block = getBlockAbove(this.props.editor);
 
-        return <FlexRow rawProps={ { style: { background: '#303240' }} }>
-            <ToolbarButton
-                isActive={ false }
-                icon={ ClearIcon }
-                onClick={ this.clearHeaderStyle }
-            />
-            <PlateToolbarButton
-                styles={ { root: { width: 'auto', cursor: 'pointer' }} }
-                onMouseDown={ () => this.toggleBlock('uui-richTextEditor-header-1') }
-                icon={ <ToolbarButton
-                    onClick={ noop }
-                    isActive={ block.length && block[0].type === 'uui-richTextEditor-header-1' }
-                    icon={ H1Icon }
-                /> }
-            />
-            <PlateToolbarButton
-                styles={ { root: { width: 'auto', cursor: 'pointer' }} }
-                onMouseDown={ () => this.toggleBlock('uui-richTextEditor-header-2') }
-                icon={ <ToolbarButton
-                    onClick={ noop }
-                    isActive={ block.length && block[0].type === 'uui-richTextEditor-header-2' }
-                    icon={ H2Icon }
-                /> }
-            />
-            <PlateToolbarButton
-                styles={ { root: { width: 'auto', cursor: 'pointer' }} }
-                onMouseDown={ () => this.toggleBlock('uui-richTextEditor-header-3') }
-                icon={ <ToolbarButton
-                    onClick={ noop }
-                    isActive={ block.length && block[0].type === 'uui-richTextEditor-header-3' }
-                    icon={ H3Icon }
-                /> }
-            />
-        </FlexRow>;
+        return (
+            <FlexRow rawProps={ { style: { height: 42, background: '#303240' } } }>
+                <PlateToolbarButton
+                    styles={ { root: { width: 'auto', height: '100%', padding: 0, cursor: 'pointer' } } }
+                    onMouseDown={ () => this.clearHeaderStyle() }
+                    icon={
+                        <ToolbarButton
+                            onClick={ noop }
+                            isActive={ block.length && block[0].type === 'uui-richTextEditor-header-1' }
+                            icon={ ClearIcon }
+                        />
+                    }
+                />
+                <PlateToolbarButton
+                    styles={ { root: { width: 'auto', height: '100%', padding: 0, cursor: 'pointer' } } }
+                    onMouseDown={ () => this.toggleBlock('uui-richTextEditor-header-1') }
+                    icon={
+                        <ToolbarButton
+                            onClick={ noop }
+                            isActive={ block.length && block[0].type === 'uui-richTextEditor-header-1' }
+                            icon={ H1Icon }
+                        />
+                    }
+                />
+                <PlateToolbarButton
+                    styles={ { root: { width: 'auto', height: '100%', padding: 0, cursor: 'pointer' } } }
+                    onMouseDown={ () => this.toggleBlock('uui-richTextEditor-header-2') }
+                    icon={
+                        <ToolbarButton
+                            onClick={ noop }
+                            isActive={ block.length && block[0].type === 'uui-richTextEditor-header-2' }
+                            icon={ H2Icon }
+                        />
+                    }
+                />
+                <PlateToolbarButton
+                    styles={ { root: { width: 'auto', height: '100%', padding: 0, cursor: 'pointer' } } }
+                    onMouseDown={ () => this.toggleBlock('uui-richTextEditor-header-3') }
+                    icon={
+                        <ToolbarButton
+                            onClick={ noop }
+                            isActive={ block.length && block[0].type === 'uui-richTextEditor-header-3' }
+                            icon={ H3Icon }
+                        />
+                    }
+                />
+            </FlexRow>
+        );
     }
 
     render() {
