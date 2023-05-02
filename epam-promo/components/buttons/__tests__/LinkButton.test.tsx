@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkButton } from '../LinkButton';
-import { SvgMock, renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { SvgMock, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('LinkButton', () => {
     it('should render with minimum props', async () => {

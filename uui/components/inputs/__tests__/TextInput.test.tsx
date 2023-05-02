@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput } from '../TextInput';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
 
 describe('TextInput', () => {

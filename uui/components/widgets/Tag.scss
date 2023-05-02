@@ -11,6 +11,7 @@
             background-color: var(--uui-tag-count-bg);
             color: var(--uui-tag-count);
             font-family: var(--uui-tag-count-font);
+            font-weight: var(--uui-tag-count-font-weight, normal);
             margin: auto;
             height: 18px;
             line-height: 18px;
@@ -35,6 +36,7 @@
         :global(.uui-caption) {
             text-transform: none;
             font-family: var(--uui-tag-font);
+            font-weight: var(--uui-tag-font-weight, normal);
             color: var(--uui-tag-caption);
         }
     }

@@ -1,6 +1,6 @@
 import { LazyDataSource } from '../../LazyDataSource';
 import { LazyListViewProps } from '../LazyListView';
-import { delay } from '@epam/test-utils';
+import { delay } from '@epam/uui-test-utils';
 import { DataSourceState } from '../../../../types';
 
 interface TItem {

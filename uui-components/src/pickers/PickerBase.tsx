@@ -63,7 +63,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     };
 
     isSingleSelect = () => {
-        return this.props.selectionMode == 'single';
+        return this.props.selectionMode === 'single';
     };
 
     getSelectedIdsArray = (value: any): TId[] => {
@@ -97,7 +97,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     protected handleDataSourceValueChange = (newDataSourceState: DataSourceState) => {
         let showSelected = this.state.showSelected;
 
-        if (showSelected && newDataSourceState.checked?.length == 0) {
+        if (showSelected && !newDataSourceState.checked?.length) {
             showSelected = false;
         }
 
@@ -154,7 +154,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
         const view = this.getView();
         const listProps = view.getListProps();
         if (this.state.showSelected) {
-            const checked = this.state.dataSourceState.checked;
+            const checked = this.getDataSourceState().checked;
             const checkedCount = checked ? checked.length : 0;
             return {
                 ...listProps,
@@ -178,10 +178,10 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     }
 
     private onShowSelectedChange = (nV: boolean) => {
-        this.setState({
+        this.setState((state) => ({
             showSelected: nV,
-            dataSourceState: { ...this.state.dataSourceState },
-        });
+            dataSourceState: { ...state.dataSourceState },
+        }));
     };
 
     getFooterProps(): PickerFooterProps<TItem, TId> {
