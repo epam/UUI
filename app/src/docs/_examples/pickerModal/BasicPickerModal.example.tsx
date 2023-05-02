@@ -1,24 +1,17 @@
 import React, { useCallback, useContext, useState, useEffect } from 'react';
 import { PickerModal } from '@epam/uui';
 import { FlexRow, FlexCell, Button } from '@epam/promo';
-import { UuiContext, useArrayDataSource } from '@epam/uui-core';
+import { UuiContext, useAsyncDataSource } from '@epam/uui-core';
 import { svc } from '../../../services';
 import { Location } from '@epam/uui-docs';
 
 export default function LanguagesPickerModal() {
-    const [value, onValueChange] = useState(['1123004', '1255076', '4094163']);
+    const [value, onValueChange] = useState([]);
     const context = useContext(UuiContext);
-    const [items, setItems] = useState<Location[]>([]);
-    // Create DataSource outside the Picker, by calling useArrayDataSource hook
 
-    useEffect(() => {
-        svc.api.demo.locations({})
-            .then((res) => setItems(res.items));
-    }, []);
-
-    const dataSource = useArrayDataSource<Location, string, unknown>(
+    const dataSource = useAsyncDataSource<Location, string, unknown>(
         {
-            items: items,
+            api: () => svc.api.demo.locations({}).then((res) => res.items),
         },
         [],
     );

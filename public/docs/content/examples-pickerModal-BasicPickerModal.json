@@ -123,39 +123,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "If you want a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "single",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " or ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "multi",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-underlined",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " select, pass the ",
+            "text": "If you want a single or multi select, pass the ",
             "marks": []
           },
           {
