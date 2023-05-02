@@ -30,7 +30,7 @@
           },
           {
             "object": "text",
-            "text": "Reference implementation",
+            "text": "Reference implementations",
             "marks": []
           }
         ]
@@ -256,7 +256,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "(complex component)",
+                    "text": "(complex component, userEvent usage)",
                     "marks": []
                   },
                   {
