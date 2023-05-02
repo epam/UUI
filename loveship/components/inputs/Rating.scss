@@ -2,7 +2,7 @@
 
 .root {
     // Colors
-    fill: var(--uui-color-700);
+    fill: $sun;
 
     :global(.uui-rating-star) {
         padding: 0 1px;
@@ -16,7 +16,7 @@
 
     :global(.uui-rating-filled-star-container) {
         svg {
-            stroke: var(--uui-color-700);
+            stroke: $sun;
         }
     }
 
