@@ -6,7 +6,7 @@ export class UtGuideCookbookDoc extends BaseDocsBlock {
 
     renderContent() {
         return (
-            <EditableDocContent fileName="unitTestingGuide-3-cookbook" />
+            <EditableDocContent fileName="unitTestingGuide-2-cookbook" />
         );
     }
 }

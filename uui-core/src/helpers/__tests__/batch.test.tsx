@@ -1,5 +1,5 @@
 import { batch } from '../batch';
-import { delay } from '@epam/test-utils';
+import { delay } from '@epam/uui-test-utils';
 
 describe('batch', () => {
     jest.useRealTimers();

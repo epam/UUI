@@ -1,7 +1,7 @@
 import React from 'react';
 import { TimePickerBody } from '../TimePickerBody';
 import MockDate from 'mockdate';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { systemIcons } from '../../icons/icons';
 
 const acceptIcon = systemIcons[18].accept;

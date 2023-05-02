@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, fireEvent, screen, within,
-} from '@epam/test-utils';
+} from '@epam/uui-test-utils';
 
 jest.mock('react-popper', () => ({
     ...jest.requireActual('react-popper'),
