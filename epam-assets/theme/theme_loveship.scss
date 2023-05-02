@@ -1316,16 +1316,16 @@
 
     :global(.uui-font-regular),
     :global(.uui-font-sans) {
-        --uui-font: var(--font-regular);
+        --uui-text-font: var(--font-regular);
     }
 
     :global(.uui-font-semibold),
     :global(.uui-font-sans-semibold) {
-        --uui-font: var(--font-semibold);
+        --uui-text-font: var(--font-semibold);
     }
 
     :global(.uui-font-sans-light) {
-        --uui-font: var(--font-light);
+        --uui-text-font: var(--font-light);
     }
 
     :global(.dropdown-container-white) {

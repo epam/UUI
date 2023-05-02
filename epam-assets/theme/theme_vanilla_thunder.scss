@@ -932,24 +932,17 @@
         --uui-text: var(--uui-text-contrast);
     }
 
-    :global(.uui-font-regular) {
-        --uui-font: var(--font-regular);
+    .uui-font-inter, .uui-font-regular {
+        --uui-text-font: var(--font-inter);
     }
 
-    :global(.uui-font-semibold) {
-        --uui-font: var(--font-semibold);
+    .uui-font-museo-sans {
+        --uui-text-font: var(--font-museo-sans);
     }
 
-    :global(.uui-font-italic) {
-        --uui-font: var(--font-italic);
-    }
-
-    :global(.uui-font-primary) {
-        --uui-font: var(--font-primary);
-    }
-
-    :global(.uui-font-promo) {
-        --uui-font: var(--font-promo);
+    .uui-font-semibold {
+        --uui-text-font: var(--font-museo-sans);
+        --uui-text-font-weight: 700;
     }
 
     :global(.dropdown-container-white) {
