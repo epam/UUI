@@ -11,6 +11,476 @@
         "nodes": [
           {
             "object": "text",
+            "text": "Quick start",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "// todo: add an example here",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#reference-implementation"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Reference implementation",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(fake timers)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui-core/src/helpers/__tests__/IEditableDebouncer.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "IEditableDebouncer.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(testability: test extracted state management logic)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui-components/src/table/columnsConfigurationModal/__tests__/columnsConfigurationActions.test.ts"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "columnsConfigurationActions.test.ts",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(react-popper mock usage)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/datePickers/__tests__/DatePicker.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "DatePicker.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(snapshot)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/inputs/__tests__/NumericInput.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "NumericInput.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(complex component)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/filters/__tests__/filtersPanel.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "filtersPanel.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(complex component, adaptive panel mock)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/filters/PresetPanel/__tests__/presetsPanel.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "presetsPanel.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(complex component)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/pickers/__tests__/PickerInput.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "PickerInput.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "(\"data-testid\" usage)",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-span-mark",
+                        "data": {
+                          "style": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://github.com/epam/UUI/blob/develop/uui-components/src/adaptivePanel/__tests__/adaptivePanel.test.tsx"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "adaptivePanel.test.tsx",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-3",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
             "text": "",
             "marks": []
           },
@@ -2002,7 +2472,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "import { mockReactPortalsForSnapshots } from '@epam/test-utils';",
+                            "text": "import { mockReactPortalsForSnapshots } from '@epam/uui-test-utils';",
                             "marks": [
                               {
                                 "object": "mark",
@@ -3248,7 +3718,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "     import { SvgMock } from '@epam/test-utils';",
+                "text": "     import { SvgMock } from '@epam/uui-test-utils';",
                 "marks": [
                   {
                     "object": "mark",
@@ -6988,7 +7458,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "import { setupComponentForTest } from '@epam/test-utils';\r",
+                "text": "import { setupComponentForTest } from '@epam/uui-test-utils';\r",
                 "marks": [
                   {
                     "object": "mark",
@@ -7534,471 +8004,6 @@
                     "object": "mark",
                     "type": "uui-richTextEditor-superscript",
                     "data": {}
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "uui-richTextEditor-header-3",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://github.com/epam/UUI/blob/96bab30480c195b008ef502de2796ebc2e261ad7/uui-build/jest/unit-testing-guide.md#reference-implementation"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "Reference implementation",
-            "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "unordered-list",
-        "data": {},
-        "nodes": [
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "(fake timers)",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://github.com/epam/UUI/blob/develop/uui-core/src/helpers/__tests__/IEditableDebouncer.test.tsx"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "IEditableDebouncer.test.tsx",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "(testability: test extracted state management logic)",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://github.com/epam/UUI/blob/develop/uui-components/src/table/columnsConfigurationModal/__tests__/columnsConfigurationActions.test.ts"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "columnsConfigurationActions.test.ts",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "(react-popper mock usage)",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/datePickers/__tests__/DatePicker.test.tsx"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "DatePicker.test.tsx",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "(snapshot)",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/inputs/__tests__/NumericInput.test.tsx"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "NumericInput.test.tsx",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "(complex component)",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/filters/__tests__/filtersPanel.test.tsx"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "filtersPanel.test.tsx",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "(complex component, adaptive panel mock)",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/filters/PresetPanel/__tests__/presetsPanel.test.tsx"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "presetsPanel.test.tsx",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "(complex component)",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://github.com/epam/UUI/blob/develop/uui/components/pickers/__tests__/PickerInput.test.tsx"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "PickerInput.test.tsx",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "(\"data-testid\" usage)",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-span-mark",
-                        "data": {
-                          "style": {}
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://github.com/epam/UUI/blob/develop/uui-components/src/adaptivePanel/__tests__/adaptivePanel.test.tsx"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "adaptivePanel.test.tsx",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
-                  },
-                  {
-                    "object": "inline",
-                    "type": "link",
-                    "data": {
-                      "url": "https://testing-library.com/docs/queries/about"
-                    },
-                    "nodes": [
-                      {
-                        "object": "text",
-                        "text": "",
-                        "marks": []
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "",
-                    "marks": []
                   }
                 ]
               }

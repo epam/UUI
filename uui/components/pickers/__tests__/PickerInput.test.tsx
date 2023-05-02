@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { ArrayDataSource } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, fireEvent,
-} from '@epam/test-utils';
+} from '@epam/uui-test-utils';
 import { PickerInput } from '../PickerInput';
 
 type TestItemType = {

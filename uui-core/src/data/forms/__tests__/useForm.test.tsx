@@ -1,7 +1,7 @@
 import { useForm } from '../useForm';
 import type { Metadata } from '../../../../index';
 import type { FormSaveResponse, IFormApi, UseFormProps } from '../index';
-import { testSvc, renderHookToJsdomWithContextAsync, act } from '@epam/test-utils';
+import { testSvc, renderHookToJsdomWithContextAsync, act } from '@epam/uui-test-utils';
 
 async function handleSave(save: () => void) {
     try {

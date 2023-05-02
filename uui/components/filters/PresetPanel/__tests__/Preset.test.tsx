@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { Preset } from '../Preset';
 
 const mockPreset = {
