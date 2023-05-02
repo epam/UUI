@@ -751,12 +751,6 @@
 
     /* ------------------------------------ */
 
-    /** tooltip-night900 is deprecated and will be removed in future */
-    :global(.tooltip-night900) {
-        --uui-tooltip-bg: var(--uui-surface-inverted);
-        --uui-tooltip-text: var(--uui-contrast);
-    }
-
     :global(.tooltip-contrast),
     :global(.tooltip-night800) {
         --uui-tooltip-bg: var(--uui-surface-contrast);

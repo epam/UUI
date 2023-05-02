@@ -698,12 +698,6 @@
 
     /* ------------------------------------ */
 
-    /** tooltip-gray90 is deprecated and will be removed in future */
-    :global(.tooltip-gray90) {
-        --uui-tooltip-bg: var(--uui-surface-inverted);
-        --uui-tooltip-text: var(--uui-contrast);
-    }
-
     :global(.tooltip-contrast),
     :global(.tooltip-gray80) {
         --uui-tooltip-bg: var(--uui-surface-contrast);

@@ -212,6 +212,10 @@ function uuiJsRules() {
             },
         ],
         'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+        'no-trailing-spaces': ['error', {
+            skipBlankLines: true,
+            ignoreComments: false,
+        }],
         // stylistic - end
     };
 }
