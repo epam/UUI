@@ -120,11 +120,11 @@ const Editor = ({ initialValue, ...props }: any) => {
                 props.fontSize == '16' ? style.typography16 : style.typography14,
             ) }
             //@ts-ignore
-            style={ { minHeight: props.minHeight || 350, padding: '0 24px' } as any }
+            style={ { minHeight: props.minHeight || 350 } as any }
             { ...props.rawProps }
         >
             { props.scrollbars
-                ? <ScrollBars cx={ css.scrollbars } style={{ width: '100%' }}>
+                ? <ScrollBars cx={ css.scrollbars } style={ { width: '100%' } }>
                     { renderEditor() }
                 </ScrollBars>
                 : renderEditor()
@@ -152,6 +152,7 @@ export function SlateEditor(props: SlateEditorProps) {
         autoFocus,
         readOnly: isReadonly,
         placeholder,
+        style: { padding: '0px 24px' }
     };
 
     const onChange = (value: any) => {
