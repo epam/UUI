@@ -15,17 +15,11 @@ export default function LazyTreePicker() {
         {
             api: (request, ctx) => {
                 const { search } = request;
-                if (search && ctx.parentId) { // >1 level, search
-                    return Promise.resolve({ items: ctx.parent.children });
-                } else if (search) {
-                    const tree = svc.api.demo.locationsSearch({ ...request, search });
-                    return tree;
-                }
-
-                const filter = { parentId: ctx?.parentId };
-                return svc.api.demo.locations({ ...request, filter });
+                const filter = search ? {} : { parentId: ctx?.parentId };
+                return svc.api.demo.locations({ ...request, search, filter });
             },
             cascadeSelection: true,
+            flattenSearchResults: true,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
