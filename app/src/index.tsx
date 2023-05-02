@@ -46,6 +46,8 @@ export class UuiEnhancedApp extends React.Component {
     }
 }
 
+console.log('Test');
+
 render(
     <React.StrictMode>
         <Router history={ history }>
