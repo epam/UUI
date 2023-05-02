@@ -4,6 +4,8 @@
   "author": "EPAM",
   "license": "MIT",
   "private": false,
+  "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "prepublish": "yarn build"
