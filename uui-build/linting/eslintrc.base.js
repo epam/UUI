@@ -104,7 +104,7 @@ module.exports = {
                     '.js', '.ts', '.tsx', '.d.ts', '.css', '.scss', '.svg',
                 ],
             },
-            alias: { map: [['@epam/test-utils', './test-utils/index.ts']] },
+            alias: { map: [['@epam/uui-test-utils', './test-utils/index.ts']] },
         },
         'import/extensions': [
             '.js', '.ts', '.tsx', '.d.ts',

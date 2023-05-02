@@ -1,6 +1,6 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { fireEvent, setupComponentForTest, screen, within } from '@epam/test-utils';
+import { fireEvent, setupComponentForTest, screen, within } from '@epam/uui-test-utils';
 import { DatePickerHeader, DatePickerHeaderProps } from '../DatePickerHeader';
 
 async function setupDatePickerHeader(params: { initialDate: string }) {

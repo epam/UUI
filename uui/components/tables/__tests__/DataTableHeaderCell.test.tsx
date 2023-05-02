@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataTableHeaderCell } from '../DataTableHeaderCell';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { DataColumnProps } from '@epam/uui-core';
 
 describe('DataTableHeaderCell', () => {
