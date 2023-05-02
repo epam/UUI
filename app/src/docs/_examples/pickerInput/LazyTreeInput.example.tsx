@@ -15,10 +15,19 @@ export default function LazyTreePicker() {
         {
             api: (request, ctx) => {
                 const { search } = request;
+                if (search && ctx.parentId) { // >1 level, search
+                    return Promise.resolve({ items: ctx.parent.children });
+                } else if (search) {
+                    // to /api/locations/search-tree
+                    const tree = svc.api.demo.locationsSearch({ ...request, search });
+                    tree.then((res: any) => console.log(res));
+                    return tree;
+                }
+                    
                 // if search is specified, it is required to search over all the children,
                 // and since parentId is meaningful value, it is required to exclude it from the filter.
-                const filter = search ? {} : { parentId: ctx?.parentId };
-                return svc.api.demo.locations({ ...request, search, filter });
+                const filter = { parentId: ctx?.parentId };
+                return svc.api.demo.locations({ ...request, filter });
             },
             cascadeSelection: true,
             getId: (i) => i.id,

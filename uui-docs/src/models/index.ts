@@ -212,6 +212,7 @@ export interface Location {
     tz?: string;
     lastModified?: string;
     childCount: number;
+    children: Location[] | null,
 }
 
 export interface FeatureClass {

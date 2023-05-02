@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
 const router = Router();
-const helpers = require('../helpers');
+const helpers = require('../helpers/index.js');
 const _ = require('lodash');
 
 function calculateTotal(totalData, result) {
@@ -104,6 +104,14 @@ router.post('/locations', async (req, res) => {
         l.childCount = locations.byParentId.get(l.id)?.length ?? 0;
     });
     res.json(result);
+});
+
+router.post('/locations/search-tree', async (req, res) => {
+    const locations = await helpers.getLocationTree();
+    const result = filterAndSort(req.body, locations.list);
+    const searchTree = helpers.buildSearchTree(result.items, locations);
+
+    res.json({ items: searchTree });
 });
 
 router.post('/cities', async (req, res) => {
