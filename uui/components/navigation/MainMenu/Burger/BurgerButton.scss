@@ -6,6 +6,7 @@
     border: 0;
     outline: none;
     font-family: var(--uui-burger_btn-font);
+    font-weight: var(--uui-burger_btn-font-weight, normal);
     line-height: 48px;
     flex-shrink: 0;
 

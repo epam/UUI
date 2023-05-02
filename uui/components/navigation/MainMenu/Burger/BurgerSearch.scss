@@ -9,6 +9,7 @@
     :global(.uui-input) {
         color: var(--uui-burger_search);
         font-family: var(--uui-burger_search-font);
+        font-weight: var(--uui-burger_search-font-weight, normal);
 
         &::placeholder {
             color: var(--uui-burger_search-placeholder);

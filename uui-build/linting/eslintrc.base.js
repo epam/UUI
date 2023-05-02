@@ -104,7 +104,7 @@ module.exports = {
                     '.js', '.ts', '.tsx', '.d.ts', '.css', '.scss', '.svg',
                 ],
             },
-            alias: { map: [['@epam/test-utils', './test-utils/index.ts']] },
+            alias: { map: [['@epam/uui-test-utils', './test-utils/index.ts']] },
         },
         'import/extensions': [
             '.js', '.ts', '.tsx', '.d.ts',
@@ -212,6 +212,10 @@ function uuiJsRules() {
             },
         ],
         'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+        'no-trailing-spaces': ['error', {
+            skipBlankLines: true,
+            ignoreComments: false,
+        }],
         // stylistic - end
     };
 }

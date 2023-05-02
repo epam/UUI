@@ -41,7 +41,6 @@ const AIRBNB_PICK_RULES = {
             'no-multi-spaces',
             'nonblock-statement-body-position',
             'no-tabs',
-            'no-trailing-spaces',
             'no-whitespace-before-property',
             'object-curly-spacing',
             'operator-linebreak',

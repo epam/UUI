@@ -233,19 +233,24 @@
     --uui-text-input-icon-clickable-hover: var(--uui-icon-hover);
     --uui-text-input-border-radius: var(--uui-border-radius);
 
-    --uui-text-input-font: var(--font-regular);
+    --uui-text-input-font: var(--font-inter);
+    --uui-text-input-font-weight: 400;
 
     /*  Button vars */
     --uui-btn-border-radius: 8px;
 
-    --uui-btn-font: var(--font-semibold);
+    --uui-btn-font: var(--font-museo-sans);
+    --uui-btn-font-weight: 500;
+
 
     /*  LinkButton vars   */
     --uui-link-button-text: var(--uui-primary);
     --uui-link-button-text-hover: var(--uui-primary-dark);
     --uui-link-button-text-active: var(--uui-primary-darkest);
     --uui-link-button-text-disabled: var(--uui-button-caption-disabled);
-    --uui-link-button-font: var(--font-semibold);
+
+    --uui-link-button-font: var(--font-inter);
+    --uui-link-button-font-weight: 400;
 
     /*  DatePicker vars   */
     --uui-dtp-title-bg: var(--uui-control-bg);
@@ -255,8 +260,10 @@
     --uui-dtp-next-prev-icon: var(--uui-icon);
     --uui-dtp-next-prev-icon-bg-hover: var(--uui-secondary-lightest);
 
-    --uui-dtp_header-font: var(--font-semibold);
-    --uui-dtp_body-content-font: var(--font-regular);
+    --uui-dtp_header-font: var(--font-inter);
+    --uui-dtp_header-font-weight: 400;
+    --uui-dtp_body-content-font: var(--font-inter);
+    --uui-dtp_body-content-font-weight: 400;
 
     /*  RangeDatePicker vars   */
     --uui-rdtp-bg: var(--uui-control-bg);
@@ -271,16 +278,21 @@
     --uui-calendar-text-filtered: var(--uui-control-text-disabled);
     --uui-calendar-bg-selected: var(--uui-secondary);
 
-    --uui-calendar-content-font: var(--font-regular);
-    --uui-calendar-weekday-font: var(--font-regular);
-    --uui-calendar-selected_day-font: var(--font-semibold);
+    --uui-calendar-content-font: var(--font-inter);
+    --uui-calendar-content-font-weight: 400;
+    --uui-calendar-weekday-font: var(--font-inter);
+    --uui-calendar-weekday-font-weight: 400;
+    --uui-calendar-selected_day-font: var(--font-inter);
+    --uui-calendar-selected_day-font-weight: 600;
 
     /*  tab-button-vars     */
     --uui-tab-button-text: var(--uui-text-primary);
     --uui-tab-button-text-hover: var(--uui-primary);
     --uui-tab-button-text-active: var(--uui-primary);
     --uui-tab-button-text-disabled: var(--uui-text-disabled);
-    --uui-tab-button-font: var(--font-semibold);
+
+    --uui-tab-button-font: var(--font-inter);
+    --uui-tab-button-font-weight: 600;
 
     /*  radio-input-vars    */
     --uui-radio-input-bg: var(--uui-control-bg);
@@ -297,7 +309,8 @@
     --uui-radio-input-fill-checked-disabled: var(--uui-control-border-checked-disabled);
     --uui-radio-input-error: var(--uui-negative);
 
-    --uui-radio-input-font: var(--font-regular);
+    --uui-radio-input-font: var(--font-inter);
+    --uui-radio-input-font-weight: 400;
 
     /*  Checkbox vars   */
     --uui-checkbox-border: var(--uui-control-border);
@@ -316,7 +329,8 @@
     --uui-checkbox-label-disabled: var(--uui-control-label-disabled);
     --uui-checkbox-border-radius: var(--uui-border-radius);
 
-    --uui-checkbox-font: var(--font-regular);
+    --uui-checkbox-font: var(--font-inter);
+    --uui-checkbox-font-weight: 400;
 
     /* Tag vars */
     --uui-tag-caption: var(--uui-text-primary);
@@ -327,8 +341,10 @@
     --uui-tag-label: var(--uui-text-secondary);
     --uui-tag-border-radius: 30px;
 
-    --uui-tag-font: var(--font-regular);
-    --uui-tag-count-font: var(--font-semibold);
+    --uui-tag-font: var(--font-inter);
+    --uui-tag-font-weight: 400;
+    --uui-tag-count-font: var(--font-inter);
+    --uui-tag-count-font-weight: 500;
 
     /*  TextArea vars  */
     --uui-text-area-bg: var(--uui-control-bg);
@@ -344,8 +360,10 @@
     --uui-text-area-icon: var(--uui-icon);
     --uui-text-area-border-radius: var(--uui-border-radius);
 
-    --uui-text-area-font: var(--font-regular);
-    --uui-text-area-counter-font: var(--font-regular);
+    --uui-text-area-font: var(--font-inter);
+    --uui-text-area-font-weight: 400;
+    --uui-text-area-counter-font: var(--font-inter);
+    --uui-text-area-counter-font-weight: 400;
 
     /* DropMarker vars */
     --uui-drop-marker: var(--uui-primary);
@@ -356,7 +374,8 @@
     --uui-tooltip-arrow-shadow: 0 1px 4px 0 rgb(0 0 0 / 20%);
     --uui-tooltip-border-radius: 8px;
 
-    --uui-tooltip-font: var(--font-regular);
+    --uui-tooltip-font: var(--font-inter);
+    --uui-tooltip-font-weight: 400;
 
     /* PickerInput vars */
     --uui-picker_input-bg: var(--uui-surface);
@@ -378,7 +397,8 @@
     --uui-picker-toggler-icon-clickable-hover: var(--uui-icon-hover);
     --uui-picker-toggler-border-radius: var(--uui-border-radius);
 
-    --uui-picker-toggler-font: var(--font-regular);
+    --uui-picker-toggler-font: var(--font-inter);
+    --uui-picker-toggler-font-weight: 400;
 
     /* Panel */
     --uui-panel-border-radius: 8px;
@@ -403,9 +423,12 @@
     --uui-labeled-input-optional-text: var(--uui-text-secondary);
     --uui-labeled-input-asterisk: var(--uui-error);
 
-    --uui-labeled-input-font: var(--font-semibold);
-    --uui-labeled-input-optional-font: var(--font-italic);
-    --uui-labeled-input-invalid-msg-font: var(--font-regular);
+    --uui-labeled-input-font: var(--font-inter);
+    --uui-labeled-input-font-weight: 500;
+    --uui-labeled-input-optional-font: var(--font-inter);
+    --uui-labeled-input-optional-font-weight: 300;
+    --uui-labeled-input-invalid-msg-font: var(--font-inter);
+    --uui-labeled-input-invalid-msg-font-weight: 400;
 
     /* Accordion */
     --uui-accordion-bg: var(--uui-surface);
@@ -419,8 +442,10 @@
     --uui-accordion-shadow: var(--uui-shadow-level-1);
     --uui-accordion-shadow-hovered: var(--uui-shadow-level-2);
 
-    --uui-accordion-toggler-font: var(--font-semibold);
-    --uui-accordion-body-font: var(--font-regular);
+    --uui-accordion-toggler-font: var(--font-inter);
+    --uui-accordion-toggler-font-weight: 500;
+    --uui-accordion-body-font: var(--font-inter);
+    --uui-accordion-body-font-weight: 400;
 
     /* Switch */
     --uui-switch-bg: var(--uui-control_switch-bg);
@@ -446,7 +471,8 @@
     --uui-switch-toggler-border-checked-hover: var(--uui-control-bg-checked-hover);
     --uui-switch-toggler-border-checked-disabled: var(--uui-control-bg-checked-disabled);
 
-    --uui-switch-font: var(--font-regular);
+    --uui-switch-font: var(--font-inter);
+    --uui-switch-font-weight: 400;
 
     /* DropdownContainer */
     --uui-dropdown-container-border-radius: 6px;
@@ -462,14 +488,16 @@
     --uui-dropdown-menu-item-active: var(--uui-surface-hover);
     --uui-dropdown-menu-item-text: var(--uui-text-primary);
 
-    --uui-dropdown-menu-body-font: var(--font-regular);
-    --uui-dropdown-menu-item-font: var(--font-regular);
+    --uui-dropdown-menu-body-font: var(--font-inter);
+    --uui-dropdown-menu-body-font-weight: 400;
+    --uui-dropdown-menu-item-font: var(--font-inter);
+    --uui-dropdown-menu-item-font-weight: 400;
 
     /* MainMenu */
     --uui-main_menu-text: var(--uui-text-primary);
-    --uui-main_menu-bg: var(--uui-surface);
-    --uui-main_menu-hover: var(--uui-surface-light-hover);
-    --uui-main_menu-active: var(--uui-surface);
+    --uui-main_menu-bg: #F0F7FCD9;
+    --uui-main_menu-hover: #FFF;
+    --uui-main_menu-active: #FFF;
     --uui-main_menu-border-active: var(--uui-primary);
 
     --uui-main_menu-dropdown-bg: var(--uui-surface);
@@ -487,8 +515,10 @@
     --uui-main_menu-icon-hover: var(--uui-text-primary);
     --uui-main_menu-icon-active: var(--uui-text-primary);
 
-    --uui-main_menu-font: var(--font-semibold);
-    --uui-main_menu-search-font: var(--font-regular);
+    --uui-main_menu-font: var(--font-museo-sans);
+    --uui-main_menu-font-weight: 500;
+    --uui-main_menu-search-font: var(--font-inter);
+    --uui-main_menu-search-font-weight: 400;
 
     /* BurgerMenu */
     --uui-burger_menu-bg: var(--uui-surface);
@@ -504,7 +534,8 @@
     --uui-burger_group-bg: var(--uui-surface-contrast);
     --uui-burger_group-line: var(--uui-divider);
 
-    --uui-burger_group-font: var(--font-regular);
+    --uui-burger_group-font: var(--font-inter);
+    --uui-burger_group-font-weight: 400;
 
     /* BurgerButton */
     --uui-burger_btn_caption: var(--uui-text-contrast);
@@ -512,7 +543,8 @@
     --uui-burger_btn_caption-active: var(--uui-primary);
     --uui-burger_btn-border: var(--uui-divider-light);
 
-    --uui-burger_btn-font: var(--font-regular);
+    --uui-burger_btn-font: var(--font-inter);
+    --uui-burger_btn-font-weight: 400;
 
     /* BurgerSearch */
     --uui-burger_search: var(--uui-text-contrast);
@@ -520,7 +552,8 @@
     --uui-burger_search-bg: var(--uui-surface-contrast);
     --uui-burger_search-placeholder: var(--uui-text-disabled);
 
-    --uui-burger_search-font: var(--font-regular);
+    --uui-burger_search-font: var(--font-inter);
+    --uui-burger_search-font-weight: 400;
 
     /* NumericInput */
     --uui-numeric-input-bg: var(--uui-control-bg);
@@ -585,8 +618,10 @@
     --uui-filters-toggler-icon: var(--uui-text-input-icon-clickable);
     --uui-filters-toggler-shadow: var(--uui-shadow-level-1);
 
-    --uui-filters-toggler-font: var(--font-regular);
-    --uui-filters-panel-header-font: var(--font-regular);
+    --uui-filters-toggler-font: var(--font-inter);
+    --uui-filters-toggler-font-weight: 400;
+    --uui-filters-panel-header-font: var(--font-inter);
+    --uui-filters-panel-header-font-weight: 400;
 
     /* NotificationCard */
     --uui-notification-card-border-radius: 8px;
@@ -633,20 +668,25 @@
     --uui-dt-right-shadow: linear-gradient(to right, rgb(0 0 0 / 5%) 0%, rgb(0 0 0 / 0%) 100%);
     --uui-dt_header-drop_marker: var(--uui-primary);
 
-    --uui-dt-header-cell-font: var(--font-semibold);
+    --uui-dt-header-cell-font: var(--font-inter);
+    --uui-dt-header-cell-font-weight: 500;
 
     /* AvatarStack */
 
-    --uui-avatar-stack-font: var(--font-semibold);
+    --uui-avatar-stack-font: var(--font-inter);
+    --uui-avatar-stack-font-weight: 400;
 
     /* Badge */
 
-    --uui-badge-font: var(--font-regular);
-    --uui-badge-count-font: var(--font-semibold);
+    --uui-badge-font: var(--font-museo-sans);
+    --uui-badge-font-weight: 700;
+    --uui-badge-count-font: var(--font-museo-sans);
+    --uui-badge-count-font-weight: 700;
 
     /* Pagination */
 
-    --uui-pagination-font: var(--font-regular);
+    --uui-pagination-font: var(--font-inter);
+    --uui-pagination-font-weight: 400;
 
 
     /* ------------------------------------ */

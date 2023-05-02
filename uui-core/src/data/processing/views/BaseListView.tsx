@@ -72,7 +72,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 if (item) {
                     const parentId = this.props.getParentId(item);
                     if (!this.someChildCheckedByKey[this.idToKey(parentId)]) {
-                        const parents = this.tree.getParentIdsRecursive(id);
+                        const parents = this.tree.getParentIdsRecursive(id).reverse();
                         for (const parent of parents) {
                             if (this.someChildCheckedByKey[this.idToKey(parent)]) {
                                 break;
