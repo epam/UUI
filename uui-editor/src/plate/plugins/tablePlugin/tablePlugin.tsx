@@ -23,6 +23,7 @@ import {
     getBlockAbove,
     selectEditor,
     getStartPoint,
+    createNode,
 } from "@udecode/plate";
 import cx from "classnames";
 import { Dropdown } from '@epam/uui-components';
@@ -294,7 +295,8 @@ const createInitialTable = (editor: PlateEditor) => {
                 type: getPluginType(editor, ELEMENT_TD),
                 children: [editor.blockFactory()],
             }],
-        }
+        },
+        createNode(),
     ];
 
     return {
