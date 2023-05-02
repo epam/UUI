@@ -5,6 +5,10 @@ on:
         workflows: ["track_bundle_size"]
         types:
             - completed
+
+permissions:
+    pull-requests: write
+
 jobs:
     track_bundle_size_comment_pr:
         runs-on: ubuntu-latest
