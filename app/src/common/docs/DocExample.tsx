@@ -1,5 +1,7 @@
-import React from 'react';
-import { Switch, FlexRow, IconButton, Button } from '@epam/promo';
+import React, { RefObject, createRef } from 'react';
+import {
+    Switch, FlexRow, IconButton, Button,
+} from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
@@ -27,6 +29,8 @@ const EXAMPLES_PATH_PREFIX = './_examples';
 const requireContext = require.context('../../docs/_examples', true, /\.example.(ts|tsx)$/, 'lazy');
 
 export class DocExample extends React.Component<DocExampleProps, DocExampleState> {
+    titleRef: RefObject<HTMLDivElement> = createRef();
+
     componentDidMount(): void {
         const { path } = this.props;
         const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
@@ -34,10 +38,15 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             this.setState({ component: module.default });
         });
 
-        svc.api.getCode({ path }).then(r => {
-            this.setState({ code: r.highlighted, raw: r.raw });
-            return r.raw;
-        }).then(raw => this.getComponentStylesheet(raw));
+        if (this.titleRef?.current && window.location?.hash?.includes(this.titleRef.current.id)) {
+            this.titleRef.current.scrollIntoView(true);
+        }
+
+        svc.api.getCode({ path }).then((r) => {
+                this.setState({ code: r.highlighted, raw: r.raw });
+                return r.raw;
+            })
+            .then((raw) => this.getComponentStylesheet(raw));
     }
 
     state: DocExampleState = {
@@ -128,8 +137,10 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             <div className={ css.container }>
                 { this.props.title && (
                     <FlexRow cx={ css.titleRow }>
-                        <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title }>{ this.props.title }</div>
-                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color='blue' href={ `#${ this.props.title.split(' ').join('_').toLowerCase() }` } />
+                        <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title } ref={ this.titleRef }>
+                            {this.props.title}
+                        </div>
+                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="blue" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
                     </FlexRow>
                 ) }
                 <EditableDocContent fileName={ this.getDescriptionFileName() } />
