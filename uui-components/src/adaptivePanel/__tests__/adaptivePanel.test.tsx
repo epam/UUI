@@ -1,7 +1,7 @@
 import { AdaptiveItemProps, AdaptivePanel } from '../AdaptivePanel';
 import {
     renderSnapshotWithContextAsync, renderToJsdomWithContextAsync, mockAdaptivePanelLayout, screen,
-} from '@epam/test-utils';
+} from '@epam/uui-test-utils';
 import React from 'react';
 
 type TestItemType = AdaptiveItemProps<{ data?: { label: string } }>;

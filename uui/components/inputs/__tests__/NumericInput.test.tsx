@@ -2,7 +2,7 @@ import React from 'react';
 import { NumericInput, NumericInputProps } from '../NumericInput';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, fireEvent,
-} from '@epam/test-utils';
+} from '@epam/uui-test-utils';
 import { i18n } from '@epam/uui-core';
 
 async function setupNumericInput(params: Partial<NumericInputProps>) {

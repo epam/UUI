@@ -1,6 +1,6 @@
 import React from 'react';
 import { MainMenuSearch } from '../MainMenuSearch';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('MainMenuSearch', () => {
     it('should be rendered correctly', async () => {

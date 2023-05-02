@@ -611,7 +611,7 @@
           },
           {
             "object": "text",
-            "text": "@epam/test-utils",
+            "text": "@epam/uui-test-utils",
             "marks": []
           }
         ]

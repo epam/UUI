@@ -2002,7 +2002,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "import { mockReactPortalsForSnapshots } from '@epam/test-utils';",
+                            "text": "import { mockReactPortalsForSnapshots } from '@epam/uui-test-utils';",
                             "marks": [
                               {
                                 "object": "mark",
@@ -3248,7 +3248,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "     import { SvgMock } from '@epam/test-utils';",
+                "text": "     import { SvgMock } from '@epam/uui-test-utils';",
                 "marks": [
                   {
                     "object": "mark",
@@ -6988,7 +6988,7 @@
             "nodes": [
               {
                 "object": "text",
-                "text": "import { setupComponentForTest } from '@epam/test-utils';\r",
+                "text": "import { setupComponentForTest } from '@epam/uui-test-utils';\r",
                 "marks": [
                   {
                     "object": "mark",
