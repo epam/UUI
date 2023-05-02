@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton } from '../IconButton';
-import { SvgMock, renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { SvgMock, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('IconButton', () => {
     it('should render with minimum props', async () => {

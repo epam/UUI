@@ -1,9 +1,9 @@
 {
-  "name": "@epam/test-utils",
+  "name": "@epam/uui-test-utils",
   "version": "5.0.0-alpha.1",
   "author": "EPAM",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "prepublish": "yarn build"

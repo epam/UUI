@@ -1,7 +1,7 @@
 import React from 'react';
 import { LabeledInput } from '../LabeledInput';
 import { TextInput } from '../../inputs';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('LabeledInput', () => {
     it('should be rendered correctly', async () => {
