@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabButton } from '../TabButton';
-import { renderSnapshotWithContextAsync, SvgMock } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync, SvgMock } from '@epam/uui-test-utils';
 
 describe('TabButton', () => {
     it('should render with minimum props', async () => {

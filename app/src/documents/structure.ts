@@ -339,10 +339,10 @@ export const items: DocItem[] = [
         id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing',
     },
     {
-        id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing',
+        id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing',
     },
     {
-        id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing',
+        id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing',
     },
     { id: 'contexts', name: 'Contexts' },
     {

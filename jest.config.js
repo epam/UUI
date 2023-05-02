@@ -5,7 +5,7 @@ const BASE_CONFIG = {
         'js', 'ts', 'tsx', 'json',
     ],
     moduleNameMapper: {
-        '@epam/test-utils': '<rootDir>/test-utils',
+        '@epam/uui-test-utils': '<rootDir>/test-utils',
     },
     transform: {
         '^.+\\.(js|ts|tsx)$': ['<rootDir>/node_modules/babel-jest'],
