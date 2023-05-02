@@ -1,4 +1,5 @@
 .root {
-    font-family: var(--uui-font);
+    font-family: var(--uui-text-font);
+    font-weight: var(--uui-text-font-weight, normal);
     color: var(--uui-text);
 }
