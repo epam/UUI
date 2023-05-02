@@ -11,6 +11,7 @@
     :global(.uui-input) {
         color: var(--uui-text-input-text);
         font-family: var(--uui-text-input-font);
+        font-weight: var(--uui-text-input-font, normal);
         padding-left: 6px;
         padding-right: 6px;
 

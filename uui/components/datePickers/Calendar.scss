@@ -3,10 +3,12 @@
 .root {
     :global(.uui-calendar-content) {
         font-family: var(--uui-calendar-content-font);
+        font-weight: var(--uui-calendar-content-font-weight, normal);
     }
 
     :global(.uui-calendar-weekday) {
         font-family: var(--uui-calendar-weekday-font);
+        font-weight: var(--uui-calendar-weekday-font-weight, normal);
         color: var(--uui-calendar-weekends-weekdates);
         width: 34px;
         font-size: 12px;
@@ -74,6 +76,7 @@
         &:global(.uui-calendar-day-wrapper) {
             color: var(--uui-calendar-start-end-selected);
             font-family: var(--uui-calendar-selected_day-font);
+            font-weight: var(--uui-calendar-selected_day-font-weight, normal);
 
             :global(.uui-calendar-day)::after {
                 position: absolute;
