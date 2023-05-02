@@ -1,30 +1,10 @@
 import * as React from 'react';
-import {
-    FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip,
-} from '@epam/promo';
+import { FlexCell, FlexRow, NotificationCard, RichTextView, Text, Tooltip } from '@epam/promo';
 import { arrayToMatrix, cx, INotification } from '@epam/uui-core';
-import { copyTextToClipboard } from './../../../helpers';
-import { svc } from './../../../services';
+import { copyTextToClipboard } from '../../../helpers';
+import { svc } from '../../../services';
 import { ReactComponent as NotificationIcon } from './../../../icons/notification-check-fill-24.svg';
 import css from './LoveshipColorsDoc.scss';
-
-// type BasicColorsTypes = 'sun' | 'grass' | 'fire' | 'sky';
-type AdditionalColorsTypes = 'red' | 'pink' | 'purple' | 'indigo' | 'blue' | 'cyan' | 'teal' | 'green' | 'lime' | 'yellow' | 'amber' | 'orange';
-//
-// const basicColors = {
-//     sky: [
-//         { hasVariable: false, hex: '#E1F4FA', contrastText: false }, { hasVariable: false, hex: '#C4EAF5', contrastText: false }, { hasVariable: true, hex: '#009ECC', contrastText: true }, { hasVariable: false, hex: '#008ABD', contrastText: true }, { hasVariable: false, hex: '#0079AD', contrastText: true },
-//     ],
-//     grass: [
-//         { hasVariable: false, hex: '#EBF3D8', contrastText: false }, { hasVariable: false, hex: '#D6E6B2', contrastText: false }, { hasVariable: true, hex: '#67A300', contrastText: true }, { hasVariable: false, hex: '#558A00', contrastText: true }, { hasVariable: false, hex: '#428024', contrastText: true },
-//     ],
-//     sun: [
-//         { hasVariable: false, hex: '#FFEDC9', contrastText: false }, { hasVariable: false, hex: '#FFDD96', contrastText: false }, { hasVariable: true, hex: '#FCAA00', contrastText: false }, { hasVariable: false, hex: '#F67E00', contrastText: true }, { hasVariable: false, hex: '#E64C00', contrastText: true },
-//     ],
-//     fire: [
-//         { hasVariable: false, hex: '#FDE1E1', contrastText: false }, { hasVariable: false, hex: '#FCC8C8', contrastText: false }, { hasVariable: true, hex: '#FA4B4B', contrastText: true }, { hasVariable: false, hex: '#CC2929', contrastText: true }, { hasVariable: false, hex: '#B32424', contrastText: true },
-//     ],
-// };
 
 const basicColors = [
     { name: 'sky-soft', hasVariable: true, hex: '#F5FDFF', context: '' },
