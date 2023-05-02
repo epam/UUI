@@ -153,4 +153,6 @@ export class ArrayListView<TItem, TId, TFilter = any> extends BaseListView<TItem
         if (actualCount < lastIndex) return actualCount;
         return lastIndex;
     };
+
+    protected shouldUnfoldOnSearch = () => true;
 }

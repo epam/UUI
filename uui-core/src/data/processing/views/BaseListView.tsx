@@ -292,7 +292,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
                     if (estimatedChildrenCount > 0) {
                         let isFolded = this.isFolded(item);
-                        if (searchIsApplied && childrenIds.length > 0) {
+                        if (this.shouldUnfoldOnSearch() && searchIsApplied && childrenIds.length > 0) {
                             isFolded = false;
                         }
                         row.isFolded = isFolded;
@@ -489,4 +489,5 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     protected isPartialLoad = () => false;
     public loadData() {}
     public abstract reload(): void;
+    protected abstract shouldUnfoldOnSearch(): boolean;
 }
