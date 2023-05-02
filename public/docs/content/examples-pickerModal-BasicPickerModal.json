@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "PickerModal is a p",
+            "text": "Below, you can see b",
             "marks": [
               {
                 "object": "mark",
@@ -36,7 +36,7 @@
           },
           {
             "object": "text",
-            "text": "icker with",
+            "text": "asic PickerModal usage with ",
             "marks": [
               {
                 "object": "mark",
@@ -61,63 +61,118 @@
           },
           {
             "object": "text",
-            "text": " ",
+            "text": "ArrayDataSource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-span-mark",
+                "data": {
+                  "style": {
+                    "font-size": "12pt",
+                    "font-family": null,
+                    "color": "#303240",
+                    "background-color": null,
+                    "font-weight": "400",
+                    "font-style": null,
+                    "font-variant": "normal",
+                    "text-decoration": "none",
+                    "vertical-align": "baseline",
+                    "white-space": "pre-wrap",
+                    "": null
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "If you want a ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "a",
+            "text": "single",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": " ",
+            "text": " or ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "modal for all items view.",
+            "text": "multi",
             "marks": [
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
+                "type": "uui-richTextEditor-underlined",
+                "data": {}
               }
             ]
+          },
+          {
+            "object": "text",
+            "text": " select, pass the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "selectionMode: 'single' | 'multi",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " prop.",
+            "marks": []
           }
         ]
       }

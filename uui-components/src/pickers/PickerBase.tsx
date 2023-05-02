@@ -63,7 +63,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     };
 
     isSingleSelect = () => {
-        return this.props.selectionMode == 'single';
+        return this.props.selectionMode === 'single';
     };
 
     getSelectedIdsArray = (value: any): TId[] => {
@@ -97,7 +97,7 @@ export abstract class PickerBase<TItem, TId, TProps extends PickerBaseProps<TIte
     protected handleDataSourceValueChange = (newDataSourceState: DataSourceState) => {
         let showSelected = this.state.showSelected;
 
-        if (showSelected && newDataSourceState.checked?.length == 0) {
+        if (showSelected && !newDataSourceState.checked?.length) {
             showSelected = false;
         }
 
