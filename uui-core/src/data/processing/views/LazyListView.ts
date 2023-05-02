@@ -448,4 +448,6 @@ export class LazyListView<TItem, TId, TFilter = any> extends BaseListView<TItem,
 
         return isFetchPositionAndAmountChanged && lastIndex > this.rows.length;
     };
+
+    protected shouldUnfoldOnSearch = () => false;
 }
