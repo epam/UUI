@@ -36,7 +36,7 @@ export const notePlugin = () => {
         handlers: {
             // TODO: potential handler improvement by https://github.com/ianstormtaylor/slate/issues/97
             onKeyDown: (editor) => (event) => {
-                if (event.key === 'Enter') {
+                if (event.key === 'Enter' && event.shiftKey) {
                     // do not prevent default behavior right here, it leads to bugs with insertData plugin
 
                     const noteEntry = getBlockAbove(editor, {
