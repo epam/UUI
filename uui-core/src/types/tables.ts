@@ -7,7 +7,7 @@ import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data';
 import * as CSS from 'csstype';
-import { TooltipCoreProps } from './components';
+import { RangeDatePickerPresets, TooltipCoreProps } from './components';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
@@ -233,7 +233,7 @@ type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
-    type: 'datePicker' | 'rangeDatePicker';
+    type: 'datePicker';
     format?: string;
 };
 
@@ -241,7 +241,14 @@ type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: 'numeric';
 };
 
-export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter>;
+type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    type: 'rangeDatePicker';
+    format?: string;
+    presets?: RangeDatePickerPresets;
+};
+
+export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> |
+NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = any, TViewState = any> {
     name: string;

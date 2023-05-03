@@ -1,4 +1,5 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import { TableFiltersConfig, LazyDataSource, ArrayDataSource } from '@epam/uui-core';
 import { Country } from '@epam/uui-docs';
 import { Badge, DataPickerRow, PickerItem } from '@epam/uui';
@@ -6,6 +7,7 @@ import { defaultPredicates } from '@epam/uui';
 import { demoData } from '@epam/uui-docs';
 import { svc } from '../../../services';
 import { Person } from '@epam/uui-docs';
+import { rangeDatePickerPresets } from '@epam/uui-components/src';
 
 export const getFilters = (): TableFiltersConfig<Person>[] => {
     return [
@@ -98,6 +100,21 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             type: 'rangeDatePicker',
             format: 'YYYY-MM-DD',
             predicates: defaultPredicates.rangeDatePicker,
+            presets: {
+                ...rangeDatePickerPresets,
+                last3Days: {
+                    name: 'Last 3 days',
+                    getRange: () => {
+                        return { from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11 };
+                    },
+                },
+                last7Days: {
+                    name: 'Last 7 days',
+                    getRange: () => {
+                        return { from: dayjs().subtract(7, 'day').toString(), to: dayjs().toString(), order: 12 };
+                    },
+                },
+            },
         },
     ];
 };
