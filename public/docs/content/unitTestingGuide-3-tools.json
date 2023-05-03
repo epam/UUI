@@ -107,7 +107,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "). It provides API to render React components and hooks to the ",
+                    "text": "). Also, It provides next additional methods which help to render React components and hooks to ",
                     "marks": []
                   },
                   {
@@ -123,7 +123,7 @@
                   },
                   {
                     "object": "text",
-                    "text": ". The following methods are built on top of this package:",
+                    "text": ":",
                     "marks": []
                   }
                 ]
@@ -264,7 +264,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "   it's re-exported from ",
+                    "text": "  it's re-exported from ",
                     "marks": []
                   },
                   {
@@ -296,7 +296,7 @@
                   },
                   {
                     "object": "text",
-                    "text": ". It's added here just for convenience.",
+                    "text": ". It's added to this package only for convenience.",
                     "marks": []
                   }
                 ]
