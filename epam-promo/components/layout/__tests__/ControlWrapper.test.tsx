@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import { ControlWrapper } from '../ControlWrapper';
 import { Button } from '../../buttons';
 

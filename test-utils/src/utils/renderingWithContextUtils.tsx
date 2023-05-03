@@ -4,6 +4,8 @@ import renderer from 'react-test-renderer';
 import { ContextProvider, UuiContexts } from '@epam/uui-core';
 import { delayWrapInAct } from './timerUtils';
 
+export { renderer };
+
 export type CustomWrapperType = ({ children }: { children?: React.ReactNode }) => JSX.Element;
 
 export const getDefaultUUiContextWrapper = () => {

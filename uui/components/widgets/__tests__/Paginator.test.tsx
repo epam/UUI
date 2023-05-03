@@ -1,6 +1,6 @@
 import React from 'react';
 import { Paginator } from '../Paginator';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('Paginator', () => {
     it('should be rendered correctly', () => {

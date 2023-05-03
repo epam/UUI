@@ -1,6 +1,6 @@
 import React from 'react';
 import { RichTextView } from '../RichTextView';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('RichTextView', () => {
     it('should be rendered correctly', () => {
