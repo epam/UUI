@@ -16,15 +16,8 @@ export interface RowMods extends RowSizeMod {
 
 export interface FlexRowProps extends Omit<uuiFlexRowProps, 'columnGap' | 'rowGap'> {}
 
-export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, props => {
+export const FlexRow = withMods<FlexRowProps, RowMods>(uuiFlexRow, (props) => {
     return [
-        css.root,
-        props.size !== null && css['size-' + (props.size || '36')],
-        props.padding && css['padding-' + props.padding],
-        props.vPadding && css['vPadding-' + props.vPadding],
-        props.margin && css['margin-' + props.margin],
-        props.topShadow && css.topShadow,
-        props.borderBottom && css.borderBottom,
-        props.spacing && css['spacing-' + props.spacing],
+        css.root, props.size !== null && css['size-' + (props.size || '36')], props.padding && css['padding-' + props.padding], props.vPadding && css['vPadding-' + props.vPadding], props.margin && css['margin-' + props.margin], props.topShadow && css.topShadow, props.borderBottom && css.borderBottom, props.spacing && css['spacing-' + props.spacing],
     ];
 });

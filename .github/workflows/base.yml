@@ -62,8 +62,15 @@ jobs:
           yarn build
           yarn generate-components-api
           cd server && yarn
+
       - name: test
         run: yarn test
+
+      - name: eslint
+        run: yarn eslint
+
+      - name: stylelint
+        run: yarn stylelint
 
       - name: Login to registry
         uses: docker/login-action@v2

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI } from '../common';
+import {
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI,
+} from '../common';
 
 export class TextInputDoc extends BaseDocsBlock {
     title = 'Text Input';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/inputs/textInput.props.ts',
@@ -12,24 +13,14 @@ export class TextInputDoc extends BaseDocsBlock {
         };
     }
 
-
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='textInput-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/textInput/Basic.example.tsx'
-                />
-                <DocExample
-                    title='Size'
-                    path='./_examples/textInput/Size.example.tsx'
-                />
-                <DocExample
-                    title='Action'
-                    path='./_examples/textInput/Action.example.tsx'
-                />
+                <EditableDocContent fileName="textInput-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/textInput/Basic.example.tsx" />
+                <DocExample title="Size" path="./_examples/textInput/Size.example.tsx" />
+                <DocExample title="Action" path="./_examples/textInput/Action.example.tsx" />
             </>
         );
     }

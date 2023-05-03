@@ -1,26 +1,15 @@
 import React from 'react';
 import { IconButton } from '../IconButton';
-import renderer from 'react-test-renderer';
-import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
+import { SvgMock, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('IconButton', () => {
-    it('should be rendered correctly', () => {
-
-        const tree = renderer
-            .create(<IconButton />)
-            .toJSON();
+    it('should render with minimum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<IconButton />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-        const tree = renderer
-            .create(<IconButton
-                color='blue'
-                onClick={ jest.fn }
-                icon={ CalendarIcon }
-                isDisabled={ false }
-            />)
-            .toJSON();
+    it('should render with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<IconButton color="blue" onClick={ jest.fn } icon={ SvgMock } isDisabled={ false } />);
         expect(tree).toMatchSnapshot();
     });
 });

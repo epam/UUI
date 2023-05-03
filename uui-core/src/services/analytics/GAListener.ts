@@ -1,8 +1,7 @@
-import { AnalyticsEvent, IAnalyticsListener } from "../../types/contexts";
+import { AnalyticsEvent, IAnalyticsListener } from '../../types/contexts';
 
 export class GAListener implements IAnalyticsListener {
     public gaCode: string;
-
     constructor(gaCode: string) {
         this.gaCode = gaCode;
 
@@ -24,14 +23,14 @@ export class GAListener implements IAnalyticsListener {
         document.head.appendChild(gtagScript);
     }
 
-    public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, "name">, eventType?: string) {
+    public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, 'name'>, eventType?: string) {
         switch (eventType) {
-            case "pageView":
+            case 'pageView':
                 this.sendPageView(event.path);
                 break;
 
             default:
-                this.sendToGA("event", event.name, parameters);
+                this.sendToGA('event', event.name, parameters);
                 break;
         }
     }
@@ -41,7 +40,6 @@ export class GAListener implements IAnalyticsListener {
     }
 
     private sendPageView(path: string) {
-        this.sendToGA('config', this.gaCode, {page_path: path, anonymize_ip: true});
+        this.sendToGA('config', this.gaCode, { page_path: path, anonymize_ip: true });
     }
-
 }

@@ -1,16 +1,15 @@
-(function() {
+(function () {
     if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+        document.body.innerHTML = '';
 
-        document.body.innerHTML = "";
+        const cssBanner = 'margin: 0; background: #f2f3f7; height: 100%; text-align: center';
+        const cssImg = 'width: 50%';
 
-        let cssBanner = "margin: 0; background: #f2f3f7; height: 100%; text-align: center";
-        let cssImg = "width: 50%";
-
-        let banner = document.body;
+        const banner = document.body;
         banner.style.cssText = cssBanner;
 
-        let img = document.createElement("img");
-        img.src = "../static/ie-banner/ie-no-supported.svg";
+        const img = document.createElement('img');
+        img.src = '../static/ie-banner/ie-no-supported.svg';
         img.style.cssText = cssImg;
         banner.appendChild(img);
     }

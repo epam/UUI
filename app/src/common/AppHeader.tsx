@@ -1,179 +1,179 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import {
-    BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger,
-    DropdownMenuBody, DropdownMenuButton,
+    BurgerButton, MainMenu, FlexSpacer, GlobalMenu, MainMenuButton, Text, IconContainer, Burger, DropdownMenuSplitter, MainMenuDropdown,
 } from '@epam/promo';
-import { AdaptiveItemProps, Anchor, Dropdown, MainMenuLogo } from '@epam/uui-components';
-import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
+import { Anchor, MainMenuLogo } from '@epam/uui-components';
 import { UUI4 } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import css from './AppHeader.scss';
+import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 
-type Theme = 'promo' | 'loveship' | 'orange' | 'cyan' | 'violet' | 'red';
+type Theme = 'promo' | 'loveship' | 'vanilla_thunder';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
-export class AppHeader extends React.Component {
-    state: { skin: string, theme: Theme } = {
-        skin: 'UUI4',
-        theme: 'promo',
+export function AppHeader() {
+    const [theme, setTheme] = useState(document.body.classList.value.match(/uui-theme-(\S+)\s*/)[1]);
+
+    const sendEvent = (link: string) => {
+        svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
     };
 
-    private sendEvent = (link: string) => {
-        svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
-    }
-
-    setTheme = (newTheme: Theme) => {
-        document.body.classList.remove(`uui-theme-${this.state.theme}`);
+    const updateTheme = (newTheme: Theme) => {
+        document.body.classList.remove(`uui-theme-${theme}`);
         document.body.classList.add(`uui-theme-${newTheme}`);
-        this.setState(s => ({ ...s, theme: newTheme }));
-    }
+        setTheme(newTheme);
+    };
 
-    renderBurger = () => {
+    const renderBurger = () => {
         const category = svc.uuiRouter.getCurrentLink().query.category;
         const pathName = svc.uuiRouter.getCurrentLink().pathname;
         return (
             <>
+                <BurgerButton caption="Home" link={ { pathname: '/' } } clickAnalyticsEvent={ () => sendEvent('Welcome') } />
                 <BurgerButton
-                    caption='Home'
-                    link={ { pathname: '/' } }
-                    clickAnalyticsEvent={ () => this.sendEvent('Welcome') }
-                />
-                <BurgerButton
-                    caption='Documents'
+                    caption="Documents"
                     link={ { pathname: '/documents', query: { id: 'gettingStarted' } } }
-                    isLinkActive={ (pathName === 'documents' && !category) }
-                    clickAnalyticsEvent={ () => this.sendEvent('Documents') }
+                    isLinkActive={ pathName === 'documents' && !category }
+                    clickAnalyticsEvent={ () => sendEvent('Documents') }
                 />
                 <BurgerButton
-                    caption='Assets'
+                    caption="Assets"
                     link={ { pathname: '/documents', query: { id: 'icons', category: 'assets' } } }
-                    isLinkActive={ (pathName === '/documents' && category === 'assets') }
-                    clickAnalyticsEvent={ () => this.sendEvent('Assets') }
+                    isLinkActive={ pathName === '/documents' && category === 'assets' }
+                    clickAnalyticsEvent={ () => sendEvent('Assets') }
                 />
                 <BurgerButton
-                    caption='Components'
-                    link={ { pathname: '/documents', query: { id: 'accordion', mode: 'doc', skin: UUI4, category: 'components' } } }
-                    isLinkActive={ (pathName === '/documents' && category === 'components') }
-                    clickAnalyticsEvent={ () => this.sendEvent('Components') }
+                    caption="Components"
+                    link={ {
+                        pathname: '/documents',
+                        query: {
+                            id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
+                        },
+                    } }
+                    isLinkActive={ pathName === '/documents' && category === 'components' }
+                    clickAnalyticsEvent={ () => sendEvent('Components') }
                 />
-                <BurgerButton
-                    caption='Demo'
-                    link={ { pathname: '/demo' } }
-                    isLinkActive={ (pathName === '/demo') }
-                    clickAnalyticsEvent={ () => this.sendEvent('Demo') }
-                />
+                <BurgerButton caption="Demo" link={ { pathname: '/demo' } } isLinkActive={ pathName === '/demo' } clickAnalyticsEvent={ () => sendEvent('Demo') } />
             </>
         );
-    }
+    };
 
-    renderThemeSwitcher = () => {
-        const { theme: thisTheme } = this.state;
-        return (
-            <Dropdown
-                renderTarget={ props => (
-                    <MainMenuButton
-                        isDropdown
-                        caption='Choose theme'
-                        { ...props }
-                    />
-                ) }
-                renderBody={ props => (
-                    <DropdownMenuBody { ...props }>
-                        <DropdownMenuButton caption='Promo' isSelected={ thisTheme === 'promo' } iconPosition='right' onClick={ () => this.setTheme('promo') } />
-                        <DropdownMenuButton caption='Loveship' isSelected={ thisTheme === 'loveship' } iconPosition='right' onClick={ () => this.setTheme('loveship') } />
-                        {/*<DropdownMenuSplitter />*/}
-                        {/*<DropdownMenuButton caption='Red (restricted)' isSelected={ thisTheme === 'red' } iconPosition='right' onClick={ () => this.setTheme('red') } />*/}
-                        {/*<DropdownMenuButton caption='Orange (restricted)' isSelected={ thisTheme === 'orange' } iconPosition='right' onClick={ () => this.setTheme('orange') } />*/}
-                        {/*<DropdownMenuButton caption='Cyan (restricted)' isSelected={ thisTheme === 'cyan' } iconPosition='right' onClick={ () => this.setTheme('cyan') } />*/}
-                        {/*<DropdownMenuButton caption='Violet (restricted)' isSelected={ thisTheme === 'violet' } iconPosition='right' onClick={ () => this.setTheme('violet') } />*/}
-                    </DropdownMenuBody>
-                ) }
-                placement="bottom-end"
-                key='theme'
-            />
+    const renderThemeSwitcher = () => {
+        const renderBodyItems = () => (
+            <>
+                <MainMenuButton caption="Promo" isLinkActive={ theme === 'promo' } iconPosition="right" onClick={ () => updateTheme('promo') } />
+                <MainMenuButton caption="Loveship" isLinkActive={ theme === 'loveship' } iconPosition="right" onClick={ () => updateTheme('loveship') } />
+                <DropdownMenuSplitter />
+                <MainMenuButton caption="RD Portal" isLinkActive={ theme === 'vanilla_thunder' } iconPosition="right" onClick={ () => updateTheme('vanilla_thunder') } />
+            </>
         );
-    }
 
-    getMainMenuItems(): AdaptiveItemProps[] {
+        return <MainMenuDropdown caption="Select Theme" renderBody={ renderBodyItems } />;
+    };
+
+    const getMainMenuItems = () => {
         const category = svc.uuiRouter.getCurrentLink().query.category;
         const pathName = svc.uuiRouter.getCurrentLink().pathname;
 
         return [
-            { id: 'burger', priority: 100500, collapsedContainer: true, render: () => <Burger
-                    renderBurgerContent={ this.renderBurger }
-                    logoUrl='/static/logo.svg'
-                    key='burger'
-                />,
-            },
-            {id: 'logo', priority: 100499, render: () => <MainMenuLogo
-                    link={ { pathname: '/' } }
-                    onClick={ () => this.sendEvent('Welcome') }
-                    logoUrl='/static/logo.svg'
-                    key='logo'
-                />,
-            },
-            { id: 'documents', priority: 3, render: () => <MainMenuButton
-                    caption="Documents"
-                    link={ { pathname: '/documents', query: { id: 'gettingStarted' } } }
-                    isLinkActive={ (pathName === '/documents' && category !== 'components' && category !== 'assets') }
-                    showInBurgerMenu
-                    clickAnalyticsEvent={ analyticsEvents.header.link('Documents') }
-                    key='documents'
-                />,
-            },
-            { id: 'assets', priority: 2, render: () => <MainMenuButton
-                    caption="Assets"
-                    link={ { pathname: '/documents', query: { id: 'icons', category: 'assets' } } }
-                    isLinkActive={ (pathName === '/documents' && category === 'assets') }
-                    showInBurgerMenu
-                    clickAnalyticsEvent={ analyticsEvents.header.link('Assets') }
-                    key='assets'
-                />,
-            },
-            { id: 'components', priority: 2, render: () => <MainMenuButton
-                    caption="Components"
-                    link={ { pathname: '/documents', query: { id: 'accordion', mode: 'doc', skin: UUI4, category: 'components' } } }
-                    isLinkActive={ (pathName === '/documents' && category === 'components') }
-                    showInBurgerMenu
-                    clickAnalyticsEvent={ analyticsEvents.header.link('Components') }
-                    key='components'
-                />,
-            },
-            { id: 'demo', priority: 2, render: () => <MainMenuButton
-                    caption="Demo"
-                    link={ { pathname: '/demo' } }
-                    isLinkActive={ pathName === '/demo' }
-                    showInBurgerMenu
-                    clickAnalyticsEvent={ analyticsEvents.header.link('Demo') }
-                    key='demo'
-                />,
-            },
-            window.location.host.includes('localhost') && { id: 'Sandbox', priority: 1, render: () =>
-                <MainMenuButton
-                    caption="Sandbox"
-                    link={ { pathname: '/sandbox' } }
-                    isLinkActive={ pathName === '/sandbox' }
-                    key='sandbox'
-                />,
-            },
-            { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key='spacer' /> },
-            window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: this.renderThemeSwitcher },
-            { id: 'git', priority: 0, render: () => (
-                    <Anchor cx={ css.linkContainer } href={ GIT_LINK } target='_blank' onClick={ () => this.sendEvent(GIT_LINK) } key='git'>
-                        <IconContainer icon={ GitIcon } cx={ css.gitIcon } />
-                        <Text font='sans-semibold' fontSize='14' lineHeight='24' cx={ css.linkCaption } >Open Git</Text>
+            {
+                id: 'burger',
+                priority: 100500,
+                collapsedContainer: true,
+                render: () => <Burger renderBurgerContent={ renderBurger } logoUrl="/static/logo.svg" key="burger" />,
+            }, {
+                id: 'logo',
+                priority: 100499,
+                render: () => <MainMenuLogo link={ { pathname: '/' } } onClick={ () => sendEvent('Welcome') } logoUrl="/static/logo.svg" key="logo" />,
+            }, {
+                id: 'documents',
+                priority: 3,
+                render: () => (
+                    <MainMenuButton
+                        caption="Documents"
+                        link={ { pathname: '/documents', query: { id: 'gettingStarted' } } }
+                        isLinkActive={ pathName === '/documents' && category !== 'components' && category !== 'assets' }
+                        showInBurgerMenu
+                        clickAnalyticsEvent={ analyticsEvents.header.link('Documents') }
+                        key="documents"
+                    />
+                ),
+            }, {
+                id: 'assets',
+                priority: 2,
+                render: () => (
+                    <MainMenuButton
+                        caption="Assets"
+                        link={ { pathname: '/documents', query: { id: 'icons', category: 'assets' } } }
+                        isLinkActive={ pathName === '/documents' && category === 'assets' }
+                        showInBurgerMenu
+                        clickAnalyticsEvent={ analyticsEvents.header.link('Assets') }
+                        key="assets"
+                    />
+                ),
+            }, {
+                id: 'components',
+                priority: 2,
+                render: () => (
+                    <MainMenuButton
+                        caption="Components"
+                        link={ {
+                            pathname: '/documents',
+                            query: {
+                                id: 'accordion', mode: 'doc', skin: UUI4, category: 'components',
+                            },
+                        } }
+                        isLinkActive={ pathName === '/documents' && category === 'components' }
+                        showInBurgerMenu
+                        clickAnalyticsEvent={ analyticsEvents.header.link('Components') }
+                        key="components"
+                    />
+                ),
+            }, {
+                id: 'demo',
+                priority: 2,
+                render: () => (
+                    <MainMenuButton
+                        caption="Demo"
+                        link={ { pathname: '/demo' } }
+                        isLinkActive={ pathName === '/demo' }
+                        showInBurgerMenu
+                        clickAnalyticsEvent={ analyticsEvents.header.link('Demo') }
+                        key="demo"
+                    />
+                ),
+            }, window.location.host.includes('localhost') && {
+                id: 'Sandbox',
+                priority: 1,
+                render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
+            }, { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> }, window.location.host.includes('localhost') && { id: 'theme', priority: 3, render: renderThemeSwitcher }, {
+                id: 'survey',
+                priority: 0,
+                render: () => (
+                    <Anchor
+                        rawProps={ { style: { height: '60px' } } }
+                        target="_blank"
+                        href="https://forms.office.com/pages/responsepage.aspx?id=0HIbtJ9OJkyKaflJ82fJHe0Hoi0jIyFGmBEkXWrhi8lURTY3WkFaOUNLR0JMR1UzQjRIUlFYQ1QzNi4u"
+                    >
+                        <img height="60px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
                     </Anchor>
                 ),
-            },
-            { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key='globalMenu'/> },
-        ].filter(i => !!i);
-    }
+            }, {
+                id: 'git',
+                priority: 0,
+                render: () => (
+                    <Anchor cx={ css.linkContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="git">
+                        <IconContainer icon={ GitIcon } cx={ css.gitIcon } />
+                        <Text font="sans-semibold" fontSize="14" lineHeight="24" cx={ css.linkCaption }>
+                            Open Git
+                        </Text>
+                    </Anchor>
+                ),
+            }, { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key="globalMenu" /> },
+        ].filter((i) => !!i);
+    };
 
-    render() {
-        return (
-            <MainMenu cx={ css.root } items={ this.getMainMenuItems() }></MainMenu>
-        );
-    }
+    return <MainMenu cx={ css.root } items={ getMainMenuItems() }></MainMenu>;
 }

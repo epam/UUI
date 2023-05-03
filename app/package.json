@@ -1,6 +1,6 @@
 {
   "name": "@epam/app",
-  "version": "4.10.2",
+  "version": "5.0.0-alpha.3",
   "description": "EPAM Unified UI landing",
   "author": "EPAM",
   "license": "MIT",
@@ -13,25 +13,19 @@
     "analyzer": "source-map-explorer 'build/static/**/*.js'"
   },
   "cracoConfig": "./build-config/craco.config.js",
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "dependencies": {
-    "@epam/assets": "4.10.2",
+    "@epam/assets": "5.0.0-alpha.3",
     "@epam/draft-rte": "4.9.1",
     "@epam/internal": "0.0.1",
-    "@epam/loveship": "4.10.2",
-    "@epam/promo": "4.10.2",
-    "@epam/uui": "4.10.2",
-    "@epam/uui-components": "4.10.2",
-    "@epam/uui-core": "4.10.2",
-    "@epam/uui-db": "4.10.2",
-    "@epam/uui-docs": "4.10.2",
-    "@epam/uui-editor": "4.10.2",
-    "@epam/uui-timeline": "4.10.2",
+    "@epam/loveship": "5.0.0-alpha.3",
+    "@epam/promo": "5.0.0-alpha.3",
+    "@epam/uui": "5.0.0-alpha.3",
+    "@epam/uui-components": "5.0.0-alpha.3",
+    "@epam/uui-core": "5.0.0-alpha.3",
+    "@epam/uui-db": "5.0.0-alpha.3",
+    "@epam/uui-docs": "5.0.0-alpha.3",
+    "@epam/uui-editor": "5.0.0-alpha.3",
+    "@epam/uui-timeline": "5.0.0-alpha.3",
     "amplitude-js": "8.9.1",
     "classnames": "2.2.6",
     "codesandbox": "2.2.3",
@@ -89,6 +83,7 @@
     "escape-string-regexp": "1.0.5",
     "react-scripts": "5.0.1",
     "source-map-explorer": "2.5.3",
+    "stylelint-webpack-plugin": "4.0.0",
     "typescript": "4.9.3"
   }
 }

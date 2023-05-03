@@ -11,11 +11,11 @@ export class ModalWindow extends React.Component<ModalWindowProps> {
                 forwardedRef={ this.props.forwardedRef }
                 rawProps={ {
                     'aria-modal': true,
-                    'role': 'modal',
+                    role: 'modal',
                     ...this.props.rawProps,
                 } }
             >
-                { this.props.children }
+                {this.props.children}
             </VPanel>
         );
     }

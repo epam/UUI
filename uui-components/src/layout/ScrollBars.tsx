@@ -1,4 +1,6 @@
-import React, { CSSProperties, forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
+import React, {
+    CSSProperties, forwardRef, useCallback, useEffect, useImperativeHandle, useRef,
+} from 'react';
 import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import css from './ScrollBars.scss';
@@ -22,15 +24,11 @@ enum uuiScrollbars {
     uuiTrackVertical = 'uui-track-vertical',
     uuiTrackHorizontal = 'uui-track-horizontal',
     uuiShadowTopVisible = 'uui-shadow-top-visible',
-    uuiShadowBottomVisible = 'uui-shadow-bottom-visible',
+    uuiShadowBottomVisible = 'uui-shadow-bottom-visible'
 }
 
 export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
-    style,
-    hasBottomShadow,
-    hasTopShadow,
-    rawProps,
-    ...props
+    style, hasBottomShadow, hasTopShadow, rawProps, ...props
 }, ref) => {
     const bars = useRef<ScrollbarsApi>();
 
@@ -44,7 +42,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
         if (!scrollBars) return;
         const { scrollTop, scrollHeight, clientHeight } = bars.current.getValues();
         const showTopShadow = hasTopShadow && scrollTop > 0;
-        const showBottomShadow = hasBottomShadow && (scrollHeight - clientHeight > scrollTop);
+        const showBottomShadow = hasBottomShadow && scrollHeight - clientHeight > scrollTop;
 
         if (showTopShadow) scrollBars.classList.add(uuiScrollbars.uuiShadowTopVisible);
         else scrollBars.classList.remove(uuiScrollbars.uuiShadowTopVisible);
@@ -55,23 +53,15 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useEffect(handleUpdateScroll);
 
-    const renderView = ({ style, ...rest }: { style: CSSProperties, rest: {} }) => {
+    const renderView = ({ style, ...rest }: { style: CSSProperties; rest: {} }) => {
         const propsRenderView = props.renderView as (p: any) => any;
         const rv = propsRenderView?.({ style: { ...style, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest });
-        return rv || (
-            <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />
-        );
+        return rv || <div style={ { ...style, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />;
     };
 
     return (
         <ReactCustomScrollBars
-            className={ cx(
-                css.root,
-                props.cx,
-                props.className,
-                hasTopShadow && uuiScrollbars.uuiShadowTop,
-                hasBottomShadow && uuiScrollbars.uuiShadowBottom,
-            ) }
+            className={ cx(css.root, props.cx, props.className, hasTopShadow && uuiScrollbars.uuiShadowTop, hasBottomShadow && uuiScrollbars.uuiShadowBottom) }
             renderView={ renderView }
             renderTrackHorizontal={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
             renderTrackVertical={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } /> }

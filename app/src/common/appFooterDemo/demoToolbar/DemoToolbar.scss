@@ -7,6 +7,7 @@
         padding-left: 18px;
         padding-right: 18px;
         color: var(--white) !important;
+
         &:hover {
             background-color: $gray90;
         }
@@ -14,10 +15,12 @@
         :global(.uui-icon) {
             fill: var(--white);
         }
+
         :global(.uui-caption) {
             font-weight: lighter;
         }
     }
+
     .divider {
         position: relative;
         margin: 0;

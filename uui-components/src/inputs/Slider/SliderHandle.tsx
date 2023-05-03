@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { IHasCX, uuiElement, cx, IHasRawProps } from '@epam/uui-core';
-import css from '../../overlays/Tooltip.scss';
+import {
+    IHasCX, uuiElement, cx, IHasRawProps,
+} from '@epam/uui-core';
+import css from './SliderHandle.scss';
 import { Manager, Reference, Popper } from 'react-popper';
 import { Portal } from '../../overlays/Portal';
 import { uuiSlider } from './SliderBase';
@@ -25,7 +27,6 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
     };
 
     sliderHandle: HTMLElement | null;
-
     componentDidMount() {
         document.addEventListener('mousemove', this.handleMouseMove as React.EventHandler<any>);
         document.addEventListener('mouseup', this.handleMouseUp as React.EventHandler<any>);
@@ -44,38 +45,38 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
         if (this.props.isActive) {
             this.props.onUpdate(e.clientX);
         }
-    }
+    };
 
     handleMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
         e.preventDefault();
         this.props.handleActiveState && this.props.handleActiveState(true);
-    }
+    };
 
     handleMouseUp = (e: React.MouseEvent<HTMLDivElement>): void => {
         if (this.props.isActive) {
             this.props.handleActiveState && this.props.handleActiveState(false);
         }
-    }
+    };
 
     handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>): void => {
         this.setState({ isHovered: true });
-    }
+    };
 
     handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>): void => {
         this.setState({ isHovered: false });
-    }
+    };
 
     handleFocus = (e: React.FocusEvent<HTMLDivElement>): void => {
         e.preventDefault();
         this.props.handleActiveState && this.props.handleActiveState(true);
         this.setState({ isHovered: true });
-    }
+    };
 
     handleBlur = (e: React.FocusEvent<HTMLDivElement>): void => {
         e.preventDefault();
         this.props.handleActiveState && this.props.handleActiveState(false);
         this.setState({ isHovered: false });
-    }
+    };
 
     handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
         if (e.key === 'ArrowLeft') {
@@ -83,26 +84,25 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
         } else if (e.key == 'ArrowRight') {
             this.props.onKeyDownUpdate('right');
         }
-    }
+    };
 
     renderTooltip() {
         const content = this.props.tooltipContent;
 
-        return (
-            <div className={ uuiElement.tooltipBody }>
-                { content }
-            </div>
-        );
+        return <div className={ uuiElement.tooltipBody }>{content}</div>;
     }
 
     render() {
         return (
             <Manager>
                 <Reference>
-                    { (targetProps) =>
+                    {(targetProps) => (
                         <div
                             tabIndex={ 0 }
-                            ref={ (SliderHandle) => { this.sliderHandle = SliderHandle; (targetProps.ref as React.RefCallback<any>)(SliderHandle); } }
+                            ref={ (SliderHandle) => {
+                                this.sliderHandle = SliderHandle;
+                                (targetProps.ref as React.RefCallback<any>)(SliderHandle);
+                            } }
                             className={ cx(uuiSlider.handle, this.props.cx) }
                             style={ { transform: `translateX(${this.props.offset || 0}px)` } }
                             onMouseDown={ this.handleMouseDown }
@@ -112,23 +112,25 @@ export class SliderHandle extends React.Component<SliderHandleProps, SliderHandl
                             onBlur={ this.handleBlur }
                             { ...this.props.rawProps }
                         />
-                    }
+                    )}
                 </Reference>
                 <Portal>
-                    <Popper placement={ 'top' } key={ this.props.offset }>
-                        {
-                            ({ ref, style, placement }) => {
-                                return (this.props.isActive || this.state.isHovered) && <div
-                                    ref={ ref }
-                                    style={ style }
-                                    data-placement={ placement }
-                                    className={ cx(this.props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
-                                >
-                                    { this.props.showTooltip && this.renderTooltip() }
-                                    <div className={ uuiElement.tooltipArrow } />
-                                </div >;
-                            }
-                        }
+                    <Popper placement="top" key={ this.props.offset }>
+                        {({ ref, style, placement }) => {
+                            return (
+                                (this.props.isActive || this.state.isHovered) && (
+                                    <div
+                                        ref={ ref }
+                                        style={ style }
+                                        data-placement={ placement }
+                                        className={ cx(this.props.cx, css.container, uuiElement.tooltipContainer, css.tooltipWrapper) }
+                                    >
+                                        {this.props.showTooltip && this.renderTooltip()}
+                                        <div className={ uuiElement.tooltipArrow } />
+                                    </div>
+                                )
+                            );
+                        }}
                     </Popper>
                 </Portal>
             </Manager>

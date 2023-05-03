@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react';
 import { UuiContext, HistoryAdaptedRouter, useUuiServices } from '@epam/uui-core';
-import { Modals, Snackbar } from "@epam/uui-components";
-import { skinContext, ErrorHandler } from "@epam/promo";
-import { createBrowserHistory } from "history";
+import { Modals, Snackbar } from '@epam/uui-components';
+import { skinContext, ErrorHandler } from '@epam/promo';
+import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
 
 export default function UuiEnhancedApp() {
-
     const router = new HistoryAdaptedRouter(history);
 
     const { services } = useUuiServices({
@@ -20,9 +19,7 @@ export default function UuiEnhancedApp() {
 
     return (
         <UuiContext.Provider value={ services }>
-            <ErrorHandler>
-                Your App component
-            </ErrorHandler>
+            <ErrorHandler>Your App component</ErrorHandler>
             <Snackbar />
             <Modals />
         </UuiContext.Provider>

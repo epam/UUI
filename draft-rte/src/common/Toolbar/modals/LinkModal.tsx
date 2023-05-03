@@ -68,12 +68,12 @@ class LinkModal extends React.Component<LinkModalProps, LinkModalState> {
                                         displayText: this.state.displayText,
                                         isRemove: true,
                                     }) }
-                                    color='night200'
+                                    color='white'
                                     caption={ i18n.rte.linkModal.buttonRemove }
                                 />
                             }
                             <FlexSpacer />
-                            <Button onClick={ () => this.props.abort() } color='night200' caption={ i18n.rte.linkModal.buttonCancel } />
+                            <Button onClick={ () => this.props.abort() } color='white' caption={ i18n.rte.linkModal.buttonCancel } />
                             <Button
                                 onClick={ () => this.verifyForm() && this.props.success({ href: this.state.href, displayText: this.state.displayText }) }
                                 color='grass'

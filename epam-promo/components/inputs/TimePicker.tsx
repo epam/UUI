@@ -7,7 +7,8 @@ import { DropdownContainer } from '../overlays';
 import { TextInput } from '@epam/uui';
 import { TimePickerBody } from './TimePickerBody';
 import css from './TimePicker.scss';
-import customParseFormat from "dayjs/plugin/customParseFormat.js";
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
+
 dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;
@@ -36,18 +37,21 @@ export class TimePicker extends BaseTimePicker<TimePickerProps> {
             mode={ this.props.mode || defaultMode }
             rawProps={ this.props.rawProps?.input }
         />
-    )
+    );
 
     renderBody = (props: DropdownBodyProps) => {
-        return !this.props.isDisabled && !this.props.isReadonly && (
-            <DropdownContainer { ...props }>
-                <TimePickerBody
-                    { ...this.props }
-                    value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }
-                    rawProps={ this.props.rawProps?.body }
-                    cx={ this.props.bodyCx }
-                />
-            </DropdownContainer>
+        return (
+            !this.props.isDisabled
+            && !this.props.isReadonly && (
+                <DropdownContainer { ...props }>
+                    <TimePickerBody
+                        { ...this.props }
+                        value={ this.props.value !== null ? this.props.value : { hours: null, minutes: null } }
+                        rawProps={ this.props.rawProps?.body }
+                        cx={ this.props.bodyCx }
+                    />
+                </DropdownContainer>
+            )
         );
-    }
+    };
 }

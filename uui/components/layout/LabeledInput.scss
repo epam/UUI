@@ -5,7 +5,8 @@
 
     :global(.uui-label) {
         @include overflow-ellipsis();
-        font-family: var(--font-semibold);
+        font-family: var(--uui-labeled-input-font);
+        font-weight: var(--uui-labeled-input-font-weight, normal);
         color: var(--uui-labeled-input);
 
         :global(.uui-labeled-input-info-icon) {
@@ -19,7 +20,8 @@
         }
 
         :global(.uui-labeled-input-optional) {
-            font-family: var(--font-italic);
+            font-family: var(--uui-labeled-input-optional-font);
+            font-weight: var(--uui-labeled-input-optional-font-weight, normal);
             font-size: 12px;
             line-height: 18px;
             color: var(--uui-labeled-input-optional-text);
@@ -36,7 +38,8 @@
         line-height: 18px;
         font-size: 12px;
         color: var(--uui-labeled-input-error);
-        font-family: var(--font-regular);
+        font-family: var(--uui-labeled-input-invalid-msg-font);
+        font-weight: var(--uui-labeled-input-invalid-msg-font-weight, normal);
         margin-top: 3px;
     }
 

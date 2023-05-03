@@ -111,7 +111,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`NotificationCard should be rendered correctly 1`] = `
+exports[`NotificationCard should render with maximum props 1`] = `
 <div
   className="notification-card-red root"
   role="alert"
@@ -119,6 +119,18 @@ exports[`NotificationCard should be rendered correctly 1`] = `
   <div
     className="mainPath"
   >
+    <div
+      className="iconWrapper"
+    >
+      <div
+        className="container uui-icon uui-enabled actionIcon"
+        style={Object {}}
+      >
+        <svg
+          className=""
+        />
+      </div>
+    </div>
     <div
       className="content"
     />
@@ -145,7 +157,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`NotificationCard should be rendered correctly 2`] = `
+exports[`NotificationCard should render with minimum props 1`] = `
 <div
   className="notification-card-red root"
   role="alert"
@@ -153,18 +165,6 @@ exports[`NotificationCard should be rendered correctly 2`] = `
   <div
     className="mainPath"
   >
-    <div
-      className="iconWrapper"
-    >
-      <div
-        className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
-      >
-        <svg
-          className=""
-        />
-      </div>
-    </div>
     <div
       className="content"
     />

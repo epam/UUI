@@ -1,5 +1,5 @@
 import { DataQuery } from '@epam/uui-core';
-import { DbTable } from "./DbTable";
+import { DbTable } from './DbTable';
 import { IClientIdsMap } from './tempIds';
 
 export type DbTablesSet<TTables extends DbTablesSet<TTables>> = { [TEntityName in keyof TTables]: DbTable<any, any, TTables> };
@@ -14,7 +14,7 @@ export type DbPatch<TTables extends DbTablesSet<TTables>> = { [TEntityName in ke
 
 export enum DbRelationType {
     Aggregation,
-    Association,
+    Association
 }
 
 export type DbFieldFk<TEntity> = {
@@ -57,15 +57,14 @@ export type DbEntitySchema<TEntity, TId extends DbPkFieldType, TTables extends D
     beforeUpdate?: (entity: TEntity, context: BeforeUpdateContext<TEntity, TId, TTables>) => DbEntityBeforeUpdateResult<TEntity, TTables>;
     primaryKey: TId extends any[] ? KeysOfType<TEntity, string | number>[] : KeysOfType<TEntity, string | number>;
     indexes?: DbTableIndexDefinition<TEntity>[];
-    deleteFlag?: (keyof TEntity);
+    deleteFlag?: keyof TEntity;
 };
 
 export type DbSchema<TTables extends DbTablesSet<TTables>> = {
-    [TTypeName in keyof TTables]: DbEntitySchema<any, any, TTables>
+    [TTypeName in keyof TTables]: DbEntitySchema<any, any, TTables>;
 };
 
-export interface DbQuery<TEntity> extends DataQuery<TEntity> {
-}
+export interface DbQuery<TEntity> extends DataQuery<TEntity> {}
 
 export interface IQueryable<TEntity, TId> {
     query(q: DbQuery<TEntity>): TEntity[];
@@ -82,15 +81,12 @@ type DbSaveEntityResponse<TEntity, TId> = {
 };
 
 export interface DbSaveResponse<TTables extends DbTablesSet<TTables>> {
-    submit: { [EntityName in keyof TTables]?: DbSaveEntityResponse<
-        DbTableEntityByTable<TTables[EntityName], TTables>,
-        DbTableIdByTable<TTables[EntityName], TTables>
-    >[] };
+    submit: {
+        [EntityName in keyof TTables]?: DbSaveEntityResponse<DbTableEntityByTable<TTables[EntityName], TTables>, DbTableIdByTable<TTables[EntityName], TTables>>[];
+    };
 }
 
-export type DbViewFunction<TDb, TResult, TParams = void, TDependencies = void>
-    = (db: TDb, parameters?: TParams, dependencies?: TDependencies) => TResult;
-
+export type DbViewFunction<TDb, TResult, TParams = void, TDependencies = void> = (db: TDb, parameters?: TParams, dependencies?: TDependencies) => TResult;
 
 export interface DbViewOptions<TDb, TResult, TParams, TDependencies = void> {
     getKey?: (parameters: TParams) => string;
@@ -100,12 +96,11 @@ export interface DbViewOptions<TDb, TResult, TParams, TDependencies = void> {
     traceDiff?: boolean;
 }
 
-export interface DbView<TDb, TResult, TParams = void, TDependencies = void>
-    extends DbViewOptions<TDb, TResult, TParams, TDependencies> {
+export interface DbView<TDb, TResult, TParams = void, TDependencies = void> extends DbViewOptions<TDb, TResult, TParams, TDependencies> {
     compute: DbViewFunction<TDb, TResult, TParams, TDependencies>;
 }
 
-export type KeysOfType<T, TProp> = { [P in keyof T]: T[P] extends TProp? P : never }[keyof T];
+export type KeysOfType<T, TProp> = { [P in keyof T]: T[P] extends TProp ? P : never }[keyof T];
 
 export interface DbSubscription<TValue, TParams> {
     update(params: TParams): TValue;
@@ -115,7 +110,7 @@ export interface DbSubscription<TValue, TParams> {
     unsubscribe: () => void;
 }
 
-export type ViewCacheItem = { dependencies: any, currentValue: any, computedOnDb: any };
+export type ViewCacheItem = { dependencies: any; currentValue: any; computedOnDb: any };
 
 export interface LoadingState<TRequest> {
     isLoading: boolean;
@@ -127,5 +122,5 @@ export interface LoadingState<TRequest> {
 export interface ILoadingTracker<TRequest, TResult> {
     diff(request: TRequest): TRequest;
     append(request: TRequest, result?: TResult): void;
-    count?(request: TRequest): { knownCount: number, exactCount: number };
+    count?(request: TRequest): { knownCount: number; exactCount: number };
 }

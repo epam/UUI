@@ -5,7 +5,7 @@
         padding: 0 6px;
         background-color: var(--uui-accent);
         opacity: 0.8;
-        background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, var(--uui-accent) 10px ), repeating-linear-gradient( var(--uui-accent-darkest),  var(--uui-accent-light));
+        background-image: repeating-radial-gradient(circle at 0 0, transparent 0, var(--uui-accent) 10px), repeating-linear-gradient(var(--uui-accent-darkest), var(--uui-accent-light));
     }
 
     .icon {
@@ -13,11 +13,11 @@
     }
 
     .text {
-        padding: 0
+        padding: 0;
     }
 
     .footer {
-        border-top: 1px solid var( --uui-control-border);
+        border-top: 1px solid var(--uui-control-border);
 
         .icon {
             fill: var(--uui-control-icon);

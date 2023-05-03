@@ -46,6 +46,11 @@ exports[`PickerToggler should be rendered correctly 2`] = `
       type="button"
     >
       <div
+        className="uui-caption"
+      >
+        test
+      </div>
+      <div
         className="container uui-icon uui-enabled -clickable -clickable"
         onClick={[Function]}
         style={Object {}}
@@ -62,6 +67,7 @@ exports[`PickerToggler should be rendered correctly 2`] = `
     <div
       className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
       onClick={[Function]}
+      role="button"
       style={Object {}}
       tabIndex={-1}
     >

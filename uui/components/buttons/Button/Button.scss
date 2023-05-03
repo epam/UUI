@@ -4,7 +4,6 @@
     &:global(.uui-button-box) {
         border-style: solid;
         justify-content: center;
-        min-width: inherit;
         border-radius: var(--uui-btn-border-radius);
     }
 
@@ -13,8 +12,8 @@
         min-width: 0;
         text-align: center;
         flex: 1 1 auto;
-        font-family: var(--font-semibold);
-        font-weight: normal;
+        font-family: var(--uui-btn-font);
+        font-weight: var(--uui-btn-font-weight, normal);
         user-select: none;
     }
 }

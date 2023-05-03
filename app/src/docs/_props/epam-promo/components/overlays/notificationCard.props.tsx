@@ -8,15 +8,25 @@ import { allEpamPrimaryColors } from '@epam/promo';
 
 const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'NotificationCard', component: NotificationCard })
     .implements([iconWithInfoDoc])
-    .prop('color', { renderEditor: (editable, examples) => <ColorPicker colors={ examples.map(i => ({ value: i, hex: colors[i] })) } { ...editable } />, examples: [...allEpamPrimaryColors, 'gray60'] })
+    .prop('color', {
+        renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
+        examples: [...allEpamPrimaryColors, 'gray60'],
+    })
     .prop('children', {
         examples: [
             {
-                value: <Text size="36" font='sans' fontSize='14'>Warning notification</Text>,
+                value: (
+                    <Text size="36" font="sans" fontSize="14">
+                        Warning notification
+                    </Text>
+                ),
                 name: 'Short',
-            },
-            {
-                value: <Text size="36" font='sans' fontSize='14'>Warning notification with some buttons and long long text with blaaaaaa blaaaaaaaaaa</Text>,
+            }, {
+                value: (
+                    <Text size="36" font="sans" fontSize="14">
+                        Warning notification with some buttons and long long text with blaaaaaa blaaaaaaaaaa
+                    </Text>
+                ),
                 name: 'Long',
             },
         ],
@@ -27,20 +37,18 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
                 value: [
                     {
                         name: 'ACTION 1',
-                        action: () => { },
+                        action: () => {},
                     },
                 ],
                 name: '1 action',
-            },
-            {
+            }, {
                 value: [
                     {
                         name: 'ACTION 1',
-                        action: () => { },
-                    },
-                    {
+                        action: () => {},
+                    }, {
                         name: 'ACTION 2',
-                        action: () => { },
+                        action: () => {},
                     },
                 ],
                 name: '2 actions',
@@ -50,7 +58,7 @@ const SnackbarCardDoc = new DocBuilder<NotificationCardProps>({ name: 'Notificat
     .prop('onClose', {
         examples: [
             {
-                value: () => { },
+                value: () => {},
                 name: 'OnClose',
             },
         ],

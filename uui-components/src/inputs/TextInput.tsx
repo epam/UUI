@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext } from '@epam/uui-core';
+import {
+    Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
+} from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import css from './TextInput.scss';
 
@@ -66,7 +68,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     };
 
     const getInputProps = () => ({
-        type: props.type || "text",
+        type: props.type || 'text',
         className: cx(uuiElement.input, props.inputCx),
         disabled: props.isDisabled,
         placeholder: props.placeholder,
@@ -80,7 +82,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         name: props.name,
         maxLength: props.maxLength,
         inputMode: props.inputMode,
-        tabIndex: props.tabIndex || (inFocus || props.isReadonly || props.isDisabled) ? -1 : 0,
+        tabIndex: props.tabIndex || inFocus || props.isReadonly || props.isDisabled ? -1 : 0,
         id: props.id,
         required: props.isRequired,
         'aria-invalid': props.isInvalid,
@@ -93,15 +95,17 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
     return (
-        <div onClick={ props.onClick && handleClick } ref={ ref } className={
-            cx(
+        <div
+            onClick={ props.onClick && handleClick }
+            ref={ ref }
+            className={ cx(
                 css.container,
                 uuiElement.inputBox,
                 props.isDisabled && uuiMod.disabled,
                 props.isReadonly && uuiMod.readonly,
                 props.isInvalid && uuiMod.invalid,
-                (!props.isReadonly && !props.isDisabled) && uuiMarkers.clickable,
-                (!props.isReadonly && inFocus) && uuiMod.focus,
+                !props.isReadonly && !props.isDisabled && uuiMarkers.clickable,
+                !props.isReadonly && inFocus && uuiMod.focus,
                 props.cx,
             ) }
             tabIndex={ -1 }
@@ -109,28 +113,24 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             onBlur={ handleBlur }
             { ...props.rawProps }
         >
-            { props.prefix && <span className={ cx(props.inputCx, uuiElement.prefixInput) }>{ props.prefix }</span> }
-            { props.iconPosition !== 'right' && icon }
-            { props.renderInput ? props.renderInput(getInputProps()) : <input { ...getInputProps() } /> }
-            { props.onAccept && showIconsOnAction && <IconContainer
-                cx={ cx('uui-icon-accept') }
-                isDisabled={ props.isDisabled }
-                icon={ props.acceptIcon }
-                onClick={ props.onAccept }
-            /> }
-            { props.onCancel && showIconsOnAction && <IconContainer
-                cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
-                isDisabled={ props.isDisabled }
-                icon={ props.cancelIcon }
-                onClick={ handleCancel }
-            /> }
-            { props.iconPosition === 'right' && icon }
-            { props.isDropdown && <IconContainer
-                cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, css.pointer) }
-                icon={ props.dropdownIcon }
-                flipY={ props.isOpen }
-            /> }
-            { props.suffix && <span className={ cx(props.inputCx, uuiElement.suffixInput) }>{ props.suffix }</span> }
+            {props.iconPosition !== 'right' && icon}
+            {props.renderInput ? props.renderInput(getInputProps()) : <input { ...getInputProps() } />}
+            {props.onAccept && showIconsOnAction && (
+                <IconContainer cx={ cx('uui-icon-accept') } isDisabled={ props.isDisabled } icon={ props.acceptIcon } onClick={ props.onAccept } rawProps={ { role: 'button' } } />
+            )}
+            {props.onCancel && showIconsOnAction && (
+                <IconContainer
+                    cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
+                    isDisabled={ props.isDisabled }
+                    icon={ props.cancelIcon }
+                    onClick={ handleCancel }
+                    rawProps={ { role: 'button' } }
+                />
+            )}
+            {props.iconPosition === 'right' && icon}
+            {props.isDropdown && (
+                <IconContainer cx={ cx((props.isReadonly || props.isDisabled) && css.hidden, css.pointer) } icon={ props.dropdownIcon } flipY={ props.isOpen } />
+            )}
         </div>
     );
 });

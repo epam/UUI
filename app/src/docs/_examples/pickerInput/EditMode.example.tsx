@@ -15,15 +15,7 @@ export default function EditModePickerExample() {
 
     return (
         <FlexCell width={ 300 }>
-            <PickerInput
-                dataSource={ dataSource }
-                value={ value }
-                onValueChange={ onValueChange }
-                entityName='person'
-                selectionMode='multi'
-                valueType='id'
-                editMode='modal'
-            />
+            <PickerInput dataSource={ dataSource } value={ value } onValueChange={ onValueChange } entityName="person" selectionMode="multi" valueType="id" editMode="modal" />
         </FlexCell>
     );
 }

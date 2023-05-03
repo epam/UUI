@@ -5,8 +5,8 @@ const GroupingBlock: React.FC = () => {
     const [value, setValue] = useState(null);
 
     return (
-        <Accordion title='Grouping' mode='inline' padding='18'>
-            {/*<RadioGroup value={ value } onValueChange={ setValue } items={ items }/>*/}
+        <Accordion title="Grouping" mode="inline" padding="18">
+            {/* <RadioGroup value={ value } onValueChange={ setValue } items={ items }/> */}
         </Accordion>
     );
 };

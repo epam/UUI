@@ -1,11 +1,14 @@
 import { LazyLoadedMap, LazyLoadedMapLoadCallback } from '../LazyLoadedMap';
 
-const delay = () => new Promise(resolve => setTimeout(resolve, 1));
+const delay = () =>
+    new Promise((resolve) => {
+        setTimeout(resolve, 1);
+    });
 
 describe('LazyLoadedMap', () => {
     const mockApi: LazyLoadedMapLoadCallback<number, string> = (keys: number[]) => {
-        return new Promise<[number, string][]>((resolve, reject) => {
-            resolve(keys.map(key => [key, 'item' + key] as [number, string]));
+        return new Promise<[number, string][]>((resolve) => {
+            resolve(keys.map((key) => [key, 'item' + key] as [number, string]));
         });
     };
 
@@ -59,7 +62,7 @@ describe('LazyLoadedMap', () => {
     });
 
     it('should not retry on rejects', async () => {
-        const api = jest.fn(() => Promise.reject('test failure'));
+        const api = jest.fn(() => Promise.reject(new Error('test failure')));
         const map = new LazyLoadedMap<number, string>(api);
 
         map.get(1);
