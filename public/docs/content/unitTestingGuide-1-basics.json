@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "General approach for testing components in UUI is described on this page. ",
+            "text": "General approach for testing UUI components is described on this page. ",
             "marks": []
           }
         ]
