@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import css from './AddVideoModal.scss';
-import { PlateEditor, setElements } from "@udecode/plate";
+import { PlateEditor, createNode, insertElements } from "@udecode/plate";
 
 import getVideoId from "get-video-id";
 import { useState } from "react";
@@ -55,11 +55,19 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
 
     const createVideoBlock = () => {
         const formattedSrc = getVideoSrc(src);
-        setElements(editor, {
-            type: 'iframe',
-            data: { src: formattedSrc },
-            url: formattedSrc,
-        });
+        insertElements(
+            editor,
+            [
+                {
+                    type: 'iframe',
+                    data: { src: formattedSrc },
+                    url: formattedSrc,
+                    children: []
+                },
+                createNode(),
+            ],
+            { at: editor.selection.anchor.path }
+        );
 
         success(true);
     };
@@ -70,7 +78,7 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
                 <ModalHeader title="Add video" onClose={ abort } />
                 <FlexRow cx={ css.inputWrapper }>
                     <LabeledInput label='Video url' >
-                        <TextInput value={ src } onValueChange={ setSrc } autoFocus/>
+                        <TextInput value={ src } onValueChange={ setSrc } autoFocus />
                     </LabeledInput>
                 </FlexRow>
                 <ModalFooter borderTop >
