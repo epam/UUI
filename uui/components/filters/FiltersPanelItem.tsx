@@ -155,7 +155,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         return predicate ? props.value?.[predicate] : props.value;
     };
 
-    const getPickerItemName = (item: DataRowProps<any, any>, footerProps: PickerFilterConfig<any>) => {
+    const getPickerItemName = (item: DataRowProps<any, any>, config: PickerFilterConfig<any>) => {
         if (item.isUnknown) {
             return 'Unknown';
         }
@@ -164,7 +164,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             return <TextPlaceholder />;
         }
 
-        return footerProps.getName ? footerProps.getName(item.value) : item.value.name;
+        return config.getName ? config.getName(item.value) : item.value.name;
     };
 
     const getTogglerValue = () => {
