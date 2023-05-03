@@ -27,9 +27,7 @@
     "react-popper": "2.3.0"
   },
   "devDependencies": {
-    "@types/react-test-renderer": "18.0.0",
-    "mockdate": "^3.0.5",
-    "react-test-renderer": "18.2.0"
+    "mockdate": "^3.0.5"
   },
   "peerDependencies": {
     "prop-types": "*",

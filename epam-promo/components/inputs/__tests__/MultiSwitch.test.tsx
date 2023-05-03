@@ -1,6 +1,6 @@
 import React from 'react';
 import { MultiSwitch } from '../MultiSwitch';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 it('should be rendered correctly', () => {
     const tree = renderer

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Accordion } from '../Accordion';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import { systemIcons } from '../../../icons/icons';
 
 describe('Accordion', () => {

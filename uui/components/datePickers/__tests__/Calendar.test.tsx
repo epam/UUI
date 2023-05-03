@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar } from '../Calendar';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import dayjs from 'dayjs';
 
 describe('Calendar', () => {

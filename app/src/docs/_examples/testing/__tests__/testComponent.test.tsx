@@ -2,27 +2,27 @@ import React from 'react';
 import { setupComponentForTest, screen, fireEvent } from '@epam/uui-test-utils';
 import { TextInput } from '@epam/uui';
 
-/** Start: This is component which we are going to test */
-export interface TestComponentProps {
+/** Start: This is some component which we are going to test. It's just an example. */
+export interface SomeComponentProps {
     value: string;
     onValueChange: (value: string) => void;
 }
-export function TestComponent(props: TestComponentProps) {
+export function SomeComponent(props: SomeComponentProps) {
     return (
         <TextInput value={ props.value } onValueChange={ props.onValueChange } />
     );
 }
-/** End: This is component which we are going to test */
+/** End */
 
-async function setupTestComponent(params: Partial<TestComponentProps>) {
-    const { mocks, setProps } = await setupComponentForTest<TestComponentProps>(
+async function setupTestComponent(params: Partial<SomeComponentProps>) {
+    const { mocks, setProps } = await setupComponentForTest<SomeComponentProps>(
         (context) => ({
             value: params.value,
             onValueChange: jest.fn().mockImplementation((newValue) => {
                 context.current.setProperty('value', newValue);
             }),
         }),
-        (props) => <TestComponent { ...props } />,
+        (props) => <SomeComponent { ...props } />,
     );
     const input = screen.queryByRole('textbox') as HTMLInputElement;
     const dom = { input };

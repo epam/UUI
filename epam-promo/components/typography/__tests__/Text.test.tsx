@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from '../Text';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('Text', () => {
     it('should be rendered correctly', () => {

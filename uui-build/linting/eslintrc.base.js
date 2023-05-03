@@ -58,6 +58,13 @@ module.exports = {
             env: { 'jest/globals': true },
             rules: {
                 'import/no-extraneous-dependencies': 0,
+                'no-restricted-imports': ['error', {
+                    paths: [
+                        { name: 'react-test-renderer', message: 'Please use: import { renderer } from \'@epam/uui-test-utils\';' },
+                        { name: '@testing-library/react', message: 'Please use: import { ... } from \'@epam/uui-test-utils\';' },
+                        { name: '@testing-library/user-event', message: 'Please use: import { userEvent } from \'@epam/uui-test-utils\';' },
+                    ],
+                }],
                 /**
                  * Don't want to force usage of userEvent because it slows down the performance of tests (with user-event it's ~3 times slower).
                  * https://github.com/testing-library/user-event/issues/650

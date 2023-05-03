@@ -1,6 +1,6 @@
 import React from 'react';
 import { IndeterminateBar } from '../IndeterminateBar';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('ProgressBar', () => {
     it('should be rendered correctly', () => {
