@@ -1,6 +1,8 @@
 import * as React from 'react';
 import range from 'lodash.range';
-import { IAnalyticableOnChange, IEditable, IHasRawProps, UuiContext, UuiContexts } from "@epam/uui-core";
+import {
+    IAnalyticableOnChange, IEditable, IHasRawProps, UuiContext, UuiContexts,
+} from '@epam/uui-core';
 
 export interface PaginatorParams extends IHasRawProps<React.ReactHTMLElement<HTMLElement>> {
     size: '24' | '30';
@@ -18,7 +20,7 @@ interface PaginatorItem {
     onClick?(): void;
 }
 
-export interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<React.ReactHTMLElement<HTMLElement>>  {
+export interface PaginatorProps extends IEditable<number>, IAnalyticableOnChange<number>, IHasRawProps<React.ReactHTMLElement<HTMLElement>> {
     /** Component size */
     size: '24' | '30';
 
@@ -36,14 +38,13 @@ export class Paginator extends React.Component<PaginatorProps> {
     static contextType = UuiContext;
     context: UuiContexts;
     // size = this.props.size || '36';
-
     isFirst = () => {
         return this.props.value === FIRST_PAGE;
-    }
+    };
 
     isLast = () => {
         return this.props.value === this.props.totalPages;
-    }
+    };
 
     getPagesView(): PaginatorItem[] {
         const paginatorItems: PaginatorItem[] = [];
@@ -62,7 +63,9 @@ export class Paginator extends React.Component<PaginatorProps> {
             if (page !== currentPage) {
                 return paginatorItems.push({ type: 'page', pageNumber: page, onClick: () => onClick(page) });
             }
-            return paginatorItems.push({ type: 'page', pageNumber: page, onClick: () => onClick(page), isActive: true });
+            return paginatorItems.push({
+                type: 'page', pageNumber: page, onClick: () => onClick(page), isActive: true,
+            });
         }
 
         function addSpacer() {
@@ -119,11 +122,11 @@ export class Paginator extends React.Component<PaginatorProps> {
 
     goToNext = () => {
         this.props.onValueChange(this.props.value + 1);
-    }
+    };
 
     goToPrev = () => {
         this.props.onValueChange(this.props.value - 1);
-    }
+    };
 
     render() {
         return this.props.render({

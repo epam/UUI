@@ -1,18 +1,32 @@
 import React, { useState } from 'react';
-import { Descendant } from 'slate';
 import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
-import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/promo';
+import {
+    Panel, FlexSpacer, FlexRow, Switch, MultiSwitch,
+} from '@epam/promo';
 import {
     SlateEditor,
     defaultPlugins,
-    imagePlugin, videoPlugin, attachmentPlugin,
-    toDoListPlugin, baseMarksPlugin,
-    linkPlugin, iframePlugin, notePlugin, separatorPlugin,
-    tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, uploadFilePlugin,
+    imagePlugin,
+    videoPlugin,
+    attachmentPlugin,
+    toDoListPlugin,
+    baseMarksPlugin,
+    linkPlugin,
+    iframePlugin,
+    notePlugin,
+    separatorPlugin,
+    uploadFilePlugin,
+    tablePlugin,
+    quotePlugin,
+    colorPlugin,
+    superscriptPlugin,
+    headerPlugin,
+    listPlugin,
+    placeholderPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.scss';
+import { Descendant } from 'slate';
 
 type EditorFontSize = '14' | '16';
 type EditorMode = 'form' | 'inline';
@@ -54,8 +68,7 @@ export default function SlateEditorBasicExample() {
                 {
                     name: 'Name',
                     field: 'name',
-                },
-                {
+                }, {
                     name: 'Email',
                     field: 'email',
                 },
@@ -65,24 +78,16 @@ export default function SlateEditorBasicExample() {
 
     return (
         <Panel cx={ css.root }>
-            <FlexRow spacing='18' vPadding='12'>
+            <FlexRow spacing="18" vPadding="12">
                 <MultiSwitch
                     items={ [{ id: '14', caption: '14' }, { id: '16', caption: '16' }] }
                     value={ fontSize }
-                    onValueChange={ (value: EditorFontSize) => setFontSize(value) }
-                    color='blue'
+                    onValueChange={ (v: EditorFontSize) => setFontSize(v) }
+                    color="blue"
                 />
                 <FlexSpacer />
-                <Switch
-                    value={ mode === 'inline' }
-                    onValueChange={ (val: boolean) => setMode(val ? 'inline' : 'form') }
-                    label='Inline mode'
-                />
-                <Switch
-                    value={ isReadonly }
-                    onValueChange={ setIsReadonly }
-                    label='View mode'
-                />
+                <Switch value={ mode === 'inline' } onValueChange={ (val: boolean) => setMode(val ? 'inline' : 'form') } label="Inline mode" />
+                <Switch value={ isReadonly } onValueChange={ setIsReadonly } label="View mode" />
             </FlexRow>
 
             <SlateEditor
@@ -91,8 +96,8 @@ export default function SlateEditorBasicExample() {
                 isReadonly={ isReadonly }
                 plugins={ plugins }
                 mode={ mode }
-                placeholder='Add description'
-                minHeight={ 'none' }
+                placeholder="Add description"
+                minHeight="none"
                 fontSize={ fontSize }
             />
         </Panel>

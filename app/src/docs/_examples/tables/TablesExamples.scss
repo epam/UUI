@@ -1,4 +1,4 @@
-@import "~@epam/promo/assets/styles/colors";
+@import '~@epam/promo/assets/styles/colors';
 
 .container {
     height: 400px;
@@ -8,6 +8,10 @@
 }
 
 :global(.uui-table-row) {
+    &.task-is-done {
+        --uui-dt-row-bg: var(--gray10);
+    }
+
     .configItem {
         visibility: hidden;
 
@@ -24,5 +28,5 @@
 }
 
 .weekend-day {
-    background-color: #ebedf5;
+    background-color: #EBEDF5;
 }

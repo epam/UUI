@@ -20,7 +20,7 @@ import {
     quotePlugin,
     tablePlugin,
     codeBlockPlugin,
-} from "@epam/uui-editor";
+} from '@epam/uui-editor';
 import { svc } from '../../services';
 import css from './EditableDocContent.scss';
 
@@ -54,7 +54,6 @@ const plugins = [
 
 export class EditableDocContent extends React.Component<EditableDocContentProps, EditableDocContentState> {
     static plugins = plugins;
-
     state: EditableDocContentState = {
         content: null,
         isLoading: true,
@@ -62,11 +61,11 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
 
     componentDidMount() {
         svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: this.props.fileName })
-            .then(res => {
-                this.setState({
+            .then((res) => {
+                this.setState((prevState) => ({
                     content: res.content,
-                    isLoading: !this.state.isLoading,
-                });
+                    isLoading: !prevState.isLoading,
+                }));
             });
     }
 
@@ -76,30 +75,31 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
             name: this.props.fileName,
             content: content,
         });
-    }
+    };
 
     render() {
         const { isLoading } = this.state;
 
         return (
-            <div className={ css.wrapper } >
+            <div className={ css.wrapper }>
                 <IEditableDebouncer
                     value={ this.state.content }
                     onValueChange={ this.saveDocContent }
-                    render={ (props) => <SlateEditor
-                        placeholder='Please type'
-                        plugins={ plugins }
-                        cx={ css.container }
-                        mode='inline'
-                        isReadonly={ !window.location.host.includes('localhost') }
-                        minHeight={ 36 }
-                        fontSize="16"
-                        { ...props }
-                    /> }
+                    render={ (props) => (
+                        <SlateEditor
+                            placeholder="Please type"
+                            plugins={ plugins }
+                            cx={ css.container }
+                            mode="inline"
+                            isReadonly={ !window.location.host.includes('localhost') }
+                            minHeight={ 36 }
+                            fontSize="16"
+                            { ...props }
+                        />
+                    ) }
                 />
                 <Blocker isEnabled={ isLoading } />
             </div>
-
-        ) ;
+        );
     }
 }

@@ -18,7 +18,6 @@ exports[`IconButton should be rendered correctly with props 1`] = `
 <button
   aria-disabled={false}
   className="container uui-button-box uui-enabled -clickable icon-button-info root"
-  disabled={false}
   onClick={[Function]}
   tabIndex={0}
   type="button"

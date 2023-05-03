@@ -3,11 +3,11 @@
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-template-areas:
-        ". topLeft top topRight ."
-        "leftTop . . . rightTop"
-        "left . . . right"
-        "leftBottom . . . rightBottom"
-        ". bottomLeft bottom bottomRight .";
+        '. topLeft top topRight .'
+        'leftTop . . . rightTop'
+        'left . . . right'
+        'leftBottom . . . rightBottom'
+        '. bottomLeft bottom bottomRight .';
     gap: 12px 12px;
 
     .top-start { grid-area: topLeft; }

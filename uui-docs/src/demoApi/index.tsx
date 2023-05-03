@@ -1,10 +1,13 @@
 import * as models from '../models';
-import { LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, ApiCallOptions } from '@epam/uui-core';
+import {
+    LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, ApiCallOptions,
+} from '@epam/uui-core';
 import { personDetailsApi } from './personDetails';
 
 export function getDemoApi(processRequest: (request: string, requestMethod: string, data?: any, options?: ApiCallOptions) => any, origin: string = '') {
     function lazyApi<TEntity, TId>(name: string) {
-        return (rq: LazyDataSourceApiRequest<TEntity, TId, DataQueryFilter<TEntity>>) => processRequest(origin.concat('/api/').concat(name), 'POST', rq) as Promise<LazyDataSourceApiResponse<TEntity>>;
+        return (rq: LazyDataSourceApiRequest<TEntity, TId, DataQueryFilter<TEntity>>) =>
+            processRequest(origin.concat('/api/').concat(name), 'POST', rq) as Promise<LazyDataSourceApiResponse<TEntity>>;
     }
 
     return {
@@ -18,7 +21,7 @@ export function getDemoApi(processRequest: (request: string, requestMethod: stri
         statuses: lazyApi<models.Status, string>('statuses'),
         managers: lazyApi<models.Manager, string>('managers'),
         persons: lazyApi<models.Person, number>('persons'),
-        personsPaged: (rq: LazyDataSourceApiRequest<models.Person, number, DataQueryFilter<models.Person>> & { page: number, pageSize: number }) =>
+        personsPaged: (rq: LazyDataSourceApiRequest<models.Person, number, DataQueryFilter<models.Person>> & { page: number; pageSize: number }) =>
             processRequest(origin.concat('/api/persons-paged'), 'POST', rq) as Promise<LazyDataSourceApiResponse<models.Person> & { totalCount: number }>,
         personGroups: (rq: LazyDataSourceApiRequest<models.PersonGroup, number, DataQueryFilter<models.PersonGroup>>) =>
             processRequest(origin.concat('/api/personGroups'), 'POST', rq) as Promise<LazyDataSourceApiResponse<models.PersonGroup>>,

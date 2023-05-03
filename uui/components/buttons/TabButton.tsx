@@ -13,14 +13,11 @@ export type TabButtonProps = TabButtonMods & ButtonProps;
 
 function applyTabButtonMods(mods: TabButtonProps) {
     return [
-        css.root,
-        css['size-' + (mods.size || '48')],
-        mods.withNotify && css.uuiNotification,
-        ...getIconClass(mods),
+        css.root, 'informer-color-default', css['size-' + (mods.size || '48')], mods.withNotify && css.uuiNotification, ...getIconClass(mods),
     ];
 }
 
-export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabButtonMods, props => ({
+export const TabButton = withMods<ButtonProps, TabButtonMods>(Button, applyTabButtonMods, (props) => ({
     dropdownIcon: systemIcons['36'].foldingArrow,
     clearIcon: systemIcons['36'].clear,
     countPosition: 'right',

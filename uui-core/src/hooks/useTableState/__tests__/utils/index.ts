@@ -1,1 +1,1 @@
-export * from "./mockUrlUtils";
+export * from './mockUrlUtils';

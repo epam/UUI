@@ -12,7 +12,7 @@ export function withMods<TProps, TMods = {}>(
         // Please keep this method simple, and performant
         // Don't clone objects/arrays if not needed
 
-        let allProps: any = { ...props };
+        const allProps: any = { ...props };
 
         if (getProps) {
             Object.assign(allProps, getProps?.(props));
@@ -23,7 +23,6 @@ export function withMods<TProps, TMods = {}>(
         if (getCxResult) {
             allProps.cx = [getCxResult, (props as any).cx];
         }
-
 
         if (Component.prototype instanceof React.Component) {
             allProps.forwardedRef = ref;

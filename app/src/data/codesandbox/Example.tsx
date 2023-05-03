@@ -1,2 +1,5 @@
 import React from 'react';
-export default () => <></>;
+
+export default function Example() {
+    return <></>;
+}

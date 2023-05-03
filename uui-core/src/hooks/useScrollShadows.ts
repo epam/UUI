@@ -71,13 +71,17 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
         else if (shouldNotHaveTopShadow(root)) setVertical({ ...vertical, top: false });
         else if (shouldHaveBottomShadow(root)) setVertical({ ...vertical, bottom: true });
         else if (shouldNotHaveBottomShadow(root)) setVertical({ ...vertical, bottom: false });
-    }, [root, vertical, horizontal, setVertical, setHorizontal]);
+    }, [
+        root, vertical, horizontal, setVertical, setHorizontal,
+    ]);
 
     React.useEffect(() => {
         if (!root) return;
         root.addEventListener('scroll', updateScrollShadows);
         return () => root.removeEventListener('scroll', updateScrollShadows);
-    }, [root, horizontal, setHorizontal, vertical, setVertical]);
+    }, [
+        root, horizontal, setHorizontal, vertical, setVertical,
+    ]);
 
     React.useEffect(() => {
         if (!root) return;

@@ -1,5 +1,7 @@
-import React from 'react';
-import { Switch, FlexRow, IconButton, Button } from '@epam/promo';
+import React, { RefObject, createRef } from 'react';
+import {
+    Switch, FlexRow, IconButton, Button,
+} from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
@@ -27,6 +29,8 @@ const EXAMPLES_PATH_PREFIX = './_examples';
 const requireContext = require.context('../../docs/_examples', true, /\.example.(ts|tsx)$/, 'lazy');
 
 export class DocExample extends React.Component<DocExampleProps, DocExampleState> {
+    titleRef: RefObject<HTMLDivElement> = createRef();
+
     componentDidMount(): void {
         const { path } = this.props;
         const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
@@ -34,10 +38,17 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
             this.setState({ component: module.default });
         });
 
-        svc.api.getCode({ path }).then(r => {
-            this.setState({ code: r.highlighted, raw: r.raw });
-            return r.raw;
-        }).then(raw => this.getComponentStylesheet(raw));
+        if (this.titleRef?.current && window.location?.hash?.includes(this.titleRef.current.id)) {
+            this.titleRef.current.scrollIntoView(true);
+        }
+
+        svc.api
+            .getCode({ path })
+            .then((r) => {
+                this.setState({ code: r.highlighted, raw: r.raw });
+                return r.raw;
+            })
+            .then((raw) => this.getComponentStylesheet(raw));
     }
 
     state: DocExampleState = {
@@ -62,13 +73,13 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
         const matcher = /\.\/\w+(?:.example)?.scss/;
         const stylesheets = raw.match(matcher);
         if (stylesheets !== null) {
-            stylesheets.forEach(match => {
+            stylesheets.forEach((match) => {
                 // Compose path from match and current directory path
                 const [, filePath] = match.split('/');
                 const dirPath = this.props.path.split('/').slice(0, -1);
                 const path = dirPath.concat(filePath).join('/');
-                svc.api.getCode({ path }).then(stylesheet => {
-                    this.setState(prevState => ({
+                svc.api.getCode({ path }).then((stylesheet) => {
+                    this.setState((prevState) => ({
                         ...prevState,
                         stylesheets: {
                             ...prevState.stylesheets,
@@ -82,7 +93,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
     private onSwitchValueChange = (val: boolean) => {
         this.setState({ showCode: val });
-    }
+    };
 
     private renderCode(): React.ReactNode {
         return <pre className={ css.code } dangerouslySetInnerHTML={ { __html: this.state.code } } />;
@@ -95,30 +106,26 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
         return (
             <>
-                <FlexRow size={ null } vPadding='48' padding='24' borderBottom alignItems='top' spacing='12' >
-                    { this.state.component && React.createElement(this.state.component) }
+                <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" spacing="12">
+                    {this.state.component && React.createElement(this.state.component)}
                 </FlexRow>
-                <FlexRow padding='12' vPadding='12' cx={ css.containerFooter }>
-                    <Switch
-                        value={ this.state.showCode }
-                        onValueChange={ this.onSwitchValueChange }
-                        label='View code'
-                    />
-                    { codesandboxLink && (
+                <FlexRow padding="12" vPadding="12" cx={ css.containerFooter }>
+                    <Switch value={ this.state.showCode } onValueChange={ this.onSwitchValueChange } label="View code" />
+                    {codesandboxLink && (
                         <form action={ codesandboxLink } method="POST" target="_blank">
                             <input type="hidden" name="parameters" value={ codesandboxParameters } />
                             <Button
                                 cx={ css.externalLink }
                                 rawProps={ { type: 'submit' } }
-                                fill='light'
+                                fill="light"
                                 icon={ CodesandboxIcon }
-                                iconPosition='right'
+                                iconPosition="right"
                                 caption="Open in Codesandbox"
                             />
                         </form>
-                    ) }
+                    )}
                 </FlexRow>
-                { this.state.showCode && this.renderCode() }
+                {this.state.showCode && this.renderCode()}
             </>
         );
     }
@@ -126,16 +133,18 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     render() {
         return (
             <div className={ css.container }>
-                { this.props.title && (
+                {this.props.title && (
                     <FlexRow cx={ css.titleRow }>
-                        <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title }>{ this.props.title }</div>
-                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color='blue' href={ `#${ this.props.title.split(' ').join('_').toLowerCase() }` } />
+                        <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title } ref={ this.titleRef }>
+                            {this.props.title}
+                        </div>
+                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="blue" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
                     </FlexRow>
-                ) }
+                )}
                 <EditableDocContent fileName={ this.getDescriptionFileName() } />
 
                 <div className={ css.previewContainer } style={ { width: this.props.width } }>
-                    { this.props.onlyCode ? this.renderCode() : this.renderPreview() }
+                    {this.props.onlyCode ? this.renderCode() : this.renderPreview()}
                 </div>
             </div>
         );

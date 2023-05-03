@@ -19,7 +19,6 @@ export interface TimelineEventsBarProps {
 
 export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEventsBarProps> {
     protected canvasHeight = 14;
-
     renderTodayLine = (ctx: CanvasRenderingContext2D, t: TimelineTransform, yFrom: number, yTo: number) => {
         ctx.strokeStyle = '#F37B94';
         ctx.beginPath();
@@ -27,26 +26,21 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
         ctx.lineTo(t.getX(new Date()), yTo);
         ctx.lineWidth = 2;
         ctx.stroke();
-    }
+    };
 
     renderStage(ctx: CanvasRenderingContext2D, t: TimelineTransform, stage: Stage) {
         const stageSegment = {
             ...t.transformSegment(stage.startDate, stage.endDate),
         };
 
-        let thickness = 2;
+        const thickness = 2;
         ctx.fillStyle = '#fff';
-        ctx.fillRect(
-            stageSegment.leftTrimmed - thickness,
-            0,
-            stageSegment.widthTrimmed + thickness * 2,
-            this.canvasHeight + thickness * 2 - thickness,
-        );
+        ctx.fillRect(stageSegment.leftTrimmed - thickness, 0, stageSegment.widthTrimmed + thickness * 2, this.canvasHeight + thickness * 2 - thickness);
 
         ctx.fillStyle = stage.color;
         ctx.fillRect(stageSegment.leftTrimmed, 0, stageSegment.widthTrimmed, this.canvasHeight - thickness);
 
-        let padding = 12;
+        const padding = 12;
         let text = stage.eventName + ' ' + stage.name;
         let textWidth = ctx.measureText(text).width;
         let left = getleftXforCentering(stageSegment, textWidth, padding);
@@ -67,7 +61,7 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
 
     protected renderCanvas(ctx: CanvasRenderingContext2D, t: TimelineTransform): void {
         ctx.clearRect(0, 0, t.widthMs, this.canvasHeight);
-        this.props.stages.forEach(stage => this.renderStage(ctx, t, stage));
+        this.props.stages.forEach((stage) => this.renderStage(ctx, t, stage));
         // render today line on border
         this.renderTodayLine(ctx, t, this.canvasHeight - 2, this.canvasHeight);
     }

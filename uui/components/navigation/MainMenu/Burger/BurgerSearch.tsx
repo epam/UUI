@@ -6,10 +6,11 @@ import css from './BurgerSearch.scss';
 
 export interface BurgerSearchProps extends TextInputProps {}
 
-export const BurgerSearch = (props: BurgerSearchProps) => (
+export function BurgerSearch(props: BurgerSearchProps) {
+    return (
         <TextInput
             cx={ css.searchInput }
-            iconPosition='left'
+            iconPosition="left"
             icon={ LensIcon }
             placeholder={ props.placeholder }
             value={ props.value }
@@ -18,4 +19,5 @@ export const BurgerSearch = (props: BurgerSearchProps) => (
             cancelIcon={ props.value && CancelIcon }
             autoFocus
         />
-);
+    );
+}

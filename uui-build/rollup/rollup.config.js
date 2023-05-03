@@ -38,10 +38,7 @@ async function createRollupConfigForModule(options) {
     const moduleRootDirDefault = process.cwd();
     //
     const {
-        moduleRootDir = moduleRootDirDefault, indexFileRelativePath,
-        external, isWatch = isWatchDefault,
-        packageJsonTransform,
-        copyAsIs,
+        moduleRootDir = moduleRootDirDefault, indexFileRelativePath, external, isWatch = isWatchDefault, packageJsonTransform, copyAsIs,
     } = options;
     const externalEffective = external ? external({ moduleRootDir }) : getExternalDeps({ moduleRootDir });
     const tsconfigFile = getTsConfigFile(moduleRootDir);

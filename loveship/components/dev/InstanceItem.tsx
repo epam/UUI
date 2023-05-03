@@ -18,15 +18,17 @@ const cookie = {
 
 export class InstanceItem extends React.Component<InstanceItemProps> {
     render() {
-        return <MultiSwitch
-            value={ getCookie(cookie.env) || this.props.defaultInstance }
-            onValueChange={ env => {
-                setCookie(cookie.env, env);
-                window.location.reload();
-            } }
-            size='30'
-            color="night600"
-            items={ this.props.instances }
-        />;
+        return (
+            <MultiSwitch
+                value={ getCookie(cookie.env) || this.props.defaultInstance }
+                onValueChange={ (env) => {
+                    setCookie(cookie.env, env);
+                    window.location.reload();
+                } }
+                size="30"
+                color="night600"
+                items={ this.props.instances }
+            />
+        );
     }
 }

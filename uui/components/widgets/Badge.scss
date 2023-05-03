@@ -2,7 +2,8 @@
 
 .root {
     :global(.uui-count) {
-        font-family: var(--font-semibold);
+        font-family: var(--uui-badge-count-font);
+        font-weight: var(--uui-badge-count-font-weight, normal);
         margin: auto;
         height: 18px;
         line-height: 18px;
@@ -19,7 +20,8 @@
     }
 
     :global(.uui-caption) {
-        font-family: var(--font-regular);
+        font-family: var(--uui-badge-font);
+        font-weight: var(--uui-badge-font-weight, normal);
     }
 
     &:global(.uui-button-box) {
@@ -263,7 +265,6 @@
 
         &:global(.-clickable) {
             &:hover {
-                color: var(--uui-badge-bg-hover);
                 fill: var(--uui-badge-bg-hover);
                 cursor: pointer;
             }

@@ -3,10 +3,10 @@ export const queryToSearch = (query: Record<string, any>): string => {
 
     const params = new URLSearchParams();
 
-    Object.keys(query).forEach(key => {
+    Object.keys(query).forEach((key) => {
         if (query[key] === undefined) return;
 
-        if (typeof query[key] === "object") {
+        if (typeof query[key] === 'object') {
             params.set(key, JSON.stringify(query[key]));
         } else {
             params.set(key, query[key]);
@@ -14,4 +14,4 @@ export const queryToSearch = (query: Record<string, any>): string => {
     });
 
     return params.toString();
-}
+};

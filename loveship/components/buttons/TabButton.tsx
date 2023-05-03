@@ -7,9 +7,7 @@ export interface TabButtonMods extends UuiTabButtonProps {
 }
 
 function applyTabButtonMods(mods: TabButtonMods & UuiTabButtonProps) {
-    return [
-        mods.theme === 'dark' && css.themeDark,
-    ];
+    return [mods.theme === 'dark' && css.themeDark];
 }
 
 export const TabButton = withMods<UuiTabButtonProps, TabButtonMods>(UuiTabButton, applyTabButtonMods);

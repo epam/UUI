@@ -11,12 +11,10 @@ export interface NotificationOperation {
     config: NotificationParams;
 }
 
-
 let idCounter = 0;
 
 export class NotificationContext extends BaseContext implements INotificationContext {
     private notifications: NotificationOperation[] = [];
-
     constructor(private layoutCtx: LayoutContext) {
         super();
     }
@@ -61,7 +59,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
                     }
                 },
                 id: layer.id,
-                key: (idCounter++) + '',
+                key: idCounter++ + '',
             };
 
             if (params.duration !== 'forever') {
@@ -90,7 +88,7 @@ export class NotificationContext extends BaseContext implements INotificationCon
     }
 
     public remove(id: number) {
-        this.notifications = this.notifications.filter(i => i.props.id != id);
+        this.notifications = this.notifications.filter((i) => i.props.id != id);
         this.update({});
     }
 
@@ -99,4 +97,3 @@ export class NotificationContext extends BaseContext implements INotificationCon
         this.update({});
     }
 }
-
