@@ -155,7 +155,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         return predicate ? props.value?.[predicate] : props.value;
     };
 
-    const getName = (item: DataRowProps<any, any>, footerProps: PickerFilterConfig<any>) => {
+    const getPickerItemName = (item: DataRowProps<any, any>, footerProps: PickerFilterConfig<any>) => {
         if (item.isUnknown) {
             return 'Unknown';
         }
@@ -181,7 +181,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                     ? currentValue?.slice(0, 2).map((i: any) => {
                         const item = view.getById(i, null);
                         isLoading = item.isLoading;
-                        return getName(item, props);
+                        return getPickerItemName(item, props);
                     })
                     : [i18n.filterToolbar.pickerInput.emptyValueCaption];
 
@@ -208,7 +208,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 }
 
                 const item = view.getById(currentValue, null);
-                const selection = getName(item, props);
+                const selection = getPickerItemName(item, props);
 
                 return { selection };
             }
