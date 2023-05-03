@@ -1,5 +1,5 @@
 // TBD: react-measure is abandoned, and it's typings are not compatible with modern react versions. We need to find a replacement.
-//declare module 'react-measure';
+// declare module 'react-measure';
 
 declare module '*.scss' {
     const all: { [selector: string]: string };
@@ -8,13 +8,14 @@ declare module '*.scss' {
 
 declare module '*.svg' {
     import React from 'react';
+
     export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
     const src: string;
     export default src;
 }
 
-declare module "react-imask" {
-    import IMask from "imask";
+declare module 'react-imask' {
+    import IMask from 'imask';
 
     /**
      * The props accepted by react-imask, based
@@ -44,9 +45,9 @@ declare module "react-imask" {
     export const IMaskInput: React.ComponentType<IMaskInputProps>;
 }
 
-declare module "tether-tooltip";
-declare module "jsurl";
-declare module "inline-style-transformer";
+declare module 'tether-tooltip';
+declare module 'jsurl';
+declare module 'inline-style-transformer';
 declare module 'draft-js-plugins-editor';
 declare module 'draft-js-clear-formatting';
 declare module 'draft-convert';
@@ -67,4 +68,3 @@ declare module 'react-breakpoints';
 declare module 'react-broadcast';
 declare module '@braintree/sanitize-url';
 declare module 'htmlclean';
-

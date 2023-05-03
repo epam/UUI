@@ -1,8 +1,8 @@
-import { svc } from "../../../services";
-import { INotification, ModalOperationCancelled, useUuiContext } from "@epam/uui-core";
-import { SuccessNotification, Text } from "@epam/promo";
-import * as React from "react";
-import { DescriptionModal } from "./DescriptionModal";
+import { svc } from '../../../services';
+import { INotification, useUuiContext } from '@epam/uui-core';
+import { SuccessNotification, Text } from '@epam/promo';
+import * as React from 'react';
+import { DescriptionModal } from './DescriptionModal';
 
 function getDemoDescriptionFileName(demoItemName: string) {
     const itemNameNormalized = demoItemName.replace(/\s/g, '');
@@ -25,18 +25,24 @@ async function saveDocContentByDemoName(demoItemName: string, content: any) {
 export function useDemoDescriptionEditor(demoItemName: string) {
     const svc = useUuiContext();
     const showSuccess = async () => {
-        return svc.uuiNotifications.show((props: INotification) =>
-            <SuccessNotification { ...props } >
-                <Text size='36' font='sans' fontSize='14'>Description has been updated.</Text>
-            </SuccessNotification>, { position: 'bot-left', duration: 1 })
+        return svc.uuiNotifications
+            .show(
+                (props: INotification) => (
+                    <SuccessNotification { ...props }>
+                        <Text size="36" font="sans" fontSize="14">
+                            Description has been updated.
+                        </Text>
+                    </SuccessNotification>
+                ),
+                { position: 'bot-left', duration: 1 },
+            )
             .catch(() => null);
     };
 
     const openModal = React.useCallback(async () => {
         try {
             const content = await loadDocContentByDemoName(demoItemName);
-            const newContent = await svc.uuiModals
-                .show<any>((props) => <DescriptionModal demoItemName={ demoItemName } modalProps={ props } value={ content } />);
+            const newContent = await svc.uuiModals.show((props) => <DescriptionModal demoItemName={ demoItemName } modalProps={ props } value={ content } />);
             await saveDocContentByDemoName(demoItemName, newContent);
             await showSuccess();
         } catch (err) {}

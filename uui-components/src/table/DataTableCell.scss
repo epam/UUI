@@ -10,18 +10,17 @@
     // Overlay borders of cell at the left and top
     margin-left: calc(var(--uui-dt-cell-border-width) * -1);
     //margin-top: calc(var(--uui-dt-cell-border-width) * -1);
-
     border-left-style: solid;
     border-right-style: solid;
     border-top-style: none;
     border-bottom-style: none;
-
     border-left-color: transparent;
+    border-right-color: transparent;
+
     &:first-child {
         border-left-color: transparent;
     }
 
-    border-right-color: transparent;
     &:last-child {
         border-right-color: transparent;
     }

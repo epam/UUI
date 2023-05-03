@@ -1,13 +1,18 @@
 import {
-    AnalyticsContext, ApiContext, DndContext, ErrorContext, IUuiServicesProps,
-    LayoutContext, LockContext,
+    AnalyticsContext,
+    ApiContext,
+    DndContext,
+    ErrorContext,
+    IUuiServicesProps,
+    LayoutContext,
+    LockContext,
     ModalContext,
     NotificationContext,
     uuiSkin,
-} from "../services";
-import { ApiCallOptions, CommonContexts, IRouterContext } from "../types";
-import { UserSettingsContext } from "../services/UserSettingsContext";
-import { useMemo } from "react";
+} from '../services';
+import { ApiCallOptions, CommonContexts, IRouterContext } from '../types';
+import { UserSettingsContext } from '../services/UserSettingsContext';
+import { useMemo } from 'react';
 
 export interface IUseUuiServicesProps<TApi, TAppContext> extends IUuiServicesProps<TApi> {
     appContext?: TAppContext;
@@ -15,7 +20,9 @@ export interface IUseUuiServicesProps<TApi, TAppContext> extends IUuiServicesPro
 }
 
 export const useUuiServices = <TApi, TAppContext>(props: IUseUuiServicesProps<TApi, TAppContext>) => {
-    const { router, appContext, skinContext, apiDefinition } = props;
+    const {
+        router, appContext, skinContext, apiDefinition,
+    } = props;
 
     const uuiLayout = new LayoutContext();
     const uuiModals = new ModalContext(uuiLayout);
@@ -25,7 +32,7 @@ export const useUuiServices = <TApi, TAppContext>(props: IUseUuiServicesProps<TA
     const uuiErrors = new ErrorContext(uuiAnalytics, uuiModals);
     const uuiApi = new ApiContext(props, uuiAnalytics);
 
-    const rawApi = apiDefinition ? apiDefinition(uuiApi.processRequest.bind(uuiApi)) : {} as TApi;
+    const rawApi = apiDefinition ? apiDefinition(uuiApi.processRequest.bind(uuiApi)) : ({} as TApi);
     const withOptions = (options: ApiCallOptions) => apiDefinition((url, method, data) => uuiApi.processRequest(url, method, data, options));
     const api = { ...rawApi, withOptions };
 
@@ -34,21 +41,24 @@ export const useUuiServices = <TApi, TAppContext>(props: IUseUuiServicesProps<TA
 
     uuiSkin.setSkin(skinContext);
 
-    const services = useMemo<CommonContexts<TApi, TAppContext>>(() => ({
-        uuiAnalytics,
-        uuiErrors,
-        uuiApi,
-        api,
-        uuiLayout,
-        uuiNotifications,
-        uuiModals,
-        uuiUserSettings,
-        uuiDnD,
-        uuiRouter: router,
-        uuiLocks,
-        uuiApp: appContext || {} as TAppContext,
-        uuiSkin: uuiSkin,
-    }), []);
+    const services = useMemo<CommonContexts<TApi, TAppContext>>(
+        () => ({
+            uuiAnalytics,
+            uuiErrors,
+            uuiApi,
+            api,
+            uuiLayout,
+            uuiNotifications,
+            uuiModals,
+            uuiUserSettings,
+            uuiDnD,
+            uuiRouter: router,
+            uuiLocks,
+            uuiApp: appContext || ({} as TAppContext),
+            uuiSkin: uuiSkin,
+        }),
+        [],
+    );
 
     // Workaround to discard all errors on navigation. Need to find a better way. YakovZh
     services.uuiErrors.discardError();

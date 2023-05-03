@@ -60,6 +60,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   <div
                     className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-left"
                     onClick={[Function]}
+                    role="button"
                     style={Object {}}
                   >
                     <svg
@@ -69,6 +70,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   <div
                     className="uui-datepickerheader-nav-title"
                     onClick={[Function]}
+                    role="button"
                     tabIndex={0}
                   >
                     September 2020
@@ -76,6 +78,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   <div
                     className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-right"
                     onClick={[Function]}
+                    role="button"
                     style={Object {}}
                   >
                     <svg
@@ -621,6 +624,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   <div
                     className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-left"
                     onClick={[Function]}
+                    role="button"
                     style={Object {}}
                   >
                     <svg
@@ -630,6 +634,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   <div
                     className="uui-datepickerheader-nav-title"
                     onClick={[Function]}
+                    role="button"
                     tabIndex={0}
                   >
                     October 2020
@@ -637,6 +642,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   <div
                     className="container uui-icon uui-enabled -clickable uui-datepickerheader-nav-icon-right"
                     onClick={[Function]}
+                    role="button"
                     style={Object {}}
                   >
                     <svg

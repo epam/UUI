@@ -3,12 +3,9 @@ import { EditableDocContent, BaseDocsBlock } from '../../../common';
 
 export class LoadersDoc extends BaseDocsBlock {
     title = 'Loaders';
-
     renderContent() {
         return (
-            <>
-                <EditableDocContent key='loaders-for-designers' fileName='loaders-for-designers' />
-            </>
+            <EditableDocContent key="loaders-for-designers" fileName="loaders-for-designers" />
         );
     }
 }

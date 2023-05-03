@@ -1,7 +1,8 @@
 @use  '../../assets/styles/index' as *;
 
 .header {
-    font-family: var(--font-regular);
+    font-family: var(--uui-filters-panel-header-font);
+    font-weight: var(--uui-filters-panel-header-font-weight, normal);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,5 +10,11 @@
 
     button.removeButton {
         padding-left: 24px;
+    }
+}
+
+.panel {
+    @media screen and (max-width: 720px) {
+        height: var(--app-mobile-height);
     }
 }

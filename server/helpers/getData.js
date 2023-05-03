@@ -8,7 +8,7 @@ const getFileContents = async (fileName) => {
     const raw = await fs.readFile(filePath);
     const parsed = JSON.parse(raw);
     return parsed;
-}
+};
 
 module.exports.getData = async (fileName) => {
     if (!cache[fileName]) {
@@ -16,4 +16,4 @@ module.exports.getData = async (fileName) => {
     }
 
     return cache[fileName];
-}
+};

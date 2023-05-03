@@ -11,20 +11,13 @@ export interface ProgressBarMods {
 }
 
 export function applyProgressBarMods(mods: ProgressBarMods) {
-
     const size = mods.size || defaultSize;
 
     return [
-        css.root,
-        css[`size-${size}`],
-        mods.striped && css.striped,
+        css.root, css[`size-${size}`], mods.striped && css.striped,
     ];
 }
 
-export const ProgressBar = withMods<IProgressBarProps, ProgressBarMods>(
-    uuiProgressBar,
-    applyProgressBarMods,
-    (props) => ({
-        hideLabel: props.hideLabel || props.striped,
-    }),
-);
+export const ProgressBar = withMods<IProgressBarProps, ProgressBarMods>(uuiProgressBar, applyProgressBarMods, (props) => ({
+    hideLabel: props.hideLabel || props.striped,
+}));

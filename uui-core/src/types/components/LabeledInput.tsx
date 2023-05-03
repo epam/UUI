@@ -1,6 +1,15 @@
-import { ICanBeInvalid, ICanBeRequired, IHasChildren, IHasCX, IHasLabel, IHasRawProps, IHasForwardedRef } from "../props";
+import {
+    ICanBeInvalid, ICanBeRequired, IHasChildren, IHasCX, IHasLabel, IHasRawProps, IHasForwardedRef,
+} from '../props';
 
-export interface LabeledInputCoreProps extends ICanBeInvalid, IHasCX, IHasLabel, IHasChildren, ICanBeRequired, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface LabeledInputCoreProps
+    extends ICanBeInvalid,
+    IHasCX,
+    IHasLabel,
+    IHasChildren,
+    ICanBeRequired,
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
+    IHasForwardedRef<HTMLDivElement> {
     /** Position of the label, relative to the wrapped component (top of left) */
     labelPosition?: 'top' | 'left';
     /** Info hint text to show in tooltip */

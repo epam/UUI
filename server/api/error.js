@@ -1,35 +1,38 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+
+const router = express.Router();
 
 let serverStatus = null;
 
 const setServerStatus = (status) => {
     serverStatus = status;
-    setTimeout(() => { serverStatus = null; }, 5000);
+    setTimeout(() => {
+        serverStatus = null;
+    }, 5000);
 };
 
-router.post("/error/status/:status", function(req, res) {
+router.post('/error/status/:status', function (req, res) {
     res.status(+req.params.status).json({
         errorMessage: `Respond from sever, object like - { errorMessage: "your message" },
             if your don't return it - you will see default notification message`,
     });
 });
 
-router.post("/error/auth-lost", function(req, res) {
+router.post('/error/auth-lost', function (req, res) {
     if (Math.random() < 0.5) {
-        res.header("x-session-lost", "true");
+        res.header('x-session-lost', 'true');
         res.sendStatus(401);
     } else {
         res.json({ ok: true });
     }
 });
 
-router.post("/error/set-server-status/:status", (req, res) => {
+router.post('/error/set-server-status/:status', (req, res) => {
     setServerStatus(req.params.status);
     res.json({ ok: true });
 });
 
-router.get(["/auth/ping", "/error/mock"], function(req, res) {
+router.get(['/auth/ping', '/error/mock'], function (req, res) {
     if (serverStatus != null) {
         res.sendStatus(serverStatus);
     } else {
@@ -37,8 +40,8 @@ router.get(["/auth/ping", "/error/mock"], function(req, res) {
     }
 });
 
-router.get("/auth/login", function(req, res) {
-    res.send(`<html><script>window.opener && window.opener.postMessage("authSuccess", "*")</script></html>`);
+router.get('/auth/login', function (req, res) {
+    res.send('<html><script>window.opener && window.opener.postMessage("authSuccess", "*")</script></html>');
 });
 
 module.exports = router;

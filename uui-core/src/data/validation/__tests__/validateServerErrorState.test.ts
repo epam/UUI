@@ -1,5 +1,5 @@
-import { validateServerErrorState } from "../validateServerErrorState";
-import { ICanBeInvalid } from "../../../types";
+import { validateServerErrorState } from '../validateServerErrorState';
+import { ICanBeInvalid } from '../../../types';
 
 interface IBar {
     name: string;
@@ -13,55 +13,55 @@ interface IFoo {
     map?: Record<string, IBar>;
 }
 
-describe("validateServerErrorState", () => {
+describe('validateServerErrorState', () => {
     let serverValidation: ICanBeInvalid;
     let currentFormState: IFoo;
     let lastFormState: IFoo;
 
-    it("should be valid when lastFormState is missing", () => {
-        serverValidation = {isInvalid: true};
-        currentFormState = {name: "test"};
+    it('should be valid when lastFormState is missing', () => {
+        serverValidation = { isInvalid: true };
+        currentFormState = { name: 'test' };
 
         const result = validateServerErrorState(currentFormState, lastFormState, serverValidation);
-        expect(result).toStrictEqual({isInvalid: false});
+        expect(result).toStrictEqual({ isInvalid: false });
     });
 
-    it("should be valid when serverValidation is valid", () => {
-        serverValidation = {isInvalid: false};
+    it('should be valid when serverValidation is valid', () => {
+        serverValidation = { isInvalid: false };
 
         const result = validateServerErrorState(currentFormState, lastFormState, serverValidation);
-        expect(result).toStrictEqual({isInvalid: false});
+        expect(result).toStrictEqual({ isInvalid: false });
     });
 
-    it("should be invalid when serverValidation field is invalid and not changed", () => {
+    it('should be invalid when serverValidation field is invalid and not changed', () => {
         serverValidation = {
             isInvalid: true,
             validationProps: {
                 name: {
                     isInvalid: true,
-                    validationMessage: "User already exists",
+                    validationMessage: 'User already exists',
                 },
             },
         };
-        currentFormState = {name: "test"};
+        currentFormState = { name: 'test' };
         lastFormState = currentFormState;
 
         const result = validateServerErrorState(currentFormState, lastFormState, serverValidation);
         expect(result).toStrictEqual(serverValidation);
     });
 
-    it("should be valid when serverValidation field is invalid but changed", () => {
+    it('should be valid when serverValidation field is invalid but changed', () => {
         serverValidation = {
             isInvalid: true,
             validationProps: {
                 name: {
                     isInvalid: true,
-                    validationMessage: "User already exists",
+                    validationMessage: 'User already exists',
                 },
             },
         };
-        currentFormState = {name: "test changed"};
-        lastFormState = {name: "test"};
+        currentFormState = { name: 'test changed' };
+        lastFormState = { name: 'test' };
 
         const result = validateServerErrorState(currentFormState, lastFormState, serverValidation);
         expect(result).toStrictEqual({
@@ -74,20 +74,22 @@ describe("validateServerErrorState", () => {
         });
     });
 
-    it("should correctly compare entities", () => {
+    it('should correctly compare entities', () => {
         serverValidation = {
             isInvalid: true,
             validationProps: {
                 array: {
                     isInvalid: true,
-                    validationMessage: "Wrong array",
+                    validationMessage: 'Wrong array',
                 },
             },
         };
         currentFormState = {
-            array: [{
-                name: "test",
-            }],
+            array: [
+                {
+                    name: 'test',
+                },
+            ],
         };
         lastFormState = currentFormState;
 
@@ -95,9 +97,11 @@ describe("validateServerErrorState", () => {
         expect(result).toStrictEqual(serverValidation);
 
         lastFormState = {
-            array: [{
-                name: "test",
-            }],
+            array: [
+                {
+                    name: 'test',
+                },
+            ],
         };
 
         result = validateServerErrorState(currentFormState, lastFormState, serverValidation);
@@ -111,41 +115,41 @@ describe("validateServerErrorState", () => {
         });
     });
 
-    describe("validateServerErrorState: handle changed fields", () => {
-        it("all fields should be invalid", () => {
+    describe('validateServerErrorState: handle changed fields', () => {
+        it('all fields should be invalid', () => {
             serverValidation = {
                 isInvalid: true,
                 validationProps: {
                     name: {
                         isInvalid: true,
-                        validationMessage: "User already exists",
+                        validationMessage: 'User already exists',
                     },
                     nested: {
                         isInvalid: true,
                         validationProps: {
                             name: {
                                 isInvalid: true,
-                                validationMessage: "Another user already exists",
+                                validationMessage: 'Another user already exists',
                             },
                             age: {
                                 isInvalid: true,
-                                validationMessage: "Wrong age",
+                                validationMessage: 'Wrong age',
                             },
                         },
                     },
                 },
             };
             currentFormState = {
-                name: "test",
+                name: 'test',
                 nested: {
-                    name: "nested changed",
+                    name: 'nested changed',
                     age: 30,
                 },
             };
             lastFormState = {
-                name: "test",
+                name: 'test',
                 nested: {
-                    name: "nested",
+                    name: 'nested',
                     age: 30,
                 },
             };
@@ -168,11 +172,11 @@ describe("validateServerErrorState", () => {
             });
         });
 
-        it("only \"name\" field should be invalid", () => {
+        it('only "name" field should be invalid', () => {
             currentFormState = {
-                name: "test",
+                name: 'test',
                 nested: {
-                    name: "nested changed",
+                    name: 'nested changed',
                     age: 31,
                 },
             };
@@ -197,11 +201,11 @@ describe("validateServerErrorState", () => {
             });
         });
 
-        it("only \"nested.name\" field should be invalid", () => {
+        it('only "nested.name" field should be invalid', () => {
             currentFormState = {
-                name: "test changed",
+                name: 'test changed',
                 nested: {
-                    name: "nested",
+                    name: 'nested',
                     age: 31,
                 },
             };
@@ -226,11 +230,11 @@ describe("validateServerErrorState", () => {
             });
         });
 
-        it("only \"nested.age\" field should be invalid", () => {
+        it('only "nested.age" field should be invalid', () => {
             currentFormState = {
-                name: "test changed",
+                name: 'test changed',
                 nested: {
-                    name: "nested changed",
+                    name: 'nested changed',
                     age: 30,
                 },
             };
@@ -255,11 +259,11 @@ describe("validateServerErrorState", () => {
             });
         });
 
-        it("both nested fields should be invalid", () => {
+        it('both nested fields should be invalid', () => {
             currentFormState = {
-                name: "test changed",
+                name: 'test changed',
                 nested: {
-                    name: "nested",
+                    name: 'nested',
                     age: 30,
                 },
             };

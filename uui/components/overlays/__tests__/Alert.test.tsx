@@ -1,65 +1,57 @@
 import React from 'react';
-import { Alert, ErrorAlert, HintAlert, SuccessAlert, WarningAlert } from '../Alert';
-import renderer from 'react-test-renderer';
-import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
+import {
+    Alert, ErrorAlert, HintAlert, SuccessAlert, WarningAlert,
+} from '../Alert';
+import { SvgMock, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('Alert', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<Alert />)
-            .toJSON();
+    it('should render with minimum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Alert />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<Alert
-                icon={ CalendarIcon }
-                color='success'
-                actions={ [{
-                    name: 'ACTION 1',
-                    action: jest.fn,
-                }] }
+    it('should render with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <Alert
+                icon={ SvgMock }
+                color="success"
+                actions={ [
+                    {
+                        name: 'ACTION 1',
+                        action: jest.fn,
+                    },
+                ] }
                 onClose={ jest.fn }
-            />)
-            .toJSON();
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });
 
 describe('WarningAlert', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<WarningAlert />)
-            .toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(<WarningAlert />);
         expect(tree).toMatchSnapshot();
     });
 });
 
 describe('SuccessAlert', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<SuccessAlert />)
-            .toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(<SuccessAlert />);
         expect(tree).toMatchSnapshot();
     });
 });
 
 describe('HintAlert', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<HintAlert />)
-            .toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(<HintAlert />);
         expect(tree).toMatchSnapshot();
     });
 });
 
 describe('ErrorAlert', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(<ErrorAlert />)
-            .toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(<ErrorAlert />);
         expect(tree).toMatchSnapshot();
     });
 });
-

@@ -295,7 +295,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     <button
                       aria-disabled={false}
                       className="container uui-button-box uui-enabled -clickable icon-button-default root"
-                      disabled={false}
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -389,7 +388,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     <button
                       aria-disabled={false}
                       className="container uui-button-box uui-enabled -clickable icon-button-default root"
-                      disabled={false}
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -485,7 +483,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         <button
           aria-disabled={false}
           className="container uui-button-box uui-enabled -clickable button-accent root size-36 mode-solid"
-          disabled={false}
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -803,7 +800,6 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                     <button
                       aria-disabled={false}
                       className="container uui-button-box uui-enabled -clickable icon-button-default root"
-                      disabled={false}
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -888,7 +884,6 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
                     <button
                       aria-disabled={false}
                       className="container uui-button-box uui-enabled -clickable icon-button-default root"
-                      disabled={false}
                       onClick={[Function]}
                       tabIndex={0}
                       type="button"
@@ -984,7 +979,6 @@ exports[`ColumnsConfigurationModal should disable Apply button if all columns ar
         <button
           aria-disabled={true}
           className="container uui-button-box uui-disabled -clickable button-accent root size-36 mode-solid"
-          disabled={true}
           onClick={[Function]}
           tabIndex={-1}
           type="button"

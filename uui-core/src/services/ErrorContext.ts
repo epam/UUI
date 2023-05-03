@@ -11,7 +11,6 @@ export class ErrorContext extends BaseContext implements IErrorContext {
 
     public currentError: Error = null;
     public errorCallback: Function = null;
-
     public reportError(error: Error) {
         this.currentError = error;
 

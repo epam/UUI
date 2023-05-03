@@ -1,21 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Alert should be rendered correctly 1`] = `
-<div
-  className="alertWrapper alert-blue root"
-  role="alert"
->
-  <div
-    className="mainPath"
-  >
-    <div
-      className="content"
-    />
-  </div>
-</div>
-`;
-
-exports[`Alert should be rendered correctly 2`] = `
+exports[`Alert should render with maximum props 1`] = `
 <div
   className="alertWrapper alert-amber root"
   role="alert"
@@ -70,6 +55,21 @@ exports[`Alert should be rendered correctly 2`] = `
         />
       </div>
     </button>
+  </div>
+</div>
+`;
+
+exports[`Alert should render with minimum props 1`] = `
+<div
+  className="alertWrapper alert-blue root"
+  role="alert"
+>
+  <div
+    className="mainPath"
+  >
+    <div
+      className="content"
+    />
   </div>
 </div>
 `;

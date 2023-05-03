@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import { Modifier } from 'react-popper';
 import { Placement, Boundary } from '@popperjs/core';
-import { IDropdownBodyProps, IDropdownToggler } from "../props";
-import {IEditable} from '../../../src/types/props';
+import { IDropdownBodyProps, IDropdownToggler } from '../props';
+import { IEditable } from '../../../src/types/props';
 
 export interface DropdownState {
     opened: boolean;
-    bodyBoundingRect: { y: number | null; x: number | null, width: number | null, height: number | null };
+    bodyBoundingRect: { y: number | null; x: number | null; width: number | null; height: number | null };
 }
 
 export interface DropdownBodyProps extends IDropdownBodyProps {}

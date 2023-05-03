@@ -20,7 +20,7 @@
     "importHelpers": true,
     "esModuleInterop": true,
     "paths": {
-      "@epam/test-utils": [
+      "@epam/uui-test-utils": [
         "test-utils"
       ]
     },

@@ -4,13 +4,12 @@ import { Person } from './testData';
 import { getFilterPredicate, getOrderComparer } from '@epam/uui-core';
 import range from 'lodash.range';
 
-const testPersons = range(0, 1e4)
-    .map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * 100) }));
+const testPersons = range(0, 1e4).map((id) => ({ id, name: `Person ${id}`, departmentId: Math.floor(Math.random() * 100) }));
 
-const nameComparer = (p1: Person, p2: Person) => p1.name > p2.name ? 1 : -1;
+const nameComparer = (p1: Person, p2: Person) => (p1.name > p2.name ? 1 : -1);
 
 b.suite(
-    `Sort array`,
+    'Sort array',
 
     b.add('array.sort, hard-coded', () => {
         const arr = [...testPersons];

@@ -4,7 +4,7 @@ import { MainMenu } from '@epam/loveship';
 import css from './MainMenuContext.scss';
 
 export class MainMenuContext extends React.Component<DemoComponentProps> {
-    public static displayName = "Main Menu";
+    public static displayName = 'Main Menu';
     render() {
         const { DemoComponent, props } = this.props;
 

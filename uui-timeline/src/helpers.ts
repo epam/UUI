@@ -1,10 +1,10 @@
-import { i18n } from "./i18n";
+import { i18n } from './i18n';
 
-export let baseDate = new Date(2000, 1, 1);
-export let msPerMinute = 60 /*sec*/ * 1000 /*ms*/;
-export let msPerHour = 60 /*min*/ * msPerMinute;
-export let msPerDay = 24 /*hour*/ * msPerHour;
-export let msPerYear = 365 * msPerDay;
+export const baseDate = new Date(2000, 1, 1);
+export const msPerMinute = 60 /* sec */ * 1000; /* ms */
+export const msPerHour = 60 /* min */ * msPerMinute;
+export const msPerDay = 24 /* hour */ * msPerHour;
+export const msPerYear = 365 * msPerDay;
 
 export function addMs(date: Date, ms: number) {
     return new Date(date.getTime() + ms);
@@ -49,24 +49,24 @@ export function getleftXforCentering(stageSegment: any, textWidth: number, paddi
     }
 
     let leftX = left;
-    let trimmedOnlyLeft = stageSegment.left != stageSegment.leftTrimmed && stageSegment.right == stageSegment.rightTrimmed;
+    const trimmedOnlyLeft = stageSegment.left != stageSegment.leftTrimmed && stageSegment.right == stageSegment.rightTrimmed;
 
-    if ((left + textWidth + padding) > stageSegment.rightTrimmed  && !trimmedOnlyLeft) {
+    if (left + textWidth + padding > stageSegment.rightTrimmed && !trimmedOnlyLeft) {
         leftX = stageSegment.rightTrimmed - textWidth - padding;
     }
 
-    if ((left + textWidth + padding) > stageSegment.rightTrimmed && trimmedOnlyLeft) {
+    if (left + textWidth + padding > stageSegment.rightTrimmed && trimmedOnlyLeft) {
         leftX = stageSegment.rightTrimmed - textWidth - padding;
     }
 
-    if ((stageSegment.left + textWidth + padding * 2) > stageSegment.rightTrimmed) {
+    if (stageSegment.left + textWidth + padding * 2 > stageSegment.rightTrimmed) {
         leftX = stageSegment.left + padding;
     }
 
     return leftX;
 }
 
-export let months = i18n.months;
+export const months = i18n.months;
 
 export enum Scales {
     Year,
@@ -83,7 +83,7 @@ export let scaleSteps: Scales[] = [];
  * Scales are picked by hand to make scale and grid fit fine, and transitions between different variants occurs in between of this scales */
 // the logic under expressions below is: we take required pixels per scale unit (year, month,...), and divide it by milliseconds in this period.
 // In term of units, this is: (px/duration)/(ms/duration) = (px*duration)/(ms*duration) = px/ms
-export let scales = {
+export const scales = {
     year: 70 / msPerYear,
     yearWide: 200 / msPerYear,
     month: 40 / (30 * msPerDay),
@@ -92,23 +92,13 @@ export let scales = {
     weekWide: 80 / (7 * msPerDay),
     day: 24 / msPerDay,
     dayWide: 300 / msPerDay,
-    hour: 37 / msPerHour,//ok
+    hour: 37 / msPerHour, // ok
     hourWide: 300 / msPerHour,
     minute: 60 / msPerMinute,
     minuteWide: 120 / msPerMinute,
 };
 
 scaleSteps = [
-    scales.year,
-    scales.yearWide,
-    scales.month,
-    scales.monthWide,
-    scales.week,
-    scales.weekWide,
-    scales.day,
-    scales.dayWide,
-    scales.hour,
-    scales.hourWide,
-    scales.minute,
-    //scales.minuteWide
+    scales.year, scales.yearWide, scales.month, scales.monthWide, scales.week, scales.weekWide, scales.day, scales.dayWide, scales.hour, scales.hourWide, scales.minute,
+    // scales.minuteWide
 ];

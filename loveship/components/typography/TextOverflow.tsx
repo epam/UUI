@@ -1,16 +1,12 @@
-import React from "react";
-import { IHasCX, cx } from "@epam/uui-core";
-import styles from "./TextOverflow.scss";
+import React from 'react';
+import { IHasCX, cx } from '@epam/uui-core';
+import styles from './TextOverflow.scss';
 import { Tooltip } from '../overlays';
 
-type getTextWidth = (
-    text: string,
-    font: string,
-    canvas: HTMLCanvasElement,
-) => number | null;
+type getTextWidth = (text: string, font: string, canvas: HTMLCanvasElement) => number | null;
 
 export const getTextWidth: getTextWidth = (text, font, canvas) => {
-    let context = canvas.getContext("2d");
+    const context = canvas.getContext('2d');
 
     if (!context) {
         return null;
@@ -18,7 +14,7 @@ export const getTextWidth: getTextWidth = (text, font, canvas) => {
 
     context.font = font;
 
-    let metrics = context.measureText(text);
+    const metrics = context.measureText(text);
 
     return metrics.width;
 };
@@ -29,36 +25,28 @@ interface TextOverflowProps extends IHasCX {
 }
 
 export class TextOverflow extends React.Component<TextOverflowProps> {
-
     textContainer: HTMLElement | null = null;
-
     render() {
         let content = '';
         if (this.textContainer) {
-            let canvas = document.createElement("canvas");
-            let textWidth = getTextWidth(
-                this.textContainer.innerText,
-                `${this.props.fontSize}px`,
-                canvas,
-            );
-            let containerWidth = this.textContainer.clientWidth;
+            const canvas = document.createElement('canvas');
+            const textWidth = getTextWidth(this.textContainer.innerText, `${this.props.fontSize}px`, canvas);
+            const containerWidth = this.textContainer.clientWidth;
 
             if (textWidth) {
-                let isTextLonger = textWidth > containerWidth;
+                const isTextLonger = textWidth > containerWidth;
                 content = isTextLonger ? this.props.text : '';
             }
         }
 
-        return <Tooltip
-            content={ content }
-            placement="top-start"
-            color="white"
-        >
-            <div className={ cx(styles.container, this.props.cx) }>
-                <div ref={ (el) => this.textContainer = el } className={ styles.textContainer }>
-                    { this.props.text }
+        return (
+            <Tooltip content={ content } placement="top-start" color="white">
+                <div className={ cx(styles.container, this.props.cx) }>
+                    <div ref={ (el) => (this.textContainer = el) } className={ styles.textContainer }>
+                        {this.props.text}
+                    </div>
                 </div>
-            </div>
-        </Tooltip>;
+            </Tooltip>
+        );
     }
 }

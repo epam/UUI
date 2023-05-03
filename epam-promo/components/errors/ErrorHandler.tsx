@@ -1,6 +1,10 @@
 import React, { FC } from 'react';
-import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren } from '@epam/uui-core';
-import { ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView, Text, Spinner, ErrorNotification } from '../../components';
+import {
+    ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren,
+} from '@epam/uui-core';
+import {
+    ModalBlocker, ModalHeader, ModalWindow, FlexCell, FlexRow, RichTextView, Text, Spinner, ErrorNotification,
+} from '../../components';
 import { ErrorCatch } from '@epam/uui-components';
 import { getErrorPageConfig, getRecoveryMessageConfig } from './config';
 import { ErrorPage } from './ErrorPage';
@@ -18,10 +22,14 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
     });
 
     const showNotifications = (errors: ApiCallInfo[]) => {
-        errors.forEach(c => {
-            uuiNotifications.show((notificationProps: INotification) => <ErrorNotification { ...notificationProps } >
-                <Text size='36' fontSize='14'>{ c.responseData && c.responseData.errorMessage }</Text>
-            </ErrorNotification>);
+        errors.forEach((c) => {
+            uuiNotifications.show((notificationProps: INotification) => (
+                <ErrorNotification { ...notificationProps }>
+                    <Text size="36" fontSize="14">
+                        {c.responseData && c.responseData.errorMessage}
+                    </Text>
+                </ErrorNotification>
+            ));
             c.dismissError();
         });
     };
@@ -30,13 +38,13 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         const { title, subtitle } = errorInfo;
 
         return (
-            <ModalBlocker key='recovery-blocker' cx={ css.modalBlocker } blockerShadow='dark' isActive={ true } zIndex={ 100500 } success={ () => { } } abort={ () => { } }>
+            <ModalBlocker key="recovery-blocker" cx={ css.modalBlocker } blockerShadow="dark" isActive={ true } zIndex={ 100500 } success={ () => {} } abort={ () => {} }>
                 <ModalWindow>
                     <ModalHeader borderBottom title={ title } />
                     <Spinner cx={ css.recoverySpinner } />
-                    <FlexRow padding='24' cx={ css.recoveryMessage }>
+                    <FlexRow padding="24" cx={ css.recoveryMessage }>
                         <FlexCell grow={ 1 }>
-                            <RichTextView>{ subtitle }</RichTextView>
+                            <RichTextView>{subtitle}</RichTextView>
                         </FlexCell>
                     </FlexRow>
                 </ModalWindow>
@@ -57,8 +65,10 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         showNotifications(errorInfo as ApiCallInfo[]);
     }
 
-    return <ErrorCatch>
-        { props.children }
-        { errorType == 'recovery' && renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo) }
-    </ErrorCatch>;
+    return (
+        <ErrorCatch>
+            {props.children}
+            {errorType == 'recovery' && renderRecoveryBlocker(errorInfo as UuiRecoveryErrorInfo)}
+        </ErrorCatch>
+    );
 };

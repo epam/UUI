@@ -15,14 +15,7 @@ export default function LazyPersonsMultiPicker() {
 
     return (
         <FlexCell width={ 300 }>
-            <PickerInput
-                dataSource={ dataSource }
-                value={ value }
-                onValueChange={ onValueChange }
-                entityName='person'
-                selectionMode='multi'
-                valueType='id'
-            />
+            <PickerInput dataSource={ dataSource } value={ value } onValueChange={ onValueChange } entityName="person" selectionMode="multi" valueType="id" />
         </FlexCell>
     );
 }

@@ -12,6 +12,7 @@ import {
     iframePlugin,
     notePlugin,
     separatorPlugin,
+    uploadFilePlugin,
     tablePlugin,
     quotePlugin,
     colorPlugin,
@@ -20,12 +21,10 @@ import {
     listPlugin,
     placeholderPlugin,
     codeBlockPlugin,
-    uploadFilePlugin,
-} from "@epam/uui-editor";
+} from '@epam/uui-editor';
 import { svc } from '../../services';
 import { demoData } from '@epam/uui-docs';
 import css from './RichTextEditorDemo.scss';
-
 
 interface SlateEditorBasicExampleState {
     value: Descendant;
@@ -38,13 +37,13 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
 
     onChange = (value: Descendant) => {
         this.setState({ value: value });
-    }
+    };
 
     uploadFile = (file: File, onProgress: (progress: number) => any): any => {
         return svc.uuiApi.uploadFile('/uploadFileMock', file, {
             onProgress,
         });
-    }
+    };
 
     plugins = [
         ...defaultPlugins,
@@ -80,7 +79,6 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
     ];
 
     render() {
-
         return (
             <div className={ css.container }>
                 <SlateEditor
@@ -88,8 +86,8 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
                     onValueChange={ this.onChange }
                     autoFocus={ true }
                     plugins={ this.plugins }
-                    placeholder='Add description'
-                    minHeight={ 'none' }
+                    placeholder="Add description"
+                    minHeight="none"
                 />
             </div>
         );

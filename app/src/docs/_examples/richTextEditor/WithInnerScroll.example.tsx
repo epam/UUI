@@ -3,12 +3,25 @@ import { Descendant } from 'slate';
 import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
 import { Panel } from '@epam/promo';
 import {
-    SlateEditor, defaultPlugins,
-    imagePlugin, videoPlugin, attachmentPlugin,
-    toDoListPlugin, baseMarksPlugin,
-    linkPlugin, iframePlugin, notePlugin, separatorPlugin,
-    tablePlugin, quotePlugin, colorPlugin,
-    superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, uploadFilePlugin,
+    SlateEditor,
+    defaultPlugins,
+    imagePlugin,
+    videoPlugin,
+    attachmentPlugin,
+    toDoListPlugin,
+    baseMarksPlugin,
+    linkPlugin,
+    iframePlugin,
+    notePlugin,
+    separatorPlugin,
+    uploadFilePlugin,
+    tablePlugin,
+    quotePlugin,
+    colorPlugin,
+    superscriptPlugin,
+    headerPlugin,
+    listPlugin,
+    placeholderPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 
@@ -16,7 +29,6 @@ export default function WithInnerScrollExample() {
     const svc = useUuiContext();
     const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
     const [value, setValue] = useState<Descendant>(demoData.slateInitialValue);
-
 
     const uploadFile = (file: File, onProgress: (progress: number) => unknown): Promise<FileUploadResponse> => {
         return svc.uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
@@ -63,10 +75,10 @@ export default function WithInnerScrollExample() {
                 onValueChange={ setValue }
                 isReadonly={ false }
                 plugins={ plugins }
-                mode='form'
-                placeholder='Add description'
-                minHeight={ 'none' }
-                fontSize='14'
+                mode="form"
+                placeholder="Add description"
+                minHeight="none"
+                fontSize="14"
                 scrollbars
             />
         </Panel>
