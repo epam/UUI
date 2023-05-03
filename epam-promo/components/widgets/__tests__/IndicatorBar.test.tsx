@@ -1,6 +1,6 @@
 import React from 'react';
 import { IndicatorBar } from '../IndicatorBar';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('IndicatorBar', () => {
     it('should be rendered correctly', () => {
