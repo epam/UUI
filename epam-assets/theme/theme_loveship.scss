@@ -752,7 +752,7 @@
     /* ------------------------------------ */
 
     :global(.tooltip-contrast),
-    :global(.tooltip-night800) {
+    :global(.tooltip-gray) {
         --uui-tooltip-bg: var(--uui-surface-contrast);
         --uui-tooltip-text: var(--uui-contrast);
     }
@@ -820,24 +820,10 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
-    :global(.button-night500) {
-        --uui-btn-bg: var(--night500);
-        --uui-btn-bg-hover: var(--night600);
-        --uui-btn-bg-active: var(--night700);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
-        --uui-btn-bg-halftone-hover: var(--uui-secondary-lightest);
-        --uui-btn-bg-halftone-active: var(--uui-secondary-light);
-        --uui-btn-border: var(--night500);
-        --uui-btn-border-hover: var(--night600);
-        --uui-btn-border-active: var(--night700);
-        --uui-btn-bg-disabled: var(--uui-disabled);
-        --uui-btn-border-disabled: var(--uui-disabled);
-        --uui-btn-caption: var(--uui-contrast);
-        --uui-btn-caption-halftone: var(--night600);
-        --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
-    }
-
-    :global(.button-night600), :global(.button-secondary) {
+    :global(.button-night500),
+    :global(.button-night600),
+    :global(.button-gray),
+    :global(.button-secondary) {
         --uui-btn-bg: var(--uui-secondary);
         --uui-btn-bg-hover: var(--uui-secondary-dark);
         --uui-btn-bg-active: var(--uui-secondary-darkest);
@@ -939,37 +925,37 @@
     }
 
     :global(.icon-button-night200) {
-        --uui-icon-btn: var(--gray20);
+        --uui-icon-btn: var(--night200);
         --uui-icon-btn-hover: var(--uui-color-night200-800);
         --uui-icon-btn-active: var(--uui-color-night200-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
     :global(.icon-button-night300) {
-        --uui-icon-btn: var(--gray30);
+        --uui-icon-btn: var(--night300);
         --uui-icon-btn-hover: var(--uui-color-night300-800);
         --uui-icon-btn-active: var(--uui-color-night300-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
     :global(.icon-button-night400) {
-        --uui-icon-btn: var(--gray40);
+        --uui-icon-btn: var(--night400);
         --uui-icon-btn-hover: var(--uui-color-night400-800);
         --uui-icon-btn-active: var(--uui-color-night400-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-night500),
-    :global(.icon-button-secondary) {
-        --uui-icon-btn: var(--gray50);
+    :global(.icon-button-night500) {
+        --uui-icon-btn: var(--night500);
         --uui-icon-btn-hover: var(--uui-color-night500-800);
         --uui-icon-btn-active: var(--uui-color-night500-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
     :global(.icon-button-night600),
+    :global(.icon-button-secondary),
     :global(.icon-button-default) {
-        --uui-icon-btn: var(--uui-icon);
+        --uui-icon-btn: var(--night600);
         --uui-icon-btn-hover: var(--uui-icon-hover);
         --uui-icon-btn-active: var(--uui-icon-active);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);

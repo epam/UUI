@@ -120,11 +120,11 @@
     --uui-primary-dark: var(--blue-dark);
     --uui-primary-darkest: var(--blue-darkest);
 
-    --uui-secondary: var(--gray50);
+    --uui-secondary: var(--gray60);
     --uui-secondary-light: var(--gray30);
     --uui-secondary-lightest: var(--gray20);
-    --uui-secondary-dark: var(--gray60);
-    --uui-secondary-darkest: var(--gray70);
+    --uui-secondary-dark: var(--gray70);
+    --uui-secondary-darkest: var(--gray80);
     --uui-secondary-hover: var(--gray60);
     --uui-secondary-active: var(--gray70);
 
@@ -699,7 +699,7 @@
     /* ------------------------------------ */
 
     :global(.tooltip-contrast),
-    :global(.tooltip-gray80) {
+    :global(.tooltip-gray) {
         --uui-tooltip-bg: var(--uui-surface-contrast);
         --uui-tooltip-text: var(--uui-contrast);
     }
@@ -884,7 +884,9 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
-    :global(.button-gray50), :global(.button-secondary) {
+    :global(.button-gray50),
+    :global(.button-gray),
+    :global(.button-secondary) {
         --uui-btn-bg: var(--uui-secondary);
         --uui-btn-bg-hover: var(--uui-secondary-dark);
         --uui-btn-bg-active: var(--uui-secondary-darkest);
@@ -940,19 +942,19 @@
         --uui-icon-btn-disabled: var(--uui-icon-disabled);;
     }
 
-    :global(.icon-button-gray50),
-    :global(.icon-button-secondary) {
-        --uui-icon-btn: var(--uui-secondary);
-        --uui-icon-btn-hover: var(--uui-secondary-dark);
-        --uui-icon-btn-active: var(--uui-secondary-darkest);
+    :global(.icon-button-gray50) {
+        --uui-icon-btn: var(--gray50);
+        --uui-icon-btn-hover: var(--gray60);
+        --uui-icon-btn-active: var(--gray70);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
     :global(.icon-button-gray60),
-    :global(.icon-button-default) {
-        --uui-icon-btn: var(--uui-icon);
-        --uui-icon-btn-hover: var(--uui-icon-hover);
-        --uui-icon-btn-active: var(--uui-icon-active);
+    :global(.icon-button-default),
+    :global(.icon-button-secondary) {
+        --uui-icon-btn: var(--uui-secondary);
+        --uui-icon-btn-hover: var(--uui-secondary-dark);
+        --uui-icon-btn-active: var(--uui-secondary-darkest);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 

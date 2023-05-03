@@ -6,9 +6,12 @@ import css from './Button.scss';
 
 const defaultSize = '36';
 
-export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600';
+export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';
 
 export interface ButtonMods {
+    /** Button color.
+     * Note that 'night500' and ''night600' is deprecated and will be removed in future versions, please use 'gray' instead.
+     * */
     color?: ButtonColorType;
     size?: ControlSize | '42' | '18';
     shape?: ControlShape;

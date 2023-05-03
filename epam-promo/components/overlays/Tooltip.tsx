@@ -3,10 +3,10 @@ import { Tooltip as uuiTooltip, TooltipProps as UuiTooltipProps } from '@epam/uu
 
 export interface TooltipMods {
     /**
-     * Tooltip color
-     * Note that 'gray90' is deprecated and will be removed in future versions, please use 'gray80' instead.
+     * Tooltip color.
+     * Note that 'gray90' is deprecated and will be removed in future versions, please use 'gray' instead.
      */
-    color?: 'white' | 'gray90' | 'gray80' | 'red';
+    color?: 'white' | 'gray90' | 'gray' | 'red';
 }
 
 export type TooltipProps = Omit<UuiTooltipProps, 'color'> & TooltipMods;
@@ -15,6 +15,6 @@ export const Tooltip = withMods<Omit<UuiTooltipProps, 'color'>, TooltipMods>(
     uuiTooltip,
     () => [],
     (props) => ({
-        color: props.color === 'gray90' ? 'gray80' : props.color ?? 'gray80',
+        color: props.color === 'gray90' ? 'gray' : props.color ?? 'gray',
     } as TooltipProps),
 );
