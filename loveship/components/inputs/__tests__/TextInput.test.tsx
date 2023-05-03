@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderSnapshotWithContextAsync, SvgMock } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync, SvgMock } from '@epam/uui-test-utils';
 import { TextInput } from '../TextInput';
 
 describe('TextInput', () => {

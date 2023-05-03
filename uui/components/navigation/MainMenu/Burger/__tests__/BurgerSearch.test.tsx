@@ -1,7 +1,7 @@
 import React from 'react';
 import { BurgerSearch } from '../BurgerSearch';
 import { ReactComponent as CalendarIcon } from '../../../../../icons/calendar-18.svg';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('BurgerSearch', () => {
     it('should be rendered correctly', async () => {

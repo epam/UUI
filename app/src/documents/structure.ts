@@ -2,6 +2,7 @@ import {
     ButtonDoc,
     LinkButtonDoc,
     PickerInputDoc,
+    PickerModalDoc,
     IconButtonDoc,
     TabButtonDoc,
     TextInputDoc,
@@ -193,6 +194,9 @@ const componentsStructure = sortBy(
             id: 'pickerInput', name: 'Picker Input', component: PickerInputDoc, parentId: 'components',
         },
         {
+            id: 'pickerModal', name: 'Picker Modal', component: PickerModalDoc, parentId: 'components',
+        },
+        {
             id: 'PickerList', name: 'Picker List', component: PickerListDoc, parentId: 'components',
         },
         {
@@ -335,10 +339,10 @@ export const items: DocItem[] = [
         id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing',
     },
     {
-        id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing',
+        id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing',
     },
     {
-        id: 'testing-cookbook', name: 'Cookbook', component: UtGuideCookbookDoc, parentId: 'testing',
+        id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing',
     },
     { id: 'contexts', name: 'Contexts' },
     {

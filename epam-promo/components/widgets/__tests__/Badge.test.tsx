@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge } from '../Badge';
-import { renderSnapshotWithContextAsync, SvgMock } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync, SvgMock } from '@epam/uui-test-utils';
 
 describe('Badge', () => {
     it('should render with minimum props', async () => {

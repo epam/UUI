@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderToJsdomWithContextAsync, act } from '@epam/test-utils';
+import { renderToJsdomWithContextAsync, act } from '@epam/uui-test-utils';
 import { IEditable } from '../../types';
 import { IEditableDebouncer } from '../IEditableDebouncer';
 
