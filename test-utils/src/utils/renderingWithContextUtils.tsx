@@ -8,6 +8,9 @@ export { renderer };
 
 export type CustomWrapperType = ({ children }: { children?: React.ReactNode }) => JSX.Element;
 
+/**
+ * Creates a component which wraps given children with default UUI context provider.
+ */
 export const getDefaultUUiContextWrapper = () => {
     const testUuiCtx = {} as UuiContexts;
     const wrapper: CustomWrapperType = function UuiContextDefaultWrapper({ children }) {

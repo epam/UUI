@@ -18,7 +18,7 @@ type SetupComponentForTestReturnType<TProps> = Promise<{
 }>;
 
 /**
- * Renders the component to JSDom
+ * Renders the component to the jsdom
  *
  * Useful if one of the features below is needed:
  * - on-change workflow, when a callback prop (e.g. "onValueChange") updates some other props (e.g. "value").
@@ -26,6 +26,7 @@ type SetupComponentForTestReturnType<TProps> = Promise<{
  *
  * @param propsInitializer
  * @param componentRenderer
+ * @param [customWrapper] optional custom wrapper
  */
 export async function setupComponentForTest<TProps extends PropsAll<TProps>>(
     propsInitializer: PropsInitializerCallbackType<TProps>,
