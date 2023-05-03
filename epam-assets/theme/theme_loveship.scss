@@ -12,44 +12,6 @@
     --font-redacted: 'Redacted';
     --font-light: 'Sans Light', Arial, sans-serif;
 
-    --orange-10: #FFE1BD;
-    --orange-20: #FFD091;
-    --orange-30: #E44E00;
-    --orange-40: #C63100;
-    --orange-50: #991900;
-
-    --fuchia-10: #FFD7D9;
-    --fuchia-20: #FFA9B3;
-    --fuchia-30: #CD0053;
-    --fuchia-40: #B00052;
-    --fuchia-50: #94004C;
-
-    --purple-10: #FBDAF3;
-    --purple-20: #E9A4DF;
-    --purple-30: #8018A0;
-    --purple-40: #680B8F;
-    --purple-50: #550080;
-
-    --cyan-10: #B9FBEC;
-    --cyan-20: #8CF8E0;
-    --cyan-30: #09B9A3;
-    --cyan-40: #009688;
-    --cyan-50: #11736E;
-
-    --cobalt-10: #DCFAFF;
-    --cobalt-20: #95EAFF;
-    --cobalt-30: #0E74E2;
-    --cobalt-40: #0453C7;
-    --cobalt-50: #003399;
-
-    --lavanda-10: #F1DEFF;
-    --lavanda-20: #CAB5FC;
-    --lavanda-30: #3F51B5;
-    --lavanda-40: #2E3A9D;
-    --lavanda-50: #191980;
-
-    --white: #FFFFFF;
-
     --night50: #FAFAFC;
     --night100: #F5F6FA;
     --night200: #EBEDF5;
@@ -61,47 +23,91 @@
     --night800: #303240;
     --night900: #1D1E26;
 
+    --sky-soft: #F5FDFF;
     --sky-lightest: #E1F4FA;
-    --sky-light: #C4EAF5;
+    --sky-light: #A0DDEE;
     --sky: #009ECC;
-    --sky-dark: #008ABD;
-    --sky-darkest: #0079AD;
+    --sky-dark: #0086AD;
+    --sky-darkest: #006B8A;
 
-    --green-lightest: #EBF3D8;
-    --green-light: #D6E6B2;
-    --green: #67A300;
-    --green-dark: #558A00;
-    --green-darkest: #428024;
+    --grass-soft: #FCFFF5;
+    --grass-lightest: #EBF3D8;
+    --grass-light: #C1E288;
+    --grass: #67A300;
+    --grass-dark: #528500;
+    --grass-darkest: #396F1F;
 
+    --sun-soft: #FFFCF5;
     --sun-lightest: #FFEDC9;
-    --sun-light: #FFDD96;
+    --sun-light: #FFD785;
     --sun: #FCAA00;
-    --sun-dark: #F67E00;
-    --sun-darkest: #E64C00;
+    --sun-dark: #FF9000;
+    --sun-darkest: #BD5800;
 
+    --fire-soft: #FEF6F6;
     --fire-lightest: #FDE1E1;
-    --fire-light: #FCC8C8;
-    --fire: #FA4B4B;
-    --fire-dark: #CC2929;
-    --fire-darkest: #B32424;
+    --fire-light: #FBB6B6;
+    --fire: #FF4242;
+    --fire-dark: #E22A2A;
+    --fire-darkest: #AD0000;
 
-    --blue-lightest: #CEEFFF;
-    --blue-light: #B5E6FF;
-    --blue: #008ACE;
-    --blue-dark: #0079B5;
-    --blue-darkest: #00689B;
+    --white: #FFFFFF;
 
-    --amber-lightest: #FFF2CC;
-    --amber-light: #FFECB3;
-    --amber: #FFC000;
-    --amber-dark: #E6AD00;
-    --amber-darkest: #CC9A00;
+    --yellow-5: #FFFFF0;
+    --yellow-10: #FFFECC;
+    --yellow-20: #FFFCA4;
+    --yellow-30: #FDD63B;
+    --yellow-40: #F9B71D;
+    --yellow-50: #D3910C;
 
-    --red-lightest: #FADED9;
-    --red-light: #F8CBC2;
-    --red: #E54322;
-    --red-dark: #D53919;
-    --red-darkest: #BE3316;
+    --orange-5: #FEF8F4;
+    --orange-10: #FFE8D7;
+    --orange-20: #FFCCA7;
+    --orange-30: #FF8B3E;
+    --orange-40: #F76B0D;
+    --orange-50: #BD4B00;
+
+    --fuchia-5: #FFF7FB;
+    --fuchia-10: #F9D8E7;
+    --fuchia-20: #EDADC8;
+    --fuchia-30: #EA4386;
+    --fuchia-40: #D61E68;
+    --fuchia-50: #AE1955;
+
+    --purple-5: #FDF6FE;
+    --purple-10: #F2CCFA;
+    --purple-20: #E79DF5;
+    --purple-30: #B114D1;
+    --purple-40: #860F9E;
+    --purple-50: #5E0B6F;
+
+    --lavanda-5: #F8F6FE;
+    --lavanda-10: #DBCCFA;
+    --lavanda-20: #BB9DF5;
+    --lavanda-30: #773CEC;
+    --lavanda-40: #5514D6;
+    --lavanda-50: #40109E;
+
+    --cobalt-5: #F8FAFF;
+    --cobalt-10: #D9E2FC;
+    --cobalt-20: #AEC0F5;
+    --cobalt-30: #0F98FF;
+    --cobalt-40: #006FE5;
+    --cobalt-50: #0954A5;
+
+    --cyan-5: #F5FBFF;
+    --cyan-10: #D1FAFA;
+    --cyan-20: #AAEEEE;
+    --cyan-30: #14CCCC;
+    --cyan-40: #0F9E9E;
+    --cyan-50: #0B6F6F;
+
+    --mint-5: #F2FCF5;
+    --mint-10: #DDF3E4;
+    --mint-20: #B4DFC4;
+    --mint-30: #4FC48C;
+    --mint-40: #2E9E68;
+    --mint-50: #236E4A;
 
     /* TODO: needs to resolve old colors question */
     /* Loveship old colors */
@@ -156,11 +162,11 @@
 
     /* core variables start */
 
-    --uui-accent: var(--green);
-    --uui-accent-light: var(--green-light);
-    --uui-accent-lightest: var(--green-lightest);
-    --uui-accent-dark: var(--green-dark);
-    --uui-accent-darkest: var(--green-darkest);
+    --uui-accent: var(--grass);
+    --uui-accent-light: var(--grass-light);
+    --uui-accent-lightest: var(--grass-lightest);
+    --uui-accent-dark: var(--grass-dark);
+    --uui-accent-darkest: var(--grass-darkest);
 
     --uui-primary: var(--sky);
     --uui-primary-light: var(--sky-light);
@@ -192,32 +198,32 @@
     --uui-info-light: var(--sky-light);
     --uui-info-dark: var(--sky-dark);
     --uui-info-darkest: var(--sky-darkest);
-    --uui-info-hover: var(--blue-dark);
-    --uui-info-active: var(--blue-darkest);
+    --uui-info-hover: var(--sky-dark);
+    --uui-info-active: var(--sky-darkest);
 
-    --uui-success: var(--green);
-    --uui-success-lightest: var(--green-lightest);
-    --uui-success-light: var(--green-light);
-    --uui-success-dark: var(--green-dark);
-    --uui-success-darkest: var(--green-darkest);
-    --uui-success-hover: var(--green-dark);
-    --uui-success-active: var(--green-darkest);
+    --uui-success: var(--grass);
+    --uui-success-lightest: var(--grass-lightest);
+    --uui-success-light: var(--grass-light);
+    --uui-success-dark: var(--grass-dark);
+    --uui-success-darkest: var(--grass-darkest);
+    --uui-success-hover: var(--grass-dark);
+    --uui-success-active: var(--grass-darkest);
 
     --uui-warning: var(--sun);
     --uui-warning-lightest: var(--sun-lightest);
     --uui-warning-light: var(--sun-light);
     --uui-warning-dark: var(--sun-dark);
     --uui-warning-darkest: var(--sun-darkest);
-    --uui-warning-hover: var(--amber-dark);
-    --uui-warning-active: var(--amber-darkest);
+    --uui-warning-hover: var(--sun-dark);
+    --uui-warning-active: var(--sun-darkest);
 
     --uui-error: var(--fire);
     --uui-error-lightest: var(--fire-lightest);
     --uui-error-light: var(--fire-light);
     --uui-error-dark: var(--fire-dark);
     --uui-error-darkest: var(--fire-darkest);
-    --uui-error-hover: var(--red-dark);
-    --uui-error-active: var(--red-darkest);
+    --uui-error-hover: var(--fire-dark);
+    --uui-error-active: var(--fire-darkest);
 
     --uui-icon: var(--night600);
     --uui-icon-hover: var(--night700);
@@ -746,7 +752,7 @@
     /* ------------------------------------ */
 
     :global(.tooltip-contrast),
-    :global(.tooltip-night800) {
+    :global(.tooltip-gray) {
         --uui-tooltip-bg: var(--uui-surface-contrast);
         --uui-tooltip-text: var(--uui-contrast);
     }
@@ -814,24 +820,10 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
-    :global(.button-night500) {
-        --uui-btn-bg: var(--night500);
-        --uui-btn-bg-hover: var(--night600);
-        --uui-btn-bg-active: var(--night700);
-        --uui-btn-bg-halftone: var(--uui-button-bg-halftone);
-        --uui-btn-bg-halftone-hover: var(--uui-secondary-lightest);
-        --uui-btn-bg-halftone-active: var(--uui-secondary-light);
-        --uui-btn-border: var(--night500);
-        --uui-btn-border-hover: var(--night600);
-        --uui-btn-border-active: var(--night700);
-        --uui-btn-bg-disabled: var(--uui-disabled);
-        --uui-btn-border-disabled: var(--uui-disabled);
-        --uui-btn-caption: var(--uui-contrast);
-        --uui-btn-caption-halftone: var(--night600);
-        --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
-    }
-
-    :global(.button-night600), :global(.button-secondary) {
+    :global(.button-night500),
+    :global(.button-night600),
+    :global(.button-gray),
+    :global(.button-secondary) {
         --uui-btn-bg: var(--uui-secondary);
         --uui-btn-bg-hover: var(--uui-secondary-dark);
         --uui-btn-bg-active: var(--uui-secondary-darkest);
@@ -933,37 +925,37 @@
     }
 
     :global(.icon-button-night200) {
-        --uui-icon-btn: var(--gray20);
+        --uui-icon-btn: var(--night200);
         --uui-icon-btn-hover: var(--uui-color-night200-800);
         --uui-icon-btn-active: var(--uui-color-night200-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
     :global(.icon-button-night300) {
-        --uui-icon-btn: var(--gray30);
+        --uui-icon-btn: var(--night300);
         --uui-icon-btn-hover: var(--uui-color-night300-800);
         --uui-icon-btn-active: var(--uui-color-night300-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
     :global(.icon-button-night400) {
-        --uui-icon-btn: var(--gray40);
+        --uui-icon-btn: var(--night400);
         --uui-icon-btn-hover: var(--uui-color-night400-800);
         --uui-icon-btn-active: var(--uui-color-night400-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-night500),
-    :global(.icon-button-secondary) {
-        --uui-icon-btn: var(--gray50);
+    :global(.icon-button-night500) {
+        --uui-icon-btn: var(--night500);
         --uui-icon-btn-hover: var(--uui-color-night500-800);
         --uui-icon-btn-active: var(--uui-color-night500-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
     :global(.icon-button-night600),
+    :global(.icon-button-secondary),
     :global(.icon-button-default) {
-        --uui-icon-btn: var(--uui-icon);
+        --uui-icon-btn: var(--night600);
         --uui-icon-btn-hover: var(--uui-icon-hover);
         --uui-icon-btn-active: var(--uui-icon-active);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
