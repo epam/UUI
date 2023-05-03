@@ -510,7 +510,7 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "As of now, we don't write such tests in UUI. But there are no restrictions do do that. ",
+                            "text": "As of now, we don't write such tests in UUI. But there are no technical restrictions to do it. ",
                             "marks": []
                           }
                         ]
@@ -539,7 +539,49 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "(*) with React components, the distinction between a “unit” and “integration” test can be blurry. For simplicity, we consider that any test of React component is integration one.",
+                            "text": "(*)",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "color": "rgb(48, 50, 64)",
+                                    "font-family": null,
+                                    "font-size": "16px",
+                                    "font-style": null,
+                                    "font-variant-ligatures": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "400",
+                                    "letter-spacing": "normal",
+                                    "orphans": "2",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "pre-wrap",
+                                    "widows": "2",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "background-color": null,
+                                    "text-decoration-thickness": "initial",
+                                    "text-decoration-style": "initial",
+                                    "text-decoration-color": "initial",
+                                    "display": "inline !important",
+                                    "float": "none",
+                                    "": null
+                                  }
+                                }
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " with React components, the distinction between a “unit” and “integration” test can be blurry. For simplicity, we consider that any test of React component is integration one.",
                             "marks": [
                               {
                                 "object": "mark",
@@ -663,7 +705,49 @@
                         "nodes": [
                           {
                             "object": "text",
-                            "text": "(**) such tests require real browser, real API endpoints, layout, navigation, etc.",
+                            "text": "(**)",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-span-mark",
+                                "data": {
+                                  "style": {
+                                    "color": "rgb(48, 50, 64)",
+                                    "font-family": null,
+                                    "font-size": "16px",
+                                    "font-style": null,
+                                    "font-variant-ligatures": "normal",
+                                    "font-variant-caps": "normal",
+                                    "font-weight": "400",
+                                    "letter-spacing": "normal",
+                                    "orphans": "2",
+                                    "text-align": "start",
+                                    "text-indent": "0px",
+                                    "text-transform": "none",
+                                    "white-space": "pre-wrap",
+                                    "widows": "2",
+                                    "word-spacing": "0px",
+                                    "-webkit-text-stroke-width": "0px",
+                                    "background-color": null,
+                                    "text-decoration-thickness": "initial",
+                                    "text-decoration-style": "initial",
+                                    "text-decoration-color": "initial",
+                                    "display": "inline !important",
+                                    "float": "none",
+                                    "": null
+                                  }
+                                }
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " such tests require real browser, real API endpoints, layout, navigation, etc.",
                             "marks": [
                               {
                                 "object": "mark",
@@ -1139,7 +1223,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "Don't strive to reach certain level of test coverage. It's too easy to reach high coverage with poor quality tests. It should only be used to find places which aren't covered by unit tests.",
+                    "text": "Don't strive to reach certain level of test coverage. It's too easy to reach high coverage with poor quality tests. It should only be used to find places which aren't covered by tests.",
                     "marks": []
                   }
                 ]
@@ -1257,7 +1341,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "For complex components, it might be useful to create a simple test plan or test matrix before writing any actual tests. It will help to create better tests with minimum effort.",
+                    "text": "For complex components, it might be useful to create a simple test plan or test matrix before writing any actual tests. It would help to create better tests with minimum effort.",
                     "marks": []
                   }
                 ]
@@ -1630,6 +1714,11 @@
                                 "object": "mark",
                                 "type": "uui-richTextEditor-italic",
                                 "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
                               }
                             ]
                           },
@@ -1664,11 +1753,27 @@
                           },
                           {
                             "object": "text",
-                            "text": " '",
+                            "text": " ",
                             "marks": [
                               {
                                 "object": "mark",
                                 "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "'",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
                                 "data": {}
                               }
                             ]

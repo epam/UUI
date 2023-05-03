@@ -1,5 +1,5 @@
 import {
-    emptyDb, sampleDb, sampleData, TasksDbRef,
+    sampleDb, sampleData, TasksDbRef,
 } from './TaskDb';
 import { DbRef } from '../index';
 import { delay } from '@epam/uui-test-utils';

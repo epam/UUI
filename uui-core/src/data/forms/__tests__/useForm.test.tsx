@@ -1,7 +1,7 @@
 import { useForm } from '../useForm';
-import type { Metadata } from '../../../../index';
+import type { Metadata, ValidationMode } from '../../../../index';
 import type { FormSaveResponse, IFormApi, UseFormProps } from '../index';
-import { testSvc, renderHookToJsdomWithContextAsync, act } from '@epam/uui-test-utils';
+import { renderHookToJsdomWithContextAsync, act, getDefaultUUiContextWrapper } from '@epam/uui-test-utils';
 
 async function handleSave(save: () => void) {
     try {
@@ -24,7 +24,6 @@ describe('useForm', () => {
     beforeEach(jest.clearAllMocks);
     afterAll(() => {
         jest.resetAllMocks();
-        Object.assign(testSvc, {});
     });
 
     describe('Basic updates handing', () => {
@@ -253,10 +252,10 @@ describe('useForm', () => {
         it('Should allow to replace getMetadata prop', async () => {
             const props = {
                 value: { dummy: 'test' },
-                onSave: (form) => Promise.resolve({ form: form }),
+                onSave: (form) => Promise.resolve({ form }),
                 onError: jest.fn(),
                 getMetadata: () => ({}),
-                validationOn: 'change',
+                validationOn: 'change' as ValidationMode,
             };
 
             const { result, rerender } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useForm<IFoo>, props);
@@ -274,7 +273,7 @@ describe('useForm', () => {
 
             act(() => result.current.lens.prop('dummy').set(' '));
 
-            // We haven't change the form value, however with the new getMetadata is should be invalid
+            // We haven't changed the form value, however with the new getMetadata is should be invalid
             expect(result.current.isInvalid).toEqual(true);
 
             expect(result.current.validationProps).toEqual({
@@ -307,20 +306,21 @@ describe('useForm', () => {
         it('Should show the same value, if you: save => leave => come back', async () => {
             const saveMock = jest.fn().mockResolvedValue({ form: {} });
             const beforeLeaveMock = jest.fn().mockResolvedValue(true);
-
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const useFormHook = () =>
                 useForm({
                     value: testData,
                     onSave: saveMock,
                     beforeLeave: beforeLeaveMock,
                     onError: jest.fn(),
                     getMetadata: () => testMetadata,
-                }));
+                });
+            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
 
-            await act(() => testSvc.uuiLocks.acquire(() => Promise.resolve()));
+            await act(() => testUuiCtx.uuiLocks.acquire(() => Promise.resolve()));
 
             expect(result.current.isInvalid).toBe(false);
             expect(beforeLeaveMock).toHaveBeenCalled();
@@ -452,54 +452,59 @@ describe('useForm', () => {
         });
 
         it('Should have a lock on the first form change, release lock on save', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
-                useForm({
-                    value: testData,
-                    onSave: (person) => Promise.resolve({ form: person }),
-                    beforeLeave: () => Promise.resolve(false),
-                    getMetadata: () => testMetadata,
-                }));
+            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const useFormHook = () => useForm({
+                value: testData,
+                onSave: (person) => Promise.resolve({ form: person }),
+                beforeLeave: () => Promise.resolve(false),
+                getMetadata: () => testMetadata,
+            });
+            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
-            expect(testSvc.uuiLocks.getCurrentLock()).not.toBe(null);
+            expect(testUuiCtx.uuiLocks.getCurrentLock()).not.toBe(null);
 
             await act(() => handleSave(result.current.save));
-            expect(testSvc.uuiLocks.getCurrentLock()).toBe(null);
+            expect(testUuiCtx.uuiLocks.getCurrentLock()).toBe(null);
         });
 
         it('Should reset lock after component unmount', async () => {
             const beforeLeaveMock = jest.fn().mockResolvedValue(false);
-            const { result, unmount } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const useFormHook = () =>
                 useForm({
                     value: testData,
                     onSave: () => Promise.resolve(),
                     beforeLeave: beforeLeaveMock,
                     getMetadata: () => testMetadata,
-                }));
+                });
+            const { result, unmount } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
 
             unmount();
-            const currentLock = testSvc.uuiLocks.getCurrentLock();
+            const currentLock = testUuiCtx.uuiLocks.getCurrentLock();
             expect(currentLock).toBeNull();
         });
 
         it('Should store unsaved data to localstorage', async () => {
             const settingsKey = 'form-test';
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const useFormHook = () =>
                 useForm<IFoo>({
                     value: testData,
                     settingsKey,
                     onSave: Promise.resolve,
                     beforeLeave: () => Promise.resolve(false),
                     getMetadata: () => testMetadata,
-                }));
+                });
+            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
 
             act(() => result.current.lens.prop('dummy').set('hi'));
-            expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
-            act(() => testSvc.uuiUserSettings.set<IFoo>(settingsKey, null));
+            expect(testUuiCtx.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
+            act(() => testUuiCtx.uuiUserSettings.set<IFoo>(settingsKey, null));
         });
 
         it('Should clear unsaved data in localstorage after save', async () => {
@@ -507,7 +512,8 @@ describe('useForm', () => {
             const onSuccessSpy = jest.fn();
             const onErrorSpy = jest.fn();
 
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const useFormHook = () =>
                 useForm({
                     value: testData,
                     settingsKey,
@@ -516,13 +522,14 @@ describe('useForm', () => {
                     onSuccess: onSuccessSpy,
                     onError: onErrorSpy,
                     getMetadata: () => testMetadata,
-                }));
+                });
+            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
 
             act(() => result.current.lens.prop('dummy').set('hi'));
-            expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
+            expect(testUuiCtx.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
 
             await act(() => handleSave(result.current.save));
-            expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey)).toBe(null);
+            expect(testUuiCtx.uuiUserSettings.get<IFoo>(settingsKey)).toBe(null);
             expect(onSuccessSpy).toHaveBeenCalled();
         });
 
