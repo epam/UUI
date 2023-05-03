@@ -1,11 +1,11 @@
 @use '../../assets/styles/scss/index' as *;
 
 .root {
-    border-bottom: none;
+    border: 0 none;
     border-left: 2px solid transparent;
 
     &:global(.uui-active) {
         border-left: 2px solid;
-        border-bottom: none;
+        border: 0 none;
     }
 }
