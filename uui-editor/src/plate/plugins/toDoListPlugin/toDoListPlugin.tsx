@@ -16,6 +16,7 @@ import { isPluginActive } from '../../../helpers';
 import { ReactComponent as ToDoIcon } from '../../icons/to-do.svg';
 
 import { ToDoItem } from './ToDoItem';
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
 
 const KEY = 'toDoItem';
 
@@ -26,6 +27,8 @@ export const toDoListPlugin = () => {
         component: ToDoItem,
         handlers: {
             onKeyDown: (editor) => (e) => {
+                if (!getBlockAboveByType(editor, ['toDoItem'])) return;
+
                 if (e.key === 'Enter') {
                     const [entries] = getAboveNode(editor);
                     const textExist = entries.children.some(item => !!item.text);

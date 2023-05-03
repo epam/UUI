@@ -3,7 +3,6 @@ import { UploadFileToggler } from '@epam/uui-components';
 
 import {
     createPluginFactory,
-    getBlockAbove,
     insertEmptyElement,
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
@@ -17,6 +16,7 @@ import { isPluginActive, isTextSelected } from '../../../helpers';
 
 import { IframeBlock } from './IframeBlock';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
 
 export const IFRAME_PLUGIN_KEY = 'iframe';
 
@@ -40,14 +40,13 @@ export const iframePlugin = () => {
         }),
         handlers: {
             onKeyDown: (editor) => (event) => {
-                const block = getBlockAbove(editor);
-                const type = block?.length && block[0].type;
+                if (!getBlockAboveByType(editor, ['iframe'])) return;
 
-                if (event.keyCode == 13 && type === 'iframe') {
+                if (event.keyCode == 13) {
                     return insertEmptyElement(editor, 'paragraph');
                 }
 
-                if ((event.key === 'Backspace' || event.key === 'Delete') && type === 'iframe') {
+                if ((event.key === 'Backspace' || event.key === 'Delete')) {
                     return insertEmptyElement(editor, 'paragraph');
                 }
             },

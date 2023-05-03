@@ -1,6 +1,7 @@
-import { createPluginFactory, getBlockAbove, insertEmptyElement } from '@udecode/plate';
+import { createPluginFactory, insertEmptyElement } from '@udecode/plate';
 
 import { AttachmentBlock } from './AttachmentBlock';
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
 
 export const ATTACHMENT_PLUGIN_KEY = 'attachment';
 
@@ -11,14 +12,13 @@ export const attachmentPlugin = () => {
         isVoid: true,
         handlers: {
             onKeyDown: (editor) => (event) => {
-                const block = getBlockAbove(editor);
-                const type = block?.length && block[0].type;
+                if (!getBlockAboveByType(editor, ['attachment'])) return;
 
-                if (event.key === 'Enter' && type === 'attachment') {
+                if (event.key === 'Enter') {
                     return insertEmptyElement(editor, 'paragraph');
                 }
 
-                if ((event.key === 'Backspace' || event.key === 'Delete') && type === 'attachment') {
+                if ((event.key === 'Backspace' || event.key === 'Delete')) {
                     return insertEmptyElement(editor, 'paragraph');
                 }
             },
