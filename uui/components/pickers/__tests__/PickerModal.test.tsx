@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrayDataSource } from '@epam/uui-core';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { PickerModal } from '../PickerModal';
 
 const languageLevels = [

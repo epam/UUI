@@ -7,7 +7,7 @@ import {
     fireEvent,
     mockAdaptivePanelLayout,
     waitForElementToBeRemoved,
-} from '@epam/test-utils';
+} from '@epam/uui-test-utils';
 import { PresetsPanel, PresetsPanelProps } from '../PresetsPanel';
 import {
     ColumnsConfig, DataTableState, FiltersConfig, ITablePreset,

@@ -1,15 +1,17 @@
 {
-  "name": "@epam/test-utils",
-  "version": "5.0.0-alpha.1",
+  "name": "@epam/uui-test-utils",
+  "version": "5.0.0-alpha.2",
   "author": "EPAM",
   "license": "MIT",
-  "private": true,
+  "private": false,
+  "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "5.0.0-alpha.1",
+    "@epam/uui-core": "5.0.0-alpha.2",
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.4.3",
     "@types/react-dom": "18.0.10",
@@ -17,6 +19,7 @@
     "react-test-renderer": "18.2.0"
   },
   "peerDependencies": {
+    "jest": ">=27.0.0",
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   }

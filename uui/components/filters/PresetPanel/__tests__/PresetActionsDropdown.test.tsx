@@ -1,6 +1,6 @@
 import React from 'react';
 import { PresetActionsDropdown } from '../PresetActionsDropdown';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 const mockPresetActionsDropdownApi = {
     activePresetId: 1,

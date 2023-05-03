@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tooltip } from '../Tooltip';
-import { renderSnapshotWithContextAsync } from '@epam/test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('Tooltip', () => {
     it('should be rendered correctly', async () => {

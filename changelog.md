@@ -14,7 +14,7 @@
     `<script>window.opener && window.opener.postMessage("authSuccess", "*")</script>`
   - Handle /auth/login path client-side. The simplest method is to add the following to the index.js:
     `window.opener && window.location.pathname === '/auth/login' && window.opener.postMessage("authSuccess", "*");`
-  - If an app implements UUI-based login pages, they need to run the following code after successful login: 
+  - If an app implements UUI-based login pages, they need to run the following code after successful login:
     `window.opener && window.opener.postMessage("authSuccess", "*")`
 
 * [DataTable]: deprecated column `shrink` property was removed, as it were announced in 4.9.0 version.
@@ -25,7 +25,7 @@
 * [TimePicker]: added max values to hours and minutes inputs
 * [Tooltip]: added possibility to pass raw-props to the tooltip body
 * [RangeDatePicker]: added new 'onOpenChange' prop
-
+* [PickerModal]: added a docs page
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column

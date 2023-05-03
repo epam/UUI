@@ -1,6 +1,6 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
-import { renderToJsdomWithContextAsync, fireEvent, screen } from '@epam/test-utils';
+import { renderToJsdomWithContextAsync, fireEvent, screen } from '@epam/uui-test-utils';
 import { DatePickerBody } from '../DatePickerBody';
 
 describe('DatePickerBody', () => {
