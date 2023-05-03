@@ -60,9 +60,10 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         props.onClick?.(e);
     };
 
-    const handleCancel = () => {
+    const handleCancel = (e: React.SyntheticEvent<HTMLDivElement, Event>) => {
         props.onCancel();
         inputElement.current?.focus();
+        e.stopPropagation();
     };
 
     const getInputProps = () => ({

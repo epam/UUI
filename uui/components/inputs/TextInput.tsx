@@ -44,8 +44,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, TextInputProps & T
                     <TextInput
                         icon={ systemIcons[props.size || defaultSize].search }
                         onCancel={ !!props.value
-                            // it is necessary to add setTimeout to handle click with all other listeners before `cross` will disappear.
-                            ? (() => setTimeout(() => iEditable.onValueChange(''), 0))
+                            ? () => iEditable.onValueChange('')
                             : undefined
                         }
                         type="search"
