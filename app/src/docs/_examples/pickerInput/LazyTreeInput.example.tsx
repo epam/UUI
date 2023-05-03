@@ -9,7 +9,7 @@ import { Location } from '@epam/uui-docs';
 
 export default function LazyTreePicker() {
     const svc = useUuiContext();
-    const [value, onValueChange] = useState<string[]>(['UK']);
+    const [value, onValueChange] = useState<string[]>([]);
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>(
         {
