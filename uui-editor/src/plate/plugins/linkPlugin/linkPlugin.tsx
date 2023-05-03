@@ -5,7 +5,8 @@ import {
     someNode,
     LinkToolbarButton,
     isEditorReadOnly,
-    ELEMENT_LINK, PlateEditor,
+    ELEMENT_LINK,
+    PlateEditor
 } from "@udecode/plate";
 import { sanitizeUrl } from "@braintree/sanitize-url";
 
@@ -20,13 +21,16 @@ import css from './link.scss';
 
 export const linkPlugin = () => createLinkPlugin({
     type: 'link',
-    props: ({ element, editor}) => ({
+    props: ({ element, editor }) => ({
         className: css.link,
-        ...(!isEditorReadOnly(editor) ? {} : { onClick: (e: Event) => {
-            e.preventDefault();
-            e.stopPropagation();
-            window.open(sanitizeUrl(`${element.url}`), '_blank');
-        } }),
+        style: { display: 'inline' },
+        ...(!isEditorReadOnly(editor) ? {} : {
+            onClick: (e: Event) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.open(sanitizeUrl(`${ element.url }`), '_blank');
+            }
+        }),
     }),
 });
 
@@ -44,7 +48,7 @@ export const LinkButton = ({ editor }: ToolbarButton) => {
 
     return (
         <LinkToolbarButton
-            styles={ { root: {width: 'auto', cursor: 'pointer', padding: '0px' }} }
+            styles={ { root: { width: 'auto', cursor: 'pointer', padding: '0px' } } }
             active={ isLink }
             onMouseDown={ async (event) => {
                 if (!editor) return;
