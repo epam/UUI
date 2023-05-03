@@ -254,23 +254,23 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
         return {
-            ...this.getBaseRow(id, index, path),
+            ...this.getEmptyRowProps(id, index, path),
             isLoading: true,
         };
     }
 
     protected getUnknownRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
-        const baseRow = this.getBaseRow(id, index, path);
+        const emptyRowProps = this.getEmptyRowProps(id, index, path);
         const rowOptions = this.props.rowOptions;
-        const checkbox = (rowOptions?.checkbox?.isVisible || baseRow.isChecked) ? { isVisible: true, isDisabled: false } : undefined;
+        const checkbox = (rowOptions?.checkbox?.isVisible || emptyRowProps.isChecked) ? { isVisible: true, isDisabled: false } : undefined;
         return {
-            ...baseRow,
+            ...emptyRowProps,
             checkbox,
             isUnknown: true,
         };
     }
 
-    private getBaseRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+    private getEmptyRowProps(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
         const rowOptions = this.props.rowOptions;
         const checked = this.value?.checked ?? [];
         const isChecked = checked.includes(id);
