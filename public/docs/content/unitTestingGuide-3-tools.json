@@ -23,7 +23,36 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This package contains everything which is required  to create Unit & Integration tests. It's built on top of several other packages. So, please prefer using this module instead of direct usage of these packages.",
+            "text": "This package contains everything which is required  to create Unit & Integration tests. It's built on top of several other packages (such approach is described here: ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          },
+          {
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "https://testing-library.com/docs/react-testing-library/setup"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "text": "https://testing-library.com/docs/react-testing-library/setup",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "). So, please prefer using this module instead of direct usage of these packages.",
             "marks": []
           }
         ]
