@@ -23,7 +23,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "This package contains everything which is required  to create Unit & Integration tests. It's built on top of several other packages (such approach is described here: ",
+            "text": "This package contains everything you need create tests for UUI components. It's built on top of several other packages (such approach is described here: ",
             "marks": []
           },
           {
