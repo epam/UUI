@@ -5,7 +5,8 @@ const isAdaptivePanelRootDefault = (elem: HTMLElement) => {
 };
 
 /**
- * By default, it relies on presence of data-testid="adaptive-panel" on the root adaptive panel element. Please pass it as following:
+ * By default, it relies on presence of data-testid="adaptive-panel" on the root adaptive panel element.
+ * Please pass it as following:
  * ```
  * <AdaptivePanel { ...props } rawProps={ { 'data-testid': 'adaptive-panel'} } />
  * ```

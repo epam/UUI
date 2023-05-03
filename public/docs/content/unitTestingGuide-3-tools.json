@@ -129,7 +129,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "and even re-exports certain utilities from them. I.e. it's a single module import with access to everything you need to write a test.",
+                    "text": "and re-exports certain utilities from them. I.e. it's a single module import with access to everything you need to write a test.",
                     "marks": []
                   }
                 ]
@@ -662,7 +662,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " is very fast, but it doesn't fully resemble the way how user interacts with real page. Choose wisely.",
+                    "text": " is very fast, but it doesn't fully resemble the way how user interacts with real page (which could be OK in most cases). Choose wisely.",
                     "marks": []
                   }
                 ]
