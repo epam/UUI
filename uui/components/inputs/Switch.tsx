@@ -8,9 +8,7 @@ export interface SwitchMods {
 
 export function applySwitchMods(mods: SwitchMods & SwitchProps) {
     return [
-        'switch-vars',
-        css.root,
-        css['size-' + (mods.size || '18')],
+        'switch-vars', css.root, css['size-' + (mods.size || '18')],
     ];
 }
 

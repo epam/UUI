@@ -31,7 +31,7 @@
 
         :global(.uui-timepicker-item:first-child) {
             &::after {
-                content: ":";
+                content: ':';
                 position: absolute;
                 top: 35px;
                 left: 81px;

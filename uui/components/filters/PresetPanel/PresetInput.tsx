@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from "react";
-import css from "./PresetInput.scss";
-import { TextInput } from "../../inputs";
-import { FlexCell } from "../../layout";
-import { ITablePreset } from "@epam/uui-core";
+import React, { useCallback, useState } from 'react';
+import css from './PresetInput.scss';
+import { TextInput } from '../../inputs';
+import { FlexCell } from '../../layout';
+import { ITablePreset } from '@epam/uui-core';
 
 interface IPresetInputProps {
     onCancel: () => void;
@@ -10,7 +10,7 @@ interface IPresetInputProps {
     preset?: ITablePreset;
 }
 
-export const PresetInput = (props: IPresetInputProps) => {
+export function PresetInput(props: IPresetInputProps) {
     const [presetCaption, setPresetCaption] = useState(props.preset?.name || '');
 
     const cancelActionHandler = useCallback(() => {
@@ -23,7 +23,6 @@ export const PresetInput = (props: IPresetInputProps) => {
             await props.onSuccess(presetCaption);
         }
         props.onCancel();
-
     }, [presetCaption]);
 
     const newPresetOnBlurHandler = useCallback(() => {
@@ -46,4 +45,4 @@ export const PresetInput = (props: IPresetInputProps) => {
             />
         </FlexCell>
     );
-};
+}

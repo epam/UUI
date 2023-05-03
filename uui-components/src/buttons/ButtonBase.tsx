@@ -1,17 +1,26 @@
 import React from 'react';
 import {
-    cx, ButtonBaseCoreProps, IHasForwardedRef, UuiContexts, isClickableChildClicked, uuiMod, uuiElement, uuiMarkers,
-    UuiContext, isChildHasClass
+    cx,
+    ButtonBaseCoreProps,
+    IHasForwardedRef,
+    UuiContexts,
+    isClickableChildClicked,
+    uuiMod,
+    uuiElement,
+    uuiMarkers,
+    UuiContext,
+    isChildHasClass,
 } from '@epam/uui-core';
 
-export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> { }
+export interface ButtonBaseProps extends ButtonBaseCoreProps, IHasForwardedRef<HTMLButtonElement | HTMLAnchorElement> {}
 
-export const uuiInputElements = [uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody];
+export const uuiInputElements = [
+    uuiElement.checkbox, uuiElement.inputLabel, uuiElement.radioInput, uuiElement.switchBody,
+];
 
 export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends React.Component<ButtonProps> {
     static contextType = UuiContext;
     context: UuiContexts;
-
     clickHandler = (e: any) => {
         if (!isClickableChildClicked(e) && !this.props.isDisabled) {
             if (this.props.onClick) {
@@ -32,14 +41,13 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
         } else if (
             // NOTE: this condition it necessary here because native input elements (checkbox and radio) do not work correctly inside link
             // https://github.com/facebook/react/issues/9023
-            !(isChildHasClass(e.target, e.currentTarget, uuiInputElements))
+            !isChildHasClass(e.target, e.currentTarget, uuiInputElements)
         ) {
             e.preventDefault();
         }
-    }
+    };
 
     getClassName?(): string[];
-
     getChildren?(): React.ReactNode {
         return null;
     }
@@ -86,7 +94,9 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             tabIndex: this.getTabIndex(),
             ref: this.props.forwardedRef,
             'aria-disabled': this.props.isDisabled,
-            disabled: this.props.isDisabled,
+            // NOTE: do not use disabled attribute for button because it will prevent all events and broke Tooltip at least
+            // more info: https://github.com/epam/UUI/issues/1057#issuecomment-1508632942
+            // disabled: this.props.isDisabled,
             ...this.props.rawProps,
         };
 
@@ -94,11 +104,9 @@ export abstract class ButtonBase<ButtonProps extends ButtonBaseProps> extends Re
             const { target } = this.props;
             const relProp = target === '_blank' ? { rel: 'noopener noreferrer' } : {};
 
-            return React.createElement(
-                'a',
-                { role: 'link', href, target, ...relProp, ...commonProps },
-                this.getChildren(),
-            );
+            return React.createElement('a', {
+                role: 'link', href, target, ...relProp, ...commonProps,
+            }, this.getChildren());
         }
 
         return React.createElement('button', { type: 'button', ...commonProps }, this.getChildren());

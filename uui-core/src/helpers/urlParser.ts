@@ -8,7 +8,7 @@ function stringify(query: any) {
 
     const result: any = {};
     cleanupObject(query);
-    Object.keys(query).map(i => result[i] = typeof query[i] === ('object' || 'array') ? jsurl.stringify(query[i]) : query[i]);
+    Object.keys(query).map((i) => (result[i] = typeof query[i] === ('object' || 'array') ? jsurl.stringify(query[i]) : query[i]));
     return queryString.stringify(result, { strict: false });
 }
 
@@ -18,7 +18,7 @@ function parse(querystring: string) {
     }
 
     const result = queryString.parse(querystring);
-    Object.keys(result).map(i => result[i] = result[i][0] === '~' ? jsurl.parse(result[i]) : result[i]);
+    Object.keys(result).map((i) => (result[i] = result[i][0] === '~' ? jsurl.parse(result[i]) : result[i]));
     return result;
 }
 
@@ -27,7 +27,7 @@ function cleanupObject(obj: any) {
     for (const k in obj) {
         if (typeof k !== 'number') return;
         if (obj[k] === null || obj[k] === undefined) isArray ? obj.splice(k, 1) : delete obj[k];
-        else if (typeof obj[k] === "object") cleanupObject(obj[k]);
+        else if (typeof obj[k] === 'object') cleanupObject(obj[k]);
     }
 }
 

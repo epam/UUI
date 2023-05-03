@@ -9,7 +9,7 @@ interface PopoverArrow {
 }
 
 const PopoverArrow = React.forwardRef<HTMLDivElement, PopoverArrow>(({ arrowProps, placement }, ref) => {
-    return <div ref={ ref } className='uui-popover-arrow' style={ arrowProps?.style } data-placement={ placement }></div>;
+    return <div ref={ ref } className="uui-popover-arrow" style={ arrowProps?.style } data-placement={ placement }></div>;
 });
 
 export default PopoverArrow;

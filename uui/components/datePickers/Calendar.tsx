@@ -4,9 +4,7 @@ import { withMods } from '@epam/uui-core';
 import { Dayjs } from 'dayjs';
 
 export function applyDateSelectionMods() {
-    return [
-        css.root,
-    ];
+    return [css.root];
 }
 
 export const Calendar = withMods<CalendarProps<Dayjs>>(uuiCalendar, applyDateSelectionMods);

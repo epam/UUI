@@ -6,7 +6,7 @@
 
 @mixin dnd-ghost-shadow() { box-shadow: 0 1px 3px 0 rgba(51, 51, 51, 0.2); }
 
-@mixin control-focus-effect() { box-shadow: 0 0 0 2px rgba(0, 137 ,204, 0.40); }
+@mixin control-focus-effect() { box-shadow: 0 0 0 2px rgba(0, 137 , 204, 0.4); }
 
 $scroll-shadow-size: 10px;
 $scroll-shadow-opacity: 0.2;

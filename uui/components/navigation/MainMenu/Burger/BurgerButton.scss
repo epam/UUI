@@ -5,25 +5,26 @@
     background: none;
     border: 0;
     outline: none;
-    font-family: var(--font-regular);
+    font-family: var(--uui-burger_btn-font);
+    font-weight: var(--uui-burger_btn-font-weight, normal);
     line-height: 48px;
     flex-shrink: 0;
 
     &:global(.uui-enabled) {
-        color: var(--uui-burger_btn);
-        fill: var(--uui-burger_btn);
+        color: var(--uui-burger_btn_caption);
+        fill: var(--uui-burger_btn_caption);
 
         &:global(.-clickable) {
             &:hover {
-                color: var(--uui-burger_btn-hover);
-                fill: var(--uui-burger_btn-hover);
+                color: var(--uui-burger_btn_caption-hover);
+                fill: var(--uui-burger_btn_caption-hover);
             }
         }
     }
 
     &:global(.uui-active) {
-        color: var(--uui-burger_btn-active);
-        fill: var(--uui-burger_btn-active);
+        color: var(--uui-burger_btn_caption-active);
+        fill: var(--uui-burger_btn_caption-active);
     }
 
     :global(.uui-icon) {
@@ -39,6 +40,7 @@
         padding-left: 18px;
         margin-left: 48px;
         border-left: 1px var(--uui-burger_btn-border) solid;
+
         &:hover {
             // border-left-color: @blue;
         }

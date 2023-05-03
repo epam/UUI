@@ -1,29 +1,17 @@
 import React from 'react';
 import { LinkButton } from '../LinkButton';
-import renderer from 'react-test-renderer';
-import { ReactComponent as CalendarIcon } from '../../../icons/calendar-18.svg';
+import { SvgMock, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('LinkButton', () => {
-    it('should be rendered correctly', () => {
-
-        const tree = renderer
-            .create(<LinkButton />)
-            .toJSON();
+    it('should render with minimum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<LinkButton />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-
-        const tree = renderer
-            .create(<LinkButton
-                color='blue'
-                onClick={ jest.fn }
-                icon={ CalendarIcon }
-                isDisabled={ false }
-                isDropdown
-                onClear={ jest.fn }
-            />)
-            .toJSON();
+    it('should render with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <LinkButton color="blue" onClick={ jest.fn } icon={ SvgMock } isDisabled={ false } isDropdown onClear={ jest.fn } />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });

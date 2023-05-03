@@ -9,7 +9,8 @@
         padding: 22px 6px;
         line-height: 16px;
         margin-bottom: -3px;
-        font-family: var(--font-semibold);
+        font-family: var(--uui-main_menu-font);
+        font-weight: var(--uui-main_menu-font-weight, normal);
     }
 
     &:global(.uui-button-box), &:global(.uui-input-box) {
@@ -41,7 +42,7 @@
         &:hover, &:focus {
             background-color: var(--uui-main_menu-hover);
             color: var(--uui-main_menu-text);
-           fill: var(--uui-main_menu-icon-hover);
+            fill: var(--uui-main_menu-icon-hover);
         }
     }
 

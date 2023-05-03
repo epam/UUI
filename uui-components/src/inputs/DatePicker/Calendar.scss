@@ -13,7 +13,7 @@
         :global(.uui-calendar-days) {
             display: flex;
             flex-direction: column;
-            transition: height .3s ease-in-out;
+            transition: height 0.3s ease-in-out;
 
             & > * {
                 display: flex;

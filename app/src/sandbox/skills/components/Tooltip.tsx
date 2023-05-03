@@ -2,7 +2,7 @@ import React from 'react';
 import { FlexRow, Text, IconContainer } from '@epam/promo';
 import { getDateInFormat, getLevel } from '../utils';
 import { ISkill, ISkillLevel } from '../index';
-import css from './SkillsBatteryPopover.scss';
+import css from './../SkillsBatteryPopover.scss';
 
 interface ITooltip {
     level: ISkillLevel;
@@ -17,28 +17,20 @@ const Tooltip: React.FC<ITooltip> = ({ level, data }) => {
                     Current level:
                 </Text>
                 <Text cx={ css.tooltipHeaderItem } color="gray5">
-                    { getLevel(level) }
+                    {getLevel(level)}
                 </Text>
             </FlexRow>
-            { Object.entries(data.options).map((val, index) => (
-                <FlexRow
-                    key={ `${index}-tooltip` }
-                    spacing="6"
-                    cx={ css.tooltipBlockRow }
-                >
-                    <IconContainer
-                        cx={ css.tooltipItem }
-                        icon={ val[1].icon }
-                        style={ {fill: val[1].activeColor} }
-                    />
+            {Object.entries(data.options).map((val, index) => (
+                <FlexRow key={ `${index}-tooltip` } spacing="6" cx={ css.tooltipBlockRow }>
+                    <IconContainer cx={ css.tooltipItem } icon={ val[1].icon } style={ { fill: val[1].activeColor } } />
                     <Text cx={ css.tooltipItem } color="gray60">
-                        { val[1].prefix }
+                        {val[1].prefix}
                     </Text>
                     <Text cx={ css.tooltipItem } color="gray5">
-                        { getDateInFormat(val[1].date) }
+                        {getDateInFormat(val[1].date)}
                     </Text>
                 </FlexRow>
-            )) }
+            ))}
         </div>
     );
 };

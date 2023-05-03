@@ -6,27 +6,13 @@
     "nodes": [
       {
         "object": "block",
-        "type": "ordered-list",
+        "type": "paragraph",
         "data": {},
         "nodes": [
           {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Basic usage example with ModalContext APII.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
+            "object": "text",
+            "text": "Basic usage example with ModalContext API.",
+            "marks": []
           }
         ]
       }

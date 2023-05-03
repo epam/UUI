@@ -12,9 +12,7 @@ export interface RatingMods {
 
 function applyRatingMods(mods: RatingMods & RatingProps) {
     return [
-        css.root,
-        styles['color-sun'],
-        css['size-' + (mods.size || '18')],
+        css.root, styles['color-sun'], css['size-' + (mods.size || '18')],
     ];
 }
 

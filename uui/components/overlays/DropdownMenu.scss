@@ -52,7 +52,8 @@
     font-size: 14px;
     box-sizing: border-box;
     width: 100%;
-    font-family: var(--font-regular);
+    font-family: var(--uui-dropdown-menu-item-font);
+    font-weight: var(--uui-dropdown-menu-item-font-weight, normal);
 
     &:focus {
         outline: none;
@@ -71,10 +72,11 @@
 .bodyRoot {
     @include icon-layout(36px);
     @include fillColor(var(--uui-icon), var(--uui-text-primary));
-    font-family: var(--font-regular);
+    font-family: var(--uui-dropdown-menu-body-font);
+    font-weight: var(--uui-dropdown-menu-body-font-weight, normal);
     font-size: 14px;
     padding: 0.5em 0;
-    background-color: var(--uui-surface);
+    background-color: var(--uui-dropdown-menu-bg);
     box-shadow: var(--uui-shadow);
 }
 
@@ -95,7 +97,7 @@
     .splitter {
         width: 100%;
         border: 0;
-        border-top: 1px solid var(--uui-divider);
+        border-top: 1px solid var(--uui-dropdown-menu-splitter);
         height: 0;
     }
 }
@@ -119,7 +121,7 @@
     }
 
     &.link {
-        @include withActive();
+        @include withActive;
         display: flex;
         align-items: center;
 
@@ -130,7 +132,7 @@
 
     &:global(.-clickable:not(.uui-disabled)) {
         &:hover, &:focus {
-            background-color: var(--uui-surface-hover);
+            background-color: var(--uui-dropdown-menu-item-hover);
             fill: var(--uui-icon-active);
             cursor: pointer;
         }
@@ -146,8 +148,8 @@
     }
 
     &:global(.uui-opened) {
-        background-color: var(--uui-surface-hover);
-        fill: var(--uui-text-primary)
+        background-color: var(--uui-dropdown-menu-item-active);
+        fill: var(--uui-text-primary);
     }
 
     & > *:not(:last-child) {

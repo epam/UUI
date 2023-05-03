@@ -57,14 +57,12 @@
 //         - lazy: up to IQuery impl
 //         - greedy: ?????
 
-
 //     [OK] custom hierarchy issues
 //         - how to mix ids from different queries?
 //             - byId, selection
 //             - use [id, type]
 //             - add uid to the DB Entities
 //         -
-
 
 //     selection option:
 //         - fetch all selected by ID (need anyway)
@@ -73,5 +71,5 @@
 //             - has selected children (recusively)
 //         - doesn't solve
 //             - selection cascading
-
-export default {};
+const dummyExport = {};
+export default dummyExport;

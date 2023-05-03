@@ -8,15 +8,11 @@ import { ReactComponent as ArrowIcon } from '../../icons/folding-arrow-18.svg';
 
 export function applyRangeDatePickerBodyMods() {
     return [
-        css.root,
-        rangeCss.root,
-        calendarCss.root,
-        calendarPresetsCss.root,
+        css.root, rangeCss.root, calendarCss.root, calendarPresetsCss.root,
     ];
 }
 
-export const RangeDatePickerBody = withMods<RangeDatePickerBodyProps<RangeDatePickerValue>>(
-    uuiRangeDatePickerBody,
-    applyRangeDatePickerBodyMods,
-    () => ({ navIconLeft: ArrowIcon, navIconRight: ArrowIcon }),
-);
+export const RangeDatePickerBody = withMods<RangeDatePickerBodyProps<RangeDatePickerValue>>(uuiRangeDatePickerBody, applyRangeDatePickerBodyMods, () => ({
+    navIconLeft: ArrowIcon,
+    navIconRight: ArrowIcon,
+}));

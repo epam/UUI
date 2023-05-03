@@ -12,7 +12,7 @@ export function isChildFocusable(e: React.FocusEvent<HTMLElement>): boolean {
 export function isChildHasClass(target: EventTarget, currentTarget: Node, classNames: string[]): boolean {
     let el = target as HTMLElement;
     while (el && currentTarget != el) {
-        if (el.classList && classNames.some(className => el.classList.contains(className))) {
+        if (el.classList && classNames.some((className) => el.classList.contains(className))) {
             return true;
         }
         el = el.parentElement;

@@ -1,10 +1,12 @@
-import * as React from "react";
-import { IHasCX, cx, IHasRawProps, IHasForwardedRef, RangeDatePickerPresets, RangeDatePickerPresetValue } from "@epam/uui-core";
+import * as React from 'react';
+import {
+    IHasCX, cx, IHasRawProps, IHasForwardedRef, RangeDatePickerPresets, RangeDatePickerPresetValue,
+} from '@epam/uui-core';
 
 export const uuiPresets = {
-    container: "uui-presets-container",
-    header: "uui-presets-header",
-    item: "uui-presets-item",
+    container: 'uui-presets-container',
+    header: 'uui-presets-header',
+    item: 'uui-presets-item',
 } as const;
 
 export interface CalendarPresetsProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
@@ -32,15 +34,11 @@ export class CalendarPresets extends React.Component<CalendarPresetsProps> {
         return (
             <div ref={ this.props.forwardedRef } className={ cx(uuiPresets.container, this.props.cx) } { ...this.props.rawProps }>
                 <div className={ uuiPresets.header }>Presets</div>
-                { this.getPresets().map(item => (
-                    <div
-                        key={ item.name }
-                        className={ uuiPresets.item }
-                        onClick={ () => this.props.onPresetSet(item) }
-                    >
-                        { item.name }
+                {this.getPresets().map((item) => (
+                    <div key={ item.name } className={ uuiPresets.item } onClick={ () => this.props.onPresetSet(item) }>
+                        {item.name}
                     </div>
-                )) }
+                ))}
             </div>
         );
     }
