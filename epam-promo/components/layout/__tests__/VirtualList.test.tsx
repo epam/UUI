@@ -1,6 +1,6 @@
 import React from 'react';
 import { VirtualList } from '../VirtualList';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('VirtualList', () => {
     it('should be rendered correctly', () => {

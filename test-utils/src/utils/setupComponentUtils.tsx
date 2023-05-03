@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useImperativeHandle, useState } from 'react';
-import { renderToJsdomWithContextAsync } from './renderingWithContextUtils';
-import { act } from '../extensions/testingLibraryReactExt';
+import { renderToJsdomWithContextAsync, type CustomWrapperType } from './renderingWithContextUtils';
+import { act } from '@testing-library/react';
 
 type PropsContextType<TProps> = { setProperty: (name: keyof TProps, value: TProps[keyof TProps]) => void; };
 export type PropsInitializerCallbackType<TProps> = (contextRef: React.RefObject<PropsContextType<TProps>>) => PropsAll<TProps>;
@@ -18,7 +18,7 @@ type SetupComponentForTestReturnType<TProps> = Promise<{
 }>;
 
 /**
- * Renders the component to JSDom
+ * Renders the component to the jsdom
  *
  * Useful if one of the features below is needed:
  * - on-change workflow, when a callback prop (e.g. "onValueChange") updates some other props (e.g. "value").
@@ -26,10 +26,12 @@ type SetupComponentForTestReturnType<TProps> = Promise<{
  *
  * @param propsInitializer
  * @param componentRenderer
+ * @param [customWrapper] optional custom wrapper
  */
 export async function setupComponentForTest<TProps extends PropsAll<TProps>>(
     propsInitializer: PropsInitializerCallbackType<TProps>,
     componentRenderer: ComponentRenderCallbackType<TProps>,
+    customWrapper?: CustomWrapperType,
 ): SetupComponentForTestReturnType<TProps> {
     const propsContextRef = React.createRef<PropsContextType<TProps>>();
     const propsConfig = propsInitializer(propsContextRef);
@@ -61,7 +63,7 @@ export async function setupComponentForTest<TProps extends PropsAll<TProps>>(
         }, []);
         return componentRenderer(allProps);
     }
-    const result = await renderToJsdomWithContextAsync(<TestComponent compRef={ propsContextRef } />);
+    const result = await renderToJsdomWithContextAsync(<TestComponent compRef={ propsContextRef } />, customWrapper);
 
     return {
         result,
