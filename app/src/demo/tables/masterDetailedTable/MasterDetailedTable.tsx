@@ -16,7 +16,7 @@ import { InfoSidebarPanel } from './InfoSidebarPanel';
 import { SlidingPanel } from './SlidingPanel';
 import { FilterPanelOpener } from './FilterPanelOpener';
 
-export const MasterDetailedTable: React.FC = () => {
+export function MasterDetailedTable() {
     const svc = useUuiContext<TApi, UuiContexts>();
     const [isFilterPanelOpened, setIsFilterPanelOpened] = useState(false);
     const [isInfoPanelOpened, setIsInfoPanelOpened] = useState(false);
@@ -89,4 +89,4 @@ export const MasterDetailedTable: React.FC = () => {
             />
         </div>
     );
-};
+}

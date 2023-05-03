@@ -118,6 +118,7 @@ describe('Tree - load', () => {
         expect(tree.getTotalRecursiveCount()).toBe(10);
 
         const tree2 = await tree.load(loadParams, value);
+
         expect(tree2).toEqual(tree);
         expect(tree2).toBe(tree); // everything is loaded, should return exact same instance
     });

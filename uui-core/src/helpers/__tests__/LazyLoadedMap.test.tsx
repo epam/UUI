@@ -1,4 +1,4 @@
-import { LazyLoadedMap, LazyLoadedMapLoadCallback } from '../LazyLoadedMap';
+import { LOADED, LazyLoadedMap, LazyLoadedMapLoadCallback, PENDING, UNKNOWN } from '../LazyLoadedMap';
 
 const delay = () =>
     new Promise((resolve) => {
@@ -16,49 +16,49 @@ describe('LazyLoadedMap', () => {
         const api = jest.fn(mockApi);
         const map = new LazyLoadedMap<number, string>(api);
 
-        expect(map.get(1)).toBeNull();
+        expect(map.get(1)).toEqual({ status: PENDING, value: null });
         expect(api).not.toBeCalled();
 
         await delay();
 
         expect(api.mock.calls.length).toBe(1);
         expect(api.mock.calls[0][0]).toEqual([1]);
-        expect(map.get(1)).toBe('item1');
+        expect(map.get(1)).toEqual({ status: LOADED, value: 'item1' });
 
         await delay();
 
         expect(api.mock.calls.length).toBe(1); // already in Map, no second call
-        expect(map.get(1)).toBe('item1');
+        expect(map.get(1)).toEqual({ status: LOADED, value: 'item1' });
     });
 
     it('should not load if fetchIfAbsent = false', async () => {
         const api = jest.fn(mockApi);
         const map = new LazyLoadedMap<number, string>(api);
 
-        expect(map.get(1, false)).toBeNull();
+        expect(map.get(1, false)).toEqual({ status: UNKNOWN, value: null });
         expect(api).not.toBeCalled();
 
         await delay();
 
         expect(api).not.toBeCalled();
-        expect(map.get(1)).toBeNull();
+        expect(map.get(1)).toEqual({ status: PENDING, value: null });
     });
 
     it('should batch two gets into a single request', async () => {
         const api = jest.fn(mockApi);
         const map = new LazyLoadedMap<number, string>(api);
 
-        expect(map.get(1)).toBeNull();
-        expect(map.get(1)).toBeNull();
-        expect(map.get(2)).toBeNull();
+        expect(map.get(1)).toEqual({ status: PENDING, value: null });
+        expect(map.get(1)).toEqual({ status: PENDING, value: null });
+        expect(map.get(2)).toEqual({ status: PENDING, value: null });
         expect(api).not.toBeCalled();
 
         await delay();
 
         expect(api.mock.calls.length).toBe(1);
         expect(api.mock.calls[0][0]).toEqual([1, 2]);
-        expect(map.get(1)).toBe('item1');
-        expect(map.get(2)).toBe('item2');
+        expect(map.get(1)).toEqual({ status: LOADED, value: 'item1' });
+        expect(map.get(2)).toEqual({ status: LOADED, value: 'item2' });
     });
 
     it('should not retry on rejects', async () => {
