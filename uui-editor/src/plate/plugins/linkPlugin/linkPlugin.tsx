@@ -23,7 +23,7 @@ export const linkPlugin = () => createLinkPlugin({
     type: 'link',
     props: ({ element, editor }) => ({
         className: css.link,
-        style: { display: 'inline', textDecoration: 'underline' },
+        style: { display: 'inline' },
         ...(!isEditorReadOnly(editor) ? {} : {
             onClick: (e: Event) => {
                 e.preventDefault();
