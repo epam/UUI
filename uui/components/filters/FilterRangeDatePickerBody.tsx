@@ -30,6 +30,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                         filter={ this.props.filter }
                         focusPart={ this.state.inFocus }
                         changeIsOpen={ this.toggleOpening }
+                        presets={ this.props.presets }
                     />
                 </FlexRow>
                 <FlexCell alignSelf="stretch">
