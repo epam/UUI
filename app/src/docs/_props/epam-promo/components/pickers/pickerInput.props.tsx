@@ -2,20 +2,14 @@ import * as React from 'react';
 import { PickerInputBaseProps } from '@epam/uui-components';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
 import { PickerInputProps } from '@epam/uui';
-import {
-    PickerInput, Button, LinkButton, FlexCell, Text, SearchInput,
-} from '@epam/promo';
-import {
-    iconDoc, iconOptionsDoc, iEditable, isDisabledDoc,
-} from '../../docs';
-import {
-    DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext,
-} from '../../docs';
-import { pickerBaseOptionsDoc } from './common';
+import { PickerInput, Button, LinkButton, FlexCell, Text, SearchInput } from '@epam/promo';
+import { iconDoc, iconOptionsDoc, iEditable, isDisabledDoc } from '../../docs';
+import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext } from '../../docs';
+import { pickerBaseOptionsDoc, pickerInputRenderRowDoc } from './common';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([
-        isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc,
+        isDisabledDoc, isReadonlyDoc, iEditable, pickerBaseOptionsDoc, pickerInputRenderRowDoc, IHasEditModeDoc, iconDoc, iconOptionsDoc,
     ])
     .prop('size', {
         examples: [

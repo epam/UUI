@@ -1,8 +1,6 @@
 import React from 'react';
 import { PickerListBase, PickerModalOptions } from '@epam/uui-components';
-import {
-    DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder, UuiContext, UuiContexts,
-} from '@epam/uui-core';
+import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder, UuiContext, UuiContexts } from '@epam/uui-core';
 import { Text } from '../typography';
 import { SizeMod, TextSize } from '../types';
 import { LinkButton } from '../buttons';
