@@ -100,21 +100,6 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             type: 'rangeDatePicker',
             format: 'YYYY-MM-DD',
             predicates: defaultPredicates.rangeDatePicker,
-            presets: {
-                ...rangeDatePickerPresets,
-                last3Days: {
-                    name: 'Last 3 days',
-                    getRange: () => {
-                        return { from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11 };
-                    },
-                },
-                last7Days: {
-                    name: 'Last 7 days',
-                    getRange: () => {
-                        return { from: dayjs().subtract(7, 'day').toString(), to: dayjs().toString(), order: 12 };
-                    },
-                },
-            },
         },
     ];
 };
