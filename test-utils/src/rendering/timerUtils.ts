@@ -1,9 +1,7 @@
-import { act } from '../extensions/testingLibraryReactExt';
+import { act } from '@testing-library/react';
 
 /**
- * Don't use it in jsdom environment, because it's not wrapped in act.
- * You may want to use delayWrapInAct instead.
- *
+ * For tests in NodeJs environment.
  * @param ms
  */
 export const delay = (ms: number = 1): Promise<void> => new Promise((resolve) => {
@@ -11,12 +9,15 @@ export const delay = (ms: number = 1): Promise<void> => new Promise((resolve) =>
 });
 
 /**
+ * For tests of React components
+ * https://legacy.reactjs.org/docs/testing-recipes.html#act
+ *
  * Use this function only if absolutely necessary. Usually, you may want to consider other alternatives:
  *  - waitForElementToBeRemoved
  *  - waitFor
  *
  * @param ms
  */
-export async function delayWrapInAct(ms: number = 1) {
+export async function delayAct(ms: number = 1) {
     await act(() => delay(ms));
 }
