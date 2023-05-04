@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import css from './AddVideoModal.scss';
-import { PlateEditor, createNode, insertElements } from "@udecode/plate";
+import { PlateEditor, insertElements } from "@udecode/plate";
 
 import getVideoId from "get-video-id";
 import { useState } from "react";
@@ -43,9 +43,9 @@ export function getVideoSrc(src: string) {
     const { id, service } = getVideoInfo(prependHttp(src, { https: false }));
 
     switch (service) {
-        case 'youtube': return `https://www.youtube.com/embed/${id}`;
-        case 'videoportal': return `//videoportal.epam.com/video/iframe.html?video=${id}`;
-        case 'vimeo': return `https://player.vimeo.com/video/${id}`;
+        case 'youtube': return `https://www.youtube.com/embed/${ id }`;
+        case 'videoportal': return `//videoportal.epam.com/video/iframe.html?video=${ id }`;
+        case 'vimeo': return `https://player.vimeo.com/video/${ id }`;
         default: return src;
     }
 }
@@ -57,15 +57,12 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
         const formattedSrc = getVideoSrc(src);
         insertElements(
             editor,
-            [
-                {
-                    type: 'iframe',
-                    data: { src: formattedSrc },
-                    url: formattedSrc,
-                    children: []
-                },
-                createNode(),
-            ],
+            {
+                type: 'iframe',
+                data: { src: formattedSrc },
+                url: formattedSrc,
+                children: []
+            },
             { at: editor.selection.anchor.path }
         );
 
