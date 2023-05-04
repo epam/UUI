@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useImperativeHandle, useState } from 'react';
-import { renderToJsdomWithContextAsync, type CustomWrapperType } from './renderingWithContextUtils';
+import { renderWithContextAsync, type CustomWrapperType } from './renderingWithContextUtils';
 import { act } from '@testing-library/react';
 
 type PropsContextType<TProps> = { setProperty: (name: keyof TProps, value: TProps[keyof TProps]) => void; };
@@ -12,13 +12,13 @@ type PropsSubset<TProps> = { [key in keyof TProps]?: TProps[key] };
 type PropsSubsetMock<TProps> = { [key in keyof TProps]?: jest.Mock };
 
 type SetupComponentForTestReturnType<TProps> = Promise<{
-    result: Awaited<ReturnType<typeof renderToJsdomWithContextAsync>>,
+    result: Awaited<ReturnType<typeof renderWithContextAsync>>,
     setProps: (propsToUpdate: PropsSubset<TProps>) => void,
     mocks: PropsSubsetMock<TProps>,
 }>;
 
 /**
- * Renders the component to the jsdom
+ * Renders the component to the testEnvironment
  *
  * Useful if one of the features below is needed:
  * - on-change workflow, when a callback prop (e.g. "onValueChange") updates some other props (e.g. "value").
@@ -63,7 +63,7 @@ export async function setupComponentForTest<TProps extends PropsAll<TProps>>(
         }, []);
         return componentRenderer(allProps);
     }
-    const result = await renderToJsdomWithContextAsync(<TestComponent compRef={ propsContextRef } />, customWrapper);
+    const result = await renderWithContextAsync(<TestComponent compRef={ propsContextRef } />, customWrapper);
 
     return {
         result,
