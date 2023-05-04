@@ -107,23 +107,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "). Also, It provides next additional methods which help to render React components and hooks to ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "jsdom",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ":",
+                    "text": "). Also, It provides next additional methods which help to render React components and hooks:",
                     "marks": []
                   }
                 ]
@@ -139,7 +123,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "renderHookToJsdomWithContextAsync\nrenderToJsdomWithContextAsync\ngetDefaultUUiContextWrapper",
+            "text": "renderHookWithContextAsync\nrenderWithContextAsync\ngetDefaultUUiContextWrapper",
             "marks": []
           }
         ]
@@ -359,7 +343,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "delayWrapInAct\r",
+                    "text": "delayAct\r",
                     "marks": [
                       {
                         "object": "mark",
@@ -1224,7 +1208,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It's internally used for testing React components and hooks, please be aware of its limitations:",
+            "text": "It's internally used for testing React components and hooks in UUI, please be aware of its limitations:",
             "marks": []
           }
         ]
