@@ -1,5 +1,4 @@
 import React from 'react';
-import dayjs from 'dayjs';
 import { TableFiltersConfig, LazyDataSource, ArrayDataSource } from '@epam/uui-core';
 import { Country } from '@epam/uui-docs';
 import { Badge, DataPickerRow, PickerItem } from '@epam/uui';
@@ -7,7 +6,6 @@ import { defaultPredicates } from '@epam/uui';
 import { demoData } from '@epam/uui-docs';
 import { svc } from '../../../services';
 import { Person } from '@epam/uui-docs';
-import { rangeDatePickerPresets } from '@epam/uui-components/src';
 
 export const getFilters = (): TableFiltersConfig<Person>[] => {
     return [
