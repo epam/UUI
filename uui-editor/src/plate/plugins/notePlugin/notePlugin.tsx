@@ -6,7 +6,10 @@ import {
     getBlockAbove,
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
-    insertText
+    insertText,
+    getAboveNode,
+    setElements,
+    createNode,
 } from '@udecode/plate';
 
 import { isPluginActive } from '../../../helpers';
@@ -17,6 +20,7 @@ import { NoteBar } from '../../../implementation/NoteBar';
 import { ReactComponent as NoteIcon } from '../../../icons/info-block-quote.svg';
 
 import { NotePluginBlock } from './NotePluginBlock';
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
 
 const noteBlocks = ['note-error', 'note-warning', 'note-link', 'note-quote'];
 
@@ -36,17 +40,17 @@ export const notePlugin = () => {
         handlers: {
             // TODO: potential handler improvement by https://github.com/ianstormtaylor/slate/issues/97
             onKeyDown: (editor) => (event) => {
-                if (event.key === 'Enter' && event.shiftKey) {
-                    // do not prevent default behavior right here, it leads to bugs with insertData plugin
+                const isNoteEntry = !!getBlockAboveByType(editor, ['note-link', 'note-error', 'note-warning', 'note-quote']);
+                if (!isNoteEntry || event.key !== 'Enter') return;
 
-                    const noteEntry = getBlockAbove(editor, {
-                        match: { type: ['note-link', 'note-error', 'note-warning', 'note-quote'] },
-                    });
-                    if(noteEntry) {
-                        event.preventDefault();
-                        insertText(editor, '\n');
-                        return true;
-                    }
+                const [entries] = getAboveNode(editor);
+                const textExist = entries.children.some(item => !!item.text);
+                if (event.shiftKey) {
+                    event.preventDefault();
+                    insertText(editor, '\n');
+                    return true;
+                } else if (!textExist) {
+                    setElements(editor, createNode());
                 }
             },
         },

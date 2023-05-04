@@ -4,9 +4,12 @@ import { UploadFileToggler } from '@epam/uui-components';
 import {
     createPluginFactory,
     getBlockAbove,
+    getEndPoint,
+    getPluginType,
     insertEmptyElement,
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
+    selectEditor,
 } from '@udecode/plate';
 
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
@@ -17,6 +20,7 @@ import { isPluginActive, isTextSelected } from '../../../helpers';
 
 import { IframeBlock } from './IframeBlock';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
 
 export const IFRAME_PLUGIN_KEY = 'iframe';
 
@@ -39,15 +43,26 @@ export const iframePlugin = () => {
             },
         }),
         handlers: {
-            onKeyDown: (editor) => (event) => {
-                const block = getBlockAbove(editor);
-                const type = block?.length && block[0].type;
+            // move selection to the end of iframe for further new line render on Enter click
+            onLoad: (editor) => (event) => {
+                if (!getBlockAboveByType(editor, ['iframe'])) return;
 
-                if (event.keyCode == 13 && type === 'iframe') {
+                const videoEntry = getBlockAbove(editor, {
+                    match: { type: getPluginType(editor, 'iframe') },
+                });
+                if (!videoEntry) return;
+
+                const endPoint = getEndPoint(editor, videoEntry[1])
+                selectEditor(editor, { at: endPoint.path, focus: true });
+            },
+            onKeyDown: (editor) => (event) => {
+                if (!getBlockAboveByType(editor, ['iframe'])) return;
+
+                if (event.keyCode == 13) {
                     return insertEmptyElement(editor, 'paragraph');
                 }
 
-                if ((event.key === 'Backspace' || event.key === 'Delete') && type === 'iframe') {
+                if ((event.key === 'Backspace' || event.key === 'Delete')) {
                     return insertEmptyElement(editor, 'paragraph');
                 }
             },

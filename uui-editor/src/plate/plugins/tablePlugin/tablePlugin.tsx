@@ -296,14 +296,17 @@ const createInitialTable = (editor: PlateEditor) => {
                 children: [editor.blockFactory()],
             }],
         },
-        createNode(),
+
     ];
 
-    return {
-        type: getPluginType(editor, ELEMENT_TABLE),
-        children: rows,
-        data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
-    };
+    return [
+        {
+            type: getPluginType(editor, ELEMENT_TABLE),
+            children: rows,
+            data: { cellSizes: [DEFAULT_COL_WIDTH, DEFAULT_COL_WIDTH] },
+        },
+        createNode(),
+    ];
 }
 
 const selectFirstCell = (editor: PlateEditor) => {
