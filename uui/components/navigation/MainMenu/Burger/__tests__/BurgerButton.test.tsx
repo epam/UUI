@@ -1,6 +1,6 @@
 import React from 'react';
 import { BurgerButton } from '../BurgerButton';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import { ReactComponent as CalendarIcon } from '../../../../../icons/calendar-18.svg';
 
 describe('BurgerButton', () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import {
     DropdownMenuBody, DropdownMenuButton, DropdownSubMenu, DropdownMenuSplitter, DropdownMenuHeader,
 } from '../';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import { systemIcons } from '../../../icons/icons';
 
 const { accept: icon } = systemIcons['30'];

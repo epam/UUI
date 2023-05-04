@@ -1,6 +1,6 @@
 import React from 'react';
 import { DropMarker } from '../DropMarker';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('DropMarker', () => {
     it('should be rendered correctly', () => {

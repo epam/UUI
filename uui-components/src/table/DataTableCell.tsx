@@ -31,6 +31,8 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
 
     if (props.rowProps.isLoading) {
         content = props.renderPlaceholder(props);
+    } else if (props.rowProps.isUnknown) {
+        content = props.renderUnknown(props);
     } else if (isEditable) {
         // Copy all attributes explicitly, to avoid bypassing unnecessary DataTableCell props
         // We don't use any helpers and/or deconstruction syntax, as this is performance-sensitive part of code

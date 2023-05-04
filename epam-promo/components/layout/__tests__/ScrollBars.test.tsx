@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollBars } from '../ScrollBars';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import { Button } from '../../buttons';
 
 describe('ScrollBars', () => {

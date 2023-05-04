@@ -1,7 +1,24 @@
+/*
+ * Re-exports everything from @testing-library/react and extends it with:
+ * 1) additional queries
+ * 2) re-exports userEvent
+ */
 export * from './src/extensions/testingLibraryReactExt';
-export * from './src/mockUtils/adaptivePanelMockUtils';
-export * from './src/mockUtils/reactPortalsMockUtils';
-export * from './src/mockUtils/svgrMock';
-export * from './src/utils/renderingWithContextUtils';
-export * from './src/utils/setupComponentUtils';
-export * from './src/utils/timerUtils';
+// Utility function to mock adaptive panel items width
+export { mockAdaptivePanelLayout } from './src/mocks/adaptivePanelMockUtils';
+// mocks
+export { mockReactPortalsForSnapshots } from './src/mocks/reactPortalsMockUtils';
+export { SvgMock } from './src/mocks/svgrMock';
+// renderers
+export {
+    renderSnapshotWithContextAsync,
+    renderHookWithContextAsync,
+    renderWithContextAsync,
+    getDefaultUUiContextWrapper,
+    renderer, // re-export of react-test-renderer
+} from './src/rendering/renderingWithContextUtils';
+export type { CustomWrapperType } from './src/rendering/renderingWithContextUtils';
+// setup
+export { setupComponentForTest } from './src/rendering/setupComponentUtils';
+// delay
+export { delayAct, delay } from './src/rendering/timerUtils';

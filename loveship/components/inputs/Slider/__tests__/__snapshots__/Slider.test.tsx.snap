@@ -2,7 +2,7 @@
 
 exports[`Slider should be rendered correctly 1`] = `
 <div
-  className="uui-slider-container root root color-sky"
+  className="uui-slider-container root root"
   onClick={[Function]}
   onMouseDown={[Function]}
 >
@@ -61,7 +61,7 @@ exports[`Slider should be rendered correctly 1`] = `
     aria-valuemax={100}
     aria-valuemin={1}
     aria-valuenow={50}
-    className="uui-slider-handle root color-sky"
+    className="uui-slider-handle root"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -80,7 +80,7 @@ exports[`Slider should be rendered correctly 1`] = `
 
 exports[`Slider should be rendered correctly with extra props 1`] = `
 <div
-  className="uui-slider-container root root color-sun"
+  className="uui-slider-container root root"
   onClick={[Function]}
   onMouseDown={[Function]}
 >
@@ -139,7 +139,7 @@ exports[`Slider should be rendered correctly with extra props 1`] = `
     aria-valuemax={100}
     aria-valuemin={1}
     aria-valuenow={50}
-    className="uui-slider-handle root color-sun"
+    className="uui-slider-handle root"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}

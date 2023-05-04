@@ -1,7 +1,7 @@
 import { IMap } from '../../../../types';
 import { BaseTree } from './BaseTree';
 import {
-    ItemsComparator, ITree, ROOT_ID, TreeNodeInfo,
+    ItemsComparator, ITree, NOT_FOUND_RECORD, ROOT_ID, TreeNodeInfo,
 } from './ITree';
 import { CascadeSelection, CascadeSelectionTypes } from '../../../../types';
 import { CompositeKeysMap } from './CompositeKeysMap';
@@ -31,11 +31,9 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             }
 
             if (!existingItem || existingItem !== item) {
-                const id = this.getId(item);
                 newById.set(id, item);
-
                 const existingItemParentId = existingItem ? this.getParentId(existingItem) : undefined;
-                if (!existingItem || parentId != existingItemParentId) {
+                if (!existingItem || parentId !== existingItemParentId) {
                     const children = newByParentId.get(parentId) ?? [];
 
                     newByParentId.set(parentId, this.patchChildren(children, { existingItem, newItem: item }, comparator, newById));
@@ -77,17 +75,17 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             currentSelection.forEach((id) => selectedIdsMap.set(id, true));
         }
 
-        options = { isSelectable: BaseTree.truePredicate, cascade: true, ...options };
-        if (!options.cascade) {
-            selectedIdsMap = this.simpleSelection(selectedIdsMap, selectedId, isSelected, options.isSelectable);
+        const optionsWithDefaults = { isSelectable: BaseTree.truePredicate, cascade: true, ...options };
+        if (!optionsWithDefaults.cascade) {
+            selectedIdsMap = this.simpleSelection(selectedIdsMap, selectedId, isSelected, optionsWithDefaults.isSelectable);
         }
 
-        if (options.cascade === true || options.cascade === CascadeSelectionTypes.EXPLICIT) {
-            selectedIdsMap = this.explicitCascadeSelection(selectedIdsMap, selectedId, isSelected, options.isSelectable);
+        if (optionsWithDefaults.cascade === true || optionsWithDefaults.cascade === CascadeSelectionTypes.EXPLICIT) {
+            selectedIdsMap = this.explicitCascadeSelection(selectedIdsMap, selectedId, isSelected, optionsWithDefaults.isSelectable);
         }
 
-        if (options.cascade === CascadeSelectionTypes.IMPLICIT) {
-            selectedIdsMap = this.implicitCascadeSelection(selectedIdsMap, selectedId, isSelected, options.isSelectable);
+        if (optionsWithDefaults.cascade === CascadeSelectionTypes.IMPLICIT) {
+            selectedIdsMap = this.implicitCascadeSelection(selectedIdsMap, selectedId, isSelected, optionsWithDefaults.isSelectable);
         }
 
         const result = [];
@@ -146,9 +144,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
             }
             // check all children recursively
             this.forEachChildren((id) => id !== ROOT_ID && selectedIdsMap.set(id, true), isSelectable, selectedId);
-            selectedIdsMap = this.checkParentsWithFullCheck(selectedIdsMap, selectedId, isSelectable);
-
-            return selectedIdsMap;
+            return this.checkParentsWithFullCheck(selectedIdsMap, selectedId, isSelectable);
         }
 
         if (selectedId !== ROOT_ID) {
@@ -183,8 +179,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
                 childrenIds.forEach((id) => selectedIdsMap.set(id, true));
             }
             // check parents if all children are checked
-            selectedIdsMap = this.checkParentsWithFullCheck(selectedIdsMap, selectedId, isSelectable, true);
-            return selectedIdsMap;
+            return this.checkParentsWithFullCheck(selectedIdsMap, selectedId, isSelectable, true);
         }
 
         if (selectedId !== ROOT_ID) {
@@ -192,7 +187,12 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         }
 
         const selectNeighboursOnly = (itemId: TId) => {
-            const parentId = this.getParentId(this.getById(itemId));
+            const item = this.getById(itemId);
+            if (item === NOT_FOUND_RECORD) {
+                return;
+            }
+
+            const parentId = this.getParentId(item);
             const parents = this.getParentIdsRecursive(itemId);
             // if some parent is checked, it is required to check all children explicitly,
             // except unchecked one.
@@ -234,7 +234,7 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         return selectedIdsMap;
     }
 
-    private deleteFromChildren<TId>(id: TId, children: TId[]) {
+    private deleteFromChildren(id: TId, children: TId[]) {
         const foundIndex = children.findIndex((childId) => childId === id);
         if (foundIndex !== -1) {
             children.splice(foundIndex, 1);
@@ -262,7 +262,6 @@ export abstract class EditableTree<TItem, TId> extends BaseTree<TItem, TId> {
         }
 
         children.push(id);
-
         return children;
     }
 

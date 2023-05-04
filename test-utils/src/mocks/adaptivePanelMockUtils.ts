@@ -1,11 +1,12 @@
-import { mockGetBoundingClientRect } from '../internalUtils/jsdomMockUtils';
+import { mockGetBoundingClientRect } from '../internal/jsdomMockUtils';
 
 const isAdaptivePanelRootDefault = (elem: HTMLElement) => {
     return elem.getAttribute('data-testid') === 'adaptive-panel';
 };
 
 /**
- * By default, it relies on presence of data-testid="adaptive-panel" on the root adaptive panel element. Please pass it as following:
+ * By default, it relies on presence of data-testid="adaptive-panel" on the root adaptive panel element.
+ * Please pass it as following:
  * ```
  * <AdaptivePanel { ...props } rawProps={ { 'data-testid': 'adaptive-panel'} } />
  * ```

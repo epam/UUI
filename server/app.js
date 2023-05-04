@@ -32,7 +32,7 @@ app.use((req, res, next) => {
         + "font-src 'self' https://*.epam.com https://fonts.gstatic.com/; "
         + "connect-src 'self' https://*.epam.com https://api.amplitude.com/ https://www.google-analytics.com/ wss://menu.epam.com/'; "
         + 'frame-src *; '
-        + "img-src 'self' data: https://*.epam.com https://avatars.dicebear.com/ https://www.google-analytics.com/; "
+        + 'img-src * data: ; '
         + `script-src 'self' ${isDevServer() ? "'unsafe-eval' 'unsafe-inline'" : ''} https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/;`,
     );
 

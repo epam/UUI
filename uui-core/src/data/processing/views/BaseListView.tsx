@@ -12,7 +12,7 @@ import {
     CascadeSelectionTypes,
     VirtualListRange,
 } from '../../../types';
-import { ITree } from './tree/ITree';
+import { ITree, NOT_FOUND_RECORD } from './tree/ITree';
 
 interface NodeStats {
     isSomeCheckable: boolean;
@@ -69,7 +69,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             this.checkedByKey[this.idToKey(id)] = true;
             if (this.tree && this.props.getParentId) {
                 const item = this.tree.getById(id);
-                if (item) {
+                if (item !== NOT_FOUND_RECORD) {
                     const parentId = this.props.getParentId(item);
                     if (!this.someChildCheckedByKey[this.idToKey(parentId)]) {
                         const parents = this.tree.getParentIdsRecursive(id).reverse();
@@ -112,8 +112,21 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         if (visibleCount !== undefined) {
             checked = checked.slice(topIndex, topIndex + visibleCount);
         }
+        const selectedRows: Array<DataRowProps<TItem, TId>> = [];
+        const missingIds: TId[] = [];
+        checked.forEach((id, n) => {
+            const row = this.getById(id, topIndex + n);
+            if (row.isUnknown) {
+                missingIds.push(id);
+            }
+            selectedRows.push(row);
+        });
+        if (missingIds.length) {
+            console.error(`DataSource can't find selected/checked items with following IDs: ${missingIds.join(', ')}.
+                Read more here: https://github.com/epam/UUI/issues/89`);
+        }
 
-        return checked.map((id, n) => this.getById(id, topIndex + n));
+        return selectedRows;
     };
 
     protected handleOnCheck = (rowProps: DataRowProps<TItem, TId>) => {
@@ -128,7 +141,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     };
 
     protected isSelectAllEnabled() {
-        return this.props.selectAll == undefined ? true : this.props.selectAll;
+        return this.props.selectAll === undefined ? true : this.props.selectAll;
     }
 
     protected handleOnSelect = (rowProps: DataRowProps<TItem, TId>) => {
@@ -240,16 +253,37 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected getLoadingRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
-        const rowOptions = this.props.rowOptions;
+        return {
+            ...this.getEmptyRowProps(id, index, path),
+            isLoading: true,
+        };
+    }
 
+    protected getUnknownRow(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+        const emptyRowProps = this.getEmptyRowProps(id, index, path);
+        const rowOptions = this.props.rowOptions;
+        const checkbox = (rowOptions?.checkbox?.isVisible || emptyRowProps.isChecked) ? { isVisible: true, isDisabled: false } : undefined;
+        return {
+            ...emptyRowProps,
+            checkbox,
+            isUnknown: true,
+        };
+    }
+
+    private getEmptyRowProps(id: any, index: number = 0, path: DataRowPathItem<TId, TItem>[] = null): DataRowProps<TItem, TId> {
+        const rowOptions = this.props.rowOptions;
+        const checked = this.value?.checked ?? [];
+        const isChecked = checked.includes(id);
         return {
             id,
             rowKey: this.idToKey(id),
+            value: undefined,
             index,
-            isLoading: true,
             depth: path ? path.length : 0,
             path: path ?? [],
             checkbox: rowOptions?.checkbox?.isVisible && { isVisible: true, isDisabled: true },
+            onCheck: this.handleOnCheck,
+            isChecked,
         };
     }
 
@@ -275,6 +309,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
                 const item = this.tree.getById(id);
+                if (item === NOT_FOUND_RECORD) {
+                    continue;
+                }
+
                 const row = this.getRowProps(item, rows.length);
 
                 if (appendRows && (!this.isPartialLoad() || (this.isPartialLoad() && rows.length < lastIndex))) {
@@ -284,7 +322,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                 }
 
                 stats = this.getRowStats(row, stats);
-                row.isLastChild = n == ids.length - 1 && nodeInfo.count === ids.length;
+                row.isLastChild = n === ids.length - 1 && nodeInfo.count === ids.length;
                 row.indent = isFlattenSearch ? 0 : row.path.length + 1;
                 const estimatedChildrenCount = this.getEstimatedChildrenCount(id);
                 if (!isFlattenSearch && estimatedChildrenCount !== undefined) {
@@ -308,10 +346,10 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
                             // children are not loaded
                             const parentsWithRow = [...row.path, this.tree.getPathItem(item)];
                             for (let m = 0; m < estimatedChildrenCount && rows.length < lastIndex; m++) {
-                                const row = this.getLoadingRow('_loading_' + rows.length, rows.length, parentsWithRow);
-                                row.indent = parentsWithRow.length + 1;
-                                row.isLastChild = m == estimatedChildrenCount - 1;
-                                rows.push(row);
+                                const loadingRow = this.getLoadingRow('_loading_' + rows.length, rows.length, parentsWithRow);
+                                loadingRow.indent = parentsWithRow.length + 1;
+                                loadingRow.isLastChild = m === estimatedChildrenCount - 1;
+                                rows.push(loadingRow);
                                 currentLevelRows++;
                             }
                         }
@@ -320,7 +358,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
             }
 
             const pathToParent = this.tree.getPathById(parentId);
-            const path = parentId ? [...pathToParent, this.tree.getPathItem(this.tree.getById(parentId))] : pathToParent;
+            const parent = this.tree.getById(parentId);
+            const parentPathItem = parent !== NOT_FOUND_RECORD ? [this.tree.getPathItem(parent)] : [];
+            const path = parentId ? [...pathToParent, ...parentPathItem] : pathToParent;
             if (appendRows) {
                 let missingCount: number = this.getMissingRecordsCount(parentId, rows.length, currentLevelRows);
                 if (missingCount > 0) {
@@ -339,7 +379,9 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
             const isListFlat = path.length === 0 && !layerRows.some((r) => r.isFoldable);
             if (isListFlat || isFlattenSearch) {
-                layerRows.forEach((r) => (r.indent = 0));
+                layerRows.forEach((r) => {
+                    r.indent = 0;
+                });
             }
 
             return stats;
@@ -373,7 +415,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
         if (!id) return undefined;
 
         const item = this.tree.getById(id);
-        if (!item) return undefined;
+        if (item === NOT_FOUND_RECORD) return undefined;
 
         const childCount = this.getChildCount(item);
         if (childCount === undefined) return undefined;

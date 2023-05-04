@@ -1,7 +1,7 @@
 import { useForm } from '../useForm';
-import type { Metadata } from '../../../../index';
+import type { Metadata, ValidationMode } from '../../../../index';
 import type { FormSaveResponse, IFormApi, UseFormProps } from '../index';
-import { testSvc, renderHookToJsdomWithContextAsync, act } from '@epam/uui-test-utils';
+import { renderHookWithContextAsync, act, getDefaultUUiContextWrapper } from '@epam/uui-test-utils';
 
 async function handleSave(save: () => void) {
     try {
@@ -24,12 +24,11 @@ describe('useForm', () => {
     beforeEach(jest.clearAllMocks);
     afterAll(() => {
         jest.resetAllMocks();
-        Object.assign(testSvc, {});
     });
 
     describe('Basic updates handing', () => {
         it('Should update form value with onValueChange', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<string>, IFormApi<string>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<string>, IFormApi<string>>(() =>
                 useForm({
                     onSave: () => Promise.resolve(),
                     onError: () => Promise.resolve(),
@@ -43,7 +42,7 @@ describe('useForm', () => {
         });
 
         it('Should update form value with setValue (plain value)', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<string>, IFormApi<string>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<string>, IFormApi<string>>(() =>
                 useForm({
                     onSave: () => Promise.resolve(),
                     onError: () => Promise.resolve(),
@@ -57,7 +56,7 @@ describe('useForm', () => {
         });
 
         it('Should update form value with setValue (callback)', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<number>, IFormApi<number>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<number>, IFormApi<number>>(() =>
                 useForm({
                     onSave: () => Promise.resolve(),
                     onError: () => Promise.resolve(),
@@ -71,7 +70,7 @@ describe('useForm', () => {
         });
 
         it('Should update form value with setValue (callback, 2 immediate updates)', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<number>, IFormApi<number>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<number>, IFormApi<number>>(() =>
                 useForm({
                     onSave: () => Promise.resolve(),
                     onError: () => Promise.resolve(),
@@ -88,7 +87,7 @@ describe('useForm', () => {
         });
 
         it('should update form value by external props.value change', async () => {
-            const { result, rerender } = await renderHookToJsdomWithContextAsync<UseFormProps<number>, IFormApi<number>>((props) => useForm(props), {
+            const { result, rerender } = await renderHookWithContextAsync<UseFormProps<number>, IFormApi<number>>((props) => useForm(props), {
                 onSave: () => Promise.resolve(),
                 value: 1,
             });
@@ -106,7 +105,7 @@ describe('useForm', () => {
 
     describe('Client validation', () => {
         it('Should return isChanged as true whenever the lens is changed', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
                 useForm({
                     onSave: () => Promise.resolve(),
                     onError: () => Promise.resolve(),
@@ -121,7 +120,7 @@ describe('useForm', () => {
 
         it('Should correctly set isInvalid on form submit depending on the value', async () => {
             const onSaveSpy = jest.fn().mockResolvedValue(undefined);
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
                 useForm<IFoo>({
                     value: testData,
                     onSave: onSaveSpy,
@@ -142,7 +141,7 @@ describe('useForm', () => {
         });
 
         it('Should start validation on save and keep validation state valid values passed', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
                 useForm<IFoo>({
                     value: testData,
                     onSave: Promise.resolve,
@@ -177,7 +176,7 @@ describe('useForm', () => {
                 getMetadata: () => testMetadata,
             };
 
-            const { result, rerender } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+            const { result, rerender } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
 
             rerender(props);
 
@@ -196,7 +195,7 @@ describe('useForm', () => {
 
         it('Should return isInvalid as false for 1 or more invalid fields', async () => {
             const enhancedMetadata = { ...testMetadata, props: { ...testMetadata.props, tummy: testMetadata.props.dummy } };
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
                 useForm<IFoo>({
                     value: testData,
                     onSave: Promise.resolve,
@@ -216,7 +215,7 @@ describe('useForm', () => {
         });
 
         it('Should validate all fields when call save action in validateOn: "change" mode', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
                 useForm<IFoo>({
                     value: { dummy: 'hello' },
                     onSave: (form) => Promise.resolve({ form: form }),
@@ -253,13 +252,13 @@ describe('useForm', () => {
         it('Should allow to replace getMetadata prop', async () => {
             const props = {
                 value: { dummy: 'test' },
-                onSave: (form) => Promise.resolve({ form: form }),
+                onSave: (form) => Promise.resolve({ form }),
                 onError: jest.fn(),
                 getMetadata: () => ({}),
-                validationOn: 'change',
+                validationOn: 'change' as ValidationMode,
             };
 
-            const { result, rerender } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useForm<IFoo>, props);
+            const { result, rerender } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useForm<IFoo>, props);
 
             act(() => result.current.lens.prop('dummy').set(''));
 
@@ -274,7 +273,7 @@ describe('useForm', () => {
 
             act(() => result.current.lens.prop('dummy').set(' '));
 
-            // We haven't change the form value, however with the new getMetadata is should be invalid
+            // We haven't changed the form value, however with the new getMetadata is should be invalid
             expect(result.current.isInvalid).toEqual(true);
 
             expect(result.current.validationProps).toEqual({
@@ -288,7 +287,7 @@ describe('useForm', () => {
 
     describe('isChanged, redo/undo/revert handing', () => {
         it('Should set isChange=false after form saved', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
                 useForm<IFoo>({
                     value: testData,
                     onSave: (form) => Promise.resolve({ form: form }),
@@ -307,20 +306,21 @@ describe('useForm', () => {
         it('Should show the same value, if you: save => leave => come back', async () => {
             const saveMock = jest.fn().mockResolvedValue({ form: {} });
             const beforeLeaveMock = jest.fn().mockResolvedValue(true);
-
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const useFormHook = () =>
                 useForm({
                     value: testData,
                     onSave: saveMock,
                     beforeLeave: beforeLeaveMock,
                     onError: jest.fn(),
                     getMetadata: () => testMetadata,
-                }));
+                });
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
 
-            await act(() => testSvc.uuiLocks.acquire(() => Promise.resolve()));
+            await act(() => testUuiCtx.uuiLocks.acquire(() => Promise.resolve()));
 
             expect(result.current.isInvalid).toBe(false);
             expect(beforeLeaveMock).toHaveBeenCalled();
@@ -328,7 +328,7 @@ describe('useForm', () => {
         });
 
         it('Should undo to previous value, redo to the next value', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
                 useForm<IFoo>({
                     value: testData,
                     onSave: Promise.resolve,
@@ -348,7 +348,7 @@ describe('useForm', () => {
         });
 
         it('Should revert and load last passed value', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
                 useForm<IFoo>({
                     value: testData,
                     onSave: Promise.resolve,
@@ -373,7 +373,7 @@ describe('useForm', () => {
                 getMetadata: () => testMetadata,
             };
 
-            const { result, rerender } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm<IFoo>(props));
+            const { result, rerender } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm<IFoo>(props));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
@@ -399,7 +399,7 @@ describe('useForm', () => {
                 getMetadata: () => testMetadata,
             };
 
-            const { result, rerender } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm<IFoo>(props));
+            const { result, rerender } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm<IFoo>(props));
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             await act(async () => result.current.save());
@@ -427,7 +427,7 @@ describe('useForm', () => {
         });
 
         it('Should allow to replaceValue', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<string>, IFormApi<string>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<string>, IFormApi<string>>(() =>
                 useForm<string>({
                     value: 'a',
                     onSave: (form) => Promise.resolve({ form: form }),
@@ -452,54 +452,59 @@ describe('useForm', () => {
         });
 
         it('Should have a lock on the first form change, release lock on save', async () => {
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
-                useForm({
-                    value: testData,
-                    onSave: (person) => Promise.resolve({ form: person }),
-                    beforeLeave: () => Promise.resolve(false),
-                    getMetadata: () => testMetadata,
-                }));
+            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const useFormHook = () => useForm({
+                value: testData,
+                onSave: (person) => Promise.resolve({ form: person }),
+                beforeLeave: () => Promise.resolve(false),
+                getMetadata: () => testMetadata,
+            });
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
-            expect(testSvc.uuiLocks.getCurrentLock()).not.toBe(null);
+            expect(testUuiCtx.uuiLocks.getCurrentLock()).not.toBe(null);
 
             await act(() => handleSave(result.current.save));
-            expect(testSvc.uuiLocks.getCurrentLock()).toBe(null);
+            expect(testUuiCtx.uuiLocks.getCurrentLock()).toBe(null);
         });
 
         it('Should reset lock after component unmount', async () => {
             const beforeLeaveMock = jest.fn().mockResolvedValue(false);
-            const { result, unmount } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const useFormHook = () =>
                 useForm({
                     value: testData,
                     onSave: () => Promise.resolve(),
                     beforeLeave: beforeLeaveMock,
                     getMetadata: () => testMetadata,
-                }));
+                });
+            const { result, unmount } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
 
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
 
             unmount();
-            const currentLock = testSvc.uuiLocks.getCurrentLock();
+            const currentLock = testUuiCtx.uuiLocks.getCurrentLock();
             expect(currentLock).toBeNull();
         });
 
         it('Should store unsaved data to localstorage', async () => {
             const settingsKey = 'form-test';
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const useFormHook = () =>
                 useForm<IFoo>({
                     value: testData,
                     settingsKey,
                     onSave: Promise.resolve,
                     beforeLeave: () => Promise.resolve(false),
                     getMetadata: () => testMetadata,
-                }));
+                });
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
 
             act(() => result.current.lens.prop('dummy').set('hi'));
-            expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
-            act(() => testSvc.uuiUserSettings.set<IFoo>(settingsKey, null));
+            expect(testUuiCtx.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
+            act(() => testUuiCtx.uuiUserSettings.set<IFoo>(settingsKey, null));
         });
 
         it('Should clear unsaved data in localstorage after save', async () => {
@@ -507,7 +512,8 @@ describe('useForm', () => {
             const onSuccessSpy = jest.fn();
             const onErrorSpy = jest.fn();
 
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+            const useFormHook = () =>
                 useForm({
                     value: testData,
                     settingsKey,
@@ -516,13 +522,14 @@ describe('useForm', () => {
                     onSuccess: onSuccessSpy,
                     onError: onErrorSpy,
                     getMetadata: () => testMetadata,
-                }));
+                });
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, wrapper);
 
             act(() => result.current.lens.prop('dummy').set('hi'));
-            expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
+            expect(testUuiCtx.uuiUserSettings.get<IFoo>(settingsKey).dummy).toBe('hi');
 
             await act(() => handleSave(result.current.save));
-            expect(testSvc.uuiUserSettings.get<IFoo>(settingsKey)).toBe(null);
+            expect(testUuiCtx.uuiUserSettings.get<IFoo>(settingsKey)).toBe(null);
             expect(onSuccessSpy).toHaveBeenCalled();
         });
 
@@ -530,7 +537,7 @@ describe('useForm', () => {
             const onSuccessSpy = jest.fn();
             const onErrorSpy = jest.fn();
 
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
                 useForm({
                     value: { ...testData, dummy: 'hi' },
                     onSave: () => Promise.reject(),
@@ -553,13 +560,13 @@ describe('useForm', () => {
                 getMetadata: () => testMetadata,
             };
 
-            const { result: firstRenderResult, unmount } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+            const { result: firstRenderResult, unmount } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
 
             act(() => firstRenderResult.current.lens.prop('dummy').set('hi'));
 
             unmount();
 
-            const { result: secondRenderResult } = await renderHookToJsdomWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
+            const { result: secondRenderResult } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
                 useForm({
                     ...props,
                     loadUnsavedChanges: jest.fn().mockResolvedValueOnce(true),
@@ -601,7 +608,7 @@ describe('useForm', () => {
                 },
             };
 
-            const { result: firstResult, unmount } = await renderHookToJsdomWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
+            const { result: firstResult, unmount } = await renderHookWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
                 useForm({
                     value: testDataLocal,
                     onSave: (data) => Promise.resolve({ form: data }),
@@ -615,7 +622,7 @@ describe('useForm', () => {
 
             unmount();
 
-            const { result: secondResult } = await renderHookToJsdomWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
+            const { result: secondResult } = await renderHookWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
                 useForm({
                     value: testDataLocal,
                     onSave: () => Promise.resolve(serverResponse),
@@ -655,7 +662,7 @@ describe('useForm', () => {
                 },
             };
 
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
                 useForm({
                     value: { ...testDataLocal, deep: { inner: 'error' } },
                     onSave: ({ deep: { inner } }) => (inner === 'error' ? Promise.resolve(serverResponse) : Promise.resolve()),
@@ -709,7 +716,7 @@ describe('useForm', () => {
                 },
             };
 
-            const { result } = await renderHookToJsdomWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
+            const { result } = await renderHookWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
                 useForm({
                     value: { ...testDataLocal, deep: { inner: 'error1' }, deep2: { inner2: 'error' } },
                     onSave: () => Promise.resolve(serverResponse),

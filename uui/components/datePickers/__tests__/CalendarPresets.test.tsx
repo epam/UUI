@@ -1,6 +1,6 @@
 import React from 'react';
 import { CalendarPresets } from '../CalendarPresets';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 import { rangeDatePickerPresets } from '@epam/uui-components';
 
 describe('CalendarPresets', () => {

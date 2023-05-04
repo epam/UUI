@@ -1,6 +1,5 @@
 export * from './AvatarRow';
 export * from './Badge';
-export * from './EmbeddedWidget';
 export * from './Tag';
 export * from './ProgressBar';
 export * from './IndicatorBar';

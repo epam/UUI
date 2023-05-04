@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { IDataSourceView, DataSourceState } from '../../types';
 import { BaseDataSource } from './BaseDataSource';
 import { ArrayListView, ArrayListViewProps } from './views';
-import { ITree, Tree } from './views/tree';
+import { ITree, NOT_FOUND_RECORD, Tree } from './views/tree';
 
 export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {}
 
@@ -32,8 +32,12 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         }
     }
 
-    public getById = (id: TId) => {
-        return this.tree.getById(id);
+    public getById = (id: TId): TItem | void => {
+        const item = this.tree.getById(id);
+        if (item === NOT_FOUND_RECORD) {
+            return;
+        }
+        return item;
     };
 
     protected defaultGetParentId = (item: TItem) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spinner } from '../Spinner';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('Spinner', () => {
     it('should be rendered correctly', () => {

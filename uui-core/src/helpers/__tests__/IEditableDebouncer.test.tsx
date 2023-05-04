@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderToJsdomWithContextAsync, act } from '@epam/uui-test-utils';
+import { renderWithContextAsync, act } from '@epam/uui-test-utils';
 import { IEditable } from '../../types';
 import { IEditableDebouncer } from '../IEditableDebouncer';
 
@@ -9,7 +9,7 @@ describe('IEditableDebouncer', () => {
         const newValue = 2;
         const outerOnValueChange = jest.fn();
         let lastRenderProps: IEditable<number> = null;
-        await renderToJsdomWithContextAsync(
+        await renderWithContextAsync(
             <IEditableDebouncer
                 value={ initialValue }
                 onValueChange={ outerOnValueChange }
@@ -31,7 +31,7 @@ describe('IEditableDebouncer', () => {
         const newValue = 2;
         const outerOnValueChange = jest.fn();
         let lastRenderProps: IEditable<number> = null;
-        await renderToJsdomWithContextAsync(
+        await renderWithContextAsync(
             <IEditableDebouncer
                 value={ initialValue }
                 onValueChange={ outerOnValueChange }
@@ -66,7 +66,7 @@ describe('IEditableDebouncer', () => {
             },
             debounceDelay: 5,
         };
-        const result = await renderToJsdomWithContextAsync(<IEditableDebouncer { ...props } />);
+        const result = await renderWithContextAsync(<IEditableDebouncer { ...props } />);
         act(() => lastRenderProps.onValueChange(3));
 
         result.rerender(<IEditableDebouncer { ...props } value={ 2 } />);

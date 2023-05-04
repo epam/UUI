@@ -7,7 +7,7 @@ import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data';
 import * as CSS from 'csstype';
-import { TooltipCoreProps } from './components';
+import { RangeDatePickerPresets, TooltipCoreProps } from './components';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
@@ -165,6 +165,8 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     /** Overrides default loading placeholder ('skeleton') rendering  */
     renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
 
+    renderUnknown?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+
     /**
      * If passed, the cell is rendered as editable - receives focus, show validation errors.
      * All necessary props for the editor are passed as argument:
@@ -224,7 +226,7 @@ type FilterConfigBase<TFilter> = {
     predicates?: IFilterPredicate[];
 };
 
-type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: 'singlePicker' | 'multiPicker';
     dataSource: IDataSource<any, any, any>;
     getName?: (item: any) => string;
@@ -233,7 +235,7 @@ type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
-    type: 'datePicker' | 'rangeDatePicker';
+    type: 'datePicker';
     format?: string;
 };
 
@@ -241,7 +243,14 @@ type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     type: 'numeric';
 };
 
-export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter>;
+type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    type: 'rangeDatePicker';
+    format?: string;
+    presets?: RangeDatePickerPresets;
+};
+
+export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> |
+NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = any, TViewState = any> {
     name: string;

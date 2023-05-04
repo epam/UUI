@@ -1,6 +1,6 @@
 import React from 'react';
 import { RadioGroup } from '../RadioGroup';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('RadioGroup', () => {
     it('should be rendered correctly', () => {
