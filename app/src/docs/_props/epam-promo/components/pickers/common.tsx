@@ -98,6 +98,13 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
         ],
     })
     .prop('entityPluralName', { examples: ['Cities'] })
+    .prop('cascadeSelection', {
+        examples: [
+            true, 'explicit', 'implicit',
+        ],
+    });
+
+export const pickerInputRenderRowDoc = new DocBuilder<PickerBaseOptions<any, any>>({ name: 'PickerBaseOptions' })
     .prop('renderRow', {
         examples: (ctx) => [
             {
@@ -132,10 +139,5 @@ export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>(
                     );
                 },
             },
-        ],
-    })
-    .prop('cascadeSelection', {
-        examples: [
-            true, 'explicit', 'implicit',
         ],
     });
