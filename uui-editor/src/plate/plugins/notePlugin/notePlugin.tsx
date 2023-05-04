@@ -8,7 +8,8 @@ import {
     ToolbarButton as PlateToolbarButton,
     insertText,
     getAboveNode,
-    insertEmptyElement
+    setElements,
+    createNode,
 } from '@udecode/plate';
 
 import { isPluginActive } from '../../../helpers';
@@ -49,7 +50,7 @@ export const notePlugin = () => {
                     insertText(editor, '\n');
                     return true;
                 } else if (!textExist) {
-                    insertEmptyElement(editor, 'paragraph');
+                    setElements(editor, createNode());
                 }
             },
         },
