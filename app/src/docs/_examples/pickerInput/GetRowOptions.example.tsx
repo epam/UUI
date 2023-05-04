@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Location } from '@epam/uui-docs';
+import { Location, Product } from '@epam/uui-docs';
 import { useAsyncDataSource, useUuiContext } from '@epam/uui-core';
 import { FlexCell, FlexRow, PickerInput } from '@epam/promo';
 import { TApi } from '../../../data';
@@ -7,6 +7,12 @@ import { TApi } from '../../../data';
 export default function GetRowOptionsExample() {
     const svc = useUuiContext<TApi>();
     const [location, setLocation] = useState<string>();
+    const [productsIDs, setProductsIDs] = useState<number[]>([3]);
+
+    const productsDataSource = useAsyncDataSource<Product, Product['ProductID'], unknown>({
+        api: () => svc.api.demo.products({}).then((r: any) => r.items),
+        getId: (item) => item.ProductID,
+    }, []);
 
     const locationsDataSource = useAsyncDataSource<Location, string, unknown>(
         {
@@ -30,6 +36,22 @@ export default function GetRowOptionsExample() {
                     getName={ (item) => item.name }
                     entityName="Location"
                     selectionMode="single"
+                    valueType="id"
+                />
+                <PickerInput<Product, number>
+                    dataSource={ productsDataSource }
+                    value={ productsIDs }
+                    onValueChange={ setProductsIDs }
+                    getRowOptions={ (item) => ({
+                        isDisabled: item.MakeFlag === true,
+                        checkbox: {
+                            isDisabled: item.MakeFlag === true,
+                            isVisible: true,
+                        },
+                    }) }
+                    getName={ (item) => item.Name }
+                    entityName="Product"
+                    selectionMode="multi"
                     valueType="id"
                 />
             </FlexRow>
