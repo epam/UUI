@@ -26,6 +26,7 @@
 * [Tooltip]: added possibility to pass raw-props to the tooltip body
 * [RangeDatePicker]: added new 'onOpenChange' prop
 * [PickerModal]: added a docs page
+* [FilteredTable]: added possibility to provide presets to rangeDatePicker filter
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column

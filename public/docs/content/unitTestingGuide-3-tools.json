@@ -123,7 +123,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "renderHookWithContextAsync\nrenderWithContextAsync\ngetDefaultUUiContextWrapper",
+            "text": "renderHookWithContextAsync\nrenderWithContextAsync",
             "marks": []
           }
         ]
