@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Slider should be rendered correctly 1`] = `
+exports[`Slider should render with maximum props 1`] = `
 <div
   className="uui-slider-container root root"
   onClick={[Function]}
@@ -78,7 +78,7 @@ exports[`Slider should be rendered correctly 1`] = `
 </div>
 `;
 
-exports[`Slider should be rendered correctly 2`] = `
+exports[`Slider should render with minimum props 1`] = `
 <div
   className="uui-slider-container root root"
   onClick={[Function]}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from '../Avatar';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@epam/uui-test-utils';
 
 describe('Avatar', () => {
     it('should show stub if image is not reachable', () => {
@@ -17,7 +17,7 @@ describe('Avatar', () => {
     });
 
     it("shouldn't call internal onError if there is onError in rawProps", () => {
-        const mockOnError = jest.fn((event) => undefined);
+        const mockOnError = jest.fn(() => undefined);
         render(<Avatar img="https://static.cdn.epam.com/" size="36" alt="Test avatar" rawProps={ { onError: mockOnError } } />);
         const component: HTMLImageElement = screen.getByAltText('Test avatar');
         fireEvent.error(component);

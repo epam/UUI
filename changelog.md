@@ -26,6 +26,7 @@
 * [Tooltip]: added possibility to pass raw-props to the tooltip body
 * [RangeDatePicker]: added new 'onOpenChange' prop
 * [PickerModal]: added a docs page
+* [FilteredTable]: added possibility to provide presets to rangeDatePicker filter
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
@@ -35,7 +36,10 @@
 * [PickerInput]: removed deprecated suffix & prefix props
 * [TextInput]: removed deprecated suffix & prefix props.
 * [Carousel]:  the old component has been deleted from loveship.
-* [Tooltip]: colors 'night900' and 'gray90' are deprecated and will be removed in the future release. Use 'night800' and 'gray80' instead.
+* [Tooltip]: colors 'night900' and 'gray90' are deprecated and will be removed in the future release. Use 'gray' in both skins instead.
+* [Button]: colors 'night500' and 'gray50' are deprecated and will be removed in the future release. Use 'gray' in both skins instead.
+* [Slider]: deprecated all colors except 'sky' by default.
+* [RangeSlider]: deprecated all colors except 'sky' by default.
 
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.

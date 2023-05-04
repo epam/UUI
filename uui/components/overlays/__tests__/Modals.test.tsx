@@ -2,7 +2,7 @@ import React from 'react';
 import {
     ModalBlocker, ModalHeader, ModalFooter, ModalWindow,
 } from '../Modals';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('Modals', () => {
     it('should be rendered correctly', () => {

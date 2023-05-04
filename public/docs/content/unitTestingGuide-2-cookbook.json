@@ -37,6 +37,18 @@
       },
       {
         "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Below is a list of unit tests in UUI codebase which could be used as a reference. They demonstrate common use cases and usage of tools which can be useful to implement tests.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
         "type": "unordered-list",
         "data": {},
         "nodes": [
@@ -205,7 +217,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "(snapshot)",
+                    "text": "(snapshots)",
                     "marks": []
                   },
                   {
@@ -504,6 +516,18 @@
         "nodes": [
           {
             "object": "text",
+            "text": "Here is the list of commonly used mocks which can be useful in certain cases.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
             "text": "react-popper",
             "marks": [
               {
@@ -563,7 +587,7 @@
           },
           {
             "object": "text",
-            "text": ".",
+            "text": ". This mock needs to be added to the specific test file (feel free to copy/paste it from here). ",
             "marks": []
           }
         ]
@@ -1048,7 +1072,7 @@
           },
           {
             "object": "text",
-            "text": "\nIt's needed only for snapshots. Use it for components which use React portals internally.",
+            "text": "\nIt's needed only for snapshots. Use it for components which use React portals internally for snapshot testing.",
             "marks": []
           }
         ]

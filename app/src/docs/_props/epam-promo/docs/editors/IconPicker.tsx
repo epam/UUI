@@ -62,7 +62,7 @@ export class IconPicker extends React.Component<IconPickerProps, IconPickerState
     renderInfo() {
         return (
             <div className={ css.infoContainer }>
-                <Tooltip cx={ css.tooltip } placement="top" content={ this.renderTooltip() } color="gray80">
+                <Tooltip cx={ css.tooltip } placement="top" content={ this.renderTooltip() } color="gray">
                     <IconButton icon={ InfoIcon } color="gray60" />
                 </Tooltip>
             </div>

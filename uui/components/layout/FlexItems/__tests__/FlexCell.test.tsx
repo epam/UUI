@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlexCell } from '../FlexCell';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('FlexCell', () => {
     it('should be rendered correctly', () => {
