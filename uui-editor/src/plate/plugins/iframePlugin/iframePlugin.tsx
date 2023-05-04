@@ -3,9 +3,13 @@ import { UploadFileToggler } from '@epam/uui-components';
 
 import {
     createPluginFactory,
+    getBlockAbove,
+    getEndPoint,
+    getPluginType,
     insertEmptyElement,
     PlateEditor,
     ToolbarButton as PlateToolbarButton,
+    selectEditor,
 } from '@udecode/plate';
 
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
@@ -39,6 +43,18 @@ export const iframePlugin = () => {
             },
         }),
         handlers: {
+            // move selection to the end of iframe for further new line render on Enter click
+            onLoad: (editor) => (event) => {
+                if (!getBlockAboveByType(editor, ['iframe'])) return;
+
+                const videoEntry = getBlockAbove(editor, {
+                    match: { type: getPluginType(editor, 'iframe') },
+                });
+                if (!videoEntry) return;
+
+                const endPoint = getEndPoint(editor, videoEntry[1])
+                selectEditor(editor, { at: endPoint.path, focus: true });
+            },
             onKeyDown: (editor) => (event) => {
                 if (!getBlockAboveByType(editor, ['iframe'])) return;
 
