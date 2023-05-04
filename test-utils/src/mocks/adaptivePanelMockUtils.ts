@@ -1,4 +1,4 @@
-import { mockGetBoundingClientRect } from '../internalUtils/jsdomMockUtils';
+import { mockGetBoundingClientRect } from '../internal/jsdomMockUtils';
 
 const isAdaptivePanelRootDefault = (elem: HTMLElement) => {
     return elem.getAttribute('data-testid') === 'adaptive-panel';
