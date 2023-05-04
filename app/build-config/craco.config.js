@@ -28,6 +28,8 @@ const isUseBuildFolderOfDeps = getIsUseBuildFolderOfDeps();
 const isEnableEslint = whenDev(() => false, false);
 const isEnableStylelint = whenDev(() => false, false);
 
+const headCommitHash = require('../../uui-build/utils/gitUtils').getHeadCommitHash();
+
 /**
  * See https://craco.js.org/
  */
@@ -105,6 +107,10 @@ function configureWebpack(config, { paths }) {
             'epam:uui:main', 'browser', 'module', 'main',
         ];
     }
+
+    changePluginByName(config, 'DefinePlugin', (plugin) => {
+        plugin.definitions.COMMIT_HASH = `"${headCommitHash}"`;
+    });
 
     changePluginByName(config, 'ForkTsCheckerWebpackPlugin', (plugin) => {
         // custom formatter can be removed when next bug is fixed:
