@@ -34,12 +34,12 @@ async function setupTestComponent(params: Partial<SomeComponentProps>) {
 }
 
 describe('TestComponent', () => {
-    it('should be rendered with minimum props', async () => {
+    it('should render with minimum props', async () => {
         const tree = await renderSnapshotWithContextAsync(<SomeComponent />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered with maximum props', async () => {
+    it('should render with maximum props', async () => {
         const tree = await renderSnapshotWithContextAsync(<SomeComponent value="monday" onValueChange={ jest.fn() } />);
         expect(tree).toMatchSnapshot();
     });
