@@ -46,9 +46,11 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
     });
 
     useEffect(() => {
-        const resizeObserver = new ResizeObserver(() => {
-            setIsChanged(true);
-        });
+        const resizeObserver = new ResizeObserver((entries) =>
+            requestAnimationFrame(() => {
+                if (!Array.isArray(entries) || !entries.length) return;
+                setIsChanged(true);
+            }));
 
         resizeObserver.observe(displayedRowRef.current);
         resizeObserver.observe(wrapperRef.current);
@@ -69,7 +71,7 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
 
     return (
         <div { ...props.rawProps } className={ cx(props.cx, css.mainWrapper) } ref={ wrapperRef }>
-            <FlexRow ref={ displayedRowRef }>{renderItems()}</FlexRow>
+            <FlexRow ref={ displayedRowRef }>{ renderItems() }</FlexRow>
         </div>
     );
 }
