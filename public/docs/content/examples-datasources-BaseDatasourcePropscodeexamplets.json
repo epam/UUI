@@ -1,0 +1,137 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "BaseDatasourceProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " can be split into multiple categories: a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "configuration",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " of ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "ids",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "rows",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "default folding",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "selection",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

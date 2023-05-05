@@ -87,6 +87,7 @@ import {
     UtGuideToolsDoc,
     UtGuideCookbookDoc,
     DatasourcesConceptsDoc,
+    DatasourcesOverviewDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
@@ -350,6 +351,12 @@ export const items: DocItem[] = [
     },
     {
         id: 'datasources-concepts', name: 'Concepts', component: DatasourcesConceptsDoc, parentId: 'datasources',
+    },
+    {
+        id: 'datasources-implementations', name: 'Implementations', parentId: 'datasources',
+    },
+    {
+        id: 'datasources-overview', name: 'Overview', component: DatasourcesOverviewDoc, parentId: 'datasources-implementations',
     },
     { id: 'contexts', name: 'Contexts' },
     {
