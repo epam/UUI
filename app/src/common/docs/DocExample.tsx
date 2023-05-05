@@ -32,11 +32,14 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
     titleRef: RefObject<HTMLDivElement> = createRef();
 
     componentDidMount(): void {
-        const { path } = this.props;
-        const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
-        requireContext(exPathRelative).then((module: any) => {
-            this.setState({ component: module.default });
-        });
+        const { path, onlyCode } = this.props;
+
+        if (!onlyCode) {
+            const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
+            requireContext(exPathRelative).then((module: any) => {
+                this.setState({ component: module.default });
+            });
+        }
 
         if (this.titleRef?.current && window.location?.hash?.includes(this.titleRef.current.id)) {
             this.titleRef.current.scrollIntoView(true);
