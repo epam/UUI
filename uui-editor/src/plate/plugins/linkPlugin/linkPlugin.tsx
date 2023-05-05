@@ -6,7 +6,10 @@ import {
     LinkToolbarButton,
     isEditorReadOnly,
     ELEMENT_LINK,
-    PlateEditor
+    PlateEditor,
+    getLinkAttributes,
+    TLinkElement,
+    validateUrl
 } from "@udecode/plate";
 import { sanitizeUrl } from "@braintree/sanitize-url";
 
@@ -21,17 +24,30 @@ import css from './link.scss';
 
 export const linkPlugin = () => createLinkPlugin({
     type: 'link',
-    props: ({ element, editor }) => ({
-        className: css.link,
-        style: { display: 'inline' },
-        ...(!isEditorReadOnly(editor) ? {} : {
-            onClick: (e: Event) => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.open(sanitizeUrl(`${ element.url }`), '_blank');
-            }
+    then: (editor, { type }) => ({
+        props: ({ element, editor }) => ({
+            className: css.link,
+            style: { display: 'inline' },
+            ...(!isEditorReadOnly(editor) ? {} : {
+                onClick: (e: Event) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.open(sanitizeUrl(`${ element.url }`), '_blank');
+                }
+            }),
         }),
+        deserializeHtml: {
+            rules: [{ validNodeName: 'A', }],
+            getNode: (el) => {
+                const url = el.getAttribute('href');
+                if (url && validateUrl(editor, url)) {
+                    return { type, url, };
+                }
+                return undefined;
+            },
+        },
     }),
+
 });
 
 interface ToolbarButton {
