@@ -1,3 +1,5 @@
+declare const __DEV__: boolean;
+
 declare module '*.less' {
     var all: { [selector: string]: string };
     export = all;
