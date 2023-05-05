@@ -1,6 +1,8 @@
 # 5.0.0 - xx.xx.2023
 **What's New**
-* "EcmaScript" modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
+* EcmaScript modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
+* New package is published to NPM: @epam/uui-test-utils. It provides a set of helpers which facilitate creation of unit tests for UUI components.
+* Documentation related to unit testing was added to the [UUI site](https://uui.epam.com/) (a set of pages under the Testing section). It contains general guidelines, best practices and tools we use to create unit tests for UUI components. Also, it contains a Cookbook describing typical use cases with code examples as well as frequent questions & answers.     
 * [ContextProvider]: removed support of legacy React context API, as it were announced in 4.1.0 version. `enableLegacyContext` prop was deleted.
 * [useTableState]:
   - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
