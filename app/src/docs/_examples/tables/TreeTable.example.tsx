@@ -43,7 +43,6 @@ export default function TreeTableExample() {
                     location.lat && (
                         <LinkButton
                             caption={ `${location.lat}/${location.lon}` }
-                            color="blue"
                             href={ `https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lon}` }
                             target="_blank"
                         />

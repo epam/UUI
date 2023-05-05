@@ -21,7 +21,10 @@ export class SidebarButton extends React.Component<SidebarButtonProps, any> {
                     'aria-current': this.props.isActive,
                 } }
                 isLinkActive={ this.props.isActive }
-                cx={ cx(css.root, css['indent-' + this.props.indent]) }
+                cx={ cx(
+                    css.root,
+                    css['indent-' + this.props.indent],
+                ) }
                 dropdownIcon={ DropdownIcon }
                 size="36"
             />

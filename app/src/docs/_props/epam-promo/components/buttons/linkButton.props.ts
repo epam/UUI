@@ -1,4 +1,4 @@
-import { LinkButton, LinkButtonMods } from '@epam/promo';
+import { LinkButton } from '@epam/promo';
 import { DocBuilder } from '@epam/uui-docs';
 import { ButtonProps } from '@epam/uui-components';
 import {
@@ -14,7 +14,7 @@ import {
     FormContext,
 } from '../../docs';
 
-const LinkButtonDoc = new DocBuilder<ButtonProps & LinkButtonMods>({ name: 'LinkButton', component: LinkButton })
+const LinkButtonDoc = new DocBuilder<ButtonProps>({ name: 'LinkButton', component: LinkButton })
     .implements([
         onClickDoc, sizeDoc, dropdownTogglerDoc, isDisabledDoc, basicPickerTogglerDoc, iconWithInfoDoc, iconOptionsDoc, iCanRedirectDoc,
     ])

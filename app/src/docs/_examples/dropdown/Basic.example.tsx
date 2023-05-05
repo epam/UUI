@@ -87,7 +87,6 @@ export default function BasicDropdownExample() {
                                         /* redirect implementation */
                                     } }
                                     size="36"
-                                    color="blue"
                                     caption="+3809324353424"
                                 />
                             </FlexRow>
@@ -98,7 +97,6 @@ export default function BasicDropdownExample() {
                                         /* redirect implementation */
                                     } }
                                     size="36"
-                                    color="blue"
                                     caption="x43059"
                                 />
                             </FlexRow>
@@ -109,7 +107,6 @@ export default function BasicDropdownExample() {
                                         /* redirect implementation */
                                     } }
                                     size="36"
-                                    color="blue"
                                     caption="user@epam.com"
                                 />
                             </FlexRow>
@@ -120,7 +117,6 @@ export default function BasicDropdownExample() {
                                         /* redirect implementation */
                                     } }
                                     size="36"
-                                    color="blue"
                                     caption="https://www.linkedin.com/fakeid/..."
                                 />
                             </FlexRow>

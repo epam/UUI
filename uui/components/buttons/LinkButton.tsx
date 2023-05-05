@@ -15,7 +15,9 @@ export type LinkButtonProps = LinkButtonMods & ButtonProps;
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
-        css.root, css['size-' + (mods.size || defaultSize)], ...getIconClass(mods),
+        css.root,
+        css['size-' + (mods.size || defaultSize)],
+        ...getIconClass(mods),
     ];
 }
 
