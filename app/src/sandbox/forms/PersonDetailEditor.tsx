@@ -85,7 +85,7 @@ export class PersonDetailEditor extends React.Component<PersonDetailEditorProps>
                         </div>
                     ) : (
                         <FlexRow spacing={ null }>
-                            <UploadFileToggler onFilesAdded={ this.uploadFile } render={ (props) => <LinkButton font="sans-semibold" { ...props } caption="Attach " /> } />
+                            <UploadFileToggler onFilesAdded={ this.uploadFile } render={ (props) => <LinkButton { ...props } caption="Attach " /> } />
                             <Text font="sans-semibold">{' or drop files here'}</Text>
                         </FlexRow>
                     )}

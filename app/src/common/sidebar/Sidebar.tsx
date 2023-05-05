@@ -4,9 +4,7 @@ import css from './Sidebar.scss';
 import { ScrollBars, SearchInput } from '@epam/promo';
 import { Tree, TreeListItem } from '@epam/uui-components';
 import { SidebarButton } from './SidebarButton';
-import {
-    DataRowProps, DataSourceState, Link, useUuiContext,
-} from '@epam/uui-core';
+import { DataRowProps, DataSourceState, Link, useUuiContext } from '@epam/uui-core';
 import { analyticsEvents } from '../../analyticsEvents';
 
 export interface SidebarProps<TItem extends TreeListItem = TreeListItem> {
@@ -23,10 +21,10 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
     const [value, setValue] = React.useState<DataSourceState>({ search: '', folded: {} });
 
     React.useEffect(() => {
-        const { parentId } = props.items.find((i) => i.id == props.value);
+        const { parentId } = props.items.find((i) => i.id === props.value);
         if (parentId != null) {
             const parentKey = JSON.stringify(parentId);
-            setValue((value) => ({ ...value, folded: { ...value.folded, [parentKey]: false } }));
+            setValue((stateValue) => ({ ...stateValue, folded: { ...stateValue.folded, [parentKey]: false } }));
         }
     }, [props.value]);
 
@@ -44,7 +42,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
                 onValueChange={ (search) => setValue((v) => ({ ...v, search })) }
                 autoFocus
                 placeholder="Search"
-                getValueChangeAnalyticsEvent={ (value) => analyticsEvents.document.search(value) }
+                getValueChangeAnalyticsEvent={ (val) => analyticsEvents.document.search(val) }
             />
             <div className={ css.tree } role="tablist">
                 <ScrollBars>
@@ -57,7 +55,7 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
                             <SidebarButton
                                 key={ row.key }
                                 link={ props.getItemLink(row) }
-                                indent={ (row.depth - 1) * 12 }
+                                indent={ (row.indent - 1) * 12 }
                                 isOpen={ !row.isFolded }
                                 isDropdown={ row.isFoldable }
                                 isActive={ row.id === props.value }
