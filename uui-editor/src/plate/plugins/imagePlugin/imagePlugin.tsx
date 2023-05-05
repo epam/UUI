@@ -11,6 +11,8 @@ import {
     ToolbarButton as PlateToolbarButton,
     TImageElement,
     insertNodes,
+    createNode,
+    insertNode,
 } from '@udecode/plate';
 
 import { isPluginActive, isTextSelected } from '../../../helpers';
@@ -21,6 +23,7 @@ import { AddImageModal } from './AddImageModal';
 import { ToolbarButton } from '../../../implementation/ToolbarButton';
 
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
+import { getBlockAboveByType } from '../../utils/getAboveBlock';
 
 export const IMAGE_PLUGIN_KEY = 'image';
 
@@ -40,6 +43,15 @@ export const imagePlugin = () => {
                 },
             },
         }),
+        handlers: {
+            onKeyDown: (editor) => (event) => {
+                if (!getBlockAboveByType(editor, ['image'])) return;
+
+                if (event.key === 'Enter') {
+                    insertNode(editor, createNode());
+                }
+            },
+        },
         plugins: [
             {
                 key: 'loader',
