@@ -997,6 +997,44 @@
                 ]
               }
             ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "waiting for appearance / disappearance ",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://testing-library.com/docs/guide-disappearance/"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "https://testing-library.com/docs/guide-disappearance/",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
