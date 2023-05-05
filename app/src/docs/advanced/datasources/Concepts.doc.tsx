@@ -5,8 +5,6 @@ export class DatasourcesConceptsDoc extends BaseDocsBlock {
     title = 'Concepts';
 
     renderContent() {
-        return (
-            <EditableDocContent fileName="datasources-concepts" />
-        );
+        return <EditableDocContent fileName="datasources-concepts" />;
     }
 }
