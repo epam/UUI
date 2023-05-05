@@ -1,41 +1,28 @@
-import React, { useMemo, useEffect, useState, useRef } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui-components';
 import { useForceUpdate } from '@epam/uui-core';
 
-import {
-    Plate,
-    createPlugins,
-    createPlateUI,
-    usePlateEditorState,
-    TRenderElementProps,
-    TEditableProps,
-    Toolbar,
-    createSoftBreakPlugin,
-    createParagraphPlugin,
-    createExitBreakPlugin,
-    PlateProvider,
-    createDeserializeDocxPlugin,
-    useEventEditorSelectors,
+import { Plate, createPlugins, createPlateUI, usePlateEditorState, TEditableProps, Toolbar, createSoftBreakPlugin,
+    createExitBreakPlugin, PlateProvider, createDeserializeDocxPlugin, useEventEditorSelectors, isElementEmpty, Value,
+    getPluginType, ELEMENT_DEFAULT,
 } from '@udecode/plate';
 
 import { createJuicePlugin } from '@udecode/plate-juice';
-
-import {
-    ToolbarButtons,
-    MarkBalloonToolbar,
-} from './plate/plugins/Toolbars';
+import { ToolbarButtons, MarkBalloonToolbar, } from './plate/plugins/Toolbars';
 
 import { migrateSchema } from './migration';
 
-import { baseMarksPlugin } from './plate/plugins';
+import { baseMarksPlugin, paragraphPlugin } from './plate/plugins';
 
 import style from '@epam/assets/scss/promo/typography.scss';
 import css from './SlateEditor.scss';
 
 let components = createPlateUI();
+
+export type EditorValue = Value;
 
 /**
  * Please make sure defaultPlugins and all your plugins are not interfere
@@ -45,9 +32,9 @@ let components = createPlateUI();
 export const defaultPlugins: any = [
     createSoftBreakPlugin(),
     createExitBreakPlugin(),
-    createParagraphPlugin(),
     createDeserializeDocxPlugin(),
     createJuicePlugin(),
+    paragraphPlugin(),
 ];
 
 export const basePlugins: any = [
@@ -55,7 +42,7 @@ export const basePlugins: any = [
     ...defaultPlugins,
 ];
 
-interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<HTMLDivElement> {
+interface SlateEditorProps extends IEditable<Value | null>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     isReadonly?: boolean;
     plugins?: any[];
     autoFocus?: boolean;
@@ -68,7 +55,13 @@ interface SlateEditorProps extends IEditable<any | null>, IHasCX, IHasRawProps<H
     scrollbars?: boolean;
 }
 
-const Editor = ({ initialValue, ...props }: any) => {
+interface PlateEditorProps extends SlateEditorProps {
+    initialValue: Value,
+    onChange: (newValue: Value) => void,
+    id: string,
+}
+
+const Editor = (props: PlateEditorProps) => {
     const editor = usePlateEditorState();
     const forceUpdate = useForceUpdate();
 
@@ -76,23 +69,30 @@ const Editor = ({ initialValue, ...props }: any) => {
     const isFocused = editor.id === focusedEditorId;
 
     useEffect(() => {
-        if (initialValue) {
-            editor.children = initialValue;
+        if (props.initialValue) {
+            editor.children = props.initialValue;
+            forceUpdate();
         }
-    }, [editor, initialValue, forceUpdate]);
-
+    }, [props.initialValue]);
+    console.log(getPluginType(editor, ELEMENT_DEFAULT))
     const renderEditor = () => (
         <DndProvider backend={ HTML5Backend }>
             <Plate
                 { ...props }
                 id={ props.id }
-
+                editableProps={ {
+                    autoFocus: props.autoFocus,
+                    readOnly: props.isReadonly,
+                    placeholder: props.placeholder,
+                    renderPlaceholder: ({attributes}) => {
+                        const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]) && editor.children[0].type === 'paragraph';
+                        return shouldShowPlaceholder && <div {...attributes}>{ props.placeholder }</div>
+                    }
+                } }
                 // we override plate core insertData plugin
                 // so, we need to disable default implementation
                 disableCorePlugins={ { insertData: true } }
-            >
-
-            </Plate>
+            />
             <MarkBalloonToolbar />
             <Toolbar style={ {
                 position: 'sticky',
@@ -115,12 +115,10 @@ const Editor = ({ initialValue, ...props }: any) => {
                 (!props.isReadonly && isFocused) && uuiMod.focus,
                 props.isReadonly && uuiMod.readonly,
                 props.scrollbars && css.withScrollbars,
-                // from slate editor
                 style.typographyPromo,
                 props.fontSize == '16' ? style.typography16 : style.typography14,
             ) }
-            //@ts-ignore
-            style={ { minHeight: props.minHeight || 350 } as any }
+            style={ { minHeight: props.minHeight || 350 } }
             { ...props.rawProps }
         >
             { props.scrollbars
@@ -134,60 +132,30 @@ const Editor = ({ initialValue, ...props }: any) => {
 };
 
 export function SlateEditor(props: SlateEditorProps) {
-    const {
-        autoFocus,
-        isReadonly,
-        placeholder,
-    } = props;
-
-    const [value, setValue] = useState(null);
-
     const currentId = useRef(String(Date.now()));
 
     const plugins = createPlugins((props.plugins || []).flat(), {
         components,
     });
 
-    const editableProps: TEditableProps = {
-        autoFocus,
-        readOnly: isReadonly,
-        placeholder,
-        style: { padding: '0px 24px' }
-    };
-
-    const onChange = (value: any) => {
-        if (isReadonly) return;
+    const onChange = (value: Value) => {
+        if (props.isReadonly) return;
         props?.onValueChange(value);
-    };
-
-    const renderElement = (props: TRenderElementProps): JSX.Element => {
-        const { attributes, children } = props;
-
-        return <p { ...attributes }>{ children }</p>;
     };
 
     const initialValue = useMemo(() => migrateSchema(props.value), [props.value]);
 
-    useEffect(() => {
-        if (!value) {
-            setValue(initialValue);
-        }
-    }, [initialValue, value]);
-
     return (
         <PlateProvider
             onChange={ onChange }
-            renderElement={ renderElement }
             plugins={ plugins }
-            initialValue={ value }
+            initialValue={ initialValue }
             id={ currentId.current }
         >
             <Editor
                 onChange={ onChange }
-                editableProps={ editableProps }
-                renderElement={ renderElement }
                 id={ currentId.current }
-                initialValue={ value }
+                initialValue={ initialValue }
                 plugins={ plugins }
                 { ...props }
             />

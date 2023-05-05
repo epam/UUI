@@ -4,6 +4,7 @@
 .container {
     position: relative;
     border-width: 1px;
+    padding: 0 24px;
     width: 100%;
     box-sizing: border-box;
 
@@ -73,7 +74,7 @@
     font-family: $font-sans;
     line-height: 1.5;
     top: 8px;
-    padding: 0 24px;
+    padding: 0 12px;
 }
 
 .placeholder-14 {

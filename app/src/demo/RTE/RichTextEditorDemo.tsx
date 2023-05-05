@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Descendant } from 'slate';
 import {
     SlateEditor,
     defaultPlugins,
@@ -21,13 +20,14 @@ import {
     listPlugin,
     placeholderPlugin,
     codeBlockPlugin,
+    EditorValue,
 } from '@epam/uui-editor';
 import { svc } from '../../services';
 import { demoData } from '@epam/uui-docs';
 import css from './RichTextEditorDemo.scss';
 
 interface SlateEditorBasicExampleState {
-    value: Descendant;
+    value: EditorValue;
 }
 
 export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExampleState> {
@@ -35,7 +35,7 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
         value: demoData.slateInitialValue,
     };
 
-    onChange = (value: Descendant) => {
+    onChange = (value: EditorValue) => {
         this.setState({ value: value });
     };
 

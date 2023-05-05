@@ -23,6 +23,7 @@ import {
     headerPlugin,
     listPlugin,
     placeholderPlugin,
+    EditorValue,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.scss';
@@ -34,7 +35,7 @@ type EditorMode = 'form' | 'inline';
 export default function SlateEditorBasicExample() {
     const svc = useUuiContext();
     const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
-    const [value, setValue] = useState<Descendant>(demoData.slateInitialValue);
+    const [value, setValue] = useState<EditorValue>(demoData.slateInitialValue);
     const [isReadonly, setIsReadonly] = useState<boolean>(false);
     const [mode, setMode] = useState<EditorMode>('form');
     const [fontSize, setFontSize] = useState<EditorFontSize>('14');

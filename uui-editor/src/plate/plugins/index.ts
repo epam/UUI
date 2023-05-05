@@ -16,3 +16,4 @@ export * from './superscriptPlugin/superscriptPlugin';
 export * from './tablePlugin/tablePlugin';
 export * from './toDoListPlugin/toDoListPlugin';
 export * from './videoPlugin/videoPlugin';
+export * from './paragraphPlugin/paragraphPlugin';

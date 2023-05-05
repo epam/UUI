@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Descendant } from 'slate';
 import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
 import { Panel } from '@epam/promo';
 import {
@@ -22,13 +21,14 @@ import {
     headerPlugin,
     listPlugin,
     placeholderPlugin,
+    EditorValue,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 
 export default function WithInnerScrollExample() {
     const svc = useUuiContext();
     const ORIGIN = process.env.REACT_APP_PUBLIC_URL || '';
-    const [value, setValue] = useState<Descendant>(demoData.slateInitialValue);
+    const [value, setValue] = useState<EditorValue>(demoData.slateInitialValue);
 
     const uploadFile = (file: File, onProgress: (progress: number) => unknown): Promise<FileUploadResponse> => {
         return svc.uuiApi.uploadFile(ORIGIN.concat('/uploadFileMock'), file, {
