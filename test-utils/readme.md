@@ -2,4 +2,4 @@
 
 This package is a part of [EPAM UUI](https://github.com/epam/UUI) library.
 
-It contains everything you need to create tests for UUI components. 
+It provides a set of helpers which facilitate creation of unit tests for UUI components.
