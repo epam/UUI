@@ -1815,37 +1815,44 @@
                 ]
               }
             ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Make sure that React components render semantic markup (",
-            "marks": []
           },
           {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://web.dev/learn/html/semantic-html/"
-            },
+            "object": "block",
+            "type": "list-item",
+            "data": {},
             "nodes": [
               {
-                "object": "text",
-                "text": "https://web.dev/learn/html/semantic-html/",
-                "marks": []
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "Make sure that React components render semantic markup (",
+                    "marks": []
+                  },
+                  {
+                    "object": "inline",
+                    "type": "link",
+                    "data": {
+                      "url": "https://web.dev/learn/html/semantic-html/"
+                    },
+                    "nodes": [
+                      {
+                        "object": "text",
+                        "text": "https://web.dev/learn/html/semantic-html/",
+                        "marks": []
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ")",
+                    "marks": []
+                  }
+                ]
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": ")",
-            "marks": []
           }
         ]
       }
