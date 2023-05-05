@@ -42,6 +42,7 @@
 * [Button]: colors 'night500' and 'gray50' are deprecated and will be removed in the future release. Use 'gray' in both skins instead.
 * [Slider]: deprecated all colors except 'sky' by default.
 * [RangeSlider]: deprecated all colors except 'sky' by default.
+* [Tooltip]: fixed max-width - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
 
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.
