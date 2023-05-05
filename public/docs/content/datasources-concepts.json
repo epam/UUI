@@ -37,7 +37,7 @@
           },
           {
             "object": "text",
-            "text": "pattern of data lazy-loading, add some folding logic, different strategies of selecting elements with children nodes, etc",
+            "text": "pattern of data lazy-loading, add some folding logic, different strategies for selecting elements with children nodes, etc",
             "marks": [
               {
                 "object": "mark",
@@ -81,7 +81,7 @@
           },
           {
             "object": "text",
-            "text": " were developed. They are kind of black boxes, which encapsulates complex solutions to various problems, providing simple abstraction.",
+            "text": " were developed. They are black boxes encapsulating complex solutions to various issues, providing simple abstraction.",
             "marks": []
           }
         ]
@@ -382,7 +382,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "While explaining this part of the Datasources concept, it is necessary to keep the right level of abstraction. Instead of digging into the realization details, let us observe the ways Datasource can be controlled by input.",
+            "text": "While explaining this part of the Datasources concept, it is necessary to keep the right level of abstraction. Instead of digging into the realization details, let us observe ways Datasource can be controlled by input.",
             "marks": []
           }
         ]
@@ -515,11 +515,28 @@
         "nodes": [
           {
             "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
             "text": "DatasourceProps",
             "marks": [
               {
                 "object": "mark",
                 "type": "uui-richTextEditor-code",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
                 "data": {}
               }
             ]
@@ -527,7 +544,13 @@
           {
             "object": "text",
             "text": " contains:",
-            "marks": []
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
           }
         ]
       },
@@ -548,12 +571,7 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "getters of ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "ids",
+                    "text": "getters",
                     "marks": [
                       {
                         "object": "mark",
@@ -569,49 +587,7 @@
                   },
                   {
                     "object": "text",
-                    "text": ", ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "parent ids",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-italic",
-                        "data": {}
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-bold",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ", ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "children count",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-italic",
-                        "data": {}
-                      },
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-bold",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": ", etc.;",
+                    "text": " of ids, parent ids, children count, etc.;",
                     "marks": []
                   }
                 ]
@@ -681,7 +657,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "; ",
+                    "text": ";",
                     "marks": []
                   }
                 ]
@@ -716,7 +692,7 @@
                   },
                   {
                     "object": "text",
-                    "text": " in a static or dynamic way with customization possibilities;",
+                    "text": " statically and dynamically with customization possibilities;",
                     "marks": []
                   }
                 ]
@@ -756,7 +732,44 @@
                   },
                   {
                     "object": "text",
-                    "text": " select all ",
+                    "text": " ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "select all",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ",
                     "marks": [
                       {
                         "object": "mark",
@@ -788,6 +801,11 @@
                         "object": "mark",
                         "type": "uui-richTextEditor-bold",
                         "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
                       }
                     ]
                   },
@@ -799,6 +817,554 @@
                 ]
               }
             ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "DatasourceState",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " contains:",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "range",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " of records to be displayed from some position;",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "an index ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "to be scrolled to",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ";",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "an index of ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "a focused row;",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "a search string",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ";",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "specified ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "filter",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " value;",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "sorting",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " configuration;",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "selected rows",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ids;",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "folded rows",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " ids;",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "pagination",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " configuration.",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "So, ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "changing the input",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " of the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "Datasource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " is ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "changing the rows",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", which are displayed (",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "returned by ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "Datasource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "). That is a common pattern to change ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DatasourceState",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " to ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "retrieve/change the state",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "of the displayed rows",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
           }
         ]
       },
