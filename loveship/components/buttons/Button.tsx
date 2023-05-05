@@ -1,6 +1,6 @@
 import { FillStyle, ControlShape, EpamPrimaryColor } from '../types';
 import { Button as uuiButton, ButtonMode, ButtonProps as UuiButtonProps, ControlSize } from '@epam/uui';
-import { withMods } from '@epam/uui-core';
+import { devLogger, withMods } from '@epam/uui-core';
 import { systemIcons } from '../icons/icons';
 import css from './Button.scss';
 
@@ -34,8 +34,17 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(uuiButton, applyButtonMods, (props) => ({
-    dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
-    clearIcon: systemIcons[props.size || defaultSize].clear,
-    mode: mapFillToMod[props.fill] || mapFillToMod.solid,
-}));
+function warnAboutDeprecatedColor(actualColor: ButtonColorType, deprecated: ButtonColorType[], useInstead: ButtonColorType) {
+    if (deprecated.indexOf(actualColor) !== -1) {
+        devLogger.warn(`Button color '${actualColor}' is deprecated and will be removed in future versions, please use '${useInstead}' instead.`);
+    }
+}
+
+export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(uuiButton, applyButtonMods, (props) => {
+    warnAboutDeprecatedColor(props.color, ['night500', 'night600'], 'gray');
+    return {
+        dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
+        clearIcon: systemIcons[props.size || defaultSize].clear,
+        mode: mapFillToMod[props.fill] || mapFillToMod.solid,
+    };
+});
