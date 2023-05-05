@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TestComponent should be rendered with maximum props 1`] = `
+exports[`TestComponent should render with maximum props 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
   onBlur={[Function]}
@@ -18,7 +18,7 @@ exports[`TestComponent should be rendered with maximum props 1`] = `
 </div>
 `;
 
-exports[`TestComponent should be rendered with minimum props 1`] = `
+exports[`TestComponent should render with minimum props 1`] = `
 <div
   className="container uui-input-box -clickable root size-36 mode-form"
   onBlur={[Function]}
