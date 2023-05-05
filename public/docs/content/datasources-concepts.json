@@ -11,7 +11,49 @@
         "nodes": [
           {
             "object": "text",
-            "text": "It is impossible to imagine any project without data. Tones of effort are spent to solve the problem of retrieving / grouping / filtering / sorting / visualizing data. Everything becomes even worse when it is necessary to implement the pattern of data lazy-loading, add some folding logic, different strategies of selecting elements with children nodes, etc.",
+            "text": "It is impossible to imagine any project without data. Tones of effort are spent to solve the problem of ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "retrieving / grouping / filtering / sorting / visualizing data",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ". Everything becomes even worse when it is necessary to implement the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "pattern of data lazy-loading, add some folding logic, different strategies of selecting elements with children nodes, etc",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
             "marks": []
           }
         ]
@@ -52,7 +94,13 @@
           {
             "object": "text",
             "text": "Problems data sources are solving:",
-            "marks": []
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
           }
         ]
       },
@@ -73,7 +121,44 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "converting data to renderable rows with multiple handlers (folding, selecting, focusing, clicking) based on the configuration;",
+                    "text": "converting data to ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "renderable rows",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " with multiple handlers (",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "folding, selecting, focusing, clicking",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ") based on the configuration;",
                     "marks": []
                   }
                 ]
@@ -92,7 +177,39 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "providing the abstraction over data fetching strategy; it doesn't matter if Datasource is fetching data from an array, some endpoint, or partially loading tonnes of records;",
+                    "text": "providing the abstraction over data fetching strategy",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "; it doesn't matter if ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "Datasource",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " is fetching data from an array, some endpoint, or partially loading tonnes of records;",
                     "marks": []
                   }
                 ]
@@ -111,7 +228,23 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "implementing various selecting records strategies, such as picking a record only or with its children implicitly or explicitly;",
+                    "text": "implementing various selecting records strategies",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ", such as picking a record only or with its children implicitly or explicitly;",
                     "marks": []
                   }
                 ]
@@ -130,7 +263,23 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "configuring renderable rows;",
+                    "text": "configuring renderable rows",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ";",
                     "marks": []
                   }
                 ]
@@ -149,7 +298,28 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "enabling the possibility to filter/search over data, and sort data, no matter which fetching strategy is provided;",
+                    "text": "enabling the possibility to ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "filter/search over data, and sort data",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ", no matter which fetching strategy is provided;",
                     "marks": []
                   }
                 ]
@@ -168,7 +338,23 @@
                 "nodes": [
                   {
                     "object": "text",
-                    "text": "rendering data rows partially, which makes it possible to render an infinite count of records, chunk by chunk.",
+                    "text": "rendering data rows partially",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ", which makes it possible to render an infinite count of records, chunk by chunk.",
                     "marks": []
                   }
                 ]
@@ -207,11 +393,419 @@
         "data": {
           "src": "http://static.cdn.epam.com/uploads/4677cc268a04664255f99b470b345dca/uui/datasources/datasources.png",
           "imageSize": {
-            "width": 777,
-            "height": 217
+            "width": 813,
+            "height": 227
           },
           "align": "align-center"
         },
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Datasource input",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " can be split into two groups of params, ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DatasourceProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " (",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "static one",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ") and ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "DatasourceState",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " (",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "dynamic one",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ").",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "DatasourceProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " contains:",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "unordered-list",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "getters of ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "ids",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ", ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "parent ids",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ", ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "children count",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ", etc.;",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "a source of data",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " to be retrieved;",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "static filtering/searching/sorting configuration",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "; ",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "configuration of output rows",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " in a static or dynamic way with customization possibilities;",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "block",
+            "type": "list-item",
+            "data": {},
+            "nodes": [
+              {
+                "object": "block",
+                "type": "list-item-child",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "text",
+                    "text": "configuration of selection, ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "such as",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": " select all ",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": "and ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "selection strategies",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-italic",
+                        "data": {}
+                      },
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-bold",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": ").",
+                    "marks": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
         "nodes": [
           {
             "object": "text",
