@@ -85,8 +85,9 @@ const Editor = (props: PlateEditorProps) => {
                     placeholder: props.placeholder,
                     renderPlaceholder: ({attributes}) => {
                         const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]) && editor.children[0].type === 'paragraph';
-                        return shouldShowPlaceholder && <div {...attributes}>{ props.placeholder }</div>
-                    }
+                        return shouldShowPlaceholder && <div { ...attributes }>{ props.placeholder }</div>
+                    },
+                    style: { padding: '0 24px' }
                 } }
                 // we override plate core insertData plugin
                 // so, we need to disable default implementation
