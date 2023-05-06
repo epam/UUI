@@ -6,7 +6,7 @@ import {
     TableElementRootProps,
     TablePlugin,
 } from '@udecode/plate-table';
-import { getTableColumnCount, type TTableElement, useTableColSizes, useTableStore } from '@udecode/plate';
+import { getTableColumnCount, type TTableElement, useTableStore } from '@udecode/plate';
 import { cx } from '@epam/uui-core'
 
 import tableCSS from './Table.scss';
@@ -30,15 +30,12 @@ export const Table = (props: TableElementRootProps) => {
 
     const isCellsSelected = !!useTableStore().get.selectedCells();
 
-    const getCurrentColSizes = () =>
-        (element.colSizes || (element as OldTableElement).data?.cellSizes || getDefaultColWidths(getTableColumnCount(element)));
+    if (!element.colSizes) {
+        element.colSizes = (element as OldTableElement).data?.cellSizes || getDefaultColWidths(getTableColumnCount(element));
+    }
 
-    const currentColSizes =
-        getCurrentColSizes()
-            .map((current: number) => current === 0 ? EMPTY_COL_WIDTH : current);
-    const tableWidth = currentColSizes.reduce((acc: number, cur: number) => acc + cur, 0);
-
-    element.colSizes = useTableColSizes({ ...element, colSizes: currentColSizes });
+    const colSizeOverrides = useTableStore().get.colSizeOverrides();
+    const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) ?? size ?? EMPTY_COL_WIDTH);
 
     return (
         <TableElement.Root
@@ -49,10 +46,9 @@ export const Table = (props: TableElementRootProps) => {
                 tableCSS.table,
                 isCellsSelected && tableCSS.cellsSelectionActive
             ) }
-            style={ { width: tableWidth } }
         >
             <TableElement.ColGroup>
-                { element.colSizes.map((width, index) => (
+                { currentColSizes.map((width, index) => (
                     <TableElement.Col
                         key={ index }
                         style={ { minWidth, width: width || undefined } }
