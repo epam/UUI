@@ -8,7 +8,6 @@ import styled from 'styled-components/macro';
 import {
     TableCellElementRootProps,
     getCssTableCellRoot,
-    useTableCellElementState,
     TableCellElement,
     cssTableCellResizable,
     getCssTableCellHandle,
@@ -58,7 +57,7 @@ const getColIndex = <V extends Value>(
         return false;
     });
 
-    // needs to calc index of cell within row which contains merged cells
+    // shift colIndex by colSpan values of prev merged cells in this row
     const shiftedIndex = (trNode.children as TDescendant[]).reduce<number>((acc, cur, index) => {
         if (index < cIndex) {
             const curCellColSpan = (cur.colSpan as number);
@@ -78,17 +77,6 @@ const getColIndex = <V extends Value>(
 
 export const TableCellElement1 = (props: PlateTableCellElementProps) => {
     const { children, hideBorder, isHeader, ...rootProps } = props;
-
-    const {
-        // colIndex: _colIndex,
-        // rowIndex,
-        // readOnly,
-        // selected,
-        // hovered,
-        // hoveredLeft,
-        // rowSize,
-        // borders,
-    } = useTableCellElementState();
 
     const editor = usePlateEditorRef();
     const cellElement = useElement<TTableCellElement>();
@@ -174,6 +162,7 @@ export function TableCell(props: any) {
     }
 
     // needs for getColIndex function
+    // TODO: think about, should we store colSpan in element
     element.colSpan = appliedSpans.colSpan;
 
     return (
