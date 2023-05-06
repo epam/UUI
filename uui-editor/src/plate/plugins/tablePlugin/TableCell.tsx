@@ -6,7 +6,6 @@ import css from './Table.scss';
 import styled from 'styled-components/macro';
 
 import {
-    PlateTableCellElement,
     TableCellElementRootProps,
     getCssTableCellRoot,
     useTableCellElementState,
@@ -23,8 +22,16 @@ import {
     useElement,
     TTableCellElement,
     TDescendant,
-    AnyObject
+    AnyObject,
+    getTableRowIndex,
+    useIsCellSelected,
+    TTableRowElement,
+    ELEMENT_TR,
+    getTableCellBorders,
+    TTableElement,
+    ELEMENT_TABLE
 } from '@udecode/plate';
+import { useReadOnly } from 'slate-react';
 
 export interface PlateTableCellElementProps extends TableCellElementRootProps {
     hideBorder?: boolean;
@@ -42,10 +49,7 @@ const getColIndex = <V extends Value>(
     const [trNode] = getParentNode(editor, path) ?? [];
     if (!trNode) return 0;
 
-    // let colIndex = 0;
-
     let cIndex = 0
-
     trNode.children.some((item, index) => {
         if (item === cellNode) {
             cIndex = index;
@@ -55,11 +59,10 @@ const getColIndex = <V extends Value>(
     });
 
     // needs to calc index of cell within row which contains merged cells
-    const _realIndex = (trNode.children as TDescendant[]).reduce<number>((acc, cur, index) => {
+    const shiftedIndex = (trNode.children as TDescendant[]).reduce<number>((acc, cur, index) => {
         if (index < cIndex) {
-            const c1 = (cur.colSpan as number);
-            // console.log('cur', cur);
-            return acc + c1;
+            const curCellColSpan = (cur.colSpan as number);
+            return acc + curCellColSpan;
         }
 
         return acc;
@@ -67,14 +70,8 @@ const getColIndex = <V extends Value>(
 
     const cellColSpan = (cellNode.colSpan as number);
 
-
     // if it merged cell, we need to increase col index by col span value
-    const realColIndex = cellColSpan !== 1 ? (cellColSpan - 1) + _realIndex : _realIndex;
-
-
-    // console.log('cIndex', cIndex, 'realIndex', realIndex);
-
-
+    const realColIndex = cellColSpan !== 1 ? (cellColSpan - 1) + shiftedIndex : shiftedIndex;
 
     return realColIndex;
 };
@@ -84,38 +81,42 @@ export const TableCellElement1 = (props: PlateTableCellElementProps) => {
 
     const {
         // colIndex: _colIndex,
-        rowIndex,
-        readOnly,
-        selected,
+        // rowIndex,
+        // readOnly,
+        // selected,
         // hovered,
         // hoveredLeft,
-        rowSize,
-        borders,
+        // rowSize,
+        // borders,
     } = useTableCellElementState();
 
     const editor = usePlateEditorRef();
     const cellElement = useElement<TTableCellElement>();
+    const rowIndex = getTableRowIndex(editor, cellElement);
+    const readOnly = useReadOnly();
+    const selected = useIsCellSelected(cellElement);
+
+    const rowSizeOverrides = useTableStore().get.rowSizeOverrides();
+    const rowElement = useElement<TTableRowElement>(ELEMENT_TR);
+    const rowSize = rowSizeOverrides.get(rowIndex) ?? rowElement?.size ?? undefined;
 
     const colIndex = getColIndex(editor, cellElement, rootProps.nodeProps);
 
-    const colSpan = rootProps.nodeProps.colSpan;
-    // const colIndex = colSpan !== 1 ? (colSpan - 1) + _colIndex : _colIndex;
+    const tableElement = useElement<TTableElement>(ELEMENT_TABLE);
+    const isFirstRow = tableElement.children[0] === rowElement;
     const isFirstCell = colIndex === 0;
+    const borders = getTableCellBorders(cellElement, {
+        isFirstCell,
+        isFirstRow,
+    });
 
     const hoveredColIndex = useTableStore().get.hoveredColIndex();
-
     const hovered = hoveredColIndex === colIndex;
     const hoveredLeft = isFirstCell && hoveredColIndex === -1;
 
     if (hovered || hoveredLeft) {
         console.log('colIndex', colIndex, 'rowIndex', rowIndex, 'hovered', hovered, 'hoveredLeft', hoveredLeft);
     }
-
-
-
-    // const showColResizeHandle = colSpan === 1;
-    const showColResizeHandle = true;
-
 
     return (
         <TableCellElement.Root
@@ -146,7 +147,7 @@ export const TableCellElement1 = (props: PlateTableCellElementProps) => {
                     readOnly={ readOnly }
                 />
 
-                { showColResizeHandle && !readOnly && hovered && (
+                { !readOnly && hovered && (
                     <TableCellElement.Handle css={ getCssTableCellHandle({ side: 'right' }) } />
                 ) }
 
