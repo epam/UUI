@@ -5,9 +5,19 @@ import { IEditable, uuiMod, IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui-components';
 import { useForceUpdate } from '@epam/uui-core';
 
-import { Plate, createPlugins, createPlateUI, usePlateEditorState, TEditableProps, Toolbar, createSoftBreakPlugin,
-    createExitBreakPlugin, PlateProvider, createDeserializeDocxPlugin, useEventEditorSelectors, isElementEmpty, Value,
-    getPluginType, ELEMENT_DEFAULT,
+import {
+    Plate,
+    createPlugins,
+    createPlateUI,
+    usePlateEditorState,
+    Toolbar,
+    createSoftBreakPlugin,
+    createExitBreakPlugin,
+    PlateProvider,
+    createDeserializeDocxPlugin,
+    useEventEditorSelectors,
+    isElementEmpty,
+    Value,
 } from '@udecode/plate';
 
 import { createJuicePlugin } from '@udecode/plate-juice';
@@ -83,7 +93,7 @@ const Editor = (props: PlateEditorProps) => {
                     autoFocus: props.autoFocus,
                     readOnly: props.isReadonly,
                     placeholder: props.placeholder,
-                    renderPlaceholder: ({attributes}) => {
+                    renderPlaceholder: ({ attributes }) => {
                         const shouldShowPlaceholder = isElementEmpty(editor, editor.children[0]) && editor.children[0].type === 'paragraph';
                         return shouldShowPlaceholder && <div { ...attributes }>{ props.placeholder }</div>
                     },
