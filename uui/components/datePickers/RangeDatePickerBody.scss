@@ -11,12 +11,12 @@
                         top: -3px;
                     }
 
-                    &:after {
-                        background: linear-gradient(320deg, #ffffff 3px, transparent 0), linear-gradient(-135deg, #ffffff 3px, transparent 0);
+                    &::after {
+                        background: linear-gradient(320deg, #FFFFFF 3px, transparent 0), linear-gradient(-135deg, #FFFFFF 3px, transparent 0);
                         background-position: left-bottom;
                         background-repeat: repeat-y;
                         background-size: 6px 6px;
-                        content: " ";
+                        content: ' ';
                         display: block;
                         position: absolute;
                         bottom: 0;
@@ -40,12 +40,12 @@
                         top: -3px;
                     }
 
-                    &:after {
-                        background: linear-gradient(45deg, #ffffff 3px, transparent 0), linear-gradient(135deg, #ffffff 3px, transparent 0);
+                    &::after {
+                        background: linear-gradient(45deg, #FFFFFF 3px, transparent 0), linear-gradient(135deg, #FFFFFF 3px, transparent 0);
                         background-position: left-bottom;
                         background-repeat: repeat-y;
                         background-size: 6px 6px;
-                        content: " ";
+                        content: ' ';
                         display: block;
                         position: absolute;
                         bottom: 0;

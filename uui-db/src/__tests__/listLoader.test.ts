@@ -6,14 +6,20 @@ import { DbSaveResponse, DbPatch } from '../types';
 import { DataQuery, runDataQuery } from '@epam/uui-core';
 import range from 'lodash.range';
 
-const delay = (t: number) => new Promise((resolve) => {
-    setTimeout(resolve, t || 1);
-});
+const delay = (t: number) =>
+    new Promise((resolve) => {
+        setTimeout(resolve, t || 1);
+    });
 
 describe('db - list loaders', () => {
     const testItems = range(200).map((id) => {
         return {
-            id, name: 'Task', isDone: false, createdBy: 'JS', isDraft: false, assignedTo: 'DT',
+            id,
+            name: 'Task',
+            isDone: false,
+            createdBy: 'JS',
+            isDraft: false,
+            assignedTo: 'DT',
         } as Task;
     });
 
@@ -23,9 +29,7 @@ describe('db - list loaders', () => {
         }
 
         public saveCallback = jest.fn(() => Promise.resolve({ submit: {} }));
-
         public apiCallback = jest.fn((rq: DataQuery<Task> & { t?: number }) => delay(rq?.t).then(() => runDataQuery(testItems, rq)));
-
         protected savePatch(patch: DbPatch<TaskDbTables>): Promise<DbSaveResponse<TaskDbTables>> {
             return Promise.resolve({ submit: {} });
         }

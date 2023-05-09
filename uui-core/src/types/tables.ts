@@ -1,14 +1,13 @@
 import React, { Attributes, ReactNode } from 'react';
 import {
-    IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps,
-    ICanBeInvalid, ICanFocus, IDropdownBodyProps,
+    IEditable, ICheckable, IDropdownToggler, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
 } from './props';
 import { FilterPredicateName, SortDirection, SortingOption } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
 import { DataRowProps, DataSourceState, IDataSource } from './dataSources';
 import { ILens } from '../data';
 import * as CSS from 'csstype';
-import { TooltipCoreProps } from './components';
+import { RangeDatePickerPresets, TooltipCoreProps } from './components';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
     columnsConfig?: ColumnsConfig;
@@ -22,8 +21,7 @@ export type ICanBeFixed = {
     fix?: 'left' | 'right';
 };
 
-export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
-    extends ICanBeFixed, IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes {
+export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends ICanBeFixed, IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes {
     /**
      * Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
      * Also, used as React key for cells, header cells, and other components inside tables.
@@ -45,9 +43,6 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any>
 
     /** The flex grow for the column. Allows column to grow in width if there's spare horizontal space */
     grow?: number;
-
-    /** @deprecated Shrink prop doesn't affect anything in table columns. This prop will be removed in future versions. */
-    shrink?: number;
 
     /** Aligns cell content horizontally */
     textAlign?: 'left' | 'center' | 'right';
@@ -170,6 +165,8 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     /** Overrides default loading placeholder ('skeleton') rendering  */
     renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
 
+    renderUnknown?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
+
     /**
      * If passed, the cell is rendered as editable - receives focus, show validation errors.
      * All necessary props for the editor are passed as argument:
@@ -193,7 +190,7 @@ export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOp
 }
 
 export type ColumnsConfig = {
-    [key: string]: IColumnConfig,
+    [key: string]: IColumnConfig;
 };
 
 export type IColumnConfig = {
@@ -212,7 +209,7 @@ export type IFilterConfig = {
 };
 
 export type DataTableConfigModalParams = IEditable<DataSourceState> & {
-    columns: DataColumnProps<any, any>[],
+    columns: DataColumnProps<any, any>[];
 };
 
 export type IFilterPredicate = {
@@ -229,25 +226,31 @@ type FilterConfigBase<TFilter> = {
     predicates?: IFilterPredicate[];
 };
 
-type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
-    type: "singlePicker" | "multiPicker";
+export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    type: 'singlePicker' | 'multiPicker';
     dataSource: IDataSource<any, any, any>;
     getName?: (item: any) => string;
     renderRow?: (props: DataRowProps<any, any>) => ReactNode;
-    valueType?: "id";
+    valueType?: 'id';
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
-    type: "datePicker" | "rangeDatePicker";
+    type: 'datePicker';
     format?: string;
 };
 
 type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
-    type: "numeric";
+    type: 'numeric';
 };
 
-export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter>
-    | DatePickerFilterConfig<TFilter> | NumericFilterConfig<TFilter>;
+type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
+    type: 'rangeDatePicker';
+    format?: string;
+    presets?: RangeDatePickerPresets;
+};
+
+export type TableFiltersConfig<TFilter> = PickerFilterConfig<TFilter> | DatePickerFilterConfig<TFilter> |
+NumericFilterConfig<TFilter> | RangeDatePickerFilterConfig<TFilter>;
 
 export interface ITablePreset<TFilter = any, TViewState = any> {
     name: string;
@@ -281,7 +284,7 @@ export interface ITableState<TFilter = Record<string, any>, TViewState = any> ex
     setFiltersConfig(filtersConfig: FiltersConfig): void;
 }
 
-export interface DataTableSelectedCellData <TItem = any, TId = any, TFilter = any> {
+export interface DataTableSelectedCellData<TItem = any, TId = any, TFilter = any> {
     column: DataColumnProps<TItem, TId, TFilter>;
     row: DataRowProps<TItem, TId>;
 }

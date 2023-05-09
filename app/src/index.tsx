@@ -2,10 +2,12 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { ApiCallOptions, ContextProvider, CommonContexts, UuiContexts } from '@epam/uui-core';
+import {
+    ApiCallOptions, ContextProvider, CommonContexts, UuiContexts,
+} from '@epam/uui-core';
 import { Snackbar, Modals } from '@epam/uui-components';
 import { skinContext as promoSkinContext } from '@epam/promo';
-import { AmplitudeListener } from "./analyticsEvents";
+import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';
 import { getApi, TApi } from './data';
@@ -14,14 +16,15 @@ import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import './index.scss';
 
 const history = createBrowserHistory();
+// @ts-ignore (COMMIT_HASH will be replaced to a real string by Webpack)
+window.BUILD_INFO = { hash: COMMIT_HASH };
 
 export class UuiEnhancedApp extends React.Component {
-
     onInitCompleted = (context: CommonContexts<TApi, UuiContexts>, ampCode: string) => {
         Object.assign(svc, context);
         const listener = new AmplitudeListener(ampCode);
         context.uuiAnalytics.addListener(listener);
-    }
+    };
 
     render() {
         const isProduction = /uui.epam.com/.test(window.location.hostname);
@@ -31,13 +34,11 @@ export class UuiEnhancedApp extends React.Component {
             <ContextProvider<TApi, UuiContexts>
                 apiDefinition={ (processRequest) =>
                     getApi((url: string, method: string, data?: any, options?: ApiCallOptions) =>
-                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options  }))
-                }
+                        processRequest(url, method, data, { fetchOptions: { credentials: undefined }, ...options })) }
                 onInitCompleted={ (context) => this.onInitCompleted(context, ampCode) }
                 history={ history }
-                gaCode='UA-132675234-1'
+                gaCode="UA-132675234-1"
                 skinContext={ promoSkinContext }
-                enableLegacyContext={ false }
             >
                 <App />
                 <Snackbar />

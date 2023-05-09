@@ -6,13 +6,12 @@ import css from '../assets/DownloadsDoc.scss';
 
 export class GettingStartedForDesignersDoc extends BaseDocsBlock {
     title = 'Getting Started';
-
     renderDocTitle() {
         return (
             <FlexRow>
-                <div className={ css.title }>{ this.title }</div>
+                <div className={ css.title }>{this.title}</div>
                 <FlexSpacer />
-                { this.renderMultiSwitch() }
+                {this.renderMultiSwitch()}
             </FlexRow>
         );
     }
@@ -26,8 +25,6 @@ export class GettingStartedForDesignersDoc extends BaseDocsBlock {
     }
 
     renderContent() {
-        return (
-            getQuery('skin') === UUI3 ? this.renderLoveshipContent() : this.renderPromoContent()
-        );
+        return getQuery('skin') === UUI3 ? this.renderLoveshipContent() : this.renderPromoContent();
     }
 }

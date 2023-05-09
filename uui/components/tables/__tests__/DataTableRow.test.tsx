@@ -1,28 +1,30 @@
 import React from 'react';
 import { DataTableRow } from '../DataTableRow';
-import renderer from 'react-test-renderer';
+import { renderer } from '@epam/uui-test-utils';
 
 describe('DataTableRow', () => {
     it('should be rendered correctly', () => {
         const tree = renderer
-            .create(<DataTableRow
-                id='test'
-                index={ 1 }
-                rowKey='testRowKey'
-                columns={ [
-                    {
-                        key: 'id',
-                        caption: 'ID',
-                        render: product => <div>{ product }</div>,
-                        isSortable: true,
-                        isAlwaysVisible: true,
-                        grow: 0, shrink: 0, width: 96,
-                    },
-                ] }
-            />)
+            .create(
+                <DataTableRow
+                    id="test"
+                    index={ 1 }
+                    rowKey="testRowKey"
+                    columns={ [
+                        {
+                            key: 'id',
+                            caption: 'ID',
+                            render: (product) => <div>{product}</div>,
+                            isSortable: true,
+                            isAlwaysVisible: true,
+                            grow: 0,
+                            shrink: 0,
+                            width: 96,
+                        },
+                    ] }
+                />,
+            )
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
 });
-
-

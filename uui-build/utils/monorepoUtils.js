@@ -1,24 +1,26 @@
-const Project = require("@lerna/project");
-const { PackageGraph } = require("@lerna/package-graph");
-const fs = require("fs");
-const path = require("path");
-const { readPackageJsonContentSync } = require("./packageJsonUtils");
+const Project = require('@lerna/project');
+const { PackageGraph } = require('@lerna/package-graph');
+const fs = require('fs');
+const path = require('path');
+const { readPackageJsonContentSync } = require('./packageJsonUtils');
 const { isRollupModule } = require('./moduleBuildUtils');
 
 module.exports = {
-    assertRunFromModule, getAllLocalDependenciesInfo,
-    getAllMonorepoPackages, isAllLocalDependenciesBuilt,
-}
+    assertRunFromModule,
+    getAllLocalDependenciesInfo,
+    getAllMonorepoPackages,
+    isAllLocalDependenciesBuilt,
+};
 
 function getModuleDirNameFromModuleRootDir(moduleRootDir) {
     const rootTokens = moduleRootDir.split(/[\\/]/);
-    return rootTokens[rootTokens.length - 1]
+    return rootTokens[rootTokens.length - 1];
 }
 
 function assertRunFromModule(expectedModuleDirName) {
     const moduleDirName = getModuleDirNameFromModuleRootDir(process.cwd());
     if (moduleDirName !== expectedModuleDirName) {
-        throw new Error(`This script is designed to be run from the "${expectedModuleDirName}" module.`)
+        throw new Error(`This script is designed to be run from the "${expectedModuleDirName}" module.`);
     }
 }
 
@@ -27,8 +29,10 @@ function getAllMonorepoPackages() {
     const graph = new PackageGraph(packages);
     return packages.reduce((acc, p) => {
         const { location: moduleRootDir, name, version } = p;
-        const localDependencies = Array.from(graph.get(name).localDependencies.values()).map(d => d.name);
-        acc[name] = { name, version, moduleRootDir, localDependencies };
+        const localDependencies = Array.from(graph.get(name).localDependencies.values()).map((d) => d.name);
+        acc[name] = {
+            name, version, moduleRootDir, localDependencies,
+        };
         return acc;
     }, {});
 }
@@ -42,10 +46,10 @@ function getAllLocalDependenciesInfo(moduleName) {
         function getAllDeps(n) {
             const loc = pMap[n].localDependencies;
             let arr = [...loc];
-            loc.forEach(ld => {
+            loc.forEach((ld) => {
                 const ldDeps = getAllDeps(ld);
                 arr = arr.concat(ldDeps);
-            })
+            });
             return [...new Set(arr)];
         }
         return getAllDeps(name);
@@ -53,7 +57,7 @@ function getAllLocalDependenciesInfo(moduleName) {
     const pMap = getAllMonorepoPackages();
     if (moduleName) {
         const arr = getAllLocalDependencies(moduleName);
-        return arr.map(i => pMap[i])
+        return arr.map((i) => pMap[i]);
     } else {
         return Object.values(pMap);
     }
@@ -97,5 +101,5 @@ function isAllLocalDependenciesBuilt(moduleName) {
         isBuilt,
         modulesBuilt,
         modulesNotBuilt,
-    }
+    };
 }

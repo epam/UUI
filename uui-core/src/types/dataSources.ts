@@ -1,5 +1,7 @@
-import { SortingOption } from "./dataQuery";
-import { FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable } from "./props";
+import { SortingOption } from './dataQuery';
+import {
+    FlexRowProps, ICanBeInvalid, ICheckable, IDisableable, IEditable,
+} from './props';
 import { IDndActor } from './dnd';
 import { Link } from './objects';
 
@@ -36,7 +38,7 @@ export interface VirtualListState extends VirtualListRange {
 
 export interface IDataSource<TItem, TId, TFilter> {
     getId(item: TItem): TId;
-    getById(id: TId): TItem;
+    getById(id: TId): TItem | void;
     setItem(item: TItem): void;
     getView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
     useView(value: DataSourceState<any, TId>, onValueChange: (val: DataSourceState<any, TId>) => any, options?: any): IDataSourceView<TItem, TId, TFilter>;
@@ -68,10 +70,7 @@ export const CascadeSelectionTypes = {
     EXPLICIT: 'explicit',
 } as const;
 
-export type CascadeSelection =
-    | boolean
-    | typeof CascadeSelectionTypes.EXPLICIT
-    | typeof CascadeSelectionTypes.IMPLICIT;
+export type CascadeSelection = boolean | typeof CascadeSelectionTypes.EXPLICIT | typeof CascadeSelectionTypes.IMPLICIT;
 
 /** A part of the DataRowProps, which can be configured for each data row via getRowOptions callback.
  * Other props in DataRowProps are computed when generating rows.
@@ -105,7 +104,8 @@ export interface DataRowOptions<TItem, TId> extends IDisableable, Partial<IEdita
  *
  * DataSources primary job is to convert various data stores into arrays of DataRowProps.
  */
-export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId> & {
+export type DataRowProps<TItem, TId> = FlexRowProps &
+DataRowOptions<TItem, TId> & {
     /** ID of the TItem rows displays */
     id: TId;
 
@@ -116,7 +116,7 @@ export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId>
     index: number;
 
     /** The data item (TItem) row displays. Will be undefined if isLoading = true. */
-    value?: TItem;
+    value: TItem | undefined;
 
     /** ID of the parent TItem */
     parentId?: TId;
@@ -130,13 +130,15 @@ export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId>
     depth?: number;
 
     /** Indent of the item, to show hierarchy.
-     *  Unlike depth, it contains additional logic, to not add unnecessary indents:
-     *  if all children of node has no children, all nodes would get the same indent as parent.
-     */
+         *  Unlike depth, it contains additional logic, to not add unnecessary indents:
+         *  if all children of node has no children, all nodes would get the same indent as parent.
+         */
     indent?: number;
 
     /** True if row is in loading state. 'value' is empty in this case */
     isLoading?: boolean;
+
+    isUnknown?: boolean;
 
     /** True if row be folded or unfolded (usually because it contains children) */
     isFoldable?: boolean;
@@ -151,7 +153,7 @@ export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId>
     isCheckable?: boolean;
 
     /** True if some of row's children are checked.
-     * Used to show 'indefinite' checkbox state, to show user that something inside is checked */
+         * Used to show 'indefinite' checkbox state, to show user that something inside is checked */
     isChildrenChecked?: boolean;
 
     /** True if row is selected (in single-select mode, or in case when interface use both single row selection and checkboxes) */
@@ -169,27 +171,27 @@ export type DataRowProps<TItem, TId> = FlexRowProps & DataRowOptions<TItem, TId>
     /* events */
 
     /** Handles row folding change.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
+         * We demand to pass the row as well, to avoid creating closures for each row.
+         */
     onFold?(rowProps: DataRowProps<TItem, TId>): void;
 
     /** Handles row click.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
+         * We demand to pass the row as well, to avoid creating closures for each row.
+         */
     onClick?(rowProps: DataRowProps<TItem, TId>): void;
 
     /** Handles row checkbox change.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
+         * We demand to pass the row as well, to avoid creating closures for each row.
+         */
     onCheck?(rowProps: DataRowProps<TItem, TId>): void;
 
     /** Handles row selection.
-     * We demand to pass the row as well, to avoid creating closures for each row.
-     */
+         * We demand to pass the row as well, to avoid creating closures for each row.
+         */
     onSelect?(rowProps: DataRowProps<TItem, TId>): void;
 
     /** Handles row focusing.
-     */
+         */
     onFocus?(focusedIndex: number): void;
 };
 
@@ -300,9 +302,7 @@ export interface DataSourceListProps extends DataSourceListCounts {
     selectAll?: ICheckable;
 }
 
-
 // Lazy Data Source API
-
 
 /** The common part of LazyDataSourceApiRequest, which defines how list should be filtered and sorted */
 export interface LazyDataSourceApiRequestOptions<TItem, TFilter> {
@@ -347,11 +347,7 @@ export interface LazyDataSourceApiRequestContext<TItem, TId> {
 }
 
 /** Defines API to retrieve data for DataSources */
-export type LazyDataSourceApi<TItem, TId, TFilter> =
-    (
-        request: LazyDataSourceApiRequest<TItem, TId, TFilter>,
-        context?: LazyDataSourceApiRequestContext<TItem, TId>,
-    ) => Promise<LazyDataSourceApiResponse<TItem>>;
-
-
-
+export type LazyDataSourceApi<TItem, TId, TFilter> = (
+    request: LazyDataSourceApiRequest<TItem, TId, TFilter>,
+    context?: LazyDataSourceApiRequestContext<TItem, TId>
+) => Promise<LazyDataSourceApiResponse<TItem>>;

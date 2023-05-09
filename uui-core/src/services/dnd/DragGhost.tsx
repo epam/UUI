@@ -4,8 +4,7 @@ import { UuiContexts, DndContextState } from '../../types/contexts';
 import { LayoutLayer } from '../../types/objects';
 import { UuiContext } from '../ContextProvider';
 
-export interface DragGhostProps {
-}
+export interface DragGhostProps {}
 
 interface DragGhostState extends DndContextState {
     pointerX?: number;
@@ -15,9 +14,7 @@ interface DragGhostState extends DndContextState {
 export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
     static contextType = UuiContext;
     context: UuiContexts;
-
     private layer: LayoutLayer = null;
-
     state: DragGhostState = {
         isDragging: false,
     };
@@ -30,7 +27,7 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
         if (this.state.isDragging) {
             this.setState({ ...this.state, pointerX: e.clientX, pointerY: e.clientY });
         }
-    }
+    };
 
     contextUpdateHandler = (state: DndContextState) => {
         if (state.isDragging && !this.layer) {
@@ -41,7 +38,7 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
         }
 
         this.setState({ ...state, pointerX: mouseCoords.mousePageX, pointerY: mouseCoords.mousePageY });
-    }
+    };
 
     componentDidMount() {
         if (!this.context) return;
@@ -67,16 +64,17 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
         }
 
         return (
-            <div style={ {
-                position: 'fixed',
-                width: this.state.ghostWidth,
-                left: this.state.pointerX + this.state.ghostOffsetX,
-                top: this.state.pointerY + this.state.ghostOffsetY,
-                pointerEvents: 'none',
-                zIndex: this.layer.zIndex,
-            } }
+            <div
+                style={ {
+                    position: 'fixed',
+                    width: this.state.ghostWidth,
+                    left: this.state.pointerX + this.state.ghostOffsetX,
+                    top: this.state.pointerY + this.state.ghostOffsetY,
+                    pointerEvents: 'none',
+                    zIndex: this.layer.zIndex,
+                } }
             >
-                { this.state.renderGhost() }
+                {this.state.renderGhost()}
             </div>
         );
     }

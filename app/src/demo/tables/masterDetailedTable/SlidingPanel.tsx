@@ -1,4 +1,6 @@
-import React, { CSSProperties, ReactElement, useEffect, useMemo, useState } from 'react';
+import React, {
+    CSSProperties, ReactElement, useEffect, useMemo, useState,
+} from 'react';
 import cx from 'classnames';
 import { Panel } from '@epam/uui';
 import css from './SlidingPanel.scss';
@@ -14,19 +16,26 @@ interface CustomCssProperties extends CSSProperties {
     '--sliding-panel-margin': string;
 }
 
-const SlidingPanelImpl: React.FC<ISlidingPanelProps> = ({ isVisible, position, width, children }) => {
+const SlidingPanelImpl: React.FC<ISlidingPanelProps> = ({
+    isVisible, position, width, children,
+}) => {
     const [isFirstMount, setIsFirstMount] = useState(true);
-    
+
     useEffect(() => {
         if (isVisible && isFirstMount) {
             setIsFirstMount(false);
         }
     }, [isVisible]);
 
-    const style: CustomCssProperties = useMemo(() => ({
-        width: width + 'px',
-        '--sliding-panel-margin': -width + 'px',
-    }), [width, position, isVisible]);
+    const style: CustomCssProperties = useMemo(
+        () => ({
+            width: width + 'px',
+            '--sliding-panel-margin': -width + 'px',
+        }),
+        [
+            width, position, isVisible,
+        ],
+    );
 
     const upperPosition = position[0].toUpperCase() + position.slice(1);
     const className = cx(
@@ -38,7 +47,7 @@ const SlidingPanelImpl: React.FC<ISlidingPanelProps> = ({ isVisible, position, w
 
     return (
         <Panel cx={ className } style={ style }>
-            { children }
+            {children}
         </Panel>
     );
 };

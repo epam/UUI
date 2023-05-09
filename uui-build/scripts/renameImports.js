@@ -2,29 +2,20 @@ const replaceInFiles = require('replace-in-files');
 
 const options = {
     files: [
-        './**/*.ts',
-        './**/*.tsx',
-        './**/*.less',
+        './**/*.ts', './**/*.tsx', './**/*.less',
     ],
-    optionsForFiles: { // default
+    optionsForFiles: {
+        // default
         ignore: ['**/node_modules/**'],
     },
 };
 
 const modules = [
-    'edu-bo-components',
-    'edu-core',
-    'edu-core-routing',
-    'edu-ui-base',
-    'edu-utils',
-    'uui',
-    'uui-build',
-    'uui-core',
-    'uui-timeline',
+    'edu-bo-components', 'edu-core', 'edu-core-routing', 'edu-ui-base', 'edu-utils', 'uui', 'uui-build', 'uui-core', 'uui-timeline',
 ];
 
 const modulesReplacements = {};
-modules.forEach((m) => modulesReplacements[m] = '@epam/' + m);
+modules.forEach((m) => (modulesReplacements[m] = '@epam/' + m));
 modulesReplacements['loveship'] = '@epam/loveship';
 modulesReplacements['epam-assets'] = '@epam/assets';
 modulesReplacements['extra'] = '@epam/uui-extra';
@@ -47,11 +38,7 @@ async function replace(from, to) {
     options.from = from;
     options.to = to;
 
-    const {
-        changedFiles,
-        countOfMatchesByPaths,
-        replaceInFilesOptions,
-    } = await replaceInFiles(options);
+    const { changedFiles, countOfMatchesByPaths, replaceInFilesOptions } = await replaceInFiles(options);
     console.log('Modified files:', changedFiles);
     console.log('Count of matches by paths:', countOfMatchesByPaths);
     console.log('was called with:', replaceInFilesOptions);
@@ -69,16 +56,10 @@ async function main() {
 
     for (const from of Object.keys(contextReplacements)) {
         console.log(`Replacing context name ${from} => ${contextReplacements[from]}`);
-        await replace(
-            new RegExp(`(.*)svc.(?:${from})(.*)`, 'gm'),
-            (c, strStart, strEnd) => `${strStart}svc.${contextReplacements[from]}${strEnd}`,
-        );
+        await replace(new RegExp(`(.*)svc.(?:${from})(.*)`, 'gm'), (c, strStart, strEnd) => `${strStart}svc.${contextReplacements[from]}${strEnd}`);
     }
 
-    await replace(
-        new RegExp('@import \'~epam-assets', 'g'),
-        '@import (reference) \'~@epam/assets',
-    );
+    await replace(new RegExp("@import '~epam-assets", 'g'), "@import (reference) '~@epam/assets");
 }
 
 main();

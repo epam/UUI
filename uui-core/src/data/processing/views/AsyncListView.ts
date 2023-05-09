@@ -1,5 +1,6 @@
-import { IEditable, DataSourceState, IDataSourceView } from "../../../types";
-import { ArrayListView, BaseArrayListViewProps } from "./ArrayListView";
+import { IEditable, DataSourceState, IDataSourceView } from '../../../types';
+import { ArrayListView, BaseArrayListViewProps } from './ArrayListView';
+import { NOT_FOUND_RECORD } from './tree';
 
 export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListViewProps<TItem, TId, TFilter> {
     api(): Promise<TItem[]>;
@@ -8,27 +9,24 @@ export interface AsyncListViewProps<TItem, TId, TFilter> extends BaseArrayListVi
 export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TItem, TId, TFilter> implements IDataSourceView<TItem, TId, TFilter> {
     private isloading: boolean = false;
     private isloaded: boolean = false;
-
-    constructor(
-        protected editable: IEditable<DataSourceState<TFilter, TId>>,
-        protected props: AsyncListViewProps<TItem, TId, TFilter>,
-    ) {
+    constructor(protected editable: IEditable<DataSourceState<TFilter, TId>>, protected props: AsyncListViewProps<TItem, TId, TFilter>) {
         super(editable, props);
         this.props = props;
         this.update(editable.value, props);
     }
 
-    public loadData() {
+    public async loadData() {
         if (this.isLoaded || this.isLoading) {
             return;
         }
 
         this.isLoading = true;
-        this.props.api().then((items) => {
+        return this.props.api().then((items) => {
             this.isLoaded = true;
             this.isLoading = false;
             this.update(this.editable.value, { ...this.props, items });
             this._forceUpdate();
+            return items;
         });
     }
 
@@ -36,7 +34,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         this.isLoading = false;
         this.isLoaded = false;
         super.reload();
-    }
+    };
 
     public getVisibleRows = () => {
         const from = this.value.topIndex;
@@ -52,7 +50,7 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
         }
 
         return this.rows.slice(this.value.topIndex, this.getLastRecordIndex());
-    }
+    };
 
     public getListProps = () => {
         if (!this.isLoaded) {
@@ -72,7 +70,21 @@ export class AsyncListView<TItem, TId, TFilter = any> extends ArrayListView<TIte
             totalCount: this.originalTree?.getTotalRecursiveCount(),
             selectAll: this.selectAll,
         };
-    }
+    };
+
+    public getById = (id: TId, index: number) => {
+        // if originalTree is not created, but blank tree is defined, get item from it
+        const item = (this.originalTree ?? this.tree).getById(id);
+        if (item === NOT_FOUND_RECORD) {
+            return this.getUnknownRow(id, index, []);
+        }
+
+        if (this.isLoading && !this.isLoaded) {
+            return this.getLoadingRow('_loading_' + id, index, []);
+        }
+
+        return this.getRowProps(item, index);
+    };
 
     get isLoading(): boolean {
         return this.isloading;

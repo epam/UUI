@@ -26,38 +26,33 @@ export function getColumns(dbRef: DemoDbRef) {
             width: 250,
             fix: 'left',
             isSortable: true,
-        },
-        {
+        }, {
             key: 'jobTitle',
             caption: 'Job Title',
-            render: (r) => <Text>{ r.jobTitle }</Text>,
+            render: (r) => <Text>{r.jobTitle}</Text>,
             width: 200,
             isSortable: true,
             isFilterActive: (f) => !!f.jobTitle,
-        },
-        {
+        }, {
             key: 'departmentName',
             caption: 'Department',
-            render: (r) => <Text>{ r.departmentName }</Text>,
+            render: (r) => <Text>{r.departmentName}</Text>,
             width: 200,
             isSortable: true,
             isFilterActive: (f) => !!f.departmentId,
-        },
-        {
+        }, {
             key: 'birthDate',
             caption: 'Birth Date',
-            render: (r) => <Text>{ r?.birthDate?.toLocaleDateString() }</Text>,
+            render: (r) => <Text>{r?.birthDate?.toLocaleDateString()}</Text>,
             width: 120,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'hireDate',
             caption: 'Hire Date',
-            render: (r) => <Text>{ r?.hireDate?.toLocaleDateString() }</Text>,
+            render: (r) => <Text>{r?.hireDate?.toLocaleDateString()}</Text>,
             width: 120,
             isSortable: true,
-        },
-        {
+        }, {
             key: 'notes',
             caption: 'Notes',
             render: (p) => <TextArea mode="cell" rows={ 1 } autoSize { ...fieldLens('notes', p) } />,
@@ -70,11 +65,10 @@ export function getColumns(dbRef: DemoDbRef) {
         {
             key: 'name',
             caption: 'Name',
-            render: (p) => <Text>{ p.name }</Text>,
+            render: (p) => <Text>{p.name}</Text>,
             fix: 'left',
             width: 250,
-        },
-        {
+        }, {
             key: 'spacer',
             caption: 'Name',
             render: (p) => null,

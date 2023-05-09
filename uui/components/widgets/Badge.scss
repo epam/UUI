@@ -3,6 +3,7 @@
 .root {
     :global(.uui-count) {
         font-family: var(--uui-badge-count-font);
+        font-weight: var(--uui-badge-count-font-weight, normal);
         margin: auto;
         height: 18px;
         line-height: 18px;
@@ -20,6 +21,7 @@
 
     :global(.uui-caption) {
         font-family: var(--uui-badge-font);
+        font-weight: var(--uui-badge-font-weight, normal);
     }
 
     &:global(.uui-button-box) {

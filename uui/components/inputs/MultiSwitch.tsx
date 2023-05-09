@@ -19,10 +19,10 @@ export interface MultiSwitchProps<TValue> extends IEditable<TValue>, SizeMod, IH
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
     return (
         <ControlGroup ref={ ref } rawProps={ { ...props.rawProps, role: 'tablist' } }>
-            { props.items.map((item, index) => (
+            {props.items.map((item, index) => (
                 <Button
                     { ...props }
-                    {  ...item }
+                    { ...item }
                     isDisabled={ props.isDisabled }
                     key={ index + '-' + item.id }
                     onClick={ () => props.onValueChange(item.id) }
@@ -31,7 +31,7 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
                     size={ props.size }
                     rawProps={ { 'aria-current': props.value === item.id, role: 'tab' } }
                 />
-            )) }
+            ))}
         </ControlGroup>
     );
 }

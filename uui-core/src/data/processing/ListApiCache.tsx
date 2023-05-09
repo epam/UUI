@@ -1,9 +1,9 @@
-import { LazyLoadedMap } from '../../helpers';
+import { FAILED, LazyLoadedMap, UNKNOWN } from '../../helpers';
 import { LazyDataSourceApi } from '../../types';
 import { batch } from '../../helpers/batch';
+import { NOT_FOUND_RECORD } from './views';
 
 export interface ListApiSettings<TItem, TId, TFilter> {
-
     /** Lazy List API used to fetch items */
     api: LazyDataSourceApi<TItem, TId, TFilter>;
 
@@ -24,16 +24,14 @@ export interface ListApiResponse<TItem> {
  */
 export class ListApiCache<TItem, TId, TFilter> {
     itemsById: LazyLoadedMap<string, TItem>;
-
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     getId: (item: TItem) => TId;
     onUpdate: () => void;
-
     constructor(options: ListApiSettings<TItem, TId, TFilter>) {
         this.api = options.api;
         this.getId = options.getId;
         this.onUpdate = batch(() => options.onUpdate && options.onUpdate());
-        this.itemsById = new LazyLoadedMap(ids => this.loadByIds(ids), this.onUpdate);
+        this.itemsById = new LazyLoadedMap((ids) => this.loadByIds(ids), this.onUpdate);
     }
 
     /**
@@ -41,8 +39,13 @@ export class ListApiCache<TItem, TId, TFilter> {
      * @param id Item ID
      * @param fetchIfAbsent Pass false to avoid auto-fetching missing item.
      */
-    public byId(id: TId, fetchIfAbsent: boolean = true) {
-        return this.itemsById.get(JSON.stringify(id), fetchIfAbsent);
+    public byId(id: TId, fetchIfAbsent: boolean = true): TItem | typeof NOT_FOUND_RECORD {
+        const item = this.itemsById.get(JSON.stringify(id), fetchIfAbsent);
+        if ((item.status === UNKNOWN && !fetchIfAbsent) || (fetchIfAbsent && item.status === FAILED)) {
+            return NOT_FOUND_RECORD;
+        }
+
+        return item.value;
     }
 
     public setItem(item: TItem) {
@@ -51,9 +54,9 @@ export class ListApiCache<TItem, TId, TFilter> {
     }
 
     private loadByIds(keys: string[]) {
-        const ids: TId[] = keys.map(key => JSON.parse(key));
-        return this.api({ ids }).then(response => {
-            return response.items.map(item => [JSON.stringify(this.getId(item)), item] as [string, TItem]);
+        const ids: TId[] = keys.map((key) => JSON.parse(key));
+        return this.api({ ids }).then((response) => {
+            return response.items.map((item) => [JSON.stringify(this.getId(item)), item] as [string, TItem]);
         });
     }
 }

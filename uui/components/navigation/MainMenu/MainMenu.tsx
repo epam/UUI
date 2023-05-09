@@ -13,4 +13,3 @@ export const MainMenu = withMods<MainMenuProps, MainMenuMods>(uuiMainMenu, apply
     Burger,
     MainMenuDropdown,
 }));
-

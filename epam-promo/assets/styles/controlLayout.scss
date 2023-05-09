@@ -19,7 +19,7 @@
 }
 
 @mixin control-vertical-layout($size, $borderWidth) {
-    :global(.uui-caption), :global(.uui-input), :global(.uui-input-prefix), :global(.uui-input-suffix) {
+    :global(.uui-caption), :global(.uui-input) {
         @include text-size($size, $borderWidth);
     }
 

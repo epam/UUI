@@ -4,9 +4,10 @@ import {
 import { DbRef } from '../DbRef';
 import { DbSaveResponse, DbPatch } from '../types';
 
-const delay = (t: number) => new Promise((resolve) => {
-    setTimeout(resolve, t || 1);
-});
+const delay = (t: number) =>
+    new Promise((resolve) => {
+        setTimeout(resolve, t || 1);
+    });
 
 describe('db - loaders', () => {
     class TaskDbRef extends DbRef<TaskDbTables, TaskDb> {
@@ -15,8 +16,8 @@ describe('db - loaders', () => {
         }
 
         public saveCallback = jest.fn(() => Promise.resolve({ submit: {} }));
-
-        public apiCallback = jest.fn((rq: { ids: string[], t?: number }) => delay(rq?.t).then(() => ({ items: sampleData.users.filter((u) => !rq?.ids || rq.ids.includes(u.id)) })));
+        public apiCallback = jest.fn((rq: { ids: string[]; t?: number }) =>
+            delay(rq?.t).then(() => ({ items: sampleData.users.filter((u) => !rq?.ids || rq.ids.includes(u.id)) })));
 
         protected savePatch(patch: DbPatch<TaskDbTables>): Promise<DbSaveResponse<TaskDbTables>> {
             return Promise.resolve({ submit: {} });

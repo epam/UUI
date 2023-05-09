@@ -9,7 +9,6 @@ interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
 
 export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProps<TItem, TId>> {
     rowNode = React.createRef<HTMLDivElement>();
-
     componentDidMount() {
         if (this.props.onFocus) {
             this.rowNode.current?.addEventListener('mouseenter', this.handleMouseEnter);
@@ -22,7 +21,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
 
     handleMouseEnter = () => {
         this.props.onFocus && this.props.onFocus(this.props.index);
-    }
+    };
 
     shouldComponentUpdate(nextProps: DataRowProps<TItem, TId> & FlexRowProps) {
         return !isEqual(this.props, nextProps);
@@ -31,19 +30,21 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
     render() {
         const clickHandler = this.props.onClick || this.props.onSelect || this.props.onFold || this.props.onCheck;
 
-        return <FlexRow
-            onClick={ clickHandler && (() => clickHandler(this.props)) }
-            rawProps={ {
-                role: 'option',
-                'aria-posinset': this.props.index + 1,
-                ...(this.props.checkbox?.isVisible && { 'aria-checked': this.props.isChecked }),
-                ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected }),
-                ...this.props.rawProps,
-            } }
-            ref={ this.rowNode }
-            cx={ [clickHandler && this.props.isFocused && uuiMod.focus, this.props.cx] }
-        >
-            { this.props.renderContent() }
-        </FlexRow>;
+        return (
+            <FlexRow
+                onClick={ clickHandler && (() => clickHandler(this.props)) }
+                rawProps={ {
+                    role: 'option',
+                    'aria-posinset': this.props.index + 1,
+                    ...(this.props.checkbox?.isVisible && { 'aria-checked': this.props.isChecked }),
+                    ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected }),
+                    ...this.props.rawProps,
+                } }
+                ref={ this.rowNode }
+                cx={ [clickHandler && this.props.isFocused && uuiMod.focus, this.props.cx] }
+            >
+                {this.props.renderContent()}
+            </FlexRow>
+        );
     }
 }

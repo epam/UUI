@@ -32,7 +32,7 @@ $text-size-count: 24px;
     display: flex;
     align-items: center;
     font-family: var(--uui-tab-button-font);
-    font-weight: normal;
+    font-weight: var(--uui-tab-button-font-weight, normal);
     border-bottom: 3px solid transparent;
 
     &:global(.uui-disabled) {

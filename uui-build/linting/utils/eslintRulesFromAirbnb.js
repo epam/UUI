@@ -34,7 +34,6 @@ const AIRBNB_PICK_RULES = {
             'indent',
             'key-spacing',
             'keyword-spacing',
-            'lines-between-class-members',
             'max-len',
             'newline-per-chained-call',
             'no-mixed-spaces-and-tabs',
@@ -42,7 +41,6 @@ const AIRBNB_PICK_RULES = {
             'no-multi-spaces',
             'nonblock-statement-body-position',
             'no-tabs',
-            'no-trailing-spaces',
             'no-whitespace-before-property',
             'object-curly-spacing',
             'operator-linebreak',
@@ -58,7 +56,6 @@ const AIRBNB_PICK_RULES = {
             'space-in-parens',
             'template-curly-spacing',
             //
-            'object-curly-newline',
             'object-property-newline',
             'arrow-parens',
         ],
@@ -72,7 +69,6 @@ const AIRBNB_PICK_RULES = {
             'block-scoped-var',
             'prefer-promise-reject-errors',
             //
-            'no-shadow',
             'no-unused-vars',
             //
             'no-var',
@@ -89,7 +85,6 @@ const AIRBNB_PICK_RULES = {
             '@typescript-eslint/comma-spacing',
             '@typescript-eslint/indent',
             '@typescript-eslint/keyword-spacing',
-            '@typescript-eslint/lines-between-class-members',
             '@typescript-eslint/no-extra-semi',
             '@typescript-eslint/object-curly-spacing',
             '@typescript-eslint/quotes',
@@ -97,7 +92,7 @@ const AIRBNB_PICK_RULES = {
             '@typescript-eslint/space-before-blocks',
             '@typescript-eslint/space-before-function-paren',
         ],
-        NON_STYLISTIC: ['@typescript-eslint/no-shadow', '@typescript-eslint/no-unused-vars'],
+        NON_STYLISTIC: ['@typescript-eslint/no-unused-vars'],
     },
     REACT: {
         STYLISTIC: [

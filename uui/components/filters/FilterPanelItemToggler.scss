@@ -31,6 +31,7 @@
 
         .title-wrapper {
             font-family: var(--uui-filters-toggler-font);
+            font-weight: var(--uui-filters-toggler-font-weight, normal);
             flex: 1 1 auto;
             min-width: 0;
             outline: none;
@@ -59,6 +60,7 @@
                 padding-top: 0;
                 padding-bottom: 0;
                 color: var(--uui-filters-toggler-text);
+
                 div {
                     display: inline-block;
                     margin-right: 3px;

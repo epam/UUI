@@ -10,14 +10,9 @@ export interface TagMods extends UuiTagMods {
 }
 
 export function applyTagMods(mods: TagMods) {
-    return [
-        css.root,
-        css['fill-' + (mods.fill || 'solid')],
-    ];
+    return [css.root, css['fill-' + (mods.fill || 'solid')]];
 }
 
-export const Tag = withMods<Omit<TagProps, 'color'>, TagMods>(UuiTag, applyTagMods,
-    (props) => ({
-        size: props.size || defaultSize,
-    }),
-);
+export const Tag = withMods<Omit<TagProps, 'color'>, TagMods>(UuiTag, applyTagMods, (props) => ({
+    size: props.size || defaultSize,
+}));

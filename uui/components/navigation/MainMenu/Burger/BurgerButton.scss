@@ -6,6 +6,7 @@
     border: 0;
     outline: none;
     font-family: var(--uui-burger_btn-font);
+    font-weight: var(--uui-burger_btn-font-weight, normal);
     line-height: 48px;
     flex-shrink: 0;
 
@@ -39,6 +40,7 @@
         padding-left: 18px;
         margin-left: 48px;
         border-left: 1px var(--uui-burger_btn-border) solid;
+
         &:hover {
             // border-left-color: @blue;
         }

@@ -1,11 +1,11 @@
 @mixin set-size($padding-left, $padding-right, $min-width) {
-
     &:global(.uui-button-box) {
         min-width: $min-width;
     }
 
     :global(.uui-caption) {
         font-family: var(--uui-pagination-font);
+        font-weight: var(--uui-pagination-font-weight, normal);
         font-size: 14px;
         padding-left: $padding-left;
         padding-right: $padding-right;

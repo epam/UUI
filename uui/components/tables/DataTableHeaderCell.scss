@@ -52,6 +52,7 @@
 
     .caption {
         font-family: var(--uui-dt-header-cell-font);
+        font-weight: var(--uui-dt-header-cell-font-weight, normal);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -121,8 +122,8 @@
     }
 
     &.ghost {
-        background-color: var(--uui-dt-row-bg-hover);
         @include dnd-ghost-shadow();
+        background-color: var(--uui-dt-row-bg-hover);
     }
 
     &.is-dragged-out {

@@ -27,8 +27,6 @@ export const uuiElement = {
     modalBlocker: 'uui-modal-blocker',
     modalWindow: 'uui-modal-window',
     textareaCounter: 'uui-textarea-counter',
-    prefixInput: 'uui-input-prefix',
-    suffixInput: 'uui-input-suffix',
 } as const;
 
 export const uuiMod = {
