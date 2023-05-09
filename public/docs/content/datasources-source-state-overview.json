@@ -1333,12 +1333,12 @@
       },
       {
         "object": "block",
-        "type": "paragraph",
+        "type": "uui-richTextEditor-header-2",
         "data": {},
         "nodes": [
           {
             "object": "text",
-            "text": "",
+            "text": "Conclusion",
             "marks": []
           }
         ]

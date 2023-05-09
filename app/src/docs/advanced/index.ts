@@ -6,3 +6,8 @@ export * from './testing/UtGuideCookbook.doc';
 export * from './datasources/Concepts.doc';
 export * from './datasources/details/Overview.doc';
 export * from './datasources/details/RowOptions.doc';
+export * from './datasources/details/BaseDatasourceProps.doc';
+export * from './datasources/details/DatasourceState.doc';
+export * from './datasources/details/ArrayDatasource.doc';
+export * from './datasources/details/AsyncDatasource.doc';
+export * from './datasources/details/LazyDatasource.doc';
