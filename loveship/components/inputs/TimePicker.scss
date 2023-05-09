@@ -4,6 +4,7 @@
     &:global(.uui-timepicker-container) {
         display: flex;
         padding: 8px;
+        justify-content: center;
 
         :global(.uui-timepicker-input) {
             &:global(.uui-input-box) {
@@ -55,10 +56,6 @@
             fill: $night600;
         }
     }
-}
-
-:global(.uui-dropdown-body) {
-    align-items: center;
 }
 
 .date-input {

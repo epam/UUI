@@ -7,6 +7,7 @@
     &:global(.uui-timepicker-container) {
         display: flex;
         padding: 15px 12px;
+        justify-content: center;
 
         :global(.uui-timepicker-input) {
             &:global(.uui-input-box) {
@@ -61,10 +62,6 @@
             fill: var(--icon-color);
         }
     }
-}
-
-:global(.uui-dropdown-body) {
-    align-items: center;
 }
 
 .date-input {
