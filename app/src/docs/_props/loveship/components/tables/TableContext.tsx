@@ -1,34 +1,31 @@
 import * as React from 'react';
 import {
-    DataSourceState,
-    Lens,
-    DataColumnProps,
-    UuiContexts,
-    ColumnsConfig,
-    UuiContext,
+    DataSourceState, Lens, DataColumnProps, UuiContexts, ColumnsConfig, UuiContext,
 } from '@epam/uui-core';
 import { DemoComponentProps, demoData } from '@epam/uui-docs';
-import { Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton } from '@epam/loveship';
+import {
+    Text, DataTableRow, DataTableHeaderRow, Panel, FlexRow, FlexSpacer, IconButton,
+} from '@epam/loveship';
 import { ColumnsConfigurationModal } from '@epam/uui';
 import { ReactComponent as GearIcon } from '@epam/assets/icons/common/action-settings-18.svg';
 
 export type Person = {
-    id: number,
-    name: string,
-    phoneNumber: string,
-    gender: string,
-    avatarUrl?: string,
-    personType?: string,
-    jobTitle?: string,
-    birthDate?: string,
-    hireDate?: string,
-    departmentId?: number,
-    departmentName?: string,
+    id: number;
+    name: string;
+    phoneNumber: string;
+    gender: string;
+    avatarUrl?: string;
+    personType?: string;
+    jobTitle?: string;
+    birthDate?: string;
+    hireDate?: string;
+    departmentId?: number;
+    departmentName?: string;
 };
 
 type DataTableCardState = {
-    tableState: DataSourceState,
-    items: Person[],
+    tableState: DataSourceState;
+    items: Person[];
     columnsConfig: ColumnsConfig;
 };
 
@@ -42,9 +39,7 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
     lens = Lens.onState<DataTableCardState>(this);
     static contextType = UuiContext;
     context: UuiContexts;
-
-    public static displayName = "Table";
-
+    public static displayName = 'Table';
     getVisibleColumns() {
         return this.props.props.columns.filter((i: DataColumnProps<DemoComponentProps>) => this.state.columnsConfig[i.key]?.isVisible || true);
     }
@@ -59,11 +54,7 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
                 const fieldKey = sort?.[0].field as keyof Person;
                 if (fieldKey !== key) return;
                 if (sort[0].direction === 'desc') rows.reverse();
-                rows.sort((a, b) =>
-                    (key === 'id' || key === 'departmentId') ?
-                    a[key] - b[key] :
-                    a[key].localeCompare(b[key]),
-                );
+                rows.sort((a, b) => (key === 'id' || key === 'departmentId' ? a[key] - b[key] : a[key].localeCompare(b[key])));
             });
         }
 
@@ -82,50 +73,54 @@ export class TableContext extends React.Component<DemoComponentProps, DataTableC
     }
 
     showConfigurationModal = () => {
-        this.context.uuiModals.show<ColumnsConfig>(modalProps => (
-            <ColumnsConfigurationModal
-                { ...modalProps }
-                columns={ this.props.props.columns }
-                columnsConfig={ this.state.columnsConfig }
-                defaultConfig={ {
-                    gender: {
-                        isVisible: false,
-                        order: 'f',
-                    },
-                } }
-            />
-        )).then(columnsConfig => this.setState({ columnsConfig }));
-    }
+        this.context.uuiModals
+            .show<ColumnsConfig>((modalProps) => {
+            return (
+                <ColumnsConfigurationModal
+                    { ...modalProps }
+                    columns={ this.props.props.columns }
+                    columnsConfig={ this.state.columnsConfig }
+                    defaultConfig={ {
+                        gender: {
+                            isVisible: false,
+                            order: 'f',
+                        },
+                    } }
+                />
+            );
+        })
+            .then((columnsConfig) => this.setState({ columnsConfig }));
+    };
 
     getTable(Component: DemoComponentProps['DemoComponent'], props: DemoComponentProps['props']) {
         if (Component === DataTableRow) {
-            return <>
-                <FlexRow size="48" background="white" padding="24">
-                    <Text>items</Text>
-                    <FlexSpacer />
-                    <IconButton icon={ GearIcon } onClick={ this.showConfigurationModal } />
-                </FlexRow>
-                <DataTableHeaderRow
-                    columns={ this.getVisibleColumns() }
-                    size={ props.size }
-                    { ...this.lens.prop('tableState').toProps() }
-                />
-                <Component { ...props } columns={ this.getVisibleColumns() } />
-                { this.getRows() }
-                <Component { ...props } columns={ this.getVisibleColumns() } />
-            </>;
+            return (
+                <>
+                    <FlexRow size="48" background="white" padding="24">
+                        <Text>items</Text>
+                        <FlexSpacer />
+                        <IconButton icon={ GearIcon } onClick={ this.showConfigurationModal } />
+                    </FlexRow>
+                    <DataTableHeaderRow columns={ this.getVisibleColumns() } size={ props.size } { ...this.lens.prop('tableState').toProps() } />
+                    <Component { ...props } columns={ this.getVisibleColumns() } />
+                    {this.getRows()}
+                    <Component { ...props } columns={ this.getVisibleColumns() } />
+                </>
+            );
         } else if (Component === DataTableHeaderRow) {
-            return <>
-                <Component { ...props } columns={ this.getVisibleColumns() } />
-                { this.getRows() }
-            </>;
+            return (
+                <>
+                    <Component { ...props } columns={ this.getVisibleColumns() } />
+                    {this.getRows()}
+                </>
+            );
         }
     }
 
     render() {
         return (
-            <Panel margin='24' shadow style={ { 'width': '50%' } }>
-                { this.getTable(this.props.DemoComponent, this.props.props) }
+            <Panel margin="24" shadow style={ { width: '50%' } }>
+                {this.getTable(this.props.DemoComponent, this.props.props)}
             </Panel>
         );
     }

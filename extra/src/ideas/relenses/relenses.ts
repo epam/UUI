@@ -3,7 +3,7 @@ import { IEditable } from '@epam/uui-core';
 // combine reducers and lenses somehow...
 
 type Reducer<TPayload, TState> = (params: TPayload) => (state: TState) => TState;
-type Action<TPayload> = { name: string, payload: TPayload };
+type Action<TPayload> = { name: string; payload: TPayload };
 type ActionFactory<TPayload> = (payload: TPayload) => Action<TPayload>;
 type ActionDispatcher<TPayload> = (payload: TPayload) => void;
 type ReducersSet<TActions, TState> = { [P in keyof TActions]: Reducer<TActions[P], TState> };
@@ -12,14 +12,11 @@ type ActionDispatcherSet<TActions> = { [TActionName in keyof TActions]: ActionDi
 
 class Optic<TState, TActions = {}> {
     actions: TActions;
-
     get() {
         return null as TState;
     }
 
-    set(e: TActions) {
-    }
-
+    set(e: TActions) {}
     prop<TKey extends keyof TState>(name: TKey): Optic<TState[TKey], {}> {
         return null;
     }
@@ -32,11 +29,8 @@ class Optic<TState, TActions = {}> {
     //     return null;
     // }
 
-    views<TNewViews>() {
-
-    }
-
-    reducers<TNewActions>(reducersSet: ReducersSet<TNewActions, TState>): (Optic<TState, TActions & ActionDispatcherSet<TNewActions>>) {
+    views<TNewViews>() {}
+    reducers<TNewActions>(reducersSet: ReducersSet<TNewActions, TState>): Optic<TState, TActions & ActionDispatcherSet<TNewActions>> {
         return null;
     }
 
@@ -52,8 +46,7 @@ interface ItemState {
 
 const setName = (a: { name: string }) => (s: ItemState) => ({ ...s, name: a.name });
 
-const itemController = new Optic<ItemState>()
-    .reducers({ setName });
+const itemController = new Optic<ItemState>().reducers({ setName });
 
 interface AppState {
     name: string;
@@ -68,9 +61,8 @@ const clearVal = () => setVal({ name: '' });
 
 const getTotal = () => (state: AppState) => state.value * state.mult;
 
-const o = new Optic<AppState, {}>()
-    .reducers({ setVal, clearVal, setItem });
-    // .compose(host => ({ item: itemController.bind(host.prop('item'))}))
+const o = new Optic<AppState, {}>().reducers({ setVal, clearVal, setItem });
+// .compose(host => ({ item: itemController.bind(host.prop('item'))}))
 
 o.actions.clearVal({});
 o.actions.setVal({ name: 'test' });

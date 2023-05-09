@@ -1,4 +1,6 @@
-import { DataSourceState, DataRowProps, IEditable, IDataSourceView } from "@epam/uui-core";
+import {
+    DataSourceState, DataRowProps, IEditable, IDataSourceView,
+} from '@epam/uui-core';
 
 export interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
     listView: IDataSourceView<any, any, any>;
@@ -11,22 +13,22 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
     let search = value.search;
 
     let focusedIndex = value.focusedIndex || 0;
-    let maxVisibleIndex = value.topIndex + params.rows.length - 1;
+    const maxVisibleIndex = value.topIndex + params.rows.length - 1;
 
     switch (e.key) {
         case 'Backspace': {
             const selectedRowsCount = params.listView.getSelectedRowsCount();
             const selectedRows = params.listView.getSelectedRows({ topIndex: selectedRowsCount - 2, visibleCount: 1 });
             if (params.editMode !== 'modal' && !value.search && value.checked && selectedRows.length > 0) {
-                let lastSelection = selectedRows[selectedRows.length - 1];
+                const lastSelection = selectedRows[selectedRows.length - 1];
                 lastSelection.onCheck(lastSelection);
             }
             break;
         }
         case 'Enter': {
             if (value.topIndex <= focusedIndex && focusedIndex <= maxVisibleIndex) {
-                let focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
-                let clickHandler = focusedRow.onFold || focusedRow.onSelect || focusedRow.onCheck;
+                const focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
+                const clickHandler = focusedRow.onFold || focusedRow.onSelect || focusedRow.onCheck;
                 clickHandler && clickHandler(focusedRow);
                 if (!focusedRow.onFold && search) {
                     search = '';
@@ -53,7 +55,8 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             }
             break;
         }
-        default: return;
+        default:
+            return;
     }
 
     if (value.focusedIndex != focusedIndex || value.search != search) {

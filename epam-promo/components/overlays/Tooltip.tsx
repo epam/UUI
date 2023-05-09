@@ -1,18 +1,20 @@
 import { withMods } from '@epam/uui-core';
-import { Tooltip as uuiTooltip, TooltipProps } from '@epam/uui-components';
-import css from './Tooltip.scss';
-import styles from '../../assets/styles/colorvars/overlays/tooltip-colorvars.scss';
+import { Tooltip as uuiTooltip, TooltipProps as UuiTooltipProps } from '@epam/uui';
 
 export interface TooltipMods {
-    /** Tooltip color */
-    color?: 'white' | 'gray90' | 'red';
+    /**
+     * Tooltip color.
+     * Note that 'gray90' is deprecated and will be removed in future versions, please use 'gray' instead.
+     */
+    color?: 'white' | 'gray90' | 'gray' | 'red';
 }
 
-function applyTooltipMods(mods: TooltipMods) {
-    return [
-        css.root,
-        styles['color-' + (mods.color || 'gray90')],
-    ];
-}
+export type TooltipProps = Omit<UuiTooltipProps, 'color'> & TooltipMods;
 
-export const Tooltip = withMods<TooltipProps, TooltipMods>(uuiTooltip, applyTooltipMods);
+export const Tooltip = withMods<Omit<UuiTooltipProps, 'color'>, TooltipMods>(
+    uuiTooltip,
+    () => [],
+    (props) => ({
+        color: props.color === 'gray90' ? 'gray' : props.color ?? 'gray',
+    } as TooltipProps),
+);

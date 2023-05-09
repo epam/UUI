@@ -1,6 +1,6 @@
 import React from 'react';
-import { withMods } from "@epam/uui-core";
-import { MultiSwitch as UuiMultiSwitch, UuiMultiSwitchColor, MultiSwitchProps as UuiMultiSwitchProps } from "@epam/uui";
+import { withMods } from '@epam/uui-core';
+import { MultiSwitch as UuiMultiSwitch, UuiMultiSwitchColor, MultiSwitchProps as UuiMultiSwitchProps } from '@epam/uui';
 
 export type MultiSwitchColor = 'blue' | 'gray50';
 
@@ -9,8 +9,8 @@ export interface MultiSwitchMods {
 }
 
 const colorToMod: Record<MultiSwitchColor, UuiMultiSwitchColor> = {
-    'blue': 'primary',
-    'gray50': 'secondary',
+    blue: 'primary',
+    gray50: 'secondary',
 };
 
 export type MultiSwitchProps<TValue> = Omit<UuiMultiSwitchProps<TValue>, 'color'> & MultiSwitchMods;

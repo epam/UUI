@@ -75,6 +75,7 @@
         color: var(--uui-radio-input-label);
         flex-grow: 1;
         font-family: var(--uui-radio-input-font);
+        font-weight: var(--uui-radio-input-font-weight, normal);
         margin-left: 12px;
         display: flex;
         align-items: center;
@@ -95,7 +96,6 @@
 
         :global(.uui-checked) {
             &:global(.uui-radioinput) {
-
                 :global(.uui-icon) {
                     fill: var(--uui-radio-input-error);
                 }

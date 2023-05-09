@@ -1,4 +1,4 @@
-import { ICanBeInvalid } from "../../types";
+import { ICanBeInvalid } from '../../types';
 
 export function mergeValidation<T>(clientValidation: ICanBeInvalid, serverValidation: ICanBeInvalid) {
     const result = serverValidation.isInvalid ? serverValidation : clientValidation;
@@ -8,17 +8,16 @@ export function mergeValidation<T>(clientValidation: ICanBeInvalid, serverValida
     return result;
 }
 
-function mergeValidationProps(validationProps: ICanBeInvalid["validationProps"], resultPart: ICanBeInvalid) {
+function mergeValidationProps(validationProps: ICanBeInvalid['validationProps'], resultPart: ICanBeInvalid) {
     if (!validationProps) return;
     if (!resultPart.validationProps) resultPart.validationProps = {};
-    
-    Object.keys(validationProps).forEach(key => {
+
+    Object.keys(validationProps).forEach((key) => {
         const prop = validationProps[key];
         const isInvalid = prop.isInvalid || resultPart.validationProps[key]?.isInvalid || false;
-        const validationMessage = prop.validationMessage
-            ?? resultPart.validationProps[key]?.validationMessage;
+        const validationMessage = prop.validationMessage ?? resultPart.validationProps[key]?.validationMessage;
 
-        resultPart.validationProps[key] = validationMessage 
+        resultPart.validationProps[key] = validationMessage
             ? {
                 isInvalid,
                 validationMessage,

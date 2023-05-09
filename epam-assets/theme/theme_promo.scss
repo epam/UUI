@@ -20,75 +20,92 @@
     --gray70: #474A59;
     --gray80: #303240;
     --gray90: #1D1E26;
-    --blue-lightest: #CEEFFF;
-    --blue-light: #B5E6FF;
-    --blue: #008ACE;
-    --blue-dark: #0079B5;
-    --blue-darkest: #00689B;
+
+    --blue-soft: #F5FDFF;
+    --blue-lightest: #D6F2FF;
+    --blue-light: #99DDFF;
+    --blue: #007BBD;
+    --blue-dark: #006AA3;
+    --blue-darkest: #005685;
+
+    --green-soft: #FCFFF5;
     --green-lightest: #EEFFCC;
-    --green-light: #E5FFB3;
-    --green: #88CC00;
-    --green-dark: #77B300;
-    --green-darkest: #669900;
+    --green-light: #CFF486;
+    --green: #65A300;
+    --green-dark: #528500;
+    --green-darkest: #446600;
+
+    --amber-soft: #FFFCF5;
     --amber-lightest: #FFF2CC;
-    --amber-light: #FFECB3;
+    --amber-light: #FFE38F;
     --amber: #FFC000;
-    --amber-dark: #E6AD00;
-    --amber-darkest: #CC9A00;
+    --amber-dark: #DB9D00;
+    --amber-darkest: #9F6B04;
+
+    --red-soft: #FEF7F6;
     --red-lightest: #FADED9;
-    --red-light: #F8CBC2;
-    --red: #E54322;
-    --red-dark: #D53919;
-    --red-darkest: #BE3316;
+    --red-light: #F5B5A8;
+    --red: #DB3A1A;
+    --red-dark: #C03316;
+    --red-darkest: #A02B13;
+
     --white: #FFFFFF;
 
-    --red-10: #FADED9;
-    --red-20: #F5B7AB;
-    --red-30: #E54322;
-    --red-40: #A72014;
-    --red-50: #901111;
+    --yellow-0: #FFFFF0;
+    --yellow-10: #FFFECC;
+    --yellow-20: #FFFCA4;
+    --yellow-30: #FDD63B;
+    --yellow-40: #F9B71D;
+    --yellow-50: #D3910C;
 
-    --orange-10: #FAE4CF;
-    --orange-20: #F6CBA0;
-    --orange-30: #E67E17;
-    --orange-40: #89370E;
-    --orange-50: #72250B;
+    --orange-0: #FEF8F4;
+    --orange-10: #FFE8D7;
+    --orange-20: #FFCCA7;
+    --orange-30: #FF8B3E;
+    --orange-40: #F76B0D;
+    --orange-50: #BD4B00;
 
-    --amber-10: #FFF2CC;
-    --amber-20: #FFE699;
-    --amber-30: #FFC000;
-    --amber-40: #995A00;
-    --amber-50: #804000;
+    --fuchia-0: #FFF7FB;
+    --fuchia-10: #F9D8E7;
+    --fuchia-20: #EDADC8;
+    --fuchia-30: #EA4386;
+    --fuchia-40: #D61E68;
+    --fuchia-50: #AE1955;
 
-    --green-10: #EEFFCC;
-    --green-20: #DDFF99;
-    --green-30: #88CC00;
-    --green-40: #669900;
-    --green-50: #446600;
+    --purple-0: #FDF6FE;
+    --purple-10: #F2CCFA;
+    --purple-20: #E79DF5;
+    --purple-30: #B114D1;
+    --purple-40: #860F9E;
+    --purple-50: #5E0B6F;
 
-    --cyan-10: #E3FCFC;
-    --cyan-20: #B4F8F8;
+    --violet-0: #F8F6FE;
+    --violet-10: #DBCCFA;
+    --violet-20: #BB9DF5;
+    --violet-30: #773CEC;
+    --violet-40: #5514D6;
+    --violet-50: #40109E;
+
+    --cobalt-0: #F8FAFF;
+    --cobalt-10: #D9E2FC;
+    --cobalt-20: #AEC0F5;
+    --cobalt-30: #0F98FF;
+    --cobalt-40: #006FE5;
+    --cobalt-50: #0954A5;
+
+    --cyan-0: #F5FBFF;
+    --cyan-10: #D1FAFA;
+    --cyan-20: #AAEEEE;
     --cyan-30: #14CCCC;
     --cyan-40: #0F9E9E;
     --cyan-50: #0B6F6F;
 
-    --blue-10: #CEEFFF;
-    --blue-20: #9BDEFF;
-    --blue-30: #008ACE;
-    --blue-40: #00689B;
-    --blue-50: #004668;
-
-    --violet-10: #DBCCFA;
-    --violet-20: #BB9DF5;
-    --violet-30: #5214CC;
-    --violet-40: #3F0F9E;
-    --violet-50: #2D0B6F;
-
-    --purple-10: #F2CCFA;
-    --purple-20: #E79DF5;
-    --purple-30: #AD14CC;
-    --purple-40: #860F9E;
-    --purple-50: #5E0B6F;
+    --mint-0: #F2FCF5;
+    --mint-10: #DDF3E4;
+    --mint-20: #B4DFC4;
+    --mint-30: #4FC48C;
+    --mint-40: #2E9E68;
+    --mint-50: #236E4A;
 
     --uui-accent: var(--green);
     --uui-accent-light: var(--green-light);
@@ -103,11 +120,11 @@
     --uui-primary-dark: var(--blue-dark);
     --uui-primary-darkest: var(--blue-darkest);
 
-    --uui-secondary: var(--gray50);
+    --uui-secondary: var(--gray60);
     --uui-secondary-light: var(--gray30);
     --uui-secondary-lightest: var(--gray20);
-    --uui-secondary-dark: var(--gray60);
-    --uui-secondary-darkest: var(--gray70);
+    --uui-secondary-dark: var(--gray70);
+    --uui-secondary-darkest: var(--gray80);
     --uui-secondary-hover: var(--gray60);
     --uui-secondary-active: var(--gray70);
 
@@ -237,7 +254,7 @@
     --uui-overlay: rgba(29, 30, 38, 0.8);
     --uui-border-radius: 0;
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
-    --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0px 6px rgba(29, 30, 38, 0.05);
+    --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
     --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
 
     /* core variables end */
@@ -383,7 +400,7 @@
     --uui-drop-marker-blocked: var(--uui-error);
 
     /* Tooltip vars */
-    --uui-tooltip-shadow: var(--uui-shadow-level-2, 0 3px 6px 0 rgba(29, 30, 38, 0.10), 0 0 3px 0 rgba(29, 30, 38, 0.15)); /* WebStorm Bag Report https://youtrack.jetbrains.com/issue/WEB-54442 */
+    --uui-tooltip-shadow: var(--uui-shadow-level-2, 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 0 3px 0 rgba(29, 30, 38, 0.15)); /* WebStorm Bag Report https://youtrack.jetbrains.com/issue/WEB-54442 */
     --uui-tooltip-arrow-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     --uui-tooltip-border-radius: var(--uui-border-radius);
 
@@ -441,7 +458,7 @@
     /* Accordion */
     --uui-accordion-bg: var(--uui-surface);
     --uui-accordion-border: var(--uui-divider);
-    --uui-accordion-border-radius: 0px;
+    --uui-accordion-border-radius: 0;
     --uui-accordion-text: var(--uui-text-primary);
     --uui-accordion-text-disabled: var(--uui-text-disabled);
     --uui-accordion-icon: var(--uui-icon);
@@ -681,17 +698,20 @@
 
     /* ------------------------------------ */
 
-    :global(.tooltip-contrast) {
-        --uui-tooltip-bg: var(--uui-surface-inverted);
+    :global(.tooltip-contrast),
+    :global(.tooltip-gray) {
+        --uui-tooltip-bg: var(--uui-surface-contrast);
         --uui-tooltip-text: var(--uui-contrast);
     }
 
-    :global(.tooltip-default) {
+    :global(.tooltip-default),
+    :global(.tooltip-white) {
         --uui-tooltip-bg: var(--uui-surface);
         --uui-tooltip-text: var(--uui-text-primary);
     }
 
-    :global(.tooltip-critical) {
+    :global(.tooltip-critical),
+    :global(.tooltip-red) {
         --uui-tooltip-bg: var(--uui-error-dark);
         --uui-tooltip-text: var(--uui-contrast);
     }
@@ -864,7 +884,9 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
-    :global(.button-gray50), :global(.button-secondary) {
+    :global(.button-gray50),
+    :global(.button-gray),
+    :global(.button-secondary) {
         --uui-btn-bg: var(--uui-secondary);
         --uui-btn-bg-hover: var(--uui-secondary-dark);
         --uui-btn-bg-active: var(--uui-secondary-darkest);
@@ -920,19 +942,19 @@
         --uui-icon-btn-disabled: var(--uui-icon-disabled);;
     }
 
-    :global(.icon-button-gray50),
-    :global(.icon-button-secondary) {
-        --uui-icon-btn: var(--uui-secondary);
-        --uui-icon-btn-hover: var(--uui-secondary-dark);
-        --uui-icon-btn-active: var(--uui-secondary-darkest);
+    :global(.icon-button-gray50) {
+        --uui-icon-btn: var(--gray50);
+        --uui-icon-btn-hover: var(--gray60);
+        --uui-icon-btn-active: var(--gray70);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
     :global(.icon-button-gray60),
-    :global(.icon-button-default) {
-        --uui-icon-btn: var(--uui-icon);
-        --uui-icon-btn-hover: var(--uui-icon-hover);
-        --uui-icon-btn-active: var(--uui-icon-active);
+    :global(.icon-button-default),
+    :global(.icon-button-secondary) {
+        --uui-icon-btn: var(--uui-secondary);
+        --uui-icon-btn-hover: var(--uui-secondary-dark);
+        --uui-icon-btn-active: var(--uui-secondary-darkest);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
@@ -1049,27 +1071,27 @@
 
     :global(.uui-font-regular),
     :global(.uui-font-sans) {
-        --uui-font: var(--font-regular);
+        --uui-text-font: var(--font-regular);
     }
 
     :global(.uui-font-semibold),
     :global(.uui-font-sans-semibold) {
-        --uui-font: var(--font-semibold);
+        --uui-text-font: var(--font-semibold);
     }
 
     :global(.uui-font-italic),
     :global(.uui-font-sans-italic) {
-        --uui-font: var(--font-italic);
+        --uui-text-font: var(--font-italic);
     }
 
     :global(.uui-font-primary),
     :global(.uui-font-museo-sans) {
-        --uui-font: var(--font-primary);
+        --uui-text-font: var(--font-primary);
     }
 
     :global(.uui-font-promo),
     :global(.uui-font-museo-slab) {
-        --uui-font: var(--font-promo);
+        --uui-text-font: var(--font-promo);
     }
 
     :global(.dropdown-container-white) {

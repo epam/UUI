@@ -3,12 +3,14 @@
 .root {
     :global(.uui-accordion-toggler) {
         font-family: var(--uui-accordion-toggler-font);
+        font-weight: var(--uui-accordion-toggler-font-weight, normal);
         color: var(--uui-accordion-text);
         cursor: pointer;
     }
 
     :global(.uui-accordion-body) {
         font-family: var(--uui-accordion-body-font);
+        font-weight: var(--uui-accordion-body-font-weight, normal);
         color: var(--uui-accordion-text);
     }
 
@@ -64,7 +66,6 @@
         }
 
         &:global(.uui-disabled) {
-
             :global(.uui-accordion-toggler) {
                 cursor: default;
                 fill: var(--uui-accordion-icon-disabled);
@@ -113,7 +114,6 @@
         }
 
         &:global(.uui-disabled) {
-
             :global(.uui-accordion-toggler) {
                 cursor: default;
                 fill: var(--uui-accordion-icon-disabled);

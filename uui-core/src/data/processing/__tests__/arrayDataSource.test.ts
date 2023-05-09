@@ -1,36 +1,57 @@
 import { ArrayDataSource } from '../ArrayDataSource';
 
 type Test_ItemIdType = string;
-type Test_ItemType = {
-    _type: 'employee',
-    firstName: string,
-    lastName: string,
-    departmentId: string,
-    city: string,
-    id: Test_ItemIdType,
-} | { _type: 'department', id: Test_ItemIdType, departmentName: string };
+type Test_ItemType =
+    | {
+        _type: 'employee';
+        firstName: string;
+        lastName: string;
+        departmentId: string;
+        city: string;
+        id: Test_ItemIdType;
+    }
+    | { _type: 'department'; id: Test_ItemIdType; departmentName: string };
 type Test_EmployeeFilterType = {
-    onlyFromDepartment_A: boolean,
+    onlyFromDepartment_A: boolean;
 };
 
 function setupArrayDatasource() {
     const items: Test_ItemType[] = [
-        { _type: 'department', id: 'Department-A', departmentName: 'Department A' },
-        {
-            _type: 'employee', id: 'Emp-1', firstName: 'First-1', lastName: 'Last-1', departmentId: 'Department-A', city: 'City-A',
-        },
-        {
-            _type: 'employee', id: 'Emp-2', firstName: 'First-2', lastName: 'Last-2', departmentId: 'Department-A', city: 'City-A',
-        },
-        { _type: 'department', id: 'Department-B', departmentName: 'Department B' },
-        {
-            _type: 'employee', id: 'Emp-3', firstName: 'First-3', lastName: 'Last-3', departmentId: 'Department-B', city: 'City-A',
-        },
-        {
-            _type: 'employee', id: 'Emp-4', firstName: 'First-4', lastName: 'Last-4', departmentId: 'Department-B', city: 'City-A',
-        },
-        {
-            _type: 'employee', id: 'Emp-5', firstName: 'First-5', lastName: 'Last-5', departmentId: 'Department-B', city: 'City-B',
+        { _type: 'department', id: 'Department-A', departmentName: 'Department A' }, {
+            _type: 'employee',
+            id: 'Emp-1',
+            firstName: 'First-1',
+            lastName: 'Last-1',
+            departmentId: 'Department-A',
+            city: 'City-A',
+        }, {
+            _type: 'employee',
+            id: 'Emp-2',
+            firstName: 'First-2',
+            lastName: 'Last-2',
+            departmentId: 'Department-A',
+            city: 'City-A',
+        }, { _type: 'department', id: 'Department-B', departmentName: 'Department B' }, {
+            _type: 'employee',
+            id: 'Emp-3',
+            firstName: 'First-3',
+            lastName: 'Last-3',
+            departmentId: 'Department-B',
+            city: 'City-A',
+        }, {
+            _type: 'employee',
+            id: 'Emp-4',
+            firstName: 'First-4',
+            lastName: 'Last-4',
+            departmentId: 'Department-B',
+            city: 'City-A',
+        }, {
+            _type: 'employee',
+            id: 'Emp-5',
+            firstName: 'First-5',
+            lastName: 'Last-5',
+            departmentId: 'Department-B',
+            city: 'City-B',
         },
     ];
     return new ArrayDataSource<Test_ItemType, Test_ItemIdType, Test_EmployeeFilterType>({
@@ -38,7 +59,7 @@ function setupArrayDatasource() {
         getParentId: (item) => (item._type === 'employee' ? item.departmentId : undefined),
         getId: (item) => item.id,
         getSearchFields: (item) => (item._type === 'employee' ? [item.firstName, item.lastName] : []),
-        sortBy: (item, sorting) => (item[sorting.field as keyof Test_ItemType]),
+        sortBy: (item, sorting) => item[sorting.field as keyof Test_ItemType],
         getFilter: (filter) => (item) => {
             if (filter.onlyFromDepartment_A) {
                 return item._type === 'employee' ? item.departmentId === 'Department-A' : item.id === 'Department-A';
@@ -61,33 +82,45 @@ function setupArrayDatasource() {
 describe('ArrayDataSource', () => {
     it('should create array data source', () => {
         const ds = setupArrayDatasource();
-        const viewFromDepA = ds.getView({
-            search: undefined,
-            checked: [],
-            folded: {},
-            filter: { onlyFromDepartment_A: true },
-            sorting: [],
-            selectedId: undefined,
-            focusedIndex: undefined,
-        }, () => {}, {});
-        const viewFromDepAll = ds.getView({
-            search: undefined,
-            checked: [],
-            folded: {},
-            filter: { onlyFromDepartment_A: false },
-            sorting: [],
-            selectedId: undefined,
-            focusedIndex: undefined,
-        }, () => {}, {});
-        const viewSearchFirst3 = ds.getView({
-            search: 'First-3',
-            checked: [],
-            folded: {},
-            filter: { onlyFromDepartment_A: false },
-            sorting: [],
-            selectedId: undefined,
-            focusedIndex: undefined,
-        }, () => {}, {});
+        const viewFromDepA = ds.getView(
+            {
+                search: undefined,
+                checked: [],
+                folded: {},
+                filter: { onlyFromDepartment_A: true },
+                sorting: [],
+                selectedId: undefined,
+                focusedIndex: undefined,
+            },
+            () => {},
+            {},
+        );
+        const viewFromDepAll = ds.getView(
+            {
+                search: undefined,
+                checked: [],
+                folded: {},
+                filter: { onlyFromDepartment_A: false },
+                sorting: [],
+                selectedId: undefined,
+                focusedIndex: undefined,
+            },
+            () => {},
+            {},
+        );
+        const viewSearchFirst3 = ds.getView(
+            {
+                search: 'First-3',
+                checked: [],
+                folded: {},
+                filter: { onlyFromDepartment_A: false },
+                sorting: [],
+                selectedId: undefined,
+                focusedIndex: undefined,
+            },
+            () => {},
+            {},
+        );
 
         const depAList = viewFromDepA.getListProps();
         const depAllList = viewFromDepAll.getListProps();

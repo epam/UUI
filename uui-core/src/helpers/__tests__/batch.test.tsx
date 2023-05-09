@@ -1,5 +1,5 @@
 import { batch } from '../batch';
-import { delay } from '@epam/test-utils';
+import { delay } from '@epam/uui-test-utils';
 
 describe('batch', () => {
     jest.useRealTimers();
@@ -34,17 +34,11 @@ describe('batch', () => {
         const r4 = fn(4);
 
         const res = await Promise.all([
-            r1,
-            r2,
-            r3,
-            r4,
+            r1, r2, r3, r4,
         ]);
 
         expect(res).toEqual([
-            1,
-            2,
-            3,
-            4,
+            1, 2, 3, 4,
         ]);
         expect(batchFn).toBeCalledTimes(2);
         expect(batchFn).toBeCalledWith([1, 2]);
@@ -62,17 +56,11 @@ describe('batch', () => {
         const r4 = fn(4);
 
         const res = await Promise.all([
-            r1,
-            r2,
-            r3,
-            r4,
+            r1, r2, r3, r4,
         ]);
 
         expect(res).toEqual([
-            1,
-            2,
-            3,
-            4,
+            1, 2, 3, 4,
         ]);
         expect(batchFn).toBeCalledTimes(2);
         expect(batchFn).toBeCalledWith([1, 2]);
@@ -91,17 +79,11 @@ describe('batch', () => {
         const r4 = fn(4); // this one should be a separate call, as 3 ms passed
 
         const res = await Promise.all([
-            r1,
-            r2,
-            r3,
-            r4,
+            r1, r2, r3, r4,
         ]);
 
         expect(res).toEqual([
-            1,
-            2,
-            3,
-            4,
+            1, 2, 3, 4,
         ]);
         expect(batchFn).toBeCalledTimes(3);
         expect(batchFn).toBeCalledWith([1]);
@@ -161,10 +143,7 @@ describe('batch', () => {
         const r4 = fn(4);
 
         await Promise.all([
-            r1,
-            r2,
-            r3,
-            r4,
+            r1, r2, r3, r4,
         ]);
         expect(fn.isBusy).toBe(false);
     });

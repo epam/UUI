@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ButtonBaseProps, ButtonBase } from "./ButtonBase";
+import { ButtonBaseProps, ButtonBase } from './ButtonBase';
 import { IconContainer } from '../layout';
 import css from './Button.scss';
 
@@ -11,12 +11,10 @@ export class IconButton extends ButtonBase<IconButtonBaseProps> {
     }
 
     getClassName() {
-        return [
-            css.container,
-        ];
+        return [css.container];
     }
 
     getChildren() {
-        return <IconContainer key='icon' icon={ this.props.icon } />;
+        return <IconContainer key="icon" icon={ this.props.icon } />;
     }
 }

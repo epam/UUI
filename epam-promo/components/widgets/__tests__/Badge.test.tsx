@@ -1,33 +1,27 @@
 import React from 'react';
 import { Badge } from '../Badge';
-import renderer from 'react-test-renderer';
-import CalendarIcon from '../../../icons/calendar-18.svg';
+import { renderSnapshotWithContextAsync, SvgMock } from '@epam/uui-test-utils';
 
 describe('Badge', () => {
-    it('should be rendered correctly', () => {
-
-        const tree = renderer
-            .create(<Badge />)
-            .toJSON();
+    it('should render with minimum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Badge />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-
-        const tree = renderer
-            .create(<Badge
-                caption='Test badge'
-                fill='semitransparent'
-                color='amber'
-                icon={ CalendarIcon }
+    it('should render with maximum props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
+            <Badge
+                caption="Test badge"
+                fill="semitransparent"
+                color="amber"
+                icon={ SvgMock }
                 count={ 12 }
                 onIconClick={ () => {} }
                 onClick={ () => {} }
                 onClear={ () => {} }
-                size='36'
-            />)
-            .toJSON();
+                size="36"
+            />,
+        );
         expect(tree).toMatchSnapshot();
     });
 });
-

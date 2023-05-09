@@ -4,7 +4,10 @@ const { turnOffStylelintRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
 
 const sassGuidelinesRulesSubsetForLess = Object.keys(sassGuidelinesRules)
     .filter((k) => k.indexOf('scss/') !== 0)
-    .reduce((acc, k) => { acc[k] = sassGuidelinesRules[k]; return acc; }, {});
+    .reduce((acc, k) => {
+        acc[k] = sassGuidelinesRules[k];
+        return acc;
+    }, {});
 
 const SCSS_AND_LESS_COMMON_RULES = {
     'order/properties-alphabetical-order': null,
@@ -28,8 +31,7 @@ const SCSS_AND_LESS_COMMON_RULES = {
             'border-right': ['none'],
             'border-bottom': ['none'],
             'border-left': ['none'],
-        },
-        { message: 'E.g.: border: none can be replaced by "border: 0 none;"' },
+        }, { message: 'E.g.: border: none can be replaced by "border: 0 none;"' },
     ],
     indentation: 4,
     'color-hex-case': 'upper',
@@ -37,8 +39,7 @@ const SCSS_AND_LESS_COMMON_RULES = {
     'media-feature-name-no-unknown': true,
     'color-no-invalid-hex': true,
     'declaration-block-no-duplicate-properties': [
-        true,
-        {
+        true, {
             ignore: ['consecutive-duplicates-with-different-values'],
         },
     ],
@@ -60,8 +61,7 @@ module.exports = {
                 'scss/selector-no-redundant-nesting-selector': null,
                 'scss/dollar-variable-pattern': null,
             },
-        },
-        {
+        }, {
             files: ['**/*.less'],
             customSyntax: lessSyntax,
             rules: {

@@ -1,13 +1,12 @@
-import { ArrayDataSource, ArrayDataSourceProps } from "./ArrayDataSource";
+import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { BaseArrayListViewProps } from './views/ArrayListView';
-import { DataSourceState, IDataSourceView } from "../../types";
-import { AsyncListView, AsyncListViewProps } from "./views/AsyncListView";
+import { DataSourceState, IDataSourceView } from '../../types';
+import { AsyncListView, AsyncListViewProps } from './views/AsyncListView';
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
 export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends ArrayDataSource<TItem, TId> {
     api: () => Promise<TItem[]> = null;
-
     constructor(props: AsyncDataSourceProps<TItem, TId, TFilter>) {
         super({
             ...props,
@@ -49,7 +48,9 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         if (view) {
             view.update(value, viewProps);
             if (!view.isLoaded) {
-                view.loadData();
+                view.loadData().then((loadedItems) => {
+                    this.setProps({ ...this.props, items: loadedItems ?? [] });
+                });
             }
             return view;
         } else {

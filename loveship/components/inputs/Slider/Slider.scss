@@ -49,7 +49,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: var(--uui-color-700);
+            background-color: $sky;
             cursor: pointer;
         }
 
@@ -57,7 +57,7 @@
             margin: 0 6px;
             height: 3px;
             border-radius: 10px;
-            background-color: var(--uui-color-700);
+            background-color: $sky;
         }
 
         :global(.uui-slider-scale-dot) {
@@ -67,28 +67,28 @@
 
         &:hover {
             :global(.uui-slider) {
-                background-color: var(--uui-color-600);
+                background-color: $sky-light;
             }
 
             :global(.uui-slider-scale-dot):not(:global(.uui-slider-scale-filled-dot)) {
-                border-color: var(--uui-color-600);
-                background-color: var(--uui-color-600);
+                border-color: $sky-light;
+                background-color: $sky-light;
             }
         }
 
         :global(.uui-slider-scale-filled-dot) {
-            background-color: var(--uui-color-700);
-            border-color: var(--uui-color-700);
+            background-color: $sky;
+            border-color: $sky;
         }
 
         &:global(.uui-active) {
             :global(.uui-slider) {
-                background-color: var(--uui-color-600);
+                background-color: $sky-light;
             }
 
             :global(.uui-slider-scale-dot):not(:global(.uui-slider-scale-filled-dot)) {
-                border-color: var(--uui-color-600);
-                background-color: var(--uui-color-600);
+                border-color: $sky-light;
+                background-color: $sky-light;
             }
         }
 

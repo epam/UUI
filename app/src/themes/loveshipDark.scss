@@ -1,24 +1,4 @@
 :global(.uui-theme-loveship_dark) {
-    $white: #FFFFFF;
-    $blue: #008ACE;
-    $green: #669900;
-    $amber: #D67B0B;
-    $red: #CC482D;
-    $cyan: #14CCCC;
-    $orange: #E67E17;
-    $purple: #AD14CC;
-    $violet: #5214CC;
-
-    $gray5: #FAFAFC;
-    $gray10: #E1E3EB;
-    $gray20: #ACAFBF;
-    $gray30: #6C6F80;
-    $gray40: #585B69;
-    $gray50: #474A59;
-    $gray60: #383B4A;
-    $gray70: #303240;
-    $gray80: #272833;
-    $gray90: #1D1E26;
 
     --font-regular: 'Sans Regular', Arial, sans-serif;
     --font-semibold: 'Sans Semibold', Arial, sans-serif;
@@ -127,11 +107,31 @@
 
     --overlay-color: rgba(29, 30, 38, 0.8); // ?
 
-    --shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 4px 22px 3px rgba(0, 0, 0, 0.26);;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 22px 3px rgba(0, 0, 0, 0.26);;
 
     // ----------------------------
 
     --border-radius: 3px;
+    $white: #FFFFFF;
+    $blue: #008ACE;
+    $green: #669900;
+    $amber: #D67B0B;
+    $red: #CC482D;
+    $cyan: #14CCCC;
+    $orange: #E67E17;
+    $purple: #AD14CC;
+    $violet: #5214CC;
+
+    $gray5: #FAFAFC;
+    $gray10: #E1E3EB;
+    $gray20: #ACAFBF;
+    $gray30: #6C6F80;
+    $gray40: #585B69;
+    $gray50: #474A59;
+    $gray60: #383B4A;
+    $gray70: #303240;
+    $gray80: #272833;
+    $gray90: #1D1E26;
 
     :global(.button-color-primary) {
         --button-bg-color-hover: var(--primary-light-color);
@@ -202,13 +202,13 @@
     }
 
     :global(.panel-vars) {
-        --panel-border-radius: 0px;
+        --panel-border-radius: 0;
     }
 
     :global(.modals-vars) {
-        --modals-border-radius: 0px;
+        --modals-border-radius: 0;
         --modals-overlay-color: var(--overlay-color);
-        --modals-shadow: 0px 3px 25px 0px #0000008F, 0px 1px 2px 0px #00000033;
+        --modals-shadow: 0 3px 25px 0 #0000008F, 0 1px 2px 0 #00000033;
     }
 
     :global(.scroll-bars-vars) {

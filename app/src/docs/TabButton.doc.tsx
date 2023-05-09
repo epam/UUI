@@ -1,9 +1,10 @@
 import React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI } from '../common';
+import {
+    EditableDocContent, DocExample, BaseDocsBlock, UUI3, UUI4, UUI,
+} from '../common';
 
 export class TabButtonDoc extends BaseDocsBlock {
     title = 'Tab Button';
-
     getPropsDocPath() {
         return {
             [UUI3]: './app/src/docs/_props/loveship/components/buttons/tabButton.props.ts',
@@ -15,12 +16,9 @@ export class TabButtonDoc extends BaseDocsBlock {
     renderContent() {
         return (
             <>
-                <EditableDocContent fileName='tab-button-descriptions' />
-                { this.renderSectionTitle('Examples') }
-                <DocExample
-                    title='Basic'
-                    path='./_examples/tabButton/Basic.example.tsx'
-                />
+                <EditableDocContent fileName="tab-button-descriptions" />
+                {this.renderSectionTitle('Examples')}
+                <DocExample title="Basic" path="./_examples/tabButton/Basic.example.tsx" />
             </>
         );
     }

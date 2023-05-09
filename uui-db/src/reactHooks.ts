@@ -1,4 +1,6 @@
-import { useState, createContext, useContext, useMemo, useEffect } from "react";
+import {
+    useState, createContext, useContext, useMemo, useEffect,
+} from 'react';
 import { DbRef } from './DbRef';
 import { DbViewOptions } from '.';
 
@@ -15,12 +17,7 @@ export function useDbView<TDb, TResult, TParams = void, TDependencies = void>(
 ): TResult {
     const dbRef = useDbRef();
     const [state, setState] = useState<TResult>();
-    const subscription = useMemo(
-        () => dbRef.subscribe<TResult, TParams, TDependencies>(
-            { compute: fn, ...options },
-            params,
-            setState,
-        ), []);
+    const subscription = useMemo(() => dbRef.subscribe<TResult, TParams, TDependencies>({ compute: fn, ...options }, params, setState), []);
     subscription.update(params);
 
     useEffect(() => {

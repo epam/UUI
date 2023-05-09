@@ -35,7 +35,7 @@
 
     :global(.uui-caption) {
         font-family: var(--uui-link-button-font);
-        font-weight: normal;
+        font-weight: var(--uui-link-button-font-weight, normal);
     }
 
     // Sizes

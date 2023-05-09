@@ -10,15 +10,17 @@ export interface MainMenuSearchProps extends TextInputProps, IAdaptiveItem {}
 export const MainMenuSearch = React.forwardRef<HTMLInputElement, MainMenuSearchProps>((props, ref) => (
     <IEditableDebouncer
         { ...props }
-        render={ iEditable => <TextInput
-            iconPosition='left'
-            icon={ LensIcon }
-            cancelIcon={ props.value?.length > 0 && CancelIcon }
-            { ...props }
-            { ...iEditable }
-            ref={ ref }
-            cx={ cx(css.searchInput, props.cx) }
-            { ...props.rawProps }
-        /> }
+        render={ (iEditable) => (
+            <TextInput
+                iconPosition="left"
+                icon={ LensIcon }
+                cancelIcon={ props.value?.length > 0 && CancelIcon }
+                { ...props }
+                { ...iEditable }
+                ref={ ref }
+                cx={ cx(css.searchInput, props.cx) }
+                { ...props.rawProps }
+            />
+        ) }
     />
 ));

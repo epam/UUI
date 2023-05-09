@@ -6,7 +6,7 @@ export interface Item {
     from: Date;
     to: Date;
     color: string;
-    fillType?: "shaded" | "solid";
+    fillType?: 'shaded' | 'solid';
     opacity?: number;
     height?: number;
     priority?: number;
@@ -18,32 +18,34 @@ export interface Item {
 
 export function renderBars(items: Item[], canvasHeight: number, ctx: CanvasRenderingContext2D, t: TimelineTransform): void {
     const pxPerDay = t.pxPerMs * msPerDay;
-    const pattern = ctx.createPattern(getHatchingPattern(), "repeat");
+    const pattern = ctx.createPattern(getHatchingPattern(), 'repeat');
 
-    sortBy(items, i => i.priority).filter(i => ((!i.minPixPerDay || pxPerDay > i.minPixPerDay) && (!i.maxPxPerDay || pxPerDay < i.maxPxPerDay))).forEach(i => {
-        const leftTopCornerX = t.getX(i.from);
-        const leftTopCornerY = Math.round((canvasHeight - i.height) / 2);
-        const rectHeight = i.height ? i.height : 18;
-        const rectWidth = t.getX(i.to) - t.getX(i.from);
+    sortBy(items, (i) => i.priority)
+        .filter((i) => (!i.minPixPerDay || pxPerDay > i.minPixPerDay) && (!i.maxPxPerDay || pxPerDay < i.maxPxPerDay))
+        .forEach((i) => {
+            const leftTopCornerX = t.getX(i.from);
+            const leftTopCornerY = Math.round((canvasHeight - i.height) / 2);
+            const rectHeight = i.height ? i.height : 18;
+            const rectWidth = t.getX(i.to) - t.getX(i.from);
 
-        ctx.beginPath();
-        ctx.rect(leftTopCornerX, leftTopCornerY, rectWidth, rectHeight);
-        ctx.fillStyle = i.fillType === "shaded" ? pattern : i.color;
-        ctx.globalAlpha = i.opacity ? i.opacity : 1;
-        ctx.fill();
-        ctx.closePath();
-        ctx.globalAlpha = 1;
-    });
+            ctx.beginPath();
+            ctx.rect(leftTopCornerX, leftTopCornerY, rectWidth, rectHeight);
+            ctx.fillStyle = i.fillType === 'shaded' ? pattern : i.color;
+            ctx.globalAlpha = i.opacity ? i.opacity : 1;
+            ctx.fill();
+            ctx.closePath();
+            ctx.globalAlpha = 1;
+        });
 }
 
 function getHatchingPattern() {
-    const canvasPattern = document.createElement("canvas");
+    const canvasPattern = document.createElement('canvas');
     canvasPattern.width = 18;
     canvasPattern.height = 18;
-    const ctx = canvasPattern.getContext("2d");
+    const ctx = canvasPattern.getContext('2d');
 
-    ctx.fillStyle = "#D9DBE3";
-    ctx.strokeStyle = "#A8A9B4";
+    ctx.fillStyle = '#D9DBE3';
+    ctx.strokeStyle = '#A8A9B4';
     ctx.lineWidth = 1;
 
     ctx.beginPath();

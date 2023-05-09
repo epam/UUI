@@ -1,23 +1,48 @@
-# 5.0.0 - xx.xx.20203
+# 5.0.0 - xx.xx.2023
 **What's New**
-* "EcmaScript" modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
-
+* EcmaScript modules (ESM) are now included into UUI packages. Usage of ESM should help to eliminate unused code via tree shaking. CommonJs modules will be published along with ESM in the same package for backwards compatibility.
+* New package is published to NPM: @epam/uui-test-utils. It provides a set of helpers which facilitate creation of unit tests for UUI components.
+* Documentation related to unit testing was added to the [UUI site](https://uui.epam.com/) (a set of pages under the Testing section). It contains general guidelines, best practices and tools we use to create unit tests for UUI components. Also, it contains a Cookbook describing typical use cases with code examples as well as frequent questions & answers.     
+* [ContextProvider]: removed support of legacy React context API, as it were announced in 4.1.0 version. `enableLegacyContext` prop was deleted.
 * [useTableState]:
   - [BreakingChange]: removed `initialFilter` prop, if you need to provide any initial state for hook, pre-generate a link with this state on you side.
   - added storing of sorting, columns config, and paging state into url
   - now hook accepts optional `IEditable` props, use them for cases when you need to store DataTableState by yourself. If passed it assumed that you will handle all state changes on your side and hook will not store any state into url.
 
+* [ApiContext]: removed the code which handles `/auth/login` for the apps, which doesn't handle this themselves.
+  If an app doesn't handle `/auth/login correctly`, this needs to be implemented implicitly. There are several options:
+
+  - Handle /auth/login path server-side. Server should log in user (via redirects to SSO), and - after success, return the following HTML:
+    `<script>window.opener && window.opener.postMessage("authSuccess", "*")</script>`
+  - Handle /auth/login path client-side. The simplest method is to add the following to the index.js:
+    `window.opener && window.location.pathname === '/auth/login' && window.opener.postMessage("authSuccess", "*");`
+  - If an app implements UUI-based login pages, they need to run the following code after successful login:
+    `window.opener && window.opener.postMessage("authSuccess", "*")`
+
+* [DataTable]: deprecated column `shrink` property was removed, as it were announced in 4.9.0 version.
+
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
 * [Dropdown]: added a 400ms delay to the submenu's close and open triggers
 * [FiltersPanel]: hide 'Add filter' button, if all filters `isAlwaysVisible`
 * [TimePicker]: added max values to hours and minutes inputs
-  
+* [Tooltip]: added possibility to pass raw-props to the tooltip body
+* [RangeDatePicker]: added new 'onOpenChange' prop
+* [PickerModal]: added a docs page
+* [FilteredTable]: added possibility to provide presets to rangeDatePicker filter
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
 * [Dropdown]: The delay to close/open the dropdown has been fixed. In previous version the closeDelay being overwritten constantly while the mouse was moving.
 * [Button]: removed 'disabled' attribute if the Button/LinkButton/IconButton is disabled, because it will prevent all events and broke Tooltip at least.
 * [PickerInput]: fixed single select dropdown body closing by the collapse icon if any value was selected.
+* [PickerInput]: removed deprecated suffix & prefix props
+* [TextInput]: removed deprecated suffix & prefix props.
+* [Carousel]:  the old component has been deleted from loveship.
+* [Tooltip]: colors 'night900' and 'gray90' are deprecated and will be removed in the future release. Use 'gray' in both skins instead.
+* [Button]: colors 'night500' and 'gray50' are deprecated and will be removed in the future release. Use 'gray' in both skins instead.
+* [Slider]: deprecated all colors except 'sky' by default.
+* [RangeSlider]: deprecated all colors except 'sky' by default.
+* [Tooltip]: fixed max-width - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
 
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.
@@ -29,6 +54,8 @@
 
 **What's Fixed**
 * [PickerInput]: fixes Hover doesn't appear on "parent" when pointing the mouse.
+* [FilterPanel]: fixed issue with "show only selected" toggle not being visible, when selectAll was disabled via DataSource
+* [PickerInput]: added a default footer component for single pickers that includes a "Clear" button
 
 # 4.10.2 - 24.03.2023
 

@@ -1,12 +1,16 @@
 import * as React from 'react';
-import { BaseRangeDatePickerProps, IDropdownBodyProps, RangeDatePickerInputType, uuiMod } from "@epam/uui-core";
+import {
+    BaseRangeDatePickerProps, IDropdownBodyProps, RangeDatePickerInputType, uuiMod,
+} from '@epam/uui-core';
 import { BaseRangeDatePicker } from '@epam/uui-components';
-import { FlexRow, TextInput, LinkButton, FlexSpacer, FlexCell } from '../../index';
-import { i18n } from "../../i18n";
-import cx from "classnames";
-import css from "./FilterRangeDatePickerBody.scss";
-import { systemIcons } from "../../icons/icons";
-import { RangeDatePickerBody } from ".././";
+import {
+    FlexRow, TextInput, LinkButton, FlexSpacer, FlexCell,
+} from '../../index';
+import { i18n } from '../../i18n';
+import cx from 'classnames';
+import css from './FilterRangeDatePickerBody.scss';
+import { systemIcons } from '../../icons/icons';
+import { RangeDatePickerBody } from '.././';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, IDropdownBodyProps {}
 
@@ -26,6 +30,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                         filter={ this.props.filter }
                         focusPart={ this.state.inFocus }
                         changeIsOpen={ this.toggleOpening }
+                        presets={ this.props.presets }
                     />
                 </FlexRow>
                 <FlexCell alignSelf="stretch">
@@ -34,18 +39,18 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                             <TextInput
                                 icon={ systemIcons['30'].calendar }
                                 cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'from' && uuiMod.focus) }
-                                size={ '30' }
+                                size="30"
                                 placeholder={ i18n.rangeDatePicker.pickerPlaceholderFrom }
                                 value={ this.state.inputValue.from }
                                 onValueChange={ this.getChangeHandler('from') }
                                 onFocus={ (event) => this.handleFocus(event, 'from') }
                                 onBlur={ (event) => this.handleBlur(event, 'from') }
                             />
-                            <div className={ css.separator }/>
+                            <div className={ css.separator } />
                             <TextInput
                                 cx={ cx(css.dateInput, css['size-30'], this.state.inFocus === 'to' && uuiMod.focus) }
                                 placeholder={ i18n.rangeDatePicker.pickerPlaceholderTo }
-                                size={ '30' }
+                                size="30"
                                 value={ this.state.inputValue.to }
                                 onCancel={ this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
                                 onValueChange={ this.getChangeHandler('to') }
@@ -53,7 +58,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
                                 onBlur={ (event) => this.handleBlur(event, 'to') }
                             />
                         </div>
-                        <FlexSpacer/>
+                        <FlexSpacer />
                         <LinkButton
                             isDisabled={ !this.state.inputValue.from && !this.state.inputValue.to }
                             caption={ i18n.pickerModal.clearAllButton }
@@ -67,7 +72,7 @@ export class FilterRangeDatePickerBody extends BaseRangeDatePicker<RangeDatePick
 
     renderInput = (): any => {
         return null;
-    }
+    };
 
     render() {
         return this.renderBody();

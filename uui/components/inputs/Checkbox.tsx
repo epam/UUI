@@ -15,15 +15,13 @@ export type CheckboxProps = CheckboxMods & UuiCheckboxProps;
 
 export function applyCheckboxMods(mods: CheckboxProps) {
     return [
-        css.root,
-        css['size-' + (mods.size || '18')],
-        css['mode-' + (mods.mode || 'form')],
+        css.root, css['size-' + (mods.size || '18')], css['mode-' + (mods.mode || 'form')],
     ];
 }
 
 const applyUUICheckboxProps = (props: UuiCheckboxProps & CheckboxMods) => ({
-    icon: (props.size === '12') ? Check_12 : Check_18,
-    indeterminateIcon: (props.size === '12') ? PartlySelect_12 : PartlySelect_18,
+    icon: props.size === '12' ? Check_12 : Check_18,
+    indeterminateIcon: props.size === '12' ? PartlySelect_12 : PartlySelect_18,
 });
 
 export const Checkbox = withMods<UuiCheckboxProps, CheckboxMods>(uuiCheckbox, applyCheckboxMods, applyUUICheckboxProps);

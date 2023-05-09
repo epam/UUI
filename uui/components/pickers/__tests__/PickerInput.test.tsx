@@ -1,13 +1,27 @@
 import React, { ReactNode } from 'react';
-import { ArrayDataSource } from '@epam/uui-core';
+import { ArrayDataSource, AsyncDataSource } from '@epam/uui-core';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, fireEvent,
-} from '@epam/test-utils';
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, delay,
+} from '@epam/uui-test-utils';
 import { PickerInput } from '../PickerInput';
 
+jest.mock('react-popper', () => ({
+    ...jest.requireActual('react-popper'),
+    Popper: function PopperMock({ children }: any) {
+        return children({
+            ref: jest.fn,
+            update: jest.fn(),
+            style: {},
+            arrowProps: { ref: jest.fn },
+            placement: 'bottom-start',
+            isReferenceHidden: false,
+        });
+    },
+}));
+
 type TestItemType = {
-    id: number,
-    level: string,
+    id: number;
+    level: string;
 };
 
 const languageLevels: TestItemType[] = [
@@ -28,20 +42,24 @@ const mockDataSource = new ArrayDataSource({
     items: languageLevels,
 });
 
+const mockDataSourceAsync = new AsyncDataSource({
+    api: async () => {
+        await delay(100);
+        return languageLevels;
+    },
+});
+
 type PickerInputComponentProps = React.ComponentProps<typeof PickerInput<TestItemType, number>>;
 
 async function setupPickerInputForTest(params: Partial<PickerInputComponentProps>) {
-    const {
-        result,
-        mocks,
-    } = await setupComponentForTest<PickerInputComponentProps>(
+    const { result, mocks } = await setupComponentForTest<PickerInputComponentProps>(
         (context): PickerInputComponentProps => {
             if (params.selectionMode === 'single') {
                 return {
                     value: params.value as number,
                     selectionMode: params.selectionMode,
                     onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
-                    dataSource: mockDataSource,
+                    dataSource: mockDataSourceAsync,
                     disableClear: false,
                     searchPosition: 'input',
                     getName: (item) => item.level,
@@ -51,13 +69,13 @@ async function setupPickerInputForTest(params: Partial<PickerInputComponentProps
                 value: params.value as number[],
                 selectionMode: params.selectionMode,
                 onValueChange: jest.fn().mockImplementation((newValue) => context.current.setProperty('value', newValue)),
-                dataSource: mockDataSource,
+                dataSource: mockDataSourceAsync,
                 disableClear: false,
                 searchPosition: 'input',
                 getName: (item) => item.level,
             };
         },
-        (props) => (<PickerInput { ...props } />),
+        (props) => <PickerInput { ...props } />,
     );
     const input = screen.queryByRole('textbox');
 
@@ -71,14 +89,7 @@ async function setupPickerInputForTest(params: Partial<PickerInputComponentProps
 describe('PickerInput', () => {
     it('should render with minimum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <PickerInput
-                value={ null }
-                onValueChange={ jest.fn }
-                selectionMode="single"
-                dataSource={ mockDataSource }
-                disableClear
-                searchPosition="input"
-            />,
+            <PickerInput value={ null } onValueChange={ jest.fn } selectionMode="single" dataSource={ mockDataSource } disableClear searchPosition="input" />,
         );
         expect(tree).toMatchSnapshot();
     });
@@ -101,14 +112,8 @@ describe('PickerInput', () => {
                 sorting={ { direction: 'desc', field: 'level' } }
                 searchPosition="body"
                 minBodyWidth={ 900 }
-                renderNotFound={ ({ search, onClose = jest.fn }) => {
-                    return (
-                        <div onClick={ onClose } role="button">
-                            { `No found ${search}` }
-                        </div>
-                    );
-                } }
-                renderFooter={ (props) => <div>{ props as unknown as ReactNode }</div> }
+                renderNotFound={ () => null }
+                renderFooter={ (props) => <div>{props as unknown as ReactNode}</div> }
                 cascadeSelection
                 dropdownHeight={ 48 }
                 minCharsToSearch={ 4 }
@@ -118,17 +123,14 @@ describe('PickerInput', () => {
     });
 
     it('[selectionMode multi] should select & clear several options', async () => {
-        const {
-            dom,
-            mocks,
-        } = await setupPickerInputForTest({
+        const { dom, mocks } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'multi',
         });
         expect(dom.input.getAttribute('placeholder').trim()).toEqual('Please select');
         fireEvent.click(dom.input);
         expect(screen.getByRole('dialog')).toBeInTheDocument();
-        const [cb1, cb2] = screen.getAllByRole('checkbox');
+        const [cb1, cb2] = await within(screen.getByRole('dialog')).findAllByRole('checkbox');
         fireEvent.click(cb1);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
         fireEvent.click(cb2);
@@ -149,17 +151,14 @@ describe('PickerInput', () => {
     });
 
     it('[selectionMode single] should select & clear option', async () => {
-        const {
-            dom,
-            mocks,
-        } = await setupPickerInputForTest({
+        const { dom, mocks } = await setupPickerInputForTest({
             value: undefined,
             selectionMode: 'single',
         });
         expect(dom.input.getAttribute('placeholder').trim()).toEqual('Please select');
         fireEvent.click(dom.input);
         expect(screen.getByRole('dialog')).toBeInTheDocument();
-        const optionC2 = screen.getByText('C2');
+        const optionC2 = await screen.findByText('C2');
         fireEvent.click(optionC2);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
         fireEvent.click(window.document.body);

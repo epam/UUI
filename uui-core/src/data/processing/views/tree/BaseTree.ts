@@ -1,7 +1,9 @@
-import { DataSourceState, IMap, DataRowPathItem } from "../../../../types";
-import { CompositeKeysMap } from "./CompositeKeysMap";
-import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, TreeNodeInfo } from "./ITree";
-import { TreeParams } from "./ITree";
+import { DataSourceState, IMap, DataRowPathItem } from '../../../../types';
+import { CompositeKeysMap } from './CompositeKeysMap';
+import {
+    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree, LoadTreeOptions, NOT_FOUND_RECORD, TreeNodeInfo,
+} from './ITree';
+import { TreeParams } from './ITree';
 
 export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
     if (params.complexIds) {
@@ -14,7 +16,6 @@ export function newMap<TKey, TValue>(params: TreeParams<any, any>) {
 export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     protected getId: (item: TItem) => TId;
     protected getParentId: (item: TItem) => TId;
-
     protected constructor(
         protected params: TreeParams<TItem, TId>,
         protected readonly byId: IMap<TId, TItem>,
@@ -22,9 +23,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         protected readonly nodeInfoById: IMap<TId, TreeNodeInfo>,
     ) {
         this.getId = params.getId;
-        this.getParentId = params.getParentId
-            ? ((item: TItem) => (params.getParentId(item) ?? undefined))
-            : () => undefined;
+        this.getParentId = params.getParentId ? (item: TItem) => params.getParentId(item) ?? undefined : () => undefined;
     }
 
     public clearStructure(): ITree<TItem, TId> {
@@ -58,10 +57,14 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     public getRootItems() {
-        return this.getRootIds().map(id => this.byId.get(id)!);
+        return this.getRootIds().map((id) => this.byId.get(id)!);
     }
 
-    public getById(id: TId) {
+    public getById(id: TId): TItem | typeof NOT_FOUND_RECORD {
+        if (!this.byId.has(id)) {
+            return NOT_FOUND_RECORD;
+        }
+
         return this.byId.get(id);
     }
 
@@ -72,7 +75,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getChildrenByParentId(parentId: TId) {
         const ids = this.getChildrenIdsByParentId(parentId);
-        const children = ids.map(id => this.byId.get(id));
+        const children = ids.map((id) => this.byId.get(id));
         return children;
     }
 
@@ -82,16 +85,17 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getParentIdsRecursive(id: TId) {
         const parentIds: TId[] = [];
+        let parentId = id;
         while (true) {
-            let item = this.byId.get(id);
+            const item = this.byId.get(parentId);
             if (!item) {
                 break;
             }
-            id = this.getParentId(item);
-            if (!id) {
+            parentId = this.getParentId(item);
+            if (!parentId) {
                 break;
             }
-            parentIds.unshift(id);
+            parentIds.unshift(parentId);
         }
         return parentIds;
     }
@@ -107,6 +111,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
         return parents;
     }
+
     public getPathById(id: TId): DataRowPathItem<TId, TItem>[] {
         const foundParents = this.getParents(id);
         const path: DataRowPathItem<TId, TItem>[] = [];
@@ -125,9 +130,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         const nodeInfo = this.getNodeInfo(parentId);
         const lastId = ids[ids.length - 1];
 
-        const isLastChild =
-            lastId !== undefined && lastId === id
-            && nodeInfo.count === ids.length;
+        const isLastChild = lastId !== undefined && lastId === id && nodeInfo.count === ids.length;
 
         return {
             id: this.getId(item),
@@ -146,7 +149,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
     public getTotalRecursiveCount() {
         let count = 0;
-        for (const [id, info] of this.nodeInfoById) {
+        for (const [, info] of this.nodeInfoById) {
             if (info.count == null) {
                 // TBD: getTotalRecursiveCount() is used for totalCount, but we can't have correct count until all branches are loaded
                 // return;
@@ -160,9 +163,9 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     public forEach(
         action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void,
         options?: {
-            direction?: 'bottom-up' | 'top-down',
-            parentId?: TId,
-            includeParent?: boolean,
+            direction?: 'bottom-up' | 'top-down';
+            parentId?: TId;
+            includeParent?: boolean;
         },
     ) {
         let shouldStop = false;
@@ -177,7 +180,7 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
 
         const iterateNodes = (ids: TId[]) => {
             if (shouldStop) return;
-            ids.forEach(id => {
+            ids.forEach((id) => {
                 if (shouldStop) return;
                 const item = this.byId.get(id);
                 const parentId = item ? this.getParentId(item) : undefined;
@@ -203,32 +206,32 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         }
     }
 
-    public computeSubtotals<TSubtotals>(
-        get: (item: TItem, hasChildren: boolean) => TSubtotals,
-        add: (a: TSubtotals, b: TSubtotals) => TSubtotals,
-    ) {
+    public computeSubtotals<TSubtotals>(get: (item: TItem, hasChildren: boolean) => TSubtotals, add: (a: TSubtotals, b: TSubtotals) => TSubtotals) {
         const subtotalsMap = this.newMap<TId | undefined, TSubtotals>();
 
-        this.forEach((item, id, parentId) => {
-            let itemSubtotals = get(item, this.byParentId.has(id));
+        this.forEach(
+            (item, id, parentId) => {
+                let itemSubtotals = get(item, this.byParentId.has(id));
 
-            // add already computed children subtotals
-            if (subtotalsMap.has(id)) {
-                itemSubtotals = add(itemSubtotals, subtotalsMap.get(id));
-            }
+                // add already computed children subtotals
+                if (subtotalsMap.has(id)) {
+                    itemSubtotals = add(itemSubtotals, subtotalsMap.get(id));
+                }
 
-            // store
-            subtotalsMap.set(id, itemSubtotals);
+                // store
+                subtotalsMap.set(id, itemSubtotals);
 
-            // add value to parent
-            let parentSubtotals: TSubtotals;
-            if (!subtotalsMap.has(parentId)) {
-                parentSubtotals = itemSubtotals;
-            } else {
-                parentSubtotals = add(itemSubtotals, subtotalsMap.get(parentId));
-            }
-            subtotalsMap.set(parentId, parentSubtotals);
-        }, { direction: 'bottom-up' });
+                // add value to parent
+                let parentSubtotals: TSubtotals;
+                if (!subtotalsMap.has(parentId)) {
+                    parentSubtotals = itemSubtotals;
+                } else {
+                    parentSubtotals = add(itemSubtotals, subtotalsMap.get(parentId));
+                }
+                subtotalsMap.set(parentId, parentSubtotals);
+            },
+            { direction: 'bottom-up' },
+        );
         return subtotalsMap;
     }
 
@@ -237,7 +240,6 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
     }
 
     protected static truePredicate = () => true;
-
     public static blank<TItem, TId>(params: TreeParams<TItem, TId>) {
         return new (this as any)(
             params,
@@ -258,37 +260,20 @@ export abstract class BaseTree<TItem, TId> implements ITree<TItem, TId> {
         }
     }
 
-    abstract patch(
-        items: TItem[],
-        isDeletedProp?: keyof TItem,
-        comparator?: (newItem: TItem, existingItem: TItem) => number,
-    ): ITree<TItem, TId>;
-
+    abstract patch(items: TItem[], isDeletedProp?: keyof TItem, comparator?: (newItem: TItem, existingItem: TItem) => number): ITree<TItem, TId>;
     abstract cascadeSelection(
         currentSelection: TId[],
         selectedId: TId,
         isSelected: boolean,
         options: {
-            isSelectable: (item: TItem) => boolean,
-            cascade: boolean,
-        },
+            isSelectable: (item: TItem) => boolean;
+            cascade: boolean;
+        }
     ): TId[];
 
-    abstract load<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        value: Readonly<DataSourceState>,
-    ): Promise<ITree<TItem, TId>>;
-
-    abstract loadMissing<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        value: Readonly<DataSourceState>,
-    ): Promise<ITree<TItem, TId>>;
-
-    abstract loadMissingIdsAndParents<TFilter>(
-        options: LoadTreeOptions<TItem, TId, TFilter>,
-        idsToLoad: TId[],
-    ): Promise<ITree<TItem, TId>>;
-
+    abstract load<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
+    abstract loadMissing<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, value: Readonly<DataSourceState>): Promise<ITree<TItem, TId>>;
+    abstract loadMissingIdsAndParents<TFilter>(options: LoadTreeOptions<TItem, TId, TFilter>, idsToLoad: TId[]): Promise<ITree<TItem, TId>>;
     abstract filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
     abstract search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId>;
     abstract sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>): ITree<TItem, TId>;

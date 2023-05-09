@@ -4,7 +4,7 @@ import transform from 'lodash.transform';
 import isEqual from 'lodash.isequal';
 
 // TBD: New typescript would contain better typing for this. Remove this hack after update.
-export let objectKeys: <T>(obj: T) => (keyof T)[] = Object.keys as any;
+export const objectKeys: <T>(obj: T) => (keyof T)[] = Object.keys as any;
 
 export function defaultCompareViewDependencies<T>(prev: T, next: T): boolean {
     if (Array.isArray(prev) && Array.isArray(next)) {
@@ -26,7 +26,7 @@ export function difference(object: any, base: any) {
     function changes(object: any, base: any) {
         return transform(object, function (result: any, value: any, key: any) {
             if (!isEqual(value, base[key])) {
-                result[key] = (typeof value === "object" && typeof base[key] === "object") ? changes(value, base[key]) : value;
+                result[key] = typeof value === 'object' && typeof base[key] === 'object' ? changes(value, base[key]) : value;
             }
         });
     }
