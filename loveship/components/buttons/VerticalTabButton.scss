@@ -3,6 +3,7 @@
 .root {
     border-bottom: none;
     border-left: 2px solid transparent;
+    text-align: left;
 
     &:global(.uui-active) {
         border-left: 2px solid;
