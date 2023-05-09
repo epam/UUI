@@ -23,12 +23,14 @@
 
 * [MainMenuDropdown]: added callback renderBody with dropdownBodyProps to renderBody method of MainMenuDropdown.
 * [Dropdown]: added a 400ms delay to the submenu's close and open triggers
-* [FiltersPanel]: hide 'Add filter' button, if all filters `isAlwaysVisible`
+* [FiltersPanel]: 
+  - hide 'Add filter' button, if all filters `isAlwaysVisible`
+  - added `presets` prop to rangeDatePicker filter
+  - added `filter` prop for datePicker and rangeDatePicker filters
 * [TimePicker]: added max values to hours and minutes inputs
 * [Tooltip]: added possibility to pass raw-props to the tooltip body
 * [RangeDatePicker]: added new 'onOpenChange' prop
-* [PickerModal]: added a docs page
-* [FilteredTable]: added possibility to provide presets to rangeDatePicker filter
+* [ErrorHandler]: now in Loveship used `NotificationCard` component instead of `SnackbarCard` for notification type errors
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column
@@ -51,8 +53,6 @@
   - Datatable demos were added/updated.
   - `implicit` cascade selection mode was added.
   - `Show only selected` order was fixed.
-
-**What's Fixed**
 * [PickerInput]: fixes Hover doesn't appear on "parent" when pointing the mouse.
 * [FilterPanel]: fixed issue with "show only selected" toggle not being visible, when selectAll was disabled via DataSource
 * [PickerInput]: added a default footer component for single pickers that includes a "Clear" button
