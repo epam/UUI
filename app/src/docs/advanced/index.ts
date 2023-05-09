@@ -4,4 +4,5 @@ export * from './testing/UtGuideBasics.doc';
 export * from './testing/UtGuideTools.doc';
 export * from './testing/UtGuideCookbook.doc';
 export * from './datasources/Concepts.doc';
-export * from './datasources/implementations/Overview.doc';
+export * from './datasources/details/Overview.doc';
+export * from './datasources/details/RowOptions.doc';
