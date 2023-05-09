@@ -30,6 +30,7 @@
 * [TimePicker]: added max values to hours and minutes inputs
 * [Tooltip]: added possibility to pass raw-props to the tooltip body
 * [RangeDatePicker]: added new 'onOpenChange' prop
+* [ErrorHandler]: now in Loveship used `NotificationCard` component instead of `SnackbarCard` for notification type errors
 
 **What's Fixed**
 * [DataTable]: set 'undefined' value instead of '[]' for sorting, when sorting removed from column

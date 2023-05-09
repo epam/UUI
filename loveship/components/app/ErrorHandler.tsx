@@ -2,12 +2,10 @@ import React, { FC } from 'react';
 import {
     ApiCallInfo, IHasCX, useUuiContext, useUuiError, UuiErrorInfo, UuiRecoveryErrorInfo, IHasChildren, ApiRecoveryReason, ApiCallErrorType,
 } from '@epam/uui-core';
-import {
-    ModalBlocker, ModalHeader, ModalWindow, SnackbarCard,
-} from '../overlays';
+import { ModalBlocker, ModalHeader, ModalWindow } from '../overlays';
 import { FlexRow } from '../layout';
 import { Text } from '../typography';
-import { RichTextView, FlexCell, Spinner } from '@epam/uui';
+import { RichTextView, FlexCell, Spinner, ErrorNotification } from '@epam/uui';
 import { ErrorCatch } from '@epam/uui-components';
 import { ErrorPage } from './ErrorPage';
 import css from './ErrorHandler.scss';
@@ -102,11 +100,11 @@ export const ErrorHandler: FC<ErrorPageProps> = (props) => {
     const showNotifications = (errors: ApiCallInfo[]) => {
         errors.forEach((c) => {
             uuiNotifications.show((props) => (
-                <SnackbarCard { ...props } snackType="danger">
-                    <FlexRow padding="24" vPadding="12">
-                        <Text size="36">{c.responseData?.errorMessage || defaultNotificationErrorMessage}</Text>
-                    </FlexRow>
-                </SnackbarCard>
+                <ErrorNotification { ...props }>
+                    <Text size="36">
+                        {c.responseData && c.responseData.errorMessage}
+                    </Text>
+                </ErrorNotification>
             ));
             c.dismissError();
         });
