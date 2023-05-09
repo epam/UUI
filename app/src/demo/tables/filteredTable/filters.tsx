@@ -96,6 +96,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             columnKey: 'birthDate',
             title: 'Birth Date',
             type: 'rangeDatePicker',
+            filter: (day) => day.isSameOrBefore(new Date()),
             format: 'YYYY-MM-DD',
             predicates: defaultPredicates.rangeDatePicker,
         },
