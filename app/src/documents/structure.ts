@@ -89,6 +89,11 @@ import {
     DatasourcesConceptsDoc,
     DatasourcesOverviewDoc,
     DatasourcesRowOptionsDoc,
+    DatasourcesBaseDatasourcePropsDoc,
+    DatasourcesDatasourceStateDoc,
+    DatasourcesArrayDatasourceDoc,
+    DatasourcesAsyncDatasourceDoc,
+    DatasourcesLazyDatasourceDoc,
 } from '../docs';
 import sortBy from 'lodash.sortby';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
@@ -360,7 +365,22 @@ export const items: DocItem[] = [
         id: 'datasources-overview', name: 'Overview', component: DatasourcesOverviewDoc, parentId: 'datasources-details',
     },
     {
+        id: 'datasources-base-props', name: 'Datasource Props', component: DatasourcesBaseDatasourcePropsDoc, parentId: 'datasources-details',
+    },
+    {
         id: 'datasources-row-options', name: 'Row Options', component: DatasourcesRowOptionsDoc, parentId: 'datasources-details',
+    },
+    {
+        id: 'datasources-datasource-state', name: 'Datasource State', component: DatasourcesDatasourceStateDoc, parentId: 'datasources-details',
+    },
+    {
+        id: 'datasources-array-datasource', name: 'ArrayDatasource', component: DatasourcesArrayDatasourceDoc, parentId: 'datasources-details',
+    },
+    {
+        id: 'datasources-async-datasource', name: 'AsyncDatasource', component: DatasourcesAsyncDatasourceDoc, parentId: 'datasources-details',
+    },
+    {
+        id: 'datasources-lazy-datasource', name: 'LazyDatasource', component: DatasourcesLazyDatasourceDoc, parentId: 'datasources-details',
     },
     { id: 'contexts', name: 'Contexts' },
     {
