@@ -26,8 +26,8 @@
             "type": "table",
             "data": {
               "cellSizes": [
-                237.6795654296875,
-                550.320068359375,
+                202.6737060546875,
+                585.325927734375,
                 142.9752197265625
               ]
             },
@@ -858,7 +858,7 @@
                           },
                           {
                             "object": "text",
-                            "text": "containчs invalid input.",
+                            "text": "contains invalid input.",
                             "marks": [
                               {
                                 "object": "mark",
@@ -1294,18 +1294,6 @@
                 ]
               }
             ]
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "",
-            "marks": []
           }
         ]
       },
