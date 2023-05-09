@@ -25,7 +25,7 @@ export const ErrorHandler: FC<ErrorHandlerProps> = (props) => {
         errors.forEach((c) => {
             uuiNotifications.show((notificationProps: INotification) => (
                 <ErrorNotification { ...notificationProps }>
-                    <Text size="36" fontSize="14">
+                    <Text size="36">
                         {c.responseData && c.responseData.errorMessage}
                     </Text>
                 </ErrorNotification>
