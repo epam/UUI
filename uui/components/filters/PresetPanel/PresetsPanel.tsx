@@ -51,7 +51,6 @@ export function PresetsPanel(props: PresetsPanelProps) {
 
     const onPresetDropdownSelect = (preset: PresetAdaptiveItem) => {
         props.choosePreset(preset.preset);
-        props.updatePreset(preset.preset);
     };
 
     const renderMoreButtonDropdown = (item: PresetAdaptiveItem, hiddenItems: PresetAdaptiveItem[]) => {
