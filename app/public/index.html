@@ -29,7 +29,9 @@
     -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-coy.min.css" rel="stylesheet" />
     <title>Unified UI</title>
-    <script src='https://menu.epam.com/scripts/menu.js?app=uui3' async></script>
+    <% if (process.env.NODE_ENV === 'production') { %>
+        <script src='https://menu.epam.com/scripts/menu.js?app=uui3' async></script>
+    <% } %>
 </head>
 <body class="uui-theme-promo">
 <noscript>
