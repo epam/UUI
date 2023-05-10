@@ -11,7 +11,28 @@
         "nodes": [
           {
             "object": "text",
-            "text": "",
+            "text": "This article contains examples of ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "BaseDatasourceProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " usage. ",
             "marks": []
           }
         ]
