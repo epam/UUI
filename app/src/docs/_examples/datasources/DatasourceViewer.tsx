@@ -39,7 +39,7 @@ export function DatasourceViewer<TItem, TId>(props: Props<TItem, TId>) {
     const renderedRows = view.getVisibleRows().map(renderRow);
     const listProps = view.getListProps();
     return (
-        <Panel>
+        <Panel cx={ css.panel }>
             <Text fontSize="14">{exampleTitle}</Text>
             <FlexRow cx={ css.row }>
                 <VirtualList
@@ -50,6 +50,15 @@ export function DatasourceViewer<TItem, TId>(props: Props<TItem, TId>) {
                     cx={ css.list }
                 />
             </FlexRow>
+            { value.checked?.length > 0 && (
+                <FlexRow cx={ css.row }>
+                    <Text>
+                        Selected:
+                        {' '}
+                        {value.checked?.map((id) => JSON.stringify(id)).join(', ')}
+                    </Text>
+                </FlexRow>
+            ) }
         </Panel>
     );
 }
