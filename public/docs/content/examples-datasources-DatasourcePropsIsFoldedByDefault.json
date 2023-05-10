@@ -1,0 +1,42 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Function ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isFoldedByDefault",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " provides control over the default state of the folded elements.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

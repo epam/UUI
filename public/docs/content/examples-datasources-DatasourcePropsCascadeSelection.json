@@ -1,0 +1,164 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "cascadeSelection",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " ",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "specifies a selection mode for the tree-like data structures.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "false",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " - selects only a selected item.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "true",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " or ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "'explicit",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": "'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " - selects an item and all its children.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "'implicit'",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " - selects an item and all its children implicitly. Only a selected item will be represented in the selection list.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -12,7 +12,7 @@ interface Props<TItem, TId> extends IEditable<DataSourceState> {
 
 export function DatasourceViewer<TItem, TId>(props: Props<TItem, TId>) {
     const { value, onValueChange, datasource, exampleTitle } = props;
-    const view = datasource.getView(value, onValueChange);
+    const view = datasource.useView(value, onValueChange);
 
     const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
         return (
