@@ -27,7 +27,9 @@ export const getDefaultUUiContextWrapper = () => {
 };
 
 /**
- * Wraps the hook with context and renders it to testEnvironment
+ * Wraps the hook with context and renders it to the test environment.
+ *
+ * It internally uses "renderHook" method of "testing-library/react" library.
  *
  * @param hook
  * @param initialProps
@@ -60,7 +62,7 @@ export const renderSnapshotWithContextAsync = async (reactElement: ReactElement,
 };
 
 /**
- * Wraps the component with context and renders it to the testEnvironment.
+ * Wraps the component with context and renders it to the test environment.
  *
  * @param reactElement
  * @param customWrapper
