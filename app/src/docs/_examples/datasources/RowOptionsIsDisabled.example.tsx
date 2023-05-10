@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
-import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
+import { DataSourceState, useArrayDataSource, useForm } from '@epam/uui-core';
 import DatasourceTableViewer from './DatasourceTableViewer';
-import { textColumns } from './columns';
+import { columns } from './columns';
 
-const items = [
+interface Item {
+    id: string;
+    name: string;
+    parentId?: string;
+}
+
+interface FormState {
+    items: Item[];
+}
+
+const items: Item[] = [
     { id: '1', name: 'Parent 1' },
     { id: '1.1', name: 'Child 1.1', parentId: '1' },
     { id: '1.2', name: 'Child 1.2', parentId: '1' },
@@ -17,47 +27,50 @@ const items = [
     { id: '3.1', name: 'Child 3.1', parentId: '3' },
 ];
 
-export default function RowOptionsCheckboxExample() {
+export default function RowOptionsIsDisabledExample() {
+    const { lens: lens1, value: formValue1 } = useForm<FormState>({
+        value: { items },
+        onSave: () => Promise.resolve(),
+    });
+
+    const { lens: lens2, value: formValue2 } = useForm<FormState>({
+        value: { items },
+        onSave: () => Promise.resolve(),
+    });
+
     const [value1, onValueChange1] = useState<DataSourceState>({});
     const datasource1 = useArrayDataSource({
-        items,
-        rowOptions: { checkbox: { isVisible: false } },
+        items: formValue1.items,
+        getRowOptions: (item, index) => ({
+            ...lens1.prop('items').index(index).toProps(),
+        }),
     }, []);
 
     const [value2, onValueChange2] = useState<DataSourceState>({});
     const datasource2 = useArrayDataSource({
-        items,
-        rowOptions: { checkbox: { isVisible: true } },
-    }, []);
-
-    const [value3, onValueChange3] = useState<DataSourceState>({});
-    const datasource3 = useArrayDataSource({
-        items,
-        rowOptions: { checkbox: { isVisible: true, isDisabled: true } },
+        items: formValue2.items,
+        getRowOptions: (item, index) => ({
+            isDisabled: true,
+            isSelectable: false,
+            ...lens2.prop('items').index(index).toProps(),
+        }),
     }, []);
 
     return (
         <>
             <DatasourceTableViewer
-                exampleTitle="Without checkboxes"
+                exampleTitle="Editable rows"
                 value={ value1 }
                 onValueChange={ onValueChange1 }
                 datasource={ datasource1 }
-                columns={ textColumns }
+                columns={ columns }
             />
             <DatasourceTableViewer
-                exampleTitle="With visible checkboxes"
+                exampleTitle="Disabled rows"
                 value={ value2 }
                 onValueChange={ onValueChange2 }
                 datasource={ datasource2 }
-                columns={ textColumns }
-            />
-            <DatasourceTableViewer
-                exampleTitle="With visible disabled checkboxes"
-                value={ value3 }
-                onValueChange={ onValueChange3 }
-                datasource={ datasource3 }
-                columns={ textColumns }
+                columns={ columns }
             />
         </>
     );
