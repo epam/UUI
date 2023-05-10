@@ -12,6 +12,7 @@ export class DatasourcesBaseDatasourcePropsDoc extends BaseDocsBlock {
                 <DocExample title="complexIds" path="./_examples/datasources/DatasourcePropsComplexIds.example.tsx" />
                 <DocExample title="isFoldedByDefault" path="./_examples/datasources/DatasourcePropsIsFoldedByDefault.example.tsx" />
                 <DocExample title="cascadeSelection" path="./_examples/datasources/DatasourcePropsCascadeSelection.example.tsx" />
+                <DocExample title="selectAll" path="./_examples/datasources/DatasourcePropsSelectAll.example.tsx" />
             </>
         );
     }
