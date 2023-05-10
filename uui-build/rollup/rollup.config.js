@@ -70,6 +70,7 @@ async function createRollupConfigForModule(options) {
         plugins: [
             replace({
                 PACKAGE_VERSION: version,
+                __DEV__: 'process.env.NODE_ENV !== "production"',
                 preventAssignment: true,
             }),
             nodeResolve({
