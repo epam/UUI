@@ -24,9 +24,10 @@ type SetupComponentForTestReturnType<TProps> = Promise<{
  * - on-change workflow, when a callback prop (e.g. "onValueChange") updates some other props (e.g. "value").
  * - ability to update props without unmounting the component.
  *
- * @param propsInitializer
- * @param componentRenderer
- * @param [customWrapper] optional custom wrapper
+ * @param propsInitializer - a callback which prepares initial properties of the component, it defines all mocks including mocks of on-change methods.
+ * It should use context.current.setProperty method for the "on-change" workflow implementation.
+ * @param componentRenderer - a callback which returns React element. "props" parameter is an object containing all actual parameters of the component.
+ * @param [customWrapper] optional custom wrapper. Use it if it's necessary to provide custom contexts.
  */
 export async function setupComponentForTest<TProps extends PropsAll<TProps>>(
     propsInitializer: PropsInitializerCallbackType<TProps>,
