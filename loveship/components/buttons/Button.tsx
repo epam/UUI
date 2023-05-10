@@ -9,9 +9,6 @@ const defaultSize = '36';
 export type ButtonColorType = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray';
 
 export interface ButtonMods {
-    /** Button color.
-     * Note that 'night500' and ''night600' is deprecated and will be removed in future versions, please use 'gray' instead.
-     * */
     color?: ButtonColorType;
     size?: ControlSize | '42' | '18';
     shape?: ControlShape;
@@ -34,14 +31,13 @@ export function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-function warnAboutDeprecatedColor(actualColor: ButtonColorType, deprecated: ButtonColorType[], useInstead: ButtonColorType) {
-    if (deprecated.indexOf(actualColor) !== -1) {
-        devLogger.warn(`Button color '${actualColor}' is deprecated and will be removed in future versions, please use '${useInstead}' instead.`);
-    }
-}
-
 export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(uuiButton, applyButtonMods, (props) => {
-    warnAboutDeprecatedColor(props.color, ['night500', 'night600'], 'gray');
+    devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
+        propName: 'color',
+        propValue: props.color,
+        propValueUseInstead: 'gray',
+        condition: () => ['night500', 'night600'].indexOf(props.color) !== -1,
+    });
     return {
         dropdownIcon: systemIcons[props.size || defaultSize].foldingArrow,
         clearIcon: systemIcons[props.size || defaultSize].clear,

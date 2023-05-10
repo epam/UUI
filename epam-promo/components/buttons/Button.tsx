@@ -6,9 +6,6 @@ export type ButtonColor = 'blue' | 'green' | 'red' | 'gray50' | 'gray';
 
 export interface ButtonMods {
     fill?: FillStyle;
-    /** Button color.
-     * Note that 'gray50' is deprecated and will be removed in future versions, please use 'gray' instead.
-     * */
     color?: ButtonColor;
 }
 
@@ -21,17 +18,16 @@ const mapFillToMod: Record<FillStyle, ButtonMode> = {
 
 export type ButtonProps = Omit<UuiButtonProps, 'color'> & ButtonMods;
 
-function warnAboutDeprecatedColor(actualColor: ButtonColor, deprecated: ButtonColor[], useInstead: ButtonColor) {
-    if (deprecated.indexOf(actualColor) !== -1) {
-        devLogger.warn(`Button color '${actualColor}' is deprecated and will be removed in future versions, please use '${useInstead}' instead.`);
-    }
-}
-
 export const Button = withMods<Omit<UuiButtonProps, 'color'>, ButtonMods>(
     uuiButton,
     () => [],
     (props) => {
-        warnAboutDeprecatedColor(props.color, ['gray50'], 'gray');
+        devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
+            propName: 'color',
+            propValue: props.color,
+            propValueUseInstead: 'gray',
+            condition: () => ['gray50'].indexOf(props.color) !== -1,
+        });
         return {
             mode: mapFillToMod[props.fill] || mapFillToMod.solid,
         };

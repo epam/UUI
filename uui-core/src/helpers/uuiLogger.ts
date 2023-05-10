@@ -34,7 +34,7 @@ class UuiLogger {
             return;
         }
         this.msgAddToHistory(msg, args);
-        let method = console[severity];
+        let method = window.console[severity];
         // @ts-ignore
         const origMethodReplaced = method.__REACT_DEVTOOLS_STRICT_MODE_ORIGINAL_METHOD__;
 
@@ -45,7 +45,7 @@ class UuiLogger {
     };
 
     /**
-     * Logs warning to console in DEV mode only. Does nothing in production.
+     * Logs warning to console in development mode. Has no effect in production mode.
      *
      * @param msg
      * @param args
@@ -56,6 +56,28 @@ class UuiLogger {
 
             this.addToLog(MsgLevel.error, `[UUI Warning]: ${msg}\n\n%s`, [...args, stack]);
         }
+    };
+
+    /**
+     * Logs warning to console in development mode. Has no effect in production mode.
+     * @param props
+     */
+    public warnAboutDeprecatedPropValue = <T1, T2 extends keyof T1>(
+        props: {
+            propName: T2,
+            propValue: T1[T2],
+            propValueUseInstead: T1[T2],
+            condition: () => boolean,
+        },
+    ) => {
+        const {
+            propName,
+            propValue,
+            propValueUseInstead,
+            condition,
+        } = props;
+        const shouldWarn = condition();
+        shouldWarn && this.warn(`The ${propValue} value of ${String(propName)} is deprecated and will be removed in future versions, please use ${propValueUseInstead} value instead.`);
     };
 }
 
