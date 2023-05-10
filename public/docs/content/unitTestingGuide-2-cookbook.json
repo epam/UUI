@@ -42,7 +42,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Below is a list of unit tests in UUI codebase which could be used as a reference. They demonstrate common use cases and usage of tools which can be useful to implement tests.",
+            "text": "Below is a list of unit tests in UUI codebase which could be used as a reference. They demonstrate common use cases and usage of tools to implement tests.",
             "marks": []
           }
         ]
