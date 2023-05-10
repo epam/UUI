@@ -4,8 +4,9 @@ import {
     ELEMENT_LINK,
     getAboveNode,
     insertLink,
+    getSelectionText,
+    PlateEditor,
     unwrapLink,
-    getSelectionText, PlateEditor,
 } from '@udecode/plate';
 
 import { IModal, uuiSkin } from '@epam/uui-core';
@@ -46,7 +47,7 @@ export const AddLinkModal = (props: AddLinkModalProps) => {
                 <ModalHeader title="Add link" onClose={ props.abort } />
                 <FlexRow cx={ css.inputWrapper }>
                     <LabeledInput label='Link' { ...linkValidationProps }>
-                        <TextInput value={ link } onValueChange={ (newVal) => setLink(newVal) } autoFocus/>
+                        <TextInput value={ link } onValueChange={ (newVal) => setLink(newVal) } autoFocus />
                     </LabeledInput>
                 </FlexRow>
                 <ModalFooter borderTop >
@@ -58,7 +59,6 @@ export const AddLinkModal = (props: AddLinkModalProps) => {
                     } } />
                     <Button type='success' caption='Save' onClick={ () => {
                         link && insertLink(props.editor, { url: link, text: getSelectionText(props.editor) });
-                        !link && unwrapLink(props.editor);
                         props.success(true);
                     } } />
                 </ModalFooter>
