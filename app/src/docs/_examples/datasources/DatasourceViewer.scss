@@ -1,0 +1,10 @@
+@import '~@epam/promo/assets/styles/colors';
+
+.list {
+    max-height: 300px;
+    border: 1px solid $gray20;
+}
+
+.row {
+    min-width: 250px;
+}
