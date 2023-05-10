@@ -110,6 +110,7 @@ function configureWebpack(config, { paths }) {
 
     changePluginByName(config, 'DefinePlugin', (plugin) => {
         plugin.definitions.COMMIT_HASH = `"${headCommitHash}"`;
+        plugin.definitions.__DEV__ = process.env.NODE_ENV !== 'production';
     });
 
     changePluginByName(config, 'ForkTsCheckerWebpackPlugin', (plugin) => {

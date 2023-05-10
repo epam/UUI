@@ -1,6 +1,8 @@
 // TBD: react-measure is abandoned, and it's typings are not compatible with modern react versions. We need to find a replacement.
 // declare module 'react-measure';
 
+declare const __DEV__: boolean;
+
 declare module '*.scss' {
     const all: { [selector: string]: string };
     export = all;
