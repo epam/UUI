@@ -1779,7 +1779,7 @@
                   },
                   {
                     "object": "text",
-                    "text": "We don't push to use one or another. The ",
+                    "text": " The ",
                     "marks": []
                   },
                   {
@@ -1827,7 +1827,23 @@
                   },
                   {
                     "object": "text",
-                    "text": " is very fast, but it doesn't fully resemble the way how user interacts with real page (which could be OK in most cases). Choose wisely.",
+                    "text": " is very fast, but it doesn't fully resemble the way how user interacts with real page - which is OK in most cases. We don't push to use one or another. Choose wisely. If you aren't sure then use ",
+                    "marks": []
+                  },
+                  {
+                    "object": "text",
+                    "text": "fireEvent",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "uui-richTextEditor-code",
+                        "data": {}
+                      }
+                    ]
+                  },
+                  {
+                    "object": "text",
+                    "text": " by default, because it's more performant.",
                     "marks": []
                   }
                 ]
