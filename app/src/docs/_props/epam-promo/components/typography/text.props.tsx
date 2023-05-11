@@ -22,7 +22,7 @@ const textDoc = new DocBuilder<TextProps & TextMods>({ name: 'Text', component: 
     })
     .prop('color', {
         examples: [
-            'gray5', 'gray50', 'gray60', 'gray80', 'gray90',
+            'blue', 'green', 'amber', 'red', 'gray5', 'gray50', 'gray60', 'gray80', 'gray90',
         ],
         renderEditor: (editable, examples) => <ColorPicker colors={ examples.map((i) => ({ value: i, hex: colors[i] })) } { ...editable } />,
     })
