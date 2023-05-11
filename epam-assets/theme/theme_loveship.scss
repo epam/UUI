@@ -253,6 +253,10 @@
     --uui-button-bg-halftone: var(--white);
     --uui-button-caption-disabled: var(--night500);
 
+    --uui-text-info: var(--uui-info);
+    --uui-text-warning: var(--uui-warning);
+    --uui-text-error: var(--uui-error);
+    --uui-text-success: var(--uui-success);
     --uui-text-brand: var(--night900);
     --uui-text-primary: var(--night800);
     --uui-text-secondary: var(--night600);
@@ -1267,6 +1271,26 @@
     :global(.informer-white) {
         --uui-informer-bg: var(--uui-surface);
         --uui-informer-caption: var(--uui-text-secondary);
+    }
+
+    :global(.uui-text-info),
+    :global(.uui-text-sky) {
+        --uui-text: var(--uui-text-info);
+    }
+
+    :global(.uui-text-success),
+    :global(.uui-text-grass) {
+        --uui-text: var(--uui-text-success);
+    }
+
+    :global(.uui-text-warning),
+    :global(.uui-text-sun) {
+        --uui-text: var(--uui-text-warning);
+    }
+
+    :global(.uui-text-error),
+    :global(.uui-text-fire) {
+        --uui-text: var(--uui-text-error);
     }
 
     :global(.uui-text-brand),
