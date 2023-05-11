@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const postcss = require('postcss');
+const scssParser = require('postcss-scss');
 const postcssSass = require('@csstools/postcss-sass');
 const scssModules = require('postcss-modules');
 
@@ -34,7 +35,7 @@ function getCompiler() {
 async function compileSingleFile(from, to) {
     const src = await fs.promises.readFile(from, 'utf8');
     const compiler = getCompiler();
-    const result = await compiler.process(src, { map: true, to, from });
+    const result = await compiler.process(src, { map: true, to, from, syntax: scssParser });
     // check target dir exists
     const dir = path.dirname(to);
     if (fs.existsSync(dir)) {
