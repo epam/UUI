@@ -77,6 +77,16 @@
         :global(.-clickable) {
             fill: transparent;
         }
+
+        &:hover {
+            :global(.-clickable) {
+                fill: var(--uui-text-input-icon-clickable);
+
+                &:hover {
+                    fill: var(--uui-text-input-icon-clickable-hover);
+                }
+            }
+        }
     }
 
     &:global(.uui-invalid) {
