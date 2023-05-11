@@ -15,6 +15,7 @@ export class DatasourcesRowOptionsDoc extends BaseDocsBlock {
                 <DocExample title="Links" path="./_examples/datasources/RowOptionsLink.example.tsx" />
                 <DocExample title="Readonly" path="./_examples/datasources/RowOptionsIsReadonly.example.tsx" />
                 <DocExample title="Required" path="./_examples/datasources/RowOptionsIsRequired.example.tsx" />
+                <DocExample title="Invalid" path="./_examples/datasources/RowOptionsIsInvalid.example.tsx" />
                 <DocExample title="Value/onValueChange" path="./_examples/datasources/RowOptionsValue.example.tsx" />
             </>
         );
