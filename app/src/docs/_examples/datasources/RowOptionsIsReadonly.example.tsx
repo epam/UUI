@@ -27,7 +27,7 @@ const items: Item[] = [
     { id: '3.1', name: 'Child 3.1', parentId: '3' },
 ];
 
-export default function RowOptionsIsDisabledExample() {
+export default function RowOptionsIsReadonlyExample() {
     const { lens: lens1, value: formValue1 } = useForm<FormState>({
         value: { items },
         onSave: () => Promise.resolve(),

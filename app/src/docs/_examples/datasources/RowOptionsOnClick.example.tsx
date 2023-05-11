@@ -18,7 +18,7 @@ const items = [
     { id: '3.1', name: 'Child 3.1', parentId: '3' },
 ];
 
-export default function RowOptionsIsSelectableExample() {
+export default function RowOptionsOnClickExample() {
     const [value, onValueChange] = useState<DataSourceState>({});
     const { uuiNotifications } = useUuiContext();
 
