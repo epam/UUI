@@ -200,6 +200,10 @@
     --uui-button-bg-halftone: var(--white);
     --uui-button-caption-disabled: var(--gray50);
 
+    --uui-text-info: var(--uui-info);
+    --uui-text-warning: var(--uui-warning);
+    --uui-text-error: var(--uui-error);
+    --uui-text-success: var(--uui-success);
     --uui-text-brand: var(--gray90);
     --uui-text-primary: var(--gray80);
     --uui-text-secondary: var(--gray60);
@@ -1042,6 +1046,26 @@
     :global(.informer-white) {
         --uui-informer-bg: var(--uui-surface);
         --uui-informer-caption: var(--uui-text-secondary);
+    }
+
+    :global(.uui-text-info),
+    :global(.uui-text-blue) {
+        --uui-text: var(--uui-text-info);
+    }
+
+    :global(.uui-text-success),
+    :global(.uui-text-green) {
+        --uui-text: var(--uui-text-success);
+    }
+
+    :global(.uui-text-warning),
+    :global(.uui-text-amber) {
+        --uui-text: var(--uui-text-warning);
+    }
+
+    :global(.uui-text-error),
+    :global(.uui-text-red) {
+        --uui-text: var(--uui-text-error);
     }
 
     :global(.uui-text-brand),
