@@ -5,7 +5,8 @@
   "author": "EPAM",
   "license": "MIT",
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule",
+    "build": "yarn pre-build && node ../uui-build/scripts/buildModule",
+    "pre-build": "node ../uui-build/scripts/compileScss.js ./scss/index.scss:./css/index.css",
     "prepublish": "yarn build"
   },
   "dependencies": {
