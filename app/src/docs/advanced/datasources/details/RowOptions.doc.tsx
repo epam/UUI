@@ -9,7 +9,8 @@ export class DatasourcesRowOptionsDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="datasources-row-options" />
                 <DocExample title="Checkbox" path="./_examples/datasources/RowOptionsCheckbox.example.tsx" />
-                <DocExample title="Disabled" path="./_examples/datasources/RowOptionsIsDisabled.example.tsx" />
+                <DocExample title="Disabled rows" path="./_examples/datasources/RowOptionsIsDisabled.example.tsx" />
+                <DocExample title="Selectable rows" path="./_examples/datasources/RowOptionsIsSelectable.example.tsx" />
             </>
         );
     }
