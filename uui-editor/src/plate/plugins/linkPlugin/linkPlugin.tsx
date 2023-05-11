@@ -65,7 +65,7 @@ export const linkPlugin = () => createLinkPlugin({
     withOverrides: withOurLink,
     then: () => ({
         props: () => ({
-            style: { display: 'inline' },
+            style: { display: 'inline' }, // fixes a bug with keyboard navigation through symbols in the link
         }),
     }),
 });
