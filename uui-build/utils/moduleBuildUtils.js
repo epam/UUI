@@ -10,10 +10,10 @@ const BUILD_FOLDER = 'build';
 
 module.exports = { buildUuiModule, isRollupModule };
 
-async function runUuiPrebuild({ moduleRootDir }) {
+async function runPostbuild({ moduleRootDir }) {
     const { scripts } = readPackageJsonContentSync(moduleRootDir);
-    if (scripts?.['uui:prebuild']) {
-        runCmdSync({ cwd: moduleRootDir, cmd: 'yarn', args: ['uui:prebuild'] });
+    if (scripts?.['postbuild']) {
+        runCmdSync({ cwd: moduleRootDir, cmd: 'yarn', args: ['postbuild'] });
     }
 }
 
@@ -66,8 +66,8 @@ async function buildUuiModule() {
 async function buildStaticModule({ moduleRootDir }) {
     const asyncCallback = async () => {
         fs.emptyDirSync(BUILD_FOLDER);
-        await runUuiPrebuild({ moduleRootDir });
         copyAllModuleFilesToOutputSync(moduleRootDir);
+        await runPostbuild({ moduleRootDir });
     };
     await withEventsLogger({ moduleRootDir, isRollup: false, asyncCallback });
 }
