@@ -10,7 +10,7 @@ import css from './AdvancedExample.scss';
 
 function Header() {
     return (
-        <MainMenu serverBadge="QA" cx={ css.menuContainer } logoLink={ { pathname: '/' } } appLogoUrl="/static/logo.svg" logoWidth={ 168 }>
+        <MainMenu cx={ css.menuContainer } logoLink={ { pathname: '/' } } appLogoUrl="/static/logo.svg" logoWidth={ 168 }>
             <MainMenuButton caption="Home" />
         </MainMenu>
     );
