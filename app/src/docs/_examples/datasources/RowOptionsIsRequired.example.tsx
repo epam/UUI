@@ -39,7 +39,7 @@ const metadata: Metadata<FormState> = {
     },
 };
 
-export default function RowOptionsIsDisabledExample() {
+export default function RowOptionsIsRequiredExample() {
     const { lens: lens1, value: formValue1 } = useForm<FormState>({
         value: { items },
         onSave: () => Promise.resolve(),
