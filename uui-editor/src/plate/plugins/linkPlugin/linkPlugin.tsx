@@ -43,8 +43,8 @@ const withOurLink = <
         const text = data.getData('text/plain');
         const textHref = options.options.getUrlHref?.(text);
 
-        // validation is important here
-        // if missed, leads to bugs with insertData plugin
+        // validation is important here. if missed, leads to bugs with insertData plugin
+        // TODO: create issue to have it inside plate ui (pasting links within highlighted text should replace text with pasted url)
         if (text && validateUrl(editor, text)) {
             const inserted = upsertLink(editor, {
                 text: textHref || text,
