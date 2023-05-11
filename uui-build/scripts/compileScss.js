@@ -39,8 +39,8 @@ async function compileSingleFile(from, to) {
     // check target dir exists
     const dir = path.dirname(to);
     if (fs.existsSync(dir)) {
-        fs.rmSync(to);
-        fs.rmSync(`${to}.map`);
+        fs.existsSync(to) && fs.rmSync(to);
+        fs.existsSync(`${to}.map`) && fs.rmSync(`${to}.map`);
     } else {
         fs.mkdirSync(dir, { recursive: true });
     }
