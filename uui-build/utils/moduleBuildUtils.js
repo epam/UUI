@@ -1,12 +1,21 @@
 const fs = require('fs-extra');
 const path = require('path');
-const { getIndexFileRelativePath } = require('./../utils/indexFileUtils');
-const { logger, ModuleBuildProgressLogger } = require('./../utils/loggerUtils');
-const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBuildUtils');
+const { getIndexFileRelativePath } = require('./../utils/indexFileUtils.js');
+const { logger, ModuleBuildProgressLogger } = require('./../utils/loggerUtils.js');
+const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBuildUtils.js');
+const { readPackageJsonContentSync } = require('../utils/packageJsonUtils.js');
+const { runCmdSync } = require('./cmdUtils.js');
 
 const BUILD_FOLDER = 'build';
 
 module.exports = { buildUuiModule, isRollupModule };
+
+async function runUuiPrebuild({ moduleRootDir }) {
+    const { scripts } = readPackageJsonContentSync(moduleRootDir);
+    if (scripts?.['uui:prebuild']) {
+        runCmdSync({ cwd: moduleRootDir, cmd: 'yarn', args: ['uui:prebuild'] });
+    }
+}
 
 async function withEventsLogger({ moduleRootDir, isRollup, asyncCallback }) {
     const moduleBuildLogger = new ModuleBuildProgressLogger({ moduleRootDir, isRollup });
@@ -57,6 +66,7 @@ async function buildUuiModule() {
 async function buildStaticModule({ moduleRootDir }) {
     const asyncCallback = async () => {
         fs.emptyDirSync(BUILD_FOLDER);
+        await runUuiPrebuild({ moduleRootDir });
         copyAllModuleFilesToOutputSync(moduleRootDir);
     };
     await withEventsLogger({ moduleRootDir, isRollup: false, asyncCallback });

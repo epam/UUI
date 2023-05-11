@@ -41,7 +41,7 @@ async function compileSingleFile(from, to) {
         fs.rmSync(to);
         fs.rmSync(`${to}.map`);
     } else {
-        fs.mkdirSync(dir);
+        fs.mkdirSync(dir, { recursive: true });
     }
     await fs.promises.writeFile(to, result.css, 'utf8');
     await fs.promises.writeFile(`${to}.map`, result.map.toString(), 'utf8');
