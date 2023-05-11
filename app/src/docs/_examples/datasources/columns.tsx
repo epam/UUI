@@ -8,16 +8,14 @@ export const columns: DataColumnProps<{ name: string }, number, any>[] = [
         caption: 'Name',
         width: 290,
         fix: 'left',
-        renderCell: (props) => {
-            console.log(props);
-            return (
-                <DataTableCell
-                    { ...props.rowLens.prop('name').toProps() }
-                    renderEditor={ (props) => <TextInput isDisabled={ props.rowProps.isDisabled } { ...props } /> }
-                    { ...props }
-                />
-            );
-        },
+        renderCell: (props) => (
+            <DataTableCell
+                { ...props.rowLens.prop('name').toProps() }
+                renderEditor={ (props) => <TextInput { ...props } /> }
+                padding="12"
+                { ...props }
+            />
+        ),
     },
 ];
 
