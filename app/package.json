@@ -72,7 +72,6 @@
     "@craco/craco": "7.0.0",
     "@types/amplitude-js": "^8.0.1",
     "@types/history": "4.7.11",
-    "@types/jest": "25.2.3",
     "@types/node": "16.18.4",
     "@types/prismjs": "1.16.1",
     "@types/react": "18.0.26",
