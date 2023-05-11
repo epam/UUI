@@ -21,7 +21,6 @@
     "shallowequal": "^1.1.0"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.5"
   },
   "peerDependencies": {
     "prop-types": "*",
