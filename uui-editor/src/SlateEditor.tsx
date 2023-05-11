@@ -74,7 +74,6 @@ const Editor = (props: PlateEditorProps) => {
             forceUpdate();
         }
     }, [props.initialValue]);
-    console.log(getPluginType(editor, ELEMENT_DEFAULT))
     const renderEditor = () => (
         <DndProvider backend={ HTML5Backend }>
             <Plate
