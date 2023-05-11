@@ -11,7 +11,7 @@ export default function VariantsTooltipExample() {
             </Tooltip>
 
             <Tooltip content="Tooltip message" placement="bottom" color="white">
-                <Button caption="Default" fill="white" color="gray50" onClick={ () => null } />
+                <Button caption="Default" fill="white" color="gray" onClick={ () => null } />
             </Tooltip>
 
             <Tooltip content="Tooltip message" placement="bottom" color="red">
