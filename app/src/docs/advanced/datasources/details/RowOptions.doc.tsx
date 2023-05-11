@@ -13,6 +13,8 @@ export class DatasourcesRowOptionsDoc extends BaseDocsBlock {
                 <DocExample title="Selectable rows" path="./_examples/datasources/RowOptionsIsSelectable.example.tsx" />
                 <DocExample title="Click handler" path="./_examples/datasources/RowOptionsOnClick.example.tsx" />
                 <DocExample title="Links" path="./_examples/datasources/RowOptionsLink.example.tsx" />
+                <DocExample title="Readonly" path="./_examples/datasources/RowOptionsIsReadonly.example.tsx" />
+                <DocExample title="Required" path="./_examples/datasources/RowOptionsIsRequired.example.tsx" />
             </>
         );
     }
