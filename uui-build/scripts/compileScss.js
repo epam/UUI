@@ -5,6 +5,7 @@ const scssParser = require('postcss-scss');
 const postcssSass = require('@csstools/postcss-sass');
 const scssModules = require('postcss-modules');
 const { createFileSync, iterateFilesInDirAsync } = require('../utils/fileUtils.js');
+const { uuiRoot } = require('../utils/constants.js');
 
 function getFilesToCompile() {
     return process.argv.splice(2).filter((pair) => pair.indexOf(':') !== -1).map((pair) => pair.split(':'));
@@ -18,7 +19,8 @@ function assertNoLocalScopeSelectors({ srcPath, targetPath, variablesJson }) {
             `targetPath=${targetPath}`,
             JSON.stringify(variablesJson, undefined, 1),
         ].join('\n'); */
-        console.error(`Local scope selectors found in result css! ${targetPath} ${JSON.stringify(variablesJson)}`);
+        const locSelectors = Object.values(variablesJson);
+        console.error('Local scope selectors found in result css!', `"${path.relative(uuiRoot, targetPath)}" ${locSelectors[0]}${locSelectors.length > 1 ? `,...(${locSelectors.length} in total)` : ''}`);
         // throw new Error(err);
     }
 }
@@ -34,17 +36,25 @@ function getCompiler() {
     ]);
 }
 
-async function compileSingleFile(from, to) {
+async function compileSingleFile({ from, to }) {
     const src = await fs.promises.readFile(from, 'utf8');
     const compiler = getCompiler();
-    const result = await compiler.process(src, { map: { inline: false }, to, from, syntax: scssParser });
-    //
-    const isEmptyCss = result.map._sources.size() === 0;
-    if (isEmptyCss) {
-        console.error(`The result css is empty! ${to}`);
-    } else {
-        createFileSync(to, result.css);
-        createFileSync(`${to}.map`, result.map.toString());
+
+    let result;
+    try {
+        result = await compiler.process(src, { map: { inline: false }, to, from, syntax: scssParser });
+    } catch (err) {
+        console.error('cannot compile', err.stack);
+    }
+
+    if (result) {
+        const isEmptyCss = result.map._sources.size() === 0;
+        if (isEmptyCss) {
+            console.error('The result css is empty!', path.relative(uuiRoot, to));
+        } else {
+            createFileSync(to, result.css);
+            createFileSync(`${to}.map`, result.map.toString());
+        }
     }
 }
 
@@ -56,12 +66,18 @@ async function main() {
         if (fs.existsSync(from)) {
             if (fs.lstatSync(from).isFile()) {
                 // file
-                const promise = compileSingleFile(path.resolve(from), path.resolve(to));
+                const promise = compileSingleFile({
+                    from: path.resolve(from),
+                    to: path.resolve(to),
+                });
                 inProgress.push(promise);
             } else {
                 await iterateFilesInDirAsync(from, (filePath) => {
                     const compileToFile = path.resolve(to, path.relative(from, filePath).replace('.scss', '.css'));
-                    const promise = compileSingleFile(path.resolve(filePath), compileToFile);
+                    const promise = compileSingleFile({
+                        from: path.resolve(filePath),
+                        to: compileToFile,
+                    });
                     inProgress.push(promise);
                 }, { recursive: true });
             }

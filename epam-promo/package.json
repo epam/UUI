@@ -9,6 +9,7 @@
   "typings": "index.d.ts",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
+    "postbuild": "node ../uui-build/scripts/compileScss.js ./build/assets:./build/assets-css",
     "prepublish": "yarn build"
   },
   "dependencies": {

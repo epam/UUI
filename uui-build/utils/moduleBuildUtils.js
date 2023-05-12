@@ -97,6 +97,7 @@ async function buildModuleUsingRollup(options) {
             await watchUsingRollup(params);
         } else {
             await buildUsingRollup(params);
+            await runPostbuild({ moduleRootDir });
         }
     };
     if (isWatch) {
