@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "node ../uui-build/scripts/buildModule",
-    "postbuild": "node ../uui-build/scripts/compileScss.js ./build/scss/index.scss:./build/css/index.css",
+    "postbuild": "node ../uui-build/scripts/compileScss.js ./build/scss:./build/scss-css ./build/theme:./build/theme-css",
     "prepublish": "yarn build"
   },
   "dependencies": {
