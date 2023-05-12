@@ -3,13 +3,13 @@ import { NumericInputProps } from '@epam/uui-components';
 import { NumericInput } from '@epam/loveship';
 import { NumericInputMods } from '@epam/uui';
 import {
-    iEditable, sizeDoc, textSettingsDoc, isDisabledDoc, iHasPlaceholder, modeDoc, TableContext,
+    iEditable, sizeDoc, isDisabledDoc, iHasPlaceholder, modeDoc, TableContext,
 } from '../../docs';
 import { FormContext, ResizableContext, DefaultContext } from '../../docs';
 
 const NumericInputDoc = new DocBuilder<NumericInputProps & NumericInputMods>({ name: 'NumericInput', component: NumericInput })
     .implements([
-        iEditable, iHasPlaceholder, sizeDoc, textSettingsDoc, isDisabledDoc, isReadonlyDoc, modeDoc,
+        iEditable, iHasPlaceholder, sizeDoc, isDisabledDoc, isReadonlyDoc, modeDoc,
     ])
     .prop('value', { examples: [{ value: 0, isDefault: true }, 11] })
     .prop('step', {
