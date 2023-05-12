@@ -8,7 +8,7 @@ const items = [
     { id: '3', name: 'Parent 3' },
 ];
 
-export default function DatsourceStateCheckedExample() {
+export default function DatasourceStateCheckedExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({
         checked: ['2'],
     });

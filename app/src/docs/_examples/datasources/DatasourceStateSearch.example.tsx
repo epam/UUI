@@ -8,7 +8,7 @@ const items = [
     { id: '3', name: 'Parent 3' },
 ];
 
-export default function DatsourceStateSearchExample() {
+export default function DatasourceStateSearchExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({});
     const datasource1 = useArrayDataSource({
         items,

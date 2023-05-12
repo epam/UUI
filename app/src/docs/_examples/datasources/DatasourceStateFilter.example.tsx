@@ -29,7 +29,7 @@ interface Filter {
     };
 }
 
-export default function DatsourceStateFoldedExample() {
+export default function DatasourceStateFoldedExample() {
     const [value1, onValueChange1] = useState<DataSourceState<Filter>>({
         filter: {
             not: {
