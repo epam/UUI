@@ -1,14 +1,10 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { DocBuilder, isReadonlyDoc } from '@epam/uui-docs';
-import {
-    RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer,
-} from '@epam/uui-components';
+import { RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer } from '@epam/uui-components';
 import { RangeDatePicker } from '@epam/loveship';
 import css from './RangeDatePicker.doc.scss';
-import {
-    iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc,
-} from '../../docs';
+import { iEditable, sizeDoc, isDisabledDoc, isInvalidDoc } from '../../docs';
 import { FormContext, DefaultContext, ResizableContext } from '../../docs';
 import { Button } from '@epam/loveship';
 import { ReactComponent as Point } from '@epam/assets/icons/common/radio-point-10.svg';
@@ -36,7 +32,7 @@ const getRangeLength = (value: RangeDatePickerValue) => {
 
 const RangeDatePickerDoc = new DocBuilder<RangeDatePickerProps>({ name: 'RangeDatePicker', component: RangeDatePicker })
     .implements([
-        iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc, modeDoc,
+        iEditable, sizeDoc, isDisabledDoc, isReadonlyDoc, isInvalidDoc,
     ])
     .prop('value', { examples: [{ name: "{ from: '2017-01-22', to: '2017-01-28' }", value: { from: '2017-01-22', to: '2017-01-28' } }] })
     .prop('getPlaceholder', {
