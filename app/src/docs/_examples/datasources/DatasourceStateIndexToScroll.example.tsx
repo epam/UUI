@@ -6,8 +6,7 @@ const items = Array(100).fill(0).map((_, index) => ({ id: index, name: `Parent $
 
 export default function DatasourceStateVisibleCountExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({
-        topIndex: 10,
-        visibleCount: 10,
+        indexToScroll: 10,
     });
     const datasource1 = useArrayDataSource({
         items,
@@ -15,7 +14,6 @@ export default function DatasourceStateVisibleCountExample() {
     
     return (
         <DatasourceViewer
-            exampleTitle="Visible count"
             value={ value1 }
             onValueChange={ onValueChange1 }
             datasource={ datasource1 }
