@@ -53,10 +53,6 @@ export const TableCellRenderer = (props: PlateTableCellElementProps) => {
     const hovered = hoveredColIndex === colIndex;
     const hoveredLeft = isFirstCell && hoveredColIndex === -1;
 
-    if (hovered || hoveredLeft) {
-        console.log('colIndex', colIndex, 'rowIndex', rowIndex, 'hovered', hovered, 'hoveredLeft', hoveredLeft);
-    }
-
     return (
         <TableCellElement.Root
             { ...rootProps }
