@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = { createFileSync, readJsonFileSync };
+module.exports = { createFileSync, readJsonFileSync, iterateFilesInDirAsync };
 
 /**
  * Create file at given location.
@@ -23,4 +23,16 @@ function createFileSync(filePathResolved, contentStr) {
 function readJsonFileSync(filePathResolved) {
     const content = fs.readFileSync(filePathResolved, 'utf8').toString();
     return JSON.parse(content);
+}
+
+async function iterateFilesInDirAsync(dirPath, callback, options = {}) {
+    const dir = await fs.promises.opendir(dirPath);
+    for await (const entry of dir) {
+        const entryPath = path.resolve(dir.path, entry.name);
+        if (entry.isFile()) {
+            callback(entryPath, entry);
+        } else if (options.recursive) {
+            await iterateFilesInDirAsync(entryPath, callback, options);
+        }
+    }
 }
