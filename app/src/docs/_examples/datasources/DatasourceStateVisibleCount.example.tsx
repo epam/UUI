@@ -13,8 +13,6 @@ export default function DatasourceStateVisibleCountExample() {
         items,
     }, []);
     
-    console.log(value1);
-    
     return (
         <DatasourceViewer
             exampleTitle="Without search"
