@@ -1,0 +1,21 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "To pass a filter to the Datasource, it is required to pass it as a part of the Datasource state. ",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
