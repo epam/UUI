@@ -8,7 +8,7 @@ const items = [
     { id: '3', name: 'Parent 3' },
 ];
 
-export default function RowOptionsIsInvalidExample() {
+export default function DatsourceStateSearchExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({});
     const datasource1 = useArrayDataSource({
         items,

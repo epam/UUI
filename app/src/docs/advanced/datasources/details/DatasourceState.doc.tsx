@@ -9,6 +9,7 @@ export class DatasourcesDatasourceStateDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="datasources-datasource-state" />
                 <DocExample title="Search" path="./_examples/datasources/DatasourceStateSearch.example.tsx" />
+                <DocExample title="Checked" path="./_examples/datasources/DatasourceStateChecked.example.tsx" />
             </>
         );
     }
