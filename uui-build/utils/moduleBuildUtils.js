@@ -3,19 +3,10 @@ const path = require('path');
 const { getIndexFileRelativePath } = require('./../utils/indexFileUtils.js');
 const { logger, ModuleBuildProgressLogger } = require('./../utils/loggerUtils.js');
 const { buildUsingRollup, watchUsingRollup } = require('../rollup/utils/rollupBuildUtils.js');
-const { readPackageJsonContentSync } = require('../utils/packageJsonUtils.js');
-const { runCmdSync } = require('./cmdUtils.js');
 
 const BUILD_FOLDER = 'build';
 
 module.exports = { buildUuiModule, isRollupModule };
-
-async function runPostbuild({ moduleRootDir }) {
-    const { scripts } = readPackageJsonContentSync(moduleRootDir);
-    if (scripts?.['postbuild']) {
-        runCmdSync({ cwd: moduleRootDir, cmd: 'yarn', args: ['postbuild'] });
-    }
-}
 
 async function withEventsLogger({ moduleRootDir, isRollup, asyncCallback }) {
     const moduleBuildLogger = new ModuleBuildProgressLogger({ moduleRootDir, isRollup });
@@ -67,7 +58,6 @@ async function buildStaticModule({ moduleRootDir }) {
     const asyncCallback = async () => {
         fs.emptyDirSync(BUILD_FOLDER);
         copyAllModuleFilesToOutputSync(moduleRootDir);
-        await runPostbuild({ moduleRootDir });
     };
     await withEventsLogger({ moduleRootDir, isRollup: false, asyncCallback });
 }
@@ -97,7 +87,6 @@ async function buildModuleUsingRollup(options) {
             await watchUsingRollup(params);
         } else {
             await buildUsingRollup(params);
-            await runPostbuild({ moduleRootDir });
         }
     };
     if (isWatch) {
