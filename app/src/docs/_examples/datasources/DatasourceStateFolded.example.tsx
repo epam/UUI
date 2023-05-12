@@ -16,7 +16,7 @@ const items = [
     { id: '3.1', name: 'Child 3.1', parentId: '3' },
 ];
 
-export default function DatsourceStateFoldedExample() {
+export default function DatasourceStateFoldedExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({
         folded: { 2: false },
     });

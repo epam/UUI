@@ -2,23 +2,19 @@ import React, { useState } from 'react';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
 import { DatasourceViewer } from './DatasourceViewer';
 
-const items = [
-    { id: '1', name: 'Parent 1' },
-    { id: '2', name: 'Parent 2' },
-    { id: '3', name: 'Parent 3' },
-];
+const items = Array(100).fill(0).map((_, index) => ({ id: index, name: `Parent ${index}` }));
 
-export default function DatasourceStateSelectedIdExample() {
+export default function DatasourceStateVisibleCountExample() {
     const [value1, onValueChange1] = useState<DataSourceState>({
-        selectedId: '2',
+        topIndex: 10,
+        visibleCount: 10,
     });
     const datasource1 = useArrayDataSource({
         items,
-        rowOptions: {
-            isSelectable: true,
-        },
     }, []);
-
+    
+    console.log(value1);
+    
     return (
         <DatasourceViewer
             exampleTitle="Without search"
