@@ -1,24 +1,27 @@
 import * as React from 'react';
-import css from './Table.scss';
-
-import { PlateTableCellElement } from '@udecode/plate';
+import { TableCellRenderer } from './TableCellRenderer';
 
 export function TableCell(props: any) {
     const { attributes, element } = props;
+
+    const appliedSpans = {
+        colSpan: element?.data?.colSpan || Number(element.attributes?.colspan) || 1,
+        rowSpan: element?.data?.rowSpan || Number(element.attributes?.rowspan) || 1,
+    };
+    // needs for getColIndex function
+    // TODO: think about, should we store colSpan in element
+    element.colSpan = appliedSpans.colSpan;
+
 
     if (!props.editor) {
         return null;
     }
 
     return (
-        <PlateTableCellElement
+        <TableCellRenderer
             { ...props }
-            className={ css.cell }
             { ...attributes }
-            nodeProps={ {
-                colSpan: element?.data?.colSpan || 1,
-                rowSpan: element?.data?.rowSpan || 1,
-            } }
+            nodeProps={ appliedSpans }
         />
     );
 }

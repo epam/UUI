@@ -22,12 +22,8 @@
     "@types/lodash.flatten": "4.4.6",
     "@types/slate": "^0.47.11",
     "@types/slate-react": "^0.50.1",
-    "@udecode/plate": "20.5.0",
-    "@udecode/plate-juice": "19.5.0",
-    "@udecode/plate-link": "20.4.1",
-    "@udecode/plate-test-utils": "3.2.0",
-    "@udecode/plate-ui-excalidraw": "11.2.1",
-    "@udecode/plate-ui-link": "20.4.0",
+    "@udecode/plate": "21.1.2",
+    "@udecode/plate-juice": "21.0.0",
     "@udecode/zustood": "1.1.1",
     "classnames": "2.2.6",
     "get-video-id": "3.1.3",
@@ -51,7 +47,6 @@
     "use-force-update": "^1.0.11"
   },
   "devDependencies": {
-    "@types/styled-components": "5.1.25",
     "react-popper": "2.3.0",
     "slate": "0.47.9",
     "slate-drop-or-paste-images": "0.9.1",

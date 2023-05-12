@@ -1,23 +1,32 @@
 import * as React from 'react';
 import css from './Table.scss';
 import cx from 'classnames';
-import { PlateTableCellElement } from '@udecode/plate';
+import { TableCellRenderer } from './TableCellRenderer';
 
 export function TableHeaderCell(props: any) {
-    const { attributes, node, element } = props;
+    const { attributes, element } = props;
 
-    const cellStyles = { backgroundColor: 'inherit' }
+    const appliedSpans = {
+        colSpan: element?.data?.colSpan || Number(element.attributes?.colspan) || 1,
+        rowSpan: element?.data?.rowSpan || Number(element.attributes?.rowspan) || 1,
+    };
+    // needs for getColIndex function
+    // TODO: think about, should we store colSpan in element
+    element.colSpan = appliedSpans.colSpan;
 
-    return <PlateTableCellElement
-        { ...props }
-        { ...attributes }
-        colSpan={ node?.data?.get('colSpan') || 1 }
-        rowSpan={ node?.data?.get('rowSpan') || 1 }
-        nodeProps={ {
-            colSpan: element?.data?.colSpan || 1,
-            rowSpan: element?.data?.rowSpan || 1,
-        } }
-        className={ cx(css.cell, css.headerCell) }
-        style={ element?.data?.style === 'none' ? { display: 'none' } : cellStyles }
-    />
+    if (!props.editor) {
+        return null;
+    }
+
+    const cellStyles = { backgroundColor: 'inherit' };
+    return (
+        <TableCellRenderer
+            isHeader
+            { ...props }
+            className={ cx(css.headerCell) }
+            { ...attributes }
+            nodeProps={ appliedSpans }
+            style={ element?.data?.style === 'none' ? { display: 'none' } : cellStyles }
+        />
+    );
 }
