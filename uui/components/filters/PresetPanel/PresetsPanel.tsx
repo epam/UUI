@@ -55,30 +55,32 @@ export function PresetsPanel(props: PresetsPanelProps) {
 
     const renderMoreButtonDropdown = (item: PresetAdaptiveItem, hiddenItems: PresetAdaptiveItem[]) => {
         return (
-            <Dropdown
-                key="more"
-                renderTarget={ (props) => (
-                    <FlexRow>
-                        <div className={ css.divider } />
-                        <Button mode="ghost" color="secondary" caption={ `${hiddenItems?.length || ''} more` } { ...props } />
-                    </FlexRow>
-                ) }
-                renderBody={ () => (
-                    <DropdownContainer width={ 230 }>
-                        {hiddenItems.map((item) => (
-                            <DropdownMenuButton
-                                key={ item.preset.id }
-                                onClick={ () => onPresetDropdownSelect(item) }
-                                caption={ item.preset.name }
-                                icon={ !item.preset.isReadonly && DeleteIcon }
-                                iconPosition="right"
-                                cx={ css.dropdownDeleteIcon }
-                                onIconClick={ !item.preset.isReadonly && (() => props.deletePreset(item.preset)) }
-                            />
-                        ))}
-                    </DropdownContainer>
-                ) }
-            />
+            <div className={ css.container }>
+                <Dropdown
+                    key="more"
+                    renderTarget={ (props) => (
+                        <FlexRow>
+                            <div className={ css.divider } />
+                            <Button mode="ghost" color="secondary" caption={ `${hiddenItems?.length || ''} more` } { ...props } />
+                        </FlexRow>
+                    ) }
+                    renderBody={ () => (
+                        <DropdownContainer width={ 230 }>
+                            {hiddenItems.map((item) => (
+                                <DropdownMenuButton
+                                    key={ item.preset.id }
+                                    onClick={ () => onPresetDropdownSelect(item) }
+                                    caption={ item.preset.name }
+                                    icon={ !item.preset.isReadonly && DeleteIcon }
+                                    iconPosition="right"
+                                    cx={ css.dropdownDeleteIcon }
+                                    onIconClick={ !item.preset.isReadonly && (() => props.deletePreset(item.preset)) }
+                                />
+                            ))}
+                        </DropdownContainer>
+                    ) }
+                />
+            </div>
         );
     };
 
