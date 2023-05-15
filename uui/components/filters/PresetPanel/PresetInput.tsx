@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import css from './PresetInput.scss';
+import css from './PresetInput.module.scss';
 import { TextInput } from '../../inputs';
 import { FlexCell } from '../../layout';
 import { ITablePreset } from '@epam/uui-core';

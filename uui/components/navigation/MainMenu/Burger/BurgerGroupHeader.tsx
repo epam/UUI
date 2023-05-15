@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './BurgerGroupHeader.scss';
+import css from './BurgerGroupHeader.module.scss';
 
 export interface BurgerGroupHeaderProps {
     caption: string;

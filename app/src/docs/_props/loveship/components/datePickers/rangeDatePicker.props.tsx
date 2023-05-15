@@ -5,7 +5,7 @@ import {
     RangeDatePickerValue, rangeDatePickerPresets, Day, IconContainer,
 } from '@epam/uui-components';
 import { RangeDatePicker } from '@epam/loveship';
-import css from './RangeDatePicker.doc.scss';
+import css from './RangeDatePicker.doc.module.scss';
 import {
     iEditable, sizeDoc, isDisabledDoc, isInvalidDoc, modeDoc,
 } from '../../docs';

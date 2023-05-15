@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './anchor.scss';
+import css from './anchor.module.scss';
 import { DocBuilder, onClickDoc } from '@epam/uui-docs';
 import { AnchorProps, FlexSpacer, IconContainer } from '@epam/uui-components';
 import { DefaultContext } from '../../docs';

@@ -4,7 +4,7 @@ import {
 } from '@epam/promo';
 import { ReactComponent as navigationIcon } from '@epam/assets/icons/common/navigation-chevron-right-12.svg';
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
-import css from './CardExample.scss';
+import css from './CardExample.module.scss';
 
 export default function AttributesExample() {
     return (

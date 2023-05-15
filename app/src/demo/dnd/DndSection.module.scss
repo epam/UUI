@@ -1,4 +1,4 @@
-@use './mixins' as *;
+@use './mixins.module' as *;
 @use  '~@epam/assets/scss/dnd' as *;
 
 .drag-element {

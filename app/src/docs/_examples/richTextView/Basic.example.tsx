@@ -175,7 +175,7 @@ export default function BasicExample() {
             <h4>{'<Pre>'}</h4>
             <pre>
                 {`import React from 'react';
-import css from './MyComponent.scss';
+import css from './MyComponent.module.scss';
 
 export const MyComponent = <div className={ css.myHeader }>`}
             </pre>

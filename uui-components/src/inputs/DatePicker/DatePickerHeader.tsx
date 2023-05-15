@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IconContainer } from '../../layout';
 import { Icon, IEditable, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
-import css from './DatePickerHeader.scss';
+import css from './DatePickerHeader.module.scss';
 import dayjs, { Dayjs } from 'dayjs';
 import { PickerBodyValue, ViewType } from './DatePickerBodyBase';
 

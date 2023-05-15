@@ -1,6 +1,6 @@
 import React from 'react';
 import { IHasCX, cx } from '@epam/uui-core';
-import styles from './TextOverflow.scss';
+import styles from './TextOverflow.module.scss';
 import { Tooltip } from '../overlays';
 
 type getTextWidth = (text: string, font: string, canvas: HTMLCanvasElement) => number | null;

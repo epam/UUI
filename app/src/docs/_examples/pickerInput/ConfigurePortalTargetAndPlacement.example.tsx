@@ -9,7 +9,7 @@ import {
 } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import { DropdownBodyProps } from '@epam/uui-core';
-import css from './PickerInputInDropdown.scss';
+import css from './PickerInputInDropdown.module.scss';
 
 export default function ConfigurePortalTargetAndPlacement() {
     const svc = useUuiContext();

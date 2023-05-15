@@ -1,7 +1,7 @@
 import { withMods } from '@epam/uui-core';
 import { Tag as UuiTag, TagProps, TagMods as UuiTagMods } from '@epam/uui';
 import * as types from '../../components/types';
-import css from './Tag.scss';
+import css from './Tag.module.scss';
 
 const defaultSize = '18';
 

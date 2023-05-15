@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './UploadFileToggler.scss';
+import css from './UploadFileToggler.module.scss';
 import { IHasForwardedRef, IHasRawProps } from '@epam/uui-core';
 
 interface UploadFileTogglerRenderParams {

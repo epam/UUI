@@ -5,7 +5,7 @@ import {
     DataTableState, IHasRawProps, IPresetsApi, ITablePreset,
 } from '@epam/uui-core';
 import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
-import css from './PresetsPanel.scss';
+import css from './PresetsPanel.module.scss';
 import {
     Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow,
 } from '../../index';

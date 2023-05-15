@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { IHasCX, IHasRawProps } from '@epam/uui-core';
-import css from './TextPlaceholder.scss';
+import css from './TextPlaceholder.module.scss';
 import { PropsWithChildren } from 'react';
 
 export interface ITextPlaceholderProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasCX {

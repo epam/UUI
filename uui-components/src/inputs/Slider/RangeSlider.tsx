@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { uuiMod, cx } from '@epam/uui-core';
 import { SliderBase, uuiSlider, SliderBaseState } from './SliderBase';
-import css from './SliderBase.scss';
+import css from './SliderBase.module.scss';
 import { SliderHandle } from './SliderHandle';
 import { RangeSliderScale } from './RangeSliderScale';
 

@@ -5,7 +5,7 @@ import { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Checkbox } from '../inputs';
 import { ReactComponent as FoldingArrow } from '../../icons/tree_folding_arrow.svg';
-import css from './DataTableCell.scss';
+import css from './DataTableCell.module.scss';
 import { Tooltip } from '../overlays';
 import { IconContainer } from '../layout';
 

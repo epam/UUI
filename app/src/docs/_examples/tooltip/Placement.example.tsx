@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Tooltip } from '@epam/promo';
-import css from './PlacementExample.scss';
+import css from './PlacementExample.module.scss';
 
 export default function PlacementTooltipExample() {
     return (

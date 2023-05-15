@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './FilterPanelItemToggler.scss';
+import css from './FilterPanelItemToggler.module.scss';
 import cx from 'classnames';
 import {
     IDropdownToggler, IHasCX, uuiElement, uuiMarkers, uuiMod,

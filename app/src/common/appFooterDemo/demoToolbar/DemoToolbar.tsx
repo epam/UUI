@@ -1,4 +1,4 @@
-import css from './DemoToolbar.scss';
+import css from './DemoToolbar.module.scss';
 import * as React from 'react';
 import { useHistory } from 'react-router';
 import {
