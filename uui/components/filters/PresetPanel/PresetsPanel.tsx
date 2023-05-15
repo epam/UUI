@@ -2,9 +2,9 @@ import React, { useCallback, useState } from 'react';
 import sortBy from 'lodash.sortby';
 import { i18n } from '../../../i18n';
 import {
-    DataTableState, IHasRawProps, IPresetsApi, ITablePreset,
+    DataTableState, IHasRawProps, IPresetsApi, ITablePreset, cx,
 } from '@epam/uui-core';
-import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
+import { AdaptiveItemProps, AdaptivePanel, ScrollBars } from '@epam/uui-components';
 import css from './PresetsPanel.module.scss';
 import {
     Button, Dropdown, DropdownContainer, DropdownMenuButton, FlexCell, FlexRow,
@@ -64,18 +64,20 @@ export function PresetsPanel(props: PresetsPanelProps) {
                     </FlexRow>
                 ) }
                 renderBody={ () => (
-                    <DropdownContainer width={ 230 }>
-                        {hiddenItems.map((item) => (
-                            <DropdownMenuButton
-                                key={ item.preset.id }
-                                onClick={ () => onPresetDropdownSelect(item) }
-                                caption={ item.preset.name }
-                                icon={ !item.preset.isReadonly && DeleteIcon }
-                                iconPosition="right"
-                                cx={ css.dropdownDeleteIcon }
-                                onIconClick={ !item.preset.isReadonly && (() => props.deletePreset(item.preset)) }
-                            />
-                        ))}
+                    <DropdownContainer cx={ cx(css.dropContainer) } width={ 230 }>
+                        <ScrollBars>
+                            {hiddenItems.map((item) => (
+                                <DropdownMenuButton
+                                    key={ item.preset.id }
+                                    onClick={ () => onPresetDropdownSelect(item) }
+                                    caption={ item.preset.name }
+                                    icon={ !item.preset.isReadonly && DeleteIcon }
+                                    iconPosition="right"
+                                    cx={ css.dropdownDeleteIcon }
+                                    onIconClick={ !item.preset.isReadonly && (() => props.deletePreset(item.preset)) }
+                                />
+                            ))}
+                        </ScrollBars>
                     </DropdownContainer>
                 ) }
             />

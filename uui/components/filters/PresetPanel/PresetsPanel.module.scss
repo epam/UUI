@@ -25,3 +25,10 @@
         }
     }
 }
+
+.dropContainer {
+    &:global(.uui-dropdown-body) {
+        overflow: auto;
+        max-height: 400px;
+    }
+}
