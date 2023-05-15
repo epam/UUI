@@ -1,6 +1,6 @@
 @use '~@epam/promo/assets/styles/colors' as *;
 @use  '~@epam/assets/scss/dnd' as *;
-@use './mixins' as *;
+@use './mixins.module' as *;
 
 .drag-element {
     @include dnd-cursor-style();
