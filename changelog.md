@@ -45,6 +45,7 @@
 * [Slider]: deprecated all colors except 'sky' by default.
 * [RangeSlider]: deprecated all colors except 'sky' by default.
 * [Tooltip]: fixed max-width - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
+* [RichTextView]: h1 font-size in promo skin changed from 36px to 42px.
 
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.
