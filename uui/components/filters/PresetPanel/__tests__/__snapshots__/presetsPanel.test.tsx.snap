@@ -36,41 +36,37 @@ exports[`PresetsPanel should render with minimum props 1`] = `
         }
       >
         <div
-          className="container"
+          className="root size-36 container align-items-center"
+          style={
+            Object {
+              "columnGap": undefined,
+              "rowGap": undefined,
+            }
+          }
         >
           <div
-            className="root size-36 container align-items-center"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
+            className="divider"
+          />
+          <button
+            className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost"
+            onClick={[Function]}
+            tabIndex={0}
+            type="button"
           >
             <div
-              className="divider"
-            />
-            <button
-              className="container uui-button-box uui-enabled -clickable button-secondary root size-36 mode-ghost"
-              onClick={[Function]}
-              tabIndex={0}
-              type="button"
+              className="uui-caption"
             >
-              <div
-                className="uui-caption"
-              >
-                 more
-              </div>
-              <div
-                className="container uui-icon uui-enabled"
-                style={Object {}}
-              >
-                <svg
-                  className=""
-                />
-              </div>
-            </button>
-          </div>
+               more
+            </div>
+            <div
+              className="container uui-icon uui-enabled"
+              style={Object {}}
+            >
+              <svg
+                className=""
+              />
+            </div>
+          </button>
         </div>
         <div
           className="addPresetContainer"

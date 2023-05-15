@@ -26,7 +26,9 @@
     }
 }
 
-:global(.uui-popper .uui-dropdown-body) {
-    overflow: auto;
-    max-height: 400px;
+.dropContainer {
+    &:global(.uui-dropdown-body) {
+        overflow: auto;
+        max-height: 400px;
+    }
 }
