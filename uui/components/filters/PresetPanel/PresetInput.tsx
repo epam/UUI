@@ -42,6 +42,7 @@ export function PresetInput(props: IPresetInputProps) {
                 onAccept={ acceptActionHandler }
                 onBlur={ newPresetOnBlurHandler }
                 autoFocus
+                maxLength={ 50 }
             />
         </FlexCell>
     );
