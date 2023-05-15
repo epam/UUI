@@ -9,7 +9,6 @@ import {Toolbar} from "./implementation/Toolbar";
 import {Sidebar} from './implementation/Sidebar';
 import { baseMarksPlugin, utilsPlugin, paragraphPlugin } from "./plugins";
 import { getSerializer, isEditorEmpty } from './helpers';
-import style from '@epam/assets/scss/promo/typography.scss';
 import css from './SlateEditor.module.scss';
 
 export const slateEditorEmptyValue: any = Value.fromJS({
@@ -150,7 +149,7 @@ export class SlateEditor extends React.Component<SlateEditorProps, SlateEditorSt
     renderEditor = () => (<>
         <Editor
             readOnly={ this.props.isReadonly }
-            className={ cx(style.typographyPromo, !this.props.isReadonly && css.contentEditable, this.props.fontSize == '16' ? style.typography16 : style.typography14) }
+            className={ cx(css.typographyPromo, !this.props.isReadonly && css.contentEditable, this.props.fontSize == '16' ? css.typography16 : css.typography14) }
             renderInline={ (pr, ed, next) => next() }
             onKeyDown={ this.onKeyDown as any }
             autoFocus={ this.props.autoFocus }

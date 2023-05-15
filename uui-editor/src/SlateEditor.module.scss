@@ -1,5 +1,23 @@
 @use '~@epam/assets/scss/promo/colors' as *;
 @use '~@epam/assets/scss/promo/fonts' as *;
+@use '~@epam/assets/scss/promo/typography' as *;
+
+
+:local(.typography-16) {
+    @include typography-16();
+}
+
+:local(.typography-14) {
+    @include typography-14();
+}
+
+:local(.typography-promo) {
+    font-family: $font-sans;
+    color: $gray80;
+    composes: typography-header;
+    composes: typography-block;
+    composes: typography-inline;
+}
 
 .container {
     position: relative;
