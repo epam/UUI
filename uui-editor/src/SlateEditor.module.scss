@@ -11,6 +11,18 @@
     @include typography-14();
 }
 
+:local(.typography-header) {
+    @include typography-header();
+}
+
+:local(.typography-block) {
+    @include typography-block();
+}
+
+:local(.typography-inline) {
+    @include typography-inline();
+}
+
 :local(.typography-promo) {
     font-family: $font-sans;
     color: $gray80;
