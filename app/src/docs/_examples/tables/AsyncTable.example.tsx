@@ -46,7 +46,7 @@ export default function ProductTable() {
                 render: (product) => <Text color="gray60">{product.ProductID}</Text>,
                 isSortable: true,
                 isAlwaysVisible: true,
-                width: 96,
+                width: 120,
             }, {
                 key: 'name',
                 caption: 'NAME',

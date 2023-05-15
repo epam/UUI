@@ -1,11 +1,7 @@
 import * as React from 'react';
-import {
-    withMods, ModalFooterCoreProps, ModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps,
-} from '@epam/uui-core';
+import { withMods, ModalFooterCoreProps, ModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps } from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
-import {
-    FlexRow, FlexSpacer, RowMods, FlexCell,
-} from '../layout';
+import { FlexRow, FlexSpacer, RowMods, FlexCell } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
@@ -24,7 +20,7 @@ export const ModalWindow = withMods<ModalWindowProps, ModalWindowMods>(
     (props) => ({
         rawProps: {
             style: {
-                width: `${props.width || 480}px`,
+                width: `${props.width || 420}px`,
                 height: props.height ? `${props.height}px` : 'auto',
             },
         },
