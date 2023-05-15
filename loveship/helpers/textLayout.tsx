@@ -1,4 +1,4 @@
-import css from './text-layout.scss';
+import css from './text-layout.module.scss';
 import { ControlSize } from '../components/types';
 
 export interface TextSettings {
