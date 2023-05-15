@@ -9,7 +9,7 @@ import {
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
-import css from './Modals.scss';
+import css from './Modals.module.scss';
 
 export const ModalBlocker = withMods<ModalBlockerProps>(uuiModalBlocker, () => [css.modalBlocker]);
 

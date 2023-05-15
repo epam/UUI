@@ -5,7 +5,7 @@ import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from '.
 import {
     addDays, isWeekend, months, msPerDay, Scales, getHoursInFormatAMPM,
 } from './helpers';
-import styles from './TimelineScale.scss';
+import styles from './TimelineScale.module.scss';
 
 import { ReactComponent as ArrowLeftSvg } from './arrowLeft.svg';
 import { ReactComponent as ArrowRightSvg } from './arrowRight.svg';

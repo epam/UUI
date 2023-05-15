@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './IconsPage.scss';
+import css from './IconsPage.module.scss';
 import {
     FlexCell,
     ControlSize,

@@ -3,7 +3,7 @@ import { useScrollSpy } from '@epam/uui-components';
 import {
     FlexCell, FlexRow, LinkButton, Text,
 } from '@epam/promo';
-import css from './ScrollSpyReader.scss';
+import css from './ScrollSpyReader.module.scss';
 
 export function ScrollSpyAnchor() {
     const links = useMemo(

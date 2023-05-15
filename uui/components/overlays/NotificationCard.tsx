@@ -12,7 +12,7 @@ import { ReactComponent as WarningIcon } from '../../icons/notification-warning-
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
 import { ReactComponent as CrossIcon } from '../../icons/snackbar/cross.svg';
-import css from './NotificationCard.scss';
+import css from './NotificationCard.module.scss';
 
 interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     name: string;

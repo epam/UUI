@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FlexRow, FlexSpacer } from '@epam/promo';
 import { EditableDocContent, BaseDocsBlock, UUI3 } from '../../common';
 import { getQuery } from '../../helpers';
-import css from '../assets/DownloadsDoc.scss';
+import css from '../assets/DownloadsDoc.module.scss';
 
 export class GettingStartedForDesignersDoc extends BaseDocsBlock {
     title = 'Getting Started';

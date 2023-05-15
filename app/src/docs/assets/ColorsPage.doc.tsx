@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FlexRow, FlexSpacer } from '@epam/promo';
 import { BaseDocsBlock, UUI3 } from '../../common';
 import { getQuery } from '../../helpers';
-import css from './DownloadsDoc.scss';
+import css from './DownloadsDoc.module.scss';
 
 import { PromoColorsDoc } from './promo/PromoColors.doc';
 import { LoveshipColorsDoc } from './loveship/LoveshipColors.doc';

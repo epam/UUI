@@ -4,7 +4,7 @@ import {
     Accordion, IconContainer, TextInput, VerticalTabButton, FlexSpacer,
 } from '@epam/uui';
 import { ReactComponent as PlusIcon } from '@epam/assets/icons/common/content-add-outline-18.svg';
-import css from './PresetsBlock.scss';
+import css from './PresetsBlock.module.scss';
 
 interface PresetsBlockProps extends IPresetsApi {}
 

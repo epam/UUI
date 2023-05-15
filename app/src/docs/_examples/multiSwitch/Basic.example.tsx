@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FlexCell, MultiSwitch, Text } from '@epam/promo';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
     const [value, onValueChange] = useState(null);

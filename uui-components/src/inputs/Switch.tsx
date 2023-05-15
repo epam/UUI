@@ -15,7 +15,7 @@ import {
     IHasForwardedRef,
     IHasTabIndex,
 } from '@epam/uui-core';
-import css from './Switch.scss';
+import css from './Switch.module.scss';
 
 export interface SwitchProps
     extends IHasCX,

@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import { Avatar } from './Avatar';
 import { FlexRow } from '../';
-import css from './AvatarStack.scss';
+import css from './AvatarStack.module.scss';
 
 export interface AvatarStackProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     avatarSize: '24' | '36' | '48' | '144';

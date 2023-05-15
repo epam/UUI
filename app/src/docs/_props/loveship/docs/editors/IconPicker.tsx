@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     IEditable, IHasIcon, ArrayDataSource, Icon, cx,
 } from '@epam/uui-core';
-import css from './IconPicker.scss';
+import css from './IconPicker.module.scss';
 import {
     Button, Text, PickerInput, DataPickerRow, IconButton, Tooltip,
 } from '@epam/loveship';

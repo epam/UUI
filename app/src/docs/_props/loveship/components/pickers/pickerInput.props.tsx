@@ -14,7 +14,7 @@ import {
 import { pickerBaseOptionsDoc } from './common';
 import { FlexCell, FlexRow } from '@epam/loveship';
 import { Text } from '@epam/loveship';
-import css from './DataPickerRowDoc.scss';
+import css from './DataPickerRowDoc.module.scss';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FlexCell, TextInput } from '@epam/promo';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 import { ReactComponent as CustomIcon } from '@epam/assets/icons/common/social-network-yammer-18.svg';
 
 export default function BasicTextInputExample() {

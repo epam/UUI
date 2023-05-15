@@ -2,7 +2,7 @@ import { withMods } from '@epam/uui-core';
 import * as types from '../../components/types';
 import { Badge as UuiBadge, BadgeMods as UuiBadgeMods, BadgeProps as UuiBadgeProps } from '@epam/uui';
 import { EpamAdditionalColor, EpamPrimaryColor, allEpamAdditionalColors, allEpamPrimaryColors } from '../types';
-import css from './Badge.scss';
+import css from './Badge.module.scss';
 
 const defaultSize = '18';
 

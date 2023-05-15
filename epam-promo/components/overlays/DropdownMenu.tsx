@@ -6,7 +6,7 @@ import { Text, FlexRow, Anchor, Dropdown, FlexSpacer, DropdownContainer, IconCon
 import { Switch } from '@epam/uui';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
-import css from './DropdownMenu.scss';
+import css from './DropdownMenu.module.scss';
 import { ReactComponent as CheckIcon } from '../../icons/accept-18.svg';
 
 const icons = systemIcons['36'];
