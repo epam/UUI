@@ -5,8 +5,7 @@ import {
 import { Svg } from '@epam/uui-components';
 import { cx } from '@epam/uui-core';
 import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
-// tslint:disable-next-line:no-import
-import css from '@epam/promo/assets/styles/typography.scss';
+import basicExampleCss from './BasicExample.module.scss';
 
 export default function BasicExample() {
     return (
@@ -180,7 +179,7 @@ import css from './MyComponent.module.scss';
 export const MyComponent = <div className={ css.myHeader }>`}
             </pre>
             <h4>Text with size 16</h4>
-            <p className={ cx(css.typography16) }>
+            <p className={ cx(basicExampleCss.typography16) }>
                 Lorem ipsum dolor sit amet,
                 {' '}
                 <Anchor href="/">
@@ -196,7 +195,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 <code>{'import { Button } from \'@epam/loveship\''}</code>
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <p className={ cx(css.typography16) }>
+            <p className={ cx(basicExampleCss.typography16) }>
                 Lorem ipsum dolor sit amet,
                 {' '}
                 <Anchor href="/">
@@ -213,7 +212,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             <h4>Text with size 12</h4>
-            <p className={ cx(css.typography12) }>
+            <p className={ cx(basicExampleCss.typography12) }>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 {' '}
                 <Anchor href="/">
@@ -228,7 +227,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 <code>{'import { Button } from \'@epam/loveship\''}</code>
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <p className={ cx(css.typography12) }>
+            <p className={ cx(basicExampleCss.typography12) }>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 {' '}
                 <Anchor href="/">
