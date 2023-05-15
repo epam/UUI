@@ -1,6 +1,6 @@
 @use './effects' as *;
-@use './loveship-color-vars' as *;
 @use './control-layout' as *;
+@use './loveship-colors' as *;
 
 @mixin control-form-mode() {
     background-color: $white;
