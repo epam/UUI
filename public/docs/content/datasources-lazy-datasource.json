@@ -1,0 +1,133 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "In this chapter, specific props of the LazyDatasource will be overviewed in detail.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "LazyDatasource",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " is used to represent a ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "huge amount of data, stored somewhere",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " on a server. This type of datasource ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "loads",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " data ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "lazily",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ", ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "chunk by chunk",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
