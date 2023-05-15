@@ -11,6 +11,7 @@ export default function DatasourceStatePageExample() {
         page: 100,
         pageSize: 10,
     });
+
     const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {
         const result = await svc.api.demo.personsPaged({
             ...rq,
@@ -18,9 +19,12 @@ export default function DatasourceStatePageExample() {
             page: rq.page - 1,
             pageSize: rq.pageSize,
         });
-        result.count = result.items.length;
-        result.from = 0;
-        return result;
+
+        return {
+            ...result,
+            count: result.items.length,
+            from: 0,
+        };
     }, [svc.api.demo]);
     
     const dataSource = useLazyDataSource<Person, number, Person>(
