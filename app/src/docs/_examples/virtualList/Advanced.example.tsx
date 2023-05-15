@@ -6,7 +6,7 @@ import {
     Text, MainMenu, TextPlaceholder, MainMenuButton,
 } from '@epam/promo';
 import { City } from '@epam/uui-docs';
-import css from './AdvancedExample.scss';
+import css from './AdvancedExample.module.scss';
 
 function Header() {
     return (

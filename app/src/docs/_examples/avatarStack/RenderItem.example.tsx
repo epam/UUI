@@ -1,6 +1,6 @@
 import React from 'react';
 import { AvatarStack, FlexCell, Tooltip } from '@epam/promo';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 import { uuiMarkers } from '@epam/uui-core';
 
 const avatarsArray = Array(10)

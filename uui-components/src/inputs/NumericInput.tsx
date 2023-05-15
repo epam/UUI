@@ -23,7 +23,7 @@ import {
     i18n,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import css from './NumericInput.scss';
+import css from './NumericInput.module.scss';
 
 export interface NumericInputProps
     extends ICanFocus<HTMLInputElement>,

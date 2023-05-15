@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './FlexRowContext.scss';
+import css from './FlexRowContext.module.scss';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { FlexRow, FlexCell, TextInput } from '@epam/promo';
 

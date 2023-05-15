@@ -8,7 +8,7 @@ import {
     Text, DataTable, Panel, IconButton,
 } from '@epam/promo';
 import { City } from '@epam/uui-docs';
-import css from './TablesExamples.scss';
+import css from './TablesExamples.module.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 
 const LOCAL_STORAGE_KEY = 'dataTable-columnsConfig-example-key';

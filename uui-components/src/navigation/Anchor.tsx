@@ -17,7 +17,7 @@ import {
     IAnalyticableClick,
 } from '@epam/uui-core';
 import { ButtonBase } from '../buttons';
-import css from './Anchor.scss';
+import css from './Anchor.module.scss';
 
 export interface AnchorProps
     extends IHasCX,

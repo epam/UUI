@@ -9,7 +9,7 @@ import { RangeDatePickerBody } from './RangeDatePickerBody';
 import { TextInput } from '../inputs';
 import { systemIcons } from '../../icons/icons';
 import { i18n } from '../../i18n';
-import css from './RangeDatePicker.scss';
+import css from './RangeDatePicker.module.scss';
 
 export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {
     getPlaceholder?(type: InputType): string;

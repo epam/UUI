@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from '../../RichTextEditor.scss';
+import css from '../../RichTextEditor.module.scss';
 import { FlexRow } from '@epam/loveship';
 import { IEditable } from '@epam/uui-core';
 import { EditorState } from 'draft-js';

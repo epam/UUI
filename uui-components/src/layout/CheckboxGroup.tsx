@@ -3,7 +3,7 @@ import {
     ICanBeInvalid, IHasForwardedRef, IHasCX, IEditable, IDisableable, IHasDirection, directionMode, ICanBeReadonly, cx, IHasRawProps,
 } from '@epam/uui-core';
 import { CheckboxProps } from '../inputs/Checkbox';
-import css from './CheckboxGroup.scss';
+import css from './CheckboxGroup.module.scss';
 
 interface CheckboxGroupItem<TValue> {
     name: string;

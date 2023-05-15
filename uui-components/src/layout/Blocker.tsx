@@ -3,7 +3,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import {
     IHasCX, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
-import css from './Blocker.scss';
+import css from './Blocker.module.scss';
 
 // TBD: move to loveship-specific mods
 // import { EpamColor, SpinnerMods } from '@epam/oswald';

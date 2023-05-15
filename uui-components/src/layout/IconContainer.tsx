@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './IconContainer.scss';
+import css from './IconContainer.module.scss';
 import {
     uuiElement, uuiMod, uuiMarkers, IHasCX, IDisableable, Icon, cx, IHasRawProps, IHasTabIndex,
 } from '@epam/uui-core';

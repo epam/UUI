@@ -1,4 +1,4 @@
-import css from './CalendarPresets.scss';
+import css from './CalendarPresets.module.scss';
 import { CalendarPresets as uuiCalendarPresets, CalendarPresetsProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 

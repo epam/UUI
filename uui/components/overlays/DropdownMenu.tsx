@@ -6,7 +6,7 @@ import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownCon
 import { Switch } from '../inputs';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
-import css from './DropdownMenu.scss';
+import css from './DropdownMenu.module.scss';
 
 const icons = systemIcons['36'];
 export interface IDropdownMenuItemProps extends IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick, IDropdownToggler {

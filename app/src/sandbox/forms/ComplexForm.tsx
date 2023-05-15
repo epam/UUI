@@ -8,7 +8,7 @@ import {
 import { svc } from '../../services';
 import { PersonDetailEditor } from './PersonDetailEditor';
 import { PersonDetailView } from './PersonDetailView';
-import css from './ComplexForm.scss';
+import css from './ComplexForm.module.scss';
 
 interface ComplexFormState {
     person: PersonDetails;

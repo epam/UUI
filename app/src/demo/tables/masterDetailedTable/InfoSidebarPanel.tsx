@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './InfoSidebarPanel.scss';
+import css from './InfoSidebarPanel.module.scss';
 import {
     Badge, EpamAdditionalColor, FlexCell, FlexRow, FlexSpacer, IconButton, Panel, ScrollBars, Text,
 } from '@epam/promo';

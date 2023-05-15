@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { VerticalTabButton, VerticalTabButtonProps } from '@epam/uui';
 import { ReactComponent as DropdownIcon } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
-import css from './SidebarButton.scss';
+import css from './SidebarButton.module.scss';
 import { cx } from '@epam/uui-core';
 
 export interface SidebarButtonProps extends VerticalTabButtonProps {

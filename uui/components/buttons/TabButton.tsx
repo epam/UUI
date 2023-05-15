@@ -2,7 +2,7 @@ import { Button, ButtonProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { systemIcons } from '../../icons/icons';
 import { getIconClass } from './helper';
-import css from './TabButton.scss';
+import css from './TabButton.module.scss';
 
 export interface TabButtonMods {
     size?: '36' | '48' | '60';

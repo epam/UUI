@@ -5,7 +5,7 @@ import {
     Text, FlexCell, LinkButton, ControlSize,
 } from '@epam/loveship';
 import { Avatar } from '@epam/uui-components';
-import css from '../pickers/DataPickerRowDoc.scss';
+import css from '../pickers/DataPickerRowDoc.module.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as CalendarIcon } from '@epam/assets/icons/common/action-calendar-18.svg';
 import { ReactComponent as TickIcon } from '@epam/assets/icons/common/notification-done-18.svg';
