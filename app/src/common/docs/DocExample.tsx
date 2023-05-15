@@ -73,7 +73,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 
     private getComponentStylesheet(raw: string): void {
         // Match .example.scss or .scss
-        const matcher = /\.\/\w+(?:.example)?.scss/;
+        const matcher = /\.\/\w+(?:.example)?(?:.module)?.scss/;
         const stylesheets = raw.match(matcher);
         if (stylesheets !== null) {
             stylesheets.forEach((match) => {
