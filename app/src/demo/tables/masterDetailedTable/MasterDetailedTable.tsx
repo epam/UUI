@@ -7,7 +7,7 @@ import {
 } from '@epam/uui-core';
 import { FlexRow } from '@epam/uui';
 import { DataTable } from '@epam/promo';
-import css from './DemoTable.scss';
+import css from './DemoTable.module.scss';
 import type { TApi } from '../../../data';
 import { getFilters } from './filters';
 import { personColumns } from './columns';

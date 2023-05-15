@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { RangeDatePicker, FlexRow, Text } from '@epam/promo';
 import { rangeDatePickerPresets, RangeDatePickerValue } from '@epam/uui-components';
 import dayjs from 'dayjs';
-import css from './PresetsAndFooter.scss';
+import css from './PresetsAndFooter.module.scss';
 
 export default function DatePickerBaseExample() {
     const [value, onValueChange] = useState({ from: null, to: null });

@@ -4,7 +4,7 @@ import {
     Panel, Text, FlexRow, LinkButton, DropdownContainer, Badge, IconButton, FlexCell, IconContainer, Avatar,
 } from '@epam/promo';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 import { ReactComponent as pinIcon } from '@epam/assets/icons/common/action-pin_on-18.svg';
 import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
 import { ReactComponent as aimIcon } from '@epam/assets/icons/common/action-target-18.svg';

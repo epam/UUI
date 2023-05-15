@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     IHasCX, uuiElement, cx, IHasRawProps,
 } from '@epam/uui-core';
-import css from './SliderHandle.scss';
+import css from './SliderHandle.module.scss';
 import { Manager, Reference, Popper } from 'react-popper';
 import { Portal } from '../../overlays/Portal';
 import { uuiSlider } from './SliderBase';

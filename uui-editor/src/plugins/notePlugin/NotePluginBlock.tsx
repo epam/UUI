@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { RenderBlockProps } from "slate-react";
-import css from './NotePluginBlock.scss';
+import css from './NotePluginBlock.module.scss';
 import cx from 'classnames';
 
 export interface NotePluginBlockProps extends RenderBlockProps {

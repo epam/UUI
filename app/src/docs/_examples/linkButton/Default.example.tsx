@@ -4,7 +4,7 @@ import {
     Dropdown, DropdownContainer, LinkButton, Panel, Text,
 } from '@epam/promo';
 import { ReactComponent as navigationBack } from '@epam/assets/icons/common/navigation-back-18.svg';
-import css from './DefaultExample.scss';
+import css from './DefaultExample.module.scss';
 
 export default function DefaultLinkButtonExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => <DropdownContainer { ...props } />;

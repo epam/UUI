@@ -6,7 +6,7 @@ import { PickerInput, Button, LinkButton, FlexCell, Text, SearchInput } from '@e
 import { iconDoc, iconOptionsDoc, iEditable, isDisabledDoc } from '../../docs';
 import { DefaultContext, ResizableContext, IHasEditModeDoc, FormContext, TableContext } from '../../docs';
 import { pickerBaseOptionsDoc } from './common';
-import css from './DataPickerRowDoc.scss';
+import css from './DataPickerRowDoc.module.scss';
 
 const PickerInputDoc = new DocBuilder<PickerInputBaseProps<any, any> & PickerInputProps>({ name: 'PickerInput', component: PickerInput })
     .implements([

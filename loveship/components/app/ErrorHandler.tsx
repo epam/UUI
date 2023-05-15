@@ -8,7 +8,7 @@ import { Text } from '../typography';
 import { RichTextView, FlexCell, Spinner, ErrorNotification } from '@epam/uui';
 import { ErrorCatch } from '@epam/uui-components';
 import { ErrorPage } from './ErrorPage';
-import css from './ErrorHandler.scss';
+import css from './ErrorHandler.module.scss';
 
 type Theme = 'light' | 'dark';
 

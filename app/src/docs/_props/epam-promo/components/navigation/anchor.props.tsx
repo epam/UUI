@@ -6,7 +6,7 @@ import { DefaultContext } from '../../docs';
 import {
     Anchor, FlexCell, FlexRow, Panel, Text,
 } from '@epam/promo';
-import css from './anchor.scss';
+import css from './anchor.module.scss';
 import { ReactComponent as gitIcon } from '@epam/assets/icons/common/social-network-github-18.svg';
 import { ReactComponent as PinterestIcon } from '@epam/assets/icons/common/social-network-pinterest-18.svg';
 import { ReactComponent as InstagramIcon } from '@epam/assets/icons/common/social-network-instagram-18.svg';

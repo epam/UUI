@@ -3,8 +3,8 @@ import { withMods } from '@epam/uui-core';
 import { NumericInput as uuiNumericInput, NumericInputProps as uuiNumericInputProps } from '@epam/uui-components';
 import { EditMode, IHasEditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
-import textInputCss from './TextInput.scss';
-import css from './NumericInput.scss';
+import textInputCss from './TextInput.module.scss';
+import css from './NumericInput.module.scss';
 
 const defaultSize = '36';
 const defaultMode = EditMode.FORM;

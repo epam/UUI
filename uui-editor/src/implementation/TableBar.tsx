@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Portal } from "@epam/uui-components";
-import css from './TableBar.scss';
+import css from './TableBar.module.scss';
 import { ReactComponent as InsertColumnAfter } from "../icons/table-add-column-right.svg";
 import { ReactComponent as InsertColumnBefore } from "../icons/table-add-column-left.svg";
 import { ReactComponent as InsertRowAfter } from "../icons/table-add-row-after.svg";

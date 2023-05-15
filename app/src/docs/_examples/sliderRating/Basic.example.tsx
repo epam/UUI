@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FlexCell } from '@epam/promo';
 import { SliderRating } from '@epam/loveship';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
     const [value, onValueChange] = useState(null);

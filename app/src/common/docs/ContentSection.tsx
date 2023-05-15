@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './ContentSection.scss';
+import css from './ContentSection.module.scss';
 import { ScrollBars } from '@epam/promo';
 import { IHasChildren } from '@epam/uui-core';
 
