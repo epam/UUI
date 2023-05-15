@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './FileCard.scss';
+import css from './FileCard.module.scss';
 import { i18n } from '../..';
 import {
     cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod,

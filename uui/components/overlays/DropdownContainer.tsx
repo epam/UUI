@@ -1,6 +1,6 @@
 import { withMods } from '@epam/uui-core';
 import { DropdownContainer as uuiDropdownListContainer, DropdownContainerProps as uuiDropdownContainerProps } from '@epam/uui-components';
-import css from './DropdownContainer.scss';
+import css from './DropdownContainer.module.scss';
 
 export interface DropdownContainerMods {
     vPadding?: '6' | '12' | '18' | '24' | '30' | '48';

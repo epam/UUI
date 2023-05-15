@@ -15,7 +15,7 @@ import {
     CheckboxGroup,
     FlexSpacer,
 } from '@epam/loveship';
-import css from './FormContext.scss';
+import css from './FormContext.module.scss';
 
 interface FormContextState {
     textValue: string;

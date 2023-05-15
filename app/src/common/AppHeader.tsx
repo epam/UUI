@@ -6,7 +6,7 @@ import { Anchor, MainMenuLogo } from '@epam/uui-components';
 import { UUI4 } from './docs';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
-import css from './AppHeader.scss';
+import css from './AppHeader.module.scss';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 
 type Theme = 'promo' | 'loveship' | 'vanilla_thunder';

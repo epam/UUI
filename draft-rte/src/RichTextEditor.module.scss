@@ -1,5 +1,5 @@
 @use '~@epam/assets/scss/index' as *;
-@import './draft';
+@import './draft.module';
 
 .container {
     display: flex;

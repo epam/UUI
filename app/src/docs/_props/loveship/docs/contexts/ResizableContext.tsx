@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DemoComponentProps } from '@epam/uui-docs';
 import { Slider } from '@epam/loveship';
-import css from './ResizableContext.scss';
+import css from './ResizableContext.module.scss';
 
 interface DemoComponentState {
     widthPercent: number;

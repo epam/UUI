@@ -4,7 +4,7 @@ import {
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import { ButtonBase } from './ButtonBase';
-import css from './Button.scss';
+import css from './Button.module.scss';
 
 export interface ButtonProps
     extends ButtonCoreProps,

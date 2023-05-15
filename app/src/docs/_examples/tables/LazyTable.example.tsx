@@ -10,7 +10,7 @@ import {
 import { DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter } from '@epam/loveship';
 import { City } from '@epam/uui-docs';
 import { Dropdown } from '@epam/uui-components';
-import css from './TablesExamples.scss';
+import css from './TablesExamples.module.scss';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
 

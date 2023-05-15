@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import css from './Sidebar.scss';
+import css from './Sidebar.module.scss';
 import { ScrollBars, SearchInput } from '@epam/promo';
 import { Tree, TreeListItem } from '@epam/uui-components';
 import { SidebarButton } from './SidebarButton';

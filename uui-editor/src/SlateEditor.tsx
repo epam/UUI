@@ -10,7 +10,7 @@ import {Sidebar} from './implementation/Sidebar';
 import { baseMarksPlugin, utilsPlugin, paragraphPlugin } from "./plugins";
 import { getSerializer, isEditorEmpty } from './helpers';
 import style from '@epam/assets/scss/promo/typography.scss';
-import css from './SlateEditor.scss';
+import css from './SlateEditor.module.scss';
 
 export const slateEditorEmptyValue: any = Value.fromJS({
     document: {

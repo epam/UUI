@@ -6,7 +6,7 @@ import {
 import { DataTableCell } from './DataTableCell';
 import { DataTableRowMods } from './types';
 import { DropMarker } from '../';
-import css from './DataTableRow.scss';
+import css from './DataTableRow.module.scss';
 
 // Here we define a single instance of the renderCell function to make DataTableRow#shouldComponentUpdate work.
 // As we need our mods to style the cell properly, we extract them from DataTableCellProps.rowProps, which is a hack, but it's reliable enough.

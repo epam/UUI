@@ -4,7 +4,7 @@ import {
 } from '@epam/promo';
 import { ReactComponent as myIcon } from '@epam/assets/icons/common/navigation-logout-12.svg';
 
-import css from './FlexSpacerExample.scss';
+import css from './FlexSpacerExample.module.scss';
 
 export default function FlexSpacerExample() {
     const [value, onValueChange] = useState(null);

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import css from './MobileDropdownWrapper.scss';
+import css from './MobileDropdownWrapper.module.scss';
 import { isMobile, useAppMobileHeight } from '@epam/uui-core';
 import { LinkButton } from '../buttons';
 import { ControlSize } from '../types';

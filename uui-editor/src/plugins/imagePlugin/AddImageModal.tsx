@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { UploadFileToggler, FlexSpacer } from '@epam/uui-components';
 import { IModal, prependHttp, uuiSkin } from '@epam/uui-core';
-import css from './AddImageModal.scss';
+import css from './AddImageModal.module.scss';
 import { Editor } from 'slate-react';
 
 const { LabeledInput, ModalBlocker, ModalWindow, ModalHeader, FlexRow, TextInput, ModalFooter, Button } = uuiSkin;

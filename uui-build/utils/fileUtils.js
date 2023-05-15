@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = { createFileSync, readJsonFileSync, iterateFilesInDirAsync };
+module.exports = { createFileSync, readJsonFileSync, iterateFilesInDirAsync, renameFileSync };
 
 /**
  * Create file at given location.
@@ -30,9 +30,16 @@ async function iterateFilesInDirAsync(dirPath, callback, options = {}) {
     for await (const entry of dir) {
         const entryPath = path.resolve(dir.path, entry.name);
         if (entry.isFile()) {
-            callback(entryPath, entry);
+            await callback(entryPath, entry);
         } else if (options.recursive) {
             await iterateFilesInDirAsync(entryPath, callback, options);
         }
     }
+}
+
+function renameFileSync(filePathPrev, newFileName) {
+    const pathTokens = filePathPrev.split(/[\\/]/);
+    pathTokens[pathTokens.length - 1] = newFileName;
+    const filePathNext = pathTokens.join('/');
+    fs.renameSync(filePathPrev, filePathNext);
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FlexCell, LabeledInput, NumericInput } from '@epam/promo';
-import css from './BasicExample.scss';
+import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
     const [n1, setN1] = useState(1005001);

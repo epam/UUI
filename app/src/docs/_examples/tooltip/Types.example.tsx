@@ -5,7 +5,7 @@ import {
 import { ReactComponent as copyIcon } from '@epam/assets/icons/common/content-link-18.svg';
 import { ReactComponent as plusIcon } from '@epam/assets/icons/common/content-add-fill-18.svg';
 import { ReactComponent as infoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
-import css from './TypesExample.scss';
+import css from './TypesExample.module.scss';
 
 export default function TypesTooltipExample() {
     const renderTypesMarkup = () => (

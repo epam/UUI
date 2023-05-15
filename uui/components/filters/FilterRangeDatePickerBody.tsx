@@ -8,7 +8,7 @@ import {
 } from '../../index';
 import { i18n } from '../../i18n';
 import cx from 'classnames';
-import css from './FilterRangeDatePickerBody.scss';
+import css from './FilterRangeDatePickerBody.module.scss';
 import { systemIcons } from '../../icons/icons';
 import { RangeDatePickerBody } from '.././';
 

@@ -3,7 +3,7 @@ import { useScrollSpy } from '@epam/uui-components';
 import {
     FlexSpacer, Button, FlexCell, FlexRow, LinkButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Panel, ScrollBars, Text,
 } from '@epam/promo';
-import css from './ScrollSpyReader.scss';
+import css from './ScrollSpyReader.module.scss';
 import { svc } from '../../services';
 
 export function ScrollSpyModal() {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ProgressBar as uuiProgressBar, IProgressBarProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
-import css from './ProgressBar.scss';
+import css from './ProgressBar.module.scss';
 
 const defaultSize = '12';
 

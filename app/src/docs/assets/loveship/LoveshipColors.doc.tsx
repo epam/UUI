@@ -4,7 +4,7 @@ import { arrayToMatrix, cx, INotification } from '@epam/uui-core';
 import { copyTextToClipboard } from '../../../helpers';
 import { svc } from '../../../services';
 import { ReactComponent as NotificationIcon } from './../../../icons/notification-check-fill-24.svg';
-import css from './LoveshipColorsDoc.scss';
+import css from './LoveshipColorsDoc.module.scss';
 
 const basicColors = [
     { name: 'sky-soft', hasVariable: true, hex: '#F5FDFF', context: '' },
