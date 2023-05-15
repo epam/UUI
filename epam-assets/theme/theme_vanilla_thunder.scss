@@ -972,19 +972,6 @@
         --uui-text: var(--uui-text-contrast);
     }
 
-    .uui-font-inter, .uui-font-regular {
-        --uui-text-font: var(--font-inter);
-    }
-
-    .uui-font-museo-sans {
-        --uui-text-font: var(--font-museo-sans);
-    }
-
-    .uui-font-semibold {
-        --uui-text-font: var(--font-museo-sans);
-        --uui-text-font-weight: 700;
-    }
-
     :global(.dropdown-container-white) {
         --uui-dropdown-container-bg: var(--white);
     }
