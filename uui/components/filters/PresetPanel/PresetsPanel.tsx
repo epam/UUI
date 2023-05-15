@@ -64,8 +64,8 @@ export function PresetsPanel(props: PresetsPanelProps) {
                     </FlexRow>
                 ) }
                 renderBody={ () => (
-                    <ScrollBars>
-                        <DropdownContainer cx={ cx(css.dropContainer) } width={ 230 }>
+                    <DropdownContainer cx={ cx(css.dropContainer) } width={ 230 }>
+                        <ScrollBars>
                             {hiddenItems.map((item) => (
                                 <DropdownMenuButton
                                     key={ item.preset.id }
@@ -77,8 +77,8 @@ export function PresetsPanel(props: PresetsPanelProps) {
                                     onIconClick={ !item.preset.isReadonly && (() => props.deletePreset(item.preset)) }
                                 />
                             ))}
-                        </DropdownContainer>
-                    </ScrollBars>
+                        </ScrollBars>
+                    </DropdownContainer>
                 ) }
             />
         );
