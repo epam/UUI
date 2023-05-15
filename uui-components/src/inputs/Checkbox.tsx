@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cx, IHasTabIndex, uuiMarkers } from '@epam/uui-core';
-import css from './Checkbox.scss';
+import css from './Checkbox.module.scss';
 import {
     Icon, uuiMod, uuiElement, isClickableChildClicked, CheckboxCoreProps, UuiContexts, UuiContext,
 } from '@epam/uui-core';

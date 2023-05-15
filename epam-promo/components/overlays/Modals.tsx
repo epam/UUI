@@ -8,7 +8,7 @@ import { FlexSpacer, FlexCell } from '@epam/uui';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { ReactComponent as CrossIcon } from '../../icons/navigation-close-24.svg';
-import css from './Modals.scss';
+import css from './Modals.module.scss';
 
 export interface ModalBlockerMods {
     blockerShadow?: 'light' | 'dark' | 'none';

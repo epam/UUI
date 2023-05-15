@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './DropdownMenu.scss';
+import css from './DropdownMenu.module.scss';
 import { withMods, IHasIcon, IDropdownToggler, VPanelProps } from '@epam/uui-core';
 import { Button, ButtonProps, VPanel, IconContainer, CheckboxProps, Checkbox, TextInput, TextInputProps } from '@epam/uui-components';
 import { ReactComponent as BtnCross } from '../icons/menu_input_cancel.svg';

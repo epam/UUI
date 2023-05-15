@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Avatar, FlexRow, Panel, Tooltip, Text,
 } from '@epam/promo';
-import css from './DelayExample.scss';
+import css from './DelayExample.module.scss';
 
 export default function TriggerConfigurationWithDelayExample() {
     return (

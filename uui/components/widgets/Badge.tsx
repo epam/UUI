@@ -3,8 +3,8 @@ import { EpamBadgeSemanticColor } from '../types';
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
-import buttonCss from '../buttons/Button/Button.scss';
-import css from './Badge.scss';
+import buttonCss from '../buttons/Button/Button.module.scss';
+import css from './Badge.module.scss';
 
 const defaultSize = '36';
 

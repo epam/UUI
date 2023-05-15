@@ -5,7 +5,7 @@ import {
 import { BurgerProps, MainMenuLogo } from './index';
 import { AdaptivePanel, AdaptiveItemProps } from '../../layout';
 import { i18n } from '../../i18n';
-import css from './MainMenu.scss';
+import css from './MainMenu.module.scss';
 
 export interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     renderBody?: (props: DropdownBodyProps) => React.ReactNode;

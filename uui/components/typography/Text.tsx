@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Text.scss';
+import css from './Text.module.scss';
 import * as types from '../types';
 import { Text as uuiText, TextProps as UuiTextProps } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';

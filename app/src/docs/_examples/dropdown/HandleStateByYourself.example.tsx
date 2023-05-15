@@ -4,7 +4,7 @@ import {
     Text, FlexRow, DropdownContainer, LinkButton, FlexCell, Avatar,
 } from '@epam/promo';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
-import css from './HandleStateExample.scss';
+import css from './HandleStateExample.module.scss';
 
 export default function BasicDropdownExample() {
     const [value, onValueChange] = useState(null);

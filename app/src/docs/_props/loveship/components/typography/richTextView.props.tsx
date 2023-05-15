@@ -11,7 +11,7 @@ import { Svg } from '@epam/uui-components';
 import { ReactComponent as Calendar } from '@epam/assets/icons/common/action-calendar-18.svg';
 import cx from 'classnames';
 import css from '@epam/loveship/assets/styles/scss/typography.scss';
-import style from './richTextViewDoc.scss';
+import style from './richTextViewDoc.module.scss';
 
 const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'RichTextView', component: RichTextView })
     .prop('htmlContent', {
@@ -194,7 +194,7 @@ const textDoc = new DocBuilder<RichTextViewProps & RichTextViewMods>({ name: 'Ri
                         <h4>{'<Pre>'}</h4>
                         <pre>
                             {`import * as React from 'react';
-import css from './MyComponent.scss';
+import css from './MyComponent.module.scss';
 
 export const MyComponent = <div className={ css.myHeader }>`}
                         </pre>

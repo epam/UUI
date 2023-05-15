@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IModal, UuiContexts } from '@epam/uui-core';
-import css from './LinkModal.scss';
+import css from './LinkModal.module.scss';
 import { TextInput, ModalHeader, ModalBlocker, ModalWindow, FlexRow, FlexSpacer, LabeledInput, Panel, Button } from '@epam/loveship';
 import { i18n } from '../../../i18n';
 

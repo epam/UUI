@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './Page.scss';
+import css from './Page.module.scss';
 import { cx, IHasChildren } from '@epam/uui-core';
 import { ErrorHandler } from '@epam/promo';
 

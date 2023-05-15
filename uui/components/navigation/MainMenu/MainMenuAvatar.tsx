@@ -1,5 +1,5 @@
 import * as React from 'react';
-import css from './MainMenuAvatar.scss';
+import css from './MainMenuAvatar.module.scss';
 import cx from 'classnames';
 import {
     IAdaptiveItem, IDropdownToggler, Icon, IHasCX, uuiMarkers,

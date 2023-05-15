@@ -1,7 +1,7 @@
 import { withMods } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
-import css from './Tag.scss';
+import css from './Tag.module.scss';
 
 const defaultSize = '36';
 

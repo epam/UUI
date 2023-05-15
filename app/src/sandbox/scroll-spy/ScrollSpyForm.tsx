@@ -19,7 +19,7 @@ import {
     Text,
     TextInput,
 } from '@epam/promo';
-import css from './ScrollSpyForm.scss';
+import css from './ScrollSpyForm.module.scss';
 import { svc } from '../../services';
 
 interface Person {
