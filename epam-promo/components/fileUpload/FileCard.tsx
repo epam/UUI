@@ -1,13 +1,9 @@
 import * as React from 'react';
 import css from './FileCard.module.scss';
-import { i18n } from '../..';
-import {
-    cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod,
-} from '@epam/uui-core';
-import { SvgCircleProgress } from './';
-import {
-    FlexCell, FlexRow, IconButton, IconContainer, Text, Tooltip,
-} from '../';
+import { i18n } from '../../i18n';
+import { cx, FileUploadResponse, formatBytes, IClickable, IHasCX, uuiMod } from '@epam/uui-core';
+import { SvgCircleProgress } from './SvgCircleProgress';
+import { FlexCell, FlexRow, IconButton, IconContainer, Text, Tooltip } from '../../components';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/common/navigation-close-18.svg';
 import { ReactComponent as DocIcon } from '../../icons/fileUpload/file-file_word-24.svg';
 import { ReactComponent as ExelIcon } from '../../icons/fileUpload/file-file_excel-24.svg';
