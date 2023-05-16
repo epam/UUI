@@ -37,7 +37,7 @@ class LinkModal extends React.Component<LinkModalProps, LinkModalState> {
         };
 
         return (
-            <ModalBlocker blockerShadow='dark' { ...this.props }>
+            <ModalBlocker { ...this.props }>
                 <ModalWindow>
                     <Panel background='white' style={ { overflowY: 'auto', maxHeight: '100%' } } cx='draftRTE__link-modal'>
                         <ModalHeader borderBottom title={ i18n.rte.linkModal.modalHeader } onClose={ () => this.props.abort() } />
