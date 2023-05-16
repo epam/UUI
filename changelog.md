@@ -45,6 +45,8 @@
 * [Slider]: deprecated all colors except 'sky' by default.
 * [RangeSlider]: deprecated all colors except 'sky' by default.
 * [Tooltip]: fixed max-width - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
+* [ModalBlocker]: deprecated property 'blockerShadow'. In scss theme file you can set blocker shadow using token '--uui-modals-overlay'.
+* [ModalWindow]: types of properties 'width' and 'height' are changed from 'string' to 'number', 'height' also has a value 'auto'.
 
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.
