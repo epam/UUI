@@ -4,6 +4,7 @@ const postcss = require('postcss');
 const scssParser = require('postcss-scss');
 const postcssSass = require('@csstools/postcss-sass');
 const scssModules = require('postcss-modules');
+const scssDiscardComments = require('postcss-discard-comments');
 const { createFileSync, iterateFilesInDirAsync } = require('../utils/fileUtils.js');
 const { uuiRoot } = require('../utils/constants.js');
 
@@ -27,7 +28,8 @@ function assertNoLocalScopeSelectors({ srcPath, targetPath, variablesJson }) {
 
 function getCompiler() {
     return postcss([
-        postcssSass({ }),
+        postcssSass({}),
+        scssDiscardComments({ removeAll: true }),
         scssModules({
             getJSON: (srcPath, variablesJson, targetPath) => {
                 assertNoLocalScopeSelectors({ srcPath, targetPath, variablesJson });
@@ -73,7 +75,7 @@ async function main() {
                 inProgress.push(promise);
             } else {
                 await iterateFilesInDirAsync(from, (filePath) => {
-                    if (!filePath.endsWith('.scss')) {
+                    if (!filePath.endsWith('.scss') || filePath.indexOf('build') !== -1) {
                         return;
                     }
                     const compileToFile = path.resolve(to, path.relative(from, filePath).replace('.scss', '.css'));

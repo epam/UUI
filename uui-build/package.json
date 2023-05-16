@@ -46,6 +46,7 @@
     "postcss": "^8.4.19",
     "@csstools/postcss-sass": "^5.0.1",
     "postcss-modules": "^6.0.0",
+    "postcss-discard-comments": "^5.1.2",
     "rollup-plugin-visualizer": "5.9.0",
     "sass": "^1.62.1",
     "source-map-explorer": "2.5.3",
