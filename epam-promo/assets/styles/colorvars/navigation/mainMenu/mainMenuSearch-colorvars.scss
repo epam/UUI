@@ -1,8 +1,0 @@
-@use  '../../../colors' as *;
-
-@mixin mainMenu-search-color() {
-    --background-color: #{$gray70};
-    --color: white;
-    --fill: #{$gray50};
-    --placeholder-color: #{$gray50};
-}
