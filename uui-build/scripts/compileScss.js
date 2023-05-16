@@ -13,15 +13,15 @@ function getFilesToCompile() {
 
 function assertNoLocalScopeSelectors({ srcPath, targetPath, variablesJson }) {
     if (Object.keys(variablesJson).length > 0) {
-        /*        const err = [
+        const err = [
             'Local scope selectors aren\'t allowed.',
             `srcPath=${srcPath}`,
             `targetPath=${targetPath}`,
             JSON.stringify(variablesJson, undefined, 1),
-        ].join('\n'); */
+        ].join('\n');
         const locSelectors = Object.values(variablesJson);
-        console.error('Local scope selectors found in result css!', `"${path.relative(uuiRoot, targetPath)}" ${locSelectors[0]}${locSelectors.length > 1 ? `,...(${locSelectors.length} in total)` : ''}`);
-        // throw new Error(err);
+        console.error('Local scope selectors found in result css!', `"${path.relative(uuiRoot, srcPath).replaceAll('\\', '/')}" ${locSelectors[0]}${locSelectors.length > 1 ? `,...(${locSelectors.length} in total)` : ''}`);
+        throw new Error(err);
     }
 }
 
@@ -44,7 +44,7 @@ async function compileSingleFile({ from, to }) {
     try {
         result = await compiler.process(src, { map: { inline: false }, to, from, syntax: scssParser });
     } catch (err) {
-        console.error('cannot compile', err.stack);
+        console.error(`cannot compile src=${from}`, err.stack);
     }
 
     if (result) {
@@ -73,6 +73,9 @@ async function main() {
                 inProgress.push(promise);
             } else {
                 await iterateFilesInDirAsync(from, (filePath) => {
+                    if (!filePath.endsWith('.scss')) {
+                        return;
+                    }
                     const compileToFile = path.resolve(to, path.relative(from, filePath).replace('.scss', '.css'));
                     const promise = compileSingleFile({
                         from: path.resolve(filePath),
