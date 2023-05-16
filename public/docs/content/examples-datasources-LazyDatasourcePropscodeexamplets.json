@@ -32,7 +32,28 @@
           },
           {
             "object": "text",
-            "text": " in detail to understand the way it can be used/configured. LazyDatasourceProps contains all the props, overviewed in the ",
+            "text": " in detail to understand the way it can be used/configured. ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "LazyDatasourceProps",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " contains all the props, overviewed in the ",
             "marks": []
           },
           {
