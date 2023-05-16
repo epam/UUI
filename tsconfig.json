@@ -34,6 +34,7 @@
     "**/node_modules",
     "**/build",
     "**/__tests__",
-    "**/globals.d.ts"
+    "**/globals.d.ts",
+    "./uui_globals.d.ts"
   ]
 }

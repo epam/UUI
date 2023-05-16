@@ -8,7 +8,6 @@ import style from '@epam/assets/scss/typography.scss';
 import { convertHtmlToDraftState, convertDraftStateToHtml } from './utils';
 import { ToolbarButton } from './types';
 import * as I from 'immutable';
-import { ScrollBars } from '@epam/loveship';
 import cx from 'classnames';
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
 
