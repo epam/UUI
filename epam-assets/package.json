@@ -10,7 +10,6 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "normalize.css": "^7.0.0"
   },
   "repository": {
     "type": "git",
