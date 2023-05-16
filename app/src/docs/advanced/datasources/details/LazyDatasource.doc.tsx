@@ -8,6 +8,10 @@ export class DatasourcesLazyDatasourceDoc extends BaseDocsBlock {
         return (
             <>
                 <EditableDocContent fileName="datasources-lazy-datasource" />
+
+                <DocExample title="LazyDatasourceProps" path="./_examples/datasources/LazyDatasourceProps.code.example.ts" onlyCode={ true } />
+                <EditableDocContent fileName="datasources-base-props-overview" />
+
                 <DocExample title="Data" path="./_examples/datasources/LazyDatasourceData.example.tsx" />
             </>
         );

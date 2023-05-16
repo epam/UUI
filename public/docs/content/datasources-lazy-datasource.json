@@ -127,6 +127,24 @@
             "marks": []
           }
         ]
+      },
+      {
+        "object": "block",
+        "type": "uui-richTextEditor-header-1",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "Overview",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              }
+            ]
+          }
+        ]
       }
     ]
   }
