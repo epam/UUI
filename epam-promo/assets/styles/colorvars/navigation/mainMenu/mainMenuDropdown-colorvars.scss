@@ -1,7 +1,0 @@
-@use  '../../../colors' as *;
-
-@mixin mainMenu-dropdown-color() {
-    --background-color: #{$gray90};
-    --dropdown-body-background-color: #{$gray90};
-    --dropdown-item-background-color: #{$gray80};
-}
