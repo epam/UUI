@@ -972,15 +972,15 @@
         --uui-text: var(--uui-text-contrast);
     }
 
-    .uui-font-inter, .uui-font-regular {
+    :global(.uui-font-inter), :global(.uui-font-regular) {
         --uui-text-font: var(--font-inter);
     }
 
-    .uui-font-museo-sans {
+    :global(.uui-font-museo-sans) {
         --uui-text-font: var(--font-museo-sans);
     }
 
-    .uui-font-semibold {
+    :global(.uui-font-semibold) {
         --uui-text-font: var(--font-museo-sans);
         --uui-text-font-weight: 700;
     }

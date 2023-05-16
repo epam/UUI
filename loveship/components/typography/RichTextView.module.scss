@@ -1,7 +1,6 @@
-@forward 'typography-mixins';
-@use 'typography-mixins' as *;
-@use 'loveship-colors' as *;
-@use 'fonts' as *;
+@use '../../assets/styles/scss/typography-mixins.scss' as *;
+@use '../../assets/styles/scss/loveship-colors' as *;
+@use '../../assets/styles/scss/fonts' as *;
 
 :local(.typography-header) {
     @include typography-header();
