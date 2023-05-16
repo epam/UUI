@@ -32,7 +32,7 @@
           },
           {
             "object": "text",
-            "text": " function to the LazyDatasource props. This function is used to retrieve the data asynchronously. \nAPI is used to retrieve lists of items.\nIt is expected to:\n- be able to handle ",
+            "text": " function to the LazyDatasource props. This function is used to retrieve the data asynchronously. \nAPI is used to retrieve lists of items.\nIt is expected to be able to:\n- handle ",
             "marks": []
           },
           {
@@ -74,7 +74,7 @@
           },
           {
             "object": "text",
-            "text": " params);\n- be able to ",
+            "text": " params);\n- ",
             "marks": []
           },
           {
@@ -153,7 +153,7 @@
           },
           {
             "object": "text",
-            "text": ";\n- be able to ",
+            "text": ";\n- ",
             "marks": []
           },
           {
