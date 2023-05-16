@@ -26,7 +26,7 @@ export const ModalWindow = withMods<Omit<UuiModalWindowProps, 'width' | 'height'
     () => [],
     (props) => ({
         ...props,
-        width: getWidth(props.width),
+        width: props.width && getWidth(props.width),
         height: props.height && getHeight(props.height),
     }),
 );
