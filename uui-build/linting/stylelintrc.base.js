@@ -1,13 +1,4 @@
-const lessSyntax = require('postcss-less');
-const { rules: sassGuidelinesRules } = require('stylelint-config-sass-guidelines');
 const { turnOffStylelintRulesToBeFixed } = require('./utils/rulesToBeFixed.js');
-
-const sassGuidelinesRulesSubsetForLess = Object.keys(sassGuidelinesRules)
-    .filter((k) => k.indexOf('scss/') !== 0)
-    .reduce((acc, k) => {
-        acc[k] = sassGuidelinesRules[k];
-        return acc;
-    }, {});
 
 const SCSS_AND_LESS_COMMON_RULES = {
     'order/properties-alphabetical-order': null,
@@ -60,13 +51,6 @@ module.exports = {
                 'scss/at-import-partial-extension-blacklist': null,
                 'scss/selector-no-redundant-nesting-selector': null,
                 'scss/dollar-variable-pattern': null,
-            },
-        }, {
-            files: ['**/*.less'],
-            customSyntax: lessSyntax,
-            rules: {
-                ...sassGuidelinesRulesSubsetForLess,
-                ...SCSS_AND_LESS_COMMON_RULES,
             },
         },
     ],
