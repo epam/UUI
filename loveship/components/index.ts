@@ -14,6 +14,6 @@ export { FiltersPanel, PresetsPanel, defaultPredicates, Calendar, NumericInput, 
     RichTextView, Form, useForm, PickerInput, PickerItem, DataPickerRow, PickerToggler, PickerList, Blocker, CheckboxGroup, ControlGroup, ConfirmationModal,
     RadioGroup, Anchor, Avatar, AvatarStack, Paginator, DataTable, DataTableCell, DataTableRow, DataTableHeaderRow, ColumnsConfigurationModal, WarningNotification,
     SuccessNotification, HintNotification, ErrorNotification, ClearNotification, FlexSpacer, FlexCell, Spinner, LinkButton, DataPickerBody, PickerModal,
-    ModalBlocker, ModalWindow, ModalHeader, ModalFooter,
+    ModalBlocker, ModalHeader, ModalFooter,
 } from '@epam/uui';
 export { MainMenuLogo, MainMenuCustomElement } from '@epam/uui-components';
