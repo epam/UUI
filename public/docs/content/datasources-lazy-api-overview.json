@@ -1,0 +1,1448 @@
+{
+  "object": "value",
+  "document": {
+    "object": "document",
+    "data": {},
+    "nodes": [
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "block",
+            "type": "table",
+            "data": {
+              "cellSizes": [
+                200,
+                517.8963012695312,
+                212.4443359375
+              ]
+            },
+            "nodes": [
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_header_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Property",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_header_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Description",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_header_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Default",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "request.filter",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Filter, which should be sent in the request. It is a ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "result of the merging",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " of ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "filters",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " from ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "the state",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " and from ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "LazyDataSourceProps",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ".",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "request.sorting",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Sorting options, which should be sent in the request.  It comes from ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "DatasourceState",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ".",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "request.search",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "The search string, rows should be ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "searched by",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ". It comes from ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "DatasourceState",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ".",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "request.range",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Specifies a range of the rows to be retrieved.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "request.range.from",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Element index to fetch from.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "request.range.count",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Count",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " of elements ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "to be retrieved",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ".",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "request.page",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Page",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " of data to retrieve. It comes from ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "DatasourceState",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ".",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "request.pageSize",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Count",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " of elements ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "per page",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ".  It comes from ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "DatasourceState",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ".",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "ids",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Ids",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-italic",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " of elements to be retrieved.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "context.parentId",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Id of a parent, for which the API call was performed.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "context.parent",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "The entity of a parent, for which the API call was performed.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "items",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "List of items which was requested via API.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "from",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "API can set ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "from",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": " field if it wants to return more items than what was requested in ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "request.range",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": ". This can be used to return all items at once (with ",
+                            "marks": []
+                          },
+                          {
+                            "object": "text",
+                            "text": "from:0, count: totalCount",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-code",
+                                "data": {}
+                              },
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          },
+                          {
+                            "object": "text",
+                            "text": "), or align a response to pages.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "object": "block",
+                "type": "table_row",
+                "data": {},
+                "nodes": [
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "count",
+                            "marks": [
+                              {
+                                "object": "mark",
+                                "type": "uui-richTextEditor-bold",
+                                "data": {}
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "Total count of items that match a current filter. If not specified, a total count will be detected only when a user scrolls to the end of the list.",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "object": "block",
+                    "type": "table_cell",
+                    "data": {},
+                    "nodes": [
+                      {
+                        "object": "block",
+                        "type": "paragraph",
+                        "data": {},
+                        "nodes": [
+                          {
+                            "object": "text",
+                            "text": "",
+                            "marks": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "data": {},
+        "nodes": [
+          {
+            "object": "text",
+            "text": "",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  }
+}
