@@ -1,10 +1,7 @@
 import React from 'react';
-import { getPluginOptions } from '@udecode/plate-common';
 import {
-    ELEMENT_TABLE,
     TableElement,
     TableElementRootProps,
-    TablePlugin,
 } from '@udecode/plate-table';
 import { getTableColumnCount, type TTableElement, useTableStore } from '@udecode/plate';
 import { cx } from '@epam/uui-core'
@@ -23,20 +20,15 @@ interface OldTableElement extends TTableElement {
 export const Table = (props: TableElementRootProps) => {
     const { as, children, element, editor, ...rootProps } = props;
 
-    const { minColumnWidth: minWidth } = getPluginOptions<TablePlugin>(
-        editor,
-        ELEMENT_TABLE
-    );
-
-    const isCellsSelected = !!useTableStore().get.selectedCells();
-
     if (!element.colSizes) {
         element.colSizes = (element as OldTableElement).data?.cellSizes || getDefaultColWidths(getTableColumnCount(element));
     }
 
+    const isCellsSelected = !!useTableStore().get.selectedCells();
     const colSizeOverrides = useTableStore().get.colSizeOverrides();
     const currentColSizes = element.colSizes.map((size, index) => colSizeOverrides?.get(index) ?? size ?? EMPTY_COL_WIDTH);
 
+    const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);
     return (
         <TableElement.Root
             { ...rootProps }
@@ -46,12 +38,13 @@ export const Table = (props: TableElementRootProps) => {
                 tableCSS.table,
                 isCellsSelected && tableCSS.cellsSelectionActive
             ) }
+            style={ { width: tableWidth } }
         >
             <TableElement.ColGroup>
                 { currentColSizes.map((width, index) => (
                     <TableElement.Col
                         key={ index }
-                        style={ { minWidth, width: width || undefined } }
+                        style={ { minWidth: 0, width: width || undefined } }
                     />
                 )) }
             </TableElement.ColGroup>
