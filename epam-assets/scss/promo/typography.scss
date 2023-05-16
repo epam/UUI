@@ -161,3 +161,11 @@
     font-size: 16px;
 }
 
+@mixin typography-promo() {
+    @include typography-header();
+    @include typography-block();
+    @include typography-inline();
+    font-family: $font-sans;
+    color: $gray80;
+}
+
