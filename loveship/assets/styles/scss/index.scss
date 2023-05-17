@@ -1,11 +1,8 @@
 @forward 'controlColors';
-@forward 'buttonLayout';
 @forward 'prettifyScrollBar';
-@forward 'input';
-@forward 'control-mods';
 @forward 'fonts';
 @forward 'typography-mixins';
-@forward 'control-size';
-@forward 'text-size';
-@forward 'effects';
 @forward 'loveship-colors';
+@forward '~@epam/assets/scss/control-layout';
+@forward '~@epam/assets/scss/control-size';
+

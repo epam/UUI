@@ -1,9 +1,4 @@
 @forward 'colors';
-@forward 'input';
-@forward 'text-size';
-@forward 'controlColors';
-@forward 'buttonLayout';
 @forward 'prettifyScrollBar';
 @forward 'fonts';
-@forward 'typography-mixins';
-@forward 'effects';
+@forward '~@epam/assets/scss/promo/typography';

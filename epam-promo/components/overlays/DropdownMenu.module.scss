@@ -1,6 +1,8 @@
 @use 'sass:math';
 @use  '../../assets/styles/index' as *;
 
+@mixin panel-shadow() { box-shadow: 0 3px 6px 0 rgba(29, 30, 38, 0.1), 0 1px 3px 0 rgba(29, 30, 38, 0.1); }
+
 @mixin icon-layout($size) {
     :global(.uui-icon) {
         svg {
