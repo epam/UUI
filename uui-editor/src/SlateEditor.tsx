@@ -34,6 +34,7 @@ let components = createPlateUI();
 
 export type EditorValue = Value;
 
+
 /**
  * Please make sure defaultPlugins and all your plugins are not interfere
  * with the following list when disableCorePlugins prop hasn't been set
