@@ -25,7 +25,6 @@ export default function DatasourceStateFoldedExample() {
         rowOptions: {
             checkbox: { isVisible: true },
         },
-        // isFoldedByDefault: ({ id }) => id !== '2',
     }, []);
     
     return (

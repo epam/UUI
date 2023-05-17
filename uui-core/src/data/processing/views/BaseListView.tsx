@@ -90,7 +90,7 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
     }
 
     protected idToKey(id: TId) {
-        return JSON.stringify(id);
+        return typeof id === 'object' ? JSON.stringify(id) : `${id}`;
     }
 
     protected keyToId(key: string) {
@@ -180,7 +180,6 @@ export abstract class BaseListView<TItem, TId, TFilter> implements IDataSourceVi
 
     protected isFolded(item: TItem) {
         const folded = this.value.folded || {};
-
         const key = this.idToKey(this.props.getId(item));
 
         if (folded[key] != null) {
