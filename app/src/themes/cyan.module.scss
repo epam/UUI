@@ -1,4 +1,22 @@
 :global(.uui-theme-cyan) {
+    $white: #FFFFFF;
+    $blue: #008ACE;
+    $green: #88CC00;
+    $amber: #FFC000;
+    $red: #E54322;
+    $cyan: #14CCCC;
+    $orange: #E67E17;
+    $purple: #AD14CC;
+    $violet: #5214CC;
+
+    $neutral50: #FAFAFA;
+    $neutral100: #F5F5F5;
+    $neutral200: #EEEEEE;
+    $neutral300: #E1E1E1;
+    $neutral400: #CACACA;
+    $neutral500: #8E8E8E;
+    $neutral600: #4B4B4B;
+    $neutral700: #1F1F1F;
 
     --font-regular: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',SimSun, sans-serif;
     --font-semibold: 'Sans Semibold', Arial, sans-serif;
@@ -80,22 +98,4 @@
     // ---------------------------
 
     --border-radius: 4px;
-    $white: #FFFFFF;
-    $blue: #008ACE;
-    $green: #88CC00;
-    $amber: #FFC000;
-    $red: #E54322;
-    $cyan: #14CCCC;
-    $orange: #E67E17;
-    $purple: #AD14CC;
-    $violet: #5214CC;
-
-    $neutral50: #FAFAFA;
-    $neutral100: #F5F5F5;
-    $neutral200: #EEEEEE;
-    $neutral300: #E1E1E1;
-    $neutral400: #CACACA;
-    $neutral500: #8E8E8E;
-    $neutral600: #4B4B4B;
-    $neutral700: #1F1F1F;
 }

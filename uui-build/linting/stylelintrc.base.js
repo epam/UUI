@@ -35,6 +35,28 @@ const SCSS_COMMON_RULES = {
         },
     ],
     'no-empty-source': true,
+    'order/order': [
+        [
+            'dollar-variables',
+            'custom-properties',
+            {
+                type: 'at-rule',
+                name: 'extend',
+            },
+            {
+                type: 'at-rule',
+                name: 'include',
+                hasBlock: false,
+            },
+            'declarations',
+            {
+                type: 'at-rule',
+                name: 'include',
+                hasBlock: true,
+            },
+            'rules',
+        ],
+    ],
     ...turnOffStylelintRulesToBeFixed(),
 };
 
