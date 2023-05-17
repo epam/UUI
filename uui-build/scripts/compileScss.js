@@ -8,52 +8,76 @@ const scssDiscardComments = require('postcss-discard-comments');
 const { createFileSync, iterateFilesInDirAsync } = require('../utils/fileUtils.js');
 const { uuiRoot } = require('../utils/constants.js');
 
+function isFilePathIgnored(filePath) {
+    return !filePath.endsWith('.scss') || filePath.indexOf('build') !== -1;
+}
+
+function isScssModule(filePath) {
+    return filePath.endsWith('.module.scss');
+}
+
 function getFilesToCompile() {
     return process.argv.splice(2).filter((pair) => pair.indexOf(':') !== -1).map((pair) => pair.split(':'));
 }
 
-function assertNoLocalScopeSelectors({ srcPath, targetPath, variablesJson }) {
-    if (Object.keys(variablesJson).length > 0) {
-        const err = [
-            'Local scope selectors aren\'t allowed.',
-            `srcPath=${srcPath}`,
-            `targetPath=${targetPath}`,
-            JSON.stringify(variablesJson, undefined, 1),
-        ].join('\n');
-        const locSelectors = Object.values(variablesJson);
-        console.error('Local scope selectors found in result css!', `"${path.relative(uuiRoot, srcPath).replaceAll('\\', '/')}" ${locSelectors[0]}${locSelectors.length > 1 ? `,...(${locSelectors.length} in total)` : ''}`);
-        throw new Error(err);
-    }
+function uuiImporter(url, prev, done) {
+    const ALIASES = {
+        '@epam/assets': 'epam-assets',
+    };
+    const uuiResolvers = Object.keys(ALIASES).map((origPath) => {
+        const origPathReplaceTo = ALIASES[origPath];
+        return (filePathToImport) => {
+            const prefix = [`~${origPath}`, origPath].find((p) => filePathToImport.indexOf(p) === 0);
+            if (prefix) {
+                let newUrl = filePathToImport.replace(prefix, path.resolve(uuiRoot, origPathReplaceTo));
+                if (!newUrl.endsWith('.scss')) {
+                    newUrl += '.scss';
+                }
+                return {
+                    file: newUrl,
+                    contents: fs.readFileSync(newUrl).toString(),
+                };
+            }
+        };
+    });
+    uuiResolvers.find((r) => {
+        const res = r(url);
+        if (res) {
+            done(res);
+            return true;
+        }
+        return false;
+    });
 }
 
-function getCompiler() {
-    return postcss([
-        postcssSass({}),
-        scssDiscardComments({ removeAll: true }),
-        scssModules({
-            getJSON: (srcPath, variablesJson, targetPath) => {
-                assertNoLocalScopeSelectors({ srcPath, targetPath, variablesJson });
-            },
+function getCompiler(isModule) {
+    const plugins = [
+        postcssSass({
+            importer: uuiImporter,
         }),
-    ]);
+        scssDiscardComments({ removeAll: true }),
+    ];
+    if (isModule) {
+        plugins.push(scssModules({}));
+    }
+    return postcss(plugins);
 }
 
 async function compileSingleFile({ from, to }) {
     const src = await fs.promises.readFile(from, 'utf8');
-    const compiler = getCompiler();
+    const compiler = getCompiler(isScssModule(from));
 
     let result;
     try {
         result = await compiler.process(src, { map: { inline: false }, to, from, syntax: scssParser });
     } catch (err) {
-        console.error(`cannot compile src=${from}`, err.stack);
+        console.error(`Compile error ${from}`, err.stack);
+        throw new Error(err);
     }
 
     if (result) {
         const isEmptyCss = result.map._sources.size() === 0;
-        if (isEmptyCss) {
-            console.error('The result css is empty!', path.relative(uuiRoot, to));
-        } else {
+        if (!isEmptyCss) {
             createFileSync(to, result.css);
             createFileSync(`${to}.map`, result.map.toString());
         }
@@ -75,7 +99,7 @@ async function main() {
                 inProgress.push(promise);
             } else {
                 await iterateFilesInDirAsync(from, (filePath) => {
-                    if (!filePath.endsWith('.scss') || filePath.indexOf('build') !== -1) {
+                    if (isFilePathIgnored(filePath)) {
                         return;
                     }
                     const compileToFile = path.resolve(to, path.relative(from, filePath).replace('.scss', '.css'));
