@@ -1,8 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { useScrollSpy } from '@epam/uui-components';
-import {
-    FlexSpacer, Button, FlexCell, FlexRow, LinkButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Panel, ScrollBars, Text,
-} from '@epam/promo';
+import { FlexSpacer, Button, FlexCell, FlexRow, LinkButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Panel, ScrollBars, Text } from '@epam/promo';
 import css from './ScrollSpyReader.module.scss';
 import { svc } from '../../services';
 
@@ -17,7 +15,7 @@ export function ScrollSpyModal() {
     const getContinuationModal = () => {
         svc.uuiModals
             .show((modalProps) => (
-                <ModalBlocker blockerShadow="dark" { ...modalProps }>
+                <ModalBlocker { ...modalProps }>
                     <ModalWindow>
                         <Panel background="white">
                             <ModalHeader title="Continue reading? " onClose={ () => modalProps.abort() } />

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { cx, IHasRawProps } from '@epam/uui-core';
 import { DropSpot as UuiDropSpot, DropSpotRenderParams, UploadFileToggler } from '@epam/uui-components';
-import css from './DropSpot.module.scss';
-import {
-    Anchor, FlexRow, IconContainer, RichTextView, Text,
-} from '../';
+import { Anchor, FlexRow, IconContainer, RichTextView, Text } from '../../components';
 import { ReactComponent as ShapeIcon } from '../../icons/fileUpload/shape.svg';
 import { i18n } from '../../i18n';
+import css from './DropSpot.module.scss';
 
 export interface DropSpotProps extends IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     cx?: string;

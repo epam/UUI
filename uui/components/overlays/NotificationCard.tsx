@@ -1,9 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { IconContainer } from '@epam/uui-components';
-import {
-    INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps,
-} from '@epam/uui-core';
+import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps } from '@epam/uui-core';
 import { IconButton, LinkButton } from '../buttons';
 import { SemanticColor } from '../types';
 import { i18n } from '../../i18n';

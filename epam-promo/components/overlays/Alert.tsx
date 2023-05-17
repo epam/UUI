@@ -5,7 +5,7 @@ import { ReactComponent as SuccessIcon } from '../../icons/notification-check_ci
 import { ReactComponent as WarningIcon } from '../../icons/notification-warning-fill-24.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/notification-error-fill-24.svg';
 import { ReactComponent as HintIcon } from '../../icons/notification-help-fill-24.svg';
-import { EpamPrimaryColor } from '..';
+import { EpamPrimaryColor } from '../types';
 
 export interface AlertMods {
     color?: EpamPrimaryColor;

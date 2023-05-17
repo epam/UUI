@@ -46,6 +46,8 @@
 * [RangeSlider]: deprecated all colors except 'sky' by default.
 * [Tooltip]: fixed max-width - removed default 300px max-width value from styles, you can set max-with using property 'maxWidth'.
 * [RichTextView]: h1 font-size in promo skin changed from 36px to 42px.
+* [ModalBlocker]: removed property 'blockerShadow'.
+* [ModalWindow]: to types of properties 'width' and 'height' was added type number.
 
 * [Datasources]: datasources rework
   - Moved sort/search/filter logic to the `Tree` from views.
