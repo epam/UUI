@@ -2289,18 +2289,6 @@
     "@types/yargs" "^17.0.8"
     chalk "^4.0.0"
 
-"@jest/types@^29.4.3":
-  version "29.4.3"
-  resolved "https://registry.yarnpkg.com/@jest/types/-/types-29.4.3.tgz#9069145f4ef09adf10cec1b2901b2d390031431f"
-  integrity sha512-bPYfw8V65v17m2Od1cv44FH+SiKW7w2Xu7trhcdTLUmSv85rfKsP+qXSjO4KGJr4dtPSzl/gvslZBXctf1qGEA==
-  dependencies:
-    "@jest/schemas" "^29.4.3"
-    "@types/istanbul-lib-coverage" "^2.0.0"
-    "@types/istanbul-reports" "^3.0.0"
-    "@types/node" "*"
-    "@types/yargs" "^17.0.8"
-    chalk "^4.0.0"
-
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"
@@ -10857,18 +10845,6 @@ jest-util@^28.1.3:
     graceful-fs "^4.2.9"
     picomatch "^2.2.3"
 
-jest-util@^29.4.3:
-  version "29.4.3"
-  resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-29.4.3.tgz#851a148e23fc2b633c55f6dad2e45d7f4579f496"
-  integrity sha512-ToSGORAz4SSSoqxDSylWX8JzkOQR7zoBtNRsA7e+1WUX5F8jrOwaNpuh1YfJHJKDHXLHmObv5eOjejUd+/Ws+Q==
-  dependencies:
-    "@jest/types" "^29.4.3"
-    "@types/node" "*"
-    chalk "^4.0.0"
-    ci-info "^3.2.0"
-    graceful-fs "^4.2.9"
-    picomatch "^2.2.3"
-
 jest-util@^29.5.0:
   version "29.5.0"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-29.5.0.tgz#24a4d3d92fc39ce90425311b23c27a6e0ef16b8f"
@@ -10957,16 +10933,6 @@ jest-worker@^28.0.2:
   integrity sha512-CqRA220YV/6jCo8VWvAt1KKx6eek1VIHMPeLEbpcfSfkEeWyBNppynM/o6q+Wmw+sOhos2ml34wZbSX3G13//g==
   dependencies:
     "@types/node" "*"
-    merge-stream "^2.0.0"
-    supports-color "^8.0.0"
-
-jest-worker@^29.4.1:
-  version "29.4.3"
-  resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-29.4.3.tgz#9a4023e1ea1d306034237c7133d7da4240e8934e"
-  integrity sha512-GLHN/GTAAMEy5BFdvpUfzr9Dr80zQqBrh0fz1mtRMe05hqP45+HfQltu7oTBfduD0UeZs09d+maFtFYAXFWvAA==
-  dependencies:
-    "@types/node" "*"
-    jest-util "^29.4.3"
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
@@ -16813,17 +16779,6 @@ stylelint-scss@4.6.0, stylelint-scss@^4.0.0:
     postcss-resolve-nested-selector "^0.1.1"
     postcss-selector-parser "^6.0.11"
     postcss-value-parser "^4.2.0"
-
-stylelint-webpack-plugin@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/stylelint-webpack-plugin/-/stylelint-webpack-plugin-4.0.0.tgz#c7a5ff037adc3d8029ef88cab766f656866bc8e6"
-  integrity sha512-VDxJ2/TLvykZCwa6CLfqN6pR/smkI3ry5x+p4ujxdJklUyEmkcxxumpL3x1k9XI55IxPqu8d2wXcGo3qWBChHA==
-  dependencies:
-    globby "^11.1.0"
-    jest-worker "^29.4.1"
-    micromatch "^4.0.5"
-    normalize-path "^3.0.0"
-    schema-utils "^4.0.0"
 
 stylelint@15.3.0:
   version "15.3.0"

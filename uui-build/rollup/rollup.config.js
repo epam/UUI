@@ -98,6 +98,7 @@ async function createRollupConfigForModule(options) {
             postcss({
                 sourceMap: true,
                 modules: { hashPrefix: moduleName },
+                autoModules: true,
                 extract: path.resolve(outDir, EXTRACTED_CSS_FILE_NAME),
                 to: `${outDir}/${EXTRACTED_CSS_FILE_NAME}`,
             }),
