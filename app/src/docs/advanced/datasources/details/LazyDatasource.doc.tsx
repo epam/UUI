@@ -17,6 +17,7 @@ export class DatasourcesLazyDatasourceDoc extends BaseDocsBlock {
 
                 <DocExample title="Data" path="./_examples/datasources/LazyDatasourceData.example.tsx" />
                 <DocExample title="getChildCount" path="./_examples/datasources/LazyDatasourceGetChildCount.example.tsx" />
+                <DocExample title="Filter" path="./_examples/datasources/LazyDatasourceFilter.example.tsx" />
 
             </>
         );

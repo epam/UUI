@@ -4,7 +4,7 @@ import { DatasourceViewer } from './DatasourceViewer';
 import { TApi } from '../../../data';
 import { Location } from '@epam/uui-docs';
 
-export default function LazyDatasourceDataExample() {
+export default function LazyDatasourceGetChildCountExample() {
     const svc = useUuiContext<TApi>();
 
     const [value1, onValueChange1] = useState<DataSourceState>({});
