@@ -1,15 +1,14 @@
 const { whenDev, whenProd } = require('@craco/craco');
 const {
-    removeRuleByTestAttr, changeRuleByTestAttr, makeSlashesPlatformSpecific,
-    changePluginByName,
+    changeRuleByTestAttr, makeSlashesPlatformSpecific,
+    changePluginByName, removeRuleByTestAttr,
 } = require('./utils/configUtils');
 const {
     DIRS_FOR_BABEL, CSS_URL_ROOT_PATH, ENTRY_WITH_EXTRACTED_DEPS_CSS,
-    LIBS_WITHOUT_SOURCE_MAPS, UUI_ROOT,
+    LIBS_WITHOUT_SOURCE_MAPS,
 } = require('./constants');
 const { uuiCustomFormatter } = require('./formatters/issueFormatter');
 const { assertAppDepsAreBuilt } = require('./utils/appDepsUtils');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 /**
  * There are two major use cases:
@@ -25,8 +24,6 @@ function getIsUseBuildFolderOfDeps() {
     return flag;
 }
 const isUseBuildFolderOfDeps = getIsUseBuildFolderOfDeps();
-const isEnableEslint = whenDev(() => false, false);
-const isEnableStylelint = whenDev(() => false, false);
 
 const headCommitHash = require('../../uui-build/utils/gitUtils').getHeadCommitHash();
 
@@ -35,10 +32,7 @@ const headCommitHash = require('../../uui-build/utils/gitUtils').getHeadCommitHa
  */
 module.exports = function uuiConfig() {
     return {
-        eslint: isEnableEslint ? {
-            enable: true,
-            mode: 'file',
-        } : { enable: false },
+        eslint: { enable: false },
         webpack: { configure: configureWebpack },
     };
 };
@@ -57,10 +51,10 @@ function configureWebpack(config, { paths }) {
         paths.appIndexJs = ENTRY_WITH_EXTRACTED_DEPS_CSS;
         config.entry = ENTRY_WITH_EXTRACTED_DEPS_CSS;
     }
+
     // reason: no such use case in UUI.
     removeRuleByTestAttr(config, /\.module\.css$/);
-    // reason: .sass files are always modules in UUI
-    removeRuleByTestAttr(config, /\.(scss|sass)$/);
+
     // reason: all .css files are not modules in UUI
     changeRuleByTestAttr(config, /\.css$/, (r) => { delete r.exclude; return r; });
 
@@ -87,8 +81,6 @@ function configureWebpack(config, { paths }) {
 
     // Reason: see below.
     changeRuleByTestAttr(config, /\.module\.(scss|sass)$/, (prev) => {
-        // replace "test". Reason: .sass files are always modules in UUI
-        prev.test = /\.scss$/;
         prev.use && prev.use.forEach((u) => {
             if (u.loader && u.loader.indexOf(makeSlashesPlatformSpecific('/resolve-url-loader/')) !== -1) {
                 // Set css root for "resolve-url-loader". So that url('...') statements in .scss are resolved correctly.
@@ -121,26 +113,6 @@ function configureWebpack(config, { paths }) {
             plugin.options.issue.include = plugin.options.issue.include.concat(DIRS_FOR_BABEL.DEPS_SOURCES.INCLUDE);
         }
     });
-    isEnableEslint && changePluginByName(config, 'ESLintWebpackPlugin', (plugin) => {
-        Object.assign(plugin.options, {
-            formatter: 'unix',
-            outputReport: false,
-            emitWarning: false,
-            context: UUI_ROOT,
-        });
-        return plugin;
-    });
-
-    isEnableStylelint && config.plugins.push(new StyleLintPlugin({
-        formatter: 'unix',
-        configBasedir: UUI_ROOT,
-        context: UUI_ROOT,
-        exclude: [
-            // StyleLintPlugin ignores ".stylelintignore", so we have to explicitly repeat excluded patterns here
-            'templates/', '**/build/',
-        ],
-        files: ['**/*.scss', '**/*.less'],
-    }));
 
     return config;
 }

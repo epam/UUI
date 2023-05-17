@@ -1,17 +1,10 @@
-declare const __DEV__: boolean;
+/// <reference path="../uui_globals.d.ts" />
 
-declare module '*.scss' {
-    var all: { [selector: string]: string };
+declare module '@epam/assets/scss/typography.scss' {
+    // this is a hack, because draft-rte uses old version of @epam/assets
+    const all: { [selector: string]: string };
     export = all;
 }
-
-declare module '*.svg' {
-    import React from 'react';
-    export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
-    const src: string;
-    export default src;
-}
-
 
 // inherited definitions, required for module build
 declare module "jsurl";

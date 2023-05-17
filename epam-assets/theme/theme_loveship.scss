@@ -2,7 +2,7 @@
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 // refactor indentions for this page using co-pilot
 
-:global(.uui-theme-loveship) {
+.uui-theme-loveship {
     --font-regular: 'Sans Regular', Arial, sans-serif;
     --font-semibold: 'Sans Semibold', Arial, sans-serif;
     --font-italic: 'Sans Italic', Arial, sans-serif;
@@ -755,25 +755,25 @@
 
     /* ------------------------------------ */
 
-    :global(.tooltip-contrast),
-    :global(.tooltip-gray) {
+    .tooltip-contrast,
+    .tooltip-gray {
         --uui-tooltip-bg: var(--uui-surface-contrast);
         --uui-tooltip-text: var(--uui-contrast);
     }
 
-    :global(.tooltip-default),
-    :global(.tooltip-white) {
+    .tooltip-default,
+    .tooltip-white {
         --uui-tooltip-bg: var(--uui-surface);
         --uui-tooltip-text: var(--uui-text-primary);
     }
 
-    :global(.tooltip-critical),
-    :global(.tooltip-fire) {
+    .tooltip-critical,
+    .tooltip-fire {
         --uui-tooltip-bg: var(--uui-error-dark);
         --uui-tooltip-text: var(--uui-contrast);
     }
 
-    :global(.button-sky), :global(.button-primary) {
+    .button-sky, .button-primary {
         --uui-btn-bg: var(--uui-primary);
         --uui-btn-bg-hover: var(--uui-primary-dark);
         --uui-btn-bg-active: var(--uui-primary-darkest);
@@ -790,7 +790,7 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
-    :global(.button-accent), :global(.button-grass) {
+    .button-accent, .button-grass {
         --uui-btn-bg: var(--uui-accent);
         --uui-btn-bg-hover: var(--uui-accent-dark);
         --uui-btn-bg-active: var(--uui-accent-darkest);
@@ -807,7 +807,7 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
-    :global(.button-fire), :global(.button-negative) {
+    .button-fire, .button-negative {
         --uui-btn-bg: var(--uui-negative);
         --uui-btn-bg-hover: var(--uui-negative-dark);
         --uui-btn-bg-active: var(--uui-negative-darkest);
@@ -824,10 +824,10 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
-    :global(.button-night500),
-    :global(.button-night600),
-    :global(.button-gray),
-    :global(.button-secondary) {
+    .button-night500,
+    .button-night600,
+    .button-gray,
+    .button-secondary {
         --uui-btn-bg: var(--uui-secondary);
         --uui-btn-bg-hover: var(--uui-secondary-dark);
         --uui-btn-bg-active: var(--uui-secondary-darkest);
@@ -844,7 +844,7 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
-    :global(.button-white) {
+    .button-white {
         --uui-btn-bg: var(--uui-contrast);
         --uui-btn-bg-hover: var(--uui-color-white-800);
         --uui-btn-bg-active: var(--uui-color-white-900);
@@ -861,159 +861,159 @@
         --uui-btn-caption-disabled: var(--uui-button-caption-disabled);
     }
 
-    :global(.icon-button-sky),
-    :global(.icon-button-info) {
+    .icon-button-sky,
+    .icon-button-info {
         --uui-icon-btn: var(--uui-info);
         --uui-icon-btn-hover: var(--uui-info-dark);
         --uui-icon-btn-active: var(--uui-info-darkest);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-grass),
-    :global(.icon-button-success) {
+    .icon-button-grass,
+    .icon-button-success {
         --uui-icon-btn: var(--uui-success);
         --uui-icon-btn-hover: var(--uui-success-dark);
         --uui-icon-btn-active: var(--uui-success-darkest);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-sun),
-    :global(.icon-button-warning) {
+    .icon-button-sun,
+    .icon-button-warning {
         --uui-icon-btn: var(--uui-warning);
         --uui-icon-btn-hover: var(--uui-warning-dark);
         --uui-icon-btn-active: var(--uui-warning-darkest);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-fire),
-    :global(.icon-button-error) {
+    .icon-button-fire,
+    .icon-button-error {
         --uui-icon-btn: var(--uui-error);
         --uui-icon-btn-hover: var(--uui-error-dark);
         --uui-icon-btn-active: var(--uui-error-darkest);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-carbon) {
+    .icon-button-carbon {
         --uui-icon-btn: var(--uui-color-carbon-700);
         --uui-icon-btn-hover: var(--uui-color-carbon-800);
         --uui-icon-btn-active: var(--uui-color-carbon-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-cobalt) {
+    .icon-button-cobalt {
         --uui-icon-btn: var(--uui-color-cobalt-700);
         --uui-icon-btn-hover: var(--uui-color-cobalt-800);
         --uui-icon-btn-active: var(--uui-color-cobalt-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-lavanda) {
+    .icon-button-lavanda {
         --uui-icon-btn: var(--uui-color-lavanda-700);
         --uui-icon-btn-hover: var(--uui-color-lavanda-800);
         --uui-icon-btn-active: var(--uui-color-lavanda-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-fuchsia) {
+    .icon-button-fuchsia {
         --uui-icon-btn: var(--uui-color-fuchsia-700);
         --uui-icon-btn-hover: var(--uui-color-fuchsia-800);
         --uui-icon-btn-active: var(--uui-color-fuchsia-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-white) {
+    .icon-button-white {
         --uui-icon-btn: var(--white);
         --uui-icon-btn-hover: var(--uui-color-white-800);
         --uui-icon-btn-active: var(--uui-color-white-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-night200) {
+    .icon-button-night200 {
         --uui-icon-btn: var(--night200);
         --uui-icon-btn-hover: var(--uui-color-night200-800);
         --uui-icon-btn-active: var(--uui-color-night200-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-night300) {
+    .icon-button-night300 {
         --uui-icon-btn: var(--night300);
         --uui-icon-btn-hover: var(--uui-color-night300-800);
         --uui-icon-btn-active: var(--uui-color-night300-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-night400) {
+    .icon-button-night400 {
         --uui-icon-btn: var(--night400);
         --uui-icon-btn-hover: var(--uui-color-night400-800);
         --uui-icon-btn-active: var(--uui-color-night400-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-night500) {
+    .icon-button-night500 {
         --uui-icon-btn: var(--night500);
         --uui-icon-btn-hover: var(--uui-color-night500-800);
         --uui-icon-btn-active: var(--uui-color-night500-900);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.icon-button-night600),
-    :global(.icon-button-secondary),
-    :global(.icon-button-default) {
+    .icon-button-night600,
+    .icon-button-secondary,
+    .icon-button-default {
         --uui-icon-btn: var(--night600);
         --uui-icon-btn-hover: var(--uui-icon-hover);
         --uui-icon-btn-active: var(--uui-icon-active);
         --uui-icon-btn-disabled: var(--uui-icon-disabled);
     }
 
-    :global(.notification-card-sun),
-    :global(.notification-card-warning) {
+    .notification-card-sun,
+    .notification-card-warning {
         --uui-notification-card-fill: var(--uui-warning);
         --uui-notification-card-border: var(--uui-warning);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.notification-card-success),
-    :global(.notification-card-grass) {
+    .notification-card-success,
+    .notification-card-grass {
         --uui-notification-card-fill: var(--uui-success);
         --uui-notification-card-border: var(--uui-success);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.notification-card-info),
-    :global(.notification-card-sky) {
+    .notification-card-info,
+    .notification-card-sky {
         --uui-notification-card-fill: var(--uui-info);
         --uui-notification-card-border: var(--uui-info);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.notification-card-error),
-    :global(.notification-card-fire) {
+    .notification-card-error,
+    .notification-card-fire {
         --uui-notification-card-fill: var(--uui-error);
         --uui-notification-card-border: var(--uui-error);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.notification-card-night600) {
+    .notification-card-night600 {
         --uui-notification-card-fill: var(--night600);
         --uui-notification-card-border: var(--night600);
         --uui-notification-card-bg: var(--uui-surface);
         --uui-notification-card-text: var(--uui-text-primary);
     }
 
-    :global(.alert-error),
-    :global(.alert-fire) {
+    .alert-error,
+    .alert-fire {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: #F5E5E9;
         --uui-alert-border: var(--uui-error);
         --uui-alert-icon: var(--uui-error);
     }
 
-    :global(.alert-warning),
-    :global(.alert-sun) {
+    .alert-warning,
+    .alert-sun {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: #F6EEE1;
         --uui-alert-border: var(--uui-warning);
@@ -1021,23 +1021,23 @@
     }
 
 
-    :global(.alert-success),
-    :global(.alert-grass) {
+    .alert-success,
+    .alert-grass {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: #E7EEE1;
         --uui-alert-border: var(--uui-success);
         --uui-alert-icon: var(--uui-success);
     }
 
-    :global(.alert-info),
-    :global(.alert-sky) {
+    .alert-info,
+    .alert-sky {
         --uui-alert-text: var(--uui-text-primary);
         --uui-alert-bg: #DCEDF6;
         --uui-alert-border: var(--uui-info);
         --uui-alert-icon: var(--uui-info);
     }
 
-    :global(.badge-default), :global(.badge-night300) {
+    .badge-default, .badge-night300 {
         --uui-badge-bg: var(--night300);
         --uui-badge-bg-hover: var(--night400);
         --uui-badge-caption-solid: var(--uui-text-primary);
@@ -1050,7 +1050,7 @@
         --uui-badge-caption-halftone: var(--uui-text-primary);
     }
 
-    :global(.badge-info), :global(.badge-sky) {
+    .badge-info, .badge-sky {
         --uui-badge-bg: var(--uui-info);
         --uui-badge-bg-hover: var(--uui-info-dark);
         --uui-badge-caption-solid: var(--uui-text-contrast);
@@ -1063,7 +1063,7 @@
         --uui-badge-caption-halftone: var(--uui-info-darkest);
     }
 
-    :global(.badge-success), :global(.badge-grass) {
+    .badge-success, .badge-grass {
         --uui-badge-bg: var(--uui-success);
         --uui-badge-bg-hover: var(--uui-success-dark);
         --uui-badge-caption-solid: var(--uui-text-contrast);
@@ -1076,7 +1076,7 @@
         --uui-badge-caption-halftone: var(--uui-success-darkest);
     }
 
-    :global(.badge-warning), :global(.badge-sun) {
+    .badge-warning, .badge-sun {
         --uui-badge-bg: var(--uui-warning);
         --uui-badge-bg-hover: var(--uui-warning-dark);
         --uui-badge-caption-solid: var(--uui-text-primary);
@@ -1089,7 +1089,7 @@
         --uui-badge-caption-halftone: var(--uui-warning-darkest);
     }
 
-    :global(.badge-error), :global(.badge-fire) {
+    .badge-error, .badge-fire {
         --uui-badge-bg: var(--uui-error);
         --uui-badge-bg-hover: var(--uui-error-dark);
         --uui-badge-caption-solid: var(--white);
@@ -1102,7 +1102,7 @@
         --uui-badge-caption-halftone: var(--uui-error-darkest);
     }
 
-    :global(.badge-cobalt) {
+    .badge-cobalt {
         --uui-badge-bg: var(--uui-color-cobalt-700);
         --uui-badge-bg-hover: var(--uui-color-cobalt-800);
         --uui-badge-caption-solid: var(--uui-text-contrast);
@@ -1115,7 +1115,7 @@
         --uui-badge-caption-halftone: var(--uui-color-cobalt-900);
     }
 
-    :global(.badge-lavanda) {
+    .badge-lavanda {
         --uui-badge-bg: var(--uui-color-lavanda-700);
         --uui-badge-bg-hover: var(--uui-color-lavanda-800);
         --uui-badge-caption-solid: var(--white);
@@ -1128,7 +1128,7 @@
         --uui-badge-caption-halftone: var(--uui-color-lavanda-900);
     }
 
-    :global(.badge-fuchsia) {
+    .badge-fuchsia {
         --uui-badge-bg: var(--uui-color-fuchsia-700);
         --uui-badge-bg-hover: var(--uui-color-fuchsia-800);
         --uui-badge-caption-solid: var(--uui-text-contrast);
@@ -1141,7 +1141,7 @@
         --uui-badge-caption-halftone: var(--uui-color-fuchsia-900);
     }
 
-    :global(.badge-white) {
+    .badge-white {
         --uui-badge-bg: var(--white);
         --uui-badge-bg-hover: var(--gray5);
         --uui-badge-caption-solid: var(--night800);
@@ -1154,7 +1154,7 @@
         --uui-badge-caption-halftone: var(--uui-text-secondary);
     }
 
-    :global(.badge-night200) {
+    .badge-night200 {
         --uui-badge-bg: var(--uui-color-night200-700);
         --uui-badge-bg-hover: var(--uui-color-night200-800);
         --uui-badge-caption-solid: var(--night800);
@@ -1167,7 +1167,7 @@
         --uui-badge-caption-halftone: var(--uui-text-secondary);
     }
 
-    :global(.badge-night300) {
+    .badge-night300 {
         --uui-badge-bg: var(--uui-color-night300-700);
         --uui-badge-bg-hover: var(--uui-color-night300-800);
         --uui-badge-caption-solid: var(--night800);
@@ -1180,7 +1180,7 @@
         --uui-badge-caption-halftone: var(--uui-text-secondary);
     }
 
-    :global(.badge-night400) {
+    .badge-night400 {
         --uui-badge-bg: var(--uui-color-night400-700);
         --uui-badge-bg-hover: var(--uui-color-night400-800);
         --uui-badge-caption-solid: var(--night800);
@@ -1193,7 +1193,7 @@
         --uui-badge-caption-halftone: var(--uui-text-secondary);
     }
 
-    :global(.badge-night500) {
+    .badge-night500 {
         --uui-badge-bg: var(--uui-color-night500-700);
         --uui-badge-bg-hover: var(--uui-color-night500-800);
         --uui-badge-caption-solid: var(--uui-text-contrast);
@@ -1206,7 +1206,7 @@
         --uui-badge-caption-halftone: var(--uui-text-secondary);
     }
 
-    :global(.badge-night600) {
+    .badge-night600 {
         --uui-badge-bg: var(--uui-color-night600-700);
         --uui-badge-bg-hover: var(--uui-color-night600-800);
         --uui-badge-caption-solid: var(--uui-text-contrast);
@@ -1219,7 +1219,7 @@
         --uui-badge-caption-halftone: var(--uui-text-secondary);
     }
 
-    :global(.badge-violet) {
+    .badge-violet {
         --uui-badge-bg: var(--lavanda-30);
         --uui-badge-bg-hover: var(--lavanda-40);
         --uui-badge-caption-solid: var(--uui-text-contrast);
@@ -1232,7 +1232,7 @@
         --uui-badge-caption-halftone: var(--lavanda-50);
     }
 
-    :global(.badge-orange) {
+    .badge-orange {
         --uui-badge-bg: var(--orange-30);
         --uui-badge-bg-hover: var(--orange-40);
         --uui-badge-caption-solid: var(--uui-text-contrast);
@@ -1245,7 +1245,7 @@
         --uui-badge-caption-halftone: var(--orange-50);
     }
 
-    :global(.badge-purple) {
+    .badge-purple {
         --uui-badge-bg: var(--purple-30);
         --uui-badge-bg-hover: var(--purple-40);
         --uui-badge-caption-solid: var(--uui-text-contrast);
@@ -1258,121 +1258,121 @@
         --uui-badge-caption-halftone: var(--purple-50);
     }
 
-    :global(.informer-default) {
+    .informer-default {
         --uui-informer-bg: var(--night300);
         --uui-informer-caption: var(--night600);
     }
 
-    :global(.informer-focus) {
+    .informer-focus {
         --uui-informer-bg: var(--fire);
         --uui-informer-caption: var(--uui-contrast);
     }
 
-    :global(.informer-white) {
+    .informer-white {
         --uui-informer-bg: var(--uui-surface);
         --uui-informer-caption: var(--uui-text-secondary);
     }
 
-    :global(.uui-text-info),
-    :global(.uui-text-sky) {
+    .uui-text-info,
+    .uui-text-sky {
         --uui-text: var(--uui-text-info);
     }
 
-    :global(.uui-text-success),
-    :global(.uui-text-grass) {
+    .uui-text-success,
+    .uui-text-grass {
         --uui-text: var(--uui-text-success);
     }
 
-    :global(.uui-text-warning),
-    :global(.uui-text-sun) {
+    .uui-text-warning,
+    .uui-text-sun {
         --uui-text: var(--uui-text-warning);
     }
 
-    :global(.uui-text-error),
-    :global(.uui-text-fire) {
+    .uui-text-error,
+    .uui-text-fire {
         --uui-text: var(--uui-text-error);
     }
 
-    :global(.uui-text-brand),
-    :global(.uui-text-night900) {
+    .uui-text-brand,
+    .uui-text-night900 {
         --uui-text: var(--uui-text-brand);
     }
 
-    :global(.uui-text-primary),
-    :global(.uui-text-night800) {
+    .uui-text-primary,
+    .uui-text-night800 {
         --uui-text: var(--uui-text-primary);
     }
 
-    :global(.uui-text-night700) {
+    .uui-text-night700 {
         --uui-text: var(--night700);
     }
 
-    :global(.uui-text-secondary),
-    :global(.uui-text-night600) {
+    .uui-text-secondary,
+    .uui-text-night600 {
         --uui-text: var(--uui-text-secondary);
     }
 
-    :global(.uui-text-disabled),
-    :global(.uui-text-night500) {
+    .uui-text-disabled,
+    .uui-text-night500 {
         --uui-text: var(--uui-text-disabled);
     }
 
-    :global(.uui-text-night400) {
+    .uui-text-night400 {
         --uui-text: var(--night400);
     }
 
-    :global(.uui-text-night300) {
+    .uui-text-night300 {
         --uui-text: var(--night300);
     }
 
-    :global(.uui-text-contrast),
-    :global(.uui-text-night50) {
+    .uui-text-contrast,
+    .uui-text-night50 {
         --uui-text: var(--uui-text-contrast);
     }
 
-    :global(.uui-font-regular),
-    :global(.uui-font-sans) {
+    .uui-font-regular,
+    .uui-font-sans {
         --uui-text-font: var(--font-regular);
     }
 
-    :global(.uui-font-semibold),
-    :global(.uui-font-sans-semibold) {
+    .uui-font-semibold,
+    .uui-font-sans-semibold {
         --uui-text-font: var(--font-semibold);
     }
 
-    :global(.uui-font-sans-light) {
+    .uui-font-sans-light {
         --uui-text-font: var(--font-light);
     }
 
-    :global(.dropdown-container-white) {
+    .dropdown-container-white {
         --uui-dropdown-container-bg: var(--white);
     }
 
-    :global(.dropdown-container-night700) {
+    .dropdown-container-night700 {
         --uui-dropdown-container-bg: var(--night700);
     }
 
-    :global(.flex-row-background-white) {
+    .flex-row-background-white {
         --uui-flex-row-bg: var(--uui-surface);
     }
 
-    :global(.flex-row-background-night50) {
+    .flex-row-background-night50 {
         --uui-flex-row-bg: var(--night50);
     }
 
-    :global(.flex-row-background-night100) {
+    .flex-row-background-night100 {
         --uui-flex-row-bg: var(--night100);
     }
 
-    :global(.flex-row-background-none) {
+    .flex-row-background-none {
         --uui-flex-row-bg: transparent;
     }
 
-    :global(.panel-white) {
+    .panel-white {
         --uui-panel-bg: var(--uui-surface);
     }
 
-    :global(.panel-night50) {
+    .panel-night50 {
         --uui-panel-bg: var(--night50);
     }
 }
