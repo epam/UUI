@@ -19,11 +19,26 @@ import { DataRowProps } from '@epam/uui-core';
 import { Skills } from './skills';
 import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
+import { RichTextEditorDemo } from './RTE/rteDemo';
 
 export function SandboxPage() {
     const items = useMemo(
         () => [
-            { id: 'complexForm', name: 'Complex Form', component: ComplexForm }, { id: 'dbDemo', name: 'DB demo', component: DbDemo }, { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo }, { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo }, { id: 'projectDemo', name: 'Project Table', component: ProjectDemo }, { id: 'projectTasksDemo', name: 'Project Tasks Demo', component: ProjectTasksDemo }, { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo }, { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo }, { id: 'responsive', name: 'Responsive', component: Responsive }, { id: 'uui_theming', name: 'UUI Theming', component: ThemeDemo }, { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged }, { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills }, { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox }, { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
+            { id: 'complexForm', name: 'Complex Form', component: ComplexForm },
+            { id: 'dbDemo', name: 'DB demo', component: DbDemo },
+            { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
+            { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
+            { id: 'projectDemo', name: 'Project Table', component: ProjectDemo },
+            { id: 'projectTasksDemo', name: 'Project Tasks Demo', component: ProjectTasksDemo },
+            { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
+            { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
+            { id: 'responsive', name: 'Responsive', component: Responsive },
+            { id: 'uui_theming', name: 'UUI Theming', component: ThemeDemo },
+            { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
+            { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
+            { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
+            { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
+            { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
         ],
         [],
     );
@@ -38,7 +53,7 @@ export function SandboxPage() {
 
     return (
         <Page renderHeader={ () => <AppHeader /> }>
-            <FlexRow alignItems="stretch" rawProps={ { style: { height: 'calc(100vh - 60px)' } } }>
+            <FlexRow alignItems="stretch" rawProps={ { style: { minHeight: 'calc(100vh - 60px)' } } }>
                 <Sidebar
                     value={ getQuery('id') }
                     onValueChange={ onChange }
