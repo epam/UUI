@@ -16,6 +16,16 @@ export const updateTableStructure = (tableElem: TTableElement) => {
 
         rowElem.children.forEach((current, colIndex) => {
             const cellElem = current as ExtendedTTableCellElement;
+            const cellColSpan =
+                (cellElem?.attributes as any)?.cellspan ||
+                cellElem.data?.colSpan ||
+                cellElem.colSpan ||
+                1;
+            const cellRowSpan =
+                (cellElem?.attributes as any)?.rowspan ||
+                cellElem.data?.rowSpan ||
+                cellElem.rowSpan ||
+                1;
             let colIndexToSet = colIndex;
 
             // shifts caused by [rowSpan]
@@ -49,22 +59,19 @@ export const updateTableStructure = (tableElem: TTableElement) => {
             }
 
             // assign col index
-            if (cellElem.data?.colSpan > 1) {
+            if (cellColSpan > 1) {
                 // shift caused by [colSpan] of the currently merged cell
-                colIndexToSet = cellElem.data?.colSpan - 1 + colIndexToSet;
+                colIndexToSet = cellColSpan - 1 + colIndexToSet;
 
-                structure[rowIndex][colIndex] = [
-                    colIndexToSet,
-                    cellElem.data?.colSpan,
-                ];
+                structure[rowIndex][colIndex] = [colIndexToSet, cellColSpan];
             } else {
                 structure[rowIndex][colIndex] = [colIndexToSet];
             }
 
             // update vertical shifts caused by [rowSpan]
-            if (cellElem.data?.rowSpan > 1) {
+            if (cellRowSpan > 1) {
                 const shiftFrom = colIndex;
-                const shiftRowDepth = cellElem?.data?.rowSpan; // vertical depth to shift
+                const shiftRowDepth = cellRowSpan; // vertical depth to shift
 
                 if (shifts[colIndex]) {
                     // count up here if already exists
@@ -72,18 +79,23 @@ export const updateTableStructure = (tableElem: TTableElement) => {
                         shiftFrom,
                         shifts[colIndex][1] + shiftRowDepth,
                         shifts[colIndex][2],
-                        cellElem?.data.colSpan,
+                        cellColSpan,
                     ];
                 } else {
                     // create shift
-                    shifts[colIndex] = [shiftFrom, shiftRowDepth, rowIndex, cellElem?.data.colSpan];
+                    shifts[colIndex] = [
+                        shiftFrom,
+                        shiftRowDepth,
+                        rowIndex,
+                        cellColSpan,
+                    ];
                 }
             }
 
             // update horizontal shifts caused by [colSpan]
-            if (cellElem.data?.colSpan > 1) {
+            if (cellColSpan > 1) {
                 const shiftFrom = colIndex;
-                const shiftLength = cellElem?.data.colSpan; // cells number to shift
+                const shiftLength = cellColSpan; // cells number to shift
                 hShifts[rowIndex] = [shiftFrom, shiftLength];
             }
         });
