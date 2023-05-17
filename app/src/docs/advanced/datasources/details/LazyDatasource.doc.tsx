@@ -16,9 +16,9 @@ export class DatasourcesLazyDatasourceDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="datasources-lazy-api-overview" />
 
                 <DocExample title="Data" path="./_examples/datasources/LazyDatasourceData.example.tsx" />
-                <DocExample title="getChildCount" path="./_examples/datasources/LazyDatasourceGetChildCount.example.tsx" />
+                <DocExample title="Child count" path="./_examples/datasources/LazyDatasourceGetChildCount.example.tsx" />
                 <DocExample title="Filter" path="./_examples/datasources/LazyDatasourceFilter.example.tsx" />
-
+                <DocExample title="Flatten search results" path="./_examples/datasources/LazyDatasourceFlattenSearchResults.example.tsx" />
             </>
         );
     }
