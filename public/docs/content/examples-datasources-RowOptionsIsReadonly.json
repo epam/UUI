@@ -11,7 +11,70 @@
         "nodes": [
           {
             "object": "text",
-            "text": "NOT READY. BUG FOUND !!!",
+            "text": "Editable rows can become ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "readonly",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-italic",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " if pass ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "isReadonly",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": " to the ",
+            "marks": []
+          },
+          {
+            "object": "text",
+            "text": "getRowOptions",
+            "marks": [
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-bold",
+                "data": {}
+              },
+              {
+                "object": "mark",
+                "type": "uui-richTextEditor-code",
+                "data": {}
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "text": ".",
             "marks": []
           }
         ]

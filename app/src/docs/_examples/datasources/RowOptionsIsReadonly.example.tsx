@@ -51,7 +51,6 @@ export default function RowOptionsIsReadonlyExample() {
         items: formValue2.items,
         getRowOptions: (item, index) => ({
             ...lens2.prop('items').index(index).toProps(),
-            checkbox: { isVisible: true },
             isReadonly: true,
         }),
     }, []);

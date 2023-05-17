@@ -11,7 +11,7 @@
         "nodes": [
           {
             "object": "text",
-            "text": "Not working !!! Need to be fixed. ",
+            "text": "It is representing an index, a list should be scrolled to. Unfortunately, it is only representing an index, calculated by the list component, but not controlled by this option.",
             "marks": []
           }
         ]

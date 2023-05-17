@@ -17,7 +17,6 @@ export class DatasourcesOverviewDoc extends BaseDocsBlock {
 
                 <DocExample title="DataSourceState" path="./_examples/datasources/DataSourceState.code.example.ts" onlyCode={ true } />
                 <EditableDocContent fileName="datasources-source-state-overview" />
-
             </>
         );
     }
