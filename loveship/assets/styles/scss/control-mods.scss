@@ -1,6 +1,6 @@
 @use 'effects' as *;
 @use 'loveship-colors' as *;
-@use 'controlLayout' as *;
+@use '~@epam/assets/scss/control-layout' as *;
 
 
 @mixin control-form-mode() {
