@@ -1,4 +1,60 @@
 :global(.uui-theme-orange) {
+    $primary1-day: #7700FF;
+    $primary1-day-light: #7700FF19;
+    $primary1-day-lightest: #7700FF0C;
+    $primary1-day-dark: #7700FFF2;
+    $primary1-day-darkest: #7700FFE5;
+    $primary1-night: #9466FF;
+    $primary1-night-dark: #9466FFF2;
+    $primary1-night-darkest: #9466FFE5;
+    $primary2-day: #FF4F12;
+    $primary2-day-light: #FF4F1219;
+    $primary2-day-lightest: #FF4F120C;
+    $primary2-day-dark: #F34C13;
+    $primary2-day-darkest: #E74A14;
+    $primary2-night: #FF5E2D;
+    $primary2-night-dark: #FF5E2DF2;
+    $primary2-night-darkest: #FF5E2DE5;
+    $secondary1-day: #29CCA3;
+    $secondary1-day-dark: #29CCA3F2;
+    $secondary1-day-darkest: #29CCA3E5;
+    $secondary1-night: #16D9A6;
+    $secondary1-night-dark: #16D9A6F2;
+    $secondary1-night-darkest: #16D9A6E5;
+    $secondary2-day: #2F9AFF;
+    $secondary2-day-dark: #2F9AFFF2;
+    $secondary2-day-darkest: #2F9AFFE5;
+    $secondary2-night: #40A2FF;
+    $secondary2-night-dark: #40A2FFF2;
+    $secondary2-night-darkest: #40A2FFE5;
+
+    $success-day: #00D359;
+    $success-night: #26DA72;
+    $warning-day: #FFB608;
+    $warning-night: #FFCA00;
+    $error-day: #FF0C0C;
+    $error-night: #FF4747;
+    $info-day: #0042ED;
+    $info-night: #4075FF;
+
+    $black: #101828;
+    $black-95: #1D2533;
+    $black-90: #272F3D;
+    $black-80: #3D4555;
+    $black-60: #797E8B;
+    $black-40: #B5B7C0;
+    $black-20: #D3D4DB;
+    $black-10: #E8E8EE;
+    $black-5: #F4F4F5;
+    $white: #FFFFFF;
+
+    $transparent-3: #10182806;
+    $transparent-5: #1018280D;
+    $transparent-10: #1018281A;
+    $transparent-25: #10182840;
+    $transparent-50: #10182880;
+    $transparent-75: #101828B3;
+    $transparent-100: #101828;
 
     --font-regular: 'Sans Regular', Arial, sans-serif;
     --font-semibold: 'Sans Semibold', Arial, sans-serif;
@@ -101,60 +157,4 @@
     // ---------------------------
 
     --border-radius: 3px;
-    $primary1-day: #7700FF;
-    $primary1-day-light: #7700FF19;
-    $primary1-day-lightest: #7700FF0C;
-    $primary1-day-dark: #7700FFF2;
-    $primary1-day-darkest: #7700FFE5;
-    $primary1-night: #9466FF;
-    $primary1-night-dark: #9466FFF2;
-    $primary1-night-darkest: #9466FFE5;
-    $primary2-day: #FF4F12;
-    $primary2-day-light: #FF4F1219;
-    $primary2-day-lightest: #FF4F120C;
-    $primary2-day-dark: #F34C13;
-    $primary2-day-darkest: #E74A14;
-    $primary2-night: #FF5E2D;
-    $primary2-night-dark: #FF5E2DF2;
-    $primary2-night-darkest: #FF5E2DE5;
-    $secondary1-day: #29CCA3;
-    $secondary1-day-dark: #29CCA3F2;
-    $secondary1-day-darkest: #29CCA3E5;
-    $secondary1-night: #16D9A6;
-    $secondary1-night-dark: #16D9A6F2;
-    $secondary1-night-darkest: #16D9A6E5;
-    $secondary2-day: #2F9AFF;
-    $secondary2-day-dark: #2F9AFFF2;
-    $secondary2-day-darkest: #2F9AFFE5;
-    $secondary2-night: #40A2FF;
-    $secondary2-night-dark: #40A2FFF2;
-    $secondary2-night-darkest: #40A2FFE5;
-
-    $success-day: #00D359;
-    $success-night: #26DA72;
-    $warning-day: #FFB608;
-    $warning-night: #FFCA00;
-    $error-day: #FF0C0C;
-    $error-night: #FF4747;
-    $info-day: #0042ED;
-    $info-night: #4075FF;
-
-    $black: #101828;
-    $black-95: #1D2533;
-    $black-90: #272F3D;
-    $black-80: #3D4555;
-    $black-60: #797E8B;
-    $black-40: #B5B7C0;
-    $black-20: #D3D4DB;
-    $black-10: #E8E8EE;
-    $black-5: #F4F4F5;
-    $white: #FFFFFF;
-
-    $transparent-3: #10182806;
-    $transparent-5: #1018280D;
-    $transparent-10: #1018281A;
-    $transparent-25: #10182840;
-    $transparent-50: #10182880;
-    $transparent-75: #101828B3;
-    $transparent-100: #101828;
 }
