@@ -36,7 +36,9 @@
         }
     }
 
-    &.align-widgets-center { align-self: center; }
+    &.align-widgets-center :global(.uui-checkbox-container) {
+        align-self: center;
+    }
 
     &.padding-12 { padding: 0 12px; }
     &.padding-24 { padding: 0 24px; }
