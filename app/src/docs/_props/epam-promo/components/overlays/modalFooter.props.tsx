@@ -1,17 +1,13 @@
 import * as React from 'react';
 import { DocBuilder } from '@epam/uui-docs';
-import { ModalFooter, ModalFooterProps } from '@epam/promo';
+import { ModalFooter } from '@epam/promo';
+import { ModalFooterProps } from '@epam/uui';
 import { DefaultContext } from '../../docs';
 import { FlexRow } from '@epam/promo';
 import { Text } from '@epam/promo';
 import { Button } from '@epam/promo';
 
 const ModalFooterDoc = new DocBuilder<ModalFooterProps>({ name: 'ModalFooter', component: ModalFooter })
-    .prop('background', {
-        examples: [
-            'white', 'gray5', 'none',
-        ],
-    })
     .prop('padding', {
         examples: [
             '6', '12', '24',

@@ -1,9 +1,7 @@
 import React from 'react';
 import { renderSnapshotWithContextAsync, SvgMock } from '@epam/uui-test-utils';
 import { NotificationCard } from '../NotificationCard';
-import {
-    ClearNotification, ErrorNotification, HintNotification, SuccessNotification, WarningNotification,
-} from '../../../components';
+import { ClearNotification, ErrorNotification, HintNotification, SuccessNotification, WarningNotification } from '../../../components';
 
 describe('NotificationCard', () => {
     it('should render with minimum props', async () => {
