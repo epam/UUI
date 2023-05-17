@@ -6,18 +6,12 @@ export interface ModalWindowMods {
     height?: '300' | '700' | 'auto' | number;
 }
 
-const getHeight = (height: ModalWindowMods['height']): number | undefined => {
-    if (typeof height === 'string') {
-        return height === 'auto' ? undefined : Number(height);
-    } else return height;
-};
-
 export const ModalWindow = withMods<Omit<UuiModalWindowProps, 'width' | 'height'>, ModalWindowMods>(
     UuiModalWindow,
     () => [],
     (props) => ({
         ...props,
-        width: props.width && typeof props.width === 'string' ? Number(props.width) : props.width,
-        height: props.height && getHeight(props.height),
+        width: props.width && Number(props.width),
+        height: props.height && props.height !== 'auto' && Number(props.height),
     }),
 );
