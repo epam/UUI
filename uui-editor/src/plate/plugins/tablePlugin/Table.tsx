@@ -3,7 +3,7 @@ import {
     TableElement,
     TableElementRootProps,
 } from '@udecode/plate-table';
-import { getTableColumnCount, type TTableElement, useTableStore } from '@udecode/plate';
+import { type TTableElement, useTableStore, TTableRowElement } from '@udecode/plate';
 import { cx } from '@epam/uui-core'
 
 import tableCSS from './Table.scss';
@@ -15,6 +15,12 @@ interface OldTableElement extends TTableElement {
     data?: {
         cellSizes?: number[];
     }
+}
+
+const getTableColumnCount = (element: TTableElement) => {
+    const colNumberPerRow = element.children.map((cur) => (cur.children as TTableRowElement).length);
+    const colCount = Math.max.apply(null, colNumberPerRow);
+    return colCount;
 }
 
 export const Table = (props: TableElementRootProps) => {
