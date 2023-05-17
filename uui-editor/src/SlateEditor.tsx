@@ -14,14 +14,10 @@ import {
     createSoftBreakPlugin,
     createExitBreakPlugin,
     PlateProvider,
-    // createDeserializeDocxPlugin,
+    createDeserializeDocxPlugin,
     useEventEditorSelectors,
     isElementEmpty,
     Value,
-    createPluginFactory,
-    KEY_DESERIALIZE_HTML,
-    parseHtmlDocument,
-    deserializeHtml,
 } from '@udecode/plate';
 
 import { createJuicePlugin } from '@udecode/plate-juice';
@@ -33,36 +29,11 @@ import { baseMarksPlugin, paragraphPlugin } from './plate/plugins';
 
 import style from '@epam/assets/scss/promo/typography.scss';
 import css from './SlateEditor.scss';
-import { createDeserializeDocxPlugin } from './plate/plugins/deserializeDocxPlugin/deserializeDocxPlugin';
 
 let components = createPlateUI();
 
 export type EditorValue = Value;
 
-const createDeserializeHtmlPlugin = createPluginFactory({
-    key: KEY_DESERIALIZE_HTML,
-    then: (editor) => ({
-        editor: {
-            insertData: {
-                format: 'text/html',
-                getFragment: ({ data }) => {
-                    // console.log('data', data);
-                    const document = parseHtmlDocument(data);
-
-                    // console.log('document', document);
-
-                    const x = deserializeHtml(editor, {
-                        element: document.body,
-                    });
-
-                    // console.log('x', x);
-
-                    return x;
-                },
-            },
-        },
-    }),
-});
 
 /**
  * Please make sure defaultPlugins and all your plugins are not interfere
@@ -72,7 +43,6 @@ const createDeserializeHtmlPlugin = createPluginFactory({
 export const defaultPlugins: any = [
     createSoftBreakPlugin(),
     createExitBreakPlugin(),
-    createDeserializeHtmlPlugin(),
     createDeserializeDocxPlugin(),
     createJuicePlugin(),
     paragraphPlugin(),
@@ -132,7 +102,7 @@ const Editor = (props: PlateEditorProps) => {
                 } }
                 // we override plate core insertData plugin
                 // so, we need to disable default implementation
-                disableCorePlugins={ { insertData: true, deserializeAst: true } }
+                disableCorePlugins={ { insertData: true } }
             />
             <MarkBalloonToolbar />
             <Toolbar style={ {
