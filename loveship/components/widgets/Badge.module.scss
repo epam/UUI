@@ -1,6 +1,5 @@
 @use 'sass:math';
 @use '../../assets/styles/scss/index'  as *;
-@use '../../assets/styles/scss/control-size' as *;
 
 @mixin control-horizontal-layout($size, $borderWidth) {
     $paddingStep: math.div($size, 6);
