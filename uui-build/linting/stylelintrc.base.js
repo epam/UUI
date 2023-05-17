@@ -34,6 +34,7 @@ const SCSS_COMMON_RULES = {
             ignore: ['consecutive-duplicates-with-different-values'],
         },
     ],
+    'no-empty-source': true,
     ...turnOffStylelintRulesToBeFixed(),
 };
 
