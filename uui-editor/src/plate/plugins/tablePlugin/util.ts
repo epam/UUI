@@ -20,21 +20,23 @@ export const updateTableStructure = (tableElem: TTableElement) => {
 
             // shifts caused by [rowSpan]
             // decide which index to assign depending on col shifts
-            if (rowIndex > 0 && !!shifts.length) {
+            if (!!shifts.length) {
                 shifts.forEach((sh, i) => {
                     if (!sh.length) return;
 
                     // - is it valid shift for this column
                     // - depth still valid for this row
+                    // - applied only to next rows
                     // then shift current col index
-                    if (sh[0] <= colIndex && sh[1] >= 2) {
-                        colIndexToSet = colIndexToSet + 1;
+                    if (sh[0] <= colIndex && sh[1] >= 2 && rowIndex > sh[2]) {
+                        const colSpan = sh[3];
+                        colIndexToSet = colIndexToSet + colSpan;
                     }
                 });
             }
 
             // shifts caused by [colSpan]
-            if (rowIndex > 0 && hShifts.length) {
+            if (!!hShifts.length) {
                 hShifts.forEach((hSh, i) => {
                     if (!hSh.length) return;
 
@@ -70,10 +72,11 @@ export const updateTableStructure = (tableElem: TTableElement) => {
                         shiftFrom,
                         shifts[colIndex][1] + shiftRowDepth,
                         shifts[colIndex][2],
+                        cellElem?.data.colSpan,
                     ];
                 } else {
                     // create shift
-                    shifts[colIndex] = [shiftFrom, shiftRowDepth, rowIndex];
+                    shifts[colIndex] = [shiftFrom, shiftRowDepth, rowIndex, cellElem?.data.colSpan];
                 }
             }
 

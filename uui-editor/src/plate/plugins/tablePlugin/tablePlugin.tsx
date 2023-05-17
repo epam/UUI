@@ -88,8 +88,17 @@ const TableRenderer = (props: any) => {
 
         const colSpan = cellEntries.reduce((acc, [data, path]: any) =>
             (acc += path[2] === cellEntries[0][1][2] ? (data.data?.colSpan || 1) : 0), 0);
-        const rowSpan = cellEntries.reduce((acc, [data, path]: any) =>
-            (acc += path[2] !== cellEntries[0][1][2] ? (data.data?.rowSpan || 1) : 0), 1);
+
+        // define rowSpan
+        const alreadyCounted: number[] = [];
+        const rowSpan = cellEntries.reduce((acc, [data, path]: any) => {
+            const curRowCounted = alreadyCounted.includes(path[2]);
+            if (path[2] !== cellEntries[0][1][2] && !curRowCounted) {
+                alreadyCounted.push(path[2])
+                return acc + (data.data?.rowSpan || 1);
+            }
+            return acc;
+        }, 1);
 
         const emptyCol = {
             "data": { colSpan, rowSpan },
