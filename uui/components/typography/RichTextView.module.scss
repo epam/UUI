@@ -1,4 +1,4 @@
-@use '../../assets/styles/typography-mixins' as *;
+@use '../../assets/styles/typography' as *;
 
 @mixin overflow-ellipsis() {
     overflow: hidden;

@@ -1,8 +1,8 @@
-@use 'colors' as *;
+@use '../../assets/styles/scss/loveship-colors' as *;
 
 @mixin prettifyCustomScroll() {
     :global(.uui-thumb-vertical), :global(.uui-thumb-horizontal) {
-        background: $gray40;
+        background: $night400;
         border-radius: 1.5px;
 
         &:hover {
@@ -11,7 +11,7 @@
 
         &:active {
             border-radius: 3px;
-            background: $gray60;
+            background: $night600;
         }
     }
 
