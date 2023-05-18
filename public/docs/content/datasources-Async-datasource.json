@@ -265,18 +265,27 @@
             "marks": []
           },
           {
-            "object": "text",
-            "text": "ArrayDatasource",
-            "marks": [
+            "object": "inline",
+            "type": "link",
+            "data": {
+              "url": "/documents?id=datasources-array-datasource&mode=doc&skin=UUI4_promo&category=datasources-details"
+            },
+            "nodes": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
+                "object": "text",
+                "text": "ArrayDatasource",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-code",
+                    "data": {}
+                  },
+                  {
+                    "object": "mark",
+                    "type": "uui-richTextEditor-bold",
+                    "data": {}
+                  }
+                ]
               }
             ]
           },

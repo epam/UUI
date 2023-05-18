@@ -11,19 +11,12 @@
         "nodes": [
           {
             "object": "text",
-            "text": "In this chapter, specific props of the LazyDatasource will be overviewed in detail.",
+            "text": "It is worth paying attention to the ",
             "marks": []
-          }
-        ]
-      },
-      {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+          },
           {
             "object": "text",
-            "text": "LazyDatasource",
+            "text": "AsyncDatasourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -39,12 +32,12 @@
           },
           {
             "object": "text",
-            "text": " is used to represent a ",
+            "text": " in detail to understand the way it can be used/configured. ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "huge amount of data, stored somewhere",
+            "text": "AsyncDatasourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -53,19 +46,19 @@
               },
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-italic",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": " on a server. This type of datasource ",
+            "text": " contains all the props, overviewed in the ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "loads",
+            "text": "DatasourceProps",
             "marks": [
               {
                 "object": "mark",
@@ -74,19 +67,19 @@
               },
               {
                 "object": "mark",
-                "type": "uui-richTextEditor-italic",
+                "type": "uui-richTextEditor-code",
                 "data": {}
               }
             ]
           },
           {
             "object": "text",
-            "text": " data ",
+            "text": " ",
             "marks": []
           },
           {
             "object": "text",
-            "text": "lazily",
+            "text": "chapter",
             "marks": [
               {
                 "object": "mark",
@@ -102,28 +95,7 @@
           },
           {
             "object": "text",
-            "text": ", ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "chunk by chunk",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ".",
+            "text": ", so, only the specific one will be described.",
             "marks": []
           }
         ]
