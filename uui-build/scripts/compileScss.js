@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const { compileScssDir } = require('../utils/compileScssUtils.js');
 
 function parseCliArgs() {
@@ -16,8 +17,8 @@ function parseCliArgs() {
             throw new Error(`Folder is expected ${from}`);
         } else {
             dirs.push({
-                from,
-                to,
+                from: path.resolve(from),
+                to: path.resolve(to),
             });
         }
     }
@@ -27,6 +28,11 @@ function parseCliArgs() {
     };
 }
 
+/**
+ * Compiles scss. One or more CLI args are allowed in following format: <src_dir_relative_to_cwd>:<target_dir_relative_to_cwd>
+ * (e.g.: node ../uui-build/scripts/compileScss.js ./theme:./build/css/theme)
+ * @returns {Promise<void>}
+ */
 async function main() {
     const { dirs, recursive } = parseCliArgs();
     function filter(filePath) {
